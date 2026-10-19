@@ -39,6 +39,11 @@ alert — Andrew's decision 2026-10-15, applied at the 2026-10-16 live port).
 exit_alert_eligible gates EXITS from
 S/A — false unless the final tier is below A and the quality checks pass
 (sector misfit, tier existing only because of an override).
+[v5.5 — re-score audit] "Tier existing only because of an override" covers
+a share-scale rescue too: a final run whose share_scale.rescued_by_pin is
+true (a declared base_override pin; without it the engine gaps
+DATA_GAP:shares — SHARE_SCALE) closes both gates like a field override with
+unblocks_tier (NTNX, TEM, VIV).
 The IRR floor does not suppress an exit, since a floor IRR reads "at most
 terminal growth", which confirms the drop; nor does a tier_override pushing an
 S/A numeric tier below A, since a judgment downgrade is still a warning a
@@ -84,13 +89,133 @@ workers quote in analysis.md; no figure should ever be recomputed in prose.
 If judgment.json is absent but score.json exists, judgment.json is seeded
 from the existing score.json first (the v5 re-run path), then score.json is
 rebuilt from the current dcf_numbers.json.
+
+v5.5 (2026-10-19, engine release 5.5.0 — Andrew's rulings on the seven spec
+drafts, DESIGN_5.5 §1 / §2c / §7 / §8):
+- ADS market cap (decision 1). A run from an engine before 5.5.0
+  (engine_release absent or below 5.5.0, and no market_cap_basis record) with
+  an applied ads_ratio printed market_cap_est = per-ADS price × ORDINARY share
+  count (JD 2x, CHT 10x, TLK 100x too large). For such a run make_score uses
+  price × shares_diluted_latest ÷ ratio (dcf_engine.market_cap_est) for
+  market_cap_b, the $40B scope check and key_numbers.md (printed with its
+  label and the old figure) and records market_cap_basis
+  "ads_corrected_by_make_score"; a 5.5 run carries the engine's own
+  market_cap_basis.shares_source through untouched (never divided twice).
+  When the corrected cap lands on the other side of $40B and judgment.json
+  still holds the scope the OLD cap implied, make_score rewrites judgment.json's
+  in_scope_under_40b (that one token, formatting kept — precedent:
+  seed_judgment), prints the change, and records
+  in_scope_corrected_by_make_score: true plus a registry event
+  {event: scope_correction, old_cap, new_cap, in_scope}; both stay on every
+  later run of the same engine output. Any other disagreement still refuses.
+  [ADDITION — M2, round-1 verification] At ads_ratio 1 nothing is corrected
+  (price × shares ÷ 1 is the engine's own cap): the basis reads
+  diluted_latest and no ADS line is printed.
+- [ADDITION — M1, round-1 verification; decision 1's "anything downstream"]
+  Net-debt ratio on the ADS basis, separate from the cap correction. No engine
+  before 5.5.0 divided the normalized-OE total behind
+  diagnostics.net_debt_to_normalized_oe by the ADS ratio (per-ADS OE ×
+  ORDINARY shares) — main's 2026-10-18 fix, still stamped 5.4.0, divided the
+  cap only (PAC, EMBJ, FUTU, HTHT, LTM, TX, FMS, TLK). So for EVERY pre-5.5
+  record with an applied ads_ratio other than 1 and a recorded ratio, whatever
+  state its cap is in, key_numbers.md prints the ADS-basis ratio (recorded ×
+  ads_ratio) beside the engine's figure and names any crossing ("HIGH_NET_DEBT
+  (> 3x) would fire on the ADS basis", "BIG_NET_CASH (< -2x) would fire on the
+  ADS basis", "... would no longer fire on the ADS basis"; TX: 1.04x → 10.44x,
+  HIGH_NET_DEBT would fire), and score.json records
+  net_debt_to_normalized_oe_ads_basis (4 dp). The engine's flag list is hashed
+  engine output and is never rewritten here.
+- Release mismatch (dcf_numbers.json engine_release != dcf_engine.ENGINE_RELEASE).
+  No counterfactual replay: the current engine would measure the override
+  against another capex / SBC basis than the recorded run (EMBJ: a 5.5 base
+  43% lower from IFRS intangibles alone). override_impact is the prior
+  score.json block when it was measured on this run's base, plus
+  impact_carried_from_prior_score: true and counterfactual_engine_release;
+  otherwise the impact fields are null with a "not measured" note
+  (unblocks_tier is computed as before). Both alert gates close:
+  alert_eligible / exit_alert_eligible false with the reason "engine output
+  predates release 5.5.0 — re-run the engine before an entry / exit alert"
+  (a scope-only correction must not turn JD, Tier A on a capex basis the same
+  release calls incomplete, into a new alert).
+  [ADDITION — M3, round-1 verification] The insurer payable-earnings base
+  follows the same rule: under a release mismatch payable_pin_impact (the
+  native-base replay through the current engine) is not run. The registry
+  base_override event carries the prior run's payable impact (that ticker's
+  base_override registry event, when it was measured on this run's pinned base
+  and weighted IRR at 4 dp) with impact_carried_from_prior_score: true and
+  counterfactual_engine_release; otherwise its impact fields are null with the
+  same "not measured" note. Every measurement (the field-override
+  counterfactual and the payable replay) runs BEFORE the first write (the
+  judgment.json scope rewrite, then score.json), so a failed replay refuses
+  with nothing written; an override_impact block on a payable-pinned run is
+  labelled base_used "payable_5y" (it was "ttm") also when carried or
+  unmeasured.
+- share_class_mismatch (decision 2 §5, flag route; [ADDITION — M5,
+  round-1 verification] strict shapes): a declaration is ONLY bool true, or an
+  object whose `value` is bool true (an object without `value` declares only
+  when it carries a non-empty source). It refuses with DATA_GAP:shares —
+  SHARE_CLASS_MISMATCH, also when source / reason are missing. false, null,
+  {value: false} and an empty object declare nothing. Anything else — strings
+  ("false", "no", "true"), numbers, lists, an object whose `value` is not a
+  bool, a non-empty object with neither `value` nor a source — is MALFORMED
+  and refuses with "share_class_mismatch must be true or {value: true, source,
+  reason}" (dcf_engine.load_share_class_mismatch applies the same rule and
+  records {"malformed": <repr>} without raising the gap).
+- Override currency (decision 7): an override's `currency`, when present, must
+  be "USD" and its kind "filing"; anything else refuses. A USD declaration
+  against an engine run that FX-converted the override anyway (a pre-5.5 run,
+  or a 5.5 run recording currency_basis "converted") refuses as out of sync.
+- key_numbers.md: the market-cap line names its basis, a scope line, one
+  "Capex basis" line per last-3 FY (from financials_history.csv's
+  capex_source / capex_tag, when the run recorded capex_provenance), a "Share
+  basis" line when the run recorded a split adjustment, a cover-page
+  divergence or a share-scale defect, and the SBC-reconciled periods.
+  [ADDITION — M7, round-1 verification] Also one "Share basis: unconfirmed
+  split fact <date> ratio <r> (no post-event cover-page count confirms it) —
+  check the latest 10-Q" line per share_basis.unconfirmed_split_facts entry
+  (history and price may sit on different bases; no flag of its own), and one
+  compact line listing share_basis.in_history_split_facts (informational).
+- [ADDITION — WY, after the retro-scan; not in the rulings — it stops an
+  approved change (decision 3's PaymentsForCapitalImprovements read) from
+  producing a wrong number silently] Superseded capex override: when
+  fragility_flags carry OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex (or
+  override_checks.capex.superseded_periods is non-empty) AND judgment.json
+  still declares capex_override, make_score refuses. The engine's behaviour
+  is unchanged (a filed value always wins; an override fills only unfiled
+  periods), so the override no longer sets capex where a figure is now filed.
+  The worker either (i) removes the override when the newly filed figure IS
+  the filer's capex line (RBC / CR / IT: release 5.5 now reads it), or (ii)
+  blocks NEEDS_MAIN_AGENT: capex when the filed tag is only part of capex (WY:
+  PaymentsForCapitalImprovements 57M / 52M / 51M against a 447M cash-flow
+  total, CAPEX_COVERAGE_LOW firing too — scored as is, 3-FY OE would rise
+  +76.7% on a partial line).
+- [ADDITION — HTHT, same standing] Override read as USD by the last-filed-unit
+  fallback: decision 7's fallback stays exactly as ruled in the engine
+  (override_checks.<field>.currency_basis 'last_filed_unit_usd' -> used
+  verbatim, and recorded). make_score refuses an APPLIED override with that
+  basis unless it is a kind "filing" override declaring currency "USD". The
+  engine records that basis only at a filer whose figures it FX-converted
+  (fx_conversion exists only for a non-USD reporting currency), so this is
+  EVERY use of the fallback: under 5.5 the fallback alone no longer yields a
+  score — it overturns that part of ruling 7's effect and is listed for
+  Andrew's ratification. Reason: the fallback cannot tell a US-dollar figure
+  from a local-currency one (HTHT's capex_override is RMB 828M — verbatim it is
+  $828M, ~7x the filing's own US$119M). Declare currency "USD" when the source
+  states the figure in US dollars (PUK, CX); otherwise restate it or block
+  NEEDS_MAIN_AGENT. A kind "estimate" override under that basis is refused too
+  (the round-1 exemption was withdrawn after verifier round 2): it cannot
+  declare a currency (ruling 7 reserves that for kind filing) and the 0.1x-10x
+  band admits a local-currency figure (CNY ~7.2x — HTHT's RMB 828M relabelled
+  "estimate" would score as $828M). No recorded folder has such an estimate.
 """
-import json, sys, os, datetime, subprocess, hashlib
+import json, sys, os, re, datetime, subprocess, hashlib, csv
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
 # UTF-8 text; Windows Python otherwise defaults to cp1252 and mangles it).
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
+import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
+from dcf_engine import ENGINE_RELEASE
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -167,8 +292,465 @@ def validate_overrides(j):
             fail(f"judgment.json: {key}.source must be a non-empty string")
         if not str(o.get("reason") or "").strip():
             fail(f"judgment.json: {key}.reason must be a non-empty string")
+        # v5.5 (decision 7): an override the filing states in USD may say so;
+        # the engine then uses it verbatim instead of FX-converting it. Only a
+        # filing figure can carry that declaration, and only USD exists.
+        cur = o.get("currency")
+        if cur is not None:
+            if not isinstance(cur, str) or cur.strip().upper() != "USD":
+                fail(f"judgment.json: {key}.currency {cur!r} is not allowed — the only declarable currency is \"USD\" "
+                     "(an override in the filing's own currency carries no currency key; the engine FX-converts it)")
+            if o["kind"] != "filing":
+                fail(f"judgment.json: {key}.currency \"USD\" requires kind \"filing\" (got {o['kind']!r}) — only a "
+                     "figure read from the filing in USD is used verbatim; an estimate never is")
         out[field] = o
     return out
+
+
+SHARE_CLASS_SHAPE = "share_class_mismatch must be true or {value: true, source, reason}"
+
+
+def _nonempty_str(v):
+    return v.strip() if isinstance(v, str) and v.strip() else None
+
+
+def share_class_status(j):
+    """judgment.json share_class_mismatch -> (status, source, reason) with
+    status "declared" | "none" | "malformed" — the engine's rule
+    (dcf_engine.load_share_class_mismatch; [ADDITION — M5] strict shapes):
+      declared: bool True, or an object whose `value` is bool True, or an
+                object without `value` that carries a non-empty source;
+      none:     absent, null, false, {value: false}, an empty object;
+      malformed: anything else — strings ("false", "no", "true"), numbers,
+                lists, an object whose `value` is not a bool, a non-empty
+                object with neither `value` nor a source."""
+    v = j.get("share_class_mismatch") if isinstance(j, dict) else None
+    if v is None or v is False:
+        return "none", None, None
+    if v is True:
+        return "declared", None, None
+    if isinstance(v, dict):
+        src, why = _nonempty_str(v.get("source")), _nonempty_str(v.get("reason"))
+        if "value" in v:
+            if v["value"] is True:
+                return "declared", src, why
+            if v["value"] is False:
+                return "none", None, None
+            return "malformed", None, None
+        if src:
+            return "declared", src, why
+        return ("none" if not v else "malformed"), None, None
+    return "malformed", None, None
+
+
+def share_class_declared(j):
+    """(declared, source, reason) — see share_class_status (a malformed value
+    is not a declaration; refuse_share_class_mismatch refuses it on its own)."""
+    status, src, why = share_class_status(j)
+    return (status == "declared"), src, why
+
+
+def refuse_share_class_mismatch(j):
+    """DESIGN §2c: a declared share_class_mismatch never scores — not even when
+    its source / reason are missing (the engine raises DATA_GAP:shares on it;
+    this refusal also covers output from an engine that predates the rule).
+    [ADDITION — M5] A malformed value refuses too, naming the accepted shapes
+    (a typo such as "false" must neither block silently as a declaration nor
+    be ignored)."""
+    status, src, why = share_class_status(j)
+    if status == "malformed":
+        fail(f"judgment.json: {SHARE_CLASS_SHAPE} (got {j.get('share_class_mismatch')!r}); false, null or "
+             "{value: false} declare nothing — fix the value and re-run the engine")
+    if status != "declared":
+        return
+    fail("DATA_GAP:shares — SHARE_CLASS_MISMATCH: judgment.json declares that the filed share count is a different class "
+         f"from the traded security ({src or 'no source given'}{'; ' + why if why else ''}); no per-share base can be "
+         "priced against the traded share — no tier. Block via queue.py with the reason "
+         f"'NEEDS_MAIN_AGENT: shares — SHARE_CLASS_MISMATCH: {src or '<filing source>'}' (WORKER_SPEC step 4; no override "
+         "can cover this gap, so it is not a DATA_GAP block)"
+         + ("" if (src and why) else " (the declaration also lacks a source and/or reason: add them so the block is auditable)"))
+
+
+# ---------------------------------------------------------------------------
+# v5.5: engine release, ADS market cap, scope (DESIGN §1 / §8)
+# ---------------------------------------------------------------------------
+def release_tuple(rel):
+    """'5.4.0' -> (5, 4, 0); '5.5' -> (5, 5, 0); None / unparseable -> None."""
+    m = re.match(r"\s*(\d+)\.(\d+)(?:\.(\d+))?", rel) if isinstance(rel, str) else None
+    if not m:
+        return None
+    return tuple(int(x or 0) for x in m.groups())
+
+
+def predates_55(n):
+    """True when dcf_numbers.json comes from an engine before release 5.5.0:
+    engine_release absent (a pre-5.4 run) or below 5.5.0, and no
+    market_cap_basis record (5.5 writes one; never correct a 5.5 cap twice)."""
+    if "market_cap_basis" in n:
+        return False
+    t = release_tuple(n.get("engine_release"))
+    return t is None or t < (5, 5, 0)
+
+
+def release_mismatch_reason(rel):
+    """Why the run is not on the current engine release (alert-gate text)."""
+    t, cur = release_tuple(rel), release_tuple(ENGINE_RELEASE)
+    if t is None or (cur is not None and t < cur):
+        return f"engine output predates release {ENGINE_RELEASE}"
+    return f"engine output is from release {rel}, not the current release {ENGINE_RELEASE}"
+
+
+def _num(v):
+    return v if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
+# dcf_engine.market_cap_est — the one formula (price × shares ÷ ratio when
+# an ADS ratio applies, price × shares otherwise), shared with the engine and
+# reprice.py; never a local copy that could drift.
+market_cap_estimate = _engine.market_cap_est  # the engine's one cap formula (alias kept for this module's call sites)
+
+
+def _applied_ads_ratio(n):
+    """The engine's applied ads_ratio.ratio as a float when it is a positive
+    number other than 1 (ratio 1: per-ADS and per-ordinary figures coincide,
+    nothing to correct — [ADDITION — M2]); None otherwise."""
+    a = n.get("ads_ratio")
+    ratio = _num(a.get("ratio")) if isinstance(a, dict) else None
+    if not ratio or ratio <= 0 or float(ratio) == 1.0:
+        return None
+    return float(ratio)
+
+
+def ads_cap_correction(n):
+    """DESIGN §1 (make_score part): for pre-5.5 engine output with an applied
+    ads_ratio other than 1, both price and shares_diluted_latest, and a
+    recorded cap equal to price × shares_diluted_latest (the uncorrected
+    formula), the corrected market cap {cap, old_cap, ratio}; None otherwise
+    (no ratio, ratio 1 — M2: the corrected and uncorrected caps are the same
+    figure, so the basis reads diluted_latest —, a 5.5 run, a cap that already
+    divides by the ratio, or a universe-fallback cap)."""
+    if not predates_55(n):
+        return None
+    ratio = _applied_ads_ratio(n)
+    price, shares = _num(n.get("price")), _num(n.get("shares_diluted_latest"))
+    if not ratio or not price or not shares:
+        return None
+    cap = market_cap_estimate(float(price), float(shares), float(ratio))
+    if cap is None:
+        return None
+    old = _num(n.get("market_cap_est"))
+    # Correct only a cap the engine actually printed on the ordinary count
+    # (price × shares, no division). Main's 2026-10-18 engine fix (still
+    # stamped 5.4.0) already divides by the ratio — those records (PAC, EMBJ,
+    # FUTU, HTHT, LTM, TX, FMS, TLK re-scored 2026-10-19) must never be divided
+    # a second time; a universe-fallback cap is never rescaled either.
+    if old is None or abs(old - float(price) * float(shares)) > 1e-6 * max(1.0, abs(old)):
+        return None
+    return {"cap": cap, "old_cap": old, "ratio": float(ratio)}
+
+
+# The engine's two net-debt flags and their thresholds (dcf_engine: nd_ratio > 3 / < -2).
+ND_FLAG_RULES = (("HIGH_NET_DEBT (> 3x)", lambda x: x > 3), ("BIG_NET_CASH (< -2x)", lambda x: x < -2))
+
+
+def ads_net_debt_basis(n):
+    """[ADDITION — M1] The net-debt ratio on the ADS basis for pre-5.5 engine
+    output, independent of the market-cap correction: no engine before 5.5.0
+    divided the normalized-OE total by the ADS ratio (it multiplied per-ADS OE
+    by the ORDINARY share count — main's 2026-10-18 fix divided the cap only),
+    so diagnostics.net_debt_to_normalized_oe is `ratio` times too small.
+    Returns {ratio, engine, ads_basis, would_fire, would_no_longer_fire} for a
+    pre-5.5 record with an applied ads_ratio other than 1 and a recorded ratio;
+    None otherwise (a 5.5 run already computes it on the ADS basis)."""
+    if not predates_55(n):
+        return None
+    ratio = _applied_ads_ratio(n)
+    nd = _num((n.get("diagnostics") or {}).get("net_debt_to_normalized_oe"))
+    if ratio is None or nd is None:
+        return None
+    ads = nd * ratio
+    fired = lambda x: [name for name, on in ND_FLAG_RULES if on(x)]  # noqa: E731
+    return {"ratio": ratio, "engine": nd, "ads_basis": ads,
+            "would_fire": [f for f in fired(ads) if f not in fired(nd)],
+            "would_no_longer_fire": [f for f in fired(nd) if f not in fired(ads)]}
+
+
+def net_debt_line(n):
+    """key_numbers.md's net-debt line: the engine's figure, or (M1) the
+    ADS-basis ratio beside it with any flag crossing named."""
+    nd = _num((n.get("diagnostics") or {}).get("net_debt_to_normalized_oe"))
+    adj = ads_net_debt_basis(n)
+    if adj is None:
+        return f"- Net debt / normalized OE: {nd:.2f}x" if nd is not None else "- Net debt / normalized OE: —"
+    moved = [f"{f} would fire on the ADS basis" for f in adj["would_fire"]] \
+        + [f"{f} would no longer fire on the ADS basis" for f in adj["would_no_longer_fire"]]
+    return (f"- Net debt / normalized OE: {adj['ads_basis']:.2f}x on the ADS basis (make_score: the pre-5.5 engine's "
+            f"ratio × ads_ratio {adj['ratio']:g} — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed "
+            f"{adj['engine']:.2f}x" + (f" — {'; '.join(moved)}; the engine's flag list predates the fix" if moved else "")
+            + ")")
+
+
+def market_cap_basis(n, corr):
+    """score.json market_cap_basis: "ads_corrected_by_make_score" for a
+    corrected pre-5.5 ADS cap; a 5.5 run's own market_cap_basis.shares_source;
+    for other pre-5.5 output "diluted_latest" (the engine's price ×
+    shares_diluted_latest) or "universe_market_cap" (its fallback when price or
+    shares were missing); None when there is no cap or no record of its basis."""
+    if corr:
+        return "ads_corrected_by_make_score"
+    mb = n.get("market_cap_basis")
+    if isinstance(mb, dict):
+        # the engine's universe.csv fallback (no price or no share count): engine 5.5 records shares_source
+        # "universe_market_cap" there; the formula check also names it for a record whose source says otherwise
+        return "universe_market_cap" if str(mb.get("formula") or "").startswith("universe") else mb.get("shares_source")
+    if isinstance(mb, str):
+        return mb
+    if predates_55(n) and _num(n.get("market_cap_est")) is not None:
+        return "diluted_latest" if (_num(n.get("price")) and _num(n.get("shares_diluted_latest"))) else "universe_market_cap"
+    return None
+
+
+def scope_decision(j_scope, cap, corr):
+    """(computed_scope, rewrite_to, corrected). computed_scope: cap < $40B
+    (None without a cap). In the pre-5.5 ADS branch, when the correction moves
+    the cap across $40B: rewrite_to = the corrected scope if judgment.json
+    still holds the scope the OLD cap implied (else None), and corrected =
+    True whenever judgment ends up on the corrected scope (this run's rewrite
+    or an earlier one) — the score then differs from what the engine's own cap
+    says, which is exactly what in_scope_corrected_by_make_score records."""
+    computed = (cap < 40e9) if _num(cap) is not None else None
+    if computed is None or not corr or _num(corr.get("old_cap")) is None:
+        return computed, None, False
+    old_scope = corr["old_cap"] < 40e9
+    if old_scope == computed:
+        return computed, None, False
+    rewrite_to = computed if bool(j_scope) == old_scope else None
+    final = computed if rewrite_to is not None else bool(j_scope)
+    return computed, rewrite_to, final == computed
+
+
+def rewrite_judgment_scope(jpath, value):
+    """Set judgment.json in_scope_under_40b to `value`, changing only that
+    token when it appears exactly once (the files are compact or indented,
+    raw UTF-8 or \\u-escaped — the diff stays one token); otherwise re-dump in
+    the file's own style. The result is re-parsed and must equal the original
+    with only that field changed, or nothing is written."""
+    with open(jpath, encoding="utf-8", newline="") as f:
+        raw = f.read()
+    orig = json.loads(raw)
+    want = dict(orig, in_scope_under_40b=bool(value))
+    pat = re.compile(r'("in_scope_under_40b"\s*:\s*)(true|false)')
+    tok = "true" if value else "false"
+    if len(pat.findall(raw)) == 1:
+        out = pat.sub(lambda m: m.group(1) + tok, raw)
+    else:
+        indented = raw.lstrip().startswith("{\n") or raw.lstrip().startswith("{\r\n")
+        out = json.dumps(want, indent=1 if indented else None, separators=None if indented else (",", ":"),
+                         ensure_ascii=not any(ord(c) > 127 for c in raw))
+        if raw.endswith("\n"):
+            out += "\n"
+    if json.loads(out) != want:
+        fail("internal: the in_scope_under_40b rewrite of judgment.json did not round-trip — nothing written")
+    tmp = jpath + ".tmp"
+    with open(tmp, "w", encoding="utf-8", newline="") as f:
+        f.write(out)
+    os.replace(tmp, jpath)
+
+
+def _impact_from_run(n):
+    """The with-override side and the basis label, read from the run itself —
+    the same label compute_override_impact gives: "payable_5y" for a run pinned
+    to the insurer payable-earnings base (payable_base recorded, or
+    base_pin_source judgment_base_override — M3: it read "ttm"), "ttm" for any
+    other pin, else "median_3y"."""
+    base_with = n.get("base_oe_per_share")
+    irr_with = n.get("implied_irr_weighted")
+    base_src = (n.get("base_source") or "").lower()
+    inp = n.get("inputs") or {}
+    pinned = inp.get("base_oe_ps_arg") is not None or "ttm" in base_src
+    gaps = list(n.get("data_gap") or [])
+    unblocks = bool(gaps) and not (n.get("data_gap_uncovered") or [])
+    base_used = "payable_5y" if (n.get("payable_base") or inp.get("base_pin_source") == "judgment_base_override") \
+        else "ttm" if pinned else "median_3y"
+    return base_with, irr_with, base_used, unblocks
+
+
+def _not_measured_note(rel):
+    """The "not measured" note of a release-mismatch impact block."""
+    if release_mismatch_reason(rel).startswith("engine output predates"):
+        return f"not measured: engine output predates release {ENGINE_RELEASE}; re-run the engine to measure"
+    return f"not measured: engine output is from release {rel}, not {ENGINE_RELEASE}; re-run the engine to measure"
+
+
+def carried_override_impact(n, prior):
+    """DESIGN §8.2 — release mismatch: no counterfactual replay. The prior
+    score.json override_impact when it was measured on THIS run's base (its
+    with-override base and weighted IRR equal the run's at the 4 dp the block
+    stores) and is itself a measurement, plus impact_carried_from_prior_score /
+    counterfactual_engine_release; otherwise the impact fields null with a note.
+    unblocks_tier is always computed from the run, as before.
+    [ADDITION — verifier round 2] a prior block carrying a "not measured" note
+    is never carried (carried_payable_impact's rule): the second make_score run
+    over the same stale record wrote impact_carried_from_prior_score: true
+    beside that note and null measured fields."""
+    base_with, irr_with, base_used, unblocks = _impact_from_run(n)
+    rel = n.get("engine_release")
+    r4 = lambda v: round(v, 4) if isinstance(v, (int, float)) else None  # noqa: E731
+    blk = prior.get("override_impact") if isinstance(prior, dict) else None
+    if (isinstance(blk, dict) and not blk.get("note") and blk.get("base_oe_with_override") == r4(base_with)
+            and blk.get("weighted_irr_with_override") == r4(irr_with)):
+        out = dict(blk)
+        out.update({"unblocks_tier": unblocks, "impact_carried_from_prior_score": True,
+                    "counterfactual_engine_release": rel})
+        return out
+    return {"base_used": base_used,
+            "base_oe_without_override": None,
+            "base_oe_with_override": r4(base_with),
+            "base_oe_impact_pct": None,
+            "weighted_irr_without_override": None,
+            "weighted_irr_with_override": r4(irr_with),
+            "weighted_irr_impact_pp": None,
+            "unblocks_tier": unblocks,
+            "counterfactual_engine_release": rel,
+            "note": _not_measured_note(rel)}
+
+
+PAYABLE_IMPACT_KEYS = ("base_used", "base_oe_without_override", "base_oe_with_override", "base_oe_impact_pct",
+                       "weighted_irr_without_override", "weighted_irr_with_override", "weighted_irr_impact_pp",
+                       "tier_by_numbers_without_override", "tier_by_numbers_with_override")
+
+
+def prior_payable_event(ticker):
+    """This ticker's base_override registry event from the previous make_score
+    run (the payable impact lives only there), read before anything is
+    written; None when absent or the registry is unreadable."""
+    try:
+        with open(REGISTRY, encoding="utf-8") as f:
+            reg = json.load(f)
+    except (OSError, ValueError):
+        return None
+    for e in (reg.get("entries") or []) if isinstance(reg, dict) else []:
+        if isinstance(e, dict) and e.get("ticker") == ticker and e.get("event") == "base_override":
+            return e
+    return None
+
+
+def carried_payable_impact(n, prior):
+    """[ADDITION — M3] DESIGN §8.2 applied to the payable-earnings pin: under a
+    release mismatch payable_pin_impact is never run (the current engine's
+    native-base replay would measure another capex / SBC basis). The prior
+    base_override registry event's impact when it was measured on THIS run's
+    pinned base and weighted IRR (4 dp) and is itself a measurement (no
+    "not measured" note), plus impact_carried_from_prior_score /
+    counterfactual_engine_release; otherwise the impact fields null with the
+    "not measured" note."""
+    rel = n.get("engine_release")
+    r4 = lambda v: round(v, 4) if isinstance(v, (int, float)) and not isinstance(v, bool) else None  # noqa: E731
+    bp, ip = r4(n.get("base_oe_per_share")), r4(n.get("implied_irr_weighted"))
+    if (isinstance(prior, dict) and prior.get("base_used") == "payable_5y" and not prior.get("note")
+            and prior.get("base_oe_with_override") == bp and prior.get("weighted_irr_with_override") == ip):
+        out = {k: prior.get(k) for k in PAYABLE_IMPACT_KEYS}
+        out.update({"impact_carried_from_prior_score": True, "counterfactual_engine_release": rel})
+        return out
+    return {"base_used": "payable_5y",
+            "base_oe_without_override": None,
+            "base_oe_with_override": bp,
+            "base_oe_impact_pct": None,
+            "weighted_irr_without_override": None,
+            "weighted_irr_with_override": ip,
+            "weighted_irr_impact_pp": None,
+            "tier_by_numbers_without_override": None,
+            "tier_by_numbers_with_override": n.get("tier_by_numbers"),
+            "counterfactual_engine_release": rel,
+            "note": _not_measured_note(rel)}
+
+
+def check_override_currency_sync(j_over, applied, n):
+    """A USD declaration the engine run did not honour refuses (out of sync):
+    a pre-5.5 engine FX-converted every override at a converted filer, and a
+    5.5 run that recorded currency_basis "converted" did the same."""
+    fx = n.get("fx_conversion")
+    for field, o in j_over.items():
+        if o.get("currency") is None or field not in applied or not fx:
+            continue
+        basis = ((n.get("override_checks") or {}).get(field) or {}).get("currency_basis")
+        if predates_55(n) or basis == "converted":
+            fail(f"judgment.json {field}_override declares currency \"USD\" but the engine run FX-converted it "
+                 f"(engine_release {n.get('engine_release')!r}, currency_basis {basis!r}) — rerun dcf_engine.py "
+                 f"(release {ENGINE_RELEASE} uses a declared USD filing figure verbatim) before scoring")
+
+
+SUPERSEDED_CAPEX_FLAG = "OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex"
+
+
+def _flag_present(n, prefix):
+    return any(isinstance(f, str) and f.startswith(prefix) for f in (n.get("fragility_flags") or []))
+
+
+def refuse_superseded_capex_override(n, j_over):
+    """[ADDITION — WY] The engine flagged OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex (a capex figure is now FILED for a
+    last-3-FY period the override used to fill, outside 0.5x-2x of it; or override_checks.capex.superseded_periods
+    says so) and judgment.json still declares capex_override: refuse. A filed value always wins, so the override
+    silently stopped setting capex there; the worker must say which figure is the cash-flow total. The engine's
+    behaviour is unchanged."""
+    if "capex" not in j_over:
+        return
+    sup = ((n.get("override_checks") or {}).get("capex") or {}).get("superseded_periods") or []
+    if not _flag_present(n, SUPERSEDED_CAPEX_FLAG) and not sup:
+        return
+    parts = []
+    for x in (sup if isinstance(sup, list) else []):
+        if not isinstance(x, dict):
+            continue
+        fy, v, tags = str(x.get("period") or "")[:4], _num(x.get("filed_ppe")), x.get("filed_tags") or "tag n/a"
+        parts.append(f"FY{fy} {v:,.0f} {x.get('filed_unit') or ''} ({tags})".replace("  ", " ") if v is not None
+                     else f"FY{fy} ({tags})")
+    filed = ", ".join(parts) if parts else "one or more of the last 3 fiscal years (the flag names them)"
+    cov = (" CAPEX_COVERAGE_LOW also fires on this run (capex under half of D&A in each of the last 3 FY) — the "
+           "signature of a partial line." if _flag_present(n, "CAPEX_COVERAGE_LOW") else "")
+    fail(f"{SUPERSEDED_CAPEX_FLAG} — judgment.json still declares capex_override {j_over['capex']['value']:,.0f}, but "
+         f"engine release {n.get('engine_release')} now reads a FILED capex figure for {filed}; an override never "
+         "replaces a filed value, so it fills nothing there and the filed figure sets owner's earnings. Resolve before "
+         "scoring: (i) if the newly filed figure IS the filer's capex line on the cash-flow statement (the RBC / CR / IT "
+         "case — release 5.5 now reads PaymentsForCapitalImprovements and the summed components), remove capex_override "
+         "from judgment.json and re-run the engine; (ii) if the filed tag is only PART of capex (WY: "
+         "PaymentsForCapitalImprovements 57M / 52M / 51M against a 447M cash-flow total, with CAPEX_COVERAGE_LOW firing "
+         "too), block the company NEEDS_MAIN_AGENT: capex via queue.py — an override cannot lift a filed partial figure, "
+         "so no tier is possible until the engine reads the full capex line." + cov)
+
+
+def refuse_last_filed_unit_usd_override(n, j_over, applied):
+    """[ADDITION — HTHT] An APPLIED override the engine used verbatim under currency_basis 'last_filed_unit_usd'
+    (decision 7's fallback, kept exactly as ruled in the engine) is refused unless it is a kind "filing" override with
+    an explicit currency "USD" — the fallback cannot tell a US-dollar figure from a local-currency one (HTHT: RMB 828M
+    used as $828M). The engine records that basis only at a filer it FX-converted (fx_conversion exists only for a
+    non-USD reporting currency), so this covers every use of the fallback; there is no separate currency precondition.
+    A kind "estimate" override is refused too (main agent, closing verifier round 2's follow-up (10)): ruling 7 lets
+    only a filing override declare currency, and the 0.1x-10x band admits a CNY figure at ~7.2x, so an estimate at such
+    a filer has no way to show its unit — the worker uses the filing's own US-dollar figure (kind filing, currency
+    "USD") or blocks NEEDS_MAIN_AGENT. No recorded folder has an estimate under this basis (FMS and SUZ estimates
+    convert normally)."""
+    ccy = str((n.get("fx_conversion") or {}).get("from_currency") or "").strip().upper() or "a non-USD currency"
+    checks = n.get("override_checks") or {}
+    for field, o in j_over.items():
+        if field not in applied or (checks.get(field) or {}).get("currency_basis") != "last_filed_unit_usd":
+            continue
+        if o.get("kind") == "estimate":
+            fail(f"judgment.json {field}_override {o['value']:,.0f} (kind estimate): the engine used this estimate "
+                 f"verbatim as US dollars because the last filed unit for {field} is USD (override_checks.{field}."
+                 f"currency_basis 'last_filed_unit_usd'), but this filer reports or historically filed in {ccy} and "
+                 "nothing can show the estimate's unit (ruling 7 lets only a kind filing override declare currency; "
+                 "the 0.1x-10x band admits a local-currency figure). Use the filing's own US-dollar figure as a kind "
+                 f"filing override with currency: \"USD\", or block NEEDS_MAIN_AGENT: {field} via queue.py")
+        if str(o.get("currency") or "").strip().upper() == "USD":
+            continue
+        fail(f"judgment.json {field}_override {o['value']:,.0f}: the engine used this override verbatim as US dollars "
+             f"because the last filed unit for {field} is USD (override_checks.{field}.currency_basis "
+             f"'last_filed_unit_usd'), but this filer reports or historically filed in {ccy} "
+             "(fx_conversion.from_currency) and the override declares no currency. If the source states the figure in "
+             "US dollars, declare currency: \"USD\" on the override (kind filing) and re-run the engine; if it is in "
+             f"{ccy}, it cannot be used as is — restate it (the filing's own US-dollar figure, declared currency "
+             f"\"USD\") or block NEEDS_MAIN_AGENT: {field} via queue.py")
 
 
 def validate_base_override(j):
@@ -376,6 +958,34 @@ def payable_pin_impact(ticker, n):
             "tier_by_numbers_with_override": n.get("tier_by_numbers")}
 
 
+def _declared_pin_not_ttm(ticker, n):
+    """[v5.5] True when the final run's --base-oe-ps pin equals a declared
+    base_override without `basis` (within 0.1%) and does NOT equal ttm.json's
+    ttm_oe_per_share (within 0.1%): a pin built from engine outputs (NTNX /
+    TEM / VIV), whose override impact is measured with the pin held constant,
+    not by re-running ttm.py."""
+    inp = n.get("inputs") or {}
+    pin = inp.get("base_oe_ps_arg")
+    if inp.get("base_pin_source") != "base_oe_ps_arg" or not isinstance(pin, (int, float)) or isinstance(pin, bool) or pin == 0:
+        return False
+    try:
+        with open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8") as f:
+            bo = (json.load(f) or {}).get("base_override")
+    except Exception:
+        return False
+    if (not isinstance(bo, dict) or bo.get("basis") is not None or not isinstance(bo.get("value"), (int, float))
+            or isinstance(bo.get("value"), bool) or abs(float(bo["value"]) - pin) > 0.001 * abs(pin)):
+        return False
+    try:
+        with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as f:
+            tv = json.load(f).get("ttm_oe_per_share")
+        if isinstance(tv, (int, float)) and not isinstance(tv, bool) and tv != 0 and abs(tv - pin) <= 0.001 * abs(tv):
+            return False
+    except Exception:
+        pass
+    return True
+
+
 def compute_override_impact(ticker, n):
     """The impact block, on Andrew's basis: the base the final run actually
     used, the final run's exact configuration, toggling only the overrides.
@@ -388,21 +998,27 @@ def compute_override_impact(ticker, n):
     pin_src = (n.get("inputs") or {}).get("base_pin_source")
     pinned = (n.get("inputs") or {}).get("base_oe_ps_arg") is not None or "ttm" in base_src
     base_used = "payable_5y" if (pin_src == "judgment_base_override" or n.get("payable_base")) \
+        else "declared_pin" if _declared_pin_not_ttm(ticker, n) \
         else "ttm" if pinned else "median_3y"
     args = _final_run_args(n)
-    if base_used == "payable_5y":
-        # The base is pinned to the declared payable-earnings figure in both
-        # worlds (field overrides fill OCF/capex/SBC history, never this pin),
-        # so the base impact is zero by construction; the IRR counterfactual
-        # replays the same pin with the field overrides off, since they can
-        # still move the growth blend. A gate firing in the replay (the
-        # override covers the only capex history, as at RNR) is an honest
-        # "no counterfactual" when the override unblocks the tier.
+    if base_used in ("payable_5y", "declared_pin"):
+        # The base is pinned to a declared figure in both worlds (field
+        # overrides fill OCF/capex/SBC/share history, never the pin), so the
+        # base impact is zero by construction; the IRR counterfactual replays
+        # the same pin with the field overrides off, since they can still move
+        # the growth blend. A gate firing in the replay (the override covers
+        # the only capex history, as at RNR; or a filing shares_override covers
+        # a basic-only year, as at VIV) is an honest "no counterfactual" when
+        # the override unblocks the tier. [v5.5] "declared_pin" is a
+        # --base-oe-ps pin that equals a declared base_override (no basis) and
+        # is NOT ttm.json's figure: before 5.5 it fell into the TTM branch,
+        # which re-ran ttm.py, but a pin built from engine outputs is not a TTM
+        # figure, and at an IFRS filer ttm.py cannot run at all (VIV).
         base_without = base_with
         m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
                       + ["--base-oe-ps", repr(float(base_with))], {"DCF_NO_OVERRIDES": "1"})
         if m is None:
-            fail("counterfactual engine --measure run failed — cannot measure override impact on the payable base")
+            fail("counterfactual engine --measure run failed — cannot measure override impact on the " + ("payable" if base_used == "payable_5y" else "declared pinned") + " base")
         if m.get("implied_irr_weighted") is None:
             if unblocks and (m.get("data_gap") or []):
                 base_without = None      # gate fired: honestly no counterfactual
@@ -410,7 +1026,7 @@ def compute_override_impact(ticker, n):
             elif irr_with is None and not (m.get("data_gap") or []):
                 irr_without = None       # Tier F on the pin in both worlds: null IRR impact, zero base impact
             else:
-                fail("counterfactual run produced no IRR and no data gap — cannot measure override impact on the payable base")
+                fail("counterfactual run produced no IRR and no data gap — cannot measure override impact on the " + ("payable" if base_used == "payable_5y" else "declared pinned") + " base")
         else:
             irr_without = m.get("implied_irr_weighted")
     elif base_used == "ttm":
@@ -475,7 +1091,88 @@ def _default_cik(ticker):
     return None
 
 
-def update_registry(ticker, applied, j_over, impact, j, n):
+def base_override_event_applies(j, n):
+    """True when this run records a base_override registry event: judgment.json
+    declares one and the final run was pinned (--base-oe-ps / --ttm /
+    --base-judgment)."""
+    return bool(j.get("base_override")) and ((n.get("inputs") or {}).get("base_oe_ps_arg") is not None
+                                            or "ttm" in (n.get("base_source") or "").lower())
+
+
+def pin_rescued(n):
+    """[v5.5 — re-score audit] True when the final run's tier exists only
+    because a declared base_override pin rescued a share-scale defect
+    (dcf_numbers.json share_scale.rescued_by_pin): without the pin the engine
+    gaps DATA_GAP:shares — SHARE_SCALE, so the tier rests on a judgment
+    override exactly as when a field override covers a data gap. Both alert
+    gates treat it as unblocks_tier (NTNX, TEM, VIV)."""
+    ss = n.get("share_scale")
+    return isinstance(ss, dict) and ss.get("rescued_by_pin") is True
+
+
+def pin_rescue_impact(n):
+    """[v5.5 — re-score audit] The base_override registry event's measured
+    impact on a share-scale rescue, from the final run's own record (nothing
+    is replayed): the engine's median on the defective share basis
+    (base_oe_normalized_per_share) without the pin, the pin with it; no IRR
+    exists without the pin (the run gaps), so unblocks_tier is true."""
+    ss = n.get("share_scale") or {}
+    native, pinned, irr = (_num(n.get("base_oe_normalized_per_share")), _num(n.get("base_oe_per_share")),
+                           _num(n.get("implied_irr_weighted")))
+    reasons = "; ".join(str(r) for r in (ss.get("reasons") or [])) or "share-scale defect"
+    return {"base_used": "declared_pin",
+            "base_oe_without_override": round(native, 4) if native is not None else None,
+            "base_oe_with_override": round(pinned, 4) if pinned is not None else None,
+            "base_oe_impact_pct": None,
+            "weighted_irr_without_override": None,
+            "weighted_irr_with_override": round(irr, 4) if irr is not None else None,
+            "weighted_irr_impact_pp": None,
+            "unblocks_tier": True,
+            "impact_note": ("share-scale rescue: without the pin the run gaps (DATA_GAP:shares — SHARE_SCALE: "
+                            + reasons + "), so no IRR exists without it; base_oe_without_override is the "
+                            "engine's own median on the defective share basis")}
+
+
+# The fields that identify one declaration per registry entry type: an entry
+# whose declaration is unchanged keeps the date it was first recorded (the
+# measured impact fields are re-derived every run). base_override leaves out
+# `kind` so adding the missing field to an old declaration keeps its date.
+_FIELD_DECLARATION = ("value", "kind", "source", "reason")
+_EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason"),
+                      "manual_price": ("value",), "base_override": ("value", "source", "reason"),
+                      "gterm": ("value",), "cik": ("value",), "ads_ratio": ("ratio", "source", "reason"),
+                      "scope_correction": ("old_cap", "new_cap", "in_scope")}
+
+
+def _declaration(e):
+    if e.get("field"):
+        keys, head = _FIELD_DECLARATION, ("field", e.get("field"))
+    else:
+        keys, head = _EVENT_DECLARATION.get(e.get("event"), ()), ("event", e.get("event"))
+    return head + tuple(json.dumps(e.get(k), sort_keys=True, default=str) for k in keys)
+
+
+def keep_first_dates(new_entries, prior_entries):
+    """[v5.5 — re-score audit] Set each new entry's `date` to the earliest
+    date a prior entry of this ticker recorded for the SAME declaration
+    (_declaration); a new or changed declaration keeps today's date. Before
+    this, every make_score run re-dated every entry of the ticker (the
+    wholesale replace stamped `today`), so a re-score rewrote when an override
+    or an ads_ratio was first taken (NTNX's 2026-10-15 base_override and WF's
+    2026-10-16 ads_ratio read 2026-10-19 after the engine 5.5 re-score)."""
+    first = {}
+    for e in prior_entries:
+        d = e.get("date")
+        if isinstance(d, str) and d:
+            k = _declaration(e)
+            first[k] = min(first.get(k, d), d)
+    for e in new_entries:
+        d = first.get(_declaration(e))
+        if d and (not isinstance(e.get("date"), str) or d < e["date"]):
+            e["date"] = d
+
+
+def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None):
     """Replace this ticker's registry entries wholesale on every score
     (round-2: the old upsert only replaced fields still applied, so a
     removed override's entry went stale and stayed forever). Records the
@@ -483,15 +1180,25 @@ def update_registry(ticker, applied, j_over, impact, j, n):
     final-base impact + unblocks_tier) AND every other judgment call the
     run embodies, each as its own entry with "event": tier_override (with
     reason), manual_price, base_override, gterm (non-default), cik
-    (non-default / fallback), ads_ratio. make_score.py is the single
-    writer; the write is atomic under an fcntl lock."""
+    (non-default / fallback), ads_ratio, and (v5.5) scope_correction
+    {old_cap, new_cap, in_scope} when the pre-5.5 ADS market-cap correction
+    decided the scope. A payable-earnings base_override event carries
+    `payable_impact` — measured (payable_pin_impact) or carried / not measured
+    (carried_payable_impact) by main() BEFORE any write (M3); nothing is
+    spawned here. [v5.5 — re-score audit] The base_override event records the
+    declaration's `kind` and, on a share-scale rescue (pin_rescued), the pin's
+    impact (pin_rescue_impact); an entry whose declaration is unchanged keeps
+    the date it was first recorded (keep_first_dates). make_score.py is the
+    single writer; the write is atomic under an fcntl lock."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     with locked(REGISTRY + ".lock"):
         try:
             reg = json.load(open(REGISTRY, encoding="utf-8"))
         except Exception:
             reg = {"entries": []}
+        prior = [e for e in reg.get("entries", []) if e.get("ticker") == ticker]
         entries = [e for e in reg.get("entries", []) if e.get("ticker") != ticker]
+        n_kept = len(entries)
         for field in ("capex", "sbc", "shares"):
             if field in applied:
                 a = applied[field]
@@ -515,16 +1222,20 @@ def update_registry(ticker, applied, j_over, impact, j, n):
             entries.append({"ticker": ticker, "event": "manual_price", "date": today,
                             "value": n.get("price")})
         bo = j.get("base_override")
-        if bo and ((n.get("inputs") or {}).get("base_oe_ps_arg") is not None
-                   or "ttm" in (n.get("base_source") or "").lower()):
+        if base_override_event_applies(j, n):
             ev = {"ticker": ticker, "event": "base_override", "date": today,
                   "value": bo["value"], "source": bo["source"], "reason": bo["reason"]}
+            if bo.get("kind") is not None:
+                ev["kind"] = bo["kind"]
+            if pin_rescued(n) and not n.get("payable_base"):
+                ev.update(pin_rescue_impact(n))
             if n.get("payable_base"):
                 pb = n["payable_base"]
                 ev.update({"basis": pb.get("basis"), "figures": pb.get("figures"), "shares": pb.get("shares"),
                            "ads_ratio": pb.get("ads_ratio"), "pinned_per_share": pb.get("pinned_per_share"),
                            "sic": pb.get("sic")})
-                ev.update(payable_pin_impact(ticker, n))
+                if payable_impact:
+                    ev.update(payable_impact)
             entries.append(ev)
         gterm = (n.get("inputs") or {}).get("g_terminal", n.get("g_terminal"))
         if isinstance(gterm, (int, float)) and abs(gterm - 0.025) > 1e-9:
@@ -539,6 +1250,11 @@ def update_registry(ticker, applied, j_over, impact, j, n):
             a = n["ads_ratio"]
             entries.append({"ticker": ticker, "event": "ads_ratio", "date": today,
                             "ratio": a["ratio"], "source": a["source"], "reason": a["reason"]})
+        if scope_event:
+            entries.append({"ticker": ticker, "event": "scope_correction", "date": today,
+                            "old_cap": scope_event["old_cap"], "new_cap": scope_event["new_cap"],
+                            "in_scope": scope_event["in_scope"]})
+        keep_first_dates(entries[n_kept:], prior)
         reg["entries"] = entries
         tmp = REGISTRY + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
@@ -546,13 +1262,21 @@ def update_registry(ticker, applied, j_over, impact, j, n):
         os.replace(tmp, REGISTRY)
 
 
-def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor):
+def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor, stale_release=None):
     """(entry_reasons, exit_reasons): why an alert for this score is
     suppressed. Entry reasons apply only to a final S/A tier (alert_eligible),
     exit reasons only to a final tier below A (exit_alert_eligible); both are
-    empty when the score clears its gate."""
+    empty when the score clears its gate. stale_release (v5.5): the
+    release_mismatch_reason() text when the engine output is not from the
+    current ENGINE_RELEASE — it closes BOTH gates ("... — re-run the engine
+    before an entry / exit alert"); None leaves every gate as in 5.4."""
     sa = ("S", "A")
     entry, exit_ = [], []
+    if stale_release:
+        # DESIGN §8.3 [ADDITION, policy-bearing]: a score rebuilt on engine
+        # output from another release never alerts, either way.
+        (entry if tier_final in sa else exit_).append(
+            f"{stale_release} — re-run the engine before an {'entry' if tier_final in sa else 'exit'} alert")
     if tier_final in sa:
         # Andrew's decision (2026-10-15, applied at the 2026-10-16 live port):
         # Tier S/A alerts fire regardless of confidence — confidence alone never
@@ -594,9 +1318,149 @@ def _money(v):
     return "—" if v is None else f"${v:,.2f}"
 
 
-def write_key_numbers(folder, n, j, score, applied, impact=None):
+def _amount(v, unit=None):
+    """A filed amount in its own unit: $ for USD (or no unit), else '<n> <unit>'."""
+    v = _num(v)
+    if v is None:
+        return "—"
+    return _usd(v) if unit in (None, "", "USD") else f"{v:,.0f} {unit}"
+
+
+def _csv_rows(folder):
+    """financials_history.csv rows (dicts of strings), oldest first; [] when absent / unreadable."""
+    try:
+        with open(f"{folder}/financials_history.csv", encoding="utf-8", newline="") as f:
+            rows = [r for r in csv.DictReader(f) if r.get("period_end")]
+    except (OSError, csv.Error, UnicodeDecodeError):
+        return []
+    return sorted(rows, key=lambda r: r["period_end"])
+
+
+def _f(s):
+    try:
+        return float(s) if s not in (None, "") else None
+    except (TypeError, ValueError):
+        return None
+
+
+def capex_basis_lines(folder, n):
+    """One 'Capex basis' line per last-3 FY (DESIGN §8.6), only when the run
+    recorded capex_provenance (engine 5.5): from financials_history.csv's
+    capex / capex_source / capex_tag (+ capex_ppe / capex_intangibles), else
+    from capex_provenance itself when the CSV lacks those columns."""
+    prov = n.get("capex_provenance")
+    if not isinstance(prov, dict) or not prov:
+        return []
+    out = []
+    rows = [r for r in _csv_rows(folder) if "capex_source" in r][-3:]
+    for r in rows:
+        ppe, intang = _f(r.get("capex_ppe")), _f(r.get("capex_intangibles"))
+        split = f" (PP&E {_usd(ppe)} + intangibles {_usd(intang or 0.0)})" if ppe is not None else ""
+        out.append(f"- Capex basis FY{r.get('fy_label') or r['period_end'][:4]} ({r['period_end']}): "
+                   f"{_usd(_f(r.get('capex')))} — {r.get('capex_source') or '—'}: {r.get('capex_tag') or '—'}{split}")
+    if out:
+        return out
+    for pe in sorted(prov)[-3:]:
+        p = prov[pe] if isinstance(prov[pe], dict) else {}
+        ppe = p.get("ppe") if isinstance(p.get("ppe"), dict) else {}
+        intang = p.get("intangibles") if isinstance(p.get("intangibles"), dict) else {}
+        legs = [f"{t} {_amount(v, p.get('ppe_unit'))}" for t, v in ppe.items()] \
+            + [f"{t} {_amount(v, p.get('intangibles_unit'))}" for t, v in intang.items()]
+        note = f"; intangibles not added: {p['intangibles_not_added']}" if p.get("intangibles_not_added") else ""
+        out.append(f"- Capex basis FY{pe[:4]} ({pe}): {p.get('ppe_source') or '—'}: {' + '.join(legs) or '—'}{note}")
+    return out
+
+
+def _scalars(d, skip=()):
+    """'k=v, …' for the scalar entries of a record (lists of scalars joined by '; ')."""
+    parts = []
+    for k, v in (d or {}).items():
+        if k in skip or isinstance(v, dict):
+            continue
+        if isinstance(v, list):
+            if v and all(not isinstance(x, (dict, list)) for x in v):
+                parts.append(f"{k}={'; '.join(str(x) for x in v)}")
+            continue
+        if isinstance(v, bool) or v is None or isinstance(v, str):
+            if v is not None:
+                parts.append(f"{k}={v}")
+        elif isinstance(v, int):
+            parts.append(f"{k}={v:,}")
+        elif isinstance(v, float):
+            parts.append(f"{k}={v:,.0f}" if v.is_integer() and abs(v) >= 1000 else f"{k}={v:.6g}")
+        else:
+            parts.append(f"{k}={v}")
+    return ", ".join(parts)
+
+
+def _split_fact(f):
+    """(date, ratio text) of one split-fact record: {date, ratio_filed} (the
+    engine's shape; event_date / ratio accepted too) or a [date, ratio] pair."""
+    if isinstance(f, dict):
+        d = f.get("date") or f.get("event_date")
+        r = f.get("ratio_filed", f.get("ratio"))
+    elif isinstance(f, (list, tuple)) and f:
+        d, r = f[0], (f[1] if len(f) > 1 else None)
+    else:
+        d, r = f, None
+    r = _num(r)
+    return str(d) if d else "date n/a", (f"{r:g}" if r is not None else "n/a")
+
+
+def share_basis_lines(n):
+    """'Share basis' line(s) when the run recorded a split adjustment, a
+    cover-page divergence or a share-scale defect (DESIGN §8.6); [ADDITION —
+    M7] one line per unconfirmed post-FY split fact (no post-event cover-page
+    count confirms it, so history and price may sit on different bases) and
+    one compact line listing the in-history split facts."""
+    out = []
+    sb = n.get("share_basis") if isinstance(n.get("share_basis"), dict) else {}
+    if isinstance(sb.get("split"), dict) and sb["split"]:
+        out.append(f"- Share basis: split adjustment applied — {_scalars(sb['split'])}")
+    if isinstance(sb.get("divergence"), dict) and sb["divergence"]:
+        out.append(f"- Share basis: cover-page divergence — {_scalars(sb['divergence'])}")
+    unconf = sb.get("unconfirmed_split_facts")
+    for f in (unconf if isinstance(unconf, list) else []):
+        d, r = _split_fact(f)
+        out.append(f"- Share basis: unconfirmed split fact {d} ratio {r} (no post-event cover-page count confirms it) "
+                   "— check the latest 10-Q")
+    hist = sb.get("in_history_split_facts")
+    facts = sorted(set(_split_fact(f) for f in (hist if isinstance(hist, list) else [])))
+    if facts:
+        out.append("- Share basis: in-history split facts (dated on or before the latest FY end; never applied by the "
+                   "engine — informational): " + "; ".join(f"{d} ratio {r}" for d, r in facts))
+    ss = n.get("share_scale") if isinstance(n.get("share_scale"), dict) else {}
+    if ss.get("defect"):
+        out.append(f"- Share basis: share-scale defect — {_scalars(ss, skip=('defect', 'tests'))}")
+    return out
+
+
+def sbc_reconciled_lines(n):
+    """The periods where AllocatedShareBasedCompensationExpense replaced a
+    smaller ShareBasedCompensation (decision 6), from sbc_provenance."""
+    prov = n.get("sbc_provenance")
+    if not isinstance(prov, dict):
+        return []
+    out = []
+    for pe in sorted(prov):
+        p = prov[pe] if isinstance(prov[pe], dict) else {}
+        if not p.get("reconciled"):
+            continue
+        sh = p.get("share") if isinstance(p.get("share"), list) else [None, None]
+        al = p.get("allocated") if isinstance(p.get("allocated"), list) else [None, None]
+        sv, av = (_num(sh[0]) if sh else None), (_num(al[0]) if al else None)
+        pct = f" (+{(av / sv - 1) * 100:.1f}%)" if sv and av else ""
+        out.append(f"- SBC reconciled FY{pe[:4]} ({pe}): AllocatedShareBasedCompensationExpense "
+                   f"{_amount(av, al[1] if len(al) > 1 else None)} used over ShareBasedCompensation "
+                   f"{_amount(sv, sh[1] if len(sh) > 1 else None)}{pct}")
+    return out
+
+
+def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
     """key_numbers.md — every headline figure from the final dcf_numbers.json.
-    The single source workers quote in analysis.md."""
+    The single source workers quote in analysis.md. ads_corr (v5.5): the
+    pre-5.5 ADS market-cap correction, printed with its label instead of the
+    engine's uncorrected cap (the net-debt line follows its own rule, M1)."""
     L = [f"# {n['ticker']} — key numbers",
          f"Generated by make_score.py from dcf_numbers.json (engine v{n.get('engine_version')}, as of {n.get('as_of')}).",
          "Quote these figures verbatim in analysis.md — never recompute or retype a derived figure.",
@@ -627,13 +1491,31 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
         L.append(f"- Tier F sub-type: {n['f_subtype']}")
     if n.get("note"):
         L.append(f"- Note: {n['note']}")
+    # v5.5: the market cap carries its basis; a pre-5.5 ADS cap is the
+    # make_score-corrected figure, labelled, with the engine's old print.
+    if ads_corr:
+        cap_line = (f"- Market cap (est): {_usd(ads_corr['cap'])} (ADS-corrected by make_score: price × shares ÷ ratio; "
+                    f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
+    else:
+        mb = n.get("market_cap_basis") if isinstance(n.get("market_cap_basis"), dict) else {}
+        basis = score.get("market_cap_basis")
+        cap_line = f"- Market cap (est): {_usd(n.get('market_cap_est'))}" + (
+            f" (basis: {basis}" + (f"; {mb['formula']}" if mb.get("formula") else "") + ")" if basis else "")
+    scope = score.get("in_scope_under_40b")
+    scope_line = ("- Scope: " + ("in scope (market cap under $40B)" if scope else "out of scope (market cap $40B or more)")
+                  + (" — corrected by make_score from the ADS-corrected market cap (the pre-5.5 engine's cap said "
+                     f"{'in' if not scope else 'out of'} scope)" if score.get("in_scope_corrected_by_make_score") else "")
+                  ) if isinstance(scope, bool) else None
     L += ["", "## Base owner's earnings",
           f"- Base OE/share: {_money(n.get('base_oe_per_share'))} (source: {n.get('base_source')})",
           f"- Latest FY OE/share: {_money(n.get('base_oe_latest_per_share'))} · normalized (3-yr median) OE/share: {_money(n.get('base_oe_normalized_per_share'))}",
           f"- Latest FY OE total: {_usd(n.get('base_oe_total_latest_fy'))}",
           f"- Shares diluted (latest): {n.get('shares_diluted_latest'):,.0f}" if n.get("shares_diluted_latest") else "- Shares diluted (latest): —",
-          f"- Market cap (est): {_usd(n.get('market_cap_est'))} · net debt (latest): {_usd(n.get('net_debt_latest'))}",
-          f"- OE-positive years (last 5): {n.get('oe_positive_years_of_last_5')}"]
+          f"{cap_line} · net debt (latest): {_usd(n.get('net_debt_latest'))}"]
+    if scope_line:
+        L.append(scope_line)
+    L.append(f"- OE-positive years (last 5): {n.get('oe_positive_years_of_last_5')}")
+    L += capex_basis_lines(folder, n) + share_basis_lines(n) + sbc_reconciled_lines(n)
     pb = n.get("payable_base")
     if pb:
         figs = pb.get("figures") or []
@@ -663,11 +1545,15 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
         # Round-2 fix: the old line was ONE conditional expression over a
         # concatenated f-string, so a blank scenario spread dropped the OE
         # yield and TV share lines with it. Each figure gets its own line.
+        # v5.5 (decision 1, "anything downstream"; M1): a pre-5.5 ADS record's
+        # ratio is printed on the ADS basis beside the engine's, whatever the
+        # state of its market cap (net_debt_line / ads_net_debt_basis).
+        nd_line = net_debt_line(n)
         L += ["", "## Diagnostics",
               f"- OE yield: {_pct(d.get('oe_yield'))}",
               f"- TV share @15%: {_pct(d.get('tv_share_at_15'), 1)}",
               f"- Scenario spread (IV@15 super-bull / super-bear): {d['scenario_spread_iv15']:.2f}x" if d.get("scenario_spread_iv15") is not None else "- Scenario spread: —",
-              f"- Net debt / normalized OE: {d.get('net_debt_to_normalized_oe'):.2f}x" if d.get("net_debt_to_normalized_oe") is not None else "- Net debt / normalized OE: —",
+              nd_line,
               f"- Months since FY end: {d.get('months_since_fy_end'):.1f}" if d.get("months_since_fy_end") is not None else "- Months since FY end: —"]
     flags = n.get("fragility_flags") or []
     L += ["", "## Fragility flags"]
@@ -687,17 +1573,26 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
             if field in applied:
                 L.append(f"- {field} reason: {applied[field]['reason']}")
         if impact:
-            basis_lbl = {"ttm": "TTM base", "payable_5y": "payable-earnings base (5-yr avg operating income to common)"}.get(
+            basis_lbl = {"ttm": "TTM base", "payable_5y": "payable-earnings base (5-yr avg operating income to common)",
+                         "declared_pin": "declared base_override pin (held constant in both worlds)"}.get(
                 impact.get("base_used"), "3-yr median base")
             pct = impact.get("base_oe_impact_pct")
             pp = impact.get("weighted_irr_impact_pp")
-            L += ["",
-                  f"- Measured impact (on the {basis_lbl} actually used; same final configuration, overrides toggled off): "
-                  f"base OE/share {_money(impact.get('base_oe_without_override'))} (no override) → "
-                  f"{_money(impact.get('base_oe_with_override'))} (with override)"
-                  + (f", {pct:+.2f}%" if isinstance(pct, (int, float)) else "")
-                  + f" · weighted IRR {_pct(impact.get('weighted_irr_without_override'))} → {_pct(impact.get('weighted_irr_with_override'))}"
-                  + (f" ({pp:+.2f}pp)" if isinstance(pp, (int, float)) else "")]
+            if impact.get("note"):
+                # v5.5: release mismatch and no prior measurement on this base
+                L += ["", f"- Impact {impact['note']} (with override: base OE/share "
+                          f"{_money(impact.get('base_oe_with_override'))}, weighted IRR {_pct(impact.get('weighted_irr_with_override'))})"]
+            else:
+                L += ["",
+                      f"- Measured impact (on the {basis_lbl} actually used; same final configuration, overrides toggled off): "
+                      f"base OE/share {_money(impact.get('base_oe_without_override'))} (no override) → "
+                      f"{_money(impact.get('base_oe_with_override'))} (with override)"
+                      + (f", {pct:+.2f}%" if isinstance(pct, (int, float)) else "")
+                      + f" · weighted IRR {_pct(impact.get('weighted_irr_without_override'))} → {_pct(impact.get('weighted_irr_with_override'))}"
+                      + (f" ({pp:+.2f}pp)" if isinstance(pp, (int, float)) else "")
+                      + (f" — carried from the prior score.json, not re-measured (engine output release "
+                         f"{impact.get('counterfactual_engine_release') or 'pre-5.4'} vs current {ENGINE_RELEASE})"
+                         if impact.get("impact_carried_from_prior_score") else "")]
             if impact.get("unblocks_tier"):
                 L.append("- Unblocks tier: YES — this override is the only reason this company has a tier; "
                          "without it the filing gap blocks scoring entirely.")
@@ -735,6 +1630,25 @@ def main():
     if hashlib.sha256(canon.encode()).hexdigest() != ch:
         fail("dcf_numbers.json content_hash MISMATCH — the engine output was modified after the run "
              "(hand-edited numbers); re-run dcf_engine.py and score only what the engine produces")
+    # v5.5 (DESIGN §2c): a share_class_mismatch declaration never scores. It is
+    # checked ahead of the gap check so the refusal names the declaration (a
+    # 5.5 run also carries it as the uncovered gap "share_class").
+    if os.path.exists(jpath):
+        try:
+            with open(jpath, encoding="utf-8") as f:
+                refuse_share_class_mismatch(json.load(f))
+        except ValueError:
+            pass  # an unreadable judgment.json is reported where it is loaded below
+    # v5.5 (DESIGN §8.2): the score being replaced — its override_impact is
+    # carried when the engine output is from another release.
+    prior_score = None
+    if os.path.exists(spath):
+        try:
+            with open(spath, encoding="utf-8") as f:
+                prior_score = json.load(f)
+        except (OSError, ValueError):
+            prior_score = None
+    release_mismatch = n.get("engine_release") != ENGINE_RELEASE
     applied = {}
     for o in n.get("overrides_applied") or []:
         if isinstance(o, dict) and o.get("field"):
@@ -755,6 +1669,7 @@ def main():
         else:
             fail(f"no judgment.json in {folder} and no score.json to seed from")
     j = json.load(open(jpath, encoding="utf-8"))
+    refuse_share_class_mismatch(j)
 
     for field in ("name", "sector", "moat_score", "moat_justification", "probs_used",
                   "one_liner", "confidence", "in_scope_under_40b"):
@@ -794,6 +1709,9 @@ def main():
     for field in applied:
         if field not in j_over:
             fail(f"dcf_numbers.json overrides_applied includes {field} but judgment.json declares no {field}_override")
+    check_override_currency_sync(j_over, applied, n)
+    refuse_last_filed_unit_usd_override(n, j_over, applied)   # [ADDITION — HTHT]
+    refuse_superseded_capex_override(n, j_over)               # [ADDITION — WY]
 
     # Override sanity band (round-2): the engine measured each declared
     # override against the company's last FILED value for that field. A value
@@ -888,7 +1806,22 @@ def main():
 
     # Impact on the base the final run actually used — computed before any
     # write, so a measurement failure refuses cleanly like any other refusal.
-    impact = compute_override_impact(ticker, n) if applied else None
+    # v5.5: engine output from another release is never replayed through the
+    # current engine (a different capex / SBC basis) — carried or unmeasured.
+    if not applied:
+        impact = None
+    elif release_mismatch:
+        impact = carried_override_impact(n, prior_score)
+    else:
+        impact = compute_override_impact(ticker, n)
+    # [ADDITION — M3] The payable-earnings pin's own impact (registry
+    # base_override event): measured through the current engine only on
+    # current-release output, carried / not measured otherwise — and, like
+    # every measurement, before the first write.
+    payable_impact = None
+    if base_override_event_applies(j, n) and n.get("payable_base"):
+        payable_impact = (carried_payable_impact(n, prior_payable_event(ticker)) if release_mismatch
+                          else payable_pin_impact(ticker, n))
 
     scenarios = {}
     for lbl in LABELS:
@@ -900,9 +1833,17 @@ def main():
     # Scope and confidence are COMPUTED here, never trusted from judgment
     # (round-2: in_scope_under_40b: true at a $93B market cap and confidence:
     # high under WIDE_SCENARIO_SPREAD were both accepted verbatim).
-    mktcap = n.get("market_cap_est")
-    computed_scope = (mktcap < 40e9) if isinstance(mktcap, (int, float)) else None
-    if computed_scope is not None and bool(j["in_scope_under_40b"]) != computed_scope:
+    # v5.5 (DESIGN §1): a pre-5.5 ADS run's cap is price × shares ÷ ratio, and
+    # a scope the old (ratio-times-too-large) cap implied is rewritten.
+    ads_corr = ads_cap_correction(n)
+    mktcap = ads_corr["cap"] if ads_corr else n.get("market_cap_est")
+    computed_scope, scope_rewrite, scope_corrected = scope_decision(j["in_scope_under_40b"], mktcap, ads_corr)
+    j_scope = scope_rewrite if scope_rewrite is not None else j["in_scope_under_40b"]
+    if computed_scope is not None and bool(j_scope) != computed_scope:
+        if ads_corr:
+            fail(f"judgment.json in_scope_under_40b={j['in_scope_under_40b']} contradicts the ADS-corrected market cap "
+                 f"({_usd(mktcap)} = price × shares ÷ {ads_corr['ratio']:g}; the pre-5.5 engine printed "
+                 f"{_usd(ads_corr['old_cap'])}, which does not explain it either) — fix judgment.json to match")
         fail(f"judgment.json in_scope_under_40b={j['in_scope_under_40b']} contradicts the engine's market cap "
              f"({_usd(mktcap)}) — scope is computed from market cap by make_score.py; fix judgment.json to match")
     scope_val = computed_scope if computed_scope is not None else j["in_scope_under_40b"]
@@ -910,9 +1851,10 @@ def main():
     conf_capped = False
     if conf == "high" and any(str(f).startswith("WIDE_SCENARIO_SPREAD") for f in n.get("fragility_flags") or []):
         conf, conf_capped = "medium", True
-    mktcap_b = round(n["market_cap_est"] / 1e9, 2) if n.get("market_cap_est") else None
+    mktcap_b = round(mktcap / 1e9, 2) if _num(mktcap) else None
+    mcap_basis = market_cap_basis(n, ads_corr)
     score = {"ticker": n["ticker"], "name": j["name"], "sector": j["sector"],
-             "price": n.get("price"), "market_cap_b": mktcap_b,
+             "price": n.get("price"), "market_cap_b": mktcap_b, "market_cap_basis": mcap_basis,
              "engine_version": n.get("engine_version"),
              "base_oe_per_share": n.get("base_oe_per_share"),
              "base_year": (n.get("latest_period_end") or "")[:4] or None,
@@ -955,7 +1897,8 @@ def main():
     tier_final = override or n["tier_by_numbers"]
     reasons, exit_reasons = alert_reasons(
         tier_final, n.get("tier_by_numbers"), override, conf, model_fit,
-        bool(applied and impact and impact.get("unblocks_tier")), bool(diag.get("irr_at_floor")))
+        bool(applied and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
+        stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None)
     score["alert_eligible"] = tier_final in ("S", "A") and not reasons
     if reasons:
         score["alert_suppressed_reason"] = "; ".join(reasons)
@@ -977,12 +1920,27 @@ def main():
                                "source": applied[f]["source"]}
                               for f in ("capex", "sbc", "shares") if f in applied]
         score["override_impact"] = impact
+    if scope_corrected:
+        score["in_scope_corrected_by_make_score"] = True
+    nd_ads = ads_net_debt_basis(n)  # [ADDITION — M1] pre-5.5 ADS record: the ratio on the ADS basis
+    if nd_ads is not None:
+        score["net_debt_to_normalized_oe_ads_basis"] = round(nd_ads["ads_basis"], 4)
+    # Every refusal and every measurement (override and payable impact) is
+    # behind us: the scope rewrite is the first write.
+    if scope_rewrite is not None:
+        rewrite_judgment_scope(jpath, scope_rewrite)
+        print(f"make_score.py: {ticker} judgment.json in_scope_under_40b {j['in_scope_under_40b']} -> {scope_rewrite} "
+              f"(ADS-corrected market cap {_usd(mktcap)} = price × shares ÷ {ads_corr['ratio']:g}; "
+              f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
+        j["in_scope_under_40b"] = scope_rewrite
     with open(spath, "w", encoding="utf-8") as f:
         json.dump(score, f, indent=1)
     # Every run: the ticker's registry entries are replaced wholesale and
     # re-derived from THIS run (applied overrides + judgment-call events).
-    update_registry(ticker, applied, j_over, impact, j, n)
-    write_key_numbers(folder, n, j, score, applied, impact)
+    scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
+                   if scope_corrected else None)
+    update_registry(ticker, applied, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact)
+    write_key_numbers(folder, n, j, score, applied, impact, ads_corr=ads_corr)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 
 

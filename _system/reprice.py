@@ -114,6 +114,21 @@ lists each field, no override is applied and scored.tier_final is null
 
 Exit codes: 0 written; 2 usage; 3 single ticker skipped (reason printed).
 --all exits 0 whenever the sweep itself completes.
+
+v5.5 (2026-10-19, engine release 5.5.0 — decision 1, ADS market cap): the live
+`market_cap_est` (and `in_scope_under_40b`, which follows it) is computed by
+live_market_cap with the engine's own formula, dcf_engine.market_cap_est:
+last close × shares ÷ numbers.ads_ratio.ratio when an ADS ratio applies (the
+price is per ADS, the share count per ordinary share — the old price × shares
+put TLK's live cap at $1.09T beside its $10.93B score), times the split factor
+as before. The share count is the one the run's market cap used
+(numbers.market_cap_basis.shares_used: a split- or scale-corrected diluted
+count or the cover-page count) when the run records it, else
+shares_diluted_latest. Without an ADS ratio the figure is unchanged bit for
+bit (close × shares_diluted_latest × split_factor) for a run whose
+market_cap_basis.shares_source is diluted_latest, or with no basis record;
+otherwise the count is market_cap_basis.shares_used (M6, round-1
+verification: an HBAN-shaped dei_latest run prices on the cover-page count).
 """
 import json, math, os, sys, datetime
 from zoneinfo import ZoneInfo
@@ -409,6 +424,31 @@ def check_basis(numbers, prices, fund=None):
     return out
 
 
+# dcf_engine.market_cap_est — one formula for the engine,
+# make_score and this script (no local copy that could drift).
+_market_cap_estimate = E.market_cap_est
+
+
+def live_market_cap(numbers, price, factor=1.0):
+    """Market cap at `price` (today's share units) — see the module docstring
+    (v5.5). Shares: numbers.market_cap_basis.shares_used when the run recorded
+    the count its market cap used, else shares_diluted_latest; divided by
+    numbers.ads_ratio.ratio when an ADS ratio applies; multiplied by the split
+    factor after, exactly as before (so a non-ADS run whose shares_source is
+    diluted_latest, or with no basis record, is bit-identical; any other
+    shares_source prices on shares_used)."""
+    mb = numbers.get("market_cap_basis")
+    shares = _f(mb.get("shares_used")) if isinstance(mb, dict) else None
+    if not shares:
+        shares = _f(numbers.get("shares_diluted_latest"))
+    ads = numbers.get("ads_ratio")
+    ratio = ads.get("ratio") if isinstance(ads, dict) else None
+    if isinstance(ratio, bool) or not isinstance(ratio, (int, float)) or ratio <= 0:
+        ratio = None  # make_score only accepts a positive number; anything else is no ratio (as in the engine)
+    mcap = _market_cap_estimate(price, shares, ratio) if shares else None
+    return mcap * factor if mcap is not None else None
+
+
 def _same(a, b, tol):
     a, b = _f(a), _f(b)
     return a is not None and b is not None and abs(a - b) <= tol
@@ -493,12 +533,7 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         return v / factor if v is not None else E.present_value(w, rate, gterm)
     iv15, iv12, iv20, iv25 = iv("iv_at_15", 0.15), iv("iv_at_12", 0.12), iv("iv_at_20", 0.20), iv("iv_at_25", 0.25)
 
-    shares = _f(numbers.get("shares_diluted_latest"))
-    # Live cap on the same basis as the scored run's market_cap_est: the
-    # split factor restates the ordinary count to today's units, and the
-    # recorded ADS ratio converts it to traded units (dcf_engine's helper;
-    # no ratio = identity).
-    mcap = E.market_cap_est(price, shares * factor, numbers.get("ads_ratio")) if shares else None
+    mcap = live_market_cap(numbers, price, factor)  # v5.5: ÷ ads_ratio when one applies
     scored_price = _f(numbers.get("price"))
     if scored_price is not None:
         scored_price /= factor  # in today's share units, like `price`

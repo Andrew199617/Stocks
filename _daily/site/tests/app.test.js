@@ -1098,6 +1098,32 @@ test('OE/share history: a year counts only when BOTH owner\'s earnings and dilut
   assert.ok(/FY2024: diluted share count not filed/.test(F[1].why) && /FY2025: capex not filed \(the engine run fills capex with an estimate/.test(F[2].why), F.map((h) => h.why).join(' | '));
   assert.ok(App.oeGapNote(F).includes('<b>Not shown:</b> FY2024') && App.oeGapNote([{ v: 1 }]) === '');
 });
+test('OE/share history (engine 5.5): a \'+\'-joined capex_tag is an override year when OVERRIDE is one of its tags; summed component tags are filed values', () => {
+  assert.equal(App.isOverrideTag('OVERRIDE'), true);
+  assert.equal(App.isOverrideTag('OVERRIDE+PaymentsToAcquireIntangibleAssets'), true);
+  assert.equal(App.isOverrideTag('PaymentsToAcquireIntangibleAssets+override'), true, 'case-insensitive, any position');
+  assert.equal(App.isOverrideTag('PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty'), false);
+  assert.equal(App.isOverrideTag('OVERRIDES_NOTED'), false, 'a whole tag, not a substring');
+  assert.equal(App.isOverrideTag(null), false); assert.equal(App.isOverrideTag(undefined), false); assert.equal(App.isOverrideTag(''), false);
+  const rec = { score: { base_oe_per_share: 2 }, numbers: { overrides_applied: [{ field: 'capex', kind: 'filing', value: 5e6, source: 'Form 20-F for the fiscal year ended December 31, 2024', periods_filled: ['2024-12-31'] }] }, forecast: {}, fundamentals: null, history: [
+    { fy_label: 2023, period_end: '2023-12-31', oe_conservative: 100, shares_diluted: 50, capex_tag: 'PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty' },
+    { fy_label: 2024, period_end: '2024-12-31', oe_conservative: 120, shares_diluted: 50, capex_tag: 'OVERRIDE+PaymentsToAcquireIntangibleAssets' },
+    { fy_label: 2025, period_end: '2025-12-31', oe_conservative: 130, shares_diluted: 50, capex_tag: 'PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities' }] };
+  const H = App.oeHistory(rec);
+  assert.deepEqual(H.map((h) => h.v), [2, null, 2.6], 'the OVERRIDE+… year is not plotted; the summed-tag years are');
+  assert.ok(/FY2024: capex not tagged in companyfacts \(the engine run uses \$5M read from the Form 20-F for the fiscal year ended December 31, 2024/.test(H[1].why), H.map((h) => h.why).join(' | '));
+  assert.equal(H[0].why || '', ''); assert.equal(H[2].why || '', '');
+});
+test('Data tab market cap (engine 5.5): a make_score ADS-corrected cap replaces the pre-5.5 engine figure; a 5.5 run names a non-default share basis', () => {
+  const corrected = App.runCapText({ market_cap_basis: 'ads_corrected_by_make_score', market_cap_b: 39.61 }, { market_cap_est: 79216000000 });
+  assert.equal(corrected, '$39.61B (ADS-corrected by make_score: price × shares ÷ ratio; the pre-5.5 engine printed $79.22B)');
+  assert.equal(App.runCapText({ market_cap_b: 18.54, market_cap_basis: 'diluted_latest_split_adjusted' }, { market_cap_est: 18540000000, market_cap_basis: { shares_source: 'diluted_latest_split_adjusted' } }), '$18.54B (diluted_latest_split_adjusted)');
+  assert.equal(App.runCapText({}, { market_cap_est: 35456212000, market_cap_basis: { shares_source: 'diluted_latest' } }), '$35.46B', 'the plain basis adds nothing');
+  assert.equal(App.runCapText({}, { market_cap_est: 5e9 }), '$5.00B', 'a pre-5.5 non-ADS run is unchanged');
+  assert.equal(App.runCapText({ market_cap_basis: 'ads_corrected_by_make_score', market_cap_b: null }, { market_cap_est: 5e9 }), '$5.00B', 'no corrected figure: the engine figure stands');
+  const rec = { score: { market_cap_basis: 'ads_corrected_by_make_score', market_cap_b: 10.93 }, numbers: { market_cap_est: 1092660000000, price: 18.1, price_source: 'nasdaq' } };
+  assert.ok(App.renderData(rec).includes('market cap est. $10.93B (ADS-corrected by make_score'), 'the Provenance row prints the corrected cap');
+});
 test('OE/share chart y-axis: history and forecast share one axis; a floor only when a loss reaches deeper than the chart reaches up, pinned with a ▼ and its real value', () => {
   assert.equal(App.oeAxisFloor([-1.1, 0.9], [0.7, 6.25]), null, 'ZS shape: no floor');
   assert.equal(App.oeAxisFloor([-61, -1, 0.9], [0.7, 6.25]), -6.25, 'a loss below minus the positive extent → floor at minus that extent');

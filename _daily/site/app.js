@@ -1193,6 +1193,10 @@ function overrideWhy(o, csv) { // one missing leg the engine run filled, worded 
   var what = o.kind === 'estimate' ? 'an estimate' : 'an override' + (o.kind ? ' (' + String(o.kind) + ')' : '');
   return csv ? f + ' filled by ' + what + ' in the engine run (not a filed value)' : f + ' not filed (the engine run fills ' + f + ' with ' + what + ' — not a filed value)';
 }
+/* An engine CSV *_tag cell names the filed tag(s) a figure came from; since engine 5.5 a capex cell can be a '+'-joined list
+   of the summed component tags ("PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty"). The
+   year is an override year when OVERRIDE is any one of them. */
+function isOverrideTag(v) { return v !== null && v !== undefined && String(v).toUpperCase().split('+').map(function (t) { return t.trim(); }).indexOf('OVERRIDE') >= 0; }
 function fyGapYears(a, b) { // whole fiscal years missing between two consecutive annual rows (0 when adjacent / unknown)
   var p = isoParts(a.end), q = isoParts(b.end);
   if (p && q) { var d = (q.ms - p.ms) / 864e5; return d > 400 ? Math.round(d / 365.25) - 1 : 0; }
@@ -1210,7 +1214,7 @@ function oeHistory(record) {
   var legWhy = function (field, end) { var o = overrideFor(field, end || ''); return o ? overrideWhy(o, false) : OE_LEGS[field] + ' not filed'; };
   var cell = function (r, fy, csv) {
     var oe = num(r.oe_conservative), sh = num(r.shares_diluted), end = r.period_end || null, base = { fy: fy, end: end, sh: sh !== null && sh > 0 ? sh : null };
-    var over = !csv ? null : Object.keys(r).filter(function (k) { return /_tag$/.test(k) && String(r[k]).toUpperCase() === 'OVERRIDE'; }).map(function (k) { return k.replace(/_tag$/, ''); });
+    var over = !csv ? null : Object.keys(r).filter(function (k) { return /_tag$/.test(k) && isOverrideTag(r[k]); }).map(function (k) { return k.replace(/_tag$/, ''); });
     if (over && over.length) return Object.assign(base, { v: null, reason: over.map(function (f) { var key = f === 'shares_diluted' ? 'shares' : f, o = overrideFor(key, end || '') || overrideFor(key, null); return o ? overrideWhy(o, true) : f + ' filled by an override in the engine run (not a filed value)'; }).join(' and ') });
     if (oe !== null && sh !== null && sh > 0) { var ps = num(r.oe_per_share); return Object.assign(base, { v: !csv && ps !== null ? ps : oe / sh, reason: '' }); }
     var miss = [];
@@ -1593,6 +1597,17 @@ function renderAnalysis(record) {
   return out.join('');
 }
 
+/* The Data tab's run market cap (engine 5.5). A pre-5.5 ADS run printed market_cap_est = the per-ADS price × the
+   ORDINARY share count; make_score corrects it in score.json (market_cap_basis "ads_corrected_by_make_score",
+   market_cap_b = price × shares ÷ ads_ratio), so that figure is shown and the engine's own is named as superseded.
+   A 5.5 run's cap is shown with its share basis when that is not the plain latest diluted count. */
+function runCapText(s, n) {
+  s = obj(s); n = obj(n);
+  if (s.market_cap_basis === 'ads_corrected_by_make_score' && num(s.market_cap_b) !== null)
+    return fmtCap(s.market_cap_b) + ' (ADS-corrected by make_score: price × shares ÷ ratio; the pre-5.5 engine printed ' + fmtBig(n.market_cap_est) + ')';
+  var src = obj(n.market_cap_basis).shares_source;
+  return fmtBig(n.market_cap_est) + (src && src !== 'diluted_latest' ? ' (' + esc(src) + ')' : '');
+}
 function renderData(record) {
   var s = obj(record.score), n = obj(record.numbers), fund = obj(record.fundamentals), ttm = obj(record.ttm), j = record.judgment, prof = obj(fund.profile), rows = [];
   var kv = function (k, v) { rows.push('<tr><th>' + k + '</th><td>' + v + '</td></tr>'); };
@@ -1614,7 +1629,7 @@ function renderData(record) {
   // after a split since scoring the run's per-share figures and share count here are restated (record.split_restated);
   // as_scored keeps the price, IV and base as the run had them
   var sp = splitInfo(record), asc = sp ? sp.as_scored : {}, before = sp ? ' before the ' + esc(sp.split) + ' split' : '';
-  kv('Price', fmtMoney(n.price) + ' (' + esc(n.price_source) + ')' + (sp && num(asc.price) !== null ? ' · scored at ' + fmtMoney(asc.price) + before : '') + ' · market cap est. ' + fmtBig(n.market_cap_est) + ' · diluted shares ' + fmtCnt(n.shares_diluted_latest) + (sp ? ' (restated × ' + esc(fmtFactor(sp.factor)) + ')' : ''));
+  kv('Price', fmtMoney(n.price) + ' (' + esc(n.price_source) + ')' + (sp && num(asc.price) !== null ? ' · scored at ' + fmtMoney(asc.price) + before : '') + ' · market cap est. ' + runCapText(s, n) + ' · diluted shares ' + fmtCnt(n.shares_diluted_latest) + (sp ? ' (restated × ' + esc(fmtFactor(sp.factor)) + ')' : ''));
   var inp = obj(n.inputs);
   kv('Base', fmtMoney(n.base_oe_per_share) + '/share' + (sp && num(asc.base_oe_per_share) !== null ? ' (scored ' + fmtMoney(asc.base_oe_per_share) + before + ')' : '') + ' · ' + esc(n.base_source) + ' · pin source ' + esc(inp.base_pin_source));
   if (sp) kv('Split since scoring', esc(sp.split) + ' (factor ' + esc(fmtFactor(sp.factor)) + ')' + (sp.scored_date ? ' · scored ' + esc(sp.scored_date) : '') + (sp.price_date ? ' · restated against the ' + esc(sp.price_date) + ' close' : '') + (num(asc.iv_at_15) !== null ? ' · IV @15% as scored ' + fmtMoney(asc.iv_at_15) : ''));
@@ -2882,7 +2897,7 @@ var API = {
   PRICE_RANGES: PRICE_RANGES, selectRange: selectRange, priceRanges: priceRanges, defaultRange: defaultRange, periodReturn: periodReturn, fmtRange: fmtRange, nearestIndex: nearestIndex, minuteToX: minuteToX, xScale: xScale, timeLabel: timeLabel, dayLabel: dayLabel, isoParts: isoParts, priceTag: priceTag,
   sessionBars: sessionBars, capturedTo: capturedTo, yearAgoQuarter: yearAgoQuarter, oeAxisFloor: oeAxisFloor, oeHistorySection: oeHistorySection, sessionComplete: sessionComplete, cleanBars: cleanBars, sessionEnd: sessionEnd, RANGE_DAYS: RANGE_DAYS,
   crosshairLines: crosshairLines, labelWidth: labelWidth, estWidth: estWidth, XL_CH: XL_CH, XL_PAD_X: XL_PAD_X, XL_PAD_Y: XL_PAD_Y, XL_LINE: XL_LINE,
-  condenseNow: condenseNow, TABSUM_H: TABSUM_H, sparkLabels: sparkLabels, oeGapNote: oeGapNote, oeYoyNote: oeYoyNote, histYoy: histYoy, overrideWhy: overrideWhy, SHARE_BASIS_X: SHARE_BASIS_X, SHARE_JUMP_X: SHARE_JUMP_X, renderStatementsBody: renderStatementsBody,
+  condenseNow: condenseNow, TABSUM_H: TABSUM_H, sparkLabels: sparkLabels, oeGapNote: oeGapNote, oeYoyNote: oeYoyNote, histYoy: histYoy, overrideWhy: overrideWhy, isOverrideTag: isOverrideTag, runCapText: runCapText, SHARE_BASIS_X: SHARE_BASIS_X, SHARE_JUMP_X: SHARE_JUMP_X, renderStatementsBody: renderStatementsBody,
   parseHash: parseHash, TABS: TABS, TAB_KEYS: TAB_KEYS, SORTS: SORTS, TIER_ACCENT: TIER_ACCENT, tabScrollLeft: tabScrollLeft, TAB_PAD: TAB_PAD,
   liveWithheld: liveWithheld, pendingText: pendingText, currentClose: currentClose, splitInfo: splitInfo, splitRefs: splitRefs, splitDivisor: splitDivisor, fmtFactor: fmtFactor, splitBrief: splitBrief,
   renderOverrides: renderOverrides, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
