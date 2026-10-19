@@ -108,6 +108,16 @@ in the reporting currency and are FX-converted at the period-end rate
 before being applied (v5.3 inserted them verbatim into USD series); the
 override sanity band anchors on the last filed value in its filed unit.
 
+2026-10-19 (insurer payable-earnings base, Andrew's decision; engine_release
+stays 5.4.0 — no existing run changes): `--base-judgment` pins the base to the
+judgment.json base_override of basis "payable_earnings_5y" (five filed annual
+operating-income-to-common figures / latest diluted shares, scaled by the ADS
+ratio), recomputed and checked here (`load_payable_base`,
+`payable_base_per_share`), recorded as dcf_numbers.json `payable_base` with
+base_source "judgment_base_override"; a declaration that does not reproduce,
+a share count that is not this run's latest, or an FX-converted filer is
+refused (BAD_BASE_OVERRIDE, exit 3). make_score.py verifies and measures it.
+
 v5.4 (2026-10-14, formula audit of the whole engine — every item below is a
 behaviour change and is recorded as engine_release "5.4.0"; engine_version
 stays 5 for the data-gate check):
@@ -325,6 +335,51 @@ def load_overrides(ticker):
                           "ack_reason": str(o["ack_reason"]).strip() if isinstance(o.get("ack_reason"), str) and o["ack_reason"].strip() else None}
     return out
 
+PAYABLE_BASIS = "payable_earnings_5y"
+
+def payable_base_per_share(figures, shares, ads_ratio=None):
+    """Insurer payable-earnings base (Andrew, 2026-10-19): the average of the
+    last five fiscal years' operating income available to common shareholders
+    (filing USD, dollars) over the latest diluted share count, scaled by the
+    ADS ratio so the pin is comparable to the traded price (per-share pins are
+    not scaled anywhere else — see the ADS flag text)."""
+    figs = [float(x) for x in figures]
+    if len(figs) != 5 or not shares or float(shares) <= 0:
+        raise ValueError("payable base needs exactly five annual figures and a positive share count")
+    ratio = float(ads_ratio["ratio"]) if ads_ratio else 1.0
+    return sum(figs) / 5.0 / float(shares) * ratio
+
+def load_payable_base(ticker):
+    """judgment.json base_override with basis payable_earnings_5y:
+    {value (per ORDINARY share, filing USD), kind "filing", basis, figures [5],
+    shares, source, reason}. Returns the dict, or raises ValueError naming the
+    defect — the engine refuses the run rather than guessing."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception as e:
+        raise ValueError(f"judgment.json unreadable ({e})")
+    o = j.get("base_override") if isinstance(j, dict) else None
+    if not isinstance(o, dict):
+        raise ValueError("judgment.json carries no base_override object")
+    if o.get("basis") != PAYABLE_BASIS:
+        raise ValueError(f"base_override.basis must be {PAYABLE_BASIS!r}")
+    if o.get("kind") != "filing":
+        raise ValueError("base_override.kind must be 'filing' (the figures come from the filer's releases / 10-K)")
+    figs = o.get("figures")
+    if not (isinstance(figs, list) and len(figs) == 5
+            and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in figs)):
+        raise ValueError("base_override.figures must list exactly five annual operating-income-to-common figures (dollars)")
+    if not isinstance(o.get("shares"), (int, float)) or isinstance(o.get("shares"), bool) or o["shares"] <= 0:
+        raise ValueError("base_override.shares must be the latest diluted share count (a positive number)")
+    if not isinstance(o.get("value"), (int, float)) or isinstance(o.get("value"), bool):
+        raise ValueError("base_override.value must be a number (per ordinary share)")
+    if not str(o.get("source") or "").strip() or not str(o.get("reason") or "").strip():
+        raise ValueError("base_override.source and .reason must be non-empty")
+    per_ord = sum(float(x) for x in figs) / 5.0 / float(o["shares"])
+    if abs(per_ord - float(o["value"])) > 0.001 * abs(per_ord):
+        raise ValueError(f"base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f})")
+    return o
+
 def load_ads_ratio(ticker):
     """ads_ratio from judgment.json ({ratio, source, reason}) for foreign-form
     filers: ratio = ordinary shares per ADS. Per-share EDGAR figures for a
@@ -373,7 +428,7 @@ def _measure_run(ticker, price, no_overrides):
         if argv[i] == "--base-oe-ps":
             i += 2
             continue
-        if argv[i] in ("--measure", "--ttm"):  # --ttm is a pin source like --base-oe-ps: dropped
+        if argv[i] in ("--measure", "--ttm", "--base-judgment"):  # pin sources like --base-oe-ps: dropped
             i += 1
             continue
         args.append(argv[i])
@@ -993,6 +1048,7 @@ def main():
     # <TICKER>/ttm.json (ttm.py's saved output) so the base is never a free
     # number typed at a shell — make_score verifies it against ttm.json.
     pin_source = None
+    payable_base = None
     if "--base-oe-ps" in sys.argv:
         base_override = float(sys.argv[sys.argv.index("--base-oe-ps") + 1]); pin_source = "base_oe_ps_arg"
     elif "--ttm" in sys.argv:
@@ -1003,10 +1059,35 @@ def main():
         except Exception as e:
             print(f"NO_TTM for {ticker}: --ttm given but {BASE}/{ticker}/ttm.json is missing or unreadable ({e}) — run ttm.py {ticker} first so the pin has provenance")
             sys.exit(3)
+    elif "--base-judgment" in sys.argv:
+        # Insurer payable-earnings base (2026-10-19): the pin is the declared
+        # 5-yr average operating income to common / latest diluted shares, in
+        # judgment.json, recomputed here and scaled by the ADS ratio. Refused
+        # (exit 3) when the declaration is malformed, does not reproduce, the
+        # share count is not this run's latest diluted count, or the filer's
+        # series were FX-converted (the figures must already be USD).
+        try:
+            pb = load_payable_base(ticker)
+            if shares and abs(float(pb["shares"]) - float(shares)) > 0.001 * float(shares):
+                raise ValueError(f"base_override.shares {pb['shares']:,.0f} is not this run's latest diluted count {shares:,.0f}")
+            if fx_info and fx_info.get("from_currency") and fx_info.get("from_currency") != "USD":
+                raise ValueError("payable base is only defined for USD filers (series were FX-converted) — escalate NEEDS_MAIN_AGENT")
+            base_override = payable_base_per_share(pb["figures"], pb["shares"], ads_ratio)
+        except ValueError as e:
+            print(f"BAD_BASE_OVERRIDE for {ticker}: --base-judgment given but {e}")
+            sys.exit(3)
+        pin_source = "judgment_base_override"
+        payable_base = {"basis": PAYABLE_BASIS, "figures": [float(x) for x in pb["figures"]],
+                        "average": sum(float(x) for x in pb["figures"]) / 5.0,
+                        "shares": float(pb["shares"]), "per_ordinary_share": float(pb["value"]),
+                        "ads_ratio": float(ads_ratio["ratio"]) if ads_ratio else 1.0,
+                        "pinned_per_share": base_override}
     else:
         base_override = None
     if base_override is not None:
-        oe_ps, base_source = base_override, ("ttm_json" if pin_source == "ttm_json" else "agent_supplied_ttm_override")
+        oe_ps, base_source = base_override, ("ttm_json" if pin_source == "ttm_json"
+                                             else "judgment_base_override" if pin_source == "judgment_base_override"
+                                             else "agent_supplied_ttm_override")
     elif oe_ps_norm is not None:
         oe_ps, base_source = oe_ps_norm, "median_of_last_3_fy_oe_per_share"
     else:
@@ -1060,6 +1141,7 @@ def main():
               "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
               "used_tags": used,
               "filer_annual_form": annual_form, "ads_ratio": ads_ratio, "fx_conversion": fx_info,
+              "payable_base": payable_base,
               "override_checks": override_checks}
 
     # ---- v3 scenario / moat inputs ----
