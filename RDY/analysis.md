@@ -27,13 +27,13 @@ Balance sheet: net debt $375.0M (latest), 1.09× normalized OE — leverage is n
 
 ## Moat: 4/10 — weak-to-moderate (CAP 7.2 yrs)
 
-Filing-direct evidence (fundamentals.json `roic_proxy`, gross margin): ROIC 17.9% (FY23), 17.9% (FY24), 14.5% (FY25); gross margin 56.7% / 58.6% / 58.5%. That history is respectable but it is the *old* regime: FY26 gross margin compressed (Q4 FY26 44.8%) and Q1 FY27 EBITDA margin printed 12.5%, so returns are resetting below the level a 7+ moat would require, with no through-cycle evidence at the new level.
+Filing-direct evidence (fundamentals.json `roic_proxy`, gross margin), full five years: ROIC 8.4% (FY21), 10.3% (FY22), 17.9% (FY23), 17.9% (FY24), 14.5% (FY25); gross margin 54.3% / 53.1% / 56.7% / 58.6% / 58.5%. The strong FY23–25 returns are a three-year window, not a through-cycle level — FY21–22 ran at high-single-digit ROIC. And even that window is the *old* regime: FY26 gross margin compressed (Q4 FY26 44.8%) and Q1 FY27 EBITDA margin printed 12.5%, so returns are resetting below the level a 7+ moat would require, with no through-cycle evidence at the new level.
 
 FOR:
 - Scale diversified generics platform across North America, India, emerging markets and Europe, plus PSAI/API.
 - India branded-generics franchise compounding at mid-teens (FY26 India revenue +16%).
 - Haleon nicotine-replacement portfolio (Sep 2024) added owned consumer brands; Europe revenue +55% in FY26.
-- Filing-direct ROIC 14.5–17.9% and ~58% gross margins through FY25.
+- Filing-direct ROIC 14.5–17.9% in FY23–25 (weaker before: 8.4% / 10.3% in FY21/22) and gross margins of 53–59% across the five years.
 - Pipeline: 73 ANDAs pending at Q1 FY26 (43 Paragraph IV, 22 possible first-to-file); semaglutide and abatacept optionality.
 
 AGAINST:
