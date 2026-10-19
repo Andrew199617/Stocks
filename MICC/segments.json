@@ -1,0 +1,422 @@
+{
+ "ticker": "MICC",
+ "cik": 2071668,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-029805",
+   "filed": "2026-03-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2071668/000110465926029805/micc-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "EUR",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "micc:EuropeAustraliaAndNewZealandSegmentMember",
+     "label": "Europe, Australia and New Zealand Segment",
+     "values": [
+      3019000000,
+      3109000000,
+      3192000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3963,
+      0.3912,
+      0.4035
+     ],
+     "growth_yoy": [
+      null,
+      0.0298,
+      0.0267
+     ]
+    },
+    {
+     "member": "micc:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      2750000000,
+      2887000000,
+      2757000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.361,
+      0.3633,
+      0.3485
+     ],
+     "growth_yoy": [
+      null,
+      0.0498,
+      -0.045
+     ]
+    },
+    {
+     "member": "micc:AfricaAsiaAndMiddleEastSegmentMember",
+     "label": "Africa, Asia and the Middle East Segment",
+     "values": [
+      1849000000,
+      1951000000,
+      1961000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2427,
+      0.2455,
+      0.2479
+     ],
+     "growth_yoy": [
+      null,
+      0.0552,
+      0.0051
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7618000000,
+     7947000000,
+     7910000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "micc:AfricaAsiaAndMiddleEastSegmentMember",
+     "label": "Africa, Asia and the Middle East Segment",
+     "values": [
+      299000000,
+      308000000,
+      262000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.403,
+      0.4031,
+      0.4374
+     ],
+     "growth_yoy": [
+      null,
+      0.0301,
+      -0.1494
+     ]
+    },
+    {
+     "member": "micc:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      165000000,
+      228000000,
+      169000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2224,
+      0.2984,
+      0.2821
+     ],
+     "growth_yoy": [
+      null,
+      0.3818,
+      -0.2588
+     ]
+    },
+    {
+     "member": "micc:EuropeAustraliaAndNewZealandSegmentMember",
+     "label": "Europe, Australia and New Zealand Segment",
+     "values": [
+      278000000,
+      228000000,
+      168000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3747,
+      0.2984,
+      0.2805
+     ],
+     "growth_yoy": [
+      null,
+      -0.1799,
+      -0.2632
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     742000000,
+     764000000,
+     599000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "micc:EuropeAustraliaAndNewZealandSegmentMember",
+     "label": "Europe, Australia and New Zealand Segment",
+     "values": [
+      134000000,
+      137000000,
+      125000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3754,
+      0.3644,
+      0.3698
+     ],
+     "growth_yoy": [
+      null,
+      0.0224,
+      -0.0876
+     ]
+    },
+    {
+     "member": "micc:AfricaAsiaAndMiddleEastSegmentMember",
+     "label": "Africa, Asia and the Middle East Segment",
+     "values": [
+      99000000,
+      110000000,
+      111000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2773,
+      0.2926,
+      0.3284
+     ],
+     "growth_yoy": [
+      null,
+      0.1111,
+      0.0091
+     ]
+    },
+    {
+     "member": "micc:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      124000000,
+      129000000,
+      102000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3473,
+      0.3431,
+      0.3018
+     ],
+     "growth_yoy": [
+      null,
+      0.0403,
+      -0.2093
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     357000000,
+     376000000,
+     338000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "micc:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      5513000000,
+      5669000000,
+      5594000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7237,
+      0.7134,
+      0.7072
+     ],
+     "growth_yoy": [
+      null,
+      0.0283,
+      -0.0132
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1951000000,
+      2119000000,
+      2073000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2561,
+      0.2666,
+      0.2621
+     ],
+     "growth_yoy": [
+      null,
+      0.0861,
+      -0.0217
+     ]
+    },
+    {
+     "member": "ifrs-full:CountryOfDomicileMember",
+     "label": "Country of domicile",
+     "values": [
+      154000000,
+      159000000,
+      243000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0202,
+      0.02,
+      0.0307
+     ],
+     "growth_yoy": [
+      null,
+      0.0325,
+      0.5283
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7618000000,
+     7947000000,
+     7910000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

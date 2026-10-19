@@ -1,0 +1,239 @@
+{
+ "ticker": "MICC",
+ "cik": 2071668,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T03:15:52-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002071668.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2071668/000110465926029805/micc-20251231x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/MICC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/MICC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Magnum Ice Cream Co N.V.",
+  "cik": 2071668,
+  "description": null,
+  "description_short": "The Magnum Ice Cream Company is the world's largest ice cream company. With an unrivalled portfolio of brands including global power brands Magnum, Ben & Jerry's, Wall's and Cornetto, and with a global fleet of nearly 3 million freezers, our products are available in 80 countries. The company generated 7.9 billion in revenue in 2024. TMICC's legal entity identifier is 25490052LLF3XH6G9847.",
+  "industry": "Specialty Foods",
+  "sector": "Consumer Staples",
+  "region": null,
+  "sic": "2024",
+  "sic_description": "Ice Cream & Frozen Desserts",
+  "state_of_incorporation": "P7",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": null,
+  "headquarters": "Amsterdam, Netherlands",
+  "address": {
+   "street": "Reguliersdwarsstraat 63",
+   "city": "Amsterdam",
+   "state": null,
+   "zip": "1017 BK",
+   "country": "Netherlands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-18"
+  },
+  "phone": "3165458858",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-11-04",
+  "first_sec_filing_form": "20FR12B",
+  "former_names": [
+   "Magnum Ice Cream Co B.V.",
+   "Magnum Ice Cream Company B.V."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002071668&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006305",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326006305/f6k_093026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006201",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326006201/f6k_092426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006160",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326006160/f6k_092226.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006107",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326006107/f6k_091826.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006080",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326006080/f6k_091726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005969",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005969/f6k_091026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005928",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005928/f6k_090926.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005867",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005867/f6k_090326.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-28",
+   "period": "2026-08-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005781",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005781/f6k_082826.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005711",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005711/f6k_082426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005608",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005608/f6k_081826.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005578",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005578/f6k_081726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-14",
+   "period": "2026-08-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005521",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005521/f6k_081426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001104659-26-088404",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000110465926088404/micc-20260630x6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005045",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326005045/f6k_073026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004160",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326004160/f6k_061726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004049",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326004049/f6k_061126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003928",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326003928/f6k_060526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003906",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326003906/f6k_060426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003896",
+   "url": "https://www.sec.gov/Archives/edgar/data/2071668/000117184326003896/f6k_060326.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-03-18)",
+  "employees: no headcount sentence found in the 20-F filed 2026-03-18"
+ ]
+}
