@@ -1,0 +1,667 @@
+{
+ "ticker": "TXRH",
+ "cik": 1289460,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-021292",
+   "filed": "2026-02-27",
+   "period": "2025-12-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926021292/txrh-20251230x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-057604",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926057604/txrh-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-092408",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1289460/000110465926092408/txrh-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-30"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "txrh:TexasRoadhouseSegmentMember",
+     "label": "Texas Roadhouse Segment",
+     "values": [
+      2488679000,
+      2831205000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.78,
+      0.7976
+     ],
+     "growth_yoy": [
+      null,
+      0.1376
+     ]
+    },
+    {
+     "member": "txrh:BubbaS33SegmentMember",
+     "label": "Bubba's 33 Segment",
+     "values": [
+      255320000,
+      306051000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.08,
+      0.0862
+     ],
+     "growth_yoy": [
+      null,
+      0.1987
+     ]
+    },
+    {
+     "member": "txrh:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      446780000,
+      412216000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.14,
+      0.1161
+     ],
+     "growth_yoy": [
+      null,
+      -0.0774
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3190779000,
+     3549472000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-01",
+    "2025-07-01",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "txrh:TexasRoadhouseSegmentMember",
+     "label": "Texas Roadhouse Segment",
+     "values": [
+      2488061000,
+      2571129000,
+      2753983000,
+      2811966000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7797,
+      0.7898,
+      0.7704,
+      0.7658
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1069,
+      0.0937
+     ]
+    },
+    {
+     "member": "txrh:BubbaS33SegmentMember",
+     "label": "Bubba's 33 Segment",
+     "values": [
+      270132000,
+      275946000,
+      331679000,
+      359959000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0847,
+      0.0848,
+      0.0928,
+      0.098
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2278,
+      0.3045
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      432940000,
+      408201000,
+      489068000,
+      500141000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1357,
+      0.1254,
+      0.1368,
+      0.1362
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1296,
+      0.2252
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3191133000,
+     3255276000,
+     3574730000,
+     3672066000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-26",
+    "2024-12-31",
+    "2025-12-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "txrh:TexasRoadhouseSegmentMember",
+     "label": "Texas Roadhouse Segment",
+     "values": [
+      126719000,
+      149934000,
+      171420000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8271,
+      0.8416,
+      0.8296
+     ],
+     "growth_yoy": [
+      null,
+      0.1832,
+      0.1433
+     ]
+    },
+    {
+     "member": "txrh:BubbaS33SegmentMember",
+     "label": "Bubba's 33 Segment",
+     "values": [
+      14210000,
+      16447000,
+      18673000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0928,
+      0.0923,
+      0.0904
+     ],
+     "growth_yoy": [
+      null,
+      0.1574,
+      0.1353
+     ]
+    },
+    {
+     "member": "txrh:OtherSegmentMember",
+     "label": "Other Segment",
+     "values": [
+      12273000,
+      11776000,
+      16547000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0801,
+      0.0661,
+      0.0801
+     ],
+     "growth_yoy": [
+      null,
+      -0.0405,
+      0.4051
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     153202000,
+     178157000,
+     206640000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-01",
+    "2025-07-01",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "txrh:TexasRoadhouseSegmentMember",
+     "label": "Texas Roadhouse Segment",
+     "values": [
+      40222000,
+      42108000,
+      46807000,
+      48201000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8242,
+      0.8298,
+      0.8234,
+      0.8262
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1637,
+      0.1447
+     ]
+    },
+    {
+     "member": "txrh:BubbaS33SegmentMember",
+     "label": "Bubba's 33 Segment",
+     "values": [
+      4307000,
+      4572000,
+      5211000,
+      5332000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0883,
+      0.0901,
+      0.0917,
+      0.0914
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2099,
+      0.1662
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      4271000,
+      4064000,
+      4825000,
+      4808000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0875,
+      0.0801,
+      0.0849,
+      0.0824
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1297,
+      0.1831
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     48800000,
+     50744000,
+     56843000,
+     58341000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-26",
+    "2024-12-31",
+    "2025-12-30"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FoodAndBeverageMember",
+     "label": "Food and Beverage",
+     "values": [
+      4604554000,
+      5341853000,
+      5847234000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9941,
+      0.9941,
+      0.9948
+     ],
+     "growth_yoy": [
+      null,
+      0.1601,
+      0.0946
+     ]
+    },
+    {
+     "member": "txrh:FranchiseRoyaltyMember",
+     "label": "Franchise royalties",
+     "values": [
+      24169000,
+      28342000,
+      28183000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0052,
+      0.0053,
+      0.0048
+     ],
+     "growth_yoy": [
+      null,
+      0.1727,
+      -0.0056
+     ]
+    },
+    {
+     "member": "txrh:FranchiseFeesMember",
+     "label": "Franchise fees",
+     "values": [
+      2949000,
+      3137000,
+      2658000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0006,
+      0.0006,
+      0.0005
+     ],
+     "growth_yoy": [
+      null,
+      0.0638,
+      -0.1527
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4631672000,
+     5373332000,
+     5878075000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-01",
+    "2025-07-01",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FoodAndBeverageMember",
+     "label": "Food and Beverage",
+     "values": [
+      1440342000,
+      1503974000,
+      1626689000,
+      1672913000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.995,
+      0.9947,
+      0.996,
+      0.9958
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1294,
+      0.1123
+     ]
+    },
+    {
+     "member": "txrh:FranchiseRoyaltyMember",
+     "label": "Franchise royalties",
+     "values": [
+      6778000,
+      7468000,
+      5953000,
+      6555000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0047,
+      0.0049,
+      0.0036,
+      0.0039
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1217,
+      -0.1223
+     ]
+    },
+    {
+     "member": "txrh:FranchiseFeesMember",
+     "label": "Franchise fees",
+     "values": [
+      528000,
+      612000,
+      524000,
+      508000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0004,
+      0.0004,
+      0.0003,
+      0.0003
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0076,
+      -0.1699
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1447648000,
+     1512054000,
+     1633166000,
+     1679976000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Franchise' (us-gaap:FranchiseMember) dropped: its values equal the sum of Franchise royalties, Franchise fees",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Franchise' (us-gaap:FranchiseMember) dropped: its values equal the sum of Franchise royalties, Franchise fees"
+ ],
+ "complete": true
+}
