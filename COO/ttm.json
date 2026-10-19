@@ -1,0 +1,101 @@
+{
+ "ticker": "COO",
+ "cik": 711404,
+ "entity": "The Cooper Companies, Inc.",
+ "fy_end": "2025-10-31",
+ "ytd_end": "2026-07-31",
+ "inputs": {
+  "ocf": {
+   "fy": 796100000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 548200000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 785400000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1033300000
+  },
+  "capex": {
+   "fy": 362400000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 264400000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 257300000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 355300000
+  },
+  "sbc": {
+   "fy": 70500000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 55300000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 50600000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 65800000
+  },
+  "shares_diluted": {
+   "fy": 200000000,
+   "fy_period": [
+    "2024-11-01",
+    "2025-10-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 200600000,
+   "ytd_prior_period": [
+    "2024-11-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 195200000,
+   "ytd_current_period": [
+    "2025-11-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1033300000,
+ "ttm_capex": 355300000,
+ "ttm_sbc": 65800000,
+ "ttm_shares_diluted": 195200000,
+ "ttm_oe_total": 612200000,
+ "ttm_oe_per_share": 3.1362704918032787,
+ "warnings": [],
+ "overrides_used": []
+}

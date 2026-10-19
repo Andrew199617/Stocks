@@ -1,0 +1,285 @@
+{
+ "ticker": "COO",
+ "cik": 711404,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T11:03:40-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000711404.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/711404/000162828025055615/coo-20251031.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/COO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/COO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "COOPER COMPANIES, INC.",
+  "cik": 711404,
+  "description": {
+   "text": "The Cooper Companies, Inc. (Cooper, we or the Company), is a leading global medical device company focused on helping people experience life's beautiful moments. Headquartered in San Ramon, California, Cooper sells products in over 130 countries and positively impacts over fifty million lives each year. Cooper operates through two business segments, CooperVision and CooperSurgical. Our two business segments elevate standards of care with products and services in the fields of vision, fertility and women’s health. For financial information relating to these business segments, refer to Note 12. Business Segment Information in Item 8. Financial Statements and Supplementary Data of this Annual Report. CooperVision is a global manufacturer providing products for contact lens wearers. CooperVision develops, manufactures and markets a broad range of single-use, two-week and monthly contact lenses, featuring advanced materials and optics. CooperVision designs its products to address vision challenges such as astigmatism, presbyopia and myopia with a broad collection of spherical, toric and multifocal contact lenses. CooperVision offers contact lenses in materials like silicone hydrogel Aquaform technology. CooperVision also manufactures and markets myopia management products, including the internally developed MiSight 1 day lens, as well as other specialty eyecare products such as orthokeratology (ortho-k) and scleral lenses.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-12-05",
+   "period": "2025-10-31",
+   "accession": "0001628280-25-055615",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828025055615/coo-20251031.htm"
+  },
+  "description_short": "CooperCompanies (Nasdaq: COO) is a leading global medical device company focused on helping people experience life's beautiful moments through its two business units, CooperVision and CooperSurgical. CooperVision is a trusted leader in the contact lens industry, helping to improve the way people see each day. CooperSurgical is a leading fertility and women's healthcare company dedicated to putting time on the side of women, babies, and families at the healthcare moments that matter most. Headquartered in San Ramon, Calif., CooperCompanies has a workforce of more than 15,000, sells products in over 130 countries, and positively impacts over fifty million lives each year.",
+  "industry": "Ophthalmic Goods",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3851",
+  "sic_description": "Ophthalmic Goods",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1031",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.coopercos.com",
+  "headquarters": "San Ramon, California",
+  "address": {
+   "street": "6101 Bollinger Canyon Road Suite 500",
+   "city": "San Ramon",
+   "state": "California",
+   "zip": "94583",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-12-05"
+  },
+  "phone": "9254603600",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-07",
+  "first_sec_filing_form": "8-K",
+  "former_names": [
+   "COOPER COMPANIES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000711404&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-09-09",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-061160",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026061160/coo-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-061155",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026061155/coo-20260909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-05",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-041305",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026041305/coo-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-040823",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026040823/coo-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-029853",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026029853/coo-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-08",
+   "period": "2026-04-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-024273",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026024273/coo-20260407.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-03-06",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-015620",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026015620/coo-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-015231",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026015231/coo-20260305.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-02-24",
+   "period": "2026-04-07",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-011110",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026011110/coo-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-03",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-036476",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000119312526036476/d24828d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-23",
+   "period": "2025-12-22",
+   "items": [
+    "1.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Officer/director change; Reg FD",
+   "accession": "0001193125-25-331117",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000119312525331117/d96045d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-09",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-056796",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828025056796/coo-20251209.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-12-05",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-25-055615",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828025055615/coo-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0001628280-25-055405",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000162828025055405/coo-20251204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000711404-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000071140425000051/coo-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000711404-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000071140425000046/coo-20250827.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-30",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000711404-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000071140425000040/coo-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-29",
+   "period": "2025-05-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000711404-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000071140425000036/coo-20250529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000711404-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000071140425000027/coo-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-02",
+   "period": "2025-04-02",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000711404-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/711404/000071140425000022/coo-20250402.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2025-12-05"
+ ]
+}

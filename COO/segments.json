@@ -1,0 +1,873 @@
+{
+ "ticker": "COO",
+ "cik": 711404,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-25-055615",
+   "filed": "2025-12-05",
+   "period": "2025-10-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/711404/000162828025055615/coo-20251031_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-041305",
+   "filed": "2026-06-05",
+   "period": "2026-04-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026041305/coo-20260430_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-061160",
+   "filed": "2026-09-09",
+   "period": "2026-07-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/711404/000162828026061160/coo-20260731_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "coo:CoopervisionSegmentMember",
+     "label": "Coopervision Segment",
+     "values": [
+      2423700000,
+      2609400000,
+      2743800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6745,
+      0.6699,
+      0.6705
+     ],
+     "growth_yoy": [
+      null,
+      0.0766,
+      0.0515
+     ]
+    },
+    {
+     "member": "coo:CoopersurgicalSegmentMember",
+     "label": "Coopersurgical Segment",
+     "values": [
+      1169500000,
+      1286000000,
+      1348600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3255,
+      0.3301,
+      0.3295
+     ],
+     "growth_yoy": [
+      null,
+      0.0996,
+      0.0487
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3593200000,
+     3895400000,
+     4092400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "coo:CoopervisionSegmentMember",
+     "label": "Coopervision Segment",
+     "values": [
+      669600000,
+      718400000,
+      709700000,
+      723500000,
+      717000000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6681,
+      0.6775,
+      0.6663,
+      0.669,
+      0.6725
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0805,
+      -0.0019
+     ]
+    },
+    {
+     "member": "coo:CoopersurgicalSegmentMember",
+     "label": "Coopersurgical Segment",
+     "values": [
+      332700000,
+      341900000,
+      355400000,
+      358000000,
+      349200000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3319,
+      0.3225,
+      0.3337,
+      0.331,
+      0.3275
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.076,
+      0.0214
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1002300000,
+     1060300000,
+     1065100000,
+     1081500000,
+     1066200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "coo:CooperVisionSegmentMember",
+     "label": "CooperVision Segment",
+     "values": [
+      587700000,
+      676200000,
+      729600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1024,
+      0.9582,
+      1.0684
+     ],
+     "growth_yoy": [
+      null,
+      0.1506,
+      0.079
+     ]
+    },
+    {
+     "member": "coo:CooperSurgicalSegmentMember",
+     "label": "CooperSurgical Segment",
+     "values": [
+      16100000,
+      118300000,
+      43400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0302,
+      0.1676,
+      0.0636
+     ],
+     "growth_yoy": [
+      null,
+      6.3478,
+      -0.6331
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -70700000,
+      -88800000,
+      -90100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1326,
+      -0.1258,
+      -0.1319
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     533100000,
+     705700000,
+     682900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "coo:CooperVisionSegmentMember",
+     "label": "CooperVision Segment",
+     "values": [
+      186400000,
+      202600000,
+      156700000,
+      215600000,
+      205500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0087,
+      1.1531,
+      1.1161,
+      -6.9548,
+      0.9257
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1567,
+      0.0143
+     ]
+    },
+    {
+     "member": "coo:CooperSurgicalSegmentMember",
+     "label": "CooperSurgical Segment",
+     "values": [
+      23700000,
+      -4200000,
+      3700000,
+      -225000000,
+      41100000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1282,
+      -0.0239,
+      0.0264,
+      7.2581,
+      0.1851
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -10.4937,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -25300000,
+      -22700000,
+      -20000000,
+      -21600000,
+      -24600000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1369,
+      -0.1292,
+      -0.1425,
+      0.6968,
+      -0.1108
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     184800000,
+     175700000,
+     140400000,
+     -31000000,
+     222000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "coo:CooperVisionSegmentMember",
+     "label": "CooperVision Segment",
+     "values": [
+      7044000000,
+      7285100000,
+      7604400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6042,
+      0.5916,
+      0.6135
+     ],
+     "growth_yoy": [
+      null,
+      0.0342,
+      0.0438
+     ]
+    },
+    {
+     "member": "coo:CooperSurgicalSegmentMember",
+     "label": "CooperSurgical Segment",
+     "values": [
+      4351800000,
+      4832000000,
+      4619300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3733,
+      0.3924,
+      0.3727
+     ],
+     "growth_yoy": [
+      null,
+      0.1103,
+      -0.044
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      263100000,
+      198100000,
+      171100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0226,
+      0.0161,
+      0.0138
+     ],
+     "growth_yoy": [
+      null,
+      -0.2471,
+      -0.1363
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     11658900000,
+     12315200000,
+     12394800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "coo:CooperVisionSegmentMember",
+     "label": "CooperVision Segment",
+     "values": [
+      7604400000,
+      7626000000,
+      7915100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6135,
+      0.6109,
+      0.6245
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "coo:CooperSurgicalSegmentMember",
+     "label": "CooperSurgical Segment",
+     "values": [
+      4619300000,
+      4616000000,
+      4542700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3727,
+      0.3698,
+      0.3584
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      171100000,
+      240300000,
+      215600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0138,
+      0.0193,
+      0.017
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12394800000,
+     12482300000,
+     12673400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-31",
+    "2024-10-31",
+    "2025-10-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1812200000,
+      1965900000,
+      2054000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5043,
+      0.5047,
+      0.5019
+     ],
+     "growth_yoy": [
+      null,
+      0.0848,
+      0.0448
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1041200000,
+      1155900000,
+      1253200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2898,
+      0.2967,
+      0.3062
+     ],
+     "growth_yoy": [
+      null,
+      0.1102,
+      0.0842
+     ]
+    },
+    {
+     "member": "coo:RestOfTheWorldMember",
+     "label": "Rest Of The World",
+     "values": [
+      739800000,
+      773600000,
+      785200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2059,
+      0.1986,
+      0.1919
+     ],
+     "growth_yoy": [
+      null,
+      0.0457,
+      0.015
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3593200000,
+     3895400000,
+     4092400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-30",
+    "2025-07-31",
+    "2025-10-31",
+    "2026-04-30",
+    "2026-07-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      515200000,
+      516200000,
+      526200000,
+      547800000,
+      519500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.514,
+      0.4868,
+      0.494,
+      0.5065,
+      0.4872
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0633,
+      0.0064
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      291900000,
+      343100000,
+      330700000,
+      341600000,
+      357500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2912,
+      0.3236,
+      0.3105,
+      0.3159,
+      0.3353
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1703,
+      0.042
+     ]
+    },
+    {
+     "member": "coo:RestOfWorldExcludingUnitedStatesAndEuropeMember",
+     "label": "Rest Of World, Excluding United States And Europe",
+     "values": [
+      195200000,
+      201000000,
+      null,
+      192100000,
+      189200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1948,
+      0.1896,
+      null,
+      0.1776,
+      0.1775
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0159,
+      -0.0587
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1002300000,
+     1060300000,
+     1065100000,
+     1081500000,
+     1066200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'CooperVision Segment' (coo:CooperVisionSegmentMember) dropped: same numbers as 'Coopervision Segment' (coo:CoopervisionSegmentMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'CooperSurgical Segment' (coo:CooperSurgicalSegmentMember) dropped: same numbers as 'Coopersurgical Segment' (coo:CoopersurgicalSegmentMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'CooperVision Segment' (coo:CooperVisionSegmentMember) dropped: same numbers as 'Coopervision Segment' (coo:CoopervisionSegmentMember)",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'CooperSurgical Segment' (coo:CooperSurgicalSegmentMember) dropped: same numbers as 'Coopersurgical Segment' (coo:CoopersurgicalSegmentMember)"
+ ],
+ "complete": true
+}
