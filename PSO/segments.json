@@ -1,0 +1,195 @@
+{
+ "ticker": "PSO",
+ "cik": 938323,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-104945",
+   "filed": "2026-03-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/938323/000119312526104945/d33885d20f_htm.xml"
+  }
+ ],
+ "currency": "GBP",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "pso:AssessmentsAndQualificationsMember",
+     "label": "Assessments And Qualifications",
+     "values": [
+      1559000000,
+      1591000000,
+      1604000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4243,
+      0.4479,
+      0.4484
+     ],
+     "growth_yoy": [
+      null,
+      0.0205,
+      0.0082
+     ]
+    },
+    {
+     "member": "pso:HigherEducationMember",
+     "label": "Higher Education",
+     "values": [
+      806000000,
+      781000000,
+      775000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2194,
+      0.2199,
+      0.2167
+     ],
+     "growth_yoy": [
+      null,
+      -0.031,
+      -0.0077
+     ]
+    },
+    {
+     "member": "pso:VirtualLearningMember",
+     "label": "Virtual Learning",
+     "values": [
+      616000000,
+      489000000,
+      511000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1677,
+      0.1377,
+      0.1429
+     ],
+     "growth_yoy": [
+      null,
+      -0.2062,
+      0.045
+     ]
+    },
+    {
+     "member": "pso:EnglishLanguageLearningMember",
+     "label": "English Language Learning",
+     "values": [
+      415000000,
+      420000000,
+      405000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.113,
+      0.1182,
+      0.1132
+     ],
+     "growth_yoy": [
+      null,
+      0.012,
+      -0.0357
+     ]
+    },
+    {
+     "member": "pso:EnterpriseLearningAndSkillsMember",
+     "label": "Enterprise Learning and Skills",
+     "values": [
+      269000000,
+      271000000,
+      282000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0732,
+      0.0763,
+      0.0788
+     ],
+     "growth_yoy": [
+      null,
+      0.0074,
+      0.0406
+     ]
+    },
+    {
+     "member": "pso:StrategicReviewMember",
+     "label": "Strategic Review",
+     "values": [
+      9000000,
+      0,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0024,
+      0.0,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      -1.0,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3674000000,
+     3552000000,
+     3577000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Enterprise Learning And Workforce Skills' (pso:EnterpriseLearningAndWorkforceSkillsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Assessments And Qualifications, Virtual Learning, English Language Learning, Enterprise Learning and Skills, Higher Education, Strategic Review)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

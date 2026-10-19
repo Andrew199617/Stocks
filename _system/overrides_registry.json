@@ -2885,6 +2885,31 @@
    "unblocks_tier": true
   },
   {
+   "ticker": "PSO",
+   "field": "capex",
+   "value": 134000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), consolidated cash flow statement: 'Purchase of property, plant and equipment and investment property' GBP 29M and 'Purchase of intangible assets' GBP 105M for FY2025 \u2014 total capex GBP 134M; the same statement reports GBP 33M + GBP 91M = GBP 124M for FY2024 and GBP 30M + GBP 96M = GBP 126M for FY2023. Declared in GBP (the reporting currency); the engine FX-converts at period-end ECB rates.",
+   "reason": "DATA_GAP:capex \u2014 EDGAR companyfacts carries PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities only through FY2021 (last filed in the FY2021 20-F, 2022-03-30); from FY2022 the PPE leg is filed under the combined line 'Purchase of property, plant and equipment and investment property', which no engine candidate tag reads, while intangible purchases remain tagged every year (GBP 90M FY2022, GBP 96M FY2023, GBP 91M FY2024, GBP 105M FY2025) but are not added on an assumed-zero row. The override is the filer's TOTAL capex line (PP&E + intangibles), so the filed intangibles are not stacked on it. Following the system's single-value convention it applies the latest filed year (FY2025, GBP 134M) to every missing period: it is exact for FY2025 and overstates FY2024 capex by ~8% (true GBP 124M) and FY2023 by ~6% (true GBP 126M), so the median base it produces is conservative; it also fills FY2022, whose untagged PPE leg sits in the same combined line.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 1.0679,
+   "base_oe_with_override": 0.8224,
+   "base_oe_impact_pct": -22.985,
+   "weighted_irr_without_override": 0.1007,
+   "weighted_irr_with_override": 0.0839,
+   "weighted_irr_impact_pp": -1.679,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "PSO",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 1.0,
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.",
+   "reason": "ADS_RATIO_MISSING \u2014 20-F filer: EDGAR per-share figures are per ordinary share and the Nasdaq price is per ADS; with 1 ordinary share per ADS (ratio 1) the per-share figures are already comparable to the ADS price and the market cap is price x shares with no scaling."
+  },
+  {
    "ticker": "RTO",
    "event": "ads_ratio",
    "date": "2026-10-19",

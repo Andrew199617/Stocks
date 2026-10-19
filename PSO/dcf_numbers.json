@@ -1,0 +1,703 @@
+{
+ "ticker": "PSO",
+ "name": "PEARSON PLC",
+ "cik": 938323,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 18.19,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 660300000,
+ "shares_outstanding_dei_latest": 635814880,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 12010857000.0,
+ "net_debt_latest": 1545896800.0,
+ "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+ "lease_liabilities_latest": 643674800.0,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.007656910003183137,
+ "rev_cagr_3y": 0.014057616441244258,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 650407800.0,
+ "base_oe_per_share": 0.8224445906432747,
+ "base_oe_latest_per_share": 0.9850186278964107,
+ "base_oe_normalized_per_share": 0.8224445906432747,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.007656910003183137,
+  "rev_cagr_3y": 0.014057616441244258,
+  "rev_yoy_latest": 0.08235115253332981,
+  "oe_ps_cagr_2y": 0.2580348174209002
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.04578705074535283,
+  "rev_cagr_3y": 0.05218775718341395,
+  "rev_yoy_latest": 0.1204812932754995,
+  "oe_ps_cagr_2y": 0.2580348174209002
+ },
+ "g_blend": 0.08633452522945673,
+ "share_cagr": -0.038130140742169694,
+ "share_count_adj": 0.038130140742169694,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities",
+  "da": null,
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": null,
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": null,
+  "debt_cur_st": "ShorttermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding",
+  "capex_components": "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities+PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.",
+  "reason": "ADS_RATIO_MISSING \u2014 20-F filer: EDGAR per-share figures are per ordinary share and the Nasdaq price is per ADS; with 1 ordinary share per ADS (ratio 1) the per-share figures are already comparable to the ADS price and the market cap is price x shares with no scaling."
+ },
+ "fx_conversion": {
+  "from_currency": "GBP",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_cur_st",
+   "debt_lt",
+   "debt_total",
+   "lease_liab_current",
+   "lease_liab_lt",
+   "assets",
+   "liabilities",
+   "ppe_net",
+   "equity",
+   "capex_intang"
+  ],
+  "rates": {
+   "2014-12-31": 1.5587,
+   "2015-12-31": 1.4833,
+   "2016-12-31": 1.2312,
+   "2017-12-31": 1.3517,
+   "2018-12-31": 1.28,
+   "2019-01-01": 1.28,
+   "2019-12-31": 1.3204,
+   "2020-12-31": 1.3649,
+   "2021-12-31": 1.3479,
+   "2022-12-31": 1.2026,
+   "2023-12-31": 1.2715,
+   "2024-12-31": 1.2529,
+   "2025-12-31": 1.3466
+  },
+  "rates_by_currency": {
+   "GBP": {
+    "2014-12-31": 1.5587,
+    "2015-12-31": 1.4833,
+    "2016-12-31": 1.2312,
+    "2017-12-31": 1.3517,
+    "2018-12-31": 1.28,
+    "2019-01-01": 1.28,
+    "2019-12-31": 1.3204,
+    "2020-12-31": 1.3649,
+    "2021-12-31": 1.3479,
+    "2022-12-31": 1.2026,
+    "2023-12-31": 1.2715,
+    "2024-12-31": 1.2529,
+    "2025-12-31": 1.3466
+   }
+  },
+  "overrides_converted": [
+   "capex"
+  ],
+  "overrides_usd_verbatim": {}
+ },
+ "payable_base": null,
+ "override_checks": {
+  "capex": {
+   "value": 134000000.0,
+   "last_filed_value": 64000000,
+   "last_filed_unit": "GBP",
+   "out_of_band": false,
+   "ack_reason_present": false,
+   "currency_basis": "converted"
+  }
+ },
+ "market_cap_basis": {
+  "shares_used": 660300000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 1.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": 635814880,
+  "dei_date": "2025-12-31",
+  "dei_ratio": 1.0385098253755873,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 1.1762449839884348
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 88000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 157000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2019-04-04",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2019-04-04"
+   }
+  },
+  "2017-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 82000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 150000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2020-04-01",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2020-04-01"
+   }
+  },
+  "2018-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 70000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 130000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2021-04-01",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2021-04-01"
+   }
+  },
+  "2019-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 55000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 138000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-30",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2022-03-30"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 53000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 81000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-30",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2023-03-31"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 64000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 112000000
+   },
+   "intangibles_unit": "GBP",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-30",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2024-03-14"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "override",
+   "ppe": {},
+   "ppe_unit": null,
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {},
+   "intangibles_not_added": "override_present",
+   "intangibles_filed": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 90000000
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "override",
+   "ppe": {},
+   "ppe_unit": null,
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {},
+   "intangibles_not_added": "override_present",
+   "intangibles_filed": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 96000000
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "override",
+   "ppe": {},
+   "ppe_unit": null,
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {},
+   "intangibles_not_added": "override_present",
+   "intangibles_filed": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 91000000
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "override",
+   "ppe": {},
+   "ppe_unit": null,
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {},
+   "intangibles_not_added": "override_present",
+   "intangibles_filed": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 105000000
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "g_base": 0.08633452522945673,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.125,
+   0.275,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.14,
+   -0.07,
+   -0.02,
+   0.03,
+   0.1
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "capex"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "capex",
+   "value": 134000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), consolidated cash flow statement: 'Purchase of property, plant and equipment and investment property' GBP 29M and 'Purchase of intangible assets' GBP 105M for FY2025 \u2014 total capex GBP 134M; the same statement reports GBP 33M + GBP 91M = GBP 124M for FY2024 and GBP 30M + GBP 96M = GBP 126M for FY2023. Declared in GBP (the reporting currency); the engine FX-converts at period-end ECB rates.",
+   "reason": "DATA_GAP:capex \u2014 EDGAR companyfacts carries PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities only through FY2021 (last filed in the FY2021 20-F, 2022-03-30); from FY2022 the PPE leg is filed under the combined line 'Purchase of property, plant and equipment and investment property', which no engine candidate tag reads, while intangible purchases remain tagged every year (GBP 90M FY2022, GBP 96M FY2023, GBP 91M FY2024, GBP 105M FY2025) but are not added on an assumed-zero row. The override is the filer's TOTAL capex line (PP&E + intangibles), so the filed intangibles are not stacked on it. Following the system's single-value convention it applies the latest filed year (FY2025, GBP 134M) to every missing period: it is exact for FY2025 and overstates FY2024 capex by ~8% (true GBP 124M) and FY2023 by ~6% (true GBP 126M), so the median base it produces is conservative; it also fills FY2022, whose untagged PPE leg sits in the same combined line.",
+   "periods_filled": [
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 64000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.125,
+   "g_start": -0.0537,
+   "oe_mult": 0.75,
+   "iv_at_10": 5.828389514178307,
+   "iv_at_12": 4.681574279143468,
+   "iv_at_15": 3.639543302758243,
+   "iv_at_20": 2.6813135471582124,
+   "iv_at_25": 2.1372504819189984,
+   "irr": 0.04772244353063468,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.275,
+   "g_start": 0.0163,
+   "oe_mult": 0.9,
+   "iv_at_10": 9.716828168137027,
+   "iv_at_12": 7.684876487064768,
+   "iv_at_15": 5.854369519017998,
+   "iv_at_20": 4.195479022513892,
+   "iv_at_25": 3.271824474638747,
+   "irr": 0.06491976429257074,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0663,
+   "oe_mult": 1.0,
+   "iv_at_10": 13.6006015033696,
+   "iv_at_12": 10.650517445559508,
+   "iv_at_15": 8.006792749856594,
+   "iv_at_20": 5.632417048351224,
+   "iv_at_25": 4.326507088582139,
+   "irr": 0.08153856873105314,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.1163,
+   "oe_mult": 1.1,
+   "iv_at_10": 18.77764418885319,
+   "iv_at_12": 14.57301166494959,
+   "iv_at_15": 10.82243229088087,
+   "iv_at_20": 7.480875784256273,
+   "iv_at_25": 5.663211777432964,
+   "irr": 0.10226721385078819,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1863,
+   "oe_mult": 1.25,
+   "iv_at_10": 29.140025815304874,
+   "iv_at_12": 22.363444192894995,
+   "iv_at_15": 16.35263623278395,
+   "iv_at_20": 11.049708119073044,
+   "iv_at_25": 8.20439558052817,
+   "irr": 0.1389285063614275,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 14.150388305821977,
+  "iv_at_12": 11.044639804783014,
+  "iv_at_15": 8.266682436986278,
+  "iv_at_20": 5.779792007850023,
+  "iv_at_25": 4.417942080879582,
+  "irr": 0.08392888569576418,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   0.583731,
+   0.552405,
+   0.527872,
+   0.509314,
+   0.496122,
+   0.487864,
+   0.484257,
+   0.48516,
+   0.490554,
+   0.500547,
+   0.513061,
+   0.525888,
+   0.539035,
+   0.552511,
+   0.566324
+  ],
+  "bear": [
+   0.752291,
+   0.764579,
+   0.777848,
+   0.79214,
+   0.807501,
+   0.823984,
+   0.841644,
+   0.86054,
+   0.880738,
+   0.902307,
+   0.924865,
+   0.947986,
+   0.971686,
+   0.995978,
+   1.020878
+  ],
+  "base": [
+   0.877001,
+   0.935177,
+   0.992663,
+   1.048857,
+   1.103131,
+   1.154849,
+   1.203376,
+   1.24809,
+   1.288396,
+   1.323739,
+   1.356832,
+   1.390753,
+   1.425522,
+   1.46116,
+   1.497689
+  ],
+  "bull": [
+   1.009936,
+   1.127426,
+   1.24647,
+   1.36469,
+   1.479459,
+   1.587983,
+   1.687404,
+   1.774918,
+   1.847899,
+   1.904024,
+   1.951625,
+   2.000415,
+   2.050426,
+   2.101686,
+   2.154229
+  ],
+  "super_bull": [
+   1.219618,
+   1.446875,
+   1.689015,
+   1.93962,
+   2.190593,
+   2.432462,
+   2.654867,
+   2.847215,
+   2.999458,
+   3.10291,
+   3.180483,
+   3.259995,
+   3.341495,
+   3.425032,
+   3.510658
+  ],
+  "weighted": [
+   0.866896,
+   0.930036,
+   0.995887,
+   1.06306,
+   1.129969,
+   1.194876,
+   1.255964,
+   1.311425,
+   1.359566,
+   1.39892,
+   1.433893,
+   1.469741,
+   1.506484,
+   1.544146,
+   1.58275
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.053665,
+   -0.053665,
+   -0.044411,
+   -0.035156,
+   -0.025901,
+   -0.016646,
+   -0.007392,
+   0.001863,
+   0.011118,
+   0.020373,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   0.016335,
+   0.016335,
+   0.017354,
+   0.018373,
+   0.019393,
+   0.020412,
+   0.021432,
+   0.022451,
+   0.023471,
+   0.02449,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.066335,
+   0.066335,
+   0.061472,
+   0.056609,
+   0.051746,
+   0.046883,
+   0.04202,
+   0.037157,
+   0.032294,
+   0.027431,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.116335,
+   0.116335,
+   0.105589,
+   0.094844,
+   0.084099,
+   0.073354,
+   0.062608,
+   0.051863,
+   0.041118,
+   0.030373,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.186335,
+   0.186335,
+   0.167354,
+   0.148373,
+   0.129393,
+   0.110412,
+   0.091432,
+   0.072451,
+   0.053471,
+   0.03449,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.08392888569576418,
+ "implied_irr_base": 0.08153856873105314,
+ "irr_bear": 0.06491976429257074,
+ "irr_bull": 0.10226721385078819,
+ "irr_low": 0.04772244353063468,
+ "irr_high": 0.1389285063614275,
+ "tier_by_numbers": "D",
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 8.266682436986278,
+  "20": 5.779792007850023,
+  "25": 4.417942080879582
+ },
+ "upside_at_15": -0.5455369743273075,
+ "upside_at_12": -0.3928180426177563,
+ "iv_at_15": 8.266682436986278,
+ "iv_at_12": 11.044639804783014,
+ "iv_at_20": 5.779792007850023,
+ "iv_at_25": 4.417942080879582,
+ "diagnostics": {
+  "oe_yield": 0.04521410613761818,
+  "tv_share_at_15": 0.19294222975612757,
+  "scenario_spread_iv15": 4.49304620730602,
+  "net_debt_to_normalized_oe": 2.846640031347094,
+  "months_since_fy_end": 9.592641261498029,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency GBP converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), consolidated cash flow statement: 'Purchase of property, plant and equipment and investment property' GBP 29M and 'Purchase of intangible assets' GBP 105M for FY2025 \u2014 total capex GBP 134M; the same statement reports GBP 33M + GBP 91M = GBP 124M for FY2024 and GBP 30M + GBP 96M = GBP 126M for FY2023. Declared in GBP (the reporting currency); the engine FX-converts at period-end ECB rates.); an override never replaces a filed value \u2014 see overrides_applied and override_impact \u2014 intangible purchases filed for FY2022 (90,000,000 GBP), FY2023 (96,000,000 GBP), FY2024 (91,000,000 GBP), FY2025 (105,000,000 GBP) were not added on top of the override; if the override excludes them, revise it to the total",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.5%) vs bull-case tier C (10.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 1.0678957602339179,
+  "base_oe_per_share_final": 0.8224445906432747,
+  "weighted_irr_zero_fill": 0.10072368061121817,
+  "weighted_irr_final": 0.08392888569576418,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides \u2014 its override effect shows in ttm.py output / make_score's payable_5y impact"
+ },
+ "content_hash": "23a9d200e48da71e9d291f2df4bc58bb332615639d09748b286bc5b996dac22b"
+}

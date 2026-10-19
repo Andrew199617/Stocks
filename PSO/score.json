@@ -1,0 +1,109 @@
+{
+ "ticker": "PSO",
+ "name": "Pearson plc",
+ "sector": "Education Services",
+ "price": 18.19,
+ "market_cap_b": 12.01,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 0.8224445906432747,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: regulated assessment and qualifications franchise (Pearson VUE test-delivery network, UK GCSE/A-level qualifications, PTE English test, clinical assessments) with institutional switching costs and trusted content/IP, but measured returns do not support a wide moat \u2014 fundamentals.json roic_proxy ran 3.0-9.3% over FY2019-FY2025 (7.7% in FY2025, best year 9.3% in FY2024) at a 47-52% gross margin (52.0% FY2025), i.e. around, not well above, the cost of capital through the cycle, while Higher Education courseware faces structural print/digital erosion and AI substitution pressure. Moat 5 gives CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency GBP converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), consolidated cash flow statement: 'Purchase of property, plant and equipment and investment property' GBP 29M and 'Purchase of intangible assets' GBP 105M for FY2025 \u2014 total capex GBP 134M; the same statement reports GBP 33M + GBP 91M = GBP 124M for FY2024 and GBP 30M + GBP 96M = GBP 126M for FY2023. Declared in GBP (the reporting currency); the engine FX-converts at period-end ECB rates.); an override never replaces a filed value \u2014 see overrides_applied and override_impact \u2014 intangible purchases filed for FY2022 (90,000,000 GBP), FY2023 (96,000,000 GBP), FY2024 (91,000,000 GBP), FY2025 (105,000,000 GBP) were not added on top of the override; if the override excludes them, revise it to the total",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.5%) vs bull-case tier C (10.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.125,
+   "iv_at_15": 3.64,
+   "irr": 0.0477
+  },
+  "bear": {
+   "prob": 0.275,
+   "iv_at_15": 5.85,
+   "irr": 0.0649
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 8.01,
+   "irr": 0.0815
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 10.82,
+   "irr": 0.1023
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 16.35,
+   "irr": 0.1389
+  }
+ },
+ "iv_at_15": 8.27,
+ "iv_at_12": 11.04,
+ "implied_irr": 0.0839,
+ "implied_irr_base_case": 0.0815,
+ "upside_at_15_pct": -54.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Improving global education franchise with a regulated assessment moat, moat 5/10 \u2014 but at $18.19 it does not clear 15%: Tier D, weighted IRR 8.39%, weighted IV@15% $8.27; it clears the hurdle only below ~$8.27, less than half the current price.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0649,
+ "irr_bull": 0.1023,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 5.78,
+ "iv_at_25": 4.42,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1545896800.0,
+ "shares_diluted_latest": 660300000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Regulated assessment franchise \u2014 Pearson VUE global test-centre network and government/professional certification contracts are hard to replicate",
+  "Accredited qualifications with institutional lock-in \u2014 UK GCSE/A-levels, BTEC and PTE are embedded in school, university and immigration systems",
+  "Content and assessment IP plus data scale across 5 segments, 67% of sales in the US",
+  "Proven pricing power in assessments \u2014 FY2025 underlying sales +4% and H1 2026 +4% with adjusted operating margin expanding to 17.2%"
+ ],
+ "moat_against": [
+  "ROIC history is mediocre \u2014 roic_proxy 3.0-9.3% FY2019-FY2025, never durably above ~10%",
+  "Higher Education courseware in structural decline \u2014 print erosion, Inclusive Access price pressure, AI tools substituting for paid courseware and study help",
+  "Contract concentration and re-bid risk in assessments \u2014 US Student Assessment lost the New Jersey contract; government contracts re-tender",
+  "English Language Learning exposed to migration policy \u2014 H1 2026 ELL guidance cut on softer migration-driven demand; Duolingo-class consumer apps pressure the category"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 134000000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), consolidated cash flow statement: 'Purchase of property, plant and equipment and investment property' GBP 29M and 'Purchase of intangible assets' GBP 105M for FY2025 \u2014 total capex GBP 134M; the same statement reports GBP 33M + GBP 91M = GBP 124M for FY2024 and GBP 30M + GBP 96M = GBP 126M for FY2023. Declared in GBP (the reporting currency); the engine FX-converts at period-end ECB rates."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 1.0679,
+  "base_oe_with_override": 0.8224,
+  "base_oe_impact_pct": -22.985,
+  "weighted_irr_without_override": 0.1007,
+  "weighted_irr_with_override": 0.0839,
+  "weighted_irr_impact_pp": -1.679,
+  "unblocks_tier": true
+ }
+}
