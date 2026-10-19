@@ -1,0 +1,37 @@
+{
+ "ticker": "PCVX",
+ "cik": 1649094,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001649094-26-000007",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000007/pcvx-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001649094-26-000017",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000017/pcvx-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001649094-26-000043",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1649094/000164909426000043/pcvx-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (pcvx:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (pcvx:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}
