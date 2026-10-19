@@ -1,0 +1,85 @@
+{
+ "ticker": "JKHY",
+ "name": "Jack Henry & Associates, Inc.",
+ "sector": "Technology / Financial software (core banking)",
+ "price": 153.19,
+ "market_cap_b": 11.04,
+ "engine_version": 5,
+ "base_oe_per_share": 7.663139160791293,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 7,
+ "moat_justification": "Mission-critical core processing with very high switching costs and a decade of ROIC proxy at 19-25% (23.5% in FY26), but the smallest of the Big Three core providers, a structurally shrinking US bank/credit-union client base, and moat maintenance that costs $167-184M/yr of capitalized software development.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.2%) vs bull-case tier C (12.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 34.56,
+   "irr": 0.0502
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 57.57,
+   "irr": 0.0722
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 81.04,
+   "irr": 0.0938
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 113.05,
+   "irr": 0.1206
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 179.17,
+   "irr": 0.1669
+  }
+ },
+ "iv_at_15": 88.34,
+ "iv_at_12": 119.61,
+ "implied_irr": 0.1007,
+ "implied_irr_base_case": 0.0938,
+ "upside_at_15_pct": -42.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality core-banking franchise, moat 7/10 \u2014 does not clear 15% at $153.19 (weighted IRR 10.1%, IV@15 $88.34; clears 15% only below ~$88) and the scored OE excludes $167-184M/yr of capitalized software development, so the printed IRR is an upper bound.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0722,
+ "irr_bull": 0.1206,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 60.68,
+ "iv_at_25": 45.76,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 27944000,
+ "shares_diluted_latest": 72043000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Mission-critical core platforms (Jack Henry Core for banks, Symitar for credit unions) \u2014 a core conversion is the highest-risk project a bank runs; multi-year contracts, very low churn",
+  "ROIC proxy 19.2-25.2% every year FY17-FY26 (23.5% FY26; management-reported ROIC 23.2%) \u2014 returns stayed well above the cost of capital through COVID and the 2023 bank stress",
+  "Integrated stack raises switching costs with each product: Core 30.2% of FY26 revenue, Payments 36.8%, Complementary 29.6%, plus Banno digital banking",
+  "Record 58 competitive core wins in FY26, 14 at institutions over $1B in assets \u2014 taking share from Fiserv/FIS, not just defending the base",
+  "Gross margin 39.5-44.1% over FY17-FY26 \u2014 eroded to a 39.5% trough in FY21, then recovered to 43.7% in FY26 \u2014 and operating margin back to 25.0%; pricing power evidenced by the recovery"
+ ],
+ "moat_against": [
+  "Smallest of the Big Three core providers \u2014 Fiserv and FIS have far greater scale and R&D budgets",
+  "Structural client shrinkage: US bank and credit-union consolidation deletes a customer at every merger; deconversion fees are one-time, the recurring revenue is gone",
+  "Moat maintenance is expensive and rising: capitalized software development of $167.2M (FY24), $172.4M (FY25), $184.2M (FY26) \u2014 roughly 3x the PP&E capex the engine deducts",
+  "Cloud-native and modular challengers (nCino, Mambu, Temenos, fintech point solutions) unbundle pieces of the stack, especially digital and payments",
+  "Served market grows slowly: revenue CAGR ~7% over 5 years, FY27 guided to +5.5-6.5%; concentrated in US community/regional institutions with no geographic diversification"
+ ]
+}

@@ -1,0 +1,296 @@
+{
+ "ticker": "JKHY",
+ "cik": 779152,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T06:39:10-04:00",
+ "newest_filing_date": "2026-10-02",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000779152.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000067/jkhy-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JKHY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JKHY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "JACK HENRY & ASSOCIATES INC",
+  "cik": 779152,
+  "description": {
+   "text": "Jack Henry & Associates, Inc.® is a well-rounded financial technology company that strengthens connections between financial institutions and the people and businesses they serve. For 50 years, we have provided technology solutions to help banks and credit unions innovate faster, strategically differentiate, and successfully compete while serving the evolving needs of their accountholders. We empower over 7,200 financial institutions and diverse corporate entities with people-inspired innovation, personal service, and insight-driven solutions.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-28",
+   "period": "2026-06-30",
+   "accession": "0000779152-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000067/jkhy-20260630.htm"
+  },
+  "description_short": "Jack Henry® (Nasdaq: JKHY) is a well-rounded financial technology company that strengthens connections between financial institutions and the people and businesses they serve. We are an S&P 500 company that prioritizes openness, collaboration, and user centricity - offering banks and credit unions a vibrant ecosystem of internally developed modern capabilities as well as the ability to integrate with leading fintechs. For 50 years, Jack Henry has provided technology solutions to enable clients to innovate faster, strategically differentiate, and successfully compete while serving the evolving needs of their accountholders. We empower more than 7,200 clients with people-inspired innovation, personal service, and insight-driven solutions that help reduce the barriers to financial health.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7373",
+  "sic_description": "Services-Computer Integrated Systems Design",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.jackhenry.com",
+  "headquarters": "Monett, MO",
+  "address": {
+   "street": "663 Highway 60, P.O. Box 807",
+   "city": "Monett",
+   "state": "MO",
+   "zip": "65708",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-28"
+  },
+  "phone": "4172356652",
+  "employees": {
+   "count": 7300,
+   "as_of": "2026-06-30",
+   "evidence": "As of June 30, 2026, Jack Henry had approximately 7,300 full-time and part-time associates.",
+   "form": "10-K",
+   "filed": "2026-08-28",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000067/jkhy-20260630.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-09",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "HENRY JACK & ASSOCIATES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000779152&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-10-02",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000779152-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000088/jkhy-20261001.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000779152-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000067/jkhy-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000779152-26-000060",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000060/jkhy-20260820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000057/jkhy-20260818.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000052/jkhy-20260811.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-05-29",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000779152-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000036/jkhy-20260529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000779152-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000027/jkhy-20260508.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000779152-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000025/jkhy-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000021/jkhy-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000018/jkhy-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-26",
+   "period": "2026-03-25",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0000779152-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000013/jkhy-20260325.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000779152-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000009/jkhy-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-03",
+   "period": "2026-02-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000007/jkhy-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000004/jkhy-20260127.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-14",
+   "period": "2025-11-12",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000779152-25-000121",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915225000121/jkhy-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000779152-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915225000092/jkhy-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-25-000090",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915225000090/jkhy-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000779152-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915225000087/jkhy-20251028.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-10-02",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000779152-25-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915225000079/jkhy-20251001.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-22",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000779152-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/779152/000077915225000057/jkhy-20250822.htm"
+  }
+ ],
+ "warnings": []
+}

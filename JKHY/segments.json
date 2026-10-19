@@ -1,0 +1,613 @@
+{
+ "ticker": "JKHY",
+ "cik": 779152,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0000779152-26-000009",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000009/jkhy-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000779152-26-000025",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000025/jkhy-20260331_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0000779152-26-000067",
+   "filed": "2026-08-28",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/779152/000077915226000067/jkhy-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jkhy:PaymentsMember",
+     "label": "Payments",
+     "values": [
+      817708000,
+      873498000,
+      936006000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3691,
+      0.3677,
+      0.3679
+     ],
+     "growth_yoy": [
+      null,
+      0.0682,
+      0.0716
+     ]
+    },
+    {
+     "member": "jkhy:CoreSegmentMember",
+     "label": "Core Segment",
+     "values": [
+      685262000,
+      732924000,
+      768452000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3093,
+      0.3086,
+      0.302
+     ],
+     "growth_yoy": [
+      null,
+      0.0696,
+      0.0485
+     ]
+    },
+    {
+     "member": "jkhy:ComplementaryMember",
+     "label": "Complementary",
+     "values": [
+      636084000,
+      694771000,
+      752214000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2871,
+      0.2925,
+      0.2956
+     ],
+     "growth_yoy": [
+      null,
+      0.0923,
+      0.0827
+     ]
+    },
+    {
+     "member": "jkhy:CorporateServicesMember",
+     "label": "Corporate Services",
+     "values": [
+      76489000,
+      74095000,
+      87667000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0345,
+      0.0312,
+      0.0345
+     ],
+     "growth_yoy": [
+      null,
+      -0.0313,
+      0.1832
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2215543000,
+     2375288000,
+     2544339000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jkhy:PaymentsMember",
+     "label": "Payments",
+     "values": [
+      214836000,
+      217449000,
+      229291000,
+      231975000,
+      232720000,
+      240418000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.3744,
+      0.3717,
+      0.3726,
+      0.3746,
+      0.3658,
+      0.3733
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0798,
+      0.0702,
+      0.0485
+     ]
+    },
+    {
+     "member": "jkhy:CoreSegmentMember",
+     "label": "Core Segment",
+     "values": [
+      171607000,
+      179052000,
+      187976000,
+      186100000,
+      195448000,
+      191611000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.299,
+      0.306,
+      0.3055,
+      0.3005,
+      0.3072,
+      0.2975
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0845,
+      0.0916,
+      0.0193
+     ]
+    },
+    {
+     "member": "jkhy:ComplementaryMember",
+     "label": "Complementary",
+     "values": [
+      165732000,
+      172442000,
+      180317000,
+      181708000,
+      187489000,
+      188800000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.2888,
+      0.2947,
+      0.293,
+      0.2934,
+      0.2947,
+      0.2932
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0964,
+      0.0873,
+      0.047
+     ]
+    },
+    {
+     "member": "jkhy:CorporateServicesMember",
+     "label": "Corporate Services",
+     "values": [
+      null,
+      16144000,
+      17788000,
+      null,
+      20588000,
+      23194000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      null,
+      0.0276,
+      0.0289,
+      null,
+      0.0324,
+      0.036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      0.2753,
+      0.3039
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      21673000,
+      null,
+      null,
+      19551000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0378,
+      null,
+      null,
+      0.0316,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0979,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     573848000,
+     585087000,
+     615372000,
+     619334000,
+     636245000,
+     644023000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-06-30",
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jkhy:ProcessingMember",
+     "label": "Processing",
+     "values": [
+      939589000,
+      1013551000,
+      1096336000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4241,
+      0.4267,
+      0.4309
+     ],
+     "growth_yoy": [
+      null,
+      0.0787,
+      0.0817
+     ]
+    },
+    {
+     "member": "jkhy:OutsourcingCloudMember",
+     "label": "Outsourcing & Cloud",
+     "values": [
+      682146000,
+      756879000,
+      816097000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3079,
+      0.3186,
+      0.3208
+     ],
+     "growth_yoy": [
+      null,
+      0.1096,
+      0.0782
+     ]
+    },
+    {
+     "member": "jkhy:InHouseSupportMember",
+     "label": "In-House Support",
+     "values": [
+      355085000,
+      353128000,
+      336830000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1603,
+      0.1487,
+      0.1324
+     ],
+     "growth_yoy": [
+      null,
+      -0.0055,
+      -0.0462
+     ]
+    },
+    {
+     "member": "jkhy:ProductDeliveryandServiceMember",
+     "label": "Product Delivery and Service",
+     "values": [
+      238723000,
+      251730000,
+      295076000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1077,
+      0.106,
+      0.116
+     ],
+     "growth_yoy": [
+      null,
+      0.0545,
+      0.1722
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2215543000,
+     2375288000,
+     2544339000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:LicenseAndServiceMember",
+     "label": "License and Service",
+     "values": [
+      323027000,
+      330792000,
+      351239000,
+      345809000,
+      365149000,
+      360195000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.5629,
+      0.5654,
+      0.5708,
+      0.5584,
+      0.5739,
+      0.5593
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0705,
+      0.1039,
+      0.0255
+     ]
+    },
+    {
+     "member": "jkhy:ProcessingMember",
+     "label": "Processing",
+     "values": [
+      250821000,
+      254295000,
+      264133000,
+      273525000,
+      271096000,
+      283828000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+     ],
+     "share_of_total": [
+      0.4371,
+      0.4346,
+      0.4292,
+      0.4416,
+      0.4261,
+      0.4407
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0905,
+      0.0661,
+      0.0746
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     573848000,
+     585087000,
+     615372000,
+     619334000,
+     636245000,
+     644023000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'License and Service' (us-gaap:LicenseAndServiceMember) dropped: its values equal the sum of Product Delivery and Service, Outsourcing & Cloud, In-House Support",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Private & Public Cloud' (jkhy:PrivatePublicCloudMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (License and Service, Processing)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Product Delivery and Service' (jkhy:ProductDeliveryandServiceMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (License and Service, Processing)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'On-Premise Support' (jkhy:OnPremiseSupportMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (License and Service, Processing)"
+ ],
+ "complete": true
+}
