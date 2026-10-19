@@ -1,0 +1,294 @@
+{
+ "ticker": "ERIE",
+ "cik": 922621,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T15:04:00-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000922621.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010666/erie-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ERIE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ERIE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ERIE INDEMNITY CO",
+  "cik": 922621,
+  "description": {
+   "text": "Erie Indemnity Company (\"Indemnity\", \"we\", \"us\", \"our\") is a publicly held Pennsylvania business corporation that has since its incorporation in 1925 served as the attorney-in-fact for the subscribers (policyholders) at the Erie Insurance Exchange (\"Exchange\"). The Exchange, which also commenced business in 1925, is a Pennsylvania-domiciled reciprocal insurer that writes property and casualty insurance. The Exchange has wholly owned property and casualty insurance subsidiaries including: Erie Insurance Company, Erie Insurance Company of New York, Erie Insurance Property & Casualty Company and Flagship City Insurance Company, and a wholly owned life insurance company, Erie Family Life Insurance Company (\"EFL\"). Our primary function as attorney-in-fact is to perform policy issuance and renewal services on behalf of the subscribers at the Exchange. We also act as attorney-in-fact on behalf of the subscribers at the Exchange with respect to all claims handling and investment management services, as well as the service provider for all claims handling, life insurance, and investment management services for the Exchange's insurance subsidiaries, collectively referred to as \"administrative services\".",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-010666",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010666/erie-20251231.htm"
+  },
+  "description_short": "Erie Insurance Group, based in Erie, Pennsylvania, is the 10th largest homeowners insurer, 11th largest automobile insurer and 9th largest commercial lines insurer in the United States based on direct premiums written, according to AM Best Company. Founded in 1925, Erie Insurance is a Fortune 500 company and the 16th largest property/casualty insurer in the United States based on net premiums written. Rated A (Excellent) by AM Best, ERIE has nearly seven million policies in force and operates in 12 states and the District of Columbia.",
+  "industry": "Specialty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6411",
+  "sic_description": "Insurance Agents, Brokers & Service",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.erieinsurance.com",
+  "headquarters": "Erie, Pennsylvania",
+  "address": {
+   "street": "100 Erie Insurance Place",
+   "city": "Erie",
+   "state": "Pennsylvania",
+   "zip": "16530",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "8148702000",
+  "employees": {
+   "count": 6667,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, our total workforce consists of 6,667 full-time employees, which includes approximately 50% of employees who provide claims and life insurance management services exclusively for the Exchange and its insurance subsidiaries.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010666/erie-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000922621&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051079",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026051079/erie-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-051071",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026051071/erie-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-037267",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026037267/erie-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-026866",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026026866/erie-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Other events",
+   "accession": "0001628280-26-026857",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026026857/erie-20260421.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-010666",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010666/erie-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-010640",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010640/erie-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-20",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001628280-26-010105",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010105/erie-20260220.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-09",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-056532",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828025056532/erie-20251209.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047555",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828025047555/erie-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "5.05",
+    "9.01"
+   ],
+   "description": "Results of operations; Code of ethics change",
+   "accession": "0001628280-25-047550",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828025047550/erie-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-038926",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828025038926/erie-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-25-038916",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000162828025038916/erie-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-07",
+   "period": "2025-07-07",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000922621-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000025/erie-20250707.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-11",
+   "period": "2025-06-07",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000922621-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000023/erie-20250607.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000922621-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000018/erie-20250501.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000922621-25-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000016/erie-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-22",
+   "items": [
+    "2.02",
+    "5.07",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Shareholder vote; Other events",
+   "accession": "0000922621-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000015/erie-20250422.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-27",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000922621-25-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000004/erie-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-27",
+   "period": "2025-02-27",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000922621-25-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/922621/000092262125000003/erie-20250227.htm"
+  }
+ ],
+ "warnings": []
+}

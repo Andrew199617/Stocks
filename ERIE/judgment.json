@@ -1,0 +1,44 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Single-counterparty concentration: substantially all revenue is the management fee on one reciprocal Exchange's premiums \u2014 no diversification if the Exchange shrinks",
+  "Fee rate is capped at 25% and already there \u2014 zero pricing headroom; the Board can cut the rate, and growth must come entirely from Exchange premium volume",
+  "Concentrated regional footprint (Pennsylvania-weighted) and policies in force fell ~2% in H1 2026 with retention easing to 87.5% \u2014 the premium base is currently shrinking on a unit basis",
+  "Cost linkage to the Exchange's underwriting cycle: agent incentive compensation rises when the Exchange's combined ratio improves (H1 2026 commissions +8.1% vs management fee revenue +4.5%), squeezing the spread exactly when the Exchange does well"
+ ],
+ "moat_for": [
+  "Attorney-in-fact structure since 1925: subscribers appoint Indemnity under the subscriber's agreement \u2014 no contract bidding, effectively perpetual",
+  "Management fee held at the 25% contractual maximum (2024, 2025, and set again for 2026) \u2014 proven, durable pricing on the Exchange's premium base",
+  "ROIC proxy 23.9% / 20.1% / 22.6% / 27.0% / 31.3% / 28.7% for 2020-2025 (fundamentals.json) \u2014 well above cost of capital through the cycle; no debt on the balance sheet",
+  "Exclusive independent-agent network and top-ranked customer satisfaction (J.D. Power #1 among large auto insurers, third straight year in 2026) support 87.5% retention"
+ ],
+ "moat_justification": "Century-old attorney-in-fact lock-in on the Erie Insurance Exchange (since 1925) with the management fee held at the 25% contractual maximum, and ROIC proxy of 20-31% in every year 2020-2025 \u2014 but the fee rate is capped with no pricing headroom, and the entire revenue base is one counterparty in a concentrated regional footprint whose policies in force are now shrinking.",
+ "moat_score": 7,
+ "name": "Erie Indemnity Company",
+ "one_liner": "Durable fee franchise, moat 7/10 (attorney-in-fact since 1925, fee at the 25% cap, ROIC 20-31%) \u2014 but priced for the old growth: TTM base $10.57/share at $242.68 gives a 7.7% weighted IRR, Tier D; clears 15% only below $98.16 (weighted IV@15%).",
+ "probs_used": [
+  0.1,
+  0.3,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed SBC value to band against (no SBC fact under any candidate tag in any period of companyfacts), so any value flags out-of-band. The $0 is not an estimate \u2014 it is the filing-proven figure: Note 11 states no new shares are issued for any plan and all open LTIP periods are cash-payable, and the direct-method cash-flow statement reconciles exactly with no SBC line in FY2023, FY2024 and FY2025.",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads, because Erie has no equity-settled share-based compensation to subtract. Note 11: 'We do not issue new shares of common stock to satisfy plan awards' (ECP) / 'to settle stock awards' (LTIP) / 'to directors' (deferred stock plan) \u2014 every share-linked award is settled in cash or with Class A shares purchased on the open market (treasury/rabbi-trust shares), the open LTIP performance periods (2023-2025, 2024-2026, 2025-2027) are all payable in cash, and the costs are liability-accrued compensation already inside operating expenses. The cash-flow statement is direct-method (cash receipts minus cash paid, fully enumerated for FY2023-FY2025 with no SBC addback or non-cash compensation line), so the compensation cost already sits inside reported OCF \u2014 subtracting an SBC figure again would double-count it (same treatment as COKE/SQM/LTM in this sweep). The filing-proven equity-settled SBC figure for the gap years is $0.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Cash Flows (direct method, fully enumerated) and Note 11, Incentive and Deferred Compensation Plans. EDGAR companyfacts for CIK 922621 contains no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact in any period.",
+  "value": 0
+ },
+ "sector": "Finance / Insurance services (attorney-in-fact fee manager)",
+ "shares_override": {
+  "ack_reason": "Out-of-band by construction if the engine bands against the filed share facts: the only undimensioned diluted fact in companyfacts is the 2,542 Class B share count, not a company-wide denominator. The value is not an estimate \u2014 it is exactly the diluted weighted-average Class A count printed in the FY2025 10-K's statements of operations and EPS note, which under the if-converted method carries total net income ($559,335k / 52,305,424 = the reported $10.69 diluted EPS).",
+  "kind": "filing",
+  "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2023, FY2024, FY2025 in companyfacts because the filer tags share counts only by share class (the only undimensioned WeightedAverageNumberOfDilutedSharesOutstanding fact in companyfacts is the 2,542-share Class B count). The filer's own FY2025 Class A diluted weighted-average count \u2014 computed under the if-converted method, i.e. including assumed conversion of the 2,542 Class B shares (2,400:1 = 6,100,800 Class A equivalents) and the dilutive effect of stock-based awards (15,600 shares) \u2014 fills the gap. The engine applies this single value to every missing period; the filer's own FY2024/FY2023 diluted counts (52,306,266 / 52,299,411) differ from it by less than 0.02%, so no year's OE/share is materially moved.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Operations and Note 5, Earnings Per Share: weighted average shares outstanding \u2014 Diluted, Class A common stock 52,305,424 for FY2025 (52,306,266 FY2024; 52,299,411 FY2023); Class A diluted EPS $10.69 on total net income $559,335 thousand under the if-converted method (52,305,424 x $10.69 = total net income, i.e. this denominator carries the whole company's earnings including the Class B allocation).",
+  "value": 52305424
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

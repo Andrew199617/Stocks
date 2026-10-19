@@ -1,0 +1,110 @@
+{
+ "ticker": "ERIE",
+ "name": "Erie Indemnity Company",
+ "sector": "Finance / Insurance services (attorney-in-fact fee manager)",
+ "price": 242.68,
+ "market_cap_b": 12.69,
+ "engine_version": 5,
+ "base_oe_per_share": 10.57410413115091,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Century-old attorney-in-fact lock-in on the Erie Insurance Exchange (since 1925) with the management fee held at the 25% contractual maximum, and ROIC proxy of 20-31% in every year 2020-2025 \u2014 but the fee rate is capped with no pricing headroom, and the entire revenue base is one counterparty in a concentrated regional footprint whose policies in force are now shrinking.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Cash Flows (direct method, fully enumerated) and Note 11, Incentive and Deferred Compensation Plans. EDGAR companyfacts for CIK 922621 contains no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact in any period.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Operations and Note 5, Earnings Per Share: weighted average shares outstanding \u2014 Diluted, Class A common stock 52,305,424 for FY2025 (52,306,266 FY2024; 52,299,411 FY2023); Class A diluted EPS $10.69 on total net income $559,335 thousand under the if-converted method (52,305,424 x $10.69 = total net income, i.e. this denominator carries the whole company's earnings including the Class B allocation).); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 57.81,
+   "irr": 0.0536
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 78.04,
+   "irr": 0.0652
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 95.29,
+   "irr": 0.0751
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 120.82,
+   "irr": 0.0898
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 162.13,
+   "irr": 0.1119
+  }
+ },
+ "iv_at_15": 98.16,
+ "iv_at_12": 130.62,
+ "implied_irr": 0.0772,
+ "implied_irr_base_case": 0.0751,
+ "upside_at_15_pct": -59.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Durable fee franchise, moat 7/10 (attorney-in-fact since 1925, fee at the 25% cap, ROIC 20-31%) \u2014 but priced for the old growth: TTM base $10.57/share at $242.68 gives a 7.7% weighted IRR, Tier D; clears 15% only below $98.16 (weighted IV@15%).",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0652,
+ "irr_bull": 0.0898,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 69.05,
+ "iv_at_25": 53.07,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 52305424.0,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Attorney-in-fact structure since 1925: subscribers appoint Indemnity under the subscriber's agreement \u2014 no contract bidding, effectively perpetual",
+  "Management fee held at the 25% contractual maximum (2024, 2025, and set again for 2026) \u2014 proven, durable pricing on the Exchange's premium base",
+  "ROIC proxy 23.9% / 20.1% / 22.6% / 27.0% / 31.3% / 28.7% for 2020-2025 (fundamentals.json) \u2014 well above cost of capital through the cycle; no debt on the balance sheet",
+  "Exclusive independent-agent network and top-ranked customer satisfaction (J.D. Power #1 among large auto insurers, third straight year in 2026) support 87.5% retention"
+ ],
+ "moat_against": [
+  "Single-counterparty concentration: substantially all revenue is the management fee on one reciprocal Exchange's premiums \u2014 no diversification if the Exchange shrinks",
+  "Fee rate is capped at 25% and already there \u2014 zero pricing headroom; the Board can cut the rate, and growth must come entirely from Exchange premium volume",
+  "Concentrated regional footprint (Pennsylvania-weighted) and policies in force fell ~2% in H1 2026 with retention easing to 87.5% \u2014 the premium base is currently shrinking on a unit basis",
+  "Cost linkage to the Exchange's underwriting cycle: agent incentive compensation rises when the Exchange's combined ratio improves (H1 2026 commissions +8.1% vs management fee revenue +4.5%), squeezing the spread exactly when the Exchange does well"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Cash Flows (direct method, fully enumerated) and Note 11, Incentive and Deferred Compensation Plans. EDGAR companyfacts for CIK 922621 contains no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact in any period."
+  },
+  {
+   "field": "shares",
+   "value": 52305424.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Operations and Note 5, Earnings Per Share: weighted average shares outstanding \u2014 Diluted, Class A common stock 52,305,424 for FY2025 (52,306,266 FY2024; 52,299,411 FY2023); Class A diluted EPS $10.69 on total net income $559,335 thousand under the if-converted method (52,305,424 x $10.69 = total net income, i.e. this denominator carries the whole company's earnings including the Class B allocation)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": null,
+  "base_oe_with_override": 10.5741,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.0772,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}
