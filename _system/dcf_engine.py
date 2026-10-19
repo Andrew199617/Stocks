@@ -449,13 +449,15 @@ def _measure_run(ticker, price, no_overrides):
 
 def _override_impact(ticker, price, headline_base, headline_irr):
     zb, zi = _measure_run(ticker, price, True)
-    if "--base-oe-ps" in sys.argv:
+    if "--base-oe-ps" in sys.argv or "--base-judgment" in sys.argv:
+        # Any pin: replay the with-override world on the engine-native base too,
+        # so both sides of this block are on the same (native) basis.
         fb, fi = _measure_run(ticker, price, False)
     else:
         fb, fi = headline_base, headline_irr
     return {"base_oe_per_share_zero_fill": zb, "base_oe_per_share_final": fb,
             "weighted_irr_zero_fill": zi, "weighted_irr_final": fi,
-            "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides — its override effect shows in ttm.py output"}
+            "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides — its override effect shows in ttm.py output / make_score's payable_5y impact"}
 
 def filer_annual_form(cik):
     """The filer's most recent annual form (10-K / 20-F / 40-F) from EDGAR
@@ -1355,13 +1357,20 @@ def main():
                 f_fcf = float(_t["ttm_ocf"]) - float(_t["ttm_capex"]); f_sbc = float(_t["ttm_sbc"]); f_basis = "ttm.json legs (TTM pin)"
             except Exception:
                 f_fcf = f_sbc = None
-        if f_fcf is None:
+        if pin_source == "judgment_base_override" and payable_base:
+            # The non-positive base is the five-year payable average: classify
+            # on that, not on OCF/capex/SBC, which may well be positive here.
+            f_basis = "five-year average of operating income available to common (payable pin)"
+            f_fcf, f_sbc = None, None
+        elif f_fcf is None:
             _w = [h for h in hist[-3:] if h.get("fcf") is not None]
             if _w:
                 f_fcf = sum(h["fcf"] for h in _w); f_sbc = sum((h.get("sbc") or 0) for h in _w)
                 f_basis = f"sum of the last {len(_w)} fiscal years (the median window)"
         if oe_ps is None:
             f_subtype = "no_base"
+        elif pin_source == "judgment_base_override" and payable_base:
+            f_subtype = "payable_earnings_nonpositive"
         elif f_fcf is None:
             f_subtype = "indeterminate"
         elif f_fcf <= 0:
@@ -1379,7 +1388,8 @@ def main():
                        "overrides_applied": overrides_applied,
                        "fragility_flags": flags_pre,  # v5: F names carry their flags too
                        "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings — OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass."
-                               + (" F sub-type: SBC exceeds cash generation (OCF - capex is positive; SBC consumes it)." if f_subtype == "sbc_exceeds_cash"
+                               + (f" F sub-type: payable earnings non-positive (five-year average operating income available to common {payable_base['average']:,.0f} on the --base-judgment pin; OCF-based OE is not the basis here)." if f_subtype == "payable_earnings_nonpositive"
+                                  else " F sub-type: SBC exceeds cash generation (OCF - capex is positive; SBC consumes it)." if f_subtype == "sbc_exceeds_cash"
                                   else " F sub-type: no cash generation (OCF - capex is not positive)." if f_subtype == "no_cash_generation" else "")})
 
     if overrides_applied and not MEASURE:
