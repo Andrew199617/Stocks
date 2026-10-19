@@ -65,12 +65,20 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    financials_history.csv>, value: <average of figures ÷ shares, per ORDINARY share>,
    source: <each year's release or 10-K, with the five figures>, reason}` and runs the
    final pass with **`--base-judgment`** (in place of `--ttm`). The engine recomputes the
-   base from `figures` / `shares`, scales it by `ads_ratio` for a 20-F/40-F filer (the
-   pin must be per ADS, like the price), records the construction in dcf_numbers.json
-   (`payable_base`) and refuses the run (BAD_BASE_OVERRIDE, exit 3) when the declaration
-   does not reproduce, `shares` is not this run's latest diluted count, or the filer's
-   series were FX-converted (the rule is for USD filers; a non-USD P&C filer escalates
-   `NEEDS_MAIN_AGENT`). make_score checks the declaration figure for figure against the
+   base from `figures` / `shares` (the recomputed figure is what gets recorded and
+   pinned), scales it by `ads_ratio` for a 20-F/40-F filer (the pin must be per ADS,
+   like the price), records the construction in dcf_numbers.json (`payable_base`, with
+   the filer's EDGAR SIC) and refuses the run (BAD_BASE_OVERRIDE, exit 3) when the
+   declared `value` does not reproduce to the cent, `shares` is not exactly this run's
+   latest diluted count, the filer's series were FX-converted (the rule is for USD
+   filers; a non-USD P&C filer escalates `NEEDS_MAIN_AGENT`), or EDGAR's SIC for the
+   filer is not a P&C code (6331 fire, marine & casualty; 6351 surety) — the scope is
+   the industry code, not the worker's say-so. A declared `base_override` with `basis`
+   that the final run was not pinned through is refused by make_score, never silently
+   unused. The registry's `base_override` event carries the override's own measured
+   impact (engine-native median base and IRR with field overrides on → pinned payable
+   base and IRR, tiers both ways), since the payable pin is the material judgment call
+   on these names. make_score checks the declaration figure for figure against the
    engine's record and key_numbers.md prints the five exact figures, the average, the
    share count and the pinned base — quote the construction in analysis.md from there,
    never retyped from the filing. Five-year average, not 3-year median, because a
