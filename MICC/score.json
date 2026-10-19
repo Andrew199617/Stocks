@@ -1,0 +1,110 @@
+{
+ "ticker": "MICC",
+ "name": "The Magnum Ice Cream Company N.V.",
+ "sector": "Consumer Staples / Ice cream & frozen desserts",
+ "price": 18.78,
+ "market_cap_b": 11.56,
+ "engine_version": 5,
+ "base_oe_per_share": 1.1057179987004548,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "World's largest ice cream company (~21% of the global retail ice cream market) with four power brands (Magnum, Ben & Jerry's, Cornetto, Heartbrand/Wall's), a proprietary freezer-cabinet estate and cold-chain scale no rival matches globally. Evidence: gross margin held 34.08% / 34.91% / 34.63% across FY2023-25 (fundamentals.json, as filed in EUR) through cocoa/dairy inflation, with +2.6% price growth AND +1.5% volume growth in FY2025 \u2014 real pricing power. The roic_proxy series in fundamentals.json reads 20.92% (FY2023) and 22.28% (FY2024), but those are carve-out years: invested capital carried almost no debt and Unilever allocated costs, so they overstate the standalone franchise; FY2025's 214.27% is a demerger artifact (equity fell to EUR 633M when EUR 2,967M of net debt was pushed onto the new balance sheet) and is not evidence. On a standalone capital base the true through-cycle ROIC is unproven \u2014 that, plus a category growing only 3-4%/yr, caps the score at 6 (moderate) rather than 7+.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-18), cover page: securities registered under Section 12(b) are 'Ordinary Shares, nominal value EUR 3.50 per share', trading symbol MICC on the New York Stock Exchange; admission announcement 8 December 2025: issued share capital on admission was 612,259,739 ordinary shares admitted to trading on Euronext Amsterdam, the London Stock Exchange and the NYSE, with DTC accounts credited with interests in TMICC ordinary shares \u2014 the NYSE security is the ordinary share itself) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-18), EPS note (Annual Report p.115): average number of shares 612.3M basic, plus 3.3M dilutive effect of share-based compensation plans = 615.6M diluted average for 2025; the note states the 2025 average equals the shares outstanding at 31 December 2025 and that no EPS was calculated for prior years); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 0.17 vs 3-yr median 1.11 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier D (7.3%) vs bull-case tier C (10.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.47,
+   "irr": 0.051
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 7.32,
+   "irr": 0.0726
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 9.72,
+   "irr": 0.0904
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 12.22,
+   "irr": 0.1081
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 15.87,
+   "irr": 0.1321
+  }
+ },
+ "iv_at_15": 9.84,
+ "iv_at_12": 13.04,
+ "implied_irr": 0.0914,
+ "implied_irr_base_case": 0.0904,
+ "upside_at_15_pct": -47.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "World's largest ice cream company (Magnum, Ben & Jerry's, Cornetto, Wall's/Heartbrand), moat 6/10 \u2014 does not clear 15% at $18.78: weighted IRR 9.14% (Tier D; bear-to-bull band D to C), weighted IV@15% $9.84; clears 15% only below ~$9.84, and even the $1.11 pro-forma median base is a carve-out construct \u2014 the first standalone year (FY2025) printed OE/share of $0.17 after separation costs and new standalone interest, so the honest range runs from deep-D on the latest year to D on the median.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0726,
+ "irr_bull": 0.1081,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 6.96,
+ "iv_at_25": 5.38,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 615600000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Global scale leader: ~21% share of the global retail ice cream market, #1 position, 30 factories \u2014 procurement and cold-chain cost advantage",
+  "Power-brand portfolio: Magnum, Ben & Jerry's, Cornetto and the Heartbrand (Wall's) \u2014 proven pricing power (+2.6% price with +1.5% volume in FY2025; gross margin stable ~34-35% through commodity inflation)",
+  "Proprietary freezer-cabinet estate and route-to-market in impulse channels \u2014 physical distribution moat competitors must rent or replicate",
+  "Innovation cadence: 150 launches in 2025 (Magnum Utopia, Cornetto Max, Bonbons bites) driving high-single-digit organic growth in the Magnum and Cornetto brands"
+ ],
+ "moat_against": [
+  "Category grows only 3-4%/yr and faces a structural GLP-1 appetite headwind; private label and Froneri (valued ~EUR 15B in Oct 2025) contest every shelf",
+  "Standalone economics unproven: carve-out ROIC (20.9%/22.3%) was earned on a debt-free allocated capital base; the listed company carries EUR 2,967M net debt (2.4x adjusted EBITDA) and structurally higher standalone costs (interest paid EUR 130M in FY2025)",
+  "Unilever retains 19.9% and has committed to sell it within five years (registered for resale April 2026) \u2014 a persistent share overhang",
+  "Ben & Jerry's governance conflict inherited at the demerger: independent board removed, co-founder resigned Sept 2025, federal litigation live, a founder buy-back campaign valuing the brand at $1.5-2B",
+  "Commodity exposure (cocoa, dairy, sugar) and emerging-market FX (incl. Turkiye hyperinflation loss EUR 31M in FY2025) squeeze the ~34.6% gross margin"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 615600000.0,
+   "kind": "estimate",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-18), EPS note (Annual Report p.115): average number of shares 612.3M basic, plus 3.3M dilutive effect of share-based compensation plans = 615.6M diluted average for 2025; the note states the 2025 average equals the shares outstanding at 31 December 2025 and that no EPS was calculated for prior years"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 0.1737,
+  "base_oe_with_override": 1.1057,
+  "base_oe_impact_pct": 536.596,
+  "weighted_irr_without_override": 0.0356,
+  "weighted_irr_with_override": 0.0914,
+  "weighted_irr_impact_pp": 5.581,
+  "unblocks_tier": true
+ }
+}

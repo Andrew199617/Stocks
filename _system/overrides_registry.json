@@ -2686,6 +2686,31 @@
    "ratio": 100.0,
    "source": "PT Telkom Indonesia FY2024 audited consolidated financial statements (Form 6-K filed 2025-04-18; Form 20-F for FY2024 filed 2025-04-28), Note 2t: 'Income per ADS is computed by multiplying the basic earnings per share by 100, the number of shares represented by each ADS'; the face of the income statement reads 'Profit per ADS (100 Series B shares per ADS)', and Note 1 records the ratio change effective October 26, 2016 from 1 ADS = 200 Series B shares to 1 ADS = 100 Series B shares. The company's financial highlights state the same: 'Net income per ADS (1 ADS : 100 common stock)'",
    "reason": "DATA_GAP:ads_ratio \u2014 20-F filer: engine per-share figures are per ordinary (Series B) share but the Nasdaq price ($11.03) is per ADS; each ADS represents 100 Series B shares, so per-share figures are scaled x100 to be comparable to the traded price."
+  },
+  {
+   "ticker": "MICC",
+   "field": "shares",
+   "value": 615600000.0,
+   "kind": "estimate",
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-18), EPS note (Annual Report p.115): average number of shares 612.3M basic, plus 3.3M dilutive effect of share-based compensation plans = 615.6M diluted average for 2025; the note states the 2025 average equals the shares outstanding at 31 December 2025 and that no EPS was calculated for prior years",
+   "reason": "Demerger pro-forma denominator. The 20-F states: 'Prior to 6 December 2025, the Group was under the control of Unilever and did not have any issued shares. Accordingly, EPS has not been calculated for prior years.' FY2023-24 are combined carve-out years with no filed diluted share count under any tag (DATA_GAP:shares). The only diluted count the filer has ever filed \u2014 615.6M, the count created at the demerger (612,259,739 ordinary shares issued 6-7 Dec 2025) \u2014 is applied to the two missing carve-out years so per-share OE is stated on the capital structure that exists now. Kind is estimate (not filing) because the value is filed for 2025, not for the missing periods; it anchors exactly on the last filed diluted value (615.6M, 1.00x \u2014 inside the 0.1x-10x band).",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 0.1737,
+   "base_oe_with_override": 1.1057,
+   "base_oe_impact_pct": 536.596,
+   "weighted_irr_without_override": 0.0356,
+   "weighted_irr_with_override": 0.0914,
+   "weighted_irr_impact_pp": 5.581,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "MICC",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 1.0,
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-18), cover page: securities registered under Section 12(b) are 'Ordinary Shares, nominal value EUR 3.50 per share', trading symbol MICC on the New York Stock Exchange; admission announcement 8 December 2025: issued share capital on admission was 612,259,739 ordinary shares admitted to trading on Euronext Amsterdam, the London Stock Exchange and the NYSE, with DTC accounts credited with interests in TMICC ordinary shares \u2014 the NYSE security is the ordinary share itself",
+   "reason": "MICC is a direct multi-listing of ordinary shares, not an ADS program: one NYSE-traded MICC share is one ordinary share (the 612,259,739 issued ordinary shares match the DEI outstanding count in dcf_numbers.json), so per-share figures from the 20-F are directly comparable to the traded price with no scaling."
   }
  ]
 }
