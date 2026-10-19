@@ -16,7 +16,7 @@ The global leader in industrial machine vision: cameras, barcode readers, deep-l
 - SBC: FY $48,517,000 − prior YTD $22,233,000 + current YTD $23,145,000 = **TTM $49,429,000**
 - Shares (current-YTD weighted diluted): **169,166,000**
 - **TTM OE total $218,867,000 → base OE/share $1.2938** (base_source: ttm_json)
-- The engine's normalized base (3-yr median) is $0.4727/share — rejected as the base: it is the median of a cyclical trough (FY2023 $0.2023, FY2024 $0.4727, FY2025 $1.1115). It is still reported in key_numbers.md; on that base the preliminary run printed a weighted IV@15% of $5.11 and a 3.79% weighted IRR, so the method range is D on either base — the TTM base is the generous end.
+- The engine's normalized base (3-yr median) is $0.4727/share — rejected as the base: it is the median of a cyclical trough (FY2023 $0.2023, FY2024 $0.4727, FY2025 $1.1115). It is still reported in key_numbers.md; replaying this run's final scenario configuration on that base (same probabilities, offsets, multipliers and moat — engine --measure, verified 2026-10-19) gives a weighted IV@15% of $5.63 and a 3.96% weighted IRR, so the method range is D on either base — the TTM base is the generous end. (The preliminary default-scenario run printed $5.11 / 3.79%; the gap between that and $5.63 / 3.96% is scenario calibration, not the base choice.)
 - TTM caveats, stated plainly: the TTM window contains two non-repeating tailwinds inside OCF — a one-time commercial-partnership benefit in 2025 (reported FY2025 revenue $994M vs $982M excluding it, per the company's Q4 2025 call) and a working-capital release (management: cash conversion cycle improved 57 days in 2025). Both flatter the TTM base; they are handled by the widened bear weight and the 0.75/0.90 bear-end OE multipliers, not by adjusting the filed figures.
 
 ## Moat: 5/10 — moderate/narrow, a leader in a contested niche
@@ -50,7 +50,7 @@ Growth recalibration (written reason): the engine's blended growth is 7.51%, but
 
 ## My thoughts / overlay
 - This is a quality business priced for a flawless decade. At $53.99 the market is paying for sustained mid-teens-plus growth with expanding margins; the model — run on the generous TTM base, with a base-case start set near guidance — returns a 6.38% weighted IRR. Even the super-bull case (22% growth start, 1.25x OE) yields only a 9.89% IRR and a $29.45 IV@15%.
-- The method range is unusually honest here: trough-median base → weighted IV@15% $5.11; TTM base → $15.40. Both are Tier D and both are less than a third of the price. The disagreement is about how bad, not about whether.
+- The method range is unusually honest here: trough-median base → weighted IV@15% $5.63 (same final scenario configuration); TTM base → $15.40. Both are Tier D and both are less than a third of the price. The disagreement is about how bad, not about whether.
 - What would change the answer: several years of the Q2 2026 pattern (record revenue, ~29% operating margins) compounding OE/share well past the super-bull path, or a price near the hurdle levels — the stock clears 15% only at or below $15.40, 20% at or below $10.60, 25% at or below $8.00.
 - Balance-sheet risk is not the story: no debt, cash of $262,925,000 plus short-term investments of $74,037,000, and OE positive in all of the last 5 years. The risk is purely the entry price against a cyclical earnings stream whose gross margin has been eroding for most of a decade.
 
