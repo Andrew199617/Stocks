@@ -1,0 +1,289 @@
+{
+ "ticker": "AGNC",
+ "cik": 1423689,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T15:50:58-04:00",
+ "newest_filing_date": "2026-09-11",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001423689.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000043/agnc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AGNC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AGNC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AGNC Investment Corp.",
+  "cik": 1423689,
+  "description": {
+   "text": "AGNC Investment Corp. (\"AGNC,\" the \"Company,\" \"we,\" \"us\" and \"our\") was organized on January 7, 2008 and commenced operations on May 20, 2008 following the completion of our initial public offering. Our common stock is traded on The Nasdaq Global Select Market under the symbol \"AGNC.\" We are a leading provider of private capital to the U.S. housing market, enhancing liquidity in the residential real estate mortgage markets and, in turn, facilitating home ownership in the U.S. We invest primarily in Agency residential mortgage-backed securities (\"Agency RMBS\") on a leveraged basis. These investments consist of residential mortgage pass-through securities and collateralized mortgage obligations for which the principal and interest payments are guaranteed by a U.S. Government-sponsored enterprise, such as the Federal National Mortgage Association (\"Fannie Mae\") and the Federal Home Loan Mortgage Corporation (\"Freddie Mac,\" and together with Fannie Mae, the \"GSEs\"), or by a U.S. Government agency, such as the Government National Mortgage Association (\"Ginnie Mae\"). We operate to qualify to be taxed as a real estate investment trust (\"REIT\") under the Internal Revenue Code of 1986, as amended (the \"Internal Revenue Code\"). As a REIT, we are required to distribute annually 90% of our taxable income, and we will generally not be subject to U.S. federal or state corporate income tax to the extent that we distribute all our annual taxable income to our stockholders on a timely basis.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001423689-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000043/agnc-20251231.htm"
+  },
+  "description_short": "Founded in 2008, AGNC Investment Corp. (Nasdaq: AGNC) is a leading investor in Agency residential mortgage-backed securities (Agency MBS), which benefit from a guarantee against credit losses by Fannie Mae, Freddie Mac, or Ginnie Mae. We invest on a leveraged basis, financing our Agency MBS assets primarily through repurchase agreements, and utilize dynamic risk management strategies intended to protect the value of our portfolio from interest rate and other market risks. AGNC has a track record of providing favorable long-term returns for our stockholders through substantial monthly dividend income, with over $16 billion of common stock dividends paid since inception. Our business is a significant source of private capital for the U.S. residential housing market, and our team has extensive experience managing mortgage assets across market cycles.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.agnc.com",
+  "headquarters": "Bethesda, Maryland",
+  "address": {
+   "street": "7373 Wisconsin Avenue, 22nd Floor",
+   "city": "Bethesda",
+   "state": "Maryland",
+   "zip": "20814",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "301 968 9300",
+  "employees": {
+   "count": 54,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, our workforce consisted of 54 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000043/agnc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2008-02-11",
+  "first_sec_filing_form": "S-11",
+  "former_names": [
+   "American Capital Agency Corp"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001423689&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001423689-26-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000135/agnc-20260911.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001423689-26-000128",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000128/agnc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001423689-26-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000124/agnc-20260720.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-28",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001423689-26-000121",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000121/agnc-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001423689-26-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000099/agnc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001423689-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000095/agnc-20260420.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001423689-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000083/agnc-20260417.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001423689-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000058/agnc-20260304.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001423689-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000043/agnc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001423689-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000024/agnc-20260126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-14",
+   "period": "2026-01-14",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001423689-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368926000007/agnc-20260114.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-15",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001423689-25-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000111/agnc-20251215.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001423689-25-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000106/agnc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001423689-25-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000101/agnc-20251020.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-10",
+   "period": "2025-09-10",
+   "items": [
+    "3.03",
+    "5.03",
+    "8.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment; Other events",
+   "accession": "0001423689-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000097/agnc-20250910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-05",
+   "period": "2025-09-05",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001423689-25-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000089/agnc-20250905.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001423689-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000073/agnc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-21",
+   "period": "2025-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001423689-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000061/agnc-20250721.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001423689-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000056/agnc-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001423689-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1423689/000142368925000053/agnc-20250424.htm"
+  }
+ ],
+ "warnings": []
+}

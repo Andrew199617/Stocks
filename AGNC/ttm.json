@@ -1,0 +1,146 @@
+{
+ "ticker": "AGNC",
+ "cik": 1423689,
+ "entity": "AGNC INVESTMENT CORP.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 653000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 372000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 605000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 886000000
+  },
+  "capex": {
+   "fy": 0.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 0.0,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 0.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 0.0
+  },
+  "sbc": {
+   "fy": 26000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 4000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 2000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 24000000
+  },
+  "shares_diluted": {
+   "fy": 1023700000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 968000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 1144700000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 886000000,
+ "ttm_capex": 0.0,
+ "ttm_sbc": 24000000,
+ "ttm_shares_diluted": 1144700000,
+ "ttm_oe_total": 862000000.0,
+ "ttm_oe_per_share": 0.7530357298855596,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001423689-26-000043), Consolidated Statements of Cash Flows: the investing-activities section lists only purchases and sales/maturities of investment securities and related portfolio flows \u2014 there is no purchases-of-property-and-equipment or any capital-expenditures line for FY2025, FY2024 or FY2023, and the balance sheet carries no property-and-equipment line. The statement fully reconciles without one (this run's statements.json, filing-direct): FY2025 operating $653M + investing -$25,864M + financing $25,182M = the reported net change in cash of -$29M exactly; FY2024: $86M - $11,169M + $11,083M = reported $0 exactly; FY2023: -$118M - $14,672M + $14,227M = reported -$563M exactly. EDGAR companyfacts for CIK 1423689 contains no capex fact under any candidate tag in any period (statements.json warning: no capital-expenditure figure filed for 67 periods with operating cash flow).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 0.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 0.0,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ],
+ "capex_components": {
+  "fy": null,
+  "ytd_prior": null,
+  "ytd_current": null
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}
