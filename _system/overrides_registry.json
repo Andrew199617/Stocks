@@ -2015,31 +2015,6 @@
    "reason": "Tempus files its weighted-average diluted share counts at a thousands scale (174,264 for FY2025) and the engine read them as units, inflating the magnitude of OE/share exactly 1,000x and printing a market_cap_est of $11,278,366.08 against a $64.72 price. Every OE total leg (OCF, capex, SBC) is filed in dollars, and all three median years (FY2023-2025: 63,306 / 119,849 / 174,264) carry the same thousands scale, so dividing the engine's normalized base by 1,000 corrects it exactly. A shares_override cannot fix this: overrides fill only absent periods and never replace filed values. The correction changes no sign and no tier: the corrected base is still negative and the name is Tier F with or without it."
   },
   {
-   "ticker": "EMBJ",
-   "field": "sbc",
-   "value": 5400000.0,
-   "kind": "filing",
-   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-30), Notes to the Consolidated Financial Statements, capital reserves table (Note 27.5): Sharebased remuneration US$5.4 million in FY2025, US$4.5 million in FY2024 and US$4.5 million in FY2023",
-   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under the engine's AdjustmentsForSharebasedPayments tag (last filed FY2022: $2.9 million). The filer's own FY2025 sharebased remuneration figure fills the gap; the engine applies this single value to every missing period, so FY2023/FY2024 are charged $5.4M instead of their filed $4.5M \u2014 slightly conservative and immaterial ($5.4M is under 1% of FY2025 operating cash flow of $870M and under 0.8% of the $682.8M owner's-earnings total). Value is 1.86x the last filed value, inside the 0.1x-10x band.",
-   "date": "2026-10-17",
-   "base_used": "median_3y",
-   "base_oe_without_override": 3.6524,
-   "base_oe_with_override": 3.623,
-   "base_oe_impact_pct": -0.805,
-   "weighted_irr_without_override": 0.1265,
-   "weighted_irr_with_override": 0.1258,
-   "weighted_irr_impact_pp": -0.072,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "EMBJ",
-   "event": "ads_ratio",
-   "date": "2026-10-17",
-   "ratio": 4.0,
-   "source": "Form 20-F for fiscal year ended December 31, 2025, Description of Securities exhibit: American Depositary Shares, each representing four common shares, traded on the New York Stock Exchange under the symbol EMBJ",
-   "reason": "DATA_GAP:ads_ratio \u2014 EDGAR per-share figures are per ordinary (common) share while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x4 ordinary shares per ADS to be comparable to the ADS price. This also corrects the engine's preliminary market-cap estimate, which multiplied the ordinary share count by the ADS price."
-  },
-  {
    "ticker": "SJM",
    "field": "shares",
    "value": 106900000.0,
@@ -2602,6 +2577,37 @@
    "ratio": 10.0,
    "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-17, accession 0001193125-26-161714): the registered NYSE security is American Depositary Shares 'each representing 10 Series B shares' (20-F cover / Description of Securities), and the EPS disclosure states 'Earnings per ADS are based on a ratio of 10 Series B shares per ADS'",
    "reason": "20-F filer: EDGAR per-share figures are per ordinary (Series B) share while the traded PAC price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price."
+  },
+  {
+   "ticker": "EMBJ",
+   "field": "sbc",
+   "value": 5400000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-30), Notes to the Consolidated Financial Statements, capital reserves table (Note 27.5): Sharebased remuneration US$5.4 million in FY2025, US$4.5 million in FY2024 and US$4.5 million in FY2023",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2023, 2024, 2025 under the engine's AdjustmentsForSharebasedPayments tag (last filed FY2022: $2.9 million). The filer's own FY2025 sharebased remuneration figure fills the gap; the engine applies this single value to every missing period, so FY2023/FY2024 are charged $5.4M instead of their filed $4.5M \u2014 slightly conservative and immaterial ($5.4M is under 1% of FY2025 operating cash flow of $870M and under 0.8% of the $682.8M owner's-earnings total). Value is 1.86x the last filed value, inside the 0.1x-10x band.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 3.6524,
+   "base_oe_with_override": 3.623,
+   "base_oe_impact_pct": -0.805,
+   "weighted_irr_without_override": 0.1265,
+   "weighted_irr_with_override": 0.1258,
+   "weighted_irr_impact_pp": -0.072,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "EMBJ",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 72.34
+  },
+  {
+   "ticker": "EMBJ",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 4.0,
+   "source": "Form 20-F for fiscal year ended December 31, 2025, Description of Securities exhibit: American Depositary Shares, each representing four common shares, traded on the New York Stock Exchange under the symbol EMBJ",
+   "reason": "DATA_GAP:ads_ratio \u2014 EDGAR per-share figures are per ordinary (common) share while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x4 ordinary shares per ADS to be comparable to the ADS price. This also corrects the engine's preliminary market-cap estimate, which multiplied the ordinary share count by the ADS price."
   }
  ]
 }
