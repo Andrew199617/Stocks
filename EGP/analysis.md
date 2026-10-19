@@ -56,7 +56,7 @@ Justification: infill shallow-bay scarcity in Sun Belt markets, demonstrated ren
 | Super bull | 10% | +13.33% | 1.25 | Peak spreads + development alpha compound per share despite dilution | $129.64 | 11.01% |
 
 - **Probability-weighted: IV@15% $78.55 (−60.2% vs price), IV@12% $104.55, IV@10% $133.57, weighted IRR 7.63%, base-case IRR 7.56%**
-- **Tier by numbers: D.** The bear→bull band is D→D (irr_bear 6.06%, irr_bull 8.87%) — even the super-bull scenario IRR (11.01%) is a D. Diagnostics (dcf_numbers.json): OE yield 4.10%, terminal value 18.9% of IV@15%, scenario spread 3.37x, 9.6 months since FY end, net debt unknown to the engine (DEBT_TAGS_BLANK — see Flags for the filed balance sheet).
+- **Tier by numbers: D.** The bear→bull band is D→D (irr_bear 6.06%, irr_bull 8.87%) — and even the super-bull scenario IRR (11.01%) reaches only the C band, far below the 15% hurdle. Diagnostics (dcf_numbers.json): OE yield 4.10%, terminal value 18.9% of IV@15%, scenario spread 3.37x, 9.6 months since FY end, net debt unknown to the engine (DEBT_TAGS_BLANK — see Flags for the filed balance sheet).
 
 ## Flags — every fragility flag resolved
 
@@ -80,4 +80,4 @@ Justification: infill shallow-bay scarcity in Sun Belt markets, demonstrated ren
 
 - **Final tier: D** (tier by numbers D, bear→bull band D→D, no tier override; weighted IRR 7.63% on the TTM base)
 - Confidence: **Low** (SECTOR_MODEL_MISMATCH mandates low for a REIT)
-- One-liner: Quality Sun Belt industrial REIT, moat 5/10 — even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the entire scenario band is Tier D, and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).
+- One-liner: Quality Sun Belt industrial REIT, moat 5/10 — even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the bear→bull band is Tier D (even the super-bull scenario, 11.01%, reaches only the C band), and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).

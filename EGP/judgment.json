@@ -25,7 +25,7 @@
  "moat_justification": "Moderate/narrow 5/10: infill shallow-bay scarcity in Sun Belt markets, demonstrated rent pricing power (leasing spreads +34% GAAP / +19% cash, cash same-store NOI +8-9%) and a development channel that creates assets at a ~9.4% stabilized yield give EastGroup more than a generic landlord's moat, but the assets remain replicable with capital, there is no lock-in beyond leases, growth is bought with continuous equity issuance (shares +7.3%/yr), and filed ROE has run only 6.9-7.7% in the last three years with roic_proxy not computable from the REIT presentation \u2014 not the sustained well-above-cost-of-capital record a 7+ requires. In line with KIM (5) and above the generic REIT 4s (AMH, AHR, MAA, INVH) on the strength of the development alpha and spreads.",
  "moat_score": 5,
  "name": "EASTGROUP PROPERTIES, INC.",
- "one_liner": "Quality Sun Belt industrial REIT, moat 5/10 \u2014 even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the entire scenario band is Tier D, and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).",
+ "one_liner": "Quality Sun Belt industrial REIT, moat 5/10 \u2014 even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the bear→bull band is Tier D (even the super-bull scenario, 11.01%, reaches only the C band), and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).",
  "probs_used": [
   0.1,
   0.25,

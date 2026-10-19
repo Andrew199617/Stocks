@@ -55,7 +55,7 @@
  "tier_by_numbers": "D",
  "tier_final": "D",
  "confidence": "low",
- "one_liner": "Quality Sun Belt industrial REIT, moat 5/10 \u2014 even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the entire scenario band is Tier D, and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).",
+ "one_liner": "Quality Sun Belt industrial REIT, moat 5/10 \u2014 even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the bear\u2192bull band is Tier D (even the super-bull scenario, 11.01%, reaches only the C band), and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).",
  "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
  "engine_release": "5.4.0",
