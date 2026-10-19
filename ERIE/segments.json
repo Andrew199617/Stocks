@@ -1,0 +1,308 @@
+{
+ "ticker": "ERIE",
+ "cik": 922621,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-010666",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026010666/erie-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-026866",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026026866/erie-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-051079",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/922621/000162828026051079/erie-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "erie:PolicyIssuanceandRenewalServicesMember",
+     "label": "Policy Issuance and Renewal Services",
+     "values": [
+      2442073000,
+      2894074000,
+      3131806000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7471,
+      0.7626,
+      0.77
+     ],
+     "growth_yoy": [
+      null,
+      0.1851,
+      0.0821
+     ]
+    },
+    {
+     "member": "erie:AdministrativeServicesReimbursementsMember",
+     "label": "Administrative Services Reimbursements",
+     "values": [
+      737139000,
+      806336000,
+      836639000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2255,
+      0.2125,
+      0.2057
+     ],
+     "growth_yoy": [
+      null,
+      0.0939,
+      0.0376
+     ]
+    },
+    {
+     "member": "erie:AdministrativeServicesManagementFeeMember",
+     "label": "Administrative Services Management Fee",
+     "values": [
+      63669000,
+      68355000,
+      74058000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0195,
+      0.018,
+      0.0182
+     ],
+     "growth_yoy": [
+      null,
+      0.0736,
+      0.0834
+     ]
+    },
+    {
+     "member": "erie:ServiceAgreementMember",
+     "label": "Service Agreement",
+     "values": [
+      26059000,
+      26350000,
+      24755000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.008,
+      0.0069,
+      0.0061
+     ],
+     "growth_yoy": [
+      null,
+      0.0112,
+      -0.0605
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3268940000,
+     3795115000,
+     4067258000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "erie:PolicyIssuanceandRenewalServicesMember",
+     "label": "Policy Issuance and Renewal Services",
+     "values": [
+      755049000,
+      823853000,
+      786399000,
+      862879000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7631,
+      0.7771,
+      0.7771,
+      0.7918
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0415,
+      0.0474
+     ]
+    },
+    {
+     "member": "erie:AdministrativeServicesReimbursementsMember",
+     "label": "Administrative Services Reimbursements",
+     "values": [
+      210273000,
+      212644000,
+      200096000,
+      201554000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2125,
+      0.2006,
+      0.1977,
+      0.1849
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0484,
+      -0.0522
+     ]
+    },
+    {
+     "member": "erie:AdministrativeServicesManagementFeeMember",
+     "label": "Administrative Services Management Fee",
+     "values": [
+      17645000,
+      18296000,
+      19475000,
+      19619000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0178,
+      0.0173,
+      0.0192,
+      0.018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1037,
+      0.0723
+     ]
+    },
+    {
+     "member": "erie:ServiceAgreementMember",
+     "label": "Service Agreement",
+     "values": [
+      6432000,
+      5304000,
+      5941000,
+      5744000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0065,
+      0.005,
+      0.0059,
+      0.0053
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0763,
+      0.083
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     989399000,
+     1060097000,
+     1011911000,
+     1089796000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Management Operations' (erie:ManagementOperationsMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Management Operations' (erie:ManagementOperationsMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Management Operations' (erie:ManagementOperationsMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Management Operations' (erie:ManagementOperationsMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Management Operations' (erie:ManagementOperationsMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Management Operations' (erie:ManagementOperationsMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

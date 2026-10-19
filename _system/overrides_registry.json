@@ -2832,6 +2832,40 @@
    "tier_by_numbers": "C",
    "tier_final": "D",
    "reason": "SECTOR_MODEL_MISMATCH insurer artifact (the universe classifies OSCR as Health Care \u2014 SIC 6324 Hospital & Medical Service Plans \u2014 so the engine's Finance/Real Estate/Utilities flag did not fire, but economically this is an insurer): the OCF-based OE base capitalizes premium float and claims/risk-adjustment working capital. FY2025 conservative OE is $970,828,000 against a net loss of -$443,151,000 (financials_history.csv), and TTM OE of $4,304,752,000 (ttm.json) is ~7.8x TTM net income of $550,743,000 (fundamentals.json TTM to 2026-06-30). A payable-earnings (accrual) base built only from financials_history.csv figures \u2014 net income + D&A - capex per share, SBC already expensed inside net income so not deducted twice \u2014 is -$1.20 (2023: -270,728,000 + 30,694,000 - 25,577,000 over 221,655,000 shares), +$0.11 (2024: 25,432,000 + 32,145,000 - 27,897,000 over 265,853,000) and -$1.72 (2025: -443,151,000 + 28,892,000 - 36,372,000 over 262,388,000), a last-3 median of -$1.20/share against the engine's +$3.16 OCF base. The engine base also divides by the loss-year FY2025 diluted count of 262,388,000 while the profitable H1 2026 diluted count is 331,292,000 (ttm.json), overstating per-share OE by ~26% on the current diluted basis. Softened one notch C to D under the standing insurer-float policy (Andrew, 2026-10-15), confidence low \u2014 same treatment as PFG/HIG/ACGL/WRB."
+  },
+  {
+   "ticker": "ERIE",
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Cash Flows (direct method, fully enumerated) and Note 11, Incentive and Deferred Compensation Plans. EDGAR companyfacts for CIK 922621 contains no ShareBasedCompensation / AllocatedShareBasedCompensationExpense fact in any period.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads, because Erie has no equity-settled share-based compensation to subtract. Note 11: 'We do not issue new shares of common stock to satisfy plan awards' (ECP) / 'to settle stock awards' (LTIP) / 'to directors' (deferred stock plan) \u2014 every share-linked award is settled in cash or with Class A shares purchased on the open market (treasury/rabbi-trust shares), the open LTIP performance periods (2023-2025, 2024-2026, 2025-2027) are all payable in cash, and the costs are liability-accrued compensation already inside operating expenses. The cash-flow statement is direct-method (cash receipts minus cash paid, fully enumerated for FY2023-FY2025 with no SBC addback or non-cash compensation line), so the compensation cost already sits inside reported OCF \u2014 subtracting an SBC figure again would double-count it (same treatment as COKE/SQM/LTM in this sweep). The filing-proven equity-settled SBC figure for the gap years is $0.",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": null,
+   "base_oe_with_override": 10.5741,
+   "base_oe_impact_pct": null,
+   "weighted_irr_without_override": null,
+   "weighted_irr_with_override": 0.0772,
+   "weighted_irr_impact_pp": null,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "ERIE",
+   "field": "shares",
+   "value": 52305424.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-23, accession 0001628280-26-010666), Consolidated Statements of Operations and Note 5, Earnings Per Share: weighted average shares outstanding \u2014 Diluted, Class A common stock 52,305,424 for FY2025 (52,306,266 FY2024; 52,299,411 FY2023); Class A diluted EPS $10.69 on total net income $559,335 thousand under the if-converted method (52,305,424 x $10.69 = total net income, i.e. this denominator carries the whole company's earnings including the Class B allocation).",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2023, FY2024, FY2025 in companyfacts because the filer tags share counts only by share class (the only undimensioned WeightedAverageNumberOfDilutedSharesOutstanding fact in companyfacts is the 2,542-share Class B count). The filer's own FY2025 Class A diluted weighted-average count \u2014 computed under the if-converted method, i.e. including assumed conversion of the 2,542 Class B shares (2,400:1 = 6,100,800 Class A equivalents) and the dilutive effect of stock-based awards (15,600 shares) \u2014 fills the gap. The engine applies this single value to every missing period; the filer's own FY2024/FY2023 diluted counts (52,306,266 / 52,299,411) differ from it by less than 0.02%, so no year's OE/share is materially moved.",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": null,
+   "base_oe_with_override": 10.5741,
+   "base_oe_impact_pct": null,
+   "weighted_irr_without_override": null,
+   "weighted_irr_with_override": 0.0772,
+   "weighted_irr_impact_pp": null,
+   "unblocks_tier": true
   }
  ]
 }
