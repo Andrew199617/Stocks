@@ -59,6 +59,11 @@ the engine still shows as an uncovered gap refuses), summarized into
 score.json, and upserted into the central registry
 _system/overrides_registry.json (single writer: this script, fcntl-locked;
 the path can be redirected with the MAKE_SCORE_REGISTRY env var, for tests).
+[v5.5 — Codex, PR #31] An override that only ttm.py used to fill legs of the
+TTM base the score is pinned to (ttm.json overrides_used; the annual engine
+applied none, as at APA) is reported (scope ttm_legs), measured on the TTM
+base and gated like an applied one: unblocks_tier when ttm.py cannot build
+the TTM base without it (ttm_leg_overrides).
 
 Override impact (Andrew's basis, 2026-10-13): measured by THIS script, on
 the base the final run actually used — "ttm" when the score's base was a
@@ -867,6 +872,50 @@ def _run_json(cmd, env_extra=None, timeout=600):
         return None
 
 
+def _run_json_rc(cmd, env_extra=None, timeout=600):
+    """(exit code, parsed JSON or None). The exit code is None when the run
+    could not complete (timeout, OS error) — callers that must tell "the
+    script decided" from "the script failed" use this instead of _run_json."""
+    env = dict(os.environ)
+    if env_extra:
+        env.update(env_extra)
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+    except Exception:
+        return None, None
+    data = None
+    txt = out.stdout or ""
+    i = txt.find("{")
+    if out.returncode == 0 and i >= 0:
+        try:
+            data = json.loads(txt[i:])
+        except Exception:
+            data = None
+    return out.returncode, data
+
+
+TTM_CANNOT_COMPUTE = 3   # ttm.py's exit code for "cannot compute TTM" (a missing or unfillable leg)
+
+
+def _ttm_no_override_run(ticker, n):
+    """[v5.5 — PR #31 verifier] ttm.py with overrides disabled: (base or None,
+    built). built True: a TTM base exists without any override; False: ttm.py
+    decided it cannot compute one (exit 3). Any other outcome — a crash, a
+    fetch failure, a timeout, exit 2 — is not evidence either way and refuses,
+    because it would otherwise read as "the tier rests on the override" and
+    close an alert gate on a transient failure."""
+    cik_args = ["--cik", str(n["cik"])] if n.get("cik") else []
+    # DCF_TTM_NO_WRITE: these measurement runs must never clobber the worker's
+    # ttm.json — the pin-provenance check compares the score's base against it.
+    rc, d = _run_json_rc([sys.executable, TTM_PY, ticker] + cik_args, {"DCF_NO_OVERRIDES": "1", "DCF_TTM_NO_WRITE": "1"})
+    if rc == 0 and d is not None and d.get("ttm_oe_per_share") is not None:
+        return d["ttm_oe_per_share"], True
+    if rc == TTM_CANNOT_COMPUTE:
+        return None, False
+    fail(f"ttm.py with overrides disabled did not complete (exit {rc}) — a fetch or runtime failure is not evidence "
+         "that no TTM base exists without the override; cannot measure override impact, retry make_score")
+
+
 def _final_run_args(n):
     """Engine CLI args replicating the final run recorded in dcf_numbers.json.
     Prefers the engine-recorded inputs block; falls back to deriving offsets
@@ -900,18 +949,76 @@ def _final_run_args(n):
     return args
 
 
+def ttm_leg_overrides(folder, n, j_over, applied):
+    """[v5.5 — Codex, PR #31] Field overrides that ttm.py used to fill a TTM
+    leg (ttm.json overrides_used) when the score's base IS ttm.json's pin and
+    the annual engine applied none for that field — APA: its 10-Qs print no
+    SBC line, so the $107M estimate fills both YTD legs, and the TTM base the
+    tier rests on exists only because of it, while dcf_numbers.json
+    overrides_applied stays empty. Returns {field: record with scope
+    "ttm_legs"}; such an override is reported, measured and gated like an
+    applied one. Refuses when ttm.json used an override that judgment.json no
+    longer declares, or declares with another value / kind (rerun ttm.py)."""
+    try:
+        with open(f"{folder}/ttm.json", encoding="utf-8") as f:
+            tt = json.load(f)
+    except Exception:
+        return {}
+    if not isinstance(tt, dict):
+        return {}
+    inp = n.get("inputs") or {}
+    pinned = inp.get("base_oe_ps_arg") is not None or "ttm" in (n.get("base_source") or "").lower()
+    tv, b = _num(tt.get("ttm_oe_per_share")), _num(n.get("base_oe_per_share"))
+    if not (pinned and tv and b is not None and abs(b - tv) <= 0.001 * abs(tv)):
+        return {}
+    out = {}
+    for u in tt.get("overrides_used") or []:
+        f = u.get("field") if isinstance(u, dict) else None
+        if f not in ("capex", "sbc", "shares"):
+            continue
+        # Every override the pinned TTM base used must be the one judgment.json
+        # declares now — applied fields included (a capex_override edited after
+        # ttm.py ran leaves the pin on the old value; PR #31 verifier).
+        o = j_over.get(f)
+        if o is None:
+            fail(f"ttm.json used a {f}_override to fill TTM legs but judgment.json no longer declares one — "
+                 "rerun ttm.py (and the engine with --ttm) with the current judgment.json")
+        uv = _num(u.get("value"))
+        if u.get("kind") != o["kind"] or uv is None or abs(float(o["value"]) - uv) > max(1.0, abs(float(o["value"])) * 0.001):
+            fail(f"judgment.json {f}_override (value {o['value']}, kind {o['kind']}) disagrees with the override "
+                 f"ttm.json used (value {u.get('value')}, kind {u.get('kind')}) — rerun ttm.py with the current judgment.json")
+        legs = u.get("legs_filled")
+        if legs is None:
+            legs = {}
+        ok = isinstance(legs, dict) and all(
+            isinstance(v, dict) and (v.get("period") is None
+                                     or (isinstance(v["period"], list) and len(v["period"]) == 2
+                                         and all(isinstance(x, str) for x in v["period"])))
+            for v in legs.values())
+        if not ok:
+            fail(f"ttm.json overrides_used.{f}.legs_filled is malformed ({str(legs)[:80]}) — rerun ttm.py")
+        if f in applied:
+            continue
+        out[f] = {"field": f, "value": o["value"], "kind": o["kind"], "source": o["source"], "reason": o["reason"],
+                  "scope": "ttm_legs", "legs_filled": legs,
+                  "periods_filled": [f"{k}: {v['period'][0]}..{v['period'][1]}" if v.get("period")
+                                     else f"{k}: share count (TTM denominator)" for k, v in legs.items()]}
+    return out
+
+
 def _ttm_base_without_overrides(ticker, n):
-    """Zero-fill TTM OE/share. Primary: ttm.py with overrides disabled. When
-    that cannot compute — the usual case, since the filing gap the override
-    covers is exactly what breaks it — reconstruct zero-fill from the
-    with-override run: remove each filled leg's contribution with TTM signs
-    (FY - prior YTD + current YTD) from the OE total."""
+    """(zero-fill TTM OE/share, built_without). Primary: ttm.py with overrides
+    disabled; built_without is True when that run computes a TTM base. When
+    it decides it cannot (ttm.py exit 3) — the usual case, since the filing
+    gap the override covers is exactly what breaks it — reconstruct zero-fill
+    from the with-override run (any other failure refuses, _ttm_no_override_run):
+    remove each filled leg's contribution with TTM signs (FY - prior YTD +
+    current YTD) from the OE total, and built_without is False (no TTM base
+    exists without the override)."""
     cik_args = ["--cik", str(n["cik"])] if n.get("cik") else []
-    # DCF_TTM_NO_WRITE: these measurement runs must never clobber the worker's
-    # ttm.json — the pin-provenance check compares the score's base against it.
-    d = _run_json([sys.executable, TTM_PY, ticker] + cik_args, {"DCF_NO_OVERRIDES": "1", "DCF_TTM_NO_WRITE": "1"})
-    if d is not None and d.get("ttm_oe_per_share") is not None:
-        return d["ttm_oe_per_share"]
+    base0, built = _ttm_no_override_run(ticker, n)
+    if built:
+        return base0, True
     d = _run_json([sys.executable, TTM_PY, ticker] + cik_args, {"DCF_TTM_NO_WRITE": "1"})
     if d is None or d.get("ttm_oe_per_share") is None or d.get("ttm_oe_total") is None:
         fail("cannot compute the no-override TTM base for the override impact (ttm.py failed with and without overrides)")
@@ -920,7 +1027,7 @@ def _ttm_base_without_overrides(ticker, n):
         # No zero-fill denominator exists for shares: without the override
         # there is no TTM base at all. Signal "no counterfactual" (None);
         # the caller records a null impact with unblocks_tier set.
-        return None
+        return None, False
     oe_total = d["ttm_oe_total"]
     for field in ("capex", "sbc"):
         legs = (used.get(field) or {}).get("legs_filled") or {}
@@ -930,7 +1037,7 @@ def _ttm_base_without_overrides(ticker, n):
     shares = d.get("ttm_shares_diluted")
     if not shares:
         fail("ttm.py returned no TTM share count — cannot measure override impact")
-    return oe_total / shares
+    return oe_total / shares, False
 
 
 def payable_pin_impact(ticker, n):
@@ -986,10 +1093,14 @@ def _declared_pin_not_ttm(ticker, n):
     return True
 
 
-def compute_override_impact(ticker, n):
+def compute_override_impact(ticker, n, ttm_only=None):
     """The impact block, on Andrew's basis: the base the final run actually
     used, the final run's exact configuration, toggling only the overrides.
-    Returns the block stored in score.json (override_impact) and the registry."""
+    Returns the block stored in score.json (override_impact) and the registry.
+    [v5.5 — Codex, PR #31] ttm_only (ttm_leg_overrides): on a TTM pin whose
+    legs an override fills, unblocks_tier is also true when ttm.py cannot
+    build the TTM base without the override — the pinned base, and so the
+    tier, exists only because of it (APA)."""
     base_with = n.get("base_oe_per_share")
     irr_with = n.get("implied_irr_weighted")
     gaps = list(n.get("data_gap") or [])
@@ -1030,7 +1141,9 @@ def compute_override_impact(ticker, n):
         else:
             irr_without = m.get("implied_irr_weighted")
     elif base_used == "ttm":
-        base_without = _ttm_base_without_overrides(ticker, n)
+        base_without, built_without = _ttm_base_without_overrides(ticker, n)
+        if ttm_only and not built_without:
+            unblocks = True
         if base_without is None:
             if not unblocks:
                 fail("no no-override TTM base exists but the override covers no data gap — cannot measure override impact")
@@ -1135,21 +1248,28 @@ def pin_rescue_impact(n):
 
 # The fields that identify one declaration per registry entry type: an entry
 # whose declaration is unchanged keeps the date it was first recorded (the
-# measured impact fields are re-derived every run). base_override leaves out
-# `kind` so adding the missing field to an old declaration keeps its date.
-_FIELD_DECLARATION = ("value", "kind", "source", "reason")
+# measured impact fields are re-derived every run). [Codex, PR #31] Every
+# material field is part of the identity: a field override's `currency`
+# (declared USD is used verbatim instead of FX-converted) and `scope`
+# (annual run vs ttm.py legs only), and a base_override's `kind` and payable
+# shape (`basis`, `figures`, `shares`). One legacy allowance: registry events
+# written before 5.5 never recorded a base_override's `kind`, so a prior
+# event WITHOUT the key is compared on the other fields only (its kind is
+# unknown, not different); once an event records `kind`, a change re-dates.
+_FIELD_DECLARATION = ("value", "kind", "source", "reason", "currency", "scope")
 _EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason"),
-                      "manual_price": ("value",), "base_override": ("value", "source", "reason"),
+                      "manual_price": ("value",),
+                      "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares"),
                       "gterm": ("value",), "cik": ("value",), "ads_ratio": ("ratio", "source", "reason"),
                       "scope_correction": ("old_cap", "new_cap", "in_scope")}
 
 
-def _declaration(e):
+def _declaration(e, ignore=()):
     if e.get("field"):
         keys, head = _FIELD_DECLARATION, ("field", e.get("field"))
     else:
         keys, head = _EVENT_DECLARATION.get(e.get("event"), ()), ("event", e.get("event"))
-    return head + tuple(json.dumps(e.get(k), sort_keys=True, default=str) for k in keys)
+    return head + tuple(json.dumps(e.get(k), sort_keys=True, default=str) for k in keys if k not in ignore)
 
 
 def keep_first_dates(new_entries, prior_entries):
@@ -1160,14 +1280,19 @@ def keep_first_dates(new_entries, prior_entries):
     wholesale replace stamped `today`), so a re-score rewrote when an override
     or an ads_ratio was first taken (NTNX's 2026-10-15 base_override and WF's
     2026-10-16 ads_ratio read 2026-10-19 after the engine 5.5 re-score)."""
-    first = {}
+    first, legacy = {}, {}
     for e in prior_entries:
         d = e.get("date")
         if isinstance(d, str) and d:
             k = _declaration(e)
             first[k] = min(first.get(k, d), d)
+            if e.get("event") == "base_override" and "kind" not in e:
+                lk = _declaration(e, ignore=("kind",))
+                legacy[lk] = min(legacy.get(lk, d), d)
     for e in new_entries:
         d = first.get(_declaration(e))
+        if d is None and e.get("event") == "base_override":
+            d = legacy.get(_declaration(e, ignore=("kind",)))
         if d and (not isinstance(e.get("date"), str) or d < e["date"]):
             e["date"] = d
 
@@ -1202,9 +1327,14 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
         for field in ("capex", "sbc", "shares"):
             if field in applied:
                 a = applied[field]
-                entries.append({"ticker": ticker, "field": field, "value": a["value"],
-                                "kind": a["kind"], "source": a["source"],
-                                "reason": j_over[field]["reason"], "date": today,
+                ent = {"ticker": ticker, "field": field, "value": a["value"],
+                       "kind": a["kind"], "source": a["source"],
+                       "reason": j_over[field]["reason"], "date": today}
+                if j_over[field].get("currency") is not None:
+                    ent["currency"] = j_over[field]["currency"]
+                if a.get("scope"):
+                    ent["scope"] = a["scope"]
+                entries.append(dict(ent, **{
                                 "base_used": impact["base_used"],
                                 "base_oe_without_override": impact["base_oe_without_override"],
                                 "base_oe_with_override": impact["base_oe_with_override"],
@@ -1212,7 +1342,7 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                                 "weighted_irr_without_override": impact["weighted_irr_without_override"],
                                 "weighted_irr_with_override": impact["weighted_irr_with_override"],
                                 "weighted_irr_impact_pp": impact["weighted_irr_impact_pp"],
-                                "unblocks_tier": impact["unblocks_tier"]})
+                                "unblocks_tier": impact["unblocks_tier"]}))
         if j.get("tier_override"):
             entries.append({"ticker": ticker, "event": "tier_override", "date": today,
                             "tier_by_numbers": n.get("tier_by_numbers"),
@@ -1568,7 +1698,10 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
             if field in applied:
                 a = applied[field]
                 val = _usd(a["value"]) if field in ("capex", "sbc") else f"{a['value']:,.0f}"
-                L.append(f"| {field} | {val} | {a['kind']} | {a['source']} | {', '.join(a.get('periods_filled') or [])} |")
+                filled = ", ".join(a.get("periods_filled") or [])
+                if a.get("scope") == "ttm_legs":
+                    filled = "TTM legs only (ttm.json): " + filled
+                L.append(f"| {field} | {val} | {a['kind']} | {a['source']} | {filled} |")
         for field in ("capex", "sbc", "shares"):
             if field in applied:
                 L.append(f"- {field} reason: {applied[field]['reason']}")
@@ -1594,8 +1727,14 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
                          f"{impact.get('counterfactual_engine_release') or 'pre-5.4'} vs current {ENGINE_RELEASE})"
                          if impact.get("impact_carried_from_prior_score") else "")]
             if impact.get("unblocks_tier"):
-                L.append("- Unblocks tier: YES — this override is the only reason this company has a tier; "
-                         "without it the filing gap blocks scoring entirely.")
+                # [v5.5 — Codex, PR #31] a TTM-leg override (scope ttm_legs) with no
+                # annual gap: without it there is no TTM base to pin, not no tier.
+                if any(a.get("scope") == "ttm_legs" for a in applied.values()) and not (n.get("data_gap") or []):
+                    L.append("- Unblocks tier: YES — ttm.py cannot build the TTM base without this override, so the "
+                             "pinned base and this tier rest on it; without it the score falls back to the 3-yr median base.")
+                else:
+                    L.append("- Unblocks tier: YES — this override is the only reason this company has a tier; "
+                             "without it the filing gap blocks scoring entirely.")
     with open(f"{folder}/key_numbers.md", "w", encoding="utf-8") as f:
         f.write("\n".join(L) + "\n")
 
@@ -1804,16 +1943,33 @@ def main():
                      "matching base_override {value, source, reason} — a pinned base must come from ttm.py "
                      "(ttm.json, via --ttm) or be declared as a base_override; an arbitrary pin is not scoreable")
 
+    # [v5.5 — Codex, PR #31] Overrides ttm.py used to fill the legs of the
+    # TTM base this score is pinned to, where the annual engine applied none
+    # (APA's SBC estimate): reported, measured and gated with the applied ones.
+    ttm_only = ttm_leg_overrides(folder, n, j_over, applied)
+    reported = dict(applied)
+    reported.update(ttm_only)
+
     # Impact on the base the final run actually used — computed before any
     # write, so a measurement failure refuses cleanly like any other refusal.
     # v5.5: engine output from another release is never replayed through the
     # current engine (a different capex / SBC basis) — carried or unmeasured.
-    if not applied:
+    if not reported:
         impact = None
     elif release_mismatch:
         impact = carried_override_impact(n, prior_score)
+        # [v5.5 — PR #31 verifier] the TTM-leg rule holds on stale output too:
+        # the carried block's own measurement when it said so, else ttm.py's
+        # no-override run (ttm.py, not an engine replay).
+        if ttm_only and not impact.get("unblocks_tier"):
+            prior_blk = (prior_score or {}).get("override_impact") if isinstance(prior_score, dict) else None
+            if impact.get("impact_carried_from_prior_score") and isinstance(prior_blk, dict) \
+                    and prior_blk.get("unblocks_tier") is True:
+                impact["unblocks_tier"] = True
+            elif not _ttm_no_override_run(ticker, n)[1]:
+                impact["unblocks_tier"] = True
     else:
-        impact = compute_override_impact(ticker, n)
+        impact = compute_override_impact(ticker, n, ttm_only=ttm_only)
     # [ADDITION — M3] The payable-earnings pin's own impact (registry
     # base_override event): measured through the current engine only on
     # current-release output, carried / not measured otherwise — and, like
@@ -1897,7 +2053,7 @@ def main():
     tier_final = override or n["tier_by_numbers"]
     reasons, exit_reasons = alert_reasons(
         tier_final, n.get("tier_by_numbers"), override, conf, model_fit,
-        bool(applied and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
+        bool(reported and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
         stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None)
     score["alert_eligible"] = tier_final in ("S", "A") and not reasons
     if reasons:
@@ -1915,10 +2071,11 @@ def main():
         score["moat_for"] = j["moat_for"]
     if j.get("moat_against"):
         score["moat_against"] = j["moat_against"]
-    if applied:
-        score["overrides"] = [{"field": f, "value": applied[f]["value"], "kind": applied[f]["kind"],
-                               "source": applied[f]["source"]}
-                              for f in ("capex", "sbc", "shares") if f in applied]
+    if reported:
+        score["overrides"] = [dict({"field": f, "value": reported[f]["value"], "kind": reported[f]["kind"],
+                                    "source": reported[f]["source"]},
+                                   **({"scope": reported[f]["scope"]} if reported[f].get("scope") else {}))
+                              for f in ("capex", "sbc", "shares") if f in reported]
         score["override_impact"] = impact
     if scope_corrected:
         score["in_scope_corrected_by_make_score"] = True
@@ -1939,8 +2096,8 @@ def main():
     # re-derived from THIS run (applied overrides + judgment-call events).
     scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
                    if scope_corrected else None)
-    update_registry(ticker, applied, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact)
-    write_key_numbers(folder, n, j, score, applied, impact, ads_corr=ads_corr)
+    update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact)
+    write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 
 

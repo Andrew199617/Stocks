@@ -52,3 +52,14 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - BASE_DIVERGENCE: latest FY OE/share 4.73 vs 3-yr median 2.37 — one of them is distorted; find out which and why
 - WIDE_SCENARIO_SPREAD: super-bull IV is 5.4x super-bear IV — uncertainty is huge; confidence should not be high
 - TIER_BAND: bear-case tier D (8.6%) vs bull-case tier B (17.1%) — the verdict spans tiers; size any position to the bear end
+
+## Overrides applied
+Filing gaps found and covered by judgment overrides: —
+
+| Field | Value | Kind | Source | Periods filled |
+|---|---|---|---|---|
+| sbc | $107.0M | estimate | Last filed SBC: FY2025 AllocatedShareBasedCompensationExpense $107,000,000 (Form 10-K FY2025, filed 2026-02-26) — the anchor named here; value is exactly 1.0x that filed figure, inside the 0.1x-10x estimate band | TTM legs only (ttm.json): ytd_prior: 2025-01-01..2025-06-30, ytd_current: 2026-01-01..2026-06-30 |
+- sbc reason: APA tags SBC only in annual filings; its 10-Q cash-flow statements present no stock-compensation adjustment line at all (verified in the Q2 2026 10-Q, accession 0001841666-26-000053: the operating-activities reconciliation lists DD&A, deferred taxes, dry-hole and other items, with no SBC line), so ttm.py exits with 'sbc: no post-FY YTD fact' and no TTM base can be built. This override lets ttm.py assemble the SBC legs at the last filed annual rate, prorated by days. SBC is ~2.4% of FY2025 OCF ($107M vs $4,545M), so the proration assumption moves TTM OE/share by cents, not dollars. The engine's annual history is unaffected: SBC is filed for every annual period, and an override never replaces a filed value.
+
+- Measured impact (on the TTM base actually used; same final configuration, overrides toggled off): base OE/share $5.67 (no override) → $5.67 (with override), +0.00% · weighted IRR 12.45% → 12.45% (+0.00pp)
+- Unblocks tier: YES — ttm.py cannot build the TTM base without this override, so the pinned base and this tier rest on it; without it the score falls back to the 3-yr median base.

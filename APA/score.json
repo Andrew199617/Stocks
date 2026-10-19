@@ -71,7 +71,8 @@
  "shares_diluted_latest": 359000000,
  "model_fit": "modeled",
  "alert_eligible": false,
- "exit_alert_eligible": true,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
  "moat_for": [
   "Permian capital efficiency: U.S. oil guidance raised to 123,000 bbl/d at unchanged $1.3B U.S. capital; 4 rigs sustaining output once estimated to need 8",
   "GranMorgu (Suriname Block 58) carried economics: TotalEnergies funds 87.5% of the first $10B gross development capex; first oil targeted mid-2028",
@@ -84,5 +85,24 @@
   "Egypt concentration under production-sharing contracts: higher oil prices mechanically reduce APA's adjusted (entitlement) volumes; sovereign/arrears risk",
   "Share count rose with the all-stock Callon acquisition (diluted 309M in FY2023 to 359M in FY2025) \u2014 per-share compounding diluted by M&A",
   "Gas price weakness: Q2 2026 realized U.S. gas price collapsed year over year, offsetting oil strength"
- ]
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 107000000,
+   "kind": "estimate",
+   "source": "Last filed SBC: FY2025 AllocatedShareBasedCompensationExpense $107,000,000 (Form 10-K FY2025, filed 2026-02-26) \u2014 the anchor named here; value is exactly 1.0x that filed figure, inside the 0.1x-10x estimate band",
+   "scope": "ttm_legs"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 5.6695,
+  "base_oe_with_override": 5.6695,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1245,
+  "weighted_irr_with_override": 0.1245,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
 }

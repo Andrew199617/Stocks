@@ -62,7 +62,7 @@ for _p in (HERE, SYS):
         sys.path.insert(0, _p)
 import engine55_harness as H  # noqa: E402
 
-E = H._engine()  # dcf_engine imported with a neutral argv (MEASURE False); each run_engine reloads it in place
+E = H._engine()  # a private dcf_engine copy (neutral argv, MEASURE False) for the unit tests; each run_engine executes its own fresh copy and never touches sys.modules["dcf_engine"]
 MAKE_SCORE = os.path.join(SYS, "make_score.py")
 
 # ---------------------------------------------------------------------------
@@ -3213,6 +3213,25 @@ def test_make_score_refuses_share_class_mismatch():
         res = _ms_run(_ms_numbers(), _ms_judgment(share_class_mismatch=decl))
         assert res["code"] != 0 and res["score"] is None, (decl, res["stdout"])
         assert "SHARE_CLASS_MISMATCH" in res["stderr"], (decl, res["stderr"])
+
+
+def test_harness_never_replaces_the_shared_engine_module():
+    """[Codex, PR #31] engine55_harness runs each engine pass on a private copy of dcf_engine: after an offline run
+    the module registered as sys.modules["dcf_engine"] and its functions are the very objects make_score and reprice
+    imported (make_score.market_cap_estimate is dcf_engine.market_cap_est). The old harness reloaded the shared
+    module, so with the whole suite in one process (pytest) test_make_score_55::test_release_helpers and
+    test_reprice::test_live_market_cap_divides_by_the_ads_ratio failed (461 passed, 2 failed)."""
+    import dcf_engine as shared
+    import make_score as MS
+    before_mod, before_fn = sys.modules["dcf_engine"], shared.market_cap_est
+    assert MS.market_cap_estimate is before_fn
+    out = run("CCJ", H.recorded_args(recorded_matching_fixture("CCJ")), judgment=CCJ_J)
+    assert out["exit"] == 0, out["stdout"][-800:]
+    assert sys.modules["dcf_engine"] is before_mod, "the harness replaced sys.modules['dcf_engine']"
+    assert sys.modules["dcf_engine"].market_cap_est is before_fn, "the harness reloaded dcf_engine in place"
+    assert MS.market_cap_estimate is sys.modules["dcf_engine"].market_cap_est
+    priv = H._engine()
+    assert priv is not sys.modules["dcf_engine"] and priv.__name__ != "dcf_engine", priv.__name__
 
 
 if __name__ == "__main__":

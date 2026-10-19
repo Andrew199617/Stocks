@@ -243,7 +243,7 @@ Choices made where the text above was silent or ambiguous; each is additive to t
   `iv20` / `iv25` = `forecast.hurdle_prices` (fallback `live.iv_at_20/25`).
 - **`has.dividends`** is true only when `fundamentals.json` carries a `dividends` object; `has.second_pass` means `second_pass.md`
   exists (the pass-2 verdict itself is `row.second_pass`, from `score.second_pass`). `row.overrides` is `[{field, kind}]` only;
-  the full override objects are in `score.overrides` / `numbers.overrides_applied`. `override_unblocks_tier` is true when
+  the full override objects are in `score.overrides` / `numbers.overrides_applied` (since 5.5 a `score.overrides` item may carry `scope: "ttm_legs"` — an override that only filled ttm.py legs of the pinned TTM base, absent from `overrides_applied`; registry entries may carry `scope` and a declared `currency`). `override_unblocks_tier` is true when
   `score.override_impact.unblocks_tier` or any registry entry for the ticker says so.
 - **Record extras**: `data_version`, `builder_mtime`; `prices` also keeps `currency`; `forecast.inputs` is null for a run without
   inputs; a Tier F record has `forecast.paths/growth_paths/sensitivity/hurdle_prices = null` and `replayed = false`.

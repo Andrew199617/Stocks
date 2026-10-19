@@ -13,7 +13,7 @@ filer_annual_form, the --measure subprocess replay _override_impact) and runs ma
 set. Nothing is written outside the temp base. Importing this module never imports the engine with a live
 sys.argv (dcf_engine reads MEASURE from sys.argv at import), so MEASURE is forced per run.
 """
-import csv, gzip, importlib, io, json, os, shutil, sys, tempfile, contextlib
+import csv, gzip, importlib, importlib.util, io, json, os, shutil, sys, tempfile, contextlib
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYS = os.path.dirname(HERE)
@@ -26,15 +26,42 @@ def load_fixture(ticker):
         return json.load(f)
 
 
+_PRIVATE = 0
+
+
 def _engine():
-    """dcf_engine imported fresh with a neutral argv (MEASURE False)."""
+    """A private, freshly executed copy of dcf_engine for one harness run (neutral argv, MEASURE False).
+
+    It is never registered as sys.modules["dcf_engine"] and never reloads that module: make_score and reprice
+    keep references to the shared module's functions (market_cap_estimate = dcf_engine.market_cap_est), and a
+    reload replaced them under the other test modules when the whole suite ran in one process (Codex, PR #31:
+    test_release_helpers and test_live_market_cap_divides_by_the_ads_ratio failed under pytest). Each run's
+    monkeypatches (network stand-ins, _patch_55_off) land on this copy only, so no reset is needed."""
+    global _PRIVATE
     saved = sys.argv
     sys.argv = ["dcf_engine.py"]
     try:
         if SYS not in sys.path:
             sys.path.insert(0, SYS)
-        if "dcf_engine" in sys.modules:
-            return importlib.reload(sys.modules["dcf_engine"])
+        _PRIVATE += 1
+        spec = importlib.util.spec_from_file_location(f"_dcf_engine_harness_{_PRIVATE}", os.path.join(SYS, "dcf_engine.py"))
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        return mod
+    finally:
+        sys.argv = saved
+
+
+def _shared_engine():
+    """The shared sys.modules["dcf_engine"], imported once with a neutral argv (MEASURE False) and the caller's
+    environment — never with a harness temp base as STOCKS_BASE. Not used for engine runs (those get _engine())."""
+    if "dcf_engine" in sys.modules:
+        return sys.modules["dcf_engine"]
+    saved = sys.argv
+    sys.argv = ["dcf_engine.py"]
+    try:
+        if SYS not in sys.path:
+            sys.path.insert(0, SYS)
         return importlib.import_module("dcf_engine")
     finally:
         sys.argv = saved
@@ -150,6 +177,7 @@ def run_ttm(ticker, judgment=None, base=None, fixture=None, patch=None, keep_bas
     """Run ttm.main() offline against the fixture. Returns {"exit", "ttm": dict|None, "stdout", "stderr", "base"}."""
     fx = fixture or load_fixture(ticker)
     base = base or make_base(fx, judgment)
+    _shared_engine()   # import the shared dcf_engine (ttm.py's helper module) before STOCKS_BASE points at a temp base
     saved_argv, saved_env = sys.argv, dict(os.environ)
     sys.argv = ["ttm.py", ticker]
     os.environ["STOCKS_BASE"] = base
@@ -158,8 +186,13 @@ def run_ttm(ticker, judgment=None, base=None, fixture=None, patch=None, keep_bas
     try:
         if SYS not in sys.path:
             sys.path.insert(0, SYS)
-        import ttm as T  # noqa: E402
-        T = importlib.reload(T)
+        # A private copy of ttm.py per run (never a reload of sys.modules["ttm"]): its BASE / get_json patches stay
+        # on this copy. Its `import dcf_engine as _engine` binds the shared engine, whose helpers ttm calls are pure.
+        global _PRIVATE
+        _PRIVATE += 1
+        spec = importlib.util.spec_from_file_location(f"_ttm_harness_{_PRIVATE}", os.path.join(SYS, "ttm.py"))
+        T = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(T)
         T.BASE, T.SYS = base, f"{base}/_system"
         facts = fx["facts"]
         T.get_json = lambda url, headers=None, timeout=90: json.loads(json.dumps(facts))

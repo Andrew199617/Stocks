@@ -339,8 +339,16 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
 Each override must also appear in `_system/overrides_registry.json` with
 its measured base/IRR impact. Since engine 5.5 an entry whose
 declaration is unchanged keeps the date it was first recorded; a
-re-score that re-dates one is a defect in make_score, not in the folder. `overrides_applied` in `dcf_numbers.json`
-must list the same keys as `judgment.json`. Overrides only fill periods
+re-score that re-dates one is a defect in make_score, not in the folder (the identity includes a
+field override's `currency` and `scope` and a base_override's `kind`, `basis`, `figures`, `shares`).
+`overrides_applied` in `dcf_numbers.json` must list the same keys as `judgment.json`, except an
+override that only fills ttm.py legs of the TTM base the score is pinned to (ttm.json
+`overrides_used`; APA's SBC estimate): score.json `overrides` lists it with `scope: "ttm_legs"`,
+its registry entry and `override_impact` measure it on the TTM base, and when ttm.py cannot build
+the TTM base without it (ttm.py exit 3) `unblocks_tier` is true and both alert gates close — a
+TTM-pinned score that make_score wrote since this rule (2026-10-19) whose ttm.json used an override
+score.json does not list is P1. AFG, CNH and WMG predate it (their tier and gates do not change) and
+list the override on their next make_score run; they are README follow-ups, not findings. Overrides only fill periods
 with no filed value: an override that claims to correct a filed figure
 without a `base_override` has not changed the engine's result — check
 `dcf_numbers.json` to see whether it actually applied. Engine 5.5 says
