@@ -3,8 +3,8 @@
  "name": "CRANE COMPANY",
  "cik": 1944013,
  "engine_version": 5,
- "engine_release": "5.4.0",
- "as_of": "2026-10-18",
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
  "price": 205.83,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 58600000,
@@ -18,22 +18,22 @@
  "rev_cagr_5y": 0.02813037113061778,
  "rev_cagr_3y": 0.09062892841086612,
  "oe_positive_years_of_last_5": "4/5",
- "base_oe_total_latest_fy": 319100000.0,
+ "base_oe_total_latest_fy": 314100000,
  "base_oe_per_share": 6.144804088586031,
- "base_oe_latest_per_share": 5.445392491467577,
- "base_oe_normalized_per_share": 3.150943396226415,
+ "base_oe_latest_per_share": 5.360068259385666,
+ "base_oe_normalized_per_share": 3.355060034305317,
  "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.02813037113061778,
   "rev_cagr_3y": 0.09062892841086612,
   "rev_yoy_latest": 0.0815503003003002,
-  "oe_ps_cagr_2y": 0.8876105967090946
+  "oe_ps_cagr_2y": 0.7790633611466129
  },
  "growth_components_adjusted": {
   "rev_cagr_5y": 0.02003938710962916,
   "rev_cagr_3y": 0.0825379443898775,
   "rev_yoy_latest": 0.07345931627931157,
-  "oe_ps_cagr_2y": 0.8876105967090946
+  "oe_ps_cagr_2y": 0.7790633611466129
  },
  "g_blend": 0.07799863033459453,
  "share_cagr": 0.008090984020988623,
@@ -44,7 +44,7 @@
   "net_income": "NetIncomeLoss",
   "operating_income": "OperatingIncomeLoss",
   "ocf": "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
-  "capex": null,
+  "capex": "PaymentsForCapitalImprovements",
   "da": "DepreciationDepletionAndAmortization",
   "sbc": "ShareBasedCompensation",
   "tax": "IncomeTaxExpenseBenefit",
@@ -64,20 +64,119 @@
   "liabilities": null,
   "ppe_net": "PropertyPlantAndEquipmentNet",
   "equity": "StockholdersEquity",
-  "shares_out_inst": "CommonStockSharesOutstanding"
+  "shares_out_inst": "CommonStockSharesOutstanding",
+  "capex_components": "PaymentsForCapitalImprovements"
  },
  "filer_annual_form": "10-K",
  "ads_ratio": null,
  "fx_conversion": null,
- "override_checks": {
-  "capex": {
-   "value": 48500000.0,
-   "last_filed_value": null,
-   "last_filed_unit": null,
-   "out_of_band": true,
-   "ack_reason_present": true
+ "payable_base": null,
+ "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 58600000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": null,
+  "formula": "price \u00d7 shares"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": 57800356,
+  "dei_date": "2026-07-29",
+  "dei_ratio": 1.0138345860707156,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2021-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 35300000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2024-02-26"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 33300000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2025-02-27"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 39000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2026-02-26"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 36600000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2026-02-26"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 53500000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2026-02-26"
+   }
   }
  },
+ "sbc_provenance": {},
  "g_base": 0.07799863033459453,
  "moat_score": 6.0,
  "cap_years": 9.8,
@@ -109,28 +208,9 @@
   "base_oe_ps_arg": 6.144804088586031,
   "base_pin_source": "ttm_json"
  },
- "data_gap": [
-  "capex"
- ],
+ "data_gap": [],
  "data_gap_uncovered": [],
- "overrides_applied": [
-  {
-   "field": "capex",
-   "value": 48500000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001944013-26-000095), Consolidated Statements of Cash Flows line 'Capital expenditures': $53.5M for FY2025 ($36.6M FY2024, $39.0M FY2023 in the same statement) \u2014 tagged in EDGAR companyfacts under us-gaap PaymentsForCapitalImprovements, a tag the engine does not read; H1 YTD legs of the same tag: $30.3M for 2025-01-01 to 2025-06-30 (10-Q) and $25.3M for 2026-01-01 to 2026-06-30 (Q2 2026 10-Q, accession 0001944013-26-000186). TTM capex = $53.5M - $30.3M + $25.3M = $48.5M. Corroborated by Crane's Q4 2025 earnings release Adjusted Free Cash Flow table: capital expenditures $53.5M (FY2025) / $36.6M (FY2024) against cash provided by operating activities from continuing operations of $394.8M / $257.8M.",
-   "reason": "DATA_GAP:capex \u2014 capex missing for fiscal years 2023, 2024, 2025 under every candidate tag the engine reads, because Crane files capital expenditures only as PaymentsForCapitalImprovements. The engine applies this single value to every missing period, and ttm.py fills its capex legs from the same value so the TTM capex comes out at exactly the filer's filed TTM figure of $48.5M \u2014 the TTM base is the base actually used (see analysis.md). Against the true per-year annual figures the single value overstates FY2023 capex by $9.5M ($48.5M vs $39.0M filed) and FY2024 by $11.9M (vs $36.6M filed) and understates FY2025 by $5.0M (vs $53.5M filed); the net effect on the engine-native normalized (median) base is conservative \u2014 about $3.15/share with the override vs $3.36/share built from the true per-year figures (about -6%) \u2014 and that median base is not the base used for the verdict.",
-   "periods_filled": [
-    "2021-12-31",
-    "2022-12-31",
-    "2023-12-31",
-    "2024-12-31",
-    "2025-12-31"
-   ],
-   "out_of_band": true,
-   "last_filed_value": null
-  }
- ],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
@@ -418,7 +498,7 @@
   "tv_share_at_15": 0.20196517724389199,
   "scenario_spread_iv15": 4.832588249848708,
   "net_debt_to_normalized_oe": 1.7820766598129727,
-  "months_since_fy_end": 9.559789750328514,
+  "months_since_fy_end": 9.592641261498029,
   "irr_capped": false,
   "irr_at_floor": false
  },
@@ -426,16 +506,8 @@
   "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001944013-26-000095), Consolidated Statements of Cash Flows line 'Capital expenditures': $53.5M for FY2025 ($36.6M FY2024, $39.0M FY2023 in the same statement) \u2014 tagged in EDGAR companyfacts under us-gaap PaymentsForCapitalImprovements, a tag the engine does not read; H1 YTD legs of the same tag: $30.3M for 2025-01-01 to 2025-06-30 (10-Q) and $25.3M for 2026-01-01 to 2026-06-30 (Q2 2026 10-Q, accession 0001944013-26-000186). TTM capex = $53.5M - $30.3M + $25.3M = $48.5M. Corroborated by Crane's Q4 2025 earnings release Adjusted Free Cash Flow table: capital expenditures $53.5M (FY2025) / $36.6M (FY2024) against cash provided by operating activities from continuing operations of $394.8M / $257.8M.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
-  "BASE_DIVERGENCE: latest FY OE/share 5.45 vs 3-yr median 3.15 \u2014 one of them is distorted; find out which and why",
+  "BASE_DIVERGENCE: latest FY OE/share 5.36 vs 3-yr median 3.36 \u2014 one of them is distorted; find out which and why",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
  ],
- "override_impact": {
-  "base_oe_per_share_zero_fill": 3.9828473413379073,
-  "base_oe_per_share_final": 6.144804088586031,
-  "weighted_irr_zero_fill": 0.05463785324853575,
-  "weighted_irr_final": 0.0699442774699125,
-  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
- },
- "content_hash": "d53145d0df07eb15333620615f579d3d23eca10144510e477f3ab89a92e97222"
+ "content_hash": "b18489c62a274e37ce7f14b6d29536c5fff09f3eef1eab4073e3092d1c8a7b56"
 }

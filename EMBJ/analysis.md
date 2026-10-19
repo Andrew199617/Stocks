@@ -63,3 +63,92 @@ Price $72.34 per ADS.
 - One-liner: Diversified aerospace niche leader, moat 5/10 — does not clear 15% at $72.34: weighted IRR 12.58%, weighted IV@15% $56.46 on a $3.62/ADS normalized OE base; it clears the 15% hurdle only below about $56.46.
 
 **Correction, 2026-10-19 (ADS market-cap fix):** the ADS note above describes the pre-fix engine. The engine now divides the share count by the ADS ratio (Andrew's ruling, 2026-10-18; Stocks PR #5): `market_cap_est` is $13.25B, and judgment.json / score.json now record `in_scope_under_40b: true`. Everything else stands — Tier C, weighted IRR 12.58%, unchanged, because the per-share figures were already ADS-scaled; only the recorded cap and scope flag were wrong.
+
+## Engine 5.5 re-score (2026-10-19)
+This is a dated addendum. The 2026-10-17 text and the 2026-10-19 correction note above stay as written. Where this section disagrees with them, this section supersedes them. Neither the engine nor ttm.py was run. Ruling 1 reads: "Re-run make_score (not the engine) ... so market_cap / in_scope_under_40b are corrected without changing tiers". Following it, only `make_score.py EMBJ` (release 5.5.0) was re-run, on the recorded 2026-10-19 engine output, followed by prices.py and reprice.py. That output is `engine_release` 5.4.0, the run that already carried Muse's ADS market-cap fix. Every figure for this record comes from the key_numbers.md that make_score rebuilt on 2026-10-19. The figures under "Open items for the next engine re-run" are not this record's figures and are not in key_numbers.md. Each one names its source (financials_history.csv, statements.json, or a replay of this record's recorded scenario paths). The re-run's key_numbers.md replaces all of them, and nothing in this section applies them.
+
+| | Before (5.4.0 record, make_score 5.4) | After (same 5.4.0 record, make_score 5.5.0) |
+|---|---|---|
+| Base OE/share (3-yr median, per ADS) | $3.62 | $3.62 (unchanged) |
+| Latest FY OE/share · latest FY OE total | $3.70 · $677.4M | $3.70 · $677.4M (unchanged) |
+| Weighted IRR · base-case IRR | 12.58% · 12.75% | 12.58% · 12.75% (unchanged) |
+| IRR band | bear 10.17% (tier C) → bull 15.75% (tier B) | unchanged |
+| Tier by numbers / final | C / C | C / C (unchanged) |
+| Market cap (est) | $13.246B | $13.246B (basis: diluted_latest) |
+| Scope | in scope | in scope (market cap under $40B) |
+| Net debt / normalized OE | — | — (no ADS-basis figure: net debt is not recorded) |
+| Alert gates | both closed: no entry alert at Tier C; exit blocked because the tier rests on an override | both closed: exit blocked by the override and because the engine output predates 5.5.0 |
+
+**What make_score 5.5 changed in this record.** EMBJ is shape (ii): it was re-scored on main on 2026-10-19 with Muse's cap fix, so its cap and scope were already right.
+- **Market cap and scope (ruling 1): unchanged.** The 5.4.0 run already divided by the ADS ratio: $72.34 × 732,412,025 diluted ordinary shares ÷ 4 = $13.246B. make_score now records `market_cap_basis: diluted_latest` in score.json and prints that basis and a Scope line in key_numbers.md. It did not correct the cap, because a cap that already divides is not divided twice. It did not rewrite judgment.json's `in_scope_under_40b` either: the field was true before and is true after, and score.json has no `in_scope_corrected_by_make_score`. At $13.246B EMBJ is far below the $40B line, so no realistic move in the live price takes it out of scope.
+- **Net debt / normalized OE on the ADS basis: nothing to correct.** Before 5.5, the engine's normalized-OE total multiplied per-ADS OE by the ordinary share count. At a ratio of 4 that total was 4× too large, so any recorded net-debt ratio would have been 4× too small. EMBJ's record has no ratio to correct. Under DEBT_TAGS_BLANK the engine left `net_debt_latest` null and printed "Net debt / normalized OE: —". make_score prints the same line, and score.json carries no `net_debt_to_normalized_oe_ads_basis`. So neither HIGH_NET_DEBT nor BIG_NET_CASH fired on the engine basis, and neither can be tested on the ADS basis. The balance sheet resolves both flags:
+  - The engine did not read a wrong tag. EMBJ's companyfacts borrowings tags stop after FY2020, and statements.json's short-term and long-term debt lines are blank for FY2021–FY2025 as well. The borrowings exist, since statements.json's cash-flow statement shows debt issued and repaid in every year, but their balances are not tagged.
+  - Leverage is small. The DEBT_TAGS_BLANK resolution above quotes the company-reported Q2 2026 position: a small positive net debt, a fraction of the $677.4M latest FY OE total. That total is a filed figure that the ADS defect never touched.
+  - HIGH_NET_DEBT (> 3×) therefore would not fire on any basis, and BIG_NET_CASH (< −2×) cannot fire on a positive net debt. Leverage does not change the verdict.
+- **Override impact carried, not re-measured.** make_score carries the SBC override's measured impact from the prior score.json: base OE/share $3.65 → $3.62, weighted IRR 12.65% → 12.58%. score.json marks it `impact_carried_from_prior_score: true` with `counterfactual_engine_release: 5.4.0`. make_score 5.5 does not replay a 5.4.0 record through the 5.5 engine, because that engine would measure the override against a different capex basis (open item 1). The registry's three EMBJ entries (sbc override, manual price, ADS ratio) are unchanged.
+- **Both alert gates closed until an engine re-run (expected).** `alert_eligible` is false: a Tier C never triggers an entry alert. `exit_alert_eligible` is false with the reason "engine output predates release 5.5.0 — re-run the engine before an exit alert; tier exists only because of a judgment override". make_score 5.5 closes both gates on every pre-5.5 record, so a scope-only rebuild cannot produce an alert.
+- **Flags:** this record has no new 5.5 flag. The fragility-flag list is hashed engine output, and make_score never rewrites it. The eight flags of the 5.4.0 run stand as resolved above, except where the corrections below change a resolution: HIGH_NET_DEBT and BIG_NET_CASH were re-checked above, and the OE_VOLATILE, NI_OCF_DIVERGENCE and STALE_FY resolutions are corrected below.
+
+**Corrections to the 2026-10-17 text**
+- **Price source.** The header line gives the price source as nasdaq_quote_api. The record says manual: key_numbers.md prints "Price: $72.34 (source: manual)", and the registry holds a `manual_price` event for EMBJ, dated 2026-10-19, at 72.34.
+- **Months since FY end.** The 2026-10-17 text says 9.5 months, in the DCF diagnostics and in the STALE_FY resolution. That figure predates the 2026-10-19 engine run; key_numbers.md prints "Months since FY end: 9.6".
+- **NI_OCF_DIVERGENCE: the 2026-10-17 resolution is wrong.** It said the divergence "does not flatter the OE base". It does.
+  - Part of the gap between OCF and net income is the depreciation and amortisation add-back: tag `AdjustmentsForDepreciationAndAmortisationExpense`, financials_history.csv `da` $241.7M / $243.6M / $259.5M for FY2023–FY2025. That add-back includes the amortisation of capitalised development.
+  - The cash that creates those intangibles leaves through the investing section as purchases of intangibles: statements.json "Purchases of intangibles / software" (`PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities`), $192.1M / $265.8M / $296.7M. The 5.4.0 run does not deduct that line.
+  - So the OE base is flattered by about that line: $3.62 per ADS on this record against $2.079 with the line deducted (construction in open item 1).
+  - Resolution: the cause is the intangible-purchases line, and the engine re-run that deducts it cures the flag. Until that run, this record's C is an upper bound.
+- **STALE_FY: "ttm.py cannot build a TTM base" stands, but the check is not finished.** statements.json carries no quarterly periods for EMBJ: EDGAR companyfacts holds no interim XBRL for this filer, so ttm.py has nothing to build from. A TTM base would have to be a pin built from the Q2 2026 6-K, which is a judgment input ruling 1 freezes for this pass. It is open item 4.
+- **OE_VOLATILE: the flag is an artifact of two mis-scaled share counts.** AGENTS.md requires a units defect to be named; this one is not new in 5.5.
+  - **The defect.** In financials_history.csv, `shares_diluted` is 736,164 for FY2020 and 734,730 for FY2021. Those are about 1,000× below FY2019 (735,850,000) and FY2022 (734,632,806), and no split or reverse split explains it. statements.json's power-of-ten warning shows the cause: the 20-F filed 2023-03-31 tagged those years' counts in thousands. statements.json keeps FY2020 at full scale (736,164,000) and blanks FY2021. The engine kept both rows as filed.
+  - **What it does not affect.** It does not reach the base (the median of FY2023–FY2025), the share-count CAGR (the last four counts, FY2022–FY2025), the OE/share CAGR (FY2023–FY2025) or the market cap (the latest count).
+  - **What it does affect.** OE_VOLATILE reads the positive OE/share of the last five fiscal years, FY2021–FY2025. The FY2021 row comes out at 555.58 per ordinary share against 0.8333 for FY2022 (financials_history.csv `oe_per_share`). On a full-scale count, FY2021 is about 0.556. The five-year range is then about 1.82× (FY2025 0.9249 over FY2023 0.5076), under the flag's 3× trigger, so the flag would not fire. FY2020, whose owner's earnings were negative, sits outside that five-year window.
+  - **Correction.** The 2026-10-17 resolution called the >3× range "real and structural" and used the flag to justify the bear-ward 15/30/30/17/8 probabilities. The flag does not support them. Ruling 1 freezes the probabilities for this pass, so they stand on this record. Their remaining support is the cyclicality the 2026-10-17 text cites: the negative COVID years, which fall outside the flag's window. They do not decide the tier. A replay of this record's recorded scenario paths at the default 10/25/30/25/10 weights gives a weighted IRR of about 13.38%, still tier C. That figure is not an engine figure and not in key_numbers.md (open item 3).
+  - **Not fixed by 5.5.** The 5.5 engine's share-scale checks compare the base OE/share with the price and the latest count with the cover page, and they look for breaks among the last four fiscal-year counts (FY2022–FY2025). FY2020 and FY2021 sit outside all three checks. A `shares_override` cannot replace a filed count, so OE_VOLATILE would persist on a re-run (open item 2).
+
+**Minority holders (Eve Holding, Inc., NYSE: EVEX).** AGENTS.md asks for the minority share of consolidated owner's earnings at a company with a listed majority-owned subsidiary. None of these folder figures is in key_numbers.md:
+- FY2025 consolidated net income is $359.0M (financials_history.csv `net_income`, tag ProfitLoss), against $351.9M attributable to owners of the parent (statements.json, `ProfitLossAttributableToOwnersOfParent`). So $7.1M, about 2.0%, went to noncontrolling interests.
+- Noncontrolling interests are $367.3M of $3,812.0M total equity at FY2025 year-end (statements.json), about 9.6%.
+- Consolidated OCF, and so consolidated owner's earnings, carries all of Eve's operating cash burn, and the minority holders bear their share of it. Because Eve burns cash, the parent's share of owner's earnings is, if anything, slightly above the consolidated figure.
+- The folder does not file Eve's cash flow separately, so that amount cannot be verified from the diff. The noncontrolling-interest figures above may also include holders in subsidiaries other than Eve, which cannot be verified from the diff either.
+
+**Rulings 2, 6 and 7 on this filer (no change)**
+- **SBC (ruling 6): no change.** EMBJ files under IFRS, not us-gaap. It files neither of the us-gaap SBC tags, so `SBC_TAG_RECONCILED` cannot fire. For FY2023–FY2025, SBC stays the filing override: $5.4M from Form 20-F FY2025, Note 27.5.
+- **USD-override branch (ruling 7): the override is used verbatim, and no declaration is needed.** The sbc_override is a USD figure at a USD reporter. dcf_numbers.json `fx_conversion` is null, and `override_checks.sbc.last_filed_unit` is USD.
+  - On a 5.5 run the override's currency basis is therefore `no_fx`: there is no FX conversion, so the override is used verbatim, as the 5.4.0 run used it.
+  - It is not `last_filed_unit_usd`, so make_score's refusal of undeclared `last_filed_unit_usd` overrides does not apply. The override needs no `currency: "USD"` key.
+  - HTHT's RMB capex override needs restating; EMBJ's override does not. Its impact on a 5.5 base is for the re-run to measure.
+- **Share basis (ruling 2): no flag on the latest year.** The cover-page count is 722,766,139 at 2025-12-31 (dcf_numbers.json `shares_outstanding_dei_latest`), against the latest diluted 732,412,025. That ratio of about 0.99 is well inside the 0.75×–1.333× divergence test.
+- **`CAPEX_COVERAGE_LOW` would not fire.** Even the PP&E-only capex is 99% / 82% / 72% of D&A in FY2023–FY2025 (financials_history.csv), above the 50% test. With the intangible leg added, capex exceeds D&A.
+
+**Open items for the next engine re-run (not applied: ruling 1 does not authorise a re-run or a judgment change)**
+1. **Intangible capex (ruling 5): the published C rests on incomplete capex.** EMBJ's 20-F cash-flow statement has two investing lines for capital spending:
+   - PP&E: `PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities`. This is the only line the 5.4.0 run reads (financials_history.csv `capex` $238.7M / $200.4M / $187.2M for FY2023–FY2025).
+   - Intangibles: `PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities`, statements.json "Purchases of intangibles / software", $192.1M / $265.8M / $296.7M. In FY2024 and FY2025 it is larger than the PP&E leg.
+
+   The 5.5 engine adds the intangible leg on top of the PP&E leg. The following reproduces from this folder (financials_history.csv plus statements.json):
+   - capex is $430.8M / $466.2M / $483.9M for FY2023–FY2025;
+   - owner's earnings (OCF − capex − the $5.4M SBC override) are $180.8M / $399.6M / $380.7M, or 0.2461 / 0.5440 / 0.5198 per ordinary share;
+   - base OE/share is $2.079 per ADS (the FY2025 median × 4), against this record's $3.62. That is about 42.6% lower; the README's Engine 5.5 entry says 43%.
+
+   The growth blend would not move. g_blend is the median of the four growth components. The OE/share CAGR rises on the lower FY2023 figure but stays the largest of the four, so the two middle components (rev CAGR 3y 18.61%, latest rev YoY 18.50%) and g_base 18.65% are unchanged. Net debt is null, so each scenario's IV scales with the base. The replay of the recorded scenario paths reproduces every weighted IV and the 12.58% weighted IRR in key_numbers.md at the recorded base. At $2.079 it gives:
+   - weighted IV@15% $32.40, down from $56.46;
+   - weighted IRR about 8.64%, down from 12.58%; bear about 7.06% (tier D) and bull about 10.75% (tier C);
+   - tier by numbers D, down from C, with TIER_BAND reading D to C.
+
+   These match the Engine 5.5 PR's retro-scan, which is not committed to the repo. The replay is not an engine run. The re-run's own figures cannot be verified from the diff, and they replace these.
+
+   At Embraer this line is mainly capitalised aircraft-program development; the split between development and software cannot be verified from the diff. It is a recurring cost of staying in the business, so it belongs in owner's earnings. **Read the published C as an upper bound and size to D until the engine re-run.** No tier_override is set: this correction belongs in the engine, and ruling 1 freezes judgment inputs for this pass.
+2. **FY2020 and FY2021 share counts.** Both are filed values, so no override can restate them. Two fixes are possible, and both need a decision:
+   - an engine follow-up that catches history-row scale breaks outside the last four fiscal years. The README records that the design's consecutive-year test was dropped and lists EMBJ among its false positives.
+   - restating the counts at full scale (736,164,000 and 734,730,000) in the engine input.
+
+   Until one of them runs, OE_VOLATILE fires on an artifact.
+3. **Probabilities.** Re-justify 15/30/30/17/8 without OE_VOLATILE, or return to the default 10/25/30/25/10. The same replay at the default weights gives about 13.38% on this record (tier C) and about 9.17% with the intangible leg (tier D). These are not engine figures, so neither basis's tier turns on this choice.
+4. **STALE_FY.** Check whether the Q2 2026 6-K prints first-half operating cash flow and both investing lines (PP&E and intangibles). If it does, a TTM pin built from it could replace the 9.6-month-old FY base, and it would also show the intangible line in the latest period. Cannot verify from the diff.
+
+**Why the tier is C.** C is the 5.4.0 record's numbers tier: weighted IRR 12.58%, inside the 10–15% band, with bear 10.17% (tier C) and bull 15.75% (tier B). Ruling 1 keeps it, because make_score changes no tier, base or IRR. Hurdle-clearing prices are unchanged: 15% at $56.46, 20% at $38.06 and 25% at $28.20. Confidence stays medium as recorded. WIDE_SCENARIO_SPREAD keeps it below high, and so does the NI_OCF_DIVERGENCE correction above, which leaves that flag cured only by the re-run. The published C is an upper bound: with the intangible leg deducted, the replay puts EMBJ in D (open item 1).
+
+**Data (2026-10-19).**
+- prices.py ran and wrote prices.json (gitignored).
+- reprice.py ran and wrote live.json (gitignored). The live tier and IRR equal the scored figures, because the scored session's close is not posted yet.
+- No enrichment script was re-run: this was a make_score-only pass.

@@ -1,0 +1,283 @@
+{
+ "ticker": "JLL",
+ "cik": 1037976,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:12:09-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001037976.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000037/jll-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/JLL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/JLL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "JONES LANG LASALLE INC",
+  "cik": 1037976,
+  "description": {
+   "text": "Jones Lang LaSalle Incorporated, incorporated in 1997, is a Maryland corporation. References to \"JLL,\" \"the Company,\" \"we,\" \"us\" and \"our\" refer to Jones Lang LaSalle Incorporated and include all of its consolidated subsidiaries, unless otherwise indicated or the context requires otherwise. Our common stock is listed on The New York Stock Exchange (\"NYSE\") under the symbol \"JLL.\" JLL is a leading global commercial real estate services and investment management company with annual revenue of $26.1 billion, operations in over 80 countries and a global workforce of more than 113,000 as of December 31, 2025. For over 200 years, clients have trusted JLL, a Fortune 500® company, to help them confidently buy, build, occupy, manage and invest across a variety of industries and property types, including office, industrial, hotel, multi-family, retail and data center properties. Driven by our purpose to shape the future of real estate for a better world, we help our clients, people and communities SEE A BRIGHTER WAYSM. Powered by rich global datasets and leading technology capabilities, we provide coordinated, end-to-end delivery of real estate services for a broad range of global clients who represent a wide variety of industries. Our clients vary greatly in size and include for-profit and not-for-profit entities, public-private partnerships and governmental (\"public sector\") entities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001037976-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000037/jll-20251231.htm"
+  },
+  "description_short": "JLL (NYSE:JLL) is a leading global commercial real estate services and investment management company with annual revenue of $26.1 billion, operations in over 80 countries and a global workforce of more than 112,000 as of June 30, 2026. For over 200 years, clients have trusted JLL, a Fortune 500 company, to help them confidently buy, build, occupy, manage and invest across a variety of industries and property types, including office, industrial, hotel, multi-family, retail and data center properties. Driven by our purpose to shape the future of real estate for a better world, we help our clients, people and communities SEE A BRIGHTER WAY. Powered by rich global datasets and leading technology capabilities, we provide coordinated, end-to-end delivery of real estate services for a broad range of global clients who represent a wide variety of industries.",
+  "industry": "Real Estate",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6531",
+  "sic_description": "Real Estate Agents & Managers (For Others)",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.jll.com",
+  "headquarters": "Chicago, IL",
+  "address": {
+   "street": "200 East Randolph Drive",
+   "city": "Chicago",
+   "state": "IL",
+   "zip": "60601",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "3127825800",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-04-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "LASALLE PARTNERS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001037976&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001037976-26-000173",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000173/jll-20260928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-16",
+   "period": "2026-09-16",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001037976-26-000167",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000167/jll-20260916.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001037976-26-000152",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000152/jll-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001037976-26-000150",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000150/jll-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001037976-26-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000108/jll-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001037976-26-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000106/jll-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001037976-26-000104",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000104/jll-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001037976-26-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000099/jll-20260417.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001037976-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000043/jll-20260312.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001037976-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000039/jll-20260303.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001037976-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000037/jll-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001037976-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000016/jll-20260218.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001037976-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000071/jll-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001037976-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000069/jll-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001037976-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000045/jll-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001037976-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000043/jll-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-21",
+   "period": "2025-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001037976-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000027/jll-20250521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001037976-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000025/jll-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-03",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001037976-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000023/jll-20250503.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-07",
+   "period": "2025-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001037976-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797625000021/jll-20250507.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-19"
+ ]
+}

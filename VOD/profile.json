@@ -1,0 +1,243 @@
+{
+ "ticker": "VOD",
+ "cik": 839923,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:08:10-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000839923.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/839923/000119312526235425/d143190d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/VOD/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/VOD/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "VODAFONE GROUP PUBLIC LTD CO",
+  "cik": 839923,
+  "description": null,
+  "description_short": "Vodafone is a leading European and African telecoms company. We serve over 355 million mobile and broadband customers, operating networks in 15 countries with investments in a further five and partners in over 40 more. Our undersea cables transport around a sixth of the world's internet traffic, and we are developing a new direct-to-mobile satellite communications service to connect areas without coverage. Vodafone runs one of the world's largest IoT platforms, with 215 million IoT connections globally, and we provide financial services to around 92 million customers across seven African countries - managing more transactions than any other provider. From the seabed to the stars, Vodafone's purpose is to keep everyone connected.",
+  "industry": "Telecommunications Equipment",
+  "sector": "Telecommunications",
+  "region": "Europe",
+  "sic": "4812",
+  "sic_description": "Radiotelephone Communications",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "OTC"
+  ],
+  "website": "https://www.vodafone.com",
+  "headquarters": "Newbury, Berkshire, England",
+  "address": {
+   "street": "Vodafone House, The Connection",
+   "city": "Newbury",
+   "state": null,
+   "zip": "RG14 2FN",
+   "country": "England",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-05-22",
+   "metro": "Berkshire",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "011-44-1635-33251",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-06-30",
+  "first_sec_filing_form": "8-A12B/A",
+  "former_names": [
+   "VODAFONE AIRTOUCH PUBLIC LIMITED CO",
+   "VODAFONE GROUP PUBLIC LIMITED CO",
+   "VODAFONE GROUP PUBLIC LIMITED COMPANY"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000839923&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008837",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008837/a0757y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008829",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008829/a0191y.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008808",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008808/a8146x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008766",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008766/a4337x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008749",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008749/a2904x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008697",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008697/a0435x.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008483",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008483/a5803v.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008016",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008016/a6345s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-008014",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426008014/a7340s.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007370",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007370/a8296p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007297",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007297/a4641p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007294",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007294/a4625p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007232",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007232/a2616p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-330381",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000119312526330381/d167419d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007172",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007172/a0626p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007162",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007162/a0603p.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007083",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007083/a8414o.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007078",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007078/a8330o.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-325613",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000119312526325613/d109805d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001654954-26-007010",
+   "url": "https://www.sec.gov/Archives/edgar/data/839923/000165495426007010/a6169o.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-05-22)",
+  "employees: no headcount sentence found in the 20-F filed 2026-05-22"
+ ]
+}

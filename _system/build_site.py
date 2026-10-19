@@ -885,15 +885,22 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
     return rec
 
 
+# numbers keys the attachment copy drops: per-tag / per-period engine provenance
+# the page does not render (engine 5.5 adds the capex, SBC and share-basis
+# records, stripped like used_tags so the embedded record size stays flat).
+TRIM_NUMBERS_KEYS = ("used_tags", "capex_provenance", "sbc_provenance", "share_basis")
+
+
 def trim_record(rec):
     """The attachment copy: no judgment / ttm / prices.daily_1y /
-    prices.sessions_5d / numbers.used_tags (prices.intraday and profile are
-    kept; the statements never live in a record, so nothing to drop there)."""
+    prices.sessions_5d / numbers.used_tags, numbers.capex_provenance,
+    numbers.sbc_provenance, numbers.share_basis (prices.intraday and profile
+    are kept; the statements never live in a record, so nothing to drop there)."""
     out = {k: v for k, v in rec.items() if k not in ("judgment", "ttm", "statements")}
     if isinstance(out.get("prices"), dict):
         out["prices"] = {k: v for k, v in out["prices"].items() if k not in ("daily_1y", "sessions_5d")}
     if isinstance(out.get("numbers"), dict):
-        out["numbers"] = {k: v for k, v in out["numbers"].items() if k != "used_tags"}
+        out["numbers"] = {k: v for k, v in out["numbers"].items() if k not in TRIM_NUMBERS_KEYS}
     return out
 
 

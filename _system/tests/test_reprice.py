@@ -40,6 +40,14 @@ used as STOCKS_BASE for the file-level (reprice_folder) cases.
 9. Score identity (Codex review of PR #2): an override is read only from a
    score.json built from THIS run — the reviewer's stale B/B score against
    a rerun at $217.824 (21.2495% / A) shows A, not the stale B.
+10. ADS market cap (engine 5.5, decision 1): the live market cap divides by
+   numbers.ads_ratio.ratio (synthetic ratios 100 / 2 / 0.5, also after a
+   split since scoring) and in_scope_under_40b follows it; a run without an
+   ADS ratio is bit-identical to price × shares_diluted_latest when its
+   market_cap_basis.shares_source is diluted_latest (or it has no basis
+   record); otherwise market_cap_basis.shares_used (a scale- or
+   split-corrected count, or the dei_latest cover-page count) is the count
+   used, and the module docstring says so (FIX_DECISIONS_R1 M6).
 prices.json is a gitignored cache (a fresh clone has none), so every case
 builds its own synthetic prices.json; only the committed APP / EXPE judgment
 records are read from the repo.
@@ -755,6 +763,76 @@ def test_big_scoring_day_move_is_never_read_as_a_split():
     # an ordinary session still divides a real split out (the reviewer's 2:1)
     b = basis(272.28, [["2026-10-13", 136.14], ["2026-10-14", 136.0], ["2026-10-19", 137.0]])
     assert b["status"] == "split_adjusted" and b["split"] == "2:1" and b["factor"] == 2.0, b
+
+def test_live_market_cap_divides_by_the_ads_ratio():
+    """Engine 5.5, decision 1: the price is per ADS, shares_diluted_latest per
+    ordinary share, so the live cap is price × shares ÷ ratio (TLK's live cap
+    read $1.09T beside its $10.93B score); everything else is unchanged."""
+    n, s = _app()
+    shares = n["shares_diluted_latest"]
+    plain = R.reprice(n, 262.19, "2026-10-14", s, today="2026-10-14")
+    # non-ADS: bit-identical to the 5.4 formula, at the scored and a moved price
+    assert plain["market_cap_est"] == 262.19 * shares * 1.0
+    at_scored = R.reprice(n, n["price"], None, s, today="2026-10-14")
+    assert at_scored["market_cap_est"] == n["price"] * shares and at_scored["market_cap_est"] == n["market_cap_est"]
+    for ratio in (100, 2.0, 0.5):
+        m = copy.deepcopy(n)
+        m["ads_ratio"] = {"ratio": ratio, "source": "synthetic 20-F cover page", "reason": "test"}
+        live = R.reprice(m, 262.19, "2026-10-14", s, today="2026-10-14")
+        assert live["market_cap_est"] == (262.19 * shares) / ratio, (ratio, live["market_cap_est"])
+        assert live["in_scope_under_40b"] is (live["market_cap_est"] < 40e9), ratio
+        # the ratio touches the cap only: IRRs, tiers and IVs are the plain run's
+        for k in ("irr_weighted", "tier", "iv_at_15", "iv_at_25", "upside_at_15", "scenarios"):
+            assert live[k] == plain[k], (ratio, k)
+        assert R.live_market_cap(m, 10.0) == (10.0 * shares) / ratio
+    m = copy.deepcopy(n)
+    m["ads_ratio"] = {"ratio": 100, "source": "s", "reason": "r"}
+    assert R.reprice(m, 262.19, None, s, today="2026-10-14")["in_scope_under_40b"] is True  # $0.88B, not $88B
+    assert plain["in_scope_under_40b"] is False
+    # a split since scoring multiplies after the division (2:1: half the price, twice the shares)
+    p = _split_prices(2)
+    px, pd = R.live_price(p, "APP", n["as_of"])
+    m = copy.deepcopy(n)
+    m["ads_ratio"] = {"ratio": 2.0, "source": "s", "reason": "r"}
+    split = R.reprice(m, px, pd, s, today="2026-10-20", prices=p)
+    assert split["split_factor"] == 2.0 and split["market_cap_est"] == (px * shares) / 2.0 * 2.0
+    assert close(split["market_cap_est"], n["market_cap_est"] / 2.0)
+    # an ads_ratio that does not apply (null / zero / not a number) is no ratio
+    for bad in (None, {"ratio": None}, {"ratio": 0}, {"ratio": "2"}, "2"):
+        m = dict(n, ads_ratio=bad)
+        assert R.live_market_cap(m, 262.19) == 262.19 * shares, bad
+    # a 5.5 run records the count its market cap used: a scale-corrected count wins over the mis-scaled diluted one
+    m = dict(n, shares_diluted_latest=shares / 1000,
+             market_cap_basis={"shares_used": shares, "shares_source": "diluted_latest_scale_corrected",
+                               "ads_ratio": None, "formula": "price × shares"})
+    assert R.live_market_cap(m, 262.19) == 262.19 * shares
+    m["market_cap_basis"] = {"shares_used": None, "shares_source": "diluted_latest"}
+    assert R.live_market_cap(m, 262.19) == 262.19 * (shares / 1000)
+    # the engine's helper is the one formula (dcf_engine 5.5): reprice uses it, never a local copy
+    assert R._market_cap_estimate is E.market_cap_est
+    assert E.market_cap_est(262.19, shares, 2.0) == R._market_cap_estimate(262.19, shares, 2.0)
+    assert E.market_cap_est(262.19, shares, None) == 262.19 * shares
+
+
+def test_live_market_cap_share_count_rule_m6():
+    """FIX_DECISIONS_R1 M6 (round-1 verification; a wording fix): without an ADS ratio the live cap is bit-identical
+    to close × shares_diluted_latest only for a run whose market_cap_basis.shares_source is diluted_latest, or with
+    no basis record; any other shares_source prices on market_cap_basis.shares_used (an HBAN-shaped dei_latest run).
+    The module docstring says so — it claimed every run without an ADS ratio was unchanged bit for bit."""
+    n = {"shares_diluted_latest": 1504836000}
+    assert R.live_market_cap(n, 15.0) == 15.0 * 1504836000
+    n["market_cap_basis"] = {"shares_used": 1504836000, "shares_source": "diluted_latest", "ads_ratio": None,
+                             "formula": "price × shares"}
+    assert R.live_market_cap(n, 15.0) == 15.0 * 1504836000
+    n["market_cap_basis"] = {"shares_used": 2027130587, "shares_source": "dei_latest", "ads_ratio": None,
+                             "formula": "price × shares"}
+    assert R.live_market_cap(n, 15.0) == 15.0 * 2027130587 == 30406958805.0
+    doc = " ".join(R.__doc__.split())
+    assert "A run without an ADS ratio is unchanged bit for bit." not in doc
+    assert ("for a run whose market_cap_basis.shares_source is diluted_latest, or with no basis record; otherwise the "
+            "count is market_cap_basis.shares_used") in doc, doc[-900:]
+    assert "a non-ADS run is bit-identical)" not in " ".join(R.live_market_cap.__doc__.split())
+
 
 if __name__ == "__main__":
     fails = 0

@@ -1,0 +1,424 @@
+{
+ "ticker": "CX",
+ "cik": 1076378,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-177605",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526177605/d120395d20f_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      5338000000,
+      5194000000,
+      5001000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3254,
+      0.3234,
+      0.31
+     ],
+     "growth_yoy": [
+      null,
+      -0.027,
+      -0.0372
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      4855000000,
+      4745000000,
+      4282000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.296,
+      0.2954,
+      0.2654
+     ],
+     "growth_yoy": [
+      null,
+      -0.0227,
+      -0.0976
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      3627000000,
+      3582000000,
+      3797000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2211,
+      0.223,
+      0.2354
+     ],
+     "growth_yoy": [
+      null,
+      -0.0124,
+      0.06
+     ]
+    },
+    {
+     "member": "cx:MiddleEastandAfricaMember",
+     "label": "Middle East and Africa",
+     "values": [
+      1091000000,
+      1010000000,
+      1299000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0665,
+      0.0629,
+      0.0805
+     ],
+     "growth_yoy": [
+      null,
+      -0.0742,
+      0.2861
+     ]
+    },
+    {
+     "member": "cx:SouthCentralAmericaAndTheCaribbeanMember",
+     "label": "South, Central America and the Caribbean",
+     "values": [
+      1042000000,
+      1064000000,
+      1112000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0635,
+      0.0662,
+      0.0689
+     ],
+     "growth_yoy": [
+      null,
+      0.0211,
+      0.0451
+     ]
+    },
+    {
+     "member": "cx:OtherActivitiesMember",
+     "label": "Other Activities",
+     "values": [
+      451000000,
+      468000000,
+      641000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0275,
+      0.0291,
+      0.0397
+     ],
+     "growth_yoy": [
+      null,
+      0.0377,
+      0.3697
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     16404000000,
+     16063000000,
+     16132000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      12985000000,
+      12858000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4757,
+      0.4442
+     ],
+     "growth_yoy": [
+      null,
+      -0.0098
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      4155000000,
+      5404000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1522,
+      0.1867
+     ],
+     "growth_yoy": [
+      null,
+      0.3006
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      4320000000,
+      4736000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1582,
+      0.1636
+     ],
+     "growth_yoy": [
+      null,
+      0.0963
+     ]
+    },
+    {
+     "member": "cx:SouthCentralAmericaAndTheCaribbeanMember",
+     "label": "South, Central America and the Caribbean",
+     "values": [
+      1980000000,
+      1750000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0725,
+      0.0605
+     ],
+     "growth_yoy": [
+      null,
+      -0.1162
+     ]
+    },
+    {
+     "member": "cx:MiddleEastandAfricaMember",
+     "label": "Middle East and Africa",
+     "values": [
+      1120000000,
+      1487000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.041,
+      0.0514
+     ],
+     "growth_yoy": [
+      null,
+      0.3277
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     27299000000,
+     28945000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "geography",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      244000000,
+      258000000,
+      273000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.208,
+      0.2091,
+      0.2115
+     ],
+     "growth_yoy": [
+      null,
+      0.0574,
+      0.0581
+     ]
+    },
+    {
+     "member": "cx:SouthCentralAmericaAndTheCaribbeanMember",
+     "label": "South, Central America and the Caribbean",
+     "values": [
+      56000000,
+      64000000,
+      73000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0477,
+      0.0519,
+      0.0565
+     ],
+     "growth_yoy": [
+      null,
+      0.1429,
+      0.1406
+     ]
+    },
+    {
+     "member": "cx:MiddleEastandAfricaMember",
+     "label": "Middle East and Africa",
+     "values": [
+      50000000,
+      49000000,
+      71000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0426,
+      0.0397,
+      0.055
+     ],
+     "growth_yoy": [
+      null,
+      -0.02,
+      0.449
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1173000000,
+     1234000000,
+     1291000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Assets/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Reportable segments' (ifrs-full:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/Assets/annual: rows sum to 90.6% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/DepreciationDepletionAndAmortization/annual: rows sum to 32.3% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

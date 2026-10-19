@@ -1,0 +1,14 @@
+{
+ "name": "Brookfield Wealth Solutions Ltd.",
+ "sector": "Finance / Insurance & annuities (Brookfield paired entity)",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "FY2025 Form 20-F cover / Item 9: the registered securities are the Class A exchangeable shares listed directly on NYSE and TSX; no depositary / ADS facility",
+  "reason": "20-F filer whose traded security is the share itself, not an ADS"
+ },
+ "share_class_mismatch": {
+  "value": true,
+  "source": "FY2025 Form 20-F (filed 2026-03-26), Note 25 Earnings Per Share (EPS presented for Class C shares only; Class A exchangeable and Class B are not common stock for EPS) and Note 23 Share Capital (59,934,825 Class A exchangeable outstanding vs 272,687,160 Class C, all held by Brookfield)",
+  "reason": "the only filed share count is the non-traded Class C; the traded Class A exchangeable share tracks Brookfield Corporation's price, so no per-share base can be priced against it"
+ }
+}

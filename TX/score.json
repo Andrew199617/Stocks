@@ -4,6 +4,7 @@
  "sector": "Materials / Steel & iron ore mining",
  "price": 57.1,
  "market_cap_b": 11.21,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 0.43322808888448694,
  "base_year": "2025",
@@ -76,7 +77,7 @@
  "model_fit": "modeled",
  "alert_eligible": false,
  "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert; tier exists only because of a judgment override",
  "moat_for": [
   "Regional leadership: leading flat-steel producer in Mexico and Argentina and, via Usiminas (consolidated July 2023), Brazil \u2014 scale, integrated iron-ore mining and plants close to manufacturing customers give logistics and availability advantages importers cannot match at distance",
   "Value-added differentiation: galvanized, painted and automotive/industrial products plus a service-center network and the ProPymes SME program embed Ternium in customer supply chains beyond plain hot-rolled coil",
@@ -111,6 +112,9 @@
   "weighted_irr_without_override": 0.0314,
   "weighted_irr_with_override": 0.0314,
   "weighted_irr_impact_pp": 0.0,
-  "unblocks_tier": true
- }
+  "unblocks_tier": true,
+  "impact_carried_from_prior_score": true,
+  "counterfactual_engine_release": "5.4.0"
+ },
+ "net_debt_to_normalized_oe_ads_basis": 10.4389
 }

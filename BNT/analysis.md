@@ -105,3 +105,47 @@ A main-agent decision on paired exchangeable structures — e.g. add BNT to the
 SHARE_BASIS_SPEC_DRAFT family as a sixth case (different-claims basis, not different
 scale), score it on a total-capital basis outside the per-share engine, or exclude it.
 Until then any tier printed for BNT would be a fabricated comparison, so none is.
+
+## Engine 5.5 re-score (2026-10-19)
+
+This is a dated addendum. The 2026-10-18 text above stays as written; where this section disagrees with it, this section is current. BNT is still blocked, so make_score was not run and there is no score.json or key_numbers.md. Every figure below comes from the final run's dcf_numbers.json and financials_history.csv: `dcf_engine.py BNT`, engine release 5.5.0, as_of 2026-10-19, default inputs, **exit 4**.
+
+| | Pre-5.5 (2026-10-18, engine 5.4.0, preliminary run) | Engine 5.5.0 (2026-10-19) |
+|---|---|---|
+| Base OE/share | none (blocked) | none (blocked) |
+| Weighted IRR | none (blocked) | none (blocked) |
+| Tier (numbers / final) | none (blocked) | none (blocked) |
+| Engine exit / data_gap | 4 / sbc, shares | 4 / sbc, shares, share_class |
+
+Both runs still print the mechanical median `base_oe_per_share` $21.37 (consolidated OE ÷ the Class C weighted count). That number was never a base and is not one now: `tier_by_numbers`, `implied_irr_weighted` and `implied_irr_base` are null.
+
+### What this run declared (judgment.json, new file)
+- **`share_class_mismatch` {value: true, source, reason}.** This is ruling 2 §5, the flag route (WORKER_SPEC step 8, Engine 5.5). The source cites the FY2025 Form 20-F (filed 2026-03-26): Note 25 Earnings Per Share presents EPS for the Class C shares only, and Note 23 Share Capital shows 59,934,825 Class A exchangeable shares outstanding against 272,687,160 Class C shares, all held by Brookfield. The reason: the only filed share count is the non-traded Class C, while the traded Class A exchangeable share tracks Brookfield Corporation's price. So no per-share base can be priced against the traded share. These are the facts documented in "The blocker" above.
+- **`ads_ratio` {ratio: 1.0, source, reason}.** Source: the FY2025 Form 20-F cover and Item 9. The registered securities are the Class A exchangeable shares themselves, listed directly on NYSE and TSX, with no depositary or ADS facility. This is the declaration "Resolved for the re-run" above proposed.
+- No moat, probabilities or field overrides were declared, because no tier can be emitted. The engine used its default moat of 5.0 only to fill the record's mechanics.
+
+### What engine 5.5 changed for this filer
+- **Share basis: the declared class mismatch (ruling 2 §5).** The engine read the declaration (`share_class_mismatch.declared` true in dcf_numbers.json). It added the gap key `share_class` to `data_gap` and `data_gap_uncovered` and printed `DATA_GAP:shares — SHARE_CLASS_MISMATCH … NEEDS_MAIN_AGENT — no tier emitted`. No `shares_override`, `base_override` or pin covers this gap.
+- **Share-scale guard (ruling 2 §1–3): no defect, and it could not catch this case.** `share_scale.defect` is false, with tests (a) and (b) both false. The $21.37 mechanical median is below 20× the $36.54 price. The only cover-page count on file is 15,311,749, dated 2023-12-31. That is more than 18 months before the FY2025 year end, so it is not a usable dei count (`share_scale.dei_count` null) and test (b) has nothing to compare. BNT's counts are not mis-scaled; they belong to another class. No scale test can see that, which is why the declaration route exists.
+- **Split basis: nothing rescaled.** `share_basis.split` and `share_basis.divergence` are null. One in-history split fact is recorded: 2025-10-09, ratio 1.5. That is the three-for-two split of the Class A/B shares named under BASIS_BREAK_SUSPECT above; the Class C shares were not split. It is dated before the FY2025 year end, so the engine rescales no count. It should not: the counts it would scale are Class C. `SHARE_BASIS_ADJUSTED` and `SHARE_BASIS_DIVERGENCE` are not raised.
+- **Market cap (ruling 1).** The formula is now price × shares ÷ ads_ratio (`market_cap_basis`: diluted_latest, ratio 1.0), and a ratio of 1.0 is the identity. `market_cap_est` is unchanged at $8,186.1M = 224,030,265 × $36.54. It is still the Class C count times the Class A price, the mix-up described above. It is not a traded cap, and with no score.json it sets no scope.
+- **Capex (rulings 3–5): the last 3 FY are unchanged.** BNT files no PP&E roll-up, so the additive-component branch reads its one line, `PaymentsToAcquireProductiveAssets` (`capex_source` components): FY2023 $135M, FY2024 $40M, FY2025 $69M, the same as 5.4. The IFRS intangible tag `PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities` is filed only for history years:
+  - FY2021: $1M is added (capex $1M → $2M; `capex_tag` `PaymentsToAcquireProductiveAssets+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities`).
+  - FY2020: $1M is not added, because that year has no PP&E leg (`intangibles_not_added: no_ppe_leg`).
+
+  OE for FY2023–25 is unchanged at $1,372M / $4,529M / $2,545M.
+- **SBC (ruling 6): no change.** No SBC tag is filed in either taxonomy, and `sbc_provenance` is empty, so nothing was reconciled. `DATA_GAP:sbc` stands for FY2023–25.
+- **USD-override branch (ruling 7): not engaged.** BNT reports in USD (`fx_conversion` null), declares no field override, and `overrides_applied` is empty.
+
+### Flags: every new or changed 5.5 flag, by name
+- **DATA_GAP:shares — SHARE_CLASS_MISMATCH (new): resolved by blocking, which is the intended outcome.** The filed count is the Class C weighted basic count (224,030,265 for FY2025). The traded security is the Class A exchangeable share, priced as a Brookfield pass-through. Block reason: `NEEDS_MAIN_AGENT: shares — SHARE_CLASS_MISMATCH: FY2025 Form 20-F (filed 2026-03-26), Note 25 Earnings Per Share and Note 23 Share Capital`.
+- **ADS_RATIO_APPLIED (replaces 5.4's ADS_RATIO_MISSING): resolved.** The ratio is 1.0 per the 20-F cover and Item 9, so the per-share figures and the cap pass through unchanged. The ads_ratio ground for a make_score refusal is gone. The share-class and SBC grounds remain.
+- **Checked and not raised:** SHARE_SCALE_SUSPECT and DATA_GAP:shares — SHARE_SCALE; SHARE_BASIS_ADJUSTED; SHARE_BASIS_DIVERGENCE; CAPEX_COVERAGE_LOW (FY2023 capex of $135M is above half of that year's $50M D&A, so the three-year test fails); SBC_TAG_RECONCILED; OVERRIDE_SUPERSEDED_BY_FILED_TAG; OVERRIDE_APPLIED.
+- **Carried from 5.4, with the resolutions above unchanged:**
+  - DATA_GAP:sbc: a separate blocker. There is no filed figure and no anchor for an estimate.
+  - DATA_GAP:shares (diluted count missing): the `shares_override` route the flag text suggests stays closed, because it would only return the Class C basic count.
+  - STALE_FY; DILUTION (93.5%/yr, which is Brookfield's Class C contributions); BASIS_BREAK_SUSPECT; OE_VOLATILE; NI_OCF_DIVERGENCE; SHARES_FALLBACK; DEBT_TAGS_BLANK.
+  - SECTOR_MODEL_MISMATCH (Finance): any eventual score has confidence low and the one-notch misfit sizing.
+
+### Why there is no tier
+`data_gap` is sbc, shares and share_class, all three uncovered, and the engine exits 4. make_score was not run, so there is no score.json. That means no tier and no alert: neither alert gate exists without a score. BNT stays **NEEDS_MAIN_AGENT: shares — SHARE_CLASS_MISMATCH** (FY2025 Form 20-F Note 25 / Note 23). It is also blocked separately by **DATA_GAP:sbc**, which would still block a score even after a main-agent decision on the share class. queue.py was not run in this pass. The unblock route is the one in "What would unblock" above: a main-agent decision on paired exchangeable structures (a total-capital basis outside the per-share engine, or exclusion), plus a filed SBC figure or a decision on SBC.

@@ -4,6 +4,7 @@
  "sector": "Healthcare / Dialysis services & products",
  "price": 22.17,
  "market_cap_b": 12.91,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 3.2327627791524502,
  "base_year": "2025",
@@ -58,7 +59,7 @@
  "tier_by_numbers": "B",
  "tier_final": "B",
  "confidence": "low",
- "one_liner": "World's largest dialysis provider, moat 5/10 \u2014 clears 15% on the conservative override base ($3.23/ADS): weighted IRR 18.1%, IV@15 $27.88 vs $22.17, but the band runs C (bear 14.7%) to A (bull 22.0%) with net debt 7.1x OE, so size it to the bear end; clears 15% only below $27.88.",
+ "one_liner": "World's largest dialysis provider, moat 5/10 \u2014 clears 15% on the conservative override base ($3.23/ADS): weighted IRR 18.1%, IV@15 $27.88 vs $22.17, but the band runs C (bear 14.7%) to A (bull 22.0%) with net debt 3.55x normalized OE on the ADS basis, so size it to the bear end; clears 15% only below $27.88.",
  "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
  "engine_release": "5.4.0",
@@ -75,7 +76,7 @@
  "model_fit": "modeled",
  "alert_eligible": false,
  "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert; tier exists only because of a judgment override",
  "moat_for": [
   "World's largest dialysis provider: about 3,513 clinics treating about 290,000 patients (20-F FY2025, Item 4.B) \u2014 clinic density and purchasing scale no challenger can replicate quickly",
   "Vertically integrated: Care Enablement makes the machines/dialyzers (incl. the 5008X, first FDA-cleared high-volume hemodiafiltration system in the U.S.) that Care Delivery clinics consume",
@@ -116,6 +117,9 @@
   "weighted_irr_without_override": 0.2626,
   "weighted_irr_with_override": 0.1814,
   "weighted_irr_impact_pp": -8.114,
-  "unblocks_tier": true
- }
+  "unblocks_tier": true,
+  "impact_carried_from_prior_score": true,
+  "counterfactual_engine_release": "5.4.0"
+ },
+ "net_debt_to_normalized_oe_ads_basis": 3.5504
 }

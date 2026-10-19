@@ -3,61 +3,245 @@
  "name": "Snap-on Inc",
  "cik": 91440,
  "engine_version": 5,
- "as_of": "2026-10-16",
- "price": 370.65,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 367.25,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 53000000,
- "market_cap_est": 19644450000.0,
- "net_debt_latest": -438100000,
+ "shares_outstanding_dei_latest": 51727124,
+ "shares_outstanding_dei_asof": "2026-07-17",
+ "market_cap_est": 19464250000.0,
+ "net_debt_latest": -421900000,
+ "net_debt_basis": "LongTermDebtNoncurrent+NotesPayableCurrent",
+ "lease_liabilities_latest": 89300000,
  "latest_period_end": "2026-01-03",
  "rev_cagr_5y": 0.05697515312954238,
  "rev_cagr_3y": 0.017589222685993722,
  "oe_positive_years_of_last_5": "5/5",
- "base_oe_total_latest_fy": 976800000.0,
- "base_oe_per_share": 20.467854833545076,
+ "base_oe_total_latest_fy": 976800000,
+ "base_oe_per_share": 20.459288600656127,
  "base_oe_latest_per_share": 18.430188679245283,
- "base_oe_normalized_per_share": 19.17439703153989,
+ "base_oe_normalized_per_share": 18.821892393320965,
  "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": 0.05697515312954238,
   "rev_cagr_3y": 0.017589222685993722,
   "rev_yoy_latest": 0.006776979647682646,
-  "oe_ps_cagr_2y": -0.019479538059076207
+  "oe_ps_cagr_2y": -0.010396534950032121
  },
- "g_blend": 0.012183101166838184,
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.06438846642458751,
+  "rev_cagr_3y": 0.025002535981038854,
+  "rev_yoy_latest": 0.014190292942727778,
+  "oe_ps_cagr_2y": -0.010396534950032121
+ },
+ "g_blend": 0.019596414461883316,
  "share_cagr": -0.007413313295045132,
  "share_count_adj": 0.007413313295045132,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
  "used_tags": {
   "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
   "net_income": "NetIncomeLoss",
   "operating_income": "OperatingIncomeLoss",
   "ocf": "NetCashProvidedByUsedInOperatingActivities",
-  "capex": null,
+  "capex": "PaymentsForCapitalImprovements",
   "da": "DepreciationDepletionAndAmortization",
   "sbc": "ShareBasedCompensation",
   "tax": "IncomeTaxExpenseBenefit",
   "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
   "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "restricted_cash": null,
   "assets_current": "AssetsCurrent",
   "liab_current": "LiabilitiesCurrent",
   "debt_current": "DebtCurrent",
+  "debt_cur_ltd": "LongTermDebtCurrent",
+  "debt_cur_st": "CommercialPaper",
   "debt_lt": "LongTermDebtNoncurrent",
+  "debt_total": "LongTermDebt",
+  "lease_liab_current": "OperatingLeaseLiabilityCurrent",
+  "lease_liab_lt": "OperatingLeaseLiabilityNoncurrent",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
   "ppe_net": "PropertyPlantAndEquipmentNet",
   "equity": "StockholdersEquity",
-  "shares_out_inst": null
+  "shares_out_inst": null,
+  "capex_components": "PaymentsForCapitalImprovements"
  },
  "filer_annual_form": "10-K",
  "ads_ratio": null,
  "fx_conversion": null,
- "override_checks": {
-  "capex": {
-   "value": 76000000.0,
-   "last_filed_value": null,
-   "last_filed_unit": null,
-   "out_of_band": true,
-   "ack_reason_present": true
+ "payable_base": null,
+ "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 53000000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": null,
+  "formula": "price \u00d7 shares"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": 51727124,
+  "dei_date": "2026-07-17",
+  "dei_ratio": 1.0246075153917313,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 74300000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2019-02-14"
+   }
+  },
+  "2017-12-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 82000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2020-02-13"
+   }
+  },
+  "2018-12-29": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 90900000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2021-02-11"
+   }
+  },
+  "2019-12-28": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 99400000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2022-02-11"
+   }
+  },
+  "2021-01-02": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 65600000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2023-02-09"
+   }
+  },
+  "2022-01-01": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 70100000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2024-02-16"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 84200000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2025-02-13"
+   }
+  },
+  "2023-12-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 95000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2026-02-12"
+   }
+  },
+  "2024-12-28": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 83500000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2026-02-12"
+   }
+  },
+  "2026-01-03": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsForCapitalImprovements": 76000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsForCapitalImprovements": "2026-02-12"
+   }
   }
  },
+ "sbc_provenance": {},
  "g_base": 0.019596414461883316,
  "moat_score": 7.0,
  "cap_years": 11.1,
@@ -86,115 +270,307 @@
    1.25
   ],
   "g_terminal": 0.025,
-  "base_oe_ps_arg": 20.467854833545076,
+  "base_oe_ps_arg": 20.459288600656127,
   "base_pin_source": "ttm_json"
  },
- "data_gap": [
-  "capex"
- ],
+ "data_gap": [],
  "data_gap_uncovered": [],
- "overrides_applied": [
-  {
-   "field": "capex",
-   "value": 76000000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended January 3, 2026 (filed 2026-02-12, accession 0000091440-26-000045), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $76.0M for FY2025, with $83.5M for FY2024 and $95.0M for FY2023 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values",
-   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (engine labels the Jan-2026 year 2026) in EDGAR companyfacts under every candidate tag the engine reads, because Snap-on reports capex only under PaymentsForCapitalImprovements. The engine applies this single FY2025 filing value to every missing period; against the same statement's true per-year values it understates FY2023 capex by $19.0M (true $95.0M) and FY2024 by $7.5M (true $83.5M), raising those years' OE by ~1.9% / ~0.7% \u2014 disclosed, not hidden; the binding base is the TTM base (STALE_FY), where the same value sits only $1.7M below the true filed-leg TTM capex of $77.7M (FY2025 $76.0M \u2212 H1 2025 $42.6M + H1 2026 $44.3M, 10-Qs under the same tag), ~0.2% of TTM OE.",
-   "periods_filled": [
-    "2016-12-31",
-    "2017-12-30",
-    "2018-12-29",
-    "2019-12-28",
-    "2021-01-02",
-    "2022-01-01",
-    "2022-12-31",
-    "2023-12-30",
-    "2024-12-28",
-    "2026-01-03"
-   ],
-   "out_of_band": true,
-   "last_filed_value": null
-  }
- ],
+ "overrides_applied": [],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
    "g_start": -0.1,
    "oe_mult": 0.75,
-   "iv_at_10": 107.05628624049494,
-   "iv_at_12": 88.01798945511464,
-   "iv_at_15": 70.39801522313141,
-   "irr": 0.04351302289385944
+   "iv_at_10": 107.0114809061001,
+   "iv_at_12": 87.98115205313866,
+   "iv_at_15": 70.36855215539786,
+   "iv_at_20": 53.69683382763175,
+   "iv_at_25": 43.893754340796924,
+   "irr": 0.04368817053777388,
+   "irr_at_floor": false
   },
   "bear": {
    "prob": 0.25,
    "g_start": -0.0304,
    "oe_mult": 0.9,
-   "iv_at_10": 186.72841423243233,
-   "iv_at_12": 149.95451985272996,
-   "iv_at_15": 116.48817935901246,
-   "irr": 0.06128837001608427
+   "iv_at_10": 186.6502644167185,
+   "iv_at_12": 149.8917606945155,
+   "iv_at_15": 116.4394265765976,
+   "iv_at_20": 85.61643345964619,
+   "iv_at_25": 68.08787335188204,
+   "irr": 0.06162363969598875,
+   "irr_at_floor": false
   },
   "base": {
    "prob": 0.3,
    "g_start": 0.0196,
    "oe_mult": 1.0,
-   "iv_at_10": 271.6958548545118,
-   "iv_at_12": 214.83923491505578,
-   "iv_at_15": 163.61672376193596,
-   "irr": 0.07987739008926725
+   "iv_at_10": 271.58214435643686,
+   "iv_at_12": 214.74932012257096,
+   "iv_at_15": 163.5482466805969,
+   "iv_at_20": 117.14628560089979,
+   "iv_at_25": 91.31168609951322,
+   "irr": 0.08036484513936604,
+   "irr_at_floor": false
   },
   "bull": {
    "prob": 0.25,
    "g_start": 0.0696,
    "oe_mult": 1.1,
-   "iv_at_10": 391.1740256052477,
-   "iv_at_12": 304.958233586249,
-   "iv_at_15": 227.96294745015683,
-   "irr": 0.10394792789790086
+   "iv_at_10": 391.01031094972126,
+   "iv_at_12": 304.83060207471317,
+   "iv_at_15": 227.867540104649,
+   "iv_at_20": 159.12657025430394,
+   "iv_at_25": 121.57735110542083,
+   "irr": 0.10461121158580186,
+   "irr_at_floor": false
   },
   "super_bull": {
    "prob": 0.1,
    "g_start": 0.1396,
    "oe_mult": 1.25,
-   "iv_at_10": 646.2006564422975,
-   "iv_at_12": 494.9382229843991,
-   "iv_at_15": 361.2513290405433,
-   "irr": 0.1472539848989648
+   "iv_at_10": 645.9302077137379,
+   "iv_at_12": 494.73108080373544,
+   "iv_at_15": 361.10013767040846,
+   "iv_at_20": 243.82198377763484,
+   "iv_at_25": 181.24769965192866,
+   "irr": 0.14818802842554313,
+   "irr_at_floor": false
   }
  },
  "weighted": {
-  "iv_at_10": 301.3100606840528,
-  "iv_at_12": 236.47558007821286,
-  "iv_at_15": 178.36273325724056,
-  "irr": 0.0862457449323214
+  "iv_at_10": 301.1839560105248,
+  "iv_at_12": 236.3766100147659,
+  "iv_at_15": 178.28808465707135,
+  "iv_at_20": 126.08151836928413,
+  "iv_at_25": 97.32395734345225,
+  "irr": 0.08677564776369506,
+  "irr_at_floor": false
  },
- "implied_irr_weighted": 0.0862457449323214,
- "implied_irr_base": 0.07987739008926725,
+ "paths": {
+  "super_bear": [
+   13.81002,
+   12.429018,
+   11.326082,
+   10.448566,
+   9.756702,
+   9.220523,
+   8.817644,
+   8.531666,
+   8.351041,
+   8.268283,
+   8.279456,
+   8.383882,
+   8.584037,
+   8.798638,
+   9.018604
+  ],
+  "bear": [
+   17.853528,
+   17.310716,
+   16.870812,
+   16.526294,
+   16.271299,
+   16.101454,
+   16.013749,
+   16.006451,
+   16.07905,
+   16.232234,
+   16.467898,
+   16.789179,
+   17.200529,
+   17.630542,
+   18.071305
+  ],
+  "base": [
+   20.860217,
+   21.269003,
+   21.696153,
+   22.142444,
+   22.608693,
+   23.095767,
+   23.604578,
+   24.136088,
+   24.691317,
+   25.271338,
+   25.877287,
+   26.510362,
+   27.17183,
+   27.851126,
+   28.547404
+  ],
+  "bull": [
+   24.0715,
+   25.74679,
+   27.435232,
+   29.124172,
+   30.800074,
+   32.448668,
+   34.055135,
+   35.604311,
+   37.080912,
+   38.469773,
+   39.756093,
+   40.925696,
+   41.965281,
+   43.014413,
+   44.089773
+  ],
+  "super_bull": [
+   29.144165,
+   33.212586,
+   37.506057,
+   41.967343,
+   46.526021,
+   51.099548,
+   55.595102,
+   59.912196,
+   63.945988,
+   67.591191,
+   70.746375,
+   73.318459,
+   75.227114,
+   77.107792,
+   79.035487
+  ],
+  "weighted": [
+   21.034741,
+   21.709238,
+   22.468571,
+   23.29694,
+   24.178724,
+   25.098268,
+   26.039869,
+   26.987903,
+   27.927089,
+   28.842851,
+   29.721767,
+   30.552061,
+   31.324117,
+   32.107219,
+   32.9099
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.1,
+   -0.1,
+   -0.088739,
+   -0.077477,
+   -0.066216,
+   -0.054955,
+   -0.043694,
+   -0.032432,
+   -0.021171,
+   -0.00991,
+   0.001351,
+   0.012613,
+   0.023874,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   -0.030404,
+   -0.030404,
+   -0.025412,
+   -0.020421,
+   -0.01543,
+   -0.010438,
+   -0.005447,
+   -0.000456,
+   0.004536,
+   0.009527,
+   0.014518,
+   0.01951,
+   0.024501,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.019596,
+   0.019596,
+   0.020083,
+   0.02057,
+   0.021057,
+   0.021544,
+   0.02203,
+   0.022517,
+   0.023004,
+   0.023491,
+   0.023978,
+   0.024465,
+   0.024951,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.069596,
+   0.069596,
+   0.065579,
+   0.061561,
+   0.057543,
+   0.053526,
+   0.049508,
+   0.04549,
+   0.041473,
+   0.037455,
+   0.033437,
+   0.029419,
+   0.025402,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.139596,
+   0.139596,
+   0.129272,
+   0.118948,
+   0.108624,
+   0.0983,
+   0.087976,
+   0.077652,
+   0.067328,
+   0.057004,
+   0.04668,
+   0.036356,
+   0.026032,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.08677564776369506,
+ "implied_irr_base": 0.08036484513936604,
+ "irr_bear": 0.06162363969598875,
+ "irr_bull": 0.10461121158580186,
+ "irr_low": 0.04368817053777388,
+ "irr_high": 0.14818802842554313,
  "tier_by_numbers": "D",
- "upside_at_15": -0.5187839383320099,
- "upside_at_12": -0.36199762558151116,
- "iv_at_15": 178.36273325724056,
- "iv_at_12": 236.47558007821286,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 178.28808465707135,
+  "20": 126.08151836928413,
+  "25": 97.32395734345225
+ },
+ "upside_at_15": -0.5145321044055239,
+ "upside_at_12": -0.35636049008913306,
+ "iv_at_15": 178.28808465707135,
+ "iv_at_12": 236.3766100147659,
+ "iv_at_20": 126.08151836928413,
+ "iv_at_25": 97.32395734345225,
  "diagnostics": {
-  "oe_yield": 0.05522151580613807,
+  "oe_yield": 0.05570943117945848,
   "tv_share_at_15": 0.18601608045396767,
-  "scenario_spread_iv15": 5.131555597065231,
-  "net_debt_to_normalized_oe": -0.4038546199918187,
-  "months_since_fy_end": 9.395532194480946,
-  "irr_capped": false
+  "scenario_spread_iv15": 5.13155559706523,
+  "net_debt_to_normalized_oe": -0.3890837806665124,
+  "months_since_fy_end": 9.494086727989487,
+  "irr_capped": false,
+  "irr_at_floor": false
  },
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
-  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended January 3, 2026 (filed 2026-02-12, accession 0000091440-26-000045), Consolidated Statements of Cash Flows, investing activities line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $76.0M for FY2025, with $83.5M for FY2024 and $95.0M for FY2023 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
-  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.2%) vs bull-case tier C (10.5%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
- "override_impact": {
-  "base_oe_per_share_zero_fill": 20.584415584415584,
-  "base_oe_per_share_final": 20.467854833545076,
-  "weighted_irr_zero_fill": 0.08658730123926162,
-  "weighted_irr_final": 0.0862457449323214,
-  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base is excluded from both sides \u2014 its override effect shows in ttm.py output"
- },
- "content_hash": "dbb50f8c3135afbcd736221bce00eceaf00a238b7aa65035fd6f4d84aa90f7d6"
+ "content_hash": "3a34e71bd7ac2a1a099da20444939b88f8729dbeabd83f046e5d1f6adbfcd5a1"
 }

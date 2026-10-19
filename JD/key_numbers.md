@@ -14,7 +14,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $0.62 · normalized (3-yr median) OE/share: $4.43
 - Latest FY OE total: $922.0M
 - Shares diluted (latest): 2,978,037,127
-- Market cap (est): $79.216B · net debt (latest): $-13.250B
+- Market cap (est): $39.608B (ADS-corrected by make_score: price × shares ÷ ratio; the pre-5.5 engine printed $79.216B) · net debt (latest): $-13.250B
+- Scope: in scope (market cap under $40B) — corrected by make_score from the ADS-corrected market cap (the pre-5.5 engine's cap said out of scope)
 - OE-positive years (last 5): 5/5
 
 ## Growth & moat
@@ -36,7 +37,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 16.66%
 - TV share @15%: 18.7%
 - Scenario spread (IV@15 super-bull / super-bear): 4.50x
-- Net debt / normalized OE: -1.00x
+- Net debt / normalized OE: -2.01x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 2 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed -1.00x — BIG_NET_CASH (< -2x) would fire on the ADS basis; the engine's flag list predates the fix)
 - Months since FY end: 9.4
 
 ## Fragility flags

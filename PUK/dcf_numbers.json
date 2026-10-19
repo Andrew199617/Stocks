@@ -3,30 +3,42 @@
  "name": "PRUDENTIAL PLC",
  "cik": 1116578,
  "engine_version": 5,
- "as_of": "2026-10-14",
- "price": 23.81,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 23.84,
  "price_source": "nasdaq_quote_api",
  "shares_diluted_latest": 2592000000,
- "market_cap_est": 61715520000.0,
+ "shares_outstanding_dei_latest": 2548213779,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 30896640000.0,
  "net_debt_latest": null,
+ "net_debt_basis": null,
+ "lease_liabilities_latest": null,
  "latest_period_end": "2025-12-31",
  "rev_cagr_5y": -0.12565062554973816,
  "rev_cagr_3y": 0.08543825640262281,
  "oe_positive_years_of_last_5": "5/5",
- "base_oe_total_latest_fy": 2346000000,
- "base_oe_per_share": 1.8101851851851851,
- "base_oe_latest_per_share": 1.8101851851851851,
- "base_oe_normalized_per_share": 1.8101851851851851,
+ "base_oe_total_latest_fy": 2261000000.0,
+ "base_oe_per_share": 1.7445987654320987,
+ "base_oe_latest_per_share": 1.7445987654320987,
+ "base_oe_normalized_per_share": 1.7445987654320987,
  "base_source": "median_of_last_3_fy_oe_per_share",
  "growth_components": {
   "rev_cagr_5y": -0.12565062554973816,
   "rev_cagr_3y": 0.08543825640262281,
   "rev_yoy_latest": 0.069925512104283,
-  "oe_ps_cagr_2y": 0.7755874262132088
+  "oe_ps_cagr_2y": 0.845450125798124
  },
- "g_blend": 0.0776818842534529,
+ "growth_components_adjusted": {
+  "rev_cagr_5y": -0.10779368831709868,
+  "rev_cagr_3y": 0.1032951936352623,
+  "rev_yoy_latest": 0.08778244933692247,
+  "oe_ps_cagr_2y": 0.845450125798124
+ },
+ "g_blend": 0.09553882148609238,
  "share_cagr": -0.01785693723263948,
  "share_count_adj": 0.01785693723263948,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
  "used_tags": {
   "revenue": "Revenue",
   "net_income": "ProfitLoss",
@@ -38,19 +50,28 @@
   "tax": "IncomeTaxExpenseContinuingOperations",
   "shares_diluted": "AdjustedWeightedAverageShares",
   "cash": "CashAndCashEquivalents",
+  "restricted_cash": null,
   "assets_current": null,
   "liab_current": null,
   "debt_current": null,
+  "debt_cur_ltd": null,
+  "debt_cur_st": null,
   "debt_lt": null,
+  "debt_total": "Borrowings",
+  "lease_liab_current": null,
+  "lease_liab_lt": null,
+  "assets": "Assets",
+  "liabilities": "Liabilities",
   "ppe_net": "PropertyPlantAndEquipment",
   "equity": "Equity",
-  "shares_out_inst": null
+  "shares_out_inst": null,
+  "capex_components": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
  },
  "filer_annual_form": "20-F",
  "ads_ratio": {
   "ratio": 2.0,
-  "source": "Prudential plc Form 20-F cover / registered security title for the NYSE listing: American Depositary Shares, each representing two ordinary shares of 5 pence each (EDGAR security title 'PRUDENTIAL PLC ADS (REP 2 ORD SHARES)'); the same 1 ADS = 2 ordinary shares ratio is stated in the filer's Form S-8/F-6 registrations",
-  "reason": "20-F filer: EDGAR per-share figures are per ordinary share while the Nasdaq/NYSE price ($23.81) is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. This also halves the engine's naive market-cap estimate (ordinary shares x ADS price)."
+  "source": "Prudential plc Form 20-F for the fiscal year ended 31 December 2025 (accession 0001628280-26-021178, filed 2026-03-26), cover page: Title of 12(b) Security 'American Depositary Shares, each representing 2 Ordinary Shares, 5 pence par value each', trading symbol PUK, New York Stock Exchange (the ordinary shares themselves are registered separately as PUK/D, not traded as the priced security). Earlier citation (2026-10-14 worker): Prudential plc Form 20-F cover / registered security title for the NYSE listing: American Depositary Shares, each representing two ordinary shares of 5 pence each (EDGAR security title 'PRUDENTIAL PLC ADS (REP 2 ORD SHARES)'); the same 1 ADS = 2 ordinary shares ratio is stated in the filer's Form S-8/F-6 registrations",
+  "reason": "20-F filer: EDGAR per-share figures are per ordinary share while the NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. This also halves the engine's naive market-cap estimate (ordinary shares x ADS price). Ratio stated in the filer's own FY2025 Form 20-F cover page (accession 0001628280-26-021178): each ADS represents 2 ordinary shares."
  },
  "fx_conversion": {
   "from_currency": "GBP",
@@ -66,6 +87,8 @@
    "sbc",
    "tax",
    "cash",
+   "assets",
+   "liabilities",
    "ppe_net",
    "equity"
   ],
@@ -85,43 +108,557 @@
     "2018-12-31": 1.28
    }
   },
-  "overrides_converted": [
-   "sbc"
-  ]
+  "overrides_usd_verbatim": {
+   "sbc": "declared_usd"
+  }
  },
+ "payable_base": null,
  "override_checks": {
   "sbc": {
    "value": 85000000.0,
    "last_filed_value": 181000000,
    "last_filed_unit": "USD",
    "out_of_band": false,
-   "ack_reason_present": false
+   "ack_reason_present": false,
+   "currency_basis": "declared_usd"
   }
  },
- "tier_by_numbers": null,
- "implied_irr_weighted": null,
- "implied_irr_base": null,
+ "market_cap_basis": {
+  "shares_used": 2592000000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 2.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": 2548213779,
+  "dei_date": "2025-12-31",
+  "dei_ratio": 1.017183103458919,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 348000000
+   },
+   "ppe_unit": "GBP",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2019-03-22"
+   }
+  },
+  "2017-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 98000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2020-03-20"
+   }
+  },
+  "2018-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 134000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2021-03-15"
+   }
+  },
+  "2019-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 59000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-17"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 57000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2023-03-23"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 36000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2024-03-26"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 34000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-03-26"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 44000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-26"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 101000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-26"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 104000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-26"
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "g_base": 0.09553882148609238,
  "moat_score": 5.0,
  "cap_years": 8.5,
  "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
  "data_gap": [
   "sbc"
  ],
- "data_gap_uncovered": [
-  "sbc"
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "sbc",
+   "value": 85000000.0,
+   "kind": "filing",
+   "source": "Prudential plc Annual Report 2024 (financial statements incorporated in Form 20-F for FY2024), note B2.2(d) 'Sharebased payment expense charged to the income statement': total expense recognised in 2024 relating to sharebased compensation is $85 million (2023: $81 million), of which $76 million equity-settled. Prudential reports in US dollars.",
+   "reason": "DATA_GAP:sbc - SBC missing for FY2020-25 under every ifrs-full tag the engine reads (ExpenseFromSharebasedPaymentTransactionsWithEmployees was last filed for FY2019, $181M USD). The filer's own stated FY2024 expense fills the gap in principle; the engine applies a single value to every missing period and FY2023's value in the same note ($81M) is the same magnitude (~2-3% of OCF). NOTE (2026-10-14 worker): the engine did NOT apply this override - _override_usd requires a GBP ECB rate for each fill period because stray GBP facts through 2018 created fx_info, and rates_by_currency[GBP] covers only 2014-2018, so fills for 2020-25 return None and the gap stands. Engine/main-agent fix needed; see queue block reason. ENGINE 5.5 RE-SCORE (2026-10-19): the 2026-10-14 note above is superseded. Ruling 7: currency \"USD\" is added (the note is presented in US$ millions), and engine 5.5 uses the value verbatim (override_checks.sbc.currency_basis declared_usd) for every missing year, FY2020-25, so DATA_GAP:sbc is covered. The value is carried through unchanged at $85M (WORKER_SPEC step 8: an override already in judgment.json is a main-agent decision). For the record, the FY2025 Form 20-F (accession 0001628280-26-021178, filed 2026-03-26), note B2.2(d), states $95M for 2025 (2024: $85M; 2023: $81M); whether to restate the single value to $95M is left to Andrew. Correction to the text above: SBC is not ~2-3% of OCF in every year; $85M is about 10% of FY2023 OCF ($832M), 2.4% of FY2024 ($3,609M) and 3.5% of FY2025 ($2,450M).",
+   "periods_filled": [
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 181000000
+  }
  ],
- "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0245,
+   "oe_mult": 0.75,
+   "iv_at_10": 14.191554594152379,
+   "iv_at_12": 11.32299860230283,
+   "iv_at_15": 8.726373915984666,
+   "iv_at_20": 6.353813066333082,
+   "iv_at_25": 5.018145010615712,
+   "irr": 0.06880662211789704,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": 0.0455,
+   "oe_mult": 0.9,
+   "iv_at_10": 23.597682526138712,
+   "iv_at_12": 18.55327821928261,
+   "iv_at_15": 14.02322168174445,
+   "iv_at_20": 9.939950817002126,
+   "iv_at_25": 7.683012079402264,
+   "irr": 0.09924970836887403,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0955,
+   "oe_mult": 1.0,
+   "iv_at_10": 32.96021282598183,
+   "iv_at_12": 25.67295955021268,
+   "iv_at_15": 19.160553500136402,
+   "iv_at_20": 13.339623912822056,
+   "iv_at_25": 10.159140346997594,
+   "irr": 0.12685938234930244,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.1455,
+   "oe_mult": 1.1,
+   "iv_at_10": 45.40478236625516,
+   "iv_at_12": 35.06714093163221,
+   "iv_at_15": 25.86852162716945,
+   "iv_at_20": 17.708090107814147,
+   "iv_at_25": 13.295498612931837,
+   "irr": 0.15946255584216174,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.2155,
+   "oe_mult": 1.25,
+   "iv_at_10": 70.230893180226,
+   "iv_at_12": 53.67109471656518,
+   "iv_at_15": 39.01346386269013,
+   "iv_at_20": 26.129578081347823,
+   "iv_at_25": 19.25238342840438,
+   "irr": 0.21378927077386278,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 35.58092484833085,
+  "iv_at_12": 27.60640198467931,
+  "iv_at_15": 20.495085655136876,
+  "iv_at_20": 14.162236519818777,
+  "iv_at_25": 10.719422621084812,
+  "irr": 0.13379029053493718,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   1.276443,
+   1.24522,
+   1.222006,
+   1.206336,
+   1.197886,
+   1.196466,
+   1.20201,
+   1.214575,
+   1.234338,
+   1.261605,
+   1.293145,
+   1.325473,
+   1.35861,
+   1.392576,
+   1.42739
+  ],
+  "bear": [
+   1.641641,
+   1.7164,
+   1.790415,
+   1.863296,
+   1.934641,
+   2.004044,
+   2.071093,
+   2.135382,
+   2.196506,
+   2.254072,
+   2.310424,
+   2.368185,
+   2.427389,
+   2.488074,
+   2.550276
+  ],
+  "base": [
+   1.911276,
+   2.093877,
+   2.276547,
+   2.456261,
+   2.629778,
+   2.793729,
+   2.944717,
+   3.079428,
+   3.194747,
+   3.287871,
+   3.370068,
+   3.45432,
+   3.540678,
+   3.629195,
+   3.719925
+  ],
+  "bull": [
+   2.198356,
+   2.518302,
+   2.849101,
+   3.182949,
+   3.510779,
+   3.822588,
+   4.107882,
+   4.356214,
+   4.557783,
+   4.704044,
+   4.821645,
+   4.942187,
+   5.065741,
+   5.192385,
+   5.322194
+  ],
+  "super_bull": [
+   2.650784,
+   3.222131,
+   3.844397,
+   4.50066,
+   5.168062,
+   5.818584,
+   6.420558,
+   6.940885,
+   7.347791,
+   7.613841,
+   7.804187,
+   7.999292,
+   8.199274,
+   8.404256,
+   8.614362
+  ],
+  "weighted": [
+   1.926105,
+   2.133574,
+   2.349483,
+   2.569139,
+   2.786883,
+   2.996282,
+   3.190416,
+   3.362273,
+   3.505209,
+   3.613435,
+   3.703771,
+   3.796365,
+   3.891274,
+   3.988556,
+   4.08827
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.024461,
+   -0.024461,
+   -0.018642,
+   -0.012823,
+   -0.007004,
+   -0.001185,
+   0.004634,
+   0.010453,
+   0.016272,
+   0.022091,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   0.045539,
+   0.045539,
+   0.043122,
+   0.040706,
+   0.03829,
+   0.035873,
+   0.033457,
+   0.031041,
+   0.028624,
+   0.026208,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.095539,
+   0.095539,
+   0.08724,
+   0.078941,
+   0.070643,
+   0.062344,
+   0.054045,
+   0.045747,
+   0.037448,
+   0.029149,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.145539,
+   0.145539,
+   0.131358,
+   0.117177,
+   0.102996,
+   0.088815,
+   0.074634,
+   0.060453,
+   0.046272,
+   0.032091,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.215539,
+   0.215539,
+   0.193122,
+   0.170706,
+   0.14829,
+   0.125873,
+   0.103457,
+   0.081041,
+   0.058624,
+   0.036208,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.13379029053493718,
+ "implied_irr_base": 0.12685938234930244,
+ "irr_bear": 0.09924970836887403,
+ "irr_bull": 0.15946255584216174,
+ "irr_low": 0.06880662211789704,
+ "irr_high": 0.21378927077386278,
+ "tier_by_numbers": "C",
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "hurdle_prices": {
+  "15": 20.495085655136876,
+  "20": 14.162236519818777,
+  "25": 10.719422621084812
+ },
+ "upside_at_15": -0.14030680976774845,
+ "upside_at_12": 0.15798666043117904,
+ "iv_at_15": 20.495085655136876,
+ "iv_at_12": 27.60640198467931,
+ "iv_at_20": 14.162236519818777,
+ "iv_at_25": 10.719422621084812,
+ "diagnostics": {
+  "oe_yield": 0.07317947841577595,
+  "tv_share_at_15": 0.2010185334492698,
+  "scenario_spread_iv15": 4.47075317174143,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.592641261498029,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
  "fragility_flags": [
-  "DATA_GAP:sbc \u2014 sbc missing for fiscal year(s) 2023, 2024, 2025 of the last 3 \u2014 no tier emitted",
-  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
   "FX_CONVERTED: reporting currency GBP converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
   "USD_TRANSLATIONS_USED: the issuer files its own USD convenience translations alongside its reporting currency; the engine used the filed USD figures",
-  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Prudential plc Form 20-F cover / registered security title for the NYSE listing: American Depositary Shares, each representing two ordinary shares of 5 pence each (EDGAR security title 'PRUDENTIAL PLC ADS (REP 2 ORD SHARES)'); the same 1 ADS = 2 ordinary shares ratio is stated in the filer's Form S-8/F-6 registrations) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
-  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low"
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x2.0 ordinary shares per ADS (Prudential plc Form 20-F for the fiscal year ended 31 December 2025 (accession 0001628280-26-021178, filed 2026-03-26), cover page: Title of 12(b) Security 'American Depositary Shares, each representing 2 Ordinary Shares, 5 pence par value each', trading symbol PUK, New York Stock Exchange (the ordinary shares themselves are registered separately as PUK/D, not traded as the priced security). Earlier citation (2026-10-14 worker): Prudential plc Form 20-F cover / registered security title for the NYSE listing: American Depositary Shares, each representing two ordinary shares of 5 pence each (EDGAR security title 'PRUDENTIAL PLC ADS (REP 2 ORD SHARES)'); the same 1 ADS = 2 ordinary shares ratio is stated in the filer's Form S-8/F-6 registrations) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CAPEX_COVERAGE_LOW: capex is below 50% of D&A in each of the last 3 fiscal years (FY2023 8%, FY2024 19%, FY2025 18%) at a filer with positive PP&E \u2014 reconcile total capex against the cash-flow statement's investing section (construction in progress, capitalised software, land-use rights, spectrum, intangible purchases) before trusting the owner's-earnings base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Prudential plc Annual Report 2024 (financial statements incorporated in Form 20-F for FY2024), note B2.2(d) 'Sharebased payment expense charged to the income statement': total expense recognised in 2024 relating to sharebased compensation is $85 million (2023: $81 million), of which $76 million equity-settled. Prudential reports in US dollars.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (9.9%) vs bull-case tier B (15.9%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
- "note": "DATA_GAP: required filing data is missing (see data_gap / data_gap_uncovered). v5 never emits a tier on an uncovered data gap \u2014 a missing value is not a zero.",
- "content_hash": "bb37cd84a702751bf385291a5afedcec801c7ab838c5f4575d9386346a764789"
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 1.8101851851851851,
+  "base_oe_per_share_final": 1.7445987654320987,
+  "weighted_irr_zero_fill": 0.1375504128931957,
+  "weighted_irr_final": 0.13379029053493718,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides \u2014 its override effect shows in ttm.py output / make_score's payable_5y impact"
+ },
+ "content_hash": "bab682882ccfcf0ef48e1f413eb202628c418c7dde48624c1c15a988274fb34d"
 }

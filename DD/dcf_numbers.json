@@ -3,14 +3,14 @@
  "name": "DUPONT DE NEMOURS, INC.",
  "cik": 1666700,
  "engine_version": 5,
- "engine_release": "5.4.0",
- "as_of": "2026-10-16",
- "price": 132.7,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 130.0,
  "price_source": "nasdaq_quote_api",
- "shares_diluted_latest": 419200000,
+ "shares_diluted_latest": 139733333.3333333,
  "shares_outstanding_dei_latest": 135042975,
  "shares_outstanding_dei_asof": "2026-07-31",
- "market_cap_est": 55627839999.99999,
+ "market_cap_est": 18165333333.333332,
  "net_debt_latest": 2479000000,
  "net_debt_basis": "LongTermDebtAndCapitalLeaseObligations+DebtCurrent",
  "lease_liabilities_latest": 217000000,
@@ -20,8 +20,8 @@
  "oe_positive_years_of_last_5": "4/5",
  "base_oe_total_latest_fy": 189000000,
  "base_oe_per_share": 4.803206997084548,
- "base_oe_latest_per_share": 0.4508587786259542,
- "base_oe_normalized_per_share": 1.0114503816793894,
+ "base_oe_latest_per_share": 1.3525763358778629,
+ "base_oe_normalized_per_share": 3.034351145038168,
  "base_source": "ttm_json",
  "growth_components": {
   "rev_cagr_5y": -0.09252172269374692,
@@ -64,12 +64,265 @@
   "liabilities": "Liabilities",
   "ppe_net": "PropertyPlantAndEquipmentNet",
   "equity": "StockholdersEquity",
-  "shares_out_inst": "CommonStockSharesOutstanding"
+  "shares_out_inst": "CommonStockSharesOutstanding",
+  "capex_components": "PaymentsToAcquireProductiveAssets+PaymentsToExploreAndDevelopOilAndGasProperties"
  },
  "filer_annual_form": "10-K",
  "ads_ratio": null,
  "fx_conversion": null,
+ "payable_base": null,
  "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 139733333.3333333,
+  "shares_source": "diluted_latest_split_adjusted",
+  "ads_ratio": null,
+  "formula": "price \u00d7 shares"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false
+  },
+  "reasons": [],
+  "dei_count": 135042975,
+  "dei_date": "2026-07-31",
+  "dei_ratio": 1.034732338600607,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null
+ },
+ "share_basis": {
+  "split": {
+   "event_date": "2026-06-30",
+   "ratio_filed": 0.333,
+   "ratio_used": 0.3333333333333333,
+   "matched": "ratio",
+   "dei_count": 135042975,
+   "dei_date": "2026-07-31",
+   "dei_to_shares": 0.3221445014312977,
+   "periods_adjusted": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "confirmed_against_period": "2025-12-31",
+   "periods_override_not_rescaled": []
+  },
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 113000000,
+    "PaymentsToAcquireProductiveAssets": 3804000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2019-02-11",
+    "PaymentsToAcquireProductiveAssets": "2019-02-11"
+   }
+  },
+  "2017-12-31": {
+   "ppe_source": "components_mixed_filings",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 121000000,
+    "PaymentsToAcquireProductiveAssets": 551000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2019-02-11",
+    "PaymentsToAcquireProductiveAssets": "2020-02-14"
+   }
+  },
+  "2018-12-31": {
+   "ppe_source": "components_mixed_filings",
+   "ppe": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": 114000000,
+    "PaymentsToAcquireProductiveAssets": 1244000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToExploreAndDevelopOilAndGasProperties": "2019-02-11",
+    "PaymentsToAcquireProductiveAssets": "2020-02-14"
+   }
+  },
+  "2019-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 2472000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2022-02-11"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 1194000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2023-02-15"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 788000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2024-02-15"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 662000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2025-02-14"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 302000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2026-02-17"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 285000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2026-02-17"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 333000000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2026-02-17"
+   }
+  }
+ },
+ "sbc_provenance": {
+  "2022-12-31": {
+   "share": [
+    75000000,
+    "USD"
+   ],
+   "allocated": [
+    75000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2023-12-31": {
+   "share": [
+    57000000,
+    "USD"
+   ],
+   "allocated": [
+    57000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2024-12-31": {
+   "share": [
+    56000000,
+    "USD"
+   ],
+   "allocated": [
+    56000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2025-12-31": {
+   "share": [
+    38000000,
+    "USD"
+   ],
+   "allocated": [
+    38000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  }
+ },
  "g_base": -0.05,
  "moat_score": 5.0,
  "cap_years": 8.5,
@@ -86,7 +339,7 @@
   "offsets": [
    0.0,
    0.05,
-   0.1,
+   0.09,
    0.14,
    0.19
   ],
@@ -114,7 +367,7 @@
    "iv_at_15": 21.585167785572274,
    "iv_at_20": 15.878486914730761,
    "iv_at_25": 12.64191000320426,
-   "irr": 0.04346716536032723,
+   "irr": 0.0438597471755143,
    "irr_at_floor": false
   },
   "bear": {
@@ -126,19 +379,19 @@
    "iv_at_15": 31.937078589986143,
    "iv_at_20": 23.03170254921441,
    "iv_at_25": 18.051908927163083,
-   "irr": 0.05430061668674438,
+   "irr": 0.05491563594920812,
    "irr_at_floor": false
   },
   "base": {
    "prob": 0.3,
-   "g_start": 0.05,
+   "g_start": 0.04,
    "oe_mult": 1.0,
-   "iv_at_10": 73.6872595444798,
-   "iv_at_12": 57.88484097472488,
-   "iv_at_15": 43.700222526858,
-   "iv_at_20": 30.92470129915599,
-   "iv_at_25": 23.87092786945592,
-   "irr": 0.0670376838340313,
+   "iv_at_10": 70.36531461130352,
+   "iv_at_12": 55.38406552387887,
+   "iv_at_15": 41.9225869157007,
+   "iv_at_20": 29.776706215010314,
+   "iv_at_25": 23.054238945725995,
+   "irr": 0.06583535674672278,
    "irr_at_floor": false
   },
   "bull": {
@@ -150,7 +403,7 @@
    "iv_at_15": 56.71878166921718,
    "iv_at_20": 39.56433405870261,
    "iv_at_25": 30.179917016613363,
-   "irr": 0.08074169801869521,
+   "irr": 0.08185448017055841,
    "irr_at_floor": false
   },
   "super_bull": {
@@ -162,17 +415,17 @@
    "iv_at_15": 79.1250312806239,
    "iv_at_20": 54.26295506365165,
    "iv_at_25": 40.80446064619076,
-   "irr": 0.1030643263141229,
+   "irr": 0.10455727569339557,
    "irr_at_floor": false
   }
  },
  "weighted": {
-  "iv_at_10": 71.5364803693428,
-  "iv_at_12": 56.15151198369003,
-  "iv_at_15": 42.34928588133405,
-  "iv_at_20": 29.92963980689129,
-  "iv_at_25": 23.080571156577424,
-  "irr": 0.0658898036251695,
+  "iv_at_10": 70.53989688938992,
+  "iv_at_12": 55.40127934843622,
+  "iv_at_15": 41.815995197986865,
+  "iv_at_20": 29.585241281647587,
+  "iv_at_25": 22.835564479458444,
+  "irr": 0.0661088258479452,
   "irr_at_floor": false
  },
  "paths": {
@@ -211,21 +464,21 @@
    5.432488
   ],
   "base": [
-   5.043367,
-   5.295536,
-   5.544737,
-   5.789358,
-   6.027743,
-   6.258216,
-   6.479094,
-   6.688712,
-   6.885439,
-   7.0677,
-   7.244393,
-   7.425503,
-   7.61114,
-   7.801419,
-   7.996454
+   4.995335,
+   5.195149,
+   5.393787,
+   5.590501,
+   5.784525,
+   5.975074,
+   6.161355,
+   6.342572,
+   6.517925,
+   6.686624,
+   6.85379,
+   7.025135,
+   7.200763,
+   7.380782,
+   7.565302
   ],
   "bull": [
    5.759045,
@@ -262,21 +515,21 @@
    16.180282
   ],
   "weighted": [
-   4.871533,
-   5.095087,
-   5.329808,
-   5.571124,
-   5.814234,
-   6.054208,
-   6.28614,
-   6.505331,
-   6.707495,
-   6.888978,
-   7.061203,
-   7.237733,
-   7.418676,
-   7.604143,
-   7.794247
+   4.857123,
+   5.064971,
+   5.284522,
+   5.511467,
+   5.741269,
+   5.969265,
+   6.190818,
+   6.401488,
+   6.597241,
+   6.774655,
+   6.944022,
+   7.117622,
+   7.295563,
+   7.477952,
+   7.664901
   ]
  },
  "growth_paths": {
@@ -315,16 +568,16 @@
    0.025
   ],
   "base": [
-   0.05,
-   0.05,
-   0.047059,
-   0.044118,
-   0.041176,
+   0.04,
+   0.04,
    0.038235,
-   0.035294,
-   0.032353,
+   0.036471,
+   0.034706,
+   0.032941,
+   0.031176,
    0.029412,
-   0.026471,
+   0.027647,
+   0.025882,
    0.025,
    0.025,
    0.025,
@@ -366,41 +619,43 @@
    0.025
   ]
  },
- "implied_irr_weighted": 0.0658898036251695,
- "implied_irr_base": 0.0670376838340313,
- "irr_bear": 0.05430061668674438,
- "irr_bull": 0.08074169801869521,
- "irr_low": 0.04346716536032723,
- "irr_high": 0.1030643263141229,
+ "implied_irr_weighted": 0.0661088258479452,
+ "implied_irr_base": 0.06583535674672278,
+ "irr_bear": 0.05491563594920812,
+ "irr_bull": 0.08185448017055841,
+ "irr_low": 0.0438597471755143,
+ "irr_high": 0.10455727569339557,
  "tier_by_numbers": "D",
  "tier_bear": "D",
  "tier_bull": "D",
  "hurdle_prices": {
-  "15": 42.34928588133405,
-  "20": 29.92963980689129,
-  "25": 23.080571156577424
+  "15": 41.815995197986865,
+  "20": 29.585241281647587,
+  "25": 22.835564479458444
  },
- "upside_at_15": -0.6808644620848978,
- "upside_at_12": -0.5768537152698565,
- "iv_at_15": 42.34928588133405,
- "iv_at_12": 56.15151198369003,
- "iv_at_20": 29.92963980689129,
- "iv_at_25": 23.080571156577424,
+ "upside_at_15": -0.6783384984770241,
+ "upside_at_12": -0.5738363127043368,
+ "iv_at_15": 41.815995197986865,
+ "iv_at_12": 55.40127934843622,
+ "iv_at_20": 29.585241281647587,
+ "iv_at_25": 22.835564479458444,
  "diagnostics": {
-  "oe_yield": 0.03619598339928069,
-  "tv_share_at_15": 0.185470265498296,
+  "oe_yield": 0.0369477461314196,
+  "tv_share_at_15": 0.1847184794031761,
   "scenario_spread_iv15": 3.665713051974134,
-  "net_debt_to_normalized_oe": 1.2311867970207,
-  "months_since_fy_end": 9.494086727989487,
+  "net_debt_to_normalized_oe": 3.6935603910621007,
+  "months_since_fy_end": 9.592641261498029,
   "irr_capped": false,
   "irr_at_floor": false
  },
  "fragility_flags": [
-  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "BUYBACK_TAILWIND: share count shrinking 5.7%/yr \u2014 already credited via the growth adjustment",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "BASE_DIVERGENCE: latest FY OE/share 0.45 vs 3-yr median 1.01 \u2014 one of them is distorted; find out which and why"
+  "SHARE_BASIS_ADJUSTED: 1-for-3 split (filed ratio 0.333, effective 2026-06-30) post-dates the filings behind FY2016, FY2017, FY2018, FY2019, FY2020, FY2021, FY2022, FY2023, FY2024, FY2025; their share counts were multiplied by 0.333333 so the history and the current price share one basis (dei 135,042,975 on 2026-07-31 confirms)",
+  "BASE_DIVERGENCE: latest FY OE/share 1.35 vs 3-yr median 3.03 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
  ],
- "content_hash": "c382ec9f237590c597a3975eaf4a7b45fabbda2c8f360f1afb0e1690af38d443"
+ "content_hash": "5d5b0482076e07e1bdd95d5ef60b3b3970b769db88813f45d3ab9a3b2fb302d0"
 }

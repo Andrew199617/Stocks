@@ -14,7 +14,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $3.92 · normalized (3-yr median) OE/share: $4.01
 - Latest FY OE total: $1.982B
 - Shares diluted (latest): 1,011,823,958
-- Market cap (est): $58.858B · net debt (latest): $-266.9M
+- Market cap (est): $29.429B (ADS-corrected by make_score: price × shares ÷ ratio; the pre-5.5 engine printed $58.858B) · net debt (latest): $-266.9M
+- Scope: in scope (market cap under $40B) — corrected by make_score from the ADS-corrected market cap (the pre-5.5 engine's cap said out of scope)
 - OE-positive years (last 5): 4/5
 
 ## Growth & moat
@@ -36,7 +37,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 6.89%
 - TV share @15%: 18.8%
 - Scenario spread (IV@15 super-bull / super-bear): 4.84x
-- Net debt / normalized OE: -0.07x
+- Net debt / normalized OE: -0.13x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 2 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed -0.07x)
 - Months since FY end: 9.4
 
 ## Fragility flags
@@ -56,5 +57,5 @@ Filing gaps found and covered by judgment overrides: sbc
 | sbc | $0.00 | filing | Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Statements of Cash Flows (p. F-7): the adjustments reconciling income to operating cash flow for 2025, 2024 and 2023 are enumerated in full (depreciation and amortization, bargain purchase gain, income tax accruals less payments, equity in earnings, interest accruals, the Usiminas litigation provision, changes in provisions, CTA reclassification, changes in working capital, others/FX) with no share-based payment addback in any year; the term 'share-based' appears nowhere in the 20-F. Compensation disclosure (Item 6) states directors and the CEO receive cash compensation only with no long-term incentive or pension plan, and the only long-term program (Note II.P.3, employee retention and long-term incentive program) grants units valued on shareholders' equity that are mandatorily redeemed for cash seven years after grant — an 'other long-term benefit' liability, not an equity award. | 2016-12-31, 2017-12-31, 2018-12-31, 2019-12-31, 2020-12-31, 2021-12-31, 2022-12-31, 2023-12-31, 2024-12-31, 2025-12-31 |
 - sbc reason: DATA_GAP:sbc — SBC missing for fiscal years 2023, 2024, 2025 under every tag the engine reads (ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees have no facts in this filer's companyfacts for any year 2016-2025). Tenaris has no equity-settled share-based payment expense to subtract: it files no IFRS 2 expense, its cash-flow statement shows no such addback, and its sole long-term incentive is cash-settled (units redeemed for cash, expensed through income and provisions and therefore already inside operating cash flow — subtracting it again as SBC would double-count it). The filing-sourced figure for equity SBC in the gap years is $0.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $4.01 (no override) → $4.01 (with override), +0.00% · weighted IRR 10.47% → 10.47% (+0.00pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $4.01 (no override) → $4.01 (with override), +0.00% · weighted IRR 10.47% → 10.47% (+0.00pp) — carried from the prior score.json, not re-measured (engine output release pre-5.4 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

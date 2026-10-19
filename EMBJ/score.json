@@ -4,6 +4,7 @@
  "sector": "Industrials / Aerospace & Defense",
  "price": 72.34,
  "market_cap_b": 13.25,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 3.6230344986798753,
  "base_year": "2025",
@@ -73,7 +74,7 @@
  "model_fit": "modeled",
  "alert_eligible": false,
  "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert; tier exists only because of a judgment override",
  "moat_for": [
   "Only in-production scope-compliant 76-seat regional jet (E175) \u2014 dominant in US regional fleets with no direct in-production rival in that class",
   "Diversified portfolio across Commercial, Executive, Defense & Security and Services & Support smoothing any single cycle; firm backlog a record $34.5B in Q2 2026 (+16% YoY)",
@@ -104,6 +105,8 @@
   "weighted_irr_without_override": 0.1265,
   "weighted_irr_with_override": 0.1258,
   "weighted_irr_impact_pp": -0.072,
-  "unblocks_tier": true
+  "unblocks_tier": true,
+  "impact_carried_from_prior_score": true,
+  "counterfactual_engine_release": "5.4.0"
  }
 }

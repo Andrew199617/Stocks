@@ -1,11 +1,11 @@
 {
  "ads_ratio": {
   "ratio": 2.0,
-  "reason": "EDGAR diluted share counts are in ordinary shares while the NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. Note the engine's market_cap_est still multiplies the ordinary share count by the ADS price, so make_score's computed scope follows that overstated engine figure.",
+  "reason": "EDGAR diluted share counts are in ordinary shares while the NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price. The market cap halves on the same basis (price x shares / 2). The pre-5.5 engine's market_cap_est multiplied the ordinary share count by the ADS price; make_score 5.5 corrected the cap and the $40B scope on 2026-10-19 (score.json market_cap_basis ads_corrected_by_make_score), and an engine 5.5 run divides by the ratio itself.",
   "source": "Tenaris Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31, accession 0001554855-26-000490), Consolidated Income Statements footnote to earnings per ADS: 'Each ADS equals two shares' (basic and diluted EPS $1.83 per share vs $3.66 per ADS for FY2025); the same ratio is stated in Item 7 share-ownership footnotes ('each ADS represents 2 shares') and on the 20-F cover, where American Depositary Shares are the NYSE-registered class."
  },
  "confidence": "medium",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
  "moat_against": [
   "Demand is a derivative of E&P capex and rig counts: revenue went $5.1B (2020) to $14.9B (2023) to $12.0B (2025) \u2014 Tenaris is a price-taker on the cycle, not on its own products only",
   "Customers are majors and NOCs with concentrated bargaining power; work is re-won program by program with no long-term lock-in",

@@ -13,6 +13,9 @@ file" and "folder no longer qualifies" cases run on the copies.
    and weighted, hurdle prices 15/20/25, has{} flags match the files present.
 2. Attachment: top-N records are trimmed (no judgment / ttm / prices.daily_1y /
    numbers.used_tags), the full index is carried, the JSON is script-safe.
+   Engine 5.5's numbers.capex_provenance / sbc_provenance / share_basis are
+   dropped from the attachment copy like used_tags (trim_record), and kept
+   in the site record.
 3. Incremental: a second run skips every unchanged record; touching one
    folder file rebuilds only that record; removing score.json removes the
    record and lists it.
@@ -331,6 +334,23 @@ def test_attachment_trimmed():
         full = tb.record("APP")
         assert "judgment" in full and "ttm" in full and "daily_1y" in full["prices"]  # the site record is untrimmed
         assert "<title>" in doc and "<!doctype html>" in doc.lower()
+
+
+def test_trim_record_drops_engine_provenance():
+    """Engine 5.5 adds per-period provenance records to dcf_numbers.json; the
+    attachment copy drops them (with used_tags) so its size stays flat, and
+    leaves every other numbers key and the site record itself untouched."""
+    numbers = {"base_oe_per_share": 3.0, "market_cap_basis": {"shares_used": 1e9, "shares_source": "diluted_latest"},
+               "share_scale": {"defect": False}, "used_tags": {"capex": "PaymentsToAcquirePropertyPlantAndEquipment"},
+               "capex_provenance": {"2025-12-31": {"ppe_source": "rollup"}},
+               "sbc_provenance": {"2025-12-31": {"reconciled": False}},
+               "share_basis": {"split": None, "divergence": None, "unconfirmed_split_facts": []}}
+    rec = {"ticker": "TST", "numbers": numbers, "judgment": {}, "ttm": {}, "prices": {"daily_1y": [], "weekly": []}}
+    out = B.trim_record(rec)
+    assert set(out["numbers"]) == {"base_oe_per_share", "market_cap_basis", "share_scale"}, sorted(out["numbers"])
+    assert set(B.TRIM_NUMBERS_KEYS) == {"used_tags", "capex_provenance", "sbc_provenance", "share_basis"}
+    assert "judgment" not in out and "ttm" not in out and "daily_1y" not in out["prices"]
+    assert rec["numbers"] is numbers and len(numbers) == 7  # the site record is not modified
 
 
 def test_attachment_prerendered():

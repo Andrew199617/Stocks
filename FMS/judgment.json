@@ -27,7 +27,7 @@
  "moat_justification": "World's leading dialysis provider (about 3,513 clinics, about 290,000 patients, 20-F Item 4.B) with vertical integration into machines/dialyzers (Care Enablement) and unmatched clinic scale \u2014 but a reimbursement price-taker in a DaVita duopoly, with ROIC proxy down from 13.6% (2018) to 4.6% (2023/24) recovering to 7.2% (2025) and gross margin down from 33.9% to 25.6%, so the measured franchise earns around its cost of capital, not well above it.",
  "moat_score": 5,
  "name": "Fresenius Medical Care AG",
- "one_liner": "World's largest dialysis provider, moat 5/10 \u2014 clears 15% on the conservative override base ($3.23/ADS): weighted IRR 18.1%, IV@15 $27.88 vs $22.17, but the band runs C (bear 14.7%) to A (bull 22.0%) with net debt 7.1x OE, so size it to the bear end; clears 15% only below $27.88.",
+ "one_liner": "World's largest dialysis provider, moat 5/10 \u2014 clears 15% on the conservative override base ($3.23/ADS): weighted IRR 18.1%, IV@15 $27.88 vs $22.17, but the band runs C (bear 14.7%) to A (bull 22.0%) with net debt 3.55x normalized OE on the ADS basis, so size it to the bear end; clears 15% only below $27.88.",
  "probs_used": [
   0.15,
   0.25,

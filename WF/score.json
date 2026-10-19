@@ -3,7 +3,8 @@
  "name": "Woori Financial Group Inc.",
  "sector": "Finance",
  "price": 70.07,
- "market_cap_b": 52.03,
+ "market_cap_b": 17.34,
+ "market_cap_basis": "ads_corrected_by_make_score",
  "engine_version": 5,
  "base_oe_per_share": 4.463944349416761,
  "base_year": "2024",
@@ -58,7 +59,22 @@
  "confidence": "low",
  "one_liner": "Weak-moat (3/10) Korean big-four bank holding company; the OCF-based OE model fits banks poorly (sector mismatch) and even the normalized per-ADS base of $4.46 produces only an 8.9% weighted IRR at $70.07 \u2014 Tier D. It would clear the 15% hurdle only at or below the weighted IV@15 of $35.82, roughly half the current ADS price.",
  "analysis_date": "2026-10-16",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
+ "engine_release": null,
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 742537556,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert; sector model misfit",
  "moat_for": [
   "Licensed major-bank franchise: regulatory barriers and systemic importance in Korean banking",
   "Large domestic deposit base and nationwide branch/digital network via Woori Bank",
@@ -71,5 +87,6 @@
   "Net interest margin pressure and policy caps on household lending limit the core spread business",
   "KRW/USD exposure for ADS holders: won weakness directly cuts USD-translated earnings",
   "Structurally low bank ROE economics; growth ceiling set by a mature domestic market"
- ]
+ ],
+ "in_scope_corrected_by_make_score": true
 }

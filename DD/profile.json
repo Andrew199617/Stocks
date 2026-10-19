@@ -1,0 +1,300 @@
+{
+ "ticker": "DD",
+ "cik": 1666700,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:07:53-04:00",
+ "newest_filing_date": "2026-09-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001666700.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000013/dd-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/DD/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/DD/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DuPont de Nemours, Inc.",
+  "cik": 1666700,
+  "description": {
+   "text": "Throughout this Annual Report on Form 10-K, except as otherwise noted by the context, the terms \"DuPont\" or \"Company\" used herein mean DuPont de Nemours, Inc. and its consolidated subsidiaries. DuPont is a leading provider of advanced solutions that improve everyday life across healthcare, water, construction and industrial markets. The Company is committed to helping customers advance their technology pipelines and provide solutions that address their unique challenges. From delivering clean water to enabling medical packaging solutions which enhance safety and performance, DuPont's innovations power the essential products and technologies people rely on every day. At December 31, 2025, the Company has subsidiaries in about 50 countries worldwide and manufacturing operations in about 20 countries. See Note 23 to the Consolidated Financial Statements for details on the location of the Company's sales and property.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001666700-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000013/dd-20251231.htm"
+  },
+  "description_short": "DuPont (NYSE: DD) is a global innovation leader, providing advanced solutions that help transform industries and improve everyday life across our key markets of healthcare, water, construction, and industrial.",
+  "industry": "Major Chemicals",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "2821",
+  "sic_description": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.dupont.com",
+  "headquarters": "Wilmington, Delaware",
+  "address": {
+   "street": "974 Centre Road Building 730",
+   "city": "Wilmington",
+   "state": "Delaware",
+   "zip": "19805",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "(302) 295-5783",
+  "employees": {
+   "count": 15000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company employed approximately 15,000 people worldwide, approximately 1,700 of which are dedicated to the Aramids Business.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000013/dd-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2016-03-01",
+  "first_sec_filing_form": "S-4",
+  "former_names": [
+   "DowDuPont Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001666700&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-09",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001666700-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000055/dd-20260909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001666700-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000053/dd-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001666700-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000049/dd-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-23",
+   "items": [
+    "3.03",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment",
+   "accession": "0001666700-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000046/dd-20260623.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-21",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001666700-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000034/dd-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001666700-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000031/dd-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001666700-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000029/dd-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001666700-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000025/dd-20260413.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-10",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-151204",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000119312526151204/d11932ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-18",
+   "period": "2026-03-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001666700-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000023/dd-20260318.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001666700-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000016/dd-20260316.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001666700-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000013/dd-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001666700-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000007/dd-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001666700-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670026000004/dd-20260120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-02",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001666700-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670025000063/dd-20251202.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-19",
+   "period": "2025-11-17",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-288137",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000119312525288137/d799149d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001666700-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670025000061/dd-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001666700-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670025000058/dd-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-01",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001666700-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000166670025000056/dd-20251101.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-01",
+   "items": [
+    "1.01",
+    "2.01",
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Officer/director change; Reg FD; Other events",
+   "accession": "0001193125-25-261601",
+   "url": "https://www.sec.gov/Archives/edgar/data/1666700/000119312525261601/d70409d8k.htm"
+  }
+ ],
+ "warnings": []
+}

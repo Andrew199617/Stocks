@@ -27,25 +27,25 @@
    "ttm": 1978740000
   },
   "capex": {
-   "fy": 5407000,
+   "fy": 944003000,
    "fy_period": [
     "2025-01-01",
     "2025-12-31"
    ],
-   "fy_tag": "PaymentsToAcquireOtherPropertyPlantAndEquipment",
-   "ytd_prior": 1580000,
+   "fy_tag": "PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty+PaymentsToAcquireOtherPropertyPlantAndEquipment",
+   "ytd_prior": 414554000,
    "ytd_prior_period": [
     "2025-01-01",
     "2025-06-30"
    ],
-   "ytd_prior_tag": "PaymentsToAcquireOtherPropertyPlantAndEquipment",
-   "ytd_current": 8894000,
+   "ytd_prior_tag": "PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty+PaymentsToAcquireOtherPropertyPlantAndEquipment",
+   "ytd_current": 508897000,
    "ytd_current_period": [
     "2026-01-01",
     "2026-06-30"
    ],
-   "ytd_current_tag": "PaymentsToAcquireOtherPropertyPlantAndEquipment",
-   "ttm": 12721000
+   "ytd_current_tag": "PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty+PaymentsToAcquireOtherPropertyPlantAndEquipment",
+   "ttm": 1038346000
   },
   "sbc": {
    "fy": 60812000,
@@ -91,11 +91,62 @@
   }
  },
  "ttm_ocf": 1978740000,
- "ttm_capex": 12721000,
+ "ttm_capex": 1038346000,
  "ttm_sbc": 54811000,
  "ttm_shares_diluted": 310931000,
- "ttm_oe_total": 1911208000,
- "ttm_oe_per_share": 6.146727087360218,
+ "ttm_oe_total": 885583000,
+ "ttm_oe_per_share": 2.848165670196925,
  "warnings": [],
- "overrides_used": []
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 944003000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToExploreAndDevelopOilAndGasProperties",
+    "PaymentsToAcquireOilAndGasProperty",
+    "PaymentsToAcquireOtherPropertyPlantAndEquipment"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty+PaymentsToAcquireOtherPropertyPlantAndEquipment"
+  },
+  "ytd_prior": {
+   "ppe": 414554000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToExploreAndDevelopOilAndGasProperties",
+    "PaymentsToAcquireOilAndGasProperty",
+    "PaymentsToAcquireOtherPropertyPlantAndEquipment"
+   ],
+   "ppe_source": "components_mixed_filings",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty+PaymentsToAcquireOtherPropertyPlantAndEquipment"
+  },
+  "ytd_current": {
+   "ppe": 508897000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToExploreAndDevelopOilAndGasProperties",
+    "PaymentsToAcquireOilAndGasProperty",
+    "PaymentsToAcquireOtherPropertyPlantAndEquipment"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToExploreAndDevelopOilAndGasProperties+PaymentsToAcquireOilAndGasProperty+PaymentsToAcquireOtherPropertyPlantAndEquipment"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
 }

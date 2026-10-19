@@ -1,0 +1,22 @@
+{
+ "ticker": "VIV",
+ "cik": 1066119,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0002070979-26-000018",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1066119/000207097926000018/viv-20251231_htm.xml"
+  }
+ ],
+ "currency": "BRL",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

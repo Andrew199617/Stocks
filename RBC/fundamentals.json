@@ -2,7 +2,7 @@
  "ticker": "RBC",
  "cik": 1324948,
  "entity": "RBC BEARINGS INCORPORATED",
- "as_of": "2026-10-16",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1673,18 +1673,19 @@
     "complete": true
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 498.52,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 498.52 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 31659245,
   "shares_as_of": "2026-07-24",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-31)",
   "shares_basis": "instant",
   "shares_diluted": 31714686,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
+  "ads_ratio": null,
+  "market_cap": 15782766817.4,
+  "market_cap_basis": "498.52 \u00d7 31,659,245 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-31), as of 2026-07-24)",
   "dividend_yield": null,
   "buyback_yield": null,
   "net_buyback_yield": null,
@@ -1705,7 +1706,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "498.52 \u00d7 31,659,245 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-31), as of 2026-07-24)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "net_buyback_yield": {
@@ -1723,7 +1724,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "498.52 \u00d7 31,659,245 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-31), as of 2026-07-24)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "shareholder_yield": {
@@ -1743,7 +1744,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "498.52 \u00d7 31,659,245 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-31), as of 2026-07-24)",
     "note": "dividends_paid / buybacks not filed for the window \u2014 null"
    },
    "dividend_yield": {
@@ -1751,7 +1752,7 @@
     "basis": null,
     "bound": null,
     "complete": false,
-    "denominator": null
+    "denominator": "price 498.52 (score.json price)"
    }
   },
   "yields_display": {
