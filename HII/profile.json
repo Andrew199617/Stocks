@@ -1,0 +1,280 @@
+{
+ "ticker": "HII",
+ "cik": 1501585,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T08:34:59-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001501585.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000006/hii-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HII/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HII/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HUNTINGTON INGALLS INDUSTRIES, INC.",
+  "cik": 1501585,
+  "description": {
+   "text": "Huntington Ingalls Industries, Inc. (\"HII\", the \"Company\", \"we\", \"us\", or \"our\") is a global, all-domain defense partner, building and delivering the world's most powerful, survivable naval ships and technologies that safeguard America’s seas, sky, land, space, and cyber. For more than a century, our Ingalls Shipbuilding segment (\"Ingalls\") in Mississippi and Newport News Shipbuilding segment (\"Newport News\") in Virginia have built more ships in more ship classes than any other U.S. naval shipbuilder, making us America's largest shipbuilder. Our Mission Technologies segment develops integrated technology solutions and products that enable today's connected, all-domain force. Headquartered in Newport News, Virginia, we employ over 44,000 people domestically and internationally. We conduct most of our business with the U.S. Government, primarily the Department of War (the \"Department\"). As prime contractor, principal subcontractor, team member, or partner, we participate in many high-priority U.S. defense programs. Ingalls includes our non-nuclear ship design, construction, repair, and maintenance businesses. Newport News includes all of our nuclear ship design, construction, overhaul, refueling, and repair and maintenance businesses.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "accession": "0001501585-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000006/hii-20251231.htm"
+  },
+  "description_short": "HII is America's largest shipbuilder, delivering the world's most powerful ships and all-domain mission technologies, including unmanned systems, to U.S. and allied defense customers. HII is the largest producer of unmanned underwater vehicles for the U.S. Navy and the world. With a more than 140-year history of advancing U.S. national security, HII builds and integrates defense capabilities extending from the core fleet to C6ISR, AI/ML, EW and synthetic training. Headquartered in Virginia, HII's workforce is 45,000 strong.",
+  "industry": "Marine Transportation",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3730",
+  "sic_description": "Ship & Boat Building & Repairing",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.huntingtoningalls.com",
+  "headquarters": "Newport News, Virginia",
+  "address": {
+   "street": "4101 Washington Avenue",
+   "city": "Newport News",
+   "state": "Virginia",
+   "zip": "23607",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-05"
+  },
+  "phone": "(757) 380-2000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2010-10-15",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "HUNTINGTON INGALLS INDUSTRIES, INC.",
+   "New Ships, Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001501585&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001501585-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000047/hii-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000045/hii-20260730.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001501585-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000029/hii-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000027/hii-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-29",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001501585-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000022/hii-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001501585-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000014/hii-20260320.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001501585-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000006/hii-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158526000004/hii-20260205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001501585-25-000112",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000112/hii-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-25-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000109/hii-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001501585-25-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000099/hii-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000097/hii-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001501585-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000092/hii-20250729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-05-05",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001501585-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000040/hii-20250505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001501585-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000037/hii-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000035/hii-20250501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-21",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001501585-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000023/hii-20250320.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-06",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001501585-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000006/hii-20241231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-06",
+   "period": "2025-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001501585-25-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000150158525000004/hii-20250206.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-11-18",
+   "period": "2024-11-18",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-24-260914",
+   "url": "https://www.sec.gov/Archives/edgar/data/1501585/000119312524260914/d838389d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-05"
+ ]
+}

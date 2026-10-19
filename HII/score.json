@@ -1,0 +1,88 @@
+{
+ "ticker": "HII",
+ "name": "Huntington Ingalls Industries, Inc.",
+ "sector": "Industrials / Aerospace & Defense \u2014 military shipbuilding",
+ "price": 270.0,
+ "market_cap_b": 10.61,
+ "engine_version": 5,
+ "base_oe_per_share": 16.140350877192983,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Sole U.S. designer/builder/refueler of nuclear-powered aircraft carriers and one of only two nuclear-submarine builders, with a $57.3B backlog \u2014 an effectively unbreachable franchise position. But the U.S. government is a monopsonist customer that caps margins by contract structure, and measured returns have compressed: fundamentals.json roic_proxy fell from 21\u201332% in FY2016\u2013FY2020 to 6.5\u201310.2% in FY2021\u2013FY2025, with operating margin at 4.6\u20136.8% over the same recent period. Durable franchise, contract-capped economics \u2014 6, not 7+.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (8.0%) vs bull-case tier C (13.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 72.08,
+   "irr": 0.0553
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 118.06,
+   "irr": 0.0796
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 163.88,
+   "irr": 0.1028
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 225.08,
+   "irr": 0.1311
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 348.39,
+   "irr": 0.1796
+  }
+ },
+ "iv_at_15": 163.99,
+ "iv_at_12": 220.0,
+ "implied_irr": 0.1033,
+ "implied_irr_base_case": 0.1028,
+ "upside_at_15_pct": -39.3,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Irreplaceable sole-source nuclear shipbuilder, moat 6/10, but contract-capped margins and violently lumpy cash conversion \u2014 at $270 it does not clear 15% (weighted IRR 10.33%, IV@15 $163.99); it would clear 15% only at or below ~$164.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0796,
+ "irr_bull": 0.1311,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 114.06,
+ "iv_at_25": 86.84,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1926000000,
+ "shares_diluted_latest": 39300000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Sole-source nuclear aircraft carrier design, build and refueling (Newport News); Truman RCOH awarded without competition",
+  "One of only two U.S. nuclear-submarine builders (Virginia/Columbia class with General Dynamics)",
+  "Absolute barriers: nuclear certification, dry docks, cleared skilled workforce, decades of Navy integration",
+  "$57.3B backlog at 2026-06-30; each carrier built creates a ~50-year sole-source refueling/overhaul tail"
+ ],
+ "moat_against": [
+  "Single-customer concentration: substantially all backlog is U.S. government orders",
+  "Government sets the economics: cost-plus / fixed-price-incentive contracts cap upside and leave overruns with HII",
+  "No commercial pricing power; labor shortages and throughput delays hit margins directly",
+  "ROIC proxy compressed to 6.5\u201310.2% (FY2021\u2013FY2025) from 21\u201332% (FY2016\u2013FY2020); operating margin 4.6\u20136.8% recently",
+  "Mission Technologies competes in contested defense-services markets"
+ ]
+}
