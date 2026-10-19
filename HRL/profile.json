@@ -1,0 +1,293 @@
+{
+ "ticker": "HRL",
+ "cik": 48465,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T04:04:29-04:00",
+ "newest_filing_date": "2026-09-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000048465.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000059/hrl-20251026.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HRL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HRL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HORMEL FOODS CORP /DE/",
+  "cik": 48465,
+  "description": {
+   "text": "Hormel Foods Corporation, a Delaware corporation, was founded by George A. Hormel in 1891 in Austin, Minnesota, as Geo. A. Hormel & Company. The Company originated as a processor of meat and food products and continues in this line of business today. The Company has expanded its product portfolio through organic growth and acquisitions to become a global branded food company with more than $12 billion in annual revenue. The Company is built on a foundation of innovation and integrity and a commitment to delivering high-quality, trusted food products across a diverse portfolio of brands and product solutions including Planters®, SPAM®, Jennie-O®, Skippy®, Applegate®, Wholly®, Hormel® Black Label®, Fontanini®, Bacon1®, Hormel® pepperoni, and more than 30 other beloved brands. The Company is a member of the S&P 500 Index and the S&P 500 Dividend Aristocrats. When used in this report, the terms \"we,\" \"our,\" \"us,\" and the \"Company\" mean Hormel Foods Corporation and its subsidiaries, collectively, unless the context otherwise requires or indicates.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-12-05",
+   "period": "2025-10-26",
+   "accession": "0000048465-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000059/hrl-20251026.htm"
+  },
+  "description_short": "Hormel Foods Corporation, based in Austin, Minnesota, is a global branded food company with over $12 billion in annual revenue. Its brands include PLANTERS, SKIPPY, SPAM, HORMEL NATURAL CHOICE, APPLEGATE, WHOLLY, HORMEL BLACK LABEL, COLUMBUS, JENNIE-O and more than 30 other beloved brands. The Company is a member of the S&P 500 Index and the S&P 500 Dividend Aristocrats, was named one of the best companies to work for by U.S. News & World Report and one of America's most responsible companies by Newsweek, was recognized by TIME magazine as one of the World's Best Companies and has received numerous other awards and accolades for its corporate responsibility and community service efforts.",
+  "industry": "Meat/Poultry/Fish",
+  "sector": "Consumer Staples",
+  "region": "North America",
+  "sic": "2011",
+  "sic_description": "Meat Packing Plants",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1025",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.hormelfoods.com",
+  "headquarters": "Austin, Minnesota",
+  "address": {
+   "street": "1 Hormel Place",
+   "city": "Austin",
+   "state": "Minnesota",
+   "zip": "55912-3680",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-12-05"
+  },
+  "phone": "(507) 437-5611",
+  "employees": {
+   "count": 20000,
+   "as_of": "2025-10-26",
+   "evidence": "As of October 26, 2025, the Company had approximately 20,000 active employees, with over 90 percent located within the U.S.",
+   "form": "10-K",
+   "filed": "2025-12-05",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000059/hrl-20251026.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-10",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "HORMEL GEO A & CO"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000048465&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-29",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001104659-26-112101",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000110465926112101/tm2626547d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-27",
+   "period": "2026-07-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000048465-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000055/hrl-20260726.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000048465-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000053/hrl-20260827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000048465-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000049/hrl-20260824.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000048465-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000047/hrl-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-09",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000048465-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000044/hrl-20260609.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-28",
+   "period": "2026-04-26",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000048465-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000026/hrl-20260426.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000048465-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000024/hrl-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-26",
+   "period": "2026-01-25",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000048465-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000020/hrl-20260125.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000048465-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000018/hrl-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000048465-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000013/hrl-20260217.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-13",
+   "period": "2025-10-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0000048465-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000010/hrl-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-01-27",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000048465-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000006/hrl-20260127.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-12-17",
+   "period": "2026-01-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000048465-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000074/hrl-20251216.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-12-05",
+   "period": "2025-10-26",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000048465-25-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000059/hrl-20251026.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000048465-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000056/hrl-20251204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Exit costs; Reg FD",
+   "accession": "0000048465-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000053/hrl-20251104.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-10-31",
+   "period": "2025-10-23",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0000048465-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000049/hrl-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0000048465-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000047/hrl-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-28",
+   "period": "2025-07-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000048465-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000044/hrl-20250727.htm"
+  }
+ ],
+ "warnings": []
+}

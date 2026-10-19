@@ -1,0 +1,320 @@
+{
+ "ticker": "HRL",
+ "cik": 48465,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000048465-25-000059",
+   "filed": "2025-12-05",
+   "period": "2025-10-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/48465/000004846525000059/hrl-20251026_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000048465-26-000026",
+   "filed": "2026-05-28",
+   "period": "2026-04-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000026/hrl-20260426_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000048465-26-000055",
+   "filed": "2026-08-27",
+   "period": "2026-07-26",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/48465/000004846526000055/hrl-20260726_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-10-29",
+    "2024-10-27",
+    "2025-10-26"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "hrl:RetailSegmentMember",
+     "label": "Retail Segment",
+     "values": [
+      145690000,
+      140103000,
+      142824000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5751,
+      0.5435,
+      0.5412
+     ],
+     "growth_yoy": [
+      null,
+      -0.0383,
+      0.0194
+     ]
+    },
+    {
+     "member": "hrl:FoodserviceSegmentMember",
+     "label": "Foodservice Segment",
+     "values": [
+      74370000,
+      78949000,
+      80193000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2936,
+      0.3063,
+      0.3039
+     ],
+     "growth_yoy": [
+      null,
+      0.0616,
+      0.0158
+     ]
+    },
+    {
+     "member": "hrl:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      15627000,
+      19151000,
+      17174000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0617,
+      0.0743,
+      0.0651
+     ],
+     "growth_yoy": [
+      null,
+      0.2255,
+      -0.1032
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      17623000,
+      19553000,
+      23710000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0696,
+      0.0759,
+      0.0898
+     ],
+     "growth_yoy": [
+      null,
+      0.1095,
+      0.2126
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     253311000,
+     257756000,
+     263901000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-04-27",
+    "2025-07-27",
+    "2025-10-26",
+    "2026-04-26",
+    "2026-07-26"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "hrl:RetailSegmentMember",
+     "label": "Retail Segment",
+     "values": [
+      34955000,
+      35098000,
+      36561000,
+      35501000,
+      33346000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5465,
+      0.5425,
+      0.527,
+      0.5158,
+      0.502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0156,
+      -0.0499
+     ]
+    },
+    {
+     "member": "hrl:FoodserviceSegmentMember",
+     "label": "Foodservice Segment",
+     "values": [
+      19527000,
+      19776000,
+      20938000,
+      21008000,
+      22134000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3053,
+      0.3057,
+      0.3018,
+      0.3052,
+      0.3332
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0758,
+      0.1192
+     ]
+    },
+    {
+     "member": "hrl:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      4194000,
+      4457000,
+      4191000,
+      4937000,
+      4623000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0656,
+      0.0689,
+      0.0604,
+      0.0717,
+      0.0696
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1772,
+      0.0372
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      5287000,
+      5361000,
+      7683000,
+      7379000,
+      6325000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0827,
+      0.0829,
+      0.1107,
+      0.1072,
+      0.0952
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3957,
+      0.1798
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     63963000,
+     64692000,
+     69374000,
+     68826000,
+     66427000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

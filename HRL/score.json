@@ -1,0 +1,84 @@
+{
+ "ticker": "HRL",
+ "name": "Hormel Foods Corporation",
+ "sector": "Consumer Defensive / Packaged Foods (meat & protein)",
+ "price": 20.2801,
+ "market_cap_b": 11.16,
+ "engine_version": 5,
+ "base_oe_per_share": 1.371144930640518,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat (5/10): genuine brands and foodservice relationships, but commodity-cost pass-through is incomplete, gross margin has eroded from ~20%+ (FY2016-19) to 15.6-17.4% over the last five fiscal years, and the ROIC proxy has fallen from 17-21% to 8-10% (5.1% in FY2025) \u2014 returns now sit near, not well above, the cost of capital, so no score above the moderate band is justified.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 12 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "TIER_BAND: bear-case tier D (6.8%) vs bull-case tier C (11.0%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.99,
+   "irr": 0.0514
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 7.47,
+   "irr": 0.0681
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 11.01,
+   "irr": 0.0927
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 13.72,
+   "irr": 0.1104
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 18.4,
+   "irr": 0.1391
+  }
+ },
+ "iv_at_15": 10.94,
+ "iv_at_12": 14.39,
+ "implied_irr": 0.0924,
+ "implied_irr_base_case": 0.0927,
+ "upside_at_15_pct": -46.0,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Durable branded-protein franchise, moat 5/10 with eroding margins and ROIC \u2014 does not clear 15% at $20.28 (weighted IRR 9.2%, IV@15% $10.94); it would clear 15% only near $10.94.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0681,
+ "irr_bull": 0.1104,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 7.82,
+ "iv_at_25": 6.09,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2186745000,
+ "shares_diluted_latest": 550496000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Durable branded portfolio with real shelf presence: SPAM, Skippy, Planters, Jennie-O, Applegate, Columbus, Hormel chili and pepperoni",
+  "Foodservice channel strength \u2014 12th consecutive quarter of organic net sales growth in Q3 FY2026, premium prepared proteins and branded pepperoni",
+  "Scale in value-added protein processing and long-standing retail/foodservice relationships; 60 consecutive years of dividend increases signals franchise durability",
+  "Pricing actions taken in FY2025-26 are sticking on an adjusted basis: FY2026 YTD adjusted operating margin +30bp, adjusted EPS +6% through Q3"
+ ],
+ "moat_against": [
+  "Commodity input costs (pork bellies, beef, turkey, nuts) cannot be fully or quickly passed through \u2014 FY2025 gross margin fell to 15.6% from 17.0%",
+  "ROIC proxy fell from 17-21% (FY2016-19) to 8-10% (FY2021-24) and 5.1% in impairment-hit FY2025 \u2014 returns no longer clear the cost of capital by a wide margin",
+  "Private label and cautious consumers: Retail volume fell ~9% in Q3 FY2026, organic net sales -2% in the quarter",
+  "Capital allocation scars: $3.35B Planters acquisition (2021) followed by Retail intangible impairments in FY2025; International minority investments impaired in both FY2025 and FY2026",
+  "Protein category exposure to changing consumer tastes and GLP-1-era demand shifts; no structural cost advantage over larger packaged-food peers"
+ ]
+}
