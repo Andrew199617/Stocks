@@ -9,6 +9,7 @@ Single-database payroll and human-capital-management (HCM) software for US emplo
 ## Owner's earnings
 **FY2025 (10-K via EDGAR, from financials_history.csv):** operating cash flow $678,900,000; capex $270,900,000 (PaymentsToAcquirePropertyPlantAndEquipment — includes the HQ/data-center build and capitalized software); SBC $118,700,000 (always a real cost).
 - **Conservative owner's earnings FY2025: $289,300,000 = $5.16/share** (base_oe_latest_per_share in dcf_numbers.json).
+- Method note: statements.json carries a separate PaymentsToAcquireIntangibleAssets line — $4,200,000 (FY2023), $4,400,000 (FY2024), $4,500,000 (FY2025) — that the engine's single-tag capex leg does not add to capex (tracked additive-capex-tag backlog item, same family as TXRH/MICC). Counting it would lower FY2025 OE by $4,500,000 (~1.6%) and TTM OE by roughly 1%; the verdict is Tier D on every variant, including the super-bull scenario, so the omission does not affect the tier.
 - Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC, financials_history.csv): $349,000,000 — same ballpark.
 - OE positive 5 of the last 5 fiscal years.
 - **FY2024 is distorted:** SBC printed **−$22,900,000** because of a $117.5M reversal of previously recognized stock-compensation expense when the 2020 CEO performance award was forfeited on Chad Richison's February 2024 transition to Co-CEO (FY2025 10-K G&A disclosure). Subtracting a negative SBC inflates FY2024 OE to $6.46/share; it is a one-off accounting credit, not run-rate economics. FY2023 OE/share was $2.80.
