@@ -1,0 +1,92 @@
+{
+ "ticker": "TXG",
+ "name": "10x Genomics, Inc.",
+ "sector": "Healthcare / Life science tools",
+ "price": 71.9467,
+ "market_cap_b": 8.98,
+ "engine_version": 5,
+ "base_oe_per_share": 0.17586164379052413,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Integrated Chromium/Visium/Xenium installed base with recurring consumables, workflow switching costs and a court-validated patent estate give a real but narrow platform moat. It is capped at 5 because the economics do not yet prove it: roic_proxy in fundamentals.json is negative in every year 2021-2025 (operating losses every filed year), gross margin fell from 84.9% (2021) to 66.2% (2023) before recovering to 69.1% (2025), and Bruker/Vizgen/Akoya/Illumina/Parse contest both platforms. A 5 gives CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2018 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear, bear, base, bull, weighted) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.2% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 0.71,
+   "irr": 0.026
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 1.14,
+   "irr": 0.0269
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1.57,
+   "irr": 0.0278
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 2.12,
+   "irr": 0.029
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 3.2,
+   "irr": 0.0315
+  }
+ },
+ "iv_at_15": 1.68,
+ "iv_at_12": 2.23,
+ "implied_irr": 0.0281,
+ "implied_irr_base_case": 0.0278,
+ "upside_at_15_pct": -97.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Leading single-cell/spatial platform, moat 5/10, but owner's earnings have only just turned positive on a TTM basis ($0.18/share after $98.7M of SBC) \u2014 Tier D: weighted IRR sits at the ~3% model floor, weighted IV@15% is $1.68 vs the $71.95 price, and it clears 15% only below ~$1.68 (on the normalized 3-yr median base of -$1.22/share it is Tier F).",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0269,
+ "irr_bull": 0.029,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 1.18,
+ "iv_at_25": 0.91,
+ "f_subtype": null,
+ "irr_at_floor": true,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 124749885,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest installed base in single cell and spatial: Chromium (single cell), Visium and Xenium (spatial) form one integrated instrument + consumables + software ecosystem",
+  "Razor/blade consumables pull-through: Q2 2026 consumables $130.8M of $151.0M revenue, with Spatial consumables +16.2% YoY",
+  "Patent estate that wins in court: Delaware jury (2026) found three Scale Biosciences single-cell patents valid and willfully infringed by Qiagen's Parse unit, 14% royalty",
+  "High gross margin structure even after compression: 69.1% FY2025, 70.0% TTM, ~74% in Q2 2026 per the Q2 release",
+  "Workflow/data switching costs: lab protocols, analysis pipelines and published datasets are standardized on 10x file formats and software"
+ ],
+ "moat_against": [
+  "No returns on capital yet: roic_proxy in fundamentals.json is negative every year 2021-2025 (-17.9%, -22.6%, -54.9%, -42.0%, -14.9%) and operating income is negative in every filed year",
+  "Gross margin compressed from 84.9% (2021) to 66.2% (2023) before recovering to 69.1% (2025) / 70.0% TTM \u2014 pricing power is contested, not proven",
+  "Real platform competition: Bruker (CosMx, ex-NanoString), Vizgen (MERSCOPE), Akoya in spatial; Parse Biosciences (Qiagen) and Illumina pressing in single cell",
+  "SBC consumes the cash: $98.7M TTM against $127.1M TTM operating cash flow; diluted share count +3.1%/yr (117.2M in 2023 to 129.1M TTM) despite no buyback",
+  "Revenue growth has stalled to low single digits ex-settlement (Q2 2026 +3% ex-settlement; FY2026 guidance $620M midpoint is below FY2025's settlement-inflated $642.8M) and funding is academic/government-budget exposed"
+ ]
+}

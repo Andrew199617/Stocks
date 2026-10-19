@@ -1,0 +1,277 @@
+{
+ "ticker": "TXG",
+ "cik": 1770787,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T05:05:38-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001770787.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026007822/txg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TXG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TXG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "10x Genomics, Inc.",
+  "cik": 1770787,
+  "description": {
+   "text": "Our mission is to accelerate the mastery of biology to advance human health. We are a life sciences technology company focused on building innovative products and solutions to interrogate, understand and master biology. Our integrated research solutions include instruments, consumables and software for analyzing biological systems at a resolution and scale that matches the complexity of biology. We have built deep expertise across diverse disciplines including chemistry, biology, hardware and software. Innovations in all of these areas have enabled the deployment of our rapidly expanding suite of products, which allow our customers to interrogate biological systems at previously inaccessible resolution and scale. Our products have enabled researchers to make fundamental discoveries across multiple areas of biology, including oncology, immunology and neuroscience. Since launching our first product in mid-2015 through December 31, 2025, we have sold 8,046 instruments to researchers around the world, including academic and translational researchers and biopharmaceutical companies. Our revenue was $642.8 million and $610.8 million for the years ended 2025 and 2024, respectively, representing a year-over-year increase of 5%. We generated net losses of $43.5 million and $182.6 million for the years ended 2025 and 2024, respectively. In the years ended December 31, 2025 and 2024, we sold 1,007 and 1,073 instruments and 424,000 and 357,100 consumable reactions, respectively.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-007822",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026007822/txg-20251231.htm"
+  },
+  "description_short": "10x Genomics is a life science technology company building products to accelerate the mastery of biology and advance human health. Our integrated research solutions include instruments, consumables and software for single cell and spatial biology, which help academic and translational researchers and biopharmaceutical companies understand biological systems at a resolution and scale that matches the complexity of biology. Our products are behind breakthroughs in oncology, immunology, neuroscience and more, fueling powerful discoveries that are transforming the world's understanding of health and disease.",
+  "industry": "Biotechnology: Laboratory Analytical Instruments",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3826",
+  "sic_description": "Laboratory Analytical Instruments",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.10xgenomics.com",
+  "headquarters": "Pleasanton, California",
+  "address": {
+   "street": "6230 Stoneridge Mall Road",
+   "city": "Pleasanton",
+   "state": "California",
+   "zip": "94588",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "(925) 401-7300",
+  "employees": {
+   "count": 1178,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed a total of 1,178 individuals, 822 of whom were employed in the United States and 356 of whom were employed outside the United States.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026007822/txg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2019-08-19",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001770787&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-054491",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026054491/txg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-054273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026054273/txg-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-04",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-041651",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026041651/txg-20260604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-032388",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026032388/txg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-032073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026032073/txg-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-24",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-027201",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026027201/txg-20260424.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-007822",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026007822/txg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-007673",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026007673/txg-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-11",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-001808",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828026001808/txg-20260111.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-14",
+   "period": "2025-11-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-052154",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828025052154/txg-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-050332",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000162828025050332/txg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001770787-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000058/txg-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001770787-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000051/txg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001770787-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000048/txg-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-05",
+   "period": "2025-06-03",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001770787-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000040/txg-20250603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-14",
+   "period": "2025-05-12",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001770787-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000035/txg-20250512.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001770787-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000032/txg-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-06",
+   "items": [
+    "2.02",
+    "2.05",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs",
+   "accession": "0001770787-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000031/txg-20250506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-14",
+   "period": "2025-06-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001770787-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000018/txg-20250414.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-13",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001770787-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1770787/000177078725000013/txg-20241231.htm"
+  }
+ ],
+ "warnings": []
+}
