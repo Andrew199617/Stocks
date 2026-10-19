@@ -2711,6 +2711,14 @@
    "ratio": 1.0,
    "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-18), cover page: securities registered under Section 12(b) are 'Ordinary Shares, nominal value EUR 3.50 per share', trading symbol MICC on the New York Stock Exchange; admission announcement 8 December 2025: issued share capital on admission was 612,259,739 ordinary shares admitted to trading on Euronext Amsterdam, the London Stock Exchange and the NYSE, with DTC accounts credited with interests in TMICC ordinary shares \u2014 the NYSE security is the ordinary share itself",
    "reason": "MICC is a direct multi-listing of ordinary shares, not an ADS program: one NYSE-traded MICC share is one ordinary share (the 612,259,739 issued ordinary shares match the DEI outstanding count in dcf_numbers.json), so per-share figures from the 20-F are directly comparable to the traded price with no scaling."
+  },
+  {
+   "ticker": "TXG",
+   "event": "tier_override",
+   "date": "2026-10-19",
+   "tier_by_numbers": "D",
+   "tier_final": "F",
+   "reason": "The as-filed TTM base (+$0.1759/share) is entirely attributable to non-recurring working-capital inflows. Cash-flow bridge for the TTM window (statements.json quarterly lines): net income -$75,125,000 + SBC $98,741,000 + D&A $39,983,000 + other non-cash -$1,443,000 = $62,156,000 against OCF of $127,085,000 - i.e. +$64,929,000 of TTM OCF came from working-capital / other operating movements, dominated by collection of the Q2 2025 patent-litigation settlement receivable (other current assets $69,090,000 at Q2 2025 -> $3,084,000 at Q2 2026; engine-construction delta-NWC over the window -$92,078,000). Ex-release TTM OE is approx. -$42,234,000, about -$0.33/share, and the normalized 3-yr median base is -$1.22/share: no positive normalized owner's earnings on any adjusted basis, so the final tier is F. Tier by numbers on the as-filed TTM base remains D (weighted IRR 2.81%, at the solver floor; IV@15 $1.68 vs price $71.95)."
   }
  ]
 }
