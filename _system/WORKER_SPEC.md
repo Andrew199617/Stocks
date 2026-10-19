@@ -51,7 +51,25 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `IRR_AT_FLOOR` (5.4): the price is beyond the model's range; the IRR reads "at most
    ~3%". `TIER_BAND` (5.4): bear and bull tiers differ — size to the bear end.
    `SECTOR_MODEL_MISMATCH`: confidence low; the ranking lists the name under sector misfits.
-   `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
+   **Insurer payable-earnings base (Andrew, 2026-10-19):** at a P&C insurer or reinsurer
+   whose filings print **operating income (loss) available to common shareholders** (the
+   non-GAAP line in every quarterly earnings release and the 10-K MD&A), the OCF base is
+   not the owner's earnings: consolidated OCF capitalizes the reserve build (policyholder
+   float) and the cash earned by consolidated third-party-capital vehicles, so it can run
+   2× or more above what common shareholders earn (RNR: OCF base $77.78/sh vs $27.21/sh
+   through-cycle operating income to common; Tier S by numbers, where the payable base
+   prints C). The one-notch softening (2026-10-15) cannot bridge that gap. For these filers
+   the worker declares a `base_override` with kind "filing": value = **average of the last
+   five fiscal years' operating income available to common ÷ the latest `shares_diluted`
+   in financials_history.csv**; `source` cites each year's release or 10-K with the five
+   figures; the construction is quoted in analysis.md and must reproduce. Five-year average,
+   not 3-year median, because a catastrophe cycle is longer than three years and a benign
+   window would otherwise set the base. This filing-sourced base is the one standing
+   exception to clause (c) in step 8, authorized by the main agent. With it in force the
+   one-notch `tier_override` is **not** applied (the base already measures payable
+   earnings); the alert-gate misfit suppression and the low-confidence grade stay. Life
+   insurers, banks and REITs, and any filer without that printed line, keep the 2026-10-15
+   rule. `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
 5. **Moat 0–10, justified.** Rubric: 9–10 wide and durable (network effects, switching
    costs, structural cost advantage, proven pricing power, high returns on capital through
    a cycle); 7–8 strong; 5–6 moderate/narrow; 3–4 weak; 0–2 none. Name the specific pillars
