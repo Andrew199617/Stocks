@@ -44,5 +44,8 @@ Growth sanity check (mandatory): the engine's blended start is 6.82% (components
 
 ## Flags — every fragility flag resolved
 - **STALE_FY** (latest FY ended 8.5 months ago): resolved by construction — the base is the TTM figure from ttm.py through Q2 FY27 (period ended 2026-08-01, 10-Q filed 2026-08-25), quoted above.
-- **NI_OCF_DIVERGENCE** (net income vs OCF differ by >40% in FY2025 and FY2026): D&A explains the bulk of it — FY2026 net income $578,377,000 plus D&A $288,594,000 and SBC $47,200,000 closes most of the gap to OCF of $1,030,056,000, with the remainder working-capital timing (inventory/p
-...[truncated 3052 chars]
+- **NI_OCF_DIVERGENCE** (net income vs OCF differ by >40% in FY2025 and FY2026): D&A explains the bulk of it — FY2026 net income $578,377,000 plus D&A $288,594,000 and SBC $47,200,000 closes most of the gap to OCF of $1,030,056,000, with the remainder working-capital timing (inventory/payables swings around the January fiscal year-end and other non-cash items). No one-off distorts the base: the divergence is D&A scale, not an earnings-quality break, and the base is built from OCF directly, so the steadier series is the one in use.
+- **WIDE_SCENARIO_SPREAD** (super-bull IV 4.5x super-bear IV): the spread is the growth-capex debate, priced — the conservative base charges all $755,322,000 of TTM capex (mostly new clubs) while the maintenance view charges only D&A; the five scenarios span that argument (IV@15 $10.65 → $47.82). Confidence is held at medium, never high, while this flag stands. The verdict is insensitive to the spread: every scenario, super-bull included (8.82%), is Tier D at $102.95.
+
+## Final verdict
+**Tier D.** Weighted IRR 5.73%, weighted IV@15% $25.07 against a $102.95 price (−75.6%); the name clears 15% only at or below $25.07, 20% at $17.49, 25% at $13.34. A dependable, narrow-moat membership operator with five straight years of 20%+ ROIC — but at this price the market is paying for growth the conservative owner's-earnings stream does not support, on either the TTM base ($2.39/share) or the maintenance view. Not a buy at $102.95 on this model.
