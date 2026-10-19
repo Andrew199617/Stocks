@@ -1507,48 +1507,6 @@
    "unblocks_tier": true
   },
   {
-   "ticker": "LTM",
-   "field": "sbc",
-   "value": 0.0,
-   "kind": "filing",
-   "source": "Consolidated Financial Statements as of December 31, 2025 (filed with the FY2025 Form 20-F), Note 33 Share-Based Payments and accounting-policy note on IFRS 2: LATAM's only share-based program, the CIP (Corporate Incentive Plan) created on exit from Chapter 11, is a cash-settlement award \u2014 synthetic units paid in cash, recorded at fair value as a liability in Trade and other payables / Provisions for employee benefits, remeasured through profit or loss and classified in Administrative expenses. EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees fact for this filer in any year.",
-   "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads. LATAM has no equity-settled share-based payment expense to subtract: its sole IFRS 2 program is cash-settled, so its cost is already inside operating expenses and operating cash flow \u2014 subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as SQM and TS in this sweep).",
-   "date": "2026-10-17",
-   "base_used": "median_3y",
-   "base_oe_without_override": 5.8926,
-   "base_oe_with_override": 6.0439,
-   "base_oe_impact_pct": 2.568,
-   "weighted_irr_without_override": 0.2097,
-   "weighted_irr_with_override": 0.224,
-   "weighted_irr_impact_pp": 1.436,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "LTM",
-   "field": "shares",
-   "value": 589306002483.0,
-   "kind": "filing",
-   "source": "Consolidated Financial Statements as of December 31, 2025 (filed with the FY2025 Form 20-F), Note 29 Earnings Per Share: weighted average number of shares, diluted 589,306,002,483 for FY2025 (basic 589,302,090,735 plus 3,911,748 shares assuming full conversion of the Chapter 11 exit convertible notes), with 604,441,789,335 diluted for FY2024 in the same table (basic 604,437,877,587 plus the same 3,911,748)",
-   "reason": "DATA_GAP:shares \u2014 DILUTED shares missing for FY2023, FY2024, FY2025; EDGAR carries only the basic WeightedAverageShares count, which the engine records as a fallback and refuses to silently swap. The filer's own FY2025 diluted count fills the gap. The engine applies this single value to every missing period: it is exact for FY2025, and for FY2024/FY2023 it is a smaller denominator than the filer's own diluted counts (604,441,789,335 for FY2024), which raises those years' OE/share by ~2.6% \u2014 disclosed here and in analysis.md; the 3-yr median base year is FY2024 on either basis, so the base is modestly flattered, and the verdict is sized accordingly.",
-   "date": "2026-10-17",
-   "base_used": "median_3y",
-   "base_oe_without_override": 5.8926,
-   "base_oe_with_override": 6.0439,
-   "base_oe_impact_pct": 2.568,
-   "weighted_irr_without_override": 0.2097,
-   "weighted_irr_with_override": 0.224,
-   "weighted_irr_impact_pp": 1.436,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "LTM",
-   "event": "ads_ratio",
-   "date": "2026-10-17",
-   "ratio": 2000.0,
-   "source": "Form 20-F for fiscal year ended December 31, 2025, cover/ADS description: each ADS represents 2,000 common shares; corroborated by the company's July 18, 2024 ratio-change announcement (1 ADS = 1 share changed to 1 ADS = 2,000 shares, effective July 24, 2024) and by 2025 secondary-offering prospectuses (Form 424B7: 'Each ADS represents 2,000 common shares')",
-   "reason": "DATA_GAP:ads_ratio \u2014 20-F filer; EDGAR per-share figures are per ordinary share while the NYSE price ($47.47) is per ADS, so per-share figures must be scaled x2,000 ordinary shares per ADS to be comparable to the ADS price."
-  },
-  {
    "ticker": "KEP",
    "field": "sbc",
    "value": 0.0,
@@ -2620,6 +2578,54 @@
    "ratio": 10.0,
    "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-04-24): cover page registers American Depositary Shares, each representing ten ordinary shares (NASDAQ: HTHT); ordinary shares listed on HKEX (1179)",
    "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
+  },
+  {
+   "ticker": "LTM",
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Consolidated Financial Statements as of December 31, 2025 (filed with the FY2025 Form 20-F), Note 33 Share-Based Payments and accounting-policy note on IFRS 2: LATAM's only share-based program, the CIP (Corporate Incentive Plan) created on exit from Chapter 11, is a cash-settlement award \u2014 synthetic units paid in cash, recorded at fair value as a liability in Trade and other payables / Provisions for employee benefits, remeasured through profit or loss and classified in Administrative expenses. EDGAR companyfacts carries no ifrs-full AdjustmentsForSharebasedPayments / ExpenseFromSharebasedPaymentTransactionsWithEmployees fact for this filer in any year.",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads. LATAM has no equity-settled share-based payment expense to subtract: its sole IFRS 2 program is cash-settled, so its cost is already inside operating expenses and operating cash flow \u2014 subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as SQM and TS in this sweep).",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 5.8926,
+   "base_oe_with_override": 6.0439,
+   "base_oe_impact_pct": 2.568,
+   "weighted_irr_without_override": 0.2097,
+   "weighted_irr_with_override": 0.224,
+   "weighted_irr_impact_pp": 1.436,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "LTM",
+   "field": "shares",
+   "value": 589306002483.0,
+   "kind": "filing",
+   "source": "Consolidated Financial Statements as of December 31, 2025 (filed with the FY2025 Form 20-F), Note 29 Earnings Per Share: weighted average number of shares, diluted 589,306,002,483 for FY2025 (basic 589,302,090,735 plus 3,911,748 shares assuming full conversion of the Chapter 11 exit convertible notes), with 604,441,789,335 diluted for FY2024 in the same table (basic 604,437,877,587 plus the same 3,911,748)",
+   "reason": "DATA_GAP:shares \u2014 DILUTED shares missing for FY2023, FY2024, FY2025; EDGAR carries only the basic WeightedAverageShares count, which the engine records as a fallback and refuses to silently swap. The filer's own FY2025 diluted count fills the gap. The engine applies this single value to every missing period: it is exact for FY2025, and for FY2024/FY2023 it is a smaller denominator than the filer's own diluted counts (604,441,789,335 for FY2024), which raises those years' OE/share by ~2.6% \u2014 disclosed here and in analysis.md; the 3-yr median base year is FY2024 on either basis, so the base is modestly flattered, and the verdict is sized accordingly.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 5.8926,
+   "base_oe_with_override": 6.0439,
+   "base_oe_impact_pct": 2.568,
+   "weighted_irr_without_override": 0.2097,
+   "weighted_irr_with_override": 0.224,
+   "weighted_irr_impact_pp": 1.436,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "LTM",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 47.47
+  },
+  {
+   "ticker": "LTM",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 2000.0,
+   "source": "Form 20-F for fiscal year ended December 31, 2025, cover/ADS description: each ADS represents 2,000 common shares; corroborated by the company's July 18, 2024 ratio-change announcement (1 ADS = 1 share changed to 1 ADS = 2,000 shares, effective July 24, 2024) and by 2025 secondary-offering prospectuses (Form 424B7: 'Each ADS represents 2,000 common shares')",
+   "reason": "DATA_GAP:ads_ratio \u2014 20-F filer; EDGAR per-share figures are per ordinary share while the NYSE price ($47.47) is per ADS, so per-share figures must be scaled x2,000 ordinary shares per ADS to be comparable to the ADS price."
   }
  ]
 }
