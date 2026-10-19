@@ -1,0 +1,250 @@
+{
+ "ticker": "CHKP",
+ "cik": 1015922,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T09:54:32-04:00",
+ "newest_filing_date": "2026-09-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001015922.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326001932/zk2634942.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CHKP/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CHKP/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CHECK POINT SOFTWARE TECHNOLOGIES LTD",
+  "cik": 1015922,
+  "description": {
+   "text": "We are constantly doing the hard work of getting our solutions ready to enable a secure AI transformation. Our solutions deliver leading protection across infrastructure, to make sure organizations are protected from AI-driven attacks. We continually modify and improve our security platform services by:",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "accession": "0001178913-26-001932",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326001932/zk2634942.htm"
+  },
+  "description_short": "Check Point Software Technologies Ltd. ( www.checkpoint.com ) is a global cyber security leader protecting more than 100,000 organizations worldwide. Its mission is to secure enterprises' AI transformation. With a prevention-first approach and an open ecosystem architecture, Check Point helps organizations block advanced threats, prioritize exposures, and automate security operations across complex digital environments. The unified architecture simplifies protection across hybrid networks, multi-cloud environments, digital workspaces, and AI systems. Structured around four strategic pillars, Hybrid Mesh Network Security, Workspace Security, Exposure Management, and AI Security, Check Point delivers consistent protection and visibility across multivendor environments, enabling organizations to reduce risk, improve efficiency, and accelerate innovation without increasing complexity.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "Middle East",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.checkpoint.com",
+  "headquarters": "Tel Aviv, Israel, Israel",
+  "address": {
+   "street": "5 Shlomo Kaplan Street",
+   "city": "Tel Aviv",
+   "state": null,
+   "zip": "6789159",
+   "country": "Israel",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-31",
+   "metro": "Israel",
+   "metro_source": "EDGAR submissions"
+  },
+  "phone": "650-628-2050",
+  "employees": {
+   "count": 6825,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 6,825 employees, as well as 354 subcontractors (336 subcontractors in 2024, 277 subcontractors in 2023).",
+   "form": "20-F",
+   "filed": "2026-03-31",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326001932/zk2634942.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-02-14",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001015922&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004498",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326004498/zk2636110.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-02",
+   "period": "2026-09-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-004398",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326004398/zk2636069.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003696",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326003696/zk2635799.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003557",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326003557/zk2635717.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-09",
+   "period": "2026-07-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003452",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326003452/zk2635667.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-08",
+   "period": "2026-06-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-003128",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326003128/zk2635514.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002519",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326002519/zk2635263.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-002310",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326002310/a2635159.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-31",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001178913-26-001932",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326001932/zk2634942.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-26-000437",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891326000437/zk2634351.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-004030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325004030/zk2534094.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-04",
+   "period": "2025-12-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-004003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325004003/zk2534083.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-02",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-003986",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325003986/zk2534074.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-003565",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325003565/2533887.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-16",
+   "period": "2025-09-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-003335",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325003335/zk2533788.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-04",
+   "period": "2025-09-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-003243",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325003243/zk2533760.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-03",
+   "period": "2025-09-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-003221",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325003221/zk2533749.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-002530",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325002530/zk2533503.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-28",
+   "period": "2025-07-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-002510",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325002510/zk2533493.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-18",
+   "period": "2025-07-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001178913-25-002408",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015922/000117891325002408/zk2533459.htm"
+  }
+ ],
+ "warnings": []
+}

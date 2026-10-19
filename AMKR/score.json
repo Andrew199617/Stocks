@@ -1,0 +1,85 @@
+{
+ "ticker": "AMKR",
+ "name": "Amkor Technology, Inc.",
+ "sector": "Semiconductors \u2014 OSAT (outsourced assembly & test)",
+ "price": 41.82,
+ "market_cap_b": 10.39,
+ "engine_version": 5,
+ "base_oe_per_share": 1.3183102115262006,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "World #2 OSAT with real advanced-packaging capability (HDFO, 2.5D) and scarce US capacity (Arizona campus, 10-yr TSMC agreement, NVIDIA partnership), but the economics say weak moat: ROIC (fundamentals.json roic_proxy) fell from 21.2%/20.4% in 2021/22 to 9.5%/8.7%/8.7% in 2023/24/25 \u2014 at or below cost of capital \u2014 and gross margin compressed from 20.0% (2021) to 14.0% (2025). Pricing power is limited against concentrated, powerful customers and a larger rival (ASE); TSMC insourcing is a standing threat.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.69 vs 3-yr median 1.32 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 4.97,
+   "irr": 0.0379
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.77,
+   "irr": 0.047
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.48,
+   "irr": 0.0561
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 13.96,
+   "irr": 0.0679
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 20.65,
+   "irr": 0.0897
+  }
+ },
+ "iv_at_15": 10.38,
+ "iv_at_12": 13.67,
+ "implied_irr": 0.0561,
+ "implied_irr_base_case": 0.0561,
+ "upside_at_15_pct": -75.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Weak-moat (4/10) cyclical OSAT in a capex supercycle \u2014 at $41.82 it does not clear 15% on owner's earnings (weighted IRR 5.6%, weighted IV@15% $10.38; even the super-bull case yields only 9.0%); it would need to trade near $10.38 to clear the 15% hurdle on this method.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.047,
+ "irr_bull": 0.0679,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 7.41,
+ "iv_at_25": 5.76,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 66899000,
+ "shares_diluted_latest": 248454000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#2 global OSAT scale (~$6.7B FY2025 revenue) with advanced-packaging technology (HDFO, 2.5D, co-packaged optics)",
+  "Scarce US advanced-packaging footprint: Arizona campus under a 10-year TSMC agreement, multi-year NVIDIA partnership, CHIPS-aligned",
+  "Deep, long-tenured relationships with leading fabless customers; qualification/switching friction in advanced packages"
+ ],
+ "moat_against": [
+  "ROIC fell to 8.7% in 2024 and 2025 (from 21.2% in 2021) \u2014 at/below cost of capital through the recent cycle",
+  "Gross margin compressed 20.0% (2021) to 14.0% (2025) \u2014 limited pricing power",
+  "Customer concentration: top 10 customers ~72% of sales (2024), Apple and Qualcomm the largest",
+  "ASE is larger; TSMC can insource advanced packaging (CoWoS) \u2014 Amkor is partly an overflow/second source",
+  "Extreme capital intensity: 2026 capex guided $2.5-3.0B vs ~$1.1B FY2025 operating cash flow"
+ ]
+}

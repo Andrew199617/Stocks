@@ -1,0 +1,817 @@
+{
+ "ticker": "ARW",
+ "cik": 7536,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-012765",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926012765/arw-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-056650",
+   "filed": "2026-05-07",
+   "period": "2026-04-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926056650/arw-20260404x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-091983",
+   "filed": "2026-08-06",
+   "period": "2026-07-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926091983/arw-20260704x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "arw:GlobalComponentsMember",
+     "label": "Global Components",
+     "values": [
+      25419899000,
+      19983267000,
+      21501289000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7678,
+      0.7156,
+      0.6969
+     ],
+     "growth_yoy": [
+      null,
+      -0.2139,
+      0.076
+     ]
+    },
+    {
+     "member": "arw:GlobalEcsMember",
+     "label": "Global ECS",
+     "values": [
+      7687221000,
+      7940057000,
+      9351646000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2322,
+      0.2844,
+      0.3031
+     ],
+     "growth_yoy": [
+      null,
+      0.0329,
+      0.1778
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     33107120000,
+     27923324000,
+     30852935000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "arw:GlobalComponentsMember",
+     "label": "Global Components",
+     "values": [
+      4777722000,
+      5284898000,
+      6640335000,
+      7365625000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7012,
+      0.6972,
+      0.7009,
+      0.7371
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3899,
+      0.3937
+     ]
+    },
+    {
+     "member": "arw:GlobalEcsMember",
+     "label": "Global ECS",
+     "values": [
+      2036295000,
+      2295049000,
+      2833213000,
+      2626612000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2988,
+      0.3028,
+      0.2991,
+      0.2629
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3914,
+      0.1445
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6814017000,
+     7579947000,
+     9473548000,
+     9992237000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "arw:GlobalComponentsMember",
+     "label": "Global Components",
+     "values": [
+      1459166000,
+      741273000,
+      774706000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9918,
+      0.9645,
+      0.9422
+     ],
+     "growth_yoy": [
+      null,
+      -0.492,
+      0.0451
+     ]
+    },
+    {
+     "member": "arw:GlobalEcsMember",
+     "label": "Global ECS",
+     "values": [
+      367004000,
+      410075000,
+      425911000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2495,
+      0.5336,
+      0.518
+     ],
+     "growth_yoy": [
+      null,
+      0.1174,
+      0.0386
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1471164000,
+     768557000,
+     822223000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "arw:GlobalComponentsMember",
+     "label": "Global Components",
+     "values": [
+      171385000,
+      186808000,
+      363520000,
+      396275000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0809,
+      0.9802,
+      1.0053,
+      1.0502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.1211,
+      1.1213
+     ]
+    },
+    {
+     "member": "arw:GlobalEcsMember",
+     "label": "Global ECS",
+     "values": [
+      77314000,
+      96969000,
+      103738000,
+      85375000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4876,
+      0.5088,
+      0.2869,
+      0.2263
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3418,
+      -0.1196
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     158553000,
+     190586000,
+     361602000,
+     377333000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "arw:GlobalComponentsMember",
+     "label": "Global Components",
+     "values": [
+      14765931000,
+      21222941000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6787,
+      0.7299
+     ],
+     "growth_yoy": [
+      null,
+      0.4373
+     ]
+    },
+    {
+     "member": "arw:GlobalEcsMember",
+     "label": "Global ECS",
+     "values": [
+      6518723000,
+      7355089000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2996,
+      0.2529
+     ],
+     "growth_yoy": [
+      null,
+      0.1283
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      473053000,
+      500108000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0217,
+      0.0172
+     ],
+     "growth_yoy": [
+      null,
+      0.0572
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     21757707000,
+     29078138000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "arw:GlobalComponentsMember",
+     "label": "Global Components",
+     "values": [
+      21222941000,
+      28970802000,
+      31725350000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7299,
+      0.8058,
+      0.8267
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "arw:GlobalEcsMember",
+     "label": "Global ECS",
+     "values": [
+      7355089000,
+      6628098000,
+      6173437000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2529,
+      0.1843,
+      0.1609
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateMember",
+     "label": "Corporate Segment",
+     "values": [
+      500108000,
+      355070000,
+      477894000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0172,
+      0.0099,
+      0.0125
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     29078138000,
+     35953970000,
+     38376681000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "arw:OtherForeignMember",
+     "label": "Other Foreign",
+     "values": [
+      12737852000,
+      11114613000,
+      12725314000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3847,
+      0.398,
+      0.4125
+     ],
+     "growth_yoy": [
+      null,
+      -0.1274,
+      0.1449
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      11168560000,
+      9767450000,
+      10552402000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3373,
+      0.3498,
+      0.342
+     ],
+     "growth_yoy": [
+      null,
+      -0.1255,
+      0.0804
+     ]
+    },
+    {
+     "member": "arw:ChinaAndHongKongMember",
+     "label": "China and Hong Kong",
+     "values": [
+      4858871000,
+      4033744000,
+      4419749000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1468,
+      0.1445,
+      0.1433
+     ],
+     "growth_yoy": [
+      null,
+      -0.1698,
+      0.0957
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      4341837000,
+      3007517000,
+      3155470000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1311,
+      0.1077,
+      0.1023
+     ],
+     "growth_yoy": [
+      null,
+      -0.3073,
+      0.0492
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     33107120000,
+     27923324000,
+     30852935000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "arw:OtherForeignMember",
+     "label": "Other Foreign",
+     "values": [
+      2859350000,
+      3079871000,
+      3982504000,
+      4175489000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4196,
+      0.4063,
+      0.4204,
+      0.4179
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3928,
+      0.3557
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2311443000,
+      2616355000,
+      3299296000,
+      3453595000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3392,
+      0.3452,
+      0.3483,
+      0.3456
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4274,
+      0.32
+     ]
+    },
+    {
+     "member": "arw:ChinaAndHongKongMember",
+     "label": "China and Hong Kong",
+     "values": [
+      925892000,
+      1090699000,
+      1171786000,
+      1353662000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1359,
+      0.1439,
+      0.1237,
+      0.1355
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2656,
+      0.2411
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      717332000,
+      793022000,
+      1019962000,
+      1009491000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1053,
+      0.1046,
+      0.1077,
+      0.101
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4219,
+      0.273
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6814017000,
+     7579947000,
+     9473548000,
+     9992237000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 146.0% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 127.6% of the consolidated total for 2026-07-04 (ties_to_total: false)",
+  "geography/Revenues/annual: row 'Non-US' (us-gaap:NonUsMember) dropped: its values equal the sum of China and Hong Kong, GERMANY, Other Foreign",
+  "geography/Revenues/quarterly: row 'Non-US' (us-gaap:NonUsMember) dropped: its values equal the sum of China and Hong Kong, GERMANY, Other Foreign"
+ ],
+ "complete": true
+}

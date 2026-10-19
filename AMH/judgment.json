@@ -1,0 +1,37 @@
+{
+ "capex_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:capex — capex missing for FY2023, FY2024 and FY2025 of the last 3 under every candidate tag the engine reads, because AMH (a single-family rental REIT) reports its recurring real-estate capex on the cash-flow line 'Payments for capital improvements', tagged us-gaap PaymentsForCapitalImprovements, which is not in the engine's candidate tag list. Filed values in the FY2025 10-K: $40,137,000 (FY2023), $34,052,000 (FY2024), $40,645,000 (FY2025). The engine applies this single value to every missing period; the value used is the median of the three filed years. Against the true per-year figures it overstates FY2024 capex by $6,085,000 (conservative direction, lowers that year's OE) and understates FY2025 capex by $508,000 (negligible). Excluded, deliberately: acquisition and development spend on rental homes is growth investment presented separately by the filer, not the recurring capital-improvements line; charging it as capex would double-count growth.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-20, accession 0001562401-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Payments for capital improvements' (us-gaap PaymentsForCapitalImprovements): $40,645,000 FY2025, $34,052,000 FY2024, $40,137,000 FY2023",
+  "value": 40137000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "No network effects or tenant switching costs — leases are typically 12 months, rent is set by the local market, and a tenant can move to a competing home or apartment at renewal",
+  "Single-family rental supply is overwhelmingly fragmented mom-and-pop stock; AMH's scale is operating efficiency, not a barrier — Invitation Homes and other institutional landlords replicate the model with capital",
+  "Returns are capped by replacement cost and cap-rate arbitrage — new build-for-rent supply is the permanent competitor, including AMH's own development channel",
+  "Filed returns are thin: ROE ran 3.5% in 2021 to 7.3% in 2025 (fundamentals.json) and roic_proxy / gross margin are not computable from the filed presentation — no evidence of sustained returns well above the cost of capital",
+  "Political and regulatory scrutiny of institutional single-family landlords is a live, recurring risk (partly eased by the 21st Century ROAD to Housing Act, per Q2 2026 coverage)"
+ ],
+ "moat_for": [
+  "Scale and local density as an integrated owner-operator: professionally managed SFR platform with in-house leasing, renovation and property management lowering per-home turn and maintenance costs vs fragmented landlords",
+  "AMH Development Program — a genuine differentiator vs peers who must buy existing homes: more than 15,000 homes delivered since inception, 651 delivered in Q2 2026 (542 to the wholly owned portfolio), at initial yields management and outside coverage put above acquisition cap rates",
+  "Structural demand tailwind: high cost of homeownership keeps rent-vs-own economics favorable — Same-Home occupancy 96.0% in Q2 2026 with blended lease spreads +2.7% (renewals +3.2%, new leases +1.4%)",
+  "Expense discipline and balance-sheet access: controllable expense growth held below 1% YTD through Q2 2026, net debt/Adjusted EBITDA ~5.2x including preferreds, and buyback capacity used in Q2 2026 (4.1M shares repurchased at $29.88 average)"
+ ],
+ "moat_justification": "Scale, local density and the in-house development program are real but modest advantages in a commodity business: rent is a market price, leases are annual with no lock-in, fragmented mom-and-pop supply dominates, and new build-for-rent supply caps returns at replacement cost. Filed returns confirm it — ROE only 3.5% (2021) to 7.3% (2025) in fundamentals.json, with roic_proxy and gross margin not computable from the filed presentation — not the sustained well-above-cost-of-capital record a 7+ moat requires. Moat 4/10 (weak), the same score as direct peer Invitation Homes.",
+ "moat_score": 4,
+ "name": "American Homes 4 Rent",
+ "one_liner": "Quality single-family rental REIT, moat 4/10 — scale, local density and the in-house AMH Development Program are real but rent is a market price on 12-month leases and filed ROE is only 7.3%; on a TTM owner's-earnings base of $2.20/share after charging filed capital-improvements capex, weighted IRR is 10.4% (IV@15% $19.52) at $31.28, so it clears the 15% hurdle only below ~$19.52 — the REIT lens (FY2026 Core FFO guided at $1.95/share, DPS TTM $1.26) is kinder than the OE lens, but neither supports 15% at this price.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Real Estate / Single-family rental REIT",
+ "tier_override": null,
+ "tier_override_reason": null
+}

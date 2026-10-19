@@ -1,0 +1,91 @@
+{
+ "ticker": "AIZ",
+ "name": "Assurant, Inc.",
+ "sector": "Finance / Specialty insurance",
+ "price": 283.31,
+ "market_cap_b": 14.47,
+ "engine_version": 5,
+ "base_oe_per_share": 31.228306535060252,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Embedded B2B2C partnerships and program-integration switching costs in device protection and lender-placed insurance, but partners are large, concentrated and can rebid or in-source, there is no direct consumer relationship, and returns are mid-teens ROE with a weak year in the last five \u2014 not a wide-moat compounder.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.3%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 29.61 vs 3-yr median 19.79 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier C (12.5%) vs bull-case tier B (19.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 160.53,
+   "irr": 0.0941
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 225.78,
+   "irr": 0.1245
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 308.76,
+   "irr": 0.1607
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 400.5,
+   "irr": 0.1967
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 558.25,
+   "irr": 0.2508
+  }
+ },
+ "iv_at_15": 292.45,
+ "iv_at_12": 389.3,
+ "implied_irr": 0.1539,
+ "implied_irr_base_case": 0.1607,
+ "upside_at_15_pct": 3.2,
+ "tier_by_numbers": "B",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Specialty insurer with embedded partner distribution, moat 5/10 \u2014 B by numbers on a TTM base (15.4% weighted, IV@15 $292 vs $283) but the OCF base capitalizes float in a light-cat period, so softened to C at low confidence; it does not cleanly clear 15% until the bear case (12.5%) is covered.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1245,
+ "irr_bull": 0.1967,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 205.54,
+ "iv_at_25": 157.77,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 51086649,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH insurer artifact (Andrew's standing rule, 2026-10-15; same treatment as PFG/HIG/ACGL/WRB): the OCF-based OE base capitalizes float/reserve growth \u2014 NI_OCF_DIVERGENCE is structural in 2023, 2024 and 2025 (FY2025 OCF $1,833,900,000 vs net income $872,700,000; maintenance OE $887,200,000 vs conservative OE $1,512,700,000) \u2014 and the TTM base ($31.23/sh) embeds a light-catastrophe H1 2026 (reportable cats $36.6M vs $186.8M in H1 2025), so tier-by-numbers B (weighted IRR 15.39%) overstates distributable owner's earnings; softened one notch to C, confidence low. The median-base preliminary run also printed Tier C (13.19%), and the bear case is C (12.45%).",
+ "moat_for": [
+  "Embedded distribution \u2014 multi-year programs inside carrier, retailer, auto-dealer and lender channels with systems integrated into point of sale and claims flow",
+  "Scale repair / trade-in / claims platform in Connected Living (Q2 2026 Adjusted EBITDA +29% YoY on new and expanded programs)",
+  "Leading lender-placed position \u2014 automatic placement when coverage lapses; countercyclical captive demand with inflation-guard pricing",
+  "Growing fee-based mix (fees and other income +19.6% YoY in Q2 2026), less cat-exposed than underwriting"
+ ],
+ "moat_against": [
+  "Partner concentration \u2014 a few large carriers/retailers/lenders control distribution and can rebid, squeeze, or move programs to Asurion/Likewize/in-house",
+  "No owned consumer brand or direct relationship \u2014 the end customer is the partner's",
+  "Lender-placed insurance is politically/regulatorily exposed and countercyclical to mortgage health",
+  "Global Housing catastrophe tail \u2014 earnings swing with cat load and reserve development",
+  "ROE only mid-teens with a 6.5% year (2022) \u2014 no wide-moat pricing power in the record"
+ ]
+}

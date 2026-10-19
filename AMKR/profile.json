@@ -1,0 +1,298 @@
+{
+ "ticker": "AMKR",
+ "cik": 1047127,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T04:39:36-04:00",
+ "newest_filing_date": "2026-07-28",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001047127.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000014/amkr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AMKR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AMKR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AMKOR TECHNOLOGY, INC.",
+  "cik": 1047127,
+  "description": {
+   "text": "Amkor is the world’s largest U.S. headquartered outsourced semiconductor assembly and test service provider (“OSAT”) and is a global leader in outsourced semiconductor packaging and test services. With a strong track record of innovation, a broad and diverse geographic footprint and solid partnerships with lead customers, Amkor delivers high-quality solutions that enable the world’s leading semiconductor and electronics companies to bring advanced technologies to market. The company’s comprehensive portfolio includes advanced packaging, wafer-level processing and system-in-package solutions targeting applications for smartphones, data centers, artificial intelligence, automobiles and wearables. Amkor has built a leading position by: •Designing and developing innovative packaging and test technologies focused on advanced packaging solutions in key markets, including artificial intelligence; •Building expertise in high-volume manufacturing processes and developing a reputation for high quality and solid execution; •Providing a geographically diverse operating base with manufacturing facilities in multiple countries, including in the United States, where the Arizona Facility is under construction; •Cultivating long-standing relationships with our customers and industry partners; •Focusing on strategic end markets that offer solid growth potential; and •Developing a competitive cost structure through disciplined capital investment.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001047127-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000014/amkr-20251231.htm"
+  },
+  "description_short": "Amkor Technology, Inc. (Nasdaq: AMKR) is the world's largest U.S. headquartered OSAT and is a global leader in outsourced semiconductor packaging and test services. With a strong track record of innovation, a broad and diverse geographic footprint and solid partnerships with lead customers, Amkor delivers high-quality solutions that enable the world's leading semiconductor and electronics companies to bring advanced technologies to market. The company's comprehensive portfolio includes advanced packaging, wafer-level processing, and system-in-package solutions targeting applications for smartphones, data centers, artificial intelligence, automobiles and wearables.",
+  "industry": "Semiconductors",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "3674",
+  "sic_description": "Semiconductors & Related Devices",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.amkor.com",
+  "headquarters": "Tempe, AZ",
+  "address": {
+   "street": "2045 East Innovation Circle",
+   "city": "Tempe",
+   "state": "AZ",
+   "zip": "85284",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "480-821-5000",
+  "employees": {
+   "count": 30800,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Amkor employed 30,800 employees, of whom approximately 95%, 4% and 1% resided in the Asia-Pacific region, Europe and the United States, respectively.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000014/amkr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-10-06",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "AMKOR TECHNOLOGY INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001047127&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001047127-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000046/amkr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047127-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000043/amkr-20260727.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001047127-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000036/amkr-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001047127-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000033/amkr-20260513.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-04-30",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity",
+   "accession": "0001047127-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000029/amkr-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001047127-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000026/amkr-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001047127-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000023/amkr-20260430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001047127-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000020/amkr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047127-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000017/amkr-20260427.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-140275",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000119312526140275/d943236ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001047127-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000014/amkr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-13",
+   "period": "2026-02-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001047127-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000011/amkr-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001047127-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000007/amkr-20260209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-02-02",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001047127-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712726000003/amkr-20260202.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001047127-25-000195",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712725000195/amkr-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001047127-25-000190",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712725000190/amkr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-21",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0001047127-25-000187",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712725000187/amkr-20251021.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-22",
+   "period": "2025-09-22",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001047127-25-000184",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712725000184/amkr-20250922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001047127-25-000179",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712725000179/amkr-20250908.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001047127-25-000175",
+   "url": "https://www.sec.gov/Archives/edgar/data/1047127/000104712725000175/amkr-20250908.htm"
+  }
+ ],
+ "warnings": []
+}

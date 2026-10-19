@@ -1,0 +1,290 @@
+{
+ "ticker": "ARW",
+ "cik": 7536,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T11:12:18-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000007536.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/7536/000110465926012765/arw-20251231x10k.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ARW/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ARW/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ARROW ELECTRONICS, INC.",
+  "cik": 7536,
+  "description": {
+   "text": "Arrow Electronics, Inc. (the “company” or “Arrow”) sources and engineers technology for thousands of leading manufacturers, service providers, and users of enterprise computing solutions. The company has one of the world’s broadest portfolios of product offerings available from leading electronic components and enterprise computing solutions suppliers. Equipped with a range of services, solutions, and software, the company helps industrial and commercial customers introduce innovative products, reduce their time to market, and enhance their overall competitiveness. Arrow was incorporated in New York in 1946. Arrow’s diverse worldwide customer base consists of OEMs, VARs, MSPs, EMS providers, and other commercial customers. These customers include manufacturers of products serving industries including industrial, automotive and transportation, computing, networking and communications, among others. The company has two reportable segments, global components and global ECS. The company distributes electronic components to OEMs and EMS providers through its global components segment and provides enterprise computing solutions to VARs and MSPs through its global ECS segment. The company maintains over 140 sales facilities and 39 distribution and value-added centers, serving over 85 countries. In 2025, approximately 70% of the company’s sales were from global components, and approximately 30% of the company’s sales were from global ECS.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0001104659-26-012765",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926012765/arw-20251231x10k.htm"
+  },
+  "description_short": "Arrow Electronics (NYSE: ARW) sources and engineers technology solutions for thousands of leading manufacturers and service providers. With global 2025 sales of $31 billion, Arrow's portfolio enables technology across major industries and markets.",
+  "industry": "Electronic Components",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "5065",
+  "sic_description": "Wholesale-Electronic Parts & Equipment, NEC",
+  "state_of_incorporation": "NY",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://investor.arrow.com",
+  "headquarters": "Centennial, CO",
+  "address": {
+   "street": "9151 East Panorama Circle",
+   "city": "Centennial",
+   "state": "CO",
+   "zip": "80112",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "303-824-4000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-30",
+  "first_sec_filing_form": "10-K",
+  "former_names": [
+   "ARROW ELECTRONICS, INC",
+   "ARROW ELECTRONICS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000007536&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-12",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-26-116236",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926116236/tm2627625d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-02",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-105516",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926105516/tm2624328d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-07-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-091983",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926091983/arw-20260704x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0000007536-26-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000000753626000127/arw-20260806x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-12",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001104659-26-060235",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926060235/tm2614085d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-04-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-26-056650",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926056650/arw-20260404x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007536-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000000753626000077/arw-20260507x8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-30",
+   "period": "2026-05-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-036516",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926036516/arw-20260512xdef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001104659-26-012765",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465926012765/arw-20251231x10k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007536-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000000753626000004/arw-20260205x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-104364",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465925104364/arw-20250927x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000007536-25-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000000753625000029/arw-20251030x8k.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-10-03",
+   "period": "2025-09-16",
+   "items": [
+    "5.02"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001104659-25-096644",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465925096644/tm2527867d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-17",
+   "period": "2025-09-16",
+   "items": [
+    "2.02",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Reg FD",
+   "accession": "0001104659-25-090894",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465925090894/tm2526347d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-29",
+   "period": "2025-08-29",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-085772",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465925085772/tm2524588d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-009847",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000155837025009847/arw-20250628x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001859644-25-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000185964425000011/arw-20250731x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-27",
+   "period": "2025-06-27",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-063633",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465925063633/tm2518759d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-06",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001104659-25-046130",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000110465925046130/tm2514210d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-006053",
+   "url": "https://www.sec.gov/Archives/edgar/data/7536/000155837025006053/arw-20250329x10q.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-11"
+ ]
+}

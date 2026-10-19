@@ -1,0 +1,90 @@
+{
+ "ticker": "CHYM",
+ "name": "Chime Financial, Inc.",
+ "sector": "Finance / Consumer neobank (fintech)",
+ "price": 29.67,
+ "market_cap_b": 7.01,
+ "engine_version": 5,
+ "base_oe_per_share": 0.07575389726845454,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Primary-account direct-deposit base of 10.4M active members and an owned processing stack (ChimeCore) behind an 88-89% gross margin, but core interchange economics rent the Durbin small-issuer exemption through partner banks, consumer switching costs are low, and there is no through-cycle ROIC record (roic_proxy distorted by negative pre-IPO equity and the FY2025 IPO SBC catch-up).",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 93.4%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.3% \u2014 valuation rests almost entirely on growth; tier is fragile"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 0.71,
+   "irr": 0.0284
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 1.11,
+   "irr": 0.0305
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 1.47,
+   "irr": 0.0325
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 1.94,
+   "irr": 0.0351
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 2.8,
+   "irr": 0.04
+  }
+ },
+ "iv_at_15": 1.55,
+ "iv_at_12": 2.14,
+ "implied_irr": 0.033,
+ "implied_irr_base_case": 0.0325,
+ "upside_at_15_pct": -94.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Fast-growing neobank with an 89% gross margin but almost no owner's earnings after real SBC \u2014 moat 4/10, weighted IRR 3.3%, IV@15% $1.55 vs $29.67; does not clear 15% until ~$1.55.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0305,
+ "irr_bull": 0.0351,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 1.04,
+ "iv_at_25": 0.76,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 236270347,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "10.4M active members with primary-account direct-deposit relationships \u2014 the paycheck anchor in mass-market consumer finance",
+  "Highest engagement in the category; ChimeCore owned processing stack with company-estimated ~60% lower transaction processing cost",
+  "Gross margin 82.8% \u2192 87.6% \u2192 88.0% \u2192 88.7% TTM \u2014 high and rising",
+  "Brand leadership in the underbanked segment"
+ ],
+ "moat_against": [
+  "About two-thirds of revenue is interchange priced off the Durbin small-bank exemption \u2014 a regulatory loophole, not an owned asset",
+  "No bank charter of its own in the filing period; deposits and issuance sit with Stride / Bancorp partner banks",
+  "Low consumer switching costs vs Cash App, SoFi, Dave, Current and incumbent banks",
+  "Member base is the most employment- and spend-cyclical segment; new lending (MyPay, Instant Loans) imports untested credit risk",
+  "No clean year of ROIC above the cost of capital on the filed record"
+ ]
+}

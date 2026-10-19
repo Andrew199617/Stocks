@@ -1,0 +1,291 @@
+{
+ "ticker": "CR",
+ "cik": 1944013,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T08:58:21-04:00",
+ "newest_filing_date": "2026-09-29",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001944013.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000095/cr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Crane Co",
+  "cik": 1944013,
+  "description": {
+   "text": "Crane Company has delivered innovation and technology-led solutions for customers since its founding in 1855. Today, Crane is a leading manufacturer of highly engineered components for challenging, mission-critical applications focused on the aerospace, defense, space and process industry end markets. The Company has two reporting segments: Aerospace & Advanced Technologies (“AAT”) and Process Flow Technologies (“PFT”). We have been committed to the highest standards of business conduct since our inception in 1855 when our founder, R.T. Crane, resolved “to conduct my business in the strictest honesty and fairness; to avoid all deception and trickery; to deal fairly with both customers and competitors; to be liberal and just toward employees; and to put my whole mind upon the business.” Our strategy is to grow earnings and cash flow by focusing on the development and manufacturing of highly engineered industrial products for specific markets where our scale is a relative advantage, and where we can compete based on our proprietary and differentiated technology, our deep vertical expertise, and our responsiveness to unique and diverse customer needs. We continuously evaluate our portfolio, pursue acquisitions that complement our existing businesses and selectively divest businesses where appropriate.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001944013-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000095/cr-20251231.htm"
+  },
+  "description_short": "Crane Company has delivered innovation and technology-led solutions to its customers since its founding in 1855. Today, Crane is a leading manufacturer of highly engineered components for challenging, mission-critical applications focused on the aerospace, defense, space and process industry end markets. The Company is comprised of two strategic growth platforms, Aerospace & Advanced Technologies and Process Flow Technologies. Crane has approximately 8,300 employees in the Americas, Europe, the Middle East, Asia and Australia.",
+  "industry": "Metal Fabrications",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3490",
+  "sic_description": "Miscellaneous Fabricated Metal Products",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.craneco.com",
+  "headquarters": "Stamford, CT",
+  "address": {
+   "street": "100 First Stamford Place",
+   "city": "Stamford",
+   "state": "CT",
+   "zip": "06902",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "(203) 363-7300",
+  "employees": {
+   "count": 7100,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we employed approximately 7,100 persons worldwide, of which substantially all were full time employees.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000095/cr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2022-12-15",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001944013&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-27",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-063845",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000162828026063845/cr-20260927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-061780",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000162828026061780/cr-20260914.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944013-26-000186",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000186/cr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944013-26-000181",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000181/cr-20260728.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944013-26-000161",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000161/cr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001944013-26-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000133/cr-20260427.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001944013-26-000130",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000130/cr-20260427.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944013-26-000125",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000125/cr-20260427.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-13",
+   "period": "2026-04-27",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-105005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000119312526105005/d99225ddef14a.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-03-10",
+   "period": "2026-01-01",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001944013-26-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000114/cr-20260101.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001944013-26-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000095/cr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-26",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001944013-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000026/cr-20260126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-26",
+   "period": "2026-01-26",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001944013-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401326000009/cr-20260126.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-05",
+   "period": "2026-01-01",
+   "items": [
+    "2.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Other events",
+   "accession": "0001193125-26-002601",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000119312526002601/d36278d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001944013-25-000116",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401325000116/cr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-27",
+   "period": "2025-10-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001944013-25-000110",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000194401325000110/cr-20251027.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-30",
+   "period": "2025-09-30",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-25-225160",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000119312525225160/d41668d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-036977",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000162828025036977/cr-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-28",
+   "period": "2025-07-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-036200",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000162828025036200/cr-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-09",
+   "period": "2025-06-06",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001193125-25-137875",
+   "url": "https://www.sec.gov/Archives/edgar/data/1944013/000119312525137875/d62192d8k.htm"
+  }
+ ],
+ "warnings": []
+}

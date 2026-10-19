@@ -1,0 +1,144 @@
+{
+ "ticker": "COKE",
+ "cik": 317540,
+ "entity": "COCA-COLA CONSOLIDATED, INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-07-03",
+ "inputs": {
+  "ocf": {
+   "fy": 931904000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 406221000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 420647000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 946330000
+  },
+  "capex": {
+   "fy": 312315000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 157383000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 147354000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 302286000
+  },
+  "sbc": {
+   "fy": 0.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 0.0,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-27"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 0.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 0.0
+  },
+  "shares_diluted": {
+   "fy": null,
+   "fy_period": null,
+   "fy_tag": null,
+   "ytd_prior": null,
+   "ytd_prior_period": null,
+   "ytd_prior_tag": null,
+   "ytd_current": 83807000.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-07-03"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 946330000,
+ "ttm_capex": 302286000,
+ "ttm_sbc": 0.0,
+ "ttm_shares_diluted": 83807000.0,
+ "ttm_oe_total": 644044000.0,
+ "ttm_oe_per_share": 7.684847327788848,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Cash Flows: no share-based/stock compensation adjustment appears among the operating-activity reconciling items for FY2025, FY2024 or FY2023, and the Consolidated Statements of Changes in Stockholders' Equity show no stock-compensation credit to additional paid-in capital in FY2023-FY2025 (APIC flat at $23,764 thousand through FY2024-FY2025). EDGAR companyfacts' last filed ShareBasedCompensation values are $0 for FY2020 and FY2021 (10-Ks filed 2021-02-26 / 2022-02-22).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 0.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-27"
+     ],
+     "amount": 0.0,
+     "days": 178,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-07-03"
+     ],
+     "amount": 0.0,
+     "days": 184,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "shares",
+   "value": 83807000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Operations: 'Weighted average number of Common Stock shares outstanding - assuming dilution' 83,807 thousand for FY2025 (90,524 thousand FY2024, 93,923 thousand FY2023), all retroactively adjusted for the 10-for-1 forward stock split effected May 27, 2025. Under the two-class method this Common diluted line is the company-wide diluted denominator: it equals Common basic 73,658 thousand + Class B diluted 10,149 thousand, and FY2025 net income $570,582 thousand / 83,807 thousand shares = the reported diluted EPS of $6.81 \u2014 the Class B diluted line is a component of the Common diluted line, not additive to it.",
+   "legs_filled": {
+    "ytd_current": {
+     "amount": 83807000.0,
+     "prorated": false,
+     "note": "share counts are weighted averages, not flows \u2014 used unprorated as the TTM denominator"
+    }
+   }
+  }
+ ]
+}

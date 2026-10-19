@@ -1,0 +1,101 @@
+{
+ "ticker": "CLH",
+ "cik": 822818,
+ "entity": "CLEAN HARBORS,\u00a0INC",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 866725000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1605000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 6297000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 871417000
+  },
+  "capex": {
+   "fy": 424918000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 118695000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 98443000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 404666000
+  },
+  "sbc": {
+   "fy": 32702000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 7635000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 9578000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 34645000
+  },
+  "shares_diluted": {
+   "fy": 53716000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 53993000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 52992000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 871417000,
+ "ttm_capex": 404666000,
+ "ttm_sbc": 34645000,
+ "ttm_shares_diluted": 52992000,
+ "ttm_oe_total": 432106000,
+ "ttm_oe_per_share": 8.154174214975846,
+ "warnings": [],
+ "overrides_used": []
+}

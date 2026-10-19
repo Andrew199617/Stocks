@@ -1,0 +1,232 @@
+{
+ "ticker": "AGI",
+ "cik": 1178819,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "40-F",
+   "accession": "0001178819-26-000048",
+   "filed": "2026-03-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1178819/000117881926000048/agi-20251231_d2_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "agi:IslandGoldMember",
+     "label": "Island Gold",
+     "values": [
+      444300000,
+      833900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3299,
+      0.461
+     ],
+     "growth_yoy": [
+      null,
+      0.8769
+     ]
+    },
+    {
+     "member": "agi:YoungDavidsonSegmentMember",
+     "label": "Young-Davidson Segment",
+     "values": [
+      415300000,
+      534100000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3083,
+      0.2953
+     ],
+     "growth_yoy": [
+      null,
+      0.2861
+     ]
+    },
+    {
+     "member": "agi:MulatosSegmentMember",
+     "label": "Mulatos Segment",
+     "values": [
+      487300000,
+      485800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3618,
+      0.2686
+     ],
+     "growth_yoy": [
+      null,
+      -0.0031
+     ]
+    },
+    {
+     "member": "agi:CorporateNonSegment1Member",
+     "label": "Corporate, Non-Segment1",
+     "values": [
+      null,
+      -45000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      -0.0249
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1346900000,
+     1808800000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "ifrs-full:ProfitLossFromOperatingActivities",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "agi:IslandGoldMember",
+     "label": "Island Gold",
+     "values": [
+      232500000,
+      483900000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4138,
+      0.4409
+     ],
+     "growth_yoy": [
+      null,
+      1.0813
+     ]
+    },
+    {
+     "member": "agi:MulatosSegmentMember",
+     "label": "Mulatos Segment",
+     "values": [
+      191100000,
+      283700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3401,
+      0.2585
+     ],
+     "growth_yoy": [
+      null,
+      0.4846
+     ]
+    },
+    {
+     "member": "agi:YoungDavidsonSegmentMember",
+     "label": "Young-Davidson Segment",
+     "values": [
+      207500000,
+      260600000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3693,
+      0.2374
+     ],
+     "growth_yoy": [
+      null,
+      0.2559
+     ]
+    },
+    {
+     "member": "agi:CorporateNonSegment1Member",
+     "label": "Corporate, Non-Segment1",
+     "values": [
+      -69200000,
+      69300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1232,
+      0.0631
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     561900000,
+     1097500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "40-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

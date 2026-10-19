@@ -1,0 +1,293 @@
+{
+ "ticker": "CHRW",
+ "cik": 1043277,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T18:09:27-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001043277.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000009/chrw-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CHRW/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CHRW/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "C. H. ROBINSON WORLDWIDE, INC.",
+  "cik": 1043277,
+  "description": {
+   "text": "C.H. Robinson Worldwide, Inc. (“C.H. Robinson,” “the company,” “we,” “us,” or “our”) is one of the largest global logistics providers in the world, with consolidated total revenues of $16.2 billion in 2025. As a leader in Lean artificial intelligence (“AI”) supply chains, we deliver logistics like no one else. For more than a century, companies everywhere have looked to us to reimagine how goods move. We deliver tailored solutions across the world via truckload, less-than-truckload, ocean, air, and more. With our unique combination of human insight and Lean AI working as one, supply chains move faster, smarter, and more sustainably. Operating throughout North America, Europe, Asia, Oceania, South America, and the Middle East, we help ensure the seamless delivery of goods across industries and continents. Our global suite of multimodal logistics services brings together the expertise of our people with custom technology differentiated by one of the largest datasets on shipments, routings, and carriers in the world. The Robinson Operating Model is the foundation of our strategy, execution, and accountability throughout the organization. Rooted in Lean principles, it’s a disciplined approach to continuous improvement, driving operational effectiveness that allows us to deliver greater value to our customers. Accelerated speed in decision-making allows us to more quickly identify and pursue opportunities.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001043277-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000009/chrw-20251231.htm"
+  },
+  "description_short": "C.H. Robinson is the global leader in Lean AI supply chains. For more than a century, companies everywhere have looked to us to reimagine how goods move. Now, as we redefine what's next for the industry, that same drive fuels our commitment to Building Tomorrow's Supply Chains, Today. Trusted by 75,000 customers and 450,000 contract carriers, we manage 37 million shipments annually, representing $23 billion in freight. We deliver tailored solutions across the world via truckload, less-than-truckload, ocean, air, and more. With our unique combination of human insight and Lean AI working as one, supply chains move faster, smarter, and more sustainably. As a responsible global citizen, we proudly contribute millions to the causes that matter most to our employees.",
+  "industry": "Integrated Freight & Logistics",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "4731",
+  "sic_description": "Arrangement of  Transportation of  Freight & Cargo",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.chrobinson.com",
+  "headquarters": "Eden Prairie, Minnesota",
+  "address": {
+   "street": "14701 Charlson Road",
+   "city": "Eden Prairie",
+   "state": "Minnesota",
+   "zip": "55347",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "9529378500",
+  "employees": {
+   "count": 11855,
+   "as_of": "2025-12-31",
+   "evidence": "We work with 75,000 customers across a wide variety of industries, with 450,000 contract carriers on our platform. As of December 31, 2025, we had a total of 11,855 employees in 37 countries.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000009/chrw-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-08-15",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "C H ROBINSON WORLDWIDE INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001043277&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-05",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-413203",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000119312526413203/d115124d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043277-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000031/chrw-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043277-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000027/chrw-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-23",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-315034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000119312526315034/d149453d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-05-29",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001043277-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000023/chrw-20260529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-07",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001043277-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000018/chrw-20260507.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043277-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000016/chrw-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043277-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000014/chrw-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001043277-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000011/chrw-20260323.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001043277-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000009/chrw-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043277-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327726000005/chrw-20260128.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-11-07",
+   "period": "2025-11-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Amendment: Officer/director change",
+   "accession": "0001043277-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000058/chrw-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043277-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000052/chrw-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001043277-25-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000050/chrw-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-25",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001043277-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000047/chrw-20250825.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Officer/director change",
+   "accession": "0001043277-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000044/chrw-20250812.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001043277-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000041/chrw-20250807.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001043277-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000037/chrw-20250630.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2025-07-31",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Amendment: Results of operations",
+   "accession": "0001043277-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000031/chrw-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001043277-25-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1043277/000104327725000029/chrw-20250730.htm"
+  }
+ ],
+ "warnings": []
+}

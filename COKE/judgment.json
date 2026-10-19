@@ -1,0 +1,44 @@
+{
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Brands are not owned: ~85% of bottle/can volume is KO product; COKE buys concentrate, KO controls brand strategy and pricing architecture",
+  "Secular headwinds for sugary drinks: volume risk from health trends, sugar taxes and GLP-1 appetite suppression",
+  "Capital-intensive: capex $312M in FY2025 (~4.3% of sales) for plants, fleet, coolers and automation is a permanent toll on owner's earnings",
+  "Leverage step-up: Nov 2025 KO-stake repurchase took net debt to $2,504M at FY2025-end (engine) and H1 2026 net interest to $62.5M vs $12.8M in H1 2025",
+  "Controlled company: Class B holders (Harrison family) hold ~78% of voting power; the only equity-linked pay plan covers the CEO alone"
+ ],
+ "moat_for": [
+  "Exclusive Coca-Cola franchise territory (14 states + DC, ~60M consumers); largest US Coca-Cola bottler \u2014 no rival bottler can sell Coke in its territory",
+  "ROIC well above cost of capital through the current era: roic_proxy 25.2%/31.6%/43.7%/32.9%/39.8% in FY2021-FY2025 (fundamentals.json)",
+  "Proven pricing power: gross margin 35.1% (FY2021) -> 39.9% (FY2024), 39.7% (FY2025); annual pricing actions passed through per 10-K/10-Q MD&A",
+  "Century-built local manufacturing and route-to-market density across the Southeast/Mid-Atlantic; Q2 2026 case volume +7.6% YoY",
+  "Bottling relationship with The Coca-Cola Company affirmed intact when KO sold its equity stake in Nov 2025"
+ ],
+ "moat_justification": "Strong territorial moat: exclusive Coca-Cola bottling franchise for 14 states + DC (~60M consumers) as the largest US Coca-Cola bottler, with a century-built local manufacturing/distribution density. Returns prove it in the current franchise era: fundamentals.json roic_proxy 25.2% (FY2021), 31.6% (FY2022), 43.7% (FY2023), 32.9% (FY2024), 39.8% (FY2025) \u2014 well above the cost of capital five straight years \u2014 and gross margin expanded from 35.1% (FY2021) to 39.9% (FY2024) / 39.7% (FY2025) on annual pricing actions. Capped at 7, not higher: the brands and concentrate belong to The Coca-Cola Company (~85% of bottle/can volume is KO product), the business is capital-intensive (capex ~$300M/yr), and pre-refranchising returns (FY2017-19 roic_proxy 3-7%) show what the model earns without scale/pricing tailwinds. CAP 11.1y.",
+ "moat_score": 7,
+ "name": "Coca-Cola Consolidated, Inc.",
+ "one_liner": "High-return territorial Coca-Cola bottler, moat 7/10 \u2014 at $210.33 the weighted IRR is only 7.74% (weighted IV@15% $82.72, Tier D) on a $7.68 TTM owner's-earnings base; even the super-bull case returns 12.86%, and the stock clears the 15% hurdle only below about $82.72.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under the engine's tags. COKE has no equity-settled SBC to subtract: its only equity-linked plan, the Long-Term Performance Equity Plan for the CEO, is liability-accrued and may be cash-settled at the holder's election \u2014 its compensation expense ($10.7M FY2025, $10.5M FY2024, $10.3M FY2023, Note 2 of the FY2025 10-K) was never tagged ShareBasedCompensation (filed SBC was $0 in FY2020/FY2021 while LTPEP expense was $9.2M/$9.8M), the cost already sits inside net income/OCF, and the cash-flow statement adds nothing back, so subtracting it again as SBC would double-count it (same treatment as SQM/TS in this sweep). The filing-sourced equity SBC figure for the gap years is $0, which is also the engine's last filed value, so the override is in-band by construction.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Cash Flows: no share-based/stock compensation adjustment appears among the operating-activity reconciling items for FY2025, FY2024 or FY2023, and the Consolidated Statements of Changes in Stockholders' Equity show no stock-compensation credit to additional paid-in capital in FY2023-FY2025 (APIC flat at $23,764 thousand through FY2024-FY2025). EDGAR companyfacts' last filed ShareBasedCompensation values are $0 for FY2020 and FY2021 (10-Ks filed 2021-02-26 / 2022-02-22).",
+  "value": 0
+ },
+ "sector": "Consumer Staples / Non-alcoholic beverage bottling & distribution",
+ "shares_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:shares \u2014 diluted WASO is filed only by share class under the two-class method (class-dimensioned facts), so no undimensioned WeightedAverageNumberOfDilutedSharesOutstanding fact survives into EDGAR companyfacts after FY2019 (last filed total: 9,417,000 pre-split shares, FY2019). The FY2025 company-wide diluted total from the 10-K fills the missing periods; the engine applies this single value to every unfiled year, so FY2024/FY2023 OE/share is overstated by ~8%/~12% versus their own filed totals (90,524,000 / 93,923,000) \u2014 documented in analysis.md. The count has since fallen further: the Nov 7, 2025 repurchase of The Coca-Cola Company's 18,835,460 shares took H1 2026 diluted WASO to 66,649 thousand (Q2 2026 10-Q), a step the FY2025-denominator bases do not capture \u2014 also documented in analysis.md.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-18, accession 0001628280-26-009057), Consolidated Statements of Operations: 'Weighted average number of Common Stock shares outstanding - assuming dilution' 83,807 thousand for FY2025 (90,524 thousand FY2024, 93,923 thousand FY2023), all retroactively adjusted for the 10-for-1 forward stock split effected May 27, 2025. Under the two-class method this Common diluted line is the company-wide diluted denominator: it equals Common basic 73,658 thousand + Class B diluted 10,149 thousand, and FY2025 net income $570,582 thousand / 83,807 thousand shares = the reported diluted EPS of $6.81 \u2014 the Class B diluted line is a component of the Common diluted line, not additive to it.",
+  "value": 83807000
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

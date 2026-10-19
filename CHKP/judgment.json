@@ -1,0 +1,35 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "DATA_GAP:ads_ratio \u2014 Check Point is a direct-listed foreign private issuer with no ADS program: one Nasdaq-traded CHKP share is one ordinary share, so per-ordinary-share figures are directly comparable to the traded price with no scaling.",
+  "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-31), cover page: securities registered under Section 12(b) are 'Ordinary shares, NIS 0.01 nominal value', trading symbol CHKP, listed on the NASDAQ Global Select Market, with 105,596,035 ordinary shares outstanding at December 31, 2025 \u2014 the Nasdaq security is the ordinary share itself"
+ },
+ "confidence": "medium",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Persistent share loss: revenue CAGR ~5.5% over five years vs double-digit peer growth (Palo Alto, Fortinet, Zscaler, CrowdStrike)",
+  "Core product/appliance revenue fell 14% YoY in Q2 2026 and total revenue grew only 1% \u2014 the legacy engine is stalling",
+  "Growth depends on execution resets: new CEO (Dec 2024), new CRO (May 2026), hundreds of added sales hires, and bought innovation (Lakera, Veriti, Cyata, Cyclops)",
+  "Operating leverage going backwards near term: GAAP operating margin 41.9% (2021) to 30.5% (FY2025) to 27-28% in H1 2026, with SBC up 37% in FY2025"
+ ],
+ "moat_for": [
+  "Mission-critical installed firewall/gateway base \u2014 policy complexity, certified admins and downtime risk create real switching costs",
+  "Sustained pricing power: gross margin 86.7-89.5% across the last five fiscal years and ROIC proxy 24.6-33.9% (2020-2024) through the cycle",
+  "Subscription mix building a visible base: security subscriptions +11-12% YoY in H1 2026, RPO $2.6B (+7%), deferred revenue $1,530M at FY2025",
+  "Fortress balance sheet funds buybacks and acquisitions without stress: cash and marketable securities $4.38B at Q1 2026 against $2.0B of 0% converts due 2030"
+ ],
+ "moat_justification": "Installed firewall/gateway base with real switching costs, prevention-first efficacy and ~87-89% gross margins; ROIC proxy stayed 24.6-33.9% over 2020-2024 (2025's 60.7% is a cash-denominator artifact of the convertible raise), well above the cost of capital through the cycle. But the franchise is narrowing: revenue compounded only ~5.5%/yr over five years while Palo Alto, Fortinet and cloud-native rivals grew double-digit, product revenue fell 14% YoY in Q2 2026, and growth now depends on a go-to-market overhaul and bought AI/cloud innovation (Lakera, Veriti, Cyberint) rather than the core engine.",
+ "moat_score": 6,
+ "name": "Check Point Software Technologies Ltd.",
+ "one_liner": "High-quality, cash-rich firewall incumbent, moat 6/10 \u2014 but at $137.87 it does not clear 15%: weighted IRR 9.8%, weighted IV@15% $78.16 vs $137.87; it clears 15% only below ~$78, and even the bull case (12.0%) stays under the hurdle.",
+ "probs_used": [
+  0.1,
+  0.3,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Technology / Cybersecurity software (network security)",
+ "tier_override": null,
+ "tier_override_reason": null
+}

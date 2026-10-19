@@ -1,0 +1,287 @@
+{
+ "ticker": "AMH",
+ "cik": 1562401,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T17:47:12-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001562401.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000010/amh-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AMH/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AMH/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "American Homes 4 Rent",
+  "cik": 1562401,
+  "description": {
+   "text": "American Homes 4 Rent (“AMH” or the “General Partner”) is an internally managed Maryland real estate investment trust (“REIT”) formed on October 19, 2012. American Homes 4 Rent, L.P., a Delaware limited partnership formed on October 22, 2012, and its consolidated subsidiaries (collectively, the “Operating Partnership” or the “OP”) is the entity through which the Company conducts substantially all of its business and owns, directly or through subsidiaries, substantially all of its assets. References to the “Company,” “we,” “our” and “us” mean collectively AMH, the Operating Partnership and those entities/subsidiaries owned or controlled by AMH and/or the Operating Partnership. We are focused on developing, renovating, leasing and managing single-family homes as rental properties. We commenced operations in November 2012. Our geographically diversified portfolio of single-family homes has evolved into a nationally recognized brand that is well-known for quality, value and resident satisfaction and is well respected in our communities. Our goal is to simplify the experience of leasing a home and provide an accessible housing option to the one in three households who choose to rent in the country. Since launching our internal “AMH Development Program” in 2017, we have contributed to addressing the national housing shortage by developing thousands of built-for-rental homes per year to meet growing demands.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001562401-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000010/amh-20251231.htm"
+  },
+  "description_short": "AMH (NYSE: AMH) is a leading large-scale integrated owner, operator and developer of single-family rental homes. We're an internally managed Maryland real estate investment trust (REIT) focused on developing, renovating, leasing and managing homes as rental properties.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.amh.com",
+  "headquarters": "Las Vegas, Nevada",
+  "address": {
+   "street": "280 Pilot Road",
+   "city": "Las Vegas",
+   "state": "Nevada",
+   "zip": "89119",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "(805) 413-5300",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2013-06-04",
+  "first_sec_filing_form": "S-11",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001562401&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001562401-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000050/amh-20260909.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001562401-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000047/amh-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001562401-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000043/amh-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-073560",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000110465926073560/tm2617579d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001562401-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000039/amh-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001562401-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000035/amh-20260514.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001562401-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000032/amh-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001562401-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000028/amh-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-27",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001562401-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000018/amh-20260327.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001562401-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000012/amh-20260227.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001562401-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000010/amh-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001562401-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240126000007/amh-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-03",
+   "period": "2025-12-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001562401-25-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000083/amh-20251203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001562401-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000082/amh-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001562401-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000078/amh-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-03",
+   "period": "2025-09-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001562401-25-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000073/amh-20250903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001562401-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000067/amh-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001562401-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000063/amh-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-29",
+   "period": "2025-05-29",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001562401-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000156240125000044/amh-20250529.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-13",
+   "period": "2025-05-13",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-047812",
+   "url": "https://www.sec.gov/Archives/edgar/data/1562401/000110465925047812/tm2514914d1_8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-20"
+ ]
+}

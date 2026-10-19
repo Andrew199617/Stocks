@@ -1,0 +1,108 @@
+{
+ "ticker": "AHR",
+ "name": "American Healthcare REIT, Inc.",
+ "sector": "Real Estate / Healthcare REIT (senior housing, skilled nursing, outpatient medical)",
+ "price": 53.23,
+ "market_cap_b": 8.88,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2728370575339643,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Weak-moderate 4/10, in line with peer healthcare REITs in this sweep: the RIDEA operating platform, the demographic tailwind and record-low senior-housing new supply give real current pricing power, but the assets are replicable with capital, there is no durable lock-in beyond leases, measured ROIC is falling (roic_proxy 19.8% FY2023 to 10.2% FY2025 in fundamentals.json, on a denominator that omits the debt the engine could not tag, so it flatters), and growth must be continuously bought with dilutive equity issuance.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 36.3%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-27, accession 0001193125-26-082692), Consolidated Statements of Cash Flows, investing activities line 'Developments and capital expenditures': $(99,791) thousand for FY2023, $(91,940) thousand for FY2024 and $(128,562) thousand for FY2025; the override value is the median of the three filed years (the FY2023 figure). The same 10-K (Note 3, Real Estate Investments) reports capital expenditures incurred by segment of $100,971k / $87,562k / $143,103k for FY2023/24/25; the cash-flow line is used because the engine's capex is a cash concept.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 1.08 vs 3-yr median 0.51 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 6.33,
+   "irr": 0.0391
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 9.97,
+   "irr": 0.0487
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 13.39,
+   "irr": 0.058
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 17.76,
+   "irr": 0.0696
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 26.11,
+   "irr": 0.0909
+  }
+ },
+ "iv_at_15": 13.23,
+ "iv_at_12": 17.68,
+ "implied_irr": 0.0578,
+ "implied_irr_base_case": 0.058,
+ "upside_at_15_pct": -75.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real-estate growth story priced far past its owner's earnings, moat 4/10 \u2014 even on the generous TTM base ($1.27/sh) the weighted IRR is 5.8% (weighted IV@15% $13.23 vs the $53.23 price), the entire scenario band is Tier D, and the price would have to fall to ~$13 to clear the 15% hurdle; confidence low (sector model mismatch).",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0487,
+ "irr_bull": 0.0696,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 9.24,
+ "iv_at_25": 7.06,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 166849603,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "RIDEA operating platform (ISHC + SHOP) captures operating upside directly, not just rent \u2014 Q2 2026 same-store NOI +16.1% ISHC / +20.5% SHOP, tenth straight double-digit quarter",
+  "Structural supply/demand: senior-housing new supply at generational lows while the 80+ cohort grows \u2014 occupancy and pricing tailwind",
+  "Scale and operator network built over ~20 years (Trilogy platform); 337 buildings / ~22.2M sq ft at FY2025, sourcing off-market deals",
+  "Deep access to equity capital at premium prices funds growth and keeps leverage low \u2014 net debt / annualized adjusted EBITDA 2.5x at Q2 2026, total indebtedness $1.4B"
+ ],
+ "moat_against": [
+  "Real estate is replicable with capital \u2014 no network effects, no lock-in beyond leases; location advantages are local and contestable",
+  "Measured returns falling: ROIC proxy 19.8% (FY2023) \u2192 13.2% (FY2024) \u2192 10.2% (FY2025), and that denominator omits untagged debt, so the true figure is lower",
+  "Growth is bought with continuous equity issuance: weighted diluted shares +27.7% in FY2025, 217,998,775 shares outstanding by Aug 2026, ~12.2M forward-sale shares still unsettled \u2014 per-share economics lag portfolio growth",
+  "RIDEA operating exposure: labor costs, operator concentration (Trilogy in ISHC), and Medicare/Medicaid reimbursement risk in skilled nursing",
+  "Short listed history (NYSE listing Feb 2024), no through-cycle record as a public company; CEO Danny Prosky on medical leave during 2026 per the FY2025 10-K"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 99791000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-27, accession 0001193125-26-082692), Consolidated Statements of Cash Flows, investing activities line 'Developments and capital expenditures': $(99,791) thousand for FY2023, $(91,940) thousand for FY2024 and $(128,562) thousand for FY2025; the override value is the median of the three filed years (the FY2023 figure). The same 10-K (Note 3, Real Estate Investments) reports capital expenditures incurred by segment of $100,971k / $87,562k / $143,103k for FY2023/24/25; the cash-flow line is used because the engine's capex is a cash concept."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 1.7648,
+  "base_oe_with_override": 1.2728,
+  "base_oe_impact_pct": -27.878,
+  "weighted_irr_without_override": 0.0702,
+  "weighted_irr_with_override": 0.0578,
+  "weighted_irr_impact_pp": -1.234,
+  "unblocks_tier": true
+ }
+}

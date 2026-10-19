@@ -1,0 +1,293 @@
+{
+ "ticker": "AIZ",
+ "cik": 1267238,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T18:12:35-04:00",
+ "newest_filing_date": "2026-08-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001267238.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000010/aiz-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AIZ/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AIZ/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ASSURANT, INC.",
+  "cik": 1267238,
+  "description": {
+   "text": "Assurant, Inc. was incorporated as a Delaware corporation in 2004. We are a premier global protection company that partners with the world’s leading brands to safeguard and service connected devices, homes and automobiles. We leverage data-driven technology solutions to provide exceptional customer experiences. We operate in North America, Latin America, Europe and Asia Pacific through two operating segments: Global Lifestyle and Global Housing. Through our Global Lifestyle segment, we provide mobile device solutions, extended service contracts and related services for consumer electronics and appliances, and credit and other insurance products (referred to as “Connected Living”); and vehicle protection services, commercial equipment protection and other related services (referred to as “Global Automotive”). Through our Global Housing segment, we provide lender-placed homeowners, manufactured housing and flood insurance, as well as voluntary manufactured housing, condominium and homeowners insurance (referred to as “Homeowners”); and renters insurance and other products (referred to as “Renters and Other”).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0001267238-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000010/aiz-20251231.htm"
+  },
+  "description_short": "Assurant, Inc. (NYSE: AIZ) redefines the boundaries of protection - safeguarding and servicing connected devices, homes, automobiles, and commercial equipment in partnership with the world's leading brands. As a Fortune 500 company operating in 21 countries, Assurant leads the way in leveraging insights and technology to transform customer connections that build loyalty and drive value.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6399",
+  "sic_description": "Insurance Carriers, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.assurant.com",
+  "headquarters": "Atlanta, Georgia",
+  "address": {
+   "street": "260 Interstate North Circle SE",
+   "city": "Atlanta",
+   "state": "Georgia",
+   "zip": "30339",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "770-763-1000",
+  "employees": {
+   "count": 14800,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, Assurant had approximately 14,800 employees, representing more than 80 nationalities, with a presence in 21 markets globally.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000010/aiz-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2003-10-24",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "ASSURANT INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001267238&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001267238-26-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000041/aiz-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001267238-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000039/aiz-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001267238-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000033/aiz-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001267238-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000027/aiz-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001267238-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000024/aiz-20260505.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-06",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001267238-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000018/aiz-20260406.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001267238-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000010/aiz-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001267238-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000006/aiz-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001267238-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723826000003/aiz-20260128.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001267238-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000051/aiz-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001267238-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000049/aiz-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-14",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-182705",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000119312525182705/d938338d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001267238-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000047/aiz-20250811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001267238-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000045/aiz-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001267238-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000042/aiz-20250805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-15",
+   "period": "2025-07-10",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001267238-25-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000039/aiz-20250710.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-18",
+   "period": "2025-06-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-142716",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000119312525142716/d80742d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-23",
+   "period": "2025-05-21",
+   "items": [
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001267238-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000032/aiz-20250521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001267238-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000026/aiz-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-06",
+   "period": "2025-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001267238-25-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1267238/000126723825000024/aiz-20250506.htm"
+  }
+ ],
+ "warnings": []
+}

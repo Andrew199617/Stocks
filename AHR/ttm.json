@@ -1,0 +1,137 @@
+{
+ "ticker": "AHR",
+ "cik": 1632970,
+ "entity": "American Healthcare REIT, Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 294441000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 132091000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 199687000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 362037000
+  },
+  "capex": {
+   "fy": 99791000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 49485400.0,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 49485400.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 99791000.0
+  },
+  "sbc": {
+   "fy": 14621000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 5741000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 10625000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 19505000
+  },
+  "shares_diluted": {
+   "fy": 166849603,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 159318503,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 190708621,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 362037000,
+ "ttm_capex": 99791000.0,
+ "ttm_sbc": 19505000,
+ "ttm_shares_diluted": 190708621,
+ "ttm_oe_total": 242741000.0,
+ "ttm_oe_per_share": 1.2728370575339643,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 99791000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-27, accession 0001193125-26-082692), Consolidated Statements of Cash Flows, investing activities line 'Developments and capital expenditures': $(99,791) thousand for FY2023, $(91,940) thousand for FY2024 and $(128,562) thousand for FY2025; the override value is the median of the three filed years (the FY2023 figure). The same 10-K (Note 3, Real Estate Investments) reports capital expenditures incurred by segment of $100,971k / $87,562k / $143,103k for FY2023/24/25; the cash-flow line is used because the engine's capex is a cash concept.",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 99791000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 49485400.0,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 49485400.0,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

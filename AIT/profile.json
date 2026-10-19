@@ -1,0 +1,286 @@
+{
+ "ticker": "AIT",
+ "cik": 109563,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T03:24:46-04:00",
+ "newest_filing_date": "2026-09-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000109563.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000033/ait-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AIT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AIT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "APPLIED INDUSTRIAL TECHNOLOGIES INC",
+  "cik": 109563,
+  "description": {
+   "text": "Headquartered in Cleveland, Ohio, Applied and its predecessor companies have engaged in business since 1923. Applied operates on a fiscal year ending June 30. We are a leading value-added distributor and technical solutions provider of industrial motion, fluid power, flow control, automation technologies and related maintenance supplies. Through our comprehensive network of approximately 6,900 employee associates and approximately 580 facilities including service center, fluid power, flow control, and automation operations, as well as repair shops and distribution centers, we offer a selection of more than 9.4 million stock keeping units with a focus on industrial bearings, power transmission products, fluid power components and systems, specialty flow control, and advanced factory automation solutions, as well as general maintenance products. Our customers use our products and services for both Maintenance, Repair, and Operations (\"MRO\"), Original Equipment Manufacturing (\"OEM\"), and new system install applications across a variety of end markets primarily in North America, as well as Australia, New Zealand, and Singapore. Our internet address is www.applied.com.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "accession": "0000109563-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000033/ait-20260630.htm"
+  },
+  "description_short": "Applied Industrial Technologies is a leading value-added distributor and technical solutions provider of industrial motion, fluid power, flow control, automation technologies, and related maintenance supplies. Our leading brands, specialized services, and comprehensive knowledge serve MRO (maintenance, repair, and operations) and OEM (original equipment manufacturing), and new system install applications in virtually all industrial markets through our multi-channel capabilities that provide choice, convenience, and expertise.",
+  "industry": "Industrial Specialties",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5080",
+  "sic_description": "Wholesale-Machinery, Equipment & Supplies",
+  "state_of_incorporation": "OH",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.applied.com",
+  "headquarters": "Cleveland, Ohio",
+  "address": {
+   "street": "1 Applied Plaza",
+   "city": "Cleveland",
+   "state": "Ohio",
+   "zip": "44115",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-13"
+  },
+  "phone": "216-426-4753",
+  "employees": {
+   "count": 6900,
+   "as_of": "2026-06-30",
+   "evidence": "At June 30, 2026, we had approximately 6,900 associates across seven countries, with geographic and segment distribution as follows:",
+   "form": "10-K",
+   "filed": "2026-08-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000033/ait-20260630.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-09",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "BEARINGS INC /OH/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000109563&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-10",
+   "period": "2026-10-20",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-387870",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000119312526387870/d114658ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-14",
+   "period": "2026-08-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000109563-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000035/ait-20260811.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000109563-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000033/ait-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109563-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000031/ait-20260813.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-25",
+   "period": "2026-06-22",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000109563-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000027/ait-20260622.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109563-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000021/ait-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000109563-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000019/ait-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109563-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000015/ait-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109563-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956326000013/ait-20260127.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109563-25-000107",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000107/ait-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109563-25-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000103/ait-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-24",
+   "period": "2025-10-24",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001193125-25-249961",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000119312525249961/d50676d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000109563-25-000098",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000098/ait-20251021.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-09-10",
+   "period": "2025-10-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-200079",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000119312525200079/d83057ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-08-15",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000109563-25-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000080/ait-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-14",
+   "period": "2025-08-14",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109563-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000063/ait-20250814.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-11",
+   "period": "2025-07-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0000109563-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000049/ait-20250710.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109563-25-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000039/ait-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109563-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000036/ait-20250501.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-01-29",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109563-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/109563/000010956325000026/ait-20241231.htm"
+  }
+ ],
+ "warnings": []
+}

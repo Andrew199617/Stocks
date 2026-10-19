@@ -1,0 +1,90 @@
+{
+ "ticker": "CSGP",
+ "name": "CoStar Group, Inc.",
+ "sector": "Real Estate Information & Marketplaces (Nasdaq screener classifies as Finance / Real Estate \u2014 the SECTOR_MODEL_MISMATCH flag's source)",
+ "price": 32.31,
+ "market_cap_b": 13.59,
+ "engine_version": 5,
+ "base_oe_per_share": 0.2151063309704229,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Core CoStar suite is the commercial real estate data standard with 93% renewal (Q2 2026), 89% overall / 94% for 5yr+ customers, ~79-82% gross margins held for a decade, and a proprietary property database built over decades \u2014 but consolidated ROIC proxy fell from 9-12.5% (2019-2022) to 6.7% (2023), ~0% (2024) and -0.7% (2025) as capital poured into the Homes.com residential war against Zillow's entrenched network and into Matterport/Domain/Zonda acquisitions (goodwill 47% of assets in 2025). A 6 credits the durable core franchise without paying for returns the consolidated business is not currently earning.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "LOW_OE_YIELD: base OE yield 0.7% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 7.1x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 1.21,
+   "irr": 0.0295
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 1.98,
+   "irr": 0.0333
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 2.75,
+   "irr": 0.0372
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 3.77,
+   "irr": 0.0426
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 5.83,
+   "irr": 0.0532
+  }
+ },
+ "iv_at_15": 2.97,
+ "iv_at_12": 4.05,
+ "implied_irr": 0.0385,
+ "implied_irr_base_case": 0.0372,
+ "upside_at_15_pct": -90.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Dominant CRE data franchise, moat 6/10, but owner's earnings have been spent into the ground \u2014 TTM OE is $0.22/sh against a $32.31 price (weighted IRR 3.9%, weighted IV@15% $2.97); it does not clear 15% at any price above ~$3 on current OE, so the stock is a margin-recovery bet, not an OE compounder at this price.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0333,
+ "irr_bull": 0.0426,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 2.01,
+ "iv_at_25": 1.5,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -640000000,
+ "shares_diluted_latest": 420700000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "CoStar suite is the CRE industry data standard \u2014 93% renewal rate, 327,000 subscribers +19% YoY (Q2 2026)",
+  "Proprietary property database accumulated over decades; workflow-embedded switching costs (89% overall renewal, 94% for customers of 5+ years)",
+  "Gross margin 79-82% sustained 2016-2025 \u2014 pricing power evidence",
+  "Network effects in LoopNet / Apartments.com marketplaces on the commercial and multifamily side",
+  "61 consecutive quarters of double-digit revenue growth (through Q2 2026)"
+ ],
+ "moat_against": [
+  "ROIC proxy collapsed: 12.0% (2022) \u2192 6.7% (2023) \u2192 0.1% (2024) \u2192 -0.7% (2025) \u2014 capital allocation is destroying the core's returns",
+  "Residential portal war: Homes.com fights Zillow's entrenched consumer network effect from behind; activists (Third Point, D.E. Shaw) called it a reckless drain before Third Point exited in Apr 2026",
+  "Acquisition spree at full prices \u2014 Matterport, Domain, Zonda (~$800M), OnTheMarket; goodwill jumped to 47% of assets in 2025",
+  "SBC more than doubled to $194M in 2025 (6.0% of revenue) and capex spiked on owned real estate (HQ tower, Richmond campus)",
+  "CRE transaction cyclicality (Ten-X volumes down) and founder-CEO concentration"
+ ]
+}

@@ -1,0 +1,315 @@
+{
+ "ticker": "CHTR",
+ "cik": 1091667,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T08:40:09-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001091667.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000017/chtr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CHTR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CHTR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CHARTER COMMUNICATIONS, INC. /MO/",
+  "cik": 1091667,
+  "description": {
+   "text": "We are a leading broadband connectivity company with services available to 58 million homes and small to large businesses across 41 states through our Spectrum® brand. Founded in 1993, we have evolved from providing cable TV to streaming, and from high-speed Internet to a converged broadband, WiFi and mobile experience. Over the Spectrum Fiber Broadband Network and supported by our 100% U.S.-based employees, we offer Seamless Connectivity and Entertainment with Spectrum Internet®, Mobile, TV and Voice products. Our strategy is focused on utilizing our fiber-powered network to deliver high-quality, competitively priced products, with outstanding service, allowing us to increase both the number of customers we serve over our network and the number of products we sell to each customer. This combination also reduces the number of service transactions we perform per relationship, yielding higher customer satisfaction and lower customer churn, which results in lower costs to acquire and serve customers and drives greater profitability.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-01-30",
+   "period": "2025-12-31",
+   "accession": "0001091667-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000017/chtr-20251231.htm"
+  },
+  "description_short": "Spectrum is a suite of advanced communications services offered by Charter Communications, Inc. (NASDAQ:CHTR), the leading broadband and video company in the nation and the fastest growing mobile provider in its footprint, with services available to more than 70 million homes and small to large businesses across 45 states. Founded in 1993, Charter has evolved from providing cable TV to streaming, and from high-speed Internet to a converged broadband, WiFi and mobile experience. Over the Spectrum Fiber Broadband Network and supported by our 100% U.S.-based employees, the Company offers Seamless Connectivity and Entertainment with Spectrum Internet, Mobile, TV and Voice products.",
+  "industry": "Cable & Other Pay Television Services",
+  "sector": "Telecommunications",
+  "region": "North America",
+  "sic": "4841",
+  "sic_description": "Cable & Other Pay Television Services",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://corporate.charter.com",
+  "headquarters": "Stamford, Connecticut",
+  "address": {
+   "street": "400 Washington Blvd.",
+   "city": "Stamford",
+   "state": "Connecticut",
+   "zip": "06902",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-01-30"
+  },
+  "phone": "203-905-7801",
+  "employees": {
+   "count": 91900,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 91,900 active full-time equivalent employees.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-01-30",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000017/chtr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-07-28",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "CHARTER COMMUNICATIONS INC /MO/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001091667&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001140361-26-039336",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000114036126039336/ef20083641_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001091667-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000055/chtr-20260915.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-28",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-26-035084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000114036126035084/ef20081340_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-100972",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000110465926100972/tm2623711d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-100328",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000110465926100328/tm2623853d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-14",
+   "items": [
+    "1.01",
+    "2.01",
+    "3.02",
+    "3.03",
+    "5.02",
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Unregistered sale of equity; Change to security holders' rights; Officer/director change; Charter or bylaw amendment; Reg FD",
+   "accession": "0001140361-26-033909",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000114036126033909/ef20080687_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001104659-26-098363",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000110465926098363/tm2623401d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-094863",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000110465926094863/tm2622892d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-089522",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000110465926089522/tm2621789d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-24",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001091667-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000052/chtr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-24",
+   "period": "2026-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001091667-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000051/chtr-20260724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001104659-26-086302",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000110465926086302/tm2621145d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-15",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001091667-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000032/chtr-20260515.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001091667-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000028/chtr-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001091667-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000027/chtr-20260424.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001091667-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000024/chtr-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-009220",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000114036126009220/ny20062718x1_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-24",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001140361-26-006730",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000114036126006730/ef20066502_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-01-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001091667-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000017/chtr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-30",
+   "period": "2026-01-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001091667-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1091667/000109166726000016/chtr-20260130.htm"
+  }
+ ],
+ "warnings": []
+}

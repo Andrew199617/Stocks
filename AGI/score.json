@@ -1,0 +1,84 @@
+{
+ "ticker": "AGI",
+ "name": "Alamos Gold Inc.",
+ "sector": "Materials / Gold mining",
+ "price": 32.12,
+ "market_cap_b": 13.58,
+ "engine_version": 5,
+ "base_oe_per_share": 0.5158983402590697,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "A gold miner is a price taker: the only durable advantages are cost-curve position, reserve life and jurisdiction. Alamos has real ones \u2014 the high-grade Island Gold District feeding the Magino mill, long reserves, tier-1 jurisdictions and a net-cash balance sheet \u2014 but no pricing power, and its return history proves it: roic_proxy in fundamentals.json was 0.46% (FY2021), 3.40% (FY2022), 8.43% (FY2023) and 9.07% (FY2024), below the cost of capital through the cycle; only FY2025's 22.18% clears it, and that year was flattered by a $218.8M impairment reversal inside operating income and a surging gold price. Gross margin moved 25.9% (FY2022) to 55.2% (FY2025) on the gold price alone. That is a weak-to-narrow cost moat, not a franchise.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form F-10 filed 2025-08-08 (SEC, CIK 1178819), Description of Share Capital: 'The Common Shares are listed and posted for trading on the TSX and the NYSE under the symbol AGI' (420,429,090 Common Shares outstanding as of July 30, 2025, consistent with the 419,860,744 DEI count in the FY2025 Form 40-F filed 2026-03-26); Q2 2026 earnings release header likewise reads 'TRADING SYMBOL: TSX:AGI NYSE:AGI' for the same Class A Common Shares) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "LOW_OE_YIELD: base OE yield 1.6% \u2014 valuation rests almost entirely on growth; tier is fragile"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 5.66,
+   "irr": 0.0496
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 8.75,
+   "irr": 0.0637
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 11.61,
+   "irr": 0.0763
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 15.21,
+   "irr": 0.0912
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 21.96,
+   "irr": 0.1167
+  }
+ },
+ "iv_at_15": 12.24,
+ "iv_at_12": 16.94,
+ "implied_irr": 0.0791,
+ "implied_irr_base_case": 0.0763,
+ "upside_at_15_pct": -61.9,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Price-taking gold miner, moat 4/10 \u2014 does not clear 15% on filed owner's earnings (weighted IRR 7.9%, IV@15% $12.24 vs $32.12 price); even the super-bull case ($21.96) prices below the market, and the FY2025 base was earned at a $3,372 realized gold price vs $4,504 in Q2 2026, so the gap is a gold-price call \u2014 clears 15% only below ~$12.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0637,
+ "irr_bull": 0.0912,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 8.11,
+ "iv_at_25": 5.91,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -423100000,
+ "shares_diluted_latest": 422662000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Low-cost Island Gold District: high-grade underground ore processed through the larger Magino mill; expansion targeted to lower AISC further",
+  "Long reserve life and an organic pipeline (Island Gold District, Lynn Lake, PDA) management guides toward ~1M oz/yr by 2030",
+  "Tier-1 jurisdictions (Ontario, Manitoba, Mexico) and a net-cash balance sheet (net debt -$423.1M in dcf_numbers.json)",
+  "Free-cash-flow positive while funding growth: FY2025 free cash flow $352M per the company's year-end 2025 release"
+ ],
+ "moat_against": [
+  "Pure gold price taker \u2014 no pricing power; margins are set by the gold price, not the company",
+  "ROIC below the cost of capital through most of the cycle (roic_proxy 0.46% FY2021, 3.40% FY2022, 8.43% FY2023, 9.07% FY2024); FY2025's 22.18% is peak-gold and one-off flattered",
+  "Reserves deplete \u2014 every ounce must be replaced via capex or M&A (FY2025 capex $507.1M, ~28% of revenue)",
+  "Few-asset concentration: a June 2026 seismic event at Young-Davidson cut FY2026 production guidance to 510,000-560,000 oz and raised AISC guidance to $1,775-$1,875/oz"
+ ]
+}

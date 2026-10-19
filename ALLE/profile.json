@@ -1,0 +1,282 @@
+{
+ "ticker": "ALLE",
+ "cik": 1579241,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T21:28:13-04:00",
+ "newest_filing_date": "2026-09-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001579241.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000007/alle-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ALLE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ALLE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Allegion plc",
+  "cik": 1579241,
+  "description": {
+   "text": "Allegion plc (\"Allegion,\" \"we,\" \"us\" or \"the Company\") is a leading global provider of security products and solutions that keep people and assets safe and secure in the places they live, learn, work and connect. We pioneer safety and security to create a safer and more accessible world. Both developing and partnering are central to our work to create ecosystems that enable seamless access experiences and an uninterrupted and secure flow of people and assets. We offer an extensive and versatile portfolio of security and access control products and solutions across a range of market-leading brands. Our experts around the world deliver high-quality hardware, software, services and systems, and we use our deep expertise to serve as trusted partners to end-users who seek customized solutions to their security needs. We offer the following extensive and versatile portfolio of security and access control products and solutions across a range of market-leading brands: •Door controls, door control systems, and exit devices: An extensive portfolio of life-safety products and solutions generally installed on fire doors and facility entrances and exits. Exit devices, also known as panic hardware, provide rapid egress to allow building occupants to exit safely in an emergency. Door controls and systems include mechanical door closers, automatic door operators, as well as high-performance interior and storefront door systems.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001579241-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000007/alle-20251231.htm"
+  },
+  "description_short": "At Allegion (NYSE: ALLE), we design and manufacture innovative security and access solutions that help keep people safe where they live, learn, work and connect. We're pioneering safety with our strong legacy of leading brands like CISA, Interflex, LCN, Schlage, SimonsVoss and Von Duprin. Our comprehensive portfolio of hardware, software and electronic solutions is sold around the world and spans residential and commercial locks, door closer and exit devices, steel doors and frames, access control and workforce productivity systems. Allegion had $4.1 billion in revenue in 2025. For more, visit www.allegion.com.",
+  "industry": "Diversified Commercial Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7381",
+  "sic_description": "Services-Detective, Guard & Armored Car Services",
+  "state_of_incorporation": "L2",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.allegion.com",
+  "headquarters": "Dublin 7, Ireland",
+  "address": {
+   "street": "Unit No. 233 The Capel Building Mary's Abbey",
+   "city": "Dublin 7",
+   "state": null,
+   "zip": "D07 X324",
+   "country": "Ireland",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "(317) 810-3700",
+  "employees": {
+   "count": 13300,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 13,300 employees worldwide.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000007/alle-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2013-06-17",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001579241&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001104659-26-105920",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000110465926105920/tm2624796d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579241-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000028/alle-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579241-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000026/alle-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-04",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001579241-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000023/alle-20260604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579241-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000015/alle-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579241-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000013/alle-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-06-04",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-044597",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000110465926044597/alle-20260604xdef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-15",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001579241-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000010/alle-20260415.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001579241-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000007/alle-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579241-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924126000006/alle-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-09",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-25-119658",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000110465925119658/tm2532935d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579241-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924125000043/alle-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579241-25-000041",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924125000041/alle-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579241-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924125000030/alle-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579241-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924125000028/alle-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-09",
+   "period": "2025-06-05",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-25-057839",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000110465925057839/tm2517356d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-20",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001104659-25-052983",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000110465925052983/tm2516033d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-24",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579241-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924125000021/alle-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-24",
+   "period": "2025-04-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579241-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000157924125000019/alle-20250424.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-18",
+   "period": "2025-06-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-25-036159",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579241/000110465925036159/tm254848-2_def14a.htm"
+  }
+ ],
+ "warnings": []
+}

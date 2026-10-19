@@ -1,0 +1,88 @@
+{
+ "ticker": "ASND",
+ "name": "Ascendis Pharma A/S",
+ "sector": "Healthcare / Biopharmaceuticals (rare endocrine diseases, TransCon platform)",
+ "price": 225.25,
+ "market_cap_b": 13.65,
+ "engine_version": 5,
+ "base_oe_per_share": -7.031359834538281,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "TransCon prodrug platform validated by three approved rare-endocrine products (YORVIPATH \u2014 the only PTH replacement therapy for hypoparathyroidism; SKYTROFA weekly growth hormone; YUVIWEL for achondroplasia, approved Feb 2026) with specialty pricing power in the numbers: gross margin 83.4% (FY2023) \u2192 87.8% (FY2024) \u2192 86.8% (FY2025) in fundamentals.json. But there is no demonstrated return on capital: book equity is negative (-\u20ac162.8M at FY2025), the roic_proxy series in fundamentals.json is denominator noise (+180.6% in FY2019, -55.9% in FY2018, -3.0% in FY2025 despite an operating loss), and conservative owner's earnings are negative in 0 of the last 5 years. Revenue is concentrated (YORVIPATH ~80% of Q2 2026 product revenue), weekly-GH and PTH rivals are in market or in Phase 3, and SBC (\u20ac116.2M in FY2025) exceeds FY2025 free cash flow. A 5 gives CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency EUR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), cover page: American Depositary Shares, each representing one ordinary share, nominal value DKK 1 per share (Nasdaq: ASND)) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), Consolidated Statement of Cash Flows (p. F-8): the combined acquisition line for intangible assets and property, plant and equipment is \u20ac8,485 thousand for FY2025, with \u20ac1,427 thousand for FY2024 and \u20ac2,442 thousand for FY2023 in the same statement); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), Note 5 Earnings Per Share: the weighted average number of ordinary shares for the purposes of basic and diluted earnings per share is 60,607,131 for FY2025, with 57,891,570 for FY2024 and 56,287,060 for FY2023 in the same table; basic and diluted EPS are identical in all three years (\u20ac(3.76) / \u20ac(6.53) / \u20ac(8.55))); an override never replaces a filed value \u2014 see overrides_applied and override_impact"
+ ],
+ "scenarios": {},
+ "iv_at_15": null,
+ "iv_at_12": null,
+ "implied_irr": null,
+ "implied_irr_base_case": null,
+ "upside_at_15_pct": null,
+ "tier_by_numbers": "F",
+ "tier_final": "F",
+ "confidence": "low",
+ "one_liner": "Real TransCon platform with three approved rare-disease products and ~87% gross margins, moat 5/10 \u2014 but owner's earnings are negative in all of the last 5 years (normalized base -$7.03/share with the filing overrides applied; FY2025 still -$1.37/share because SBC of $136.5M exceeded FCF of $53.4M) \u2014 Tier F on this screen; it does not clear 15% at any price on current numbers and no hurdle-clearing price is computed on a negative base. The 2026 inflection (H1 revenue \u20ac585.9M, non-IFRS profit positive) is a re-rating story, not yet an owner's-earnings story.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": "no_cash_generation",
+ "irr_at_floor": false,
+ "net_debt_latest": 233359700.0,
+ "shares_diluted_latest": 60607131.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "TransCon platform validated across three approved products \u2014 YORVIPATH (only PTH replacement for hypoparathyroidism), SKYTROFA (once-weekly GH), YUVIWEL (achondroplasia, FDA-approved Feb 2026)",
+  "Specialty pricing power in the filed numbers: gross margin 83.4% (FY2023), 87.8% (FY2024), 86.8% (FY2025) as commercial mix scaled",
+  "Rare-disease commercial infrastructure: YORVIPATH available in 35+ countries, SKYTROFA >20,000 patients enrolled globally since launch",
+  "Platform monetization beyond own sales: Novo Nordisk license, Teijin Japan license (royalties up to mid-20s %), Eyconis ophthalmology spin-out with milestone/royalty rights"
+ ],
+ "moat_against": [
+  "No demonstrated returns on capital: owner's earnings negative 0/5 of the last 5 years, operating losses every filed year, book equity negative (-\u20ac162.8M at FY2025) so ROIC is not yet measurable, let alone above the cost of capital through a cycle",
+  "Single-product concentration: YORVIPATH ~80% of Q2 2026 product revenue (\u20ac252M of \u20ac315M)",
+  "Competition is real on both lead products: rival PTH therapy eneboparatide in Phase 3 (Amolyt/AstraZeneca), weekly-GH rivals (Novo Nordisk Sogroya, Pfizer/Opko NGENLA) against SKYTROFA",
+  "SBC is a heavy, recurring cost: \u20ac116.2M share-based payment in FY2025 (FY2024 \u20ac95.5M), exceeding FY2025 free cash flow; the EPS-note share count rose from 56,287,060 (FY2023) to 60,607,131 (FY2025) to fund the loss years",
+  "Finite patent/exclusivity horizons and rare-disease pricing politics cap how long the gross-margin structure can be assumed to persist"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 8485000.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), Consolidated Statement of Cash Flows (p. F-8): the combined acquisition line for intangible assets and property, plant and equipment is \u20ac8,485 thousand for FY2025, with \u20ac1,427 thousand for FY2024 and \u20ac2,442 thousand for FY2023 in the same statement"
+  },
+  {
+   "field": "shares",
+   "value": 60607131.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-11), Note 5 Earnings Per Share: the weighted average number of ordinary shares for the purposes of basic and diluted earnings per share is 60,607,131 for FY2025, with 57,891,570 for FY2024 and 56,287,060 for FY2023 in the same table; basic and diluted EPS are identical in all three years (\u20ac(3.76) / \u20ac(6.53) / \u20ac(8.55))"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": -7.2089,
+  "base_oe_with_override": -7.0314,
+  "base_oe_impact_pct": -2.463,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": null,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}

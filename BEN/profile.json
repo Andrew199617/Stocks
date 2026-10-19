@@ -1,0 +1,302 @@
+{
+ "ticker": "BEN",
+ "cik": 38777,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T18:40:14-04:00",
+ "newest_filing_date": "2026-08-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000038777.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000238/ben-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BEN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BEN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FRANKLIN TEMPLETON INC",
+  "cik": 38777,
+  "description": {
+   "text": "Franklin Resources, Inc. (“Franklin”) is a holding company with subsidiaries operating under our Franklin Templeton® and/or subsidiary brand names. Franklin’s common stock is traded on the New York Stock Exchange (the “NYSE”) under the ticker symbol “BEN” and is included in the Standard & Poor’s 500 Index. In this Annual Report, Franklin and its subsidiaries are collectively referred to as the “Company,” and words such as “we,” “us,” “our” and similar terms refer to the Company. We have one operating segment, investment management and related services. We offer our services and products under our various distinct brand names, including, but not limited to, Alcentra®, Apera®, Benefit Street Partners®, Brandywine Global Investment Management®, Canvas®, Clarion Partners®, ClearBridge Investments®, Fiduciary Trust International™, Franklin®, Franklin Mutual Series®, K2®, Legg Mason®, Lexington Partners®, O’Shaughnessy®, Putnam®, Royce®, Templeton® and Western Asset Management Company®. Unless otherwise indicated, our “funds” means the funds offered under our various brand names, which may include co-branded funds. We are a global investment management organization with over $1.6 trillion in assets under management (“AUM”) as of September 30, 2025. Our mission is to help clients achieve better outcomes through investment management expertise, wealth management and technology solutions.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "accession": "0000038777-25-000238",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000238/ben-20250930.htm"
+  },
+  "description_short": "Franklin Templeton is a trusted investment partner, delivering tailored solutions that align with clients' strategic goals. With deep portfolio management expertise across public and private markets, we combine investment excellence with cutting-edge technology. Since our founding in 1947, we have empowered clients through strategic partnership, forward-looking insights, and continuous innovation - providing the tools and resources to navigate change and capture opportunity. With over $1.79 trillion in assets under management as of September 30, 2026, Franklin Templeton operates globally in more than 30 countries.",
+  "industry": "Investment Managers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6282",
+  "sic_description": "Investment Advice",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.franklinresources.com",
+  "headquarters": "San Mateo, CA",
+  "address": {
+   "street": "One Franklin Parkway",
+   "city": "San Mateo",
+   "state": "CA",
+   "zip": "94403",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-10"
+  },
+  "phone": "650-312-2000",
+  "employees": {
+   "count": 9800,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we employed approximately 9,800 employees and operated offices in over 30 countries.",
+   "form": "10-K",
+   "filed": "2025-11-10",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000238/ben-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-06",
+  "first_sec_filing_form": "10-K",
+  "former_names": [
+   "FRANKLIN RESOURCES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000038777&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-05",
+   "items": [
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Debt obligation; Other events",
+   "accession": "0001552781-26-000423",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000155278126000423/e26341_ben-8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000038777-26-000217",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000217/ben-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Charter or bylaw amendment; Reg FD",
+   "accession": "0000038777-26-000215",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000215/ben-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "1.01",
+    "1.02",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Debt obligation",
+   "accession": "0001552781-26-000398",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000155278126000398/e26317_ben-8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-21",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000038777-26-000194",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000194/ben-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000038777-26-000171",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000171/ben-20260604.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000038777-26-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000101/ben-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000038777-26-000100",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000100/ben-20260428.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-03",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000038777-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000051/ben-20260203.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-30",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000038777-26-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000033/ben-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-30",
+   "period": "2026-01-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000038777-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877726000032/ben-20260130.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-12-22",
+   "period": "2026-02-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-25-046314",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000114036125046314/ny20055304x771_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-17",
+   "period": "2025-12-11",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0000038777-25-000279",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000279/ben-20251211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-13",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000038777-25-000273",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000273/ben-20251213.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000038777-25-000238",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000238/ben-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-07",
+   "period": "2025-11-07",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000038777-25-000234",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000234/ben-20251107.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-08",
+   "period": "2025-09-08",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000038777-25-000189",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000189/ben-20250908.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000038777-25-000135",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000135/ben-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-08-01",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000038777-25-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000133/ben-20250801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-09",
+   "period": "2025-07-08",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0000038777-25-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/38777/000003877725000127/ben-20250708.htm"
+  }
+ ],
+ "warnings": []
+}

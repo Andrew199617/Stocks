@@ -1,0 +1,499 @@
+{
+ "ticker": "COKE",
+ "cik": 317540,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-009057",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/317540/000162828026009057/coke-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-031302",
+   "filed": "2026-05-06",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/317540/000162828026031302/coke-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-053370",
+   "filed": "2026-08-05",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/317540/000162828026053370/coke-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "coke:NonalcoholicBeverageSegmentMember",
+     "label": "Nonalcoholic Beverage Segment",
+     "values": [
+      6562972000,
+      6839368000,
+      7183782000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9863,
+      0.9913,
+      0.9939
+     ],
+     "growth_yoy": [
+      null,
+      0.0421,
+      0.0504
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      367422000,
+      342892000,
+      325969000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0552,
+      0.0497,
+      0.0451
+     ],
+     "growth_yoy": [
+      null,
+      -0.0668,
+      -0.0494
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -276536000,
+      -282544000,
+      -281696000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0416,
+      -0.041,
+      -0.039
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6653858000,
+     6899716000,
+     7228055000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-28",
+    "2025-06-27",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "coke:NonalcoholicBeverageSegmentMember",
+     "label": "Nonalcoholic Beverage Segment",
+     "values": [
+      1569097000,
+      1845061000,
+      1833819000,
+      2038945000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9931,
+      0.9944,
+      0.993,
+      0.9934
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1687,
+      0.1051
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      75110000,
+      80402000,
+      89480000,
+      92343000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0475,
+      0.0433,
+      0.0485,
+      0.045
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1913,
+      0.1485
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -64230000,
+      -69944000,
+      -76631000,
+      -78868000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0407,
+      -0.0377,
+      -0.0415,
+      -0.0384
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1579977000,
+     1855519000,
+     1846668000,
+     2052420000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "coke:NonalcoholicBeverageSegmentMember",
+     "label": "Nonalcoholic Beverage Segment",
+     "values": [
+      841492000,
+      907227000,
+      925165000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0084,
+      0.9857,
+      0.9732
+     ],
+     "growth_yoy": [
+      null,
+      0.0781,
+      0.0198
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -7041000,
+      13123000,
+      25491000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0084,
+      0.0143,
+      0.0268
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.9425
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     834451000,
+     920350000,
+     950656000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-28",
+    "2025-06-27",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "coke:NonalcoholicBeverageSegmentMember",
+     "label": "Nonalcoholic Beverage Segment",
+     "values": [
+      187243000,
+      263864000,
+      231378000,
+      266107000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9864,
+      0.9698,
+      0.9741,
+      0.9807
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2357,
+      0.0085
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      2577000,
+      8220000,
+      6146000,
+      5232000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0136,
+      0.0302,
+      0.0259,
+      0.0193
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.3849,
+      -0.3635
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     189820000,
+     272084000,
+     237524000,
+     271339000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-28",
+    "2025-06-27",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "coke:NonalcoholicBeverageSegmentMember",
+     "label": "Nonalcoholic Beverage Segment",
+     "values": [
+      48050000,
+      49387000,
+      51590000,
+      52634000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9003,
+      0.9018,
+      0.9066,
+      0.9051
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0737,
+      0.0657
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      5323000,
+      5378000,
+      5312000,
+      5517000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0997,
+      0.0982,
+      0.0934,
+      0.0949
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0021,
+      0.0258
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     53373000,
+     54765000,
+     56902000,
+     58151000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

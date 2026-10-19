@@ -1,0 +1,901 @@
+{
+ "ticker": "CSL",
+ "cik": 790051,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000790051-26-000012",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000012/csl-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000790051-26-000017",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000017/csl-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000790051-26-000037",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/790051/000079005126000037/csl-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "csl:ConstructionMaterialsMember",
+     "label": "Construction Materials",
+     "values": [
+      3253400000,
+      3704300000,
+      3721700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7093,
+      0.7403,
+      0.7414
+     ],
+     "growth_yoy": [
+      null,
+      0.1386,
+      0.0047
+     ]
+    },
+    {
+     "member": "csl:CarlisleWeatherproofingTechnologiesMember",
+     "label": "Carlisle Weatherproofing Technologies",
+     "values": [
+      1333500000,
+      1299300000,
+      1298200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2907,
+      0.2597,
+      0.2586
+     ],
+     "growth_yoy": [
+      null,
+      -0.0256,
+      -0.0008
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4586900000,
+     5003600000,
+     5019900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "csl:CarlisleConstructionMaterialsMember",
+     "label": "Carlisle Construction Materials",
+     "values": [
+      798500000,
+      1095600000,
+      758100000,
+      1181300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7287,
+      0.7558,
+      0.7206,
+      0.7523
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0506,
+      0.0782
+     ]
+    },
+    {
+     "member": "csl:CarlisleWeatherproofingTechnologiesMember",
+     "label": "Carlisle Weatherproofing Technologies",
+     "values": [
+      297300000,
+      353900000,
+      294000000,
+      389000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2713,
+      0.2442,
+      0.2794,
+      0.2477
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0111,
+      0.0992
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1095800000,
+     1449500000,
+     1052100000,
+     1570300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "csl:ConstructionMaterialsMember",
+     "label": "Construction Materials",
+     "values": [
+      913900000,
+      1084300000,
+      997200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9299,
+      0.9486,
+      0.9947
+     ],
+     "growth_yoy": [
+      null,
+      0.1865,
+      -0.0803
+     ]
+    },
+    {
+     "member": "csl:CarlisleWeatherproofingTechnologiesMember",
+     "label": "Carlisle Weatherproofing Technologies",
+     "values": [
+      187900000,
+      173600000,
+      101900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1912,
+      0.1519,
+      0.1016
+     ],
+     "growth_yoy": [
+      null,
+      -0.0761,
+      -0.413
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateAndOtherMember",
+     "label": "Corporate Segment and Other Operating Segment",
+     "values": [
+      119000000,
+      114800000,
+      96600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1211,
+      0.1004,
+      0.0964
+     ],
+     "growth_yoy": [
+      null,
+      -0.0353,
+      -0.1585
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     982800000,
+     1143100000,
+     1002500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "csl:CarlisleConstructionMaterialsMember",
+     "label": "Carlisle Construction Materials",
+     "values": [
+      194800000,
+      323800000,
+      184000000,
+      338100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.061,
+      0.9666,
+      1.0205,
+      0.9591
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0554,
+      0.0442
+     ]
+    },
+    {
+     "member": "csl:CarlisleWeatherproofingTechnologiesMember",
+     "label": "Carlisle Weatherproofing Technologies",
+     "values": [
+      16200000,
+      42500000,
+      17300000,
+      41800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0882,
+      0.1269,
+      0.096,
+      0.1186
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0679,
+      -0.0165
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      27400000,
+      31300000,
+      21000000,
+      27400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1492,
+      0.0934,
+      0.1165,
+      0.0777
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2336,
+      -0.1246
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     183600000,
+     335000000,
+     180300000,
+     352500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "csl:CarlisleWeatherproofingTechnologiesMember",
+     "label": "Carlisle Weatherproofing Technologies",
+     "values": [
+      88100000,
+      88300000,
+      103800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5831,
+      0.5116,
+      0.5282
+     ],
+     "growth_yoy": [
+      null,
+      0.0023,
+      0.1755
+     ]
+    },
+    {
+     "member": "csl:ConstructionMaterialsMember",
+     "label": "Construction Materials",
+     "values": [
+      57000000,
+      80700000,
+      89300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3772,
+      0.4676,
+      0.4545
+     ],
+     "growth_yoy": [
+      null,
+      0.4158,
+      0.1066
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      6000000,
+      3600000,
+      3400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0397,
+      0.0209,
+      0.0173
+     ],
+     "growth_yoy": [
+      null,
+      -0.4,
+      -0.0556
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     151100000,
+     172600000,
+     196500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "csl:CarlisleWeatherproofingTechnologiesMember",
+     "label": "Carlisle Weatherproofing Technologies",
+     "values": [
+      25300000,
+      25800000,
+      26000000,
+      25500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5293,
+      0.5276,
+      0.5285,
+      0.5236
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0277,
+      -0.0116
+     ]
+    },
+    {
+     "member": "csl:CarlisleConstructionMaterialsMember",
+     "label": "Carlisle Construction Materials",
+     "values": [
+      21600000,
+      22200000,
+      22800000,
+      22900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4519,
+      0.454,
+      0.4634,
+      0.4702
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0556,
+      0.0315
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      900000,
+      900000,
+      400000,
+      300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0188,
+      0.0184,
+      0.0081,
+      0.0062
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5556,
+      -0.6667
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     47800000,
+     48900000,
+     49200000,
+     48700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4130100000,
+      4527200000,
+      4500300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9004,
+      0.9048,
+      0.8965
+     ],
+     "growth_yoy": [
+      null,
+      0.0961,
+      -0.0059
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      211800000,
+      237800000,
+      250700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0462,
+      0.0475,
+      0.0499
+     ],
+     "growth_yoy": [
+      null,
+      0.1228,
+      0.0542
+     ]
+    },
+    {
+     "member": "csl:NorthAmericaExcludingUSMember",
+     "label": "North America Excluding US",
+     "values": [
+      198000000,
+      194700000,
+      231000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0432,
+      0.0389,
+      0.046
+     ],
+     "growth_yoy": [
+      null,
+      -0.0167,
+      0.1864
+     ]
+    },
+    {
+     "member": "csl:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      47000000,
+      43900000,
+      37900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0102,
+      0.0088,
+      0.0075
+     ],
+     "growth_yoy": [
+      null,
+      -0.066,
+      -0.1367
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4586900000,
+     5003600000,
+     5019900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      965900000,
+      1312600000,
+      923500000,
+      1412000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8815,
+      0.9056,
+      0.8778,
+      0.8992
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0439,
+      0.0757
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      64500000,
+      68800000,
+      68700000,
+      83200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0589,
+      0.0475,
+      0.0653,
+      0.053
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0651,
+      0.2093
+     ]
+    },
+    {
+     "member": "csl:NorthAmericaExcludingTheUnitedStatesMember",
+     "label": "North America (Excluding the United States)",
+     "values": [
+      55400000,
+      58500000,
+      51000000,
+      65600000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0506,
+      0.0404,
+      0.0485,
+      0.0418
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0794,
+      0.1214
+     ]
+    },
+    {
+     "member": "csl:OtherInternationalMember",
+     "label": "Other International",
+     "values": [
+      10000000,
+      9600000,
+      8900000,
+      9500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0091,
+      0.0066,
+      0.0085,
+      0.006
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.11,
+      -0.0104
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1095800000,
+     1449500000,
+     1052100000,
+     1570300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segments' (csl:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segments' (csl:ReportableSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 119.3% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 115.5% of the consolidated total for 2026-06-30 (ties_to_total: false)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'International' (csl:InternationalMember) dropped: it is the parent of Europe, North America Excluding US, Other Countries in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'International' (csl:InternationalMember) dropped: it is the parent of Europe, North America (Excluding the United States), Other International in the filing's definition linkbase"
+ ],
+ "complete": true
+}

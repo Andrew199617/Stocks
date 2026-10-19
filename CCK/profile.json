@@ -1,0 +1,292 @@
+{
+ "ticker": "CCK",
+ "cik": 1219601,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T09:42:11-04:00",
+ "newest_filing_date": "2026-09-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001219601.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026012904/cck-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CCK/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CCK/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CROWN HOLDINGS, INC.",
+  "cik": 1219601,
+  "description": {
+   "text": "Crown Holdings, Inc. (the \"Company\" or the \"Registrant\") (where the context requires, the \"Company\" shall include reference to the Company and its consolidated subsidiary companies) is a Pennsylvania corporation. The Company was founded in 1892 and is a leading global diversified packaging business that manufactures metal cans and ends (aluminum and steel) for the beverage, food, and aerosol industries and a wide range of transit packaging products and solutions from multiple substrates including steel, paper, and plastic. The Company’s transit packaging products include automation and equipment technologies, protective packaging solutions, and steel and plastic consumables which are sold into the metals, food and beverage, construction, agricultural, corrugated, and general industries. At December 31, 2025, the Company operated 179 plants along with sales and service facilities throughout 39 countries and had approximately 23,000 employees. In 2025, consolidated net sales for the Company were $12.4 billion with 61% derived from operations outside the United States (\"U.S.\"). Approximately 73% of the Company’s consolidated net sales were derived from the Company’s global beverage can business. Over the last several years, the Company has deployed capital to expand production capacity in its global beverage can operations to support growing customer demand in both the alcoholic and non-alcoholic drink categories serving local, regional and global customers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-012904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026012904/cck-20251231.htm"
+  },
+  "description_short": "Crown Holdings, Inc., through its subsidiaries, is a leading global supplier of rigid packaging products to consumer marketing companies, as well as transit and protective packaging products, equipment and services to a broad range of end markets. World headquarters are located in Tampa, Florida. Learn more at www.crowncork.com.",
+  "industry": "Containers/Packaging",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3411",
+  "sic_description": "Metal Cans",
+  "state_of_incorporation": "PA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.crowncork.com",
+  "headquarters": "Tampa, FL",
+  "address": {
+   "street": "14025 Riveredge Drive, Suite 300",
+   "city": "Tampa",
+   "state": "FL",
+   "zip": "33637-2015",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "2156985100",
+  "employees": {
+   "count": 23000,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, the Company had approximately 23,000 employees worldwide, with approximately 6,000 employed by the Americas Beverage segment, 4,000 employed by the European Beverage segment, 3,500 employed by the Asia Pacific segment, 7,000 employed by the Transit Packaging segment, and 2,500 employed by other business units.",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026012904/cck-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2003-02-26",
+  "first_sec_filing_form": "8-K12G3",
+  "former_names": [
+   "CROWN HOLDINGS INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001219601&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-383800",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312526383800/d181528d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050949",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026050949/cck-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-048820",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026048820/cck-20260720.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-029288",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026029288/cck-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-027502",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026027502/cck-20260427.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-022389",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026022389/cck-20260326.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-23",
+   "period": "2026-03-17",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-119866",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312526119866/d71735d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-23",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0002039852-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000203985226000055/crowndef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-02-26",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-014426",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026014426/cck-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-012904",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026012904/cck-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005444",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026005444/cck-20260204.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-21",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-293747",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312525293747/d929764d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-19",
+   "period": "2025-11-18",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-287119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312525287119/d104399d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-12",
+   "period": "2025-11-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-051361",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828025051361/cck-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047477",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828025047477/cck-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-045530",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828025045530/cck-20251020.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-08",
+   "period": "2025-10-06",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-234573",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312525234573/d52487d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-23",
+   "period": "2025-09-22",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-213556",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312525213556/d57346d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-22",
+   "period": "2025-09-22",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-209997",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000119312525209997/d865406d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-29",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001219601-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1219601/000121960125000036/cck-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -1,0 +1,86 @@
+{
+ "ticker": "BEN",
+ "name": "Franklin Resources, Inc. (Franklin Templeton)",
+ "sector": "Finance / Asset Management",
+ "price": 30.96,
+ "market_cap_b": 16.02,
+ "engine_version": 5,
+ "base_oe_per_share": 1.3467336683417086,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Large diversified manager ($1,791.6B AUM at June 30, 2026, global distribution, $294B+ alternatives, growing ETF/Canvas platforms) with scale and sticky institutional/wealth relationships, but no durable pricing power: fees compress toward passive/alternatives competitors, traditional active products face secular outflow pressure, and Western Asset lost over $140B in FY2025 after the Ken Leech investigation. Measured history caps the score: roic_proxy fell from 16.11% (FY2021) and 13.58% (FY2022) to 8.00% (FY2023), 2.77% (FY2024) and 3.88% (FY2025) in fundamentals.json \u2014 below cost of capital for two years \u2014 and operating margin fell from 22.25% (FY2021) to 6.89% (FY2025). A 4 gives CAP 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 13 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 5.08,
+   "irr": 0.0429
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.67,
+   "irr": 0.0542
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.35,
+   "irr": 0.0663
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 13.8,
+   "irr": 0.0817
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 20.42,
+   "irr": 0.1098
+  }
+ },
+ "iv_at_15": 10.72,
+ "iv_at_12": 14.1,
+ "implied_irr": 0.0683,
+ "implied_irr_base_case": 0.0663,
+ "upside_at_15_pct": -65.4,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Diversified global asset manager in a flow recovery, moat 4/10 \u2014 does not clear 15% on the standardized OE base (weighted IRR 6.83%, IV@15% $10.72 vs $30.96 price); it clears 15% only at ~$10.72, and even the super-bull case yields only 10.98%.",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0542,
+ "irr_bull": 0.0817,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 7.65,
+ "iv_at_25": 5.95,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -1211900000,
+ "shares_diluted_latest": 517400000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Scale and global distribution \u2014 $1,791.6B AUM at June 30, 2026, record AUM, positive long-term net inflows of $18.4B in Q3 FY26 across every asset class and geography",
+  "Diversified platform \u2014 alternatives AUM ~$294B, ETFs $75.6B, retail SMAs and Canvas, plus specialist boutiques, so no single product carries the firm",
+  "Sticky client base and brand \u2014 long institutional/wealth relationships, $500B+ of AUM outside the US per the company's positioning, and a sustained capital return (DPS TTM $1.31, dividends paid TTM $693,900,000 and buybacks TTM $511,900,000 in fundamentals.json)"
+ ],
+ "moat_against": [
+  "No structural pricing power \u2014 fee compression from passive and larger rivals (BlackRock, Vanguard, State Street); clients re-bid mandates competitively",
+  "Measured returns collapsed \u2014 roic_proxy 16.11% (FY2021) to 2.77% (FY2024) and 3.88% (FY2025); operating margin 22.25% to 6.89% over the same span",
+  "Western Asset overhang \u2014 over $140B of FY2025 outflows after the Ken Leech cherry-picking investigation, a $100M SEC settlement charge in Q3 FY26, and still $1.1B of outflows in that quarter",
+  "Market-geared earnings \u2014 AUM and fees move with markets ($98.0B of Q3 FY26 AUM growth was net market change vs $18.4B of inflows), and OE/share CAGR over 2 years is -6.60% in dcf_numbers.json"
+ ]
+}

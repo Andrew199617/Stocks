@@ -1,0 +1,87 @@
+{
+ "ticker": "CSL",
+ "name": "Carlisle Companies Incorporated",
+ "sector": "Building Products",
+ "price": 333.86,
+ "market_cap_b": 14.42,
+ "engine_version": 5,
+ "base_oe_per_share": 20.426470588235293,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 7,
+ "moat_justification": "Dominant specification position in North American commercial roofing with warranted systems and a ~70% recurring re-roofing base; ROIC proxy 17.5%/16.7%/24.7%/22.0% over 2022-2025 and gross margin up from 28.6% (2021) to 35.7% (2025), with ~25% ROIC guided for 2026 \u2014 but the high-ROIC history is only ~4 years on the pure-play mix, rivals are well-capitalized, and pricing lags cost inflation, so 7 not 8.",
+ "cap_years": 11.1,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 6.3%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.2%) vs bull-case tier C (12.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 78.61,
+   "irr": 0.0496
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 130.62,
+   "irr": 0.0722
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 183.66,
+   "irr": 0.0948
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 256.06,
+   "irr": 0.1231
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 405.88,
+   "irr": 0.1722
+  }
+ },
+ "iv_at_15": 200.22,
+ "iv_at_12": 267.87,
+ "implied_irr": 0.1021,
+ "implied_irr_base_case": 0.0948,
+ "upside_at_15_pct": -40.0,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "High-quality building-envelope leader, moat 7/10 \u2014 at $333.86 the weighted IRR is 10.2% and it does not clear 15%; it clears 15% only at or below $200.22.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0722,
+ "irr_bull": 0.1231,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 139.84,
+ "iv_at_25": 106.88,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1774300000,
+ "shares_diluted_latest": 43200000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Leading share and specification position in commercial roofing \u2014 warranted systems create switching friction",
+  "~70% of CCM roofing revenue is non-discretionary re-roofing on the aging commercial building stock",
+  "Proven pricing power through inflation cycles (three broad 2026 price increases)",
+  "Vertical integration in insulation (Insulfoam/ThermaFoam, Bonded Logic) plus Carlisle Operating System margin gains; gross margin +~7pp in five years",
+  "ROIC proxy 22.0-24.7% in 2024-2025, ~25% guided for 2026"
+ ],
+ "moat_against": [
+  "No network effects or hard lock-in \u2014 Holcim/Firestone, Johns Manville and GAF contest every bid",
+  "Pricing power lags cost inflation (Q2 2026 price-cost negative; FY margin guide cut 50bp)",
+  "~30% of demand is cyclical new construction, currently down low-to-mid single digits",
+  "Petroleum-based inputs (MDI, asphalt, polymers) expose margins to commodity and freight shocks",
+  "Distribution-channel M&A turmoil has previously cost temporary share"
+ ]
+}

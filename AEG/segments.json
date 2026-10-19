@@ -1,0 +1,88 @@
+{
+ "ticker": "AEG",
+ "cik": 769218,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-124987",
+   "filed": "2026-03-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526124987/d29563d20f_htm.xml"
+  }
+ ],
+ "currency": "EUR",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      197960000000,
+      182221000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6047,
+      0.5744
+     ],
+     "growth_yoy": [
+      null,
+      -0.0795
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      120054000000,
+      126923000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3667,
+      0.4001
+     ],
+     "growth_yoy": [
+      null,
+      0.0572
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     327390000000,
+     317233000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "geography/Assets/annual: rows sum to 97.5% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

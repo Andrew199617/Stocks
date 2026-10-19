@@ -1,0 +1,172 @@
+{
+ "ticker": "ALLY",
+ "cik": 40729,
+ "entity": "Ally Financial Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 3729000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 1887000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 2724000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 4566000000
+  },
+  "capex": {
+   "fy": 243000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 120501369.8630137,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 120501369.8630137,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 243000000.0
+  },
+  "sbc": {
+   "fy": 153000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 75871232.87671232,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 75871232.87671232,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 153000000.0
+  },
+  "shares_diluted": {
+   "fy": 313043000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 312033000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 312120000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 4566000000,
+ "ttm_capex": 243000000.0,
+ "ttm_sbc": 153000000.0,
+ "ttm_shares_diluted": 312120000,
+ "ttm_oe_total": 4170000000.0,
+ "ttm_oe_per_share": 13.360246059207997,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 153000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statement of Changes in Equity, line 'Share-based compensation': $153M for FY2025, with $167M for FY2024 and $159M for FY2023 in the same statement; corroborated by Note 23 (Share-based Compensation Plans), which reports PSU/RSU expense of $130M / $136M / $127M for FY2025 / FY2024 / FY2023 \u2014 the equity-statement line is the broader total (it also carries ESPP/DSU-type awards)",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 153000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 75871232.87671232,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 75871232.87671232,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 243000000.0,
+   "kind": "estimate",
+   "source": "Anchor: FY2025 property and equipment depreciation of $243M, printed in the Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), other operating expenses table (with $224M for FY2024 and $196M for FY2023 in the same table) \u2014 the top of the filer's own filed FY2023-FY2025 range for that line; net property and equipment was $1,150M at FY2025 (Note 13) on $196,002M of total assets",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 243000000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 120501369.8630137,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 120501369.8630137,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ]
+}

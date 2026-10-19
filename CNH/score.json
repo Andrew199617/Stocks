@@ -1,0 +1,106 @@
+{
+ "ticker": "CNH",
+ "name": "CNH Industrial N.V.",
+ "sector": "Industrials / Agricultural & construction equipment",
+ "price": 11.6,
+ "market_cap_b": 14.51,
+ "engine_version": 5,
+ "base_oe_per_share": 0.44524959742351045,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Number-two global ag-equipment franchise (Case IH + New Holland, ~12-14% global share vs Deere's ~18-20%) with a real dealer network, captive finance arm and a parts/service installed base \u2014 but returns prove it is narrow, not wide: ROE fell from 28.1% (FY2023) to 16.2% (FY2024) to 6.6% (FY2025), i.e. at/below cost of capital at the trough, and gross margin (31.5-32.7% on total revenues incl. Financial Services) is defended by mix, not pricing power \u2014 Agriculture net sales fell 11.5% in FY2025 with North America down 26.4%. Deere's integrated precision ecosystem is stronger; Raven gives CNH a credible but not leading tech stack.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001567094-26-000006), Consolidated Statements of Cash Flows: 'Expenditures for property, plant and equipment and intangible assets, excluding assets under operating leases' $543M (2025) / $536M (2024) / $644M (2023) plus 'Expenditures for assets under operating leases' $655M / $650M / $551M \u2014 totals $1,198M / $1,186M / $1,195M); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 1.04 vs 3-yr median 0.56 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 1.68,
+   "irr": 0.0408
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 2.02,
+   "irr": 0.044
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 2.73,
+   "irr": 0.0525
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 3.65,
+   "irr": 0.0636
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 5.42,
+   "irr": 0.0847
+  }
+ },
+ "iv_at_15": 2.76,
+ "iv_at_12": 3.59,
+ "implied_irr": 0.0533,
+ "implied_irr_base_case": 0.0525,
+ "upside_at_15_pct": -76.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Cyclical No.2 ag/construction equipment maker with a captive finance arm, moat 4/10 \u2014 at $11.60 it clears nothing: weighted IRR 5.3% on the TTM trough base (IV@15% $2.76), Tier D in every scenario; it would need to trade near $2.76 to clear a 15% hurdle on trough owner's earnings.",
+ "analysis_date": "2026-10-17",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.044,
+ "irr_bull": 0.0636,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 2.01,
+ "iv_at_25": 1.59,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 1251000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "#2 global ag equipment share (~12-14%) via Case IH and New Holland dual brands",
+  "Global dealer network plus captive Financial Services ($23.1B financing receivables) that finances a large share of its own sales",
+  "Installed-base parts and service annuity across a long-lived fleet",
+  "Raven precision-ag technology stack and full-line breadth (ag + construction)"
+ ],
+ "moat_against": [
+  "Deere's stronger precision ecosystem, brand and pricing power; AGCO/Kubota pressure from both ends",
+  "Pure cyclicality: farm-income-driven volumes, FY2025 Agriculture sales -11.5% (North America -26.4%), ROE 28.1% -> 6.6% in two years",
+  "Tariff exposure and South America weakness compressed Agriculture adjusted EBIT margin to 5.2% in Q2 2026",
+  "Thin equity under a large captive-finance balance sheet; consolidated net debt $23.4B (mostly FS, but the risk is CNH's)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 1186000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001567094-26-000006), Consolidated Statements of Cash Flows: 'Expenditures for property, plant and equipment and intangible assets, excluding assets under operating leases' $543M (2025) / $536M (2024) / $644M (2023) plus 'Expenditures for assets under operating leases' $655M / $650M / $551M \u2014 totals $1,198M / $1,186M / $1,195M"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 1.4002,
+  "base_oe_with_override": 0.4452,
+  "base_oe_impact_pct": -68.2,
+  "weighted_irr_without_override": 0.1342,
+  "weighted_irr_with_override": 0.0533,
+  "weighted_irr_impact_pp": -8.094,
+  "unblocks_tier": true
+ }
+}

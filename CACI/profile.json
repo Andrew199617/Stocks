@@ -1,0 +1,298 @@
+{
+ "ticker": "CACI",
+ "cik": 16058,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T14:27:40-04:00",
+ "newest_filing_date": "2026-09-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000016058.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/16058/000162828026054195/caci-20260630.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CACI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CACI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CACI INTERNATIONAL INC /DE/",
+  "cik": 16058,
+  "description": {
+   "text": "CACI International Inc (CACI), a Delaware corporation, is a holding company whose operations are conducted through subsidiaries primarily located in the U.S. and Europe. CACI was founded in 1962 as a simulation technology company and has grown into a leading provider of differentiated Technology and distinctive Expertise to customers in support of national security in the intelligence, defense, and federal civilian sectors, both domestically and internationally. Unless the context indicates otherwise, the terms “CACI,” the “Company,” “we,” “us,” and “our,” refer to CACI International Inc and its subsidiaries and joint ventures that are majority-owned or otherwise controlled by it. The term “the Registrant” refers to CACI International Inc only. •Technology – CACI provides technology that addresses our customers’ most challenging needs. This includes agile software development using open modern architectures and DevSecOps; advanced data platforms, applications, and analytics augmented by Artificial Intelligence (AI), Enterprise Resource Planning systems, electromagnetic spectrum capabilities, space-based sensors and ground site processors, photonics, and network modernization. CACI invests ahead of customer need with research and development (R&D) to create unique and differentiated technology addressing critical national security needs. •Expertise – CACI delivers talent with the specific technical and functional knowledge to support agency operations.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "accession": "0001628280-26-054195",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026054195/caci-20260630.htm"
+  },
+  "description_short": "CACI International Inc (NYSE: CACI) is a technology-first national security company that expands the limits of national security through innovation, discipline, and operational excellence. We deliver advanced technologies that help our customers move faster, operate more efficiently, and anticipate and defeat evolving threats. Our 27,000 talented employees and strong culture drive our success and have earned CACI recognition as a Fortune World's Most Admired Company. CACI is a member of the Fortune 500, the Russell 1000 Index, and the S&P MidCap 400 Index. For more information, visit caci.com.",
+  "industry": "EDP Services",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7373",
+  "sic_description": "Services-Computer Integrated Systems Design",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.caci.com",
+  "headquarters": "Reston, VA",
+  "address": {
+   "street": "12021 Sunset Hills Road",
+   "city": "Reston",
+   "state": "VA",
+   "zip": "20190",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-08-06"
+  },
+  "phone": "7038417800",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-09-26",
+  "first_sec_filing_form": "10-K",
+  "former_names": [
+   "CACI INTERNATIONAL INC /DE/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000016058&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "DEF 14A",
+   "filed": "2026-09-04",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-060738",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026060738/caci-20260904.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-054195",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026054195/caci-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-053448",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026053448/caci-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-22",
+   "period": "2026-06-22",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-044492",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026044492/caci-20260622.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-01",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-041245",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026041245/caci-20260601.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-026802",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026026802/caci-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-026589",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026026589/caci-20260422.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-12",
+   "period": "2026-03-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-26-017315",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026017315/caci-20260312.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-09",
+   "period": "2026-03-09",
+   "items": [
+    "1.01",
+    "2.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Debt obligation; Other events",
+   "accession": "0001628280-26-016072",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026016072/caci-20260309.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-012309",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026012309/caci-20260226.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-012005",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026012005/caci-20260226.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-01-22",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-003026",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026003026/caci-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-002895",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828026002895/caci-20260121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-30",
+   "period": "2025-12-24",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-059083",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828025059083/caci-20251224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-19",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-25-059047",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828025059047/caci-20251219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-19",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001628280-25-058393",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828025058393/caci-20251219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-01",
+   "period": "2025-11-25",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001628280-25-054481",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000162828025054481/caci-20251125.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000016058-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000001605825000087/caci-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000016058-25-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000001605825000084/caci-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-16",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000016058-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/16058/000001605825000082/caci-20251016.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-08-06"
+ ]
+}

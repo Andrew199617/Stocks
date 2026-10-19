@@ -1,0 +1,234 @@
+{
+ "ticker": "CHYM",
+ "cik": 1795586,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T14:12:09-04:00",
+ "newest_filing_date": "2026-09-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001795586.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000013/chym-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CHYM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CHYM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Chime Financial, Inc.",
+  "cik": 1795586,
+  "description": {
+   "text": "We created Chime to help everyday people make progress in their financial lives. For too long, millions of Americans, including the nearly 75% of the adult population that earn up to $100,000 annually, have struggled with bank relationships that are not always aligned with their best interests. So we set out to create a new approach, built on a foundation of trust rather than fine print and punitive fees. Through our direct relationships with FDIC-insured bank partners, we deliver easy-to-use products that address the most critical financial needs of everyday people — spending, saving, accessing liquidity, and building credit, all while avoiding punitive fees. Since our founding, we are proud to have created some of the most impactful product innovations in consumer banking and payments. Through our broad suite of products, we have built trusted relationships with 9.5 million Active Members, with the majority of them relying on Chime to serve as their primary financial relationship as of December 31, 2025. Being the primary account relationship for our members establishes Chime as their central financial hub, and we believe these relationships are the most valuable in consumer financial services. As the central hub, Chime becomes the platform through which members consistently deposit their paychecks and conduct their everyday spend, creating durable and long-lasting relationships with high engagement.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "accession": "0001795586-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000013/chym-20251231.htm"
+  },
+  "description_short": "Chime (Nasdaq: CHYM) is a financial technology company founded on the premise that core banking services should be helpful, easy, and free. We offer a broad range of low-cost banking and payments products that address the most critical financial needs of everyday people. Our member-aligned business model has helped millions of people to unlock financial progress. Member deposits are FDIC-insured through The Bancorp Bank, N.A. or Stride Bank, N.A., Members FDIC, up to applicable limits.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6199",
+  "sic_description": "Finance Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.chime.com",
+  "headquarters": "San Francisco, CA",
+  "address": {
+   "street": "101 California Street Suite 500",
+   "city": "San Francisco",
+   "state": "CA",
+   "zip": "94111",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-06"
+  },
+  "phone": "844-244-6363",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-05-13",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001795586&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-08",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-385383",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000119312526385383/d948605d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001795586-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000048/chym-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "2.05",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Officer/director change",
+   "accession": "0001795586-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000046/chym-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-02",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001795586-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000042/chme-20260602.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001795586-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000038/chym-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001795586-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000035/chym-20260506.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-06-02",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001795586-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000028/chym-20260417.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001795586-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000013/chym-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001795586-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558626000004/chme-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-08",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001795586-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558625000023/chme-20251208.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001795586-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558625000019/chym-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001795586-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558625000015/chme-20251105.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-11",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001795586-25-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558625000009/chym-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001795586-25-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000179558625000004/chme-20250807.htm"
+  },
+  {
+   "form": "S-1/A",
+   "filed": "2025-06-02",
+   "period": null,
+   "items": [],
+   "description": "Amendment: Registration statement",
+   "accession": "0001628280-25-028733",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000162828025028733/chimefinancialinc-sx1a.htm"
+  },
+  {
+   "form": "S-1",
+   "filed": "2025-05-13",
+   "period": null,
+   "items": [],
+   "description": "Registration statement",
+   "accession": "0001628280-25-025059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1795586/000162828025025059/chimefinancialinc-sx1wq1da.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-03-06"
+ ]
+}

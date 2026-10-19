@@ -1,0 +1,256 @@
+{
+ "ticker": "BBIO",
+ "cik": 1743881,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001743881-26-000009",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000009/bbio-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001743881-26-000019",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000019/bbio-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001743881-26-000027",
+   "filed": "2026-08-10",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1743881/000174388126000027/bbio-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      0,
+      2900000,
+      362400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0131,
+      0.7218
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      123.9655
+     ]
+    },
+    {
+     "member": "us-gaap:LicenseAndServiceMember",
+     "label": "License and Service",
+     "values": [
+      9303000,
+      218849000,
+      128322000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      0.9862,
+      0.2556
+     ],
+     "growth_yoy": [
+      null,
+      22.5246,
+      -0.4137
+     ]
+    },
+    {
+     "member": "us-gaap:RoyaltyMember",
+     "label": "Royalty",
+     "values": [
+      0,
+      169000,
+      11386000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0008,
+      0.0227
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      66.3728
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9303000,
+     221902000,
+     502076000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      36739000,
+      71501000,
+      180596000,
+      222440000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.315,
+      0.6467,
+      0.9284,
+      0.9129
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      3.9156,
+      2.111
+     ]
+    },
+    {
+     "member": "us-gaap:RoyaltyMember",
+     "label": "Royalty",
+     "values": [
+      204000,
+      1624000,
+      9500000,
+      15432000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0017,
+      0.0147,
+      0.0488,
+      0.0633
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      45.5686,
+      8.5025
+     ]
+    },
+    {
+     "member": "us-gaap:LicenseAndServiceMember",
+     "label": "License and Service",
+     "values": [
+      79690000,
+      37440000,
+      4419000,
+      5804000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6833,
+      0.3386,
+      0.0227,
+      0.0238
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.9445,
+      -0.845
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     116633000,
+     110565000,
+     194515000,
+     243676000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (bbio:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (bbio:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (bbio:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment' (bbio:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/annual: row 'Reportable Segment' (bbio:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/ProfitLoss/quarterly: row 'Reportable Segment' (bbio:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

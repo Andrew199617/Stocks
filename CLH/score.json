@@ -1,0 +1,87 @@
+{
+ "ticker": "CLH",
+ "name": "Clean Harbors, Inc.",
+ "sector": "Hazardous Waste Management / Environmental Services",
+ "price": 320.06,
+ "market_cap_b": 17.19,
+ "engine_version": 5,
+ "base_oe_per_share": 8.154174214975846,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Permitted hazardous-waste incinerator/landfill/TSDF network is effectively un-replicable and cradle-to-grave liability makes customers sticky, with PFAS/regulatory demand tailwinds; but ROIC proxy has run only 10.6-12.6% in recent years (7.3-8.2% in 2020-21) and gross margin is flat near 31% (30.7-32.0% band, FY2020-25), so returns are modestly above the cost of capital, not wide-moat level. CAP 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 41.19,
+   "irr": 0.04
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 59.05,
+   "irr": 0.0479
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 81.97,
+   "irr": 0.0587
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 112.59,
+   "irr": 0.0728
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 174.28,
+   "irr": 0.0991
+  }
+ },
+ "iv_at_15": 89.05,
+ "iv_at_12": 119.75,
+ "implied_irr": 0.0624,
+ "implied_irr_base_case": 0.0587,
+ "upside_at_15_pct": -72.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Quality permitted hazardous-waste franchise, moat 6/10 \u2014 but at $320.06 it does not come close to clearing 15% (weighted IRR 6.24%, IV@15 $89.05; clears 15% only near $89).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0479,
+ "irr_bull": 0.0728,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 61.72,
+ "iv_at_25": 46.86,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1949848000,
+ "shares_diluted_latest": 53716000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest permitted North American hazardous-waste disposal network (incinerators, secure landfills, TSDFs) \u2014 new permits effectively unobtainable",
+  "Cradle-to-grave customer liability under environmental law makes vendor switching risky and sticky",
+  "Regulatory tightening (incl. PFAS destruction) routes non-deferrable demand to permitted capacity",
+  "Integrated transport + disposal network: routing/cost advantage and ES/SKSS cross-selling",
+  "Proven pricing: utilization/volume growth with ES margin expansion"
+ ],
+ "moat_against": [
+  "ROIC proxy only ~10.6-12.6% recently and gross margin flat near 31% \u2014 pricing power is bounded",
+  "Industrial-cycle volume exposure",
+  "SKSS re-refining economics ride volatile base-oil spreads",
+  "Capital-intensive: TTM capex $404,666,000 vs OCF $871,417,000",
+  "WM/Republic/Veolia and regional rivals contest less permit-bound services; growth partly bought with debt-funded M&A"
+ ]
+}

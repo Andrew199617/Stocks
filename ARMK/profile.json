@@ -1,0 +1,284 @@
+{
+ "ticker": "ARMK",
+ "cik": 1584509,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T04:40:35-04:00",
+ "newest_filing_date": "2026-08-11",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001584509.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000219/cik0-20251003.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ARMK/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ARMK/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Aramark",
+  "cik": 1584509,
+  "description": {
+   "text": "Aramark (the “Company”, “we” or “us”) is a leading global provider of food and facilities services to education, healthcare, business & industry, and sports, leisure & corrections clients. Our largest market is the United States, which is supplemented by an additional 15-country footprint. We also provide our services on a more limited basis in several additional countries and in offshore locations. Based on total revenue in fiscal 2025, we hold a top 2 position in North America in food and facilities services and a top 3 position in food and facilities services internationally in most countries in which we have significant operations. Our approximately 278,390 employees partner with thousands of education, healthcare, business and sports, leisure & corrections clients to serve millions of customers including students, patients, employees, sports fans and guests worldwide. We operate our business in two reportable segments that share many of the same operating characteristics: Food and Support Services United States (\"FSS United States\") and Food and Support Services International (\"FSS International\"). The following chart shows a breakdown of our revenue and operating income by these reportable segments:",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-10-03",
+   "accession": "0001584509-25-000219",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000219/cik0-20251003.htm"
+  },
+  "description_short": "Aramark Sports + Entertainment serves more than 150 award-winning food and beverage and retail programs in premier professional and collegiate stadiums and arenas along with convention centers, cultural attractions, performance venues, and unique entertainment destinations across North America. The company has received accolades for industry innovations including autonomous markets and dining concepts powered by artificial intelligence and has provided hospitality services at high-profile sporting events like the MLB World Series, MLB at Rickwood Field, NBA All-Star, and Indianapolis 500.",
+  "industry": "Restaurants",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5812",
+  "sic_description": "Retail-Eating  Places",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1002",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.aramark.com",
+  "headquarters": "Philadelphia, Pennsylvania",
+  "address": {
+   "street": "2400 Market Street",
+   "city": "Philadelphia",
+   "state": "Pennsylvania",
+   "zip": "19103",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-25"
+  },
+  "phone": "215-238-3000",
+  "employees": {
+   "count": 278390,
+   "as_of": "2025-10-03",
+   "evidence": "As of October 3, 2025, we had a total of approximately 278,390 employees, including approximately 144,240 employees in FSS United States, 133,690 employees in FSS International and 460 employees in Aramark corporate staff.",
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000219/cik0-20251003.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2013-09-09",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "ARAMARK Holdings Corp"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001584509&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-11",
+   "period": "2026-07-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001584509-26-000122",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000122/cik0-20260703.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-11",
+   "period": "2026-08-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001584509-26-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000118/cik0-20260811.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001584509-26-000113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000113/cik0-20260804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-12",
+   "period": "2026-04-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001584509-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000088/cik0-20260403.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001584509-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000085/cik0-20260512.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-17",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001584509-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000043/cik0-20260217.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-10",
+   "period": "2026-01-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001584509-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000040/cik0-20260102.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001584509-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000037/cik0-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-03",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001584509-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000020/cik0-20260203.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001584509-25-000256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000256/cik0-20251222.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-11",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001584509-25-000224",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000224/cik0-20251211.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-25",
+   "period": "2025-10-03",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001584509-25-000219",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000219/cik0-20251003.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001584509-25-000214",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000214/cik0-20251117.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-18",
+   "period": "2025-08-15",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-182214",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000119312525182214/d70182d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001584509-25-000169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000169/cik0-20250627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001584509-25-000163",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000163/cik0-20250805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-06",
+   "period": "2025-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001584509-25-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000118/cik0-20250328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-06",
+   "period": "2025-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001584509-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000115/cik0-20250506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-19",
+   "period": "2025-03-19",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001584509-25-000099",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000099/cik0-20250319.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-03-05",
+   "period": "2025-03-05",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001584509-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000094/cik0-20250305.htm"
+  }
+ ],
+ "warnings": []
+}

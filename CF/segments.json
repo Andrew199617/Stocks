@@ -1,0 +1,594 @@
+{
+ "ticker": "CF",
+ "cik": 1324404,
+ "as_of": "2026-10-16",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001324404-26-000007",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000007/cf-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001324404-26-000013",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000013/cf-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001324404-26-000019",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1324404/000132440426000019/cf-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cf:AmmoniaMember",
+     "label": "Ammonia",
+     "values": [
+      1679000000,
+      1736000000,
+      2176000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2532,
+      0.2925,
+      0.3072
+     ],
+     "growth_yoy": [
+      null,
+      0.0339,
+      0.2535
+     ]
+    },
+    {
+     "member": "cf:UANMember",
+     "label": "UAN",
+     "values": [
+      2068000000,
+      1678000000,
+      2161000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3119,
+      0.2827,
+      0.3051
+     ],
+     "growth_yoy": [
+      null,
+      -0.1886,
+      0.2878
+     ]
+    },
+    {
+     "member": "cf:UreaMember",
+     "label": "Urea",
+     "values": [
+      1823000000,
+      1600000000,
+      1781000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2749,
+      0.2695,
+      0.2514
+     ],
+     "growth_yoy": [
+      null,
+      -0.1223,
+      0.1131
+     ]
+    },
+    {
+     "member": "cf:OtherProductsMember",
+     "label": "Other Products",
+     "values": [
+      564000000,
+      503000000,
+      545000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0851,
+      0.0847,
+      0.0769
+     ],
+     "growth_yoy": [
+      null,
+      -0.1082,
+      0.0835
+     ]
+    },
+    {
+     "member": "cf:AmmoniumNitrateSegmentMember",
+     "label": "Ammonium Nitrate Segment",
+     "values": [
+      497000000,
+      419000000,
+      421000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.075,
+      0.0706,
+      0.0594
+     ],
+     "growth_yoy": [
+      null,
+      -0.1569,
+      0.0048
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6631000000,
+     5936000000,
+     7084000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cf:UreaMember",
+     "label": "Urea",
+     "values": [
+      439000000,
+      547000000,
+      590000000,
+      759000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.264,
+      0.2894,
+      0.2971,
+      0.3416
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.344,
+      0.3876
+     ]
+    },
+    {
+     "member": "cf:UANMember",
+     "label": "UAN",
+     "values": [
+      470000000,
+      610000000,
+      583000000,
+      613000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2826,
+      0.3228,
+      0.2936,
+      0.2759
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2404,
+      0.0049
+     ]
+    },
+    {
+     "member": "cf:AmmoniaMember",
+     "label": "Ammonia",
+     "values": [
+      520000000,
+      491000000,
+      627000000,
+      586000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3127,
+      0.2598,
+      0.3157,
+      0.2637
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2058,
+      0.1935
+     ]
+    },
+    {
+     "member": "cf:OtherProductsMember",
+     "label": "Other Products",
+     "values": [
+      133000000,
+      125000000,
+      128000000,
+      193000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.08,
+      0.0661,
+      0.0645,
+      0.0869
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0376,
+      0.544
+     ]
+    },
+    {
+     "member": "cf:AmmoniumNitrateSegmentMember",
+     "label": "Ammonium Nitrate Segment",
+     "values": [
+      101000000,
+      117000000,
+      58000000,
+      71000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0607,
+      0.0619,
+      0.0292,
+      0.032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4257,
+      -0.3932
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1663000000,
+     1890000000,
+     1986000000,
+     2222000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4856000000,
+      4419000000,
+      5338000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7323,
+      0.7444,
+      0.7535
+     ],
+     "growth_yoy": [
+      null,
+      -0.09,
+      0.208
+     ]
+    },
+    {
+     "member": "cf:AllRegionsOutsideOfUSAndCanadaMember",
+     "label": "All Regions Outside of US and Canada",
+     "values": [
+      747000000,
+      584000000,
+      712000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1127,
+      0.0984,
+      0.1005
+     ],
+     "growth_yoy": [
+      null,
+      -0.2182,
+      0.2192
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      607000000,
+      534000000,
+      598000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0915,
+      0.09,
+      0.0844
+     ],
+     "growth_yoy": [
+      null,
+      -0.1203,
+      0.1199
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      346000000,
+      327000000,
+      378000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0522,
+      0.0551,
+      0.0534
+     ],
+     "growth_yoy": [
+      null,
+      -0.0549,
+      0.156
+     ]
+    },
+    {
+     "member": "cf:NorthAmericaexcludingUnitedStatesandCanadaMember",
+     "label": "North America excluding United States and Canada",
+     "values": [
+      75000000,
+      72000000,
+      58000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0113,
+      0.0121,
+      0.0082
+     ],
+     "growth_yoy": [
+      null,
+      -0.04,
+      -0.1944
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6631000000,
+     5936000000,
+     7084000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      1373000000,
+      1686000000,
+      1724000000,
+      1925000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8256,
+      0.8921,
+      0.8681,
+      0.8663
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2556,
+      0.1418
+     ]
+    },
+    {
+     "member": "cf:EuropeandOtherMember",
+     "label": "Europe and Other",
+     "values": [
+      290000000,
+      204000000,
+      262000000,
+      297000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1744,
+      0.1079,
+      0.1319,
+      0.1337
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0966,
+      0.4559
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1663000000,
+     1890000000,
+     1986000000,
+     2222000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember) dropped: same numbers as 'Other Products' (cf:OtherProductsMember)",
+  "business_segments/Revenues/quarterly: row 'Other Operating Segment' (us-gaap:AllOtherSegmentsMember) dropped: same numbers as 'Other Products' (cf:OtherProductsMember)",
+  "geography/Revenues/annual: row 'North America' (srt:NorthAmericaMember) dropped: it is the parent of CANADA in the filing's definition linkbase",
+  "geography/Revenues/annual: row 'Non-US' (us-gaap:NonUsMember) dropped: it is the parent of All Regions Outside of US and Canada, CANADA, North America excluding United States and Canada, UNITED KINGDOM in the filing's definition linkbase",
+  "geography/Revenues/annual: reconciling row 'Europe and Other' (cf:EuropeandOtherMember) dropped: the other rows already tie to the consolidated total without it"
+ ],
+ "complete": true
+}

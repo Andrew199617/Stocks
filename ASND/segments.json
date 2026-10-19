@@ -1,0 +1,123 @@
+{
+ "ticker": "ASND",
+ "cik": 1612042,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-046590",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526046590/asnd-20251231_htm.xml"
+  }
+ ],
+ "currency": "EUR",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      191677000,
+      233115000,
+      546388000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7187,
+      0.6411,
+      0.7587
+     ],
+     "growth_yoy": [
+      null,
+      0.2162,
+      1.3439
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      869000,
+      123336000,
+      120946000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0033,
+      0.3392,
+      0.1679
+     ],
+     "growth_yoy": [
+      null,
+      140.9287,
+      -0.0194
+     ]
+    },
+    {
+     "member": "asnd:RestOfWorldMember",
+     "label": "Rest of world",
+     "values": [
+      74172000,
+      7190000,
+      52798000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2781,
+      0.0198,
+      0.0733
+     ],
+     "growth_yoy": [
+      null,
+      -0.9031,
+      6.3433
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     266718000,
+     363641000,
+     720132000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/Revenues/annual: row 'DENMARK' (country:DK) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, Europe, Rest of world)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

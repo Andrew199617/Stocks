@@ -1,0 +1,51 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "DATA_GAP:ads_ratio - AEG is not an ADS program representing multiple ordinary shares: the NYSE security is the common share itself in New York registry form, exchangeable 1-for-1, so per-ordinary-share figures are directly comparable to the traded AEG price with no scaling.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, share capital / major shareholders disclosure: New York Registry Shares are common shares traded on the NYSE and are exchangeable on a one-to-one basis with the Euronext Amsterdam shares, with the same rights except cash dividends are paid in USD on NYRS; the 20-F cover registers Common shares, par value EUR 0.12 per share, under trading symbol AEG on the NYSE"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity life/retirement products sold on price and service - no demonstrated structural pricing power",
+  "Returns below a clear moat standard: ROE negative in FY2023, 7.3% in FY2024, 10.3% in FY2025 (fundamentals.json)",
+  "Legacy blocks and market/IFRS finance swings drive net result and operating cash flow - OE/share has ranged more than 3x in five years",
+  "Shrinking perimeter: Dutch business sold to a.s.r. in 2023 and the UK sale pending - the scored revenue base is contracting by design",
+  "Capital-intensive, rate-sensitive and regulated in several jurisdictions; redomiciliation and US-GAAP switch add execution risk"
+ ],
+ "moat_for": [
+  "Transamerica scale in US life insurance and retirement, with World Financial Group distribution passing 100,000 agents in H1 2026",
+  "Diversified earnings across Americas, UK, International strategic partnerships and asset management",
+  "Operating momentum: FY2025 operating result up 15% and H1 2026 operating capital generation up 27% in company reporting",
+  "Capital-return capacity: growing dividend, repeated buybacks and a 169% group solvency ratio at H1 2026",
+  "Simplification path: US redomiciliation and Transamerica renaming approved in October 2026, UK business sale agreed"
+ ],
+ "moat_justification": "Weak-to-narrow insurer moat: real US distribution scale through Transamerica and World Financial Group plus diversified Americas/UK/International/asset-management earnings, but commodity life and retirement products with no demonstrated pricing power, a shrinking divestiture perimeter, legacy and market-driven earnings volatility, and returns that have not stayed above the cost of capital through a cycle (fundamentals.json ROE: FY2023 negative, FY2024 7.3%, FY2025 10.3%; the roic_proxy series is null for FY2023-2025 and gross margin is not presented for an insurer, so neither can support a higher score). CAP 7.2y.",
+ "moat_score": 4,
+ "name": "AEGON LTD.",
+ "one_liner": "Transitioning life insurer, moat 4/10 - at $8.32 the weighted IRR is only 6.39% (weighted IV@15% $2.71) on a $0.44 normalized OE base the sector model already grades low-confidence; it clears the 15% hurdle only below about $2.71.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.15,
+  0.1
+ ],
+ "sbc_override": {
+  "ack_reason": "Out-of-band by construction: the engine has no filed SBC value to band against (last filed value is null under its IFRS SBC tags), so any current filing figure is out-of-band. The value is not an estimate - it is the FY2025 Shares expense printed in the filer's own FY2025 20-F employee-expenses table.",
+  "kind": "filing",
+  "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2023, 2024, 2025 under the engine's tags. The filer's own FY2025 Shares expense in employee expenses fills the gap; the engine applies this single EUR value (FX-converted at each period-end rate) to every missing period, so FY2023/FY2024 are charged EUR 59m instead of their filed EUR 54m/EUR 58m - slightly conservative (higher SBC lowers owner's earnings) and immaterial (about EUR 5m on a ~EUR 400-800m OE base). Declared in EUR, the reporting currency; the engine FX-converts.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, Note 13 Other operating expenses, Employee expenses table: the Shares component is EUR 59 million for FY2025, with EUR 58 million for FY2024 and EUR 54 million for FY2023 in the same table; the same note describes the share plans (STI/LTI shares, shares as fixed compensation) whose cost this line carries",
+  "value": 59000000
+ },
+ "sector": "Finance / Life Insurance",
+ "shares_override": {
+  "ack_reason": "Out-of-band by construction if the engine bands against a null diluted filed value: the engine filed no diluted count at all (WeightedAverageShares is recorded only as a fallback). The value is not an estimate - it is exactly the weighted average common share count the filer prints in its EPS note, which the same note states is also the diluted count.",
+  "kind": "filing",
+  "reason": "DATA_GAP:shares - DILUTED shares missing for FY2023-2025; only the WeightedAverageShares count is filed, which the filing's EPS note itself identifies as both the basic and the diluted denominator (basic and diluted EPS are identical in all three years). The engine applies this single FY2025 value to every missing period; for FY2023/FY2024 it uses a smaller denominator than the filer's own counts (1,879m / 1,630m), which raises those years' OE/share - the median year under the override is still computed by the engine and the effect is disclosed in analysis.md. Common shares B (345m weighted, 1/40th financial rights) are excluded from the common-share denominator in the filer's own EPS calculation, consistent with the engine's filed count.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025, Note 16 Earnings per share: weighted average number of common shares outstanding 1,553 million for FY2025 (1,630 million FY2024, 1,879 million FY2023), and the diluted EPS section states diluted EPS equaled basic EPS for all years disclosed because no long-term incentive plans were considered dilutive",
+  "value": 1553000000
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

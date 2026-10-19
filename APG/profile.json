@@ -1,0 +1,286 @@
+{
+ "ticker": "APG",
+ "cik": 1796209,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T12:39:03-04:00",
+ "newest_filing_date": "2026-07-30",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001796209.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026011620/apg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/APG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/APG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "APi Group Corp",
+  "cik": 1796209,
+  "description": {
+   "text": "We are a global, market-leading business services provider of fire and life safety, security, elevator and escalator, and specialty services with a substantial recurring revenue base and over 500 locations worldwide. We provide statutorily mandated and other contracted services to a strong base of long-standing customers across industries. We have a winning leadership culture driven by entrepreneurial business leaders that deliver innovative solutions to our customers. We believe that our core strategies of driving sustainable organic growth, growing through accretive acquisitions, promoting the sharing of best practices across all of our businesses, and leveraging our scale and service offerings place us in a unique position to capitalize on opportunities in the industries we serve and advance our position in each of our markets. We believe that our revenue diversification across customers, end markets, geographies, and projects, combined with our inspection-first go-to-market strategy, decentralized operating model, enduring commitment to leadership development, long-standing customer relationships, and strong safety track record differentiates us from our competitors. We have a disciplined acquisition strategy and have completed 140 acquisitions since 2005.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-011620",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026011620/apg-20251231.htm"
+  },
+  "description_short": "APi Group is a global, market-leading business services company providing statutorily mandated and contracted services across its Safety Services and Specialty Services segments, including fire and life safety, electronic security, elevator and escalator, and infrastructure services. With more than 600 locations in over 20 countries, APi is built on a century of expertise, a people-first culture, and its purpose of Building Great Leaders®. In 2026, APi is celebrating its 100-year anniversary and its debut on the Fortune 500. More information is available at www.apigroup.com.",
+  "industry": "Diversified Commercial Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7340",
+  "sic_description": "Services-To Dwellings & Other Buildings",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.apigroupinc.com",
+  "headquarters": "New Brighton, MN",
+  "address": {
+   "street": "1100 Old Highway 8 NW",
+   "city": "New Brighton",
+   "state": "MN",
+   "zip": "55112",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-25"
+  },
+  "phone": "651-636-4320",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-04-27",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001796209&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-051007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026051007/apg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-050806",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026050806/apg-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-046698",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026046698/apg-20260702.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-041818",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026041818/apg-20260608.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-19",
+   "period": "2026-05-15",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-036256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026036256/apg-20260515.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-14",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-229096",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000119312526229096/d69397d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-08",
+   "period": "2026-05-07",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-214754",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000119312526214754/d43991d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028658",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026028658/apg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001796209-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000179620926000003/apg-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-03",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-023528",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026023528/apg-20260331.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-25",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-011620",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026011620/apg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-011397",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026011397/apg-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-008320",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026008320/apg-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-02",
+   "period": "2025-12-31",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-000190",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828026000190/apg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-10",
+   "period": "2025-12-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-25-056224",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828025056224/apg-20251210.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-047400",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828025047400/apg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-047328",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828025047328/apg-20251030.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-036919",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828025036919/apg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-036849",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000162828025036849/apg-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-22",
+   "period": "2025-05-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-25-125091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1796209/000119312525125091/d56815d8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-25"
+ ]
+}

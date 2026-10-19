@@ -1,0 +1,107 @@
+{
+ "ticker": "BCE",
+ "name": "BCE Inc.",
+ "sector": "Telecom / Integrated communications (Canada + US fibre)",
+ "price": 20.375,
+ "market_cap_b": 18.93,
+ "engine_version": 5,
+ "base_oe_per_share": 2.5178593047034763,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "Regulated Canadian telecom oligopoly with spectrum and fibre/5G network scale and sticky subscribers (postpaid churn ~1.0%), but the regulator caps the moat (CRTC wholesale fibre access), pricing power is unproven (Canadian CTS revenue falling, ARPU ~flat), revenue has been flat for five years, and returns sit on a huge, repeatedly impaired asset base with high leverage. fundamentals.json carries no operating-income / roic_proxy series for BCE (IFRS tags), so the moat rests on margin stability (gross margin 67.9-68.9% over the last five fiscal years, adjusted EBITDA margin 43.6% in FY2025) rather than a demonstrated high-ROIC history.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency CAD converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-06, accession 0001193125-26-095004), cover page: securities registered under Section 12(b) are 'Common shares', trading symbol BCE, listed on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: BCE Inc. 2025 annual financial statements (filed with the Form 40-F for the year ended December 31, 2025, accession 0001193125-26-095004), Note 32 Share-based payments: total share-based payments included in operating costs were C$90M in FY2025 (RSUs and PSUs C$61M + ESP and DSUs C$29M) and C$84M in FY2024; EDGAR companyfacts carries the same series under ifrs-full ExpenseFromSharebasedPaymentTransactions (FY2023 C$95M / FY2024 C$84M / FY2025 C$90M), a tag the engine does not map, so sbc_tag is blank for every filed year. Value is in CAD as filed; the engine FX-converts at period-end rates.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "HIGH_NET_DEBT: net debt is 12.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.3%) vs bull-case tier B (17.5%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 9.17,
+   "irr": 0.0756
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 13.21,
+   "irr": 0.103
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 18.1,
+   "irr": 0.1356
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 24.52,
+   "irr": 0.1749
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 34.27,
+   "irr": 0.2276
+  }
+ },
+ "iv_at_15": 19.2,
+ "iv_at_12": 25.18,
+ "implied_irr": 0.1427,
+ "implied_irr_base_case": 0.1356,
+ "upside_at_15_pct": -5.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Regulated Canadian telecom oligopoly, moat 5/10 \u2014 real owner's earnings (base $2.52/share, 12.4% OE yield) but flat growth and net debt at 12.8x normalized OE cap the return: weighted IRR 14.3% and weighted IV@15% $19.20 sit just under the $20.38 price, so it clears 15% only at ~$19 or below \u2014 Tier C, sized to the bear end (bear IRR 10.3%).",
+ "analysis_date": "2026-10-16",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.103,
+ "irr_bull": 0.1749,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 13.79,
+ "iv_at_25": 10.77,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 29987851240.0,
+ "shares_diluted_latest": 929100000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Regulated three-carrier Canadian oligopoly: spectrum licences and national fibre/5G networks are effectively irreplicable; BCE is Canada's largest communications company by revenue and connections",
+  "Sticky installed base: 4.91M Bell CTS high-speed Internet subscribers (Q2 2026) and postpaid wireless churn of 1.0% in Q2 2026, the lowest comparable level in three years",
+  "Margin stability through a cycle: gross margin 67.9-68.9% across FY2021-25 (fundamentals.json) and FY2025 adjusted EBITDA margin 43.6%, the highest in over 30 years",
+  "Content bundle: Bell Media / Crave (5.1M subscribers, +23% YoY in Q2 2026) bundled with connectivity raises switching friction"
+ ],
+ "moat_against": [
+  "The regulator is an erosion force: the CRTC wholesale fibre-access decision forced Bell to open its fibre network to rivals and BCE curtailed its own fibre build in response",
+  "No demonstrated pricing power: Bell CTS Canada revenue -4.0% YoY in Q2 2026, blended ARPU +0.7% only; legacy voice and linear TV decline structurally",
+  "No roic_proxy series in fundamentals.json (operating income untagged under IFRS) and a history of value-destroying capital allocation: impairments of C$2,190M (FY2024) and C$1,027M (FY2025) plus recurring severance programs",
+  "Leverage, not the franchise, drives policy: net debt $29,988M (engine, USD) against equity of C$23,310M; the dividend was cut from C$3.99 to C$1.75 annualized in May 2025 to repair the balance sheet",
+  "US growth is bought, not moated: Ziply Fiber operates in competitive US fibre markets outside the Canadian oligopoly's protection"
+ ],
+ "overrides": [
+  {
+   "field": "sbc",
+   "value": 90000000.0,
+   "kind": "filing",
+   "source": "BCE Inc. 2025 annual financial statements (filed with the Form 40-F for the year ended December 31, 2025, accession 0001193125-26-095004), Note 32 Share-based payments: total share-based payments included in operating costs were C$90M in FY2025 (RSUs and PSUs C$61M + ESP and DSUs C$29M) and C$84M in FY2024; EDGAR companyfacts carries the same series under ifrs-full ExpenseFromSharebasedPaymentTransactions (FY2023 C$95M / FY2024 C$84M / FY2025 C$90M), a tag the engine does not map, so sbc_tag is blank for every filed year. Value is in CAD as filed; the engine FX-converts at period-end rates."
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 2.5886,
+  "base_oe_with_override": 2.5179,
+  "base_oe_impact_pct": -2.733,
+  "weighted_irr_without_override": 0.1461,
+  "weighted_irr_with_override": 0.1427,
+  "weighted_irr_impact_pp": -0.335,
+  "unblocks_tier": true
+ }
+}

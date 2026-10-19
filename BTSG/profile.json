@@ -1,0 +1,294 @@
+{
+ "ticker": "BTSG",
+ "cik": 1865782,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T23:55:12-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001865782.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526079454/btsg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BTSG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BTSG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BrightSpring Health Services, Inc.",
+  "cik": 1865782,
+  "description": {
+   "text": "We are a leading home and community-based healthcare services platform, focused on delivering complementary pharmacy and provider services to complex patients. We have a differentiated approach to care delivery, with an integrated and scaled model that addresses critical services that the highest-need and highest-cost patients require. With a focus on Senior and Specialty patients, which includes Behavioral populations, our platform provides pharmacy and provider services (both clinical and supportive care in nature) in lower-cost home and community settings largely to Medicare, Medicaid, and commercially-insured populations. We are an essential part of our nation’s health delivery network as a front-line provider of high-quality and cost-effective care to a large and growing number of people, who increasingly require a combination of specialized solutions to enable holistic health care management. Our presence spans all 50 states, we serve over 465,000 patients daily through our approximately 10,500 clinical providers and pharmacists, and our services make a profound impact in the lives and communities of the people we serve. Our model focuses on delivering high-touch and coordinated services to medically complex clients and patients, which is a large, growing, and underserved population in the U.S. healthcare system. These high-need and high-cost Senior and Specialty patients comprise a market of over $2.0 trillion across our business.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-079454",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526079454/btsg-20251231.htm"
+  },
+  "description_short": "BrightSpring Health Services provides complementary home- and community-based health solutions for medically complex populations in need of specialized and/or chronic care. Through the Company's service lines, including pharmacy, home health care, and rehabilitation, we provide comprehensive and more integrated care and clinical solutions in all 50 states to over 485,000 customers, clients and patients daily. BrightSpring has consistently demonstrated strong and industry-leading quality metrics across its services lines, while improving the health and quality of life for high-need individuals and reducing overall healthcare system costs.",
+  "industry": "Medical/Nursing Services",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "8082",
+  "sic_description": "Services-Home Health Care Services",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.brightspringhealth.com",
+  "headquarters": "Louisville, Kentucky",
+  "address": {
+   "street": "805 N. Whittington Parkway",
+   "city": "Louisville",
+   "state": "Kentucky",
+   "zip": "40222",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-27"
+  },
+  "phone": "502-394-2100",
+  "employees": {
+   "count": 23500,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had over 23,500 full-time equivalent employees at the Company.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526079454/btsg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-10-18",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001865782&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-327014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526327014/btsg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-326654",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526326654/btsg-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-11",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-269360",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526269360/btsg-20260611.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-03",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-26-259531",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526259531/btsg-20260603.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-21",
+   "period": "2026-05-21",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-234435",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526234435/btsg-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-199339",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526199339/btsg-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-198983",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526198983/btsg-20260501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-151207",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526151207/btsg-20260410.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-31",
+   "period": "2026-03-30",
+   "items": [
+    "2.01",
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Acquisition/disposition; Officer/director change; Reg FD",
+   "accession": "0001193125-26-133307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526133307/btsg-20260330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-02",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001865782-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000186578226000008/btsg-20260302.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-079454",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526079454/btsg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-078998",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312526078998/btsg-20260227.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-253631",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312525253631/btsg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-253503",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312525253503/btsg-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-20",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-246752",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312525246752/btsg-20251020.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-243598",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000119312525243598/btsg-20251020.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-101119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000095017025101119/btsg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-01",
+   "period": "2025-08-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-101093",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000095017025101093/btsg-20250801.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-20",
+   "period": "2025-06-20",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000950170-25-088587",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000095017025088587/btsg-20250620.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-10",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0000950170-25-085363",
+   "url": "https://www.sec.gov/Archives/edgar/data/1865782/000095017025085363/btsg-20250610.htm"
+  }
+ ],
+ "warnings": []
+}

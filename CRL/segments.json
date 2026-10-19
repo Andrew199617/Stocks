@@ -1,0 +1,1268 @@
+{
+ "ticker": "CRL",
+ "cik": 1100682,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001100682-26-000022",
+   "filed": "2026-02-18",
+   "period": "2025-12-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1100682/000110068226000022/crl-20251227_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001100682-26-000038",
+   "filed": "2026-05-07",
+   "period": "2026-03-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1100682/000110068226000038/crl-20260328_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001100682-26-000118",
+   "filed": "2026-08-05",
+   "period": "2026-06-27",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1100682/000110068226000118/crl-20260627_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "crl:DiscoveryAndSafetyAssessmentSegmentMember",
+     "label": "Discovery and Safety Assessment Segment",
+     "values": [
+      2615623000,
+      2451280000,
+      2402891000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6334,
+      0.6053,
+      0.5984
+     ],
+     "growth_yoy": [
+      null,
+      -0.0628,
+      -0.0197
+     ]
+    },
+    {
+     "member": "crl:ResearchModelsAndServicesSegmentMember",
+     "label": "Research Models and Services Segment",
+     "values": [
+      792343000,
+      829377000,
+      846082000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1919,
+      0.2048,
+      0.2107
+     ],
+     "growth_yoy": [
+      null,
+      0.0467,
+      0.0201
+     ]
+    },
+    {
+     "member": "crl:ManufacturingSupportSegmentMember",
+     "label": "Manufacturing Support Segment",
+     "values": [
+      721443000,
+      769332000,
+      766409000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1747,
+      0.19,
+      0.1909
+     ],
+     "growth_yoy": [
+      null,
+      0.0664,
+      -0.0038
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4129409000,
+     4049989000,
+     4015382000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "crl:DiscoveryAndSafetyAssessmentSegmentMember",
+     "label": "Discovery and Safety Assessment Segment",
+     "values": [
+      592609000,
+      618029000,
+      596923000,
+      606507000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6021,
+      0.5988,
+      0.5994,
+      0.604
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0073,
+      -0.0186
+     ]
+    },
+    {
+     "member": "crl:ResearchModelsAndServicesSegmentMember",
+     "label": "Research Models and Services Segment",
+     "values": [
+      213073000,
+      213271000,
+      208367000,
+      209475000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2165,
+      0.2066,
+      0.2092,
+      0.2086
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0221,
+      -0.0178
+     ]
+    },
+    {
+     "member": "crl:ManufacturingSupportSegmentMember",
+     "label": "Manufacturing Support Segment",
+     "values": [
+      178486000,
+      200835000,
+      190540000,
+      188096000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1814,
+      0.1946,
+      0.1913,
+      0.1873
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0675,
+      -0.0634
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     984168000,
+     1032135000,
+     995830000,
+     1004078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "crl:DiscoveryAndSafetyAssessmentSegmentMember",
+     "label": "Discovery and Safety Assessment Segment",
+     "values": [
+      606076000,
+      442510000,
+      424555000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9819,
+      1.9464,
+      16.8729
+     ],
+     "growth_yoy": [
+      null,
+      -0.2699,
+      -0.0406
+     ]
+    },
+    {
+     "member": "crl:ResearchModelsAndServicesSegmentMember",
+     "label": "Research Models and Services Segment",
+     "values": [
+      154666000,
+      114411000,
+      44567000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2506,
+      0.5032,
+      1.7712
+     ],
+     "growth_yoy": [
+      null,
+      -0.2603,
+      -0.6105
+     ]
+    },
+    {
+     "member": "crl:ManufacturingSupportSegmentMember",
+     "label": "Manufacturing Support Segment",
+     "values": [
+      88329000,
+      -71453000,
+      -184284000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1431,
+      -0.3143,
+      -7.3239
+     ],
+     "growth_yoy": [
+      null,
+      -1.8089,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -231810000,
+      -258121000,
+      -259676000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3755,
+      -1.1354,
+      -10.3202
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     617261000,
+     227347000,
+     25162000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "crl:DiscoveryAndSafetyAssessmentSegmentMember",
+     "label": "Discovery and Safety Assessment Segment",
+     "values": [
+      93952000,
+      122781000,
+      103875000,
+      124399000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2582,
+      1.2262,
+      0.8664,
+      1.0376
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1056,
+      0.0132
+     ]
+    },
+    {
+     "member": "crl:ManufacturingSupportSegmentMember",
+     "label": "Manufacturing Support Segment",
+     "values": [
+      -8620000,
+      12061000,
+      46839000,
+      65606000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1154,
+      0.1204,
+      0.3907,
+      0.5472
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      4.4395
+     ]
+    },
+    {
+     "member": "crl:ResearchModelsAndServicesSegmentMember",
+     "label": "Research Models and Services Segment",
+     "values": [
+      43605000,
+      35786000,
+      49773000,
+      36277000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.584,
+      0.3574,
+      0.4151,
+      0.3026
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1415,
+      0.0137
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -54268000,
+      -70494000,
+      -80590000,
+      -106394000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.7268,
+      -0.704,
+      -0.6722,
+      -0.8874
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     74669000,
+     100134000,
+     119897000,
+     119888000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "crl:DiscoveryAndSafetyAssessmentSegmentMember",
+     "label": "Discovery and Safety Assessment Segment",
+     "values": [
+      174719000,
+      191126000,
+      174030000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5562,
+      0.5284,
+      0.4315
+     ],
+     "growth_yoy": [
+      null,
+      0.0939,
+      -0.0894
+     ]
+    },
+    {
+     "member": "crl:ManufacturingSupportSegmentMember",
+     "label": "Manufacturing Support Segment",
+     "values": [
+      79982000,
+      89964000,
+      140218000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2546,
+      0.2487,
+      0.3477
+     ],
+     "growth_yoy": [
+      null,
+      0.1248,
+      0.5586
+     ]
+    },
+    {
+     "member": "crl:ResearchModelsAndServicesSegmentMember",
+     "label": "Research Models and Services Segment",
+     "values": [
+      55570000,
+      73812000,
+      81075000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1769,
+      0.204,
+      0.201
+     ],
+     "growth_yoy": [
+      null,
+      0.3283,
+      0.0984
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      3853000,
+      6839000,
+      7989000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0123,
+      0.0189,
+      0.0198
+     ],
+     "growth_yoy": [
+      null,
+      0.775,
+      0.1682
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     314124000,
+     361741000,
+     403312000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "crl:DiscoveryAndSafetyAssessmentSegmentMember",
+     "label": "Discovery and Safety Assessment Segment",
+     "values": [
+      42084000,
+      42575000,
+      39914000,
+      41633000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3496,
+      0.3563,
+      0.5944,
+      0.6187
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0516,
+      -0.0221
+     ]
+    },
+    {
+     "member": "crl:ResearchModelsAndServicesSegmentMember",
+     "label": "Research Models and Services Segment",
+     "values": [
+      21761000,
+      19710000,
+      16140000,
+      15733000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1808,
+      0.1649,
+      0.2404,
+      0.2338
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.2583,
+      -0.2018
+     ]
+    },
+    {
+     "member": "crl:ManufacturingSupportSegmentMember",
+     "label": "Manufacturing Support Segment",
+     "values": [
+      54623000,
+      55343000,
+      8399000,
+      7389000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4538,
+      0.4631,
+      0.1251,
+      0.1098
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.8462,
+      -0.8665
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1896000,
+      1879000,
+      2698000,
+      2535000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0158,
+      0.0157,
+      0.0402,
+      0.0377
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.423,
+      0.3491
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     120364000,
+     119507000,
+     67151000,
+     67290000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      3440019000,
+      3304138000,
+      3250099000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8331,
+      0.8158,
+      0.8094
+     ],
+     "growth_yoy": [
+      null,
+      -0.0395,
+      -0.0164
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      689390000,
+      745851000,
+      765283000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1669,
+      0.1842,
+      0.1906
+     ],
+     "growth_yoy": [
+      null,
+      0.0819,
+      0.0261
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4129409000,
+     4049989000,
+     4015382000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      797923000,
+      840836000,
+      798152000,
+      808287000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8108,
+      0.8147,
+      0.8015,
+      0.805
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0003,
+      -0.0387
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      186245000,
+      191299000,
+      197678000,
+      195791000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1892,
+      0.1853,
+      0.1985,
+      0.195
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0614,
+      0.0235
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     984168000,
+     1032135000,
+     995830000,
+     1004078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2025-12-27"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2347486000,
+      2239977000,
+      2141773000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5685,
+      0.5531,
+      0.5334
+     ],
+     "growth_yoy": [
+      null,
+      -0.0458,
+      -0.0438
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1076937000,
+      1078146000,
+      1102696000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2608,
+      0.2662,
+      0.2746
+     ],
+     "growth_yoy": [
+      null,
+      0.0011,
+      0.0228
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      487305000,
+      482093000,
+      501025000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.118,
+      0.119,
+      0.1248
+     ],
+     "growth_yoy": [
+      null,
+      -0.0107,
+      0.0393
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      200833000,
+      196952000,
+      205023000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0486,
+      0.0486,
+      0.0511
+     ],
+     "growth_yoy": [
+      null,
+      -0.0193,
+      0.041
+     ]
+    },
+    {
+     "member": "crl:OtherMember",
+     "label": "Other",
+     "values": [
+      16848000,
+      52821000,
+      64865000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0041,
+      0.013,
+      0.0162
+     ],
+     "growth_yoy": [
+      null,
+      2.1351,
+      0.228
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4129409000,
+     4049989000,
+     4015382000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-03-28",
+    "2026-06-27"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      536955000,
+      549860000,
+      543809000,
+      539861000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5456,
+      0.5327,
+      0.5461,
+      0.5377
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0128,
+      -0.0182
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      263250000,
+      281859000,
+      277577000,
+      263074000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2675,
+      0.2731,
+      0.2787,
+      0.262
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0544,
+      -0.0666
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      125353000,
+      135585000,
+      109567000,
+      127508000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1274,
+      0.1314,
+      0.11,
+      0.127
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1259,
+      -0.0596
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      41942000,
+      54503000,
+      55481000,
+      60517000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0426,
+      0.0528,
+      0.0557,
+      0.0603
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3228,
+      0.1103
+     ]
+    },
+    {
+     "member": "crl:OtherMember",
+     "label": "Other",
+     "values": [
+      16668000,
+      10328000,
+      9396000,
+      13118000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0169,
+      0.01,
+      0.0094,
+      0.0131
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4363,
+      0.2701
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     984168000,
+     1032135000,
+     995830000,
+     1004078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: its values equal the sum of Research Models and Services Segment, Discovery and Safety Assessment Segment, Manufacturing Support Segment",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: its values equal the sum of Research Models and Services Segment, Discovery and Safety Assessment Segment, Manufacturing Support Segment"
+ ],
+ "complete": true
+}

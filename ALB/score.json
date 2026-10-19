@@ -1,0 +1,87 @@
+{
+ "ticker": "ALB",
+ "name": "Albemarle Corporation",
+ "sector": "Materials / Lithium & specialty chemicals",
+ "price": 95.48,
+ "market_cap_b": 11.23,
+ "engine_version": 5,
+ "base_oe_per_share": 9.579995593743115,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Tier-1 low-cost assets (Salar de Atacama brine, Greenbushes hard-rock JV, leading bromine position) give a real structural cost advantage, but Albemarle is a commodity price-taker with no pricing power: ROIC (fundamentals.json roic_proxy) ran 8.8% / 6.1% / 8.2% / 21.4% / 1.6% / -11.4% / -2.6% across FY2019-FY2025 \u2014 above the cost of capital only in the 2022 lithium spike \u2014 and gross margin swung from 42.0% (FY2022) to 1.2% (FY2024) and 13.0% (FY2025). A cost curve position that cannot defend returns through the cycle is a weak-to-moderate moat: 4/10.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.9x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (8.0%) vs bull-case tier B (17.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 24.09,
+   "irr": 0.053
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 43.97,
+   "irr": 0.08
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 76.97,
+   "irr": 0.1257
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 116.63,
+   "irr": 0.1768
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 167.03,
+   "irr": 0.236
+  }
+ },
+ "iv_at_15": 77.73,
+ "iv_at_12": 102.41,
+ "implied_irr": 0.1269,
+ "implied_irr_base_case": 0.1257,
+ "upside_at_15_pct": -18.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Cost-advantaged lithium/bromine producer, moat 4/10 \u2014 TTM owner's earnings recovered to $9.58/share on the lithium rebound, but through-cycle ROIC is weak and the commodity decides the outcome (bear Tier D at 8.0% to bull Tier B at 17.7%); weighted IRR 12.7% (weighted IV@15% $77.73 vs the $95.48 price), so it clears the 15% hurdle only below ~$78.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.08,
+ "irr_bull": 0.1768,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 55.41,
+ "iv_at_25": 43.04,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1575540000,
+ "shares_diluted_latest": 117664000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Salar de Atacama (Chile) brine and Greenbushes (Australia, JV) hard-rock stake \u2014 among the lowest-cost, highest-quality lithium resources in the world",
+  "Leading global bromine position (Jordan / Arkansas) with steadier pricing \u2014 Specialties Q2 2026 sales +20.5% YoY, adjusted EBITDA +61.3%",
+  "Scale and technical know-how in lithium conversion; long-term contracts cover ~40% of lithium salts volume",
+  "Balance sheet repaired in the trough: capex cut from $2,154M (FY2023) to $590M (FY2025), $1.3B of debt repaid in Q1 2026, Ketjen 51% stake sold"
+ ],
+ "moat_against": [
+  "Pure price-taker: realized lithium price swung from the 2022 spike to ~$10/kg in 2025 and back to $19.53/kg realized in Q2 2026 \u2014 earnings follow the commodity, not the franchise",
+  "Through-cycle ROIC below the cost of capital in most years (FY2023 1.6%, FY2024 -11.4%, FY2025 -2.6%); gross margin 42.0% -> 1.2% peak-to-trough",
+  "Chinese / African supply overhang and lepidolite capacity cap lithium prices; new supply is the bear case's engine",
+  "Heavy sustaining/growth capex in expansions: capex of $2,154M in FY2023 against OCF of $1,327M produced negative owner's earnings at the trough",
+  "CORFO commissions and Chilean fiscal take rise with lithium prices, skimming the upside at Atacama"
+ ]
+}

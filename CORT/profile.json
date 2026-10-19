@@ -1,0 +1,297 @@
+{
+ "ticker": "CORT",
+ "cik": 1088856,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T18:41:58-04:00",
+ "newest_filing_date": "2026-09-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001088856.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026011091/cort-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CORT/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CORT/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CORCEPT THERAPEUTICS INC",
+  "cik": 1088856,
+  "description": {
+   "text": "We are a commercial-stage company engaged in the discovery and development of medications to treat severe endocrinologic, oncologic, metabolic and neurologic disorders by modulating the effects of the hormone cortisol. Cortisol plays a significant role in the body’s response to stress and is essential for survival. Cortisol influences metabolism and the immune system and contributes to emotional stability. Cortisol levels follow a diurnal rhythm that is essential to health, peaking upon awakening and decreasing during the day. Insufficient cortisol activity may lead to dehydration, hypotension, shock, fatigue and hypoglycemia. Excessive cortisol activity, known as hypercortisolism, may lead to hypertension, diabetes, impaired glucose tolerance, obesity, fatty liver disease, depressed mood, psychosis, wasting of the arms and legs, edema, fatigue, insomnia and other problems. Cortisol reduces a patient’s immune response to oncogenesis, shields certain cancer cells from the apoptotic effects of chemotherapy and facilitates the growth of others. Pre-clinical and clinical data indicate that modulating cortisol activity may improve outcomes in patients with fatty liver disease and metabolic dysfunction-associated steatohepatitis (“MASH”), which are precursors of liver fibrosis and cirrhosis. Pre-clinical and clinical data also suggest that modulating cortisol activity may lead to treatments for patients with amyotrophic lateral sclerosis (“ALS”).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-011091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026011091/cort-20251231.htm"
+  },
+  "description_short": "For over 25 years, Corcept has focused on cortisol modulation and its potential to treat patients with a wide variety of serious disorders and has discovered more than 1,000 proprietary selective cortisol modulators and glucocorticoid receptor antagonists. Corcept is conducting advanced clinical trials in patients with hypercortisolism, solid tumors, ALS and liver disease.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-CM",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.corcept.com",
+  "headquarters": "Redwood City, CA",
+  "address": {
+   "street": "101 Redwood Shores Parkway",
+   "city": "Redwood City",
+   "state": "CA",
+   "zip": "94065",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "650.688.8803",
+  "employees": {
+   "count": 730,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 730 employees.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026011091/cort-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-12-21",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001088856&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-23",
+   "period": "2026-09-22",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-398561",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312526398561/d148256d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050613",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026050613/cort-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-050607",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026050607/cort-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-274258",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312526274258/d159941d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-05-19",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-254622",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312526254622/d103585d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001628280-26-038793",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026038793/cort-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028902",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026028902/cort-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-028892",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026028892/cort-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-025735",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026025735/cort-20260417.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-123543",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312526123543/d123475d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-011091",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026011091/cort-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-011080",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828026011080/cort-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-059551",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312526059551/d25779d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-22",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-018704",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312526018704/d96058d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-31",
+   "period": "2025-12-31",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-338184",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312525338184/d50993d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-048841",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828025048841/cort-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "7.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-25-048814",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000162828025048814/cort-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-10",
+   "items": [
+    "1.02",
+    "9.01"
+   ],
+   "description": "Termination of agreement",
+   "accession": "0001193125-25-237834",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312525237834/d61706d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-06",
+   "period": "2025-10-06",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-231963",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312525231963/d817312d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-10",
+   "period": "2025-09-10",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-199706",
+   "url": "https://www.sec.gov/Archives/edgar/data/1088856/000119312525199706/d947259d8k.htm"
+  }
+ ],
+ "warnings": []
+}

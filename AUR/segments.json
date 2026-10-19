@@ -1,0 +1,38 @@
+{
+ "ticker": "AUR",
+ "cik": 1828108,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001828108-26-000016",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000016/aur-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001828108-26-000052",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000052/aur-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001828108-26-000077",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1828108/000182810826000077/aur-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment' (aur:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (aur:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/quarterly: row 'Reportable Segment' (aur:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "dimensioned facts exist but no axis has two members with values for the same concept"
+ ],
+ "complete": true
+}

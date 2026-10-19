@@ -1,0 +1,442 @@
+{
+ "ticker": "BMNR",
+ "cik": 1829311,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001493152-25-024679",
+   "filed": "2025-11-21",
+   "period": "2025-08-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315225024679/form10-k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001493152-26-016560",
+   "filed": "2026-04-14",
+   "period": "2026-02-28",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1829311/000149315226016560/form10-q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-048157",
+   "filed": "2026-07-14",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1829311/000162828026048157/bmnr-20260531_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-08-31",
+    "2025-08-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "BMNR:SelfMiningMember",
+     "label": "Self Mining",
+     "values": [
+      3031000,
+      3133000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9157,
+      0.514
+     ],
+     "growth_yoy": [
+      null,
+      0.0337
+     ]
+    },
+    {
+     "member": "BMNR:LeasingMember",
+     "label": "Leasing",
+     "values": [
+      null,
+      1881000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3086
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "BMNR:SaleOfMiningEquipmentMember",
+     "label": "Sale of Mining Equipment",
+     "values": [
+      231000,
+      846000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0698,
+      0.1388
+     ],
+     "growth_yoy": [
+      null,
+      2.6623
+     ]
+    },
+    {
+     "member": "BMNR:ConsultingMember",
+     "label": "Consulting",
+     "values": [
+      null,
+      235000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0386
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    },
+    {
+     "member": "BMNR:HostingServicesMember",
+     "label": "Hosting Services",
+     "values": [
+      48000,
+      null
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0145,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3310000,
+     6095000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-02-28",
+    "2025-05-31",
+    "2026-02-28",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bmnr:StakingAndValidationMember",
+     "label": "Staking and Validation",
+     "values": [
+      null,
+      0,
+      null,
+      45743000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0,
+      null,
+      0.983
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "bmnr:SelfMiningMember",
+     "label": "Self Mining",
+     "values": [
+      null,
+      813000,
+      null,
+      624000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3962,
+      null,
+      0.0134
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.2325
+     ]
+    },
+    {
+     "member": "bmnr:ConsultingMember",
+     "label": "Consulting",
+     "values": [
+      null,
+      35000,
+      null,
+      168000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0171,
+      null,
+      0.0036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      3.8
+     ]
+    },
+    {
+     "member": "bmnr:LeasingMember",
+     "label": "Leasing",
+     "values": [
+      null,
+      1075000,
+      null,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.5239,
+      null,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -1.0
+     ]
+    },
+    {
+     "member": "bmnr:SaleOfMiningEquipmentMember",
+     "label": "Sale of Mining Equipment",
+     "values": [
+      null,
+      129000,
+      null,
+      0
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0629,
+      null,
+      0.0
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -1.0
+     ]
+    },
+    {
+     "member": "BMNR:SelfMiningMember",
+     "label": "Self Mining",
+     "values": [
+      1517000,
+      null,
+      219000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      null,
+      0.0198,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.8556,
+      null
+     ]
+    },
+    {
+     "member": "BMNR:ConsultingMember",
+     "label": "Consulting",
+     "values": [
+      null,
+      null,
+      197000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.0178,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "BMNR:LeasingMember",
+     "label": "Leasing",
+     "values": [
+      null,
+      null,
+      424000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.0384,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "BMNR:StakingMember",
+     "label": "Staking",
+     "values": [
+      null,
+      null,
+      10201000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.9239,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1517000,
+     2052000,
+     11041000,
+     46535000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

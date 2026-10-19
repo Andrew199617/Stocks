@@ -1,0 +1,247 @@
+{
+ "ticker": "AEG",
+ "cik": 769218,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T02:44:11-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000769218.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/769218/000119312526124987/d29563d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AEG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AEG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AEGON LTD.",
+  "cik": 769218,
+  "description": {
+   "text": "Aegon’s portfolio includes fully owned businesses in the Americas and the United Kingdom, a global asset manager, and a life insurer that serves affluent and high-net-worth individuals predominantly in Asia. Aegon also has insurance joint ventures in Spain & Portugal, China, and Brazil, and asset management partnerships in France and China, as well as a strategic shareholding in the Dutch insurance company a.s.r. Aegon allocates capital toward profitable opportunities across these markets and leverages the talent, knowledge, processes, and technologies of its different businesses. Aegon derives its revenue and earnings from insurance premiums, investment returns, fees, and commissions. Aegon is growing its direct and affiliated distribution capabilities to engage directly with customers.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-03-26",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-124987",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526124987/d29563d20f.htm"
+  },
+  "description_short": "Aegon is an international financial services holding company. Aegon's ambition is to become a leading US life insurance, annuity, and retirement group with international insurance and asset management subsidiaries. Aegon's portfolio of businesses includes fully-owned businesses in the United States and a global asset manager. On April 15, 2026, Aegon announced an agreement to sell its insurance platform in the UK, Aegon UK, and expects to complete the transaction around the end of 2026. Via insurance joint-ventures in Spain & Portugal, China, and Brazil, and via asset management partnerships in France and China, Aegon creates value by combining Aegon's international expertise with strong local partners. In addition, Aegon owns a Bermuda-based life insurer and generates value via a strategic shareholding in a market leading Dutch insurance and pensions company. Aegon's purpose of helping people live their best lives runs through all its activities.",
+  "industry": "Life Insurance",
+  "sector": "Finance",
+  "region": "Europe",
+  "sic": "6311",
+  "sic_description": "Life Insurance",
+  "state_of_incorporation": "D0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC",
+   "NYSE"
+  ],
+  "website": "https://www.aegon.com",
+  "headquarters": "Schiphol Boulevard 223, Netherlands",
+  "address": {
+   "street": "World Trade Center Schiphol",
+   "city": "Schiphol Boulevard 223",
+   "state": null,
+   "zip": "1118 BH Schiphol",
+   "country": "Netherlands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-26"
+  },
+  "phone": "011-31-20-259-2500",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1997-05-16",
+  "first_sec_filing_form": "424B3",
+  "former_names": [
+   "AEGON NV"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000769218&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-422683",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526422683/d296119d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006645",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326006645/f6k_101526.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-422254",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526422254/d113370d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-419615",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526419615/d176261d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-419610",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526419610/d173978d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-006536",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326006536/f6k_100826.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005821",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326005821/f6k_090126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005748",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326005748/f6k_082626.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-365962",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526365962/d111058d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005710",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326005710/f6k_082426.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-20",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-357707",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526357707/d115717d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-005664",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326005664/f6k_082026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-357694",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526357694/d131063d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004409",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326004409/f6k_070126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004161",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326004161/f6k_061726.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-004032",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326004032/f6k_061026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003748",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326003748/f6k_052826.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-243117",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526243117/d119782d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001171843-26-003630",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000117184326003630/f6k_052226.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-231665",
+   "url": "https://www.sec.gov/Archives/edgar/data/769218/000119312526231665/d128233d6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-03-26"
+ ]
+}

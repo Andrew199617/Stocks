@@ -1,0 +1,525 @@
+{
+ "ticker": "AA",
+ "cik": 1675149,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-077167",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526077167/aa-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-197447",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526197447/aa-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-326265",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1675149/000119312526326265/aa-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aa:AluminumMember",
+     "label": "Aluminum",
+     "values": [
+      7045000000,
+      7359000000,
+      8515000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6677,
+      0.6187,
+      0.6636
+     ],
+     "growth_yoy": [
+      null,
+      0.0446,
+      0.1571
+     ]
+    },
+    {
+     "member": "aa:AluminaMember",
+     "label": "Alumina",
+     "values": [
+      3103000000,
+      4246000000,
+      3662000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2941,
+      0.357,
+      0.2854
+     ],
+     "growth_yoy": [
+      null,
+      0.3684,
+      -0.1375
+     ]
+    },
+    {
+     "member": "aa:BauxiteMember",
+     "label": "Bauxite",
+     "values": [
+      466000000,
+      376000000,
+      727000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0442,
+      0.0316,
+      0.0567
+     ],
+     "growth_yoy": [
+      null,
+      -0.1931,
+      0.9335
+     ]
+    },
+    {
+     "member": "aa:EnergyMember",
+     "label": "Energy",
+     "values": [
+      118000000,
+      147000000,
+      190000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0112,
+      0.0124,
+      0.0148
+     ],
+     "growth_yoy": [
+      null,
+      0.2458,
+      0.2925
+     ]
+    },
+    {
+     "member": "aa:OtherProductsMember",
+     "label": "Other Products",
+     "values": [
+      -181000000,
+      -233000000,
+      -263000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0172,
+      -0.0196,
+      -0.0205
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10551000000,
+     11895000000,
+     12831000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aa:AluminumMember",
+     "label": "Aluminum",
+     "values": [
+      1955000000,
+      1993000000,
+      2582000000,
+      3446000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5803,
+      0.6604,
+      0.8086,
+      0.8689
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3207,
+      0.7291
+     ]
+    },
+    {
+     "member": "aa:AluminaMember",
+     "label": "Alumina",
+     "values": [
+      1211000000,
+      830000000,
+      521000000,
+      538000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3595,
+      0.275,
+      0.1632,
+      0.1357
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5698,
+      -0.3518
+     ]
+    },
+    {
+     "member": "aa:BauxiteMember",
+     "label": "Bauxite",
+     "values": [
+      242000000,
+      203000000,
+      118000000,
+      76000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0718,
+      0.0673,
+      0.037,
+      0.0192
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5124,
+      -0.6256
+     ]
+    },
+    {
+     "member": "aa:EnergyMember",
+     "label": "Energy",
+     "values": [
+      33000000,
+      38000000,
+      77000000,
+      52000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0098,
+      0.0126,
+      0.0241,
+      0.0131
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.3333,
+      0.3684
+     ]
+    },
+    {
+     "member": "aa:OtherProductsMember",
+     "label": "Other Products",
+     "values": [
+      -72000000,
+      -46000000,
+      -105000000,
+      -146000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0214,
+      -0.0152,
+      -0.0329,
+      -0.0368
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3369000000,
+     3018000000,
+     3193000000,
+     3966000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4993000000,
+      5365000000,
+      6115000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4732,
+      0.451,
+      0.4766
+     ],
+     "growth_yoy": [
+      null,
+      0.0745,
+      0.1398
+     ]
+    },
+    {
+     "member": "country:AU",
+     "label": "AUSTRALIA",
+     "values": [
+      2240000000,
+      3128000000,
+      3011000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2123,
+      0.263,
+      0.2347
+     ],
+     "growth_yoy": [
+      null,
+      0.3964,
+      -0.0374
+     ]
+    },
+    {
+     "member": "country:NL",
+     "label": "NETHERLANDS",
+     "values": [
+      2261000000,
+      2193000000,
+      2342000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2143,
+      0.1844,
+      0.1825
+     ],
+     "growth_yoy": [
+      null,
+      -0.0301,
+      0.0679
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      735000000,
+      878000000,
+      1020000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0697,
+      0.0738,
+      0.0795
+     ],
+     "growth_yoy": [
+      null,
+      0.1946,
+      0.1617
+     ]
+    },
+    {
+     "member": "country:ES",
+     "label": "SPAIN",
+     "values": [
+      289000000,
+      293000000,
+      318000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0274,
+      0.0246,
+      0.0248
+     ],
+     "growth_yoy": [
+      null,
+      0.0138,
+      0.0853
+     ]
+    },
+    {
+     "member": "aa:OtherGeographicalRegionsMember",
+     "label": "Other Geographical Regions",
+     "values": [
+      33000000,
+      38000000,
+      25000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0031,
+      0.0032,
+      0.0019
+     ],
+     "growth_yoy": [
+      null,
+      0.1515,
+      -0.3421
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10551000000,
+     11895000000,
+     12831000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

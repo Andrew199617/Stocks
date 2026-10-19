@@ -1,0 +1,87 @@
+{
+ "ticker": "BAX",
+ "name": "Baxter International Inc.",
+ "sector": "Healthcare / Medical devices & hospital supplies",
+ "price": 25.28,
+ "market_cap_b": 12.97,
+ "engine_version": 5,
+ "base_oe_per_share": 1.3539651837524178,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Largest U.S. IV solutions supplier with an installed pump and Hillrom bed base and regulated, mission-critical products, but commodity-like core categories, GPO pricing pressure, and ROIC that collapsed from 14.14% in 2019 to -1.78% in 2025 (5.25% / -10.78% / 2.77% / 0.06% / -1.78% over 2021-2025, fundamentals.json) with gross margin down from 41.90% to 30.05% \u2014 no measured pricing power to justify a higher score.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 0.42 vs 3-yr median 0.90 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 10.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 5.11,
+   "irr": 0.0472
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 7.74,
+   "irr": 0.0614
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 10.45,
+   "irr": 0.0762
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 13.93,
+   "irr": 0.0948
+  },
+  "super_bull": {
+   "prob": 0.05,
+   "iv_at_15": 20.6,
+   "irr": 0.1284
+  }
+ },
+ "iv_at_15": 10.04,
+ "iv_at_12": 13.18,
+ "implied_irr": 0.0743,
+ "implied_irr_base_case": 0.0762,
+ "upside_at_15_pct": -60.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Levered hospital-supplies incumbent, moat 4/10 \u2014 even on recovered TTM owner's earnings it does not clear 15% (weighted IRR 7.4%, IV@15% $10.04 vs $25.28 price); it clears 15% only below ~$10.04.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0614,
+ "irr_bull": 0.0948,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 7.2,
+ "iv_at_25": 5.62,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 7510000000,
+ "shares_diluted_latest": 513000000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Largest IV solutions supplier in North America with an extensive manufacturing network",
+  "Installed base of infusion pumps and Hillrom hospital beds creating consumables, service and replacement pull-through",
+  "Mission-critical, regulated products with long hospital qualification cycles and switching friction",
+  "Scale across IV, compounding, advanced surgery and connected care"
+ ],
+ "moat_against": [
+  "Commodity-like IV fluids; hospital/GPO buyers hold pricing power vs Fresenius Kabi, B. Braun and other rivals",
+  "ROIC collapsed 2019-2025 (14.14% to -1.78%, negative in 2022 and 2025) and gross margin fell ~12pp \u2014 no demonstrated pricing power",
+  "Hillrom moat overpaid for: ~$3.1B of impairments within a year of the 2021 acquisition",
+  "Quality/supply erosion: Novum IQ hold, pump field corrective actions, Helene disruption, injectables constraints",
+  "High leverage (net debt $7.51B) limits investment"
+ ]
+}

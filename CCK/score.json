@@ -1,0 +1,88 @@
+{
+ "ticker": "CCK",
+ "name": "Crown Holdings, Inc.",
+ "sector": "Packaging / Aluminum beverage cans & metal packaging",
+ "price": 114.15,
+ "market_cap_b": 13.21,
+ "engine_version": 5,
+ "base_oe_per_share": 10.387038703870386,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Second-largest global can maker in an oligopoly (Ball, Crown, Ardagh) with long-term customer contracts, contractual aluminum pass-through, plant proximity to filling lines and a sustainability tailwind versus plastic \u2014 but the can is a commodity, buyers are powerful and dual-sourced, real pricing power beyond pass-through is thin, and returns are only modestly above the cost of capital: roic_proxy in fundamentals.json ran 10.7% / 13.3% / 14.4% in 2023-2025 (8.9% / 8.3% / 14.1% / 12.4% in 2019-2022), with operating margin 10.3-12.6% over the last five fiscal years and no filed gross-margin series (gross_margin is null in fundamentals.json). That supports a moderate/narrow moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share 9.24 vs 3-yr median 6.25 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.6%) vs bull-case tier B (17.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 46.27,
+   "irr": 0.0724
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 74.42,
+   "irr": 0.1063
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 101.78,
+   "irr": 0.137
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 137.56,
+   "irr": 0.1732
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 207.84,
+   "irr": 0.2334
+  }
+ },
+ "iv_at_15": 104.38,
+ "iv_at_12": 139.49,
+ "implied_irr": 0.1399,
+ "implied_irr_base_case": 0.137,
+ "upside_at_15_pct": -8.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Solid oligopoly can maker, moat 5/10, with improving ROIC \u2014 does not clear 15% at $114.15 on the TTM base (weighted IRR 14.0%, IV@15% $104.38, Tier C; the median base prints Tier D), and clears 15% only below ~$104.38.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.1063,
+ "irr_bull": 0.1732,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 72.95,
+ "iv_at_25": 55.74,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5200000000,
+ "shares_diluted_latest": 115740000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Global oligopoly scale: second-largest beverage-can maker, plant network close to customer filling lines is hard to replicate",
+  "Long-term supply contracts with major beverage companies; aluminum cost pass-through limits commodity margin risk",
+  "Aluminum recyclability / sustainability tailwind as brands shift off plastic and glass",
+  "ROIC proxy 10.7-14.4% in 2023-2025 and positive operating income through the cycle; adjusted net leverage down to ~2.5x at Q2 2026"
+ ],
+ "moat_against": [
+  "Powerful concentrated beverage customers dual-source with Ball and Ardagh \u2014 pricing is largely pass-through, not structural",
+  "Commodity can: proven, replicable technology, no proprietary lock-in or owned consumer surface",
+  "Cyclical, capex-heavy OE: capex spiked to $816M-$839M in 2021-2022 and OE/share fell to $0.43 / -$0.54 despite $1.3B+ operating income",
+  "High absolute leverage: net debt $5.20B, 4.3x normalized OE on the final (TTM-base) run",
+  "Latin America softness and aluminum / inflation cost pressure noted in Q2 2026 reporting"
+ ]
+}

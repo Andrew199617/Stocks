@@ -1,0 +1,236 @@
+{
+ "ticker": "ASND",
+ "cik": 1612042,
+ "as_of": "2026-10-17",
+ "fetched_at": "2026-10-17T00:45:03-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001612042.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526046590/asnd-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ASND/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ASND/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Ascendis Pharma A/S",
+  "cik": 1612042,
+  "description": null,
+  "description_short": "Ascendis Pharma is a global biopharmaceutical company focused on applying our innovative TransCon technology platform to make a meaningful difference for patients. Guided by our core values of Patients, Science, and Passion, and following our algorithm for product innovation, we apply TransCon to develop new therapies that demonstrate best-in-class potential to address unmet medical needs. Ascendis is headquartered in Copenhagen, Denmark, and has additional facilities in Europe and the United States. Please visit ascendispharma.com to learn more.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "G7",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.ascendispharma.com",
+  "headquarters": "Hellerup, Denmark",
+  "address": {
+   "street": "Tuborg Boulevard 12",
+   "city": "Hellerup",
+   "state": null,
+   "zip": "DK-2900",
+   "country": "Denmark",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-11"
+  },
+  "phone": "45 70 22 22 44",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2014-12-18",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001612042&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-423938",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526423938/d167361d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-421789",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526421789/d743945d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-29",
+   "period": "2026-09-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-407293",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526407293/d153773d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-390877",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526390877/d183438d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-390874",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526390874/d52763d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-386630",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526386630/d152057d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-09",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-386434",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526386434/d32116d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-376733",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526376733/d139239d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-348046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526348046/d31437d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001612042-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000161204226000016/asnd-20260630.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-12",
+   "period": "2026-08-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-347172",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526347172/d135787d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-337270",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526337270/d169607d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-304903",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526304903/d109910d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-290485",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526290485/d93159d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-288414",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526288414/d22299d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-17",
+   "period": "2026-06-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-274306",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526274306/d78361d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-270227",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526270227/d48156d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-12",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-268415",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526268415/d136465d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-10",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-265829",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526265829/d85296d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-221597",
+   "url": "https://www.sec.gov/Archives/edgar/data/1612042/000119312526221597/d865415d6k.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-02-11)",
+  "employees: no headcount sentence found in the 20-F filed 2026-02-11"
+ ]
+}

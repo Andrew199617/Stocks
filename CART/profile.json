@@ -1,0 +1,291 @@
+{
+ "ticker": "CART",
+ "cik": 1579091,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T15:11:57-04:00",
+ "newest_filing_date": "2026-09-25",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001579091.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000018/cart-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CART/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CART/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Maplebear Inc.",
+  "cik": 1579091,
+  "description": {
+   "text": "Instacart is the leading technology and enablement partner for the grocery industry — helping consumers save time, retailers run their businesses online and in-store, and connect brands with customers. Since our founding, Instacart has powered more than 1.6 billion orders. Instacart is built for the entire grocery ecosystem, improving the experiences for each of our constituents and helping them succeed: •Retailers. We enable more than 2,200 retail banners as of December 31, 2025 to grow by providing technology that can accelerate the digital transformation of their entire business both online and in-store. Retailers reach customers through both Instacart Marketplace, where customers can shop from their favorite retailers through our app or website, and retailers’ owned and operated online storefronts that are powered by Instacart Enterprise platform, our end-to-end technology solution encompassing e-commerce, fulfillment, Connected Stores, ads and marketing, and insights. •Customers. When shopping for groceries, consumers want selection, quality, affordability, and convenience, and they shop in many different ways. Customers can place orders for delivery or pickup across a variety of use cases including the weekly shop, bulk stock-up, convenience, special occasions, from restaurants, and using our in-store technologies.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001579091-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000018/cart-20251231.htm"
+  },
+  "description_short": "Maplebear Inc. is the registered corporate name of Instacart.",
+  "industry": "Business Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.instacart.com",
+  "headquarters": "San Francisco, California",
+  "address": {
+   "street": "50 Beale Street Suite 600",
+   "city": "San Francisco",
+   "state": "California",
+   "zip": "94105",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "(888) 246-7822",
+  "employees": {
+   "count": 3600,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 3,600 full-time employees worldwide.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000018/cart-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2023-08-25",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001579091&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-21",
+   "items": [
+    "3.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Charter or bylaw amendment",
+   "accession": "0001579091-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000047/cart-20260921.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579091-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000042/cart-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579091-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000040/cart-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-29",
+   "period": "2026-05-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001628280-26-039143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000162828026039143/cart-20260522.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579091-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000036/cart-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-01",
+   "items": [
+    "1.01",
+    "2.02",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Results of operations; Debt obligation; Other events",
+   "accession": "0001579091-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000032/cart-20260501.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001579091-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000024/cart-20260409.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001579091-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000018/cart-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579091-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909126000006/cart-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-25",
+   "period": "2025-11-21",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-25-053981",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000162828025053981/cart-20251121.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-10",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579091-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000097/cart-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-10",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001579091-25-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000095/cart-20251110.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-15",
+   "period": "2025-08-11",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001579091-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000071/cart-20250811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579091-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000067/cart-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579091-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000063/cart-20250807.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-22",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001579091-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000058/cart-20250522.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-27",
+   "period": "2025-05-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001579091-25-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000054/cart-20250522.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001579091-25-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000048/cart-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-08",
+   "period": "2025-05-07",
+   "items": [
+    "5.02",
+    "7.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001579091-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000044/cart-20250507.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001579091-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1579091/000157909125000040/cart-20250501.htm"
+  }
+ ],
+ "warnings": []
+}

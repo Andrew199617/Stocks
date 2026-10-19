@@ -1,0 +1,299 @@
+{
+ "ticker": "AKAM",
+ "cik": 1086222,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T23:11:17-04:00",
+ "newest_filing_date": "2026-09-25",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001086222.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000022/akam-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/AKAM/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/AKAM/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "AKAMAI TECHNOLOGIES INC",
+  "cik": 1086222,
+  "description": {
+   "text": "Akamai's mission is to power and protect life online. Since 1998, Akamai has developed and provided solutions for global enterprises to build, secure and accelerate their applications and digital experiences. As of December 31, 2025, our massively distributed global infrastructure was comprised of core and distributed compute sites, more than 4,300 edge points-of-presence in over 130 countries and approximately 700 cities, and our underlying global network integrated with roughly 1,200 network partners. With this scale and distribution, Akamai has visibility and insight into traffic volumes, congestion, attack patterns, vulnerabilities and other activities across the internet's complex intersections of networks and systems. Leveraging these insights, Akamai offers solutions designed to protect our customers from threats and attacks, along with full-stack compute solutions to build and deliver high-performance, low-latency applications across our uniquely distributed architecture and edge network. Today, billions of people go online to work, learn, shop, bank, communicate and more. We firmly believe that the internet’s role in transforming the way we exchange ideas and information and conduct business is more vital than ever, especially as those interactions are increasingly driven by AI.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001086222-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000022/akam-20251231.htm"
+  },
+  "description_short": "Akamai is the cloud company that powers and protects an AI-driven world. Our cloud platform extends high-performance cloud computing from the core to the edge, enabling organizations to build and scale next-generation AI applications and providing comprehensive, multilayered security to safeguard enterprises against evolving cyberthreats.",
+  "industry": "Business Services",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7389",
+  "sic_description": "Services-Business Services, NEC",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.akamai.com",
+  "headquarters": "Cambridge, Massachusetts",
+  "address": {
+   "street": "145 Broadway",
+   "city": "Cambridge",
+   "state": "Massachusetts",
+   "zip": "02142",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "6174443000",
+  "employees": {
+   "count": 11000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had over 11,000 employees located in more than 30 countries (with approximately 65% of those employees located outside of the U.S.) and representing over 100 nationalities, all of which we believe helps bring a global perspective to our operations.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000022/akam-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-08-20",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001086222&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-25",
+   "period": "2026-09-22",
+   "items": [
+    "5.05",
+    "9.01"
+   ],
+   "description": "Code of ethics change",
+   "accession": "0001086222-26-000089",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000089/akam-20260922.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-24",
+   "period": "2026-09-18",
+   "items": [
+    "1.01",
+    "3.02",
+    "5.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Unregistered sale of equity; Charter or bylaw amendment; Reg FD",
+   "accession": "0001193125-26-401048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000119312526401048/d288154d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001086222-26-000086",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000086/akam-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001086222-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000083/akam-20260806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [
+    "1.01",
+    "2.03",
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Unregistered sale of equity; Other events",
+   "accession": "0001193125-26-237084",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000119312526237084/d144441d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-231745",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000119312526231745/d227940d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-18",
+   "items": [
+    "1.01",
+    "2.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Other events",
+   "accession": "0001193125-26-228949",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000119312526228949/d123781d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-13",
+   "items": [
+    "5.02",
+    "5.03",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment; Shareholder vote",
+   "accession": "0001086222-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000064/akam-20260513.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001086222-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000058/akam-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001086222-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000054/akam-20260507.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001086222-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000042/akam-20260330.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001086222-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000022/akam-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001086222-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000017/akam-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-11",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001086222-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622226000004/akam-20260211.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-07",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001086222-25-000256",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622225000256/akam-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001086222-25-000252",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622225000252/akam-20251106.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001086222-25-000246",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622225000246/akam-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-12",
+   "period": "2025-09-10",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001086222-25-000238",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622225000238/akam-20250910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-11",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001086222-25-000223",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622225000223/akam-20250811.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-08",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001086222-25-000218",
+   "url": "https://www.sec.gov/Archives/edgar/data/1086222/000108622225000218/akam-20250630.htm"
+  }
+ ],
+ "warnings": []
+}

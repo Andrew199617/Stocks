@@ -1,0 +1,286 @@
+{
+ "ticker": "BWA",
+ "cik": 908255,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T02:40:14-04:00",
+ "newest_filing_date": "2026-09-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000908255.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000011/bwa-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BWA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BWA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BORGWARNER INC",
+  "cik": 908255,
+  "description": {
+   "text": "BorgWarner Inc. (collectively with its consolidated subsidiaries, the “Company” or “BorgWarner”) is a Delaware corporation incorporated in 1987. The Company is a global product leader in clean and efficient technology solutions for combustion, hybrid and electric vehicles. BorgWarner’s products help improve vehicle performance, propulsion efficiency, stability and air quality. The Company manufactures and sells these products worldwide, primarily to original equipment manufacturers (“OEMs”) of light vehicles (passenger cars, sport-utility vehicles, vans and light trucks). The Company’s products are also sold to OEMs of commercial vehicles (medium-duty trucks, heavy-duty trucks and buses) and off-highway vehicles (agricultural and construction machinery and marine applications). The Company also manufactures and sells its products to certain tier one vehicle systems suppliers and into the aftermarket for light, commercial and off-highway vehicles. The Company operates manufacturing facilities serving customers in Europe, the Americas and Asia and is an original equipment supplier to nearly every major automotive OEM in the world.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0000908255-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000011/bwa-20251231.htm"
+  },
+  "description_short": "For more than 130 years, BorgWarner has been a transformative global product leader bringing successful mobility innovation to market. With a focus on sustainability, we're helping to build a cleaner, healthier, safer future for all.",
+  "industry": "Auto Parts:O.E.M.",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "3714",
+  "sic_description": "Motor Vehicle Parts & Accessories",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.borgwarner.com",
+  "headquarters": "Auburn Hills, Michigan",
+  "address": {
+   "street": "3850 Hamlin Road",
+   "city": "Auburn Hills",
+   "state": "Michigan",
+   "zip": "48326",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "2487549200",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-02-15",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "BORG WARNER AUTOMOTIVE INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000908255&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-105519",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000110465926105519/tm2624838d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000908255-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000054/bwa-20260810.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000908255-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000051/bwa-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000908255-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000049/bwa-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-31",
+   "period": "2026-07-30",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000908255-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000045/bwa-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-26",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000908255-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000037/bwa-20260526.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000908255-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000027/bwa-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000908255-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000023/bwa-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-29",
+   "items": [
+    "5.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote; Reg FD",
+   "accession": "0000908255-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000018/bwa-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-031748",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000110465926031748/tmb-20260429xdef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000908255-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000011/bwa-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000908255-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000009/bwa-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000908255-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825526000003/bwa-20260205.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-13",
+   "period": "2025-11-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-25-051853",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000162828025051853/bwa-20251112.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000908255-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825525000042/bwa-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000908255-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825525000040/bwa-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-045710",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000162828025045710/bwa-20251021.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000908255-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825525000032/bwa-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000908255-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825525000030/bwa-20250730.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000908255-25-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/908255/000090825525000019/bwa-20250331.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-11"
+ ]
+}

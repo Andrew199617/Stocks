@@ -1,0 +1,452 @@
+{
+ "ticker": "ARMK",
+ "cik": 1584509,
+ "as_of": "2026-10-17",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001584509-25-000219",
+   "filed": "2025-11-25",
+   "period": "2025-10-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450925000219/cik0-20251003_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001584509-26-000088",
+   "filed": "2026-05-12",
+   "period": "2026-04-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000088/cik0-20260403_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001584509-26-000122",
+   "filed": "2026-08-11",
+   "period": "2026-07-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1584509/000158450926000122/cik0-20260703_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-09-27",
+    "2025-10-03"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "cik0:FoodandSupportServicesUnitedStatesMember",
+     "label": "Food and Support Services - United States",
+     "values": [
+      9903200000,
+      10181800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7814,
+      0.7653
+     ],
+     "growth_yoy": [
+      null,
+      0.0281
+     ]
+    },
+    {
+     "member": "cik0:FoodAndSupportServicesInternationalMember",
+     "label": "Food and Support Services - International",
+     "values": [
+      2586400000,
+      3030500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2041,
+      0.2278
+     ],
+     "growth_yoy": [
+      null,
+      0.1717
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      184800000,
+      92300000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0146,
+      0.0069
+     ],
+     "growth_yoy": [
+      null,
+      -0.5005
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12674400000,
+     13304600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-10-03",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cik0:FoodandSupportServicesUnitedStatesMember",
+     "label": "Food and Support Services - United States",
+     "values": [
+      10181800000,
+      10477400000,
+      10419300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7653,
+      0.757,
+      0.7456
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "cik0:FoodAndSupportServicesInternationalMember",
+     "label": "Food and Support Services - International",
+     "values": [
+      3030500000,
+      3270300000,
+      3473000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2278,
+      0.2363,
+      0.2485
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      92300000,
+      93000000,
+      81600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0069,
+      0.0067,
+      0.0058
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13304600000,
+     13840700000,
+     13973900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-09-29",
+    "2024-09-27",
+    "2025-10-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cik0:FoodandSupportServicesUnitedStatesMember",
+     "label": "Food and Support Services - United States",
+     "values": [
+      265600000,
+      269500000,
+      282600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.648,
+      0.6188,
+      0.5933
+     ],
+     "growth_yoy": [
+      null,
+      0.0147,
+      0.0486
+     ]
+    },
+    {
+     "member": "cik0:FoodAndSupportServicesInternationalMember",
+     "label": "Food and Support Services - International",
+     "values": [
+      54600000,
+      58900000,
+      68400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1332,
+      0.1352,
+      0.1436
+     ],
+     "growth_yoy": [
+      null,
+      0.0788,
+      0.1613
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      200000,
+      0,
+      800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0005,
+      0.0,
+      0.0017
+     ],
+     "growth_yoy": [
+      null,
+      -1.0,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     409900000,
+     435500000,
+     476300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-28",
+    "2025-06-27",
+    "2025-10-03",
+    "2026-04-03",
+    "2026-07-03"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q2 FY2026",
+    "Q3 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cik0:FoodandSupportServicesUnitedStatesMember",
+     "label": "Food and Support Services - United States",
+     "values": [
+      70900000,
+      72000000,
+      71000000,
+      77700000,
+      77500000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6055,
+      0.5911,
+      0.5717,
+      0.5877,
+      0.5694
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0959,
+      0.0764
+     ]
+    },
+    {
+     "member": "cik0:FoodAndSupportServicesInternationalMember",
+     "label": "Food and Support Services - International",
+     "values": [
+      15900000,
+      17500000,
+      19200000,
+      21000000,
+      20600000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1358,
+      0.1437,
+      0.1546,
+      0.1589,
+      0.1514
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3208,
+      0.1771
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      200000,
+      200000,
+      200000,
+      200000,
+      100000
+     ],
+     "derived": [
+      false,
+      false,
+      true,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0017,
+      0.0016,
+      0.0016,
+      0.0015,
+      0.0007
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0,
+      -0.5
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     117100000,
+     121800000,
+     124200000,
+     132200000,
+     136100000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/DepreciationDepletionAndAmortization/annual: rows sum to 73.9% of the consolidated total for 2025-10-03 (ties_to_total: false)",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: rows sum to 72.2% of the consolidated total for 2026-07-03 (ties_to_total: false)"
+ ],
+ "complete": true
+}

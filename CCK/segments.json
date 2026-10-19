@@ -1,0 +1,1101 @@
+{
+ "ticker": "CCK",
+ "cik": 1219601,
+ "as_of": "2026-10-18",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-012904",
+   "filed": "2026-02-27",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026012904/cck-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-029288",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026029288/cck-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-050949",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1219601/000162828026050949/cck-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cck:AmericasBeverageMember",
+     "label": "Americas Beverage",
+     "values": [
+      5147000000,
+      5240000000,
+      5615000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4286,
+      0.444,
+      0.4541
+     ],
+     "growth_yoy": [
+      null,
+      0.0181,
+      0.0716
+     ]
+    },
+    {
+     "member": "cck:EuropeanBeverageMember",
+     "label": "European Beverage",
+     "values": [
+      1939000000,
+      2071000000,
+      2325000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1614,
+      0.1755,
+      0.188
+     ],
+     "growth_yoy": [
+      null,
+      0.0681,
+      0.1226
+     ]
+    },
+    {
+     "member": "cck:TransitPackagingMember",
+     "label": "Transit Packaging",
+     "values": [
+      2256000000,
+      2107000000,
+      2026000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1878,
+      0.1785,
+      0.1638
+     ],
+     "growth_yoy": [
+      null,
+      -0.066,
+      -0.0384
+     ]
+    },
+    {
+     "member": "cck:AsiaPacificSegmentMember",
+     "label": "Asia Pacific Segment",
+     "values": [
+      1297000000,
+      1161000000,
+      1096000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.108,
+      0.0984,
+      0.0886
+     ],
+     "growth_yoy": [
+      null,
+      -0.1049,
+      -0.056
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      1371000000,
+      1222000000,
+      1303000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1142,
+      0.1036,
+      0.1054
+     ],
+     "growth_yoy": [
+      null,
+      -0.1087,
+      0.0663
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12010000000,
+     11801000000,
+     12365000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cck:AmericasBeverageMember",
+     "label": "Americas Beverage",
+     "values": [
+      1320000000,
+      1405000000,
+      1530000000,
+      1699000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4572,
+      0.4462,
+      0.4695,
+      0.4632
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1591,
+      0.2093
+     ]
+    },
+    {
+     "member": "cck:EuropeanBeverageMember",
+     "label": "European Beverage",
+     "values": [
+      512000000,
+      635000000,
+      588000000,
+      735000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1773,
+      0.2017,
+      0.1804,
+      0.2004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1484,
+      0.1575
+     ]
+    },
+    {
+     "member": "cck:TransitPackagingMember",
+     "label": "Transit Packaging",
+     "values": [
+      482000000,
+      526000000,
+      496000000,
+      537000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.167,
+      0.167,
+      0.1522,
+      0.1464
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.029,
+      0.0209
+     ]
+    },
+    {
+     "member": "cck:AsiaPacificSegmentMember",
+     "label": "Asia Pacific Segment",
+     "values": [
+      279000000,
+      256000000,
+      303000000,
+      331000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0966,
+      0.0813,
+      0.093,
+      0.0902
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.086,
+      0.293
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      294000000,
+      327000000,
+      342000000,
+      366000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1018,
+      0.1038,
+      0.1049,
+      0.0998
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1633,
+      0.1193
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2887000000,
+     3149000000,
+     3259000000,
+     3668000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cck:AmericasBeverageMember",
+     "label": "Americas Beverage",
+     "values": [
+      876000000,
+      987000000,
+      1030000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6903,
+      0.6956,
+      0.6632
+     ],
+     "growth_yoy": [
+      null,
+      0.1267,
+      0.0436
+     ]
+    },
+    {
+     "member": "cck:EuropeanBeverageMember",
+     "label": "European Beverage",
+     "values": [
+      199000000,
+      276000000,
+      334000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1568,
+      0.1945,
+      0.2151
+     ],
+     "growth_yoy": [
+      null,
+      0.3869,
+      0.2101
+     ]
+    },
+    {
+     "member": "cck:TransitPackagingMember",
+     "label": "Transit Packaging",
+     "values": [
+      331000000,
+      270000000,
+      258000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2608,
+      0.1903,
+      0.1661
+     ],
+     "growth_yoy": [
+      null,
+      -0.1843,
+      -0.0444
+     ]
+    },
+    {
+     "member": "cck:AsiaPacificSegmentMember",
+     "label": "Asia Pacific Segment",
+     "values": [
+      154000000,
+      195000000,
+      183000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1214,
+      0.1374,
+      0.1178
+     ],
+     "growth_yoy": [
+      null,
+      0.2662,
+      -0.0615
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      117000000,
+      82000000,
+      148000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0922,
+      0.0578,
+      0.0953
+     ],
+     "growth_yoy": [
+      null,
+      -0.2991,
+      0.8049
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -131000000,
+      -165000000,
+      -169000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1032,
+      -0.1163,
+      -0.1088
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1269000000,
+     1419000000,
+     1553000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cck:AmericasBeverageMember",
+     "label": "Americas Beverage",
+     "values": [
+      236000000,
+      268000000,
+      210000000,
+      265000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6466,
+      0.6854,
+      0.5753,
+      0.5711
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1102,
+      -0.0112
+     ]
+    },
+    {
+     "member": "cck:EuropeanBeverageMember",
+     "label": "European Beverage",
+     "values": [
+      67000000,
+      97000000,
+      86000000,
+      107000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1836,
+      0.2481,
+      0.2356,
+      0.2306
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2836,
+      0.1031
+     ]
+    },
+    {
+     "member": "cck:TransitPackagingMember",
+     "label": "Transit Packaging",
+     "values": [
+      60000000,
+      72000000,
+      53000000,
+      68000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1644,
+      0.1841,
+      0.1452,
+      0.1466
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1167,
+      -0.0556
+     ]
+    },
+    {
+     "member": "cck:AsiaPacificSegmentMember",
+     "label": "Asia Pacific Segment",
+     "values": [
+      47000000,
+      50000000,
+      52000000,
+      53000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1288,
+      0.1279,
+      0.1425,
+      0.1142
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1064,
+      0.06
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      29000000,
+      35000000,
+      47000000,
+      52000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0795,
+      0.0895,
+      0.1288,
+      0.1121
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6207,
+      0.4857
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -41000000,
+      -46000000,
+      -43000000,
+      -44000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1123,
+      -0.1176,
+      -0.1178,
+      -0.0948
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     365000000,
+     391000000,
+     365000000,
+     464000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cck:MetalBeverageCansAndEndsMember",
+     "label": "Metal Beverage Cans And Ends",
+     "values": [
+      7514000000,
+      7899000000,
+      8535000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6256,
+      0.6694,
+      0.6903
+     ],
+     "growth_yoy": [
+      null,
+      0.0512,
+      0.0805
+     ]
+    },
+    {
+     "member": "cck:TransitPackagingMember",
+     "label": "Transit Packaging",
+     "values": [
+      2256000000,
+      2107000000,
+      2026000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1878,
+      0.1785,
+      0.1638
+     ],
+     "growth_yoy": [
+      null,
+      -0.066,
+      -0.0384
+     ]
+    },
+    {
+     "member": "cck:MetalFoodCansAndEndsMember",
+     "label": "Metal Food Cans And Ends",
+     "values": [
+      1013000000,
+      887000000,
+      943000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0843,
+      0.0752,
+      0.0763
+     ],
+     "growth_yoy": [
+      null,
+      -0.1244,
+      0.0631
+     ]
+    },
+    {
+     "member": "cck:OtherMetalPackagingMember",
+     "label": "Other Metal Packaging",
+     "values": [
+      526000000,
+      447000000,
+      433000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0438,
+      0.0379,
+      0.035
+     ],
+     "growth_yoy": [
+      null,
+      -0.1502,
+      -0.0313
+     ]
+    },
+    {
+     "member": "cck:OtherProductsMember",
+     "label": "Other Products",
+     "values": [
+      701000000,
+      461000000,
+      428000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0584,
+      0.0391,
+      0.0346
+     ],
+     "growth_yoy": [
+      null,
+      -0.3424,
+      -0.0716
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12010000000,
+     11801000000,
+     12365000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      4482000000,
+      4419000000,
+      4813000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3732,
+      0.3745,
+      0.3892
+     ],
+     "growth_yoy": [
+      null,
+      -0.0141,
+      0.0892
+     ]
+    },
+    {
+     "member": "cck:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      3334000000,
+      3405000000,
+      3522000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2776,
+      0.2885,
+      0.2848
+     ],
+     "growth_yoy": [
+      null,
+      0.0213,
+      0.0344
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      991000000,
+      1061000000,
+      1073000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0825,
+      0.0899,
+      0.0868
+     ],
+     "growth_yoy": [
+      null,
+      0.0706,
+      0.0113
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      1129000000,
+      1053000000,
+      989000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.094,
+      0.0892,
+      0.08
+     ],
+     "growth_yoy": [
+      null,
+      -0.0673,
+      -0.0608
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      823000000,
+      744000000,
+      786000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0685,
+      0.063,
+      0.0636
+     ],
+     "growth_yoy": [
+      null,
+      -0.096,
+      0.0565
+     ]
+    },
+    {
+     "member": "country:ES",
+     "label": "SPAIN",
+     "values": [
+      334000000,
+      334000000,
+      423000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0278,
+      0.0283,
+      0.0342
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.2665
+     ]
+    },
+    {
+     "member": "country:VN",
+     "label": "VIET NAM",
+     "values": [
+      423000000,
+      387000000,
+      387000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0352,
+      0.0328,
+      0.0313
+     ],
+     "growth_yoy": [
+      null,
+      -0.0851,
+      0.0
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      494000000,
+      398000000,
+      372000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0411,
+      0.0337,
+      0.0301
+     ],
+     "growth_yoy": [
+      null,
+      -0.1943,
+      -0.0653
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12010000000,
+     11801000000,
+     12365000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Americas Beverage, Asia Pacific Segment, European Beverage, Transit Packaging in the filing's definition linkbase",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Americas Beverage, Asia Pacific Segment, European Beverage, Transit Packaging in the filing's definition linkbase",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Americas Beverage, Asia Pacific Segment, European Beverage, Transit Packaging in the filing's definition linkbase",
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 114.9% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Americas Beverage, Asia Pacific Segment, European Beverage, Transit Packaging in the filing's definition linkbase",
+  "business_segments/OperatingIncomeLoss/quarterly: rows sum to 108.0% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

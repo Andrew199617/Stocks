@@ -1,0 +1,281 @@
+{
+ "ticker": "CNA",
+ "cik": 21175,
+ "as_of": "2026-10-18",
+ "fetched_at": "2026-10-18T02:11:37-04:00",
+ "newest_filing_date": "2026-08-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000021175.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000011/cna-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CNA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CNA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CNA FINANCIAL CORP",
+  "cik": 21175,
+  "description": {
+   "text": "CNA Financial Corporation (CNAF) was incorporated in 1967 and is an insurance holding company. References to “CNA,” “the Company,” “we,” “our,” “us” or like terms refer to the business of CNAF and its subsidiaries. CNA's property and casualty and remaining life and group insurance operations are primarily conducted by Continental Casualty Company (CCC), The Continental Insurance Company, Western Surety Company, CNA Insurance Company Limited, Hardy Underwriting Bermuda Limited and its subsidiaries (Hardy), and CNA Insurance Company (Europe) S.A. Loews Corporation (Loews) owned approximately 92% of our outstanding common stock as of December 31, 2025. Our insurance products primarily include commercial property and casualty coverages, including surety. Our services include warranty, risk management information services and claims administration. Our products and services are primarily marketed through independent agents, retail and wholesale brokers and managing general underwriters to a wide variety of customers, including small, medium and large businesses, insurance companies, associations, professionals and other groups. The property and casualty insurance industry is highly competitive, both as it relates to rate and service. We compete with a large number of stock and mutual insurance companies, as well as other entities, for both distributors and customers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "accession": "0000021175-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000011/cna-20251231.htm"
+  },
+  "description_short": "CNA is one of the largest U.S. commercial property and casualty insurance companies. Backed by more than 125 years of experience, CNA provides a broad range of standard and specialized insurance products and services for businesses and professionals in the U.S., Canada and Europe.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6331",
+  "sic_description": "Fire, Marine & Casualty Insurance",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.cna.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "151 N. Franklin",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60606",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-10"
+  },
+  "phone": "3128225000",
+  "employees": {
+   "count": 6600,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 6,600 employees.",
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000011/cna-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-29",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000021175&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000021175-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000045/cna-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000021175-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000043/cna-20260803.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000021175-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000031/cna-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000021175-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000029/cna-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000021175-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000019/cna-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-20",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-032500",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000110465926032500/tm2531481-1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-10",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000021175-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000011/cna-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-09",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000021175-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117526000008/cna-20260209.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000021175-25-000097",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000097/cna-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-28",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000021175-25-000095",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000095/cna-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000021175-25-000093",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000093/cna-20251103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-076869",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000110465925076869/tm2522242d6_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-11",
+   "period": "2025-08-05",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001104659-25-076205",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000110465925076205/tm2522242d5_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000021175-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000074/cna-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-04",
+   "period": "2025-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000021175-25-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000072/cna-20250804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-07",
+   "period": "2025-07-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000021175-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000064/cna-20250703.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-05",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000021175-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000049/cna-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000021175-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000047/cna-20250505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000021175-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000002117525000040/cna-20250430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-21",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-25-026428",
+   "url": "https://www.sec.gov/Archives/edgar/data/21175/000110465925026428/tm252352-2_def14a.htm"
+  }
+ ],
+ "warnings": []
+}

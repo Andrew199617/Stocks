@@ -1,0 +1,115 @@
+{
+ "ticker": "ALLY",
+ "name": "Ally Financial Inc.",
+ "sector": "Finance / Auto lending & digital banking",
+ "price": 37.68,
+ "market_cap_b": 11.8,
+ "engine_version": 5,
+ "base_oe_per_share": 2.721670824774871,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate franchise: the nation's largest all-digital bank and a leading auto lender (consumer auto originations $13.3B in Q2 2026, +21% YoY; Corporate Finance portfolio $13.7B, +25% YoY) \u2014 against a commodity lending product with no structural pricing power, full consumer-credit and rate-cycle exposure, and returns that prove the niche leadership is not translating: GAAP ROE (fundamentals.json, total equity) fell to 7.0% in FY2023, 4.8% in FY2024 and 5.5% in FY2025, below the cost of equity three straight years, with goodwill impairments in all three years ($149M / $118M / $305M) on the exited credit-card and lending adjacencies; core ROTCE of 11.8% in Q2 2026 is a recovery print at a benign point in the credit cycle (retail auto net charge-offs 1.57%), not a through-cycle level. Fundamentals.json carries no roic_proxy or gross margin for a bank presentation (both null), so ROE/ROTCE are the return evidence. A 4 gives CAP = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statement of Changes in Equity, line 'Share-based compensation': $153M for FY2025, with $167M for FY2024 and $159M for FY2023 in the same statement; corroborated by Note 23 (Share-based Compensation Plans), which reports PSU/RSU expense of $130M / $136M / $127M for FY2025 / FY2024 / FY2023 \u2014 the equity-statement line is the broader total (it also carries ESPP/DSU-type awards)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Anchor: FY2025 property and equipment depreciation of $243M, printed in the Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), other operating expenses table (with $224M for FY2024 and $196M for FY2023 in the same table) \u2014 the top of the filer's own filed FY2023-FY2025 range for that line; net property and equipment was $1,150M at FY2025 (Note 13) on $196,002M of total assets); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 6.0x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 13.8x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (8.5%) vs bull-case tier B (16.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 11.11,
+   "irr": 0.0587
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 18.24,
+   "irr": 0.0847
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 32.0,
+   "irr": 0.1324
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 43.97,
+   "irr": 0.1684
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 66.75,
+   "irr": 0.2269
+  }
+ },
+ "iv_at_15": 32.94,
+ "iv_at_12": 44.34,
+ "implied_irr": 0.1354,
+ "implied_irr_base_case": 0.1324,
+ "upside_at_15_pct": -12.6,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Leading digital bank and auto lender in a real ROTCE recovery, moat 4/10 \u2014 on the only honest base for a lender (median net income $2.72/sh, not the $13.32/sh OCF artifact) the weighted IRR is 13.54% (IV@15% $32.94 vs $37.68), so it clears 15% only below ~$33; bank-model mismatch, confidence low.",
+ "analysis_date": "2026-10-18",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0847,
+ "irr_bull": 0.1684,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 22.77,
+ "iv_at_25": 17.24,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 11735000000,
+ "shares_diluted_latest": 313043000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Auto finance leadership at scale \u2014 consumer originations $13.3B in Q2 2026 (+21% YoY) on 4.6M applications (+17%); dealer franchise plus insurance (F&I) attached to the same dealer relationships",
+  "Largest all-digital US bank \u2014 $151,649M of deposits at FY2025 (10-K balance sheet) funding the loan book; 3.6M deposit customers, +7% YoY at Q2 2026",
+  "Corporate Finance is a genuine second engine \u2014 $13.7B portfolio at Q2 2026, +25% YoY, with a reported 32% ROE in the quarter",
+  "Profitability inflecting \u2014 core ROTCE 11.8% in Q2 2026 vs 11.0% a year earlier; NIM excluding core OID 3.63%, +18bp YoY; adjusted EPS $1.21, +22% YoY",
+  "Credit metrics improving at the print \u2014 retail auto net charge-offs 1.57% in Q2 2026, down 18bp YoY and 40bp sequentially"
+ ],
+ "moat_against": [
+  "Returns below the cost of equity through the recent cycle \u2014 GAAP ROE 7.0% / 4.8% / 5.5% in FY2023 / FY2024 / FY2025 (fundamentals.json); the franchise has not earned its capital since FY2022",
+  "Commodity product, no structural pricing power \u2014 auto loans and deposits are fungible; competition from money-center banks, captive lenders and credit unions sets the price",
+  "Consumer credit-cycle and residual-value exposure \u2014 provision for credit losses $1,477M in FY2025 ($2,166M in FY2024); operating-lease fleet of $8,772M carries used-vehicle residual risk",
+  "Capital-allocation record \u2014 goodwill impairments of $149M (FY2023), $118M (FY2024) and $305M (FY2025) on the exited Ally Lending (sold Mar 2024) and Credit Card (sold Apr 1, 2025) businesses; consumer mortgage originations ceased in Q2 2025",
+  "Rate sensitivity \u2014 NIM depends on deposit repricing and asset yields outside management control; interest on deposits alone was $5,302M in FY2025"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 243000000.0,
+   "kind": "estimate",
+   "source": "Anchor: FY2025 property and equipment depreciation of $243M, printed in the Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), other operating expenses table (with $224M for FY2024 and $196M for FY2023 in the same table) \u2014 the top of the filer's own filed FY2023-FY2025 range for that line; net property and equipment was $1,150M at FY2025 (Note 13) on $196,002M of total assets"
+  },
+  {
+   "field": "sbc",
+   "value": 153000000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-25), Consolidated Statement of Changes in Equity, line 'Share-based compensation': $153M for FY2025, with $167M for FY2024 and $159M for FY2023 in the same statement; corroborated by Note 23 (Share-based Compensation Plans), which reports PSU/RSU expense of $130M / $136M / $127M for FY2025 / FY2024 / FY2023 \u2014 the equity-statement line is the broader total (it also carries ESPP/DSU-type awards)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 14.629,
+  "base_oe_with_override": 2.7217,
+  "base_oe_impact_pct": -81.395,
+  "weighted_irr_without_override": 0.5288,
+  "weighted_irr_with_override": 0.1354,
+  "weighted_irr_impact_pp": -39.339,
+  "unblocks_tier": true
+ }
+}

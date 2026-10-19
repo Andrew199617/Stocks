@@ -1,0 +1,42 @@
+{
+ "capex_override": {
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads (the last filed PaymentsToAcquireProductiveAssets value is FY2016; CNH now reports capex only as the two cash-flow lines above, neither of which the engine reads). The engine applies this single value to every missing period; the FY2024 total ($1,186M, the median year) is used. Against the true per-year totals it understates FY2023 capex by $9M and FY2025 by $12M (each ~0.5% of that year's conservative OE, immaterial and slightly aggressive in direction \u2014 noted, not hidden); FY2024 is exact. Including operating-lease equipment expenditures matches the old PaymentsToAcquireProductiveAssets definition the engine's pre-2017 series used and is conservative: that equipment is a real, recurring cash cost of the leasing/financial-services fleet.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001567094-26-000006), Consolidated Statements of Cash Flows: 'Expenditures for property, plant and equipment and intangible assets, excluding assets under operating leases' $543M (2025) / $536M (2024) / $644M (2023) plus 'Expenditures for assets under operating leases' $655M / $650M / $551M \u2014 totals $1,198M / $1,186M / $1,195M",
+  "value": 1186000000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Deere's stronger precision ecosystem, brand and pricing power; AGCO/Kubota pressure from both ends",
+  "Pure cyclicality: farm-income-driven volumes, FY2025 Agriculture sales -11.5% (North America -26.4%), ROE 28.1% -> 6.6% in two years",
+  "Tariff exposure and South America weakness compressed Agriculture adjusted EBIT margin to 5.2% in Q2 2026",
+  "Thin equity under a large captive-finance balance sheet; consolidated net debt $23.4B (mostly FS, but the risk is CNH's)"
+ ],
+ "moat_for": [
+  "#2 global ag equipment share (~12-14%) via Case IH and New Holland dual brands",
+  "Global dealer network plus captive Financial Services ($23.1B financing receivables) that finances a large share of its own sales",
+  "Installed-base parts and service annuity across a long-lived fleet",
+  "Raven precision-ag technology stack and full-line breadth (ag + construction)"
+ ],
+ "moat_justification": "Number-two global ag-equipment franchise (Case IH + New Holland, ~12-14% global share vs Deere's ~18-20%) with a real dealer network, captive finance arm and a parts/service installed base \u2014 but returns prove it is narrow, not wide: ROE fell from 28.1% (FY2023) to 16.2% (FY2024) to 6.6% (FY2025), i.e. at/below cost of capital at the trough, and gross margin (31.5-32.7% on total revenues incl. Financial Services) is defended by mix, not pricing power \u2014 Agriculture net sales fell 11.5% in FY2025 with North America down 26.4%. Deere's integrated precision ecosystem is stronger; Raven gives CNH a credible but not leading tech stack.",
+ "moat_score": 4,
+ "name": "CNH Industrial N.V.",
+ "one_liner": "Cyclical No.2 ag/construction equipment maker with a captive finance arm, moat 4/10 \u2014 at $11.60 it clears nothing: weighted IRR 5.3% on the TTM trough base (IV@15% $2.76), Tier D in every scenario; it would need to trade near $2.76 to clear a 15% hurdle on trough owner's earnings.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.15,
+  0.1
+ ],
+ "sector": "Industrials / Agricultural & construction equipment",
+ "tier_override": null,
+ "tier_override_reason": null,
+ "sbc_override": {
+  "kind": "filing",
+  "reason": "CNH tags ShareBasedCompensation only in annual filings, never in 10-Qs, so ttm.py has no post-FY YTD SBC fact and exits. This override exists only so ttm.py's assemble() can prorate the YTD legs; the FY leg uses the filer's own filed $45M fact (an override never replaces a filed value), and the two prorated H1 legs (181 days each) cancel in the TTM subtraction, leaving TTM SBC at the filed annual figure. In the annual engine the override fills nothing \u2014 SBC is filed for every fiscal year.",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001567094-26-000006): ShareBasedCompensation $45M for FY2025 (EDGAR companyfacts, us-gaap ShareBasedCompensation, 2025-01-01 to 2025-12-31)",
+  "value": 45000000
+ }
+}

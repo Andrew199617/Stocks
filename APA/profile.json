@@ -1,0 +1,291 @@
+{
+ "ticker": "APA",
+ "cik": 1841666,
+ "as_of": "2026-10-16",
+ "fetched_at": "2026-10-16T19:30:38-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001841666.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000015/apa-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/APA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/APA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "APA Corp",
+  "cik": 1841666,
+  "description": {
+   "text": "APA Corporation (APA or the Company) is an independent energy company that owns subsidiaries that explore for, develop, and produce crude oil, natural gas, and NGLs. The Company’s business has oil and gas operations in three geographic areas: the U.S., Egypt, and offshore the U.K. in the North Sea (North Sea). APA also has active development, exploration, and appraisal operations ongoing in Suriname, as well as exploration interests in Uruguay, Alaska, and other international locations that may, over time, result in reportable discoveries and development opportunities. As a holding company, APA Corporation’s primary assets are its ownership interests in its consolidated subsidiaries. The Company makes available, free of charge on its website at www.apacorp.com, its Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q, Current Reports on Form 8-K, and amendments to those reports filed or furnished pursuant to Section 13(a) or 15(d) of the Exchange Act as soon as reasonably practicable after they are filed with, or furnished to, the SEC. The Company’s filings are also available at www.sec.gov. Information contained on, or accessible through, the Company’s website or any other website is not incorporated by reference into, and does not constitute a part of, this Annual Report on Form 10-K.",
+   "source": "10-K Items 1 and 2 Business and Properties",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001841666-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000015/apa-20251231.htm"
+  },
+  "description_short": "APA Corporation owns consolidated subsidiaries that explore for and produce oil and natural gas in the United States, Egypt and the United Kingdom and that explore for oil and natural gas offshore Suriname and elsewhere.",
+  "industry": "Oil & Gas Production",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "1311",
+  "sic_description": "Crude Petroleum & Natural Gas",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.apacorp.com",
+  "headquarters": "Houston, Texas",
+  "address": {
+   "street": "2000 W. Sam Houston Pkwy. S., Suite 200",
+   "city": "Houston",
+   "state": "Texas",
+   "zip": "77042-3643",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "713.296.6000",
+  "employees": {
+   "count": 1791,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, APA employed approximately 1,791 full-time equivalent employees:",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000015/apa-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-03-01",
+  "first_sec_filing_form": "8-K12B",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001841666&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000058/apa8k-20261007.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001841666-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000053/apa-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000050/apa8k-20260805.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-08",
+   "period": "2026-07-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000045/apa8k-20260708.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001841666-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000037/apa8k-20260521.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001841666-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000034/apa-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000027/apa8k-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000021/apa8k-20260414.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-09",
+   "period": "2026-04-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-149453",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000119312526149453/apa-20260409.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001841666-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000015/apa-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000012/apa8k-20260225.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166626000003/apa8k-20260120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-06",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001841666-25-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000035/apa8k-20251106.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001841666-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000031/apa-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-05",
+   "period": "2025-11-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000028/apa8k-20251105.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-08",
+   "period": "2025-10-08",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000023/apa8k-20251008.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001841666-25-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000014/apa-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-07",
+   "period": "2025-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001841666-25-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000012/apa8k-20250806.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-20",
+   "period": "2025-06-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001841666-25-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000007/apa8k-20250617.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-06",
+   "period": "2025-06-04",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001841666-25-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1841666/000184166625000005/apa8k-20250604.htm"
+  }
+ ],
+ "warnings": []
+}
