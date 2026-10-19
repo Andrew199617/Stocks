@@ -1,0 +1,101 @@
+{
+ "ticker": "ESTC",
+ "cik": 1707753,
+ "entity": "ELASTIC N.V.",
+ "fy_end": "2026-04-30",
+ "ytd_end": "2026-07-31",
+ "inputs": {
+  "ocf": {
+   "fy": 326894000,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 104835000,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 132004000,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 354063000
+  },
+  "capex": {
+   "fy": 5092000,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 656000,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 590000,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 5026000
+  },
+  "sbc": {
+   "fy": 298435000,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 69935000,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 74782000,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 303282000
+  },
+  "shares_diluted": {
+   "fy": 107220768,
+   "fy_period": [
+    "2025-05-01",
+    "2026-04-30"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 105961879,
+   "ytd_prior_period": [
+    "2025-05-01",
+    "2025-07-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 104640231,
+   "ytd_current_period": [
+    "2026-05-01",
+    "2026-07-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 354063000,
+ "ttm_capex": 5026000,
+ "ttm_sbc": 303282000,
+ "ttm_shares_diluted": 104640231,
+ "ttm_oe_total": 45755000,
+ "ttm_oe_per_share": 0.43726012034510897,
+ "warnings": [],
+ "overrides_used": []
+}

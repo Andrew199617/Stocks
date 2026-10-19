@@ -1,0 +1,90 @@
+{
+ "ticker": "ESTC",
+ "name": "ELASTIC N.V.",
+ "sector": "Technology / Search, observability and security software",
+ "price": 95.245,
+ "market_cap_b": 10.21,
+ "engine_version": 5,
+ "base_oe_per_share": 0.43726012034510897,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "A real platform with developer mindshare, one-stack breadth across search/observability/security and genuine migration friction, plus ~75% gross margins \u2014 but no cycle of positive ROIC to show for it: the ROIC proxy is still negative in FY26, GAAP operating income is negative, hyperscalers fork and bundle against it, and SBC eats most of the cash the platform generates. That is a weak-to-narrow moat, not a durable wide one.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "DILUTION: share count growing 3.9%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2019 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "IRR_AT_FLOOR: implied IRR sits within 0.5pp of terminal growth 2.5% (super_bear) \u2014 a perpetuity growing at g has an IRR above g at any price, so the model cannot express a return below ~2.5%; this price is beyond the model's range and the expected return is 'at most ~3.0%', not the recorded figure",
+  "BASE_DIVERGENCE: latest FY OE/share 0.22 vs 3-yr median 0.04 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 0.5% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 4.2x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 2.61,
+   "irr": 0.0284
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 4.1,
+   "irr": 0.0307
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 5.49,
+   "irr": 0.033
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 7.26,
+   "irr": 0.0359
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 10.63,
+   "irr": 0.0416
+  }
+ },
+ "iv_at_15": 5.42,
+ "iv_at_12": 7.31,
+ "implied_irr": 0.033,
+ "implied_irr_base_case": 0.033,
+ "upside_at_15_pct": -94.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real Search AI platform, moat 4/10, but owner's earnings are a rounding error after SBC \u2014 weighted IRR 3.3% and IV@15% $5.42 vs $95.25 price; it would need to fall to about $5.42 to clear a 15% hurdle on the current TTM base.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0307,
+ "irr_bull": 0.0359,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 3.74,
+ "iv_at_25": 2.82,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -197830000,
+ "shares_diluted_latest": 107220768,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Elasticsearch is the default search/data platform for a large developer base, embedded across search, observability and security on one stack",
+  "Data integration and cluster-tuning switching friction: workloads, indexes and pipelines are costly to migrate once in production",
+  "Gross margin 72-76% over the last five fiscal years (76.1% in FY26, 75.5% TTM) shows the product itself carries software economics",
+  "Enterprise cohort compounding: Q1 FY27 added the most >$100K ACV customers in company history, cRPO +21% and RPO +27% YoY, with AI-feature use in that cohort up to 37% from 21%"
+ ],
+ "moat_against": [
+  "ROIC proxy negative every recent year (FY24 -13.4%, FY25 -5.6%, FY26 -2.5%) \u2014 GAAP operating income still negative because SBC consumes most of OCF",
+  "Hyperscalers and larger rivals on every flank: AWS OpenSearch (a fork of Elastic's own platform), Splunk/Cisco, Datadog, Microsoft and Google in search, observability and security",
+  "Open-source roots cut both ways: AWS offers a forked version, and native vector databases (Pinecone, Qdrant, Weaviate) plus MongoDB Atlas attack the AI-search growth story",
+  "No proven pricing power at the GAAP line: operating margin was still -1.9% in FY26 and -5% in Q1 FY27 despite ~75% gross margins",
+  "SBC was $303.3M TTM, about 86% of TTM operating cash flow, and the diluted share count grows 3.9%/yr"
+ ]
+}

@@ -1,0 +1,285 @@
+{
+ "ticker": "ESTC",
+ "cik": 1707753,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T11:38:06-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001707753.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000018/estc-20260430.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ESTC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ESTC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Elastic N.V.",
+  "cik": 1707753,
+  "description": {
+   "text": "Elastic, the Search AI Company, enables its customers to transform data into answers, actions, and outcomes with Search AI. While search technology revolutionized information retrieval through its ability to instantly return relevant results from massive datasets, it struggles when it comes to understanding context and generating insights. AI, on the other hand, excels at analyzing complex patterns and generating insights, but it lacks the ability to find and access specific information within vast data stores. The Elasticsearch Platform (“our platform”) combines the precision of search with the intelligence of AI to help our customers and community solve real-time business problems, unlock potential value, and achieve better outcomes. Our platform, available as either a cloud service or a self-managed software, allows our customers to find insights and drive AI and machine learning use cases from large amounts of data. We offer three Elasticsearch-powered solutions—Search & AI, Elastic Observability, and Elastic Security—that are built on our platform. We help organizations, their employees, and their customers find what they need faster, while keeping mission-critical applications and infrastructure running smoothly and protecting against cyber threats.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-06-08",
+   "period": "2026-04-30",
+   "accession": "0001707753-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000018/estc-20260430.htm"
+  },
+  "description_short": "Elastic (NYSE: ESTC) integrates its deep expertise in search technology with artificial intelligence to help everyone transform all of their data into answers, actions, and outcomes. Elasticsearch, which is the foundation for its search, observability, and security solutions, is used by thousands of companies, including more than 75% of the Fortune 100. Learn more at elastic.co.",
+  "industry": "Computer Software: Prepackaged Software",
+  "sector": "Technology",
+  "region": "North America",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0430",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.elastic.co",
+  "headquarters": "San Francisco, CA",
+  "address": {
+   "street": "33 NEW MONTGOMERY ST. 9TH FLOOR",
+   "city": "San Francisco",
+   "state": "CA",
+   "zip": "94105",
+   "country": null,
+   "source": "EDGAR submissions"
+  },
+  "phone": "(650) 880-1260",
+  "employees": {
+   "count": 4019,
+   "as_of": "2026-04-30",
+   "evidence": "As of April 30, 2026, we had a total of 4,019 employees in over 40 countries globally.",
+   "form": "10-K",
+   "filed": "2026-06-08",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000018/estc-20260430.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2018-09-05",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Elasticsearch Global BV"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001707753&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001707753-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000061/estc-20261015.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-08-28",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001707753-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000055/estc-20260828.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-28",
+   "period": "2026-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001707753-26-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000054/estc-20260731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-24",
+   "items": [
+    "5.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD; Other events",
+   "accession": "0001707753-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000036/estc-20260824.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001707753-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000035/estc-20260827.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-24",
+   "period": "2026-06-18",
+   "items": [
+    "2.05",
+    "5.02"
+   ],
+   "description": "Exit costs; Officer/director change",
+   "accession": "0001707753-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000024/estc-20260618.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-06-08",
+   "period": "2026-04-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001707753-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000018/estc-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001707753-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000008/estc-20260528.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-27",
+   "period": "2026-01-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001707753-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000006/estc-20260131.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001707753-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775326000003/estc-20260226.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-24",
+   "period": "2025-10-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001707753-25-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000056/estc-20251031.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-20",
+   "period": "2025-11-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001707753-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000053/estc-20251120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001707753-25-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000050/estc-20251013.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-09",
+   "period": "2025-10-09",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001707753-25-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000046/estc-20251009.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-30",
+   "period": "2025-09-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001707753-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000043/estc-20250930.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-29",
+   "period": "2025-07-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001707753-25-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000040/estc-20250731.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-08-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001707753-25-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000036/estc-20250828.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-28",
+   "period": "2025-08-28",
+   "items": [
+    "2.02",
+    "5.02",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change",
+   "accession": "0001707753-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000034/estc-20250828.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-06-10",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001707753-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000021/estc-20250430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-29",
+   "period": "2025-05-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001707753-25-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1707753/000170775325000015/estc-20250529.htm"
+  }
+ ],
+ "warnings": [
+  "headquarters: no dei:EntityAddress cover tags in the 10-K filed 2026-06-08; EDGAR submissions address used"
+ ]
+}
