@@ -1273,22 +1273,6 @@
    "unblocks_tier": true
   },
   {
-   "ticker": "FUTU",
-   "event": "base_override",
-   "date": "2026-10-16",
-   "value": 10.304993585509871,
-   "source": "financials_history.csv (this run's engine-filed USD figures): FY2025 net income $1,456,671,000 / diluted shares 1,130,846,701 = $1.2881 per ordinary share, scaled x8 ordinary shares per ADS (ads_ratio) = $10.3050 per ADS",
-   "reason": "SECTOR_MODEL_MISMATCH (broker-dealer): the engine's OCF-based conservative OE is client-balance plumbing, not distributable earnings (FY2025 OCF $5,240,468,000 vs net income $1,456,671,000; FY2023 OCF -$811,352,000 vs net income $548,140,000), so it is rejected as the base (IBKR precedent in this sweep). For a broker, net income is the honest owner's-earnings proxy: SBC is already expensed inside it, and FY2025 capex ($7,033,000) and D&A ($9,291,000) are trivial and roughly offset. Latest-FY net income is used over the 3-yr median NI per ADS ($5.00, the FY2024 figure) because the median averages in the pre-inflection client base; the FY2025 base is still below the ex-penalty 2026 interim run-rate reported in the company's 6-K releases (see analysis.md)."
-  },
-  {
-   "ticker": "FUTU",
-   "event": "ads_ratio",
-   "date": "2026-10-16",
-   "ratio": 8.0,
-   "source": "Futu Holdings Limited Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-14), Notes to Consolidated Financial Statements, Note 1 (General Information, Organization and Principal Activities): each American Depositary Share represents eight Class A ordinary shares; the same statement appears in the FY2025 20-F (filed 2026-04-15)",
-   "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x8 ordinary shares per ADS to be comparable to the ADS price"
-  },
-  {
    "ticker": "AS",
    "event": "ads_ratio",
    "date": "2026-10-16",
@@ -2596,6 +2580,28 @@
    "value": 4.206421171780802,
    "source": "Median of the last 3 fiscal years' maintenance owner's earnings totals, divided by the post-split diluted share count \u2014 built exclusively from this run's printed outputs: financials_history.csv oe_maintenance totals FY2023 $531,093,000, FY2024 $731,379,000, FY2025 $683,779,000 (median = $683,779,000, the FY2025 figure) \u00f7 ttm.json's current-YTD diluted shares 162,556,000 (the only post-split diluted count the run prints; H1 2026 10-Q basis, retroactively adjusted for the February 26, 2026 3-for-2 split) = $4.2064/share.",
    "reason": "Two defects make the engine's conservative base unusable as printed. (1) Share-basis break: the FY2025 10-K (filed 2026-02-24) reports diluted shares on the pre-split basis (110,052,000 for FY2025), while the $67.56 price and ttm.json's share count are post-split (3-for-2 stock dividend distributed February 26, 2026; ~103M shares became ~155M) \u2014 so the printed median conservative OE/share of $2.7068 compares a pre-split numerator basis to a post-split price, and the engine's market_cap_est of $7,435,113,120 understates the post-split diluted market cap (~$11.0B at the ttm share count). Split-corrected, the conservative median is $1.8045/share. (2) Sector plumbing: for a broker-dealer/bank holding company, OCF is balance-sheet flow, not distributable cash \u2014 conservative OE/share swung $2.71 \u2192 $2.37 \u2192 $8.10 (pre-split) over FY2023-2025 while net income stayed in a $522,536,000-$731,379,000 band, NI_OCF_DIVERGENCE fires for 2024, and ttm.py's TTM conservative OE is $1.0987/share only because H1 2026 OCF was -$266,453,000 in a half when the company grew its loan book by $2.6B in Q2 alone toward ~$4B of guided 2026 balance-sheet growth and posted record common earnings. The maintenance definition (the engine's own second definition, NI-based) is the defensible owner's-earnings proxy for this sector \u2014 the same treatment this sweep applied to IBKR and LPLA \u2014 and the median-of-3-FY normalization mirrors the engine's own base method applied to that definition. The resulting $4.2064/share is conservative: it is built on GAAP maintenance totals that include the $180.0M Q1 2025 legal provision year, it makes no add-back for that provision, and it sits below the company's non-GAAP FY2025 EPS on the post-split basis ($7.92 pre-split \u00f7 1.5 = $5.28). One known upward bias is retained and disclosed, not adjusted: the CSV's net income is total net income (before preferred dividends on the SF-PB/SF-PC/SF-PD preferred shares), so the base overstates earnings available to common holders by the preferred dividend (FY2025 net income $683,779,000 vs net income available to common shareholders $646.5M per the company's FY2025 reporting) \u2014 roughly 5%, absorbed by the widened bear-side probabilities and the low confidence grade. Declared under bounded authority (c): every input is a figure printed by this run's engine/TTM outputs."
+  },
+  {
+   "ticker": "FUTU",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 105.64
+  },
+  {
+   "ticker": "FUTU",
+   "event": "base_override",
+   "date": "2026-10-19",
+   "value": 10.304993585509871,
+   "source": "financials_history.csv (this run's engine-filed USD figures): FY2025 net income $1,456,671,000 / diluted shares 1,130,846,701 = $1.2881 per ordinary share, scaled x8 ordinary shares per ADS (ads_ratio) = $10.3050 per ADS",
+   "reason": "SECTOR_MODEL_MISMATCH (broker-dealer): the engine's OCF-based conservative OE is client-balance plumbing, not distributable earnings (FY2025 OCF $5,240,468,000 vs net income $1,456,671,000; FY2023 OCF -$811,352,000 vs net income $548,140,000), so it is rejected as the base (IBKR precedent in this sweep). For a broker, net income is the honest owner's-earnings proxy: SBC is already expensed inside it, and FY2025 capex ($7,033,000) and D&A ($9,291,000) are trivial and roughly offset. Latest-FY net income is used over the 3-yr median NI per ADS ($5.00, the FY2024 figure) because the median averages in the pre-inflection client base; the FY2025 base is still below the ex-penalty 2026 interim run-rate reported in the company's 6-K releases (see analysis.md)."
+  },
+  {
+   "ticker": "FUTU",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 8.0,
+   "source": "Futu Holdings Limited Form 20-F for the fiscal year ended December 31, 2024 (filed 2025-04-14), Notes to Consolidated Financial Statements, Note 1 (General Information, Organization and Principal Activities): each American Depositary Share represents eight Class A ordinary shares; the same statement appears in the FY2025 20-F (filed 2026-04-15)",
+   "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq price is per ADS; per-share figures must be scaled x8 ordinary shares per ADS to be comparable to the ADS price"
   }
  ]
 }
