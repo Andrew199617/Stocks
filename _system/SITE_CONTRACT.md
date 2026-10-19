@@ -60,7 +60,7 @@ count the rows whose live.json was withheld / whose run was restated for a split
  "tier": "B",                 "tier_by_numbers": "B",  "tier_override": false,
  "tier_live": "A" | null,     "tier_bear": "C" | null, "tier_bull": "A" | null,
  "irr": 0.1843,               "irr_live": 0.199 | null, "irr_bear": 0.1293 | null, "irr_bull": 0.227 | null,
- "irr_at_floor": false,       "irr_capped": false,     "f_subtype": null | "sbc_exceeds_cash" | "no_cash_generation",
+ "irr_at_floor": false,       "irr_capped": false,     "f_subtype": null | "sbc_exceeds_cash" | "no_cash_generation" | "payable_earnings_nonpositive",
  "live_withheld": false,      "split_restated": null | {"factor": 2.0, "split": "2:1"},
  "price": 272.28,             "price_live": 262.19 | null, "price_date": "2026-10-14" | null, "ret_1y_pct": -55.6 | null,
  "iv15": 376.12, "iv12": 535.47, "iv20": 290.1 | null, "iv25": 230.4 | null,
