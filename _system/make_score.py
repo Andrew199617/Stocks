@@ -98,6 +98,7 @@ SYS_DIR = f"{BASE}/_system"
 ENGINE = f"{SYS_DIR}/dcf_engine.py"
 TTM_PY = f"{SYS_DIR}/ttm.py"
 PAYABLE_BASIS = "payable_earnings_5y"
+PAYABLE_SIC = frozenset({"6331", "6351"})  # P&C insurers and reinsurers (mirrors dcf_engine.PAYABLE_SIC)
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
 TIERS = ("S", "A", "B", "C", "D", "F")
 TIER_ORDER = {t: i for i, t in enumerate(reversed(TIERS))}  # F=0 … S=5: higher is better
@@ -198,8 +199,8 @@ def validate_base_override(j):
         if not isinstance(o.get("shares"), (int, float)) or isinstance(o.get("shares"), bool) or o["shares"] <= 0:
             fail("judgment.json: base_override.shares must be a positive share count")
         per_ord = sum(float(x) for x in figs) / 5.0 / float(o["shares"])
-        if abs(per_ord - float(o["value"])) > 0.001 * abs(per_ord):
-            fail(f"judgment.json: base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f})")
+        if abs(per_ord - float(o["value"])) > 0.005:
+            fail(f"judgment.json: base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f}) to the cent")
     return o
 
 
@@ -350,6 +351,31 @@ def _ttm_base_without_overrides(ticker, n):
     return oe_total / shares
 
 
+def payable_pin_impact(ticker, n):
+    """The payable override's own measured impact: the engine-native base
+    (median of the last 3 FY, field overrides on) and its weighted IRR, versus
+    the pinned payable base the score used. Replays the final configuration
+    without the pin; a failed replay refuses the score like any other
+    measurement failure."""
+    args = _final_run_args(n)
+    m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args)
+    if m is None:
+        fail("native-base replay failed — cannot measure the payable base override's impact")
+    bw, iw = m.get("base_oe_per_share"), m.get("implied_irr_weighted")
+    bp, ip = n.get("base_oe_per_share"), n.get("implied_irr_weighted")
+    pct = round((bp - bw) / bw * 100, 3) if isinstance(bp, (int, float)) and isinstance(bw, (int, float)) and bw else None
+    pp = round((ip - iw) * 100, 3) if isinstance(ip, (int, float)) and isinstance(iw, (int, float)) else None
+    return {"base_used": "payable_5y",
+            "base_oe_without_override": round(bw, 4) if isinstance(bw, (int, float)) else None,
+            "base_oe_with_override": round(bp, 4) if isinstance(bp, (int, float)) else None,
+            "base_oe_impact_pct": pct,
+            "weighted_irr_without_override": round(iw, 4) if isinstance(iw, (int, float)) else None,
+            "weighted_irr_with_override": round(ip, 4) if isinstance(ip, (int, float)) else None,
+            "weighted_irr_impact_pp": pp,
+            "tier_by_numbers_without_override": m.get("tier_by_numbers"),
+            "tier_by_numbers_with_override": n.get("tier_by_numbers")}
+
+
 def compute_override_impact(ticker, n):
     """The impact block, on Andrew's basis: the base the final run actually
     used, the final run's exact configuration, toggling only the overrides.
@@ -378,10 +404,13 @@ def compute_override_impact(ticker, n):
         if m is None:
             fail("counterfactual engine --measure run failed — cannot measure override impact on the payable base")
         if m.get("implied_irr_weighted") is None:
-            if not (unblocks and (m.get("data_gap") or [])):
+            if unblocks and (m.get("data_gap") or []):
+                base_without = None      # gate fired: honestly no counterfactual
+                irr_without = None
+            elif irr_with is None and not (m.get("data_gap") or []):
+                irr_without = None       # Tier F on the pin in both worlds: null IRR impact, zero base impact
+            else:
                 fail("counterfactual run produced no IRR and no data gap — cannot measure override impact on the payable base")
-            base_without = None
-            irr_without = None
         else:
             irr_without = m.get("implied_irr_weighted")
     elif base_used == "ttm":
@@ -493,7 +522,9 @@ def update_registry(ticker, applied, j_over, impact, j, n):
             if n.get("payable_base"):
                 pb = n["payable_base"]
                 ev.update({"basis": pb.get("basis"), "figures": pb.get("figures"), "shares": pb.get("shares"),
-                           "ads_ratio": pb.get("ads_ratio"), "pinned_per_share": pb.get("pinned_per_share")})
+                           "ads_ratio": pb.get("ads_ratio"), "pinned_per_share": pb.get("pinned_per_share"),
+                           "sic": pb.get("sic")})
+                ev.update(payable_pin_impact(ticker, n))
             entries.append(ev)
         gterm = (n.get("inputs") or {}).get("g_terminal", n.get("g_terminal"))
         if isinstance(gterm, (int, float)) and abs(gterm - 0.025) > 1e-9:
@@ -791,6 +822,11 @@ def main():
                  f"--base-judgment (base_pin_source {_pin!r}, payable_base "
                  f"{'present' if n.get('payable_base') else 'absent'}) — rerun the final pass with --base-judgment "
                  "so the engine recomputes, scales and records the base")
+        _sic = str((n.get("payable_base") or {}).get("sic") or "")
+        if _sic not in PAYABLE_SIC:
+            fail(f"payable-earnings base at a filer outside the rule's scope: engine recorded SIC {_sic or 'unknown'} "
+                 f"({(n.get('payable_base') or {}).get('sic_description') or 'n/a'}); the rule covers P&C insurers and "
+                 f"reinsurers only (SIC {sorted(PAYABLE_SIC)}) — drop the declaration and keep the OCF base + notch")
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 
@@ -831,12 +867,16 @@ def main():
                 # Payable-earnings pin: the score's base is the declared
                 # per-ordinary value scaled by the ADS ratio, and the engine's
                 # record must match the declaration figure for figure.
+                # Zero is a valid five-year average (Tier F, payable_earnings_nonpositive):
+                # compare recorded and declared values at a cent / one-share tolerance.
                 declared = (j_base_override and j_base_override.get("basis") == PAYABLE_BASIS
-                            and isinstance(score_base, (int, float)) and score_base != 0
-                            and abs(float(pb.get("pinned_per_share") or 0) - score_base) <= 0.001 * abs(score_base)
-                            and abs(float(pb.get("per_ordinary_share") or 0) - float(j_base_override["value"])) <= 0.001 * abs(score_base)
+                            and isinstance(score_base, (int, float))
+                            and pb.get("pinned_per_share") is not None
+                            and abs(float(pb["pinned_per_share"]) - score_base) <= 1e-6
+                            and abs(float(pb.get("per_ordinary_share") if pb.get("per_ordinary_share") is not None else 1e9)
+                                    - float(j_base_override["value"])) <= 0.005
                             and [float(x) for x in (pb.get("figures") or [])] == [float(x) for x in j_base_override["figures"]]
-                            and abs(float(pb.get("shares") or 0) - float(j_base_override["shares"])) <= 0.001 * float(j_base_override["shares"]))
+                            and abs(float(pb.get("shares") or 0) - float(j_base_override["shares"])) < 1.0)
             else:
                 declared = (j_base_override and isinstance(score_base, (int, float)) and score_base != 0
                             and abs(float(j_base_override["value"]) - score_base) <= 0.001 * abs(score_base))

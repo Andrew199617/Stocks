@@ -19,6 +19,9 @@ What the rule needs, and what each test proves fails on the parent code:
 5. The one-notch misfit tier_override on top of the payable base is refused.
 6. A payable declaration is binding: a run not pinned through --base-judgment
    is refused (Codex round 2, P1).
+7. Round 3: cent-level reproduction, SIC scope (P&C only), zero average is
+   valid provenance, Tier F counterfactual is a null impact, and the payable
+   override's own native-vs-pinned impact lands in the registry event.
 """
 import hashlib
 import json
@@ -76,8 +79,11 @@ def test_engine_load_payable_base_validates_the_declaration():
                 json.dump({"base_override": o}, f)
 
         write(_bo())
-        assert E.load_payable_base("T")["value"] == RNR_BASE
+        assert abs(E.load_payable_base("T")["value"] - RNR_BASE) < 1e-9
+        write(_bo(value=round(RNR_BASE, 2)))              # declared to the cent: accepted, recomputed value recorded
+        assert abs(E.load_payable_base("T")["value"] - RNR_BASE) < 1e-9
         for o in (_bo(value=77.78),                       # does not reproduce
+                  _bo(value=RNR_BASE - 0.02),             # off by two cents: not cent-level
                   _bo(kind="estimate"),                   # must be filing
                   _bo(figures=RNR_FIGS[:3]),              # five figures
                   _bo(shares=0),                          # positive shares
@@ -131,7 +137,8 @@ def _n(payable=True, flags=(), gap=()):
          "upside_at_15": -0.26, "fragility_flags": list(flags), "diagnostics": {},
          "payable_base": {"basis": "payable_earnings_5y", "figures": list(RNR_FIGS), "average": sum(RNR_FIGS) / 5,
                           "shares": RNR_SHARES, "per_ordinary_share": RNR_BASE, "ads_ratio": 1.0,
-                          "pinned_per_share": RNR_BASE} if payable else None}
+                          "pinned_per_share": RNR_BASE, "sic": "6331",
+                          "sic_description": "FIRE, MARINE & CASUALTY INSURANCE"} if payable else None}
     return n
 
 
@@ -168,6 +175,15 @@ def test_make_score_impact_uses_the_payable_branch_not_ttm():
     finally:
         M._run_json = real
     assert imp["weighted_irr_without_override"] is None and imp["unblocks_tier"] is True, imp
+    # Tier F on the pin in both worlds (override covers no gap): null IRR impact, not a failure.
+    nf = _n(); nf["implied_irr_weighted"] = None; nf["base_oe_per_share"] = -1.0
+    M._run_json = lambda cmd, env_extra=None, timeout=600: {"base_oe_per_share": -1.0, "implied_irr_weighted": None,
+                                                           "data_gap": []}
+    try:
+        imp = M.compute_override_impact("TST", nf)
+    finally:
+        M._run_json = real
+    assert imp["weighted_irr_impact_pp"] is None and imp["base_oe_impact_pct"] == 0.0 and imp["unblocks_tier"] is False, imp
 
 
 def test_validate_and_double_softening():
@@ -190,6 +206,11 @@ def _score_files(n, j):
     try:
         t = "TST"
         os.makedirs(os.path.join(base, t)); os.makedirs(os.path.join(base, "_system"))
+        # Stub engine for the native-base replay the payable registry event runs
+        # (no network): the RNR shape, median base $77.78 / Tier S.
+        with open(os.path.join(base, "_system", "dcf_engine.py"), "w", encoding="utf-8") as f:
+            f.write("import json; print(json.dumps({'base_oe_per_share': 77.78, 'implied_irr_weighted': 0.2731, "
+                    "'tier_by_numbers': 'S', 'data_gap': []}))\n")
         canon = json.dumps(n, sort_keys=True, separators=(",", ":"), default=str)
         n["content_hash"] = hashlib.sha256(canon.encode()).hexdigest()
         for name, obj in (("dcf_numbers.json", n), ("judgment.json", j)):
@@ -229,6 +250,24 @@ def test_make_score_end_to_end_on_the_payable_base():
     assert "## Payable-earnings base" in r["key"] and "$1,824,910,000" in r["key"], r["key"]
     ev = [e for e in r["registry"]["entries"] if e.get("event") == "base_override"]
     assert ev and ev[0]["basis"] == "payable_earnings_5y" and ev[0]["figures"] == RNR_FIGS, ev
+    # The payable override's own impact: native $77.78 / S → pinned $27.21 / C.
+    assert ev[0]["base_oe_without_override"] == 77.78 and ev[0]["base_oe_with_override"] == round(RNR_BASE, 4), ev
+    assert ev[0]["tier_by_numbers_without_override"] == "S" and ev[0]["tier_by_numbers_with_override"] == "C", ev
+    assert abs(ev[0]["weighted_irr_impact_pp"] - (0.12 - 0.2731) * 100) < 1e-3, ev
+    # Scope: the engine recorded a SIC outside P&C → refused.
+    n = _n(flags=misfit); n["payable_base"]["sic"] = "6311"
+    r = _score_files(n, _j())
+    assert r["rc"] != 0 and "scope" in (r["stderr"] + r["stdout"]), r
+    # A zero five-year average is valid provenance (Tier F on the payable basis).
+    n = _n(flags=misfit); zf = [-2.0, -1.0, 0.0, 1.0, 2.0]
+    n["payable_base"].update({"figures": zf, "average": 0.0, "per_ordinary_share": 0.0, "pinned_per_share": 0.0})
+    n.update({"base_oe_per_share": 0.0, "tier_by_numbers": "F", "f_subtype": "payable_earnings_nonpositive",
+              "implied_irr_weighted": None, "implied_irr_base": None, "iv_at_15": None, "iv_at_12": None,
+              "scenarios": {}, "weighted": {}, "upside_at_15": None})
+    n["inputs"]["base_oe_ps_arg"] = 0.0
+    r = _score_files(n, _j(bo=_bo(value=0.0, figures=zf)))
+    assert r["rc"] == 0, r["stderr"] + r["stdout"]
+    assert r["score"]["tier_final"] == "F", r["score"]
     # Provenance: a declaration whose figures differ from the engine's record is refused.
     bad = _bo(); bad["figures"][0] = 81_599_001.0; bad["value"] = sum(bad["figures"]) / 5 / RNR_SHARES
     r = _score_files(_n(flags=misfit), _j(bo=bad))
