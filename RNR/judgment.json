@@ -39,6 +39,15 @@
  "base_override": {
   "value": 27.207439278876148,
   "kind": "filing",
+  "basis": "payable_earnings_5y",
+  "figures": [
+   81599000.0,
+   322791000.0,
+   1824910000.0,
+   2234426000.0,
+   1859691000.0
+  ],
+  "shares": 46483000.0,
   "source": "Operating income (loss) available to RenaissanceRe common shareholders, twelve months ended December 31, from the company's Q4 earnings releases (Form 8-K exhibit 99.1): FY2021 $81,599 thousand (release filed 2022-02, accession 0000913144-22-000010); FY2022 $322,791 thousand and FY2023 $1,824,910 thousand (FY2023 release, accession 0000913144-24-000005); FY2024 $2,234,426 thousand and FY2025 $1,859,691 thousand (FY2025 release, accession 0000913144-26-000003). Denominator: FY2025 diluted shares 46,483,000 (financials_history.csv shares_diluted, latest row; the same release's 'Average shares outstanding - diluted').",
   "reason": "Insurer payable-earnings base (Andrew, 2026-10-19; WORKER_SPEC step 4): consolidated OCF at a reinsurer capitalizes the reserve build ($998,854,000 in FY2025) and the cash earned by consolidated Capital Partners vehicles ($935,409,000 of FY2025 net income attributable to redeemable noncontrolling interests), so the engine's $77.78/sh median base is not what common shareholders earn. Construction: ($81,599 + $322,791 + $1,824,910 + $2,234,426 + $1,859,691) thousand = $6,323,417 thousand; / 5 = $1,264,683.4 thousand; / 46,483 thousand diluted shares = $27.2074/share. Five-year average rather than 3-year median because FY2023-25 are three benign-cat hard-market years and FY2021-22 are the cycle's loss years (combined ratios 102.1% / 97.7%). Replaces the 2026-10-15 one-notch tier softening, which is not applied on top of this base."
  }
