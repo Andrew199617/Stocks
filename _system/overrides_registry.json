@@ -2786,6 +2786,14 @@
    "weighted_irr_with_override": null,
    "weighted_irr_impact_pp": null,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "OSCR",
+   "event": "tier_override",
+   "date": "2026-10-19",
+   "tier_by_numbers": "C",
+   "tier_final": "D",
+   "reason": "SECTOR_MODEL_MISMATCH insurer artifact (the universe classifies OSCR as Health Care \u2014 SIC 6324 Hospital & Medical Service Plans \u2014 so the engine's Finance/Real Estate/Utilities flag did not fire, but economically this is an insurer): the OCF-based OE base capitalizes premium float and claims/risk-adjustment working capital. FY2025 conservative OE is $970,828,000 against a net loss of -$443,151,000 (financials_history.csv), and TTM OE of $4,304,752,000 (ttm.json) is ~7.8x TTM net income of $550,743,000 (fundamentals.json TTM to 2026-06-30). A payable-earnings (accrual) base built only from financials_history.csv figures \u2014 net income + D&A - capex per share, SBC already expensed inside net income so not deducted twice \u2014 is -$1.20 (2023: -270,728,000 + 30,694,000 - 25,577,000 over 221,655,000 shares), +$0.11 (2024: 25,432,000 + 32,145,000 - 27,897,000 over 265,853,000) and -$1.72 (2025: -443,151,000 + 28,892,000 - 36,372,000 over 262,388,000), a last-3 median of -$1.20/share against the engine's +$3.16 OCF base. The engine base also divides by the loss-year FY2025 diluted count of 262,388,000 while the profitable H1 2026 diluted count is 331,292,000 (ttm.json), overstating per-share OE by ~26% on the current diluted basis. Softened one notch C to D under the standing insurer-float policy (Andrew, 2026-10-15), confidence low \u2014 same treatment as PFG/HIG/ACGL/WRB."
   }
  ]
 }
