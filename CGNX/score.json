@@ -1,0 +1,87 @@
+{
+ "ticker": "CGNX",
+ "name": "Cognex Corporation",
+ "sector": "Industrial automation / Machine vision",
+ "price": 53.99,
+ "market_cap_b": 9.14,
+ "engine_version": 5,
+ "base_oe_per_share": 1.2938001726115176,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Market leader with proven historical pricing power, but gross margin has eroded ~9pp since 2017 and ROIC ran 7-8% through the 2023-25 trough; strong niche franchise, contested and cyclical \u2014 5/10.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 1.11 vs 3-yr median 0.47 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 5.81,
+   "irr": 0.0371
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 9.75,
+   "irr": 0.0477
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 16.37,
+   "irr": 0.0661
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 21.19,
+   "irr": 0.0787
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 29.45,
+   "irr": 0.0989
+  }
+ },
+ "iv_at_15": 15.4,
+ "iv_at_12": 20.79,
+ "implied_irr": 0.0638,
+ "implied_irr_base_case": 0.0661,
+ "upside_at_15_pct": -71.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Debt-free machine-vision leader, moat 5/10, in a genuine recovery \u2014 but at $53.99 the weighted IRR is 6.4% (IV@15% $15.40); it clears 15% only below ~$15.40.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0477,
+ "irr_bull": 0.0787,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 10.6,
+ "iv_at_25": 8.0,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 169367000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Global leader in industrial machine vision \u2014 installed base, application know-how, brand",
+  "Historically premium gross margins (72-76% through 2022) evidencing pricing power",
+  "Asset-light: FY2025 capex $8.7M on $994M revenue; no debt",
+  "OneVision AI platform and software attach extending the franchise"
+ ],
+ "moat_against": [
+  "Gross margin eroded from 75.6% (2017) to 66.9% (2025) \u2014 measured pricing/mix pressure",
+  "ROIC proxy fell from 22.2% (2021) to 7-8% in the 2023-25 trough",
+  "Keyence and low-cost Asian rivals (e.g. Hikrobot) contest the same budgets",
+  "Cyclical factory/logistics capex end markets \u2014 OE/share fell to $0.20 in 2023",
+  "Demand concentration in consumer-electronics and logistics capex cycles"
+ ]
+}
