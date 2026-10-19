@@ -1,5 +1,7 @@
 # Engine-fix decision sheet — one ruling pass (prepared 2026-10-18)
 
+Ruled 2026-10-19 — every item is resolved in README Fixes & lessons, Engine 5.5; the drafts it names were deleted.
+
 Status: PREPARED, not implemented. Engine untouched (v5.4.0 live).
 Update 2026-10-19: item 2 (ADS market cap) was ruled and implemented on
 2026-10-18 (Andrew) — see ADS_MARKET_CAP_SPEC_DRAFT.md, now marked

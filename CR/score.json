@@ -4,6 +4,7 @@
  "sector": "Industrials / Aerospace & defense components and process flow technologies",
  "price": 205.83,
  "market_cap_b": 12.06,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 6.144804088586031,
  "base_year": "2025",
@@ -15,8 +16,7 @@
   "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
-  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001944013-26-000095), Consolidated Statements of Cash Flows line 'Capital expenditures': $53.5M for FY2025 ($36.6M FY2024, $39.0M FY2023 in the same statement) \u2014 tagged in EDGAR companyfacts under us-gaap PaymentsForCapitalImprovements, a tag the engine does not read; H1 YTD legs of the same tag: $30.3M for 2025-01-01 to 2025-06-30 (10-Q) and $25.3M for 2026-01-01 to 2026-06-30 (Q2 2026 10-Q, accession 0001944013-26-000186). TTM capex = $53.5M - $30.3M + $25.3M = $48.5M. Corroborated by Crane's Q4 2025 earnings release Adjusted Free Cash Flow table: capital expenditures $53.5M (FY2025) / $36.6M (FY2024) against cash provided by operating activities from continuing operations of $394.8M / $257.8M.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
-  "BASE_DIVERGENCE: latest FY OE/share 5.45 vs 3-yr median 3.15 \u2014 one of them is distorted; find out which and why",
+  "BASE_DIVERGENCE: latest FY OE/share 5.36 vs 3-yr median 3.36 \u2014 one of them is distorted; find out which and why",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high"
  ],
  "scenarios": {
@@ -55,9 +55,9 @@
  "tier_final": "D",
  "confidence": "medium",
  "one_liner": "High-quality engineered-components maker with sole-source aerospace/process positions and expanding 42.2% gross margins, moat 6/10 \u2014 but at $205.83 it clears nothing: weighted IRR 7.0% on the TTM base ($6.14/share), weighted IV@15% $68.89, and even the super-bull IV@15% ($135.58) sits below the price; it clears the 15% hurdle only below about $68.89.",
- "analysis_date": "2026-10-18",
+ "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
- "engine_release": "5.4.0",
+ "engine_release": "5.5.0",
  "irr_bear": 0.053,
  "irr_bull": 0.0824,
  "tier_bear": "D",
@@ -70,8 +70,7 @@
  "shares_diluted_latest": 58600000,
  "model_fit": "modeled",
  "alert_eligible": false,
- "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_eligible": true,
  "moat_for": [
   "Sole-source / specified-in mission-critical positions: aerospace sensing, landing-gear and fluid-handling components certified into airframes and process plants \u2014 switching means requalification",
   "Aftermarket and repair annuity on a large installed base across commercial aerospace, defense and process industries",
@@ -85,23 +84,5 @@
   "Growth is partly bought at full prices: PSI at $1.15B for ~$390M of sales and ~$60M of adjusted EBITDA (target only 10% ROIC by year five), Trillium US pumps agreed at $240M (14.6x estimated 2026 adjusted EBITDA)",
   "Larger diversified rivals (Parker Hannifin, Eaton, Emerson, ITT) contest the same content with greater scale",
   "No network effects or consumer surface \u2014 the moat is qualification and installed base, which erode if programs are re-competed"
- ],
- "overrides": [
-  {
-   "field": "capex",
-   "value": 48500000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001944013-26-000095), Consolidated Statements of Cash Flows line 'Capital expenditures': $53.5M for FY2025 ($36.6M FY2024, $39.0M FY2023 in the same statement) \u2014 tagged in EDGAR companyfacts under us-gaap PaymentsForCapitalImprovements, a tag the engine does not read; H1 YTD legs of the same tag: $30.3M for 2025-01-01 to 2025-06-30 (10-Q) and $25.3M for 2026-01-01 to 2026-06-30 (Q2 2026 10-Q, accession 0001944013-26-000186). TTM capex = $53.5M - $30.3M + $25.3M = $48.5M. Corroborated by Crane's Q4 2025 earnings release Adjusted Free Cash Flow table: capital expenditures $53.5M (FY2025) / $36.6M (FY2024) against cash provided by operating activities from continuing operations of $394.8M / $257.8M."
-  }
- ],
- "override_impact": {
-  "base_used": "ttm",
-  "base_oe_without_override": 6.971,
-  "base_oe_with_override": 6.1448,
-  "base_oe_impact_pct": -11.852,
-  "weighted_irr_without_override": 0.0757,
-  "weighted_irr_with_override": 0.0699,
-  "weighted_irr_impact_pp": -0.573,
-  "unblocks_tier": true
- }
+ ]
 }

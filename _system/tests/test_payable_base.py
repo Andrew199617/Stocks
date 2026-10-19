@@ -123,7 +123,9 @@ def test_measure_run_drops_the_judgment_pin():
 
 
 def _n(payable=True, flags=(), gap=()):
-    n = {"ticker": "TST", "engine_version": 5, "engine_release": "5.4", "data_gap": list(gap), "as_of": "2026-10-19",
+    # Current-release output: the payable replay (payable_pin_impact) runs only there — on output from another
+    # release make_score carries or leaves the impact unmeasured (FIX_DECISIONS_R1 M3, test_make_score_55).
+    n = {"ticker": "TST", "engine_version": 5, "engine_release": E.ENGINE_RELEASE, "data_gap": list(gap), "as_of": "2026-10-19",
          "tier_by_numbers": "C", "moat_score": 5, "price": 351.06, "price_source": "manual",
          "market_cap_est": 1.46e10, "cik": 1, "latest_period_end": "2025-12-31",
          "base_oe_per_share": RNR_BASE, "base_source": "judgment_base_override",

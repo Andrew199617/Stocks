@@ -1,0 +1,279 @@
+{
+ "ticker": "SNA",
+ "cik": 91440,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:07:15-04:00",
+ "newest_filing_date": "2026-07-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000091440.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000045/sna-20260103.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SNA/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SNA/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Snap-on Inc",
+  "cik": 91440,
+  "description": {
+   "text": "Snap-on is a leading global innovator, manufacturer and marketer of tools, equipment, diagnostics, repair information and systems solutions for professional users performing critical tasks including those working in vehicle repair, aerospace, the military, natural resources, and manufacturing. From its founding in 1920, Snap-on has been recognized as the mark of the serious and the outward sign of the pride and dignity working men and women take in their professions. Products and services are sold through the company’s network of widely recognized franchisee vans as well as through direct and distributor channels, under a variety of notable brands. The company also provides financing programs to facilitate the sales of its products and to support its franchise business. Snap-on markets its products and brands worldwide in more than 130 countries. Snap-on’s largest geographic market is the United States. In addition, Snap-on has a meaningful presence across continental Europe and in the Asia Pacific region, as well as in Canada and the United Kingdom. The company began with the development of the original Snap-on interchangeable socket set and subsequently pioneered mobile tool distribution in the automotive repair market, where well-stocked vans sell to professional vehicle technicians at their place of business.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2026-01-03",
+   "accession": "0000091440-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000045/sna-20260103.htm"
+  },
+  "description_short": "Snap-on Incorporated is a leading global innovator, manufacturer, and marketer of tools, equipment, diagnostics, repair information and systems solutions for professional users performing critical tasks including those working in vehicle repair, aerospace, the military, natural resources, and manufacturing. From its founding in 1920, Snap-on has been recognized as the mark of the serious and the outward sign of the pride and dignity working men and women take in their professions. Products and services are sold through the company's network of widely recognized franchisee vans, as well as through direct and distributor channels, under a variety of notable brands. The company also provides financing programs to facilitate the sales of its products and to support its franchise business. Snap-on, an S&P 500 company, generated sales of $4.7 billion in 2025, and is headquartered in Kenosha, Wisconsin.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "3420",
+  "sic_description": "Cutlery, Handtools & General Hardware",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0102",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.snapon.com",
+  "headquarters": "Kenosha, Wisconsin",
+  "address": {
+   "street": "2801 80th Street",
+   "city": "Kenosha",
+   "state": "Wisconsin",
+   "zip": "53143",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "2626565200",
+  "employees": {
+   "count": 13000,
+   "as_of": "2026-01-03",
+   "evidence": "As of January 3, 2026, Snap-on employed approximately 13,000 people worldwide, of which approximately 7,300 were employed in the United States and approximately 5,700 were outside the United States.",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000045/sna-20260103.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-04",
+  "first_sec_filing_form": "PRE 14A",
+  "former_names": [
+   "SNAP ON INC",
+   "SNAP ON TOOLS CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000091440&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-07-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091440-26-000144",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000144/sna-20260704.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-26-000141",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000141/sna-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000091440-26-000114",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000114/sna-20260430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-04-04",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091440-26-000109",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000109/sna-20260404.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-26-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000106/sna-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-01-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000091440-26-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000101/sna-20260311.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2026-01-03",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000091440-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000045/sna-20260103.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144026000008/sna-20260205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-16",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091440-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000081/sna-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-16",
+   "period": "2025-10-16",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000078/sna-20251016.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-17",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091440-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000064/sna-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-17",
+   "period": "2025-07-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000061/sna-20250717.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-24",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000091440-25-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000033/sna-20250424.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-17",
+   "period": "2025-03-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091440-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000031/sna-20250329.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-17",
+   "period": "2025-04-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000028/sna-20250417.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-12",
+   "period": "2024-12-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000091440-25-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000023/sna-20250311.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-13",
+   "period": "2024-12-28",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000091440-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000010/sna-20241228.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-02-06",
+   "period": "2025-02-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-25-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144025000005/sna-20250206.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2024-10-17",
+   "period": "2024-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000091440-24-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144024000062/sna-20240928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2024-10-17",
+   "period": "2024-10-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000091440-24-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/91440/000009144024000059/sna-20241017.htm"
+  }
+ ],
+ "warnings": []
+}

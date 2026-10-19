@@ -28,6 +28,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SYS = os.path.dirname(HERE)
 sys.path.insert(0, SYS)
 import make_score as M  # noqa: E402
+from dcf_engine import ENGINE_RELEASE  # noqa: E402
 
 MAKE_SCORE = os.path.join(SYS, "make_score.py")
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
@@ -85,7 +86,10 @@ def _folder(base, tier_by_numbers="B", confidence="medium", override=None, one_l
     t = "TST"
     os.makedirs(os.path.join(base, t), exist_ok=True)
     os.makedirs(os.path.join(base, "_system"), exist_ok=True)
-    n = {"ticker": t, "engine_version": 5, "engine_release": "5.4", "data_gap": [], "as_of": "2026-10-15",
+    # The current release: since engine 5.5 a record from any other release has both alert
+    # gates closed by make_score (test_make_score_55.py), and these tests pin the gates of a
+    # current record. ("5.4" never matched a real stamp either: the engine writes "5.4.0".)
+    n = {"ticker": t, "engine_version": 5, "engine_release": ENGINE_RELEASE, "data_gap": [], "as_of": "2026-10-15",
          "tier_by_numbers": tier_by_numbers, "moat_score": 6, "price": 50.0, "price_source": "nasdaq",
          "market_cap_est": 5e9, "cik": 1, "latest_period_end": "2025-12-31",
          "base_oe_per_share": 3.0, "base_source": "median_3y", "inputs": {},

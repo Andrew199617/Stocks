@@ -1,0 +1,283 @@
+{
+ "ticker": "ELS",
+ "cik": 895417,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:06:08-04:00",
+ "newest_filing_date": "2026-09-10",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000895417.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/895417/000162828026008722/els-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ELS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ELS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "EQUITY LIFESTYLE PROPERTIES INC",
+  "cik": 895417,
+  "description": {
+   "text": "We are a fully integrated owner of lifestyle-oriented properties (“Properties”) consisting of property operations and home sales and rental operations primarily within manufactured home (“MH”) and recreational vehicle (“RV”) communities and marinas. We were formed in December 1992 to continue the property operations, business objectives and acquisition strategies of an entity that had owned and operated Properties since 1969. Mr. Samuel Zell served as Chairman of our Board of Directors (the “Board”) from the Company’s initial public offering until his passing in May 2023. Mr. Zell is recognized as a founder of the modern real estate investment trust (“REIT”) industry. Commencing with our taxable year ended December 31, 1993, we have elected to be taxed as a REIT for U.S. federal income tax purposes. We have a unique business model where we own the land which we lease to customers who own manufactured homes and cottages, RVs and/or boats either on a long-term or short-term basis. Our customers may lease individual developed areas (“Sites”) or enter into right-to-use contracts, also known as membership subscriptions, which provide them access to specific Properties for limited stays. Compared to other types of real estate companies, our business model is characterized by low maintenance costs and low customer turnover costs.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-008722",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026008722/els-20251231.htm"
+  },
+  "description_short": "We are a self-administered, self-managed real estate investment trust ('REIT') with headquarters in Chicago. As of June 30, 2026, we own or have an interest in 453 properties in 35 states and British Columbia consisting of 173,559 sites.",
+  "industry": "Real Estate Investment Trusts",
+  "sector": "Real Estate",
+  "region": "North America",
+  "sic": "6798",
+  "sic_description": "Real Estate Investment Trusts",
+  "state_of_incorporation": "MD",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.equitylifestyleproperties.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "Two North Riverside Plaza Suite 800",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60606",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "3122791400",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-12-09",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "MANUFACTURED HOME COMMUNITIES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000895417&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-061232",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026061232/els-20260910.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-28",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-050244",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026050244/els-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-050243",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026050243/els-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-049302",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026049302/els-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-038312",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026038312/els-20260527.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-029826",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026029826/els-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-28",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001628280-26-028417",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026028417/els-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-28",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-028003",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026028003/els-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-026407",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026026407/els-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-018799",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026018799/els-20260317.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-26",
+   "period": "2026-02-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001628280-26-012010",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026012010/els-20260226.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-008722",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026008722/els-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-09",
+   "period": "2026-02-03",
+   "items": [
+    "5.02",
+    "8.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0001628280-26-006427",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026006427/els-20260203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-26-003993",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026003993/els-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-22",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-003909",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828026003909/els-20260122.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-046869",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828025046869/els-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-046789",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828025046789/els-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-22",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-25-045991",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000162828025045991/els-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-29",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000895417-25-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000089541725000070/els-20250729.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-29",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000895417-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/895417/000089541725000069/els-20250630.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-18"
+ ]
+}

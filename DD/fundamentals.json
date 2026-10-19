@@ -2,7 +2,7 @@
  "ticker": "DD",
  "cik": 1666700,
  "entity": "DUPONT DE NEMOURS, INC.",
- "as_of": "2026-10-16",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1725,22 +1725,23 @@
     "complete": true
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 124.0433,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 124.0433 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 135042975,
   "shares_as_of": "2026-07-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-04)",
   "shares_basis": "instant",
   "shares_diluted": 136800000,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
-  "dividend_yield": null,
+  "ads_ratio": null,
+  "market_cap": 16751176260.817501,
+  "market_cap_basis": "124.0433 \u00d7 135,042,975 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-04), as of 2026-07-31)",
+  "dividend_yield": 0.014540597224224636,
   "buyback_yield": null,
   "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "shareholder_yield": 0.016834638690992894,
   "shareholder_yield_basis": "dividends_paid (4/4 quarters filed) + buybacks NOT INCLUDED (not filed for any of the four quarters) \u2212 share_issuance (4/4 quarters filed); sum of the four quarterly rows 2025-09-30..2026-06-30",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1757,7 +1758,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "124.0433 \u00d7 135,042,975 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-04), as of 2026-07-31)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "net_buyback_yield": {
@@ -1775,7 +1776,7 @@
     "bound": null,
     "complete": false,
     "numerator": null,
-    "denominator": null,
+    "denominator": "124.0433 \u00d7 135,042,975 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-04), as of 2026-07-31)",
     "note": "buybacks not filed for the window \u2014 null"
    },
    "shareholder_yield": {
@@ -1796,23 +1797,24 @@
     "bound": "lower",
     "complete": false,
     "numerator": 282000000.0,
-    "denominator": null
+    "denominator": "124.0433 \u00d7 135,042,975 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-04), as of 2026-07-31)",
+    "note": "a lower bound \u2014 a positive leg is filed for only some quarters or not at all"
    },
    "dividend_yield": {
     "numerator": 1.8036636636636638,
     "basis": "FY2025 DPS 4.29429 + the quarters since (2026-03-31: 0.600601, 2026-06-30: 0.6) \u2212 the same quarters a year earlier (2025-03-31: 1.23123, 2025-06-30: 2.46)",
     "bound": "exact",
     "complete": true,
-    "denominator": null
+    "denominator": "price 124.0433 (score.json price)"
    }
   },
   "yields_display": {
    "dividend_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.014540597224224636,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
-    "note": "dps_ttm: the latest four quarterly DPS facts are not consecutive quarters (274 days between 2025-06-30 and 2026-03-31) \u2014 FY2025 DPS 4.29429 + the quarters since (2026-03-31: 0.600601, 2026-06-30: 0.6) \u2212 the same quarters a year earlier (2025-03-31: 1.23123, 2025-06-30: 2.46)"
+    "label": "1.45%",
+    "note": "FY2025 DPS 4.29429 + the quarters since (2026-03-31: 0.600601, 2026-06-30: 0.6) \u2212 the same quarters a year earlier (2025-03-31: 1.23123, 2025-06-30: 2.46)"
    },
    "buyback_yield": {
     "value": null,
@@ -1829,11 +1831,11 @@
     "note": "buybacks: not filed for any of the four quarters; share_issuance: 4/4 quarters filed"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "buybacks: not filed for any of the four quarters"
+    "value": 0.016834638690992894,
+    "bound": "lower",
+    "prefix": "\u2265",
+    "label": "\u2265 1.68%",
+    "note": "buybacks: not filed for any of the four quarters \u2014 left out, so this yield is a lower bound"
    }
   },
   "history": [

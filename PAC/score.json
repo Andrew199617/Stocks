@@ -4,6 +4,7 @@
  "sector": "Industrials / Airport concessions (transportation infrastructure)",
  "price": 203.9,
  "market_cap_b": 10.3,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 4.077161497153176,
  "base_year": "2024",
@@ -77,7 +78,7 @@
  "model_fit": "modeled",
  "alert_eligible": false,
  "exit_alert_eligible": false,
- "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "exit_alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an exit alert; tier exists only because of a judgment override",
  "moat_for": [
   "Sole-operator concessions: 12 Mexican airports (Guadalajara, Tijuana, Puerto Vallarta, Los Cabos + 8) to 2048 and 2 Jamaican airports \u2014 no competing airport in each catchment",
   "Regulated pricing power proven in the 2025-2029 tariff reset: weighted average maximum tariffs +18.1% in 2025, with PPI indexation inside each five-year MDP period",
@@ -120,6 +121,9 @@
   "weighted_irr_without_override": 0.0251,
   "weighted_irr_with_override": 0.0556,
   "weighted_irr_impact_pp": 3.045,
-  "unblocks_tier": true
- }
+  "unblocks_tier": true,
+  "impact_carried_from_prior_score": true,
+  "counterfactual_engine_release": "5.4.0"
+ },
+ "net_debt_to_normalized_oe_ads_basis": 1.0812
 }

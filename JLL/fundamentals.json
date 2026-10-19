@@ -2,7 +2,7 @@
  "ticker": "JLL",
  "cik": 1037976,
  "entity": "JONES LANG LASALLE INC",
- "as_of": "2026-10-17",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1717,22 +1717,23 @@
     "complete": false
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 305.5046,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 305.5046 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 46007703,
   "shares_as_of": "2026-06-30",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-30)",
   "shares_basis": "instant",
   "shares_diluted": 46925000,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
+  "ads_ratio": null,
+  "market_cap": 14055564901.9338,
+  "market_cap_basis": "305.5046 \u00d7 46,007,703 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-30), as of 2026-06-30)",
   "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "buyback_yield": 0.03988455845861245,
+  "net_buyback_yield": 0.03988455845861245,
+  "shareholder_yield": 0.03988455845861245,
   "shareholder_yield_basis": "dividends_paid NOT INCLUDED (not filed for any of the four quarters) + buybacks (4/4 quarters filed) \u2212 share_issuance NOT INCLUDED (not filed for any of the four quarters); sum of the four quarterly rows 2025-09-30..2026-06-30",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1749,7 +1750,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 560600000.0,
-    "denominator": null
+    "denominator": "305.5046 \u00d7 46,007,703 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-30), as of 2026-06-30)"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1767,7 +1768,8 @@
     "bound": "upper",
     "complete": false,
     "numerator": 560600000.0,
-    "denominator": null
+    "denominator": "305.5046 \u00d7 46,007,703 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-30), as of 2026-06-30)",
+    "note": "an upper bound \u2014 the issuance leg is filed for only some quarters or not at all"
    },
    "shareholder_yield": {
     "legs": {
@@ -1787,14 +1789,15 @@
     "bound": "indeterminate",
     "complete": false,
     "numerator": 560600000.0,
-    "denominator": null
+    "denominator": "305.5046 \u00d7 46,007,703 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-07-30), as of 2026-06-30)",
+    "note": "neither bound \u2014 a positive leg and the issuance leg are both incomplete"
    },
    "dividend_yield": {
     "numerator": null,
     "basis": null,
     "bound": null,
     "complete": false,
-    "denominator": null
+    "denominator": "price 305.5046 (score.json price)"
    }
   },
   "yields_display": {
@@ -1806,25 +1809,25 @@
     "note": "dps_ttm: the latest four quarterly DPS facts are not consecutive quarters (274 days between 2019-09-30 and 2020-06-30); the latest full-year DPS (FY2021, period ended 2021-12-31) is more than 15 months older than the newest filed period (2026-06-30) \u2014 a suspended / reinstated dividend; dps_ttm and dividend_yield null"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.03988455845861245,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "3.99%",
     "note": null
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "share_issuance: not filed for any of the four quarters"
+    "value": 0.03988455845861245,
+    "bound": "upper",
+    "prefix": "\u2264",
+    "label": "\u2264 3.99%",
+    "note": "share_issuance: not filed for any of the four quarters \u2014 no deduction made, so this yield is an upper bound"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "dividends_paid: not filed for any of the four quarters; share_issuance: not filed for any of the four quarters"
+    "value": 0.03988455845861245,
+    "bound": "indeterminate",
+    "prefix": "\u2248",
+    "label": "\u2248 3.99% (incomplete)",
+    "note": "dividends_paid: not filed for any of the four quarters \u2014 left out, so this yield is a lower bound; share_issuance: not filed for any of the four quarters \u2014 no deduction made, so this yield is an upper bound"
    }
   },
   "history": [

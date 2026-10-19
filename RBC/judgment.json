@@ -1,10 +1,4 @@
 {
- "capex_override": {
-  "kind": "filing",
-  "reason": "DATA_GAP:capex — capex missing for FY2024, FY2025, FY2026 under every candidate tag the engine reads, because RBC Bearings reports capital expenditures only under PaymentsForCapitalImprovements from FY2024 onward (the prior tag PaymentsToAcquirePropertyPlantAndEquipment stops after FY2023, $42.0M). The engine applies this single FY2026 filing value to every missing period; against the same statement's true per-year values it overstates FY2024 capex by $39.9M (true $33.2M) and FY2025 by $23.3M (true $49.8M), understating those years' OE — a conservative direction for the median-of-3 base. In TTM (ttm.py, override-filled legs) the same value understates true filed-leg TTM capex of $82.3M (FY2026 $73.1M − Q1 FY2026 $15.7M + Q1 FY2027 $24.9M, 10-Qs under the same tag) by $9.2M, ~2.6% of TTM OE — disclosed, not hidden.",
-  "source": "Form 10-K for fiscal year ended March 28, 2026 (filed 2026-05-15), Consolidated Statements of Cash Flows, investing line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $73.1M for FY2026, with $49.8M for FY2025 and $33.2M for FY2024 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values",
-  "value": 73100000
- },
  "confidence": "medium",
  "in_scope_under_40b": true,
  "moat_against": [
@@ -22,7 +16,7 @@
  "moat_justification": "Moderate-strong narrow moat: mission-critical, highly engineered precision bearings and components designed into aerospace/defense and industrial platforms, where requalification of a substitute supplier is slow and costly, giving sole/primary-source stickiness and proven pricing power (gross margin 37.9% FY2022 → 44.4% FY2025/26, 47.7% in Q1 FY2027). Measured ROIC proxy is only mid-to-high single digits (6.0% FY2023 → 7.8% FY2026 after 11-12% in FY2019-20) because the 2021 Dodge acquisition loaded the balance sheet with goodwill/intangibles — that caps the score at 6 despite the margin record; larger rivals (Timken, SKF, Schaeffler) contest the industrial side and OEM customers are concentrated and powerful.",
  "moat_score": 6,
  "name": "RBC Bearings Incorporated",
- "one_liner": "High-quality precision-bearings franchise, moat 6/10 — but at $498.52 the weighted IRR is only 6.7% (Tier D, IV@15% $150.00); it clears the 15% hurdle only near $150, about 70% below the current price.",
+ "one_liner": "High-quality precision-bearings franchise, moat 6/10 — but at $498.52 the weighted IRR is only 6.6% (Tier D, IV@15% $146.04); it clears the 15% hurdle only near $146, about 71% below the current price.",
  "probs_used": [
   0.1,
   0.25,

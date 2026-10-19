@@ -27,25 +27,25 @@
    "ttm": 467500000
   },
   "capex": {
-   "fy": 72899726.02739726,
+   "fy": 73100000,
    "fy_period": [
     "2025-03-30",
     "2026-03-28"
    ],
-   "fy_tag": "OVERRIDE",
-   "ytd_prior": 18224931.506849315,
+   "fy_tag": "PaymentsForCapitalImprovements",
+   "ytd_prior": 15700000,
    "ytd_prior_period": [
     "2025-03-30",
     "2025-06-28"
    ],
-   "ytd_prior_tag": "OVERRIDE",
-   "ytd_current": 18224931.506849315,
+   "ytd_prior_tag": "PaymentsForCapitalImprovements",
+   "ytd_current": 24900000,
    "ytd_current_period": [
     "2026-03-29",
     "2026-06-27"
    ],
-   "ytd_current_tag": "OVERRIDE",
-   "ttm": 72899726.02739726
+   "ytd_current_tag": "PaymentsForCapitalImprovements",
+   "ttm": 82300000
   },
   "sbc": {
    "fy": 34500000,
@@ -91,47 +91,56 @@
   }
  },
  "ttm_ocf": 467500000,
- "ttm_capex": 72899726.02739726,
+ "ttm_capex": 82300000,
  "ttm_sbc": 34600000,
  "ttm_shares_diluted": 31714686,
- "ttm_oe_total": 360000273.9726027,
- "ttm_oe_per_share": 11.351216719364736,
+ "ttm_oe_total": 350600000,
+ "ttm_oe_per_share": 11.05481542525756,
  "warnings": [],
- "overrides_used": [
-  {
-   "field": "capex",
-   "value": 73100000.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended March 28, 2026 (filed 2026-05-15), Consolidated Statements of Cash Flows, investing line 'Capital expenditures' tagged us-gaap:PaymentsForCapitalImprovements (a tag the engine does not read): $73.1M for FY2026, with $49.8M for FY2025 and $33.2M for FY2024 in the same statement; corroborated in EDGAR companyfacts under PaymentsForCapitalImprovements with identical values",
-   "legs_filled": {
-    "fy": {
-     "period": [
-      "2025-03-30",
-      "2026-03-28"
-     ],
-     "amount": 72899726.02739726,
-     "days": 364,
-     "prorated": true
-    },
-    "ytd_prior": {
-     "period": [
-      "2025-03-30",
-      "2025-06-28"
-     ],
-     "amount": 18224931.506849315,
-     "days": 91,
-     "prorated": true
-    },
-    "ytd_current": {
-     "period": [
-      "2026-03-29",
-      "2026-06-27"
-     ],
-     "amount": 18224931.506849315,
-     "days": 91,
-     "prorated": true
-    }
-   }
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 73100000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsForCapitalImprovements"
+  },
+  "ytd_prior": {
+   "ppe": 15700000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsForCapitalImprovements"
+  },
+  "ytd_current": {
+   "ppe": 24900000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsForCapitalImprovements"
   }
- ]
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
 }

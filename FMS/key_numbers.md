@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $3.54 · normalized (3-yr median) OE/share: $3.23
 - Latest FY OE total: $2.063B
 - Shares diluted (latest): 291,190,575
-- Market cap (est): $12.911B · net debt (latest): $6.684B
+- Market cap (est): $12.911B (basis: diluted_latest) · net debt (latest): $6.684B
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 5/5
 
 ## Growth & moat
@@ -38,7 +39,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 14.58%
 - TV share @15%: 18.3%
 - Scenario spread (IV@15 super-bull / super-bear): 3.38x
-- Net debt / normalized OE: 7.10x
+- Net debt / normalized OE: 3.55x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 0.5 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed 7.10x)
 - Months since FY end: 9.6
 
 ## Fragility flags
@@ -65,5 +66,5 @@ Filing gaps found and covered by judgment overrides: sbc, capex, shares
 - sbc reason: DATA_GAP:sbc — no share-based compensation line is filed in the cash-flow statement / companyfacts for FY2020-2025 under any engine tag (statements.json: SBC blank FY2020-2025), so the engine's SBC leg is a gap even though Note 23 of the 20-F discloses the expense. Note 23's table (component sums, no total printed): total share-based compensation expense EUR 45,124,000 (FY2025) / EUR 38,458,000 (FY2024) / EUR 32,515,000 (FY2023), but the legacy plans (LTIP 2024+, LTIP 2022+, MB LTIP 2020, LTIP 2019, MB LTIP 2019) are cash-settled ('In cash') — a cash personnel cost already borne inside operating cash flow, not the non-cash addback the OE template subtracts — and only the new plans (LTIP 2025+, MB LTIP 2024+) can be equity-settled. The template's SBC leg is therefore the equity-settled expense: EUR 8,371,000 in FY2025, nil in FY2024/FY2023. EUR 10M flat is that figure rounded up and overstates FY2023/24 — conservative — and is about 0.5% of the gated years' owner's earnings, immaterial to the base and the tier either way; a sourced in-band estimate is used instead of the v4-style silent zero.
 - shares reason: DATA_GAP:shares — diluted shares missing for FY2023/2024/2025 (in fact all years) in companyfacts; only the basic weighted-average count is tagged. The filer's own Note 22 reconciliation shows potentially dilutive shares are NIL in all three gated years (its legacy LTIPs are cash-settled virtual shares; see Note 23), so diluted EPS equals basic EPS on the filer's own presentation and the filed FY2025 weighted-average count IS the diluted denominator. The engine applies this single value to every missing period; the filed counts it replaces differ by less than 1% in the gated years (293,413,449 in FY2023/24 vs 291,190,575 in FY2025), so the 3-yr median base OE/share moves by under 1% from this flattening.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $4.95 (no override) → $3.23 (with override), -34.69% · weighted IRR 26.26% → 18.14% (-8.11pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $4.95 (no override) → $3.23 (with override), -34.69% · weighted IRR 26.26% → 18.14% (-8.11pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

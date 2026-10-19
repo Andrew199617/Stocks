@@ -1,0 +1,586 @@
+{
+ "ticker": "VOD",
+ "cik": 839923,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-235425",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/839923/000119312526235425/d143190d20f_htm.xml"
+  }
+ ],
+ "currency": "EUR",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vod:GermanySubSegmentMember",
+     "label": "Germany Sub Segment",
+     "values": [
+      12957000000,
+      12180000000,
+      12133000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3529,
+      0.3253,
+      0.2999
+     ],
+     "growth_yoy": [
+      null,
+      -0.06,
+      -0.0039
+     ]
+    },
+    {
+     "member": "vod:UnitedKingdomSubSegmentMember",
+     "label": "UK",
+     "values": [
+      6837000000,
+      7069000000,
+      9192000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1862,
+      0.1888,
+      0.2272
+     ],
+     "growth_yoy": [
+      null,
+      0.0339,
+      0.3003
+     ]
+    },
+    {
+     "member": "srt:AfricaMember",
+     "label": "Africa",
+     "values": [
+      7420000000,
+      7791000000,
+      8365000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2021,
+      0.208,
+      0.2067
+     ],
+     "growth_yoy": [
+      null,
+      0.05,
+      0.0737
+     ]
+    },
+    {
+     "member": "vod:OtherEuropeCountriesExcludingGermanyItalyUkAndSpainSubSegmentMember",
+     "label": "Other Europe Countries Excluding Germany Italy UK And Spain Sub Segment",
+     "values": [
+      5504000000,
+      5694000000,
+      5714000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1499,
+      0.1521,
+      0.1412
+     ],
+     "growth_yoy": [
+      null,
+      0.0345,
+      0.0035
+     ]
+    },
+    {
+     "member": "country:TR",
+     "label": "T\u00dcRKIYE",
+     "values": [
+      2362000000,
+      3086000000,
+      3431000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0643,
+      0.0824,
+      0.0848
+     ],
+     "growth_yoy": [
+      null,
+      0.3065,
+      0.1118
+     ]
+    },
+    {
+     "member": "ifrs-full:UnallocatedAmountsMember",
+     "label": "Unallocated amounts",
+     "values": [
+      1864000000,
+      1817000000,
+      1825000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0508,
+      0.0485,
+      0.0451
+     ],
+     "growth_yoy": [
+      null,
+      -0.0252,
+      0.0044
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Eliminations",
+     "values": [
+      -227000000,
+      -189000000,
+      -199000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0062,
+      -0.005,
+      -0.0049
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     36717000000,
+     37448000000,
+     40461000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vod:GermanySubSegmentMember",
+     "label": "Germany Sub Segment",
+     "values": [
+      12585000000,
+      11818000000,
+      11764000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3647,
+      0.3345,
+      0.3073
+     ],
+     "growth_yoy": [
+      null,
+      -0.0609,
+      -0.0046
+     ]
+    },
+    {
+     "member": "vod:UnitedKingdomSubSegmentMember",
+     "label": "UK",
+     "values": [
+      6742000000,
+      6996000000,
+      9083000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1954,
+      0.198,
+      0.2372
+     ],
+     "growth_yoy": [
+      null,
+      0.0377,
+      0.2983
+     ]
+    },
+    {
+     "member": "srt:AfricaMember",
+     "label": "Africa",
+     "values": [
+      6981000000,
+      7285000000,
+      7810000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2023,
+      0.2062,
+      0.204
+     ],
+     "growth_yoy": [
+      null,
+      0.0435,
+      0.0721
+     ]
+    },
+    {
+     "member": "vod:OtherEuropeCountriesExcludingGermanyItalyUkAndSpainSubSegmentMember",
+     "label": "Other Europe Countries Excluding Germany Italy UK And Spain Sub Segment",
+     "values": [
+      5387000000,
+      5566000000,
+      5595000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1561,
+      0.1575,
+      0.1461
+     ],
+     "growth_yoy": [
+      null,
+      0.0332,
+      0.0052
+     ]
+    },
+    {
+     "member": "country:TR",
+     "label": "T\u00dcRKIYE",
+     "values": [
+      2355000000,
+      3079000000,
+      3352000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0682,
+      0.0871,
+      0.0875
+     ],
+     "growth_yoy": [
+      null,
+      0.3074,
+      0.0887
+     ]
+    },
+    {
+     "member": "ifrs-full:UnallocatedAmountsMember",
+     "label": "Unallocated amounts",
+     "values": [
+      608000000,
+      720000000,
+      804000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0176,
+      0.0204,
+      0.021
+     ],
+     "growth_yoy": [
+      null,
+      0.1842,
+      0.1167
+     ]
+    },
+    {
+     "member": "ifrs-full:EliminationOfIntersegmentAmountsMember",
+     "label": "Eliminations",
+     "values": [
+      -151000000,
+      -129000000,
+      -121000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0044,
+      -0.0037,
+      -0.0032
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     34507000000,
+     35335000000,
+     38287000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "vod:GermanySubSegmentMember",
+     "label": "Germany Sub Segment",
+     "values": [
+      4543000000,
+      4536000000,
+      4556000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4362,
+      0.4198,
+      0.3658
+     ],
+     "growth_yoy": [
+      null,
+      -0.0015,
+      0.0044
+     ]
+    },
+    {
+     "member": "vod:UnitedKingdomSubSegmentMember",
+     "label": "UK",
+     "values": [
+      1733000000,
+      1908000000,
+      3274000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1664,
+      0.1766,
+      0.2629
+     ],
+     "growth_yoy": [
+      null,
+      0.101,
+      0.7159
+     ]
+    },
+    {
+     "member": "vod:OtherEuropeCountriesExcludingGermanyItalyUkAndSpainSubSegmentMember",
+     "label": "Other Europe Countries Excluding Germany Italy UK And Spain Sub Segment",
+     "values": [
+      1447000000,
+      1472000000,
+      1531000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1389,
+      0.1362,
+      0.1229
+     ],
+     "growth_yoy": [
+      null,
+      0.0173,
+      0.0401
+     ]
+    },
+    {
+     "member": "srt:AfricaMember",
+     "label": "Africa",
+     "values": [
+      1184000000,
+      1129000000,
+      1209000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1137,
+      0.1045,
+      0.0971
+     ],
+     "growth_yoy": [
+      null,
+      -0.0465,
+      0.0709
+     ]
+    },
+    {
+     "member": "country:TR",
+     "label": "T\u00dcRKIYE",
+     "values": [
+      537000000,
+      681000000,
+      795000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0516,
+      0.063,
+      0.0638
+     ],
+     "growth_yoy": [
+      null,
+      0.2682,
+      0.1674
+     ]
+    },
+    {
+     "member": "ifrs-full:UnallocatedAmountsMember",
+     "label": "Unallocated amounts",
+     "values": [
+      970000000,
+      1078000000,
+      1089000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0931,
+      0.0998,
+      0.0874
+     ],
+     "growth_yoy": [
+      null,
+      0.1113,
+      0.0102
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     10414000000,
+     10804000000,
+     12454000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

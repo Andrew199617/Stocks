@@ -1,11 +1,4 @@
 {
- "capex_override": {
-  "ack_reason": "The out-of-band flag is mechanical only: the band is computed against the last FILED capex value under an engine-read tag, and APA has never filed one (last_filed_value is null), so every value flags out-of-band, including this exact figure from the filer's own FY2025 10-K. This is not an estimate lacking an anchor \u2014 it is the filer's reported cash-basis capital expenditure for FY2025 (see source).",
-  "kind": "filing",
-  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) in EDGAR companyfacts under every candidate tag the engine reads, because APA files its capital expenditures only as additions to oil and gas property under PaymentsToExploreAndDevelopOilAndGasProperties (the only capex-like Payments* tag in its companyfacts). The engine applies this single value to every missing period; $2,740M is both the FY2025 filed figure and the median of the three filed years ($2,313M / $2,851M / $2,740M). Against the true per-year figures it overstates FY2023 capex by $427M (conservative direction, lowers that year's OE) and understates FY2024 by $111M (~3% of that year's filed OCF, raising that year's OE slightly \u2014 noted, not hidden); FY2025 is exact. The median-of-3 base year is FY2024 on shares, and the single-value fill lands the computed median base within ~1% of the median built from the true per-year figures, so the approximation does not drive the verdict. A separate small line, leasehold and property acquisitions ($26M in FY2025), is acquisition spend, not additions to oil and gas property, and is excluded as the filer presents it.",
-  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-26, accession 0001841666-26-000015), MD&A Sources and Uses of Cash table (footnote: capital expenditures on a cash basis), line 'Additions to oil and gas property': $2,740M for FY2025, with $2,851M for FY2024 and $2,313M for FY2023 in the same table; identical values are tagged in EDGAR companyfacts under us-gaap PaymentsToExploreAndDevelopOilAndGasProperties, a tag the engine does not read",
-  "value": 2740000000
- },
  "confidence": "low",
  "in_scope_under_40b": true,
  "moat_against": [
@@ -24,7 +17,7 @@
  "moat_justification": "Commodity price-taker with no pricing power: the roic_proxy series in fundamentals.json swings from -40.3% (2019) and -47.2% (2020) to +70.4% (2022), +37.6% (2023), +16.6% (2024) and +18.6% (2025) \u2014 returns are set by oil and gas prices, not by a franchise. Gross margin is not filed under any engine-read tag (revenue itself is filed only under a filer extension concept), so no margin evidence offsets that. What APA does have is asset quality, not a moat: Permian drilling/completion efficiency gains (full-year U.S. oil guidance raised to 123,000 bbl/d on an unchanged $1.3B U.S. capital budget, four rigs doing the work once estimated to need eight), a revised Egypt gas pricing agreement covering nearly half its Egyptian gas, and the carried GranMorgu development in Suriname (TotalEnergies pays 87.5% of the first $10B of gross capex). Those support a 3, not the 7+ the rubric reserves for durable above-cost-of-capital returns through a cycle \u2014 APA's own history includes two deeply negative ROIC years in the last seven.",
  "moat_score": 3,
  "name": "APA Corporation",
- "one_liner": "Commodity E&P, moat 3/10 \u2014 no pricing power and cycle-set returns; on the TTM base ($4.75/share) the weighted IRR is 10.8% with IV@15% $32.80 vs the $49.18 price, so it does not clear the 15% hurdle (clears only below ~$32.80), and the method range runs down to Tier D on the median base \u2014 size to the bear end.",
+ "one_liner": "Commodity E&P, moat 3/10 \u2014 no pricing power and cycle-set returns; on the override-free TTM base ($5.67/share, filed E&P capex now read by engine 5.5) the weighted IRR is 12.45% with IV@15% $39.16 vs the $49.14 price, so it does not clear the 15% hurdle (clears only below ~$39.16); band D (8.57%) to B (17.14%) \u2014 size to the bear end.",
  "probs_used": [
   0.15,
   0.3,

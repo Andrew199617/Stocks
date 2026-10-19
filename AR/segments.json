@@ -1,0 +1,941 @@
+{
+ "ticker": "AR",
+ "cik": 1433270,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001104659-26-013386",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926013386/ar-20251231x10k_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-051530",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926051530/ar-20260331x10q_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001104659-26-088153",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1433270/000110465926088153/ar-20260630x10q_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ar:ExplorationAndProductionMember",
+     "label": "Exploration And Production",
+     "values": [
+      4475850000,
+      4146527000,
+      5149923000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.956,
+      0.9586,
+      0.9761
+     ],
+     "growth_yoy": [
+      null,
+      -0.0736,
+      0.242
+     ]
+    },
+    {
+     "member": "ar:MarketingMember",
+     "label": "Marketing",
+     "values": [
+      206122000,
+      179069000,
+      125900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.044,
+      0.0414,
+      0.0239
+     ],
+     "growth_yoy": [
+      null,
+      -0.1312,
+      -0.2969
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4681972000,
+     4325596000,
+     5275823000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ar:ExplorationAndProductionMember",
+     "label": "Exploration And Production",
+     "values": [
+      1327149000,
+      1263750000,
+      1903465000,
+      1503776000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9811,
+      0.974,
+      0.9786,
+      0.9641
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4343,
+      0.1899
+     ]
+    },
+    {
+     "member": "ar:MarketingMember",
+     "label": "Marketing",
+     "values": [
+      25558000,
+      33743000,
+      41661000,
+      56066000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0189,
+      0.026,
+      0.0214,
+      0.0359
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6301,
+      0.6616
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1352707000,
+     1297493000,
+     1945126000,
+     1559842000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ar:ExplorationAndProductionMember",
+     "label": "Exploration And Production",
+     "values": [
+      498853000,
+      66297000,
+      947952000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.2589,
+      144.1239,
+      1.0728
+     ],
+     "growth_yoy": [
+      null,
+      -0.8671,
+      13.2986
+     ]
+    },
+    {
+     "member": "ar:MarketingMember",
+     "label": "Marketing",
+     "values": [
+      -102606000,
+      -65837000,
+      -64306000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2589,
+      -143.1239,
+      -0.0728
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     396247000,
+     460000,
+     883646000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ar:ExplorationAndProductionMember",
+     "label": "Exploration And Production",
+     "values": [
+      288684000,
+      223128000,
+      750344000,
+      391452000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0634,
+      1.0891,
+      1.0286,
+      1.0426
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.5992,
+      0.7544
+     ]
+    },
+    {
+     "member": "ar:MarketingMember",
+     "label": "Marketing",
+     "values": [
+      -17212000,
+      -18245000,
+      -20892000,
+      -15993000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0634,
+      -0.0891,
+      -0.0286,
+      -0.0426
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     271472000,
+     204883000,
+     729452000,
+     375459000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ar:ExplorationAndProductionMember",
+     "label": "Exploration And Production",
+     "values": [
+      12999930000,
+      13238013000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9992,
+      0.9994
+     ],
+     "growth_yoy": [
+      null,
+      0.0183
+     ]
+    },
+    {
+     "member": "ar:MarketingMember",
+     "label": "Marketing",
+     "values": [
+      10120000,
+      7394000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0008,
+      0.0006
+     ],
+     "growth_yoy": [
+      null,
+      -0.2694
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13010050000,
+     13245407000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ar:ExplorationAndProductionMember",
+     "label": "Exploration And Production",
+     "values": [
+      13238013000,
+      15330307000,
+      15212556000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9994,
+      0.9988,
+      0.9987
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ar:MarketingMember",
+     "label": "Marketing",
+     "values": [
+      7394000,
+      19139000,
+      20078000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0006,
+      0.0012,
+      0.0013
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13245407000,
+     15349446000,
+     15232634000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NaturalGasProductionMember",
+     "label": "Natural Gas, Production",
+     "values": [
+      2192349000,
+      1818297000,
+      2873241000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4683,
+      0.4204,
+      0.5446
+     ],
+     "growth_yoy": [
+      null,
+      -0.1706,
+      0.5802
+     ]
+    },
+    {
+     "member": "ar:NaturalGasLiquidsSalesMember",
+     "label": "Natural Gas Liquids Sales",
+     "values": [
+      1836950000,
+      2066975000,
+      1986840000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3923,
+      0.4778,
+      0.3766
+     ],
+     "growth_yoy": [
+      null,
+      0.1252,
+      -0.0388
+     ]
+    },
+    {
+     "member": "us-gaap:OilAndCondensateMember",
+     "label": "Oil and Condensate",
+     "values": [
+      247146000,
+      230027000,
+      150158000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0528,
+      0.0532,
+      0.0285
+     ],
+     "growth_yoy": [
+      null,
+      -0.0693,
+      -0.3472
+     ]
+    },
+    {
+     "member": "ar:MarketingsMember",
+     "label": "Marketings",
+     "values": [
+      206122000,
+      179069000,
+      125900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.044,
+      0.0414,
+      0.0239
+     ],
+     "growth_yoy": [
+      null,
+      -0.1312,
+      -0.2969
+     ]
+    },
+    {
+     "member": "ar:CommodityDerivativeFairValueGainsLossesMember",
+     "label": "Commodity Derivative Fair Value Gains Losses",
+     "values": [
+      166324000,
+      731000,
+      111049000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0355,
+      0.0002,
+      0.021
+     ],
+     "growth_yoy": [
+      null,
+      -0.9956,
+      150.9138
+     ]
+    },
+    {
+     "member": "ar:AmortizationOfDeferredRevenueVppMember",
+     "label": "Amortization Of Deferred Revenue VPP",
+     "values": [
+      30552000,
+      27101000,
+      25264000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0065,
+      0.0063,
+      0.0048
+     ],
+     "growth_yoy": [
+      null,
+      -0.113,
+      -0.0678
+     ]
+    },
+    {
+     "member": "ar:OtherRevenueAndIncomeMember",
+     "label": "Other Revenue And Income",
+     "values": [
+      2529000,
+      3396000,
+      3371000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0005,
+      0.0008,
+      0.0006
+     ],
+     "growth_yoy": [
+      null,
+      0.3428,
+      -0.0074
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4681972000,
+     4325596000,
+     5275823000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NaturalGasProductionMember",
+     "label": "Natural Gas, Production",
+     "values": [
+      780005000,
+      688753000,
+      1311476000,
+      688478000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5766,
+      0.5308,
+      0.6742,
+      0.4414
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6814,
+      -0.0004
+     ]
+    },
+    {
+     "member": "ar:NaturalGasLiquidsSalesMember",
+     "label": "Natural Gas Liquids Sales",
+     "values": [
+      561432000,
+      480757000,
+      503649000,
+      587714000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.415,
+      0.3705,
+      0.2589,
+      0.3768
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1029,
+      0.2225
+     ]
+    },
+    {
+     "member": "ar:CommodityDerivativeFairValueGainsLossesMember",
+     "label": "Commodity Derivative Fair Value Gains Losses",
+     "values": [
+      -71671000,
+      53409000,
+      35023000,
+      160633000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.053,
+      0.0412,
+      0.018,
+      0.103
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      2.0076
+     ]
+    },
+    {
+     "member": "us-gaap:OilAndCondensateMember",
+     "label": "Oil and Condensate",
+     "values": [
+      50335000,
+      33700000,
+      46695000,
+      59579000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0372,
+      0.026,
+      0.024,
+      0.0382
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0723,
+      0.7679
+     ]
+    },
+    {
+     "member": "ar:MarketingsMember",
+     "label": "Marketings",
+     "values": [
+      25558000,
+      33743000,
+      41661000,
+      56066000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0189,
+      0.026,
+      0.0214,
+      0.0359
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.6301,
+      0.6616
+     ]
+    },
+    {
+     "member": "ar:AmortizationOfDeferredRevenueVppMember",
+     "label": "Amortization Of Deferred Revenue VPP",
+     "values": [
+      6230000,
+      6298000,
+      5795000,
+      5860000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0046,
+      0.0049,
+      0.003,
+      0.0038
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0698,
+      -0.0695
+     ]
+    },
+    {
+     "member": "ar:OtherRevenueAndIncomeMember",
+     "label": "Other Revenue And Income",
+     "values": [
+      818000,
+      833000,
+      827000,
+      1512000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0006,
+      0.0006,
+      0.0004,
+      0.001
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.011,
+      0.8151
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1352707000,
+     1297493000,
+     1945126000,
+     1559842000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Antero Midstream' (ar:AnteroMidstreamMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Exploration And Production, Marketing)",
+  "business_segments/Revenues/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Revenues/quarterly: row 'Antero Midstream' (ar:AnteroMidstreamMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Exploration And Production, Marketing)",
+  "business_segments/Revenues/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/annual: row 'Antero Midstream' (ar:AnteroMidstreamMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Exploration And Production, Marketing)",
+  "business_segments/OperatingIncomeLoss/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/OperatingIncomeLoss/quarterly: row 'Antero Midstream' (ar:AnteroMidstreamMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Exploration And Production, Marketing)",
+  "business_segments/OperatingIncomeLoss/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Assets/annual: row 'Antero Midstream' (ar:AnteroMidstreamMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Exploration And Production, Marketing)",
+  "business_segments/Assets/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/Assets/quarterly: row 'Antero Midstream' (ar:AnteroMidstreamMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Exploration And Production, Marketing)",
+  "business_segments/Assets/quarterly: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/DepreciationDepletionAndAmortization/annual: row 'Exploration And Production' (ar:ExplorationAndProductionMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/annual: table dropped: its 2 rows cover 0.0% of the consolidated total for 2025-12-31, not a breakdown of it",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: row 'Exploration And Production' (ar:ExplorationAndProductionMember) dropped: its values equal the consolidated total",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: table dropped: its 2 rows cover 0.0% of the consolidated total for 2026-06-30, not a breakdown of it"
+ ],
+ "complete": true
+}

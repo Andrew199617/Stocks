@@ -1,0 +1,86 @@
+{
+ "ticker": "MOH",
+ "name": "Molina Healthcare, Inc.",
+ "sector": "Healthcare / Managed care \u2014 government programs",
+ "price": 207.05,
+ "market_cap_b": 10.95,
+ "engine_version": 5,
+ "base_oe_per_share": 7.4176776429809355,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Weak-to-moderate moat: pure-play government-programs expertise (~8% national Medicaid share, multi-year state contracts, low 6.5% G&A ratio, experience with complex dual-eligible and long-term-care populations) gives incumbency and RFP credibility, but the customer is the state \u2014 pricing is set by rate-setting that lagged medical trend badly in 2025-26, contracts are periodically rebid and can be lost, providers are contracted not owned, and scale is well below UnitedHealthcare/Elevance/Centene. Return evidence is thin and deteriorating: gross margin (1 minus MCR) was 15.9% in FY2023, 15.3% in FY2024 and 13.1% in FY2025 (fundamentals.json), operating margin fell 4.6% to 1.7% over the same years, and the roic_proxy series is not meaningful here \u2014 it divides by equity + debt minus cash only, so regulated subsidiary cash/investments held against claims and government liabilities drive it to absurd levels (e.g. 10.94 in FY2020); the margin series is the usable evidence and it does not support a moat above 4.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.3%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "BASE_DIVERGENCE: latest FY OE/share -12.91 vs 3-yr median 7.42 \u2014 one of them is distorted; find out which and why"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 32.77,
+   "irr": 0.0431
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 46.0,
+   "irr": 0.0517
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.67,
+   "irr": 0.0609
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 79.48,
+   "irr": 0.0743
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 109.04,
+   "irr": 0.0934
+  }
+ },
+ "iv_at_15": 59.44,
+ "iv_at_12": 78.3,
+ "implied_irr": 0.061,
+ "implied_irr_base_case": 0.0609,
+ "upside_at_15_pct": -71.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Weak-moat (4/10) government managed-care payer in a rate/trend trough \u2014 normalized owner's earnings are $7.42/share but at $207.05 the weighted IRR is only 6.1% (IV@15% $59.44); it clears the 15% hurdle only at or below ~$59.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.4.0",
+ "irr_bear": 0.0517,
+ "irr_bull": 0.0743,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 42.39,
+ "iv_at_25": 32.93,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -482000000,
+ "shares_diluted_latest": 52900000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Pure-play government-programs focus \u2014 ~8% national Medicaid share and expertise in complex, high-acuity populations states struggle to manage",
+  "Multi-year state Medicaid contracts with incumbency/RFP track record \u2014 retained Illinois, renewed Wisconsin, won the Florida Children's Medical Services contract (~$6B annual premium at full scale)",
+  "Low cost structure \u2014 G&A ratio 6.5% in FY2025, below diversified payer peers, from the focused footprint",
+  "Integrated dual-eligible (Medicaid + Medicare) offering aligned with where state and federal policy is pushing enrollment"
+ ],
+ "moat_against": [
+  "No pricing power \u2014 premium rates are set by states/CMS and lagged medical cost trend in 2025-26 (Medicaid MCR guided 92.9% for 2026); margin recovery depends on future rate cycles, not Molina's own pricing",
+  "Contracts are rebid and losable \u2014 membership fell 14% YoY to ~4.9M by Q2 2026 on Medicaid market contraction, contract expirations and Marketplace exits",
+  "Subscale vs UnitedHealthcare, Elevance and Centene in purchasing, provider rates and diversification",
+  "Providers are contracted, not owned \u2014 no owned care delivery to control medical trend directly",
+  "Single-customer-type concentration \u2014 effectively all revenue is government premium, exposed to Medicaid redeterminations, ACA subsidy expiry and state budgets"
+ ]
+}

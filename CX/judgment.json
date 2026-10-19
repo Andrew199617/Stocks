@@ -5,7 +5,7 @@
   "source": "Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 1 Description of Business: each CPO represents two series A shares and one series B share of common stock (3 ordinary shares per CPO), and each ADS represents ten CPOs - 30 ordinary shares per ADS. Corroborated in the same statements, Note 21: 662 million own shares cancelled in 2022 were stated as 22.1 million ADSs (662/22.1 is about 30)."
  },
  "confidence": "low",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
  "moat_against": [
   "ROIC proxy only 3.5-9.9% over 2022-2024 (fundamentals.json) and negative in 2020 - returns have not stayed well above the cost of capital through a cycle",
   "Commodity product with no global pricing power: utilization runs the economics, so a small volume drop can erase profit (high operating leverage)",
@@ -22,7 +22,7 @@
  "moat_justification": "Local cement/aggregates density, quarry and plant scarcity and high transport costs give Cemex pricing power in its core local markets, but the product is a commodity, ROIC has run only about 4-10% through the cycle and gross margin about 31-34%, and earnings ride construction cycles, energy/carbon costs and FX.",
  "moat_score": 5,
  "name": "Cemex, S.A.B. de C.V.",
- "one_liner": "BLOCKED (no tier): moat 5/10 local-density cement incumbent - the filing-sourced SBC override (5M FY2024, 20-F Note 22) is in-band but the engine FX-conversion path cannot apply it to 2022-2024 (no MXN rate for USD-translation years), so DATA_GAP:sbc stands; escalated as NEEDS_MAIN_AGENT. ADS ratio 30 applied cleanly; zero-fill base /bin/bash.61/ADS at 0.25 is not scoreable.",
+ "one_liner": "Tier D: moat 5/10 local-density cement incumbent with ROIC of roughly 4-10% - on the last filed year (FY2024, 22 months stale, base $0.37/ADS once engine 5.5 adds intangible-asset purchases to capex) the weighted IRR is 7.03% at $10.26 with the whole band in D; clears 15% only at $3.59 (IV@15). A FY2025 base may lift it toward C, not near B.",
  "probs_used": [
   0.1,
   0.25,
@@ -31,8 +31,9 @@
   0.1
  ],
  "sbc_override": {
+  "currency": "USD",
   "kind": "filing",
-  "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2022, 2023 and 2024 of the last 3 under the engine's IFRS tag. The engine applies a single override value to every missing period; $55M is the filed FY2024 figure, and FY2024 is the median year of the 3-year normalized base once SBC is charged (filed series $52M/$61M/$55M), so the base is built from the exact filed figure for its year, with at most a $6M understatement in 2023 (about $0.004 per ordinary share, immaterial against a roughly $0.9-1.3B owner's-earnings base). Amounts are the filer's own filed U.S. dollar figures, the same basis as the engine's filed SBC series for 2015-2021 ($29-77M/yr).",
+  "reason": "DATA_GAP:sbc - SBC missing for fiscal years 2022, 2023 and 2024 of the last 3 under the engine's IFRS tag. The engine applies a single override value to every missing period; $55M is the filed FY2024 figure, and FY2024 is the median year of the 3-year normalized base once SBC is charged (filed series $52M/$61M/$55M), so the base is built from the exact filed figure for its year, with at most a $6M understatement in 2023 (about $0.004 per ordinary share, immaterial against a roughly $0.9-1.3B owner's-earnings base). Amounts are the filer's own filed U.S. dollar figures, the same basis as the engine's filed SBC series for 2015-2021 ($29-77M/yr). Engine 5.5 re-score (2026-10-19): the note states these amounts in U.S. dollars, so the override declares currency USD and is used verbatim (no MXN conversion). Two corrections to the text above: the 2023 understatement figure is per ADS, not per ordinary share, and FY2023 is not the median year, so it does not move the base; the owner's-earnings range quoted above predates the intangible-asset purchases engine 5.5 adds to capex - analysis.md quotes the 5.5 base.",
   "source": "Form 20-F for the fiscal year ended December 31, 2024, audited consolidated financial statements, Note 22 Executive Share-Based Compensation: the combined compensation expense for the Share-Based Compensation Programs amounted to $55 million in 2024, $61 million in 2023 and $52 million in 2022 (statements presented in millions of U.S. dollars)",
   "value": 55000000
  },

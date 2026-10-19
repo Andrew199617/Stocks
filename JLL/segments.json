@@ -1,0 +1,325 @@
+{
+ "ticker": "JLL",
+ "cik": 1037976,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001037976-26-000037",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000037/jll-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001037976-26-000106",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000106/jll-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001037976-26-000152",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1037976/000103797626000152/jll-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "jll:RealEstateManagementServicesMember",
+     "label": "Real Estate Management Services",
+     "values": [
+      15806200000,
+      17992700000,
+      20001200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7613,
+      0.7678,
+      0.7659
+     ],
+     "growth_yoy": [
+      null,
+      0.1383,
+      0.1116
+     ]
+    },
+    {
+     "member": "jll:LeasingAdvisoryMember",
+     "label": "Leasing Advisory",
+     "values": [
+      2446500000,
+      2705600000,
+      3009900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1178,
+      0.1155,
+      0.1153
+     ],
+     "growth_yoy": [
+      null,
+      0.1059,
+      0.1125
+     ]
+    },
+    {
+     "member": "jll:CapitalMarketsServicesMember",
+     "label": "Capital Markets Services",
+     "values": [
+      1778000000,
+      2040400000,
+      2422100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0856,
+      0.0871,
+      0.0927
+     ],
+     "growth_yoy": [
+      null,
+      0.1476,
+      0.1871
+     ]
+    },
+    {
+     "member": "jll:LasalleInvestmentManagementMember",
+     "label": "LaSalle Investment Management",
+     "values": [
+      483700000,
+      467900000,
+      450100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0233,
+      0.02,
+      0.0172
+     ],
+     "growth_yoy": [
+      null,
+      -0.0327,
+      -0.038
+     ]
+    },
+    {
+     "member": "jll:ProptechInvestmentsMember",
+     "label": "Proptech Investments",
+     "values": [
+      246400000,
+      226300000,
+      232300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0119,
+      0.0097,
+      0.0089
+     ],
+     "growth_yoy": [
+      null,
+      -0.0816,
+      0.0265
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20760800000,
+     23432900000,
+     26115600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "jll:RealEstateManagementServicesMember",
+     "label": "Real Estate Management Services",
+     "values": [
+      4626500000,
+      4949900000,
+      5065700000,
+      5368400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8051,
+      0.792,
+      0.7932,
+      0.7749
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0949,
+      0.0845
+     ]
+    },
+    {
+     "member": "jll:LeasingAdvisoryMember",
+     "label": "Leasing Advisory",
+     "values": [
+      586100000,
+      676800000,
+      686300000,
+      836900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.102,
+      0.1083,
+      0.1075,
+      0.1208
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.171,
+      0.2366
+     ]
+    },
+    {
+     "member": "jll:CapitalMarketsServicesMember",
+     "label": "Capital Markets Services",
+     "values": [
+      435300000,
+      520300000,
+      535200000,
+      620200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0758,
+      0.0832,
+      0.0838,
+      0.0895
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2295,
+      0.192
+     ]
+    },
+    {
+     "member": "jll:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      98500000,
+      103100000,
+      99300000,
+      102400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0171,
+      0.0165,
+      0.0155,
+      0.0148
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0081,
+      -0.0068
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5746400000,
+     6250100000,
+     6386500000,
+     6927900000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

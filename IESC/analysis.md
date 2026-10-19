@@ -25,3 +25,23 @@ Preliminary run at pre-split share basis: normalized base OE/share $9.00 (median
 
 ## Unblock condition
 FY2026 10-K (FY ends 2026-09-30) restating share counts on the post-split basis, or the share-basis guard from SHARE_BASIS_SPEC_DRAFT.md shipping in the engine. Then re-run from scratch: TTM base, DBM as basis break, moat/scenarios still to be set.
+
+## Engine 5.5 re-score (2026-10-19)
+
+This is a dated addendum. The 2026-10-18 text above stays as written. **IESC is still blocked, and engine 5.5 was not run on it.**
+
+- **Old:** none (blocked). The 2026-10-18 preliminary run was never a score (see above).
+- **New:** none (blocked). There is no base, IRR or tier, and the folder's dcf_numbers.json, financials_history.csv and ttm.json are left as the 2026-10-18 record.
+- **Why the release does not unblock it.** Ruling 2 expected the split-basis check (Option B) to unblock IESC. Engine 5.5 cannot do that from the facts EDGAR carries today:
+  - The split check needs a filed `StockholdersEquityNoteStockSplitConversionRatio` fact, confirmed by a post-split cover-page count. IESC's companyfacts carry no split-ratio fact for the 2-for-1 split distributed 2026-08-21.
+  - The fallback uses the latest dei `EntityCommonStockSharesOutstanding` count for the market cap and flags SHARE_BASIS_DIVERGENCE. It needs a cover-page count on the new basis. The latest one, 19,924,356 as of 2026-07-27 (the Q3 FY2026 10-Q cover), is itself pre-split. It agrees with the pre-split diluted counts, so the fallback has nothing to diverge from.
+  - Checked against EDGAR companyfacts on 2026-10-19: no split-ratio fact, and 19,924,356 is still the latest cover count.
+  - So neither SHARE_BASIS_ADJUSTED nor SHARE_BASIS_DIVERGENCE would fire. The share-scale guard would not fire either, because a 2x basis error is far inside its scale thresholds.
+- **Why the engine was not run.** A 5.5 run today would read every count on the pre-split basis (FY2025 diluted 20,182,797) against the post-split price ($251.96). With no gap to stop it, it would print a tier, and that tier would rest on per-share figures overstated 2×, the same defect described above. Not running it keeps that number out of the record.
+- **Unblock condition (updated).** IESC stays blocked `NEEDS_MAIN_AGENT: shares` until one of these happens:
+  - the FY2026 10-K (fiscal year ended 2026-09-30) restates the share counts on the post-split basis, or
+  - a split-ratio fact appears in companyfacts. Engine 5.5 would then apply it (SHARE_BASIS_ADJUSTED) on its own.
+
+  The SHARE_BASIS_SPEC_DRAFT.md route named above has shipped as engine 5.5. On its own it is not enough for this filer, for the reasons in the list above.
+- **Basis break for the re-run.** The DBM Global acquisition (closed 2026-10-05) is still a basis break the re-run must handle, as set out under "Business context" above: post-deal share counts from the FY2026 10-K / 8-K amendment, DBM treated as a basis break, and moat and scenarios still to be set.
+- **New 5.5 flags:** none. No 5.5 run exists for this folder, so no flag to resolve.

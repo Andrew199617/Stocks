@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $6.66 · normalized (3-yr median) OE/share: $6.04
 - Latest FY OE total: $1.961B
 - Shares diluted (latest): 589,306,002,483
-- Market cap (est): $13.987B · net debt (latest): $5.938B
+- Market cap (est): $13.987B (basis: diluted_latest) · net debt (latest): $5.938B
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 3/5
 
 ## Growth & moat
@@ -38,7 +39,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - OE yield: 12.73%
 - TV share @15%: 20.5%
 - Scenario spread (IV@15 super-bull / super-bear): 4.67x
-- Net debt / normalized OE: 0.00x
+- Net debt / normalized OE: 3.33x on the ADS basis (make_score: the pre-5.5 engine's ratio × ads_ratio 2000 — it divided net debt by per-ADS OE × ORDINARY shares; the engine printed 0.00x — HIGH_NET_DEBT (> 3x) would fire on the ADS basis; the engine's flag list predates the fix)
 - Months since FY end: 9.6
 
 ## Fragility flags
@@ -62,5 +63,5 @@ Filing gaps found and covered by judgment overrides: sbc, shares
 - sbc reason: DATA_GAP:sbc — SBC missing for FY2023, FY2024, FY2025 under every tag the engine reads. LATAM has no equity-settled share-based payment expense to subtract: its sole IFRS 2 program is cash-settled, so its cost is already inside operating expenses and operating cash flow — subtracting it again as SBC would double-count it. The filing-sourced figure for equity SBC in the gap years is $0 (same treatment as SQM and TS in this sweep).
 - shares reason: DATA_GAP:shares — DILUTED shares missing for FY2023, FY2024, FY2025; EDGAR carries only the basic WeightedAverageShares count, which the engine records as a fallback and refuses to silently swap. The filer's own FY2025 diluted count fills the gap. The engine applies this single value to every missing period: it is exact for FY2025, and for FY2024/FY2023 it is a smaller denominator than the filer's own diluted counts (604,441,789,335 for FY2024), which raises those years' OE/share by ~2.6% — disclosed here and in analysis.md; the 3-yr median base year is FY2024 on either basis, so the base is modestly flattered, and the verdict is sized accordingly.
 
-- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $5.89 (no override) → $6.04 (with override), +2.57% · weighted IRR 20.97% → 22.40% (+1.44pp)
+- Measured impact (on the 3-yr median base actually used; same final configuration, overrides toggled off): base OE/share $5.89 (no override) → $6.04 (with override), +2.57% · weighted IRR 20.97% → 22.40% (+1.44pp) — carried from the prior score.json, not re-measured (engine output release 5.4.0 vs current 5.5.0)
 - Unblocks tier: YES — this override is the only reason this company has a tier; without it the filing gap blocks scoring entirely.

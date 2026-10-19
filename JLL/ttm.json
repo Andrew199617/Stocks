@@ -48,12 +48,12 @@
    "ttm": 215600000.0
   },
   "sbc": {
-   "fy": 2700000,
+   "fy": 112000000,
    "fy_period": [
     "2025-01-01",
     "2025-12-31"
    ],
-   "fy_tag": "ShareBasedCompensation",
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
    "ytd_prior": 1400000,
    "ytd_prior_period": [
     "2025-01-01",
@@ -66,7 +66,7 @@
     "2026-06-30"
    ],
    "ytd_current_tag": "ShareBasedCompensation",
-   "ttm": 1500000
+   "ttm": 110800000
   },
   "shares_diluted": {
    "fy": 48312000,
@@ -92,11 +92,13 @@
  },
  "ttm_ocf": 1362000000,
  "ttm_capex": 215600000.0,
- "ttm_sbc": 1500000,
+ "ttm_sbc": 110800000,
  "ttm_shares_diluted": 47368000,
- "ttm_oe_total": 1144900000.0,
- "ttm_oe_per_share": 24.170325958452963,
- "warnings": [],
+ "ttm_oe_total": 1035600000.0,
+ "ttm_oe_per_share": 21.862861003208916,
+ "warnings": [
+  "sbc: AllocatedShareBasedCompensationExpense replaced a smaller ShareBasedCompensation on fy only, so the TTM mixes tags across legs (fy AllocatedShareBasedCompensationExpense, ytd_prior ShareBasedCompensation, ytd_current ShareBasedCompensation) \u2014 check that each leg's figure is the filer's total stock compensation for its period (a 10-Q often files only one of the two tags)"
+ ],
  "overrides_used": [
   {
    "field": "capex",
@@ -133,5 +135,24 @@
     }
    }
   }
- ]
+ ],
+ "capex_components": {
+  "fy": null,
+  "ytd_prior": null,
+  "ytd_current": null
+ },
+ "sbc_reconciled_legs": {
+  "fy": {
+   "share": 2700000,
+   "allocated": 112000000,
+   "note": "allocated 112,000,000 > share 2,700,000 USD, +4048.1%",
+   "period": [
+    "2025-01-01",
+    "2025-12-31"
+   ]
+  }
+ },
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
 }

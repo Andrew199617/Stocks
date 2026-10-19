@@ -1,0 +1,251 @@
+{
+ "ticker": "CX",
+ "cik": 1076378,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:16:26-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001076378.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526177605/d120395d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "CEMEX SAB DE CV",
+  "cik": 1076378,
+  "description": {
+   "text": "Cemex, S.A.B. de C.V. is a publicly traded variable stock corporation (sociedad anónima bursátil de capital variable) organized under the laws of Mexico, with its principal executive offices located at Avenida Ricardo Margáin Zozaya #325, Colonia Valle del Campestre, San Pedro Garza García, Nuevo León, 66265, Mexico. Cemex, S.A.B. de C.V.’s main phone number is +52 81 8888-8888. Our website is located at www.cemex.com. The information on our website is not, and is not intended to be, part of this annual report and is not incorporated into this annual report by reference. Cemex, S.A.B. de C.V. started doing business in 1906 and was registered with the Mercantile Section of the Public Registry of Property and Commerce in Monterrey, Nuevo León, Mexico, on June 11, 1920, which as of the date of this annual report is for an indefinite period. Beginning April 2006, Cemex, S.A.B. de C.V.’s full legal and commercial name is Cemex, Sociedad Anónima Bursátil de Capital Variable. Cemex, S.A.B. de C.V. is an operating and a holding company engaged, directly or indirectly, through its operating subsidiaries, primarily in the production, distribution, marketing and sale of cement, ready-mix concrete, aggregates, clinker, other construction materials and Urbanization Solutions throughout the world. Cemex, S.A.B. de C.V.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-177605",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526177605/d120395d20f.htm"
+  },
+  "description_short": "Cemex is a multinational construction materials company focused on building a better future for communities worldwide. The company produces and markets cement, ready-mix concrete, aggregates, and related construction materials such as admixtures and mortars, enabling construction projects across its markets. Through customer-centric solutions, operational excellence, and continuous innovation, Cemex delivers high-performance materials that meet the industry's evolving needs. With a workforce of around 40,000 people worldwide, Cemex provides reliable, sustainable, and high-quality products and services, partnering with its customers to deliver solutions that create long-term value. For more information, visit cemex.com and connect with us on LinkedIn.",
+  "industry": "Building Materials",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3241",
+  "sic_description": "Cement, Hydraulic",
+  "state_of_incorporation": "O5",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.cemex.com",
+  "headquarters": "Nuevo León, MX",
+  "address": {
+   "street": "Avenida Ricardo Margáin Zozaya #325 Colonia Valle del Campestre San Pedro Garza García",
+   "city": "Nuevo León",
+   "state": null,
+   "zip": "66265",
+   "country": "MX",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-24"
+  },
+  "phone": "52(81)83283000",
+  "employees": {
+   "count": 39886,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 39,886 employees worldwide, which represented a decrease of approximately 11.5% from the total number of employees we had as of December 31, 2024.",
+   "form": "20-F",
+   "filed": "2026-04-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526177605/d120395d20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2000-10-02",
+  "first_sec_filing_form": "SC TO-C",
+  "former_names": [
+   "CEMEX SA DE CV"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001076378&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-416002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526416002/d138223d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-395792",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526395792/d185749d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-390664",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526390664/d66918d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-04",
+   "period": "2026-09-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-383720",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526383720/d464430d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-313194",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526313194/d46310d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-309325",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526309325/d255103d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-17",
+   "period": "2026-07-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-306379",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526306379/d149288d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-285670",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526285670/d110687d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-16",
+   "period": "2026-06-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-272822",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526272822/d128666d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-11",
+   "period": "2026-06-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-267837",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526267837/d108327d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-259611",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526259611/d139221d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-05",
+   "period": "2026-06-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-259489",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526259489/d160349d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-03",
+   "period": "2026-06-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-254489",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526254489/d39579d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-249559",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526249559/d109565d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-245551",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526245551/d102228d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-178732",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526178732/d138077d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-178703",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526178703/d121629d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-177624",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526177624/d68258d6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-04-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-26-177605",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526177605/d120395d20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-171726",
+   "url": "https://www.sec.gov/Archives/edgar/data/1076378/000119312526171726/d147626d6k.htm"
+  }
+ ],
+ "warnings": []
+}

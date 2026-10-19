@@ -3,7 +3,8 @@
  "name": "JD.com, Inc.",
  "sector": "Consumer Discretionary / E-commerce, logistics & services (China)",
  "price": 26.6,
- "market_cap_b": 79.22,
+ "market_cap_b": 39.61,
+ "market_cap_basis": "ads_corrected_by_make_score",
  "engine_version": 5,
  "base_oe_per_share": 4.430990565697433,
  "base_year": "2025",
@@ -59,7 +60,22 @@
  "confidence": "low",
  "one_liner": "China's strongest logistics/supply-chain retailer, moat 5/10 \u2014 Tier A by numbers on the v5 normalized median base ($4.43/ADS): weighted IRR 20.3%, IV@15% $38.45 vs $26.60 \u2014 but that base sits at pre-food-delivery-war FY2024 economics and trough/TTM bases clear less, so size it like a B; the bear case ($30.70) also sits above the current price.",
  "analysis_date": "2026-10-14",
- "in_scope_under_40b": false,
+ "in_scope_under_40b": true,
+ "engine_release": null,
+ "irr_bear": null,
+ "irr_bull": null,
+ "tier_bear": null,
+ "tier_bull": null,
+ "iv_at_20": null,
+ "iv_at_25": null,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -13250483520.0,
+ "shares_diluted_latest": 2978037127,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "alert_suppressed_reason": "engine output predates release 5.5.0 \u2014 re-run the engine before an entry alert",
+ "exit_alert_eligible": false,
  "moat_for": [
   "Owned logistics network (warehouses, employed couriers, full-time delivery rider fleet) sets the same/next-day standard and is increasingly monetized to third parties",
   "1P supply-chain scale in electronics/appliances: procurement leverage and authenticity trust; JD Retail gross margin expanded 17 straight quarters to a record operating margin in H1 2026",
@@ -72,5 +88,7 @@
   "Structurally thin group economics: net margin 2-3% in good years, modest returns on a huge logistics asset base",
   "Recurring regulatory/political overhang: SAMR fine in H1 2026, repeated subsidy-war intervention, standing China/VIE ADS tail risk",
   "Category concentration: electronics/appliances demand now partly driven by fading government trade-in subsidies (Q2 2026 category revenue -11.8% YoY)"
- ]
+ ],
+ "in_scope_corrected_by_make_score": true,
+ "net_debt_to_normalized_oe_ads_basis": -2.0083
 }

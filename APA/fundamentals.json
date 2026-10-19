@@ -2,7 +2,7 @@
  "ticker": "APA",
  "cik": 1841666,
  "entity": "APA CORPORATION",
- "as_of": "2026-10-16",
+ "as_of": "2026-10-19",
  "source": "SEC EDGAR companyfacts + submissions APIs (filing-direct)",
  "currency": "USD",
  "profile": {
@@ -1399,22 +1399,23 @@
     "complete": false
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 49.1437,
+  "price_date": "2026-10-19",
+  "price_source": "score.json price",
+  "price_note": "price: 49.1437 from score.json (2026-10-19); prices.json absent",
   "shares_outstanding": 350351510,
   "shares_as_of": "2026-07-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06)",
   "shares_basis": "instant",
   "shares_diluted": 354000000,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
-  "market_cap": null,
-  "market_cap_basis": null,
-  "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "ads_ratio": null,
+  "market_cap": 17217569501.987,
+  "market_cap_basis": "49.1437 \u00d7 350,351,510 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)",
+  "dividend_yield": 0.020348488209068507,
+  "buyback_yield": 0.0,
+  "net_buyback_yield": 0.0,
+  "shareholder_yield": 0.02061847347031363,
   "shareholder_yield_basis": "dividends_paid (4/4 quarters filed) + buybacks (never filed in any period \u2014 zero by the filer's own statements) \u2212 share_issuance NOT INCLUDED (not filed for any of the four quarters); sum of the four quarterly rows 2025-09-30..2026-06-30",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1431,7 +1432,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 0.0,
-    "denominator": null
+    "denominator": "49.1437 \u00d7 350,351,510 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1449,7 +1450,8 @@
     "bound": "upper",
     "complete": false,
     "numerator": 0.0,
-    "denominator": null
+    "denominator": "49.1437 \u00d7 350,351,510 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)",
+    "note": "an upper bound \u2014 the issuance leg is filed for only some quarters or not at all"
    },
    "shareholder_yield": {
     "legs": {
@@ -1470,44 +1472,45 @@
     "bound": "upper",
     "complete": false,
     "numerator": 355000000.0,
-    "denominator": null
+    "denominator": "49.1437 \u00d7 350,351,510 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)",
+    "note": "an upper bound \u2014 the issuance leg is filed for only some quarters or not at all"
    },
    "dividend_yield": {
     "numerator": 1.0,
     "basis": "FY2025 DPS 1 + the quarters since (2026-03-31: 0.25, 2026-06-30: 0.25) \u2212 the same quarters a year earlier (2025-03-31: 0.25, 2025-06-30: 0.25)",
     "bound": "exact",
     "complete": true,
-    "denominator": null
+    "denominator": "price 49.1437 (score.json price)"
    }
   },
   "yields_display": {
    "dividend_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.020348488209068507,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
-    "note": "dps_ttm: the latest four quarterly DPS facts are not consecutive quarters (182 days between 2025-09-30 and 2026-03-31) \u2014 FY2025 DPS 1 + the quarters since (2026-03-31: 0.25, 2026-06-30: 0.25) \u2212 the same quarters a year earlier (2025-03-31: 0.25, 2025-06-30: 0.25)"
+    "label": "2.03%",
+    "note": "FY2025 DPS 1 + the quarters since (2026-03-31: 0.25, 2026-06-30: 0.25) \u2212 the same quarters a year earlier (2025-03-31: 0.25, 2025-06-30: 0.25)"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.0,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "0.00%",
     "note": null
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "share_issuance: not filed for any of the four quarters"
+    "value": 0.0,
+    "bound": "upper",
+    "prefix": "\u2264",
+    "label": "\u2264 0.00%",
+    "note": "share_issuance: not filed for any of the four quarters \u2014 no deduction made, so this yield is an upper bound"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "share_issuance: not filed for any of the four quarters"
+    "value": 0.02061847347031363,
+    "bound": "upper",
+    "prefix": "\u2264",
+    "label": "\u2264 2.06%",
+    "note": "share_issuance: not filed for any of the four quarters \u2014 no deduction made, so this yield is an upper bound"
    }
   },
   "history": [

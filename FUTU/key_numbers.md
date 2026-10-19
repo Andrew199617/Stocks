@@ -16,7 +16,8 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 - Latest FY OE/share: $36.71 · normalized (3-yr median) OE/share: $28.03
 - Latest FY OE total: $5.189B
 - Shares diluted (latest): 1,130,846,701
-- Market cap (est): $14.933B · net debt (latest): —
+- Market cap (est): $14.933B (basis: diluted_latest) · net debt (latest): —
+- Scope: in scope (market cap under $40B)
 - OE-positive years (last 5): 4/5
 
 ## Growth & moat
