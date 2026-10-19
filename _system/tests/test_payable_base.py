@@ -17,6 +17,8 @@ What the rule needs, and what each test proves fails on the parent code:
 4. The provenance check accepts the payable shape (figure for figure) and
    key_numbers.md emits the five figures so analysis.md can quote them.
 5. The one-notch misfit tier_override on top of the payable base is refused.
+6. A payable declaration is binding: a run not pinned through --base-judgment
+   is refused (Codex round 2, P1).
 """
 import hashlib
 import json
@@ -234,6 +236,16 @@ def test_make_score_end_to_end_on_the_payable_base():
     # The 2026-10-15 notch on top of the payable base is refused.
     r = _score_files(_n(flags=misfit), _j(override="D"))
     assert r["rc"] != 0 and "double-counting" in (r["stderr"] + r["stdout"]), r
+    # A payable declaration is binding: a run not pinned through
+    # --base-judgment (median run, or a --base-oe-ps typed with the
+    # per-ordinary value) is refused, never scored on the wrong base.
+    n = _n(payable=False); n["base_source"] = "median_of_last_3_fy_oe_per_share"
+    n["inputs"].update({"base_oe_ps_arg": None, "base_pin_source": None}); n["base_oe_per_share"] = 77.78
+    r = _score_files(n, _j())
+    assert r["rc"] != 0 and "--base-judgment" in (r["stderr"] + r["stdout"]), r
+    n = _n(payable=False); n["inputs"]["base_pin_source"] = "base_oe_ps_arg"
+    r = _score_files(n, _j())
+    assert r["rc"] != 0 and "--base-judgment" in (r["stderr"] + r["stdout"]), r
 
 
 if __name__ == "__main__":

@@ -780,6 +780,17 @@ def main():
                  "Correct the value, or add ack_reason explaining why an out-of-band figure is right")
 
     j_base_override = validate_base_override(j)
+    if j_base_override and j_base_override.get("basis") == PAYABLE_BASIS:
+        # A payable declaration is binding: the final run must have been pinned
+        # through --base-judgment (engine record payable_base, pin source
+        # judgment_base_override). A median run, or a --base-oe-ps run typed
+        # with the per-ordinary value (wrong by the ADS ratio), is refused.
+        _pin = (n.get("inputs") or {}).get("base_pin_source")
+        if _pin != "judgment_base_override" or not n.get("payable_base"):
+            fail(f"judgment.json declares a {PAYABLE_BASIS} base_override but the engine run was not pinned through "
+                 f"--base-judgment (base_pin_source {_pin!r}, payable_base "
+                 f"{'present' if n.get('payable_base') else 'absent'}) — rerun the final pass with --base-judgment "
+                 "so the engine recomputes, scales and records the base")
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 
