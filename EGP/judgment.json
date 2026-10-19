@@ -1,0 +1,39 @@
+{
+ "capex_override": {
+  "ack_reason": "The band check anchors on the last filed value under an engine-read tag, which is the FY2024 PaymentsForConstructionInProcess fact of -$17,170,000 \u2014 a construction-payables change filed with a negative sign (statements.json flags it as a sign slip), not the filer's recurring capex line at all. On absolute value the override ($59,288,000) is 3.45x that anchor, inside the 0.1x-10x band, and the engine marks it in-band; this acknowledgment is carried anyway because the anchor is not a capex figure. The override is not an estimate lacking an anchor \u2014 it is the median of the filer's own FY2023-25 PaymentsForCapitalImprovements figures from its FY2025 10-K.",
+  "kind": "filing",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2025 under every candidate tag the engine reads, because in the FY2025 10-K EastGroup stopped filing PaymentsForConstructionInProcess (the minor tag the engine read for FY2022-24, whose FY2024 fact is a signed construction-payables change of -$17,170,000, not capex). The filer's recurring real-estate capex is the cash-flow line 'Capital improvements' (us-gaap PaymentsForCapitalImprovements), which statements.py reads as the capex series ($51,116,000 FY2023 / $59,288,000 FY2024 / $75,830,000 FY2025) but which is not in the engine's candidate tag list \u2014 the same dead end documented for MAA, AMH, ELS and others in this sweep. The engine applies this single value to every missing period (FY2025 and the assumed-zero years); filed values are never replaced, so FY2023 ($12,163,000) and FY2024 (-$17,170,000) in the base window still carry the wrong minor tag \u2014 disclosed, not hidden: the median of the three window years under the fill is the corrected FY2025 year, so the normalized base is the corrected figure (see analysis.md). Against the true per-year capital-improvements figures the single value overstates FY2025 capex charge by $0 in the median construction (it IS the FY2024 figure) and understates FY2025's filed $75,830,000 by $16,542,000 (flatters the latest year \u2014 stated here; the TTM pin charges the same $59,288,000, also below the FY2025 run rate, so the base is if anything generous on capex). Excluded, deliberately: 'Development of real estate' ($321,934,000 FY2025) and 'Acquisition of real estate' ($143,099,000 FY2025) are growth investment presented separately by the filer; charging them as capex would double-count growth the portfolio expansion already paid for (same treatment as AMH/AHR in this sweep).",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000049600-26-000010), Consolidated Statements of Cash Flows, investing activities line 'Capital improvements' (us-gaap PaymentsForCapitalImprovements): $(51,116) thousand for FY2023, $(59,288) thousand for FY2024 and $(75,830) thousand for FY2025; the override value is the median of the three filed years (the FY2024 figure). Cross-checked against statements.json, whose capex series is exactly this line.",
+  "value": 59288000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Real estate is replicable with capital \u2014 no network effects; tenant lock-in is a multi-year lease, and shallow-bay space competes with new build-for-rent industrial supply",
+  "Filed returns are moderate, not wide-moat: ROE 9.5% (FY2022) \u2192 7.7% (FY2023) \u2192 6.9% (FY2024) \u2192 7.4% (FY2025) in fundamentals.json; roic_proxy and gross margin are not computable from the filed REIT presentation \u2014 no record of returns durably well above the cost of capital",
+  "Growth is equity-funded: share count CAGR 7.3%/yr, issuance proceeds $692,312,000 (FY2023), $717,659,000 (FY2024), $264,071,000 (FY2025) \u2014 per-share economics lag portfolio growth",
+  "Sun Belt concentration (Florida, Texas, Arizona, California) and a post-COVID industrial supply wave in several markets cap rent growth as the 34% leasing spreads normalize; same-property NOI guidance (+6.8% for 2026) is already below the +8.8% YTD print",
+  "Development is cyclical: the $487M pipeline (17 projects, 3.2M sq ft) must lease up through whatever demand does next; development starts guidance was cut one quarter and raised the next in 2026"
+ ],
+ "moat_for": [
+  "Infill shallow-bay locations in supply-constrained Sun Belt markets: zoning/permit friction and scarce infill land make the 65.8M sq ft portfolio hard to replicate at any price near book; quarter-end occupancy 95.6%, same-store 96.9% (Q2 2026)",
+  "Demonstrated pricing power: Q2 2026 leasing spreads +34% GAAP / +19% cash on a record 3.9M sq ft signed; cash same-store NOI +8.3% in Q2, +8.8% YTD",
+  "Development alpha: self-developed projects transfer at a ~9.4% stabilized yield (management, Q2 2026 coverage), well above acquisition cap rates \u2014 a structural cost advantage over REITs that must buy growth",
+  "Balance sheet as a competitive weapon: debt/total market cap 12.9%, debt/EBITDA 3.0x, coverage 15.1x, no revolver drawn ($675M available) at Q2 2026 \u2014 cheap, always-available capital through cycles",
+  "Diversified rent roll (top 10 tenants 6.6% of rents) and 186 consecutive quarterly dividends; FFO/share compounded ~10.7%/yr over five years (peer coverage)"
+ ],
+ "moat_justification": "Moderate/narrow 5/10: infill shallow-bay scarcity in Sun Belt markets, demonstrated rent pricing power (leasing spreads +34% GAAP / +19% cash, cash same-store NOI +8-9%) and a development channel that creates assets at a ~9.4% stabilized yield give EastGroup more than a generic landlord's moat, but the assets remain replicable with capital, there is no lock-in beyond leases, growth is bought with continuous equity issuance (shares +7.3%/yr), and filed ROE has run only 6.9-7.7% in the last three years with roic_proxy not computable from the REIT presentation \u2014 not the sustained well-above-cost-of-capital record a 7+ requires. In line with KIM (5) and above the generic REIT 4s (AMH, AHR, MAA, INVH) on the strength of the development alpha and spreads.",
+ "moat_score": 5,
+ "name": "EASTGROUP PROPERTIES, INC.",
+ "one_liner": "Quality Sun Belt industrial REIT, moat 5/10 \u2014 even on the generous TTM base ($8.09/sh) the weighted IRR is 7.6% (weighted IV@15% $78.55 vs the $197.44 price), the entire scenario band is Tier D, and the price would have to fall to ~$79 to clear the 15% hurdle; confidence low (sector model mismatch).",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Real Estate / Industrial REIT (shallow-bay, Sun Belt)",
+ "tier_override": null,
+ "tier_override_reason": null
+}
