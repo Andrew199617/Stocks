@@ -1,0 +1,288 @@
+{
+ "ticker": "CGNX",
+ "cik": 851205,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T02:35:48-04:00",
+ "newest_filing_date": "2026-09-22",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000851205.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000012/cgnx-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/CGNX/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/CGNX/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "COGNEX CORP",
+  "cik": 851205,
+  "description": {
+   "text": "Founded in 1981, Cognex Corporation (the \"Company” or “Cognex”) makes advanced machine vision easy, paving the way for manufacturing and distribution companies to become faster, smarter, and more efficient through automation. We are a global technology leader in industrial machine vision systems that seek to improve efficiency and help solve critical manufacturing and distribution challenges, providing support across a diverse set of industrial end markets. Our solutions blend hardware and software to capture and analyze visual information, aiding the automation of manufacturing and distribution tasks for customers worldwide. Machine vision products are used to automate the manufacturing and distribution of discrete items, such as mobile phones, automotive components, and consumer goods, by locating, identifying, inspecting, and measuring them. Machine vision can be particularly valuable for applications in which human vision is inadequate to meet requirements for size, accuracy, or speed, or in instances where substantial cost savings can be obtained through the reduction of labor costs or improved product quality. Cognex sells to customers in nearly all major industries in which discrete items are manufactured on an assembly line or moved through a distribution center or warehouse. Our largest end markets by revenue are the logistics, packaging, consumer electronics, and automotive industries, which combined represented approximately 85% of our total revenue in 2025.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "accession": "0000851205-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000012/cgnx-20251231.htm"
+  },
+  "description_short": "For over 40 years, Cognex has been making advanced machine vision easy, paving the way for manufacturing and distribution companies to become faster, smarter, and more efficient through automation. Innovative technology in our vision sensors and systems solves critical manufacturing and distribution challenges, providing unparalleled performance for industries from automotive to consumer electronics to packaged goods. Cognex makes these tools more capable and easier to deploy thanks to a longstanding focus on AI, helping factories and warehouses improve quality and maximize efficiency without needing highly technical expertise. We are headquartered near Boston, USA, with locations in over 30 countries and more than 30,000 customers worldwide.",
+  "industry": "Industrial Machinery/Components",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3823",
+  "sic_description": "Industrial Instruments For Measurement, Display, and Control",
+  "state_of_incorporation": "MA",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.cognex.com",
+  "headquarters": "Natick, Massachusetts",
+  "address": {
+   "street": "One Vision Drive",
+   "city": "Natick",
+   "state": "Massachusetts",
+   "zip": "01760",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-12"
+  },
+  "phone": "5086503000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000851205&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0000851205-26-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000071/cgnx-20260922.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-07-05",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000851205-26-000065",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000065/cgnx-20260705.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000851205-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000061/cgnx-20260805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-04-05",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000851205-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000040/cgnx-20260405.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000851205-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000037/cgnx-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-29",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000851205-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000028/cgnx-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-13",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-105065",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000119312526105065/d48298ddef14a.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-02-19",
+   "period": "2025-10-29",
+   "items": [
+    "4.01",
+    "9.01"
+   ],
+   "description": "Amendment: Auditor change",
+   "accession": "0000851205-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000022/cgnx-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-11",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0000851205-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000018/cgnx-20260211.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000851205-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000012/cgnx-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000851205-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000009/cgnx-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-10-29",
+   "items": [
+    "4.01",
+    "9.01"
+   ],
+   "description": "Auditor change",
+   "accession": "0000851205-25-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000067/cgnx-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000851205-25-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000064/cgnx-20250928.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000851205-25-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000061/cgnx-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-29",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000851205-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000052/cgnx-20250629.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000851205-25-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000050/cgnx-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-04-30",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000851205-25-000033",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000033/cgnx-20250430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000851205-25-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000031/cgnx-20250330.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Other events",
+   "accession": "0000851205-25-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000085120525000028/cgnx-20250430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-14",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-054448",
+   "url": "https://www.sec.gov/Archives/edgar/data/851205/000119312525054448/d906473ddef14a.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-12"
+ ]
+}

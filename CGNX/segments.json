@@ -1,0 +1,632 @@
+{
+ "ticker": "CGNX",
+ "cik": 851205,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000851205-26-000012",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000012/cgnx-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000851205-26-000040",
+   "filed": "2026-05-07",
+   "period": "2026-04-05",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000040/cgnx-20260405_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000851205-26-000065",
+   "filed": "2026-08-06",
+   "period": "2026-07-05",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/851205/000085120526000065/cgnx-20260705_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cgnx:SegmentGeneralAndEngineeringExpenseMember",
+     "label": "Segment, General, And Engineering Expense",
+     "values": [
+      11759000,
+      16936000,
+      15759000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7937,
+      0.8399,
+      0.8571
+     ],
+     "growth_yoy": [
+      null,
+      0.4403,
+      -0.0695
+     ]
+    },
+    {
+     "member": "cgnx:ResearchDevelopmentAndEngineeringExpensesMember",
+     "label": "Research, Development and Engineering Expenses",
+     "values": [
+      3056000,
+      3229000,
+      2628000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2063,
+      0.1601,
+      0.1429
+     ],
+     "growth_yoy": [
+      null,
+      0.0566,
+      -0.1861
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     14815000,
+     20165000,
+     18387000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-04-05",
+    "2026-07-05"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cgnx:SegmentGeneralAndEngineeringExpenseMember",
+     "label": "Segment, General, And Engineering Expense",
+     "values": [
+      4161000,
+      4118000,
+      3666000,
+      3372000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8464,
+      0.8482,
+      0.8796,
+      0.8772
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.119,
+      -0.1812
+     ]
+    },
+    {
+     "member": "cgnx:ResearchDevelopmentAndEngineeringExpensesMember",
+     "label": "Research, Development and Engineering Expenses",
+     "values": [
+      755000,
+      737000,
+      502000,
+      472000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1536,
+      0.1518,
+      0.1204,
+      0.1228
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3351,
+      -0.3596
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4916000,
+     4855000,
+     4168000,
+     3844000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "cgnx:StandardProductandServicesMember",
+     "label": "Standard Product and Services",
+     "values": [
+      734140000,
+      795319000,
+      880015000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8765,
+      0.8697,
+      0.885
+     ],
+     "growth_yoy": [
+      null,
+      0.0833,
+      0.1065
+     ]
+    },
+    {
+     "member": "cgnx:ApplicationofCustomerSpecificSolutionsMember",
+     "label": "Application of Customer Specific Solutions",
+     "values": [
+      103407000,
+      119196000,
+      114344000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1235,
+      0.1303,
+      0.115
+     ],
+     "growth_yoy": [
+      null,
+      0.1527,
+      -0.0407
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     837547000,
+     914515000,
+     994359000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-04-05",
+    "2026-07-05"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "cgnx:StandardProductsandServicesMember",
+     "label": "Standard Products and Services",
+     "values": [
+      204510000,
+      216035000,
+      254439000,
+      247100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9466,
+      0.8673,
+      0.9479,
+      0.8484
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2441,
+      0.1438
+     ]
+    },
+    {
+     "member": "cgnx:ApplicationSpecificCustomerSolutionsMember",
+     "label": "Application-Specific Customer Solutions",
+     "values": [
+      11526000,
+      33058000,
+      13998000,
+      44163000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0534,
+      0.1327,
+      0.0521,
+      0.1516
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2145,
+      0.3359
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     216036000,
+     249093000,
+     268437000,
+     291263000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      330415000,
+      350155000,
+      407288000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3945,
+      0.3829,
+      0.4096
+     ],
+     "growth_yoy": [
+      null,
+      0.0597,
+      0.1632
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      220665000,
+      217880000,
+      251638000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2635,
+      0.2382,
+      0.2531
+     ],
+     "growth_yoy": [
+      null,
+      -0.0126,
+      0.1549
+     ]
+    },
+    {
+     "member": "cgnx:OtherAsiaMember",
+     "label": "Other Asia",
+     "values": [
+      122352000,
+      182333000,
+      176977000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1461,
+      0.1994,
+      0.178
+     ],
+     "growth_yoy": [
+      null,
+      0.4902,
+      -0.0294
+     ]
+    },
+    {
+     "member": "cgnx:GreaterChinaMember",
+     "label": "Greater China",
+     "values": [
+      164115000,
+      164147000,
+      158456000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1959,
+      0.1795,
+      0.1594
+     ],
+     "growth_yoy": [
+      null,
+      0.0002,
+      -0.0347
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     837547000,
+     914515000,
+     994359000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-30",
+    "2025-06-29",
+    "2026-04-05",
+    "2026-07-05"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      99374000,
+      92137000,
+      121301000,
+      117037000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.46,
+      0.3699,
+      0.4519,
+      0.4018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2207,
+      0.2702
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      26946000,
+      45025000,
+      37759000,
+      66125000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1247,
+      0.1808,
+      0.1407,
+      0.227
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4013,
+      0.4686
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      46790000,
+      66623000,
+      63815000,
+      58891000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2166,
+      0.2675,
+      0.2377,
+      0.2022
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3639,
+      -0.1161
+     ]
+    },
+    {
+     "member": "cgnx:AsiaExcludingChinaMember",
+     "label": "Asia, Excluding China",
+     "values": [
+      42926000,
+      45308000,
+      45562000,
+      49210000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1987,
+      0.1819,
+      0.1697,
+      0.169
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0614,
+      0.0861
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     216036000,
+     249093000,
+     268437000,
+     291263000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'License Fees and Transferred Inventory Revenue' (cgnx:LicenseFeesAndTransferredInventoryRevenueMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Standard Product and Services, Application of Customer Specific Solutions)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'License Fees Revenue' (cgnx:LicenseFeesRevenueMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Standard Product and Services, Application of Customer Specific Solutions)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'UNITED STATES' (country:US) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, Europe, Greater China, Other Asia)",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Other Geographic Area' (cgnx:OtherGeographicAreaMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Americas, Europe, Greater China, Other Asia)"
+ ],
+ "complete": true
+}
