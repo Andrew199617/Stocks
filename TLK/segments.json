@@ -1,0 +1,344 @@
+{
+ "ticker": "TLK",
+ "cik": 1001807,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-062051",
+   "filed": "2026-05-15",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1001807/000110465926062051/tmb-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "IDR",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "ifrs-full:RevenueFromContractsWithCustomers",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tlk:B2cSegmentMember",
+     "label": "B2C Segment",
+     "values": [
+      111713000000000,
+      109662000000000,
+      105898000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7629,
+      0.7463,
+      0.7361
+     ],
+     "growth_yoy": [
+      null,
+      -0.0184,
+      -0.0343
+     ]
+    },
+    {
+     "member": "tlk:B2bInfraSegmentMember",
+     "label": "B2B Infra Segment",
+     "values": [
+      15441000000000,
+      15741000000000,
+      15300000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1054,
+      0.1071,
+      0.1063
+     ],
+     "growth_yoy": [
+      null,
+      0.0194,
+      -0.028
+     ]
+    },
+    {
+     "member": "tlk:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      10634000000000,
+      10732000000000,
+      10673000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0726,
+      0.073,
+      0.0742
+     ],
+     "growth_yoy": [
+      null,
+      0.0092,
+      -0.0055
+     ]
+    },
+    {
+     "member": "tlk:B2bIctSegmentMember",
+     "label": "B2B ICT Segment",
+     "values": [
+      3967000000000,
+      5151000000000,
+      6054000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0271,
+      0.0351,
+      0.0421
+     ],
+     "growth_yoy": [
+      null,
+      0.2985,
+      0.1753
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "Others",
+     "values": [
+      4675000000000,
+      5652000000000,
+      5942000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0319,
+      0.0385,
+      0.0413
+     ],
+     "growth_yoy": [
+      null,
+      0.209,
+      0.0513
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     146430000000000,
+     146938000000000,
+     143867000000000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "tlk:B2cSegmentMember",
+     "label": "B2C Segment",
+     "values": [
+      24486000000000,
+      21880000000000,
+      21704000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7146,
+      0.641,
+      0.5764
+     ],
+     "growth_yoy": [
+      null,
+      -0.1064,
+      -0.008
+     ]
+    },
+    {
+     "member": "tlk:B2bInfraSegmentMember",
+     "label": "B2B Infra Segment",
+     "values": [
+      10034000000000,
+      12424000000000,
+      15894000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2928,
+      0.364,
+      0.4221
+     ],
+     "growth_yoy": [
+      null,
+      0.2382,
+      0.2793
+     ]
+    },
+    {
+     "member": "tlk:B2bIctSegmentMember",
+     "label": "B2B ICT Segment",
+     "values": [
+      3387000000000,
+      3290000000000,
+      3156000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0988,
+      0.0964,
+      0.0838
+     ],
+     "growth_yoy": [
+      null,
+      -0.0286,
+      -0.0407
+     ]
+    },
+    {
+     "member": "tlk:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      557000000000,
+      594000000000,
+      718000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0163,
+      0.0174,
+      0.0191
+     ],
+     "growth_yoy": [
+      null,
+      0.0664,
+      0.2088
+     ]
+    },
+    {
+     "member": "ifrs-full:AllOtherSegmentsMember",
+     "label": "Others",
+     "values": [
+      776000000000,
+      679000000000,
+      613000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0226,
+      0.0199,
+      0.0163
+     ],
+     "growth_yoy": [
+      null,
+      -0.125,
+      -0.0972
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Adjustments and eliminations",
+     "values": [
+      -4975000000000,
+      -4733000000000,
+      -4432000000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1452,
+      -0.1387,
+      -0.1177
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     34265000000000,
+     34134000000000,
+     37653000000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "6 facts in a currency other than IDR were ignored",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Segment' (tlk:TotalSegmentsBeforeAdjustmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

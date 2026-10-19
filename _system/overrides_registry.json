@@ -2638,6 +2638,54 @@
    "ratio": 0.5,
    "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-02-24), Item 9 'The offer and listing' (p. 147): a two-for-one split of the outstanding ADSs effective December 3, 2012 'changed the ratio of our ADSs to shares from one ADS representing one share to two ADSs representing one share' \u2014 so one ADS represents one-half of an ordinary share (depositary: Bank of New York Mellon); the same 1/2 ratio is carried in the NYSE-registered ADS class title",
    "reason": "EDGAR per-share figures are per ordinary share while the Nasdaq/NYSE price ($22.17) is per ADS; per-share figures must be scaled x0.5 ordinary shares per ADS to be comparable to the ADS price"
+  },
+  {
+   "ticker": "TLK",
+   "field": "sbc",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "PT Telkom Indonesia FY2024 audited consolidated financial statements (furnished on Form 6-K filed 2025-04-18 and included in the Form 20-F for the fiscal year ended December 31, 2024, filed 2025-04-28): the words 'share-based' and 'stock option' appear nowhere in the 138-page statements; the Consolidated Statements of Cash Flows are presented on the direct method (cash receipts/payments) with no share-based compensation add-back or line for FY2024 or FY2023, and the Consolidated Statements of Changes in Equity show capital stock (Rp4,953B) and additional paid-in capital (Rp2,711B) unchanged across FY2023-FY2024 with movements only from dividends, non-controlling-interest transactions, restructuring differences, OCI and profit \u2014 no stock-compensation credit to APIC in either year",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for fiscal years 2022, 2023, 2024 of the last 3 under the engine's tags because the filer reports no share-based compensation at all in those years: no SBC line, note, plan or expense amount appears anywhere in its own FY2024 audited statements (which carry the FY2023 comparatives), and its EPS note confirms no equity-linked dilutive instruments exist. The filing-sourced equity SBC figure for the gap years is $0 (same treatment as COKE/ARCC in this sweep); charging $0 is the filer's own reported position, not a zero-fill of a missing value.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 2.2319,
+   "base_oe_with_override": 2.2319,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1911,
+   "weighted_irr_with_override": 0.1911,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "TLK",
+   "field": "shares",
+   "value": 99062216600.0,
+   "kind": "filing",
+   "source": "PT Telkom Indonesia FY2024 audited consolidated financial statements (Form 6-K filed 2025-04-18; Form 20-F for FY2024 filed 2025-04-28), Note 28 Basic Earnings Per Share: basic EPS is computed on a weighted average of 99,062,216,600 shares for the years ended December 31, 2024 and 2023, and 'The Company does not have potentially dilutive financial investments for the years ended December 31, 2024 and 2023' \u2014 so the diluted weighted count equals the basic count the engine found under WeightedAverageShares",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for 2022, 2023, 2024; only the non-diluted WeightedAverageShares count (99,062,216,600 in each year) is tagged. The filer's own EPS note proves diluted = basic for 2023 and 2024 (no potentially dilutive instruments), and the count has been identical at 99,062,216,600 every year since 2017 in financials_history.csv, so applying the same filed count to 2022 changes nothing. Declared kind 'filing' per the v5.4 flag instruction.",
+   "date": "2026-10-19",
+   "base_used": "median_3y",
+   "base_oe_without_override": 2.2319,
+   "base_oe_with_override": 2.2319,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1911,
+   "weighted_irr_with_override": 0.1911,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "TLK",
+   "event": "manual_price",
+   "date": "2026-10-19",
+   "value": 11.03
+  },
+  {
+   "ticker": "TLK",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 100.0,
+   "source": "PT Telkom Indonesia FY2024 audited consolidated financial statements (Form 6-K filed 2025-04-18; Form 20-F for FY2024 filed 2025-04-28), Note 2t: 'Income per ADS is computed by multiplying the basic earnings per share by 100, the number of shares represented by each ADS'; the face of the income statement reads 'Profit per ADS (100 Series B shares per ADS)', and Note 1 records the ratio change effective October 26, 2016 from 1 ADS = 200 Series B shares to 1 ADS = 100 Series B shares. The company's financial highlights state the same: 'Net income per ADS (1 ADS : 100 common stock)'",
+   "reason": "DATA_GAP:ads_ratio \u2014 20-F filer: engine per-share figures are per ordinary (Series B) share but the Nasdaq price ($11.03) is per ADS; each ADS represents 100 Series B shares, so per-share figures are scaled x100 to be comparable to the traded price."
   }
  ]
 }
