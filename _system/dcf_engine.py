@@ -336,6 +336,10 @@ def load_overrides(ticker):
     return out
 
 PAYABLE_BASIS = "payable_earnings_5y"
+# SIC codes the payable-earnings rule is scoped to (P&C insurers and reinsurers):
+# 6331 Fire, Marine & Casualty Insurance; 6351 Surety Insurance. Life (6311),
+# accident & health (6321), banks and REITs keep the OCF base + notch rule.
+PAYABLE_SIC = frozenset({"6331", "6351"})
 
 def payable_base_per_share(figures, shares, ads_ratio=None):
     """Insurer payable-earnings base (Andrew, 2026-10-19): the average of the
@@ -376,8 +380,9 @@ def load_payable_base(ticker):
     if not str(o.get("source") or "").strip() or not str(o.get("reason") or "").strip():
         raise ValueError("base_override.source and .reason must be non-empty")
     per_ord = sum(float(x) for x in figs) / 5.0 / float(o["shares"])
-    if abs(per_ord - float(o["value"])) > 0.001 * abs(per_ord):
-        raise ValueError(f"base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f})")
+    if abs(per_ord - float(o["value"])) > 0.005:  # cent-level: the construction must reproduce to the cent
+        raise ValueError(f"base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f}) to the cent")
+    o = dict(o); o["value"] = per_ord  # the recomputed figure is the one recorded and pinned
     return o
 
 def load_ads_ratio(ticker):
@@ -458,6 +463,15 @@ def _override_impact(ticker, price, headline_base, headline_irr):
     return {"base_oe_per_share_zero_fill": zb, "base_oe_per_share_final": fb,
             "weighted_irr_zero_fill": zi, "weighted_irr_final": fi,
             "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides — its override effect shows in ttm.py output / make_score's payable_5y impact"}
+
+def filer_sic(cik):
+    """(sic, sicDescription) from EDGAR submissions — the authoritative industry
+    code the payable-earnings rule is gated on (PAYABLE_SIC)."""
+    try:
+        sub = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+        return (str(sub.get("sic") or "") or None), (sub.get("sicDescription") or None)
+    except Exception:
+        return None, None
 
 def filer_annual_form(cik):
     """The filer's most recent annual form (10-K / 20-F / 40-F) from EDGAR
@@ -1070,8 +1084,12 @@ def main():
         # series were FX-converted (the figures must already be USD).
         try:
             pb = load_payable_base(ticker)
-            if shares and abs(float(pb["shares"]) - float(shares)) > 0.001 * float(shares):
-                raise ValueError(f"base_override.shares {pb['shares']:,.0f} is not this run's latest diluted count {shares:,.0f}")
+            if not shares or abs(float(pb["shares"]) - float(shares)) >= 1.0:  # exact: the denominator IS the latest count
+                raise ValueError(f"base_override.shares {pb['shares']:,.0f} is not this run's latest diluted count {shares if shares else 'n/a'}")
+            sic, sic_desc = filer_sic(cik)
+            if sic not in PAYABLE_SIC:
+                raise ValueError(f"the payable-earnings rule is scoped to P&C insurers/reinsurers (SIC {sorted(PAYABLE_SIC)}); "
+                                 f"EDGAR lists SIC {sic or 'unknown'} ({sic_desc or 'n/a'}) — keep the OCF base and the 2026-10-15 notch")
             if fx_info and fx_info.get("from_currency") and fx_info.get("from_currency") != "USD":
                 raise ValueError("payable base is only defined for USD filers (series were FX-converted) — escalate NEEDS_MAIN_AGENT")
             base_override = payable_base_per_share(pb["figures"], pb["shares"], ads_ratio)
@@ -1083,7 +1101,7 @@ def main():
                         "average": sum(float(x) for x in pb["figures"]) / 5.0,
                         "shares": float(pb["shares"]), "per_ordinary_share": float(pb["value"]),
                         "ads_ratio": float(ads_ratio["ratio"]) if ads_ratio else 1.0,
-                        "pinned_per_share": base_override}
+                        "pinned_per_share": base_override, "sic": sic, "sic_description": sic_desc}
     else:
         base_override = None
     if base_override is not None:
