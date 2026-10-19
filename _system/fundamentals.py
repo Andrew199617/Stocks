@@ -2493,9 +2493,17 @@ def price_dividends(div, price, price_date, price_source):
             yb = _with_note_after_denominator(yb, YIELD_BOUND_NOTES[yb["bound"]] if (market_cap and yb.get("bound") in YIELD_BOUND_NOTES) else None)
         yield_basis[name] = yb
     dps_ttm, dps_ttm_basis = d.get("dps_ttm"), d.get("dps_ttm_basis")
-    values["dividend_yield"] = _ratio(dps_ttm, price) if _num(price) and price > 0 else None
+    # dps_ttm is filed per ordinary share; against a per-ADS price the
+    # numerator scales by the same ratio (per-ADS DPS = per-share DPS x
+    # ordinary shares per ADS), else the yield is off by exactly the ratio
+    # (LTM at 2000: shown 0.0010% for a true 2.04%).
+    dps_yield_num = dps_ttm * ads_ratio if (ads_ratio and _num(dps_ttm)) else dps_ttm
+    values["dividend_yield"] = _ratio(dps_yield_num, price) if _num(price) and price > 0 else None
     if isinstance(yield_basis.get("dividend_yield"), dict):
-        yield_basis["dividend_yield"] = dict(yield_basis["dividend_yield"], denominator=f"price {price} ({price_source})" if _num(price) else None)
+        denom = f"price {price} ({price_source})" if _num(price) else None
+        if denom is not None and ads_ratio:
+            denom += f"; DPS × ADS ratio {ads_ratio} (per-ADS basis)"
+        yield_basis["dividend_yield"] = dict(yield_basis["dividend_yield"], denominator=denom)
     # 5.4.4 review fix: a display-ready figure per yield so no consumer (the
     # Dividends tab, the ranking row) can print a partial numerator bare —
     # the bound is in the label ("≥ 2.66%", "≤ 6.1%", "≈ 4.4% (incomplete)")

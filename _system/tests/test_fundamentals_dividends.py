@@ -1359,8 +1359,11 @@ def test_price_dividends_ads_ratio_divides_market_cap():
     d = F.build_dividends(annual, qrows, dps_q, dps_fy, 15.10, "2026-10-14", "prices.json stats.last", ctx)
     assert close(d["market_cap"], 15.10 * 2027130587 / 0.5), "build prices the block on the ADS basis"
     assert "ADS ratio 0.5" in d["market_cap_basis"], "the printed basis names the division"
+    assert close(d["dividend_yield"], d["dps_ttm"] * 0.5 / 15.10), "the DPS numerator scales to the per-ADS basis too"
+    assert "per-ADS basis" in d["yield_basis"]["dividend_yield"]["denominator"]
     r = F.price_dividends(d, 20.0, "2026-10-20", "prices.json stats.last")
     assert close(r["market_cap"], 20.0 * 2027130587 / 0.5)
+    assert close(r["dividend_yield"], d["dps_ttm"] * 0.5 / 20.0)
     for k in ("buyback_yield", "net_buyback_yield", "shareholder_yield"):
         assert close(r[k], d["yield_basis"][k]["numerator"] / r["market_cap"]), k
 
