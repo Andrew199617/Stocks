@@ -70,7 +70,7 @@
  "filer_annual_form": "20-F",
  "ads_ratio": {
   "ratio": 1.0,
-  "source": "Form 6-K filed May 2026 (PDMR notification), description of the financial instrument: 'American Depositary Receipts (ADRs) in Pearson plc, each ADR represents one ordinary share of 25 pence in Pearson plc'; the NYSE ADS facility is 1 ADS = 1 ordinary share.",
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.",
   "reason": "ADS_RATIO_MISSING \u2014 20-F filer: EDGAR per-share figures are per ordinary share and the Nasdaq price is per ADS; with 1 ordinary share per ADS (ratio 1) the per-share figures are already comparable to the ADS price and the market cap is price x shares with no scaling."
  },
  "fx_conversion": {
@@ -687,7 +687,7 @@
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
   "FX_CONVERTED: reporting currency GBP converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
-  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 6-K filed May 2026 (PDMR notification), description of the financial instrument: 'American Depositary Receipts (ADRs) in Pearson plc, each ADR represents one ordinary share of 25 pence in Pearson plc'; the NYSE ADS facility is 1 ADS = 1 ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
   "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), consolidated cash flow statement: 'Purchase of property, plant and equipment and investment property' GBP 29M and 'Purchase of intangible assets' GBP 105M for FY2025 \u2014 total capex GBP 134M; the same statement reports GBP 33M + GBP 91M = GBP 124M for FY2024 and GBP 30M + GBP 96M = GBP 126M for FY2023. Declared in GBP (the reporting currency); the engine FX-converts at period-end ECB rates.); an override never replaces a filed value \u2014 see overrides_applied and override_impact \u2014 intangible purchases filed for FY2022 (90,000,000 GBP), FY2023 (96,000,000 GBP), FY2024 (91,000,000 GBP), FY2025 (105,000,000 GBP) were not added on top of the override; if the override excludes them, revise it to the total",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
   "TIER_BAND: bear-case tier D (6.5%) vs bull-case tier C (10.2%) \u2014 the verdict spans tiers; size any position to the bear end"
@@ -699,5 +699,5 @@
   "weighted_irr_final": 0.08392888569576418,
   "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides \u2014 its override effect shows in ttm.py output / make_score's payable_5y impact"
  },
- "content_hash": "03fc700b3215d27591a8135913e041875ab7d1478bc994258a4a64ebd793e56c"
+ "content_hash": "23a9d200e48da71e9d291f2df4bc58bb332615639d09748b286bc5b996dac22b"
 }

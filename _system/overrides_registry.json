@@ -2906,7 +2906,7 @@
    "event": "ads_ratio",
    "date": "2026-10-19",
    "ratio": 1.0,
-   "source": "Form 6-K filed May 2026 (PDMR notification), description of the financial instrument: 'American Depositary Receipts (ADRs) in Pearson plc, each ADR represents one ordinary share of 25 pence in Pearson plc'; the NYSE ADS facility is 1 ADS = 1 ordinary share.",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 12, 'Description of securities other than equity securities \u2014 American Depositary Shares': 'Each ADS represents one ordinary share.' (sponsored ADR facility, JPMorgan Chase Bank, N.A. as depositary); the same statement appears in the business overview, and the cover page registers 'American Depositary Shares, each Representing One Ordinary Share, 25p per Ordinary Share'. The NYSE ADS facility is 1 ADS = 1 ordinary share.",
    "reason": "ADS_RATIO_MISSING \u2014 20-F filer: EDGAR per-share figures are per ordinary share and the Nasdaq price is per ADS; with 1 ordinary share per ADS (ratio 1) the per-share figures are already comparable to the ADS price and the market cap is price x shares with no scaling."
   }
  ]

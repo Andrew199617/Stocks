@@ -19,7 +19,7 @@ Reporting currency GBP, converted to USD at period-end ECB rates (FX_CONVERTED, 
 - **Measured impact (dcf_numbers.json override_impact, final scenario inputs):** zero-fill base $1.07/share → **$0.82/share** with the override; zero-fill weighted IRR 10.07% → **8.39%**. Without the override the run's OE was overstated by ~30% on a capex line that is only ~4% of sales — the override is the whole difference between the fake Tier C the zero-fill arithmetic implied and this Tier D.
 
 ## ADS ratio
-20-F filer: judgment.json carries `ads_ratio = {ratio: 1}` — each ADR represents one ordinary share of 25 pence (Form 6-K filed May 2026, PDMR notification, instrument description). Per-share figures are per ordinary share and the price is per ADS; at a 1:1 ratio they are already comparable and the market cap is price × shares ($12.011B) with no scaling (ADS_RATIO_APPLIED ×1.0).
+20-F filer: judgment.json carries `ads_ratio = {ratio: 1}` — each ADS represents one ordinary share of 25 pence, as stated in the filer's own FY2025 Form 20-F (filed 2026-03-13), Item 12, 'Description of securities other than equity securities — American Depositary Shares': 'Each ADS represents one ordinary share.'. Per-share figures are per ordinary share and the price is per ADS; at a 1:1 ratio they are already comparable and the market cap is price × shares ($12.011B) with no scaling (ADS_RATIO_APPLIED ×1.0).
 
 ## Moat: 5/10 — moderate / narrow
 Evidence first (fundamentals.json, GBP): roic_proxy FY2019–FY2025 ran 3.9% / 7.6% / 3.0% / 4.0% / 7.9% / 9.3% / 7.7% — improving, but never durably above ~10%, i.e. around the cost of capital, not well above it through a cycle. Gross margin 47–52% over the same years, 52.0% in FY2025. A moat above 6 is not supported by those returns.
@@ -43,7 +43,7 @@ Growth sanity check and recalibration (written reason): the engine blend is 8.63
 
 ## Flags — every fragility flag resolved
 - **DATA_GAP:capex** (preliminary run): resolved by the filing override — see OVERRIDE. data_gap_uncovered is empty in the final run.
-- **ADS_RATIO_MISSING** (preliminary run): resolved — ads_ratio 1 declared from the filer's own 6-K (see ADS ratio); the final run carries ADS_RATIO_APPLIED ×1.0.
+- **ADS_RATIO_MISSING** (preliminary run): resolved — ads_ratio 1 declared from the filer's own 20-F (see ADS ratio); the final run carries ADS_RATIO_APPLIED ×1.0.
 - **STALE_FY** (latest FY ended 2025-12-31, 9.6 months ago): no TTM is buildable for an IFRS filer (ttm.py reads US-GAAP facts only and exited with none) — the median base stands, per spec. Cross-check since FY end: H1 2026 interims (six months to 2026-06-30) printed underlying sales +4%, adjusted operating profit +14% underlying to £276m and reiterated FY2026 guidance — performance since the FY end supports, and does not undermine, the median base.
 - **BUYBACK_TAILWIND** (share count −3.81%/yr, 742.0M → 660.3M over FY2022–FY2025): already credited via the +3.81pp growth adjustment in the blend; not double-counted in the verdict. The £350m buyback was completed in H1 2026 and a further £350m programme launched — the tailwind is real but it is in the model once.
 - **OE_VOLATILE** (OE/share range over the last 5 years spans >3×: $0.22 in FY2021 to $0.99 in FY2025): the span is a COVID-trough FY2021, a genuine OCF recovery, a shrinking share count and the FY2025 tax recovery — handled by the median base (not the latest year) and by widening bear-or-worse probability to 40%.
