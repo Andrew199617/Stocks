@@ -97,8 +97,10 @@ BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.
 SYS_DIR = f"{BASE}/_system"
 ENGINE = f"{SYS_DIR}/dcf_engine.py"
 TTM_PY = f"{SYS_DIR}/ttm.py"
+PAYABLE_BASIS = "payable_earnings_5y"
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
 TIERS = ("S", "A", "B", "C", "D", "F")
+TIER_ORDER = {t: i for i, t in enumerate(reversed(TIERS))}  # F=0 … S=5: higher is better
 CONFIDENCE = ("low", "medium", "high")
 OVERRIDE_KEYS = {"capex": "capex_override", "sbc": "sbc_override", "shares": "shares_override"}
 REGISTRY = os.environ.get("MAKE_SCORE_REGISTRY") or f"{SYS_DIR}/overrides_registry.json"
@@ -182,7 +184,38 @@ def validate_base_override(j):
         fail("judgment.json: base_override.source must be a non-empty string")
     if not str(o.get("reason") or "").strip():
         fail("judgment.json: base_override.reason must be a non-empty string")
+    if o.get("basis") is not None:
+        # Insurer payable-earnings base (2026-10-19): the engine reads this
+        # shape via --base-judgment; make_score checks it reproduces.
+        if o.get("basis") != PAYABLE_BASIS:
+            fail(f"judgment.json: base_override.basis must be {PAYABLE_BASIS!r} when set")
+        if o.get("kind") != "filing":
+            fail("judgment.json: a payable-earnings base_override must have kind 'filing'")
+        figs = o.get("figures")
+        if not (isinstance(figs, list) and len(figs) == 5
+                and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in figs)):
+            fail("judgment.json: base_override.figures must list exactly five annual figures")
+        if not isinstance(o.get("shares"), (int, float)) or isinstance(o.get("shares"), bool) or o["shares"] <= 0:
+            fail("judgment.json: base_override.shares must be a positive share count")
+        per_ord = sum(float(x) for x in figs) / 5.0 / float(o["shares"])
+        if abs(per_ord - float(o["value"])) > 0.001 * abs(per_ord):
+            fail(f"judgment.json: base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f})")
     return o
+
+
+def check_no_double_softening(n, j, model_fit):
+    """A payable-earnings base already measures what common shareholders earn;
+    stacking the 2026-10-15 one-notch misfit tier_override on top double-counts
+    the same correction (AGENTS.md, sector misfits). Returns the refusal text
+    or None."""
+    if not (n.get("payable_base") and j.get("tier_override")):
+        return None
+    tb, tf = n.get("tier_by_numbers"), j.get("tier_override")
+    if model_fit == "misfit" and tb and tf and TIER_ORDER.get(tf, -1) < TIER_ORDER.get(tb, -1):
+        return (f"judgment.json sets tier_override {tf} below the numbers tier {tb} while the base is already the "
+                "payable-earnings base (payable_earnings_5y) — the one-notch insurer softening is not applied on "
+                "top of that base (double-counting). Clear tier_override, or drop --base-judgment")
+    return None
 
 
 def validate_ads_ratio(j):
@@ -326,10 +359,32 @@ def compute_override_impact(ticker, n):
     gaps = list(n.get("data_gap") or [])
     unblocks = bool(gaps) and not (n.get("data_gap_uncovered") or [])
     base_src = (n.get("base_source") or "").lower()
+    pin_src = (n.get("inputs") or {}).get("base_pin_source")
     pinned = (n.get("inputs") or {}).get("base_oe_ps_arg") is not None or "ttm" in base_src
-    base_used = "ttm" if pinned else "median_3y"
+    base_used = "payable_5y" if (pin_src == "judgment_base_override" or n.get("payable_base")) \
+        else "ttm" if pinned else "median_3y"
     args = _final_run_args(n)
-    if base_used == "ttm":
+    if base_used == "payable_5y":
+        # The base is pinned to the declared payable-earnings figure in both
+        # worlds (field overrides fill OCF/capex/SBC history, never this pin),
+        # so the base impact is zero by construction; the IRR counterfactual
+        # replays the same pin with the field overrides off, since they can
+        # still move the growth blend. A gate firing in the replay (the
+        # override covers the only capex history, as at RNR) is an honest
+        # "no counterfactual" when the override unblocks the tier.
+        base_without = base_with
+        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
+                      + ["--base-oe-ps", repr(float(base_with))], {"DCF_NO_OVERRIDES": "1"})
+        if m is None:
+            fail("counterfactual engine --measure run failed — cannot measure override impact on the payable base")
+        if m.get("implied_irr_weighted") is None:
+            if not (unblocks and (m.get("data_gap") or [])):
+                fail("counterfactual run produced no IRR and no data gap — cannot measure override impact on the payable base")
+            base_without = None
+            irr_without = None
+        else:
+            irr_without = m.get("implied_irr_weighted")
+    elif base_used == "ttm":
         base_without = _ttm_base_without_overrides(ticker, n)
         if base_without is None:
             if not unblocks:
@@ -433,8 +488,13 @@ def update_registry(ticker, applied, j_over, impact, j, n):
         bo = j.get("base_override")
         if bo and ((n.get("inputs") or {}).get("base_oe_ps_arg") is not None
                    or "ttm" in (n.get("base_source") or "").lower()):
-            entries.append({"ticker": ticker, "event": "base_override", "date": today,
-                            "value": bo["value"], "source": bo["source"], "reason": bo["reason"]})
+            ev = {"ticker": ticker, "event": "base_override", "date": today,
+                  "value": bo["value"], "source": bo["source"], "reason": bo["reason"]}
+            if n.get("payable_base"):
+                pb = n["payable_base"]
+                ev.update({"basis": pb.get("basis"), "figures": pb.get("figures"), "shares": pb.get("shares"),
+                           "ads_ratio": pb.get("ads_ratio"), "pinned_per_share": pb.get("pinned_per_share")})
+            entries.append(ev)
         gterm = (n.get("inputs") or {}).get("g_terminal", n.get("g_terminal"))
         if isinstance(gterm, (int, float)) and abs(gterm - 0.025) > 1e-9:
             entries.append({"ticker": ticker, "event": "gterm", "date": today, "value": gterm})
@@ -543,6 +603,14 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
           f"- Shares diluted (latest): {n.get('shares_diluted_latest'):,.0f}" if n.get("shares_diluted_latest") else "- Shares diluted (latest): —",
           f"- Market cap (est): {_usd(n.get('market_cap_est'))} · net debt (latest): {_usd(n.get('net_debt_latest'))}",
           f"- OE-positive years (last 5): {n.get('oe_positive_years_of_last_5')}"]
+    pb = n.get("payable_base")
+    if pb:
+        figs = pb.get("figures") or []
+        L += ["", "## Payable-earnings base (insurer rule, 2026-10-19)",
+              "- Operating income available to common, last 5 FY (oldest first, exact): " + " / ".join(f"${x:,.0f}" for x in figs),
+              f"- Average: ${pb.get('average'):,.1f} · shares diluted (latest): {pb.get('shares'):,.0f}" if pb.get("shares") else f"- Average: {_usd(pb.get('average'))}",
+              f"- Per ordinary share: {_money(pb.get('per_ordinary_share'))} × ADS ratio {pb.get('ads_ratio')} = pinned base {_money(pb.get('pinned_per_share'))}",
+              f"- Source: {(j.get('base_override') or {}).get('source')}"]
     gc = n.get("growth_components") or {}
     L += ["", "## Growth & moat",
           f"- Growth blend: {_pct(n.get('g_blend'))}" + (f" → g_base {_pct(n.get('g_base'))}" if n.get("g_base") is not None else ""),
@@ -588,7 +656,8 @@ def write_key_numbers(folder, n, j, score, applied, impact=None):
             if field in applied:
                 L.append(f"- {field} reason: {applied[field]['reason']}")
         if impact:
-            basis_lbl = "TTM base" if impact.get("base_used") == "ttm" else "3-yr median base"
+            basis_lbl = {"ttm": "TTM base", "payable_5y": "payable-earnings base (5-yr avg operating income to common)"}.get(
+                impact.get("base_used"), "3-yr median base")
             pct = impact.get("base_oe_impact_pct")
             pp = impact.get("weighted_irr_impact_pp")
             L += ["",
@@ -746,8 +815,20 @@ def main():
         via_ttm = (isinstance(ttm_val, (int, float)) and isinstance(score_base, (int, float))
                    and ttm_val != 0 and abs(score_base - ttm_val) <= 0.001 * abs(ttm_val))
         if not via_ttm:
-            declared = (j_base_override and isinstance(score_base, (int, float)) and score_base != 0
-                        and abs(float(j_base_override["value"]) - score_base) <= 0.001 * abs(score_base))
+            pb = n.get("payable_base") or {}
+            if pb:
+                # Payable-earnings pin: the score's base is the declared
+                # per-ordinary value scaled by the ADS ratio, and the engine's
+                # record must match the declaration figure for figure.
+                declared = (j_base_override and j_base_override.get("basis") == PAYABLE_BASIS
+                            and isinstance(score_base, (int, float)) and score_base != 0
+                            and abs(float(pb.get("pinned_per_share") or 0) - score_base) <= 0.001 * abs(score_base)
+                            and abs(float(pb.get("per_ordinary_share") or 0) - float(j_base_override["value"])) <= 0.001 * abs(score_base)
+                            and [float(x) for x in (pb.get("figures") or [])] == [float(x) for x in j_base_override["figures"]]
+                            and abs(float(pb.get("shares") or 0) - float(j_base_override["shares"])) <= 0.001 * float(j_base_override["shares"]))
+            else:
+                declared = (j_base_override and isinstance(score_base, (int, float)) and score_base != 0
+                            and abs(float(j_base_override["value"]) - score_base) <= 0.001 * abs(score_base))
             if not declared:
                 fail(f"base pin provenance: the score's base OE/share {score_base} differs from ttm.json's "
                      f"ttm_oe_per_share {ttm_val} by >0.1% (or ttm.json is missing) and judgment.json declares no "
@@ -801,6 +882,9 @@ def main():
     flags_all = n.get("fragility_flags") or []
     diag = n.get("diagnostics") or {}
     model_fit = "misfit" if any(str(f).startswith("SECTOR_MODEL_MISMATCH") for f in flags_all) else "modeled"
+    _dbl = check_no_double_softening(n, j, model_fit)
+    if _dbl:
+        fail(_dbl)
     score.update({
         "engine_release": n.get("engine_release"),
         "irr_bear": round(n["irr_bear"], 4) if isinstance(n.get("irr_bear"), (int, float)) else None,
