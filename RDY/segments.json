@@ -1,0 +1,249 @@
+{
+ "ticker": "RDY",
+ "cik": 1135951,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001575872-26-000381",
+   "filed": "2026-05-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000381/rdy0899_20f_htm.xml"
+  }
+ ],
+ "currency": "INR",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rdy:GlobalGenericsMember",
+     "label": "Global Generics",
+     "values": [
+      245453000000,
+      289552000000,
+      299033000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8792,
+      0.8895,
+      0.8902
+     ],
+     "growth_yoy": [
+      null,
+      0.1797,
+      0.0327
+     ]
+    },
+    {
+     "member": "rdy:PharmaceuticalServicesAndActiveIngredientsMember",
+     "label": "Pharmaceutical Services and Active Ingredients",
+     "values": [
+      29801000000,
+      33846000000,
+      34773000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1068,
+      0.104,
+      0.1035
+     ],
+     "growth_yoy": [
+      null,
+      0.1357,
+      0.0274
+     ]
+    },
+    {
+     "member": "rdy:OtherSegmentMember",
+     "label": "Other segment",
+     "values": [
+      3910000000,
+      2137000000,
+      2127000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.014,
+      0.0066,
+      0.0063
+     ],
+     "growth_yoy": [
+      null,
+      -0.4535,
+      -0.0047
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     279164000000,
+     325535000000,
+     335933000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rdy:OthersCountriesCountryMember",
+     "label": "Others Countries Country",
+     "values": [
+      72825000000,
+      94396000000,
+      118718000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2609,
+      0.29,
+      0.3534
+     ],
+     "growth_yoy": [
+      null,
+      0.2962,
+      0.2577
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      135565000000,
+      149351000000,
+      117892000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4856,
+      0.4588,
+      0.3509
+     ],
+     "growth_yoy": [
+      null,
+      0.1017,
+      -0.2106
+     ]
+    },
+    {
+     "member": "rdy:IndiaCountryMember",
+     "label": "India Country",
+     "values": [
+      48473000000,
+      55830000000,
+      64537000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1736,
+      0.1715,
+      0.1921
+     ],
+     "growth_yoy": [
+      null,
+      0.1518,
+      0.156
+     ]
+    },
+    {
+     "member": "rdy:RussiaCountryMember",
+     "label": "Russia Country",
+     "values": [
+      22301000000,
+      25958000000,
+      34786000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0799,
+      0.0797,
+      0.1036
+     ],
+     "growth_yoy": [
+      null,
+      0.164,
+      0.3401
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     279164000000,
+     325535000000,
+     335933000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "8 facts in a currency other than INR were ignored",
+  "business_segments/Revenues/annual: row 'Global Generic' (rdy:GlobalGenericMember) dropped: same numbers as 'Global Generics' (rdy:GlobalGenericsMember)",
+  "business_segments/Revenues/annual: row 'Pharmaceutical Services and Active Ingredient' (rdy:PharmaceuticalServicesAndActiveIngredientMember) dropped: same numbers as 'Pharmaceutical Services and Active Ingredients' (rdy:PharmaceuticalServicesAndActiveIngredientsMember)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

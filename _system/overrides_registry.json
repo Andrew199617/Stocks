@@ -2736,6 +2736,14 @@
    "tier_by_numbers": "D",
    "tier_final": "F",
    "reason": "The as-filed TTM base (+$0.1759/share) is entirely attributable to non-recurring working-capital inflows. Cash-flow bridge for the TTM window (statements.json quarterly lines): net income -$75,125,000 + SBC $98,741,000 + D&A $39,983,000 + other non-cash -$1,443,000 = $62,156,000 against OCF of $127,085,000 - i.e. +$64,929,000 of TTM OCF came from working-capital / other operating movements, dominated by collection of the Q2 2025 patent-litigation settlement receivable (other current assets $69,090,000 at Q2 2025 -> $3,084,000 at Q2 2026; engine-construction delta-NWC over the window -$92,078,000). Ex-release TTM OE is approx. -$42,234,000, about -$0.33/share, and the normalized 3-yr median base is -$1.22/share: no positive normalized owner's earnings on any adjusted basis, so the final tier is F. Tier by numbers on the as-filed TTM base remains D (weighted IRR 2.81%, at the solver floor; IV@15 $1.68 vs price $71.95)."
+  },
+  {
+   "ticker": "RDY",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 1.0,
+   "source": "Dr. Reddy's Form 20-F for the fiscal year ended March 31, 2024: 'One ADS represents one equity share of Rs.5 par value per share'; the 5-for-1 share sub-division effective 28 Oct 2024 left the ratio unchanged \u2014 the company's FY2026 interim/annual share-capital disclosure states each ADS continues to represent one underlying equity share and the number of ADSs increased proportionately (FY2026 Form 20-F, period ended 2026-03-31, filed 2026-05-29). Depositary listing (Deutsche Bank ADR universe) confirms Ratio (ORD:DR) 1:1.",
+   "reason": "20-F filer: EDGAR share counts are ordinary equity shares and the Nasdaq/NYSE price is per ADS; with a 1:1 ratio per-ADS figures equal per-ordinary-share figures, so no scaling applies \u2014 the ratio is declared to clear the ADS_RATIO_MISSING gate on the filer's own statement."
   }
  ]
 }

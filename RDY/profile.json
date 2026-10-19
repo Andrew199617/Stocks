@@ -1,0 +1,243 @@
+{
+ "ticker": "RDY",
+ "cik": 1135951,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T09:08:42-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001135951.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000381/rdy0899_20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RDY/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RDY/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "DR REDDYS LABORATORIES LTD",
+  "cik": 1135951,
+  "description": {
+   "text": "affordable and innovative medicines. Our reportable operating segments are as follows: Pharmaceutical Services and Active Ingredients (“PSAI”); and Others. Global Generics. This segment consists of our business of manufacturing and marketing prescription and over-the-counter finished pharmaceutical products ready for consumption by the patient, marketed under a brand name (branded formulations) or as generic finished dosages with therapeutic equivalence to branded formulations (generics). This segment includes the operations of our biologics business, and the portfolio outside of the United States of consumer brands in the Nicotine Replacement Therapy acquired from Haleon UK Enterprises Limited (the “NRT Business”).",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-05-29",
+   "period": "2026-03-31",
+   "accession": "0001575872-26-000381",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000381/rdy0899_20f.htm"
+  },
+  "description_short": "Dr. Reddy's Laboratories Ltd. (BSE: 500124, NSE: DRREDDY, NYSE: RDY, NSEIFSC: DRREDDY) is a global pharmaceutical company headquartered in Hyderabad, India. Established in 1984, we are committed to providing access to affordable and innovative medicines. Driven by our purpose of 'Good Health Can't Wait', we offer a portfolio of products and services including APIs, generics, branded generics, biosimilars and OTC. Our major therapeutic areas of focus are gastrointestinal, cardiovascular, diabetology, oncology, pain management and dermatology. Our major markets include - USA, India, Russia & CIS countries, China, Brazil and Europe. As a company with a history of deep science that has led to several industry firsts, we continue to plan ahead and invest in businesses of the future. As an early adopter of sustainability and ESG actions, we released our first Sustainability Report in 2004.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "Asia",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "K7",
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.drreddys.com",
+  "headquarters": "Hyderabad, India",
+  "address": {
+   "street": "8-2-337 Road No. 3 Banjara Hills",
+   "city": "Hyderabad",
+   "state": null,
+   "zip": "500 034",
+   "country": "India",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-05-29"
+  },
+  "phone": "91 40 49002900",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2001-04-20",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001135951&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000700",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000700/rdy0948_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000683",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000683/rdy0947_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-07",
+   "period": "2026-10-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000677",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000677/rdy0946_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000672",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000672/rdy-0945_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000661",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000661/rdy0944_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-21",
+   "period": "2026-09-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000659",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000659/rdy0943_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000657",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000657/rdy0942_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000646",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000646/rdy0941_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000643",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000643/rdy0940_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000642",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000642/rdy0939_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-26",
+   "period": "2026-08-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000618",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000618/rdy0938_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000585",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000585/rdy0937_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-17",
+   "period": "2026-08-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000583",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000583/rdy0936_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000568",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000568/rdy0935_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-10",
+   "period": "2026-08-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000555",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000555/rdy0934_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000547",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000547/rdy0933_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000538",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000538/rdy0932_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000536",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000536/rdy0931_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000531",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000531/rdy0930_6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001575872-26-000530",
+   "url": "https://www.sec.gov/Archives/edgar/data/1135951/000157587226000530/rdy0929_6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-05-29"
+ ]
+}
