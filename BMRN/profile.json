@@ -1,0 +1,296 @@
+{
+ "ticker": "BMRN",
+ "cik": 1048477,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T00:35:00-04:00",
+ "newest_filing_date": "2026-10-06",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001048477.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000004/bmrn-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BMRN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BMRN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BIOMARIN PHARMACEUTICAL INC",
+  "cik": 1048477,
+  "description": {
+   "text": "BioMarin Pharmaceutical Inc. (BioMarin, we, us or our) is a leading, global rare disease biotechnology company focused on delivering medicines for people living with genetically defined conditions. Our San Rafael, California-based company, founded in 1997, has a proven track record of innovation, with eight commercial therapies and a strong clinical and preclinical pipeline. Using a distinctive approach to drug discovery and development, we seek to unleash the full potential of genetic science by pursuing category-defining medicines that have a profound impact on patients.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001048477-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000004/bmrn-20251231.htm"
+  },
+  "description_short": "BioMarin is a leading, global rare disease biotechnology company focused on delivering medicines for people living with genetically defined conditions. Founded in 1997, the San Rafael, California-based company has a proven track record of innovation, with nine commercial therapies and a strong clinical and preclinical pipeline. Using a distinctive approach to drug discovery and development, BioMarin seeks to unleash the full potential of genetic science by pursuing category-defining medicines that have a profound impact on patients.",
+  "industry": "Biotechnology: Pharmaceutical Preparations",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2834",
+  "sic_description": "Pharmaceutical Preparations",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.biomarin.com",
+  "headquarters": "San Rafael, California",
+  "address": {
+   "street": "770 Lindaro Street",
+   "city": "San Rafael",
+   "state": "California",
+   "zip": "94901",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "4155066700",
+  "employees": {
+   "count": 3221,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 3,221 employees worldwide, of whom 1,518 were in operations, 692 were in research and development, 495 were in sales and marketing and 516 were in administration.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000004/bmrn-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1999-05-04",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001048477&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-06",
+   "period": "2026-10-06",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048477-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000019/bmrn-20261006.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-24",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001628280-26-063981",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000162828026063981/bmrn-20260924.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-26-061973",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000162828026061973/bmrn-20260915.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-10",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-061717",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000162828026061717/bmrn-20260910.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-08-31",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-377696",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526377696/d110660d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-30",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-375275",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526375275/d110137d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-18",
+   "period": "2026-08-17",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001193125-26-354780",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526354780/d172628d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048477-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000016/bmrn-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048477-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000015/bmrn-20260806.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-07-13",
+   "period": "2026-04-27",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Amendment: Other events",
+   "accession": "0001048477-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000011/bmrn-20260427.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-02",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001628280-26-040812",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000162828026040812/bmrn-20260602.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001048477-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000008/bmrn-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048477-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000006/bmrn-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "1.01",
+    "2.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition; Debt obligation; Reg FD",
+   "accession": "0001193125-26-179243",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526179243/d113922d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-173770",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526173770/d139584d8k.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-21",
+   "period": "2026-06-02",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-026290",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000162828026026290/bmrn-20260421.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-107314",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526107314/d114815d8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001048477-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000004/bmrn-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-23",
+   "period": "2026-02-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001048477-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000104847726000002/bmrn-20260223.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001193125-26-048736",
+   "url": "https://www.sec.gov/Archives/edgar/data/1048477/000119312526048736/d63881d8k.htm"
+  }
+ ],
+ "warnings": []
+}
