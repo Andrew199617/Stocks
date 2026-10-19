@@ -1,0 +1,284 @@
+{
+ "ticker": "TWST",
+ "cik": 1581280,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T02:05:36-04:00",
+ "newest_filing_date": "2026-08-19",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001581280.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000025/twst-20250930.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TWST/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TWST/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Twist Bioscience Corp",
+  "cik": 1581280,
+  "description": {
+   "text": "At Twist Bioscience Corporation, we work in service of our customers who are changing the world for the better. In fields such as health care, food/agriculture, industrial chemicals/materials and academic research, by using our products, our customers are developing ways to better lives and improve the sustainability of the planet. We believe Twist Bioscience is uniquely positioned to help accelerate their efforts and the faster our customers succeed, the better for all of us. We have developed a disruptive DNA synthesis platform to industrialize the engineering of biology. The core of our platform is a proprietary technology that pioneers a new method of manufacturing synthetic DNA by “writing” DNA on a silicon chip. We have miniaturized traditional chemical DNA synthesis reactions to write over 1,000,000 pieces of DNA (oligonucleotides) up to 500 bases through direct synthesis on each silicon chip, approximately the size of a large mobile phone, reducing by 99.8% the amount of chemicals we estimate would be used per gene as compared to plate-based synthesis. We have combined our silicon-based DNA writing technology with proprietary software, scalable commercial infrastructure and an e-commerce platform to create an integrated technology platform that enables us to achieve high levels of quality, precision, automation, and manufacturing throughput at a significantly lower cost and quicker than our competitors.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2025-11-17",
+   "period": "2025-09-30",
+   "accession": "0001581280-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000025/twst-20250930.htm"
+  },
+  "description_short": "At Twist Bioscience, our customizable solutions across the biological continuum raise the bar in diagnostics, therapeutics, industrial, agriculture and research markets. We drive innovation with confidence, without compromise. Whether delivering oligos, genes, proteins, libraries, characterization data, antibody discovery solutions, or NGS workflow tools, our scientific expertise and exceptional customer experience help navigate complex challenges, all with precision and at the scale and speed customers require. By enhancing R&D efficiency at every turn, we give scientists more shots on goal - more experiments, more iterations, more chances for remarkable discoveries. Together, we stand with customers in the relentless pursuit of progress, backed by enterprise reliability, to shape a healthier and more sustainable future for all.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0930",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.twistbioscience.com",
+  "headquarters": "South San Francisco, CA",
+  "address": {
+   "street": "681 Gateway Blvd",
+   "city": "South San Francisco",
+   "state": "CA",
+   "zip": "94080",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2025-11-17"
+  },
+  "phone": "800-719-0671",
+  "employees": {
+   "count": 979,
+   "as_of": "2025-09-30",
+   "evidence": "As of September 30, 2025, we had 979 employees.",
+   "form": "10-K",
+   "filed": "2025-11-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000025/twst-20250930.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2018-10-03",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001581280&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-098830",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000110465926098830/tm2623545d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-19",
+   "period": "2026-08-18",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001581280-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000050/twist-20260818.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-04",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001104659-26-091280",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000110465926091280/tm2622018d2_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001581280-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000047/twst-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001581280-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000044/twist-20260803.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001581280-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000040/twst-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001581280-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000037/twist-20260504.htm"
+  },
+  {
+   "form": "10-Q/A",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Amendment: Quarterly report",
+   "accession": "0001581280-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000029/twst-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-11",
+   "items": [
+    "3.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Other events",
+   "accession": "0001104659-26-015730",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000110465926015730/tm266463d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-06",
+   "period": "2026-02-05",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001581280-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000022/twist-20260205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-02",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001581280-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000019/twst-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-02",
+   "period": "2026-02-02",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001581280-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000016/twist-20260202.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001581280-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000012/twist-20260112.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-01-06",
+   "period": "2026-02-05",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001581280-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128026000006/twst-20260105.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-11-17",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001581280-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000025/twst-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-14",
+   "period": "2025-11-14",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001581280-25-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000020/twist-20251114.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-06",
+   "period": "2025-08-05",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001581280-25-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000012/twist-20250805.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001581280-25-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000009/twst-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-04",
+   "period": "2025-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001581280-25-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000158128025000006/twist-20250804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-05",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-022154",
+   "url": "https://www.sec.gov/Archives/edgar/data/1581280/000162828025022154/twst-20250331.htm"
+  }
+ ],
+ "warnings": []
+}
