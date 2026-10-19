@@ -49,23 +49,43 @@ the specs for the old rule and list every stale passage with file:line.
 
 - `financials_history.csv` — the engine input, one row per fiscal year.
   Columns include `ocf`, `capex`, `capex_tag`, `capex_assumed_zero`, `sbc`,
-  `sbc_tag`, `da`, `shares_diluted`, `cash`, `debt_current`, `debt_lt`.
+  `sbc_tag`, `da`, `shares_diluted`, `cash`, `debt_current`, `debt_lt`;
+  engine 5.5 appends `capex_ppe`, `capex_intangibles`, `capex_source`
+  (`capex` = `capex_ppe` + `capex_intangibles`) and `shares_split_factor`.
 - `dcf_numbers.json` — engine output: `base_oe_per_share`, `base_source`,
   `base_oe_latest_per_share` vs `base_oe_normalized_per_share`, `g_base`,
   `scenarios`, `weighted`, `implied_irr_weighted`, `tier_by_numbers`,
   `fragility_flags`, `data_gap`, `used_tags`, `overrides_applied`,
   `ads_ratio`, `shares_diluted_latest`, `market_cap_est`,
-  `net_debt_latest`, `engine_version`, `engine_release`, `content_hash`.
+  `net_debt_latest`, `engine_version`, `engine_release`, `content_hash`;
+  engine 5.5 adds `market_cap_basis`, `share_scale`, `share_basis`,
+  `share_class_mismatch`, `capex_provenance`, `sbc_provenance`,
+  `used_tags.capex_components`, `override_checks.<field>.currency_basis`
+  and `fx_conversion.overrides_usd_verbatim` (after the verifier round
+  also `share_scale.pin_rejected` / `leverage_unverifiable` /
+  `scale_breaks` / `growth_inputs_dropped` and
+  `share_basis.in_history_split_facts` / `nonpositive_counts`; after the
+  second, `share_scale.pin_over_price` / `growth_inputs_kept`; after the
+  third, `share_scale.pin_factor_withheld` and
+  `share_basis.split.confirmed_against_period`; after the fourth,
+  ttm.json `sbc_reconciliation_withdrawn_legs`).
 - `judgment.json` — the worker's decisions: `moat_score`, `moat_for` /
   `moat_against`, `probs_used`, `confidence`, `tier_override` +
   `tier_override_reason`, per-field overrides as top-level keys
   (`capex_override`, `sbc_override`, `shares_override`, `base_override`,
-  `ads_ratio`; each `{value, source, reason, kind}`), `second_pass` when
-  pass 2 ran.
+  `ads_ratio`; each `{value, source, reason, kind}`, and since engine 5.5
+  an optional `currency: "USD"` on a kind `filing` override),
+  `share_class_mismatch` (5.5: `true` or `{value: true, source, reason}`;
+  any other shape is malformed and make_score refuses it),
+  `second_pass` when pass 2 ran.
 - `score.json` — generated ONLY by `make_score.py`: `tier_final`,
   `tier_by_numbers`, `implied_irr`, `iv_at_15`, `irr_bear` / `irr_bull`,
   `tier_bear` / `tier_bull`, `alert_eligible`, `exit_alert_eligible`,
-  `engine_release`, `in_scope_under_40b`, `model_fit`.
+  `engine_release`, `in_scope_under_40b`, `model_fit`; since 5.5
+  `market_cap_b` carries `market_cap_basis`,
+  `in_scope_corrected_by_make_score` marks a scope make_score corrected,
+  and `net_debt_to_normalized_oe_ads_basis` is a pre-5.5 ADS record's
+  net-debt ratio on the ADS basis.
 - `key_numbers.md` — generated quotable figures. `analysis.md` may only
   quote numbers from here.
 - `analysis.md` — the narrative; must resolve every flag.
@@ -97,13 +117,92 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `analysis.md`. A single year 1,000× off is a units defect (filers tag
    thousands as units). Base OE/share above ~20× the price, or below 0.1%
    of it, is the same defect. This class produced fake Tier S results
-   (NTNX, VIV); it is always P1.
+   (NTNX, VIV); it is always P1. Since engine 5.5 the engine runs the
+   check itself and records it in `share_scale` (base OE/share above 20×
+   the price, or the latest diluted count outside 1/100–100× the latest
+   cover-page dei count): it raises `DATA_GAP:shares — SHARE_SCALE` and
+   emits no tier unless a qualifying pin carries the base — a
+   `--base-oe-ps` value that judgment.json declares as a `base_override`
+   with no `basis`, equal within 0.1%, and itself within 20× the price.
+   Then it scores, flags `SHARE_SCALE_SUSPECT` and rescales the market cap
+   by `share_scale.scale_factor`. A `SHARE_SCALE_SUSPECT` score whose
+   judgment.json `base_override` does not match `inputs.base_oe_ps_arg`
+   that way is P1 (the engine gaps that run); a pin the engine rejected is
+   named in `share_scale.pin_rejected`. A pin-rescued tier exists only
+   because of that override: make_score closes both alert gates
+   (`alert_eligible` / `exit_alert_eligible` false, "tier exists only
+   because of a judgment override"; either gate open on such a score is
+   P1) and the registry `base_override` event carries `kind`,
+   `base_used: declared_pin`, the median → pin and `unblocks_tier: true`. The pin itself is tested too: a
+   `--ttm`, `--base-oe-ps` or `--base-judgment` pin above 20× the price
+   is the defect (`share_scale.pin_over_price`) and the run gaps, however
+   clean the annual counts (check 2 above: a tier on such a base is P1).
+   When the counts break scale inside the growth window (adjacent counts
+   among the last four more than 100× apart),
+   `share_scale.growth_inputs_dropped` lists the share-count CAGR and,
+   when its two endpoint counts are more than 100× apart, the OE/share
+   CAGR left out of the growth blend (`growth_inputs_kept` names an
+   OE/share CAGR whose endpoints share one scale, whatever lies between
+   them); a rescued defect with no scale factor and no dei that confirms
+   the count (none, one the latest count fails by more than 100×, or one
+   that agrees with a latest count on the same scale as the median year
+   test (a) found mis-scaled — a cover page filed in thousands too) sets
+   `share_scale.leverage_unverifiable` (no net-debt ratio, no
+   HIGH_NET_DEBT / BIG_NET_CASH test; the market cap is then price × the
+   filed count and unverified); the pin's power of ten is applied only when the median year's
+   count and the latest count share one scale — those two counts are
+   compared, not the years between (`share_scale.pin_factor_withheld`
+   names one withheld for a break between them; a `pin`-basis factor
+   beside such a break is P1 — the cap is off by that factor). A filed
+   share count ≤ 0 counts as not filed (`share_basis.nonpositive_counts`,
+   which also lists a cover-page zero skipped for a fallback year): a
+   tier beside a zero `shares_diluted` in the last 3 years is P1 (TLN). A
+   split ratio filed after the latest FY end and confirmed by a later
+   cover-page count is applied to the history (`SHARE_BASIS_ADJUSTED` — it
+   lists every adjusted year and any `OVERRIDE` year it did not rescale,
+   whose `shares_override` must already be on the post-split basis —, CSV
+   `shares_split_factor`, `share_basis.split` — confirmed against the
+   latest filed count, `confirmed_against_period`, never an override).
+   An unconfirmed post-FY
+   split fact changes nothing and raises no flag, but key_numbers.md
+   prints a "Share basis: unconfirmed split fact" line that `analysis.md`
+   must resolve. Split facts dated on or before the FY end are only
+   recorded (`share_basis.in_history_split_facts`): a history count from
+   a filing older than such a split can still be on the pre-split basis
+   (TPL), so a share-count jump of about the ratio inside the last four
+   years makes `DILUTION` / `BUYBACK` an artefact. A cover-page count
+   and the diluted count with one more than 25% below the other
+   (dei ÷ diluted outside 0.75×–1.333×) with no filed split is `SHARE_BASIS_DIVERGENCE` and prices the
+   cap on the cover-page count at a 10-K filer; at 20-F / 40-F / ADS
+   filers it is only recorded (`share_basis.divergence`).
 3. **ADS market cap.** `market_cap_est` must equal
    `price × shares_diluted_latest ÷ ads_ratio`. The engine has multiplied
    the ADS price by the ordinary share count before (VOD 10×, JD 2×); when
    `score.json.market_cap_b` disagrees with the cap implied by the price and
    the ADS count, flag it and note that `in_scope_under_40b` and the
-   HIGH_NET_DEBT diagnostic are then wrong too.
+   HIGH_NET_DEBT diagnostic are then wrong too. Facts since the fix: the
+   engine divides by the ratio (main, 2026-10-18; `market_cap_basis`
+   records `shares_used`, `shares_source`, `ads_ratio` and the formula —
+   the count is `shares_diluted_latest` unless `shares_source` reads
+   `diluted_latest_scale_corrected` or `dei_latest`), and engine 5.5 puts
+   `net_debt_to_normalized_oe` (HIGH_NET_DEBT / BIG_NET_CASH) on the same
+   per-ADS basis. make_score also divides, but only for pre-5.5 output
+   whose `market_cap_est` equals price × `shares_diluted_latest` (the
+   uncorrected formula): score.json `market_cap_b` is then the corrected
+   cap with `market_cap_basis: ads_corrected_by_make_score`, and a scope
+   the old cap implied is rewritten (`in_scope_corrected_by_make_score:
+   true`, registry event `scope_correction`). A cap that already divides
+   is never divided twice, and an `ads_ratio` of 1 is never "corrected"
+   (the basis stays `diluted_latest`). The net-debt ratio is corrected
+   apart from the cap: no engine before 5.5 divided the normalized-OE
+   total by the ratio, so for every pre-5.5 record with an applied ratio
+   other than 1, whatever state its cap is in, key_numbers.md prints the
+   ratio × `ads_ratio` beside the engine's figure, names any
+   HIGH_NET_DEBT / BIG_NET_CASH crossing, and score.json records
+   `net_debt_to_normalized_oe_ads_basis` (TX 1.04× → 10.44×, LTM 0.00× →
+   3.33×: HIGH_NET_DEBT would fire). That is the figure an analysis's
+   leverage discussion should use; the recorded `fragility_flags` predate
+   the fix.
 4. **Capex completeness.** This is where 20-F filers and companies with
    custom XBRL tags go wrong (JD: one of four capex lines read, capex
    understated 2–6×; PFG and TKO: capex on an extension tag the feed
@@ -121,6 +220,44 @@ Do these for every scored folder in the PR. They catch most fake tiers.
      lines (construction in progress, land use rights, intangibles,
      spectrum). Say "cannot verify from the diff" if nothing in the PR
      shows the statement.
+   - Engine 5.5 records (facts for the checks above): `capex_tag` may be a
+     `+`-joined list of the tags summed — the additive PP&E components
+     (E&P, other PP&E, construction in process, productive assets,
+     capital improvements) for a year with no PP&E roll-up filed, plus
+     intangible purchases (`PaymentsToAcquireIntangibleAssets`,
+     `PaymentsToAcquireOtherIntangibleAssets`, IFRS
+     `PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities`), which
+     are counted as capex except on an `OVERRIDE` year (an intangible fact
+     repeating a value the same tag files on a context longer than 380
+     days is dropped as a cumulative total — reason `cumulative_duplicate`
+     in `capex_provenance`; ECHO). `capex` = `capex_ppe` +
+     `capex_intangibles`, except on an `assumed_zero` row: the intangible
+     leg is not added where no PP&E leg was filed, so `capex` stays 0 and
+     `capex_tag` blank (the first check above still reads the row) while
+     `capex_intangibles` and `capex_provenance`
+     (`intangibles_not_added: no_ppe_leg`) record the amount. Negative
+     intangible facts are dropped (`negative`) and $0 ones never join
+     `capex_tag`. A component equal within 0.5% to the sum of two or more
+     of the year's other components is kept as the total and the parts
+     dropped (`parts_of_total`; GLPI FY2024); other near-equal pairs are
+     still summed — when two summed lines look like the same spending
+     (GLPI FY2023 / FY2025, GSAT FY2024–25 other PP&E vs intangibles), say
+     "cannot verify from the diff" and ask the worker to check the 10-K
+     investing section. `capex_source` says how the PP&E leg was built
+     (`rollup`, `components`, `components_mixed_filings`, `override`,
+     `assumed_zero`); `capex_provenance` in `dcf_numbers.json` lists each
+     tag's value per year. The capex / D&A
+     check is now also an engine flag, `CAPEX_COVERAGE_LOW` (below 50% of
+     D&A in each of the last 3 FY at a filer with positive PP&E). In
+     `ttm.json` the FY and prior-YTD legs add their intangible purchases
+     only when the FY leg files at least the prior-YTD amount (or the prior
+     YTD files none); otherwise neither does
+     (`capex_components.<leg>.intangibles_not_added: remainder_unknown`,
+     with a warning) and the current-YTD leg still adds its own, so the
+     TTM intangible contribution is never negative (BAX). Likewise the
+     SBC reconciliation never lowers TTM SBC below the unreconciled
+     figure: a reconciled prior-YTD leg that would is kept on
+     `ShareBasedCompensation` (`sbc_reconciliation_withdrawn_legs`).
 5. **Net debt.** `net_debt_latest` must equal `debt_current + debt_lt −
    cash` from the CSV's latest row. If the CSV's `debt_lt` is blank or
    tiny while `statements.json` or `fundamentals.json` shows borrowings,
@@ -131,7 +268,20 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    scenario's IV must rise from super bear to super bull. `probs_used`
    sums to 1. `engine_release` must be present; a score with
    `engine_version` 5 and no `engine_release` is a pre-5.4 run and must
-   not claim the band or alert fields.
+   not claim the band or alert fields. Since 5.5, make_score rebuilding a
+   score on output from another engine release sets `alert_eligible` and
+   `exit_alert_eligible` false ("engine output predates release 5.5.0 —
+   re-run the engine before an entry / exit alert") and carries
+   `override_impact` from the prior score.json
+   (`impact_carried_from_prior_score: true`) or records it as not
+   measured, instead of replaying the override through the new engine.
+   The insurer payable pin follows the same rule: its registry
+   `base_override` event is carried from the prior event (same pinned
+   base and weighted IRR) or recorded as not measured, labelled
+   `base_used` `payable_5y`. A `--base-oe-ps` pin equal to a declared
+   `base_override` (no `basis`) that is not ttm.json's figure is
+   measured as `base_used` `declared_pin` (pin held constant, engine
+   replayed with field overrides off), never through ttm.py.
 7. **Base year choice.** When `BASE_DIVERGENCE` fires (latest FY vs 3-year
    median differ a lot), `analysis.md` must say which one is distorted and
    why, with the cash-flow line that explains it. "Working-capital timing"
@@ -155,6 +305,30 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
   not in the run outputs; see "Sector misfits" below for what to check.
 - `ads_ratio`: only when stated in the filer's own 20-F/40-F, and the
   filing citation must be in `reason`.
+- `currency: "USD"` (engine 5.5): allowed only on a kind `filing`
+  override whose filing states the figure in dollars; the engine then
+  uses it verbatim instead of FX-converting it. Without the key, an
+  override is also used verbatim where the field's last filed unit is
+  USD (the issuer's own USD translations); otherwise it is converted from
+  the reporting currency. `override_checks.<field>.currency_basis` records
+  which rule applied (`declared_usd`, `last_filed_unit_usd`, `converted`,
+  `no_fx`, `shares`); `fx_conversion.overrides_usd_verbatim` lists the
+  verbatim ones. make_score refuses every applied kind `filing` override
+  used verbatim under `last_filed_unit_usd` unless it declares
+  `currency: "USD"`: the engine records that basis only at an
+  FX-converted filer, so the fallback alone never yields a score (HTHT's
+  RMB capex figure would read as dollars; an engine 5.5 addition awaiting
+  Andrew's ratification). A kind `estimate` override under that basis
+  is refused too (it cannot declare a currency, and the 0.1×–10× band
+  admits CNY at ≈ 7.2×: HTHT's RMB 828M would read as $828M), so a scored
+  folder never carries one. A PUK or CX score must show the declaration.
+- `share_class_mismatch` (engine 5.5): `{value: true, source, reason}`,
+  filing-sourced from the EPS note; it forces `DATA_GAP:shares —
+  SHARE_CLASS_MISMATCH` (no tier, no alert) and make_score refuses it.
+  Only `true` or an object whose `value` is `true` declares; `false`,
+  null and `{value: false}` declare nothing; any other value (the string
+  "false", a number) is malformed — the engine records
+  `{"malformed": …}` with no gap and make_score refuses it.
 - `tier_override`: a written reason is required, and the reason must be
   consistent with the numbers it cites. An override that lowers the tier
   while the narrative calls the numbers IRR an "artifact" or "upper bound"
@@ -163,11 +337,22 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
   numbers without a sourced base figure.
 
 Each override must also appear in `_system/overrides_registry.json` with
-its measured base/IRR impact. `overrides_applied` in `dcf_numbers.json`
+its measured base/IRR impact. Since engine 5.5 an entry whose
+declaration is unchanged keeps the date it was first recorded; a
+re-score that re-dates one is a defect in make_score, not in the folder. `overrides_applied` in `dcf_numbers.json`
 must list the same keys as `judgment.json`. Overrides only fill periods
 with no filed value: an override that claims to correct a filed figure
 without a `base_override` has not changed the engine's result — check
-`dcf_numbers.json` to see whether it actually applied.
+`dcf_numbers.json` to see whether it actually applied. Engine 5.5 says
+so itself for capex: `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex` (with
+`override_checks.capex.superseded_periods`) fires when a declared
+`capex_override` fills nothing in a last-3-FY year because a newly read
+filed PP&E leg sits outside 0.5×–2× of it, and make_score refuses while
+that `capex_override` is still declared (WY); ttm.py's twin is ttm.json
+`capex_override_superseded_legs`, with a warning. Inside 0.5×–2× nothing
+fires: the override stops filling and drops out of `overrides_applied`
+(AMH and UDR on their next engine run), so the keys-match rule above
+catches it — ask for the override's removal.
 
 ## Flags and confidence
 
@@ -178,7 +363,9 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 `TIER_BAND`,
 `HIGH_NET_DEBT`, `BIG_NET_CASH`, `FX_CONVERTED`, `USD_TRANSLATIONS_USED`,
 `ADS_RATIO_APPLIED`, `CASH_INCLUDES_RESTRICTED`, `DEBT_TAGS_BLANK`,
-`DATA_GAP:<field>`.
+`DATA_GAP:<field>`, and engine 5.5's `SHARE_SCALE_SUSPECT`,
+`SHARE_BASIS_ADJUSTED`, `SHARE_BASIS_DIVERGENCE`, `CAPEX_COVERAGE_LOW`,
+`SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`.
 
 - `STALE_FY` resolved with "no TTM available" at a 20-F filer: ask whether
   the interim 6-K prints TTM operating cash flow and capex; the worker
@@ -191,7 +378,10 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 - `DATA_GAP`: if SBC, capex, diluted shares or OCF is missing for ANY of
   the last 3 fiscal years and no override fills it, the company must be
   blocked with no tier. A `score.json` tier beside a non-empty `data_gap`
-  is P1.
+  is P1 (since 5.5 a filed share count ≤ 0 counts as missing). Engine
+  5.5 adds two share gaps no override covers:
+  `DATA_GAP:shares — SHARE_SCALE` (gap key `share_scale`) and
+  `DATA_GAP:shares — SHARE_CLASS_MISMATCH` (gap key `share_class`).
 
 ## Scenarios, growth and moat
 

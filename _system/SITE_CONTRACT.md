@@ -83,6 +83,22 @@ filters filters on it). Stale (pre-v5) scores are listed under `meta.stale` as
 `[{ticker, name, tier, irr, analysis_date, watchlist}]`, never in `index`. `live_withheld` true means live.json's close
 predates the scored analysis: the live fields stay null and the row ranks on its scored IRR; `split_restated` names a
 split since scoring the row's price / IV columns were restated for (both: the 2026-10-16 round at the end).
+`market_cap_b` is score.json's. Since engine 5.5 (2026-10-19) score.json also carries `market_cap_basis`: the engine's
+`market_cap_basis.shares_source` (`diluted_latest` | `diluted_latest_split_adjusted` | `diluted_latest_scale_corrected` |
+`dei_latest`) for 5.5 output; for older output `ads_corrected_by_make_score` (an ADS filer's pre-5.5 cap was the per-ADS
+price × the ORDINARY share count, so make_score recomputes price × `shares_diluted_latest` ÷ `ads_ratio.ratio` for
+`market_cap_b`, the scope and key_numbers.md; never at an `ads_ratio` of 1, which is no correction) or `diluted_latest`
+(price × `shares_diluted_latest`); for either,
+`universe_market_cap` when the engine fell back to universe.csv's cap (no price or no share count — engine 5.5 then
+records `market_cap_basis.shares_source` `universe_market_cap` and `shares_used` null), null when there is no cap. `in_scope_corrected_by_make_score: true` (absent
+otherwise) marks a score whose `in_scope_under_40b` comes from that corrected cap and differs from what the engine's own
+`market_cap_est` implies — make_score then also rewrote judgment.json's scope and logged a `scope_correction` registry
+event. Pre-5.5 output with an applied `ads_ratio` other than 1 and a recorded `numbers.diagnostics.net_debt_to_normalized_oe`
+also gets score.json `net_debt_to_normalized_oe_ads_basis` (a number, 4 dp; absent otherwise): that ratio × the ADS ratio,
+whatever state the cap is in — no engine before 5.5 divided the normalized-OE total by the ratio (verifier round,
+2026-10-19). The Overview's "Net debt / OE" tile reads `numbers.diagnostics.net_debt_to_normalized_oe` (the engine's
+figure) and does not use it, so for such a record the tile shows the pre-fix ratio; key_numbers.md prints both. None of
+these changes the row's keys.
 
 ## `data/<TICKER>.json` — everything the company page renders
 ```json
@@ -123,10 +139,29 @@ bound, not a solved return); null when undecidable (see "Data policy, 2026-10-16
 earlier run of a re-scored name; `split_restated` is set when
 the run's per-share figures in this record were restated for a split since scoring; the dividends block is repriced at
 prices.json's last close when that close is newer than the block's own (all three: the 2026-10-16 round at the end).
+Engine 5.5 (2026-10-19) records ride inside these verbatim copies and add no record key: `numbers` gains
+`market_cap_basis` (`shares_used`, `shares_source`, `ads_ratio`, `formula`; the Data tab's run market cap reads
+`shares_source` through `runCapText`), `share_scale` (after the verifier round also `pin_rejected`,
+`leverage_unverifiable`, `scale_breaks`, `growth_inputs_dropped`; after the second `pin_over_price`,
+`growth_inputs_kept`; after the third `pin_factor_withheld`), `share_basis` (also `split.confirmed_against_period`, `in_history_split_facts`, `nonpositive_counts` — a cover-page zero skipped
+for a fallback year carries series `dei` and its cover `date`), `share_class_mismatch` (the declaration, `{"malformed": …}` or null), `capex_provenance`,
+`sbc_provenance`, `used_tags.capex_components` (printed with the other `used_tags` rows),
+`override_checks.<field>.currency_basis` and `fx_conversion.overrides_usd_verbatim`; `history` rows gain the CSV's
+`capex_ppe`, `capex_intangibles`, `capex_source` and `shares_split_factor` columns, and a `capex_tag` cell may be a
+`+`-joined tag list (`isOverrideTag` reads it); `ttm` gains `capex_components`, `sbc_reconciled_legs`,
+`split_adjustment` and `capex_override_superseded_legs` (the override-backed capex legs a tag new in 5.5 now fills outside
+0.5×–2× of the override; `{}` when none), after the fourth verifier round `sbc_reconciliation_withdrawn_legs` (a
+reconciled prior-YTD SBC leg kept on `ShareBasedCompensation` because it lowered TTM SBC; `{}` when none) and the
+`capex_components.<leg>.intangibles_not_added` value `remainder_unknown`, and its capex `*_tag` legs may be `+`-joined. The app renders none of the other 5.5 records, and the
+attachment drops `capex_provenance`, `sbc_provenance` and `share_basis` (below). `history[*].shares_split_factor` is the
+engine's own rescale for a split between the latest annual filing and the run (already applied to `shares_diluted`); it
+is unrelated to live.json's `split_factor` and `split_restated` (a split since scoring). score.json's
+`market_cap_basis` (a string) is not fundamentals.json's dividends-block `market_cap_basis`.
 
 ## Attachment trimming (`--attachment`, top N rows only)
-Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y`, `prices.sessions_5d` and
-`numbers.used_tags`; everything else is kept. Rows beyond the top N are in `index` but have no record; the app shows
+Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y`, `prices.sessions_5d`,
+`numbers.used_tags` and engine 5.5's per-period provenance records `numbers.capex_provenance`, `numbers.sbc_provenance`
+and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps them); everything else is kept. Rows beyond the top N are in `index` but have no record; the app shows
 "not embedded in this file — open the site" for them.
 
 ## What the app renders (parity with the v2 Python pages)
@@ -164,7 +199,10 @@ Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y`, `p
     filings with links, engine release and run date, price source, base and pin source, run
     inputs, net-debt basis, FX, ADS, data gaps, content hash, tags used by engine and by
     fundamentals, files), TTM construction table, overrides, judgment calls on record,
-    judgment.json pretty-printed.
+    judgment.json pretty-printed. The run's market cap (`runCapText`, engine 5.5): score.json's `market_cap_b` with
+    "ADS-corrected by make_score … the pre-5.5 engine printed <numbers.market_cap_est>" when its `market_cap_basis` is
+    `ads_corrected_by_make_score`, else `numbers.market_cap_est` followed by `numbers.market_cap_basis.shares_source`
+    in brackets when that is not `diluted_latest`.
 - **Charts** (drawn in the browser, responsive): category chart with bar / line / area series and
   `stacked` support, the price chart with overlays; tooltips via `<title>`; axis labels from the
   design tokens; redraw on resize and on tab change.
@@ -1168,7 +1206,8 @@ No data shape changes.
     filed: `fundamentals.annual.oe_per_share`, or OE ÷ diluted shares when that cell is empty; every other year is null and the note
     under the chart names it and why ("Not shown: FY2025: capex not filed (the engine run fills capex with an estimate — not a filed
     value)"). The engine CSV is used only for a record without `fundamentals.annual`, and never for a CSV row whose `*_tag` is
-    `OVERRIDE`. This reverses the earlier decision that filled APP's FY2025 from the CSV (that OE uses the capex estimate override) and
+    `OVERRIDE` — or, since engine 5.5 writes a capex cell as the `+`-joined list of the tags it summed, has `OVERRIDE` as one of
+    its `+`-separated tags (`isOverrideTag`). This reverses the earlier decision that filled APP's FY2025 from the CSV (that OE uses the capex estimate override) and
     removes ZS's -61/share FY2018 point (CSV diluted shares 119,764). The y-axis covers history and forecast together; `oeAxisFloor`
     sets a floor (drawChart `yFloor`, rounded down to a grid step) only when a filed loss reaches further below zero than the chart
     reaches above it, at minus that positive extent — the pinned point is drawn as a ▼ with its real value in the tooltip and a legend
@@ -1635,6 +1674,15 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`);
   otherwise `score_json_fresh` is false, `score_mismatch` lists every disagreement, no override applies and
   `scored.tier_final` is null. The `--all` summary names the splits restated and the scores from another run.
+- **Live market cap** (`reprice.live_market_cap`, engine 5.5 / 2026-10-19). live.json `market_cap_est` = the last close ×
+  the run's share count ÷ `numbers.ads_ratio.ratio` when an ADS ratio applies (the engine's own
+  `dcf_engine.market_cap_est`; the close is per ADS, the count per ordinary share), × `split_factor`; `in_scope_under_40b`
+  follows it. The count is `numbers.market_cap_basis.shares_used` when the run records it (a split- or scale-corrected
+  diluted count, or the cover-page count), else `numbers.shares_diluted_latest`. Without an ADS ratio the figure is
+  unchanged bit for bit from 5.4 (close × `shares_diluted_latest` × `split_factor`) only for a run whose
+  `numbers.market_cap_basis.shares_source` is `diluted_latest`, or with no basis record; otherwise the count is
+  `market_cap_basis.shares_used` (an HBAN-shaped `dei_latest` run prices on the cover-page count).
+  `row.market_cap_b_live` is this value ÷ 1e9.
 - **Live older than the score** (`build_site.live_shown`). A live.json repriced on scoring day can carry the close BEFORE the
   scored session. When `live.price_date` is earlier than the later of score.json `analysis_date` and `live.scored_date`, the
   scored figures are the current ones: `record.live` is null and `record.live_withheld` = `{reason: "live_older_than_score",

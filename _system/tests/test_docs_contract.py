@@ -17,14 +17,26 @@ the same word does not count.
    live.json's basis-check keys, record.live_withheld's reason, the
    restricted-cash arrays and line, last_minute, price_note / PRICE_LEAVES,
    --street-only, the app test's APP_TEST_BUILT / APP_TEST_BASE, score.json's
-   entry and exit alert gates, queue.py pass2-check.
+   entry and exit alert gates, queue.py pass2-check; and engine 5.5's
+   score.json market_cap_basis / ads_corrected_by_make_score /
+   in_scope_corrected_by_make_score, reprice.live_market_cap (the live ADS
+   market cap), build_site.TRIM_NUMBERS_KEYS and app.js isOverrideTag / runCapText,
+   plus the engine 5.5 CSV columns, dcf_numbers.json records and the
+   scope_correction registry event that README's per-folder list names,
+   and the verifier round's keys (score.json
+   net_debt_to_normalized_oe_ads_basis, ttm.json
+   capex_override_superseded_legs, the new share_scale / share_basis
+   entries, the parts_of_total and no_ppe_leg capex records; after round 4
+   median_latest_scale_breaks, ttm.json sbc_reconciliation_withdrawn_legs and
+   the remainder_unknown intangible record).
 3. automation/README.md's day table matches every cron file present: the
    "When" cell carries the front matter's cadence (every N min / HH:MM daily)
    and the row says "Disabled" exactly when `enabled: false`. (The daily cron
    files have colons in their names and are absent from a Windows checkout;
    the rows of the files that are present are checked.)
 4. The passages this round corrected stay corrected (the stale wording is
-   absent).
+   absent) — also engine 5.5's verifier-round corrections in README,
+   SITE_CONTRACT, WORKER_SPEC and AGENTS.md.
 """
 import ast
 import glob
@@ -38,6 +50,8 @@ ROOT = os.path.dirname(SYS)
 CONTRACT = "_system/SITE_CONTRACT.md"
 SYS_README = "_system/README.md"
 AUTO_README = "automation/README.md"
+WORKER_SPEC = "_system/WORKER_SPEC.md"
+AGENTS_MD = "AGENTS.md"
 
 
 def _read(rel):
@@ -186,7 +200,57 @@ PAIRS = [
     ("_system/make_score.py", 'score["alert_eligible"]', "alert_eligible", [SYS_README, AUTO_README]),
     ("_system/make_score.py", 'score["exit_alert_eligible"]', "exit_alert_eligible", [SYS_README, AUTO_README]),
     ("_system/make_score.py", 'score["exit_alert_suppressed_reason"]', "exit_alert_suppressed_reason", [SYS_README]),
+    # engine 5.5 (2026-10-19): score.json's market-cap basis / scope correction and the live ADS market-cap rule
+    ("_system/make_score.py", '"market_cap_basis": mcap_basis', "market_cap_basis", [CONTRACT]),
+    ("_system/make_score.py", '"ads_corrected_by_make_score"', "ads_corrected_by_make_score", [CONTRACT]),
+    ("_system/make_score.py", 'score["in_scope_corrected_by_make_score"]', "in_scope_corrected_by_make_score", [CONTRACT]),
+    ("_system/reprice.py", "def live_market_cap(", "live_market_cap", [CONTRACT]),
+    ("_system/build_site.py", "TRIM_NUMBERS_KEYS = (", "TRIM_NUMBERS_KEYS", [CONTRACT]),
+    ("_daily/site/app.js", "function isOverrideTag(", "isOverrideTag", [CONTRACT]),
+    ("_daily/site/app.js", "function runCapText(", "runCapText", [CONTRACT]),
+    # engine 5.5: the CSV columns and dcf_numbers.json records README's per-folder list names
+    ("_system/dcf_engine.py", '"capex_ppe": capex_ppe', "capex_ppe", [SYS_README]),
+    ("_system/dcf_engine.py", '"capex_intangibles": capex_intang_added', "capex_intangibles", [SYS_README]),
+    ("_system/dcf_engine.py", '"capex_source": capex_source_p', "capex_source", [SYS_README]),
+    ("_system/dcf_engine.py", '"shares_split_factor": None', "shares_split_factor", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"market_cap_basis": market_cap_basis', "market_cap_basis", [SYS_README]),
+    ("_system/dcf_engine.py", '"share_scale": share_scale', "share_scale", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"share_basis": share_basis', "share_basis", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"share_class_mismatch": share_class', "share_class_mismatch", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"capex_provenance": capex_provenance', "capex_provenance", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"sbc_provenance": {', "sbc_provenance", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'used["capex_components"]', "capex_components", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"currency_basis": _ov_basis(field)', "currency_basis", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'fx_info["overrides_usd_verbatim"]', "overrides_usd_verbatim", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", '"event": "scope_correction"', "scope_correction", [SYS_README, CONTRACT]),
+    # engine 5.5 verifier round (2026-10-19): the records its fixes added
+    ("_system/make_score.py", 'score["net_debt_to_normalized_oe_ads_basis"]', "net_debt_to_normalized_oe_ads_basis",
+     [SYS_README, CONTRACT]),
+    ("_system/ttm.py", '"capex_override_superseded_legs": capex_superseded', "capex_override_superseded_legs",
+     [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"pin_rejected": None', "pin_rejected", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"leverage_unverifiable": False', "leverage_unverifiable", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'growth_inputs_dropped=list(_gone)', "growth_inputs_dropped", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"in_history_split_facts": [', "in_history_split_facts", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"nonpositive_counts": [', "nonpositive_counts", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"periods_override_not_rescaled": [', "periods_override_not_rescaled", [SYS_README]),
+    ("_system/dcf_engine.py", '"parts_of_total"', "parts_of_total", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["intangibles_not_added"] = "no_ppe_leg"', "no_ppe_leg", [SYS_README]),
     ("_system/queue.py", '"pass2-check"', "pass2-check", [SYS_README, AUTO_README]),
+    # engine 5.5 verifier round 2 (2026-10-19): the records its fixes added
+    ("_system/dcf_engine.py", '"pin_over_price": False', "pin_over_price", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'growth_inputs_kept=', "growth_inputs_kept", [SYS_README, CONTRACT]),
+    ("_system/ttm.py", "def share_scale_warnings(", "share_scale_warnings", [SYS_README]),
+    # engine 5.5 verifier round 3 (2026-10-19): the records its fixes added
+    ("_system/dcf_engine.py", '"pin_factor_withheld": None', "pin_factor_withheld", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def median_window_counts(", "median_window_counts", [SYS_README]),
+    ("_system/dcf_engine.py", '"confirmed_against_period": split_confirm_row', "confirmed_against_period",
+     [SYS_README, CONTRACT]),
+    # engine 5.5 verifier round 4 (2026-10-19): the records its fixes added
+    ("_system/dcf_engine.py", "def median_latest_scale_breaks(", "median_latest_scale_breaks", [SYS_README]),
+    ("_system/ttm.py", '"sbc_reconciliation_withdrawn_legs": sbc_withdrawn', "sbc_reconciliation_withdrawn_legs",
+     [SYS_README, CONTRACT]),
+    ("_system/ttm.py", '"remainder_unknown"', "remainder_unknown", [SYS_README, CONTRACT]),
 ]
 
 
@@ -264,6 +328,42 @@ STALE = [
     (SYS_README, "ranges 1Y–MAX"),
     (SYS_README, "fcntl-locked"),
     (SYS_README, "every company page opens on a price-vs-value chart"),
+    # engine 5.5 verifier round (2026-10-19): the last-filed-unit refusal is not narrowed by the reporting
+    # currency (every use of the fallback by a filing override needs currency "USD"), a share_class_mismatch is
+    # not "any truthy value", and the live cap is not bit-identical for every run without an ADS ratio
+    (SYS_README, "`fx_conversion.from_currency` is not USD"),
+    (WORKER_SPEC, "`fx_conversion.from_currency` is not USD"),
+    (AGENTS_MD, "`fx_conversion.from_currency` is not USD"),
+    (SYS_README, "in judgment.json — any truthy value —"),
+    (WORKER_SPEC, "truthy value counts"),
+    (CONTRACT, "A run without an ADS ratio gives exactly"),
+    (SYS_README, "key_numbers.md prints the net-debt ratio corrected beside the engine's"),
+    # engine 5.5 verifier round 2 (2026-10-19): a malformed share_class_mismatch raises no gap (M5), the in-history
+    # split count is over all 490 scored folders, M4's estimate exemption is a premise nothing enforces (not a
+    # guarantee), and a dei that the latest count fails also makes the leverage diagnostics unverifiable
+    ("_system/dcf_engine.py", "a truthy judgment.json share_class_mismatch is DATA_GAP:shares"),
+    (SYS_README, "(85 folders record one)"),
+    (SYS_README, "it is anchored on the last filed value in that value's own unit, so its unit is the anchor's"),
+    (WORKER_SPEC, "is anchored on the last filed value, in that value's own unit"),
+    (AGENTS_MD, "anchored on the last filed value, in that value's unit)"),
+    ("_system/make_score.py", "anchor's — no ambiguity"),
+    (AGENTS_MD, "scale factor and no dei sets"),
+    (WORKER_SPEC, "with no cover-page count either, `share_scale.leverage_unverifiable`"),
+    # engine 5.5 verifier round 3 (2026-10-19): a dei within 25% of the latest count no longer blocks the pin factor
+    # (R3-CAP's window test replaced round 2's early return)
+    (WORKER_SPEC, "confirms that count, so no\n   factor is applied"),
+    (AGENTS_MD, "within 25% of the latest count means no scale factor at all"),
+    (SYS_README, "`scale_factor_for_cap` returns no factor and never consults the pin"),
+    ("_system/dcf_engine.py", "the cover-page count confirms it within 25%, so no power-of-ten"),
+    ("_system/tests/test_engine_55.py", "R2-CAP a dei within 25% takes no cap factor"),
+    # engine 5.5 verifier round 4 (2026-10-19): the cap factor's and the OE/share CAGR's scale tests compare the two
+    # counts their rules name (R4-CAP / R4-E2), not every adjacent pair between them
+    (SYS_README, "no adjacent pair more than 100× apart"),
+    (SYS_README, "leaves the blend only when a break lies between its own two endpoints"),
+    ("_system/dcf_engine.py", "share_series_scale_breaks: no adjacent pair"),
+    ("_system/dcf_engine.py", "the OE/share CAGR does not span the break"),
+    (AGENTS_MD, "when the break lies between its two endpoints"),
+    (WORKER_SPEC, "OE/share CAGR when the break"),
 ]
 
 
