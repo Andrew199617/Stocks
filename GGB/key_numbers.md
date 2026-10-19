@@ -4,7 +4,7 @@ Quote these figures verbatim in analysis.md — never recompute or retype a deri
 
 ## Headline
 - Price: $5.08 (source: nasdaq_quote_api)
-- Tier: C · confidence low
+- Tier: D (agent override of C: Numbers tier is C at a 10.21% weighted IRR, but that IRR rests on the single-value shares_override: the engine applies the FY2025 total diluted count (2,012,732,574) to every missing year, while the same FY2025 20-F Note 24 table files FY2024's own total diluted count at 2,099,379,471 and FY2023's at 2,109,593,750. On each year's own filed count the 3-yr median base is $0.406841/share (FY2024 OE $854,113,196 / 2,099,379,471; FY2023 $0.551412, FY2025 $0.089379 — FY2024 remains the median year), and replaying the run's unchanged scenario inputs on that base gives a 9.89% weighted IRR and IV@15 of $3.01 — Tier D. A per-year share series is outside the override layer (single-value, fill-only) and a base_override built on the filing's counts is outside the run-outputs bound, so the correction is taken as this quantified tier_override; the by-numbers C at 10.21% remains printed in score.json.) · confidence low
 - Weighted IRR: 10.21% · base-case IRR: 10.61%
 - Weighted IV: @15% $3.14 · @12% $4.12 · @10% $5.22
 - Upside vs price: @15% -38.3% · @12% -18.8%
