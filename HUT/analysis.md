@@ -112,7 +112,8 @@ only positive print is a mark-to-market artifact. 3/10.
 
 The normalized base is negative, so the engine emits no scenario IVs or IRRs (scenarios are
 not supportable on a negative base); probabilities used were the defaults
-10/25/30/25/10. Diagnostics from `key_numbers.md`: growth blend 39.79% (rev CAGR 5y 39.22%,
+10/25/30/25/10 — recorded but inert here: with no scenario IVs emitted, the vector weights
+nothing in any published figure. Diagnostics from `key_numbers.md`: growth blend 39.79% (rev CAGR 5y 39.22%,
 3y 52.15%, latest rev YoY 44.79%) with a −5.00pp share-count adjustment (share count CAGR
 45.07%).
 
@@ -196,11 +197,13 @@ BTC consolidated treasury. That story may even be real — River Bend and Beacon
 it is post-period, pre-revenue in the scored statements, and being built with construction in
 progress that went from $77,403,000 to $808,356,000 in six months while TTM SBC hit
 $148,482,000. Q2 2026 itself: revenue $74,932,000 (+81.4% YoY, per the Q2 2026 10-Q reporting)
-with a consolidated net loss of $177.1M driven by $138.6M of unrealized digital-asset losses —
-the same mark-to-market engine that manufactured FY2024's "profit." October 2026 reporting of
-~1,589 BTC moved to exchanges from a Hut 8-linked wallet (on-chain attribution, not a
-company-confirmed sale) underlines that the treasury is a funding source for the buildout,
-not a permanent endowment. Method range: F on the TTM base, F on the normalized median, F on
+with a net loss of $177.1M driven by $138.6M of unrealized digital-asset losses —
+the same mark-to-market engine that manufactured FY2024's "profit." Basis note on that
+$177.1M: it is the loss as presented in the company's Q2 2026 release / 10-Q income
+statement, before allocating losses to non-controlling interests; the XBRL `NetIncomeLoss`
+series in `fundamentals.json` prints −$150.2M for the quarter, which is the loss
+attributable to common stockholders after the $27.0M non-controlling-interest share of the
+loss (the two tie: −$177.1M + $27.0M = −$150.2M). Method range: F on the TTM base, F on the normalized median, F on
 per-year filed capex — there is no defensible base on which this company has positive
 owner's earnings today. A re-rating case has to be argued from contracted NOI that has not
 yet appeared in any filing period, which is a venture underwriting, not a DCF input.
