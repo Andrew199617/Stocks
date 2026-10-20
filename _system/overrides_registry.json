@@ -2987,6 +2987,14 @@
    "ratio": 1.0,
    "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-26, EDGAR klar-20251231.htm): the registered security is the ordinary share itself; the company's IPO prospectus (Form F-1, declared effective 2025-09-09) and its IPO completion release state the offering was of ordinary shares at $40.00 per ordinary share and that the ordinary shares began trading on the New York Stock Exchange on September 10, 2025 under the symbol KLAR \u2014 there is no ADS programme and no depositary ratio",
    "reason": "DATA_GAP:ads_ratio \u2014 Klarna is a direct-listed foreign private issuer: one NYSE-traded KLAR share is one ordinary share, so per-ordinary-share figures are directly comparable to the traded price with no scaling."
+  },
+  {
+   "ticker": "EGO",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, SEC CIK 918608): the securities registered under Section 12(b) are the company's common shares, trading symbol EGO, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; company disclosure in its own releases states 'Eldorado's common shares trade on the Toronto Stock Exchange (TSX: ELD) and the New York Stock Exchange (NYSE: EGO)'",
+   "reason": "Eldorado is a direct-listed foreign private issuer: one NYSE-traded EGO share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
   }
  ]
 }

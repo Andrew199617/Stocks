@@ -1,0 +1,297 @@
+{
+ "ticker": "EGO",
+ "name": "ELDORADO GOLD CORP /FI",
+ "cik": 918608,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-20",
+ "price": 35.15,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 205412243,
+ "shares_outstanding_dei_latest": 198570520,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 7220240341.45,
+ "net_debt_latest": 405696000,
+ "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+ "lease_liabilities_latest": 14599000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.12118949686936342,
+ "rev_cagr_3y": 0.27763163514966216,
+ "oe_positive_years_of_last_5": "2/5",
+ "base_oe_total_latest_fy": -144077000,
+ "base_oe_per_share": -0.14932792246923754,
+ "base_oe_latest_per_share": -0.7014041514555683,
+ "base_oe_normalized_per_share": -0.14932792246923754,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.12118949686936342,
+  "rev_cagr_3y": 0.27763163514966216,
+  "rev_yoy_latest": 0.3752322164011126,
+  "oe_ps_cagr_2y": null
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.08277900422709905,
+  "rev_cagr_3y": 0.2392211425073978,
+  "rev_yoy_latest": 0.3368217237588482,
+  "oe_ps_cagr_2y": null
+ },
+ "g_blend": 0.2392211425073978,
+ "share_cagr": 0.03841049264226437,
+ "share_count_adj": -0.03841049264226437,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": "CurrentPortionOfLongtermBorrowings",
+  "debt_cur_st": null,
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null,
+  "capex_components": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, SEC CIK 918608): the securities registered under Section 12(b) are the company's common shares, trading symbol EGO, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; company disclosure in its own releases states 'Eldorado's common shares trade on the Toronto Stock Exchange (TSX: ELD) and the New York Stock Exchange (NYSE: EGO)'",
+  "reason": "Eldorado is a direct-listed foreign private issuer: one NYSE-traded EGO share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "payable_base": null,
+ "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 205412243,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 1.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": 198570520,
+  "dei_date": "2025-12-31",
+  "dei_ratio": 1.0344548777935416,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 0.7336668843921383
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 297667000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2018-03-29"
+   }
+  },
+  "2017-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 309133000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2019-03-29"
+   }
+  },
+  "2018-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 231674000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2020-03-30"
+   }
+  },
+  "2019-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 214505000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2021-03-31"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 188858000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-31"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 282088000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2023-03-30"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 289853000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2024-03-28"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 401870000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-03-28"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 594142000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-27"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 866362000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {},
+   "intangibles_unit": null,
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-27"
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "tier_by_numbers": "F",
+ "f_subtype": "no_cash_generation",
+ "f_subtype_basis": "sum of the last 3 fiscal years (the median window)",
+ "implied_irr_weighted": null,
+ "implied_irr_base": null,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 3.8%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, SEC CIK 918608): the securities registered under Section 12(b) are the company's common shares, trading symbol EGO, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; company disclosure in its own releases states 'Eldorado's common shares trade on the Toronto Stock Exchange (TSX: ELD) and the New York Stock Exchange (NYSE: EGO)') so they are comparable to the ADS price; TTM pins are taken as per-ADS already"
+ ],
+ "note": "No positive NORMALIZED (3-yr median) conservative owner's earnings \u2014 OE DCF not supportable on numbers alone. If the latest year alone is positive, that is a flag to investigate, not a pass. F sub-type: no cash generation (OCF - capex is not positive).",
+ "content_hash": "5a3183dcbaf8769663b6ee093ac954f4d230bbff1c6e6a63f2f0799a30d7751f"
+}
