@@ -1,0 +1,87 @@
+{
+ "ticker": "HSIC",
+ "name": "Henry Schein, Inc.",
+ "sector": "Healthcare / Medical & dental distribution",
+ "price": 84.58,
+ "market_cap_b": 10.29,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 4.599157160194354,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "World's largest distributor to office-based dental and medical practitioners: scale, dense logistics and the Henry Schein One / Dentrix software installed base give moderate switching friction, and mix shift to specialty products and own brand has lifted gross margin from 27.8% (FY2020) to 31.1% (FY2025). But merchandise distribution itself has low switching costs, manufacturers can sell direct, and measured returns have faded: roic_proxy fell from 15.5% (FY2021) to 8.0-8.2% (FY2023-25), roughly at the cost of capital, with operating margin stuck near 5%. A moderate/narrow moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 4.1%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "HIGH_NET_DEBT: net debt is 5.3x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.8%) vs bull-case tier C (12.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 22.28,
+   "irr": 0.056
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 35.81,
+   "irr": 0.0784
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 48.94,
+   "irr": 0.0994
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 63.45,
+   "irr": 0.1211
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 88.37,
+   "irr": 0.1549
+  }
+ },
+ "iv_at_15": 50.56,
+ "iv_at_12": 67.82,
+ "implied_irr": 0.1022,
+ "implied_irr_base_case": 0.0994,
+ "upside_at_15_pct": -40.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Durable #1 dental/medical distributor, moat 5/10 \u2014 does not clear 15% at $84.58 (weighted IRR 10.2%, IV@15 $50.56); it clears the 15% hurdle only below ~$51, and the bear case (7.8%) sizes the verdict.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0784,
+ "irr_bull": 0.1211,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 35.15,
+ "iv_at_25": 26.74,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2951000000,
+ "shares_diluted_latest": 121717876,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 scale in dental distribution \u2014 world's largest provider to office-based dental/medical practitioners, dense logistics network",
+  "Henry Schein One / Dentrix practice-management software installed base creates switching friction beyond merchandise",
+  "Mix shift to specialty products (implants), own brand and technology lifting gross margin 27.8% (FY2020) to 31.1% (FY2025), 31.8% in Q2 2026",
+  "KKR anchor stake (12%, May 2025, right to 19.9%) and two board seats driving a >$200M operating-income value-creation program"
+ ],
+ "moat_against": [
+  "Merchandise distribution is contestable: Patterson/Benco regionally, Amazon and direct manufacturer sales, thin ~5% operating margin",
+  "ROIC faded from 15.5% (FY2021) to ~8.0% (FY2023-25) \u2014 at, not above, the cost of capital through the recent cycle",
+  "Leverage: net debt $2.951B is 5.3x normalized OE; buybacks and acquisitions were debt-funded as OCF weakened in FY2023",
+  "Customer base is small practices with no contractual lock-in on supplies; Oct 2023 cyber incident showed operational fragility"
+ ]
+}
