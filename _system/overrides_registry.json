@@ -3020,6 +3020,31 @@
    "weighted_irr_with_override": 0.0962,
    "weighted_irr_impact_pp": -3.281,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "SSL",
+   "field": "shares",
+   "value": 679900000.0,
+   "kind": "filing",
+   "source": "Sasol Annual Financial Statements for the year ended 30 June 2026 (published 1 September 2026; the same table appears in the FY2025 statements), Earnings per share note, 'Number of shares' table: weighted average number of shares 633.0M for FY2024, plus potential dilutive effect of the convertible bond 39.9M and of the long-term incentive scheme 7.0M, giving 'Diluted weighted average number of shares for DEPS and DHEPS' 679.9M for FY2024 (642.0M for FY2025 and 648.5M for FY2026 in the same table \u2014 the FY2025 figure matches the engine's filed AdjustedWeightedAverageShares count exactly, confirming the basis)",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2024 in EDGAR companyfacts; only the non-diluted WeightedAverageShares count (633.0M) is filed for that year, and the engine correctly refuses a silent swap. The filer's own EPS note prints the FY2024 diluted count on exactly the basis the engine filed for FY2025 (642.0M) and FY2023. The engine applies this single value only to the missing FY2024 period; FY2024 OE/share moves from -$0.121 (on the basic count) to -$0.113, and the 3-year median base is unchanged because FY2024 is the lowest of the three years either way.",
+   "date": "2026-10-20",
+   "base_used": "median_3y",
+   "base_oe_without_override": 0.282,
+   "base_oe_with_override": 0.282,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.0416,
+   "weighted_irr_with_override": 0.0416,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "SSL",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Sasol Limited's own results documents (e.g. Reviewed interim financial results, Sasol Limited, filed with its 20-F reporting package): 'American depository receipts (ADR) program: CUSIP number 803866300 \u2014 ADR to ordinary share 1:1; Depositary: The Bank of New York Mellon' \u2014 the ratio stated by the filer itself in every results booklet and in the Form 20-F share-capital description",
+   "reason": "20-F filer: engine per-share figures are per ordinary share while the NYSE price is per ADS. The filer's own documents state the ADR-to-ordinary-share ratio is 1:1, so per-share owner's earnings and the ADS price are directly comparable with no scaling, and the market cap (price x diluted shares) is already on the right basis."
   }
  ]
 }
