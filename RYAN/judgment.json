@@ -1,0 +1,38 @@
+{
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "People business: producers and brokers are portable and customers are not contractually locked in; Amwins, CRC and carrier-direct channels compete for the same specialty flow",
+  "ROIC falling: roic_proxy 18.0% FY2022, 17.3% FY2023, 10.7% FY2024, 9.4% FY2025 (fundamentals.json) \u2014 growth is bought with debt-funded acquisitions at rising prices, not earned on cheap capital",
+  "Leverage: net debt $3,193,327,000 is 7.52x normalized OE (key_numbers.md), plus $459.0M of expected Tax Receivable Agreement payments and $148.4M of accrued contingent consideration at FY2025 (10-K) \u2014 the equity sits behind acquisition debt and deal claims",
+  "E&S cycle softening: property pricing declines, builders-risk weakness and new capacity press organic growth (Q2 2026 call); total revenue growth already decelerated to +7.2% YoY in Q2 2026 from +21.9% in FY2025",
+  "Up-C claims ahead of Class A: Holdings owned only 49.1% of the LLC units at FY2025; FY2025 cash claims included $64,126,000 of tax distributions to non-controlling LLC unitholders and $25,169,000 of TRA payments (10-K cash-flow statement)"
+ ],
+ "moat_for": [
+  "Scale specialty platform: FY2025 revenue $2,994,582,000 across Wholesale Brokerage, Binding Authority and Underwriting Management, with 300+ specialty products (Q2 2026 earnings call) \u2014 one of the largest specialty distribution platforms in the US",
+  "Delegated underwriting authority: carriers grant binding authority to its MGUs on loss-ratio track records and programme data \u2014 appointments and authority are earned over years, not bought overnight",
+  "Structural E&S tailwind: complexity keeps pushing risks from the admitted market into excess & surplus lines, where Ryan's retail-broker relationships and placement volume sit",
+  "Asset-light cash conversion: conservative OE margin 20.1% of revenue FY2023, 17.7% FY2024, 19.1% FY2025 (fundamentals.json) on minimal physical capex \u2014 the asset is people, data and carrier access, not plant"
+ ],
+ "moat_justification": "A moderate moat (5/10): a scaled specialty-insurance distribution platform \u2014 wholesale brokerage, binding authority and delegated-authority MGUs \u2014 whose carrier appointments, placement volume and E&S product breadth (300+ products) take years to replicate, and which converts revenue to owner's earnings at a 18-20% margin with almost no physical capex. It is not wider: the producing asset walks out the door, rivals (Amwins, CRC) hold comparable scale, and the ROIC record no longer supports a strong-moat claim \u2014 roic_proxy fell from 18.0% in FY2022 to 9.4% in FY2025 (fundamentals.json) as debt-funded acquisitions ($1,708,737,000 of business combinations in FY2024, $746,485,000 in FY2025) were done at full prices, while operating margin stayed in a 16.5-17.7% band. A moat of 7+ would need ROIC sustainably well above the cost of capital; Ryan's measured history is heading the other way.",
+ "moat_score": 5,
+ "name": "Ryan Specialty Holdings, Inc.",
+ "one_liner": "Scaled specialty-insurance distribution platform, moat 5/10 \u2014 but its growth was bought with debt-funded acquisitions and has decelerated to single digits: on the TTM base of $1.52/share the weighted IRR is 7.45% (Tier D) at $41.91 with weighted IV@15% $15.81; it clears the 15% hurdle only below ~$15.81, and even the super-bull case (11.66% IRR) does not clear 15% at this price.",
+ "probs_used": [
+  0.15,
+  0.25,
+  0.3,
+  0.2,
+  0.1
+ ],
+ "sector": "Finance / Insurance brokerage & underwriting management (wholesale broker, binding authority, MGU) \u2014 SIC 6411",
+ "shares_override": {
+  "ack_reason": "Out of band by construction: the band is computed against the last filed diluted share value and EDGAR companyfacts carries NO diluted share fact for this filer in any period (last_filed_value is null), so every filing-sourced value flags out-of-band, including the company's own adjusted diluted count. This is not an estimate lacking an anchor \u2014 the value is the filer's own published FY2025 adjusted diluted share count, built in the same filing from its 10-K EPS note components (see source).",
+  "kind": "filing",
+  "reason": "DATA_GAP:shares \u2014 no diluted share count is carried in EDGAR companyfacts for any fiscal year (shares_diluted blank in financials_history.csv), so the engine emits no tier. The GAAP Class A diluted count in the 10-K EPS note (138,246,414 for FY2025) is NOT the right denominator for consolidated owner's earnings: Ryan is an Up-C \u2014 consolidated OCF/capex/SBC cover 100% of Ryan Specialty, LLC including the noncontrolling interest, while the GAAP diluted count excludes the 135,429,254 exchangeable LLC Common Units as antidilutive for FY2025 (they were dilutive and included in several 2025 quarters, e.g. Q3 2025 diluted 273,462k \u2014 the GAAP denominator flips with the antidilution test and cannot divide a consolidated numerator). The company's own adjusted diluted share count (279,029k for FY2025) is the total-economic-share denominator built for exactly this perimeter: Class A diluted + all LLC Common Units as exchanged + unvested award dilution. The engine applies this single FY2025 value to every missing year; FY2024's own adjusted count in the same release is 276,288k, so FY2024 OE/share is understated ~1.0% and FY2023 by a similar small amount \u2014 disclosed, small, and in the conservative direction for the median base year. The same value is the TTM denominator in ttm.json (H1 2026's own adjusted count was 270,080k after Q2 2026 buybacks, so the TTM base is ~3% conservative).",
+  "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 11 Earnings Per Share: weighted-average Class A diluted shares 138,246,414 for FY2025 (132,891,487 FY2024; 125,745,139 FY2023), with conversion of non-controlling interest LLC Common Units of 135,429,254 (FY2025) excluded as antidilutive in the same note; plus the company's Q4 2025 earnings release (Exhibit 99.1 to Form 8-K, 2026-02-12), Reconciliation of Adjusted Diluted EPS: FY2025 weighted-average Class A diluted 138,246k + impact of all LLC Common Units exchanged for Class A shares 135,429k + dilutive impact of unvested equity awards 5,354k = adjusted diluted share count 279,029k (FY2024 in the same table: 276,288k). Cover-page cross-check: 264,189,701 shares outstanding at February 9, 2026 (Class A 129,680,816 + Class B 134,508,885) in the same 10-K.",
+  "value": 279029000
+ },
+ "tier_override": null,
+ "tier_override_reason": null
+}

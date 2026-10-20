@@ -1,0 +1,108 @@
+{
+ "ticker": "RYAN",
+ "name": "Ryan Specialty Holdings, Inc.",
+ "sector": "Finance / Insurance brokerage & underwriting management (wholesale broker, binding authority, MGU) \u2014 SIC 6411",
+ "price": 41.91,
+ "market_cap_b": 11.69,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 1.5209422676495992,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "A moderate moat (5/10): a scaled specialty-insurance distribution platform \u2014 wholesale brokerage, binding authority and delegated-authority MGUs \u2014 whose carrier appointments, placement volume and E&S product breadth (300+ products) take years to replicate, and which converts revenue to owner's earnings at a 18-20% margin with almost no physical capex. It is not wider: the producing asset walks out the door, rivals (Amwins, CRC) hold comparable scale, and the ROIC record no longer supports a strong-moat claim \u2014 roic_proxy fell from 18.0% in FY2022 to 9.4% in FY2025 (fundamentals.json) as debt-funded acquisitions ($1,708,737,000 of business combinations in FY2024, $746,485,000 in FY2025) were done at full prices, while operating margin stayed in a 16.5-17.7% band. A moat of 7+ would need ROIC sustainably well above the cost of capital; Ryan's measured history is heading the other way.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2021 (67,534,000 vs 86,456,000, +28.0%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 11 Earnings Per Share: weighted-average Class A diluted shares 138,246,414 for FY2025 (132,891,487 FY2024; 125,745,139 FY2023), with conversion of non-controlling interest LLC Common Units of 135,429,254 (FY2025) excluded as antidilutive in the same note; plus the company's Q4 2025 earnings release (Exhibit 99.1 to Form 8-K, 2026-02-12), Reconciliation of Adjusted Diluted EPS: FY2025 weighted-average Class A diluted 138,246k + impact of all LLC Common Units exchanged for Class A shares 135,429k + dilutive impact of unvested equity awards 5,354k = adjusted diluted share count 279,029k (FY2024 in the same table: 276,288k). Cover-page cross-check: 264,189,701 shares outstanding at February 9, 2026 (Class A 129,680,816 + Class B 134,508,885) in the same 10-K.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 7.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 7.13,
+   "irr": 0.0446
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 11.46,
+   "irr": 0.0593
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 15.66,
+   "irr": 0.0737
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 21.16,
+   "irr": 0.0916
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 29.47,
+   "irr": 0.1166
+  }
+ },
+ "iv_at_15": 15.81,
+ "iv_at_12": 21.17,
+ "implied_irr": 0.0745,
+ "implied_irr_base_case": 0.0737,
+ "upside_at_15_pct": -62.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Scaled specialty-insurance distribution platform, moat 5/10 \u2014 but its growth was bought with debt-funded acquisitions and has decelerated to single digits: on the TTM base of $1.52/share the weighted IRR is 7.45% (Tier D) at $41.91 with weighted IV@15% $15.81; it clears the 15% hurdle only below ~$15.81, and even the super-bull case (11.66% IRR) does not clear 15% at this price.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0593,
+ "irr_bull": 0.0916,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 11.02,
+ "iv_at_25": 8.4,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3193327000,
+ "shares_diluted_latest": 279029000.0,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale specialty platform: FY2025 revenue $2,994,582,000 across Wholesale Brokerage, Binding Authority and Underwriting Management, with 300+ specialty products (Q2 2026 earnings call) \u2014 one of the largest specialty distribution platforms in the US",
+  "Delegated underwriting authority: carriers grant binding authority to its MGUs on loss-ratio track records and programme data \u2014 appointments and authority are earned over years, not bought overnight",
+  "Structural E&S tailwind: complexity keeps pushing risks from the admitted market into excess & surplus lines, where Ryan's retail-broker relationships and placement volume sit",
+  "Asset-light cash conversion: conservative OE margin 20.1% of revenue FY2023, 17.7% FY2024, 19.1% FY2025 (fundamentals.json) on minimal physical capex \u2014 the asset is people, data and carrier access, not plant"
+ ],
+ "moat_against": [
+  "People business: producers and brokers are portable and customers are not contractually locked in; Amwins, CRC and carrier-direct channels compete for the same specialty flow",
+  "ROIC falling: roic_proxy 18.0% FY2022, 17.3% FY2023, 10.7% FY2024, 9.4% FY2025 (fundamentals.json) \u2014 growth is bought with debt-funded acquisitions at rising prices, not earned on cheap capital",
+  "Leverage: net debt $3,193,327,000 is 7.52x normalized OE (key_numbers.md), plus $459.0M of expected Tax Receivable Agreement payments and $148.4M of accrued contingent consideration at FY2025 (10-K) \u2014 the equity sits behind acquisition debt and deal claims",
+  "E&S cycle softening: property pricing declines, builders-risk weakness and new capacity press organic growth (Q2 2026 call); total revenue growth already decelerated to +7.2% YoY in Q2 2026 from +21.9% in FY2025",
+  "Up-C claims ahead of Class A: Holdings owned only 49.1% of the LLC units at FY2025; FY2025 cash claims included $64,126,000 of tax distributions to non-controlling LLC unitholders and $25,169,000 of TRA payments (10-K cash-flow statement)"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 279029000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 11 Earnings Per Share: weighted-average Class A diluted shares 138,246,414 for FY2025 (132,891,487 FY2024; 125,745,139 FY2023), with conversion of non-controlling interest LLC Common Units of 135,429,254 (FY2025) excluded as antidilutive in the same note; plus the company's Q4 2025 earnings release (Exhibit 99.1 to Form 8-K, 2026-02-12), Reconciliation of Adjusted Diluted EPS: FY2025 weighted-average Class A diluted 138,246k + impact of all LLC Common Units exchanged for Class A shares 135,429k + dilutive impact of unvested equity awards 5,354k = adjusted diluted share count 279,029k (FY2024 in the same table: 276,288k). Cover-page cross-check: 264,189,701 shares outstanding at February 9, 2026 (Class A 129,680,816 + Class B 134,508,885) in the same 10-K."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": null,
+  "base_oe_with_override": 1.5209,
+  "base_oe_impact_pct": null,
+  "weighted_irr_without_override": null,
+  "weighted_irr_with_override": 0.0745,
+  "weighted_irr_impact_pp": null,
+  "unblocks_tier": true
+ }
+}
