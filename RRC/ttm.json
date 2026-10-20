@@ -1,0 +1,181 @@
+{
+ "ticker": "RRC",
+ "cik": 315852,
+ "entity": "RANGE RESOURCES CORP",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1171324000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 666273000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 854151000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1359202000
+  },
+  "capex": {
+   "fy": 628580000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 311706794.5205479,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 311706794.5205479,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 628580000.0
+  },
+  "sbc": {
+   "fy": 42072000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 20863101.369863015,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 20863101.369863015,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 42072000.0
+  },
+  "shares_diluted": {
+   "fy": 239789000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 240772000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 236348000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1359202000,
+ "ttm_capex": 628580000.0,
+ "ttm_sbc": 42072000.0,
+ "ttm_shares_diluted": 236348000,
+ "ttm_oe_total": 688550000.0,
+ "ttm_oe_per_share": 2.913288879110464,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "sbc",
+   "value": 42072000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Stockholders' Equity, line 'Stock-based compensation expense' (credited to additional paid-in capital; EDGAR tag AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue): $45,828,000 for FY2025, $42,072,000 for FY2024 and $36,427,000 for FY2023; the override value is the median of the three filed years (the FY2024 figure).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 42072000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 20863101.369863015,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 20863101.369863015,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  },
+  {
+   "field": "capex",
+   "value": 628580000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Cash Flows, investing activities (in thousands): 'Additions to natural gas, NGLs and oil properties' $581,489 (FY2025) / $570,426 (FY2024) / $571,819 (FY2023) \u2014 tagged us-gaap PaymentsToAcquireOilAndGasPropertyAndEquipment, a tag the engine does not read; 'Acreage purchases' $56,814 / $56,085 / $34,410; 'Additions to field service assets and other' $3,212 / $2,069 / $701. Total cash capex by year: FY2023 $606,930,000, FY2024 $628,580,000, FY2025 $641,515,000; the override value is the median of the three filed years (the FY2024 total).",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 628580000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 311706794.5205479,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 311706794.5205479,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ],
+ "capex_components": {
+  "fy": null,
+  "ytd_prior": null,
+  "ytd_current": null
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}
