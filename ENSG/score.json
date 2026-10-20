@@ -1,0 +1,110 @@
+{
+ "ticker": "ENSG",
+ "name": "ENSIGN GROUP, INC",
+ "sector": "Healthcare / Skilled nursing & post-acute care",
+ "price": 173.05,
+ "market_cap_b": 10.19,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 6.029146437750937,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "A real, replicated operating system (local-leader turnarounds of distressed facilities) that has held ROIC at 17\u201325% for six years, plus owned real estate through the captive REIT \u2014 but prices are set by government payors, labor is regulated and inflating, there are no switching costs, and the June 2026 short-seller allegations attack the durability of the cost advantage itself. Moderate moat, not wide.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Purchase of property and equipment': $(193,557) thousand for FY2025, $(158,240) thousand for FY2024 and $(106,180) thousand for FY2023 (statement in thousands)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 5.48 vs 3-yr median 2.66 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.4%) vs bull-case tier C (11.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 33.53,
+   "irr": 0.0495
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 63.38,
+   "irr": 0.0741
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 95.99,
+   "irr": 0.0998
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 120.48,
+   "irr": 0.1171
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 170.31,
+   "irr": 0.1484
+  }
+ },
+ "iv_at_15": 90.8,
+ "iv_at_12": 124.81,
+ "implied_irr": 0.0962,
+ "implied_irr_base_case": 0.0998,
+ "upside_at_15_pct": -47.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Proven skilled-nursing turnaround operator, moat 6/10 \u2014 but at $173.05 the price already pays for the super-bull path: weighted IRR 9.6% and weighted IV@15% $90.80, so it clears 15% only below ~$91; the unresolved June 2026 understaffing / administrator-license allegations and the securities class action sit on top of a full price.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0741,
+ "irr_bull": 0.1171,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 60.97,
+ "iv_at_25": 45.07,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -362125000,
+ "shares_diluted_latest": 58873000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Turnaround playbook replicated for 26 years: buys distressed 1\u20132-star facilities and lifts them \u2014 CMS data published Feb 2026 shows same-store survey results 24% better than state peers and a 19% advantage in 4\u20135-star buildings",
+  "ROIC proxy of 17\u201325% in every year FY2020\u2013FY2025 (fundamentals.json), earned through a full reimbursement and labor cycle",
+  "Decentralized local-leader model with cluster density: 373 facilities across 17 states at FY2025 year-end, with shared Service Center overhead a single-facility operator cannot match",
+  "Standard Bearer captive REIT: 158 owned real-estate properties at FY2025 year-end give cost control plus a rent-based earnings stream on top of operations",
+  "Demographic tailwind: an aging population drives skilled-nursing and post-acute demand independent of the economic cycle"
+ ],
+ "moat_against": [
+  "No pricing power: Medicare/Medicaid set the rates \u2014 the payor is the price-maker",
+  "Labor is the product and the cost: staffing is regulated, scarce and inflating; gross margin slid from 23.1% (FY2021) to 20.1% (FY2025)",
+  "June 2026 Hunterbrook and Muddy Waters reports allege margins partly rest on understaffing and rented administrator licenses at an estimated ~20% of facilities \u2014 if even partly true the cost advantage is neither durable nor lawful; a securities class action followed (Perusek v. The Ensign Group, C.D. Cal., lead-plaintiff deadline Dec 7, 2026)",
+  "No switching costs: patients, hospital referrers and staff can all leave; the turnaround model is replicable by any disciplined operator",
+  "Growth is substantially bought: 102 operations added since 2024 \u2014 acquisition pricing and integration are permanent execution risks",
+  "Repeat False Claims Act history: a $48M settlement in 2013 and the 2023 relator settlement behind the $60.8M litigation expense in FY2023 earnings"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 193557000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Purchase of property and equipment': $(193,557) thousand for FY2025, $(158,240) thousand for FY2024 and $(106,180) thousand for FY2023 (statement in thousands)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 9.2807,
+  "base_oe_with_override": 6.0291,
+  "base_oe_impact_pct": -35.036,
+  "weighted_irr_without_override": 0.129,
+  "weighted_irr_with_override": 0.0962,
+  "weighted_irr_impact_pp": -3.281,
+  "unblocks_tier": true
+ }
+}
