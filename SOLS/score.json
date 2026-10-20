@@ -1,0 +1,90 @@
+{
+ "ticker": "SOLS",
+ "name": "Solstice Advanced Materials Inc.",
+ "sector": "Specialty Chemicals / Advanced Materials",
+ "price": 60.47,
+ "market_cap_b": 9.61,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 0.96045197740113,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat: patent-protected low-GWP refrigerant franchise (5,700+ issued patents and pending applications per the company's 2026 proxy), the sole US uranium conversion operation in Nuclear (Alternative Energy Services), and qualification-based switching costs in semiconductor sputtering targets and Spectra fibers. Against that, gross margin fell from 35.2% (FY2023) to 34.6% (FY2024) to 32.2% (FY2025) in fundamentals.json, roic_proxy is null for every year in fundamentals.json (operating income is not tagged, so no ROIC series can be quoted), and refrigerant patents face Chemours/Daikin competition and eventual expiry. A 5 sits on demonstrated pricing/franchise positions without the through-cycle ROIC evidence a 7+ requires \u2014 and there is no standalone track record before the October 30, 2025 Honeywell spin-off.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "THIN_HISTORY: only 3 fiscal years of data",
+  "BASE_DIVERGENCE: latest FY OE/share 0.48 vs 3-yr median 2.79 \u2014 one of them is distorted; find out which and why",
+  "LOW_OE_YIELD: base OE yield 1.6% \u2014 valuation rests almost entirely on growth; tier is fragile",
+  "HIGH_NET_DEBT: net debt is 9.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 4.32,
+   "irr": 0.033
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 6.39,
+   "irr": 0.0378
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 9.49,
+   "irr": 0.0456
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 12.32,
+   "irr": 0.0526
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 17.17,
+   "irr": 0.0644
+  }
+ },
+ "iv_at_15": 9.27,
+ "iv_at_12": 12.36,
+ "implied_irr": 0.0452,
+ "implied_irr_base_case": 0.0456,
+ "upside_at_15_pct": -84.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Real specialty-materials franchise, moat 5/10, but on standalone cash economics it does not clear 15%: TTM owner's earnings are $0.96/share after the post-spin capex step-up, giving a 4.5% weighted IRR and a weighted IV@15% of $9.27 vs the $60.47 price \u2014 it would need to trade near $9.27 to clear 15% on these inputs.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0378,
+ "irr_bull": 0.0526,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 6.5,
+ "iv_at_25": 4.99,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1452000000,
+ "shares_diluted_latest": 158900000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Patent-protected low-GWP refrigerants (Solstice 454B / HFO transition) with regulatory tailwind",
+  "5,700+ issued patents and pending applications across the portfolio (2026 proxy)",
+  "Nuclear Alternative Energy Services \u2014 sole US uranium conversion capacity, accelerating backlog",
+  "Qualification switching costs in semiconductor sputtering targets and electronic materials",
+  "Spectra high-strength fibers and healthcare packaging niches with spec-in positions"
+ ],
+ "moat_against": [
+  "Gross margin eroding: 35.2% FY2023 -> 34.6% FY2024 -> 32.2% FY2025 (fundamentals.json)",
+  "Refrigerant competition from Chemours and Daikin; HFO patent expiries over time",
+  "No ROIC evidence: roic_proxy is null in fundamentals.json (operating income untagged); ROE on a carve-out equity base is not a standalone record",
+  "Cyclical end markets (construction, autos, semiconductors) and customer qualification can be dual-sourced",
+  "No standalone operating history before the Oct 30, 2025 spin-off; standalone cost base still settling"
+ ]
+}

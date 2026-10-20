@@ -1,0 +1,148 @@
+{
+ "ticker": "SOLS",
+ "cik": 2064953,
+ "entity": "Solstice Advanced Materials Inc.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 455000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 310000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 461000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 606000000
+  },
+  "capex": {
+   "fy": 352000000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment+PaymentsToAcquireIntangibleAssets",
+   "ytd_prior": 138000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 213000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 427000000.0
+  },
+  "sbc": {
+   "fy": 27000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 12000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 11000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 26000000
+  },
+  "shares_diluted": {
+   "fy": 158900000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 158700000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 159300000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 606000000,
+ "ttm_capex": 427000000.0,
+ "ttm_sbc": 26000000,
+ "ttm_shares_diluted": 159300000,
+ "ttm_oe_total": 153000000.0,
+ "ttm_oe_per_share": 0.96045197740113,
+ "warnings": [],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 336000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 16000000.0,
+   "intangibles_unit": "USD",
+   "intangible_tags": [
+    "PaymentsToAcquireIntangibleAssets"
+   ],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment+PaymentsToAcquireIntangibleAssets"
+  },
+  "ytd_prior": {
+   "ppe": 138000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_current": {
+   "ppe": 213000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}
