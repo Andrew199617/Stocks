@@ -1,0 +1,270 @@
+{
+ "ticker": "KLAR",
+ "cik": 2003292,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0002003292-26-000007",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000007/klar-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "klar:TransactionRevenueMember",
+     "label": "Transaction Revenue",
+     "values": [
+      1531000000,
+      1792000000,
+      2103000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6727,
+      0.6375,
+      0.5993
+     ],
+     "growth_yoy": [
+      null,
+      0.1705,
+      0.1735
+     ]
+    },
+    {
+     "member": "klar:RevenueFromInterestIncomeMember",
+     "label": "Revenue From Interest Income",
+     "values": [
+      508000000,
+      675000000,
+      937000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2232,
+      0.2401,
+      0.267
+     ],
+     "growth_yoy": [
+      null,
+      0.3287,
+      0.3881
+     ]
+    },
+    {
+     "member": "klar:ConsumerServiceRevenueMember",
+     "label": "Consumer Service Revenue",
+     "values": [
+      237000000,
+      344000000,
+      397000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1041,
+      0.1224,
+      0.1131
+     ],
+     "growth_yoy": [
+      null,
+      0.4515,
+      0.1541
+     ]
+    },
+    {
+     "member": "klar:GainOnSaleOfConsumerReceivablesMember",
+     "label": "Gain On Sale Of Consumer Receivables",
+     "values": [
+      0,
+      0,
+      73000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0208
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2276000000,
+     2811000000,
+     3509000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      609000000,
+      850000000,
+      1243000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2676,
+      0.3024,
+      0.3542
+     ],
+     "growth_yoy": [
+      null,
+      0.3957,
+      0.4624
+     ]
+    },
+    {
+     "member": "klar:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      779000000,
+      858000000,
+      976000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3423,
+      0.3052,
+      0.2781
+     ],
+     "growth_yoy": [
+      null,
+      0.1014,
+      0.1375
+     ]
+    },
+    {
+     "member": "country:DE",
+     "label": "GERMANY",
+     "values": [
+      620000000,
+      755000000,
+      848000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2724,
+      0.2686,
+      0.2417
+     ],
+     "growth_yoy": [
+      null,
+      0.2177,
+      0.1232
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      268000000,
+      348000000,
+      442000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1178,
+      0.1238,
+      0.126
+     ],
+     "growth_yoy": [
+      null,
+      0.2985,
+      0.2701
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2276000000,
+     2811000000,
+     3509000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}
