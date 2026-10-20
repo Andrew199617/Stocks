@@ -1,0 +1,363 @@
+{
+ "ticker": "GMED",
+ "cik": 1237831,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-011209",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1237831/000162828026011209/gmed-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-032290",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1237831/000162828026032290/gmed-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-054450",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1237831/000162828026054450/gmed-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "gmed:MusculoskeletalSolutionsMember",
+     "label": "Musculoskeletal Solutions",
+     "values": [
+      1448260000,
+      2365352000,
+      2797923000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9234,
+      0.9389,
+      0.952
+     ],
+     "growth_yoy": [
+      null,
+      0.6332,
+      0.1829
+     ]
+    },
+    {
+     "member": "gmed:EnablingTechnologiesMember",
+     "label": "Enabling Technologies",
+     "values": [
+      120216000,
+      154003000,
+      141008000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0766,
+      0.0611,
+      0.048
+     ],
+     "growth_yoy": [
+      null,
+      0.2811,
+      -0.0844
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1568476000,
+     2519355000,
+     2938931000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "gmed:MusculoskeletalSolutionsMember",
+     "label": "Musculoskeletal Solutions",
+     "values": [
+      575932000,
+      710182000,
+      732984000,
+      763540000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9629,
+      0.9528,
+      0.9646,
+      0.967
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2727,
+      0.0751
+     ]
+    },
+    {
+     "member": "gmed:EnablingTechnologiesMember",
+     "label": "Enabling Technologies",
+     "values": [
+      22189000,
+      35160000,
+      26870000,
+      26072000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0371,
+      0.0472,
+      0.0354,
+      0.033
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.211,
+      -0.2585
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     598121000,
+     745342000,
+     759854000,
+     789612000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1279765000,
+      2000067000,
+      2367596000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8159,
+      0.7939,
+      0.8056
+     ],
+     "growth_yoy": [
+      null,
+      0.5628,
+      0.1838
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      288711000,
+      519288000,
+      571335000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1841,
+      0.2061,
+      0.1944
+     ],
+     "growth_yoy": [
+      null,
+      0.7986,
+      0.1002
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1568476000,
+     2519355000,
+     2938931000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      483857000,
+      600784000,
+      604888000,
+      619105000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.809,
+      0.8061,
+      0.7961,
+      0.7841
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2501,
+      0.0305
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      114264000,
+      144558000,
+      154966000,
+      170507000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.191,
+      0.1939,
+      0.2039,
+      0.2159
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3562,
+      0.1795
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     598121000,
+     745342000,
+     759854000,
+     789612000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reportable Segment' (gmed:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/Revenues/quarterly: row 'Reportable Segment' (gmed:ReportableSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}
