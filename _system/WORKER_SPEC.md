@@ -123,6 +123,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    stock payment with no investing outflow (the dilution is in the share count; not deducted). Rerun the
    engine; quote the line in analysis.md. Never guess: a filing you cannot read is `NEEDS_MAIN_AGENT:
    iprd — cash-flow presentation unknown: <period> <amount>`.
+   `ACQUIRED_IPRD_UNCONVERTED` (Codex review round 3 of PR #47): the charge was expensed only in a currency the
+   engine holds no FX rate for, with no usable us-gaap cash fact — NOTHING is deducted, the tier is the
+   UNADJUSTED one, and make_score refuses the score whatever judgment.json says. Block the folder
+   `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <native amount and currency>`; it is
+   scored once the engine can convert the charge.
    `ACQUIRED_IPRD_CHARGE`: in-process R&D bought in
    an asset acquisition was expensed in the base window (ASC 805) — the expense is added back in OCF and
    the payment is not capex (the cash tag, or your cash-flow check), so owner's earnings never saw it. The engine deducts the charge ONCE: window
@@ -167,6 +172,16 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    included), exceeding its `contingent_total`. Never declare a new deal (another counterparty or asset) as an
    installment, and never overstate `contingent_total`: it is the contingent consideration the filing
    discloses for that deal, and a payment past it is a second purchase, a second charge.
+   `ACQUIRED_IPRD_UNMATCHED_PAYMENT` (Codex review round 3 of PR #47): a payment on the cash tag with no
+   acquired-IPR&D expense in its period, beyond the window's unpaid remainder, at a filer that expensed
+   acquired IPR&D BEFORE the window (the flag names those period ends) — possibly the deferred payment of that
+   earlier charge, which OE never saw; nothing is deducted for it. Read the filing: if the payment settles that
+   charge (deferred consideration, a milestone accrued then and paid now), declare `iprd_deferred_payment` for
+   the FY period with `first_charged_period` = that pre-window expense's period end (it must be one the flag
+   names: companyfacts must show the expense) and rerun — the engine then deducts the declared amount once (at
+   most the payment, within `contingent_total`), cash basis, outside the recurrence count. This is the one
+   declaration that changes the deduction. Otherwise say in analysis.md what the payment is. A cash-tag-only
+   payment at a filer that never expensed acquired IPR&D (MAA) raises no flag and can never be declared.
    key_numbers.md prints the excluded periods;
    quote them in analysis.md beside the recurrence assessment. HALO: the FY2025 10-K discloses $100.0M of
    unrecognized Surf Bio milestones — when one is expensed, declare it (once it lands in an FY) against

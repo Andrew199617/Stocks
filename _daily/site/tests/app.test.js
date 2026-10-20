@@ -1713,7 +1713,7 @@ test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the
   rec.score.iprd_adjustment = { treatment: 'one_time_value_deduction', total: 284887000, charge_per_share: 2.3333797464207318,
     periods: [{ period: '2024-12-31', window: 'fy', amount_basis: 'expense', deducted: 0 },
       { period: '2025-12-31', window: 'fy', amount_basis: 'expense', deducted: 284887000 }] };
-  const line = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value and from the price each IRR is solved at; the base OE is unchanged.';
+  const line = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE is unchanged.';
   assert.equal(App.iprdNote(rec), line);
   assert.ok(App.renderOverview(rec).includes('<p class="note">' + line + '</p>'), 'under the base OE card');
   const both = JSON.parse(JSON.stringify(rec));

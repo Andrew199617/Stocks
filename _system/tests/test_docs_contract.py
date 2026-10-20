@@ -294,6 +294,14 @@ PAIRS = [
     ("_system/build_site.py", '"reason": "iprd_share_count_unverified"', "iprd_share_count_unverified", [SYS_README, CONTRACT]),
     ("_system/make_score.py", "def iprd_amortized_impact(", "iprd_amortized_impact", [SYS_README]),
     ("_system/make_score.py", '"iprd_charge_per_share_without_override"', "iprd_charge_per_share_without_override", [SYS_README]),
+    # engine 5.6 Codex review round 3 of PR #47
+    ("_system/dcf_engine.py", 'IPRD_UNCONVERTED = "non_usd_no_rate"', "non_usd_no_rate", [SYS_README]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_UNCONVERTED: ', "ACQUIRED_IPRD_UNCONVERTED", [SYS_README]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_UNMATCHED_PAYMENT: ', "ACQUIRED_IPRD_UNMATCHED_PAYMENT",
+     [SYS_README]),
+    ("_system/dcf_engine.py", 'x["pre_window_charges"] = ', "pre_window_charges", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_pre_window_charges(", "iprd_pre_window_charges", [SYS_README]),
+    ("_system/make_score.py", "def check_iprd_unconverted(", "expense_native", [SYS_README]),
 ]
 
 
@@ -360,6 +368,12 @@ def test_automation_day_table_matches_the_cron_files():
 
 # ---------------------------------------------------------------- 4
 STALE = [
+    # engine 5.6 Codex review round 3 of PR #47: the IPR&D charge is ADDED to the price each IRR is solved at
+    (CONTRACT, "and from the price each IRR is solved at"),
+    ("_daily/site/app.js", "and from the price each IRR is solved at"),
+    (SYS_README, "weighted IRR 22.64% → 22.39%, Tier A survives"),
+    (AGENTS_MD, "deducted once from every IV and the IRR price"),
+    ("README.md", "intrinsic value and the IRR price — never from the base"),
     # engine 5.6 fixer review round: provenance (no scratch-brief labels, no "settled" credit for main-agent fills)
     # and the iprd_amortized shape / declared_pin definitions
     (SYS_README, "**No cliff (F4):**"),
@@ -463,6 +477,22 @@ def test_iprd_amortized_is_rebuilt_on_every_rescore():
     for phrase in ("an `iprd_amortized` `base_override` (engine 5.6) is rebuilt from that rerun's dcf_numbers.json",
                    "passes `--base-oe-ps <the new value>` instead of `--ttm`"):
         assert phrase in sp, f"SECOND_PASS.md lost: {phrase!r}"
+
+
+def test_halo_iprd_example_names_the_price_of_each_irr():
+    """[Codex review r3 of PR #47, #4322176055] README's engine 5.6 HALO example quoted the weighted IRR 22.64% →
+    22.39% "at its scored price", but the committed re-score is at $122.50 (HALO/dcf_numbers.json: 22.57% → 22.32%);
+    the 22.64 / 22.39 pair is the 5.5.0 record's $121.84. The example states both pairs with their prices, and the
+    committed pair is read from HALO/dcf_numbers.json so a later re-score that moves it fails here."""
+    import json
+    with open(os.path.join(ROOT, "HALO", "dcf_numbers.json"), encoding="utf-8") as f:
+        n = json.load(f)
+    before = n["iprd_adjustment"]["before"]["weighted"]["irr"] * 100
+    after = n["implied_irr_weighted"] * 100
+    readme = _read(SYS_README)
+    committed = f"weighted IRR {before:.2f}% → {after:.2f}% at the re-score's ${n['price']:.2f}"
+    assert committed in readme, f"README's HALO example lost the committed pair: {committed!r}"
+    assert "weighted IRR 22.64% → 22.39% at the 5.5.0 record's $121.84" in readme, "README lost the $121.84 pair's price"
 
 
 def test_corrected_passages_stay_corrected():

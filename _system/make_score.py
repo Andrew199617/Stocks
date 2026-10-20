@@ -296,8 +296,14 @@ value adjustment):
   `deferred_payment_of` / `recurrence_excluded`; key_numbers.md says on the
   period line whether it is excluded from the recurrence count or, partly
   deferred, still counts, plus one "Excluded from the recurrence count" line,
-  naming each first charge by its date. The deduction is unchanged. Not a
+  naming each first charge by its date. The deduction is unchanged (except
+  a declared cash-tag-only payment of a charge expensed before the window,
+  which the engine then deducts — Codex review round 3 of PR #47). Not a
   registry event, like iprd_cash_flow_check: it records what the filing shows.
+- [Codex review round 3 of PR #47] A period excluded `non_usd_no_rate`
+  beside a positive `expense_native` (ACQUIRED_IPRD_UNCONVERTED: a detected
+  charge the engine could not convert, so nothing was deducted) is refused,
+  NEEDS_MAIN_AGENT: currency, whatever judgment.json says.
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -1149,6 +1155,26 @@ def check_iprd_share_count_unverified(n, j):
          "through judgment.json tier_override whose tier_override_reason quantifies the hand deduction — the charge "
          "per share on the verified share count ($) and the adjusted weighted IRR (%) (WORKER_SPEC step 4)"
          + ("; the tier_override_reason given names no dollar figure and percentage" if j.get("tier_override") else ""))
+
+
+def check_iprd_unconverted(n):
+    """[Codex review r3 of PR #47] A period excluded non_usd_no_rate with a positive native expense
+    (ACQUIRED_IPRD_UNCONVERTED): the engine detected an acquired-IPR&D charge it could not convert (no FX
+    rate for the expense's currency and date, no usable cash fact), so it deducted nothing and the tier is
+    the UNADJUSTED one. Refused like a period awaiting its cash-flow check: the worker blocks
+    NEEDS_MAIN_AGENT: currency; no judgment.json field publishes it (a hand deduction is the share-count
+    case's escape only)."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
+    lbl = lambda p: (f"FY{p['period'][:4]}" if p.get("window") == "fy" else f"YTD to {p.get('period')}")
+    uc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("expense_native")) or 0) > 0]
+    if uc:
+        fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: acquired IPR&D expensed in a currency the "
+             "engine holds no FX rate for, with no usable us-gaap cash fact, in "
+             + ", ".join(f"{lbl(p)} {_num(p['expense_native']):,.0f} {p.get('expense_unit')}" for p in uc)
+             + " — the engine deducted nothing, so the record's IVs, IRRs and tier are the UNADJUSTED ones. Block "
+             "the folder NEEDS_MAIN_AGENT: currency (WORKER_SPEC step 3); it is scored once the engine can convert "
+             "the charge")
 
 
 def iprd_score_block(n):
@@ -2468,6 +2494,7 @@ def main():
     check_iprd_cash_flow(n, validate_iprd_cash_flow_check(j))   # [fixer review round]
     check_iprd_deferred_payment(n, validate_iprd_deferred_payment(j))   # Andrew's 2026-10-20 ruling (delegated)
     check_iprd_share_count_unverified(n, j)   # [Codex review r1 of PR #47]
+    check_iprd_unconverted(n)   # [Codex review r3 of PR #47]
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 

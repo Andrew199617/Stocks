@@ -37,7 +37,11 @@ files is a P2 finding on its own: say which code lines changed and ask for
 them in a separate PR. One exception: the catch-up PR that first brings the
 live VM's state onto main after the 2026-10-16 merge may mix the two (it
 carries spec drafts, this file and ~1,500 data files); the separation binds
-from the first per-company PR after it. Policy-bearing files are `make_score.py` (tiers,
+from the first per-company PR after it. A second exception: an
+owner-directed acceptance re-score named in the PR body (the PR #31
+engine-5.5 bundle and PR #47's engine-5.6 HALO re-score) may ride with its
+engine change — the PR body must say the owner directed it; do not ask for
+it to be split out. Policy-bearing files are `make_score.py` (tiers,
 alert gates), `dcf_engine.py` (the formula), `queue.py` (claims and pass 2),
 `WORKER_SPEC.md` and `SECOND_PASS.md` (what workers must do). A change to
 any of them needs (a) a test in `_system/tests/` that fails on the old code,
@@ -89,7 +93,8 @@ the specs for the old rule and list every stale passage with file:line.
   and `net_debt_to_normalized_oe_ads_basis` is a pre-5.5 ADS record's
   net-debt ratio on the ADS basis; since 5.6 `iprd_adjustment` whenever the
   engine recorded the block — any treatment, including `none`,
-  `no_value_to_adjust`, `not_applied_share_count_unverified` and
+  `no_value_to_adjust`, `not_applied_share_count_unverified`,
+  `awaiting_cash_flow_check`, `non_usd_no_rate` and
   `amortized_in_base` (the charge; the weighted IV@15/20/25 and IRR
   before → after only when a one-time deduction ran).
 - `key_numbers.md` — generated quotable figures. `analysis.md` may only
@@ -102,7 +107,7 @@ the specs for the old rule and list every stale passage with file:line.
 
 Method in one line: OE = operating cash flow − total capex − stock-based
 compensation (engine 5.6: acquired in-process R&D expensed at acquisition is
-deducted once from every IV and the IRR price, never from the base). Base OE/share = median of the last 3 fiscal years, or a TTM
+deducted once from every IV and added to the IRR price, never from the base). Base OE/share = median of the last 3 fiscal years, or a TTM
 figure when the last FY is stale. Five probability-weighted scenarios give
 the headline IRR. Tiers: S ≥ 25%, A 20–25%, B 15–20%, C 10–15%, D < 10%,
 F = no positive normalized OE. Hurdle prices: IV@15 (B), IV@20 (A), IV@25
@@ -318,8 +323,14 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    deduction there charges OE twice), and one declaring `inside_operating_cash_flow` / `paid_in_shares` where the
    filing shows the add-back and an investing payment is P1 the other way; say "cannot verify from the diff"
    when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
-   (make_score refuses it). A `deferred_payment` period counts cash the window's earlier cash-basis charge left
-   unpaid (BIIB), never more than that remainder. A period with `recurrence_excluded` `deferred_payment_of`
+   (make_score refuses it), nor one with a period excluded `non_usd_no_rate` beside a positive `expense_native`
+   (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47). A
+   `deferred_payment` period counts cash the window's earlier cash-basis charge left unpaid (BIIB), never more
+   than that remainder — or, declared in `iprd_deferred_payment` against a `first_charged_period` before the
+   window that companyfacts shows expensed (`first_charge_evidence` `companyfacts_expense_fact`), a cash-tag-only
+   payment of that pre-window charge (round 3): its cited filing must show the deferred consideration or
+   milestone paid in that period, P1 otherwise. `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
+   the payment is (declared, or why it is not the earlier deal's) is P2. A period with `recurrence_excluded` `deferred_payment_of`
    (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred
    consideration of the named deal as the cited filing shows it: a distinct deal (another counterparty or
    asset) declared as an installment so `ACQUIRED_IPRD_RECURRENT` does not fire is P1, so is a
@@ -442,7 +453,8 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 `DATA_GAP:<field>`, and engine 5.5's `SHARE_SCALE_SUSPECT`,
 `SHARE_BASIS_ADJUSTED`, `SHARE_BASIS_DIVERGENCE`, `CAPEX_COVERAGE_LOW`,
 `SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`, and engine 5.6's
-`ACQUIRED_IPRD_CHARGE`, `ACQUIRED_IPRD_RECURRENT` and `ACQUIRED_IPRD_UNCONFIRMED` (check 8).
+`ACQUIRED_IPRD_CHARGE`, `ACQUIRED_IPRD_RECURRENT`, `ACQUIRED_IPRD_UNCONFIRMED`,
+`ACQUIRED_IPRD_UNCONVERTED` and `ACQUIRED_IPRD_UNMATCHED_PAYMENT` (check 8).
 
 - `STALE_FY` resolved with "no TTM available" at a 20-F filer: ask whether
   the interim 6-K prints TTM operating cash flow and capex; the worker

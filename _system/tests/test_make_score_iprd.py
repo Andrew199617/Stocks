@@ -756,6 +756,24 @@ def test_amortized_base_override_event_records_the_one_time_counterfactual():
     assert len(cf) == 1 and not cf[0]["no_overrides"] and cf[0]["hold"] is None, cf
     assert "--base-oe-ps" not in cf[0]["argv"] and "--ttm" not in cf[0]["argv"], cf
 
+def test_unconvertible_iprd_expense_is_refused_needs_main_agent():
+    """[Codex review r3, #4322176027] A positive acquired-IPR&D expense filed only in a currency with no FX rate and
+    no usable cash fact (EUR 300M at the synthetic USD filer): the engine deducts nothing and records excluded
+    non_usd_no_rate, so the tier is the UNADJUSTED one. make_score accepted it silently; it now refuses the score
+    (ACQUIRED_IPRD_UNCONVERTED, NEEDS_MAIN_AGENT: currency) whatever judgment.json says, like a period still awaiting
+    its cash-flow check. A native expense of 0 records no charge and scores."""
+    n = TI._ok(TI._run(TI._eur_expense(300e6), checks=False))
+    assert n["iprd_adjustment"]["treatment"] == "non_usd_no_rate"
+    r = _score(n)
+    assert r.rc == 1 and "ACQUIRED_IPRD_UNCONVERTED" in r.err and "NEEDS_MAIN_AGENT: currency" in r.err, (r.rc, r.err[-800:])
+    assert "FY2025 300,000,000 EUR" in r.err, r.err[-800:]
+    r = _score(n, _j(tier_override=n["tier_by_numbers"], tier_override_reason="main agent: $3.30/share, IRR 9.9%"))
+    assert r.rc == 1 and "ACQUIRED_IPRD_UNCONVERTED" in r.err, (r.rc, r.err[-800:])
+    z = TI._ok(TI._run(TI._eur_expense(0.0), checks=False))
+    r = _score(z)
+    assert r.rc == 0, r.err[-800:]
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

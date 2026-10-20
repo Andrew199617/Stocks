@@ -1520,6 +1520,126 @@ def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
         assert "acquired-IPR&D" in w["note"] and "tier_override" in w["note"], w["note"]
     assert B.live_shown({"score": sc, "numbers": _adjusted(), "live": lv}) == (lv, None)
 
+# --- Codex review round 3 of PR #47 -------------------------------------------------------------------------------
+def _eur_expense(native, start="2025-01-01", end="2025-12-31", form="10-K", filed="2026-02-20"):
+    f = _syn_facts()
+    _syn_put(f, EXPENSE, "EUR", {"start": start, "end": end, "val": native, "form": form, "fp": "FY" if form == "10-K" else "Q2",
+                                 "fy": int(end[:4]), "filed": filed, "accn": f"0000999001-{filed}"})
+    return f
+
+
+def test_unconvertible_expense_with_no_usable_cash_is_gated_not_deducted_as_zero():
+    """[Codex review r3, #4322176027] A positive acquired-IPR&D expense filed only in a currency the FX pass holds no
+    rate for (EUR at a USD filer: rates_by_ccy holds only the core series' currencies and dates), with no usable cash
+    fact for the period, was recorded excluded non_usd_no_rate with $0 deducted, treatment "none" and NO flag — the
+    unadjusted tier went out and make_score accepted it. The charge is still detected by its native sign, so the run
+    now raises ACQUIRED_IPRD_UNCONVERTED (naming the period and the native amount; make_score refuses it,
+    NEEDS_MAIN_AGENT: currency) and records treatment non_usd_no_rate when nothing else is deducted — like an expense
+    awaiting its cash-flow check. The same for the current-YTD 10-Q leg (the FX pass asks for FY-end rates only). A
+    native expense <= 0 expensed nothing: no flag."""
+    plain = _plain()
+    n = _ok(_run(_eur_expense(300e6), checks=False))
+    blk = n["iprd_adjustment"]
+    rec = [p for p in blk["periods"] if p["period"] == "2025-12-31"][0]
+    assert rec["excluded"] == "non_usd_no_rate" and rec["deducted"] == 0.0 and rec["expense_native"] == 300e6, rec
+    assert blk["total"] == 0.0 and blk["treatment"] == "non_usd_no_rate", blk
+    fl = flags(n, "ACQUIRED_IPRD_UNCONVERTED")
+    assert len(fl) == 1 and "FY2025 300,000,000 EUR" in fl[0] and "NEEDS_MAIN_AGENT: currency" in fl[0], fl
+    assert n["weighted"] == plain["weighted"]   # nothing deducted: the gate, not the figures, carries it
+    for native in (0.0, -5e6):
+        m = _ok(_run(_eur_expense(native), checks=False))
+        assert not flags(m, "ACQUIRED_IPRD_UNCONVERTED"), (native, m["iprd_adjustment"])
+        assert m["iprd_adjustment"]["treatment"] == "none", m["iprd_adjustment"]
+    # the YTD leg: a EUR 10-Q fact with no rate and no cash fact
+    f = _eur_expense(150e6, start="2026-01-01", end="2026-06-30", form="10-Q", filed="2026-08-05")
+    _fy(f, EXPENSE, 2025, 20e6)
+    out = E.iprd_detect(f, ["2023-12-31", "2024-12-31", "2025-12-31"], ytd=("2026-01-01", "2026-06-30"), fx_rates={},
+                        checks=auto_checks(f))
+    y = [p for p in out["periods"] if p["window"] == "ttm_current_ytd"][0]
+    assert y["excluded"] == "non_usd_no_rate" and y["expense_native"] == 150e6, y
+    out.update(total=20e6, treatment="one_time_value_deduction", charge_per_share=0.2, shares_denominator=100e6,
+               shares_source="ttm.json ttm_shares_diluted", material=True, materiality=0.1, recurrent=False,
+               fy_with_charge=["2025-12-31"])
+    fl = [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_UNCONVERTED")]
+    assert len(fl) == 1 and "YTD 2026-01-01..2026-06-30 150,000,000 EUR" in fl[0], fl
+
+
+PRE_SRC = ("SYN 10-K FY2022 (0000999001-23-000005) Note 4 'Asset acquisition', p. 64: Old Bio acquired IPR&D $40.0 "
+           "million expensed, $10.0 million paid at closing, $30.0 million of deferred consideration payable in 2024")
+PRE_CT = {"value": 30e6, "source": "SYN 10-K FY2022 (0000999001-23-000005) Note 4, p. 64: $30.0 million deferred consideration"}
+
+
+def _pre_window(entries=None, cash24=30e6):
+    """FY2022 (before the engine's FY2023-25 window): $40M expensed, $10M paid; the $30M deferred remainder is paid in
+    FY2024 on the cash tag alone."""
+    facts = _facts(expense={2022: 40e6}, cash={2022: 10e6, 2024: cash24})
+    return _run(facts, judgment={"iprd_deferred_payment": entries} if entries is not None else None)
+
+
+def test_cash_only_payment_of_a_pre_window_charge_is_flagged_then_deducted_when_declared():
+    """[Codex review r3, #4322176043] A cash-tag-only payment inside the window that settles an acquired-IPR&D charge
+    first expensed BEFORE the window: the window's unpaid remainder is 0 (detection never loaded the earlier expense),
+    so the $30M was dropped — the run untouched with no trace (iprd_adjustment None) — and the worker's
+    iprd_deferred_payment was refused ("names no acquired-IPR&D charge"), so the tier stayed overstated.
+    Now (1) undeclared: the payment is listed in ignored_cash_only with the pre-window charge companyfacts shows and
+    ACQUIRED_IPRD_UNMATCHED_PAYMENT names it — nothing is deducted until the worker decides; (2) declared (first charge
+    before the window, an expense fact there in companyfacts, the original filing cited, within the deal's
+    contingent_total and the payment): the payment is deducted once ($0.30/share), cash basis, recorded
+    deferred_payment_of and outside the recurrence count. MAA's shape (cash tag only, never an expense fact) still
+    never qualifies: no flag, no block, and a declaration is refused."""
+    plain = _plain()
+    n = _ok(_pre_window())
+    blk = n["iprd_adjustment"]
+    assert blk is not None and blk["total"] == 0.0 and blk["periods"] == [], blk
+    co = blk["ignored_cash_only"]
+    assert (len(co) == 1 and co[0]["period"] == "2024-12-31" and co[0]["cash"] == 30e6
+            and co[0]["pre_window_charges"] == ["2022-12-31"]), co
+    fl = flags(n, "ACQUIRED_IPRD_UNMATCHED_PAYMENT")
+    assert len(fl) == 1 and "FY2024 $30,000,000" in fl[0] and "2022-12-31" in fl[0] and "iprd_deferred_payment" in fl[0], fl
+    assert n["weighted"] == plain["weighted"] and n["scenarios"] == plain["scenarios"]
+    decl = deferred(period="2024-12-31", amount=30e6, first="2022-12-31", source=PRE_SRC, deal="Old Bio", contingent=PRE_CT)
+    m = _ok(_pre_window([decl]))
+    mb = m["iprd_adjustment"]
+    p24 = [p for p in mb["periods"] if p["period"] == "2024-12-31"]
+    assert len(p24) == 1, mb["periods"]
+    p24 = p24[0]
+    assert (p24["amount_basis"], p24["tag_used"], p24["deducted"], p24["recurrence_excluded"]) == (
+        "cash_outflow", CASH, 30e6, "deferred_payment_of"), p24
+    assert p24["deferred_payment_of"][0]["first_charge_evidence"] == "companyfacts_expense_fact", p24
+    assert mb["total"] == 30e6 and mb["fy_with_charge"] == [] and not mb["recurrent"] and not mb["ignored_cash_only"], mb
+    assert not flags(m, "ACQUIRED_IPRD_UNMATCHED_PAYMENT") and flags(m, "ACQUIRED_IPRD_CHARGE")
+    _assert_base_untouched(m, plain)
+    _assert_shifted(m, plain, 30e6 / SHARES)
+    # a declared part of the payment is deducted; the rest stays listed and flagged
+    k = _ok(_pre_window([dict(decl, amount=20e6)]))
+    kb = k["iprd_adjustment"]
+    assert kb["total"] == 20e6 and kb["ignored_cash_only"][0]["cash"] == 10e6, kb
+    assert flags(k, "ACQUIRED_IPRD_UNMATCHED_PAYMENT")
+    # more than the payment, past the deal's contingent_total, or a first charge companyfacts does not show: refused
+    _refused(_pre_window([dict(decl, amount=35e6, deferred_payment_of=dict(decl["deferred_payment_of"],
+                                                                            contingent_total=dict(PRE_CT, value=40e6)))]),
+             "more than the period's charge")
+    _refused(_pre_window([dict(decl, deferred_payment_of=dict(decl["deferred_payment_of"],
+                                                               contingent_total=dict(PRE_CT, value=20e6)))]),
+             "contingent_total")
+    _refused(_pre_window([deferred(period="2024-12-31", amount=30e6, first="2021-12-31",
+                                   source="SYN 10-K FY2021 (0000999001-22-000007) Note 4", deal="Old Bio",
+                                   contingent=PRE_CT)]),
+             "companyfacts covers it")
+    # the $0-expense record shape: FY2023 files $0 expensed beside the $30M cash — listed and flagged, not lost
+    f0 = _facts(expense={2022: 40e6, 2023: 0.0}, cash={2022: 10e6, 2023: 30e6})
+    z = _ok(_run(f0))
+    b0 = z["iprd_adjustment"]
+    assert [c["period"] for c in b0["ignored_cash_only"]] == ["2023-12-31"] and b0["ignored_cash_only"][0]["cash"] == 30e6, b0
+    assert flags(z, "ACQUIRED_IPRD_UNMATCHED_PAYMENT")
+    # MAA: cash tag only, never expensed — untouched, and a declaration cannot make it qualify
+    maa = _facts(cash={2023: 198152000, 2024: 313888000, 2025: 272030000})
+    assert _ok(_run(maa))["iprd_adjustment"] is None
+    _refused(_run(maa, judgment={"iprd_deferred_payment": [deferred(period="2024-12-31", amount=30e6, first="2022-12-31",
+                                                                     source=PRE_SRC, deal="Old Bio", contingent=PRE_CT)]}),
+             "names no acquired-IPR&D charge")
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

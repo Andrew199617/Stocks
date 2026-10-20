@@ -177,8 +177,8 @@ and `recurrence_excluded` when set — and its `recurrence_excluded` list when t
 units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record carries is already the adjusted figure;
 build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /
 `adjusted_irr`). The Overview's base-OE card shows one disclosure line (`iprdNote`): "Acquired IPR&D: −$2.33/sh one-time
-(FY2025, expense basis) — deducted from every intrinsic value and from the price each IRR is solved at; the base OE is
-unchanged." (score.json's block, else the engine record's; an amortized-in-base run says so; nothing for any other
+(FY2025, expense basis) — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE
+is unchanged." (the engine solves each IRR at price + charge: a higher price, a lower IRR — Codex review round 3 of PR #47) (score.json's block, else the engine record's; an amortized-in-base run says so; nothing for any other
 record). A split since scoring divides `charge_per_share`, the `before` / `after` IVs and score.json's `iv_before` /
 `iv_after` like every per-share figure (`SPLIT_DIVIDE`) and multiplies `shares_denominator` (`SPLIT_MULTIPLY`); an
 amortized-in-base record's `amortized.native_base_per_share` / `pinned_per_share` (both blocks) and

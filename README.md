@@ -12,7 +12,7 @@ from SEC EDGAR data — no third-party financial data:
 - Owner's earnings = operating cash flow − capex − stock-based compensation
   (conservative; SBC always treated as a real cost). In-process R&D bought in an
   acquisition and expensed (so no OE leg sees it) is deducted once from every
-  intrinsic value and the IRR price — never from the base (engine 5.6)
+  intrinsic value and added to the IRR price — never from the base (engine 5.6)
 - Base = median of the last 3 fiscal years' OE/share, with a TTM override from
   10-Qs when the fiscal year is stale
 - Five scenarios (super bear → super bull) with assigned probabilities; a

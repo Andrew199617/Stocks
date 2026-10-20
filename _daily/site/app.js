@@ -719,8 +719,9 @@ function renderFilings(record) {
 }
 
 /* Engine 5.6 (acquired IPR&D, Andrew 2026-10-19): one disclosure line under the base OE card when the scored run
-   deducted a one-time acquired-IPR&D charge per share from every intrinsic value and the IRR price (score.json
-   iprd_adjustment, else the engine record's). The IVs, IRRs and hurdle prices on the page are already the adjusted
+   deducted a one-time acquired-IPR&D charge per share from every intrinsic value and added it to the price each
+   IRR is solved at (score.json iprd_adjustment, else the engine record's; Codex review r3 of PR #47: added, not
+   deducted — a higher price, a lower IRR). The IVs, IRRs and hurdle prices on the page are already the adjusted
    ones; the line says where the gap to the paths comes from. '' for every other record. */
 function iprdNote(record) {
   var b = obj(obj(record.score).iprd_adjustment);
@@ -731,7 +732,7 @@ function iprdNote(record) {
   var where = arr(b.periods).filter(function (p) { return p && num(p.deducted) > 0; }).map(function (p) {
     return (p.window === 'fy' ? 'FY' + esc(String(p.period).slice(0, 4)) : 'YTD ' + esc(p.period)) + ', ' + (p.amount_basis === 'cash_outflow' ? 'cash' : 'expense') + ' basis';
   }).join('; ');
-  return 'Acquired IPR&amp;D: −' + fmtMoney(c) + '/sh one-time' + (where ? ' (' + where + ')' : '') + ' — deducted from every intrinsic value and from the price each IRR is solved at; the base OE is unchanged.';
+  return 'Acquired IPR&amp;D: −' + fmtMoney(c) + '/sh one-time' + (where ? ' (' + where + ')' : '') + ' — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE is unchanged.';
 }
 
 function renderOverview(record) {
