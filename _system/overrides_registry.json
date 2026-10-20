@@ -3003,6 +3003,23 @@
    "ratio": 1.0,
    "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, SEC CIK 918608): the securities registered under Section 12(b) are the company's common shares, trading symbol EGO, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; company disclosure in its own releases states 'Eldorado's common shares trade on the Toronto Stock Exchange (TSX: ELD) and the New York Stock Exchange (NYSE: EGO)'",
    "reason": "Eldorado is a direct-listed foreign private issuer: one NYSE-traded EGO share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+  },
+  {
+   "ticker": "ENSG",
+   "field": "capex",
+   "value": 193557000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Purchase of property and equipment': $(193,557) thousand for FY2025, $(158,240) thousand for FY2024 and $(106,180) thousand for FY2023 (statement in thousands)",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 of the last 3 (in fact every year from FY2020) under every candidate tag the engine reads; the filer's own cash-flow statement reports the line every year. The single-value override uses the latest and largest year (FY2025 $193.6M); applied to the earlier missing years it overstates their capex (FY2024 actual $158.2M, FY2023 actual $106.2M), so the owner's-earnings base is understated, not overstated \u2014 conservative.",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": 9.2807,
+   "base_oe_with_override": 6.0291,
+   "base_oe_impact_pct": -35.036,
+   "weighted_irr_without_override": 0.129,
+   "weighted_irr_with_override": 0.0962,
+   "weighted_irr_impact_pp": -3.281,
+   "unblocks_tier": true
   }
  ]
 }
