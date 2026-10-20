@@ -51,9 +51,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      declares (Codex review round 4 of PR #47) — also when the window holds no acquired-IPR&D charge at all
      (a minimal `deferred_payments_only` block; Codex review round 5) — and, since Codex review round 8, whatever
      the engine run: the registry's `iprd_deferred_payment` event keeps each deal's paid_to_date and every period
-     ever declared, so declarations summing below it are refused, and (round 9) its recorded name,
-     `contingent_total` and `first_charged_period` stay as recorded (step 8). Write the new analysis.md as a
-     dated supersession (state what the new filing changed), keep the prior flag and
+     ever declared, so declarations summing below it are refused, (round 9) its recorded name,
+     `contingent_total` and `first_charged_period` stay as recorded (step 8), and (round 10) every recorded
+     period keeps its recorded amount — declare it unchanged, never moved to another period. Write the new
+     analysis.md as a dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
      CIK change: web-search "<company> CIK 10-K", rerun with `--cik <CIK>`; only if no filing
@@ -198,6 +199,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (`iprd_deferred_payment` event: paid_to_date and every period ever declared) and refuses a run whose
    declarations for the deal sum below that paid_to_date (an entry deleted or shrunk) or whose lifetime —
    max(the declarations on recorded periods, paid_to_date) + newly declared periods — passes the contingent_total.
+   Since Codex review round 10 every period the event recorded is immutable: make_score refuses a declaration that
+   omits a recorded period or declares it more than $1 apart from the recorded amount (shrunk OR grown), naming the
+   period, and the event keeps the recorded amounts (only a new period is added). Declare a recorded period exactly
+   as recorded; never move an amount from one period to another (that could make another period wholly deferred
+   and drop it from the recurrence count). A filing that restates a paid milestone is NEEDS_MAIN_AGENT.
    Since Codex review round 9 the recorded deal is fixed by its evidence: a recorded deal's `contingent_total`
    (value, source) and `first_charged_period` cannot change (declare the recorded ones; a filing that revises
    the deal's milestones is NEEDS_MAIN_AGENT), and a later milestone is declared under the deal's recorded name —

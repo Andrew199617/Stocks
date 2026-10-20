@@ -901,9 +901,11 @@ def test_deferred_payments_are_recorded_and_deleting_one_cannot_reopen_the_cap()
     r3 = _score_reg(n["none"], _j(), reg)
     assert r3.rc == 1 and "paid_to_date" in r3.err and "Old Bio" in r3.err, r3.err[-800:]
     assert r3.result["entries"] == reg, "a refusal rewrote the registry"
-    # deleted and replaced by a new $60M declaration: past the lifetime cap ($60M recorded + $60M > $100M)
+    # deleted and replaced by a new $60M declaration: past the lifetime cap ($60M recorded + $60M > $100M) — since
+    # Codex review r10 refused first as a deleted recorded period, the message naming it and the cap
     r4 = _score_reg(n["new"], _j(iprd_deferred_payment=[new]), reg)
-    assert r4.rc == 1 and "contingent_total" in r4.err and "Old Bio" in r4.err, r4.err[-800:]
+    assert (r4.rc == 1 and "contingent_total" in r4.err and "Old Bio" in r4.err and "2022-12-31" in r4.err
+            and "immutable" in r4.err), r4.err[-800:]
     # kept, plus $40M in the window: the lifetime $100M is within the cap and recorded
     r5 = _score_reg(n["both"], _j(iprd_deferred_payment=[old, dict(new, amount=40e6)]), reg)
     assert r5.rc == 0, r5.err[-800:]
@@ -1021,6 +1023,40 @@ def test_record_check_refuses_a_rolled_out_period_that_is_not_a_fiscal_year_end(
     msg = _refusal(M.check_iprd_deferred_payment,
                    {"iprd_adjustment": {k: v for k, v in blk.items() if k != "fy_period_ends"}}, [old])
     assert msg and "fy_period_ends" in msg, msg
+
+
+
+# --- Codex review round 10 of PR #47 ------------------------------------------------------------------------------
+def test_a_recorded_periods_amount_cannot_change():
+    """[Codex review r10] The registry refused only a deal whose declarations summed below its recorded paid_to_date,
+    then overwrote the recorded per-period amounts with the new declarations: with Surf Bio's FY2022 $60M and FY2023
+    $20M recorded ($80M paid of $100M), swapping them to $20M / $60M passed and the event was rewritten — which can
+    make FY2023 wholly deferred and drop it from the ACQUIRED_IPRD_RECURRENT count with the cap still satisfied —
+    and deleting FY2022 while declaring FY2023 $80M passed too and wrote periods summing to $140M against an $80M
+    paid_to_date (the next unchanged run was refused). Every recorded period is now immutable: make_score refuses a
+    declaration whose amount for a recorded period is missing or more than $1 apart from the recorded one (shrunk or
+    grown), naming the period; new periods merge as before and the event keeps the recorded amounts exactly."""
+    two = [_r9(period="2022-12-31", amount=60e6), _r9(period="2023-12-31", amount=20e6)]
+    ev1 = _lifetime(two, [])
+    assert ev1[0]["paid_to_date"] == 80e6 and ev1[0]["periods"] == [{"period": "2022-12-31", "amount": 60e6},
+                                                                    {"period": "2023-12-31", "amount": 20e6}], ev1
+    # control: the same declarations pass and the event is unchanged
+    assert _lifetime(two, ev1) == ev1
+    cases = {
+        "swapped": ([_r9(period="2022-12-31", amount=20e6), _r9(period="2023-12-31", amount=60e6)], "2022-12-31"),
+        "grown": ([_r9(period="2022-12-31", amount=60e6), _r9(period="2023-12-31", amount=30e6)], "2023-12-31"),
+        "deleted and moved": ([_r9(period="2023-12-31", amount=80e6)], "2022-12-31"),
+        "shrunk": ([_r9(period="2022-12-31", amount=20e6), _r9(period="2023-12-31", amount=20e6)], "2022-12-31"),
+    }
+    for label, (entries, period) in cases.items():
+        msg = _refusal(_lifetime, entries, ev1)
+        assert msg and "Surf Bio" in msg and period in msg and "immutable" in msg and "recorded" in msg, (label, msg)
+    # within $1, plus a new period: accepted; the recorded amounts are kept exactly and the new one merged
+    ev2 = _lifetime([_r9(period="2022-12-31", amount=60e6 + 0.5), _r9(period="2023-12-31", amount=20e6 - 0.5),
+                     _r9(period="2025-12-31", amount=15e6)], ev1)
+    assert ev2[0]["periods"] == [{"period": "2022-12-31", "amount": 60e6}, {"period": "2023-12-31", "amount": 20e6},
+                                 {"period": "2025-12-31", "amount": 15e6}], ev2
+    assert ev2[0]["paid_to_date"] == 95e6, ev2
 
 
 if __name__ == "__main__":

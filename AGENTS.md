@@ -359,8 +359,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    with another `contingent_total` or `first_charged_period` (both immutable), and a new deal name carrying a
    recorded (or co-declared) deal's evidence — the same `first_charged_period` and a `contingent_total` source
    accession — as a renamed copy; the engine refuses a rolled-out `period` that is not one of the filer's
-   fiscal-year ends. Still P1 for review: a renamed deal whose evidence was changed too (a first charge or cap
-   filing the cited filings do not show for it).)
+   fiscal-year ends. [Codex review round 10 of PR #47] Every period a deal's registry event recorded is immutable:
+   make_score refuses a declaration that omits it or declares it more than $1 apart from the recorded amount
+   (shrunk or grown), naming the period, and the event keeps the recorded amounts. Still P1 for review: a
+   renamed deal whose evidence was changed too (a first charge or cap filing the cited filings do not show for
+   it).)
    [Codex review round 8 of PR #47] A period carrying `expense_tags_conflict` (both expense tags filed with
    different positive values; the current tag is used) must be reconciled in analysis.md against the filing
    (P2 otherwise).
@@ -649,7 +652,9 @@ misfit`. For them:
   the nearest FY end's month-day; the run records `fy_period_ends` and make_score
   re-checks); a recorded deal's `contingent_total` and `first_charged_period` are
   immutable; a new deal name with a recorded or co-declared deal's first charge and
-  cap filing is refused as a renamed copy.
+  cap filing is refused as a renamed copy. [Codex review round 10] So is every
+  recorded period's amount: one omitted, or declared more than $1 apart from the
+  recorded amount, is refused (naming the period) and the event keeps the record.
 
 ## Comment style
 

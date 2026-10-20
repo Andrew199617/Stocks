@@ -313,6 +313,13 @@ value adjustment):
   than its paid_to_date (an entry deleted or shrunk, even with the engine
   rerun) or whose lifetime (max(the declarations on recorded periods,
   paid_to_date) + newly declared periods) exceeds the contingent_total.
+  [Codex review round 10 of PR #47] Every recorded period's amount is
+  immutable: a declaration that omits a recorded period or declares it
+  more than $1 apart from the recorded amount (shrunk or grown) is
+  refused, naming the period, and the event keeps the recorded amounts
+  exactly (only new periods merge) — moving amounts between periods at
+  an unchanged total had rewritten the record and could make another
+  period wholly deferred, out of the recurrence count.
 - [Codex review round 3 of PR #47] A period excluded `non_usd_no_rate`
   beside a positive `expense_native` (ACQUIRED_IPRD_UNCONVERTED: a detected
   charge the engine could not convert, so nothing was deducted) is refused,
@@ -1156,6 +1163,11 @@ def iprd_deferred_lifetime(ticker, entries, prior):
         or a source that differs beyond whitespace) or another first_charged_period: the recorded ones are immutable
         (raising the cap reopened it: a $100M deal with $60M recorded took $140M once the cap read $200M) and the
         event keeps them;
+      * [Codex review r10 of PR #47] a recorded deal whose declaration for a recorded period is missing or more than
+        $1 apart from the recorded amount (shrunk or grown), naming each such period: a recorded period's amount is
+        immutable and the event keeps it exactly (the event used to take the new declarations, so amounts moved
+        between periods at an unchanged total — which can make another period wholly deferred and drop it from the
+        recurrence count — and a deleted period's amount moved onto another one were rewritten into the record);
       * [Codex review r9 of PR #47] a new deal key whose evidence (_deal_evidence: the first_charged_period and a
         contingent_total source accession) matches a recorded event, or another deal declared beside it, under a
         different name — a renamed copy, which would get its own copy of the cap."""
@@ -1220,13 +1232,28 @@ def iprd_deferred_lifetime(ticker, entries, prior):
         d_periods = {e["period"]: float(e["amount"]) for e in es}
         ds = sum(d_periods.values())
         rec_txt = ", ".join(f"FY{q[:4]} {_usd_exact(v)}" for q, v in sorted(r_periods.items()))
+        # [Codex review r10 of PR #47] every recorded period's amount is immutable (missing, shrunk or grown) — checked
+        # first, so the refusal names the period; the deal-level sum below still catches an undeclared deal (and a
+        # paid_to_date recorded above its periods' sum)
+        moved = [(q, rv, d_periods.get(q)) for q, rv in sorted(r_periods.items())
+                 if es and (q not in d_periods or abs(d_periods[q] - rv) > 1.0)]
+        if moved:
+            fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {name!r} "
+                 + "; ".join(f"no longer declares period {q}" if dv is None
+                             else f"declares {_usd_exact(dv)} for period {q}" for q, rv, dv in moved)
+                 + f", but the registry recorded {'; '.join(f'{_usd_exact(rv)} for period {q}' for q, rv, _ in moved)} "
+                 f"({REGISTRY} event {IPRD_DEFERRED_EVENT}: {rec_txt}; paid_to_date {_usd_exact(paid)}) — a recorded "
+                 "period's amount is immutable (moving an amount between periods can make another period wholly "
+                 "deferred and drop it from the recurrence count; deleting or shrinking one reopens the deal's "
+                 "lifetime contingent_total cap): restore the recorded amounts (WORKER_SPEC step 3); a filing that "
+                 "restates a paid milestone is a main-agent decision (NEEDS_MAIN_AGENT)")
         if r_es and (not es or ds < paid - 1.0):
             fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {name!r} "
                  + ("is no longer declared" if not es else f"is declared for {_usd_exact(ds)} in all")
                  + f", but the registry recorded a paid_to_date of {_usd_exact(paid)} for it ({REGISTRY} event "
                  f"{IPRD_DEFERRED_EVENT}: {rec_txt}) — an entry was deleted or shrunk. A paid milestone counts toward "
                  "the deal's lifetime contingent_total for good: restore the entries (WORKER_SPEC step 3)")
-        on_rec = sum(v for q, v in d_periods.items() if q in r_periods)
+        on_rec = sum(r_periods[q] for q in d_periods if q in r_periods)
         new = sum(v for q, v in d_periods.items() if q not in r_periods)
         lifetime = max(on_rec, paid) + new
         # the recorded deal keeps its recorded cap (checked equal above); a new one takes the declared cap
@@ -1239,8 +1266,9 @@ def iprd_deferred_lifetime(ticker, entries, prior):
                  f"{_usd_exact(new)} newly declared = {_usd_exact(lifetime)} — exceed its contingent_total "
                  f"{_usd_exact(cap)} (the unrecognized milestones / deferred consideration its source discloses): a "
                  "payment past it is a second purchase, a second charge")
-        merged = dict(r_periods)
-        merged.update(d_periods)
+        # the recorded per-period amounts are never overwritten (checked within $1 above); new periods merge
+        merged = dict(d_periods)
+        merged.update(r_periods)
         events.append({"ticker": ticker, "event": IPRD_DEFERRED_EVENT, "deal": name,
                        "first_charged_period": first,
                        "contingent_total": {"value": cap, "source": ct["source"]},
@@ -2140,7 +2168,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     (iprd_deferred_lifetime, checked by main() against the carried prior
     events before any write) — the deal's every declared period and
     paid_to_date, so deleting a judgment.json entry never erases a paid
-    milestone. make_score.py is the single writer; the write is atomic under
+    milestone (and, Codex review r10, a recorded period's amount is never
+    rewritten). make_score.py is the single writer; the write is atomic under
     an fcntl lock."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     with locked(REGISTRY + ".lock"):
