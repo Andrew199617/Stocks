@@ -1166,9 +1166,10 @@ def _declared_pin_record():
                  overrides_applied=[{"field": "shares", "value": 3223658000, "kind": "filing",
                                      "source": "Form 20-F FY2025 Note 24.h EPS", "reason": "basic-only count filed",
                                      "periods_filled": ["2025-12-31"]}])
-    n["inputs"] = dict(n["inputs"], base_oe_ps_arg=pin, base_pin_source="base_oe_ps_arg")
+    # [Codex review r15 of PR #47] a 5.6 run's plain pin names the window it was built on (FY figures here)
+    n["inputs"] = dict(n["inputs"], base_oe_ps_arg=pin, base_pin_source="base_oe_ps_arg", base_basis_window={"window": "fy"})
     j = _judgment(n, base_override={"value": pin, "source": "this run's dcf_numbers.json latest FY OE/share x 2",
-                                    "reason": "share-scale artefact in the median"},
+                                    "reason": "share-scale artefact in the median", "basis_window": {"window": "fy"}},
                   shares_override={"value": 3223658000, "kind": "filing", "source": "Form 20-F FY2025 Note 24.h EPS",
                                    "reason": "diluted equals basic (no dilutive instruments)"})
     return n, j
@@ -1215,11 +1216,12 @@ def _pin_rescue_record(tier="A", irr=0.22, rescued=True):
                  implied_irr_base=irr,
                  share_scale={"defect": rescued, "tests": {"a": False, "b": rescued},
                               "reasons": [NTNX_SCALE_REASON] if rescued else [], "rescued_by_pin": rescued})
-    n["inputs"] = dict(n["inputs"], base_oe_ps_arg=pin, base_pin_source="base_oe_ps_arg")
+    # [Codex review r15 of PR #47] a 5.6 run's plain pin names the window it was built on (FY figures here)
+    n["inputs"] = dict(n["inputs"], base_oe_ps_arg=pin, base_pin_source="base_oe_ps_arg", base_basis_window={"window": "fy"})
     n["scenarios"] = {lbl: dict(s, irr=irr) for lbl, s in n["scenarios"].items()}
     j = _judgment(n, base_override={"value": pin, "kind": "estimate",
                                     "source": "this run's dcf_numbers.json latest FY OE/share / 1000",
-                                    "reason": "share counts filed in thousands"})
+                                    "reason": "share counts filed in thousands", "basis_window": {"window": "fy"}})
     return n, j
 
 
@@ -1286,6 +1288,7 @@ def test_registry_keeps_the_first_date_of_an_unchanged_declaration():
         mine = {e.get("event"): e for e in run.entries() if e.get("ticker") == T}
         assert mine["base_override"]["date"] == "2026-10-15", mine["base_override"]
         assert mine["base_override"]["kind"] == "estimate", mine["base_override"]
+        assert mine["base_override"]["basis_window"] == {"window": "fy"}, mine["base_override"]   # Codex r15
         assert mine["gterm"]["date"] == "2026-10-01", mine["gterm"]
         assert mine["tier_override"]["date"] not in ("2026-10-02",) and mine["tier_override"]["date"] > "2026-10-15", \
             mine["tier_override"]
@@ -1462,6 +1465,15 @@ def test_registry_declaration_identity_covers_currency_scope_and_payable_fields(
     legacy = {k: v for k, v in pb.items() if k != "kind"}
     assert kept(legacy, pb), "a pre-5.5 event without kind matches on the other fields"
     assert not kept(legacy, dict(pb, figures=[9, 9, 9, 9, 9])), "the legacy allowance covers kind only"
+    # [Codex review r15 of PR #47] a plain pin's basis_window is part of the identity; an event recorded before it
+    # existed (no key) matches on the other fields, kind's allowance included
+    pin = {"event": "base_override", "value": 4.1434, "source": "s", "reason": "r", "kind": "estimate"}
+    bw = dict(pin, basis_window={"window": "ttm", "ytd_current_period": ["2026-01-01", "2026-06-30"]})
+    assert kept(bw, bw) and kept(pin, bw), "an event recorded before basis_window existed matches on the rest"
+    assert kept({k: v for k, v in pin.items() if k != "kind"}, bw), "both legacy allowances together"
+    assert not kept(bw, dict(bw, basis_window={"window": "fy"})), "a changed basis_window must re-date"
+    assert not kept(bw, pin), "dropping a recorded basis_window must re-date"
+    assert not kept(pin, dict(bw, value=4.2)), "the allowance covers the missing keys only"
 
 
 def test_registry_persists_override_currency_and_scope():

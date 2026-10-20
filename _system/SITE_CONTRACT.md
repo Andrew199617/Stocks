@@ -164,7 +164,10 @@ round 5 of PR #47: a run whose window holds no charge but which has such declara
 `deferred_payments_only` true, `treatment` "none", `total` and `charge_per_share` 0, empty `periods` /
 `ignored_cash_only` / `recurrence_excluded`, `notes`, `window` and `deferred_payments_rolled_out` (or, in an
 override-impact replay only, `deferred_payments_refused`) — which deducts nothing, raises no flag, reads as no charge
-in reprice.py / build_site.py / the app, and is not copied to score.json; else `periods` — `period`, `window`, `amount`, `amount_basis`,
+in reprice.py / build_site.py / the app, and (Codex review round 15 of PR #47; before, it was not copied, so the record
+and the score disagreed) is copied to score.json as a minimal block — `treatment` "none", `total` and `charge_per_share` 0,
+`deferred_payments_only` true, empty `periods`, `deferred_payments_rolled_out` [{period, window, amount, deal,
+first_charged_period}] — that the app reads as no charge too; else `periods` — `period`, `window`, `amount`, `amount_basis`,
 `tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source} on an
 expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved (Codex review round 8 of PR #47:
 presentation `paid_in_intangible_capex` is the only way to `excluded` `already_in_capex`; an intangible capex leg at
@@ -178,7 +181,11 @@ tiling the period because no fact covers it exactly (absent otherwise), `deferre
 that settles an earlier window charge (Codex review round 12 of PR #47: with `deferred_payment_assumption`, a note
 naming the periods whose residual it assumed payable in cash), (round 12) `cash_flow_check` with presentation `paid_in_shares` also
 on a cash-basis period, with `residual_paid_in_shares` (the expense less cash it declares settled in shares, never accrued as unpaid) and
-`residual_note`, (Codex review round 14 of PR #47) `expense_reversal_note` on a period whose negative detector fact (a reversal: no current-period charge) sits beside cash matched as its `deferred_payment` (the period is then not `excluded`), and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
+`residual_note`, (Codex review round 15 of PR #47) `unit_conflict` {tag: {units: {unit: {native, usd, fx_rate}}, used}}
+with `unit_conflict_note` when one tag's facts for the period in two units disagree after conversion (a positive fact
+outranks a zero one; the USD one is used between positive ones) and `cash_flow_check_inapplicable` {presentation,
+amount, source, note} on a cash-basis period whose matching check declares `inside_operating_cash_flow` or
+`paid_in_intangible_capex` (make_score refuses such a run, so no score carries it), (Codex review round 14 of PR #47) `expense_reversal_note` on a period whose negative detector fact (a reversal: no current-period charge) sits beside cash matched as its `deferred_payment` (the period is then not `excluded`), and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
 deal) with `recurrence_excluded`
 ("deferred_payment_of", when the deals sum to the whole charge) on an FY period judgment.json
@@ -195,7 +202,9 @@ empty `periods`), `score` gains
 `shares_source`, `materiality`, `material`, `recurrent`, `periods` — each also carrying `cash_flow_check` (the
 presentation string), `deferred_payment: true`, `deferred_payment_of` [{deal, first_charged_period, amount}]
 and `recurrence_excluded` when set — and its `recurrence_excluded` list when the run had deferred-payment declarations, `iv_before` / `iv_after` keyed `15` / `20` / `25`,
-`irr_before`, `irr_after`, `tier_before`, `amortized`), and live.json gains `iprd_charge_per_share` (in today's share
+`irr_before`, `irr_after`, `tier_before`, `amortized`; the minimal `deferred_payments_only` block above as is), `numbers.inputs`
+gains `base_basis_window` (Codex review round 15 of PR #47: judgment.json base_override's `basis_window`, {window "ttm",
+ytd_current_period} or {window "fy"}, on a plain `--base-oe-ps` pin that declares it), and live.json gains `iprd_charge_per_share` (in today's share
 units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record carries is already the adjusted figure;
 build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /
 `adjusted_irr`). The Overview's base-OE card shows one disclosure line (`iprdNote`): "Acquired IPR&D: −$2.33/sh one-time

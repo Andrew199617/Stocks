@@ -615,13 +615,15 @@ def test_rolled_out_entry_scores_when_the_window_has_no_iprd_charge():
     """[Codex review r5 of PR #47, #4322641225] A window with no acquired-IPR&D charge used to drop the rolled-out
     list (null block), so make_score refused the kept entry ("did not apply") and scored only once it was deleted —
     freeing the deal's lifetime contingent_total cap. Now the run records the entry and scores with it kept; deleting
-    it is refused. score.json gains no iprd_adjustment (no charge, nothing to show on the site); key_numbers.md lists
-    the rolled-out entry and no charge line."""
+    it is refused. score.json gains only a minimal iprd_adjustment (no charge, nothing to show on the site — Codex
+    review r15: the engine recorded the block, so the score carries it); key_numbers.md lists the rolled-out entry
+    and no charge line."""
     facts, old, _ = TI._rolled_only_case()
     n = TI._cached("ms_def_rolled_only", lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": [old]})))
     r = _score(n, _j(iprd_deferred_payment=[old]))
     assert r.rc == 0, r.err[-800:]
-    assert "iprd_adjustment" not in r.result["score"], r.result["score"].get("iprd_adjustment")
+    b = r.result["score"]["iprd_adjustment"]
+    assert b["deferred_payments_only"] is True and b["treatment"] == "none" and b["charge_per_share"] == 0.0, b
     key = r.result["key"]
     assert "Acquired IPR&D" in key and "Rolled out of the window" in key and "Old Bio" in key, key[-1500:]
     assert "Total charge" not in key and "Treatment:" not in key, key[-1500:]
@@ -673,7 +675,8 @@ def _share_count_unverified():
         pin = (200e6 * 1.05 ** 4 - 60e6) / 100e6
         facts = T55._syn_facts(shares={2023: 100e3, 2024: 100e3})
         TI._fy(facts, TI.EXPENSE, 2025, 40e6)
-        bo = T55._bo(pin)
+        # [Codex review r15] a plain pin built from FY figures declares basis_window {"window": "fy"} on a 5.6 run
+        bo = T55._bo(pin, basis_window={"window": "fy"})
         n = TI._ok(TI._run(facts, extra=["--base-oe-ps", repr(pin)], judgment={"base_override": bo}))
         return n, bo
     return TI._cached("ms_unverified", go)
@@ -1387,6 +1390,108 @@ def test_a_mismatched_cash_flow_check_on_a_window_period_is_refused():
     assert m["iprd_adjustment"]["total"] == 0.0 and m["iprd_adjustment"]["cash_flow_checks_unused"] == [old], m["iprd_adjustment"]
     r2 = _score(m, _j(iprd_cash_flow_check=[good, old]))
     assert r2.rc == 0, r2.err[-800:]
+
+
+# --- Codex review round 15 of PR #47 ------------------------------------------------------------------------------
+def test_a_cash_basis_check_the_cash_path_cannot_honor_is_refused():
+    """[Codex review r15, #4325776486, the main agent's shape] A cash-basis period ($100M expense, $100M on the cash
+    tag) deducts its cash outflow; a matching iprd_cash_flow_check declaring that payment inside operating cash flow
+    (or inside the capex intangible leg) contradicts the deduction, and was consumed with no trace, so the run scored.
+    The engine now records cash_flow_check_inapplicable on the period and make_score refuses it, naming the
+    presentation; a cash-basis period's added_back_paid_in_investing check (it agrees with the cash tag) scores."""
+    chk = {"period": "2025-12-31", "window": "fy", "amount": 100e6, "presentation": "inside_operating_cash_flow",
+           "source": "test: the FY2025 10-K cash-flow statement"}
+    facts = lambda: TI._facts(expense={2025: 100e6}, cash={2025: 100e6})
+    n = TI._cached("ms_r15_inapplicable", lambda: TI._ok(TI._run(facts(), judgment={"iprd_cash_flow_check": [chk]},
+                                                                checks=False)))
+    p = [x for x in n["iprd_adjustment"]["periods"] if x["period"] == "2025-12-31"][0]
+    assert p["cash_flow_check_inapplicable"]["presentation"] == "inside_operating_cash_flow", p
+    r = _score(n, _j(iprd_cash_flow_check=[chk]))
+    assert r.rc != 0, "a cash-basis period's contradicting cash-flow check scored"
+    assert "inside_operating_cash_flow" in r.err and "FY2025" in r.err and "cash_flow_check_inapplicable" in r.err, r.err[-800:]
+    m = copy.deepcopy(n)
+    m["iprd_adjustment"]["periods"][-1]["cash_flow_check_inapplicable"]["presentation"] = "paid_in_intangible_capex"
+    capex = dict(chk, presentation="paid_in_intangible_capex")
+    r = _score(m, _j(iprd_cash_flow_check=[capex]))
+    assert r.rc != 0 and "paid_in_intangible_capex" in r.err, r.err[-800:]
+    ok = dict(chk, presentation="added_back_paid_in_investing")
+    n2 = TI._cached("ms_r15_cash_added_back", lambda: TI._ok(TI._run(facts(), judgment={"iprd_cash_flow_check": [ok]},
+                                                                    checks=False)))
+    r = _score(n2, _j(iprd_cash_flow_check=[ok]))
+    assert r.rc == 0, r.err[-800:]
+
+
+def test_a_deferred_payments_only_block_is_kept_minimal_in_score_json():
+    """[Codex review r15, #4325776500, the main agent's shape] The engine records a minimal block for a window with no
+    charge but rolled-out iprd_deferred_payment entries (deferred_payments_only, treatment none), while score.json
+    dropped it — so the engine record and the score disagreed about whether a block existed, against the contract
+    that a 5.6 score carries the block whenever the engine recorded one. score.json now keeps a minimal block
+    (treatment none, total and charge_per_share 0, deferred_payments_only true, no periods, the rolled-out list), which
+    reprice.py / build_site.py / the app read as no charge."""
+    import build_site as B
+    facts, old, _ = TI._rolled_only_case()
+    n = TI._cached("ms_def_rolled_only", lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": [old]})))
+    r = _score(n, _j(iprd_deferred_payment=[old]))
+    assert r.rc == 0, r.err[-800:]
+    b = r.result["score"]["iprd_adjustment"]
+    assert b == {"treatment": "none", "total": 0.0, "charge_per_share": 0.0, "deferred_payments_only": True, "periods": [],
+                 "deferred_payments_rolled_out": [{"period": old["period"], "window": old["window"], "amount": old["amount"],
+                                                   "deal": old["deferred_payment_of"]["deal"],
+                                                   "first_charged_period": old["deferred_payment_of"]["first_charged_period"]}]}, b
+    assert E.iprd_charge_per_share({"iprd_adjustment": b}) == 0.0 and E.iprd_unresolved({"iprd_adjustment": b}) is None
+    rec = {"numbers": copy.deepcopy(n), "row": {}, "score": copy.deepcopy(r.result["score"])}
+    B.restate_split(rec, 2.0, "2:1", {})
+    assert rec["score"]["iprd_adjustment"]["charge_per_share"] == 0.0, rec["score"]["iprd_adjustment"]
+
+
+def test_a_declared_pin_needs_its_basis_window_on_current_release_runs():
+    """[Codex review r15, #4325776506, the main agent's shape] A plain base_override pinned through --base-oe-ps that
+    is not ttm.json's figure (base_source agent_supplied_ttm_override) must say which window its base was built on,
+    so the IPR&D window is the base's own: on a 5.6 run make_score refuses a declaration without basis_window, one
+    the run did not record (judgment.json changed after the run), and a ttm window whose ytd_current_period ttm.json
+    no longer names. Output from an earlier release rebuilds unchanged (VNOM's committed 5.4.0 record)."""
+    runs = TI._r15_window_runs()
+    ttm = TI._ttm_doc(2.1, 98e6)
+    decl = TI.ttm_window_decl(TI.R15_PIN)
+    bare = {k: v for k, v in decl.items() if k != "basis_window"}
+    r = _score(runs["none"], _j(base_override=bare), ttm=ttm)
+    assert r.rc != 0 and "basis_window" in r.err, r.err[-800:]
+    r = _score(runs["ttm"], _j(base_override=decl), ttm=ttm)
+    assert r.rc == 0, r.err[-800:]
+    assert r.result["score"]["iprd_adjustment"]["total"] == 50e6, r.result["score"]["iprd_adjustment"]
+    r = _score(runs["fy"], _j(base_override=TI.ttm_window_decl(TI.R15_PIN, "fy")), ttm=ttm)
+    assert r.rc == 0, r.err[-800:]
+    # judgment.json changed after the run
+    r = _score(runs["fy"], _j(base_override=decl), ttm=ttm)
+    assert r.rc != 0 and "basis_window" in r.err and "rerun" in r.err, r.err[-800:]
+    # ttm.json moved after the run
+    moved = copy.deepcopy(ttm)
+    moved["inputs"]["ocf"]["ytd_current_period"] = ["2026-01-01", "2026-09-30"]
+    r = _score(runs["ttm"], _j(base_override=decl), ttm=moved)
+    assert r.rc != 0 and "ytd_current_period" in r.err, r.err[-800:]
+    # malformed
+    r = _score(runs["ttm"], _j(base_override=dict(decl, basis_window={"window": "ttm"})), ttm=ttm)
+    assert r.rc != 0 and "basis_window" in r.err, r.err[-800:]
+    # an earlier release's output is not held to the 5.6 rule
+    r = _score(_legacy_release(runs["none"]), _j(base_override=bare), ttm=ttm)
+    assert r.rc == 0, r.err[-800:]
+
+
+def test_vnoms_committed_record_still_rebuilds():
+    """[Codex review r15] VNOM's committed 5.4.0 record (base_source agent_supplied_ttm_override, a base_override
+    without basis_window) rebuilds under the round-15 make_score."""
+    root = os.path.dirname(SYS)
+    with open(os.path.join(root, "VNOM", "dcf_numbers.json"), encoding="utf-8") as f:
+        n = json.load(f)
+    with open(os.path.join(root, "VNOM", "judgment.json"), encoding="utf-8") as f:
+        j = json.load(f)
+    with open(os.path.join(root, "VNOM", "ttm.json"), encoding="utf-8") as f:
+        tt = json.load(f)
+    assert n["engine_release"] == "5.4.0" and n["base_source"] == "agent_supplied_ttm_override"
+    assert "basis_window" not in j["base_override"]
+    r = _score(n, j, ttm=tt)
+    assert r.rc == 0, r.err[-800:]
+
 
 if __name__ == "__main__":
     fails = 0

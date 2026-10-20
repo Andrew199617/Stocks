@@ -82,7 +82,11 @@ the specs for the old rule and list every stale passage with file:line.
   `tier_override_reason`, per-field overrides as top-level keys
   (`capex_override`, `sbc_override`, `shares_override`, `base_override`,
   `ads_ratio`; each `{value, source, reason, kind}`, and since engine 5.5
-  an optional `currency: "USD"` on a kind `filing` override),
+  an optional `currency: "USD"` on a kind `filing` override; since Codex
+  review round 15 of PR #47 a plain `base_override` pinned through
+  `--base-oe-ps` at a value that is not ttm.json's figure carries
+  `basis_window` — `{window: "ttm", ytd_current_period}` or
+  `{window: "fy"}` — on a 5.6 run),
   `share_class_mismatch` (5.5: `true` or `{value: true, source, reason}`;
   any other shape is malformed and make_score refuses it),
   `second_pass` when pass 2 ran.
@@ -98,7 +102,10 @@ the specs for the old rule and list every stale passage with file:line.
   `no_value_to_adjust`, `not_applied_share_count_unverified`,
   `awaiting_cash_flow_check`, `non_usd_no_rate` and
   `amortized_in_base` (the charge; the weighted IV@15/20/25 and IRR
-  before → after only when a one-time deduction ran).
+  before → after only when a one-time deduction ran) — and, since Codex
+  review round 15 of PR #47, a `deferred_payments_only` block copied as a
+  minimal one (treatment `none`, `total` / `charge_per_share` 0, no
+  periods, the rolled-out list), which every consumer reads as no charge.
 - `key_numbers.md` — generated quotable figures. `analysis.md` may only
   quote numbers from here.
 - `analysis.md` — the narrative; must resolve every flag.
@@ -348,6 +355,19 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    declared check whose amount is not the filed expense, never applied) cannot exist on any basis (make_score
    refuses it); a `deferred_payment` period with `expense_reversal_note` (a negative detector fact, a reversal,
    beside cash matched like cash beside a $0 expense) follows the same `deferred_payment_assumption` rule above.
+   [Codex review round 15 of PR #47] A score with a cash-basis period carrying `cash_flow_check_inapplicable` (a
+   matching check declaring `inside_operating_cash_flow` or `paid_in_intangible_capex` where the investing cash tag
+   is filed and its outflow deducted) cannot exist (make_score refuses it, naming the presentation;
+   `paid_in_shares` is still read there). A period carrying `unit_conflict` (one tag filed for the period in two
+   units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive
+   ones) whose analysis.md does not reconcile the units against the filing is P2. A plain `base_override` pin
+   that is not ttm.json's `ttm_oe_per_share` carries `basis_window`: `{window: "ttm", ytd_current_period:
+   ttm.json's}` when the pin was built from ttm.json's TTM figures on another denominator (VNOM: TTM OE over total
+   units — the IPR&D window then reads the current-YTD leg, recorded as `inputs.base_basis_window`; the share
+   denominator rule above is unchanged), `{window: "fy"}` when it was built from FY figures (NTNX, VIV). A window
+   that is not the pin's construction is P1 (say "cannot verify from the diff" when analysis.md does not show the
+   construction); make_score refuses a 5.6 run whose declaration lacks it or differs from the run's record, and a
+   `ttm` window whose period ttm.json no longer names.
    `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
    the payment is (declared, or why it is not the earlier deal's) is P2. A period with `recurrence_excluded` `deferred_payment_of`
    (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred

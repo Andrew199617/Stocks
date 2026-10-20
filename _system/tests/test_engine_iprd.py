@@ -2443,6 +2443,138 @@ def test_a_negative_detector_fact_never_hides_a_deferred_payment():
     n = _ok(_run(_facts(expense={2024: 100e6, 2025: -5e6}, cash={2024: 40e6, 2025: 60e6})))
     assert n["iprd_adjustment"]["total"] == 100e6, n["iprd_adjustment"]
 
+
+# --- Codex review round 15 of PR #47 ------------------------------------------------------------------------------
+R15_RATE = {"EUR": {"2025-12-31": 1.1}}
+
+
+def test_a_positive_fact_in_any_unit_outranks_a_zero_and_unit_conflicts_are_recorded():
+    """[Codex review r15, #4325776467, the main agent's shape] One period, one tag, two units: _iprd_pick returned the
+    USD fact whenever one was filed, so a USD 0 beside EUR 100M (EUR rate 1.10) read as no charge — expense 0, the
+    matching $110M cash-flow check unused, no flag, the tier published unadjusted. Now a positive fact in any unit
+    outranks a zero one: it is converted at the FX pass's rate, else the rate fetched for its own date (fx_fetch, as
+    the cash leg does), else the period is gated non_usd_no_rate (ACQUIRED_IPRD_UNCONVERTED). Two positive facts in
+    different units that disagree after conversion (by more than $1 and 1%) are both recorded (unit_conflict +
+    unit_conflict_note) and the USD one is used; facts that agree record nothing."""
+    P = "2025-12-31"
+    pick = E._iprd_pick({"USD": (0, "2026-02-20"), "EUR": (100e6, "2026-02-21")}, R15_RATE, P)
+    assert pick == (100e6 * 1.1, "EUR", 1.1, "2026-02-21"), pick
+    assert E._iprd_pick({"USD": (0, "a"), "EUR": (100e6, "b")}, {}, P) == (None, "EUR", None, "b")
+    assert E._iprd_pick({"USD": (0, "a"), "EUR": (100e6, "b")}, {}, P, fx_fetch=lambda c, d: 1.2) == (100e6 * 1.2, "EUR", 1.2, "b")
+    # one unit, as before
+    assert E._iprd_pick({"USD": (0, "a")}, R15_RATE, P) == (0.0, "USD", None, "a")
+    assert E._iprd_pick({"USD": (5e6, "a")}, R15_RATE, P) == (5e6, "USD", None, "a")
+    uc = {}
+    assert E._iprd_pick({"USD": (5e6, "a"), "EUR": (100e6, "b")}, R15_RATE, P, conflict=uc) == (5e6, "USD", None, "a")
+    assert uc["units"]["EUR"]["usd"] == 100e6 * 1.1 and uc["units"]["USD"]["usd"] == 5e6 and uc["used"] == "USD", uc
+    uc = {}
+    E._iprd_pick({"USD": (110e6, "a"), "EUR": (100e6, "b")}, R15_RATE, P, conflict=uc)
+    assert uc == {}, uc
+
+    def detect(exp_units, cash_units=None, rates=R15_RATE, checks=None):
+        f = _facts()
+        for u, v in exp_units.items():
+            _syn_put(f, EXPENSE, u, _ctx("2025-01-01", "2025-12-31", v, form="10-K", filed="2026-02-20"))
+        for u, v in (cash_units or {}).items():
+            _syn_put(f, CASH, u, _ctx("2025-01-01", "2025-12-31", v, form="10-K", filed="2026-02-20"))
+        return E.iprd_detect(f, FY3, fx_rates=rates, checks=checks or [], fx_fetch=lambda c, d: None)
+    chk = [{"period": P, "window": "fy", "amount": 100e6 * 1.1, "presentation": "added_back_paid_in_investing",
+            "source": "test: the FY2025 10-K cash-flow statement adds it back and pays it in investing"}]
+    out = detect({"USD": 0.0, "EUR": 100e6}, checks=chk)
+    r = _leg(out, "fy", P)
+    assert r["expense"] == 100e6 * 1.1 and r["expense_unit"] == "EUR" and r["deducted"] == 100e6 * 1.1, r
+    assert r["cash_flow_check"]["presentation"] == "added_back_paid_in_investing" and not out["cash_flow_checks_unused"], out
+    assert r["unit_conflict"][EXPENSE]["units"]["USD"]["usd"] == 0.0 and "unit_conflict_note" in r, r
+    # no rate (none fetched): gated, never a silent $0
+    out = detect({"USD": 0.0, "EUR": 100e6}, rates={})
+    r = _leg(out, "fy", P)
+    assert r["excluded"] == "non_usd_no_rate" and r["expense_native"] == 100e6 and r["deducted"] == 0.0, r
+    assert any(x.startswith("ACQUIRED_IPRD_UNCONVERTED") for x in E.iprd_flags(out)), E.iprd_flags(out)
+    # the cash leg: a USD 0 cash fact never hides the converted EUR payment
+    out = detect({"USD": 110e6}, {"USD": 0.0, "EUR": 100e6})
+    r = _leg(out, "fy", P)
+    assert r["amount_basis"] == "cash_outflow" and r["deducted"] == 100e6 * 1.1 and r["cash_unit"] == "EUR", r
+    assert r["unit_conflict"][CASH]["used"] == "EUR", r
+    # two positive facts that disagree: both recorded, the USD one used
+    out = detect({"USD": 5e6, "EUR": 100e6}, checks=[dict(chk[0], amount=5e6)])
+    r = _leg(out, "fy", P)
+    assert r["expense"] == 5e6 and r["expense_unit"] == "USD" and r["deducted"] == 5e6, r
+    assert r["unit_conflict"][EXPENSE]["units"]["EUR"]["native"] == 100e6 and "reconcile" in r["unit_conflict_note"], r
+
+
+def test_a_cash_basis_check_the_cash_path_cannot_honor_is_recorded_inapplicable():
+    """[Codex review r15, #4325776486, the main agent's shape] A cash-basis period (the cash tag filed beside the
+    expense) deducts its cash outflow whatever a check says; a matching iprd_cash_flow_check was marked used before
+    the record ignored every cash-basis presentation except paid_in_shares, so a check declaring the $100M paid inside
+    operating cash flow (inside_operating_cash_flow) or inside the capex intangible leg (paid_in_intangible_capex) left
+    no trace — the period deducted $100M, the check was neither applied nor unused, make_score scored. Now such a check
+    is recorded on the period as cash_flow_check_inapplicable {presentation, amount, source, note} (make_score refuses
+    it, naming the presentation); paid_in_shares stays honored, added_back_paid_in_investing agrees with the cash tag
+    and records nothing."""
+    f = _facts(expense={2025: 100e6}, cash={2025: 100e6})
+    for pres in ("inside_operating_cash_flow", "paid_in_intangible_capex"):
+        chk = {"period": "2025-12-31", "window": "fy", "amount": 100e6, "presentation": pres, "source": "test"}
+        out = E.iprd_detect(f, FY3, fx_rates={}, checks=[chk])
+        r = _leg(out, "fy", "2025-12-31")
+        assert r["amount_basis"] == "cash_outflow" and r["deducted"] == 100e6, r
+        assert r["cash_flow_check_inapplicable"]["presentation"] == pres and "cash_flow_check" not in r, r
+        assert not out["cash_flow_checks_unused"], out
+    for pres in ("added_back_paid_in_investing", "paid_in_shares"):
+        chk = {"period": "2025-12-31", "window": "fy", "amount": 100e6, "presentation": pres, "source": "test"}
+        r = _leg(E.iprd_detect(f, FY3, fx_rates={}, checks=[chk]), "fy", "2025-12-31")
+        assert "cash_flow_check_inapplicable" not in r and r["deducted"] == 100e6, r
+    assert r["cash_flow_check"]["presentation"] == "paid_in_shares", r
+
+
+def ttm_window_decl(value, window="ttm", period=("2026-01-01", "2026-06-30")):
+    """A plain base_override declaring the window its pin was built on (Codex review r15): basis_window
+    {window: "ttm", ytd_current_period} for a pin built from ttm.json's TTM figures, {window: "fy"} otherwise."""
+    bw = {"window": window}
+    if window == "ttm":
+        bw["ytd_current_period"] = list(period)
+    return {"value": value, "source": "test: this run's ttm.json ttm_oe_total over the filer's total economic units",
+            "reason": "test: an Up-C filer's per-unit TTM base", "basis_window": bw}
+
+
+R15_PIN = 1.029
+
+
+def _r15_window_runs():
+    facts, ttm = _ttm_ytd_facts(), _ttm_doc(2.1, 98e6)
+    go = lambda d: _ok(_run(facts, extra=["--base-oe-ps", repr(R15_PIN)], ttm=ttm, judgment={"base_override": d}))
+    return _cached("r15_windows", lambda: {
+        "none": go({k: v for k, v in ttm_window_decl(R15_PIN).items() if k != "basis_window"}),
+        "ttm": go(ttm_window_decl(R15_PIN)), "fy": go(ttm_window_decl(R15_PIN, "fy"))})
+
+
+def test_a_declared_ttm_basis_window_reads_the_current_ytd_leg():
+    """[Codex review r15, #4325776506, the main agent's shape] A --base-oe-ps pin built from ttm.json's TTM total on
+    another denominator (VNOM's agent_supplied_ttm_override: TTM OE over total units) is not ttm.json's per-share
+    figure, so the IPR&D window read only the last 3 FY: a $30M charge in the current YTD — whose cash flows are in
+    the scored base — counted as $0. A plain base_override may now carry basis_window {window: "ttm",
+    ytd_current_period: ttm.json's}: the engine then reads the current-YTD leg ($20M FY + $30M YTD), recording
+    inputs.base_basis_window; {window: "fy"} keeps the FY window; a ttm window whose period is not ttm.json's
+    ytd_current_period is refused (BAD_BASE_OVERRIDE, exit 3), except in make_score's override-impact replay. The
+    share denominator rule is unchanged (the latest FY diluted count for a pin that is not ttm.json's figure)."""
+    runs = _r15_window_runs()
+    plain, n, fy = runs["none"], runs["ttm"], runs["fy"]
+    assert plain["iprd_adjustment"]["total"] == 20e6 and "base_basis_window" not in plain["inputs"], plain["iprd_adjustment"]
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 50e6 and blk["window"]["ttm_current_ytd"] == ["2026-01-01", "2026-06-30"], blk
+    assert blk["shares_denominator"] == 100e6 and blk["charge_per_share"] == 50e6 / 100e6, blk
+    assert n["inputs"]["base_basis_window"] == {"window": "ttm", "ytd_current_period": ["2026-01-01", "2026-06-30"]}
+    assert n["base_oe_per_share"] == plain["base_oe_per_share"] == R15_PIN
+    assert fy["iprd_adjustment"]["total"] == 20e6 and fy["inputs"]["base_basis_window"] == {"window": "fy"}, fy["inputs"]
+    facts, ttm = _ttm_ytd_facts(), _ttm_doc(2.1, 98e6)
+    wrong = ttm_window_decl(R15_PIN, period=("2026-01-01", "2026-03-31"))
+    bad = _run(facts, extra=["--base-oe-ps", repr(R15_PIN)], ttm=ttm, judgment={"base_override": wrong})
+    assert bad["exit"] == 3 and "BAD_BASE_OVERRIDE" in bad["stdout"] and "basis_window" in bad["stdout"], bad["stdout"][-600:]
+    cf = _run_env(facts, ["--base-oe-ps", repr(R15_PIN)], ttm=ttm, judgment={"base_override": wrong},
+                  env={"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": json.dumps({"treatment": "one_time_value_deduction",
+                                                                             "charge_per_share": 0.5})}, measure=True)
+    assert cf["exit"] == 0, cf["stdout"][-600:]
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

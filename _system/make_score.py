@@ -216,9 +216,11 @@ drafts, DESIGN_5.5 §1 / §2c / §7 / §8):
 
 v5.6 (2026-10-19, engine release 5.6.0 — Andrew's acquired-IPR&D one-time
 value adjustment):
-- score.json `iprd_adjustment` (only when dcf_numbers.json carries the block —
+- score.json `iprd_adjustment` (whenever dcf_numbers.json carries the block —
   output from an older release, or a 5.6 run with no IPR&D expense filed,
-  gets no key): treatment, total, charge_per_share, shares_denominator /
+  gets no key; [Codex review round 15 of PR #47] a `deferred_payments_only`
+  block is copied as a minimal block: treatment none, total and
+  charge_per_share 0, no periods, the rolled-out list): treatment, total, charge_per_share, shares_denominator /
   shares_source, materiality / material / recurrent, the per-period records
   (amount, basis, tag, deducted, excluded), the weighted IVs at 15/20/25
   before and after (2 dp), the weighted IRR before and after (4 dp) and the
@@ -295,7 +297,9 @@ value adjustment):
   PR #47]: it counts toward its deal's lifetime contingent_total cap, so
   dropping it from judgment.json is refused as out of sync; [Codex review
   round 5] a run whose window holds no charge records the entries in a
-  minimal block, `deferred_payments_only`, that score.json does not copy and
+  minimal block, `deferred_payments_only`, that score.json copies as a
+  minimal block (since Codex review round 15; before, it was dropped, so the
+  record and the score disagreed) and
   key_numbers.md shows as a "Rolled out of the window" line — before it the
   block was null and only deleting the entry let the run score). score.json `iprd_adjustment` carries
   `recurrence_excluded` (when the run had declarations) and each period's
@@ -328,6 +332,16 @@ value adjustment):
   that could settle a charge, with no FX rate even fetched). key_numbers.md's
   total-charge and amortized-base equations print "× ADS ratio r" (per ADS)
   when the applied ratio is not 1, so they reproduce the recorded values.
+- [Codex review round 15 of PR #47] A cash-basis period carrying
+  `cash_flow_check_inapplicable` (a matching iprd_cash_flow_check whose
+  presentation, inside_operating_cash_flow or paid_in_intangible_capex,
+  contradicts the deducted cash outflow) is refused, naming the
+  presentation. A plain base_override pinned through --base-oe-ps that is not
+  ttm.json's figure (base_source agent_supplied_ttm_override) must carry
+  `basis_window` on a 5.6 run ({window: "ttm", ytd_current_period} or
+  {window: "fy"}), recorded by the run as inputs.base_basis_window and, for
+  "ttm", still ttm.json's ytd_current_period; output from an earlier release
+  is not held to it (VNOM's 5.4.0 record rebuilds unchanged).
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -890,6 +904,15 @@ def validate_base_override(j):
         fail("judgment.json: base_override.source must be a non-empty string")
     if not str(o.get("reason") or "").strip():
         fail("judgment.json: base_override.reason must be a non-empty string")
+    if "basis_window" in o:
+        # [Codex review r15 of PR #47] the window a plain pin was built on (dcf_engine.base_basis_window_problem); an
+        # iprd_amortized declaration names its native_base and a payable one is five FY figures, so neither takes it
+        if o.get("basis") is not None:
+            fail("judgment.json: base_override.basis_window applies to a plain base_override only (an iprd_amortized "
+                 "one names native_base; a payable one is five annual figures)")
+        why = _engine.base_basis_window_problem(o["basis_window"])
+        if why:
+            fail(f"judgment.json: base_override.{why}")
     if o.get("basis") == IPRD_AMORTIZED_BASIS:
         # v5.6 (acquired IPR&D; a main-agent addition awaiting Andrew's ratification): the amortized
         # maintenance-acquisition base, pinned through --base-oe-ps; the engine
@@ -1017,6 +1040,20 @@ def check_iprd_cash_flow(n, entries):
                          f", filed expense {_usd_exact(p.get('expense'))}" for p in mm)
              + " — declare the amount as the filed expense (within $1) and rerun the engine, or remove the entry if "
              "the period needs no check (WORKER_SPEC step 3)")
+    # [Codex review r15 of PR #47] a cash-basis period deducts its cash outflow; a matching check whose presentation
+    # says OE already carried the payment (inside OCF, inside the capex intangible leg) contradicts the deduction and
+    # was consumed with no trace — refused, naming the presentation
+    ia = [p for p in periods if isinstance(p.get("cash_flow_check_inapplicable"), dict)]
+    if ia:
+        fail(f"judgment.json {IPRD_CF_CHECK_KEY} declares, for a cash-basis period of this run's window (the us-gaap "
+             "investing cash tag is filed and its outflow deducted), a presentation the cash-basis path cannot honor "
+             "(cash_flow_check_inapplicable): "
+             + ", ".join(f"{lbl(p)} presentation {p['cash_flow_check_inapplicable'].get('presentation')} "
+                         f"({_usd_exact(p['cash_flow_check_inapplicable'].get('amount'))})" for p in ia)
+             + " — the investing cash tag contradicts a payment inside operating cash flow or inside the capex "
+             "intangible leg: remove the entry (a cash-basis period needs no check for its own deduction; "
+             "paid_in_shares is the one presentation it reads), or reconcile it with the filing's cash-flow "
+             "statement, and rerun the engine (WORKER_SPEC step 3)")
     by = {(e["period"], e["window"]): e for e in entries or []}
     for p in periods:
         k = (p.get("period"), p.get("window"))
@@ -1315,6 +1352,44 @@ def check_iprd_amortized_ttm_current(folder, n):
              "new run (WORKER_SPEC step 8)")
 
 
+def check_base_basis_window(folder, n, o):
+    """[Codex review r15 of PR #47] A plain base_override pinned through --base-oe-ps that is not ttm.json's figure
+    (base_source agent_supplied_ttm_override) names the window its pin was built on, so the engine's IPR&D window is
+    the base's own: a pin built from ttm.json's TTM figures on another denominator (VNOM's per-unit base) has the
+    current YTD's cash flows in it, and without the declaration a charge there counted as $0. On a 5.6 run the
+    declaration must carry basis_window, the run must have recorded the same one (inputs.base_basis_window), and a
+    "ttm" window's ytd_current_period must still be ttm.json's. Output from an earlier release (VNOM's committed 5.4.0
+    record) is not held to it; an iprd_amortized declaration names its native_base instead."""
+    t = release_tuple(n.get("engine_release"))
+    if (t is None or t < (5, 6, 0) or o.get("basis") is not None
+            or (n.get("base_source") or "") != "agent_supplied_ttm_override"):
+        return
+    bw = o.get("basis_window")
+    if bw is None:
+        fail("judgment.json base_override declares the run's --base-oe-ps pin but no basis_window — on an engine "
+             f"{ENGINE_RELEASE} run the declaration names the window its pin was built on, so the acquired-IPR&D window "
+             "is the base's own: {\"window\": \"ttm\", \"ytd_current_period\": ttm.json's inputs.ocf.ytd_current_period} "
+             "for a pin built from ttm.json's TTM figures (the current YTD's charges are then counted), {\"window\": "
+             "\"fy\"} for one built from FY figures — add it and rerun the engine (WORKER_SPEC step 8)")
+    rec = (n.get("inputs") or {}).get("base_basis_window")
+    if rec != bw:
+        fail(f"judgment.json base_override.basis_window {bw!r} is not the one the engine run recorded "
+             f"(inputs.base_basis_window {rec!r}) — the judgment file and the engine run are out of sync; rerun the engine")
+    if bw.get("window") == "ttm":
+        try:
+            with open(f"{folder}/ttm.json", encoding="utf-8") as f:
+                tt = json.load(f)
+        except Exception:
+            tt = None
+        ins = tt.get("inputs") if isinstance(tt, dict) else None
+        ocf = ins.get("ocf") if isinstance(ins, dict) else None
+        per = ocf.get("ytd_current_period") if isinstance(ocf, dict) else None
+        if per != bw.get("ytd_current_period"):
+            fail(f"judgment.json base_override.basis_window names ytd_current_period {bw.get('ytd_current_period')} but "
+                 f"ttm.json now holds {per!r} — ttm.json changed after the engine run; rerun ttm.py and the engine, then "
+                 "rebuild the declaration from the new run (WORKER_SPEC step 8)")
+
+
 def check_iprd_amortized(n, j_base_override):
     """v5.6: an iprd_amortized declaration and the engine record must agree —
     the run pinned through --base-oe-ps at the declared value, the engine's
@@ -1434,10 +1509,20 @@ def iprd_score_block(n):
     """score.json iprd_adjustment from the engine's block (None when the run
     has none: older-release output, or no acquired-IPR&D expense filed)."""
     b = n.get("iprd_adjustment")
-    if not isinstance(b, dict) or b.get("deferred_payments_only"):
-        # [Codex review r5 of PR #47] a block recording only rolled-out iprd_deferred_payment entries (no charge in
-        # the window) is dcf_numbers.json bookkeeping for check_iprd_deferred_payment: score.json shows no charge
+    if not isinstance(b, dict):
         return None
+    if b.get("deferred_payments_only"):
+        # [Codex review r5 of PR #47] a block recording only rolled-out iprd_deferred_payment entries (no charge in
+        # the window) is dcf_numbers.json bookkeeping for check_iprd_deferred_payment: it carries no charge.
+        # [Codex review r15 of PR #47] it is still the engine's block, so the score keeps a minimal one (the record and
+        # the score agree on whether a block exists); every consumer reads it as no charge (treatment none, 0)
+        return {"treatment": b.get("treatment"), "total": b.get("total"), "charge_per_share": b.get("charge_per_share"),
+                "deferred_payments_only": True, "periods": [],
+                "deferred_payments_rolled_out": [
+                    {"period": x.get("period"), "window": x.get("window"), "amount": x.get("amount"),
+                     "deal": (x.get("deferred_payment_of") or {}).get("deal"),
+                     "first_charged_period": (x.get("deferred_payment_of") or {}).get("first_charged_period")}
+                    for x in b.get("deferred_payments_rolled_out") or [] if isinstance(x, dict)]}
     r2 = lambda v: round(v, 2) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
     r4 = lambda v: round(v, 4) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
     before = ((b.get("before") or {}).get("weighted") or {}) if isinstance(b.get("before"), dict) else {}
@@ -2118,10 +2203,15 @@ def pin_rescue_impact(n):
 # written before 5.5 never recorded a base_override's `kind`, so a prior
 # event WITHOUT the key is compared on the other fields only (its kind is
 # unknown, not different); once an event records `kind`, a change re-dates.
+# [Codex review r15 of PR #47] A plain base_override's `basis_window` (the
+# window its pin was built on, which sets the acquired-IPR&D window) is part of
+# the identity too, with the same legacy allowance: an event recorded before
+# round 15 carries no `basis_window` key and is compared on the other fields.
 _FIELD_DECLARATION = ("value", "kind", "source", "reason", "currency", "scope")
 _EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason"),
                       "manual_price": ("value",),
-                      "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares", "native_base"),
+                      "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares", "native_base",
+                                        "basis_window"),
                       "gterm": ("value",), "cik": ("value",), "ads_ratio": ("ratio", "source", "reason"),
                       "scope_correction": ("old_cap", "new_cap", "in_scope"),
                       "iprd_deferred_payment": ("deal", "first_charged_period", "contingent_total", "paid_to_date",
@@ -2134,6 +2224,10 @@ def _declaration(e, ignore=()):
     else:
         keys, head = _EVENT_DECLARATION.get(e.get("event"), ()), ("event", e.get("event"))
     return head + tuple(json.dumps(e.get(k), sort_keys=True, default=str) for k in keys if k not in ignore)
+
+
+# keys a base_override event recorded before they existed lacks (kind: before 5.5; basis_window: before round 15)
+_LEGACY_BASE_OVERRIDE_KEYS = ("kind", "basis_window")
 
 
 def keep_first_dates(new_entries, prior_entries):
@@ -2150,13 +2244,16 @@ def keep_first_dates(new_entries, prior_entries):
         if isinstance(d, str) and d:
             k = _declaration(e)
             first[k] = min(first.get(k, d), d)
-            if e.get("event") == "base_override" and "kind" not in e:
-                lk = _declaration(e, ignore=("kind",))
+            ig = tuple(x for x in _LEGACY_BASE_OVERRIDE_KEYS if x not in e)
+            if e.get("event") == "base_override" and ig:
+                lk = (ig, _declaration(e, ignore=ig))
                 legacy[lk] = min(legacy.get(lk, d), d)
     for e in new_entries:
         d = first.get(_declaration(e))
         if d is None and e.get("event") == "base_override":
-            d = legacy.get(_declaration(e, ignore=("kind",)))
+            hits = [legacy[(ig, _declaration(e, ignore=ig))] for ig in {k[0] for k in legacy}
+                    if (ig, _declaration(e, ignore=ig)) in legacy]
+            d = min(hits) if hits else None
         if d and (not isinstance(e.get("date"), str) or d < e["date"]):
             e["date"] = d
 
@@ -2232,6 +2329,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                   "value": bo["value"], "source": bo["source"], "reason": bo["reason"]}
             if bo.get("kind") is not None:
                 ev["kind"] = bo["kind"]
+            if bo.get("basis_window") is not None:
+                ev["basis_window"] = bo["basis_window"]   # [Codex review r15 of PR #47]
             if pin_rescued(n) and not n.get("payable_base"):
                 ev.update(pin_rescue_impact(n))
             _am = (n.get("iprd_adjustment") or {}).get("amortized") if isinstance(n.get("iprd_adjustment"), dict) else None
@@ -2850,6 +2949,8 @@ def main():
             else:
                 declared = (j_base_override and isinstance(score_base, (int, float)) and score_base != 0
                             and abs(float(j_base_override["value"]) - score_base) <= 0.001 * abs(score_base))
+                if declared:
+                    check_base_basis_window(folder, n, j_base_override)   # [Codex review r15 of PR #47]
             if not declared:
                 fail(f"base pin provenance: the score's base OE/share {score_base} differs from ttm.json's "
                      f"ttm_oe_per_share {ttm_val} by >0.1% (or ttm.json is missing) and judgment.json declares no "

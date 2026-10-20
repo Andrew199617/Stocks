@@ -450,6 +450,15 @@ no flag). reprice.py and build_site withhold live figures for any run make_score
 [Codex review round 13 of PR #47] A non-USD fact of exactly 0 is 0 at every rate: it converts to 0.0 with no rate
 (_iprd_pick), so a $0 foreign-currency expense never excludes its period non_usd_no_rate and hides a USD cash
 payment of the window's unpaid remainder.
+[Codex review round 15 of PR #47] (1) One period's facts of one tag in several units: a positive fact in any unit
+outranks a zero (or negative) one — converted at the FX pass's rate or the rate fetched for its date, else gated
+non_usd_no_rate (ACQUIRED_IPRD_UNCONVERTED) — and two positive facts that disagree after conversion are recorded
+(unit_conflict, unit_conflict_note) with the USD one used. (2) A cash-basis period's matching iprd_cash_flow_check
+whose presentation contradicts the cash deduction (inside_operating_cash_flow, paid_in_intangible_capex) is recorded
+cash_flow_check_inapplicable (make_score refuses it); paid_in_shares stays honored. (3) A plain base_override may
+declare basis_window {window "ttm", ytd_current_period} (a pin built from ttm.json's TTM figures on another
+denominator): the IPR&D window then reads ttm.json's current-YTD leg (inputs.base_basis_window); a ttm window whose
+period is not ttm.json's is refused BAD_BASE_OVERRIDE (exit 3) outside make_score's override-impact replay.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -1796,6 +1805,10 @@ IPRD_MATERIALITY = 0.05      # ACQUIRED_IPRD_CHARGE fires at >= 5% of the base O
 # [Codex review r8 of PR #47] an intangible capex leg >= 98% of an expense-basis charge is a note only (capex_overlap_note),
 # and the floor a declared paid_in_intangible_capex check must meet (the leg must be able to hold the charge)
 IPRD_OVERLAP_RATIO = 0.98
+# [Codex review r15 of PR #47] one tag's facts for one period in two units disagree when, after conversion, they differ
+# by more than max($1, 1% of the larger): both are recorded (unit_conflict) and the USD one is used. Period-end FX
+# rates are not the filer's translation rates, so a 1% band keeps an ordinary translation difference out of it.
+IPRD_UNIT_TOLERANCE = 0.01
 IPRD_NATIVE_BASES = ("ttm_json", "median_of_last_3_fy_oe_per_share")
 # [ADDITION — fixer review round 2026-10-19, awaiting Andrew's ratification] judgment.json iprd_cash_flow_check:
 # what the 10-K's cash-flow statement shows for an EXPENSE-basis period, presentation -> excluded reason (None =
@@ -1809,6 +1822,11 @@ IPRD_CF_PRESENTATIONS = {"added_back_paid_in_investing": None,
                          "inside_operating_cash_flow": "paid_in_operating_cash_flow",
                          "paid_in_shares": "paid_in_shares",
                          "paid_in_intangible_capex": "already_in_capex"}
+# [Codex review r15 of PR #47] the presentations a CASH-basis period (the us-gaap investing cash tag filed and
+# deducted) cannot honor: each says OE already carried the payment, which the investing cash tag contradicts.
+# A matching check with one of them is recorded cash_flow_check_inapplicable and make_score refuses the run;
+# paid_in_shares (how the expense's residual was settled) is honored and added_back_paid_in_investing agrees.
+IPRD_CF_CASH_INAPPLICABLE = ("inside_operating_cash_flow", "paid_in_intangible_capex")
 IPRD_AWAITING = "awaiting_cash_flow_check"
 IPRD_CHECK_WINDOWS = ("fy", "ttm_current_ytd")
 # [Codex review r3 of PR #47] a positive expense filed only in a currency the FX pass holds no rate for, with no
@@ -1830,6 +1848,29 @@ def iprd_date_ok(s):
     except ValueError:
         return False
     return True
+
+
+# [Codex review r15 of PR #47] judgment.json base_override.basis_window: the window a plain base_override's pin was
+# built on, so the IPR&D window is the base's own — {"window": "ttm", "ytd_current_period": [start, end]} (ttm.json's
+# inputs.ocf.ytd_current_period: a pin built from ttm.json's TTM figures on another denominator, VNOM's per-unit
+# base) or {"window": "fy"} (a pin built from FY figures). make_score requires it on a 5.6 run whose base is an
+# agent-supplied pin that is not ttm.json's figure.
+BASE_BASIS_WINDOWS = ("ttm", "fy")
+
+
+def base_basis_window_problem(bw):
+    """Why a declared base_override.basis_window is malformed (None when it is well formed)."""
+    shape = ('basis_window must be {"window": "ttm", "ytd_current_period": ["YYYY-MM-DD", "YYYY-MM-DD"]} (ttm.json\'s '
+             'inputs.ocf.ytd_current_period) or {"window": "fy"}')
+    if not isinstance(bw, dict) or bw.get("window") not in BASE_BASIS_WINDOWS:
+        return shape
+    if bw["window"] == "fy":
+        return None if set(bw) == {"window"} else shape
+    per = bw.get("ytd_current_period")
+    if (set(bw) != {"window", "ytd_current_period"} or not isinstance(per, list) or len(per) != 2
+            or not all(iprd_date_ok(x) for x in per) or per[0] > per[1]):
+        return shape
+    return None
 
 
 def iprd_cash_flow_check_entry_ok(e):
@@ -2314,30 +2355,87 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     return refused, rolled_out
 
 
-def _iprd_pick(by_unit, fx_rates, period):
+def _iprd_pick(by_unit, fx_rates, period, fx_fetch=None, conflict=None):
     """(value_usd, unit, rate, filed) for one period's facts of one tag ({unit: (value, filed)}): the USD fact when
     filed, else a non-USD fact converted at the FX pass's own period-end rate for its currency (fx_rates {ccy: {date:
-    rate}}); (None, unit, None, filed) when only a non-USD fact with no rate exists; None when nothing is filed.
+    rate}}), else at fx_fetch(ccy, period) when given; (None, unit, None, filed) when only a non-USD fact with no rate
+    exists; None when nothing is filed.
     [Codex review r13 of PR #47] A non-USD fact of exactly 0 is 0 at every rate: (0.0, unit, None, filed) when every
     unrated unit's fact is zero — before, it was unconvertible (expense None, excluded non_usd_no_rate) and a usable
     USD cash fact beside it was dropped with no flag; a positive unrated fact still comes back unconvertible (the
-    nonzero unit is the one named)."""
+    nonzero unit is the one named).
+    [Codex review r15 of PR #47] A positive fact in ANY unit outranks a zero (or negative) one: a USD 0 beside EUR
+    100M had returned the USD 0 without looking at the EUR fact, so the period read as no charge. The positive fact
+    is the one picked — the USD one when USD is positive, else the first positive unit that converts (else the first
+    positive unit, unconvertible: the caller gates it non_usd_no_rate). When `conflict` (a dict) is given and the
+    units' facts disagree after conversion — by more than max($1, IPRD_UNIT_TOLERANCE of the larger), a zero beside
+    a positive fact, or a positive fact that cannot be converted beside another unit's — it is filled with {"units":
+    {unit: {"native", "usd", "fx_rate"}}, "used": the unit picked}; facts that agree leave it empty."""
     if not by_unit:
         return None
-    if "USD" in by_unit:
+    cache = {}
+
+    def _rate(u):
+        if u not in cache:
+            r = ((fx_rates or {}).get(u) or {}).get(period)
+            if r is None and fx_fetch is not None:
+                r = fx_fetch(u, period)
+            cache[u] = r
+        return cache[u]
+
+    def _usd(u):
+        v = by_unit[u][0]
+        if u == "USD":
+            return float(v), None
+        if _iprd_is_zero(v):
+            return 0.0, None
+        r = _rate(u)
+        return (float(v) * r, r) if r is not None else (None, None)
+
+    pos = [u for u in sorted(by_unit) if _iprd_is_pos(by_unit[u][0])]
+    if pos:
+        if "USD" in pos:
+            u = "USD"
+        else:
+            u = next((x for x in pos if _usd(x)[0] is not None), pos[0])
+        v, r = _usd(u)
+        hit = (v, u, r, by_unit[u][1])
+    elif "USD" in by_unit:
         v, fd = by_unit["USD"]
-        return float(v), "USD", None, fd
-    for u in sorted(by_unit):
-        r = ((fx_rates or {}).get(u) or {}).get(period)
-        if r is not None:
-            v, fd = by_unit[u]
-            return float(v) * r, u, r, fd
-    nonzero = [u for u in sorted(by_unit) if not _iprd_is_zero(by_unit[u][0])]
-    if not nonzero:
-        u = sorted(by_unit)[0]
-        return 0.0, u, None, by_unit[u][1]
-    u = nonzero[0]
-    return None, u, None, by_unit[u][1]
+        hit = (float(v), "USD", None, fd)
+    else:
+        hit = None
+        for u in sorted(by_unit):
+            r = ((fx_rates or {}).get(u) or {}).get(period)
+            if r is not None:
+                v, fd = by_unit[u]
+                hit = (float(v) * r, u, r, fd)
+                break
+        if hit is None:
+            nonzero = [u for u in sorted(by_unit) if not _iprd_is_zero(by_unit[u][0])]
+            if not nonzero:
+                u = sorted(by_unit)[0]
+                hit = (0.0, u, None, by_unit[u][1])
+            else:
+                u = nonzero[0]
+                r = fx_fetch(u, period) if fx_fetch is not None else None
+                hit = ((float(by_unit[u][0]) * r, u, r, by_unit[u][1]) if r is not None
+                       else (None, u, None, by_unit[u][1]))
+    if conflict is not None and len(by_unit) > 1 and pos:
+        conv = {u: _usd(u) for u in sorted(by_unit)}
+        vals = [c[0] for c in conv.values()]
+        known = [x for x in vals if x is not None]
+        disagree = (len(known) < len(vals)
+                    or max(known) - min(known) > max(1.0, IPRD_UNIT_TOLERANCE * max(abs(x) for x in known)))
+        if disagree:
+            conflict.update({"units": {u: {"native": float(by_unit[u][0]), "usd": conv[u][0], "fx_rate": conv[u][1]}
+                                       for u in sorted(by_unit)}, "used": hit[1]})
+    return hit
+
+
+def _iprd_is_pos(v):
+    """True for a finite filed figure above 0 (a number, not a bool)."""
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
 
 
 def _iprd_is_zero(v):
@@ -2691,14 +2789,15 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
 
     def _resolve(p, window, exp_maps, cash_map, intang):
         hits = []
+        units_conflict = {}
         for tag, by_unit in exp_maps:
-            hit = _iprd_pick(by_unit, fx_rates, p)
-            if hit is not None and hit[0] is None and fx_fetch is not None:
-                # [Codex review r8 of PR #47] the FX pass holds rates for its own series' dates only: fetch the
-                # expense period's rate, as for the cash leg (round 4) — an unconverted expense accrues no remainder
-                r = fx_fetch(hit[1], p)
-                if r is not None:
-                    hit = (float(by_unit[hit[1]][0]) * r, hit[1], r, hit[3])
+            # [Codex review r8 of PR #47] the FX pass holds rates for its own series' dates only: the expense period's
+            # rate is fetched, as for the cash leg (round 4) — an unconverted expense accrues no remainder. [Codex
+            # review r15 of PR #47] a positive fact in any unit outranks a zero one; a unit disagreement is recorded
+            uc = {}
+            hit = _iprd_pick(by_unit, fx_rates, p, fx_fetch=fx_fetch, conflict=uc)
+            if uc:
+                units_conflict[tag] = uc
             if hit is not None:
                 # [Codex review r1 of PR #47] the native figure rides along for an expense with no FX rate
                 hits.append((tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None))
@@ -2711,12 +2810,11 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         pos_hits = [h for h in hits if _pos(_ev(h))]
         if len(pos_hits) > 1 and max(_ev(h) for h in pos_hits) - min(_ev(h) for h in pos_hits) > 1.0:
             conflict = {h[0]: float(_ev(h)) for h in pos_hits}
-        c = _iprd_pick(cash_map, fx_rates, p)
-        if c is not None and c[0] is None and fx_fetch is not None:
-            # [Codex review r4 of PR #47] the FX pass holds rates for its own series' dates only: fetch this one
-            r = fx_fetch(c[1], p)
-            if r is not None:
-                c = (float(cash_map[c[1]][0]) * r, c[1], r, c[3])
+        # [Codex review r4 of PR #47] the FX pass holds rates for its own series' dates only: this one is fetched
+        uc = {}
+        c = _iprd_pick(cash_map, fx_rates, p, fx_fetch=fx_fetch, conflict=uc)
+        if uc:
+            units_conflict[IPRD_CASH_TAG] = uc
         # [Codex review r6 of PR #47] the native figure rides along for a cash fact with no FX rate
         cash = (c[0], c[1], c[2], c[3], cash_map[c[1]][0] if c[0] is None else None) if c is not None else None
         chk, mismatch = by_key.get((p, window)), None
@@ -2736,6 +2834,28 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             # [Codex review r12 of PR #47] a cash-basis period deducts its cash outflow whatever a check says; a
             # paid_in_shares check says how the rest of the expense was settled — in shares, so nothing stays payable
             rec["cash_flow_check"] = {k: chk.get(k) for k in ("presentation", "amount", "source")}
+        elif (rec is not None and chk is not None and rec["amount_basis"] == "cash_outflow"
+              and chk.get("presentation") in IPRD_CF_CASH_INAPPLICABLE):
+            # [Codex review r15 of PR #47] the check says the payment sat inside operating cash flow or inside the
+            # capex intangible leg — OE already carried it — while the cash tag says it was paid in investing and the
+            # period deducts it: the two cannot both hold, so the check is recorded (make_score refuses the run),
+            # never consumed with no trace
+            rec["cash_flow_check_inapplicable"] = dict(
+                {k: chk.get(k) for k in ("presentation", "amount", "source")},
+                note=(f"judgment.json {IPRD_CF_CHECK_KEY} declares presentation {chk.get('presentation')} for a "
+                      f"cash-basis period: the us-gaap investing cash tag ({IPRD_CASH_TAG}) is filed and deducted, "
+                      "which contradicts it — remove the entry, or reconcile it with the filing's cash-flow statement"))
+        if rec is not None and units_conflict:
+            rec["unit_conflict"] = units_conflict
+            rec["unit_conflict_note"] = (
+                "an acquired-IPR&D tag is filed for this period in more than one unit with values that disagree after "
+                "conversion (" + "; ".join(
+                    f"{t}: " + ", ".join(f"{u} {x['native']:,.0f}" + (f" = ${x['usd']:,.0f}" if u != "USD" and x["usd"] is not None
+                                                                      else " (no FX rate)" if x["usd"] is None else "")
+                                         for u, x in v["units"].items()) + f" — {v['used']} used"
+                    for t, v in sorted(units_conflict.items()))
+                + "): a positive fact outranks a zero one and the USD fact is used between positive ones — reconcile "
+                "the units in analysis.md against the filing")
         if rec is not None and mismatch is not None:
             rec["cash_flow_check_mismatch"] = {"declared_amount": mismatch.get("amount"),
                                                "note": "judgment.json iprd_cash_flow_check names this period with "
@@ -4138,11 +4258,39 @@ def main():
         else:
             print("BAD_IPRD_HOLD: DCF_IPRD_HOLD must be a JSON object {treatment, charge_per_share >= 0}")
             sys.exit(3)
+    # [Codex review r15 of PR #47] a plain base_override pinned through --base-oe-ps declares the window its pin was
+    # built on (basis_window): "ttm" — a pin built from ttm.json's TTM figures on another denominator (VNOM's
+    # per-unit base), which the 0.1% ttm_oe_per_share match above cannot see — reads ttm.json's current-YTD leg like
+    # a TTM base, so a charge in the YTD whose cash flows are in the base is counted (the share-denominator rule is
+    # unchanged); "fy" keeps the FY window. A malformed one, or a ttm window whose period is not ttm.json's, is
+    # refused outside make_score's override-impact replay (which holds the final run's charge).
+    base_basis_window = None
+    _bw = decl.get("basis_window") if isinstance(decl, dict) else None
+    _dv = decl.get("value") if isinstance(decl, dict) else None
+    if (_bw is not None and pin_source == "base_oe_ps_arg" and decl.get("basis") is None
+            and isinstance(_dv, (int, float)) and not isinstance(_dv, bool) and base_override is not None
+            and abs(float(_dv) - base_override) <= 0.001 * abs(base_override)):
+        _why = base_basis_window_problem(_bw)
+        if _why is None and _bw["window"] == "ttm":
+            _ocf = ((ttm_doc or {}).get("inputs") or {}).get("ocf") if isinstance((ttm_doc or {}).get("inputs"), dict) else None
+            _per = _ocf.get("ytd_current_period") if isinstance(_ocf, dict) else None
+            if not (isinstance(_per, list) and _per == list(_bw["ytd_current_period"]) and str(_per[0]) > latest_fy_end):
+                _why = (f"basis_window ytd_current_period {_bw['ytd_current_period']} is not ttm.json's "
+                        f"inputs.ocf.ytd_current_period {_per!r} (a current-YTD period after the latest FY end "
+                        f"{latest_fy_end}) — rerun ttm.py and rebuild the declaration from this run's ttm.json")
+        if _why is None:
+            base_basis_window = ({"window": "fy"} if _bw["window"] == "fy"
+                                 else {"window": "ttm", "ytd_current_period": list(_bw["ytd_current_period"])})
+        elif not iprd_counterfactual:
+            print(f"BAD_BASE_OVERRIDE for {ticker}: judgment.json base_override {_why}")
+            sys.exit(3)
     _stale_fy = bool(latest.get("period_end")
                      and (ET_TODAY - datetime.date.fromisoformat(latest["period_end"])).days / 30.44 > 7)
     _ytd = None
     _ytd_note = None
-    if iprd_ttm_basis:
+    if base_basis_window is not None and base_basis_window["window"] == "ttm" and not iprd_ttm_basis:
+        _ytd = tuple(base_basis_window["ytd_current_period"])
+    elif iprd_ttm_basis:
         _per = (((ttm_doc or {}).get("inputs") or {}).get("ocf") or {}).get("ytd_current_period")
         if isinstance(_per, list) and len(_per) == 2 and all(isinstance(x, str) for x in _per) and _per[0] > latest_fy_end:
             _ytd = (_per[0], _per[1])
@@ -4583,7 +4731,8 @@ def main():
             flags.append(f"TIER_BAND: bear-case tier {tier_bear} ({irr_bear*100:.1f}%) vs bull-case tier {tier_bull} ({irr_bull*100:.1f}%) — the verdict spans tiers; size any position to the bear end")
         result.update({"g_base": g_base, "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
-                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source},
+                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source,
+                                  **({"base_basis_window": base_basis_window} if base_basis_window else {})},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "scenarios": scenarios, "weighted": weighted,
@@ -4642,7 +4791,8 @@ def main():
                        "implied_irr_weighted": None, "implied_irr_base": None, "moat_score": moat,
                        "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
-                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source},
+                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source,
+                                  **({"base_basis_window": base_basis_window} if base_basis_window else {})},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "fragility_flags": flags_pre,  # v5: F names carry their flags too

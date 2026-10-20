@@ -1824,6 +1824,13 @@ test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the
   assert.equal(App.iprdNote(am), 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.');
   const none = JSON.parse(JSON.stringify(rec)); none.score.iprd_adjustment.treatment = 'none';
   assert.equal(App.iprdNote(none), '');
+  // [Codex review r15 of PR #47] score.json keeps a minimal deferred_payments_only block (no charge): no line
+  const minimal = JSON.parse(JSON.stringify(synthetic));
+  minimal.score.iprd_adjustment = { treatment: 'none', total: 0, charge_per_share: 0, deferred_payments_only: true, periods: [],
+    deferred_payments_rolled_out: [{ period: '2022-12-31', window: 'fy', amount: 60e6, deal: 'Old Bio', first_charged_period: '2021-12-31' }] };
+  minimal.numbers.iprd_adjustment = Object.assign({}, minimal.score.iprd_adjustment, { ignored_cash_only: [], notes: [] });
+  assert.equal(App.iprdNote(minimal), '', 'a deferred_payments_only block is no charge');
+  assert.ok(!App.renderOverview(minimal).includes('Acquired IPR'), 'nothing shown for the minimal block');
   assert.equal(App.iprdNote(synthetic), '', 'a record without the block');
   assert.ok(!App.renderOverview(synthetic).includes('Acquired IPR'), 'nothing new on a pre-5.6 record');
 });

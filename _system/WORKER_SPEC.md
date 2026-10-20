@@ -144,7 +144,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    A check's amount is the filed expense, within $1 (Codex review round 14 of PR #47): one that is not is never
    applied (`cash_flow_check_mismatch` on the period) and make_score refuses the run whatever the period's basis —
    correct the amount, or remove the entry if the period needs no check. A check whose period has left the
-   window has no record and still carries over (step 2).
+   window has no record and still carries over (step 2). On a cash-basis period (Codex review round 15 of PR
+   #47) a matching check declaring `inside_operating_cash_flow` or `paid_in_intangible_capex` contradicts the
+   investing cash tag the engine deducts: it is recorded `cash_flow_check_inapplicable` and make_score refuses
+   the run, naming the presentation — remove the entry (the period needs no check for its own deduction) or
+   reconcile it with the cash-flow statement and rerun; `paid_in_shares` is read there as above.
    `ACQUIRED_IPRD_UNCONVERTED` (Codex review round 3 of PR #47): the charge was expensed only in a currency the
    engine holds no FX rate for, with no usable us-gaap cash fact — NOTHING is deducted, the tier is the
    UNADJUSTED one, and make_score refuses the score whatever judgment.json says. Block the folder
@@ -163,6 +167,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`; since Codex review
    round 11, any run make_score refused or has not yet scored: reason `score_not_from_this_run`). A non-USD
    fact of exactly 0 needs no rate (Codex review round 13 of PR #47): it reads as $0, never `non_usd_no_rate`.
+   When one tag is filed for one period in more than one unit (Codex review round 15 of PR #47), a positive fact
+   in any unit outranks a zero one — converted at the FX pass's rate or one fetched for its date, else the period
+   is excluded `non_usd_no_rate` and the flag above applies — and two positive facts that disagree after
+   conversion (by more than $1 and 1%) are both recorded on the period (`unit_conflict`, `unit_conflict_note`)
+   with the USD one used: reconcile the units against the filing in analysis.md.
    `ACQUIRED_IPRD_PARTIAL_PERIOD` (Codex review round 11 of PR #47): an acquired-IPR&D tag is filed for only
    part of a window period — a 10-Q's nine-month figure with no FY fact in the 10-K (SMMT FY2023), or a quarter
    alone — and no set of three-month / year-to-date facts tiles the period, so NOTHING is counted for that tag
@@ -420,7 +429,15 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    other field, or any capex case where a capex value was filed at some point, follows
    the plain rule above or escalates. (c) `base_override` — ONLY built exclusively from figures
    THIS run's dcf_numbers.json / ttm.json / financials_history.csv printed, construction
-   quoted in analysis.md. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
+   quoted in analysis.md. A plain one (no `basis`) pinned through `--base-oe-ps` at a value
+   that is not ttm.json's `ttm_oe_per_share` also carries `basis_window` (Codex review round
+   15 of PR #47; make_score refuses a 5.6 run without it): `{"window": "ttm",
+   "ytd_current_period": <ttm.json inputs.ocf.ytd_current_period, copied>}` when the pin was
+   built from ttm.json's TTM figures (VNOM: TTM OE total ÷ total units) — the acquired-IPR&D
+   window then reads the current-YTD leg whose cash flows are in the base —, `{"window":
+   "fy"}` when it was built from FY figures (NTNX, VIV). The engine refuses a `ttm` window
+   whose period is not this ttm.json's (BAD_BASE_OVERRIDE, exit 3): after ttm.py reruns,
+   copy the new period. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
    Anything outside: block with a reason starting `NEEDS_MAIN_AGENT: <field> — <detail>` and
    finish. If judgment.json already carries overrides when you start (a main-agent
    decision), the tools apply them — carry the fields through unchanged and quote the

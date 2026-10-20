@@ -343,6 +343,19 @@ PAIRS = [
     ("_system/make_score.py", 'mm = [p for p in periods if p.get("cash_flow_check_mismatch")', "cash_flow_check_mismatch",
      [SYS_README]),
     ("_system/dcf_engine.py", 'rec["expense_reversal_note"] = (', "expense_reversal_note", [SYS_README, CONTRACT]),
+    # Codex review round 15 of PR #47: unit conflicts, a cash-basis check the cash path cannot honor, the minimal
+    # deferred_payments_only score block, a plain pin's basis_window
+    ("_system/dcf_engine.py", 'rec["unit_conflict"] = units_conflict', "unit_conflict", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'IPRD_UNIT_TOLERANCE = 0.01', "IPRD_UNIT_TOLERANCE", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["cash_flow_check_inapplicable"] = dict(', "cash_flow_check_inapplicable",
+     [SYS_README, CONTRACT]),
+    ("_system/make_score.py", 'ia = [p for p in periods if isinstance(p.get("cash_flow_check_inapplicable"), dict)]',
+     "cash_flow_check_inapplicable", [SYS_README]),
+    ("_system/make_score.py", '"deferred_payments_only": True, "periods": []', "deferred_payments_only",
+     [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '**({"base_basis_window": base_basis_window}', "base_basis_window", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def base_basis_window_problem(", "base_basis_window_problem", [SYS_README]),
+    ("_system/make_score.py", "def check_base_basis_window(", "basis_window", [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),
