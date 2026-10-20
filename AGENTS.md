@@ -615,6 +615,10 @@ misfit`. For them:
   deal's cap for a later declaration — and make_score refuses the run that counted
   it once it is gone. [Codex review round 5] A run whose window holds no charge at
   all still lists it (a minimal `deferred_payments_only` block, nothing deducted).
+  [Codex review round 7] A rolled-out entry is kept and counted toward the cap only
+  after the checks that need no window record (first charge before its period, the
+  original filing's accession year, companyfacts' expense fact for a pre-window first
+  charge); an invalid one is refused (`BAD_IPRD_DEFERRED_PAYMENT`), not kept.
 
 ## Comment style
 

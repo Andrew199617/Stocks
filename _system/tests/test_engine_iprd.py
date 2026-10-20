@@ -1280,9 +1280,10 @@ def test_entry_whose_period_rolled_out_of_the_window_is_kept_not_applied_not_ref
     """[Codex review, finding 5; Codex review r4, #4322408940] An entry carried over from an earlier scoring whose
     period (FY2022) is now older than the engine's window is neither applied nor refused: the run exits 0 and lists
     it in deferred_payments_rolled_out; it stays in judgment.json (it still counts toward its deal's lifetime
-    contingent_total cap). The in-window entry beside it still applies."""
+    contingent_total cap). The in-window entry beside it still applies. [Codex review r7] Its first charge (FY2021)
+    is an expense fact companyfacts carries: a rolled-out entry passes the same checks as an in-window one."""
     old = deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio")
-    n = _ok(_two_of_three([deferred(), old]))
+    n = _ok(_with_2021_charge([deferred(), old]))
     blk = n["iprd_adjustment"]
     assert blk["deferred_payments_rolled_out"] == [old], blk
     assert "deferred_payments_refused" not in blk and [x["period"] for x in blk["recurrence_excluded"]] == ["2025-12-31"]
@@ -1929,6 +1930,57 @@ def test_reprice_and_build_site_withhold_a_run_make_score_refused():
     assert R.reprice(_adjusted(), 25.0)["iprd_charge_per_share"] == 0.35
     assert B.live_shown({"score": sc, "numbers": _adjusted(), "live": lv}) == (lv, None)
     assert E.iprd_unresolved(_adjusted()) is None and E.iprd_unresolved({"iprd_adjustment": None}) is None
+
+
+# --- Codex review round 7 of PR #47 -------------------------------------------------------------------------------
+def test_rolled_out_entry_is_validated_before_it_counts_toward_the_lifetime_cap():
+    """[Codex review r7, #4323129476] A rolled-out entry (period older than the window) was moved to
+    deferred_payments_rolled_out right after the shape, one-first-charge and cap checks — before any semantic one —
+    so a declaration that could never have passed (its first charge after its own period, an accession outside the
+    original filing's years, a pre-window first charge companyfacts covers with no acquired-IPR&D expense fact) was
+    silently kept, and its amount took the deal's lifetime contingent_total: a valid $60.0M FY2025 Old Bio milestone
+    beside a bogus $60.0M FY2022 one ($100.0M cap) was refused as past the cap. Now a rolled-out entry passes the same
+    period-independent checks as an in-window one; an invalid one is refused for its own reason (exit 3), never
+    listed rolled out and never counted toward the cap. A valid rolled-out entry is still kept and still counts."""
+    fy = ["2023-12-31", "2024-12-31", "2025-12-31"]
+    cap = {"value": 100e6, "source": CT_SRC}
+    # companyfacts reaches back to 2015 (Revenues) and carries the FY2021 Old Bio charge only
+    cf = {"facts": {"us-gaap": {
+        EXPENSE: {"units": {"USD": [_fy_fact("2021-01-01", "2021-12-31", 8e6)]}},
+        "Revenues": {"units": {"USD": [_fy_fact("2015-01-01", "2015-12-31", 1e9)]}}}}}
+    new = deferred(amount=60e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio", contingent=cap)
+
+    def old(first="2021-12-31", source=OK_SRC_2021, deal="Old Bio", contingent=cap):
+        return deferred(period="2022-12-31", amount=60e6, first=first, source=source, deal=deal, contingent=contingent)
+
+    ghost_ct = {"value": 60e6, "source": CT_SRC}
+    bad = [(old(first="2023-12-31", source=_src(24), deal="Ghost Bio", contingent=ghost_ct), "must precede"),
+           (old(first="2021-12-31", source=_src(26)), "source must cite the original acquisition filing"),
+           (old(first="2019-12-31", source=_src(20), deal="Ghost Bio", contingent=ghost_ct),
+            "no acquired-IPR&D expense fact"),
+           (old(first="2021-02-30", source=_src(21), deal="Ghost Bio", contingent=ghost_ct), "is not a date")]
+    for e, needle in bad:
+        iprd = {"periods": [_rec("2025-12-31", 60e6)]}
+        ref, rolled = E.iprd_apply_deferred(iprd, [e], fy, cf)
+        assert rolled == [] and [r["entry"] for r in ref] == [e] and needle in ref[0]["reason"], (needle, ref, rolled)
+    # the bogus FY2022 Old Bio entry no longer takes the cap: the valid FY2025 milestone applies, the bogus one is refused
+    bogus = bad[1][0]
+    iprd = {"periods": [_rec("2025-12-31", 60e6)]}
+    ref, rolled = E.iprd_apply_deferred(iprd, [bogus, new], fy, cf)
+    assert [r["entry"] for r in ref] == [bogus] and rolled == [], (ref, rolled)
+    assert "source must cite the original acquisition filing" in ref[0]["reason"], ref
+    assert iprd["periods"][0].get("recurrence_excluded") == "deferred_payment_of", iprd
+    # a valid rolled-out entry is still kept and still counts toward the cap
+    ref, rolled = E.iprd_apply_deferred({"periods": [_rec("2025-12-31", 60e6)]}, [old(), new], fy, cf)
+    assert rolled == [] and len(ref) == 2 and all("more than its contingent_total" in r["reason"] for r in ref), ref
+    ref, rolled = E.iprd_apply_deferred({"periods": [_rec("2025-12-31", 40e6)]}, [old(), dict(new, amount=40e6)], fy, cf)
+    assert ref == [] and rolled == [old()], (ref, rolled)
+    # end to end: the run exits 3 (BAD_IPRD_DEFERRED_PAYMENT) instead of recording the bogus entry rolled out
+    out = _run(_facts(expense={2021: 8e6, 2025: 60e6}), judgment={"iprd_deferred_payment": [bogus]})
+    _refused(out, "source must cite the original acquisition filing")
+    for e, needle in bad[2:3]:
+        _refused(_run(_facts(expense={2021: 8e6, 2025: 60e6}), judgment={"iprd_deferred_payment": [e]}), needle)
+
 
 if __name__ == "__main__":
     fails = 0

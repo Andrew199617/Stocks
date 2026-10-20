@@ -591,10 +591,11 @@ def test_rolled_out_declaration_stays_declared_and_scores():
     the score until the entry was DELETED — the deletion that let a later declaration take the deal past its
     contingent_total. The entry now stays declared: make_score scores with judgment.json carrying it. Out of sync
     either way is refused: a rolled-out entry the run did not list (judgment.json changed after the run), or one the
-    run listed that judgment.json dropped (it counts toward the deal's lifetime cap: never delete it)."""
+    run listed that judgment.json dropped (it counts toward the deal's lifetime cap: never delete it). [Codex review
+    r7] The filer carries Old Bio's FY2021 first charge in companyfacts: a rolled-out entry is validated like any."""
     old = TI.deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=TI.OK_SRC_2021, deal="Old Bio")
     d = TI.deferred()
-    n = TI._cached("ms_def_old", lambda: TI._ok(TI._run(TI._facts(expense={2023: 15e6, 2025: 20e6}),
+    n = TI._cached("ms_def_old", lambda: TI._ok(TI._run(TI._facts(expense={2021: 8e6, 2023: 15e6, 2025: 20e6}),
                                                          judgment={"iprd_deferred_payment": [d, old]})))
     r = _score(n, _j(iprd_deferred_payment=[d, old]))
     assert r.rc == 0, r.err[-800:]

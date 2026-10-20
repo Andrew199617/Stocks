@@ -422,7 +422,10 @@ acquisition filing); the deals' amounts within the period's charge — and refus
 BAD_IPRD_DEFERRED_PAYMENT (exit 3; the override-impact counterfactual records it in deferred_payments_refused
 instead). An entry whose period has rolled out of the window stays in judgment.json and is listed in
 deferred_payments_rolled_out: never applied (no deduction, no recurrence effect), it still counts toward its deal's
-lifetime contingent_total cap ([Codex review r4 of PR #47]: deleting it let a later declaration pass the cap).
+lifetime contingent_total cap ([Codex review r4 of PR #47]: deleting it let a later declaration pass the cap) —
+once it passes every check that needs no window record (first charge before the period and a date, the original
+filing's accession year, companyfacts' expense fact for a pre-window first charge); an invalid one is refused and
+never counted toward the cap ([Codex review r7 of PR #47]).
 A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a partly deferred period
 still counts. The deduction is unchanged, and a run with no declaration gains no key.
 [Codex review round 3 of PR #47] Two gaps closed. (1) A positive acquired-IPR&D expense filed only in a currency
@@ -1986,14 +1989,45 @@ def iprd_pre_window_charges(facts, oldest_fy_end):
     return sorted(out)
 
 
+def _iprd_deferred_semantic_problem(e, oldest, facts):
+    """[Codex review r7 of PR #47] The checks of one well-formed iprd_deferred_payment entry that do not need the
+    window's record of its period, so a rolled-out entry (its period older than the window) passes them exactly as an
+    in-window one does before it is kept and counted toward its deal's lifetime cap: first_charged_period before the
+    period and a real date; the source citing the original acquisition filing (iprd_original_filing_years); and, for a
+    first charge before the window (oldest: the oldest window FY end as a date, or None), an acquired-IPR&D expense
+    fact ending there whenever companyfacts covers that date. Returns (reason or None, cf: iprd_companyfacts_charge's
+    answer for a pre-window first charge, else None)."""
+    d = e["deferred_payment_of"]
+    f = d["first_charged_period"]
+    if not f < e["period"]:
+        return f"first_charged_period {f} must precede the declared period {e['period']}", None
+    try:
+        years = iprd_original_filing_years(f)
+    except ValueError:
+        return f"first_charged_period {f} is not a date", None
+    if not any(iprd_accession_year(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
+        return (f"source must cite the original acquisition filing of the charge first made in the period ending "
+                f"{f}: an accession filed in {years[0]}..{years[-1]}"), None
+    if oldest is not None and (oldest - datetime.date.fromisoformat(f)).days < IPRD_WINDOW_DAYS:
+        return None, None
+    cf = iprd_companyfacts_charge(facts, f)
+    if cf == "not_charged":
+        return (f"first_charged_period {f} is before the engine's window and companyfacts covers it, but no "
+                f"acquired-IPR&D expense fact ({', '.join(IPRD_EXPENSE_TAGS)}) ends there: name the period end of the "
+                "filing that first expensed the deal"), cf
+    return None, cf
+
+
 def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
     """Validate judgment.json iprd_deferred_payment against this run's acquired-IPR&D records (iprd_detect's dict or
     None; fy_periods the engine's last-3-FY ends, oldest first; facts the companyfacts the run read) and mark each
     accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
     item per deal; several deals may share a period) and, when the declared amounts sum to the period's whole charge
     (within $1), recurrence_excluded "deferred_payment_of". The deduction is not touched. Returns (refused
-    [{"entry", "reason"}], rolled_out [entries whose period is older than the window: neither applied nor refused,
-    they stay in judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47]).
+    [{"entry", "reason"}], rolled_out [entries whose period is older than the window: never applied, they stay in
+    judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47 — once they pass the
+    checks that need no window record (_iprd_deferred_semantic_problem; an invalid one is refused and never counted
+    toward the cap — Codex review r7 of PR #47)]).
     Nothing is applied for a refused entry.
     Checks: the shape (an FY period, an accession in the source, the deal's contingent_total); one entry per period
     and deal; one first_charged_period per deal across all entries; one contingent_total per deal (value and
@@ -2034,7 +2068,15 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
         seen.add(k)
         first_of.setdefault(k[1], set()).add(d["first_charged_period"])
         ok.append(e)
-    cap_problems = iprd_deferred_cap_problems(ok)
+    # [Codex review r7 of PR #47] a rolled-out entry is validated (every check that needs no window record) BEFORE it
+    # counts toward its deal's lifetime cap: an invalid one is refused, never kept rolled out, never counted
+    pre_bad = {}
+    for e in ok:
+        if oldest is not None and e["period"] < fy_periods[0]:
+            why, _ = _iprd_deferred_semantic_problem(e, oldest, facts)
+            if why is not None:
+                pre_bad[id(e)] = why
+    cap_problems = iprd_deferred_cap_problems([e for e in ok if id(e) not in pre_bad])
     cand = []
     for e in ok:
         d = e["deferred_payment_of"]
@@ -2044,12 +2086,15 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
             refused.append({"entry": e, "reason": f"deal {d['deal']!r} is declared first charged on "
                             f"{' and '.join(sorted(fs))}: one deal has one first charge"})
             continue
+        if id(e) in pre_bad:
+            refused.append({"entry": e, "reason": pre_bad[id(e)]})
+            continue
         if _deal_key(d["deal"]) in cap_problems:
             refused.append({"entry": e, "reason": cap_problems[_deal_key(d["deal"])]})
             continue
         if oldest is not None and e["period"] < fy_periods[0]:
-            # its period rolled out of the window: kept in judgment.json (its payment counts toward the deal's
-            # lifetime contingent_total above), never applied to this window's deduction or recurrence count
+            # its period rolled out of the window: validated above, kept in judgment.json (its payment counts toward
+            # the deal's lifetime contingent_total), never applied to this window's deduction or recurrence count
             rolled_out.append(e)
             continue
         rec = rec_of.get(e["period"])
@@ -2067,17 +2112,9 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
                                 f"window ({', '.join(fy_periods)})"})
                 continue
             charge = co["cash"]
-        if not f < e["period"]:
-            refused.append({"entry": e, "reason": f"first_charged_period {f} must precede the declared period {e['period']}"})
-            continue
-        try:
-            years = iprd_original_filing_years(f)
-        except ValueError:
-            refused.append({"entry": e, "reason": f"first_charged_period {f} is not a date"})
-            continue
-        if not any(iprd_accession_year(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
-            refused.append({"entry": e, "reason": f"source must cite the original acquisition filing of the charge "
-                            f"first made in the period ending {f}: an accession filed in {years[0]}..{years[-1]}"})
+        why, cf = _iprd_deferred_semantic_problem(e, oldest, facts)
+        if why is not None:
+            refused.append({"entry": e, "reason": why})
             continue
         if oldest is not None and (oldest - datetime.date.fromisoformat(f)).days < IPRD_WINDOW_DAYS:
             if co is not None:
@@ -2094,13 +2131,6 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
                 continue
             evidence = "window_record"
         else:
-            cf = iprd_companyfacts_charge(facts, f)
-            if cf == "not_charged":
-                refused.append({"entry": e, "reason": f"first_charged_period {f} is before the engine's window and "
-                                "companyfacts covers it, but no acquired-IPR&D expense fact "
-                                f"({', '.join(IPRD_EXPENSE_TAGS)}) ends there: name the period end of the filing that "
-                                "first expensed the deal"})
-                continue
             if co is not None and cf != "charged":
                 # the MAA rule: a cash-tag-only payment never qualifies unless companyfacts shows the expense it settles
                 refused.append({"entry": e, "reason": f"FY {e['period']} carries only a cash-tag payment: it is deductible "
