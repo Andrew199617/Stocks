@@ -10,7 +10,7 @@
  "base_year": "2025",
  "base_source": "ttm_json",
  "moat_score": 5,
- "moat_justification": "Real but narrow: scarce premier gateway locations, the largest premier-workplace platform in the US and a proven development engine are genuine advantages, and the current leasing cycle (occupancy 88.4% and rising, 91.3% leased) shows tenants paying up for the best buildings. But the filed evidence caps the score: gross margin has fallen five straight years to 59.1%, the measurable roic_proxy was only 8.5-8.7% (FY2016-17), GAAP ROE ran 0.3-5.4% in FY2023-25, and the model is capital-hungry ($953M TTM capex) and heavily levered. That is a moderate 5/10, not the sustained well-above-cost-of-capital record a 7+ requires.",
+ "moat_justification": "Real but narrow: scarce premier gateway locations, the largest premier-workplace platform in the US and a proven development engine are genuine advantages, and the current leasing cycle (occupancy 88.4% and rising, 91.3% leased) shows tenants paying up for the best buildings. But the filed evidence caps the score: gross margin has fallen four straight years to 59.1%, the measurable roic_proxy was only 8.5-8.7% (FY2016-17), GAAP ROE ran 0.3-5.4% in FY2023-25, and the model is capital-hungry ($953M TTM capex) and heavily levered. That is a moderate 5/10, not the sustained well-above-cost-of-capital record a 7+ requires.",
  "cap_years": 8.5,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
@@ -80,8 +80,8 @@
  ],
  "moat_against": [
   "Hybrid work is a secular demand headwind for office as an asset class \u2014 total portfolio occupancy was still only 88.4% in Q2 2026, six years after the pandemic",
-  "Gross margin has eroded five straight years (62.8% FY2021 to 59.1% FY2025 and 59.1% TTM, fundamentals.json) \u2014 no demonstrated pricing power at the portfolio level",
-  "Returns are thin: the roic_proxy series is measurable only in FY2016-17 (8.7% / 8.5%) because the filer's operating-income tag stops after FY2019, and GAAP ROE ran 3.2% / 0.3% / 5.4% in FY2023-25 \u2014 near, not well above, the cost of capital",
+  "Gross margin has eroded four straight years (62.8% FY2021 to 59.1% FY2025 and 59.1% TTM, fundamentals.json) \u2014 no demonstrated pricing power at the portfolio level",
+  "Returns are thin: the roic_proxy series is measurable only in FY2016-17 (8.7% / 8.5%) because the filer's operating-income tag stops after FY2017, and GAAP ROE ran 3.2% / 0.3% / 5.4% in FY2023-25 \u2014 near, not well above, the cost of capital",
   "Capital intensity consumes the cash flow: capex was $900,437,000 in FY2025 and $953,249,000 TTM (ttm.json), and management expects 2026 leasing capital alone nearer $500M",
   "Leverage: $15,633,220,000 of debt on the FY2025 10-K balance sheet (mortgage notes $4,280,067,000 + unsecured senior notes $9,806,100,000 + term loans $797,053,000 + commercial paper $750,000,000) against a $9,391,540,935 market cap \u2014 refinancing at higher rates is a standing drag"
  ]

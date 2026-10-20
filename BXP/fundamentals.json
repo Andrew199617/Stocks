@@ -1682,10 +1682,10 @@
     ]
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 57.94,
+  "price_date": "2026-10-19",
+  "price_source": "prices.json stats.last",
+  "price_note": null,
   "shares_outstanding": 159661556,
   "shares_as_of": "2026-07-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06)",
@@ -1693,12 +1693,12 @@
   "shares_diluted": 159629000,
   "shares_diluted_source": "latest quarterly weighted-average diluted",
   "ads_ratio": null,
-  "market_cap": null,
-  "market_cap_basis": null,
+  "market_cap": 9250790554.64,
+  "market_cap_basis": "57.94 \u00d7 159,661,556 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)",
   "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "buyback_yield": 0.0,
+  "net_buyback_yield": 4.5617722886216877e-05,
+  "shareholder_yield": 0.0589933364912549,
   "shareholder_yield_basis": "dividends_paid (4/4 quarters filed) + buybacks (never filed in any period \u2014 zero by the filer's own statements) \u2212 share_issuance (4/4 quarters filed); sum of the four quarterly rows 2025-09-30..2026-06-30",
   "shareholder_yield_complete": true,
   "yield_basis": {
@@ -1715,7 +1715,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 0.0,
-    "denominator": null
+    "denominator": "57.94 \u00d7 159,661,556 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1733,7 +1733,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 422000.0,
-    "denominator": null,
+    "denominator": "57.94 \u00d7 159,661,556 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)",
     "kept_as_filed": {
      "share_issuance": "quarter ended 2025-09-30: 2025-01-01..2025-09-30 = -433,000 and 2025-01-01..2025-06-30 = -938,000 filed below zero and kept as filed (505,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign; quarter ended 2025-12-31: 2025-01-01..2025-12-31 = -435,000 and 2025-01-01..2025-09-30 = -433,000 filed below zero and kept as filed (-2,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign; quarter ended 2026-03-31: 2026-01-01..2026-03-31 = -896,000 filed below zero and kept as filed (-896,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign; quarter ended 2026-06-30: 2026-01-01..2026-06-30 = -925,000 and 2026-01-01..2026-03-31 = -896,000 filed below zero and kept as filed (-29,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign"
     }
@@ -1756,7 +1756,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 545735000.0,
-    "denominator": null,
+    "denominator": "57.94 \u00d7 159,661,556 shares (dei:EntityCommonStockSharesOutstanding (10-Q filed 2026-08-06), as of 2026-07-31)",
     "kept_as_filed": {
      "share_issuance": "quarter ended 2025-09-30: 2025-01-01..2025-09-30 = -433,000 and 2025-01-01..2025-06-30 = -938,000 filed below zero and kept as filed (505,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign; quarter ended 2025-12-31: 2025-01-01..2025-12-31 = -435,000 and 2025-01-01..2025-09-30 = -433,000 filed below zero and kept as filed (-2,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign; quarter ended 2026-03-31: 2026-01-01..2026-03-31 = -896,000 filed below zero and kept as filed (-896,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign; quarter ended 2026-06-30: 2026-01-01..2026-06-30 = -925,000 and 2026-01-01..2026-03-31 = -896,000 filed below zero and kept as filed (-29,000) \u2014 issuance proceeds can be a net line (net of offering costs, or stock-award proceeds net of the tax withheld) and no other fact of that fiscal year carries the opposite sign"
     }
@@ -1766,7 +1766,7 @@
     "basis": null,
     "bound": null,
     "complete": false,
-    "denominator": null
+    "denominator": "price 57.94 (prices.json stats.last)"
    }
   },
   "yields_display": {
@@ -1778,24 +1778,24 @@
     "note": "dps_ttm: the latest four quarterly DPS facts are not consecutive quarters (4475 days between 2011-09-30 and 2023-12-31); the latest full-year DPS (FY2017, period ended 2017-12-31) is more than 15 months older than the newest filed period (2026-06-30) \u2014 the per-share rate is not tagged since 2024-12-31; cash dividends paid are filed for 4 of the last four quarters (2025-09-30: 173.3M, 2025-12-31: 123.4M, 2026-03-31: 124.1M, 2026-06-30: 124.5M) on the total dividends line (PaymentsOfDividends) \u2014 it can include preferred / noncontrolling-interest dividends \u2014 whether the common dividend continues is not filed; the 2 quarterly fact(s) since (2023-12-31, 2024-12-31) do not make a trailing twelve months; dps_ttm and dividend_yield null"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.0,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "0.00%",
     "note": null
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 4.5617722886216877e-05,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "0.00%",
     "note": "share_issuance: filed below zero as a net line, kept as filed"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.0589933364912549,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "5.90%",
     "note": "share_issuance: filed below zero as a net line, kept as filed"
    }
   },
