@@ -1,0 +1,90 @@
+{
+ "ticker": "MTCH",
+ "name": "Match Group, Inc.",
+ "sector": "Consumer Internet / Online dating",
+ "price": 45.205,
+ "market_cap_b": 11.87,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 3.6075835269609806,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "Tinder's unmatched local network liquidity and a portfolio of brands (Hinge growing direct revenue +22% in Q2 2026) give real scale and pricing power \u2014 revenue per payer +6% while payers fell \u2014 and the ROIC proxy has run 17-27% over the last five fiscal years on ~70-73% gross margins. But switching costs are near zero, users multi-home, Tinder payers are falling (-5% in Q2 2026) and Gen Z swipe fatigue is a structural headwind, so the network can erode from the edges.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.8%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.1x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (9.0%) vs bull-case tier C (14.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 15.21,
+   "irr": 0.0629
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 23.82,
+   "irr": 0.0897
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 31.63,
+   "irr": 0.113
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 43.46,
+   "irr": 0.1455
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 61.65,
+   "irr": 0.189
+  }
+ },
+ "iv_at_15": 31.24,
+ "iv_at_12": 41.43,
+ "implied_irr": 0.1123,
+ "implied_irr_base_case": 0.113,
+ "upside_at_15_pct": -30.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Quality cash machine, moat 6/10 \u2014 TTM owner's earnings $3.61/share and ROIC proxy ~23-27%, but at $45.21 it does not clear 15%: weighted IRR 11.2%, IV@15 $31.24; it clears 15% only below ~$31.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0897,
+ "irr_bull": 0.1455,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 22.08,
+ "iv_at_25": 17.03,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2945115000,
+ "shares_diluted_latest": 262475000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Tinder's scale: the largest dating-app user pool gives local matching liquidity rivals cannot replicate quickly",
+  "Portfolio breadth \u2014 Hinge (+22% direct revenue, +17% payers in Q2 2026), Evergreen & Emerging niche brands, MG Asia \u2014 diversifies a single-app decline",
+  "Demonstrated pricing power: revenue per payer +6% YoY in Q2 2026 even as payers fell 6%",
+  "High returns on capital: ROIC proxy 22.9-26.7% in FY2023-25 (17.0% in the 2022 settlement year) with gross margins of ~70-73%",
+  "Trust & safety operations and brand recognition at global scale"
+ ],
+ "moat_against": [
+  "Tinder erosion: payers -5% and MAU declining in Q2 2026; total payers -6% YoY to 13.3M",
+  "Near-zero switching costs and routine multi-homing; network effects are local and can unravel market by market",
+  "Gen Z fatigue with swipe dating and substitution toward social apps, events and offline meeting",
+  "Focused rivals (Bumble, Grindr, niche and AI-companion apps) taking share of intentioned daters",
+  "App-store fee and regulatory pressure on the in-app purchase model"
+ ]
+}
