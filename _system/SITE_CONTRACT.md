@@ -561,7 +561,10 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
 - **Shares outstanding (period end)** = `CommonStockSharesOutstanding` (ifrs `NumberOfSharesOutstanding`), falling back per period to
   the cover-page `dei:EntityCommonStockSharesOutstanding` dated within 75 days after the period end (tag recorded as
   `dei:EntityCommonStockSharesOutstanding`). A cover count below 1/1.4 of the same filing's all-class count (an outstanding count
-  or IFRS `NumberOfSharesIssuedAndFullyPaid` / `NumberOfSharesIssued`, each less that filing's treasury shares at the same date —
+  as filed — it is already net of treasury — or IFRS `NumberOfSharesIssuedAndFullyPaid` / `NumberOfSharesIssued` less that
+  filing's treasury shares at the same date; an outstanding-tagged count that, less those treasury shares, lands within 1.4x
+  either way of the cover count is an issued count under the outstanding tag (EG) and is read less treasury too — Codex review
+  round 1 on PR #53: treasury had come off every count, so 2,000 outstanding beside 100 treasury read 1,900 —
   `fundamentals.class_count_check`) is one class of a multi-class filer: the all-class count is used, its tag recorded, and a
   `shares:` warning names both (Q8 bug 2: GGB's 717,782,619 common vs 2,000,879,949; book value per share R$74.65 → R$26.78).
 - **Currency** = the file's one money unit (`money_unit`, below: the currency of the newest annual filing's core facts — shown as
@@ -665,7 +668,10 @@ filed value or plain arithmetic on filed values. Tests: `_system/tests/test_fund
 - **One currency; no cross-currency yield (Q8 bug 3, Andrew 2026-10-19).** fundamentals.json reads every money, per-share and
   flow series in ONE money unit, `fundamentals.money_unit` (`pick_money_unit`: the currency the NEWEST annual filing files most
   of its core FY facts in — revenue, net income, OCF, assets — the count over every filing then USD breaking a tie; the
-  statements.json rule too, so the two files agree); a filer's convenience translations are never read (RDY's FY2018 revenue was
+  statements.json rule too, so the two files agree; only the annual forms the readers read count — 10-K, 10-K/A, 20-F, 40-F
+  (`MONEY_UNIT_FORMS` = statements.py `ANNUAL_FORMS`), never a 20-F/A or 40-F/A, which no annual reader reads: Codex review
+  round 1 on PR #53 — a 20-F/A re-filing an older year in a former currency after the newest 20-F had flipped the file back
+  to that currency and dropped the newest year, while statements.json kept the 20-F's); a filer's convenience translations are never read (RDY's FY2018 revenue was
   the $2.181B translation beside ₹140.809B for FY2017, −98.45% growth; now ₹142.028B, +0.87%), nor a former presentation
   currency (RTO's FY2025 20-F moved from GBP to USD and restates FY2023–24 in USD: the file is USD from that filing on and keeps
   FY2025 — an all-time count would have kept GBP, the larger history, and dropped the newest year; the warning names GBP as a
@@ -1050,7 +1056,8 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   and year (`basis break (...): revenue: 2024-12-31 (3,603,803,000 vs 3,224,058,000); ...`). APP FY2023/FY2024 (apps divestiture),
   AEE FY2011, CBRE FY2016, FTI FY2019, EQT FY2024 and the like are visible now. **App:** grey a flagged quarter (the file no longer
   pretends the year and its quarters agree). EPS / weighted shares / instants are never checked (they do not sum).
-- **One money unit per file** (`money_unit`): the currency the newest annual filing files most of its core FY facts (revenue, net
+- **One money unit per file** (`money_unit`): the currency the newest annual filing (10-K, 10-K/A, 20-F, 40-F — `ANNUAL_FORMS`, the
+  forms the annual columns read; never a 20-F/A / 40-F/A) files most of its core FY facts (revenue, net
   income, OCF, assets) in, the count over every filing then USD breaking a tie (`fundamentals.pick_money_unit`, Q8 bug 3 — RTO's
   move from GBP to USD; until 2026-10-19 the all-filing majority, which kept a former presentation currency and dropped the newest
   year); every money line reads that unit only (per-share lines `<unit>/shares`), so a quarter is never derived from legs in
@@ -1119,14 +1126,17 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   run until the data arrives (HBAN's Q2 2026 10-Q, GFI's FY2025 20-F, BIIB, CTSH, ED, GEHC, VMC on 2026-10-15). A file without
   `covered_through` (pre-rule) is rebuilt once, and so (2026-10-16) is a file whose cash line used the combined cash + restricted
   cash tag but carries no `incl_restricted_annual` (`restricted_cash_pending`). `can_skip()` is the rule; the summary line reads
-  "newest filing already recorded and covered".
+  "newest filing already recorded and covered". `schema_version` is 4 since 2026-10-19 (ruling-sheet Q8 bugs 2–3; Codex review
+  round 1 on PR #53): the net-cash debt rule, the all-class share count and the one-money-unit rule leave no field that marks a
+  file written before them, so `--all` rebuilds every schema-3 file once — each rewrites once, as `schema_version` is in the file.
 - **Open questions for the owner.** (1) Whether FCF should subtract purchases of intangibles / capitalised software for filers
   with no PP&E line (APP: 28,318K in FY2025; the engine's capex override does); the file keeps the contract's ocf − capex and shows
   the intangibles line beside it. (2026-10-19, Q8: fundamentals.json's `fcf` / `oe_conservative` now subtract the engine 5.5
   intangible leg — `fundamentals.ENGINE_INTANGIBLE_TAGS`, capitalized software excluded until the Q6 / 5.7 follow-on — while
   statements.json's `fcf` / `owner_earnings` lines are still ocf − capex; that line is a separate follow-on. Quarters take each tagged
-  year-to-date leg less the latest tagged shorter one, 0 when none, so a year's quarters sum to its FY figure (a quarter may be
-  negative); a year whose annual row is filed with no FY intangible figure (the 10-K leaves the line untagged or re-files it as $0,
+  year-to-date leg less the quarters before it (the latest tagged shorter leg, 0 when none), so a year's quarters sum to its FY
+  figure (a quarter may be negative); a quarter with no year-to-date leg ending with it keeps its own direct three-month fact
+  (Codex review round 1 on PR #53: Q1 10, Q2 20, Q3 30 three-month facts beside FY 100 had read Q1 10, no Q2 / Q3, Q4 90); a year whose annual row is filed with no FY intangible figure (the 10-K leaves the line untagged or re-files it as $0,
   which the engine ignores) deducts nothing in any quarter, as its annual row deducts nothing (verifier round 2: RMD FY2024, BAX
   FY2025, NXT FY2026); the TTM leg is the engine's FY − prior-year YTD + current YTD, floored at zero (`intangible_capex_ttm`) — IREN's TTM
   equals its FY2026 figure. **App:** the capex rows and the cash-flow chart say "Capex (PP&E)", the chart adds an "Intangible

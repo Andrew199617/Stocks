@@ -544,6 +544,25 @@ def test_ttm_intangible_leg_is_the_engine_formula():
     assert run([4, 6, 9, 12], [None, None, None, None]) == 6 and run([0, 0, 0, 0], [None, None, None, None]) == 0
 
 
+def test_direct_three_month_intangible_facts_keep_their_quarters():
+    """Codex review round 1 on PR #53 (4322240083): the FY context alone (and a Q1 fact, which starts on the fiscal-year
+    start) made the year a year-to-date year, so the direct three-month Q2 / Q3 facts were dropped and Q4 took the
+    whole remainder: Q1 10, Q2 20, Q3 30 and FY 100 gave Q1 10, no Q2 / Q3, Q4 90. A quarter with a filed three-month
+    fact and no year-to-date leg ending with it keeps that fact; only the quarters with no figure of their own are
+    derived (Q4 = FY less the quarters before it), so the year still sums to its FY figure."""
+    T = "PaymentsToAcquireIntangibleAssets"
+    def d(start, end, val, form="10-Q", fp="Q1"):
+        return (G, T, "USD", {"start": start, "end": end, "val": val, "form": form, "fp": fp, "filed": f"{end[:4]}-{end[5:7]}-28", "accn": "A" + end})
+    fy = d("2025-01-01", "2025-12-31", 100, "10-K", "FY")
+    direct = _facts([d("2025-01-01", "2025-03-31", 10), d("2025-04-01", "2025-06-30", 20, fp="Q2"), d("2025-07-01", "2025-09-30", 30, fp="Q3"), fy])
+    got = F.intangible_capex_quarterly(direct, "USD", fy_starts={"2025-01-01"})
+    assert got == {"2025-03-31": 10, "2025-06-30": 20, "2025-09-30": 30, "2025-12-31": 40}, got
+    # a discrete Q2 between year-to-date legs: Q1 10, Q2 (three months) 20, nine months 60, FY 100
+    mixed = _facts([d("2025-01-01", "2025-03-31", 10), d("2025-04-01", "2025-06-30", 20, fp="Q2"), d("2025-01-01", "2025-09-30", 60, fp="Q3"), fy])
+    got = F.intangible_capex_quarterly(mixed, "USD", fy_starts={"2025-01-01"})
+    assert got == {"2025-03-31": 10, "2025-06-30": 20, "2025-09-30": 30, "2025-12-31": 40}, got
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

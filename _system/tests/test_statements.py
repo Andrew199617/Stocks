@@ -1761,6 +1761,19 @@ def test_single_class_dei_count_is_not_the_period_end_share_count():
     assert line(st, "metrics", "shares_outstanding")["annual"][1] == 1_900_000_000
 
 
+def test_files_written_before_the_q8_rules_are_rebuilt_once():
+    """Codex review round 1 on PR #53 (4322240089): --all skips the companyfacts download when the existing file records
+    the same newest filing, schema_version and coverage, so a file written before the Q8 rules (net cash needs a filed
+    debt figure, the all-class share count, the one-money-unit rule) kept MICC's +EUR441M and GGB's +R$5.929B net cash
+    until the next 20-F. schema_version 4 rebuilds every schema-3 file once."""
+    latest = {"form": "20-F", "filed": "2026-03-18", "period": "2025-12-31"}
+    pre = {"latest_filed": dict(latest), "schema_version": 3, "covered_through": "2025-12-31",
+           "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalents"]}]}}
+    assert S.SCHEMA_VERSION == 4, S.SCHEMA_VERSION
+    assert S.can_skip(pre, latest) is False, "a schema-3 file is rebuilt"
+    assert S.can_skip(dict(pre, schema_version=S.SCHEMA_VERSION), latest) is True, "and skipped again once rebuilt"
+
+
 if __name__ == "__main__":
     failed = 0
     for name, fn in sorted((k, v) for k, v in globals().items() if k.startswith("test_") and callable(v)):

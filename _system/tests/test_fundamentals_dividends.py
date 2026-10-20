@@ -1596,6 +1596,27 @@ def test_stale_count_fallback_gives_way_to_a_count_near_the_engine_count():
     sf_a = [dict(annual[0], shares_diluted=110_052_000)]
     assert F.fallback_share_count(sf_q, sf_a, anchor=110_052_000)[0] == 161_631_000
 
+def test_treasury_shares_come_off_issued_counts_only():
+    """Codex review round 1 on PR #53 (4322240070): all_class_count subtracted the filing's treasury shares from every
+    candidate, but CommonStockSharesOutstanding / IFRS NumberOfSharesOutstanding are already net of treasury: a filing
+    with a 700 one-class cover count, 2,000 outstanding and 100 treasury read 1,900; 1,600 treasury netted it to 400 and
+    hid the multi-class swap; treasury above the outstanding count (a treasury-heavy filer) made it no count at all.
+    Treasury now comes off issued counts only - and off an outstanding-tagged count only when, net of the treasury
+    shares, it matches the cover count (EG files its ISSUED count under the outstanding tag; the EG case above)."""
+    def inst(tax, tag, val):
+        return (tax, tag, "shares", {"end": "2025-12-31", "val": val, "form": "10-K", "fp": "FY", "filed": "2026-02-20", "accn": "A"})
+    for tax, out_tag, tr_tag in (("us-gaap", "CommonStockSharesOutstanding", "TreasuryStockShares"),
+                                 ("ifrs-full", "NumberOfSharesOutstanding", "SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates")):
+        for treasury in (100, 1_600, 2_400):
+            facts = _facts([inst("dei", "EntityCommonStockSharesOutstanding", 700), inst(tax, out_tag, 2_000), inst(tax, tr_tag, treasury)])
+            count, _, src = F.latest_share_count(facts)
+            assert count == 2_000 and "treasury" not in src, (tax, treasury, count, src)
+    # an issued count is still net of the same filing's treasury shares (GGB-shaped, above)
+    facts = _facts([inst("dei", "EntityCommonStockSharesOutstanding", 700), inst("ifrs-full", "NumberOfSharesIssuedAndFullyPaid", 2_100),
+                    inst("ifrs-full", "SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates", 100)])
+    assert F.latest_share_count(facts)[0] == 2_000
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

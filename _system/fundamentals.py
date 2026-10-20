@@ -341,7 +341,11 @@ def _unit_currency(unit_key):
     return base if (len(base) == 3 and base.isalpha() and base.isupper()) else None
 
 
-MONEY_UNIT_FORMS = ("10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
+# The annual forms annual_series reads (statements.py ANNUAL_FORMS is the same set). The money-unit selector reads only
+# these (Codex review round 1 on PR #53): a 20-F/A or 40-F/A that no annual reader reads must never pick the unit - a
+# 20-F/A re-filing an older year in a former currency after the newest 20-F flipped the file back to that currency
+# (RTO-shaped: FY2025 dropped) or left it with no annual row at all, while statements.json kept the 20-F's currency.
+MONEY_UNIT_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
 
 
 def money_entries(facts):
@@ -452,7 +456,7 @@ def annual_series(facts, tags, duration=True, with_filed=False, unit=None, money
                 continue
             best = {}
             for e in units[unit_key]:
-                if e.get("fp") != "FY" or e.get("form", "") not in ("10-K", "10-K/A", "20-F", "40-F"):
+                if e.get("fp") != "FY" or e.get("form", "") not in MONEY_UNIT_FORMS:
                     continue
                 end, start = e.get("end"), e.get("start")
                 if not end:
@@ -785,8 +789,12 @@ def intangible_capex_quarterly(facts, money, fy_starts=None, periods=None, fy_pe
     all Q2's: IREN's 107,573,000), Q4 = FY less the latest tagged YTD, so the
     quarters of a year always sum to its FY figure; a quarter can be negative
     (RMD's Q2 FY2026: a YTD restated down) — only the TTM total is floored
-    (intangible_capex_ttm). Direct three-month facts count only in a fiscal
-    year with no year-to-date leg. A completed fiscal year (its annual row is
+    (intangible_capex_ttm). A quarter with no year-to-date leg ending with
+    it keeps its own direct three-month fact, and the next year-to-date leg
+    (or FY) less the quarters before it gives the next quarter (Codex review
+    round 1 on PR #53: Q1 10, Q2 20, Q3 30 three-month facts beside FY 100 had
+    read Q1 10, no Q2 / Q3, Q4 90 — the FY context alone made the year a
+    year-to-date year and dropped the direct facts). A completed fiscal year (its annual row is
     filed — fy_periods, core_fy_periods) with no FY intangible figure (the
     10-K leaves the line untagged, or re-files it as $0, which the engine
     ignores) deducts nothing in any quarter, as its annual row and the engine
@@ -811,12 +819,24 @@ def intangible_capex_quarterly(facts, money, fy_starts=None, periods=None, fy_pe
                 by_rank[r] = (e, per[(s2, e)])
         if by_rank:
             ytd_years.add(s)
+        else:
+            continue
+        direct = {}
+        for (s2, e), v in sorted(per.items()):
+            if 80 <= _days(s2, e) <= 120 and s2 >= s and max((x for x in starts if x <= s2 and _days(x, s2) <= 300), default=None) == s:
+                r = _ytd_rank(s, e)
+                if r is not None and r not in by_rank and r not in direct:
+                    direct[r] = (e, v)
         prev = 0
         for r in (1, 2, 3, 4):
             if r in by_rank:
                 e, v = by_rank[r]
                 out[e] = _whole(v - prev)
                 prev = v
+            elif r in direct:
+                e, v = direct[r]
+                out[e] = v
+                prev = _whole(prev + v)
     for (s, e), v in sorted(per.items()):
         if 80 <= _days(s, e) <= 120 and e not in out:
             fs = max((x for x in starts if x <= s and _days(x, s) <= 300), default=None)
@@ -1628,12 +1648,18 @@ def apply_splits(dps_q, dps_fy, fy_filed, splits):
 # while the same 20-F files the all-class count (IFRS
 # NumberOfSharesIssuedAndFullyPaid 2,000,879,949). Per-share figures divided by
 # the one class overstated book value per share ~2.8x and understated the
-# market cap ~2.8x. The all-class counts read: an outstanding count, or an
-# IFRS issued count, each less the treasury shares the same filing files at
-# that date — EG tags its ISSUED count (74.5M) as CommonStockSharesOutstanding
-# beside 35.8M treasury shares and a 38.3M cover count, which is therefore not
-# a class count (us-gaap issued counts are not read: a treasury-heavy US
-# filer's issued count is far above its outstanding shares — IBM ~2.4x).
+# market cap ~2.8x. The all-class counts read: an outstanding count as filed
+# (it is already net of treasury shares — Codex review round 1 on PR #53: a
+# 2,000 outstanding count beside 100 treasury shares read 1,900, and a large
+# treasury block hid the swap), or an IFRS issued count less the treasury
+# shares the same filing files at that date. EG tags its ISSUED count (74.5M)
+# as CommonStockSharesOutstanding beside 35.8M treasury shares and a 38.3M
+# cover count: an outstanding-tagged count that, net of the same filing's
+# treasury shares, lands within 1.4x (SHARE_REFILE_MIN) either way of the
+# cover count is read as such an issued count, less treasury — so EG's cover
+# count is not a class count (us-gaap issued counts are not read: a
+# treasury-heavy US filer's issued count is far above its outstanding shares
+# — IBM ~2.4x).
 ALL_CLASS_OUTSTANDING_TAGS = [("us-gaap", "CommonStockSharesOutstanding"), (IF, "NumberOfSharesOutstanding")]
 ALL_CLASS_ISSUED_TAGS = [(IF, "NumberOfSharesIssuedAndFullyPaid"), (IF, "NumberOfSharesIssued")]
 TREASURY_SHARE_TAGS = [(IF, "SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates"), ("us-gaap", "TreasuryStockShares"),
@@ -1652,11 +1678,15 @@ def _instant_share_facts(facts, pairs, accn):
     return out
 
 
-def all_class_count(facts, accn):
+def all_class_count(facts, accn, cover=None):
     """(count, end, source) — the largest all-class period-end share count the
-    filing `accn` files at its latest balance-sheet date (ALL_CLASS_OUTSTANDING_TAGS
-    or ALL_CLASS_ISSUED_TAGS, less that filing's treasury shares at the same
-    date when it files them), else None."""
+    filing `accn` files at its latest balance-sheet date, else None: an
+    ALL_CLASS_OUTSTANDING_TAGS count as filed (already net of treasury), an
+    ALL_CLASS_ISSUED_TAGS count less that filing's treasury shares at the same
+    date when it files them. An outstanding-tagged count that, less those
+    treasury shares, lands within SHARE_REFILE_MIN either way of the `cover`
+    count (the dei count being checked) is an issued count filed under the
+    outstanding tag (EG) and is read less treasury too."""
     if not accn:
         return None
     outs = _instant_share_facts(facts, ALL_CLASS_OUTSTANDING_TAGS, accn)
@@ -1665,7 +1695,15 @@ def all_class_count(facts, accn):
         return None
     end = max(x[0] for x in outs + issued)
     treasury = {x[0]: x[1] for x in _instant_share_facts(facts, TREASURY_SHARE_TAGS, accn)}
-    cands = [(v - treasury.get(end, 0), src + (f" less {treasury[end]:,.0f} treasury shares" if end in treasury else "")) for e, v, src in outs + issued if e == end]
+    t = treasury.get(end)
+
+    def issued_like(v):
+        return t is not None and _num(cover) and cover > 0 and cover / SHARE_REFILE_MIN <= v - t <= cover * SHARE_REFILE_MIN
+
+    less = f" less {t:,.0f} treasury shares" if t is not None else ""
+    cands = [(v, src) if not issued_like(v) else (v - t, src + less + " (an issued count: net of them it matches the cover count)")
+             for e, v, src in outs if e == end]
+    cands += [(v - (t or 0), src + less) for e, v, src in issued if e == end]
     cands = [c for c in cands if c[0] > 0]
     if not cands:
         return None
@@ -1677,7 +1715,7 @@ def class_count_check(count, facts, accn):
     """When a cover-page dei count is below 1/SHARE_REFILE_MIN (1/1.4) of the
     same filing's all-class count it is one class of a multi-class filer:
     (all-class count, end, source, note); else None."""
-    ac = all_class_count(facts, accn)
+    ac = all_class_count(facts, accn, cover=count)
     if ac is None or not _num(count) or count <= 0 or ac[0] < SHARE_REFILE_MIN * count:
         return None
     note = (f"the cover-page dei:EntityCommonStockSharesOutstanding count {count:,.0f} does not cover the filing's share base — the same filing's "

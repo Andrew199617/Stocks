@@ -218,6 +218,38 @@ def test_main_writes_one_currency_and_no_cross_currency_yield():
         shutil.rmtree(base, ignore_errors=True)
 
 
+def test_an_amended_annual_report_never_picks_the_money_unit():
+    """Codex review round 1 on PR #53 (4322240065): the money-unit selector read 20-F/A and 40-F/A core facts while
+    annual_series (and statements.py's ANNUAL_FORMS) skip them, so the two disagreed whenever an amendment was the
+    newest annual filing. RTO's shape: a 20-F/A filed after the USD 20-F re-files FY2024 in the former GBP presentation
+    currency (RTO filed a 20-F/A on 2024-02-08 amending an older report) - the selector flipped back to GBP, dropped
+    FY2025 and named USD as a former currency, while statements.json stayed USD. A USD 20-F filer whose newest filing
+    is a EUR 20-F/A got a EUR file with no annual rows at all. The selector now reads the annual readers' forms."""
+    import statements as S
+    facts = rto_facts()
+    for tag, v in (("Revenue", 5_436e6), ("ProfitLoss", 299e6), ("CashFlowsFromUsedInOperatingActivities", 830e6)):
+        facts["facts"][IF][tag]["units"]["GBP"].append({"start": "2024-01-01", "end": "2024-12-31", "val": v, "form": "20-F/A", "fp": "FY",
+                                                        "filed": "2026-06-01", "accn": "FA2026-06-01"})
+    assert F.money_unit(facts) == "USD", F.money_unit(facts)
+    rows, _, currency = F.build_annual(facts)
+    assert currency == [] and rows[-1]["period_end"] == "2025-12-31" and rows[-1]["revenue"] == 6_908e6, (currency, rows[-1])
+    warnings = []
+    assert S.money_unit(facts, warnings) == "USD", warnings
+    e = []
+    for tag, by in (("Revenue", {2023: 9e9, 2024: 10e9, 2025: 11e9}), ("ProfitLoss", {2023: 1e9, 2024: 1.1e9, 2025: 1.2e9})):
+        for y, v in by.items():
+            e.append(_fyc(tag, f"{y}-12-31", v, "USD", "2026-03-01"))
+        for y in (2024, 2025):
+            e.append((IF, tag, "EUR", {"start": f"{y}-01-01", "end": f"{y}-12-31", "val": by[y] * 0.9, "form": "20-F/A", "fp": "FY",
+                                       "filed": "2026-06-01", "accn": "FA"}))
+    amended = _facts(e)
+    assert F.money_unit(amended) == "USD", F.money_unit(amended)
+    rows, _, currency = F.build_annual(amended)
+    assert currency == [] and [r["period_end"][:4] for r in rows] == ["2023", "2024", "2025"], (currency, rows)
+    assert S.money_unit(amended, []) == "USD"
+    assert tuple(F.MONEY_UNIT_FORMS) == tuple(S.ANNUAL_FORMS), "one form set for the selector and every annual reader"
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

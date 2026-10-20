@@ -158,7 +158,10 @@ SOURCE = "SEC EDGAR companyfacts (filing-direct)"
 # diluted / EPS rules, splits — --all rebuilds older files once. The restricted-cash split (round 5) only ADDS fields and
 # changes only files whose cash line uses the combined cash + restricted tag, so it is not a version bump: can_skip
 # rebuilds exactly those files once (restricted_cash_pending) and leaves the rest untouched.
-SCHEMA_VERSION = 3
+# 4 (2026-10-19, ruling-sheet Q8 bugs 2-3, Codex review round 1 on PR #53): net cash needs a filed debt figure, the
+# all-class share count, the one money unit of the newest annual filing — no field marks a file written before them, so
+# --all rebuilds every schema-3 file once (each rewrites once: schema_version is in the file).
+SCHEMA_VERSION = 4
 FILING_FORMS = ("10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F", "40-F/A")
 INSTANT_FORMS = ("10-Q", "10-Q/A", "10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
