@@ -3135,6 +3135,24 @@
    "source": "Form 6-K furnished 2026-07-27 (accession 0001193125-26-318068), Exhibit 99.3, Condensed Consolidated Interim Financial Statements for the second quarter ended June 30, 2026: condensed consolidated statements of cash flows print six-month legs for 2026 and 2025 \u2014 net cash from operating activities $377,110K / $440,238K; purchases of property and equipment $100,686K / $118,331K; purchases of intangible assets $2,125K / $7,334K; share-based payment transactions $8,526K / $7,257K; Note 16 (Earnings per share) prints the H1 2026 weighted average number of diluted common shares, 82,413,114. FY2025 legs from the Form 40-F for the fiscal year ended December 31, 2025 as extracted in financials_history.csv (OCF $977,788K; purchases of property and equipment $273,220K; purchases of intangible assets $9,703K; share-based payments $15,148K).",
    "reason": "Bridged TTM under Andrew's Q4 ruling (2026-10-19: when an interim prints the TTM legs, IFRS names score on the bridged TTM), directed re-run ordered by Andrew 2026-10-20. Construction, per leg: TTM = FY2025 + H1 2026 \u2212 H1 2025 \u2192 OCF $914,660K; capex $260,069K (property and equipment $255,575K + intangible assets $4,494K \u2014 the same two-line rollup as the scored chain); SBC $16,417K; owner's earnings $638,174K. Divided by the latest filed diluted count, 82,413,114 (H1 2026 weighted average diluted shares, Note 16 \u2014 the ttm.py denominator convention), = $7.7436/share. The prior base was the median of the last 3 FY, $7.6544/share (weighted IRR 10.01%, Tier C); both bases are recorded side by side in analysis.md.",
    "kind": "filing"
+  },
+  {
+   "ticker": "FCFS",
+   "field": "capex",
+   "value": 61100000,
+   "kind": "estimate",
+   "source": "Average of the last three filed fiscal years' capex from financials_history.csv (FY2023 $60,148,000; FY2024 $68,245,000; FY2025 $54,906,000; PaymentsToAcquireProductiveAssets, 10-K filed 2026-02-09)",
+   "reason": "FirstCash files capex annually in the 10-K but tags no capex in its 10-Qs, so ttm.py exits 3 (no post-FY YTD capex fact) and no TTM base can be built without an estimate for the two YTD legs. The estimate sits at 1.11x the last filed value (FY2025 $54.9M), inside the 0.1x-10x band; the two YTD legs are equal-length (H1 2025 vs H1 2026) so they substantially cancel in the TTM math, leaving the filed FY2025 capex as the dominant leg. The override fills no annual year \u2014 annual capex is filed for every year in the history.",
+   "date": "2026-10-20",
+   "scope": "ttm_legs",
+   "base_used": "ttm",
+   "base_oe_without_override": 13.5018,
+   "base_oe_with_override": 13.5018,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1301,
+   "weighted_irr_with_override": 0.1301,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
   }
  ]
 }
