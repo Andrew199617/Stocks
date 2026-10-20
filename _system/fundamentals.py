@@ -62,11 +62,19 @@ growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
   stays a cut, `basis_breaks_rejected`); a label collision between two fiscal
   years ending in one calendar year is named (`fy_label_basis`, join on
   period_end). Market cap = price × the latest filed instant share count
-  (cover-page dei count, else the balance sheet's); when none exists in
-  companyfacts (a dual-class filer's counts are class-dimensioned and dropped
-  by the API — TKO) the most inclusive recent filed diluted weighted-average
-  count is used and `shares_source` / `shares_basis` / `market_cap_basis` say
-  so (fallback_share_count). Quarterly rows carry dividends_paid, buybacks, share_issuance (with
+  (cover-page dei count, else the balance sheet's) — unless that count is
+  stale (dated more than dcf_engine.DEI_MAX_AGE_DAYS before the newest fiscal
+  year end, ruling-sheet Q8 bug 2: TLK's 1995 count), and a dei count that is
+  one class of a multi-class filer gives way to the same filing's all-class
+  count (class_count_check, GGB); when no usable instant count exists (a
+  dual-class filer's counts are class-dimensioned and dropped by the API —
+  TKO — or the only one is stale) the most inclusive recent filed diluted
+  weighted-average count is used and `shares_source` / `shares_basis` /
+  `market_cap_basis` say so and why (fallback_share_count); a fallback that
+  replaces a stale count outside SHARE_SCALE_BAND of the engine's validated
+  count prices nothing (PAC), and one more than 20% from it that no other
+  recent filed count corroborates gives way to the latest filed diluted
+  count within 20% of it (SHARE_ANCHOR_TOL, ECHO; SF's split level stands). Quarterly rows carry dividends_paid, buybacks, share_issuance (with
   the contributing tags) and DPS. DPS is a per-share rate: only direct
   quarterly facts are used, never YTD subtraction; the cash flows derive like
   the other cash-flow lines. Price = <T>/prices.json stats.last; without
@@ -110,12 +118,25 @@ growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
 Units are the filer's own (USD for almost every name; `currency` records
 anything else). No FX conversion is applied here — the engine handles that
 for the valuation; this file is for reading the filings as filed.
+Ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19; enrichment only, no engine
+release): ONE money unit per file (money_unit — the currency the newest
+annual filing files its core FY facts in, the all-filing count breaking a
+tie; convenience translations and a former presentation currency are never
+read, RDY, RTO);
+a non-USD file's yields are null (its DPS and flows are not in the USD
+price's currency; the block carries `currency`); an instant share count more
+than 18 months before the newest fiscal year end is stale (TLK's 1995
+count) and a cover-page dei count that is one class of a multi-class filer
+gives way to the same filing's all-class count (class_count_check, GGB);
+derived fcf / oe_conservative subtract the engine 5.5 intangible-capex leg
+too (ENGINE_INTANGIBLE_TAGS via dcf_engine.capex_for_period; GGB, GMED).
 """
 import json, sys, os, csv, datetime, time, math, statistics, urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from _stable import write_json_if_changed, same_content  # noqa: E402  (committed SEC file: no run-date-only rewrites)
+import dcf_engine as _engine  # noqa: E402  (ruling-sheet Q8: the engine's intangible-capex leg and dei staleness rule; no I/O at import)
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 SYS = f"{BASE}/_system"
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
@@ -301,23 +322,132 @@ def _pairs(tags):
     return [(t if isinstance(t, tuple) else ("us-gaap", t)) for t in tags]
 
 
-def _units_pref(units):
+def _units_pref(units, money=None):
+    """The units of a tag in reading order (USD first). money= (the file's one
+    money unit, money_unit) keeps only units that are not ANOTHER currency:
+    the money unit itself, its per-share unit and the non-money units (shares,
+    pure) — a convenience translation never enters a series (ruling-sheet Q8
+    bug 3: RDY's FY2018 USD revenue beside its INR history)."""
     pref = [u for u in UNIT_PREF if u in units]
-    return pref + [u for u in units if u not in pref]
+    order = pref + [u for u in units if u not in pref]
+    if money is None:
+        return order
+    return [u for u in order if _unit_currency(u) in (None, money)]
 
 
-def annual_series(facts, tags, duration=True, with_filed=False, unit=None):
+def _unit_currency(unit_key):
+    """The ISO currency a unit is denominated in ('INR' for INR and INR/shares), None for shares / pure."""
+    base = str(unit_key).split("/")[0]
+    return base if (len(base) == 3 and base.isalpha() and base.isupper()) else None
+
+
+MONEY_UNIT_FORMS = ("10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
+
+
+def money_entries(facts):
+    """[(unit, filed, accn)] — one per core FY fact (revenue, net income, OCF, assets) on an annual form, money units only."""
+    out = []
+    for key, duration in (("revenue", True), ("net_income", True), ("ocf", True), ("assets", False)):
+        for taxonomy, tag in _pairs(DUR[key] if duration else INST[key]):
+            for unit_key, es in ((facts.get("facts", {}).get(taxonomy, {}).get(tag) or {}).get("units") or {}).items():
+                if "/" in unit_key or _unit_currency(unit_key) is None:
+                    continue
+                for e in es:
+                    if e.get("fp") != "FY" or e.get("form", "") not in MONEY_UNIT_FORMS or not e.get("end"):
+                        continue
+                    if duration and not (e.get("start") and 330 <= _days(e["start"], e["end"]) <= 380):
+                        continue
+                    out.append((unit_key, e.get("filed") or "", e.get("accn")))
+    return out
+
+
+def money_counts(facts):
+    """{unit: number of core FY facts (revenue, net income, OCF, assets) filed in it} — money units only."""
+    counts = {}
+    for u, _, _ in money_entries(facts):
+        counts[u] = counts.get(u, 0) + 1
+    return counts
+
+
+def pick_money_unit(entries):
+    """Ruling-sheet Q8 bug 3 (Andrew, 2026-10-19) — the one money unit of a
+    file from its core FY facts `entries` [(unit, filed, accn)]: the currency
+    the NEWEST annual filing (latest filed date) files most of its core facts
+    in; the count over every filing breaks a tie, then USD. A filer that
+    changed its presentation currency (RTO: GBP through the 20-F filed
+    2025-03-26, USD from the one filed 2026-03-25, which restates FY2023-24)
+    is read in the new one at once — an all-time majority would keep the old
+    currency and drop the newest year until the new one outnumbered the
+    history. Returns {"unit", "counts", "newest_filed", "translations"
+    (other currencies the newest filing also files — convenience
+    translations), "earlier" (other currencies only earlier filings file),
+    split into "former" (the majority currency of at least one earlier
+    filing — a former presentation currency: RTO's GBP, FMS's USD) and
+    "earlier_translations" (a minority in every filing — convenience
+    translations older filings carried: VOD's USD)}."""
+    counts, by_filing = {}, {}
+    latest = max((f for _, f, _ in entries), default="")
+    for u, f, _ in entries:
+        counts[u] = counts.get(u, 0) + 1
+        by_filing.setdefault(f, {})
+        by_filing[f][u] = by_filing[f].get(u, 0) + 1
+    if not counts:
+        return {"unit": "USD", "counts": {}, "translations": [], "earlier": [], "former": [], "earlier_translations": [], "newest_filed": None}
+    newest = by_filing.get(latest, {})
+    order = _units_pref(list(counts))
+    unit = max(order, key=lambda u: (newest.get(u, 0), counts[u], -order.index(u)))
+    earlier = sorted(u for u in counts if u != unit and u not in newest)
+    led = {max(fc, key=lambda u: (fc[u], -order.index(u))) for fc in by_filing.values()}
+    return {"unit": unit, "counts": counts, "newest_filed": latest or None,
+            "translations": sorted(u for u in newest if u != unit), "earlier": earlier,
+            "former": [u for u in earlier if u in led], "earlier_translations": [u for u in earlier if u not in led]}
+
+
+def money_unit(facts):
+    """Ruling-sheet Q8 bug 3 (Andrew, 2026-10-19): the ONE money unit of
+    fundamentals.json — the currency the newest annual filing files most of
+    its core FY facts (revenue, net income, OCF, assets) in, the all-filing
+    count then USD breaking a tie (pick_money_unit); statements.money_unit
+    applies the same rule to statements.json. Every money series, per-share
+    series and flow leg is read in it (_units_pref(money=...)); facts the filer
+    also files in another currency (convenience translations, or a former
+    presentation currency) are not read."""
+    return pick_money_unit(money_entries(facts))["unit"]
+
+
+def money_unit_warning(pick):
+    """The file warning that names the money unit and every currency left unread (pick_money_unit's result)."""
+    unit, tr = pick["unit"], pick["translations"]
+    fo, et = pick.get("former", []), pick.get("earlier_translations", [])
+    left = []
+    if tr:
+        left.append(f"the filer's {', '.join(tr)} convenience translations are not read")
+    if fo:
+        left.append(f"the {', '.join(fo)} facts of filings before the newest annual report (filed {pick['newest_filed']}) are a former "
+                    f"presentation currency and are not read")
+    if et:
+        left.append(f"the {', '.join(et)} convenience translations of earlier filings are not read")
+    if unit != "USD":
+        return (f"core facts filed in {unit} — figures are shown as filed (no FX conversion here; the engine converts for the valuation)"
+                + "".join(f"; {x}" for x in left) + f"; the price is USD, so the price-based yields are not computed")
+    if left:
+        return "the filer also files core facts in another currency — only the USD facts are read: " + "; ".join(left)
+    return None
+
+
+def annual_series(facts, tags, duration=True, with_filed=False, unit=None, money=None):
     """{period_end: val}, {period_end: tag}, {period_end: unit} — FY facts on
     annual forms, merged across candidate tags per period, latest filing wins.
     with_filed=True adds a fourth dict {period_end: filed date}. unit= reads
-    only that unit (the same line in another line's currency)."""
+    only that unit (the same line in another line's currency); money= reads
+    no currency other than that one (_units_pref)."""
     merged, tag_by, unit_by, filed_by = {}, {}, {}, {}
     for taxonomy, tag in _pairs(tags):
         tf = facts.get("facts", {}).get(taxonomy, {})
         if tag not in tf:
             continue
         units = tf[tag].get("units", {})
-        for unit_key in _units_pref(units):
+        for unit_key in _units_pref(units, money):
             if unit is not None and unit_key != unit:
                 continue
             best = {}
@@ -346,16 +476,17 @@ def annual_series(facts, tags, duration=True, with_filed=False, unit=None):
 DURATION_FORMS = ("10-Q", "10-Q/A", "10-K", "10-K/A", "20-F", "40-F", "6-K")
 
 
-def duration_facts(facts, tags):
+def duration_facts(facts, tags, money=None):
     """{(start, end): (val, tag, unit, filed, accn)} across 10-Q/10-K/20-F/40-F
-    forms, merged per period by tag priority (latest filing wins per tag)."""
+    forms, merged per period by tag priority (latest filing wins per tag).
+    money=: no currency other than that one (_units_pref)."""
     out = {}
     for taxonomy, tag in _pairs(tags):
         tf = facts.get("facts", {}).get(taxonomy, {})
         if tag not in tf:
             continue
         units = tf[tag].get("units", {})
-        for unit_key in _units_pref(units):
+        for unit_key in _units_pref(units, money):
             best = {}
             for e in units[unit_key]:
                 if e.get("form", "") not in DURATION_FORMS:
@@ -373,7 +504,7 @@ def duration_facts(facts, tags):
     return out
 
 
-def combined_duration_facts(facts, tags, supersets=None):
+def combined_duration_facts(facts, tags, supersets=None, money=None):
     """{(start, end): (sum, "tagA+tagB", unit, filed, accn)}: for each period,
     the DISTINCT candidate tags filed in the same filing are summed (a filer
     that books option exercises and ESPP proceeds on two lines). The filing is
@@ -393,7 +524,7 @@ def combined_duration_facts(facts, tags, supersets=None):
         if tag not in tf:
             continue
         units = tf[tag].get("units", {})
-        for unit_key in _units_pref(units):
+        for unit_key in _units_pref(units, money):
             for e in units[unit_key]:
                 if e.get("form", "") not in DURATION_FORMS or not e.get("start") or not e.get("end"):
                     continue
@@ -420,16 +551,16 @@ def combined_duration_facts(facts, tags, supersets=None):
     return out
 
 
-def combined_annual(facts, tags, supersets=None):
+def combined_annual(facts, tags, supersets=None, money=None):
     """{period_end: val}, {period_end: tags} for FY-length periods of combined_duration_facts (annual forms only)."""
     vals, tag_by = {}, {}
-    for (s, e), (v, tag, unit, filed, accn) in combined_duration_facts(facts, tags, supersets).items():
+    for (s, e), (v, tag, unit, filed, accn) in combined_duration_facts(facts, tags, supersets, money=money).items():
         if 330 <= _days(s, e) <= 380:
             vals[e], tag_by[e] = v, tag
     return vals, tag_by
 
 
-def quarterly_series(facts, tags, derive=True, direct_window=(80, 120), fy_starts=None, prebuilt=None):
+def quarterly_series(facts, tags, derive=True, direct_window=(80, 120), fy_starts=None, prebuilt=None, money=None):
     """{quarter_end: {val, fq, fy_start, derived, tag}} for the fiscal quarters
     the filer's facts support. Direct 3-month facts win; otherwise (cash-flow
     lines are filed YTD only) quarter = YTD - prior YTD within the same
@@ -439,7 +570,7 @@ def quarterly_series(facts, tags, derive=True, direct_window=(80, 120), fy_start
     tag filed year-to-date without its own annual fact can still be derived.
     `prebuilt` is a ready {(start, end): (val, tag, unit, filed, accn)} map
     (combined_duration_facts) used instead of reading `tags`."""
-    f = prebuilt if prebuilt is not None else duration_facts(facts, tags)
+    f = prebuilt if prebuilt is not None else duration_facts(facts, tags, money=money)
     if not f:
         return {}
     annual_keys = [(s, e) for (s, e) in f if 330 <= _days(s, e) <= 380]
@@ -485,25 +616,35 @@ def quarterly_series(facts, tags, derive=True, direct_window=(80, 120), fy_start
     return out
 
 
-def core_fy_starts(facts):
+def core_fy_periods(facts, money=None):
+    """The (start, end) fiscal-year periods the core statements file (annual
+    revenue / net income / OCF contexts of 330-380 days) — the years that have
+    an annual row."""
+    out = set()
+    for k in ("revenue", "net_income", "ocf"):
+        for (s, e) in duration_facts(facts, DUR[k], money=money):
+            if 330 <= _days(s, e) <= 380:
+                out.add((s, e))
+    return out
+
+
+def core_fy_starts(facts, money=None):
     """Fiscal-year start dates the core statements establish (annual revenue /
     net income / OCF periods and the year that follows each)."""
     starts = set()
-    for k in ("revenue", "net_income", "ocf"):
-        for (s, e) in duration_facts(facts, DUR[k]):
-            if 330 <= _days(s, e) <= 380:
-                starts.add(s)
-                starts.add((datetime.date.fromisoformat(e) + datetime.timedelta(days=1)).isoformat())
+    for (s, e) in core_fy_periods(facts, money=money):
+        starts.add(s)
+        starts.add((datetime.date.fromisoformat(e) + datetime.timedelta(days=1)).isoformat())
     return starts
 
 
-def quarterly_by_tag(facts, tags, derive=True, direct_window=(80, 120), fy_starts=None):
+def quarterly_by_tag(facts, tags, derive=True, direct_window=(80, 120), fy_starts=None, money=None):
     """quarterly_series run per candidate tag and merged per quarter end in
     tag-priority order — a derived quarter never subtracts one tag's leg from
     another's."""
     out = {}
     for pair in _pairs(tags):
-        for e, d in quarterly_series(facts, [pair], derive=derive, direct_window=direct_window, fy_starts=fy_starts).items():
+        for e, d in quarterly_series(facts, [pair], derive=derive, direct_window=direct_window, fy_starts=fy_starts, money=money).items():
             out.setdefault(e, d)
     return out
 
@@ -552,13 +693,177 @@ def debt_from_total_tag(tot, tot_tag, st=None, st_tag=None, cur_agg=None, unit_m
     return tot, f"total tag ({tot_tag}, long-term incl. current maturities; no short-term borrowings filed)"
 
 
-def build_annual(facts):
+# Ruling-sheet Q8 (Andrew, 2026-10-19), GGB / GMED: the enrichment's derived
+# fcf / oe_conservative are on the engine's capex definition (engine 5.5:
+# capex = the PP&E leg + intangible purchases, dcf_engine.capex_for_period).
+# The intangible leg is the engine's own: its tag list, its rules (a negative
+# fact dropped, a $0 fact ignored, one cash-flow line tagged twice counted
+# once, a value the same tag also files on a multi-year context dropped as a
+# cumulative total — ECHO), so it never drifts from the scored CSV. The
+# capex_intangibles display field keeps its own wider list (it also shows
+# capitalized software, PaymentsToDevelopSoftware, which is not capex until
+# the Q6 / engine 5.7 follow-on) and is not what is deducted.
+ENGINE_INTANGIBLE_TAGS = _engine.CAPEX_INTANGIBLE_TAGS
+
+
+def intangible_capex_annual(facts, money, ppe):
+    """{period_end: intangible purchases the engine adds on top of the PP&E leg}
+    for FY periods, read in `money`. ppe: {period_end: (tag, value)} — the PP&E
+    leg capex_for_period checks the combined-tag rule against."""
+    cumulative = _engine.cumulative_context_values(facts, ENGINE_INTANGIBLE_TAGS, units=(money,))
+    per_tag = []
+    for t in ENGINE_INTANGIBLE_TAGS:
+        vals, _, units, filed = annual_series(facts, [t], True, with_filed=True, money=money)
+        per_tag.append((t[1] if isinstance(t, tuple) else t, vals, units, filed))
+    out = {}
+    for pe in sorted({pe for _, vals, _, _ in per_tag for pe in vals}):
+        legs = [(name, vals[pe], units[pe], filed.get(pe)) for name, vals, units, filed in per_tag if pe in vals]
+        roll = [(ppe[pe][0], ppe[pe][1], money, None)] if pe in ppe else []
+        res = _engine.capex_for_period(roll, [], legs, cumulative=cumulative)
+        if res["intangible_tags"]:
+            out[pe] = _whole(res["intangibles"])
+    return out
+
+
+def _whole(v):
+    """A sum of filed whole amounts kept an int (the file's numbers keep their JSON type)."""
+    return int(v) if isinstance(v, float) and v.is_integer() else v
+
+
+def _ytd_rank(start, end):
+    """1..4 for a ~1/2/3/4-quarter year-to-date context (±35 days, quarterly_series' rule), else None."""
+    d = _days(start, end)
+    rank = round(d / 91.25)
+    return rank if (1 <= rank <= 4 and abs(d - rank * 91.25) <= 35 and d <= 380) else None
+
+
+def intangible_capex_periods(facts, money):
+    """{(start, end): intangible purchases} per exact duration context (up to
+    380 days) — each period through the engine's capex_for_period (its tags,
+    negative / $0 / same-line-twice / cumulative-duplicate rules, the PP&E
+    leg's combined-tag rule against the period's own capex tag). A fiscal-year
+    period carries the annual figure (intangible_capex_annual), so the quarters
+    and the TTM can never disagree with the annual row for the same window."""
+    cumulative = _engine.cumulative_context_values(facts, ENGINE_INTANGIBLE_TAGS, units=(money,))
+    per_tag = []
+    for t in ENGINE_INTANGIBLE_TAGS:
+        taxonomy, name = t if isinstance(t, tuple) else ("us-gaap", t)
+        units = ((facts.get("facts", {}).get(taxonomy, {}).get(name) or {}).get("units") or {})
+        keep = {u: [e for e in es if not ((name, u, e.get("val")) in cumulative and e.get("start") and e.get("end")
+                                          and _days(e["start"], e["end"]) <= _engine.CUMULATIVE_CONTEXT_DAYS)]
+                for u, es in units.items()}
+        per_tag.append((name, duration_facts({"facts": {taxonomy: {name: {"units": keep}}}}, [(taxonomy, name)], money=money)))
+    ppe = duration_facts(facts, DUR["capex"], money=money)
+    pv, pt, _ = annual_series(facts, DUR["capex"], True, money=money)
+    annual = intangible_capex_annual(facts, money, {pe: (pt.get(pe), v) for pe, v in pv.items()})
+    out = {}
+    for per in sorted({k for _, m in per_tag for k in m}):
+        if _days(per[0], per[1]) > _engine.CUMULATIVE_CONTEXT_DAYS:
+            continue
+        if 330 <= _days(per[0], per[1]) <= 380:
+            if per[1] in annual:
+                out[per] = annual[per[1]]
+            continue
+        legs = [(name, m[per][0], m[per][2], m[per][3]) for name, m in per_tag if per in m]
+        roll = [(ppe[per][1], ppe[per][0], money, None)] if per in ppe else []
+        res = _engine.capex_for_period(roll, [], legs, cumulative=cumulative)
+        if res["intangible_tags"]:
+            out[per] = _whole(res["intangibles"])
+    return out
+
+
+def _intangible_fy_starts(periods, fy_starts):
+    """Known fiscal-year starts: the core statements' plus each FY intangible period's start and the day after its end."""
+    fy = [(s, e) for (s, e) in periods if 330 <= _days(s, e) <= 380]
+    return set(fy_starts or ()) | {s for s, _ in fy} | {(datetime.date.fromisoformat(e) + datetime.timedelta(days=1)).isoformat() for _, e in fy}
+
+
+def intangible_capex_quarterly(facts, money, fy_starts=None, periods=None, fy_periods=None):
+    """{quarter_end: intangible purchases} (verifier round 1: IREN, PFGC, RMD).
+    Within a fiscal year each tagged year-to-date leg less the latest tagged
+    shorter one (0 when none — a line first tagged in the six-month 10-Q is
+    all Q2's: IREN's 107,573,000), Q4 = FY less the latest tagged YTD, so the
+    quarters of a year always sum to its FY figure; a quarter can be negative
+    (RMD's Q2 FY2026: a YTD restated down) — only the TTM total is floored
+    (intangible_capex_ttm). Direct three-month facts count only in a fiscal
+    year with no year-to-date leg. A completed fiscal year (its annual row is
+    filed — fy_periods, core_fy_periods) with no FY intangible figure (the
+    10-K leaves the line untagged, or re-files it as $0, which the engine
+    ignores) deducts nothing in any quarter, as its annual row and the engine
+    deduct nothing (verifier round 2: RMD FY2024 YTD 10.8M / 12.0M / 14.0M,
+    then the FY re-filed as 0; BAX FY2025)."""
+    per = periods if periods is not None else intangible_capex_periods(facts, money)
+    starts = _intangible_fy_starts(per, fy_starts)
+    if fy_periods is None:
+        fy_periods = core_fy_periods(facts, money=money) if facts is not None else set()
+    filed_years = {s for s, e in fy_periods if 330 <= _days(s, e) <= 380}
+    fy_years = {s for (s, e) in per if 330 <= _days(s, e) <= 380}
+    unreconciled = filed_years - fy_years  # completed years with no FY intangible figure
+    out, ytd_years = {}, set()
+    for s in sorted(starts):
+        if s in unreconciled:
+            ytd_years.add(s)  # no direct three-month fallback either
+            continue
+        by_rank = {}
+        for (s2, e) in sorted(per):
+            r = _ytd_rank(s2, e) if s2 == s else None
+            if r is not None and r not in by_rank:
+                by_rank[r] = (e, per[(s2, e)])
+        if by_rank:
+            ytd_years.add(s)
+        prev = 0
+        for r in (1, 2, 3, 4):
+            if r in by_rank:
+                e, v = by_rank[r]
+                out[e] = _whole(v - prev)
+                prev = v
+    for (s, e), v in sorted(per.items()):
+        if 80 <= _days(s, e) <= 120 and e not in out:
+            fs = max((x for x in starts if x <= s and _days(x, s) <= 300), default=None)
+            if fs not in ytd_years:
+                out[e] = v
+    return out
+
+
+def intangible_capex_ttm(facts, money, qrows, fy_starts=None, periods=None):
+    """The TTM intangible leg the engine's way (ttm.py add_intangibles; verifier
+    round 1): FY − the prior year's same-length YTD + the current YTD at the
+    last quarter's end (the FY figure alone when that end is a fiscal year
+    end), an untagged leg 0; a prior-YTD amount with no FY amount or above it
+    leaves the FY remainder unknown and neither leg counts (R4-INTANG); the
+    total is never negative. None without four quarter rows or a known fiscal
+    year start for the last one (build_ttm then sums the quarters)."""
+    if not qrows or len(qrows) < 4:
+        return None
+    per = periods if periods is not None else intangible_capex_periods(facts, money)
+    starts = _intangible_fy_starts(per, fy_starts)
+    end = qrows[-1]["period_end"]
+    fs = max((x for x in starts if x <= end and _ytd_rank(x, end) is not None), default=None)
+    if fs is None:
+        return None
+    rank = _ytd_rank(fs, end)
+    cur = per.get((fs, end), 0)
+    if rank == 4:
+        return _whole(max(0, cur))
+    prev_end = (datetime.date.fromisoformat(fs) - datetime.timedelta(days=1)).isoformat()
+    prev_fs = max((x for x in starts if x < fs and 330 <= _days(x, prev_end) <= 380), default=None)
+    fy = per.get((prev_fs, prev_end)) if prev_fs else None
+    prior = next((v for (s2, e), v in sorted(per.items()) if s2 == prev_fs and e < fs and _ytd_rank(s2, e) == rank), 0) if prev_fs else 0
+    if prior > 0 and (fy is None or fy < prior):
+        fy, prior = 0, 0
+    return _whole(max(0, (fy or 0) - prior + cur))
+
+
+def build_annual(facts, money=None):
+    """(rows, tag_summary, [currency] — empty for USD). Every money / per-share
+    line is read in the file's one money unit (money_unit; ruling-sheet Q8 bug 3)."""
+    money = money or money_unit(facts)
     series, tags, units = {}, {}, {}
     for k, t in DUR.items():
-        series[k], tags[k], units[k] = annual_series(facts, t, True)
+        series[k], tags[k], units[k] = annual_series(facts, t, True, money=money)
     for k, t in INST.items():
-        series[k], tags[k], units[k] = annual_series(facts, t, False)
-    series["share_issuance"], tags["share_issuance"] = combined_annual(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS)
+        series[k], tags[k], units[k] = annual_series(facts, t, False, money=money)
+    series["share_issuance"], tags["share_issuance"] = combined_annual(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS, money=money)
     periods = sorted(set(series["revenue"]) | set(series["net_income"]) | set(series["ocf"]) | set(series["nii"]))[-10:]
     # Bank shape (NoninterestIncome is a bank-only tag): pick ONE revenue basis
     # for the company — Codex review of PR #2.
@@ -578,14 +883,11 @@ def build_annual(facts):
         if _tot is not None and (_std is None or (_std > 0 and _tot > 1.05 * _std)):
             revenue_mode = "total"
     rows = []
-    currency = set()
-    st_same_unit = {}  # {unit: annual_series of debt_cur_st read in that unit only}
+    currency = {money} if money != "USD" else set()
+    st_same_unit = {}  # {unit: annual_series of debt_cur_st read in that unit only; "_any": read in every unit}
+    intang_by_end = intangible_capex_annual(facts, money, {pe: (tags["capex"].get(pe), v) for pe, v in series["capex"].items()})  # Q8: the engine's intangible leg
     for p in periods:
         g = lambda k: series[k].get(p)
-        for k in ("revenue", "net_income", "ocf"):
-            u = units[k].get(p)
-            if u and u not in UNIT_PREF:
-                currency.add(u)
         rev, ni, oi, ocf, capex, sbc, da = g("revenue"), g("net_income"), g("operating_income"), g("ocf"), g("capex"), g("sbc"), g("da")
         rev_basis = tags["revenue"].get(p)
         if bank_shape:
@@ -619,6 +921,12 @@ def build_annual(facts):
         elif d_tot is not None:
             st, st_tag, st_unit_other = g("debt_cur_st"), tags["debt_cur_st"].get(p), None
             tot_unit = units["debt_total"].get(p)
+            if st is None:
+                # the money-unit series leaves another currency's short-term line out (Q8 bug 3); still name it
+                if "_any" not in st_same_unit:
+                    st_same_unit["_any"] = annual_series(facts, INST["debt_cur_st"], False)
+                _u = st_same_unit["_any"][2].get(p)
+                st_unit_other = _u if (_u and _u != tot_unit) else None
             if st is not None and units["debt_cur_st"].get(p) != tot_unit:
                 # never add across currencies (JD files ShortTermBorrowings in USD
                 # convenience translation and LongTermDebt in RMB): read the line
@@ -644,7 +952,8 @@ def build_annual(facts):
         lease = None
         if g("lease_liab_lt") is not None or g("lease_liab_current") is not None:
             lease = (g("lease_liab_lt") or 0) + (g("lease_liab_current") or 0)
-        fcf = (ocf - capex) if (ocf is not None and capex is not None) else None
+        intang = intang_by_end.get(p)  # the engine's intangible leg, added on top of the PP&E leg
+        fcf = (ocf - capex - (intang or 0)) if (ocf is not None and capex is not None) else None
         oe = (fcf - sbc) if (fcf is not None and sbc is not None) else None
         sh = g("shares_diluted")
         sh_src = tags["shares_diluted"].get(p)
@@ -699,13 +1008,14 @@ def build_annual(facts):
     return rows, tag_summary, sorted(currency)
 
 
-def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=None):
-    q = {k: quarterly_series(facts, DUR[k], derive=(k not in DIRECT_ONLY)) for k in QUARTERLY_FIELDS}
+def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=None, money=None):
+    money = money or money_unit(facts)
+    q = {k: quarterly_series(facts, DUR[k], derive=(k not in DIRECT_ONLY), money=money) for k in QUARTERLY_FIELDS}
     # bank presentation: revenue = Revenues total, else NII + noninterest income —
     # on ONE basis for every quarter (Codex review of PR #2); quarters with
     # neither are dropped from the revenue series rather than falling back to
     # contract revenue or interest income alone.
-    q_nii, q_nonint, q_revt = (quarterly_series(facts, DUR[k]) for k in ("nii", "noninterest_income", "revenues_total"))
+    q_nii, q_nonint, q_revt = (quarterly_series(facts, DUR[k], money=money) for k in ("nii", "noninterest_income", "revenues_total"))
     bank_q = [e for e in q_nii if e in q_nonint and isinstance(q_nii[e].get("val"), (int, float)) and isinstance(q_nonint[e].get("val"), (int, float))]
     if bank_q:
         use_total = all(e in q_revt and isinstance(q_revt[e].get("val"), (int, float)) for e in bank_q)
@@ -722,7 +1032,7 @@ def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=No
             warnings.append(f"bank presentation: quarterly revenue is {'the filed Revenues total' if use_total else 'net interest income + noninterest income'} for every quarter; quarters lacking it are blank")
     elif revenue_mode == "total":
         # lender / broker: the filer's own total on every quarter, same rule as the annual series
-        q["revenue"] = {e: dict(d, tag=f"{d.get('tag')} (filer total)") for e, d in quarterly_series(facts, DUR["revenues_total"]).items()}
+        q["revenue"] = {e: dict(d, tag=f"{d.get('tag')} (filer total)") for e, d in quarterly_series(facts, DUR["revenues_total"], money=money).items()}
         if warnings is not None:
             warnings.append("revenue basis: the filer's own total (Revenues / RevenuesNetOfInterestExpense) for every period — it exceeds the contract-revenue line, which is a component for this filer")
     ends = sorted(set(q["revenue"]) | set(q["net_income"]) | set(q["ocf"]))
@@ -738,6 +1048,7 @@ def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=No
                 if warnings is not None:
                     warnings.append(f"{k} for the quarter ending {e}: FY minus year-to-date is negative — the annual figure was restated on a different basis (discontinued operations); quarter not shown")
                 del q[k][e]
+    q_intang = intangible_capex_quarterly(facts, money, fy_starts=core_fy_starts(facts, money=money))  # Q8: the engine's intangible leg
     rows = []
     for e in ends:
         meta = next((q[k][e] for k in ("revenue", "net_income", "ocf") if e in q[k]), {})
@@ -755,7 +1066,7 @@ def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=No
         row["gross_margin"] = _ratio(gp, rev)
         row["operating_margin"] = _ratio(oi, rev)
         row["net_margin"] = _ratio(ni, rev)
-        row["fcf"] = (ocf - capex) if (ocf is not None and capex is not None) else None
+        row["fcf"] = (ocf - capex - q_intang.get(e, 0)) if (ocf is not None and capex is not None) else None
         row["oe_conservative"] = (row["fcf"] - sbc) if (row["fcf"] is not None and sbc is not None) else None
         rows.append(row)
     # YoY vs the quarter ending ~one year earlier
@@ -766,11 +1077,11 @@ def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=No
         for k in ("revenue", "net_income", "operating_income", "ocf", "oe_conservative", "eps_diluted"):
             r[f"{k}_yoy"] = _g(r.get(k), prev.get(k)) if prev else None
     # 5.4.1 capital-return lines, appended after the pre-5.4.1 keys
-    fy_starts = core_fy_starts(facts)
-    extra = {k: quarterly_by_tag(facts, DUR[k], derive=True, fy_starts=fy_starts) for k in QUARTERLY_FLOW_FIELDS if k != "share_issuance"}
+    fy_starts = core_fy_starts(facts, money=money)
+    extra = {k: quarterly_by_tag(facts, DUR[k], derive=True, fy_starts=fy_starts, money=money) for k in QUARTERLY_FLOW_FIELDS if k != "share_issuance"}
     extra["share_issuance"] = quarterly_series(None, None, derive=True, fy_starts=fy_starts,
-                                               prebuilt=combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS))
-    extra.update({k: quarterly_by_tag(facts, DUR[k], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts) for k in QUARTERLY_DPS_FIELDS})
+                                               prebuilt=combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS, money=money))
+    extra.update({k: quarterly_by_tag(facts, DUR[k], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts, money=money) for k in QUARTERLY_DPS_FIELDS})
     for r in rows:
         for k in QUARTERLY_FLOW_FIELDS + QUARTERLY_DPS_FIELDS:
             d = extra[k].get(r["period_end"])
@@ -1098,6 +1409,8 @@ def _fy_label(fy_start):
 SPLIT_DUPLICATE_DAYS = 180   # one split is tagged at several context dates (approval, record date, distribution, fiscal year end)
 SPLIT_RATIO_TOL = 1.1        # a re-filed value within 10% of the ratio is the split's restatement
 SHARE_REFILE_MIN = 1.4       # a diluted share count re-filed ≥1.4x apart is a basis change, not rounding
+SHARE_SCALE_BAND = 10        # Q8: a fallback count more than 10x from the engine's validated diluted count is a scale break
+SHARE_ANCHOR_TOL = 1.2       # Q8 round 2: a fallback count more than 20% from the engine's validated count gives way to a filed count within 20% of it (ECHO)
 
 
 def split_events(facts, duplicates=None):
@@ -1309,11 +1622,77 @@ def apply_splits(dps_q, dps_fy, fy_filed, splits):
     return dps_q, dps_fy, notes
 
 
+# Ruling-sheet Q8 bug 2 (Andrew, 2026-10-19), multi-class filers: companyfacts
+# keeps a cover-page dei count only when it is undimensioned, which at a filer
+# with two listed classes can be ONE class (GGB: 717,782,619 common shares)
+# while the same 20-F files the all-class count (IFRS
+# NumberOfSharesIssuedAndFullyPaid 2,000,879,949). Per-share figures divided by
+# the one class overstated book value per share ~2.8x and understated the
+# market cap ~2.8x. The all-class counts read: an outstanding count, or an
+# IFRS issued count, each less the treasury shares the same filing files at
+# that date — EG tags its ISSUED count (74.5M) as CommonStockSharesOutstanding
+# beside 35.8M treasury shares and a 38.3M cover count, which is therefore not
+# a class count (us-gaap issued counts are not read: a treasury-heavy US
+# filer's issued count is far above its outstanding shares — IBM ~2.4x).
+ALL_CLASS_OUTSTANDING_TAGS = [("us-gaap", "CommonStockSharesOutstanding"), (IF, "NumberOfSharesOutstanding")]
+ALL_CLASS_ISSUED_TAGS = [(IF, "NumberOfSharesIssuedAndFullyPaid"), (IF, "NumberOfSharesIssued")]
+TREASURY_SHARE_TAGS = [(IF, "SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates"), ("us-gaap", "TreasuryStockShares"),
+                       ("us-gaap", "TreasuryStockCommonShares")]
+
+
+def _instant_share_facts(facts, pairs, accn):
+    """[(end, val, tag)] — undimensioned instant share facts of `pairs` filed in the filing `accn`."""
+    out = []
+    for taxonomy, tag in pairs:
+        for e in ((facts.get("facts", {}).get(taxonomy, {}).get(tag) or {}).get("units") or {}).get("shares", []):
+            if e.get("accn") != accn or not e.get("end") or (e.get("start") and e["start"] != e["end"]):
+                continue
+            if _num(e.get("val")) and e["val"] > 0:
+                out.append((e["end"], e["val"], f"{taxonomy}:{tag}"))
+    return out
+
+
+def all_class_count(facts, accn):
+    """(count, end, source) — the largest all-class period-end share count the
+    filing `accn` files at its latest balance-sheet date (ALL_CLASS_OUTSTANDING_TAGS
+    or ALL_CLASS_ISSUED_TAGS, less that filing's treasury shares at the same
+    date when it files them), else None."""
+    if not accn:
+        return None
+    outs = _instant_share_facts(facts, ALL_CLASS_OUTSTANDING_TAGS, accn)
+    issued = _instant_share_facts(facts, ALL_CLASS_ISSUED_TAGS, accn)
+    if not outs and not issued:
+        return None
+    end = max(x[0] for x in outs + issued)
+    treasury = {x[0]: x[1] for x in _instant_share_facts(facts, TREASURY_SHARE_TAGS, accn)}
+    cands = [(v - treasury.get(end, 0), src + (f" less {treasury[end]:,.0f} treasury shares" if end in treasury else "")) for e, v, src in outs + issued if e == end]
+    cands = [c for c in cands if c[0] > 0]
+    if not cands:
+        return None
+    v, src = max(cands, key=lambda c: c[0])
+    return v, end, src
+
+
+def class_count_check(count, facts, accn):
+    """When a cover-page dei count is below 1/SHARE_REFILE_MIN (1/1.4) of the
+    same filing's all-class count it is one class of a multi-class filer:
+    (all-class count, end, source, note); else None."""
+    ac = all_class_count(facts, accn)
+    if ac is None or not _num(count) or count <= 0 or ac[0] < SHARE_REFILE_MIN * count:
+        return None
+    note = (f"the cover-page dei:EntityCommonStockSharesOutstanding count {count:,.0f} does not cover the filing's share base — the same filing's "
+            f"all-class count {ac[0]:,.0f} ({ac[2]}, {ac[1]}) is {ac[0] / count:.2f}x it (one class of a multi-class filer, or a stale cover "
+            f"figure) — so the all-class count is used")
+    return ac[0], ac[1], ac[2], note
+
+
 def latest_share_count(facts):
     """(count, as_of, source) — the latest filed instant share count: the
     cover-page dei:EntityCommonStockSharesOutstanding, else the balance
     sheet's CommonStockSharesOutstanding / IFRS NumberOfSharesOutstanding.
-    The latest date wins; on the same date the dei count, then the latest filing."""
+    The latest date wins; on the same date the dei count, then the latest filing.
+    A dei count that is one class of a multi-class filer (class_count_check)
+    gives way to the same filing's all-class count, named in the source."""
     best = None
     for prio, (taxonomy, tag) in enumerate(SHARE_COUNT_TAGS):
         tf = facts.get("facts", {}).get(taxonomy, {}).get(tag)
@@ -1333,6 +1712,10 @@ def latest_share_count(facts):
     if best is None:
         return None
     _, e, src = best
+    if src == "dei:EntityCommonStockSharesOutstanding":
+        chk = class_count_check(e["val"], facts, e.get("accn"))
+        if chk is not None:
+            return chk[0], chk[1], f"{chk[2]} ({e.get('form')} filed {e.get('filed')}; {chk[3]})"
     return e["val"], e["end"], f"{src} ({e.get('form')} filed {e.get('filed')})"
 
 
@@ -2243,6 +2626,16 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         diluted = next((r["shares_diluted"] for r in reversed(annual) if _num(r.get("shares_diluted"))), None)
         diluted_src = "latest annual weighted-average diluted" if diluted is not None else None
     inst = ctx.get("shares_instant")
+    # ruling-sheet Q8 bug 2 (Andrew, 2026-10-19), recency: an instant count dated more than 18 months
+    # (dcf_engine.DEI_MAX_AGE_DAYS) before the newest fiscal year end is not today's share count — TLK's only
+    # undimensioned instant count is a 1995-11-13 fact (8.4B shares) that divided 2024 flows into a 123.36% yield
+    newest_fy = max((r.get("period_end") for r in (annual or []) if r.get("period_end")), default=None)
+    stale_inst, shares_scale_break = None, False
+    if inst and _num(inst[0]) and inst[0] > 0 and newest_fy and inst[1] and _days(inst[1], newest_fy) > _engine.DEI_MAX_AGE_DAYS:
+        stale_inst = inst
+        notes.append(f"shares: the latest filed instant share count ({inst[0]:,.0f}, {inst[2]}, as of {inst[1]}) is stale — more than "
+                     f"{_engine.DEI_MAX_AGE_DAYS} days before the newest fiscal year end ({newest_fy}) — so it is not the market-cap denominator")
+        inst = None
     if inst and _num(inst[0]) and inst[0] > 0:
         shares, shares_as_of, shares_src, shares_basis = inst[0], inst[1], inst[2], "instant"
     else:
@@ -2250,13 +2643,28 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         # class-dimensioned and absent from companyfacts — fall back to a filed
         # diluted weighted-average count, say so in shares_source, and never
         # leave the market cap null while a weighted count exists.
-        fb = fallback_share_count(qrows, annual)
+        # verifier round 1 (COKE, WMG, VOD, TLK): the fallback's source names WHY it is used — the stale count, not the
+        # dual-class explanation, when an undimensioned instant count was filed but is stale
+        fb = fallback_share_count(qrows, annual, reason=(
+            f"weighted-average diluted count, fallback: the latest undimensioned instant share count ({stale_inst[0]:,.0f}, {stale_inst[2]}, "
+            f"as of {stale_inst[1]}) is stale — more than {_engine.DEI_MAX_AGE_DAYS} days before the newest fiscal year end ({newest_fy})")
+            if stale_inst else None, anchor=ctx.get("engine_shares") if stale_inst else None)
+        eng = ctx.get("engine_shares")
+        if fb and stale_inst and _num(eng) and eng > 0 and not (1 / SHARE_SCALE_BAND <= fb[0] / eng <= SHARE_SCALE_BAND):
+            # ruling-sheet Q8 bug 2: the fallback that replaces a stale count is checked against the engine's validated
+            # diluted count (dcf_numbers.json shares_diluted_latest) — PAC's filed weighted-average facts are 1,000x its
+            # 505,277,464 shares, so neither count prices the cap; null, never a $10T market cap
+            notes.append(f"shares: the diluted fallback count ({fb[0]:,.0f}, {fb[2]}) is {fb[0] / eng:,.1f}x the engine's validated diluted count "
+                         f"({eng:,.0f}, dcf_numbers.json shares_diluted_latest) — a scale break in the filed counts, so the market cap and yields are null")
+            fb = None
+            shares_scale_break = True
         shares, shares_as_of, shares_src = fb if fb else (None, None, None)
         shares_basis = "weighted_average_diluted_fallback" if fb else None
         if shares is not None:
             notes.append(f"shares: market cap uses the {shares_src}")
-    if shares is None:
-        notes.append("shares: no share count filed — market cap and yields null")
+    if shares is None and not shares_scale_break:
+        notes.append("shares: no current share count filed (the latest instant count is stale and no diluted count is filed) — market cap and yields null"
+                     if stale_inst else "shares: no share count filed — market cap and yields null")
 
     # 5.4.6 review fix (HPQ declares two quarters at once, GEHC two in Q3 and
     # none in Q2, KVUE / WRB at some run dates): per-share facts filed on a
@@ -2292,8 +2700,10 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
     # which were taken as zero, which were left out, and whether the figure is
     # exact, a lower bound, an upper bound or neither. A yield is null only when
     # its own leg is unknown (buybacks for the buyback yields; both dividends
-    # and buybacks for the shareholder yield). No headline carries a partial
-    # numerator without this flag.
+    # and buybacks for the shareholder yield), when the block's currency is not
+    # the price's (price_dividends, ruling-sheet Q8 bug 3) or when the market
+    # cap is null (no current share count / a SHARE_SCALE_BAND scale break, Q8
+    # bug 2). No headline carries a partial numerator without this flag.
     # The market cap (the denominator) and the bound note that goes with it are
     # set by price_dividends (YIELD_LEGS / YIELD_REQUIRES are module constants):
     # everything here is price-free.
@@ -2400,6 +2810,14 @@ def build_dividends(annual, qrows, dps_q, dps_fy, price, price_date, price_sourc
         "history": history,
         "notes": notes,
     }
+    cur = ctx.get("currency")
+    if cur and cur != PRICE_CURRENCY:
+        # ruling-sheet Q8 bug 3: DPS and the flow legs are in the file's money unit, the price in USD — no yield across
+        # two currencies (RDY: Rs40 DPS / $12.87 = "310.80%"; SKM: KRW 3,540 / $31.96 = "11,076%"). Only non-USD blocks
+        # carry the key, so a USD block is written exactly as before.
+        block["currency"] = cur
+        notes.append(f"yields: dividends per share and the cash-flow legs are filed in {cur} and the price is in {PRICE_CURRENCY} — this file applies "
+                     f"no FX conversion, so the dividend, buyback and shareholder yields are not computed (the market cap is the {PRICE_CURRENCY} price × shares)")
     return price_dividends(block, price, price_date, price_source)
 
 
@@ -2446,7 +2864,10 @@ def _with_note_after_denominator(yb, note):
     return out
 
 
-def price_dividends(div, price, price_date, price_source):
+PRICE_CURRENCY = "USD"  # prices.json (Nasdaq) and score.json closes
+
+
+def price_dividends(div, price, price_date, price_source, currency=None, unit_unrecorded=None):
     """The dividends block `div` priced at `price` (pure: `div` is not
     modified). Every price-dependent leaf — price / price_date / price_source
     / price_note, market_cap and its basis, the four yields,
@@ -2456,10 +2877,21 @@ def price_dividends(div, price, price_date, price_source):
     shares_as_of, the yield_basis numerators, bounds and legs, `notes`.
     build_dividends ends with this call, so a block repriced here at P equals
     the block fundamentals.py writes at P. A price note in `notes` from a
-    block written before 2026-10-16 is dropped (it is `price_note` now)."""
+    block written before 2026-10-16 is dropped (it is `price_note` now).
+    Ruling-sheet Q8 bug 3: the yields are computed only when the block's
+    numerators are in the price's currency (USD) — `currency` (build_site.py
+    passes fundamentals.json's own) else the block's `currency` key (written
+    only on a non-USD block) else USD; otherwise every yield is null and
+    yields_display says why. The market cap is unaffected.
+    `unit_unrecorded` (build_site.py, verifier round 2): the file's currency
+    when it is not USD and the block was written before the one-currency rule
+    (no `currency` key) — its legs and DPS were read USD-first, so their unit
+    is not recorded; the yields are null and the note says so instead of
+    naming the file's currency as the numerator's."""
     if not isinstance(div, dict):
         return div
     d = dict(div)
+    num_cur = currency or d.get("currency") or PRICE_CURRENCY
     notes = [n for n in (d.get("notes") if isinstance(d.get("notes"), list) else [])
              if not (isinstance(n, str) and n.startswith(LEGACY_PRICE_NOTE))]
     if price is None:
@@ -2481,13 +2913,18 @@ def price_dividends(div, price, price_date, price_source):
     legs = d.get("legs") if isinstance(d.get("legs"), dict) else {}
     yield_basis = dict(d.get("yield_basis")) if isinstance(d.get("yield_basis"), dict) else {}
     values = {}
+    cross = num_cur != PRICE_CURRENCY or bool(unit_unrecorded)
+    cross_note = ((f"not computed: this block was written before the one-currency rule (2026-10-19) and does not record the currency of its "
+                   f"DPS and flows — they may be {PRICE_CURRENCY} or {unit_unrecorded}, the currency this file reports in — so no yield is "
+                   f"computed until the file's next refresh") if unit_unrecorded and not currency and not d.get("currency") else
+                  f"not computed: the numerator is filed in {num_cur} and the price is in {PRICE_CURRENCY} (no FX conversion in this file)" if cross else None)
     for name in YIELD_LEGS:
         yb = yield_basis.get(name)
         if not isinstance(yb, dict):
             values[name] = None
             continue
         total = yb.get("numerator")
-        values[name] = _ratio(total, market_cap) if (market_cap and total is not None) else None
+        values[name] = _ratio(total, market_cap) if (market_cap and total is not None and not cross) else None
         yb = dict(yb, denominator=market_cap_basis)
         if total is not None:  # a filed numerator: its bound is stated only next to a market cap
             yb = _with_note_after_denominator(yb, YIELD_BOUND_NOTES[yb["bound"]] if (market_cap and yb.get("bound") in YIELD_BOUND_NOTES) else None)
@@ -2498,7 +2935,7 @@ def price_dividends(div, price, price_date, price_source):
     # ordinary shares per ADS), else the yield is off by exactly the ratio
     # (LTM at 2000: shown 0.0010% for a true 2.04%).
     dps_yield_num = dps_ttm * ads_ratio if (ads_ratio and _num(dps_ttm)) else dps_ttm
-    values["dividend_yield"] = _ratio(dps_yield_num, price) if _num(price) and price > 0 else None
+    values["dividend_yield"] = _ratio(dps_yield_num, price) if (_num(price) and price > 0 and not cross) else None
     if isinstance(yield_basis.get("dividend_yield"), dict):
         denom = f"price {price} ({price_source})" if _num(price) else None
         if denom is not None and ads_ratio:
@@ -2515,6 +2952,9 @@ def price_dividends(div, price, price_date, price_source):
         prefix = {"exact": "", "lower": "≥", "upper": "≤", "indeterminate": "≈"}.get(bound, "")
         if value is None:
             label = "—"
+            if cross:
+                yields_display[name] = {"value": None, "bound": None, "prefix": "", "label": label, "note": cross_note}
+                continue
         else:
             label = (f"{prefix} " if prefix else "") + f"{value * 100:.2f}%" + (" (incomplete)" if bound == "indeterminate" else "")
         if name == "dividend_yield":
@@ -2601,7 +3041,7 @@ def split_restatement(hi_es, lo_es, splits=None, refilings=None):
     return None
 
 
-def dps_fy_facts(facts, tags, splits=None, refilings=None, restated=None):
+def dps_fy_facts(facts, tags, splits=None, refilings=None, restated=None, money=None):
     """FY-duration DPS facts on annual forms: ({period_end: dps}, {period_end:
     tag}, {period_end: filed}, notes). Like annual_series (tag priority per
     period, the latest filing wins) EXCEPT for a unit slip: when the filings
@@ -2638,7 +3078,7 @@ def dps_fy_facts(facts, tags, splits=None, refilings=None, restated=None):
         if tag not in tf:
             continue
         units = tf[tag].get("units", {})
-        for unit_key in _units_pref(units):
+        for unit_key in _units_pref(units, money):
             by_end = {}
             for e in units[unit_key]:
                 if e.get("fp") != "FY" or e.get("form", "") not in DPS_FY_FORMS:
@@ -2711,7 +3151,7 @@ def dps_fy_facts(facts, tags, splits=None, refilings=None, restated=None):
     return vals, tag_by, filed_by, notes
 
 
-def fallback_share_count(qrows, annual):
+def fallback_share_count(qrows, annual, reason=None, anchor=None):
     """(count, as_of, source) — the share count for the market cap when no
     undimensioned instant count exists in companyfacts (a dual-class filer's
     cover-page and balance-sheet counts are class-dimensioned and dropped by
@@ -2724,7 +3164,21 @@ def fallback_share_count(qrows, annual):
     buybacks are paid on is the LATEST filed count that is within 20% of the
     largest recent one (TKO: Q1 2026's 194.6M, not Q3 2025's 199.1M — a
     buyback year's newest consistent count, not its oldest). Every candidate
-    is named in `source`. None when no diluted count exists."""
+    is named in `source`. None when no diluted count exists. `reason`
+    replaces the default why-text (build_dividends passes the stale instant
+    count it rejected — that filer DID file an undimensioned count).
+    `anchor` (build_dividends passes the engine's validated diluted count,
+    dcf_numbers.json shares_diluted_latest, when the fallback replaces a stale
+    instant count): a pick more than 20% from it (SHARE_ANCHOR_TOL) that no
+    other recent filed count (another period) corroborates within 20% is a
+    one-period outlier and gives way to the latest candidate within 20% of
+    the anchor, and `source` names both — ECHO's Q2 2026 diluted count,
+    351,622,000, carries the if-converted shares of a one-time-gain quarter
+    against Q1 2026's 289,014,000 and the engine's 287,589,000 (verifier
+    round 2). A corroborated pick stands: SF's two 2026 quarters (163.4M,
+    161.6M) are a level the engine's pre-split FY2025 count (110.05M) has
+    not caught up with. With no candidate within 20% of the anchor the pick
+    stands too (the scale-band check in build_dividends still applies)."""
     cands = []
     for r in (qrows or [])[-4:]:
         if _num(r.get("shares_diluted")) and r["shares_diluted"] > 0 and not r.get("shares_diluted_derived"):
@@ -2736,28 +3190,39 @@ def fallback_share_count(qrows, annual):
         return None
     latest = max(cands, key=lambda c: c[1])
     biggest = max(cands, key=lambda c: c[0])
-    why = ("weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts "
-           "(a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API)")
+    why = reason or ("weighted-average diluted count, fallback: no undimensioned period-end / cover-page share count in EDGAR companyfacts "
+                     "(a dual-class filer's cover-page and balance-sheet counts are class-dimensioned and dropped by the API)")
     if biggest[0] > 1.2 * latest[0]:
         # the newest count that is not an exclusion anomaly: latest by date among those within 20% of the largest
         consistent = max((c for c in cands if 1.2 * c[0] >= biggest[0]), key=lambda c: c[1])
-        return consistent[0], consistent[1], (f"{consistent[2]} {why}; the latest quarter's own diluted count ({latest[0]:,.0f}, {latest[2]}) is >20% lower — "
-                                              f"a diluted count excludes antidilutive / if-converted shares period by period, so the latest recent filed count "
-                                              f"consistent with the most inclusive one ({biggest[0]:,.0f}, {biggest[2]}) is used")
-    return latest[0], latest[1], f"{latest[2]} {why}"
+        pick = (consistent[0], consistent[1], (f"{consistent[2]} {why}; the latest quarter's own diluted count ({latest[0]:,.0f}, {latest[2]}) is >20% lower — "
+                                               f"a diluted count excludes antidilutive / if-converted shares period by period, so the latest recent filed count "
+                                               f"consistent with the most inclusive one ({biggest[0]:,.0f}, {biggest[2]}) is used"))
+    else:
+        pick = (latest[0], latest[1], f"{latest[2]} {why}")
+    if _num(anchor) and anchor > 0 and not (1 / SHARE_ANCHOR_TOL <= pick[0] / anchor <= SHARE_ANCHOR_TOL):
+        near = [c for c in cands if 1 / SHARE_ANCHOR_TOL <= c[0] / anchor <= SHARE_ANCHOR_TOL]
+        corroborated = any(c[1] != pick[1] and 1 / SHARE_ANCHOR_TOL <= c[0] / pick[0] <= SHARE_ANCHOR_TOL for c in cands)
+        if near and not corroborated:
+            c = max(near, key=lambda c: c[1])
+            return c[0], c[1], (f"{c[2]} {why}; the count otherwise picked ({pick[0]:,.0f}, as of {pick[1]}) is {pick[0] / anchor:,.2f}x the engine's "
+                                f"validated diluted count ({anchor:,.0f}, dcf_numbers.json shares_diluted_latest) — more than 20% from it, so the latest "
+                                f"recent filed diluted count within 20% of the engine's is used")
+    return pick
 
 
-def dividends_inputs(facts):
+def dividends_inputs(facts, money=None):
     """The filed DPS series the dividends block reads — quarterly direct facts
     (declared / paid) and FY-duration facts (declared / paid, unit-slip and
     split-restatement aware: dps_fy_facts) — restated for filed stock splits
     (one event per split however many context dates it is tagged at; the
     basis changes at the first filing that re-files the diluted share count,
     not at the ratio fact's date: apply_splits). Returns (dps_q, dps_fy, meta)
-    with meta = {splits: [(date, ratio, first_post_split_filing)], split_notes: [...]}."""
-    fy_starts = core_fy_starts(facts)
-    dps_q = {"declared": quarterly_by_tag(facts, DUR["dps_declared"], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts),
-             "paid": quarterly_by_tag(facts, DUR["dps_paid"], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts)}
+    with meta = {splits: [(date, ratio, first_post_split_filing)], split_notes: [...]}.
+    money= (money_unit): DPS facts in that currency's per-share unit only."""
+    fy_starts = core_fy_starts(facts, money=money)
+    dps_q = {"declared": quarterly_by_tag(facts, DUR["dps_declared"], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts, money=money),
+             "paid": quarterly_by_tag(facts, DUR["dps_paid"], derive=False, direct_window=DPS_DIRECT_WINDOW, fy_starts=fy_starts, money=money)}
     notes, splits, dups, dropped = [], [], [], []
     events = split_events(facts, duplicates=dups)
     for d, r, folded in dups:
@@ -2815,7 +3280,7 @@ def dividends_inputs(facts):
         if cutoff and cutoff != d:
             notes.append(f"split {used:g} tagged at {d}: facts filed before {cutoff} are on the pre-split basis — {cev}")
     restated = []
-    fy = {b: dps_fy_facts(facts, DUR[f"dps_{b}"], splits=splits, refilings=refilings, restated=restated) for b in ("declared", "paid")}
+    fy = {b: dps_fy_facts(facts, DUR[f"dps_{b}"], splits=splits, refilings=refilings, restated=restated, money=money) for b in ("declared", "paid")}
     dps_fy = {b: fy[b][0] for b in fy}
     fy_filed = {b: fy[b][2] for b in fy}
     for b in fy:
@@ -2837,7 +3302,7 @@ def dividends_inputs(facts):
         splits.append((new_filed, k, new_filed, "re_filed_counts"))
         notes.append(f"share-basis change with no ratio fact filed: the FY DPS for the period ended {end} and the diluted share count for the period ended {e} were both re-filed by the same factor "
                      f"(first on {new_filed}) — read as a {_split_desc(new_filed, k)}; every per-share fact last filed before {new_filed} is restated by it")
-    notes.extend(original_quarterly_dps(facts, dps_q, splits))
+    notes.extend(original_quarterly_dps(facts, dps_q, splits, money=money))
     dps_q, dps_fy, adj_notes = apply_splits(dps_q, dps_fy, fy_filed, splits)
     # 5.4.6 review fix (WRB): the annual diluted counts on today's share basis
     # (a count last filed before a split's first post-split filing × the
@@ -2848,7 +3313,7 @@ def dividends_inputs(facts):
     return dps_q, dps_fy, {"splits": splits, "split_notes": notes + adj_notes, "shares_by_end": shares_by_end}
 
 
-def original_quarterly_dps(facts, dps_q, splits):
+def original_quarterly_dps(facts, dps_q, splits, money=None):
     """5.4.6 review blocker (FTI's 10-K filed 2021-03-05 re-tags Q1 2019 at
     0.52, the year-to-date total, in a three-month context; HPQ's 10-K filed
     2019-12-12 tags 0.53 and 0.64 YTD values as quarters; WRB's 10-Q filed
@@ -2877,6 +3342,8 @@ def original_quarterly_dps(facts, dps_q, splits):
     for b in ("declared", "paid"):
         for taxonomy, tag in _pairs(DUR[f"dps_{b}"]):
             for unit_key, es in (facts.get("facts", {}).get(taxonomy, {}).get(tag, {}).get("units") or {}).items():
+                if money is not None and _unit_currency(unit_key) not in (None, money):
+                    continue
                 for x in es:
                     if (x.get("start") and x.get("end") and x.get("filed") and _num(x.get("val")) and x.get("form", "") in DURATION_FORMS
                             and DPS_DIRECT_WINDOW[0] <= _days(x["start"], x["end"]) <= 380):
@@ -2995,7 +3462,11 @@ def _shares_with_filed(facts):
     return {e: (v, filed.get(e)) for e, v in vals.items()}
 
 
-def build_ttm(qrows):
+def build_ttm(qrows, intang_ttm=None):
+    """The trailing four quarters. intang_ttm (intangible_capex_ttm): the TTM
+    intangible-capex leg the engine's way — fcf / oe_conservative are then
+    OCF − PP&E capex − it [− SBC] over the four quarters rather than the sum of
+    the quarterly rows (whose legs are not floored); None keeps the sum."""
     if len(qrows) < 4:
         return None
     last4 = qrows[-4:]
@@ -3007,6 +3478,9 @@ def build_ttm(qrows):
     for k in ("revenue", "gross_profit", "operating_income", "net_income", "ocf", "capex", "sbc", "da", "fcf", "oe_conservative", "eps_diluted"):
         vals = [r.get(k) for r in last4]
         out[k] = sum(vals) if all(isinstance(v, (int, float)) for v in vals) else None
+    if _num(intang_ttm) and out["fcf"] is not None and out["ocf"] is not None and out["capex"] is not None:
+        out["fcf"] = _whole(out["ocf"] - out["capex"] - intang_ttm)
+        out["oe_conservative"] = _whole(out["fcf"] - out["sbc"]) if out["sbc"] is not None else None
     # Codex review of PR #2: the TTM numerator sums four quarters, so the
     # denominator is the duration-weighted average of the four quarterly
     # diluted weighted-average counts — the latest quarter alone mismatches
@@ -3132,27 +3606,30 @@ def main():
         print(f"fundamentals.py: NO_CIK for {ticker}", file=sys.stderr); sys.exit(2)
     facts = get_json(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json")
     warnings = []
-    annual, tag_summary, currency = build_annual(facts)
-    quarterly = build_quarterly(facts, warnings=warnings, revenue_mode=(tag_summary.get("revenue_mode") or ["standard"])[0], annual=annual)
-    ttm = build_ttm(quarterly)
+    money = money_unit(facts)  # ruling-sheet Q8 bug 3: one money unit for every series, leg and per-share figure in the file
+    annual, tag_summary, currency = build_annual(facts, money=money)
+    quarterly = build_quarterly(facts, warnings=warnings, revenue_mode=(tag_summary.get("revenue_mode") or ["standard"])[0], annual=annual, money=money)
+    ttm = build_ttm(quarterly, intang_ttm=intangible_capex_ttm(facts, money, quarterly, fy_starts=core_fy_starts(facts, money=money)))
     eight_k_dates = []
     profile = build_profile(cik, facts, eight_k_dates=eight_k_dates)
-    dps_q, dps_fy, dmeta = dividends_inputs(facts)
+    dps_q, dps_fy, dmeta = dividends_inputs(facts, money=money)
     path = f"{folder}/fundamentals.json"
     prev = _prev_file(path)
     price, price_date, price_source = _read_price(folder, (prev or {}).get("dividends"))
-    flow_facts = {"dividends_paid": duration_facts(facts, DUR["dividends_paid"]),
-                  "buybacks": duration_facts(facts, DUR["buybacks"]),
-                  "share_issuance": combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS)}
+    flow_facts = {"dividends_paid": duration_facts(facts, DUR["dividends_paid"], money=money),
+                  "buybacks": duration_facts(facts, DUR["buybacks"], money=money),
+                  "share_issuance": combined_duration_facts(facts, DUR["share_issuance"], ISSUANCE_SUPERSETS, money=money)}
     filed_any = {k: bool(v) for k, v in flow_facts.items()}
     _ads = nums.get("ads_ratio")
     ctx = {"filed_any": filed_any, "flow_facts": flow_facts, "shares_instant": latest_share_count(facts),
            "ads_ratio": _ads.get("ratio") if isinstance(_ads, dict) else None,
            "latest_filed_period": {f: v.get("period") for f, v in (profile.get("latest_filings") or {}).items() if isinstance(v, dict)},
-           "split_notes": dmeta["split_notes"], "splits": dmeta["splits"], "shares_by_end": dmeta.get("shares_by_end"), "warnings": warnings}
+           "split_notes": dmeta["split_notes"], "splits": dmeta["splits"], "shares_by_end": dmeta.get("shares_by_end"), "warnings": warnings,
+           "currency": money, "engine_shares": nums.get("shares_diluted_latest")}
     dividends = build_dividends(annual, quarterly, dps_q, dps_fy, price, price_date, price_source, ctx)
-    if currency:
-        warnings.append(f"core facts filed in {', '.join(currency)} — figures are shown as filed (no FX conversion here; the engine converts for the valuation)")
+    _mw = money_unit_warning(pick_money_unit(money_entries(facts)))
+    if _mw:
+        warnings.append(_mw)
     if not quarterly:
         warnings.append("no quarterly facts could be assembled (filer may report on 20-F/40-F without 10-Qs)")
     nd_src = [r for r in annual if r.get("shares_tag") and str(r["shares_tag"]).startswith("BASIC")]

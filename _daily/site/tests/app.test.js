@@ -665,6 +665,71 @@ test('dividends: payer decided from frequency + paid / DPS history (CCL, TKO sha
   assert.ok(qfin.includes('>$0.155</td>') && qfin.includes('>$0.1525</td>'), 'quarterly DPS row keeps the filed precision');
   const still = App.renderDividends(synthetic); ['Dividend yield', 'Annual dividend', '$1.26', 'Payout frequency', 'Quarterly', 'Growth years', 'Buyback yield', 'Shareholder yield', 'Share basis:'].forEach((k) => assert.ok(still.includes(k), k));
 });
+test('ruling-sheet Q8: Financials labels the PP&E capex row and the FCF / OE that also deduct intangible purchases; prose and chart add up (GMED)', () => {
+  // fundamentals.json fcf = OCF − PP&E capex − the engine's intangible leg; capex stays the PP&E leg (GMED FY2025)
+  const gm = { fy: '2025', period_end: '2025-12-31', revenue: 2.9e9, ocf: 753447000, capex: 164679000, capex_intangibles: 9746000, sbc: 49779000, fcf: 579022000, oe_conservative: 529243000 };
+  const rec = Object.assign({}, synthetic, { fundamentals: Object.assign({}, synthetic.fundamentals, { annual: [gm] }) });
+  const fin = App.renderFinancials(rec);
+  assert.ok(fin.includes('<th>Capex (PP&amp;E)</th>') && !fin.includes('<th>Capex</th>'), 'the capex rows are labelled PP&E (annual and quarterly)');
+  assert.ok(fin.includes('<th>Free cash flow (OCF − PP&amp;E and intangible capex)</th>') && fin.includes("<th>Owner's earnings (FCF − SBC)</th>") && !fin.includes('Free cash flow (OCF − capex)'), 'FCF / OE labels name the intangible leg');
+  assert.ok(fin.includes('Free cash flow = operating cash flow − PP&amp;E capex (the row above) − purchases of intangibles') && !fin.includes("Capex is the engine's"), 'the section note does not call the PP&E row the engine capex');
+  const t = App.financialPerformance(rec);
+  assert.ok(t.includes('PP&amp;E capex $165M') && t.includes('purchases of intangibles $10M') && t.includes("Owner's earnings (operating cash flow − PP&amp;E and intangible capex − stock-based compensation) were $529M"), t);
+  const noInt = App.financialPerformance(synthetic); assert.ok(noInt.includes("Owner's earnings (operating cash flow − capex − stock-based compensation)") && !noInt.includes('purchases of intangibles'), 'no intangible leg: the plain wording');
+  const cf = App.chartSpecsFinancials(rec)['fin-cf'], names = cf.series.map((x) => x.name);
+  assert.deepEqual(names, ['Operating CF', 'Capex (PP&E)', 'Intangible capex', 'SBC', "Owner's earnings"]);
+  const bars = cf.series.filter((x) => x.kind === 'bar').reduce((acc, x) => acc + x.values[0], 0);
+  assert.equal(bars, gm.oe_conservative, 'the bars add up to the OE line');
+  assert.deepEqual(App.chartSpecsFinancials(synthetic)['fin-cf'].series.map((x) => x.name), ['Operating CF', 'Capex (PP&E)', 'SBC', "Owner's earnings"], 'no intangible bar without the leg');
+});
+test('ruling-sheet Q8 bug 3: a non-USD dividends block prints no cross-currency share of the market cap and no $ on local-currency legs (TLK, RDY)', () => {
+  // TLK (branch build): IDR legs, the USD market cap, every yield null — the caption had read "$17.68T (161,834.98%)"
+  const base = Object.assign({}, synthetic.fundamentals.dividends);
+  const tlk = Object.assign({}, base, { currency: 'IDR', dps_ttm: 312.5, dividend_yield: null, buyback_yield: null, net_buyback_yield: null, shareholder_yield: null,
+    market_cap: 10926562490.98, dividends_paid_ttm: null, buybacks_ttm: null, issuance_ttm: null,
+    legs: { dividends_paid: { value: 17683000000000 }, buybacks: { value: 0 }, share_issuance: { value: null } } });
+  const rec = Object.assign({}, synthetic, { fundamentals: Object.assign({}, synthetic.fundamentals, { currency: 'IDR', dividends: tlk }) });
+  const html = App.renderDividends(rec);
+  assert.ok(!html.includes('161,834.98%') && !html.includes('$17.68T'), 'no cross-currency ratio, no $ on the IDR leg');
+  assert.ok(html.includes('dividends paid IDR 17.68T + net buyback, ÷ market cap $10.93B (USD; the legs are in IDR, so no yield is computed)'), html.slice(html.indexOf('dividends paid'), html.indexOf('dividends paid') + 160));
+  assert.ok(html.includes('IDR 312.50') && !html.includes('>$312.50<'), 'the IDR DPS carries its currency');
+  // a USD block keeps its share of the market cap (HBAN's "3.04% paid" caption)
+  const usd = App.renderDividends(synthetic); assert.ok(/dividends paid \$[\d.]+[MBK] \([\d.]+%\)/.test(usd), 'USD: the share of the cap is shown');
+});
+test('Q8 round 2: only a block\'s own currency key names the dividend amounts\' unit; a pre-rule non-USD block prints them bare (TLK, CX)', () => {
+  // TLK / CX committed (pre-rule): file currency IDR / MXN, no dividends.currency — the legs are the filed USD facts
+  const base = Object.assign({}, synthetic.fundamentals.dividends);
+  const pre = Object.assign({}, base, { dps_ttm: null, dividend_yield: null, buyback_yield: null, net_buyback_yield: null, shareholder_yield: null,
+    market_cap: 10926562490.98, legs: { dividends_paid: { value: 1099000000 }, buybacks: { value: 44000000 }, share_issuance: { value: null } } });
+  delete pre.currency;
+  const rec = Object.assign({}, synthetic, { fundamentals: Object.assign({}, synthetic.fundamentals, { currency: 'IDR', dividends: pre }) });
+  const html = App.renderDividends(rec);
+  assert.ok(!html.includes('IDR 1.10B') && !html.includes('the legs are in IDR') && !html.includes('IDR 44'), 'the file currency is not printed as the legs\' unit');
+  assert.ok(html.includes('dividends paid 1.10B + net buyback') && html.includes('the legs\' currency is not recorded in this block'), html.slice(html.indexOf('dividends paid'), html.indexOf('dividends paid') + 200));
+  assert.ok(html.includes('this block was written before 2026-10-19') && html.includes('may be USD or IDR'), 'the notes say the unit is unrecorded');
+  assert.deepEqual(App.divCurrency(rec.fundamentals), { cur: null, recorded: false, file: 'IDR' });
+  // a block that records its unit keeps the code; a USD file keeps the $
+  assert.deepEqual(App.divCurrency({ currency: 'INR', dividends: { currency: 'INR' } }), { cur: 'INR', recorded: true, file: 'INR' });
+  assert.equal(App.divCurrency(synthetic.fundamentals).cur, 'USD');
+});
+test('Q8 round 2: the dividend-per-share chart prints the block\'s currency, not $ (RDY INR 40.00)', () => {
+  const mk = (fund) => { const el = { clientWidth: 600, innerHTML: '' }; App.drawChart(el, App.chartSpecsDividends({ fundamentals: fund })['div-dps']); return el.innerHTML; };
+  const inr = mk({ currency: 'INR', dividends: { currency: 'INR', annual_dps: [{ fy: '2023', dps: 30 }, { fy: '2024', dps: 40 }] } });
+  assert.ok(!inr.includes('$'), 'no $ in the ticks or tooltips of an INR chart');
+  assert.ok(inr.includes('INR\u00a040.00') && inr.includes('FY2024 · Dividend per share: INR\u00a040.00'), inr.slice(0, 400));
+  const pre = mk({ currency: 'INR', dividends: { annual_dps: [{ fy: '2024', dps: 40 }] } });
+  assert.ok(!pre.includes('$') && !pre.includes('INR') && pre.includes('Dividend per share: 40.00'), 'a pre-rule block: bare amounts');
+  const usd = mk({ currency: 'USD', dividends: { annual_dps: [{ fy: '2024', dps: 1.26 }] } });
+  assert.ok(usd.includes('Dividend per share: $1.26'), 'USD unchanged');
+});
+test('Q8 round 2: the Forecast tab OE-history note names the intangible leg when a plotted year deducts one (BBIO)', () => {
+  const bb = { fy: '2025', period_end: '2025-12-31', ocf: -445910000, capex: 1097000, sbc: 133024000, fcf: -455502000, oe_conservative: -588526000, shares_diluted: 190000000, oe_per_share: -3.0975 };
+  const rec = { fundamentals: { currency: 'USD', annual: [bb] }, numbers: {}, score: {} };
+  const html = App.renderForecastDCF(rec);
+  assert.ok(html.includes('operating cash flow − PP&amp;E and intangible capex − stock-based compensation') && !html.includes('operating cash flow − capex −'), html.slice(0, 400));
+  const plain = App.renderForecastDCF({ fundamentals: { currency: 'USD', annual: [Object.assign({}, bb, { fcf: -447007000, oe_conservative: -580031000, oe_per_share: -3.0528 })] }, numbers: {}, score: {} });
+  assert.ok(plain.includes('operating cash flow − capex − stock-based compensation'), 'no intangible leg: the plain wording');
+});
 test('app.css: every wide element is contained — no horizontal page scroll at phone width (Segments table included)', () => {
   const css = fs.readFileSync(path.join(SITE, 'app.css'), 'utf8');
   assert.ok(/\.twrap\{[^}]*overflow-x:auto/.test(css), '.twrap scrolls horizontally');
@@ -1015,9 +1080,9 @@ test('statements viewer: basis-break quarters are greyed with a title and a lege
 test('summary tables drop a line with no value in any shown period; performance prose with negative growth', () => {
   const rec = JSON.parse(JSON.stringify(synthetic)); rec.fundamentals.quarterly.forEach((q) => { q.capex = null; q.gross_margin = null; }); rec.fundamentals.annual.forEach((a) => { a.rnd = null; a.prepaids_pct_assets = null; });
   const fin = App.renderFinancials(rec), qslice = fin.slice(fin.indexOf('<h2>Quarterly</h2>'), fin.indexOf('<h2>Revenue'));
-  assert.ok(qslice.length > 500 && !qslice.includes('<th>Capex</th>') && !qslice.includes('<th>Gross margin</th>') && qslice.includes('<th>Revenue</th>'), 'all-empty quarterly lines dropped (' + qslice.length + ')');
+  assert.ok(qslice.length > 500 && !qslice.includes('<th>Capex (PP&amp;E)</th>') && !qslice.includes('<th>Gross margin</th>') && qslice.includes('<th>Revenue</th>'), 'all-empty quarterly lines dropped (' + qslice.length + ')');
   assert.ok(!fin.includes('<th>R&amp;D</th>') && !fin.includes('<th>Prepaids % assets</th>') && fin.includes('<th>Revenue</th>') && fin.includes('<th>Operating cash flow</th>'), 'all-empty annual lines dropped, the rest kept');
-  const full = App.renderFinancials(synthetic); assert.ok(full.includes('<th>Capex</th>') && full.includes('<th>Stock-based compensation</th>') && full.includes('<th>Operating cash flow</th>'), 'lines with values stay');
+  const full = App.renderFinancials(synthetic); assert.ok(full.includes('<th>Capex (PP&amp;E)</th>') && full.includes('<th>Stock-based compensation</th>') && full.includes('<th>Operating cash flow</th>'), 'lines with values stay');
   const annKeys = Object.keys(synthetic.fundamentals.annual[0]); assert.ok(!annKeys.includes('rnd') ? !full.includes('<th>R&amp;D</th>') : full.includes('<th>R&amp;D</th>'), 'a line the fixture never filed is absent; one it filed is present');
   const neg = { fundamentals: { currency: 'USD', annual: [{ fy: '2024', period_end: '2024-12-31', revenue: 2.1e9, net_income: 2e8 }, { fy: '2025', period_end: '2025-12-31', revenue: 1.99e9, revenue_growth: -0.0524, net_income: 1.5e8, net_margin: 0.0754, net_income_growth: -0.25, shares_diluted: 1.02e8, shares_diluted_growth: 0.02 }] } };
   const t = App.financialPerformance(neg);

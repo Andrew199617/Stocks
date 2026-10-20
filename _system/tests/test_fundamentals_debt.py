@@ -35,6 +35,7 @@ import dcf_engine as E  # noqa: E402
 import _stable as S  # noqa: E402
 
 G = "us-gaap"
+IF = "ifrs-full"
 
 
 def _facts(entries):
@@ -399,6 +400,148 @@ def test_every_text_mode_open_names_utf8():
             if "b" not in mode and not any(k.arg == "encoding" for k in node.keywords):
                 bad.append(node.lineno)
     assert not bad, f"fundamentals.py open() without encoding at lines {bad}"
+
+
+# ---------------- 8. ruling-sheet Q8 (Andrew, 2026-10-19): derived FCF / OE on the engine's total capex ----------------
+def _fyd(tag, end, val, unit="USD", tax=G, start=None, form="10-K", filed=None):
+    start = start or f"{end[:4]}-01-01"
+    return (tax, tag, unit, {"start": start, "end": end, "val": val, "form": form, "fp": "FY", "filed": filed or f"{int(end[:4]) + 1}-02-15", "accn": "K" + end})
+
+
+def test_fcf_and_owner_earnings_deduct_the_engine_intangible_leg():
+    """GGB / GMED (PRs #43 / #44): the enrichment's fcf and oe_conservative subtracted the PP&E leg only, while
+    engine 5.5 (dcf_engine.capex_for_period, the scored CSV) adds intangible purchases on top. GGB FY2025 (BRL):
+    OCF 7,987,454,000 − PP&E 6,681,620,000 − intangibles 171,221,000 = FCF 1,134,613,000 (was 1,305,834,000),
+    OE 985,403,000 (was 1,156,624,000). GMED FY2025: 579,022,000 / 529,243,000 (was 588,768,000 / 538,989,000)."""
+    ggb = _facts([_fyd("CashFlowsFromUsedInOperatingActivities", "2025-12-31", 7_987_454_000, "BRL", IF, form="20-F"),
+                  _fyd("PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "2025-12-31", 6_681_620_000, "BRL", IF, form="20-F"),
+                  _fyd("PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities", "2025-12-31", 171_221_000, "BRL", IF, form="20-F"),
+                  _fyd("AdjustmentsForSharebasedPayments", "2025-12-31", 149_210_000, "BRL", IF, form="20-F"),
+                  _fyd("ProfitLoss", "2025-12-31", 1_000_000_000, "BRL", IF, form="20-F")])
+    r = _row(ggb, "2025-12-31")
+    assert r["capex"] == 6_681_620_000 and r["capex_intangibles"] == 171_221_000, "the PP&E and intangible display fields are unchanged"
+    assert r["fcf"] == 1_134_613_000 and r["oe_conservative"] == 985_403_000, (r["fcf"], r["oe_conservative"])
+    gmed = _facts([_fyd("NetCashProvidedByUsedInOperatingActivities", "2025-12-31", 753_447_000), _fyd("PaymentsToAcquirePropertyPlantAndEquipment", "2025-12-31", 164_679_000),
+                   _fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", 9_746_000), _fyd("ShareBasedCompensation", "2025-12-31", 49_779_000),
+                   _fyd("NetIncomeLoss", "2025-12-31", 300_000_000)])
+    r = _row(gmed, "2025-12-31")
+    assert r["fcf"] == 579_022_000 and r["oe_conservative"] == 529_243_000, (r["fcf"], r["oe_conservative"])
+
+
+def test_intangible_leg_follows_the_engine_rules():
+    """The leg is dcf_engine's: its tag set (CAPEX_INTANGIBLE_TAGS — capitalized software, PaymentsToDevelopSoftware,
+    is NOT capex until the Q6 / engine 5.7 follow-on, so it is shown in capex_intangibles but not deducted), a
+    negative fact dropped, and ECHO's cumulative duplicate (30,000,000,000 also filed on a multi-year context) dropped."""
+    base = [_fyd("NetCashProvidedByUsedInOperatingActivities", "2025-12-31", 1_000), _fyd("PaymentsToAcquirePropertyPlantAndEquipment", "2025-12-31", 100),
+            _fyd("ShareBasedCompensation", "2025-12-31", 10), _fyd("NetIncomeLoss", "2025-12-31", 500)]
+    soft = _row(_facts(base + [_fyd("PaymentsToDevelopSoftware", "2025-12-31", 40)]), "2025-12-31")
+    assert soft["capex_intangibles"] == 40 and soft["fcf"] == 900 and soft["oe_conservative"] == 890, soft["fcf"]
+    neg = _row(_facts(base + [_fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", -6)]), "2025-12-31")
+    assert neg["fcf"] == 900
+    echo = _row(_facts(base + [_fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", 30_000_000_000),
+                               _fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", 30_000_000_000, start="2018-01-01")]), "2025-12-31")
+    assert echo["fcf"] == 900, echo["fcf"]
+    both = _row(_facts(base + [_fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", 30), _fyd("PaymentsToAcquireOtherIntangibleAssets", "2025-12-31", 5)]), "2025-12-31")
+    assert both["fcf"] == 865 and both["oe_conservative"] == 855, "two engine intangible lines are summed, as capex_for_period does"
+    assert F.ENGINE_INTANGIBLE_TAGS is E.CAPEX_INTANGIBLE_TAGS, "one tag list, the engine's"
+
+
+def _ytd_facts(tag, vals, fy_start="2025-01-01", ends=("2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31")):
+    """Year-to-date facts (cash-flow lines are filed YTD): vals[i] is the YTD value at ends[i]; None = not tagged then."""
+    out = []
+    for i, v in enumerate(vals):
+        if v is None:
+            continue
+        form, fp = ("10-K", "FY") if i == 3 else ("10-Q", f"Q{i + 1}")
+        out.append((G, tag, "USD", {"start": fy_start, "end": ends[i], "val": v, "form": form, "fp": fp, "filed": f"{ends[i][:4]}-{ends[i][5:7]}-28", "accn": f"Q{fy_start}{i}"}))
+    return out
+
+
+def _intang_case(intang_ytd, fy_start="2025-01-01", ends=("2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31")):
+    """OCF 100/quarter, PP&E capex 10/quarter, SBC 5/quarter, net income 50/quarter — and the intangible line's YTD values."""
+    cum = lambda per: [per * (i + 1) for i in range(4)]
+    facts = _facts(_ytd_facts("NetCashProvidedByUsedInOperatingActivities", cum(100), fy_start, ends) + _ytd_facts("NetIncomeLoss", cum(50), fy_start, ends)
+                   + _ytd_facts("PaymentsToAcquirePropertyPlantAndEquipment", cum(10), fy_start, ends) + _ytd_facts("ShareBasedCompensation", cum(5), fy_start, ends)
+                   + _ytd_facts("PaymentsToAcquireIntangibleAssets", intang_ytd, fy_start, ends))
+    annual, _, _ = F.build_annual(facts)
+    q = F.build_quarterly(facts, annual=annual)
+    ttm = F.build_ttm(q, intang_ttm=F.intangible_capex_ttm(facts, "USD", q, fy_starts=F.core_fy_starts(facts, money="USD")))
+    return annual, q, ttm
+
+
+def test_quarterly_and_ttm_fcf_deduct_the_intangible_leg():
+    """GMED's TTM OE was 706,634,000 in the enrichment vs the DCF's 701,888,000 — the 4,746,000 TTM intangible leg.
+    Quarters derive the leg year-to-date less the previous year-to-date, so a year's quarters sum to its FY figure; a
+    derived quarter may be negative (a YTD restated down) — only the TTM total is floored, as the engine's is."""
+    annual, q, ttm = _intang_case([1, 3, 6, 5])  # Q4 derived 5 - 6 = -1
+    assert [r["fcf"] for r in q] == [89, 88, 87, 91], [r["fcf"] for r in q]
+    assert [r["oe_conservative"] for r in q] == [84, 83, 82, 86]
+    assert annual[-1]["fcf"] == 400 - 40 - 5, "the FY leg is the filed FY fact (5)"
+    assert ttm["fcf"] == annual[-1]["fcf"] and ttm["oe_conservative"] == annual[-1]["oe_conservative"], (ttm["fcf"], annual[-1]["fcf"])
+
+
+def test_intangible_leg_first_tagged_mid_year_reaches_the_quarters_and_ttm():
+    """Verifier round 1 (IREN): PaymentsToAcquireIntangibleAssets 107,573,000 is first tagged on the six-month 10-Q, then
+    the nine-month and FY contexts, Q1 untagged. The old derivation needed the leg one rank shorter, so no quarter of the
+    year deducted anything: TTM fcf -897,588,000 against an FY2026 fcf of -1,005,161,000 for the same four quarters (PFGC
+    is the nine-month shape). An untagged earlier YTD is 0, as the engine counts an untagged leg."""
+    ends = ("2025-09-30", "2025-12-31", "2026-03-31", "2026-06-30")
+    annual, q, ttm = _intang_case([None, 107_573_000, 107_573_000, 107_573_000], fy_start="2025-07-01", ends=ends)
+    assert [r["fcf"] for r in q] == [90, 90 - 107_573_000, 90, 90], [r["fcf"] for r in q]
+    assert annual[-1]["fcf"] == 360 - 107_573_000
+    assert ttm["fcf"] == annual[-1]["fcf"], (ttm["fcf"], annual[-1]["fcf"])
+    _, q9, ttm9 = _intang_case([None, None, 9_600_000, 9_600_000])  # PFGC: first tagged on the nine-month 10-Q
+    assert q9[2]["fcf"] == 90 - 9_600_000 and ttm9["fcf"] == 360 - 9_600_000, (q9[2]["fcf"], ttm9["fcf"])
+
+
+def test_intangible_ytd_restated_down_is_not_floored_per_quarter():
+    """Verifier round 1 (RMD): YTD 2,814,000 / 1,479,000 / 1,479,000 / FY 2,218,000 — the derived Q2 is -1,335,000. The
+    old code dropped it (each quarter floored at zero), so the TTM deducted 3,553,000 while FY2026, the same window,
+    deducts 2,218,000. The quarters now sum to the FY figure and the TTM equals it."""
+    annual, q, ttm = _intang_case([2_814_000, 1_479_000, 1_479_000, 2_218_000])
+    assert [r["fcf"] for r in q] == [90 - 2_814_000, 90 + 1_335_000, 90, 90 - 739_000], [r["fcf"] for r in q]
+    assert sum(r["fcf"] for r in q) == annual[-1]["fcf"] == 360 - 2_218_000
+    assert ttm["fcf"] == annual[-1]["fcf"] and ttm["oe_conservative"] == annual[-1]["oe_conservative"]
+
+
+def test_completed_year_without_an_fy_intangible_figure_deducts_nothing_in_its_quarters():
+    """Verifier round 2 (RMD FY2024): the 10-Qs tag YTD 10,831,000 / 12,036,000 / 13,954,000 and the latest 10-K
+    re-files FY2024 as 0, which the engine ignores, so the annual row deducts 0. The old quarters still deducted the
+    10-Q legs with no Q4 to offset them (13,954,000 across the year vs 0 on the annual row - BAX FY2025, NXT FY2026
+    the same: no FY fact at all). A filed year's quarters now sum to its annual figure: nothing."""
+    for fy in (0, None):
+        annual, q, _ = _intang_case([10_831_000, 12_036_000, 13_954_000, fy])
+        assert annual[-1]["fcf"] == 360, annual[-1]["fcf"]
+        assert [r["fcf"] for r in q] == [90, 90, 90, 90], (fy, [r["fcf"] for r in q])
+        assert sum(r["fcf"] for r in q) == annual[-1]["fcf"]
+    # the year still in progress (no annual row yet) keeps its YTD legs
+    ends = ("2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31")
+    cum = lambda per: [per * (i + 1) for i in range(3)] + [None]
+    facts = _facts(_ytd_facts("NetCashProvidedByUsedInOperatingActivities", cum(100), "2025-01-01", ends) + _ytd_facts("NetIncomeLoss", cum(50), "2025-01-01", ends)
+                   + _ytd_facts("PaymentsToAcquirePropertyPlantAndEquipment", cum(10), "2025-01-01", ends)
+                   + _ytd_facts("PaymentsToAcquireIntangibleAssets", [10_831_000, 12_036_000, 13_954_000, None], "2025-01-01", ends))
+    assert F.intangible_capex_quarterly(facts, "USD", fy_starts={"2025-01-01"}) == {"2025-03-31": 10_831_000, "2025-06-30": 1_205_000, "2025-09-30": 1_918_000}
+
+
+def test_ttm_intangible_leg_is_the_engine_formula():
+    """A TTM ending mid-year: FY - the prior year's same-length YTD + the current YTD (ttm.py add_intangibles), floored
+    at zero; a prior-YTD amount with no FY amount leaves the remainder unknown and neither leg counts (R4-INTANG, BAX)."""
+    ends = ("2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31")
+    ends2 = ("2026-03-31", "2026-06-30", "2026-09-30", "2026-12-31")
+    base = []
+    cum = lambda per: [per * (i + 1) for i in range(4)]
+    for fs, en in (("2025-01-01", ends), ("2026-01-01", ends2)):
+        base += (_ytd_facts("NetCashProvidedByUsedInOperatingActivities", cum(100), fs, en) + _ytd_facts("NetIncomeLoss", cum(50), fs, en)
+                 + _ytd_facts("PaymentsToAcquirePropertyPlantAndEquipment", cum(10), fs, en) + _ytd_facts("ShareBasedCompensation", cum(5), fs, en))
+    def run(i25, i26):
+        facts = _facts(base + _ytd_facts("PaymentsToAcquireIntangibleAssets", i25, "2025-01-01", ends)
+                       + _ytd_facts("PaymentsToAcquireIntangibleAssets", i26, "2026-01-01", ends2))
+        q = [r for r in F.build_quarterly(facts, annual=F.build_annual(facts)[0]) if r["period_end"] <= "2026-06-30"]
+        return F.intangible_capex_ttm(facts, "USD", q, fy_starts=F.core_fy_starts(facts, money="USD"))
+    assert run([4, 6, 9, 12], [1, 2, None, None]) == 12 - 6 + 2
+    assert run([None, 9, None, None], [3, 3, None, None]) == 3, "BAX: prior YTD 9 with no FY fact - only the current YTD counts"
+    assert run([4, 30, 31, 12], [1, 2, None, None]) == 2, "a prior YTD above the FY figure: the remainder is unknown"
+    assert run([4, 6, 9, 12], [None, None, None, None]) == 6 and run([0, 0, 0, 0], [None, None, None, None]) == 0
 
 
 if __name__ == "__main__":

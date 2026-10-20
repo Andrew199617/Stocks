@@ -35,9 +35,12 @@ for the rules below.
 - one period, one date: a fiscal week-end and the calendar month-end a later
   comparative used (1-3 days apart) are merged onto the original filing's date;
 - annual columns = every fiscal year the filer's FY-duration facts support
-  (10-K / 20-F / 40-F) in ONE money unit per file (the unit
-  most of the core FY facts are filed in, USD preferred on ties; convenience
-  translations in another currency are ignored);
+  (10-K / 20-F / 40-F) in ONE money unit per file (money_unit =
+  fundamentals.pick_money_unit: the currency the NEWEST annual filing files
+  most of its core FY facts in, the count over every filing then USD breaking
+  a tie; facts in any other currency — convenience translations, a former
+  presentation currency such as RTO's GBP — are ignored; ruling-sheet Q8
+  bug 3, Andrew 2026-10-19);
 - quarterly columns = every derivable fiscal quarter: direct 3-month facts
   where filed, else year-to-date minus the prior year-to-date leg in the same
   fiscal year (flagged derived_quarterly), Q4 = FY minus the nine-month leg —
@@ -78,9 +81,14 @@ for the rules below.
   quarters and the growth cells that straddle it are blanked;
 - derived lines (ebitda, fcf, owner_earnings and every metric) are computed
   only from lines present in the SAME period; a component line the filer has
-  never filed in any period (no short-term investments, no debt, no goodwill)
+  never filed in any period (no short-term investments, no goodwill)
   counts as zero where the definition allows it, a component filed in other
-  periods but not this one gives null — except SBC, which counts as zero for
+  periods but not this one gives null. The debt stock is never such a
+  component of net cash (ruling-sheet Q8 bug 2, Andrew 2026-10-19): no filed
+  borrowings figure, no net cash (MICC, GGB printed their cash balance).
+  A cover-page dei share count that is one class of a multi-class filer gives
+  way to the same filing's all-class count (fundamentals.class_count_check,
+  GGB). SBC counts as zero for
   a period whose cash-flow statement (the filing that supplied the period's
   OCF) has no SBC line and no SBC-like caption at all. Capex is NEVER read as
   zero: no filed capex, no FCF and no owner's earnings. In a period whose
@@ -140,7 +148,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from fundamentals import (DUR, INST, DURATION_FORMS, core_fy_starts, _days, _g, _ratio, _num, fy_labels,  # noqa: E402
                           resolve_cik, get_json, split_direction, share_refilings, split_filing_cutoffs,
-                          split_factor, _split_desc, _split_cutoff, _shares_with_filed, _units_pref)
+                          split_factor, _split_desc, _split_cutoff, _shares_with_filed, _units_pref, class_count_check, pick_money_unit)
 from _stable import write_json_if_changed  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
@@ -268,6 +276,33 @@ CASH_WITH_RESTRICTED_LABEL = "Cash, equivalents & restricted cash"
 # still count restricted cash as cash says so in its label; every cell → the ALL suffix (the cash line: the label above)
 RESTRICTED_SOME_SUFFIX = " (some periods incl. restricted cash)"
 RESTRICTED_ALL_SUFFIX = " (incl. restricted cash)"
+# verifier round 1 (GGB, MICC): the net_cash warning names the debt rule, not "no borrowings figure" — GGB files
+# ifrs-full:NotesAndDebenturesIssued (a partial line: R$4.407B of R$14.182B gross debt) and MICC ifrs-full:NetDebt (a net
+# figure); neither is a gross-debt total the rule reads, so net cash stays null, and the warning lists what IS filed.
+NET_CASH_NO_DEBT_WARNING = ("net_cash: no total-debt figure the statements' debt rule reads (long-term debt, short-term borrowings, current "
+                            "maturities or a combined debt total)")
+DEBT_LIKE_TAGS = [(IF, "NotesAndDebenturesIssued"), (IF, "NoncurrentPortionOfNoncurrentNotesAndDebenturesIssued"),
+                  (IF, "CurrentNotesAndDebenturesIssuedAndCurrentPortionOfNoncurrentNotesAndDebenturesIssued"), (IF, "NetDebt"),
+                  (IF, "BondsIssued"), (IF, "LoansReceivedAndBondsIssued"), (IF, "OtherBorrowings"),
+                  "NonRecourseDebt", "OtherLongTermDebt", "OtherLongTermDebtNoncurrent", "NotesPayable", "SecuredDebt", "UnsecuredDebt",
+                  "LinesOfCreditCurrent", "LongTermLineOfCredit", "OtherBorrowings", "SecuredLongTermDebt", "UnsecuredLongTermDebt",
+                  "SecuritiesSoldUnderAgreementsToRepurchase", "AdvancesFromFederalHomeLoanBanks", "FinanceLeaseLiability"]
+
+
+def debt_like_unread(facts, money):
+    """'taxonomy:Tag' of DEBT_LIKE_TAGS the filer files as an undimensioned instant in `money` — debt-like lines the
+    total_debt rule does not read (partial lines, a net figure), named in the net_cash warning."""
+    read = {(t if isinstance(t, tuple) else ("us-gaap", t)) for spec in BALANCE + HIDDEN
+            if spec["key"] in ("short_term_debt", "current_lt_debt", "long_term_debt", "debt_current_agg", "debt_total_agg") for t in spec["tags"]}
+    out = []
+    for pair in _pairs(DEBT_LIKE_TAGS):
+        if pair in read:
+            continue
+        if any(not e.get("start") and _num(e.get("val")) for e in _tag_facts(facts, pair).get(money, [])):
+            out.append(f"{pair[0]}:{pair[1]}")
+    return out
+
+
 DEBT_TOTAL_TAGS = ("LongTermDebt", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities", "DebtLongtermAndShorttermCombinedAmount", "Borrowings",
                    "SeniorNotes", "ConvertibleNotesPayable")  # totals that include current maturities: never added to the current-debt lines
 
@@ -859,14 +894,14 @@ def dei_shares_by_period(facts, period_ends, window=75):
     tf = facts.get("facts", {}).get(DEI_SHARES[0], {}).get(DEI_SHARES[1])
     if not tf:
         return {}
-    pts = sorted((e["end"], e.get("filed", ""), e["val"]) for e in tf.get("units", {}).get("shares", [])
+    pts = sorted((e["end"], e.get("filed", ""), e["val"], e.get("accn")) for e in tf.get("units", {}).get("shares", [])
                  if e.get("end") and _num(e.get("val")) and e["val"] > 0 and not (e.get("start") and e["start"] != e["end"]))
     out = {}
     for p in period_ends:
-        for end, filed, val in pts:
+        for end, filed, val, accn in pts:
             d = _days(p, end)
             if 0 <= d <= window:
-                out[p] = (val, filed, end)
+                out[p] = (val, filed, end, accn)
                 break
     return out
 
@@ -891,10 +926,15 @@ def has_quarterly_forms(facts, tags):
 
 
 def money_unit(facts, warnings):
-    """The ONE money unit of the file: the unit most of the core FY facts
-    (revenue, net income, OCF, assets) are filed in, USD preferred on ties.
-    Facts in any other currency (convenience translations) are ignored."""
-    counts = {}
+    """The ONE money unit of the file: the currency the newest annual filing
+    files most of its core FY facts (revenue, net income, OCF, assets) in, the
+    all-filing count then USD breaking a tie — fundamentals.pick_money_unit,
+    so statements.json and fundamentals.json agree (ruling-sheet Q8 bug 3,
+    Andrew 2026-10-19: RTO's FY2025 20-F moved its presentation currency from
+    GBP to USD; an all-time majority kept GBP and dropped FY2025). Facts in any
+    other currency (convenience translations, a former presentation
+    currency) are ignored."""
+    entries = []
     for tags, duration in ((REVENUE_TAGS, True), (NET_INCOME_TAGS, True), (OCF_TAGS, True), (INST["assets"], False)):
         for pair in _pairs(tags):
             for unit_key, es in _tag_facts(facts, pair).items():
@@ -905,16 +945,20 @@ def money_unit(facts, warnings):
                         continue
                     if duration and not (e.get("start") and is_fy(e["start"], e["end"])):
                         continue
-                    counts[unit_key] = counts.get(unit_key, 0) + 1
-    if not counts:
-        return "USD"
-    order = _units_pref(list(counts))
-    unit = max(order, key=lambda u: (counts[u], -order.index(u)))
-    others = sorted(u for u in counts if u != unit)
+                    entries.append((unit_key, e.get("filed") or "", e.get("accn")))
+    pick = pick_money_unit(entries)
+    unit, tr, ea, fo, et = pick["unit"], pick["translations"], pick["earlier"], pick["former"], pick["earlier_translations"]
+    left = [f"the filer's {', '.join(tr)} convenience translations are ignored"] if tr else []
+    if fo:
+        left.append(f"the {', '.join(fo)} facts of filings before the newest annual report (filed {pick['newest_filed']}) are a former "
+                    f"presentation currency and are ignored")
+    if et:
+        left.append(f"the {', '.join(et)} convenience translations of earlier filings are ignored")
     if unit != "USD":
-        warnings.append(f"core facts filed in {unit} — figures are shown as filed (no FX conversion)" + (f"; the filer's {', '.join(others)} convenience translations are ignored" if others else ""))
-    elif others:
-        warnings.append(f"the filer also files core facts in {', '.join(others)} — only the USD facts are read; a quarter is never derived from legs in different currencies")
+        warnings.append(f"core facts filed in {unit} — figures are shown as filed (no FX conversion)" + "".join(f"; {x}" for x in left))
+    elif left:
+        warnings.append(f"the filer also files core facts in {', '.join(tr + ea)} — only the USD facts are read; a quarter is never derived from legs "
+                        f"in different currencies" + "".join(f"; {x}" for x in left))
     return unit
 
 
@@ -1837,6 +1881,20 @@ def assemble_lines(facts, bank, annual_ends, q_ends, qmeta, fy_starts, money, sp
     if so is not None:
         dei_a = dei_shares_by_period(facts, [e for i, e in enumerate(annual_ends) if not _num(so["annual"][i])])
         dei_q = dei_shares_by_period(facts, [e for i, e in enumerate(q_ends) if not _num(so["quarterly"][i])])
+        # ruling-sheet Q8 bug 2 (Andrew, 2026-10-19): a cover count that is one class of a multi-class filer gives way to
+        # the same filing's all-class count (fundamentals.class_count_check — GGB 717,782,619 common vs 2,000,879,949)
+        swapped = []
+        for dei in (dei_a, dei_q):
+            for e, (val, filed, end, accn) in list(dei.items()):
+                chk = class_count_check(val, facts, accn)
+                if chk is not None:
+                    dei[e] = (chk[0], filed, end, accn)
+                    swapped.append((e, val, chk))
+        if swapped:
+            so["tags"] = sorted(set(so["tags"]) | {chk[2].split(" less ")[0].split(":", 1)[1] for _, _, chk in swapped})
+            ex = swapped[-1]
+            warnings.append(f"shares: {len(set(e for e, _, _ in swapped))} period-end share count(s) ({min(e for e, _, _ in swapped)}..{max(e for e, _, _ in swapped)}) "
+                            f"use the all-class count — {ex[2][3]} (latest: {ex[0]}); book value, tangible book value and net cash per share divide by it")
         for i, e in enumerate(annual_ends):
             if e in dei_a:
                 k = _split_scale("shares", dei_a[e][1], splits)
@@ -2636,9 +2694,12 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
             return agg_tot + (st if (_num(st) and not st_is_agg) else 0.0)
         return cur
     if name == "net_cash":
+        # ruling-sheet Q8 bug 2 (Andrew, 2026-10-19): the debt stock is never an optional component — a period with no
+        # filed borrowings figure has unknown net cash, not the cash balance (MICC FY2025 +EUR441M, GGB +R$5.929B
+        # against R$14.182B of gross debt in its own 20-F). A filed debt of 0 still nets to cash.
         cash = _available_cash(get("cash"), get, tag_of)
-        sti, debt = _opt(get, present, "short_term_investments"), _opt(get, present, "total_debt")
-        return cash + sti - debt if (_num(cash) and sti is not None and debt is not None) else None
+        sti, debt = _opt(get, present, "short_term_investments"), get("total_debt")
+        return cash + sti - debt if (_num(cash) and sti is not None and _num(debt)) else None
     if name == "working_capital":
         return get("total_current_assets") - get("total_current_liabilities") if req("total_current_assets", "total_current_liabilities") else None
     if name == "tangible_book_value":
@@ -2790,6 +2851,16 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
         if per:
             per = sorted(set(per))
             warnings.append(f"net margin: continuing net income ÷ revenue for {len(per)} period(s) with discontinued operations ({per[0]}..{per[-1]}) — revenue is continuing-only there")
+    cash_l = lines.get("cash")
+    if cash_l is not None and warnings is not None and not present("total_debt"):
+        # ruling-sheet Q8 bug 2: a filer with no borrowings figure in ANY period (before the ruling its cash balance was
+        # printed as net cash; a period-level gap beside filed periods was already blank) — name the periods
+        per = [e for col, ends in (("annual", annual_ends), ("quarterly", q_ends)) for i, e in enumerate(ends) if _num(cash_l[col][i])]
+        if per:
+            per = sorted(set(per))
+            warnings.append(f"{NET_CASH_NO_DEBT_WARNING} is filed in any period — net cash (debt) and net cash per share are left blank for "
+                            f"the {len(per)} period(s) with a cash balance ({per[0]}..{per[-1]}): unknown, not zero (the filer may have no "
+                            f"borrowings, or tag them only on lines that are partial or not a gross-debt total)")
     if mixed and warnings is not None:
         warnings.append(f"same filing: {len(mixed)} fiscal-year cell(s) of a derived figure are blank because its inputs' values come from different filing "
                         f"generations (one restated by a later filing, the other as originally filed) although one filing reports them all: {', '.join(mixed[:10])}"
@@ -3114,6 +3185,11 @@ def build_statements(facts, warnings=None, sub=None):
     elif q_ends:
         warnings.append(f"ttm: the last four quarters ({', '.join(q_ends[-4:])}) are not four consecutive fiscal quarters — flow lines carry no TTM")
     statements = finish_lines(lines, annual_ends, q_ends, qmeta, (ttm or {}).get("quarters"), warnings)
+    for i, w in enumerate(warnings):
+        if isinstance(w, str) and w.startswith(NET_CASH_NO_DEBT_WARNING):
+            dl = debt_like_unread(facts, money)
+            if dl:
+                warnings[i] = w + f"; debt-like lines filed but not read as gross debt (partial, or a net figure): {', '.join(dl)}"
     labels, fy_lab = period_labels(annual_ends, q_ends, qmeta)
     orig = original_filing_dates(facts, annual_ends, sub)
     qlabels = [(f"Q{qmeta[e]['fq']} FY{fy_lab[qmeta[e]['fy_start']]}" if qmeta[e].get("fq") and qmeta[e].get("fy_start") in fy_lab else e) for e in q_ends]

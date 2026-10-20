@@ -1471,6 +1471,131 @@ def test_read_price_skips_a_post_split_close():
     finally:
         shutil.rmtree(d, ignore_errors=True)
 
+
+# ---------------- ruling-sheet Q8 bug 2 (Andrew, 2026-10-19): the share count the yields divide by ----------------
+def _tlk_annual():
+    return [{"fy": "2024", "period_end": "2024-12-31", "eps_diluted": 237.0, "dividends_paid": 1_099_000_000, "buybacks": 44_000_000,
+             "share_issuance": None, "oe_conservative": 2.2e9, "fcf": 2.21e9, "shares_diluted": 99_062_216_600}]
+
+
+def test_stale_instant_share_count_is_not_the_market_cap_denominator():
+    """TLK (PR #17): the only undimensioned instant count in companyfacts is a 1995-11-13 fact (8.4B shares, re-filed in
+    a 2020 20-F), so the latest-instant picker divided 2024 flows by it — market cap $0.927B and a 123.36% shareholder
+    yield. An instant count dated more than 18 months (548 days, dcf_engine.DEI_MAX_AGE_DAYS) before the newest fiscal
+    year end is stale: the filed diluted count is used (fallback_share_count) and the notes name the stale fact.
+    On the 99,062,216,600 diluted count / 100 per ADS at $11.03 the cap is $10.93B and the yield 10.46% (Codex)."""
+    stale = (8_400_000_000, "1995-11-13", "ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15)")
+    ctx = _ctx(shares_instant=stale, ads_ratio=100.0, filed_any={"dividends_paid": True, "buybacks": True, "share_issuance": False})
+    d = F.build_dividends(_tlk_annual(), [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 11.03, "2026-10-19", "score.json price", ctx)
+    assert d["shares_outstanding"] == 99_062_216_600 and d["shares_basis"] == "weighted_average_diluted_fallback", (d["shares_outstanding"], d["shares_basis"])
+    assert close(d["market_cap"], 11.03 * 99_062_216_600 / 100.0) and round(d["market_cap"] / 1e9, 2) == 10.93
+    assert round(d["shareholder_yield"] * 100, 2) == 10.46 and round(d["buyback_yield"] * 100, 2) == 0.40, (d["shareholder_yield"], d["buyback_yield"])
+    assert any("1995-11-13" in n and "stale" in n for n in d["notes"]), d["notes"]
+    # a recent instant count is still the denominator
+    fresh = (99_062_216_600, "2024-12-31", "ifrs-full:NumberOfSharesOutstanding (20-F filed 2025-04-28)")
+    d2 = F.build_dividends(_tlk_annual(), [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 11.03, "2026-10-19", "score.json price",
+                           _ctx(shares_instant=fresh, ads_ratio=100.0))
+    assert d2["shares_basis"] == "instant" and d2["shares_as_of"] == "2024-12-31"
+
+
+def test_stale_count_notes_and_source_say_the_count_is_stale():
+    """Verifier round 1 (COKE, WMG, VOD, TLK): after the stale-count rule rejected a FILED instant count, the notes said
+    "no share count filed" (COKE: dei 7,141,447 as of 2016-03-04, and no diluted count) and the fallback's shares_source /
+    market_cap_basis gave the dual-class reason "no undimensioned period-end / cover-page share count in EDGAR
+    companyfacts" right after the note naming the stale undimensioned count. Both now name the stale count."""
+    stale = (7_141_447, "2016-03-04", "dei:EntityCommonStockSharesOutstanding (10-K filed 2016-03-08)")
+    annual = [{"fy": "2025", "period_end": "2025-12-31", "eps_diluted": 5.0, "dividends_paid": 1e8, "buybacks": 0, "share_issuance": None,
+               "oe_conservative": 5e8, "fcf": 6e8, "shares_diluted": None}]
+    d = F.build_dividends(annual, [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 70.0, "2026-10-19", "score.json price",
+                          _ctx(shares_instant=stale))
+    assert d["market_cap"] is None
+    assert not any(n.startswith("shares: no share count filed") for n in d["notes"]), d["notes"]
+    assert any("no current share count filed" in n and "stale" in n for n in d["notes"]), d["notes"]
+    tlk = (8_400_000_000, "1995-11-13", "ifrs-full:NumberOfSharesOutstanding (20-F filed 2020-06-15)")
+    d2 = F.build_dividends(_tlk_annual(), [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 11.03, "2026-10-19", "score.json price",
+                           _ctx(shares_instant=tlk, ads_ratio=100.0))
+    assert "dual-class" not in d2["shares_source"] and "no undimensioned" not in d2["shares_source"], d2["shares_source"]
+    assert "8,400,000,000" in d2["shares_source"] and "stale" in d2["shares_source"], d2["shares_source"]
+    assert "stale" in str(d2["market_cap_basis"]), d2["market_cap_basis"]
+    # without a stale count the dual-class explanation is unchanged (TKO)
+    assert "dual-class" in F.fallback_share_count([], _tlk_annual())[2]
+
+
+def test_latest_share_count_reads_the_all_class_count_at_a_multi_class_filer():
+    """GGB (PR #43): companyfacts keeps the common class's cover count (dei 717,782,619) while the same 20-F files the
+    all-class issued count (IFRS NumberOfSharesIssuedAndFullyPaid 2,000,879,949) — a dei count below 1/1.4 of the
+    same filing's all-class count is one class, so the all-class count (less same-filing treasury shares) is the
+    count and the source names both. A dei count near the filing's own count is untouched."""
+    def inst(tax, tag, val, accn="G"):
+        return (tax, tag, "shares", {"end": "2025-12-31", "val": val, "form": "20-F", "fp": "FY", "filed": "2026-03-13", "accn": accn})
+    facts = _facts([inst("dei", "EntityCommonStockSharesOutstanding", 717_782_619),
+                    inst("ifrs-full", "NumberOfSharesIssuedAndFullyPaid", 2_000_879_949)])
+    count, as_of, src = F.latest_share_count(facts)
+    assert count == 2_000_879_949 and as_of == "2025-12-31", (count, src)
+    assert "717,782,619" in src and "NumberOfSharesIssuedAndFullyPaid" in src and "one class" in src, src
+    facts_t = _facts([inst("dei", "EntityCommonStockSharesOutstanding", 717_782_619), inst("ifrs-full", "NumberOfSharesIssuedAndFullyPaid", 2_000_879_949),
+                      inst("ifrs-full", "SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates", 879_949)])
+    assert F.latest_share_count(facts_t)[0] == 2_000_000_000
+    # another filing's all-class count proves nothing about this filing's dei count
+    facts_o = _facts([inst("dei", "EntityCommonStockSharesOutstanding", 717_782_619), inst("ifrs-full", "NumberOfSharesIssuedAndFullyPaid", 2_000_879_949, accn="OTHER")])
+    assert F.latest_share_count(facts_o)[0] == 717_782_619
+    facts_n = _facts([inst("dei", "EntityCommonStockSharesOutstanding", 1_900_000_000), inst("ifrs-full", "NumberOfSharesIssuedAndFullyPaid", 2_000_879_949)])
+    assert F.latest_share_count(facts_n)[0] == 1_900_000_000
+    # EG (corpus regeneration): the filer tags its ISSUED count 74.5M as CommonStockSharesOutstanding beside 35.8M treasury
+    # shares — 38.7M net, the 38,342,734 cover count is the whole share base, not one class
+    def q(tax, tag, end, val):
+        return (tax, tag, "shares", {"end": end, "val": val, "form": "10-Q", "fp": "Q2", "filed": "2026-08-03", "accn": "EGQ2"})
+    facts_eg = _facts([q("dei", "EntityCommonStockSharesOutstanding", "2026-07-27", 38_342_734), q("us-gaap", "CommonStockSharesOutstanding", "2026-06-30", 74_500_000),
+                       q("us-gaap", "TreasuryStockCommonShares", "2026-06-30", 35_800_000)])
+    assert F.latest_share_count(facts_eg)[0] == 38_342_734
+
+
+def test_stale_count_fallback_is_checked_against_the_engine_count():
+    """PAC (corpus regeneration): its only instant count is a 2018 fact (stale) and its filed weighted-average facts are
+    1,000x its 505,277,464 shares (505,277,464,000), so the fallback would price a $10.3T cap. A fallback that replaces a
+    stale count and sits outside 1/10–10x of the engine's validated diluted count (dcf_numbers.json
+    shares_diluted_latest, ctx engine_shares) is a scale break: market cap and yields null, the note names both."""
+    annual = [{"fy": "2024", "period_end": "2024-12-31", "eps_diluted": 0.02, "dividends_paid": 9e9, "buybacks": 0, "share_issuance": None,
+               "oe_conservative": 1e10, "fcf": 1e10, "shares_diluted": 505_277_464_000}]
+    stale = (561_000_000, "2018-12-31", "ifrs-full:NumberOfSharesOutstanding (20-F filed 2019-04-30)")
+    d = F.build_dividends(annual, [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 203.9, "2026-10-19", "score.json price",
+                          _ctx(shares_instant=stale, ads_ratio=10.0, engine_shares=505_277_464.0))
+    assert d["market_cap"] is None and d["shares_outstanding"] is None and d["shareholder_yield"] is None, (d["market_cap"], d["shares_outstanding"])
+    assert any("scale break" in n and "505,277,464,000" in n and "(505,277,464, dcf_numbers.json" in n for n in d["notes"]), d["notes"]
+    # the same fallback within 10x of the engine's count is used (TLK: 99,062,216,600 both)
+    d2 = F.build_dividends(_tlk_annual(), [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 11.03, "2026-10-19", "score.json price",
+                           _ctx(shares_instant=(8_400_000_000, "1995-11-13", "ifrs-full:NumberOfSharesOutstanding"), ads_ratio=100.0, engine_shares=99_062_216_600.0))
+    assert d2["shares_outstanding"] == 99_062_216_600
+
+
+
+def test_stale_count_fallback_gives_way_to_a_count_near_the_engine_count():
+    """Verifier round 2 (ECHO): its only instant count (47,687,039, 2020-09-30) is stale, so the fallback took the newest
+    quarterly diluted count, Q2 2026's 351,622,000 — a one-time-gain quarter whose diluted count carries if-converted
+    shares — against basic 290,141,000 and the engine's validated 287,589,000: market cap $30.89B at $87.86 (~$25.3B on
+    the engine count), every yield ~18% low. A fallback more than 20% from the engine's validated count gives way to the
+    latest filed diluted count within 20% of it (Q1 2026's 289,014,000), and shares_source names both."""
+    q = lambda e, sh: {"period_end": e, "shares_diluted": sh, "dividends_paid": 0, "buybacks": 0, "share_issuance": 0}
+    qrows = [q("2025-06-30", 287_505_000), q("2025-09-30", 288_051), q("2026-03-31", 289_014_000), q("2026-06-30", 351_622_000)]
+    annual = [{"fy": "2025", "period_end": "2025-12-31", "eps_diluted": 1.0, "dividends_paid": 0, "buybacks": 0, "share_issuance": None,
+               "oe_conservative": 1e8, "fcf": 1e8, "shares_diluted": 287_589_000}]
+    stale = (47_687_039, "2020-09-30", "dei:EntityCommonStockSharesOutstanding (10-K filed 2020-11-30)")
+    d = F.build_dividends(annual, qrows, {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 87.86, "2026-10-19", "score.json price",
+                          _ctx(shares_instant=stale, engine_shares=287_589_000))
+    assert d["shares_outstanding"] == 289_014_000 and d["shares_as_of"] == "2026-03-31", (d["shares_outstanding"], d["shares_as_of"])
+    assert round(d["market_cap"] / 1e9, 2) == 25.39, d["market_cap"]
+    assert "351,622,000" in d["shares_source"] and "287,589,000" in d["shares_source"] and "stale" in d["shares_source"], d["shares_source"]
+    # without the engine count (or within 20% of it) the newest diluted count stands
+    d2 = F.build_dividends(annual, qrows, {"declared": {}, "paid": {}}, {"declared": {}, "paid": {}}, 87.86, "2026-10-19", "score.json price",
+                           _ctx(shares_instant=stale))
+    assert d2["shares_outstanding"] == 351_622_000
+    assert F.fallback_share_count(qrows, annual, anchor=340_000_000)[0] == 351_622_000
+    # SF (corpus regeneration): two 2026 quarters at the post-split level (163,444,000 / 161,631,000) against the engine's
+    # pre-split FY2025 count (110,052,000) — a corroborated level, not a one-quarter outlier: the newest count stands
+    sf_q = [q("2025-09-30", 110_058_000), q("2025-12-31", None), q("2026-03-31", 163_444_000), q("2026-06-30", 161_631_000)]
+    sf_a = [dict(annual[0], shares_diluted=110_052_000)]
+    assert F.fallback_share_count(sf_q, sf_a, anchor=110_052_000)[0] == 161_631_000
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

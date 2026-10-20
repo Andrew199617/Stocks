@@ -541,6 +541,50 @@ def restate_split(rec, factor, label, lv):
         rec["row"]["split_restated"] = {"factor": factor, "split": label}
 
 
+def _fund_currency(fund):
+    """fundamentals.json's own currency when it is not USD, else None."""
+    cur = fund.get("currency") if isinstance(fund, dict) else None
+    return cur if isinstance(cur, str) and cur != "USD" else None
+
+
+def dividends_unit(fund):
+    """price_dividends' unit keywords for this file's dividends block (ruling-sheet Q8 bug 3, verifier round 2): {} for a
+    USD file; {"currency": X} for a block that records its unit (`dividends.currency`, written only on a non-USD block
+    under the one-currency rule); {"unit_unrecorded": X} for a non-USD file whose block has no key — written before
+    2026-10-19, when the readers took a filed USD fact first (TLK's dividends paid is the USD 1,099,000,000 fact, CX's
+    $90M, RDY's shareholder-yield leg), so the file's `currency` X is NOT the legs' unit and the yield note must not say
+    it is. Either non-USD case prices no yield."""
+    cur = _fund_currency(fund)
+    if cur is None:
+        return {}
+    div = fund.get("dividends") if isinstance(fund.get("dividends"), dict) else {}
+    own = div.get("currency")
+    if isinstance(own, str) and own:
+        return {} if own == "USD" else {"currency": own}
+    return {"unit_unrecorded": cur}
+
+
+def cross_currency_safe(fund):
+    """Ruling-sheet Q8 bug 3: a non-USD block written before the currency rule
+    still carries yields whose numerators' unit it does not record (read
+    USD-first, so some are cross-currency: RDY's 310.80%, SKM's 11,076%) —
+    re-price it at its OWN close with dividends_unit's keywords
+    (price_dividends(unit_unrecorded=...); a block that records a non-USD
+    unit: currency=...), which nulls only the yields (market cap, shares and
+    the per-share basis are the block's own). Every other block is returned
+    as is. build_record applies it
+    when it serves a block as written (a split since scoring — verifier
+    round 1: SKM's 11,076% had survived that path); priced_fundamentals when
+    there is no newer close."""
+    if FUND is None or _fund_currency(fund) is None or not FUND.repriceable(fund.get("dividends")):
+        return fund
+    unit = dividends_unit(fund)
+    div = fund["dividends"]
+    if not unit or not any(num(div.get(k)) is not None for k in FUND.YIELD_KEYS):
+        return fund
+    return dict(fund, dividends=FUND.price_dividends(div, div.get("price"), div.get("price_date"), div.get("price_source"), **unit))
+
+
 def priced_fundamentals(fund, prices, ads_ratio=None):
     """fundamentals.json as the page shows it: the dividends block repriced
     with fundamentals.price_dividends at prices.json stats.last / last_date
@@ -553,22 +597,31 @@ def priced_fundamentals(fund, prices, ads_ratio=None):
     fundamentals._read_price reads it), never a coerced string. `ads_ratio`
     (the run's recorded ratio, from dcf_numbers.json) backfills a dividends
     block written before blocks carried it, so a legacy ADS block reprices
-    on the traded-cap basis instead of price x ordinary shares."""
+    on the traded-cap basis instead of price x ordinary shares.
+    Ruling-sheet Q8 bug 3 (Andrew, 2026-10-19): the block is priced in its
+    own unit (dividends_unit) — a non-USD block's yields are null (its DPS
+    and flows are not in the price's currency); a non-USD file's block
+    written before that rule records no unit, so its yields are null too and
+    the note says the unit is unrecorded (verifier round 2: the file's
+    `currency` is not its legs' unit — CX's $90M is a USD fact); such a block
+    that still shows a yield is re-priced at its own close, so the page never
+    shows a cross-currency yield while the file awaits a refresh."""
     if FUND is None or not isinstance(fund, dict) or not FUND.repriceable(fund.get("dividends")):
         return fund
-    st = _d(_d(prices).get("stats"))
-    last, last_date = st.get("last"), _date10(st.get("last_date"))
-    if not isinstance(last, (int, float)) or isinstance(last, bool) or not math.isfinite(last) or last <= 0 or last_date is None:
-        return fund
+    unit = dividends_unit(fund)
     div = fund["dividends"]
-    pd = _date10(div.get("price_date"))
-    if pd is not None and (last_date < pd or (last_date == pd and num(div.get("price")) == last
-                                              and div.get("price_source") == FUND.PRICES_JSON_SOURCE)):
-        return fund
     if not isinstance(div.get("ads_ratio"), (int, float)) and isinstance(ads_ratio, (int, float)) \
             and not isinstance(ads_ratio, bool) and ads_ratio > 0:
         div = dict(div, ads_ratio=ads_ratio)
-    return dict(fund, dividends=FUND.price_dividends(div, st.get("last"), st.get("last_date"), FUND.PRICES_JSON_SOURCE))
+    st = _d(_d(prices).get("stats"))
+    last, last_date = st.get("last"), _date10(st.get("last_date"))
+    if not isinstance(last, (int, float)) or isinstance(last, bool) or not math.isfinite(last) or last <= 0 or last_date is None:
+        return cross_currency_safe(fund)
+    pd = _date10(div.get("price_date"))
+    if pd is not None and (last_date < pd or (last_date == pd and num(div.get("price")) == last
+                                              and div.get("price_source") == FUND.PRICES_JSON_SOURCE)):
+        return cross_currency_safe(fund)
+    return dict(fund, dividends=FUND.price_dividends(div, st.get("last"), st.get("last_date"), FUND.PRICES_JSON_SOURCE, **unit))
 
 
 def profile_with_street(profile, street):
@@ -851,7 +904,8 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
     factor, label = live_split(live)
     _ads = c["numbers"].get("ads_ratio") if isinstance(c.get("numbers"), dict) else None
     _ratio = _ads.get("ratio") if isinstance(_ads, dict) else None
-    c = dict(c, live=live, fund=c.get("fund") if factor else priced_fundamentals(c.get("fund"), c.get("prices"), _ratio))
+    # across a split since scoring the block is served as written (never repriced) — but never with a cross-currency yield (Q8 bug 3)
+    c = dict(c, live=live, fund=cross_currency_safe(c.get("fund")) if factor else priced_fundamentals(c.get("fund"), c.get("prices"), _ratio))
     s, n = c["score"], c["numbers"]
     has_scn = bool(_d(n.get("scenarios")))
     paths, gpaths, replayed = forecast_paths(n) if has_scn else (None, None, False)

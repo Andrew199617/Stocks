@@ -1052,13 +1052,101 @@ def test_repriced_block_equals_what_fundamentals_writes_on_every_committed_folde
         assert not any(k in core for k in ("price", "price_date", "market_cap", "dividend_yield")), path
         for p, d in ((123.45, "2099-01-02"), ((div["price"] or 20.0) * 0.5, "2099-01-03")):
             served = B.priced_fundamentals(fund, {"stats": {"last": p, "last_date": d}})["dividends"]
-            written = F.price_dividends(core, p, d, "prices.json stats.last")
+            # ruling-sheet Q8 bug 3: priced in the block's own unit (a non-USD file carries no yields; a pre-rule block's unit is unrecorded)
+            unit = B.dividends_unit(fund)
+            cur = fund.get("currency") if fund.get("currency") not in (None, "USD") else None
+            written = F.price_dividends(core, p, d, "prices.json stats.last", **unit)
             assert _json(served) == _json(written), (path, p)
             assert served["price"] == p and served["price_date"] == d and served["price_source"] == "prices.json stats.last"
+            if cur is not None:
+                assert all(served[k] is None for k in F.YIELD_KEYS), (path, "no cross-currency yield is served")
             if div["price"] is not None:  # a price present on both sides: only the volatile leaves differ
-                assert S.canonical({"dividends": served}, F.PRICE_LEAVES) == S.canonical({"dividends": own}, F.PRICE_LEAVES), (path, p)
+                ref = own if cur is None else _json(F.price_dividends(div, div["price"], div["price_date"], div["price_source"], **unit))
+                assert S.canonical({"dividends": served}, F.PRICE_LEAVES) == S.canonical({"dividends": ref}, F.PRICE_LEAVES), (path, p)
         assert fund == B.jload(path), "nothing is modified in place"
     assert n >= 80, n
+
+
+def test_priced_fundamentals_serves_no_cross_currency_yield():
+    """Ruling-sheet Q8 bug 3 (Andrew, 2026-10-19): RDY's committed block printed a 310.80% dividend yield (Rs40 DPS
+    over the $12.87 close). build_site prices the block in the file's own currency, so a non-USD file serves null
+    yields at a newer close AND, for a block written before the rule, without one (re-priced at its own close);
+    the market cap and the USD file are untouched."""
+    fund = B.jload(os.path.join(BASE, "RDY", "fundamentals.json"))
+    assert fund["currency"] == "INR"
+    newer = B.priced_fundamentals(fund, {"stats": {"last": 13.0, "last_date": "2099-01-01"}})["dividends"]
+    assert all(newer[k] is None for k in F.YIELD_KEYS) and newer["market_cap"] is not None
+    note = newer["yields_display"]["dividend_yield"]["note"]
+    assert ("not record the currency" in note and "INR" in note) if "currency" not in fund["dividends"] else "filed in INR" in note, note
+    usd = B.jload(os.path.join(BASE, "KR", "fundamentals.json"))
+    assert B.priced_fundamentals(usd, {}) is usd, "a USD file without a newer close is served as written"
+    assert B.priced_fundamentals(usd, {"stats": {"last": 70, "last_date": "2099-01-01"}})["dividends"]["dividend_yield"] is not None
+
+def _pre_rule_inr_fund():
+    """An INR fundamentals.json whose dividends block was written BEFORE the Q8 currency rule (verifier round 1): its
+    yields were computed across currencies (RDY's shape — Rs40 DPS over a $12.87 close, a 310.80% dividend yield). An
+    inline fixture, so the test never depends on a committed file still being pre-rule."""
+    annual = [{"fy": "2025", "period_end": "2025-03-31", "eps_diluted": 57.0, "dividends_paid": 3_400e6, "buybacks": None, "share_issuance": None,
+               "oe_conservative": 15_000e6, "fcf": 16_000e6, "shares_diluted": 834e6}]
+    ctx = {"filed_any": {"dividends_paid": True, "buybacks": False, "share_issuance": False},
+           "shares_instant": (834_656_970, "2026-03-31", "ifrs-full:NumberOfSharesOutstanding"),
+           "latest_filed_period": {}, "split_notes": [], "splits": [], "warnings": []}  # no ctx currency: the pre-rule block
+    div = F.build_dividends(annual, [], {"declared": {}, "paid": {}}, {"declared": {}, "paid": {"2024-03-31": 40.0, "2025-03-31": 40.0}},
+                            12.87, "2026-10-14", "prices.json stats.last", ctx)
+    assert div["dividend_yield"] is not None and round(div["dividend_yield"] * 100, 2) == 310.80, div["dividend_yield"]
+    return {"currency": "INR", "dividends": div}
+
+
+def test_pre_rule_non_usd_block_loses_its_yields_on_every_serving_path():
+    """Verifier round 1: the re-price of a pre-rule non-USD block at its own close was only tested behind
+    `if RDY's committed file still carries a yield` (silently skipped after RDY's refresh), and build_record's
+    split-since-scoring branch served the block as written — SKM's 11,076% dividend yield and TLK's 123.36%
+    shareholder yield would reach the Dividends tab and the ranking row. Both paths now null the yields at the
+    block's own price; the market cap, shares and price are the block's own."""
+    fund = _pre_rule_inr_fund()
+    div0 = fund["dividends"]
+    for prices in ({}, {"stats": {"last": 13.0, "last_date": "2000-01-01"}}, {"stats": {"last": 12.87, "last_date": "2026-10-14"}}):
+        served = B.priced_fundamentals(fund, prices)["dividends"]
+        assert all(served[k] is None for k in F.YIELD_KEYS), (prices, {k: served[k] for k in F.YIELD_KEYS})
+        assert served["price"] == div0["price"] and served["price_date"] == div0["price_date"] and served["market_cap"] == div0["market_cap"], prices
+    assert fund["dividends"] is div0 and div0["dividend_yield"] is not None, "the loaded block is not modified"
+    # the split-since-scoring branch (build_record serves the block as written, never repriced): no cross-currency yield either
+    live = {"price": 6.5, "price_date": "2026-10-20", "scored_date": "2026-10-14", "irr_weighted": 0.12, "iv_at_15": 10.0,
+            "iv_at_20": 8.0, "iv_at_25": 6.0, "split_factor": 2.0, "basis_check": {"factor": 2.0, "split": "2:1"}}
+    c = {"folder": "T", "path": "", "ticker": "T", "score": {"ticker": "T", "price": 13.0, "iv_at_15": 20.0, "implied_irr": 0.12,
+                                                            "analysis_date": "2026-10-14"},
+         "numbers": {"engine_version": 5, "data_gap": [], "price": 13.0}, "live": live, "history": [], "files": [], "fund": fund}
+    rec = B.build_record(c, {}, "2026-10-20T19:00:00-04:00", 0.0)
+    d = rec["fundamentals"]["dividends"]
+    assert all(d[k] is None for k in F.YIELD_KEYS), {k: d[k] for k in F.YIELD_KEYS}
+    assert d["price"] == div0["price"] and d["market_cap"] == div0["market_cap"], "not repriced across the split: its own close"
+    assert rec["row"]["dividend_yield"] is None and rec["row"]["shareholder_yield"] is None and rec["row"]["shareholder_yield_label"] == "—"
+    # a USD block across a split is still served exactly as written
+    usd = {"currency": "USD", "dividends": dict(div0)}
+    assert B.cross_currency_safe(usd) is usd and B.build_record(dict(c, fund=usd), {}, "2026-10-20T19:00:00-04:00", 0.0)["fundamentals"]["dividends"] == div0
+
+
+def test_pre_rule_non_usd_block_note_does_not_call_the_file_currency_the_legs_unit():
+    """Verifier round 2 (TLK, CX, RDY, WIT, ZTO): a non-USD file's top-level `currency` written before the one-currency
+    rule meant "some core fact was filed in another currency" — its dividend legs were read USD-first (CX's $90M is a USD
+    fact, TLK's dividends paid the USD 1,099,000,000 one). build_site priced such a block with currency=<file currency>,
+    so the yield note said "the numerator is filed in MXN". Only a block's own `currency` key names the legs' unit; a
+    pre-rule block's note says the unit is not recorded (the yields stay null until the file's next refresh)."""
+    div = dict(_pre_rule_inr_fund()["dividends"])
+    cx = {"currency": "MXN", "dividends": div}
+    assert B.dividends_unit(cx) == {"unit_unrecorded": "MXN"}
+    for prices in ({}, {"stats": {"last": 13.0, "last_date": "2099-01-01"}}):
+        served = B.priced_fundamentals(cx, prices)["dividends"]
+        assert all(served[k] is None for k in F.YIELD_KEYS), prices
+        notes = [v["note"] for v in served["yields_display"].values()]
+        assert all("does not record the currency" in n and "MXN" in n for n in notes), notes
+        assert not any("filed in MXN" in n for n in notes), notes
+    # a block that records its unit (the new rule) keeps the plain cross-currency note; a USD file prices as before
+    idr = {"currency": "IDR", "dividends": dict(div, currency="IDR")}
+    assert B.dividends_unit(idr) == {"currency": "IDR"}
+    n2 = B.priced_fundamentals(idr, {"stats": {"last": 13.0, "last_date": "2099-01-01"}})["dividends"]["yields_display"]["dividend_yield"]["note"]
+    assert "the numerator is filed in IDR" in n2, n2
+    assert B.dividends_unit({"currency": "USD", "dividends": div}) == {}
 
 
 # ---------------- 15. split since scoring
