@@ -1,0 +1,494 @@
+{
+ "ticker": "GGB",
+ "cik": 1073404,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001104659-26-027678",
+   "filed": "2026-03-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1073404/000110465926027678/ggb-20251231x20f_htm.xml"
+  }
+ ],
+ "currency": "BRL",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ggb:NorthAmericaSegmentMember",
+     "label": "North America Operation",
+     "values": [
+      33179048000,
+      31931433000,
+      35787268000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4814,
+      0.4764,
+      0.5123
+     ],
+     "growth_yoy": [
+      null,
+      -0.0376,
+      0.1208
+     ]
+    },
+    {
+     "member": "ggb:BrazilSegmentMember",
+     "label": "Brazil Operation",
+     "values": [
+      31195557000,
+      30217819000,
+      29687978000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4527,
+      0.4508,
+      0.425
+     ],
+     "growth_yoy": [
+      null,
+      -0.0313,
+      -0.0175
+     ]
+    },
+    {
+     "member": "ggb:SouthAmericaSegmentMember",
+     "label": "South America Operation",
+     "values": [
+      5118150000,
+      5758695000,
+      5561450000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0743,
+      0.0859,
+      0.0796
+     ],
+     "growth_yoy": [
+      null,
+      0.1252,
+      -0.0343
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      -576309000,
+      -881291000,
+      -1178164000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0084,
+      -0.0131,
+      -0.0169
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     68916447000,
+     67026656000,
+     69858532000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "ifrs-full:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ggb:BrazilSegmentMember",
+     "label": "Brazil Operation",
+     "values": [
+      28155384000,
+      32692029000,
+      35798486000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.376,
+      0.3766,
+      0.4382
+     ],
+     "growth_yoy": [
+      null,
+      0.1611,
+      0.095
+     ]
+    },
+    {
+     "member": "ggb:NorthAmericaSegmentMember",
+     "label": "North America Operation",
+     "values": [
+      30108092000,
+      39788415000,
+      35468282000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4021,
+      0.4583,
+      0.4342
+     ],
+     "growth_yoy": [
+      null,
+      0.3215,
+      -0.1086
+     ]
+    },
+    {
+     "member": "ggb:SouthAmericaSegmentMember",
+     "label": "South America Operation",
+     "values": [
+      4428996000,
+      5921448000,
+      4943445000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0591,
+      0.0682,
+      0.0605
+     ],
+     "growth_yoy": [
+      null,
+      0.337,
+      -0.1652
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      12192672000,
+      8412601000,
+      5477962000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1628,
+      0.0969,
+      0.0671
+     ],
+     "growth_yoy": [
+      null,
+      -0.31,
+      -0.3488
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     74885144000,
+     86814493000,
+     81688175000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "ifrs-full:DepreciationAndAmortisationExpense",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ggb:BrazilSegmentMember",
+     "label": "Brazil Operation",
+     "values": [
+      1899158000,
+      1761151000,
+      2144039000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6232,
+      0.5633,
+      0.5821
+     ],
+     "growth_yoy": [
+      null,
+      -0.0727,
+      0.2174
+     ]
+    },
+    {
+     "member": "ggb:NorthAmericaSegmentMember",
+     "label": "North America Operation",
+     "values": [
+      899407000,
+      1046614000,
+      1236636000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2952,
+      0.3348,
+      0.3357
+     ],
+     "growth_yoy": [
+      null,
+      0.1637,
+      0.1816
+     ]
+    },
+    {
+     "member": "ggb:SouthAmericaSegmentMember",
+     "label": "South America Operation",
+     "values": [
+      195030000,
+      304996000,
+      303439000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.064,
+      0.0976,
+      0.0824
+     ],
+     "growth_yoy": [
+      null,
+      0.5638,
+      -0.0051
+     ]
+    },
+    {
+     "member": "ifrs-full:MaterialReconcilingItemsMember",
+     "label": "Material reconciling items",
+     "values": [
+      53617000,
+      13486000,
+      -529000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0176,
+      0.0043,
+      -0.0001
+     ],
+     "growth_yoy": [
+      null,
+      -0.7485,
+      -1.0392
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3047212000,
+     3126247000,
+     3683585000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "ifrs-full:Revenue",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      5118150000,
+      31931433000,
+      35787268000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0743,
+      0.4764,
+      0.5123
+     ],
+     "growth_yoy": [
+      null,
+      5.2389,
+      0.1208
+     ]
+    },
+    {
+     "member": "country:BR",
+     "label": "BRAZIL",
+     "values": [
+      30619249000,
+      29336528000,
+      28509814000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4443,
+      0.4377,
+      0.4081
+     ],
+     "growth_yoy": [
+      null,
+      -0.0419,
+      -0.0282
+     ]
+    },
+    {
+     "member": "ggb:SouthAmericaCountriesExcludingBrazilMember",
+     "label": "South America Countries Excluding Brazil",
+     "values": [
+      33179048000,
+      5758695000,
+      5561450000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4814,
+      0.0859,
+      0.0796
+     ],
+     "growth_yoy": [
+      null,
+      -0.8264,
+      -0.0343
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     68916447000,
+     67026656000,
+     69858532000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

@@ -1,0 +1,720 @@
+{
+ "ticker": "GGB",
+ "name": "GERDAU S.A.",
+ "cik": 1073404,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-19",
+ "price": 5.08,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 2012732574.0,
+ "shares_outstanding_dei_latest": 717782619,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 10224681475.92,
+ "net_debt_latest": null,
+ "net_debt_basis": null,
+ "lease_liabilities_latest": 253605232.16,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.08619139628901307,
+ "rev_cagr_3y": -0.06472060053651185,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 179895171.67999998,
+ "base_oe_per_share": 0.42435503221502496,
+ "base_oe_latest_per_share": 0.0893785761724349,
+ "base_oe_normalized_per_share": 0.42435503221502496,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.08619139628901307,
+  "rev_cagr_3y": -0.06472060053651185,
+  "rev_yoy_latest": 0.17677753362411064,
+  "oe_ps_cagr_2y": -0.6064958320791767
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.08619139628901307,
+  "rev_cagr_3y": -0.06472060053651185,
+  "rev_yoy_latest": 0.17677753362411064,
+  "oe_ps_cagr_2y": -0.6064958320791767
+ },
+ "g_blend": 0.010735397876250607,
+ "share_cagr": 0.0,
+ "share_count_adj": -0.0,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "WeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": null,
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": null,
+  "debt_cur_ltd": null,
+  "debt_cur_st": null,
+  "debt_lt": null,
+  "debt_total": null,
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": "NumberOfSharesOutstanding",
+  "capex_components": "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities+PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 9 / listing description: the NYSE-traded Level II ADSs (symbol GGB) are equivalent to one preferred share of Gerdau S.A. (GGBR4); the cover registers Preferred Shares, no par value, each represented by American Depositary Shares on the NYSE",
+  "reason": "ADS_RATIO_MISSING: 20-F filer - EDGAR per-share figures are per share (common and preferred carry identical EPS) while the Nasdaq price is per ADS; each ADS represents exactly one preferred share, so the ratio is 1.0 and no scaling applies, but the declaration is required so make_score does not refuse on DATA_GAP:ads_ratio."
+ },
+ "fx_conversion": {
+  "from_currency": "BRL",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "lease_liab_current",
+   "lease_liab_lt",
+   "assets",
+   "liabilities",
+   "ppe_net",
+   "equity",
+   "capex_intang"
+  ],
+  "rates": {
+   "2014-12-31": 0.37697,
+   "2015-12-31": 0.2525,
+   "2016-12-31": 0.30727,
+   "2017-12-31": 0.30187,
+   "2018-12-31": 0.25765,
+   "2019-12-31": 0.24878,
+   "2020-12-31": 0.19253,
+   "2021-12-31": 0.17949,
+   "2022-12-31": 0.18916,
+   "2023-03-21": 0.19076,
+   "2023-12-31": 0.20609,
+   "2024-04-16": 0.19129,
+   "2024-12-31": 0.16169,
+   "2025-12-31": 0.18256
+  },
+  "rates_by_currency": {
+   "BRL": {
+    "2014-12-31": 0.37697,
+    "2015-12-31": 0.2525,
+    "2016-12-31": 0.30727,
+    "2017-12-31": 0.30187,
+    "2018-12-31": 0.25765,
+    "2019-12-31": 0.24878,
+    "2020-12-31": 0.19253,
+    "2021-12-31": 0.17949,
+    "2022-12-31": 0.18916,
+    "2023-03-21": 0.19076,
+    "2023-12-31": 0.20609,
+    "2024-04-16": 0.19129,
+    "2024-12-31": 0.16169,
+    "2025-12-31": 0.18256
+   }
+  },
+  "overrides_usd_verbatim": {}
+ },
+ "payable_base": null,
+ "override_checks": {
+  "shares": {
+   "value": 2012732574.0,
+   "last_filed_value": 571929945,
+   "last_filed_unit": "shares",
+   "out_of_band": false,
+   "ack_reason_present": false,
+   "currency_basis": "shares"
+  }
+ },
+ "market_cap_basis": {
+  "shares_used": 2012732574.0,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 1.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": 717782619,
+  "dei_date": "2025-12-31",
+  "dei_ratio": 2.8040976762631806,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 1.009600545228373
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 1323891000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 54044000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2019-03-29",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2019-03-29"
+   }
+  },
+  "2017-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 873329000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 37939000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2020-03-31",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2020-03-31"
+   }
+  },
+  "2018-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 1194934000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 67388000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2021-04-21",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2021-04-21"
+   }
+  },
+  "2019-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 1746600000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 100313000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-31",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2022-03-31"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 1650778000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 154250000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2023-03-31",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2023-03-31"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 3026023000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 166310000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2024-03-28",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2024-03-28"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 4291873000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 189382000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-03-14",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2025-03-14"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 5209128000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 127195000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-13",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-03-13"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 5778381000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 168036000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-13",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-03-13"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 6681620000
+   },
+   "ppe_unit": "BRL",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 171221000
+   },
+   "intangibles_unit": "BRL",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-03-13",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-03-13"
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "g_base": 0.010735397876250607,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.6,
+   0.85,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [
+  "shares"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 2012732574.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Note 24 Earnings per share, Diluted table: common shares outstanding 718,139,434 plus preferred diluted total 1,294,593,140 (weighted-average preferred 1,285,879,767 + potential increase from long-term incentive plans 8,713,373) = 2,012,732,574 total diluted shares for FY2025; the same table gives FY2024 total 2,099,379,471 (720,527,899 + 1,378,851,572) and FY2023 total 2,109,593,750 (720,527,899 + 1,389,065,851), and diluted EPS is identical for common and preferred shares (R$0.69 / R$2.18 / R$3.56)",
+   "reason": "DATA_GAP:shares - diluted shares missing for FY2023, FY2024, FY2025 in EDGAR companyfacts; the only filed counts are dei outstanding counts for the COMMON class alone (717,782,619 at Dec 31, 2025 per the 20-F cover, vs 1,283,097,330 preferred shares issued), which cover barely a third of the capital and are on the wrong basis for consolidated OE. Gerdau allocates earnings equally per share to common and preferred (same basic and diluted EPS for both classes in the EPS note), and the NYSE ADS is a preferred share, so the matching denominator for consolidated owner's earnings is the EPS note's total diluted count (common + diluted preferred). The engine applies this single FY2025 value to every missing period: FY2025 is exact; FY2024 OE/share is computed on 2,012,732,574 instead of its own filed 2,099,379,471 (overstates FY2024 OE/share by ~4.3%) and FY2023 on 2,012,732,574 instead of 2,109,593,750 (overstates by ~4.8%), disclosed in analysis.md; the direction makes the median base slightly generous, not conservative.",
+   "periods_filled": [
+    "2016-12-31",
+    "2017-12-31",
+    "2018-12-31",
+    "2019-12-31",
+    "2020-12-31",
+    "2021-12-31",
+    "2022-12-31",
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 571929945
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.6,
+   "iv_at_10": 2.1329343930906806,
+   "iv_at_12": 1.7132975913886352,
+   "iv_at_15": 1.3327286955069277,
+   "iv_at_20": 0.983708304482754,
+   "iv_at_25": 0.7860738007010415,
+   "irr": 0.05509266973080107,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0393,
+   "oe_mult": 0.85,
+   "iv_at_10": 3.8481926176313332,
+   "iv_at_12": 3.0636340213497384,
+   "iv_at_15": 2.3549539602290857,
+   "iv_at_20": 1.709597880486729,
+   "iv_at_25": 1.3477618966114586,
+   "irr": 0.08133295017709041,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0107,
+   "oe_mult": 1.0,
+   "iv_at_10": 5.493229559346167,
+   "iv_at_12": 4.344462602212316,
+   "iv_at_15": 3.309783060318762,
+   "iv_at_20": 2.3723700342387444,
+   "iv_at_25": 1.8505773555843184,
+   "irr": 0.10614628348980693,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0607,
+   "oe_mult": 1.1,
+   "iv_at_10": 7.295563526294099,
+   "iv_at_12": 5.735278217716491,
+   "iv_at_15": 4.333559903640244,
+   "iv_at_20": 3.069429891304652,
+   "iv_at_25": 2.3703629633186143,
+   "irr": 0.13199723373973138,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1307,
+   "oe_mult": 1.25,
+   "iv_at_10": 10.707009950139971,
+   "iv_at_12": 8.35398498661725,
+   "iv_at_15": 6.246780009419439,
+   "iv_at_20": 4.357172922433518,
+   "iv_at_25": 3.3206920026346545,
+   "irr": 0.17669983160783015,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 5.2191734075380465,
+  "iv_at_12": 4.122739721718095,
+  "iv_at_15": 3.13577799486279,
+  "iv_at_20": 2.2425235354065274,
+  "iv_at_25": 1.746029909738826,
+  "irr": 0.10205934095093239,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   0.229152,
+   0.206237,
+   0.189982,
+   0.179034,
+   0.17251,
+   0.169879,
+   0.170886,
+   0.175158,
+   0.179537,
+   0.184026,
+   0.188626,
+   0.193342,
+   0.198176,
+   0.20313,
+   0.208208
+  ],
+  "bear": [
+   0.346539,
+   0.332932,
+   0.323486,
+   0.317832,
+   0.315738,
+   0.317097,
+   0.321916,
+   0.329964,
+   0.338213,
+   0.346668,
+   0.355335,
+   0.364218,
+   0.373324,
+   0.382657,
+   0.392223
+  ],
+  "base": [
+   0.428911,
+   0.433515,
+   0.439217,
+   0.446056,
+   0.45408,
+   0.463346,
+   0.473922,
+   0.48577,
+   0.497914,
+   0.510362,
+   0.523121,
+   0.536199,
+   0.549604,
+   0.563344,
+   0.577428
+  ],
+  "bull": [
+   0.495141,
+   0.525214,
+   0.553932,
+   0.580865,
+   0.605589,
+   0.627698,
+   0.646812,
+   0.662983,
+   0.679557,
+   0.696546,
+   0.71396,
+   0.731809,
+   0.750104,
+   0.768857,
+   0.788078
+  ],
+  "super_bull": [
+   0.599792,
+   0.678206,
+   0.754717,
+   0.826334,
+   0.889938,
+   0.942489,
+   0.981253,
+   1.005785,
+   1.030929,
+   1.056702,
+   1.08312,
+   1.110198,
+   1.137953,
+   1.166402,
+   1.195562
+  ],
+  "weighted": [
+   0.399165,
+   0.404413,
+   0.411854,
+   0.420875,
+   0.430967,
+   0.441723,
+   0.452843,
+   0.464164,
+   0.475768,
+   0.487662,
+   0.499853,
+   0.51235,
+   0.525159,
+   0.538288,
+   0.551745
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.1,
+   -0.1,
+   -0.078814,
+   -0.057627,
+   -0.036441,
+   -0.015254,
+   0.005932,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   -0.039265,
+   -0.039265,
+   -0.028372,
+   -0.01748,
+   -0.006588,
+   0.004305,
+   0.015197,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.010735,
+   0.010735,
+   0.013153,
+   0.015571,
+   0.017989,
+   0.020406,
+   0.022824,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.060735,
+   0.060735,
+   0.054679,
+   0.048622,
+   0.042565,
+   0.036508,
+   0.030451,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.130735,
+   0.130735,
+   0.112814,
+   0.094893,
+   0.076972,
+   0.05905,
+   0.041129,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.10205934095093239,
+ "implied_irr_base": 0.10614628348980693,
+ "irr_bear": 0.08133295017709041,
+ "irr_bull": 0.13199723373973138,
+ "irr_low": 0.05509266973080107,
+ "irr_high": 0.17669983160783015,
+ "tier_by_numbers": "C",
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 3.13577799486279,
+  "20": 2.2425235354065274,
+  "25": 1.746029909738826
+ },
+ "upside_at_15": -0.38272086715299414,
+ "upside_at_12": -0.18843706265391824,
+ "iv_at_15": 3.13577799486279,
+ "iv_at_12": 4.122739721718095,
+ "iv_at_20": 2.2425235354065274,
+ "iv_at_25": 1.746029909738826,
+ "diagnostics": {
+  "oe_yield": 0.08353445516043799,
+  "tv_share_at_15": 0.1773124056441232,
+  "scenario_spread_iv15": 4.687210555666292,
+  "net_debt_to_normalized_oe": null,
+  "months_since_fy_end": 9.592641261498029,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 9 / listing description: the NYSE-traded Level II ADSs (symbol GGB) are equivalent to one preferred share of Gerdau S.A. (GGBR4); the cover registers Preferred Shares, no par value, each represented by American Depositary Shares on the NYSE) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2017, 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Note 24 Earnings per share, Diluted table: common shares outstanding 718,139,434 plus preferred diluted total 1,294,593,140 (weighted-average preferred 1,285,879,767 + potential increase from long-term incentive plans 8,713,373) = 2,012,732,574 total diluted shares for FY2025; the same table gives FY2024 total 2,099,379,471 (720,527,899 + 1,378,851,572) and FY2023 total 2,109,593,750 (720,527,899 + 1,389,065,851), and diluted EPS is identical for common and preferred shares (R$0.69 / R$2.18 / R$3.56)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 0.09 vs 3-yr median 0.42 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (8.1%) vs bull-case tier C (13.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 1.1863394591034022,
+  "base_oe_per_share_final": 0.42435503221502496,
+  "weighted_irr_zero_fill": 0.2109271171058763,
+  "weighted_irr_final": 0.10205934095093239,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides \u2014 its override effect shows in ttm.py output / make_score's payable_5y impact"
+ },
+ "content_hash": "e5597941c05e815d9986720dc6eac5aee23312114d708451ce75e0b792d76102"
+}

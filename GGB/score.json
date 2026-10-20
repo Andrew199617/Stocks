@@ -1,0 +1,115 @@
+{
+ "ticker": "GGB",
+ "name": "Gerdau S.A.",
+ "sector": "Industrials / Steel (long & special steel, Brazil & North America)",
+ "price": 5.08,
+ "market_cap_b": 10.22,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 0.42435503221502496,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 3,
+ "moat_justification": "Weak moat, 3/10. Gerdau has real scale advantages - largest long-steel producer in the Americas, scrap-based mini-mill cost position in North America (62% of FY2025 adjusted EBITDA), captive iron ore expanding at Miguel Burnier, and a disciplined 0.76x net debt/EBITDA balance sheet - but none of it converts into pricing power or through-cycle returns: gross margin compressed from 26.6% (FY2021) to 22.8% / 16.4% / 13.7% / 11.4% across FY2022-25 and roic_proxy (fundamentals.json) fell from 41.7% (FY2021) to 29.3% / 18.2% / 12.5% / 4.4% over the same years, with FY2016 at -6.7%. A steelmaker whose ROIC only clears its cost of capital at cycle peaks, whose home market is import-capped, and whose product is a global commodity has a weak moat. A 3 gives CAP = 5.9 years.",
+ "cap_years": 5.9,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency BRL converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 9 / listing description: the NYSE-traded Level II ADSs (symbol GGB) are equivalent to one preferred share of Gerdau S.A. (GGBR4); the cover registers Preferred Shares, no par value, each represented by American Depositary Shares on the NYSE) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "SHARES_FALLBACK: no diluted share count filed for 2016, 2017, 2018, 2019, 2020, 2021, 2022 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Note 24 Earnings per share, Diluted table: common shares outstanding 718,139,434 plus preferred diluted total 1,294,593,140 (weighted-average preferred 1,285,879,767 + potential increase from long-term incentive plans 8,713,373) = 2,012,732,574 total diluted shares for FY2025; the same table gives FY2024 total 2,099,379,471 (720,527,899 + 1,378,851,572) and FY2023 total 2,109,593,750 (720,527,899 + 1,389,065,851), and diluted EPS is identical for common and preferred shares (R$0.69 / R$2.18 / R$3.56)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 0.09 vs 3-yr median 0.42 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (8.1%) vs bull-case tier C (13.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 1.33,
+   "irr": 0.0551
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 2.35,
+   "irr": 0.0813
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 3.31,
+   "irr": 0.1061
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 4.33,
+   "irr": 0.132
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 6.25,
+   "irr": 0.1767
+  }
+ },
+ "iv_at_15": 3.14,
+ "iv_at_12": 4.12,
+ "implied_irr": 0.1021,
+ "implied_irr_base_case": 0.1061,
+ "upside_at_15_pct": -38.3,
+ "tier_by_numbers": "C",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Americas long-steel scale with a weak commodity moat 3/10 - the normalized base OE of $0.42/share is a mid-cycle construct (FY2025 printed $0.09 on peak capex and crushed Brazil spreads); at $5.08 the weighted IRR is 10.21% by numbers (Tier C), but on each fiscal year's own filed diluted share count the median base is $0.4068/share and the weighted IRR replays to 9.89% - final Tier D via tier_override, IV@15% $3.14 by numbers ($3.01 on the corrected count); on the corrected count it clears 15% only below ~$3.01.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0813,
+ "irr_bull": 0.132,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 2.24,
+ "iv_at_25": 1.75,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 2012732574.0,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "tier_override_reason": "Numbers tier is C at a 10.21% weighted IRR, but that IRR rests on the single-value shares_override: the engine applies the FY2025 total diluted count (2,012,732,574) to every missing year, while the same FY2025 20-F Note 24 table files FY2024's own total diluted count at 2,099,379,471 and FY2023's at 2,109,593,750. On each year's own filed count the 3-yr median base is $0.406841/share (FY2024 OE $854,113,196 / 2,099,379,471; FY2023 $0.551412, FY2025 $0.089379 \u2014 FY2024 remains the median year), and replaying the run's unchanged scenario inputs on that base gives a 9.89% weighted IRR and IV@15 of $3.01 \u2014 Tier D. A per-year share series is outside the override layer (single-value, fill-only) and a base_override built on the filing's counts is outside the run-outputs bound, so the correction is taken as this quantified tier_override; the by-numbers C at 10.21% remains printed in score.json.",
+ "moat_for": [
+  "Americas long-steel scale: largest long-steel producer in the Americas, 11.6 Mt shipped in 2025 (+5.9%), with integrated scrap-based mini-mills - scrap is the low-cost, flexible feedstock in North America",
+  "North America earnings engine: 62% of FY2025 consolidated adjusted EBITDA (company 4Q25 release), ~90 days of order backlog and resilient data-center/renewables demand, in a market protected by US trade measures",
+  "Vertical integration upstream: captive iron ore (Miguel Burnier expansion, ~R$1.1B potential annual EBITDA at full ramp per the 4Q25 release) and scrap collection lower delivered cost through the cycle",
+  "Balance-sheet discipline: FY2025 net debt/adjusted EBITDA 0.76x (company release), below the company's own 1.5x policy ceiling, with gross debt of R$14.18B (20-F Notes 15/16: loans and financing R$9.77B + debentures R$4.41B) against equity of R$53.80B in fundamentals.json",
+  "Shareholder returns through the trough: FY2025 dividends + buybacks R$2.4B (182.3% of the bylaws payout measure, company release); preferred share count fell from 1,377,906,016 weighted (FY2023) to 1,285,879,767 (FY2025) in the 20-F EPS note"
+ ],
+ "moat_against": [
+  "Commodity long/special steel: no pricing power - steel prices are set globally and Brazilian prices are capped by imports (import share ~22% of the domestic market in 2025 vs a far lower historical average); gross margin fell from 26.6% (FY2021) to 11.4% (FY2025) in fundamentals.json",
+  "Returns are cyclical, not structural: roic_proxy in fundamentals.json swung from -6.7% (FY2016) to 41.7% (FY2021) and back down to 4.4% (FY2025) - a through-cycle record that does not stay above the cost of capital",
+  "Scale rivals everywhere: Nucor, Steel Dynamics and Commercial Metals in the US, ArcelorMittal and CSN in Brazil; low-cost import supply (China-origin) disciplines every market Gerdau serves",
+  "BRL and Brazil macro exposure: reporting currency BRL converted at period-end rates, Brazilian rates high for prolonged periods, and the controlling family structure (Metalurgica Gerdau) adds a governance layer",
+  "Capex intensity is rising into the trough: FY2025 capex $1.251B (R$6.85B incl. intangibles) on the Miguel Burnier mining build, against FY2025 conservative OE of only $179.9M (R$985M)"
+ ],
+ "overrides": [
+  {
+   "field": "shares",
+   "value": 2012732574.0,
+   "kind": "filing",
+   "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Note 24 Earnings per share, Diluted table: common shares outstanding 718,139,434 plus preferred diluted total 1,294,593,140 (weighted-average preferred 1,285,879,767 + potential increase from long-term incentive plans 8,713,373) = 2,012,732,574 total diluted shares for FY2025; the same table gives FY2024 total 2,099,379,471 (720,527,899 + 1,378,851,572) and FY2023 total 2,109,593,750 (720,527,899 + 1,389,065,851), and diluted EPS is identical for common and preferred shares (R$0.69 / R$2.18 / R$3.56)"
+  }
+ ],
+ "override_impact": {
+  "base_used": "median_3y",
+  "base_oe_without_override": 1.1863,
+  "base_oe_with_override": 0.4244,
+  "base_oe_impact_pct": -64.23,
+  "weighted_irr_without_override": 0.2109,
+  "weighted_irr_with_override": 0.1021,
+  "weighted_irr_impact_pp": -10.887,
+  "unblocks_tier": true
+ }
+}
