@@ -579,16 +579,28 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   roe / roa (quarterly columns use the trailing-four-quarter numerator, null when those four are not all present); roic_proxy =
   operating income × (1 − tax rate) ÷ (equity + debt − cash), tax rate = income tax ÷ pretax within 0–50%; debt_to_equity;
   current_ratio) are computed per period only from lines present in the SAME period. A component the filer has NEVER filed in any
-  period (no short-term investments, no goodwill, no intangibles, no debt) counts as zero where the definition allows it; one filed in
-  other periods but not this one gives null. `total_debt` = long_term_debt + (DebtCurrent aggregate, else short_term_debt +
+  period (no short-term investments, no goodwill, no intangibles) counts as zero where the definition allows it; one filed in
+  other periods but not this one gives null. The debt stock is never such a component in `net_cash` (ruling-sheet Q8 bug 2, Andrew
+  2026-10-19): a period without a filed borrowings figure (`total_debt` null) has a null `net_cash` and `net_cash_per_share` —
+  unknown, not the cash balance (MICC FY2025 printed +€441M, GGB FY2025 +R$5.929B against R$14.182B of gross debt) — and a
+  `net_cash:` warning names the periods and the debt rule ("no total-debt figure the statements' debt rule reads …"), and lists any
+  debt-like line the filer files that the rule does not read as gross debt (`DEBT_LIKE_TAGS`: GGB's partial
+  `ifrs-full:NotesAndDebenturesIssued`, MICC's `ifrs-full:NetDebt`); a filed debt of 0 still nets to cash. (`roic_proxy` still counts never-filed debt as zero.) `total_debt` = long_term_debt + (DebtCurrent aggregate, else short_term_debt +
   current_lt_debt); without a noncurrent line, the filer's combined `LongTermDebt` / `DebtLongtermAndShorttermCombinedAmount` total
   (+ short-term borrowings unless the short-term tag was itself `DebtCurrent`); the current-only sum otherwise. Totals are never
   synthesised: a missing GrossProfit, OperatingExpenses, Liabilities or LiabilitiesAndStockholdersEquity stays absent even when the
   components exist (only the "derived" lines above are computed).
 - **Shares outstanding (period end)** = `CommonStockSharesOutstanding` (ifrs `NumberOfSharesOutstanding`), falling back per period to
   the cover-page `dei:EntityCommonStockSharesOutstanding` dated within 75 days after the period end (tag recorded as
-  `dei:EntityCommonStockSharesOutstanding`).
-- **Currency** = USD unless the money lines' units are mostly another currency (shown as filed, no FX, warning). 20-F / 40-F filers
+  `dei:EntityCommonStockSharesOutstanding`). A cover count below 1/1.4 of the same filing's all-class count (an outstanding count
+  as filed — it is already net of treasury — or IFRS `NumberOfSharesIssuedAndFullyPaid` / `NumberOfSharesIssued` less that
+  filing's treasury shares at the same date; an outstanding-tagged count that, less those treasury shares, lands within 1.4x
+  either way of the cover count is an issued count under the outstanding tag (EG) and is read less treasury too — Codex review
+  round 1 on PR #53: treasury had come off every count, so 2,000 outstanding beside 100 treasury read 1,900 —
+  `fundamentals.class_count_check`) is one class of a multi-class filer: the all-class count is used, its tag recorded, and a
+  `shares:` warning names both (Q8 bug 2: GGB's 717,782,619 common vs 2,000,879,949; book value per share R$74.65 → R$26.78).
+- **Currency** = the file's one money unit (`money_unit`, below: the currency of the newest annual filing's core facts — shown as
+  filed, no FX, warning). 20-F / 40-F filers
   with no 10-Qs get annual columns only (`periods.quarterly = []`, warning). When the submissions feed shows a filing newer than
   the newest period in companyfacts, a warning names it (`latest 10-Q (period …, filed …) is not yet in EDGAR companyfacts —
   columns stop at …`) — EDGAR's API lags: on 2026-10-15 HBAN's Q2 2026 10-Q (filed 2026-07-28) and GFI's FY2025 20-F (filed
@@ -647,7 +659,9 @@ filed value or plain arithmetic on filed values. Tests: `_system/tests/test_fund
   (the market-cap basis string), "note" (present when not exact)}`) and `dividend_yield` (`{numerator, basis, bound, complete,
   denominator}`). Every flow yield is built the same way — filed legs in, never-filed legs as zero, unfiled-in-window legs out —
   and a yield is null only when its own required leg is unknown (buybacks for the buyback yields; dividends AND buybacks for the
-  shareholder yield). `bound` is "lower" when a positive leg is partial or missing, "upper" when the issuance leg is, "indeterminate"
+  shareholder yield), when the file's currency is not the price's (every yield of a non-USD file — Q8 bug 3, below), or when the
+  market cap is null (no current share count, or a stale-count fallback outside `SHARE_SCALE_BAND` of the engine's count — Q8 bug 2,
+  below; the dividend yield needs only the price). `bound` is "lower" when a positive leg is partial or missing, "upper" when the issuance leg is, "indeterminate"
   when both. **Rule for the app:** a yield whose `yield_basis[*].bound != "exact"` is shown with the bound ("≥ 0.5%", "≤ 6.1%",
   or "≈ 3.7%, incomplete") and never as a bare figure; `shareholder_yield_complete` remains `bound == "exact"` with no excluded leg.
   HBAN: `buyback_yield` 0.49% is `bound: "lower"` (repurchases filed for Q1 2026 only, $150M in the 10-Q filed 2026-04-30);
@@ -669,7 +683,37 @@ filed value or plain arithmetic on filed values. Tests: `_system/tests/test_fund
   `"instant"` or `"weighted_average_diluted_fallback"`; `shares_source` names the count used, the candidates and why;
   `market_cap_basis` repeats it; `notes` carries `shares: market cap uses the …`. `market_cap` is never null while a weighted count
   and a price exist (TKO: 172.38 × 194,631,394 = $33.55B; before this fix $13.08B on the 75.9M count). `shares_diluted` /
-  `shares_diluted_source` still report the latest quarter's own diluted count beside it.
+  `shares_diluted_source` still report the latest quarter's own diluted count beside it. Ruling-sheet Q8 bug 2 (Andrew,
+  2026-10-19): an instant count dated more than 548 days (`dcf_engine.DEI_MAX_AGE_DAYS`) before the newest fiscal year end is
+  stale and is not used — the diluted fallback is, `notes` names the stale fact and `shares_source` / `market_cap_basis` give that
+  reason (not the dual-class one; without a diluted count the note reads "no current share count filed") (TLK's 1995-11-13 count of 8.4B shares had
+  priced the cap at $0.927B and the shareholder yield at 123.36%; on the diluted count the cap is $10.93B); and a cover-page dei
+  count that is one class of a multi-class filer gives way to the same filing's all-class count (`class_count_check`, the
+  statements rule above; GGB's cap $3.65B → $10.16B), `shares_source` naming both. A fallback that replaces a stale count must
+  sit within 10x (`fundamentals.SHARE_SCALE_BAND`) of the engine's validated diluted count (dcf_numbers.json
+  `shares_diluted_latest`), else `market_cap` and the yields are null and `notes` names both counts (PAC: filed weighted-average
+  facts 1,000x its 505,277,464 shares); one more than 20% from that count (`fundamentals.SHARE_ANCHOR_TOL`) that no other recent
+  filed count (another period) corroborates within 20% gives way to the latest recent filed diluted count within 20% of the
+  engine's, `shares_source` naming both (verifier round 2, ECHO: Q2 2026's 351,622,000 carries a one-time-gain quarter's
+  if-converted shares against the engine's 287,589,000 — cap $30.89B → $25.39B on Q1 2026's 289,014,000); a corroborated level
+  stands (SF: two 2026 quarters at ~162M after a split the engine's FY2025 110,052,000 predates).
+- **One currency; no cross-currency yield (Q8 bug 3, Andrew 2026-10-19).** fundamentals.json reads every money, per-share and
+  flow series in ONE money unit, `fundamentals.money_unit` (`pick_money_unit`: the currency the NEWEST annual filing files most
+  of its core FY facts in — revenue, net income, OCF, assets — the count over every filing then USD breaking a tie; the
+  statements.json rule too, so the two files agree; only the annual forms the readers read count — 10-K, 10-K/A, 20-F, 40-F
+  (`MONEY_UNIT_FORMS` = statements.py `ANNUAL_FORMS`), never a 20-F/A or 40-F/A, which no annual reader reads: Codex review
+  round 1 on PR #53 — a 20-F/A re-filing an older year in a former currency after the newest 20-F had flipped the file back
+  to that currency and dropped the newest year, while statements.json kept the 20-F's); a filer's convenience translations are never read (RDY's FY2018 revenue was
+  the $2.181B translation beside ₹140.809B for FY2017, −98.45% growth; now ₹142.028B, +0.87%), nor a former presentation
+  currency (RTO's FY2025 20-F moved from GBP to USD and restates FY2023–24 in USD: the file is USD from that filing on and keeps
+  FY2025 — an all-time count would have kept GBP, the larger history, and dropped the newest year; the warning names GBP as a
+  former presentation currency, not a convenience translation). `currency` reports the unit. The price is USD
+  (`fundamentals.PRICE_CURRENCY`), so a non-USD file's four yields are null and `yields_display.*.note` / `notes` say why
+  (RDY's dividend yield had read 310.80%, ₹40 ÷ $12.87); its dividends block carries `currency` (a USD block has no such key
+  and is written as before), and the market cap (USD price × shares) is unaffected. Only that block key names the unit of the
+  legs and DPS: a non-USD file whose block has no key was written before this rule, when the readers took a filed USD fact
+  first, so its top-level `currency` ("some core fact is filed in X") is not their unit (TLK's dividends paid is the USD
+  1,099,000,000 fact, CX's $90M; RDY's DPS is INR) — the site treats that unit as unrecorded (verifier round 2).
 - **Unfiled-split guard needs the EPS to agree** (`basis_breaks`). A DPS move of ~1/k against a share-count move of ~k is read as a
   share-basis change only when the diluted EPS of the two years (both filed and positive) also moved ~1/k (EPS ratio × share ratio
   within 0.6–1.6); a candidate the EPS contradicts stays a cut and is listed in `basis_breaks_rejected`
@@ -1044,8 +1088,11 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   and year (`basis break (...): revenue: 2024-12-31 (3,603,803,000 vs 3,224,058,000); ...`). APP FY2023/FY2024 (apps divestiture),
   AEE FY2011, CBRE FY2016, FTI FY2019, EQT FY2024 and the like are visible now. **App:** grey a flagged quarter (the file no longer
   pretends the year and its quarters agree). EPS / weighted shares / instants are never checked (they do not sum).
-- **One money unit per file** (`money_unit`): the unit most of the core FY facts (revenue, net income, OCF, assets) are filed in,
-  USD on ties; every money line reads that unit only (per-share lines `<unit>/shares`), so a quarter is never derived from legs in
+- **One money unit per file** (`money_unit`): the currency the newest annual filing (10-K, 10-K/A, 20-F, 40-F — `ANNUAL_FORMS`, the
+  forms the annual columns read; never a 20-F/A / 40-F/A) files most of its core FY facts (revenue, net
+  income, OCF, assets) in, the count over every filing then USD breaking a tie (`fundamentals.pick_money_unit`, Q8 bug 3 — RTO's
+  move from GBP to USD; until 2026-10-19 the all-filing majority, which kept a former presentation currency and dropped the newest
+  year); every money line reads that unit only (per-share lines `<unit>/shares`), so a quarter is never derived from legs in
   two currencies and a line never mixes a convenience translation with the filed currency. `currency` reports it; JD is CNY
   (its USD facts are the latest year's convenience translation and are ignored, warning), and its two bogus "Q4 FY2018/FY2019"
   columns are gone. A filer with no 10-Q at all (20-F / 40-F with 6-K interims) keeps only fiscal years whose four quarters all
@@ -1111,10 +1158,27 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   run until the data arrives (HBAN's Q2 2026 10-Q, GFI's FY2025 20-F, BIIB, CTSH, ED, GEHC, VMC on 2026-10-15). A file without
   `covered_through` (pre-rule) is rebuilt once, and so (2026-10-16) is a file whose cash line used the combined cash + restricted
   cash tag but carries no `incl_restricted_annual` (`restricted_cash_pending`). `can_skip()` is the rule; the summary line reads
-  "newest filing already recorded and covered".
+  "newest filing already recorded and covered". `schema_version` is 4 since 2026-10-19 (ruling-sheet Q8 bugs 2–3; Codex review
+  round 1 on PR #53): the net-cash debt rule, the all-class share count and the one-money-unit rule leave no field that marks a
+  file written before them, so `--all` rebuilds every schema-3 file once — each rewrites once, as `schema_version` is in the file.
 - **Open questions for the owner.** (1) Whether FCF should subtract purchases of intangibles / capitalised software for filers
   with no PP&E line (APP: 28,318K in FY2025; the engine's capex override does); the file keeps the contract's ocf − capex and shows
-  the intangibles line beside it. (2) HBAN's provision total differs from the face by 2–3M in FY2024/FY2025 (a securities
+  the intangibles line beside it. (2026-10-19, Q8: fundamentals.json's `fcf` / `oe_conservative` now subtract the engine 5.5
+  intangible leg — `fundamentals.ENGINE_INTANGIBLE_TAGS`, capitalized software excluded until the Q6 / 5.7 follow-on — while
+  statements.json's `fcf` / `owner_earnings` lines are still ocf − capex; that line is a separate follow-on. Quarters take each tagged
+  year-to-date leg less the quarters before it (the latest tagged shorter leg, 0 when none), so a year's quarters sum to its FY
+  figure (a quarter may be negative); a quarter with no year-to-date leg ending with it keeps its own direct three-month fact
+  (Codex review round 1 on PR #53: Q1 10, Q2 20, Q3 30 three-month facts beside FY 100 had read Q1 10, no Q2 / Q3, Q4 90); a year whose annual row is filed with no FY intangible figure (the 10-K leaves the line untagged or re-files it as $0,
+  which the engine ignores) deducts nothing in any quarter, as its annual row deducts nothing (verifier round 2: RMD FY2024, BAX
+  FY2025, NXT FY2026); the TTM leg is the engine's FY − prior-year YTD + current YTD, floored at zero (`intangible_capex_ttm`) — IREN's TTM
+  equals its FY2026 figure. Codex review round 2 on PR #53: `capex` (annual, quarterly, TTM) is the engine's PP&E leg —
+  `capex_for_period` over `dcf_engine.CAPEX_ROLLUP_TAGS` / `CAPEX_COMPONENT_TAGS` (`fundamentals.ENGINE_CAPEX_GROUPS`): a filed
+  roll-up, else the additive components summed (GLPI FY2025 $495.7M, not construction in process alone at $191.3M; capital
+  improvements and the oil-and-gas lines count), assembled per fiscal year and per year-to-date context before quarters are
+  differenced — so `fcf` = `ocf` − `capex` − the intangible leg on the engine's capex definition. A completed year (the rule
+  above) is one with an annual row (`annual_row_periods`: fp FY on the annual-report forms), never a 6-K or 10-Q full-year
+  context. **App:** the capex rows and the cash-flow chart say "Capex (PP&E)", the chart adds an "Intangible
+  capex" bar (ocf − capex − fcf of the row) and the Overview prose names it beside the PP&E capex.) (2) HBAN's provision total differs from the face by 2–3M in FY2024/FY2025 (a securities
   component the filer does not tag); the alternative is a blank line. (3) The app should render `basis_break_quarterly` (grey or
   a marker) and may label "Interest expense, net" lines from the file's label.
 
@@ -1234,7 +1298,9 @@ No data shape changes.
 - **Review round 4 (static app, 2026-10-15 — Forecast audit, watchlist view, partial yields, sticky bar, chart / statements minors).**
   No data shape changes; the app reads two fields build_site.py already emits (`row.shareholder_yield_label` / `_bound`) and
   `meta.watchlist_outside`. Verified with `node _daily/site/tests/app.test.js` (72) and in the built-in browser (375 × 812 and desktop).
-  - *OE/share history (Forecast → DCF).* A fiscal year is drawn only when BOTH its owner's earnings and its diluted share count are
+  - *OE/share history (Forecast → DCF).* The note's formula names the intangible leg ("operating cash flow − PP&E and intangible
+    capex − stock-based compensation") when a plotted fundamentals.json year deducts one (Q8; verifier round 2, BBIO FY2025:
+    −588.5M plotted, −580.0M on OCF − PP&E capex − SBC). A fiscal year is drawn only when BOTH its owner's earnings and its diluted share count are
     filed: `fundamentals.annual.oe_per_share`, or OE ÷ diluted shares when that cell is empty; every other year is null and the note
     under the chart names it and why ("Not shown: FY2025: capex not filed (the engine run fills capex with an estimate — not a filed
     value)"). The engine CSV is used only for a record without `fundamentals.annual`, and never for a CSV row whose `*_tag` is
@@ -1747,7 +1813,16 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   "prices.json stats.last") when that close is not older than the block's `price_date` and is not already its price; the
   row's `dividend_yield`, `shareholder_yield` and `shareholder_yield_label` / `_bound` follow. Shown as written without
   prices.json (a fresh clone), with an older close, for a block written before 5.4.4 (`fundamentals.repriceable`), across
-  a split since scoring, or when fundamentals.py cannot be imported. The block's price note ("price: … from score.json …",
+  a split since scoring (a pre-rule non-USD block still loses its yields there, `cross_currency_safe`), or when fundamentals.py
+  cannot be imported. **App:** a non-USD block's legs and DPS — the tiles, captions, history table and the dividend-per-share
+  chart's ticks and tooltips — print with the block's currency code (`divCurrency`: "INR 40.00", never "$40.00") and the
+  shareholder-yield caption shows no leg ÷ market-cap share (TLK had read "$17.68T (161,834.98%)"); a pre-rule non-USD block
+  (no `dividends.currency`) prints its amounts without a currency and a note says the unit is not recorded. The block is priced
+  in its own unit (`build_site.dividends_unit` → `price_dividends(..., currency=...)` for a block that records a non-USD unit,
+  `unit_unrecorded=<file currency>` for a pre-rule one, Q8 bug 3): either serves null yields — the pre-rule note says the unit is
+  unrecorded, never "filed in <file currency>" — and a pre-rule block that still carries a yield is re-priced at its own close
+  even without a newer one. That also hides the pre-rule yields that were USD over USD (CX's ≥ 1.81% and RDY's 0.73%
+  shareholder yields; TLK's 123.36% is wrong on its stale share count) until the file's next refresh writes the block's unit. The block's price note ("price: … from score.json …",
   "… carries a price — yields null") is the new key `dividends.price_note`, no longer an entry of `notes` (price_dividends
   drops it from an older block). fundamentals.py's own price: prices.json `stats.last`, else the close the committed file
   already used (with its date and source) unless score.json's analysis price is newer, else score.json's price.

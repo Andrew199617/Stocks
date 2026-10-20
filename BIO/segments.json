@@ -1,0 +1,554 @@
+{
+ "ticker": "BIO",
+ "cik": 12208,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000012208-26-000010",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000010/bio-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000012208-26-000035",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000035/bio-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000012208-26-000048",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000048/bio-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bio:ClinicalDiagnosticsMember",
+     "label": "Clinical Diagnostics",
+     "values": [
+      356800000,
+      388800000,
+      363600000,
+      399000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6095,
+      0.5967,
+      0.6141,
+      0.6129
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0191,
+      0.0262
+     ]
+    },
+    {
+     "member": "bio:LifeScienceMember",
+     "label": "Life Science",
+     "values": [
+      228600000,
+      262800000,
+      228500000,
+      252000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3905,
+      0.4033,
+      0.3859,
+      0.3871
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0004,
+      -0.0411
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     585400000,
+     651600000,
+     592100000,
+     651000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "bio:ClinicalDiagnosticsMember",
+     "label": "Clinical Diagnostics",
+     "values": [
+      83100000,
+      84300000,
+      90400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5696,
+      0.5561,
+      0.5466
+     ],
+     "growth_yoy": [
+      null,
+      0.0144,
+      0.0724
+     ]
+    },
+    {
+     "member": "bio:LifeScienceMember",
+     "label": "Life Science",
+     "values": [
+      62800000,
+      67300000,
+      75000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4304,
+      0.4439,
+      0.4534
+     ],
+     "growth_yoy": [
+      null,
+      0.0717,
+      0.1144
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     145900000,
+     151600000,
+     165400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "bio:ClinicalDiagnosticsMember",
+     "label": "Clinical Diagnostics",
+     "values": [
+      21100000,
+      22800000,
+      22600000,
+      22900000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5538,
+      0.5616,
+      0.5526,
+      0.5572
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0711,
+      0.0044
+     ]
+    },
+    {
+     "member": "bio:LifeScienceMember",
+     "label": "Life Science",
+     "values": [
+      17000000,
+      17800000,
+      18300000,
+      18200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4462,
+      0.4384,
+      0.4474,
+      0.4428
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0765,
+      0.0225
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     38100000,
+     40600000,
+     40900000,
+     41100000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1121900000,
+      1041500000,
+      1022700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.42,
+      0.4058,
+      0.3959
+     ],
+     "growth_yoy": [
+      null,
+      -0.0717,
+      -0.0181
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      819800000,
+      834100000,
+      881800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3069,
+      0.325,
+      0.3414
+     ],
+     "growth_yoy": [
+      null,
+      0.0174,
+      0.0572
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      563000000,
+      521600000,
+      513300000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2108,
+      0.2032,
+      0.1987
+     ],
+     "growth_yoy": [
+      null,
+      -0.0735,
+      -0.0159
+     ]
+    },
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      166500000,
+      169300000,
+      165400000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0623,
+      0.066,
+      0.064
+     ],
+     "growth_yoy": [
+      null,
+      0.0168,
+      -0.023
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2671200000,
+     2566500000,
+     2583200000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      241700000,
+      266900000,
+      229800000,
+      255500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4129,
+      0.4096,
+      0.3881,
+      0.3925
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0492,
+      -0.0427
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      199800000,
+      217200000,
+      206800000,
+      229200000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3413,
+      0.3333,
+      0.3493,
+      0.3521
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.035,
+      0.0552
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      104100000,
+      126400000,
+      110400000,
+      121800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1778,
+      0.194,
+      0.1865,
+      0.1871
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0605,
+      -0.0364
+     ]
+    },
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      39800000,
+      41100000,
+      45100000,
+      44500000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.068,
+      0.0631,
+      0.0762,
+      0.0684
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1332,
+      0.0827
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     585400000,
+     651600000,
+     592100000,
+     651000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: table dropped: its 3 rows cover 7.0% of the consolidated total for 2025-12-31, not a breakdown of it",
+  "business_segments/Assets/quarterly: table dropped: its 2 rows cover 7.6% of the consolidated total for 2026-06-30, not a breakdown of it"
+ ],
+ "complete": true
+}

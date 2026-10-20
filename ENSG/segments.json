@@ -1,0 +1,684 @@
+{
+ "ticker": "ENSG",
+ "cik": 1125376,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001125376-26-000007",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000007/ensg-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001125376-26-000021",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000021/ensg-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001125376-26-000034",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000034/ensg-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ensg:SkilledServicesSegmentMember",
+     "label": "Skilled Services Segment",
+     "values": [
+      3578855000,
+      4076825000,
+      4837809000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9596,
+      0.9569,
+      0.9565
+     ],
+     "growth_yoy": [
+      null,
+      0.1391,
+      0.1867
+     ]
+    },
+    {
+     "member": "ensg:StandardBearerSegmentMember",
+     "label": "Standard Bearer Segment",
+     "values": [
+      82486000,
+      95086000,
+      126930000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0221,
+      0.0223,
+      0.0251
+     ],
+     "growth_yoy": [
+      null,
+      0.1528,
+      0.3349
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      155804000,
+      192881000,
+      232846000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0418,
+      0.0453,
+      0.046
+     ],
+     "growth_yoy": [
+      null,
+      0.238,
+      0.2072
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -87790000,
+      -104307000,
+      -139744000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0235,
+      -0.0245,
+      -0.0276
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3729355000,
+     4260485000,
+     5057841000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ensg:SkilledServicesSegmentMember",
+     "label": "Skilled Services Segment",
+     "values": [
+      1123554000,
+      1173576000,
+      1330835000,
+      1379912000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9578,
+      0.9559,
+      0.958,
+      0.958
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1845,
+      0.1758
+     ]
+    },
+    {
+     "member": "ensg:StandardBearerSegmentMember",
+     "label": "Standard Bearer Segment",
+     "values": [
+      28401000,
+      31468000,
+      36102000,
+      44133000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0242,
+      0.0256,
+      0.026,
+      0.0306
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2712,
+      0.4025
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      52426000,
+      57332000,
+      62256000,
+      64268000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0447,
+      0.0467,
+      0.0448,
+      0.0446
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1875,
+      0.121
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -31340000,
+      -34607000,
+      -39997000,
+      -47832000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0267,
+      -0.0282,
+      -0.0288,
+      -0.0332
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1173041000,
+     1227769000,
+     1389196000,
+     1440481000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ensg:SkilledServicesSegmentMember",
+     "label": "Skilled Services Segment",
+     "values": [
+      3578855000,
+      4076825000,
+      4837809000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9652,
+      0.9621,
+      0.9614
+     ],
+     "growth_yoy": [
+      null,
+      0.1391,
+      0.1867
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      144667000,
+      181066000,
+      220364000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.039,
+      0.0427,
+      0.0438
+     ],
+     "growth_yoy": [
+      null,
+      0.2516,
+      0.217
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -15451000,
+      -20366000,
+      -26055000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0042,
+      -0.0048,
+      -0.0052
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3708071000,
+     4237525000,
+     5032118000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ensg:SkilledServicesSegmentMember",
+     "label": "Skilled Services Segment",
+     "values": [
+      1123554000,
+      1173576000,
+      1330835000,
+      1379912000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9627,
+      0.9608,
+      0.9628,
+      0.9633
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1845,
+      0.1758
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      49427000,
+      54174000,
+      59061000,
+      61053000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0424,
+      0.0444,
+      0.0427,
+      0.0426
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1949,
+      0.127
+     ]
+    },
+    {
+     "member": "srt:ConsolidationEliminationsMember",
+     "label": "Consolidation, Eliminations",
+     "values": [
+      -5941000,
+      -6336000,
+      -7593000,
+      -8468000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0051,
+      -0.0052,
+      -0.0055,
+      -0.0059
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1167040000,
+     1221414000,
+     1382303000,
+     1432497000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ensg:SkilledServicesSegmentMember",
+     "label": "Skilled Services Segment",
+     "values": [
+      38766000,
+      45195000,
+      55821000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5355,
+      0.5372,
+      0.5351
+     ],
+     "growth_yoy": [
+      null,
+      0.1658,
+      0.2351
+     ]
+    },
+    {
+     "member": "ensg:StandardBearerSegmentMember",
+     "label": "Standard Bearer Segment",
+     "values": [
+      25205000,
+      29297000,
+      37599000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3482,
+      0.3482,
+      0.3604
+     ],
+     "growth_yoy": [
+      null,
+      0.1623,
+      0.2834
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     72387000,
+     84138000,
+     104327000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ensg:SkilledServicesSegmentMember",
+     "label": "Skilled Services Segment",
+     "values": [
+      13213000,
+      13750000,
+      15310000,
+      15445000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5463,
+      0.5333,
+      0.5316,
+      0.4918
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1587,
+      0.1233
+     ]
+    },
+    {
+     "member": "ensg:StandardBearerSegmentMember",
+     "label": "Standard Bearer Segment",
+     "values": [
+      8476000,
+      9265000,
+      10783000,
+      12676000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3504,
+      0.3593,
+      0.3744,
+      0.4036
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2722,
+      0.3682
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     24188000,
+     25785000,
+     28801000,
+     31406000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Eliminations And Reconciling Items' (ensg:EliminationsAndReconcilingItemsMember) dropped: its values equal the sum of Segment Reporting, Reconciling Item, Corporate Nonsegment, Consolidation, Eliminations",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Eliminations And Reconciling Items' (ensg:EliminationsAndReconcilingItemsMember) dropped: its values equal the sum of Segment Reporting, Reconciling Item, Corporate Nonsegment, Consolidation, Eliminations",
+  "business_segments/DepreciationDepletionAndAmortization/annual: rows sum to 89.5% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "business_segments/DepreciationDepletionAndAmortization/quarterly: rows sum to 89.5% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}

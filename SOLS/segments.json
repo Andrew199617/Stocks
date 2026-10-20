@@ -1,0 +1,645 @@
+{
+ "ticker": "SOLS",
+ "cik": 2064953,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0002064953-26-000008",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000008/sols-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002064953-26-000047",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000047/sols-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0002064953-26-000087",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000087/sols-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "sols:RefrigerantsAppliedSolutionsMember",
+     "label": "Refrigerants & Applied Solutions",
+     "values": [
+      2629000000,
+      2721000000,
+      2789000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7205,
+      0.7218,
+      0.7177
+     ],
+     "growth_yoy": [
+      null,
+      0.035,
+      0.025
+     ]
+    },
+    {
+     "member": "sols:ElectronicSpecialtyMaterialsMember",
+     "label": "Electronic & Specialty Materials",
+     "values": [
+      1020000000,
+      1049000000,
+      1097000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2795,
+      0.2782,
+      0.2823
+     ],
+     "growth_yoy": [
+      null,
+      0.0284,
+      0.0458
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3649000000,
+     3770000000,
+     3886000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sols:RefrigerantsAppliedSolutionsMember",
+     "label": "Refrigerants & Applied Solutions",
+     "values": [
+      636000000,
+      756000000,
+      711000000,
+      850000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.709,
+      0.7318,
+      0.7175,
+      0.7404
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1179,
+      0.1243
+     ]
+    },
+    {
+     "member": "sols:ElectronicSpecialtyMaterialsMember",
+     "label": "Electronic & Specialty Materials",
+     "values": [
+      261000000,
+      277000000,
+      281000000,
+      298000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.291,
+      0.2682,
+      0.2836,
+      0.2596
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0766,
+      0.0758
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     897000000,
+     1033000000,
+     991000000,
+     1148000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "sols:RefrigerantsAppliedSolutionsMember",
+     "label": "Refrigerants & Applied Solutions",
+     "values": [
+      3157000000,
+      3490000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6309,
+      0.6152
+     ],
+     "growth_yoy": [
+      null,
+      0.1055
+     ]
+    },
+    {
+     "member": "sols:ElectronicSpecialtyMaterialsMember",
+     "label": "Electronic & Specialty Materials",
+     "values": [
+      1192000000,
+      1471000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2382,
+      0.2593
+     ],
+     "growth_yoy": [
+      null,
+      0.2341
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      655000000,
+      712000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1309,
+      0.1255
+     ],
+     "growth_yoy": [
+      null,
+      0.087
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5004000000,
+     5673000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "sols:RefrigerantsAppliedSolutionsMember",
+     "label": "Refrigerants & Applied Solutions",
+     "values": [
+      3490000000,
+      3433000000,
+      3427000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6152,
+      0.5973,
+      0.5791
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "sols:ElectronicSpecialtyMaterialsMember",
+     "label": "Electronic & Specialty Materials",
+     "values": [
+      1471000000,
+      1498000000,
+      1544000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2593,
+      0.2606,
+      0.2609
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      712000000,
+      817000000,
+      948000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1255,
+      0.1421,
+      0.1602
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5673000000,
+     5748000000,
+     5918000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      3424000000,
+      3453000000,
+      3587000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9383,
+      0.9159,
+      0.9231
+     ],
+     "growth_yoy": [
+      null,
+      0.0085,
+      0.0388
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      225000000,
+      317000000,
+      299000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0617,
+      0.0841,
+      0.0769
+     ],
+     "growth_yoy": [
+      null,
+      0.4089,
+      -0.0568
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3649000000,
+     3770000000,
+     3886000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      838000000,
+      945000000,
+      915000000,
+      1062000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9342,
+      0.9148,
+      0.9233,
+      0.9251
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0919,
+      0.1238
+     ]
+    },
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      59000000,
+      88000000,
+      77000000,
+      86000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0658,
+      0.0852,
+      0.0777,
+      0.0749
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3051,
+      -0.0227
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     897000000,
+     1033000000,
+     991000000,
+     1148000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2205000000,
+      2285000000,
+      2234000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6043,
+      0.6061,
+      0.5749
+     ],
+     "growth_yoy": [
+      null,
+      0.0363,
+      -0.0223
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      859000000,
+      886000000,
+      922000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2354,
+      0.235,
+      0.2373
+     ],
+     "growth_yoy": [
+      null,
+      0.0314,
+      0.0406
+     ]
+    },
+    {
+     "member": "sols:OtherInternationalMember",
+     "label": "Other International",
+     "values": [
+      585000000,
+      599000000,
+      730000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1603,
+      0.1589,
+      0.1879
+     ],
+     "growth_yoy": [
+      null,
+      0.0239,
+      0.2187
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3649000000,
+     3770000000,
+     3886000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

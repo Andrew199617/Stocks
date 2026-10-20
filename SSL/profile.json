@@ -1,0 +1,246 @@
+{
+ "ticker": "SSL",
+ "cik": 314590,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T02:11:40-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000314590.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/314590/000110465926104048/ssl-20260630x20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SSL/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SSL/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "SASOL LTD",
+  "cik": 314590,
+  "description": {
+   "text": "4.A History and development of the Company Sasol Limited, the ultimate holding company of our group, is a public company. It was incorporated under the laws of South Africa in 1979 and has been listed on the JSE since October 1979. Our registered office and corporate headquarters are at Sasol Place, 50 Katherine Street, Sandton, 2196, South Africa, and our telephone number is +27 10 344 3060. Our agent for service of process in the US is Puglisi & Associates, 850 Library Avenue, Suite 204, Newark, Delaware 19711. The SEC maintains an internet site that contains reports, proxy and information statements, and other information regarding Sasol that we file electronically with the SEC. To find the required information please visit www.sec.gov. For further information please visit www.sasol.com. This website is not incorporated by reference in this annual report. For a description of the company’s principal capital expenditures and divestitures refer to “Item 5.B—Liquidity and capital resources”.",
+   "source": "20-F Item 4 Information on the Company",
+   "form": "20-F",
+   "filed": "2026-09-01",
+   "period": "2026-06-30",
+   "accession": "0001104659-26-104048",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000110465926104048/ssl-20260630x20f.htm"
+  },
+  "description_short": "Sasol International Chemicals manufactures and markets a broad, state-of-the-art portfolio of specialty and commodity chemicals for a wide range of applications and industries. Our unique chemistry provides the building blocks for a more sustainable future and is used by more than 4,000 customers in 80 countries in countless products that improve the quality of life for people around the world. Sasol International Chemicals is a business of Sasol Limited and manages its Northern Hemisphere chemicals business, its people, and its stakeholders, with end-to-end accountability for safe operations, profit and loss, technology and innovation, and delivering more sustainable solutions for our customers.",
+  "industry": "Oil & Gas Production",
+  "sector": "Energy",
+  "region": "Africa",
+  "sic": "1311",
+  "sic_description": "Crude Petroleum & Natural Gas",
+  "state_of_incorporation": "T3",
+  "fiscal_year_end_mmdd": "0630",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.sasol.com",
+  "headquarters": "Sandton, South Africa",
+  "address": {
+   "street": "Sasol Place, 50 Katherine Street",
+   "city": "Sandton",
+   "state": null,
+   "zip": "2196",
+   "country": "South Africa",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-09-01"
+  },
+  "phone": "01127114413111",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2003-03-06",
+  "first_sec_filing_form": "20FR12B",
+  "former_names": [
+   "SASOL LTD/ADR/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000314590&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000074/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000070/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000069/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-30",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000068",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000068/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-18",
+   "period": "2026-09-18",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000064/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-11",
+   "period": "2026-09-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000062/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-10",
+   "period": "2026-09-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000061/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000056/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000055/sasol_edgar.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-09-01",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001104659-26-104048",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000110465926104048/ssl-20260630x20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-05",
+   "period": "2026-08-05",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000053/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000051/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-14",
+   "period": "2026-07-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000050/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-15",
+   "period": "2026-05-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000039/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000038/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000031/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000030/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000026/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000024/sasol_edgar.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001205613-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/314590/000120561326000023/sasol_edgar.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-09-01"
+ ]
+}

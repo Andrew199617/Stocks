@@ -1,0 +1,92 @@
+{
+ "ticker": "KRYS",
+ "name": "Krystal Biotech, Inc.",
+ "sector": "Biotechnology / Genetic medicines",
+ "price": 320.25,
+ "market_cap_b": 9.59,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 6.640727177609207,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 6,
+ "moat_justification": "VYJUVEK's orphan exclusivity, 95% gross margin, entrenched reimbursement/prescriber base and the redosable HSV-1 platform give a real but narrow moat: one product, one small patient pool, only two years of positive ROIC history, and competition (ZEVASKYN) now entering DEB. A 6 sits on ROIC that has only just crossed above the cost of capital (10.2% FY2024, 17.6% FY2025) \u2014 the written reason it is not 7+ is that the franchise has not yet held high ROIC through a cycle and revenue is a single therapy.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 5.5%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SHARES_FALLBACK: no diluted share count filed for 2017, 2018, 2019 \u2014 those history years use the basic / outstanding / dei count recorded in the shares_tag column; per-share history there is approximate",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 4.49 vs 3-yr median 2.36 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.7%) vs bull-case tier C (10.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 57.01,
+   "irr": 0.0494
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 93.27,
+   "irr": 0.0666
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 129.08,
+   "irr": 0.0825
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 176.53,
+   "irr": 0.1019
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 271.06,
+   "irr": 0.135
+  }
+ },
+ "iv_at_15": 138.98,
+ "iv_at_12": 194.19,
+ "implied_irr": 0.0871,
+ "implied_irr_base_case": 0.0825,
+ "upside_at_15_pct": -56.6,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "Profitable single-product gene-therapy leader (VYJUVEK at a 95% gross margin, debt-free, $1.1B cash), moat 6/10 \u2014 does not clear 15% at $320.25 (weighted IRR 8.7%, weighted IV@15% $138.98); it would clear the 15% hurdle only below ~$139.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0666,
+ "irr_bull": 0.1019,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 91.07,
+ "iv_at_25": 65.91,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 29951000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "First and only FDA-approved redosable gene therapy for DEB (VYJUVEK, approved 2023, from birth); orphan-drug exclusivity and patent estate around the HSV-1 platform",
+  "95% gross margin (Q2 2026) on lean in-house manufacturing \u2014 structural cost advantage",
+  "Entrenched access: 730+ U.S. reimbursement approvals, 640+ prescribers, >60% penetration of the diagnosed U.S. DEB pool",
+  "Redosable HSV-1 platform carries an FDA Platform Technology Designation; registrational programs in eye (KB803, KB801), lung (KB407, KB408) and skin (KB111) reuse the same delivery engine",
+  "Returns inflecting: ROIC proxy -22% (2023) -> +10.2% (2024) -> +17.6% (2025) with a 44.9% TTM operating margin; debt-free with ~$1.1B cash and investments (Q2 2026)"
+ ],
+ "moat_against": [
+  "Single product: VYJUVEK is effectively 100% of revenue; the DEB patient pool is small and U.S. penetration already exceeds 60% of the diagnosed pool",
+  "Growth decelerating: FY2025 revenue +33.9%, TTM +22.6%, Q2 2026 +24% \u2014 the U.S. launch wave is maturing",
+  "Competition arriving: Abeona's ZEVASKYN (approved 2025) targets recessive DEB wounds; other DEB programs in development",
+  "European pricing/reimbursement still being negotiated (Italy/Spain launches pending) \u2014 ex-U.S. realized pricing uncertain",
+  "Pipeline beyond VYJUVEK is unproven: KB803/KB801/KB407/KB408/KB707 carry binary clinical risk, and SBC runs ~12-14% of revenue"
+ ]
+}

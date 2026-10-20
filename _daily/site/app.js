@@ -29,7 +29,7 @@ var TIER_MEANING = { S: '≥25% expected return', A: '20–25%', B: '15–20% ·
 var LABELS = [['super_bear', 'Super bear'], ['bear', 'Bear'], ['base', 'Base'], ['bull', 'Bull'], ['super_bull', 'Super bull']];
 var SCN_COLORS = { super_bear: '#8A93A6', bear: '#A7B1C7', base: '#C9D4FF', bull: '#9AD6B4', super_bull: '#5BD69C', weighted: '#FFFFFF' };
 var C_PRICE = '#FF8A8A', C_IV = '#C9D4FF', C_BAND = 'rgba(122,162,255,.18)', C_FCBAR = '#7AA2FF'; // forecast bars next to filed (C_OE) bars
-var C_REV = '#7AA2FF', C_NI = '#5BD69C', C_OE = '#C9D4FF', C_OCF = '#7484A0', C_CAPEX = '#F2B84B', C_SBC = '#F08A4B', C_CASH = '#7AA2FF', C_DEBT = '#F08A4B', C_FCF = '#9AD6B4';
+var C_REV = '#7AA2FF', C_NI = '#5BD69C', C_OE = '#C9D4FF', C_OCF = '#7484A0', C_CAPEX = '#F2B84B', C_INTANG = '#C99A3C', C_SBC = '#F08A4B', C_CASH = '#7AA2FF', C_DEBT = '#F08A4B', C_FCF = '#9AD6B4';
 var SEG_COLORS = ['#7AA2FF', '#5BD69C', '#F2B84B', '#F08A4B', '#B79CFF', '#C9D4FF', '#9AD6B4', '#FF8A8A', '#7484A0', '#D4A5FF', '#8FD3F4', '#E6C98C'];
 var DIV_FREQ = { quarterly: 'Quarterly', semiannual: 'Semiannual', annual: 'Annual', irregular: 'Irregular', none: 'None' };
 var HURDLES_DEFAULT = { S: 0.25, A: 0.20, B: 0.15, C: 0.10 };
@@ -69,6 +69,28 @@ function fmtBig(v) {
   if (a >= 1e6) return s + '$' + fixed(a / 1e6, 0) + 'M';
   if (a >= 1e3) return s + '$' + fixed(a / 1e3, 0) + 'K';
   return s + '$' + fixed(a, 2);
+}
+/* A formatted '$' amount restated in `cur`: the ISO code replaces the '$' (a non-USD block's filed legs and DPS); null —
+   a block that does not record its unit (divCurrency) — prints the bare number; undefined / 'USD' keep the '$'. */
+function curText(t, cur) { return cur === null ? String(t).replace('$', '') : (!cur || cur === 'USD' ? t : String(t).replace('$', cur + '\u00a0')); }
+function fmtBigCur(v, cur) { return curText(fmtBig(v), cur ? esc(cur) : cur); }
+function fmtDpsCur(v, cur) { return curText(fmtDps(v), cur ? esc(cur) : cur); }
+/* The unit of fundamentals.json's dividends amounts (legs, DPS) — ruling-sheet Q8 bug 3, verifier round 2. Under the
+   one-currency rule a non-USD block records it (`dividends.currency`); a USD file's block has no key and is USD. A non-USD
+   file whose block has no key was written before 2026-10-19: its readers took a USD fact first (TLK's dividends paid is the
+   filed USD 1,099,000,000, CX's $90M), so the file's `currency` is NOT the legs' unit — cur null, unrecorded. */
+function divCurrency(fund) {
+  fund = obj(fund); var d = obj(fund.dividends);
+  if (typeof d.currency === 'string' && d.currency) return { cur: d.currency, recorded: true, file: d.currency };
+  if (typeof fund.currency === 'string' && fund.currency && fund.currency !== 'USD') return { cur: null, recorded: false, file: fund.currency };
+  return { cur: 'USD', recorded: true, file: 'USD' };
+}
+/* The intangible purchases fundamentals.json's fcf deducts on top of the PP&E capex row (engine 5.5 capex): ocf − capex − fcf
+   of the same row, null without all three or when it is zero (the row then deducts PP&E alone). */
+function intangCapex(r) {
+  r = obj(r); var o = num(r.ocf), c = num(r.capex), f = num(r.fcf);
+  if (o === null || c === null || f === null) return null;
+  var x = o - c - f; return Math.abs(x) < 0.5 ? null : x;
 }
 function fmtCnt(v) {
   v = num(v); if (v === null) return '—';
@@ -592,10 +614,12 @@ function financialPerformance(record) {
   if (p.length) out.push(p.join('; ').replace(/^./, function (c) { return c.toUpperCase(); }) + '.');
   var c = [];
   if (num(a.ocf) !== null) c.push('operating cash flow ' + fmtBig(a.ocf) + (num(a.ocf_growth) !== null && prev ? ' (' + fmtPct(a.ocf_growth, 1, true) + ')' : ''));
-  if (num(a.capex) !== null) c.push('capex ' + fmtBig(a.capex) + (num(a.capex_pct_rev) !== null ? ' (' + fmtPct(a.capex_pct_rev) + ' of revenue)' : ''));
+  if (num(a.capex) !== null) c.push('PP&amp;E capex ' + fmtBig(a.capex) + (num(a.capex_pct_rev) !== null ? ' (' + fmtPct(a.capex_pct_rev) + ' of revenue)' : ''));
+  var aInt = intangCapex(a);
+  if (aInt !== null) c.push('purchases of intangibles ' + fmtBig(aInt));
   if (num(a.sbc) !== null) c.push('stock-based compensation ' + fmtBig(a.sbc) + (num(a.sbc_pct_ocf) !== null ? ' (' + fmtPct(a.sbc_pct_ocf) + ' of operating cash flow)' : ''));
   if (c.length) out.push(c.join('; ').replace(/^./, function (x) { return x.toUpperCase(); }) + '.');
-  if (num(a.oe_conservative) !== null) out.push("Owner's earnings (operating cash flow − capex − stock-based compensation) were " + fmtBig(a.oe_conservative) + (num(a.oe_margin) !== null ? ', a ' + fmtPct(a.oe_margin) + ' margin' : '') + (num(a.oe_per_share) !== null ? ', ' + fmtMoney(a.oe_per_share) + ' per diluted share' : '') + (num(a.oe_per_share_growth) !== null && prev ? ' (' + fmtPct(a.oe_per_share_growth, 1, true) + ' on fiscal ' + esc(prev.fy) + ')' : '') + '.');
+  if (num(a.oe_conservative) !== null) out.push("Owner's earnings (operating cash flow − " + (aInt !== null ? 'PP&amp;E and intangible capex' : 'capex') + " − stock-based compensation) were " + fmtBig(a.oe_conservative) + (num(a.oe_margin) !== null ? ', a ' + fmtPct(a.oe_margin) + ' margin' : '') + (num(a.oe_per_share) !== null ? ', ' + fmtMoney(a.oe_per_share) + ' per diluted share' : '') + (num(a.oe_per_share_growth) !== null && prev ? ' (' + fmtPct(a.oe_per_share_growth, 1, true) + ' on fiscal ' + esc(prev.fy) + ')' : '') + '.');
   if (num(ttm.revenue) !== null || num(ttm.oe_conservative) !== null) {
     var t = [];
     if (num(ttm.revenue) !== null) t.push('revenue ' + fmtBig(ttm.revenue) + (num(ttm.revenue_yoy) !== null ? ' (' + fmtPct(ttm.revenue_yoy, 1, true) + ' year over year)' : ''));
@@ -844,7 +868,7 @@ function renderFinancials(record, stm) {
       var qpct = function (name, key) { if (blank(q, key)) return ''; return '<tr class="sub"><th>' + name + '</th>' + q.map(function (r) { var c = signCls(r[key]); return '<td' + (c ? ' class="' + c + '"' : '') + '>' + fmtPct(r[key], 1, true) + '</td>'; }).join('') + '</tr>'; };
       var qt = '<div class="twrap"><table class="fin"><thead><tr><th>Quarter</th>' + qhead + '</tr><tr class="sub"><th>Period end</th>' + q.map(function (r) { return '<td>' + esc(r.period_end) + '</td>'; }).join('') + '</tr></thead><tbody>'
         + qrow('Revenue', 'revenue') + qpct('Revenue growth (YoY)', 'revenue_yoy') + qrow('Gross margin', 'gross_margin', fmtPct) + qrow('Operating income', 'operating_income') + qrow('Net income', 'net_income') + qpct('Net income growth (YoY)', 'net_income_yoy') + qrow('EPS (diluted)', 'eps_diluted', fmtMoney)
-        + qrow('Operating cash flow', 'ocf') + qrow('Capex', 'capex') + qrow('Stock-based comp', 'sbc') + qrow("Owner's earnings (cons.)", 'oe_conservative') + qpct("Owner's earnings growth (YoY)", 'oe_conservative_yoy') + qrow('Diluted shares', 'shares_diluted', fmtCnt)
+        + qrow('Operating cash flow', 'ocf') + qrow('Capex (PP&amp;E)', 'capex') + qrow('Stock-based comp', 'sbc') + qrow("Owner's earnings (cons.)", 'oe_conservative') + qpct("Owner's earnings growth (YoY)", 'oe_conservative_yoy') + qrow('Diluted shares', 'shares_diluted', fmtCnt)
         + qrow('Dividends paid', 'dividends_paid', fmtBig, true) + qrow('Buybacks', 'buybacks', fmtBig, true) + qrow('DPS declared', 'dps_declared', fmtDps, true) + qrow('DPS paid', 'dps_paid', fmtDps, true) + '</tbody></table></div>';
       var ttmH = '';
       if (Object.keys(ttm).length) {
@@ -868,11 +892,11 @@ function renderFinancials(record, stm) {
       var inc = '<div class="twrap"><table class="fin"><thead><tr><th>Income statement</th>' + head + '</tr>' + pend + '</thead><tbody>'
         + arow('Revenue', 'revenue', null, 'strong') + apct('Revenue growth', 'revenue_growth') + arow('Cost of revenue', 'cogs') + arow('Gross profit', 'gross_profit') + apct('Gross margin', 'gross_margin') + arow('R&amp;D', 'rnd') + arow('SG&amp;A', 'sga') + arow('Operating income', 'operating_income', null, 'strong') + apct('Operating margin', 'operating_margin') + arow('Interest expense', 'interest_expense') + arow('Pretax income', 'pretax_income') + arow('Income tax', 'tax') + arow('Net income', 'net_income', null, 'strong') + apct('Net margin', 'net_margin') + apct('Net income growth', 'net_income_growth') + arow('EPS (diluted)', 'eps_diluted', fmtMoney) + apct('EPS growth', 'eps_diluted_growth') + arow('Diluted shares', 'shares_diluted', fmtCnt) + apct('Share count change', 'shares_diluted_growth') + '</tbody></table></div>';
       var cf = '<div class="twrap"><table class="fin"><thead><tr><th>Cash flow</th>' + head + '</tr></thead><tbody>'
-        + arow('Operating cash flow', 'ocf', null, 'strong') + apct('OCF growth', 'ocf_growth') + arow('Capex', 'capex') + apct('Capex % revenue', 'capex_pct_rev') + arow('Depreciation &amp; amortization', 'da') + arow('Stock-based compensation', 'sbc') + apct('SBC % revenue', 'sbc_pct_rev') + apct('SBC % OCF', 'sbc_pct_ocf') + arow('Free cash flow (OCF − capex)', 'fcf') + arow("Owner's earnings (OCF − capex − SBC)", 'oe_conservative', null, 'strong') + apct("Owner's earnings margin", 'oe_margin') + apct("Owner's earnings growth", 'oe_conservative_growth') + arow('OE per share', 'oe_per_share', fmtMoney) + apct('OE/share growth', 'oe_per_share_growth') + arow('Dividends paid', 'dividends_paid') + arow('Buybacks', 'buybacks') + arow('Acquisitions', 'acquisitions') + arow('Investing cash flow', 'icf') + arow('Financing cash flow', 'fincf') + '</tbody></table></div>';
+        + arow('Operating cash flow', 'ocf', null, 'strong') + apct('OCF growth', 'ocf_growth') + arow('Capex (PP&amp;E)', 'capex') + apct('Capex % revenue', 'capex_pct_rev') + arow('Depreciation &amp; amortization', 'da') + arow('Stock-based compensation', 'sbc') + apct('SBC % revenue', 'sbc_pct_rev') + apct('SBC % OCF', 'sbc_pct_ocf') + arow('Free cash flow (OCF − PP&amp;E and intangible capex)', 'fcf') + arow("Owner's earnings (FCF − SBC)", 'oe_conservative', null, 'strong') + apct("Owner's earnings margin", 'oe_margin') + apct("Owner's earnings growth", 'oe_conservative_growth') + arow('OE per share', 'oe_per_share', fmtMoney) + apct('OE/share growth', 'oe_per_share_growth') + arow('Dividends paid', 'dividends_paid') + arow('Buybacks', 'buybacks') + arow('Acquisitions', 'acquisitions') + arow('Investing cash flow', 'icf') + arow('Financing cash flow', 'fincf') + '</tbody></table></div>';
       var bs = '<div class="twrap"><table class="fin"><thead><tr><th>Balance sheet</th>' + head + '</tr></thead><tbody>'
         + arow('Cash &amp; equivalents', 'cash') + arow('Short-term investments', 'short_term_investments') + arow('Receivables', 'receivables') + arow('Inventory', 'inventory') + arow('Prepaids', 'prepaids') + apct('Prepaids % assets', 'prepaids_pct_assets') + arow('Current assets', 'assets_current') + arow('PP&amp;E (net)', 'ppe_net') + arow('Goodwill', 'goodwill') + apct('Goodwill % assets', 'goodwill_pct_assets') + arow('Intangibles', 'intangibles') + arow('Total assets', 'assets', null, 'strong') + arow('Current liabilities', 'liab_current') + arow('Deferred revenue', 'deferred_revenue') + arow('Total debt', 'total_debt', null, 'strong') + arow('Net debt (debt − cash)', 'net_debt') + arow('Operating lease liabilities', 'lease_liabilities') + arow('Total liabilities', 'liabilities') + arow("Shareholders' equity", 'equity', null, 'strong') + arow('Book value / share', 'book_value_per_share', fmtMoney) + arow('Current ratio', 'current_ratio', fmtX) + apct('Return on equity', 'roe') + apct('ROIC (proxy)', 'roic_proxy') + arow("Net debt / owner's earnings", 'net_debt_to_oe', fmtX) + '</tbody></table></div>';
       parts.push(section('Revenue &amp; profits', '<div class="card">' + chartDiv('fin-ann') + inc + '</div>', unitNote));
-      parts.push(section("Cash flow &amp; owner's earnings", '<div class="card">' + chartDiv('fin-cf') + cf + '</div>', "Owner's earnings = operating cash flow − capex − stock-based compensation (SBC always treated as a real cost)."));
+      parts.push(section("Cash flow &amp; owner's earnings", '<div class="card">' + chartDiv('fin-cf') + cf + '</div>', "Owner's earnings = free cash flow − stock-based compensation (SBC always treated as a real cost). Free cash flow = operating cash flow − PP&amp;E capex (the row above) − purchases of intangibles, the engine's capex definition — so it can be below OCF minus the PP&amp;E row."));
       parts.push(section('Margins', '<div class="card">' + chartDiv('fin-margins') + '</div>'));
       parts.push(section('Cash &amp; debt', '<div class="card">' + chartDiv('fin-cashdebt') + bs + '</div>', 'Debt is shown below the axis; the line is net debt. Operating leases are listed separately and are not in net debt (comparability across the universe).'));
       parts.push(section('Capital returned', '<div class="card">' + chartDiv('fin-capret') + '</div>', 'Cash actually paid out: buybacks, dividends, and acquisitions, per the cash-flow statement.'));
@@ -1076,20 +1100,26 @@ function renderDividends(record) {
   // buyback / net buyback / shareholder yield print yields_display's label (≥ / ≤ / ≈ when a leg is partial) with the note in
   // the tooltip; the leg amounts come from dividends.legs (a partial leg still carries its filed sum — HBAN's Q1-only $150M)
   var legs = obj(d.legs), legV = function (k, alt) { var v = num(obj(legs[k]).value); return v !== null ? v : num(alt); };
+  // Q8 bug 3: a non-USD block's DPS and flow legs are filed in its own currency and the price / market cap are USD — the
+  // amounts carry the currency code and no leg ÷ market cap share is printed (the yields themselves are null). A block
+  // that does not record its unit (written before 2026-10-19 in a non-USD file — divCurrency) prints the bare amounts.
+  var DC = divCurrency(fund), cur = DC.cur, cross = cur !== 'USD';
+  var unrecNote = DC.recorded ? '' : 'The currency of the dividend amounts on this tab is not recorded: this block was written before 2026-10-19, when the readers took a filed USD fact first, so they may be USD or ' + esc(DC.file) + ' (the currency fundamentals.json reports in). They print without a currency and no yield is computed until the file\'s next refresh records it.';
+  var amt = function (v) { return fmtBigCur(v, cur); }, dpsF = function (v) { return fmtDpsCur(v, cur); };
   var bbV = legV('buybacks', d.buybacks_ttm), issV = legV('share_issuance', d.issuance_ttm);
   // the shareholder-yield caption names its own dividend leg (cash paid ÷ market cap), which differs from the DPS-based
   // Dividend yield tile when the share count moved (HBAN: 3.04% paid vs a 4.11% DPS yield)
   var divPaidV = legV('dividends_paid', d.dividends_paid_ttm), mcap = num(d.market_cap);
-  var shyCaption = (divPaidV === null ? 'dividends paid (none filed)' : divPaidV === 0 ? 'no dividends paid' : 'dividends paid ' + fmtBig(divPaidV) + (mcap && mcap > 0 ? ' (' + fmtPct(divPaidV / mcap, 2) + ')' : '')) + ' + net buyback, ÷ market cap' + (mcap && mcap > 0 ? ' ' + fmtBig(mcap) : '');
+  var shyCaption = (divPaidV === null ? 'dividends paid (none filed)' : divPaidV === 0 ? 'no dividends paid' : 'dividends paid ' + amt(divPaidV) + (mcap && mcap > 0 && !cross ? ' (' + fmtPct(divPaidV / mcap, 2) + ')' : '')) + ' + net buyback, ÷ market cap' + (mcap && mcap > 0 ? ' ' + fmtBig(mcap) : '') + (cross ? (DC.recorded ? ' (USD; the legs are in ' + esc(cur) + ', so no yield is computed)' : ' (USD; the legs\' currency is not recorded in this block, so no yield is computed)') : '');
   var cashTiles = [
-    yieldTile(d, 'buyback_yield', 'Buyback yield', '', bbV !== null ? fmtBig(bbV) + ' TTM' : 'no buyback filed'),
-    yieldTile(d, 'net_buyback_yield', 'Net buyback yield', signCls(d.net_buyback_yield), issV !== null ? 'buybacks − issuance ' + fmtBig(issV) : 'buybacks − issuance'),
+    yieldTile(d, 'buyback_yield', 'Buyback yield', '', bbV !== null ? amt(bbV) + ' TTM' : 'no buyback filed'),
+    yieldTile(d, 'net_buyback_yield', 'Net buyback yield', signCls(d.net_buyback_yield), issV !== null ? 'buybacks − issuance ' + amt(issV) : 'buybacks − issuance'),
     yieldTile(d, 'shareholder_yield', 'Shareholder yield', signCls(d.shareholder_yield), shyCaption, 'The dividend leg is cash dividends paid over the trailing twelve months (cash-flow statement), not TTM DPS × shares, so it need not equal the Dividend yield tile (TTM DPS ÷ price).')
   ];
   var parts = [];
   if (!payer) {
     var paid = num(d.dividends_paid_ttm);
-    var why = (paid === null || paid === 0) ? 'no dividend per-share fact or dividend payment in the filings' : 'no per-share dividend fact filed; cash dividends paid TTM ' + fmtBig(paid);
+    var why = (paid === null || paid === 0) ? 'no dividend per-share fact or dividend payment in the filings' : 'no per-share dividend fact filed; cash dividends paid TTM ' + amt(paid);
     parts.push('<div class="card nodiv"><span class="k">Dividend</span><span class="bv">No dividend</span><p class="note">' + why + '. Capital returned to shareholders comes through buybacks, if any — ' + (priceNote ? 'the yields below use ' + priceNote : 'no price is on file, so the yields below are blank') + '.</p></div>');
     parts.push('<div class="tiles">' + cashTiles.join('') + '</div>');
   } else {
@@ -1097,11 +1127,11 @@ function renderDividends(record) {
     var gsub = joinNonEmpty([g5 !== null ? '5-yr CAGR ' + fmtPct(g5, 1, true) : '', g3 !== null ? '3-yr CAGR ' + fmtPct(g3, 1, true) : ''], ' · ');
     var gy = num(d.growth_years), cut = d.last_cut_fy;
     if (dps === null) parts.push('<div class="card nodiv"><span class="k">Dividend</span><span class="bv">Pays a dividend — no trailing-twelve-month per-share figure</span><p class="note">'
-      + joinNonEmpty([hasPaid ? 'Cash dividends paid TTM ' + fmtBig(d.dividends_paid_ttm) : '', dpsFacts.length ? dpsFacts.length + ' per-share fact' + (dpsFacts.length === 1 ? '' : 's') + ' filed, latest ' + fmtDps(dpsFacts[0].dps) + ' (' + esc(dpsFacts[0].period_end) + ')' : (annFacts.length ? 'latest full-year DPS ' + fmtDps(annFacts[annFacts.length - 1].dps) + ' (FY' + esc(annFacts[annFacts.length - 1].fy) + ')' : '')], ' · ')
+      + joinNonEmpty([hasPaid ? 'Cash dividends paid TTM ' + amt(d.dividends_paid_ttm) : '', dpsFacts.length ? dpsFacts.length + ' per-share fact' + (dpsFacts.length === 1 ? '' : 's') + ' filed, latest ' + dpsF(dpsFacts[0].dps) + ' (' + esc(dpsFacts[0].period_end) + ')' : (annFacts.length ? 'latest full-year DPS ' + dpsF(annFacts[annFacts.length - 1].dps) + ' (FY' + esc(annFacts[annFacts.length - 1].fy) + ')' : '')], ' · ')
       + '. A TTM DPS and yield need four consecutive quarterly per-share facts (or a current full-year fact) — the notes below say what is missing.</p></div>');
     var tiles = [
       yieldTile(d, 'dividend_yield', 'Dividend yield', '', dps === null ? 'no TTM DPS — see notes' : (price !== null ? 'TTM DPS ÷ ' + fmtMoney(price) : 'no price on file')),
-      tile('Annual dividend', fmtDps(dps), '', dps === null ? (annFacts.length ? 'last full year FY' + esc(annFacts[annFacts.length - 1].fy) + ': ' + fmtDps(annFacts[annFacts.length - 1].dps) : 'no TTM DPS') : (basis ? 'TTM DPS · ' + esc(basis) : 'TTM DPS')),
+      tile('Annual dividend', dpsF(dps), '', dps === null ? (annFacts.length ? 'last full year FY' + esc(annFacts[annFacts.length - 1].fy) + ': ' + dpsF(annFacts[annFacts.length - 1].dps) : 'no TTM DPS') : (basis ? 'TTM DPS · ' + esc(basis) : 'TTM DPS')),
       tile('Payout frequency', freq ? (DIV_FREQ[freq] || esc(freq)) : 'Not inferable', '', freq ? '' : 'per-share rate not tagged in the filings'),
       tile('Payout ratio (vs EPS)', fmtPct(d.payout_ratio_eps), '', 'TTM DPS ÷ diluted EPS'),
       tile("Payout vs owner's earnings", fmtPct(d.payout_ratio_oe), '', 'dividends paid ÷ OE (TTM)'),
@@ -1115,13 +1145,13 @@ function renderDividends(record) {
   if (ann.length) parts.push(section('Dividend per share by fiscal year', '<div class="card">' + chartDiv('div-dps') + '<p class="note">Annual DPS summed from the filed per-share facts (' + esc(basis || 'declared') + '); hover a bar for the year-over-year change.</p></div>'));
   var hist = arr(d.history).filter(function (r) { return r && typeof r === 'object'; }).slice(0, 20);
   if (hist.length) {
-    var rows = hist.map(function (r) { return '<tr><td class="mono">' + esc(r.period_end) + '</td><td class="num mono">' + fmtDps(r.dps) + '</td><td>' + esc(r.kind) + '</td></tr>'; }).join('');
+    var rows = hist.map(function (r) { return '<tr><td class="mono">' + esc(r.period_end) + '</td><td class="num mono">' + dpsF(r.dps) + '</td><td>' + esc(r.kind) + '</td></tr>'; }).join('');
     parts.push(section('Dividend history', '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Period end</th><th class="num">DPS</th><th>Basis</th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">The last ' + hist.length + ' per-share facts, newest first, at their filed precision.</p></div>'));
   }
   // price_note (fundamentals.py: "price: … from score.json …" / "… carries a price — yields null") leads the list; it is never
   // in `notes` any more (build_site drops it from older blocks), and an equal entry is skipped so it cannot print twice
   var pn = typeof d.price_note === 'string' && d.price_note ? d.price_note : null;
-  var notes = (pn ? '<li>' + esc(pn) + '</li>' : '') + arr(d.notes).filter(function (x) { return x !== pn; }).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
+  var notes = (pn ? '<li>' + esc(pn) + '</li>' : '') + (unrecNote ? '<li>' + unrecNote + '</li>' : '') + arr(d.notes).filter(function (x) { return x !== pn; }).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
   // the share basis the block used and the market cap on that basis — it can differ from the header's live market cap (a different share count)
   var so = num(d.shares_outstanding), sd = num(d.shares_diluted), cap = num(d.market_cap);
   var meta = 'Share basis: ' + (d.shares_source ? esc(d.shares_source) : (sd !== null ? 'latest diluted weighted-average count' : '—')) + (so !== null ? ' — ' + fmtCnt(so) + ' shares' + (d.shares_as_of ? ' as of ' + esc(d.shares_as_of) : '') : (sd !== null ? ' — ' + fmtCnt(sd) + ' diluted shares' : ''))
@@ -1361,7 +1391,10 @@ function oeHistorySection(record) {
   var src = arr(obj(record.fundamentals).annual).length ? ' (fundamentals.json)' : ' (engine history CSV)';
   if (!filed.length) return section("Owner's earnings per share — history", '<div class="card empty"><p class="note">No fiscal year' + src + ' has both owner\'s earnings and the diluted share count filed, so no OE/share history is drawn.' + oeGapNote(H) + ' No forecast is drawn: this run has no projection path.</p></div>');
   var neg = filed.filter(function (h) { return h.v < 0; }).length;
-  return section("Owner's earnings per share — history", '<div class="card">' + chartDiv('fc-oe') + '<p class="note">Filed owner\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share by fiscal year'
+  // fundamentals.json's oe_conservative also deducts the engine's intangible leg (Q8 / engine 5.5 capex) — the formula names it
+  // whenever a plotted year has one (BBIO FY2025: −445.9M − 1.1M − 133.0M = −580.0M, plotted −588.5M with $8.5M of intangibles)
+  var annRows = arr(obj(record.fundamentals).annual), withInt = filed.some(function (h) { return annRows.some(function (r) { return r && h.end && r.period_end === h.end && intangCapex(r) !== null; }); });
+  return section("Owner's earnings per share — history", '<div class="card">' + chartDiv('fc-oe') + '<p class="note">Filed owner\'s earnings (operating cash flow − ' + (withInt ? 'PP&amp;E and intangible capex' : 'capex') + ' − stock-based compensation) per diluted share by fiscal year'
     + src + ' — only years with both figures filed, on one share basis.' + (neg ? ' ' + neg + ' of the ' + filed.length + ' years are negative; the axis covers every one.' : '') + oeGapNote(H) + oeSplitNote(H, splitInfo(record))
     + ' No forecast is drawn: this run has no projection path.</p></div>', 'What was filed — there is no positive base for the engine to grow.');
 }
@@ -2102,7 +2135,7 @@ function chartSpecsFinancials(record) {
   if (ann.length) {
     var labels = ann.map(function (r) { return String(r.fy); });
     out['fin-ann'] = { labels: labels, yfmt: 'big', height: 240, series: [{ name: 'Revenue', color: C_REV, kind: 'bar', values: col(ann, 'revenue') }, { name: 'Net income', color: C_NI, kind: 'line', values: col(ann, 'net_income') }, { name: "Owner's earnings", color: C_OE, kind: 'line', values: col(ann, 'oe_conservative') }] };
-    out['fin-cf'] = { labels: labels, yfmt: 'big', height: 220, series: [{ name: 'Operating CF', color: C_OCF, kind: 'bar', values: col(ann, 'ocf') }, { name: 'Capex', color: C_CAPEX, kind: 'bar', values: col(ann, 'capex', neg) }, { name: 'SBC', color: C_SBC, kind: 'bar', values: col(ann, 'sbc', neg) }, { name: "Owner's earnings", color: C_OE, kind: 'line', values: col(ann, 'oe_conservative') }] };
+    out['fin-cf'] = { labels: labels, yfmt: 'big', height: 220, series: [{ name: 'Operating CF', color: C_OCF, kind: 'bar', values: col(ann, 'ocf') }, { name: 'Capex (PP&E)', color: C_CAPEX, kind: 'bar', values: col(ann, 'capex', neg) }].concat(ann.some(function (r) { return intangCapex(r) !== null; }) ? [{ name: 'Intangible capex', color: C_INTANG, kind: 'bar', values: ann.map(function (r) { var x = intangCapex(r); return x === null ? null : -x; }) }] : []).concat([{ name: 'SBC', color: C_SBC, kind: 'bar', values: col(ann, 'sbc', neg) }, { name: "Owner's earnings", color: C_OE, kind: 'line', values: col(ann, 'oe_conservative') }]) };
     out['fin-margins'] = { labels: labels, yfmt: 'pct', height: 200, zero: true, series: [{ name: 'Gross margin', color: C_REV, kind: 'line', values: col(ann, 'gross_margin') }, { name: 'Operating margin', color: C_NI, kind: 'line', values: col(ann, 'operating_margin') }, { name: "Owner's-earnings margin", color: C_OE, kind: 'line', values: col(ann, 'oe_margin') }] };
     out['fin-cashdebt'] = { labels: labels, yfmt: 'big', height: 220, series: [{ name: 'Cash', color: C_CASH, kind: 'bar', values: col(ann, 'cash') }, { name: 'Total debt', color: C_DEBT, kind: 'bar', values: col(ann, 'total_debt', neg) }, { name: 'Net debt', color: '#ECEEF2', kind: 'line', values: col(ann, 'net_debt') }] };
     out['fin-capret'] = { labels: labels, yfmt: 'big', height: 180, series: [{ name: 'Buybacks', color: C_IV, kind: 'bar', values: col(ann, 'buybacks') }, { name: 'Dividends', color: C_FCF, kind: 'bar', values: col(ann, 'dividends_paid') }, { name: 'Acquisitions', color: C_CAPEX, kind: 'bar', values: col(ann, 'acquisitions') }] };
@@ -2119,7 +2152,8 @@ function chartSpecsDividends(record) {
   if (!ann.length) return out;
   var tips = [], prev = null;
   ann.forEach(function (r) { var cur = num(r.dps); tips.push(prev !== null && prev !== 0 && cur !== null ? 'YoY ' + fmtPct(cur / prev - 1, 1, true) : ''); prev = cur; });
-  out['div-dps'] = { labels: ann.map(function (r) { return 'FY' + r.fy; }), yfmt: 'dps', height: 220, series: [{ name: 'Dividend per share', color: C_FCF, kind: 'bar', values: ann.map(function (r) { return num(r.dps); }), tips: tips }] };
+  // the bars and ticks print the block's DPS unit (divCurrency: INR 40.00, not $40.00 — verifier round 2)
+  out['div-dps'] = { labels: ann.map(function (r) { return 'FY' + r.fy; }), yfmt: 'dps', cur: divCurrency(record.fundamentals).cur, height: 220, series: [{ name: 'Dividend per share', color: C_FCF, kind: 'bar', values: ann.map(function (r) { return num(r.dps); }), tips: tips }] };
   return out;
 }
 function chartSpecsSegments(record) {
@@ -2260,6 +2294,7 @@ function isNum(v) { return typeof v === 'number' && isFinite(v); }
 function drawChart(el, spec) {
   if (!spec || !arr(spec.series).length) { el.innerHTML = '<p class="note">No data.</p>'; return; }
   var W = Math.max(el.clientWidth || 600, 280), H = spec.height || 230, L = W < 480 ? 46 : 60, R = 12, T = 12, B = 28, fmt = FMT[spec.yfmt || 'big'] || FMT.big;
+  if ('cur' in spec && spec.cur !== 'USD' && (fmt === FMT.dps || fmt === FMT.big)) { var fmt0 = fmt; fmt = function (v) { return curText(fmt0(v), spec.cur); }; } // spec.cur: the amounts' currency (null: unrecorded)
   var labels = arr(spec.labels), n = labels.length, series = spec.series, bars = series.filter(function (x) { return x.kind === 'bar'; }), vals = [];
   var posSum = [], negSum = [];
   for (var i = 0; i < n; i++) { posSum.push(0); negSum.push(0); }
@@ -2916,6 +2951,7 @@ var API = {
   renderSegments: renderSegments, renderForecast: renderForecast, renderAnalysis: renderAnalysis, renderData: renderData, renderMissingHTML: renderMissingHTML, renderErrorHTML: renderErrorHTML,
   renderAbout: renderAbout, renderPerformance: renderPerformance, financialPerformance: financialPerformance, renderStreet: renderStreet, renderFilings: renderFilings, renderTabSummary: renderTabSummary,
   aboutFacts: aboutFacts, clampText: clampText, ABOUT_CLAMP: ABOUT_CLAMP, streetCardModel: streetCardModel, filingKind: filingKind, filterFilings: filterFilings, FILING_KINDS: FILING_KINDS, canonicalHash: canonicalHash, stmSpan: stmSpan,
+  divCurrency: divCurrency,
   chartSpecs: chartSpecs, chartSpecsFinancials: chartSpecsFinancials, chartSpecsDividends: chartSpecsDividends, chartSpecsSegments: chartSpecsSegments, chartSpecsForecast: chartSpecsForecast, priceSpec: priceSpec,
   PRICE_RANGES: PRICE_RANGES, selectRange: selectRange, priceRanges: priceRanges, defaultRange: defaultRange, periodReturn: periodReturn, fmtRange: fmtRange, nearestIndex: nearestIndex, minuteToX: minuteToX, xScale: xScale, timeLabel: timeLabel, dayLabel: dayLabel, isoParts: isoParts, priceTag: priceTag,
   sessionBars: sessionBars, capturedTo: capturedTo, yearAgoQuarter: yearAgoQuarter, oeAxisFloor: oeAxisFloor, oeHistorySection: oeHistorySection, sessionComplete: sessionComplete, cleanBars: cleanBars, sessionEnd: sessionEnd, RANGE_DAYS: RANGE_DAYS,

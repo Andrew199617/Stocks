@@ -1,0 +1,288 @@
+{
+ "ticker": "ENSG",
+ "cik": 1125376,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T21:16:44-04:00",
+ "newest_filing_date": "2026-08-25",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001125376.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000007/ensg-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ENSG/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ENSG/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ENSIGN GROUP, INC",
+  "cik": 1125376,
+  "description": {
+   "text": "Founded in 1999, The Ensign Group, Inc. (Ensign) is a holding company with independent subsidiaries that provide skilled nursing, senior living and rehabilitative services, as well as other ancillary businesses (including mobile diagnostics and medical transportation), in 17 states. As part of our investment strategy, we also acquire, lease and own healthcare real estate to service the post-acute care continuum through acquisition and investment opportunities in healthcare properties. For the year ended December 31, 2025, we generated approximately 95.6% of our revenue from our skilled nursing facilities. The remainder of our revenue is primarily generated from our real estate properties, senior living services and other ancillary services.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "accession": "0001125376-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000007/ensg-20251231.htm"
+  },
+  "description_short": "The Ensign Group, Inc.'s independent operating subsidiaries provide a broad spectrum of skilled nursing and senior living services, physical, occupational and speech therapies and other rehabilitative and healthcare services at 418 healthcare facilities in Alabama, Alaska, Arizona, California, Colorado, Florida, Idaho, Iowa, Kansas, Nebraska, Nevada, Oregon, South Carolina, Tennessee, Texas, Utah, Washington and Wisconsin.",
+  "industry": "Hospital/Nursing Management",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "8051",
+  "sic_description": "Services-Skilled Nursing Care Facilities",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.ensigngroup.net",
+  "headquarters": "San Juan Capistrano, CA",
+  "address": {
+   "street": "29222 Rancho Viejo Road, Suite 127",
+   "city": "San Juan Capistrano",
+   "state": "CA",
+   "zip": "92675",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-04"
+  },
+  "phone": "(949) 487-9500",
+  "employees": {
+   "count": 46000,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we had approximately 46,000 full-time equivalent employees who were employed by our Service Center and our independent subsidiaries.",
+   "basis": "full-time equivalent as of the stated date",
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000007/ensg-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2007-05-14",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001125376&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-20",
+   "items": [
+    "5.03",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment",
+   "accession": "0001125376-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000040/ensg-20260820.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-20",
+   "period": "2026-08-19",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001125376-26-000038",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000038/ensg-20260819.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001125376-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000036/ensg-20260727.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001125376-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000034/ensg-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001125376-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000031/ensg-20260612.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-10",
+   "period": "2026-05-13",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001125376-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000029/ensg-20260513.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001125376-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000026/ensg-20260513.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001125376-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000023/ensg-20260430.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001125376-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000021/ensg-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001125376-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000014/ensg-20260401.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001125376-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000008/ensg-20260204.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-04",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001125376-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537626000007/ensg-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001125376-25-000171",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000171/ensg-20251103.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001125376-25-000170",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000170/ensg-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-26",
+   "period": "2025-08-21",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001125376-25-000158",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000158/ensg-20250821.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001125376-25-000143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000143/ensg-20250724.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001125376-25-000142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000142/ensg-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-20",
+   "period": "2025-06-17",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001125376-25-000115",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000115/form8-kjune2025.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-20",
+   "period": "2025-05-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001125376-25-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000085/ensg-20250515.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-29",
+   "period": "2025-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001125376-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/1125376/000112537625000076/ensg-20250429.htm"
+  }
+ ],
+ "warnings": []
+}

@@ -2987,6 +2987,64 @@
    "ratio": 1.0,
    "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-26, EDGAR klar-20251231.htm): the registered security is the ordinary share itself; the company's IPO prospectus (Form F-1, declared effective 2025-09-09) and its IPO completion release state the offering was of ordinary shares at $40.00 per ordinary share and that the ordinary shares began trading on the New York Stock Exchange on September 10, 2025 under the symbol KLAR \u2014 there is no ADS programme and no depositary ratio",
    "reason": "DATA_GAP:ads_ratio \u2014 Klarna is a direct-listed foreign private issuer: one NYSE-traded KLAR share is one ordinary share, so per-ordinary-share figures are directly comparable to the traded price with no scaling."
+  },
+  {
+   "ticker": "UMBF",
+   "event": "tier_override",
+   "date": "2026-10-19",
+   "tier_by_numbers": "C",
+   "tier_final": "D",
+   "reason": "SECTOR_MODEL_MISMATCH universal softening (Andrew's standing rule 2026-10-15, made universal 2026-10-19): a bank's OCF-based OE is not distributable earnings \u2014 loan growth consumes regulatory capital and the provision is a through-cycle cost OCF adds back ($154,500,000 in FY2025, Form 10-K cash-flow reconciliation), while FY2025 earnings also carry $139,775,000 of net purchase-accounting accretion from Heartland. The numbers tier C (weighted IRR 14.43%) already sits below the hurdle, and the identical scenario set on the filing-clean median base prints a weighted IRR of 10.67% (IV@15% $83.28) \u2014 the TTM print is the top of the defensible range, taken in a benign credit window (Q2 2026 net charge-offs 16bp). Softened one notch to D, confidence low."
+  },
+  {
+   "ticker": "EGO",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, SEC CIK 918608): the securities registered under Section 12(b) are the company's common shares, trading symbol EGO, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; company disclosure in its own releases states 'Eldorado's common shares trade on the Toronto Stock Exchange (TSX: ELD) and the New York Stock Exchange (NYSE: EGO)'",
+   "reason": "Eldorado is a direct-listed foreign private issuer: one NYSE-traded EGO share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+  },
+  {
+   "ticker": "ENSG",
+   "field": "capex",
+   "value": 193557000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025, Consolidated Statements of Cash Flows, investing activities line 'Purchase of property and equipment': $(193,557) thousand for FY2025, $(158,240) thousand for FY2024 and $(106,180) thousand for FY2023 (statement in thousands)",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 of the last 3 (in fact every year from FY2020) under every candidate tag the engine reads; the filer's own cash-flow statement reports the line every year. The single-value override uses the latest and largest year (FY2025 $193.6M); applied to the earlier missing years it overstates their capex (FY2024 actual $158.2M, FY2023 actual $106.2M), so the owner's-earnings base is understated, not overstated \u2014 conservative.",
+   "date": "2026-10-19",
+   "base_used": "ttm",
+   "base_oe_without_override": 9.2807,
+   "base_oe_with_override": 6.0291,
+   "base_oe_impact_pct": -35.036,
+   "weighted_irr_without_override": 0.129,
+   "weighted_irr_with_override": 0.0962,
+   "weighted_irr_impact_pp": -3.281,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "SSL",
+   "field": "shares",
+   "value": 679900000.0,
+   "kind": "filing",
+   "source": "Sasol Annual Financial Statements for the year ended 30 June 2026 (published 1 September 2026; the same table appears in the FY2025 statements), Earnings per share note, 'Number of shares' table: weighted average number of shares 633.0M for FY2024, plus potential dilutive effect of the convertible bond 39.9M and of the long-term incentive scheme 7.0M, giving 'Diluted weighted average number of shares for DEPS and DHEPS' 679.9M for FY2024 (642.0M for FY2025 and 648.5M for FY2026 in the same table \u2014 the FY2025 figure matches the engine's filed AdjustedWeightedAverageShares count exactly, confirming the basis)",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2024 in EDGAR companyfacts; only the non-diluted WeightedAverageShares count (633.0M) is filed for that year, and the engine correctly refuses a silent swap. The filer's own EPS note prints the FY2024 diluted count on exactly the basis the engine filed for FY2025 (642.0M) and FY2023. The engine applies this single value only to the missing FY2024 period; FY2024 OE/share moves from -$0.121 (on the basic count) to -$0.113, and the 3-year median base is unchanged because FY2024 is the lowest of the three years either way.",
+   "date": "2026-10-20",
+   "base_used": "median_3y",
+   "base_oe_without_override": 0.282,
+   "base_oe_with_override": 0.282,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.0416,
+   "weighted_irr_with_override": 0.0416,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "SSL",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Sasol Limited's own results documents (e.g. Reviewed interim financial results, Sasol Limited, filed with its 20-F reporting package): 'American depository receipts (ADR) program: CUSIP number 803866300 \u2014 ADR to ordinary share 1:1; Depositary: The Bank of New York Mellon' \u2014 the ratio stated by the filer itself in every results booklet and in the Form 20-F share-capital description",
+   "reason": "20-F filer: engine per-share figures are per ordinary share while the NYSE price is per ADS. The filer's own documents state the ADR-to-ordinary-share ratio is 1:1, so per-share owner's earnings and the ADS price are directly comparable with no scaling, and the market cap (price x diluted shares) is already on the right basis."
   }
  ]
 }

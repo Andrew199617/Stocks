@@ -1,0 +1,295 @@
+{
+ "ticker": "BIO",
+ "cik": 12208,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T01:42:01-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000012208.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000010/bio-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/BIO/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/BIO/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "BIO-RAD LABORATORIES, INC.",
+  "cik": 12208,
+  "description": {
+   "text": "We have direct operations in over 36 countries outside the United States through subsidiaries focused on sales, customer service, and product distribution. In certain locations outside and within these countries, our sales efforts are supplemented by distributors and agents. Bio-Rad operates in two industry segments designated as Life Science and Clinical Diagnostics. Both segments operate worldwide. Our Life Science segment and our Clinical Diagnostics segment generated approximately 40% and 60%, respectively, of our consolidated net sales for the year ended December 31, 2025. We generated approximately 40% of our consolidated net sales for the year ended December 31, 2025 from the U.S. and approximately 60% from our international locations, with Europe being our largest international region.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0000012208-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000010/bio-20251231.htm"
+  },
+  "description_short": "Bio-Rad Laboratories, Inc. (NYSE: BIO and BIO.B) is a leader in developing, manufacturing, and marketing a broad range of products for the life science research and clinical diagnostics markets. Based in Hercules, California, Bio-Rad operates a global network of research, development, manufacturing, and sales operations with approximately 7,400 employees and $2.6 billion in revenues in 2025. Our customers include universities, research institutions, hospitals, and biopharmaceutical companies, as well as clinical, food safety, and environmental quality laboratories. Together, we develop innovative, high-quality products that advance science and save lives.",
+  "industry": "Biotechnology: Laboratory Analytical Instruments",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "3826",
+  "sic_description": "Laboratory Analytical Instruments",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "NYSE"
+  ],
+  "website": "https://www.bio-rad.com",
+  "headquarters": "Hercules, California",
+  "address": {
+   "street": "1000 Alfred Nobel Drive",
+   "city": "Hercules",
+   "state": "California",
+   "zip": "94547",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "5107247000",
+  "employees": {
+   "count": 7450,
+   "as_of": "2025-12-31",
+   "evidence": "At December 31, 2025, we had approximately 7,450 employees, the overwhelming majority of which are full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000010/bio-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-04-29",
+  "first_sec_filing_form": "S-8",
+  "former_names": [
+   "BIO RAD LABORATORIES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000012208&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000012208-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000048/bio-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-07-31",
+   "items": [
+    "2.02",
+    "2.05",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Reg FD",
+   "accession": "0000012208-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000046/bio-20260731.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000012208-26-000035",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000035/bio-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000012208-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000034/bio-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-21",
+   "items": [
+    "5.02",
+    "5.07",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0000012208-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000024/bio-20260421.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-25",
+   "period": "2026-04-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000012208-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000020/bio-20260324.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-19",
+   "period": "2026-02-19",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000012208-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000012/bio-20260219.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000012208-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000010/bio-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-12",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000012208-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220826000007/bio-20260212.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000012208-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000077/bio-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000012208-25-000076",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000076/bio-20251029.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-30",
+   "period": "2025-09-29",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000012208-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000057/bio-20250929.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-26",
+   "period": "2025-08-26",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000012208-25-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000054/bio-20250826.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000012208-25-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000052/bio-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000012208-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000051/bio-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-28",
+   "period": "2025-07-28",
+   "items": [
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Other events",
+   "accession": "0000012208-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000047/bio-20250728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-30",
+   "period": "2025-06-30",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000012208-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000032/bio-20250630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-01",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000012208-25-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000026/bio-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-01",
+   "period": "2025-05-01",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000012208-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000025/bio-20250501.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-25",
+   "period": "2025-04-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000012208-25-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/12208/000001220825000022/bio-20250422.htm"
+  }
+ ],
+ "warnings": []
+}

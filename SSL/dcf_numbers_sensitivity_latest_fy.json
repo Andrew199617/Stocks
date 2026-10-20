@@ -1,0 +1,706 @@
+{
+ "ticker": "SSL",
+ "name": "Sasol Limited",
+ "cik": 314590,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-20",
+ "price": 15.69,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 642000000,
+ "shares_outstanding_dei_latest": null,
+ "shares_outstanding_dei_asof": null,
+ "market_cap_est": 10072980000.0,
+ "net_debt_latest": 3502008560.0,
+ "net_debt_basis": "TOTAL:Borrowings",
+ "lease_liabilities_latest": 976326400.0,
+ "latest_period_end": "2025-06-30",
+ "rev_cagr_5y": 0.05022534939195866,
+ "rev_cagr_3y": -0.05594990396352528,
+ "oe_positive_years_of_last_5": "4/5",
+ "base_oe_total_latest_fy": 673811440.0,
+ "base_oe_per_share": 1.0495505295950156,
+ "base_oe_latest_per_share": 1.0495505295950156,
+ "base_oe_normalized_per_share": 0.2819882157425593,
+ "base_source": "agent_supplied_ttm_override",
+ "growth_components": {
+  "rev_cagr_5y": 0.05022534939195866,
+  "rev_cagr_3y": -0.05594990396352528,
+  "rev_yoy_latest": -0.07263080310119308,
+  "oe_ps_cagr_2y": 0.9283727849310957
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.04651238641487221,
+  "rev_cagr_3y": -0.059662866940611736,
+  "rev_yoy_latest": -0.07634376607827953,
+  "oe_ps_cagr_2y": 0.9283727849310957
+ },
+ "g_blend": -0.006575240262869764,
+ "share_cagr": 0.0037129629770864536,
+ "share_count_adj": -0.0037129629770864536,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities",
+  "da": "AdjustmentsForDepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": null,
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": "CurrentPortionOfLongtermBorrowings",
+  "debt_cur_st": "ShorttermBorrowings",
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": "Assets",
+  "liabilities": null,
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null,
+  "capex_components": "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities+PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+ },
+ "filer_annual_form": "20-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Sasol Limited's own results documents (e.g. Reviewed interim financial results, Sasol Limited, filed with its 20-F reporting package): 'American depository receipts (ADR) program: CUSIP number 803866300 \u2014 ADR to ordinary share 1:1; Depositary: The Bank of New York Mellon' \u2014 the ratio stated by the filer itself in every results booklet and in the Form 20-F share-capital description",
+  "reason": "20-F filer: engine per-share figures are per ordinary share while the NYSE price is per ADS. The filer's own documents state the ADR-to-ordinary-share ratio is 1:1, so per-share owner's earnings and the ADS price are directly comparable with no scaling, and the market cap (price x diluted shares) is already on the right basis."
+ },
+ "fx_conversion": {
+  "from_currency": "ZAR",
+  "to_currency": "USD",
+  "source": "frankfurter.app \u2014 ECB reference rates (closest business day to each period end)",
+  "converted_fields": [
+   "revenue",
+   "net_income",
+   "operating_income",
+   "ocf",
+   "capex",
+   "da",
+   "sbc",
+   "tax",
+   "cash",
+   "assets_current",
+   "liab_current",
+   "debt_current",
+   "debt_cur_ltd",
+   "debt_cur_st",
+   "debt_lt",
+   "debt_total",
+   "lease_liab_current",
+   "lease_liab_lt",
+   "assets",
+   "ppe_net",
+   "equity",
+   "capex_intang"
+  ],
+  "rates": {
+   "2015-06-30": 0.08202,
+   "2016-06-30": 0.06751,
+   "2017-06-30": 0.07649,
+   "2018-06-30": 0.07264,
+   "2019-06-30": 0.07059,
+   "2020-06-30": 0.0576,
+   "2021-06-30": 0.06986,
+   "2022-06-30": 0.06105,
+   "2023-06-30": 0.0528,
+   "2024-06-30": 0.05491,
+   "2025-06-30": 0.05624
+  },
+  "rates_by_currency": {
+   "ZAR": {
+    "2015-06-30": 0.08202,
+    "2016-06-30": 0.06751,
+    "2017-06-30": 0.07649,
+    "2018-06-30": 0.07264,
+    "2019-06-30": 0.07059,
+    "2020-06-30": 0.0576,
+    "2021-06-30": 0.06986,
+    "2022-06-30": 0.06105,
+    "2023-06-30": 0.0528,
+    "2024-06-30": 0.05491,
+    "2025-06-30": 0.05624
+   }
+  },
+  "overrides_usd_verbatim": {}
+ },
+ "payable_base": null,
+ "override_checks": {
+  "shares": {
+   "value": 679900000.0,
+   "last_filed_value": 642000000,
+   "last_filed_unit": "shares",
+   "out_of_band": false,
+   "ack_reason_present": false,
+   "currency_basis": "shares"
+  }
+ },
+ "market_cap_basis": {
+  "shares_used": 642000000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 1.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": null,
+  "dei_date": null,
+  "dei_ratio": null,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 1.029149011817688
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 4304000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 22000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2018-09-21",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2018-09-21"
+   }
+  },
+  "2017-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 390000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 61000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2019-10-28",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2019-10-28"
+   }
+  },
+  "2018-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 714000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 35000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2020-08-24",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2020-08-24"
+   }
+  },
+  "2019-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 55781000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 19000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2021-09-22",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2021-09-22"
+   }
+  },
+  "2020-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 35145000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 19000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-08-31",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2022-08-31"
+   }
+  },
+  "2021-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 15945000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 3000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2023-09-01",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2023-09-01"
+   }
+  },
+  "2022-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 22593000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 120000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2024-09-06",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2024-09-06"
+   }
+  },
+  "2023-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 30726000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 128000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-08-29",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2025-08-29"
+   }
+  },
+  "2024-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 30074000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 85000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-08-29",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2025-08-29"
+   }
+  },
+  "2025-06-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 25345000000
+   },
+   "ppe_unit": "ZAR",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 68000000
+   },
+   "intangibles_unit": "ZAR",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-08-29",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2025-08-29"
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "g_base": -0.006575240262869764,
+ "moat_score": 3.0,
+ "cap_years": 5.9,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 3.0,
+  "probs": [
+   0.15,
+   0.3,
+   0.3,
+   0.17,
+   0.08
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.01,
+   0.07,
+   0.14
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": 1.0495505295950156,
+  "base_pin_source": "base_oe_ps_arg"
+ },
+ "data_gap": [
+  "shares"
+ ],
+ "data_gap_uncovered": [],
+ "overrides_applied": [
+  {
+   "field": "shares",
+   "value": 679900000.0,
+   "kind": "filing",
+   "source": "Sasol Annual Financial Statements for the year ended 30 June 2026 (published 1 September 2026; the same table appears in the FY2025 statements), Earnings per share note, 'Number of shares' table: weighted average number of shares 633.0M for FY2024, plus potential dilutive effect of the convertible bond 39.9M and of the long-term incentive scheme 7.0M, giving 'Diluted weighted average number of shares for DEPS and DHEPS' 679.9M for FY2024 (642.0M for FY2025 and 648.5M for FY2026 in the same table \u2014 the FY2025 figure matches the engine's filed AdjustedWeightedAverageShares count exactly, confirming the basis)",
+   "reason": "DATA_GAP:shares \u2014 diluted shares missing for FY2024 in EDGAR companyfacts; only the non-diluted WeightedAverageShares count (633.0M) is filed for that year, and the engine correctly refuses a silent swap. The filer's own EPS note prints the FY2024 diluted count on exactly the basis the engine filed for FY2025 (642.0M) and FY2023. The engine applies this single value only to the missing FY2024 period; FY2024 OE/share moves from -$0.121 (on the basic count) to -$0.113, and the 3-year median base is unchanged because FY2024 is the lowest of the three years either way.",
+   "periods_filled": [
+    "2024-06-30"
+   ],
+   "out_of_band": false,
+   "last_filed_value": 642000000
+  }
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "g_start": -0.1,
+   "oe_mult": 0.75,
+   "iv_at_10": 6.594190748059206,
+   "iv_at_12": 5.296839491362048,
+   "iv_at_15": 4.120270769721312,
+   "iv_at_20": 3.0412375651225214,
+   "iv_at_25": 2.4302297345224386,
+   "irr": 0.055123152541810716,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.3,
+   "g_start": -0.0566,
+   "oe_mult": 0.9,
+   "iv_at_10": 9.413746667116282,
+   "iv_at_12": 7.512803431114245,
+   "iv_at_15": 5.793856392663372,
+   "iv_at_20": 4.225509179379362,
+   "iv_at_25": 3.343804827195001,
+   "irr": 0.06916620271594537,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0034,
+   "oe_mult": 1.0,
+   "iv_at_10": 13.211656034002191,
+   "iv_at_12": 10.45848235828976,
+   "iv_at_15": 7.977740570829491,
+   "iv_at_20": 5.728599669967897,
+   "iv_at_25": 4.475390801475617,
+   "irr": 0.08804455408175477,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.17,
+   "g_start": 0.0634,
+   "oe_mult": 1.1,
+   "iv_at_10": 18.22531584388978,
+   "iv_at_12": 14.323100124046288,
+   "iv_at_15": 10.817912268872517,
+   "iv_at_20": 7.65752071214766,
+   "iv_at_25": 5.9103996133970345,
+   "irr": 0.11188048881606527,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "g_start": 0.1334,
+   "oe_mult": 1.25,
+   "iv_at_10": 26.73816260436442,
+   "iv_at_12": 20.856415645353355,
+   "iv_at_15": 15.589728203930246,
+   "iv_at_20": 10.86785602770407,
+   "iv_at_25": 8.278586486998991,
+   "irr": 0.1492502712870719,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 13.01410612435484,
+  "iv_at_12": 10.289351933241646,
+  "iv_at_15": 7.835743046528803,
+  "iv_at_20": 5.613625292853984,
+  "iv_at_25": 4.377348002016967,
+  "irr": 0.08714704442928511,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   0.708447,
+   0.637602,
+   0.58735,
+   0.553503,
+   0.533333,
+   0.525197,
+   0.528313,
+   0.541521,
+   0.555059,
+   0.568935,
+   0.583159,
+   0.597738,
+   0.612681,
+   0.627998,
+   0.643698
+  ],
+  "bear": [
+   0.891155,
+   0.840737,
+   0.804797,
+   0.78152,
+   0.769722,
+   0.768744,
+   0.778397,
+   0.797857,
+   0.817803,
+   0.838248,
+   0.859205,
+   0.880685,
+   0.902702,
+   0.925269,
+   0.948401
+  ],
+  "base": [
+   1.053145,
+   1.056752,
+   1.064235,
+   1.075663,
+   1.091148,
+   1.110845,
+   1.13496,
+   1.163334,
+   1.192418,
+   1.222228,
+   1.252784,
+   1.284104,
+   1.316206,
+   1.349111,
+   1.382839
+  ],
+  "bull": [
+   1.22773,
+   1.305598,
+   1.379903,
+   1.449449,
+   1.513061,
+   1.56961,
+   1.61805,
+   1.658501,
+   1.699964,
+   1.742463,
+   1.786025,
+   1.830675,
+   1.876442,
+   1.923353,
+   1.971437
+  ],
+  "super_bull": [
+   1.486983,
+   1.685384,
+   1.879283,
+   2.060954,
+   2.222314,
+   2.355467,
+   2.453312,
+   2.514644,
+   2.577511,
+   2.641948,
+   2.707997,
+   2.775697,
+   2.845089,
+   2.916217,
+   2.989122
+  ],
+  "weighted": [
+   1.01723,
+   1.021669,
+   1.033738,
+   1.051463,
+   1.073266,
+   1.097928,
+   1.124588,
+   1.152702,
+   1.18152,
+   1.211058,
+   1.241334,
+   1.272368,
+   1.304177,
+   1.336781,
+   1.370201
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.1,
+   -0.1,
+   -0.078814,
+   -0.057627,
+   -0.036441,
+   -0.015254,
+   0.005932,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   -0.056575,
+   -0.056575,
+   -0.042749,
+   -0.028923,
+   -0.015096,
+   -0.00127,
+   0.012556,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.003425,
+   0.003425,
+   0.007082,
+   0.010738,
+   0.014395,
+   0.018052,
+   0.021709,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.063425,
+   0.063425,
+   0.056912,
+   0.050399,
+   0.043887,
+   0.037374,
+   0.030861,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.133425,
+   0.133425,
+   0.115048,
+   0.096671,
+   0.078294,
+   0.059916,
+   0.041539,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.08714704442928511,
+ "implied_irr_base": 0.08804455408175477,
+ "irr_bear": 0.06916620271594537,
+ "irr_bull": 0.11188048881606527,
+ "irr_low": 0.055123152541810716,
+ "irr_high": 0.1492502712870719,
+ "tier_by_numbers": "D",
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 7.835743046528803,
+  "20": 5.613625292853984,
+  "25": 4.377348002016967
+ },
+ "upside_at_15": -0.5005899906610067,
+ "upside_at_12": -0.3442095644842801,
+ "iv_at_15": 7.835743046528803,
+ "iv_at_12": 10.289351933241646,
+ "iv_at_20": 5.613625292853984,
+ "iv_at_25": 4.377348002016967,
+ "diagnostics": {
+  "oe_yield": 0.06689295918387608,
+  "tv_share_at_15": 0.17621800682246191,
+  "scenario_spread_iv15": 3.7836659470282115,
+  "net_debt_to_normalized_oe": 5.19731241131792,
+  "months_since_fy_end": 15.670170827858081,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 16 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "FX_CONVERTED: reporting currency ZAR converted to USD at period-end ECB reference rates (frankfurter.app) \u2014 flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Sasol Limited's own results documents (e.g. Reviewed interim financial results, Sasol Limited, filed with its 20-F reporting package): 'American depository receipts (ADR) program: CUSIP number 803866300 \u2014 ADR to ordinary share 1:1; Depositary: The Bank of New York Mellon' \u2014 the ratio stated by the filer itself in every results booklet and in the Form 20-F share-capital description) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "OVERRIDE_APPLIED:shares \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Sasol Annual Financial Statements for the year ended 30 June 2026 (published 1 September 2026; the same table appears in the FY2025 statements), Earnings per share note, 'Number of shares' table: weighted average number of shares 633.0M for FY2024, plus potential dilutive effect of the convertible bond 39.9M and of the long-term incentive scheme 7.0M, giving 'Diluted weighted average number of shares for DEPS and DHEPS' 679.9M for FY2024 (642.0M for FY2025 and 648.5M for FY2026 in the same table \u2014 the FY2025 figure matches the engine's filed AdjustedWeightedAverageShares count exactly, confirming the basis)); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 1.05 vs 3-yr median 0.28 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 5.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (6.9%) vs bull-case tier C (11.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "override_impact": {
+  "base_oe_per_share_zero_fill": 0.2819882157425593,
+  "base_oe_per_share_final": 0.2819882157425593,
+  "weighted_irr_zero_fill": 0.04163219817101979,
+  "weighted_irr_final": 0.04163219817101979,
+  "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides \u2014 its override effect shows in ttm.py output / make_score's payable_5y impact"
+ },
+ "content_hash": "b07c7ccd27955f03a76d072102c31e6294b0c6b3ced6d9ea062562cea398a0ff"
+}
