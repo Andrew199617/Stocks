@@ -53,4 +53,4 @@ Growth recalibration (written reason): the engine blend is 10.20%, but its compo
 ## Final verdict
 - **Final tier: D** (weighted IRR 9.21% on the normalized base; method range D to C across the two defensible bases)
 - Confidence: **low** (WIDE_SCENARIO_SPREAD, HIGH_NET_DEBT, and a TTM base that ttm.py could not build)
-- One-liner: Real but narrow moat (5/10) in a commodity/policy-levered business — does not clear 15% at $60.52: weighted IRR 9.21% on the normalized base, IV@15% $31.34; it would clear 15% only at or below ~$31 (latest-FY-base method tops out at Tier C, 11.51%).
+- One-liner: Real but narrow moat (5/10) in a commodity/policy-levered business — does not clear 15% at $60.52: weighted IRR 9.21% on the normalized base, IV@15% $31.34; the 15% hurdle-clearing price is ~$31 on the normalized base and ~$43 on the latest-FY base (IV@15% $42.74; that method tops out at Tier C, 11.51% at today's price).
