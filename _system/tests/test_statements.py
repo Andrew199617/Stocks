@@ -17,6 +17,10 @@ folder in a temporary STOCKS_BASE (nothing in the repo is written).
    per-share metrics — only from lines present in the same period; a never-
    filed optional component counts as zero, a missing total gives null, and no
    total is synthesised from components.
+13. Ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): no net cash without a filed
+   borrowings figure (MICC, GGB printed the cash balance); a cover-page dei
+   count that is one class of a multi-class filer gives way to the same
+   filing's all-class count (GGB book value per share R$74.65 -> R$26.78).
 5. Submissions skip rule: run_one re-fetches only when the newest filing date
    / form moved (or --force), reading the cached payloads.
 7-9. Review round 2026-10-15: Q4 legs from the same filing generation (+ the
@@ -1681,6 +1685,93 @@ def test_stable_write_only_when_content_changes():
     finally:
         S.BASE = old_base
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+# ---------------------------------------------------------------- 13. ruling-sheet Q8 bugs 2–3 (Andrew, 2026-10-19)
+def _strip_debt(facts):
+    """make_facts() with every borrowings tag removed: the filer's facts carry no debt stock at all (MICC FY2025,
+    GGB FY2015–25 — the borrowings sit in IFRS notes companyfacts does not carry)."""
+    us = facts["facts"]["us-gaap"]
+    for k in [k for k in us if "Debt" in k or "Borrowing" in k]:
+        del us[k]
+    return facts
+
+
+def test_net_cash_is_null_when_no_borrowings_series_exists():
+    """Q8 bug 2 (MICC +EUR441M, PR #22; GGB +R$5.929B vs R$14.182B gross debt, PR #43): net cash (debt) with an empty
+    borrowings series is unknown, not the cash balance — net cash and net cash per share are null in every column
+    and the warnings say why; a filed debt figure (even a filed 0) still gives cash − debt."""
+    # derive_value: no total_debt in any period (present() False) → null, not cash − 0
+    assert S.derive_value("net_cash", {"cash": 441_000_000}.get, lambda k: False) is None
+    assert S.derive_value("net_cash", {"cash": 441_000_000, "total_debt": 0}.get, lambda k: k == "total_debt") == 441_000_000
+    assert S.derive_value("net_cash", {"cash": 10, "total_debt": 4}.get, lambda k: k != "short_term_investments") == 6
+    warnings = []
+    periods, st, _, warnings = S.build_statements(_strip_debt(make_facts()), warnings)
+    assert line(st, "metrics", "total_debt") is None
+    assert line(st, "balance", "cash")["annual"] == [CASH["2024-12-31"], CASH["2025-12-31"]]
+    assert line(st, "metrics", "net_cash") is None, line(st, "metrics", "net_cash")  # no value anywhere → the line is not emitted
+    assert line(st, "metrics", "net_cash_per_share") is None
+    assert any(w.startswith("net_cash:") and "no total-debt figure the statements' debt rule reads" in w and "unknown, not zero" in w for w in warnings), warnings
+    # verifier round 1 (GGB, MICC): the warning names the debt rule and lists the debt-like lines that ARE filed — GGB's
+    # ifrs-full:NotesAndDebenturesIssued (partial), MICC's ifrs-full:NetDebt (a net figure) — never "no borrowings figure is filed"
+    assert not any("no borrowings figure is filed" in w for w in warnings), warnings
+    ggb = _strip_debt(make_facts())
+    ggb["facts"]["ifrs-full"] = {"NotesAndDebenturesIssued": {"units": {"USD": [{"end": "2025-12-31", "val": 4_407_399_000, "form": "10-K", "fp": "FY",
+                                                                                   "filed": FILED["2025-12-31"], "accn": "acc-2025-12-31"}]}},
+                                 "NetDebt": {"units": {"USD": [{"end": "2025-12-31", "val": 3_000_000_000, "form": "10-K", "fp": "FY",
+                                                                "filed": FILED["2025-12-31"], "accn": "acc-2025-12-31"}]}}}
+    _, st_g, _, w_g = S.build_statements(ggb, [])
+    assert line(st_g, "metrics", "net_cash") is None, "a partial or net debt line is not a gross-debt total: net cash stays null"
+    nw = [w for w in w_g if w.startswith("net_cash:")]
+    assert nw and "ifrs-full:NotesAndDebenturesIssued" in nw[0] and "ifrs-full:NetDebt" in nw[0], nw
+    _, _, _, w2 = S.build_statements(make_facts(), [])
+    assert not any(w.startswith("net_cash:") for w in w2), "a filer with a debt line gets no such warning"
+    # the filer with a debt line is unchanged
+    _, st2, _, _ = S.build_statements(make_facts(), [])
+    assert line(st2, "metrics", "net_cash")["annual"] == [CASH["2024-12-31"] - 200, CASH["2025-12-31"] - 200]
+
+
+def test_single_class_dei_count_is_not_the_period_end_share_count():
+    """Q8 bug 2, multi-class (GGB PR #43): with no balance-sheet outstanding count, the cover-page dei count fills the
+    period-end shares — but at a multi-class filer companyfacts keeps one class's cover count (Gerdau: 717,782,619
+    common) while the same 20-F files the all-class issued count (2,000,879,949). Book value per share divided by
+    the one class was ~2.8x overstated (R$74.65 vs ~R$26.8). A dei count below 1/1.4 of the same filing's all-class
+    count is a class count: the all-class count (less treasury shares when filed) is used and the warning names both."""
+    def _ggb(dei_val, issued_val, treasury=None):
+        facts = make_facts()
+        del facts["facts"]["us-gaap"]["CommonStockSharesOutstanding"]
+        fy = {"end": "2025-12-31", "fy": 2025, "fp": "FY", "form": "10-K", "filed": FILED["2025-12-31"], "accn": "acc-2025-12-31"}
+        facts["facts"]["dei"]["EntityCommonStockSharesOutstanding"] = {"units": {"shares": [dict(fy, val=dei_val)]}}
+        ifrs = {"NumberOfSharesIssuedAndFullyPaid": {"units": {"shares": [dict(fy, val=issued_val)]}}}
+        if treasury is not None:
+            ifrs["SharesInEntityHeldByEntityOrByItsSubsidiariesOrAssociates"] = {"units": {"shares": [dict(fy, val=treasury)]}}
+        facts["facts"]["ifrs-full"] = ifrs
+        return facts
+    warnings = []
+    _, st, _, warnings = S.build_statements(_ggb(717_782_619, 2_000_879_949), warnings)
+    so = line(st, "metrics", "shares_outstanding")
+    assert so["annual"][1] == 2_000_879_949, so["annual"]
+    assert approx(line(st, "metrics", "book_value_per_share")["annual"][1], EQUITY["2025-12-31"] / 2_000_879_949)
+    assert any(w.startswith("shares:") and "717,782,619" in w and "2,000,879,949" in w and "one class" in w for w in warnings), warnings
+    # treasury shares filed in the same filing are deducted from the issued count
+    _, st, _, _ = S.build_statements(_ggb(717_782_619, 2_000_879_949, treasury=879_949), [])
+    assert line(st, "metrics", "shares_outstanding")["annual"][1] == 2_000_000_000
+    # a dei count within 1.4x of the all-class count is the filer's count (treasury, rounding): kept as filed
+    _, st, _, _ = S.build_statements(_ggb(1_900_000_000, 2_000_879_949), [])
+    assert line(st, "metrics", "shares_outstanding")["annual"][1] == 1_900_000_000
+
+
+def test_files_written_before_the_q8_rules_are_rebuilt_once():
+    """Codex review round 1 on PR #53 (4322240089): --all skips the companyfacts download when the existing file records
+    the same newest filing, schema_version and coverage, so a file written before the Q8 rules (net cash needs a filed
+    debt figure, the all-class share count, the one-money-unit rule) kept MICC's +EUR441M and GGB's +R$5.929B net cash
+    until the next 20-F. schema_version 4 rebuilds every schema-3 file once."""
+    latest = {"form": "20-F", "filed": "2026-03-18", "period": "2025-12-31"}
+    pre = {"latest_filed": dict(latest), "schema_version": 3, "covered_through": "2025-12-31",
+           "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalents"]}]}}
+    assert S.SCHEMA_VERSION == 4, S.SCHEMA_VERSION
+    assert S.can_skip(pre, latest) is False, "a schema-3 file is rebuilt"
+    assert S.can_skip(dict(pre, schema_version=S.SCHEMA_VERSION), latest) is True, "and skipped again once rebuilt"
 
 
 if __name__ == "__main__":

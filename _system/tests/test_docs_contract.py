@@ -251,6 +251,20 @@ PAIRS = [
     ("_system/ttm.py", '"sbc_reconciliation_withdrawn_legs": sbc_withdrawn', "sbc_reconciliation_withdrawn_legs",
      [SYS_README, CONTRACT]),
     ("_system/ttm.py", '"remainder_unknown"', "remainder_unknown", [SYS_README, CONTRACT]),
+    # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
+    ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", "ENGINE_INTANGIBLE_TAGS = _engine.CAPEX_INTANGIBLE_TAGS", "ENGINE_INTANGIBLE_TAGS", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", 'PRICE_CURRENCY = "USD"', "PRICE_CURRENCY", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", "_engine.DEI_MAX_AGE_DAYS", "DEI_MAX_AGE_DAYS", [SYS_README, CONTRACT]),
+    # verifier round 1 on the Q8 branch
+    ("_system/fundamentals.py", "def pick_money_unit(", "pick_money_unit", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", "def intangible_capex_ttm(", "intangible_capex_ttm", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def cross_currency_safe(", "cross_currency_safe", [SYS_README, CONTRACT]),
+    ("_system/statements.py", "DEBT_LIKE_TAGS = [", "DEBT_LIKE_TAGS", [SYS_README, CONTRACT]),
+    # Codex review round 2 on PR #53
+    ("_system/fundamentals.py", "ENGINE_CAPEX_GROUPS = (_engine.CAPEX_ROLLUP_TAGS", "ENGINE_CAPEX_GROUPS", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", "def annual_row_periods(", "annual_row_periods", [SYS_README, CONTRACT]),
 ]
 
 
@@ -364,6 +378,13 @@ STALE = [
     ("_system/dcf_engine.py", "the OE/share CAGR does not span the break"),
     (AGENTS_MD, "when the break lies between its two endpoints"),
     (WORKER_SPEC, "OE/share CAGR when the break"),
+    # enrichment fixes verifier round 2 (ruling-sheet Q8 bugs 2-3, 2026-10-19): statements.py's module docstring states
+    # pick_money_unit's rule; the Dividends tab reads the legs' unit from the block's own key, never the file's currency;
+    # the Forecast tab's OE-history note names the intangible leg when one is deducted
+    ("_system/statements.py", "USD preferred on ties"),
+    ("_daily/site/app.js", "(typeof fund.currency === 'string' && fund.currency) || 'USD'"),
+    ("_daily/site/app.js", "Filed owner\\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share"),
+    (CONTRACT, "The block is priced in the file's own `currency`"),
 ]
 
 
