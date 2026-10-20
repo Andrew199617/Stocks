@@ -345,8 +345,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    nothing was deducted, so the published tier is the UNADJUSTED one; the score must be blocked
    `NEEDS_MAIN_AGENT` or carry a main-agent `tier_override` whose reason quantifies the hand deduction
    (total ÷ the verified share count and the adjusted weighted IRR) — resolving the flag with the deal and
-   consideration alone is P1. With field overrides in force, `override_impact`'s counterfactual holds the
-   final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`), so the measured impact is the override's alone.
+   consideration alone is P1; make_score refuses the score without a `tier_override` whose reason names a
+   dollar figure and a percentage (Codex review round 1 of PR #47) — whether those figures are the right hand
+   deduction is this check's. With field overrides in force, `override_impact`'s counterfactual holds the
+   final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`) in every branch (declared pin, TTM, median,
+   payable), so the measured impact is the override's alone.
 
 ## Overrides
 

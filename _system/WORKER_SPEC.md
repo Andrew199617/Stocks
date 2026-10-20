@@ -174,7 +174,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    flag says "not deducted — the share count behind the base is unverified": a share-scale defect rescued by
    a pin with no power-of-ten factor): the tier is UNADJUSTED — block `NEEDS_MAIN_AGENT: shares —
    ACQUIRED_IPRD_CHARGE not deducted: <total>` with the charge total; only the main agent may publish it,
-   through a `tier_override` whose reason quantifies the hand deduction. Impairments of previously capitalized intangibles are
+   through a `tier_override` whose reason quantifies the hand deduction — the charge per share on the verified
+   share count ($) and the adjusted weighted IRR (%); make_score refuses the score without one (Codex review
+   round 1 of PR #47). Impairments of previously capitalized intangibles are
    not this flag and are never deducted (that spend went through capex / intangible purchases when made); a
    cash-tag-only year (MAA's development-spend mistag) is never a charge.
    **Engine 5.5 flags (2026-10-19)** — each names its figures; quote them from

@@ -286,6 +286,9 @@ PAIRS = [
     # the per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20)
     ("_system/dcf_engine.py", '"contingent_total": {"value": float(', "contingent_total", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", "def iprd_deferred_cap_problems(", "iprd_deferred_cap_problems", [SYS_README]),
+    # engine 5.6 Codex review round 1 of PR #47
+    ("_system/make_score.py", "def check_iprd_share_count_unverified(", "not_applied_share_count_unverified", [SYS_README]),
+    ("_system/dcf_engine.py", "expense_fx_note=(", "expense_fx_note", [SYS_README]),
 ]
 
 

@@ -245,11 +245,14 @@ value adjustment):
   TTM-leg rules (ttm_leg_overrides) compare ttm.json against the record's
   native base, and the override impact is measured on the TTM branch (the
   no-override TTM base less the same amortization per share).
-- [v5.6 review] The declared_pin and ttm override-impact counterfactuals
-  pass DCF_IPRD_HOLD so the replay holds the final run's
-  IPR&D treatment and charge per share: the charge is mechanical, so the
-  measured impact is the override's alone (a --base-oe-ps replay would
-  otherwise read another window and share denominator than the --ttm run).
+- [v5.6 review] The override-impact counterfactuals pass DCF_IPRD_HOLD so
+  the replay holds the final run's IPR&D treatment and charge per share:
+  the charge is mechanical, so the measured impact is the override's alone
+  (a --base-oe-ps replay would otherwise read another window and share
+  denominator than the --ttm run). [Codex review r1 of PR #47] Every branch
+  holds it — declared_pin, ttm, median_3y and payable_5y: on the median and
+  payable bases a shares_override that fills the latest FY diluted count
+  otherwise moves the replay's share denominator and re-detects the charge.
 - Release handling is unchanged: 5.5.0 output rebuilt under the 5.6.0 code is
   another release (both alert gates closed, "engine output predates release
   5.6.0"); predates_55 is False for 5.5.0 and 5.6.0 output alike.
@@ -1120,6 +1123,31 @@ def check_iprd_amortized(n, j_base_override):
              f"{am.get('native_base')!r}) — rebuild the declaration from this run's dcf_numbers.json and rerun")
 
 
+def check_iprd_share_count_unverified(n, j):
+    """[Codex review r1 of PR #47] Treatment not_applied_share_count_unverified (a share-scale defect rescued by a
+    pin with no power-of-ten factor): the engine found a positive acquired-IPR&D total but no verified share count to
+    put it on, so it deducted nothing and the tier is the UNADJUSTED one. WORKER_SPEC step 4 / AGENTS check 8: the
+    worker blocks NEEDS_MAIN_AGENT: shares, and only a main-agent tier_override whose reason quantifies the hand
+    deduction publishes it. make_score refuses the score unless judgment.json sets tier_override with a reason that
+    names a dollar figure and a percentage (the charge per share on the verified count and the adjusted weighted
+    IRR); whether the figures are right is the review's to check."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    if not blk or blk.get("treatment") != "not_applied_share_count_unverified":
+        return
+    total = _num(blk.get("total"))
+    if not total or total <= 0:
+        return
+    why = str(j.get("tier_override_reason") or "")
+    if j.get("tier_override") and re.search(r"\$\s?\d", why) and re.search(r"\d\s?%", why):
+        return
+    fail(f"NEEDS_MAIN_AGENT: shares — ACQUIRED_IPRD_CHARGE not deducted: {_usd_exact(total)} (iprd_adjustment "
+         "treatment not_applied_share_count_unverified: the share count behind the base is unverified, so the "
+         "engine's tier is the UNADJUSTED one). Block the folder NEEDS_MAIN_AGENT; only the main agent publishes it, "
+         "through judgment.json tier_override whose tier_override_reason quantifies the hand deduction — the charge "
+         "per share on the verified share count ($) and the adjusted weighted IRR (%) (WORKER_SPEC step 4)"
+         + ("; the tier_override_reason given names no dollar figure and percentage" if j.get("tier_override") else ""))
+
+
 def iprd_score_block(n):
     """score.json iprd_adjustment from the engine's block (None when the run
     has none: older-release output, or no acquired-IPR&D expense filed)."""
@@ -1587,9 +1615,9 @@ def compute_override_impact(ticker, n, ttm_only=None):
         m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
                       + ["--base-oe-ps", repr(float(base_with))],
                       # [v5.6 review] a declared pin holds the final run's IPR&D treatment and charge (an
-                      # iprd_amortized one stays amortized_in_base); the payable pin's replay keeps its own FY basis
-                      {"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": _iprd_hold(n)} if base_used == "declared_pin"
-                      else {"DCF_NO_OVERRIDES": "1"})
+                      # iprd_amortized one stays amortized_in_base); [Codex review r1 of PR #47] so does the payable
+                      # pin: a shares_override can move the FY share denominator, and the charge is mechanical
+                      {"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": _iprd_hold(n)})
         if m is None:
             fail("counterfactual engine --measure run failed — cannot measure override impact on the " + ("payable" if base_used == "payable_5y" else "declared pinned") + " base")
         if m.get("implied_irr_weighted") is None:
@@ -1624,7 +1652,11 @@ def compute_override_impact(ticker, n, ttm_only=None):
                 fail("counterfactual engine --measure run failed — cannot measure override impact on the TTM base")
             irr_without = m.get("implied_irr_weighted")
     else:
-        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args, {"DCF_NO_OVERRIDES": "1"})
+        # [Codex review r1 of PR #47] DCF_IPRD_HOLD here too: a shares_override that fills the latest FY diluted
+        # count moves the replay's IPR&D share denominator, so without the hold the measured impact mixed the
+        # override's effect with a re-detected charge
+        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args,
+                      {"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": _iprd_hold(n)})
         if m is None:
             # v5.3.1 (Codex review of Stocks PR #1): a FAILED replay (timeout,
             # non-zero exit, malformed output) is not evidence that no
@@ -2380,6 +2412,7 @@ def main():
     check_iprd_amortized_ttm_current(folder, n)   # [fixer review round]
     check_iprd_cash_flow(n, validate_iprd_cash_flow_check(j))   # [fixer review round]
     check_iprd_deferred_payment(n, validate_iprd_deferred_payment(j))   # Andrew's 2026-10-20 ruling (delegated)
+    check_iprd_share_count_unverified(n, j)   # [Codex review r1 of PR #47]
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 

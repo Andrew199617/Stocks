@@ -155,7 +155,9 @@ def test_make_score_impact_uses_the_payable_branch_not_ttm():
     def fake_run_json(cmd, env_extra=None, timeout=600):
         seen.append((cmd, env_extra))
         assert "ttm.py" not in " ".join(cmd), cmd
-        assert "--base-oe-ps" in cmd and env_extra == {"DCF_NO_OVERRIDES": "1"}
+        # [Codex review r1 of PR #47] the payable replay also holds the final run's IPR&D charge (DCF_IPRD_HOLD)
+        assert "--base-oe-ps" in cmd and env_extra.get("DCF_NO_OVERRIDES") == "1" and set(env_extra) == {
+            "DCF_NO_OVERRIDES", "DCF_IPRD_HOLD"}, env_extra
         return {"base_oe_per_share": RNR_BASE, "implied_irr_weighted": 0.118, "data_gap": []}
     real = M._run_json
     M._run_json = fake_run_json

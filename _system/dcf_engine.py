@@ -2076,8 +2076,9 @@ def _iprd_ytd_facts(facts, tag, start, end):
 
 
 def iprd_period_record(period, window, expense, cash, capex_intang=None, check=None):
-    """One period's acquired-IPR&D record. expense: (tag, value_usd | None, unit, rate, filed) from the first expense
-    tag filed for the period, or None; cash: (value_usd | None, unit, rate, filed) or None; check: the judgment.json
+    """One period's acquired-IPR&D record. expense: (tag, value_usd | None, unit, rate, filed[, value_native]) from the
+    first expense tag filed for the period, or None (value_native: the filed figure in its own unit, read only when
+    value_usd is None — the sign still detects the charge); cash: (value_usd | None, unit, rate, filed) or None; check: the judgment.json
     iprd_cash_flow_check entry matched to this period (or None). Returns None when no expense tag is filed (a
     cash-only period is no record here; iprd_detect counts one only as a deferred payment). `deducted` is what the
     window total counts: the cash outflow when filed, else the expense once the cash-flow check says it was added
@@ -2085,16 +2086,29 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     expense-basis amount the period's capex intangible leg already charged to OE, >= 98% of it;
     `awaiting_cash_flow_check`: an expense-basis amount no check confirms; `paid_in_operating_cash_flow` /
     `paid_in_shares`: what the check says). A negative cash fact beside a positive expense is a sign error: the
-    period falls back to the expense (cash_sign_note)."""
+    period falls back to the expense (cash_sign_note). [Codex review r1 of PR #47] An expense with no FX rate still
+    detects the charge by its native sign: a usable cash fact (USD, or converted) is then the amount; with none the
+    period is excluded `non_usd_no_rate`."""
     if expense is None:
         return None
-    etag, ev, eunit, erate, efiled = expense
+    etag, ev, eunit, erate, efiled = expense[:5]
+    enative = expense[5] if len(expense) > 5 else None
     rec = {"period": period, "window": window, "expense_tag": etag, "expense": ev, "expense_unit": eunit,
            "cash": None, "cash_unit": None, "amount": None, "amount_basis": None, "tag_used": None,
            "fx_rate": None, "filed": efiled, "excluded": None, "deducted": 0.0}
     if cash is not None:
         rec["cash"], rec["cash_unit"] = cash[0], cash[1]
     if ev is None:
+        # [Codex review r1 of PR #47] the expense tag is the detector, the cash outflow the amount: an expense filed
+        # only in a currency the FX pass holds no rate for still detects the charge (its native sign), and a usable
+        # cash fact for the period is the amount — before, the real outflow was deducted as $0 with no flag
+        if (cash is not None and cash[0] is not None and cash[0] > 0 and isinstance(enative, (int, float))
+                and not isinstance(enative, bool) and enative > 0):
+            rec.update(expense_native=float(enative), amount=float(cash[0]), amount_basis="cash_outflow",
+                       tag_used=IPRD_CASH_TAG, fx_rate=cash[2], filed=cash[3], deducted=float(cash[0]),
+                       expense_fx_note=(f"expense filed in {eunit} only, with no FX rate for {period}: it detects the "
+                                        f"charge ({float(enative):,.0f} {eunit}); the cash outflow is the amount"))
+            return rec
         rec["excluded"] = "non_usd_no_rate"
         return rec
     use_cash = cash is not None and cash[0] is not None
@@ -2166,7 +2180,8 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         for tag, by_unit in exp_maps:
             hit = _iprd_pick(by_unit, fx_rates, p)
             if hit is not None:
-                expense = (tag, hit[0], hit[1], hit[2], hit[3])
+                # [Codex review r1 of PR #47] the native figure rides along for an expense with no FX rate
+                expense = (tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None)
                 break
         c = _iprd_pick(cash_map, fx_rates, p)
         cash = (c[0], c[1], c[2], c[3]) if c is not None else None

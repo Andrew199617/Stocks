@@ -1388,6 +1388,50 @@ def test_one_deal_declares_one_contingent_total():
                       _deal_a("2025-12-31", 40e6, {"value": 70e6, "source": "  " + CT_SRC.replace(" ", "  ")})]))
 
 
+
+# ===========================================================================
+# Codex review round 1 of PR #47 (2026-10-19)
+# ===========================================================================
+def test_usd_cash_fact_is_the_amount_when_the_expense_has_no_fx_rate():
+    """[Codex review r1, #4321488157] The expense tag is the DETECTOR and the cash outflow the AMOUNT (cash
+    preferred, README 5.6 entry): an expense filed only in a currency the FX pass holds no rate for (EUR at a USD
+    filer: rates_by_ccy is {}) still detects the charge by its native sign, and the USD cash fact for the same period
+    is the amount ($200M on 100M shares = $2.00/share). Before the fix the period was excluded non_usd_no_rate before
+    the cash fact was read: the real $200M outflow was deducted as $0, with no flag. With no usable cash fact the
+    period stays non_usd_no_rate; a native expense <= 0 deducts nothing whatever the cash tag says."""
+    fy3 = ["2023-12-31", "2024-12-31", "2025-12-31"]
+
+    def eur_expense(native, cash=200e6):
+        f = _syn_facts()
+        _syn_put(f, EXPENSE, "EUR", _ctx("2025-01-01", "2025-12-31", native, filed="2026-02-20"))
+        if cash is not None:
+            _fy(f, CASH, 2025, cash)
+        return f
+
+    facts = eur_expense(180e6)
+    out = E.iprd_detect(facts, fy3, fx_rates={})
+    rec = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+    assert (rec["excluded"], rec["amount_basis"], rec["tag_used"], rec["amount"], rec["deducted"]) == (
+        None, "cash_outflow", CASH, 200e6, 200e6), rec
+    assert rec["expense"] is None and rec["expense_unit"] == "EUR" and rec["expense_native"] == 180e6, rec
+    assert "no FX rate" in rec["expense_fx_note"], rec
+    rec = [p for p in E.iprd_detect(eur_expense(180e6, cash=None), fy3, fx_rates={})["periods"]][0]
+    assert rec["excluded"] == "non_usd_no_rate" and rec["deducted"] == 0.0, rec
+    for native in (0.0, -5e6):
+        rec = [p for p in E.iprd_detect(eur_expense(native), fy3, fx_rates={})["periods"]][0]
+        assert rec["deducted"] == 0.0, (native, rec)
+    # the record helper keeps its 5-tuple call shape (no native value: non_usd_no_rate, as before)
+    rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, None, "EUR", None, "x"), (200e6, "USD", None, "x"))
+    assert rec["excluded"] == "non_usd_no_rate" and rec["deducted"] == 0.0, rec
+    # end to end: the engine deducts the cash outflow, exactly as it does when the expense is filed in USD
+    n = _ok(_run(facts, checks=False))
+    usd = _facts(expense={2025: 180e6}, cash={2025: 200e6})
+    m = _ok(_run(usd, checks=False))
+    for x in (n, m):
+        b = x["iprd_adjustment"]
+        assert b["treatment"] == "one_time_value_deduction" and b["total"] == 200e6 and b["charge_per_share"] == 2.0, b
+    assert n["weighted"]["iv_at_15"] == m["weighted"]["iv_at_15"] and n["implied_irr_weighted"] == m["implied_irr_weighted"]
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

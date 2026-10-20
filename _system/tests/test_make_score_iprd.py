@@ -625,6 +625,102 @@ def test_validate_deferred_refuses_a_missing_or_inconsistent_contingent_total_or
     r = _score(n, _j(iprd_deferred_payment=[d]))
     assert r.rc == 0, r.err[-800:]
 
+
+# ===========================================================================
+# Codex review round 1 of PR #47 (2026-10-19)
+# ===========================================================================
+def _share_count_unverified():
+    """test_engine_55's R3-CAP shape (FY2023-24 diluted counts filed in thousands, no power-of-ten factor found)
+    rescued by a declared base_override pin, plus a $40M FY2025 acquired-IPR&D charge (cash-flow check declared): the
+    engine has no verified denominator, so it records treatment not_applied_share_count_unverified and deducts $0."""
+    import test_engine_55 as T55
+
+    def go():
+        pin = (200e6 * 1.05 ** 4 - 60e6) / 100e6
+        facts = T55._syn_facts(shares={2023: 100e3, 2024: 100e3})
+        TI._fy(facts, TI.EXPENSE, 2025, 40e6)
+        bo = T55._bo(pin)
+        n = TI._ok(TI._run(facts, extra=["--base-oe-ps", repr(pin)], judgment={"base_override": bo}))
+        return n, bo
+    return TI._cached("ms_unverified", go)
+
+
+def test_unverified_share_count_charge_needs_a_quantified_tier_override():
+    """[Codex review r1, #4321488151] Treatment not_applied_share_count_unverified: a $40M charge the engine could
+    not put on a verified share count, so the tier is the UNADJUSTED one. WORKER_SPEC step 4 / AGENTS check 8: the
+    worker blocks NEEDS_MAIN_AGENT: shares and only a main-agent tier_override whose reason quantifies the hand
+    deduction publishes it. make_score refuses the score without a tier_override, and with one whose reason gives no
+    figure; it scores with a quantified one. Before the fix make_score published the unadjusted tier silently."""
+    n, bo = _share_count_unverified()
+    blk = n["iprd_adjustment"]
+    assert blk["treatment"] == "not_applied_share_count_unverified" and blk["total"] == 40e6, blk
+    assert blk["charge_per_share"] == 0.0 and blk["shares_denominator"] is None, blk
+    r = _score(n, _j(base_override=bo))
+    assert r.rc == 1 and "NEEDS_MAIN_AGENT: shares" in r.err and "$40,000,000" in r.err, (r.rc, r.err[-800:])
+    r = _score(n, _j(base_override=bo, tier_override=n["tier_by_numbers"],
+                     tier_override_reason="main agent: the charge is small against the base"))
+    assert r.rc == 1 and "NEEDS_MAIN_AGENT: shares" in r.err, (r.rc, r.err[-800:])
+    why = ("main agent: $40,000,000 / 100,000,000 verified diluted shares (FY2025 10-K cover) = $0.40/share deducted "
+           "by hand; adjusted weighted IRR 9.6%, same band")
+    r = _score(n, _j(base_override=bo, tier_override=n["tier_by_numbers"], tier_override_reason=why))
+    assert r.rc == 0, r.err[-800:]
+    s = r.result["score"]
+    assert s["tier_final"] == n["tier_by_numbers"] and s["tier_override_reason"] == why, s
+
+
+def test_median_counterfactual_holds_the_headline_charge():
+    """[Codex review r1, summary P2] A median-base score whose shares_override fills the latest FY diluted count
+    (125M; the filer left it out, so the no-override world falls back to the 100M cover-page count) beside a $300M
+    FY2025 charge: the median override-impact replay must hold the final run's IPR&D charge ($300M / 125M =
+    $2.40/share, DCF_IPRD_HOLD) like the declared-pin and TTM replays, so the measured IRR impact is the override's
+    effect on the base and growth alone, not that plus a $3.00 vs $2.40 swing in a mechanical charge. Before the fix the median replay carried no
+    hold and re-detected the charge on its own denominator."""
+    import test_engine_55 as T55
+    facts = T55._syn_facts(shares={2025: None})
+    TI._fy(facts, TI.EXPENSE, 2025, 300e6)
+    so = TI._o(125e6)
+    J = {"shares_override": so}
+    n = TI._ok(TI._run_env(facts, judgment=J))
+    c = E.iprd_charge_per_share(n)
+    assert n["iprd_adjustment"]["shares_denominator"] == 125e6 and c == 300e6 / 125e6, n["iprd_adjustment"]
+    r = _bridged(n, _j(shares_override=so), facts)
+    assert r.rc == 0, r.err[-800:]
+    oi = r.result["score"]["override_impact"]
+    hold = json.dumps({"treatment": "one_time_value_deduction", "charge_per_share": c})
+    held = TI._run_env(facts, judgment=J, env={"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": hold}, measure=True)["numbers"]
+    unheld = TI._run_env(facts, judgment=J, env={"DCF_NO_OVERRIDES": "1"}, measure=True)["numbers"]
+    assert unheld["iprd_adjustment"]["charge_per_share"] == 3.0   # the replay's own denominator: 100M
+    assert oi["base_used"] == "median_3y", oi
+    assert oi["weighted_irr_without_override"] == round(held["implied_irr_weighted"], 4), (oi, held["implied_irr_weighted"])
+    assert round(unheld["implied_irr_weighted"], 4) != oi["weighted_irr_without_override"]
+    cf = [x for x in r.result["spawns"] if x["script"].endswith("dcf_engine.py.txt") and x["no_overrides"]]
+    assert len(cf) == 1 and json.loads(cf[0]["hold"]) == json.loads(hold), cf
+
+
+def test_payable_counterfactual_holds_the_headline_charge():
+    """[Codex review r1, summary P2 — the same rule on the last branch] The payable-earnings pin's replay also
+    carries DCF_IPRD_HOLD, so every override-impact counterfactual holds the final run's IPR&D treatment and charge
+    (AGENTS check 8). Checked in-process: the replay's environment, captured from make_score's own _run_json."""
+    import make_score as M
+    import test_make_score_55 as T55M
+    n, _ = T55M._payable(T55M.CUR)
+    n = dict(n, iprd_adjustment={"treatment": "one_time_value_deduction", "charge_per_share": 0.5, "total": 23.2415e6})
+    seen = []
+
+    def fake(cmd, env_extra=None, timeout=600):
+        seen.append(dict(env_extra or {}))
+        return {"implied_irr_weighted": 0.11, "base_oe_per_share": n["base_oe_per_share"], "data_gap": []}
+    orig = M._run_json
+    M._run_json = fake
+    try:
+        oi = M.compute_override_impact("TST", n)
+    finally:
+        M._run_json = orig
+    assert oi["base_used"] == "payable_5y", oi
+    assert len(seen) == 1 and seen[0].get("DCF_NO_OVERRIDES") == "1", seen
+    assert json.loads(seen[0].get("DCF_IPRD_HOLD") or "null") == {"treatment": "one_time_value_deduction",
+                                                                   "charge_per_share": 0.5}, seen
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
