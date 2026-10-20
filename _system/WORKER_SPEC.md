@@ -44,9 +44,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      raises `ACQUIRED_IPRD_RECURRENT`. `iprd_cash_flow_check` entries carry over (they record
      what a filed cash-flow statement shows); add one for each new period the run names.
      `iprd_deferred_payment` entries carry over too (they record which deal a filed charge
-     belongs to; they name FY periods only, so a change of basis never strands one); drop one whose period
-     has left the engine's window (the engine lists it in `deferred_payments_unused` and make_score refuses to
-     score until it is dropped). Write the new analysis.md as a
+     belongs to; they name FY periods only, so a change of basis never strands one); KEEP one whose period
+     has left the engine's window — never delete it: the engine lists it in `deferred_payments_rolled_out`,
+     never applies it (no deduction, no recurrence effect), and still counts its amount toward the deal's
+     lifetime `contingent_total` cap; make_score refuses a run whose rolled-out entry judgment.json no longer
+     declares (Codex review round 4 of PR #47). Write the new analysis.md as a
      dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
@@ -127,7 +129,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    engine holds no FX rate for, with no usable us-gaap cash fact — NOTHING is deducted, the tier is the
    UNADJUSTED one, and make_score refuses the score whatever judgment.json says. Block the folder
    `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <native amount and currency>`; it is
-   scored once the engine can convert the charge.
+   scored once the engine can convert the charge. The same flag (Codex review round 4 of PR #47) names a
+   payment on the cash tag, with no acquired-IPR&D expense in its period, filed in a currency the engine has
+   no rate for even after fetching one for its date, that could settle the window's unpaid remainder or a
+   charge expensed before the window (`cash_native` on the period): block the folder the same way,
+   `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <native amount and currency>`.
    `ACQUIRED_IPRD_CHARGE`: in-process R&D bought in
    an asset acquisition was expensed in the base window (ASC 805) — the expense is added back in OCF and
    the payment is not capex (the cash tag, or your cash-flow check), so owner's earnings never saw it. The engine deducts the charge ONCE: window

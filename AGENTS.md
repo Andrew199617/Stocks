@@ -324,7 +324,8 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    filing shows the add-back and an investing payment is P1 the other way; say "cannot verify from the diff"
    when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
    (make_score refuses it), nor one with a period excluded `non_usd_no_rate` beside a positive `expense_native`
-   (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47). A
+   (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47) or a positive
+   `cash_native` (a cash-only payment with no FX rate that could settle a charge — round 4). A
    `deferred_payment` period counts cash the window's earlier cash-basis charge left unpaid (BIIB), never more
    than that remainder — or, declared in `iprd_deferred_payment` against a `first_charged_period` before the
    window that companyfacts shows expensed (`first_charge_evidence` `companyfacts_expense_fact`), a cash-tag-only
@@ -602,7 +603,11 @@ misfit`. For them:
   consideration}, declared once and identically for a deal; the engine refuses
   (`BAD_IPRD_DEFERRED_PAYMENT`) a deal whose declared amounts, summed across every
   entry (a rolled-out one included), exceed it — so the cap is mechanical and the
-  review checks the cap's value against the filing.
+  review checks the cap's value against the filing. [Codex review round 4 of PR #47]
+  A rolled-out entry STAYS in judgment.json (`deferred_payments_rolled_out`: never
+  applied, still counted toward the cap); a PR deleting one is P1 — it frees the
+  deal's cap for a later declaration — and make_score refuses the run that counted
+  it once it is gone.
 
 ## Comment style
 

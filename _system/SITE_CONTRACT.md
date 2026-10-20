@@ -166,7 +166,7 @@ one {deal, first_charged_period, source, `contingent_total` {value, source}, amo
 deal) with `recurrence_excluded`
 ("deferred_payment_of", when the deals sum to the whole charge) on an FY period judgment.json
 `iprd_deferred_payment` declared — and, only when the run had such declarations, the list `recurrence_excluded`
-(one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_unused`, `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
+(one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_rolled_out` (Codex review round 4 of PR #47: entries whose period left the window, kept in judgment.json and counted toward the deal's cap; was `deferred_payments_unused`), `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
 `charge_per_share`, `materiality`, `material`, `recurrent`, `treatment`, `before` — the unadjusted IVs and IRRs —,
 `after`, `amortized`), `score` gains
 `iprd_adjustment` when the run recorded one (`treatment`, `total`, `unconfirmed_total`, `charge_per_share`, `shares_denominator`,

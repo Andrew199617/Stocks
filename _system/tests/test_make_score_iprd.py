@@ -585,18 +585,24 @@ def test_validate_deferred_refuses_a_ytd_window_and_one_deal_twice_in_a_period()
     assert M.validate_iprd_deferred_payment({"iprd_deferred_payment": two}) == two
 
 
-def test_rolled_out_declaration_is_asked_to_be_dropped():
-    """[Codex review, finding 5] The engine lists an entry whose period is older than its window in
-    deferred_payments_unused (exit 0); make_score refuses to score with judgment.json still carrying it and says
-    why: its period has left the window, so drop it."""
+def test_rolled_out_declaration_stays_declared_and_scores():
+    """[Codex review r4, #4322408940] (was: test_rolled_out_declaration_is_asked_to_be_dropped) The engine lists an
+    entry whose period is older than its window in deferred_payments_rolled_out (exit 0). make_score used to refuse
+    the score until the entry was DELETED — the deletion that let a later declaration take the deal past its
+    contingent_total. The entry now stays declared: make_score scores with judgment.json carrying it. Out of sync
+    either way is refused: a rolled-out entry the run did not list (judgment.json changed after the run), or one the
+    run listed that judgment.json dropped (it counts toward the deal's lifetime cap: never delete it)."""
     old = TI.deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=TI.OK_SRC_2021, deal="Old Bio")
     d = TI.deferred()
     n = TI._cached("ms_def_old", lambda: TI._ok(TI._run(TI._facts(expense={2023: 15e6, 2025: 20e6}),
                                                          judgment={"iprd_deferred_payment": [d, old]})))
     r = _score(n, _j(iprd_deferred_payment=[d, old]))
-    assert r.rc == 1 and "has left the engine's window" in r.err and "drop it" in r.err, r.err[-600:]
-    r = _score(n, _j(iprd_deferred_payment=[d]))
     assert r.rc == 0, r.err[-800:]
+    r = _score(n, _j(iprd_deferred_payment=[d]))
+    assert r.rc == 1 and "rolled-out" in r.err and "contingent_total" in r.err, r.err[-600:]
+    other = TI.deferred(period="2021-12-31", amount=1e6, first="2020-12-31", source=TI.OK_SRC_2021, deal="Other Bio")
+    r = _score(n, _j(iprd_deferred_payment=[d, old, other]))
+    assert r.rc == 1 and "did not apply" in r.err, r.err[-600:]
 
 
 
@@ -772,6 +778,48 @@ def test_unconvertible_iprd_expense_is_refused_needs_main_agent():
     z = TI._ok(TI._run(TI._eur_expense(0.0), checks=False))
     r = _score(z)
     assert r.rc == 0, r.err[-800:]
+
+
+# --- Codex review round 4 of PR #47 -------------------------------------------------------------------------------
+def test_unconvertible_cash_settlement_is_refused_needs_main_agent():
+    """[Codex review r4, #4322408953] A cash-tag-only payment that could settle the window's unpaid remainder but is
+    filed in a currency with no FX rate (FY2024 $40M expensed, $10M paid; FY2025 EUR 24M, no rate) was dropped, and
+    make_score scored the $10M deduction. The engine now records the native amount (cash_native) and raises
+    ACQUIRED_IPRD_UNCONVERTED; make_score refuses the score (NEEDS_MAIN_AGENT: currency), naming the payment."""
+    fyf = TI._facts(expense={2024: 40e6}, cash={2024: 10e6})
+    TI._syn_put(fyf, TI.CASH, "EUR", TI._ctx("2025-01-01", "2025-12-31", 24e6, filed="2026-02-20"))
+    n = TI._ok(TI._run_fx(fyf, {}))
+    r = _score(n)
+    assert r.rc == 1 and "ACQUIRED_IPRD_UNCONVERTED" in r.err and "NEEDS_MAIN_AGENT: currency" in r.err, (r.rc, r.err[-800:])
+    assert "FY2025 24,000,000 EUR" in r.err, r.err[-800:]
+    m = TI._ok(TI._run_fx(fyf, {"EUR": {"2025-12-31": 1.25}}))
+    r = _score(m)
+    assert r.rc == 0, r.err[-800:]
+
+
+def test_iprd_equations_carry_the_ads_ratio():
+    """[Codex review r4, #4322408961] At an ADS filer the engine's charge per share is total ÷ shares × ads_ratio and
+    the amortized base native − mean ÷ shares × ads_ratio, but key_numbers.md printed both equations without the ratio
+    ($100M ÷ 100M shares = $2.00/share at 2 ordinary per ADS): the quotable lines did not reproduce the record. Both
+    now print '× ADS ratio r' and a per-ADS result when the applied ratio is not 1; at ratio 1 they are unchanged."""
+    import make_score as M
+    ratio, total, denom = 2.0, 100e6, 100e6
+    figs, shares, native = [100e6, 100e6, 100e6], 100e6, 10.0
+    pinned = E.iprd_amortized_value(native, figs, shares, {"ratio": ratio})
+    blk = {"treatment": "amortized_in_base", "total": total, "shares_denominator": denom, "shares_source": "diluted_latest",
+           "ads_ratio": ratio, "charge_per_share": total / denom * ratio, "materiality": 0.2, "material": True,
+           "recurrent": True, "periods": [],
+           "amortized": {"native_base": "median_of_last_3_fy_oe_per_share", "native_base_per_share": native,
+                         "figures": figs, "mean_annual_charge": sum(figs) / 3, "shares": shares, "ads_ratio": ratio,
+                         "pinned_per_share": pinned}}
+    L = M.iprd_lines({"iprd_adjustment": blk})
+    tot = [x for x in L if x.startswith("- Total charge")][0]
+    assert "$100,000,000 ÷ 100,000,000 shares (diluted_latest) × ADS ratio 2 = $2.00/ADS" in tot, tot
+    am = [x for x in L if x.startswith("- Amortized in the base")][0]
+    assert "÷ 100,000,000 shares × ADS ratio 2 = pinned base $8.00" in am, am
+    one = dict(blk, treatment="one_time_value_deduction", ads_ratio=1.0, charge_per_share=1.0, amortized=None)
+    tot1 = [x for x in M.iprd_lines({"iprd_adjustment": one}) if x.startswith("- Total charge")][0]
+    assert tot1 == "- Total charge: $100,000,000 ÷ 100,000,000 shares (diluted_latest) = $1.00/share", tot1
 
 
 if __name__ == "__main__":

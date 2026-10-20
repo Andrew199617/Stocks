@@ -420,9 +420,11 @@ before the window, an acquired-IPR&D expense fact ending there when companyfacts
 accession from the first charged fiscal year's start year through the year after its end (the original
 acquisition filing); the deals' amounts within the period's charge — and refuses anything else as
 BAD_IPRD_DEFERRED_PAYMENT (exit 3; the override-impact counterfactual records it in deferred_payments_refused
-instead). An entry whose period has rolled out of the window is listed in deferred_payments_unused (make_score asks
-for it to be dropped). A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a
-partly deferred period still counts. The deduction is unchanged, and a run with no declaration gains no key.
+instead). An entry whose period has rolled out of the window stays in judgment.json and is listed in
+deferred_payments_rolled_out: never applied (no deduction, no recurrence effect), it still counts toward its deal's
+lifetime contingent_total cap ([Codex review r4 of PR #47]: deleting it let a later declaration pass the cap).
+A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a partly deferred period
+still counts. The deduction is unchanged, and a run with no declaration gains no key.
 [Codex review round 3 of PR #47] Two gaps closed. (1) A positive acquired-IPR&D expense filed only in a currency
 with no FX rate and no usable cash fact is excluded non_usd_no_rate with its expense_native kept, raises
 ACQUIRED_IPRD_UNCONVERTED (treatment non_usd_no_rate when nothing else is deducted) and make_score refuses it
@@ -433,6 +435,11 @@ ACQUIRED_IPRD_UNMATCHED_PAYMENT; an iprd_deferred_payment of that FY period whos
 pre-window expense fact makes the declared amount (at most the payment, within contingent_total) deductible once,
 cash basis, outside the recurrence count — the one declaration that changes the deduction. A filer that never
 expensed (MAA) is unchanged: no flag, no block, no declaration accepted.
+[Codex review round 4 of PR #47] A cash-tag-only payment filed in a currency the FX pass holds no rate for at its
+date (always the case for the current-YTD 10-Q end) is converted at a rate fetched for that date (fx_rate, as the
+5.5 intangible capex leg does); with none, a payment that could settle the window's unpaid remainder or a pre-window
+charge keeps its native amount (cash_native, excluded non_usd_no_rate) and raises ACQUIRED_IPRD_UNCONVERTED (make_score
+refuses it) — before, it was dropped with no trace and the deduction understated.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -1761,7 +1768,8 @@ IPRD_AWAITING = "awaiting_cash_flow_check"
 IPRD_CHECK_WINDOWS = ("fy", "ttm_current_ytd")
 # [Codex review r3 of PR #47] a positive expense filed only in a currency the FX pass holds no rate for, with no
 # usable cash fact: excluded (and, when nothing else is deducted, the treatment) non_usd_no_rate, and gated —
-# ACQUIRED_IPRD_UNCONVERTED, which make_score refuses (NEEDS_MAIN_AGENT: currency) like an unconfirmed expense
+# ACQUIRED_IPRD_UNCONVERTED, which make_score refuses (NEEDS_MAIN_AGENT: currency) like an unconfirmed expense.
+# [Codex review r4] the same for a cash-tag-only payment with no rate (cash_native) that could settle a charge.
 IPRD_UNCONVERTED = "non_usd_no_rate"
 
 
@@ -1954,8 +1962,9 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
     accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
     item per deal; several deals may share a period) and, when the declared amounts sum to the period's whole charge
     (within $1), recurrence_excluded "deferred_payment_of". The deduction is not touched. Returns (refused
-    [{"entry", "reason"}], unused [entries whose period is older than the window: it rolled out, so they are
-    neither applied nor refused]). Nothing is applied for a refused entry.
+    [{"entry", "reason"}], rolled_out [entries whose period is older than the window: neither applied nor refused,
+    they stay in judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47]).
+    Nothing is applied for a refused entry.
     Checks: the shape (an FY period, an accession in the source, the deal's contingent_total); one entry per period
     and deal; one first_charged_period per deal across all entries; one contingent_total per deal (value and
     source) and the deal's declared amounts across all entries (a rolled-out one included) summing to no more than
@@ -1978,7 +1987,7 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
         return [{"entry": entries, "reason": f"judgment.json {IPRD_DEFERRED_KEY} must be a non-empty list"}], []
     rec_of = {p.get("period"): p for p in ((iprd or {}).get("periods") or []) if p.get("window") == "fy"}
     oldest = datetime.date.fromisoformat(fy_periods[0]) if fy_periods else None
-    refused, unused, ok, seen, first_of = [], [], [], set(), {}
+    refused, rolled_out, ok, seen, first_of = [], [], [], set(), {}
     for e in entries:
         if not iprd_deferred_entry_ok(e):
             refused.append({"entry": e, "reason": "malformed: each entry is {period: an FY end, window: \"fy\" (a "
@@ -2009,7 +2018,9 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
             refused.append({"entry": e, "reason": cap_problems[_deal_key(d["deal"])]})
             continue
         if oldest is not None and e["period"] < fy_periods[0]:
-            unused.append(e)   # its period rolled out of the window: drop it from judgment.json
+            # its period rolled out of the window: kept in judgment.json (its payment counts toward the deal's
+            # lifetime contingent_total above), never applied to this window's deduction or recurrence count
+            rolled_out.append(e)
             continue
         rec = rec_of.get(e["period"])
         charge = rec.get("amount") if rec is not None else None
@@ -2135,7 +2146,7 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
              "first_charge_evidence": c[3]} for c in cs]
         if _whole(p, cs):
             rec["recurrence_excluded"] = IPRD_RECURRENCE_EXCLUDED
-    return refused, unused
+    return refused, rolled_out
 
 
 def _iprd_pick(by_unit, fx_rates, period):
@@ -2254,7 +2265,8 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     return rec
 
 
-def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_intang=None, fx_rates=None, checks=None):
+def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_intang=None, fx_rates=None, checks=None,
+                fx_fetch=None):
     """The acquired-IPR&D records for the periods feeding the base: each of `fy_periods` (the engine's last 3 FY ends,
     oldest first, annual facts under period_series' rules) and, when the base is TTM, the current year-to-date leg
     `ytd` = (start, end) after the latest FY end (10-Q facts; the FY legs already hold every earlier quarter, so each
@@ -2269,7 +2281,13 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     whose companyfacts shows acquired IPR&D expensed BEFORE the window carries pre_window_charges (those period ends):
     it may settle that earlier charge, which the window's remainder never saw, so ACQUIRED_IPRD_UNMATCHED_PAYMENT
     names it and judgment.json iprd_deferred_payment can make it deductible (iprd_apply_deferred). Such an entry
-    keeps the block (periods may be []) so the flag is raised; with no pre-window expense fact (MAA) nothing changes."""
+    keeps the block (periods may be []) so the flag is raised; with no pre-window expense fact (MAA) nothing changes.
+    [Codex review r4 of PR #47] fx_fetch(ccy, date) -> rate | None (the engine passes fx_rate): a cash fact filed only
+    in a currency fx_rates holds no rate for at its date (the current-YTD 10-Q end never is) is converted at the
+    fetched rate, as the 5.5 intangible capex leg is. With none, a cash-only payment (no or a $0 expense) that could
+    settle the window's unpaid remainder or a pre-window charge is recorded excluded non_usd_no_rate with its
+    cash_native (ACQUIRED_IPRD_UNCONVERTED, make_score refuses it); one that could settle nothing is listed in
+    ignored_cash_only with its native amount."""
     exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
     cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
     periods, cash_only, notes = [], [], []
@@ -2299,6 +2317,11 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                 expense = (tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None)
                 break
         c = _iprd_pick(cash_map, fx_rates, p)
+        if c is not None and c[0] is None and fx_fetch is not None:
+            # [Codex review r4 of PR #47] the FX pass holds rates for its own series' dates only: fetch this one
+            r = fx_fetch(c[1], p)
+            if r is not None:
+                c = (float(cash_map[c[1]][0]) * r, c[1], r, c[3])
         cash = (c[0], c[1], c[2], c[3]) if c is not None else None
         chk, mismatch = by_key.get((p, window)), None
         if chk is not None:
@@ -2312,6 +2335,28 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                                                "note": "judgment.json iprd_cash_flow_check names this period with "
                                                        "another amount than the filed expense: not applied"}
         cv = cash[0] if cash is not None else None
+        cnative = cash_map[cash[1]][0] if (cash is not None and cv is None) else None
+        if (isinstance(cnative, (int, float)) and not isinstance(cnative, bool) and math.isfinite(cnative)
+                and cnative > 0 and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
+            # [Codex review r4 of PR #47] a cash-only payment with no FX rate, even fetched: never dropped silently
+            if unpaid[0] > 0 or prior:
+                # it may settle the window's unpaid remainder or a pre-window charge: gated (ACQUIRED_IPRD_UNCONVERTED)
+                if rec is None:
+                    rec = {"period": p, "window": window, "expense_tag": None, "expense": None, "expense_unit": None,
+                           "cash": None, "cash_unit": cash[1], "amount": None, "amount_basis": None, "tag_used": None,
+                           "fx_rate": None, "filed": cash[3], "deducted": 0.0}
+                rec.update(excluded=IPRD_UNCONVERTED, cash_native=float(cnative), cash_unit=cash[1],
+                           cash_fx_note=(f"cash tag {float(cnative):,.0f} {cash[1]} with no acquired-IPR&D expense in "
+                                         f"this period and no FX rate for {p}: it may settle "
+                                         + ("the window's unpaid remainder" if unpaid[0] > 0 else
+                                            "a charge expensed before the window")
+                                         + " — not converted, so not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
+                return rec
+            cash_only.append({"period": p, "window": window, "cash": None, "cash_unit": cash[1],
+                              "cash_native": float(cnative),
+                              "note": "cash tag only, no acquired-IPR&D expense tag, no FX rate: never a qualifying "
+                                      "charge and nothing in the window it could settle"})
+            return rec
         if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
                 and isinstance(rec["expense"], (int, float)) and rec["expense"] > 0):
             unpaid[0] = max(0.0, unpaid[0] + rec["expense"] - rec["amount"])
@@ -2403,6 +2448,17 @@ def iprd_flags(iprd):
                    f"{sorted(IPRD_CF_PRESENTATIONS)}, source citing the cash-flow line) and rerun the engine")
     uc = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED
           and isinstance(p.get("expense_native"), (int, float)) and p["expense_native"] > 0]
+    ucc = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED
+           and isinstance(p.get("cash_native"), (int, float)) and p["cash_native"] > 0]
+    if ucc:
+        # [Codex review r4 of PR #47] a cash-only payment the run cannot convert may settle a charge: gated, not dropped
+        out.append("ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag "
+                   f"({IPRD_CASH_TAG}), with no acquired-IPR&D expense in its period, filed in a currency the run holds "
+                   "no FX rate for (none fetched either), in "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['cash_native']:,.0f} {p.get('cash_unit')}" for p in ucc)
+                   + ". It may settle the window's unpaid remainder or a charge expensed before the window, but "
+                   "NOTHING is deducted for it, so the run's IVs, IRRs and tier may be UNADJUSTED: make_score refuses "
+                   "the score — NEEDS_MAIN_AGENT: currency (block the folder; it is scored once the run can convert it)")
     if uc:
         # [Codex review r3 of PR #47] a detected charge the run cannot convert is gated, never deducted as $0 silently
         out.append("ACQUIRED_IPRD_UNCONVERTED: acquired in-process R&D expensed in a currency the FX pass holds no rate "
@@ -3600,13 +3656,13 @@ def main():
     _ytd_intang = (_ytd_comp.get("intangibles") if isinstance(_ytd_comp, dict) and not _ytd_comp.get("intangibles_not_added")
                    and _ytd_comp.get("intangible_tags") else None)
     iprd = iprd_detect(facts, last3_periods, ytd=_ytd, fy_capex_intang=_fy_intang, ytd_capex_intang=_ytd_intang,
-                       fx_rates=rates_by_ccy, checks=load_iprd_cash_flow_checks(ticker))
+                       fx_rates=rates_by_ccy, checks=load_iprd_cash_flow_checks(ticker), fx_fetch=fx_rate)
     iprd_charge_used = 0.0
     iprd_refusal = None
     # judgment.json iprd_deferred_payment (Andrew's 2026-10-20 ruling, delegated): validated against this run's
     # window and marked on the records before the recurrence count; refused (exit 3) outside the counterfactual
     _deferred = load_iprd_deferred_payments(ticker)
-    _deferred_refused, _deferred_unused = iprd_apply_deferred(iprd, _deferred, last3_periods, facts)
+    _deferred_refused, _deferred_rolled_out = iprd_apply_deferred(iprd, _deferred, last3_periods, facts)
     if _deferred_refused and not iprd_counterfactual:
         print(f"BAD_IPRD_DEFERRED_PAYMENT for {ticker}: judgment.json {IPRD_DEFERRED_KEY} "
               + "; ".join(f"{r['entry'].get('period') if isinstance(r['entry'], dict) else r['entry']!r}: {r['reason']}"
@@ -3696,8 +3752,9 @@ def main():
             if iprd_counterfactual:
                 amortized["counterfactual_replay"] = ("not re-validated: the declaration was checked on the final run; "
                                                       "this replay holds the pin with the field overrides off")
-        unconverted = any(p.get("excluded") == IPRD_UNCONVERTED and isinstance(p.get("expense_native"), (int, float))
-                          and p["expense_native"] > 0 for p in iprd["periods"])
+        unconverted = any(p.get("excluded") == IPRD_UNCONVERTED
+                          and any(isinstance(p.get(k), (int, float)) and p[k] > 0 for k in ("expense_native", "cash_native"))
+                          for p in iprd["periods"])
         if total <= 0:
             treatment = IPRD_AWAITING if unconfirmed > 0 else (IPRD_UNCONVERTED if unconverted else "none")
         elif amortized is not None:
@@ -3738,9 +3795,10 @@ def main():
                 for x in p["deferred_payment_of"]]
             if _deferred_refused:
                 iprd["deferred_payments_refused"] = _deferred_refused
-            if _deferred_unused:
-                # periods older than the window (rolled out): neither applied nor refused; make_score asks to drop them
-                iprd["deferred_payments_unused"] = _deferred_unused
+            if _deferred_rolled_out:
+                # [Codex review r4 of PR #47] periods older than the window: neither applied nor refused, kept in
+                # judgment.json for the deal's lifetime contingent_total cap (make_score checks they are still declared)
+                iprd["deferred_payments_rolled_out"] = _deferred_rolled_out
         if held is not None:
             iprd["held_from_final_run"] = held
     else:

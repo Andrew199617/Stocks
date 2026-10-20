@@ -289,9 +289,11 @@ value adjustment):
   which validated it against the window and marked the period
   `deferred_payment_of` (a list, one item per deal; `recurrence_excluded`
   when the deals sum to the whole charge): a declaration the run did not
-  apply (or listed in `deferred_payments_unused` because its period left the
-  window: drop it), an applied one judgment.json dropped or now declares
-  differently, are refused. score.json `iprd_adjustment` carries
+  apply, an applied one judgment.json dropped or now declares differently,
+  are refused; an entry whose period left the window is listed in
+  `deferred_payments_rolled_out` and STAYS declared ([Codex review round 4 of
+  PR #47]: it counts toward its deal's lifetime contingent_total cap, so
+  dropping it from judgment.json is refused as out of sync). score.json `iprd_adjustment` carries
   `recurrence_excluded` (when the run had declarations) and each period's
   `deferred_payment_of` / `recurrence_excluded`; key_numbers.md says on the
   period line whether it is excluded from the recurrence count or, partly
@@ -303,7 +305,11 @@ value adjustment):
 - [Codex review round 3 of PR #47] A period excluded `non_usd_no_rate`
   beside a positive `expense_native` (ACQUIRED_IPRD_UNCONVERTED: a detected
   charge the engine could not convert, so nothing was deducted) is refused,
-  NEEDS_MAIN_AGENT: currency, whatever judgment.json says.
+  NEEDS_MAIN_AGENT: currency, whatever judgment.json says; [Codex review
+  round 4] so is one beside a positive `cash_native` (a cash-only payment
+  that could settle a charge, with no FX rate even fetched). key_numbers.md's
+  total-charge and amortized-base equations print "× ADS ratio r" (per ADS)
+  when the applied ratio is not 1, so they reproduce the recorded values.
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -1045,8 +1051,8 @@ def check_iprd_deferred_payment(n, entries):
                if isinstance(p.get("deferred_payment_of"), list)
                for a in p["deferred_payment_of"] if isinstance(a, dict)}
     by = {(e["period"], e["window"], _engine._deal_key(e["deferred_payment_of"]["deal"])): e for e in entries or []}
-    unused = {(e.get("period"), e.get("window"), _engine._deal_key((e.get("deferred_payment_of") or {}).get("deal")))
-              for e in (blk or {}).get("deferred_payments_unused") or [] if isinstance(e, dict)}
+    rolled = {(e.get("period"), e.get("window"), _engine._deal_key((e.get("deferred_payment_of") or {}).get("deal"))): e
+              for e in (blk or {}).get("deferred_payments_rolled_out") or [] if isinstance(e, dict)}
     for k, a in applied.items():
         d = by.get(k)
         dd = (d or {}).get("deferred_payment_of") or {}
@@ -1058,12 +1064,20 @@ def check_iprd_deferred_payment(n, entries):
                  f"{a.get('first_charged_period')}, {_usd_exact(a.get('amount'))}) that judgment.json "
                  + ("no longer declares" if d is None else "now declares differently")
                  + " — the judgment file and the engine run are out of sync; rerun the engine")
+    for k, e in rolled.items():
+        # [Codex review r4 of PR #47] a rolled-out entry stays declared: its payment counts toward the deal's
+        # lifetime contingent_total cap, which a deleted entry would no longer bound
+        d = by.get(k)
+        if d is None or d != e:
+            fail(f"dcf_numbers.json counted a rolled-out {IPRD_DEFERRED_KEY} for {lbl(k)} "
+                 f"({(e.get('deferred_payment_of') or {}).get('deal')!r}, {_usd_exact(e.get('amount'))}) toward its "
+                 "deal's contingent_total that judgment.json "
+                 + ("no longer declares" if d is None else "now declares differently")
+                 + " — keep every rolled-out entry as declared (it bounds the deal's lifetime contingent_total cap); "
+                 "the judgment file and the engine run are out of sync: restore it, or rerun the engine")
     for k, d in by.items():
-        if k in unused:
-            fail(f"judgment.json {IPRD_DEFERRED_KEY} declares {lbl(k)} a deferred payment of "
-                 f"{d['deferred_payment_of']['deal']!r}, but that period has left the engine's window "
-                 f"({', '.join(((blk or {}).get('window') or {}).get('fy') or [])}): it no longer feeds the recurrence "
-                 "count — drop it from judgment.json and rerun the engine")
+        if k in rolled:
+            continue
         if k not in applied:
             fail(f"judgment.json {IPRD_DEFERRED_KEY} declares {lbl(k)} a deferred payment of "
                  f"{d['deferred_payment_of']['deal']!r} but the engine run did not apply it — judgment.json changed "
@@ -1168,6 +1182,15 @@ def check_iprd_unconverted(n):
     periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
     lbl = lambda p: (f"FY{p['period'][:4]}" if p.get("window") == "fy" else f"YTD to {p.get('period')}")
     uc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("expense_native")) or 0) > 0]
+    # [Codex review r4 of PR #47] a cash-only payment with no FX rate that could settle a charge: gated the same way
+    ucc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("cash_native")) or 0) > 0]
+    if ucc:
+        fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag, with "
+             "no acquired-IPR&D expense in its period, filed in a currency the engine holds no FX rate for, in "
+             + ", ".join(f"{lbl(p)} {_num(p['cash_native']):,.0f} {p.get('cash_unit')}" for p in ucc)
+             + " — it may settle a charge the window deducts in part (or one expensed before the window), so the "
+             "record's IVs, IRRs and tier may be the UNADJUSTED ones. Block the folder NEEDS_MAIN_AGENT: currency "
+             "(WORKER_SPEC step 3); it is scored once the engine can convert the payment")
     if uc:
         fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: acquired IPR&D expensed in a currency the "
              "engine holds no FX rate for, with no usable us-gaap cash fact, in "
@@ -1216,6 +1239,15 @@ def iprd_score_block(n):
     return out
 
 
+def _ads_factor(r):
+    """(' × ADS ratio r', 'ADS') when an applied ADS ratio other than 1 scales the IPR&D per-share figures, else
+    ('', 'share') — the printed equation then reproduces the engine's per-traded-unit value."""
+    r = _num(r)
+    if r is None or r <= 0 or abs(r - 1.0) < 1e-12:
+        return "", "share"
+    return f" × ADS ratio {r:g}", "ADS"
+
+
 def iprd_lines(n):
     """key_numbers.md's acquired-IPR&D section ([] when the run has no block)."""
     b = n.get("iprd_adjustment")
@@ -1255,8 +1287,10 @@ def iprd_lines(n):
                  + ("; deal and consideration: not identified by the engine — name them in analysis.md" if p.get("deducted") else ""))
     mat = b.get("materiality")
     tail = "" if one_time else f" (treatment {t}: no one-time deduction)"
+    # [Codex review r4 of PR #47] the engine's per-share figures are per traded unit (× the applied ADS ratio)
+    ads_txt, unit = _ads_factor(b.get("ads_ratio"))
     L.append(f"- Total charge: {_usd_exact(b.get('total'))} ÷ {b['shares_denominator']:,.0f} shares ({b.get('shares_source')})"
-             f" = {_money(b.get('charge_per_share'))}/share{tail}" if b.get("shares_denominator")
+             f"{ads_txt} = {_money(b.get('charge_per_share'))}/{unit}{tail}" if b.get("shares_denominator")
              else f"- Total charge: {_usd_exact(b.get('total'))} (no share denominator: not deducted)")
     L.append(f"- Treatment: {t}" + (f" · {mat * 100:.2f}% of the base OE total" if isinstance(mat, (int, float)) else "")
              + (" · material (ACQUIRED_IPRD_CHARGE)" if b.get("material")
@@ -1280,9 +1314,11 @@ def iprd_lines(n):
                  f"tier {b.get('tier_before')} → {n.get('tier_by_numbers')}")
     am = b.get("amortized") if isinstance(b.get("amortized"), dict) else None
     if am:
+        am_ads, _ = _ads_factor(am.get("ads_ratio") if "ads_ratio" in am else b.get("ads_ratio"))
         L.append(f"- Amortized in the base (iprd_amortized base_override): native base {_money(am.get('native_base_per_share'))} "
                  f"({am.get('native_base')}) − mean annual charge {_usd_exact(am.get('mean_annual_charge'))} ÷ "
-                 f"{(am.get('shares') or 0):,.0f} shares = pinned base {_money(am.get('pinned_per_share'))}; no one-time deduction")
+                 f"{(am.get('shares') or 0):,.0f} shares{am_ads} = pinned base {_money(am.get('pinned_per_share'))}; "
+                 "no one-time deduction")
     return L
 
 

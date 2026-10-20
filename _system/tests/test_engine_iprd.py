@@ -1276,15 +1276,15 @@ def test_ytd_declaration_is_refused_it_never_counts_toward_recurrence():
     _refused(out, "lands in an FY")
 
 
-def test_entry_whose_period_rolled_out_of_the_window_is_unused_not_refused():
-    """[Codex review, finding 5] An entry carried over from an earlier scoring whose period (FY2022) is now older
-    than the engine's window is neither applied nor refused: the run exits 0 and lists it in
-    deferred_payments_unused (like cash_flow_checks_unused); make_score then asks for it to be dropped. The
-    in-window entry beside it still applies."""
+def test_entry_whose_period_rolled_out_of_the_window_is_kept_not_applied_not_refused():
+    """[Codex review, finding 5; Codex review r4, #4322408940] An entry carried over from an earlier scoring whose
+    period (FY2022) is now older than the engine's window is neither applied nor refused: the run exits 0 and lists
+    it in deferred_payments_rolled_out; it stays in judgment.json (it still counts toward its deal's lifetime
+    contingent_total cap). The in-window entry beside it still applies."""
     old = deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio")
     n = _ok(_two_of_three([deferred(), old]))
     blk = n["iprd_adjustment"]
-    assert blk["deferred_payments_unused"] == [old], blk
+    assert blk["deferred_payments_rolled_out"] == [old], blk
     assert "deferred_payments_refused" not in blk and [x["period"] for x in blk["recurrence_excluded"]] == ["2025-12-31"]
     ref, unused = E.iprd_apply_deferred({"periods": [_rec("2025-12-31", 20e6)]}, [old],
                                         ["2023-12-31", "2024-12-31", "2025-12-31"], None)
@@ -1638,6 +1638,107 @@ def test_cash_only_payment_of_a_pre_window_charge_is_flagged_then_deducted_when_
     _refused(_run(maa, judgment={"iprd_deferred_payment": [deferred(period="2024-12-31", amount=30e6, first="2022-12-31",
                                                                      source=PRE_SRC, deal="Old Bio", contingent=PRE_CT)]}),
              "names no acquired-IPR&D charge")
+
+
+# --- Codex review round 4 of PR #47 -------------------------------------------------------------------------------
+def test_rolled_out_entry_stays_declared_and_counts_toward_the_lifetime_cap():
+    """[Codex review r4, #4322408940] A deferred-payment entry whose period left the window was listed in
+    deferred_payments_unused and make_score refused the score until it was DELETED from judgment.json — yet the
+    per-deal cap sums only the entries judgment.json still carries, so after the drop a later declaration could take
+    the deal's lifetime payments past its contingent_total ($60M FY2022 rolled out and dropped, then $60M FY2025
+    against $100M: $120M accepted). Now a rolled-out entry STAYS in judgment.json: the engine lists it in
+    deferred_payments_rolled_out (never applied: it feeds neither the window's deduction nor its recurrence count),
+    and it still counts toward the deal's lifetime cap — so a $60M FY2025 declaration beside it is refused, and a
+    $40M one (lifetime $100M) is accepted."""
+    cap = {"value": 100e6, "source": CT_SRC}
+    old = deferred(period="2022-12-31", amount=60e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio",
+                   contingent=cap)
+    new = deferred(amount=20e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio", contingent=cap)
+    facts = _facts(expense={2021: 8e6, 2023: 15e6, 2025: 20e6})
+    n = _ok(_run(facts, judgment={"iprd_deferred_payment": [new, old]}))
+    blk = n["iprd_adjustment"]
+    assert blk.get("deferred_payments_rolled_out") == [old] and "deferred_payments_unused" not in blk, blk
+    assert [x["period"] for x in blk["recurrence_excluded"]] == ["2025-12-31"] and not blk["recurrent"], blk
+    assert blk["total"] == 35e6, blk   # the rolled-out entry changes no deduction
+    # past the lifetime cap with the rolled-out payment kept: both entries refused
+    _refused(_run(_facts(expense={2021: 8e6, 2023: 15e6, 2025: 60e6}),
+                  judgment={"iprd_deferred_payment": [dict(new, amount=60e6), old]}),
+             "more than its contingent_total")
+    fy = ["2023-12-31", "2024-12-31", "2025-12-31"]
+    cf = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2021-01-01", "2021-12-31", 8e6)]}}}}}
+    iprd = {"periods": [_rec("2025-12-31", 40e6)]}
+    ref, rolled = E.iprd_apply_deferred(iprd, [old, dict(new, amount=40e6)], fy, cf)
+    assert ref == [] and rolled == [old] and iprd["periods"][0]["recurrence_excluded"] == "deferred_payment_of", (ref, iprd)
+
+
+def _biib_eur(native=35e6):
+    """BIIB's TTM shape (FY2025 $85M expensed, $50M paid) whose Q1 2026 10-Q files the remainder on the cash tag in
+    EUR only (a mixed-unit filer): the FX pass holds FY-end rates only, never the 10-Q's YTD end."""
+    facts = _facts(expense={2025: 85e6}, cash={2025: 50e6})
+    _syn_put(facts, CASH, "EUR", {"start": "2026-01-01", "end": "2026-03-31", "val": native, "form": "10-Q", "fp": "Q1",
+                                  "fy": 2026, "filed": "2026-04-29", "accn": "0000999001-26-000020"})
+    ttm = _ttm_doc(2.1, 100e6)
+    ttm["inputs"]["ocf"]["ytd_current_period"] = ["2026-01-01", "2026-03-31"]
+    return facts, ttm
+
+
+def _run_fx(facts, rates, extra=(), ttm=None, judgment=None):
+    fx = dict(_syn_fixture(facts, 30.0), fx_rates=rates)
+    return run("SYN", args_for(5, extra=list(extra)), judgment=with_checks(facts, judgment), ttm=ttm, fixture=fx)
+
+
+def _eur_cash_ytd(facts, val, accn):
+    _syn_put(facts, CASH, "EUR", {"start": "2026-01-01", "end": "2026-03-31", "val": val, "form": "10-Q", "fp": "Q1",
+                                  "fy": 2026, "filed": "2026-04-29", "accn": accn})
+    return facts
+
+
+def test_local_currency_cash_settlement_is_converted_at_its_own_date_or_gated():
+    """[Codex review r4, #4322408953] A cash-tag-only settlement filed in a currency the FX pass holds no rate for at
+    its date (the current-YTD 10-Q end is never in the pass's FY-end table) came back with value None, so it neither
+    settled the window's unpaid remainder nor was listed or flagged: BIIB's shape in EUR scored a $50M deduction, not
+    $85M, with no trace. Now the engine fetches the period rate for the cash leg (fx_rate, as the 5.5 intangible
+    capex leg does): EUR 35M at 1.0 settles the $35M remainder (total $85M, the USD run's figure). With no rate at
+    all, the native amount stays on the record (excluded non_usd_no_rate, cash_native) and ACQUIRED_IPRD_UNCONVERTED
+    names it (make_score refuses the score) when it could settle the window's remainder or a charge expensed before
+    the window; otherwise (nothing it could settle) it is listed in ignored_cash_only with its native amount and
+    raises nothing. The FY leg the same: a fetched rate converts, no rate gates."""
+    facts, ttm = _biib_eur()
+    n = _ok(_run_fx(facts, {"EUR": {"2026-03-31": 1.0}}, extra=["--ttm"], ttm=ttm))
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 85e6, blk["periods"]
+    y = [p for p in blk["periods"] if p["window"] == "ttm_current_ytd"][0]
+    assert y["deducted"] == 35e6 and y.get("deferred_payment") and y["fx_rate"] == 1.0, y
+    assert not flags(n, "ACQUIRED_IPRD_UNCONVERTED")
+    g = _ok(_run_fx(facts, {}, extra=["--ttm"], ttm=ttm))
+    gb = g["iprd_adjustment"]
+    y = [p for p in gb["periods"] if p["window"] == "ttm_current_ytd"]
+    assert len(y) == 1, gb
+    y = y[0]
+    assert (y["excluded"] == "non_usd_no_rate" and y.get("cash_native") == 35e6 and y["cash_unit"] == "EUR"
+            and y["deducted"] == 0), y
+    fl = flags(g, "ACQUIRED_IPRD_UNCONVERTED")
+    assert len(fl) == 1 and "YTD 2026-01-01..2026-03-31 35,000,000 EUR" in fl[0], fl
+    fy = ["2023-12-31", "2024-12-31", "2025-12-31"]
+    # a pre-window charge it may settle (no window remainder): gated too
+    pw = _eur_cash_ytd(_facts(expense={2021: 40e6, 2025: 20e6}, cash={2025: 20e6}), 30e6, "0000999001-26-000021")
+    out = E.iprd_detect(pw, fy, ytd=("2026-01-01", "2026-03-31"), fx_rates={}, checks=auto_checks(pw))
+    assert [p.get("cash_native") for p in out["periods"] if p["window"] == "ttm_current_ytd"] == [30e6], out
+    assert [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_UNCONVERTED")], E.iprd_flags(out)
+    # nothing it could settle (no remainder, no pre-window charge): listed with its native amount, no gate
+    nn = _eur_cash_ytd(_facts(expense={2025: 20e6}, cash={2025: 20e6}), 30e6, "0000999001-26-000022")
+    out = E.iprd_detect(nn, fy, ytd=("2026-01-01", "2026-03-31"), fx_rates={}, checks=auto_checks(nn))
+    assert not [p for p in out["periods"] if p["window"] == "ttm_current_ytd"], out
+    assert [(c.get("cash_native"), c["cash_unit"]) for c in out["ignored_cash_only"]] == [(30e6, "EUR")], out
+    assert not [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_UNCONVERTED")]
+    # the FY leg: FY2024 $40M expensed, $10M paid; FY2025 pays the rest as EUR 24M (x 1.25) on the cash tag alone
+    fyf = _facts(expense={2024: 40e6}, cash={2024: 10e6})
+    _syn_put(fyf, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", 24e6, filed="2026-02-20"))
+    m = _ok(_run_fx(fyf, {"EUR": {"2025-12-31": 1.25}}))
+    mb = m["iprd_adjustment"]
+    assert abs(mb["total"] - 40e6) < 1.0 and mb["fy_with_charge"] == ["2024-12-31"], mb
+    z = _ok(_run_fx(fyf, {}))
+    assert z["iprd_adjustment"]["total"] == 10e6 and flags(z, "ACQUIRED_IPRD_UNCONVERTED"), z["iprd_adjustment"]
 
 
 if __name__ == "__main__":
