@@ -2995,6 +2995,14 @@
    "tier_by_numbers": "C",
    "tier_final": "D",
    "reason": "SECTOR_MODEL_MISMATCH universal softening (Andrew's standing rule 2026-10-15, made universal 2026-10-19): a bank's OCF-based OE is not distributable earnings \u2014 loan growth consumes regulatory capital and the provision is a through-cycle cost OCF adds back ($154,500,000 in FY2025, Form 10-K cash-flow reconciliation), while FY2025 earnings also carry $139,775,000 of net purchase-accounting accretion from Heartland. The numbers tier C (weighted IRR 14.43%) already sits below the hurdle, and the identical scenario set on the filing-clean median base prints a weighted IRR of 10.67% (IV@15% $83.28) \u2014 the TTM print is the top of the defensible range, taken in a benign credit window (Q2 2026 net charge-offs 16bp). Softened one notch to D, confidence low."
+  },
+  {
+   "ticker": "EGO",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-03-27, SEC CIK 918608): the securities registered under Section 12(b) are the company's common shares, trading symbol EGO, listed directly on the New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS; company disclosure in its own releases states 'Eldorado's common shares trade on the Toronto Stock Exchange (TSX: ELD) and the New York Stock Exchange (NYSE: EGO)'",
+   "reason": "Eldorado is a direct-listed foreign private issuer: one NYSE-traded EGO share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
   }
  ]
 }
