@@ -1,0 +1,804 @@
+{
+ "ticker": "MTCH",
+ "cik": 891103,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000891103-26-000025",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/891103/000089110326000025/mtch-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000891103-26-000073",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/891103/000089110326000073/mtch-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000891103-26-000130",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/891103/000089110326000130/mtch-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtch:TinderSegmentMember",
+     "label": "Tinder Segment",
+     "values": [
+      1963610000,
+      1991137000,
+      1924711000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5836,
+      0.5723,
+      0.5519
+     ],
+     "growth_yoy": [
+      null,
+      0.014,
+      -0.0334
+     ]
+    },
+    {
+     "member": "mtch:HingeSegmentMember",
+     "label": "Hinge Segment",
+     "values": [
+      396485000,
+      550435000,
+      690872000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1178,
+      0.1582,
+      0.1981
+     ],
+     "growth_yoy": [
+      null,
+      0.3883,
+      0.2551
+     ]
+    },
+    {
+     "member": "mtch:EvergreenAndEmergingSegmentMember",
+     "label": "Evergreen And Emerging Segment",
+     "values": [
+      700925000,
+      654168000,
+      608093000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2083,
+      0.188,
+      0.1744
+     ],
+     "growth_yoy": [
+      null,
+      -0.0667,
+      -0.0704
+     ]
+    },
+    {
+     "member": "mtch:MGAsiaSegmentMember",
+     "label": "MG Asia Segment",
+     "values": [
+      303484000,
+      284522000,
+      268166000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0902,
+      0.0818,
+      0.0769
+     ],
+     "growth_yoy": [
+      null,
+      -0.0625,
+      -0.0575
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      0,
+      -889000,
+      -4645000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      -0.0003,
+      -0.0013
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3364504000,
+     3479373000,
+     3487197000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtch:TinderSegmentMember",
+     "label": "Tinder Segment",
+     "values": [
+      463416000,
+      476701000,
+      468638000,
+      469413000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5575,
+      0.5519,
+      0.5424,
+      0.5502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0113,
+      -0.0153
+     ]
+    },
+    {
+     "member": "mtch:HingeSegmentMember",
+     "label": "Hinge Segment",
+     "values": [
+      152243000,
+      167505000,
+      194497000,
+      203533000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1832,
+      0.1939,
+      0.2251,
+      0.2386
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2775,
+      0.2151
+     ]
+    },
+    {
+     "member": "mtch:EveryoneEverywhereSegmentMember",
+     "label": "Everyone Everywhere Segment",
+     "values": [
+      null,
+      220504000,
+      null,
+      181981000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.2553,
+      null,
+      0.2133
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.1747
+     ]
+    },
+    {
+     "member": "mtch:EvergreenAndEmergingSegmentMember",
+     "label": "Evergreen And Emerging Segment",
+     "values": [
+      152429000,
+      null,
+      142675000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1834,
+      null,
+      0.1651,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.064,
+      null
+     ]
+    },
+    {
+     "member": "mtch:MGAsiaSegmentMember",
+     "label": "MG Asia Segment",
+     "values": [
+      63823000,
+      null,
+      59801000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0768,
+      null,
+      0.0692,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.063,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -733000,
+      -972000,
+      -1677000,
+      -1822000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0009,
+      -0.0011,
+      -0.0019,
+      -0.0021
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     831178000,
+     863738000,
+     863934000,
+     853105000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "mtch:TinderSegmentMember",
+     "label": "Tinder Segment",
+     "values": [
+      955519000,
+      889222000,
+      832638000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0421,
+      1.0801,
+      0.9543
+     ],
+     "growth_yoy": [
+      null,
+      -0.0694,
+      -0.0636
+     ]
+    },
+    {
+     "member": "mtch:HingeSegmentMember",
+     "label": "Hinge Segment",
+     "values": [
+      74261000,
+      121482000,
+      166286000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.081,
+      0.1476,
+      0.1906
+     ],
+     "growth_yoy": [
+      null,
+      0.6359,
+      0.3688
+     ]
+    },
+    {
+     "member": "mtch:EvergreenAndEmergingSegmentMember",
+     "label": "Evergreen And Emerging Segment",
+     "values": [
+      82460000,
+      66088000,
+      63266000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0899,
+      0.0803,
+      0.0725
+     ],
+     "growth_yoy": [
+      null,
+      -0.1985,
+      -0.0427
+     ]
+    },
+    {
+     "member": "mtch:MGAsiaSegmentMember",
+     "label": "MG Asia Segment",
+     "values": [
+      -8675000,
+      -32345000,
+      6258000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0095,
+      -0.0393,
+      0.0072
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -186669000,
+      -221135000,
+      -195919000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.2036,
+      -0.2686,
+      -0.2245
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     916896000,
+     823312000,
+     872529000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "mtch:TinderSegmentMember",
+     "label": "Tinder Segment",
+     "values": [
+      193348000,
+      216968000,
+      215924000,
+      210890000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1203,
+      1.1188,
+      0.9133,
+      0.8592
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1168,
+      -0.028
+     ]
+    },
+    {
+     "member": "mtch:HingeSegmentMember",
+     "label": "Hinge Segment",
+     "values": [
+      28625000,
+      38926000,
+      56112000,
+      63094000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1659,
+      0.2007,
+      0.2373,
+      0.2571
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.9602,
+      0.6209
+     ]
+    },
+    {
+     "member": "mtch:EveryoneEverywhereSegmentMember",
+     "label": "Everyone Everywhere Segment",
+     "values": [
+      null,
+      -4659000,
+      null,
+      21001000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      -0.024,
+      null,
+      0.0856
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "mtch:EvergreenAndEmergingSegmentMember",
+     "label": "Evergreen And Emerging Segment",
+     "values": [
+      6678000,
+      null,
+      21496000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0387,
+      null,
+      0.0909,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.2189,
+      null
+     ]
+    },
+    {
+     "member": "mtch:MGAsiaSegmentMember",
+     "label": "MG Asia Segment",
+     "values": [
+      3447000,
+      null,
+      -17595000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.02,
+      null,
+      -0.0744,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -6.1044,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -59505000,
+      -57314000,
+      -39521000,
+      -49535000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3448,
+      -0.2956,
+      -0.1672,
+      -0.2018
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     172593000,
+     193921000,
+     236416000,
+     245450000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      1823492000,
+      1885762000,
+      1955292000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.542,
+      0.542,
+      0.5607
+     ],
+     "growth_yoy": [
+      null,
+      0.0341,
+      0.0369
+     ]
+    },
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1541012000,
+      1593611000,
+      1531905000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.458,
+      0.458,
+      0.4393
+     ],
+     "growth_yoy": [
+      null,
+      0.0341,
+      -0.0387
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3364504000,
+     3479373000,
+     3487197000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}
