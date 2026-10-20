@@ -1781,21 +1781,31 @@ def _v55_flags(share_scale, share_basis, pin, market_cap_basis, sbc_recon, perio
 # already went through capex / intangible purchases when it was made.
 # ResearchAndDevelopmentInProcess is the pre-2022 name of the expense tag
 # (EXEL FY2021-22 files both with equal values; BIIB FY2017-22 the old one
-# only) — read second, one value per period.
+# only) — read second, one value per period. [Codex review r8 of PR #47] When
+# both are filed for a period the positive one is read (a $0 current tag no
+# longer hides a positive legacy fact); two positive values more than $1 apart
+# are both recorded (expense_tags_conflict) and the current tag is used.
 # ---------------------------------------------------------------------------
 IPRD_EXPENSE_TAGS = ["ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff",
                      "ResearchAndDevelopmentInProcess"]
 IPRD_CASH_TAG = "PaymentsToAcquireInProcessResearchAndDevelopment"
 IPRD_MATERIALITY = 0.05      # ACQUIRED_IPRD_CHARGE fires at >= 5% of the base OE total (the deduction has no cliff)
-IPRD_OVERLAP_RATIO = 0.98    # an expense-basis charge the period's capex intangible leg already covers (>= 98%) is not deducted
+# [Codex review r8 of PR #47] an intangible capex leg >= 98% of an expense-basis charge is a note only (capex_overlap_note),
+# and the floor a declared paid_in_intangible_capex check must meet (the leg must be able to hold the charge)
+IPRD_OVERLAP_RATIO = 0.98
 IPRD_NATIVE_BASES = ("ttm_json", "median_of_last_3_fy_oe_per_share")
 # [ADDITION — fixer review round 2026-10-19, awaiting Andrew's ratification] judgment.json iprd_cash_flow_check:
 # what the 10-K's cash-flow statement shows for an EXPENSE-basis period, presentation -> excluded reason (None =
 # deducted). Without it an expense-basis period is not deducted (awaiting_cash_flow_check).
 IPRD_CF_CHECK_KEY = "iprd_cash_flow_check"
+# [Codex review r8 of PR #47] paid_in_intangible_capex: the payment sits inside an intangible-purchase line the
+# engine sums into capex (PaymentsToAcquireIntangibleAssets & co., the line cited), so OE already charged it — the only
+# way an expense-basis period is excluded already_in_capex (before, a capex intangible leg >= 98% of the charge was
+# taken as overlap by size alone, ahead of the check).
 IPRD_CF_PRESENTATIONS = {"added_back_paid_in_investing": None,
                          "inside_operating_cash_flow": "paid_in_operating_cash_flow",
-                         "paid_in_shares": "paid_in_shares"}
+                         "paid_in_shares": "paid_in_shares",
+                         "paid_in_intangible_capex": "already_in_capex"}
 IPRD_AWAITING = "awaiting_cash_flow_check"
 IPRD_CHECK_WINDOWS = ("fy", "ttm_current_ytd")
 # [Codex review r3 of PR #47] a positive expense filed only in a currency the FX pass holds no rate for, with no
@@ -1806,14 +1816,27 @@ IPRD_CHECK_WINDOWS = ("fy", "ttm_current_ytd")
 IPRD_UNCONVERTED = "non_usd_no_rate"
 
 
+def iprd_date_ok(s):
+    """[Codex review r8 of PR #47] True for a real calendar date written YYYY-MM-DD: the shape alone let "2020-99-99"
+    through, which sorts before any window and, on a deferred entry, was kept rolled out and counted toward its deal's
+    lifetime cap."""
+    if not (isinstance(s, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", s)):
+        return False
+    try:
+        datetime.date.fromisoformat(s)
+    except ValueError:
+        return False
+    return True
+
+
 def iprd_cash_flow_check_entry_ok(e):
     """True for a well-formed judgment.json iprd_cash_flow_check entry {period: "YYYY-MM-DD", window: "fy" |
     "ttm_current_ytd", amount: > 0 (the period's expense figure), presentation: one of IPRD_CF_PRESENTATIONS,
-    source: non-empty (the filing and the cash-flow line)}."""
+    source: non-empty (the filing and the cash-flow line)}; the period a real date (iprd_date_ok)."""
     if not isinstance(e, dict):
         return False
     p, a = e.get("period"), e.get("amount")
-    return bool(isinstance(p, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p) and e.get("window") in IPRD_CHECK_WINDOWS
+    return bool(iprd_date_ok(p) and e.get("window") in IPRD_CHECK_WINDOWS
                 and isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a) and a > 0
                 and e.get("presentation") in IPRD_CF_PRESENTATIONS
                 and isinstance(e.get("source"), str) and e["source"].strip())
@@ -1874,18 +1897,18 @@ def iprd_deferred_entry_ok(e):
     (0001234567-YY-NNNNNN) and the section / page showing the contingent milestone or deferred consideration,
     contingent_total: {value, source} (the deal's cap: iprd_contingent_total_ok)}}.
     A current-YTD leg is never in the recurrence count (FY periods only), so window "ttm_current_ytd" is refused:
-    declare the charge once it lands in an FY."""
+    declare the charge once it lands in an FY. [Codex review r8 of PR #47] period and first_charged_period must be
+    real dates (iprd_date_ok), so an impossible one is malformed, never kept rolled out or counted toward the cap."""
     if not isinstance(e, dict):
         return False
     p, a, d = e.get("period"), e.get("amount"), e.get("deferred_payment_of")
-    if not (isinstance(p, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p) and e.get("window") in IPRD_DEFERRED_WINDOWS
+    if not (iprd_date_ok(p) and e.get("window") in IPRD_DEFERRED_WINDOWS
             and isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a) and a > 0
             and isinstance(d, dict)):
         return False
     f = d.get("first_charged_period")
     return bool(isinstance(d.get("deal"), str) and d["deal"].strip()
-                and isinstance(f, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", f)
-                and _cited(d.get("source")) and iprd_contingent_total_ok(d.get("contingent_total")))
+                and iprd_date_ok(f) and _cited(d.get("source")) and iprd_contingent_total_ok(d.get("contingent_total")))
 
 
 def _contingent_key(c):
@@ -2253,8 +2276,10 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     cash-only period is no record here; iprd_detect counts one only as a deferred payment). `deducted` is what the
     window total counts: the cash outflow when filed, else the expense once the cash-flow check says it was added
     back and paid in investing — 0 when excluded (`negative`, `non_usd_no_rate`, `already_in_capex`: an
-    expense-basis amount the period's capex intangible leg already charged to OE, >= 98% of it;
-    `awaiting_cash_flow_check`: an expense-basis amount no check confirms; `paid_in_operating_cash_flow` /
+    expense-basis amount the check declares paid inside an intangible-purchase line the engine sums into capex
+    (paid_in_intangible_capex) — [Codex review r8 of PR #47] never inferred from the leg's size, which is only a
+    capex_overlap_note, and not applied (still awaiting) when the period's capex intangible leg is under 98% of the
+    charge; `awaiting_cash_flow_check`: an expense-basis amount no check confirms; `paid_in_operating_cash_flow` /
     `paid_in_shares`: what the check says). A negative cash fact beside a positive expense is a sign error: the
     period falls back to the expense (cash_sign_note). [Codex review r1 of PR #47] An expense with no FX rate still
     detects the charge by its native sign: a usable cash fact (USD, or converted) is then the amount; with none the
@@ -2318,13 +2343,27 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     if amt < 0:
         rec["excluded"] = "negative"
         return rec
-    if basis == "expense" and capex_intang and capex_intang >= IPRD_OVERLAP_RATIO * amt:
-        rec["excluded"] = "already_in_capex"
-        rec["capex_intangibles"] = capex_intang
-        return rec
     if basis == "expense":
+        covers = bool(capex_intang and capex_intang >= IPRD_OVERLAP_RATIO * amt)
+        if covers and (check is None or check.get("presentation") != "paid_in_intangible_capex"):
+            # [Codex review r8 of PR #47] the intangible leg sums general-purpose tags (patents, licences, software):
+            # its size alone never shows it holds this charge — a note for the worker, not an exclusion
+            rec["capex_overlap_note"] = (f"the period's capex intangible leg ({capex_intang:,.0f}) is at least "
+                                         f"{IPRD_OVERLAP_RATIO:.0%} of this charge: if the payment sits inside that "
+                                         f"intangible-purchase line, declare {IPRD_CF_CHECK_KEY} presentation "
+                                         "paid_in_intangible_capex (the line cited) — not inferred from the size")
         # [fixer review round] companyfacts cannot tell an expense added back in OCF and paid in investing (HALO)
         # from one paid inside OCF (NBIX): only the worker's reading of the cash-flow statement decides
+        if check is not None and check.get("presentation") == "paid_in_intangible_capex" and not covers:
+            # [Codex review r8 of PR #47] the check says OE already charged the payment through the intangible capex
+            # leg, but the leg the engine summed for this period does not hold it: not applied, still gated
+            rec["cash_flow_check_mismatch"] = {
+                "declared_amount": check.get("amount"),
+                "note": (f"judgment.json {IPRD_CF_CHECK_KEY} declares paid_in_intangible_capex, but the engine's capex "
+                         f"intangible leg for this period is {float(capex_intang or 0):,.0f}, under "
+                         f"{IPRD_OVERLAP_RATIO:.0%} of the charge: the payment is not in the capex OE carries — "
+                         "not applied")}
+            check = None
         if check is None:
             rec["excluded"] = IPRD_AWAITING
             rec["awaiting"] = float(amt)
@@ -2333,6 +2372,8 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
         why = IPRD_CF_PRESENTATIONS[check["presentation"]]
         if why:
             rec["excluded"] = why
+            if why == "already_in_capex":
+                rec["capex_intangibles"] = capex_intang
             return rec
     rec["deducted"] = float(amt)
     return rec
@@ -2378,18 +2419,35 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         by_key.setdefault((e.get("period"), e.get("window")), e)
     used = set()
     unpaid = [0.0]   # the window's accrued, not yet paid remainder of cash-basis charges
+    # [Codex review r8 of PR #47] window periods whose expense the run could not convert (no rate, even fetched) but
+    # whose USD cash was deducted: their unpaid remainder is unknown, so later cash on them is gated, never ignored
+    unknown_rest = []
 
     def _by(d, p):
         return {u: vf for (pp, u), vf in d.items() if pp == p}
 
     def _resolve(p, window, exp_maps, cash_map, intang):
-        expense = None
+        hits = []
         for tag, by_unit in exp_maps:
             hit = _iprd_pick(by_unit, fx_rates, p)
+            if hit is not None and hit[0] is None and fx_fetch is not None:
+                # [Codex review r8 of PR #47] the FX pass holds rates for its own series' dates only: fetch the
+                # expense period's rate, as for the cash leg (round 4) — an unconverted expense accrues no remainder
+                r = fx_fetch(hit[1], p)
+                if r is not None:
+                    hit = (float(by_unit[hit[1]][0]) * r, hit[1], r, hit[3])
             if hit is not None:
                 # [Codex review r1 of PR #47] the native figure rides along for an expense with no FX rate
-                expense = (tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None)
-                break
+                hits.append((tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None))
+        _ev = lambda h: h[1] if h[1] is not None else h[5]
+        _pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+        # [Codex review r8 of PR #47] both detector tags filed: the positive one (the current tag first), so a $0
+        # current-tag fact never hides a positive legacy one
+        expense = next((h for h in hits if _pos(_ev(h))), hits[0] if hits else None)
+        conflict = None
+        pos_hits = [h for h in hits if _pos(_ev(h))]
+        if len(pos_hits) > 1 and max(_ev(h) for h in pos_hits) - min(_ev(h) for h in pos_hits) > 1.0:
+            conflict = {h[0]: float(_ev(h)) for h in pos_hits}
         c = _iprd_pick(cash_map, fx_rates, p)
         if c is not None and c[0] is None and fx_fetch is not None:
             # [Codex review r4 of PR #47] the FX pass holds rates for its own series' dates only: fetch this one
@@ -2405,6 +2463,11 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             else:
                 chk, mismatch = None, chk
         rec = iprd_period_record(p, window, expense, cash, intang, chk)
+        if rec is not None and conflict is not None:
+            rec["expense_tags_conflict"] = conflict
+            rec["expense_tags_note"] = ("both acquired-IPR&D expense tags are filed for this period with different "
+                                        "positive values: the current tag " + expense[0] + " is used — reconcile "
+                                        "the two in analysis.md against the filing")
         if rec is not None and mismatch is not None:
             rec["cash_flow_check_mismatch"] = {"declared_amount": mismatch.get("amount"),
                                                "note": "judgment.json iprd_cash_flow_check names this period with "
@@ -2433,8 +2496,28 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                                       "charge and nothing in the window it could settle"})
             return rec
         if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
+                and rec["expense"] is None and isinstance(rec.get("expense_native"), (int, float))
+                and rec["expense_native"] > 0):
+            unknown_rest.append(p)
+        if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
                 and isinstance(rec["expense"], (int, float)) and rec["expense"] > 0):
             unpaid[0] = max(0.0, unpaid[0] + rec["expense"] - rec["amount"])
+        elif (cv is not None and cv > 0 and unknown_rest and p not in unknown_rest
+              and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
+            # [Codex review r8 of PR #47] cash with no expense in its period, after a charge whose USD remainder is
+            # unknown: it may settle that charge, so it is gated (ACQUIRED_IPRD_UNCONVERTED), never left in
+            # ignored_cash_only or taken as a deferred payment of the known remainder alone
+            if rec is None:
+                rec = {"period": p, "window": window, "expense_tag": None, "expense": None, "expense_unit": None,
+                       "amount": None, "amount_basis": None, "tag_used": None, "fx_rate": None, "filed": cash[3]}
+            rec.update(cash=float(cv), cash_unit=cash[1], excluded=IPRD_UNCONVERTED, deducted=0.0,
+                       cash_native=float(cv), unconverted_remainder_of=list(unknown_rest),
+                       cash_fx_note=(f"cash tag {float(cv):,.0f} {cash[1]} with no acquired-IPR&D expense in this "
+                                     "period, after an acquired-IPR&D charge in "
+                                     + ", ".join(unknown_rest) + " filed in a currency with no FX rate (even "
+                                     "fetched): that charge's unpaid remainder is unknown in USD, so this payment "
+                                     "may settle it — not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
+            return rec
         elif (cv is not None and cv > 0 and unpaid[0] > 0
               and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
             take = min(float(cv), unpaid[0])
@@ -2526,7 +2609,19 @@ def iprd_flags(iprd):
     ucc = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED
            and isinstance(p.get("cash_native"), (int, float)) and p["cash_native"] > 0]
     ucx = [p for p in ucc if isinstance(p.get("expense"), (int, float)) and p["expense"] > 0]
-    ucc = [p for p in ucc if p not in ucx]
+    ucr = [p for p in ucc if p not in ucx and p.get("unconverted_remainder_of")]
+    ucc = [p for p in ucc if p not in ucx and p not in ucr]
+    if ucr:
+        # [Codex review r8 of PR #47] cash after a charge whose expense the run could not convert: its remainder is
+        # unknown in USD, so the payment may settle it — gated, never left in ignored_cash_only
+        out.append("ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag (" + IPRD_CASH_TAG + "), with "
+                   "no acquired-IPR&D expense in its period, after a charge expensed in a currency the run holds no FX "
+                   "rate for (none fetched either), so that charge's unpaid remainder is unknown in USD — "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['cash_native']:,.0f} {p.get('cash_unit')} (after "
+                               + ", ".join(f"FY{q[:4]}" for q in p["unconverted_remainder_of"]) + ")" for p in ucr)
+                   + ". NOTHING is deducted for it, so the run's IVs, IRRs and tier may be UNADJUSTED: make_score "
+                   "refuses the score — NEEDS_MAIN_AGENT: currency (block the folder; it is scored once the run can "
+                   "convert the charge)")
     if ucx:
         # [Codex review r6 of PR #47] the period's preferred amount (its cash outflow) cannot be converted: gated, the
         # expense never stands in for it

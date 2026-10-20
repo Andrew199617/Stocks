@@ -461,8 +461,8 @@ def test_deferred_payment_scores_and_shows_the_excluded_period():
     """judgment.json iprd_deferred_payment declaring FY2025's whole $20M charge the FY2023 deal's milestone: the
     record scores; score.json iprd_adjustment carries recurrence_excluded (the excluded period, its deal and first
     charge) and the period's deferred_payment_of; key_numbers.md says on the period line and on its own line that
-    FY2025 is excluded from the recurrence count but still deducted; recurrent is false; no registry event (it
-    records what the filing shows, like iprd_cash_flow_check)."""
+    FY2025 is excluded from the recurrence count but still deducted; recurrent is false; [Codex review r8] the
+    registry gains one iprd_deferred_payment event for the deal (its lifetime record) and nothing else IPR&D."""
     d = TI.deferred()
     n = _deferred_run("ms_def_whole", [d])
     r = _score(n, _j(iprd_deferred_payment=[d]))
@@ -480,7 +480,9 @@ def test_deferred_payment_scores_and_shows_the_excluded_period():
     assert ("- Excluded from the recurrence count (judgment.json iprd_deferred_payment — a deferred payment of a deal "
             "first charged earlier; still deducted): FY2025 $20,000,000 — Test Bio, first charged 2023-12-31") in key, key
     assert "recurrent (ACQUIRED_IPRD_RECURRENT)" not in key
-    assert not [e for e in r.result["entries"] if "iprd" in json.dumps(e)], r.result["entries"]
+    iprd_entries = [e for e in r.result["entries"] if "iprd" in json.dumps(e)]
+    assert [(e.get("event"), e.get("deal"), e.get("paid_to_date"), e.get("periods")) for e in iprd_entries] == [
+        ("iprd_deferred_payment", "Test Bio", 20e6, [{"period": "2025-12-31", "amount": 20e6}])], iprd_entries
 
 
 def test_partly_deferred_period_is_shown_and_still_counts():
@@ -841,6 +843,90 @@ def test_iprd_equations_carry_the_ads_ratio():
     one = dict(blk, treatment="one_time_value_deduction", ads_ratio=1.0, charge_per_share=1.0, amortized=None)
     tot1 = [x for x in M.iprd_lines({"iprd_adjustment": one}) if x.startswith("- Total charge")][0]
     assert tot1 == "- Total charge: $100,000,000 ÷ 100,000,000 shares (diluted_latest) = $1.00/share", tot1
+
+
+# --- Codex review round 8 of PR #47 -------------------------------------------------------------------------------
+def _score_reg(n, j, registry_entries=None):
+    """_score with the registry seeded first (registry_entries: what an earlier make_score run left there)."""
+    m = copy.deepcopy(n)
+    m["ticker"] = "TST"
+    r = Run(m, _with_applied(n, j))
+    if registry_entries is not None:
+        with open(r.registry, "w", encoding="utf-8") as f:
+            json.dump({"entries": registry_entries}, f)
+    r = r.run()
+    try:
+        r.result = dict(r.state(), score=r.score() if r.rc == 0 else None, entries=r.entries())
+    finally:
+        r.close()
+    return r
+
+
+def _r8_cases():
+    def go():
+        cap = {"value": 100e6, "source": TI.CT_SRC}
+        old = TI.deferred(period="2022-12-31", amount=60e6, first="2021-12-31", source=TI.OK_SRC_2021, deal="Old Bio",
+                          contingent=cap)
+        new = TI.deferred(amount=60e6, first="2021-12-31", source=TI.OK_SRC_2021, deal="Old Bio", contingent=cap)
+        facts = TI._facts(expense={2021: 8e6, 2023: 15e6, 2025: 60e6})
+        runs = {"old": [old], "new": [new], "none": None, "both": [old, dict(new, amount=40e6)]}
+        out = {}
+        for k, entries in runs.items():
+            out[k] = TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": entries} if entries else None))
+        return cap, old, new, out
+    return TI._cached("ms_r8_lifetime", go)
+
+
+def test_deferred_payments_are_recorded_and_deleting_one_cannot_reopen_the_cap():
+    """[Codex review r8, #4323410481] The lifetime contingent_total cap summed only what judgment.json declared NOW:
+    with a rolled-out $60M FY2022 Old Bio milestone deleted and the engine rerun, nothing remembered it, and a later
+    $60M FY2025 Old Bio declaration against a $100M contingent_total scored ($120M in all, FY2025 kept out of the
+    recurrence count). make_score now records each deal's cumulative declared deferred amount as a registry event
+    (iprd_deferred_payment: deal, contingent_total, paid_to_date, first_charged_period, periods) carried across runs,
+    refuses a run whose declarations for a deal sum to less than the recorded paid_to_date (a deleted or shrunk
+    entry), and caps max(declared on recorded periods, paid_to_date) + new periods' amounts at the contingent_total."""
+    cap, old, new, n = _r8_cases()
+    assert n["new"]["iprd_adjustment"]["recurrence_excluded"], n["new"]["iprd_adjustment"]   # the engine alone accepts it
+    r = _score_reg(n["old"], _j(iprd_deferred_payment=[old]))
+    assert r.rc == 0, r.err[-800:]
+    ev = [e for e in r.result["entries"] if e.get("event") == "iprd_deferred_payment"]
+    assert len(ev) == 1, r.result["entries"]
+    assert (ev[0]["deal"], ev[0]["first_charged_period"], ev[0]["contingent_total"], ev[0]["paid_to_date"],
+            ev[0]["periods"]) == ("Old Bio", "2021-12-31", cap, 60e6, [{"period": "2022-12-31", "amount": 60e6}]), ev
+    reg = r.result["entries"]
+    # unchanged rerun: the event is carried as it was (its first date kept)
+    r2 = _score_reg(n["old"], _j(iprd_deferred_payment=[old]), reg)
+    assert r2.rc == 0 and [e for e in r2.result["entries"] if e.get("event") == "iprd_deferred_payment"] == ev, r2.err[-600:]
+    # deleted, engine rerun: refused (the registry still holds the paid amount)
+    r3 = _score_reg(n["none"], _j(), reg)
+    assert r3.rc == 1 and "paid_to_date" in r3.err and "Old Bio" in r3.err, r3.err[-800:]
+    assert r3.result["entries"] == reg, "a refusal rewrote the registry"
+    # deleted and replaced by a new $60M declaration: past the lifetime cap ($60M recorded + $60M > $100M)
+    r4 = _score_reg(n["new"], _j(iprd_deferred_payment=[new]), reg)
+    assert r4.rc == 1 and "contingent_total" in r4.err and "Old Bio" in r4.err, r4.err[-800:]
+    # kept, plus $40M in the window: the lifetime $100M is within the cap and recorded
+    r5 = _score_reg(n["both"], _j(iprd_deferred_payment=[old, dict(new, amount=40e6)]), reg)
+    assert r5.rc == 0, r5.err[-800:]
+    ev5 = [e for e in r5.result["entries"] if e.get("event") == "iprd_deferred_payment"]
+    assert ev5[0]["paid_to_date"] == 100e6 and ev5[0]["periods"] == [{"period": "2022-12-31", "amount": 60e6},
+                                                                     {"period": "2025-12-31", "amount": 40e6}], ev5
+    # a shrunk entry: the declarations sum below the recorded paid_to_date
+    r6 = _score_reg(n["old"], _j(iprd_deferred_payment=[old]), ev5)
+    assert r6.rc == 1 and "paid_to_date" in r6.err, r6.err[-800:]
+
+
+def test_validate_deferred_refuses_an_impossible_date():
+    """[Codex review r8, #4323410495] make_score's shape check parses each period and first_charged_period: an
+    impossible date ("2020-99-99", "2021-02-30") is malformed."""
+    import make_score as M
+    d = TI.deferred()
+    for bad in (dict(d, period="2020-99-99"),
+                dict(d, deferred_payment_of=dict(d["deferred_payment_of"], first_charged_period="2021-02-30"))):
+        try:
+            M.validate_iprd_deferred_payment({"iprd_deferred_payment": [bad]})
+        except SystemExit:
+            continue
+        raise AssertionError(f"accepted {bad!r}")
 
 
 if __name__ == "__main__":

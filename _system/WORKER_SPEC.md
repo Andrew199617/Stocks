@@ -49,7 +49,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      never applies it (no deduction, no recurrence effect), and still counts its amount toward the deal's
      lifetime `contingent_total` cap; make_score refuses a run whose rolled-out entry judgment.json no longer
      declares (Codex review round 4 of PR #47) — also when the window holds no acquired-IPR&D charge at all
-     (a minimal `deferred_payments_only` block; Codex review round 5). Write the new analysis.md as a
+     (a minimal `deferred_payments_only` block; Codex review round 5) — and, since Codex review round 8, whatever
+     the engine run: the registry's `iprd_deferred_payment` event keeps each deal's paid_to_date and every period
+     ever declared, so declarations summing below it are refused. Write the new analysis.md as a
      dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
@@ -123,7 +125,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    development expense" added back, "Acquisition of in-process research and development" in investing —
    deducted), `inside_operating_cash_flow` when there is no add-back (NBIX FY2023–25 — the cash went out
    through OCF, which OE already carries; not deducted), `paid_in_shares` when it was added back as a non-cash
-   stock payment with no investing outflow (the dilution is in the share count; not deducted). Rerun the
+   stock payment with no investing outflow (the dilution is in the share count; not deducted),
+   `paid_in_intangible_capex` when the payment sits inside an intangible-purchase line the engine sums into capex
+   (`PaymentsToAcquireIntangibleAssets` and the like — cite that line; OE already charged it: excluded
+   `already_in_capex`, and not applied, the period still gated, when the run's capex intangible leg for the period
+   is under 98% of the charge — Codex review round 8 of PR #47: the engine no longer infers this from the leg's
+   size, which only adds a `capex_overlap_note` asking you to look). Rerun the
    engine; quote the line in analysis.md. Never guess: a filing you cannot read is `NEEDS_MAIN_AGENT:
    iprd — cash-flow presentation unknown: <period> <amount>`.
    `ACQUIRED_IPRD_UNCONVERTED` (Codex review round 3 of PR #47): the charge was expensed only in a currency the
@@ -137,7 +144,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <native amount and currency>`. So does
    (Codex review round 6 of PR #47) a period's cash outflow beside a positive expense when that cash fact cannot
    be converted: the cash is the preferred amount, so the expense never stands in for it and nothing is
-   deducted for the period — block the folder the same way. While the folder is blocked, reprice.py and the site
+   deducted for the period — block the folder the same way. So does (Codex review round 8 of PR #47) a later cash
+   payment, with no expense in its period, after a charge expensed in a currency with no rate (the engine first
+   fetches the expense period's rate; with none it deducts that period's USD cash but cannot know what is still
+   unpaid): the period carries `unconverted_remainder_of` — block it the same way. While the folder is blocked, reprice.py and the site
    never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`).
    `ACQUIRED_IPRD_CHARGE`: in-process R&D bought in
    an asset acquisition was expensed in the base window (ASC 805) — the expense is added back in OCF and
@@ -179,8 +189,14 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    original filing: an 8-K or 10-Q of that fiscal year, or the 10-K that closes it), inside or before the
    window, so the entry survives the first charge rolling out; entries summing past the period's charge; a
    missing or malformed `contingent_total`; one deal's entries carrying different `contingent_total` values (or
-   sources); and one deal's declared amounts, summed across every entry in judgment.json (a rolled-out one
-   included), exceeding its `contingent_total`. Never declare a new deal (another counterparty or asset) as an
+   sources); one deal's declared amounts, summed across every entry in judgment.json (a rolled-out one
+   included), exceeding its `contingent_total`; and (Codex review round 8 of PR #47) a `period` or
+   `first_charged_period` that is not a real date. make_score also records each deal's lifetime in the registry
+   (`iprd_deferred_payment` event: paid_to_date and every period ever declared) and refuses a run whose
+   declarations for the deal sum below that paid_to_date (an entry deleted or shrunk) or whose lifetime —
+   max(the declarations on recorded periods, paid_to_date) + newly declared periods — passes the contingent_total.
+   If both expense tags are filed for a period with different positive values the engine uses the current tag and
+   records both (`expense_tags_conflict`): reconcile them in analysis.md against the filing. Never declare a new deal (another counterparty or asset) as an
    installment, and never overstate `contingent_total`: it is the contingent consideration the filing
    discloses for that deal, and a payment past it is a second purchase, a second charge.
    `ACQUIRED_IPRD_UNMATCHED_PAYMENT` (Codex review round 3 of PR #47): a payment on the cash tag with no

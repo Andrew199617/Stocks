@@ -165,13 +165,20 @@ round 5 of PR #47: a run whose window holds no charge but which has such declara
 override-impact replay only, `deferred_payments_refused`) — which deducts nothing, raises no flag, reads as no charge
 in reprice.py / build_site.py / the app, and is not copied to score.json; else `periods` — `period`, `window`, `amount`, `amount_basis`,
 `tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source} on an
-expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved, `deferred_payment` (a note) on cash
+expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved (Codex review round 8 of PR #47:
+presentation `paid_in_intangible_capex` is the only way to `excluded` `already_in_capex`; an intangible capex leg at
+least 98% of the charge otherwise only adds the string `capex_overlap_note`), `expense_tags_conflict` {tag: value} +
+`expense_tags_note` when both detector tags carry different positive values (round 8; the current tag is used),
+`unconverted_remainder_of` (period ends) on a cash payment gated `non_usd_no_rate` after a charge expensed in a
+currency with no FX rate (round 8; its `cash_native` is that payment), `deferred_payment` (a note) on cash
 that settles an earlier window charge, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
 deal) with `recurrence_excluded`
 ("deferred_payment_of", when the deals sum to the whole charge) on an FY period judgment.json
 `iprd_deferred_payment` declared — and, only when the run had such declarations, the list `recurrence_excluded`
-(one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_rolled_out` (Codex review round 4 of PR #47: entries whose period left the window, kept in judgment.json and counted toward the deal's cap; was `deferred_payments_unused`), `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
+(one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_rolled_out` (Codex review round 4 of PR #47: entries whose period left the window, kept in judgment.json and counted toward the deal's cap; was `deferred_payments_unused`; Codex review round 8: each
+deal's lifetime is also a `record.registry` event `iprd_deferred_payment` {deal, first_charged_period,
+`contingent_total`, `paid_to_date`, `periods`}, rendered like any other judgment-call event), `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
 `charge_per_share`, `materiality`, `material`, `recurrent`, `treatment`, `before` — the unadjusted IVs and IRRs —,
 `after`, `amortized`), `score` gains
 `iprd_adjustment` when the run recorded one (`treatment`, `total`, `unconfirmed_total`, `charge_per_share`, `shares_denominator`,

@@ -304,8 +304,15 @@ value adjustment):
   deferred, still counts, plus one "Excluded from the recurrence count" line,
   naming each first charge by its date. The deduction is unchanged (except
   a declared cash-tag-only payment of a charge expensed before the window,
-  which the engine then deducts — Codex review round 3 of PR #47). Not a
-  registry event, like iprd_cash_flow_check: it records what the filing shows.
+  which the engine then deducts — Codex review round 3 of PR #47). [Codex
+  review round 8 of PR #47] Each deal's cumulative declared deferred amount
+  IS a registry event (`iprd_deferred_payment`: deal, contingent_total,
+  paid_to_date, first_charged_period, periods), carried across runs — the
+  prior events are read before the wholesale replace and merged — and
+  make_score refuses a run whose declarations for a recorded deal sum to less
+  than its paid_to_date (an entry deleted or shrunk, even with the engine
+  rerun) or whose lifetime (max(the declarations on recorded periods,
+  paid_to_date) + newly declared periods) exceeds the contingent_total.
 - [Codex review round 3 of PR #47] A period excluded `non_usd_no_rate`
   beside a positive `expense_native` (ACQUIRED_IPRD_UNCONVERTED: a detected
   charge the engine could not convert, so nothing was deducted) is refused,
@@ -1089,6 +1096,84 @@ def check_iprd_deferred_payment(n, entries):
                  "BAD_IPRD_DEFERRED_PAYMENT)")
 
 
+IPRD_DEFERRED_EVENT = "iprd_deferred_payment"   # [Codex review r8 of PR #47] the registry event (one per deal)
+
+
+def registry_prior_entries(ticker):
+    """[Codex review r8 of PR #47] The registry entries an earlier make_score run left for this ticker ([] when the
+    registry does not exist yet). An unreadable registry is refused: the deferred-payment record it carries is the only
+    memory of a deal's paid milestones (and update_registry would otherwise rewrite it empty)."""
+    if not os.path.exists(REGISTRY):
+        return []
+    try:
+        with open(REGISTRY, encoding="utf-8") as f:
+            reg = json.load(f)
+    except (OSError, ValueError) as ex:
+        fail(f"{REGISTRY} is unreadable ({type(ex).__name__}: {ex}) — it carries the lifetime record of every deal's "
+             f"declared deferred payments ({IPRD_DEFERRED_EVENT} events); restore it from git before scoring")
+    return [e for e in (reg.get("entries") if isinstance(reg, dict) else None) or []
+            if isinstance(e, dict) and e.get("ticker") == ticker]
+
+
+def iprd_deferred_lifetime(ticker, entries, prior):
+    """[Codex review r8 of PR #47] The durable lifetime contingent_total cap. entries: judgment.json
+    iprd_deferred_payment as validated (or None); prior: this ticker's registry entries from earlier runs. Returns the
+    registry events this run records, one per deal ({deal, first_charged_period, contingent_total, paid_to_date,
+    periods [{period, amount}]}: every period ever declared, carried), or refuses:
+      * a deal the registry recorded whose declarations now sum to LESS than its recorded paid_to_date — a deleted or
+        shrunk entry (deleting history must not reopen the cap: before, the cap summed only what judgment.json held
+        NOW, so a rolled-out $60M payment deleted and the engine rerun let a later $60M declaration pass a $100M
+        contingent_total);
+      * a deal whose lifetime — max(the declarations on recorded periods, the recorded paid_to_date) + the
+        declarations on periods never recorded — exceeds its declared contingent_total."""
+    rec = {}
+    for e in prior or []:
+        if e.get("event") == IPRD_DEFERRED_EVENT and isinstance(e.get("deal"), str):
+            rec.setdefault(_engine._deal_key(e["deal"]), []).append(e)
+    decl = {}
+    for e in entries or []:
+        decl.setdefault(_engine._deal_key(e["deferred_payment_of"]["deal"]), []).append(e)
+    events = []
+    for k in sorted(set(rec) | set(decl)):
+        r_es, es = rec.get(k, []), decl.get(k, [])
+        r_periods = {}
+        for r in r_es:
+            for x in r.get("periods") or []:
+                a = _num(x.get("amount")) if isinstance(x, dict) else None
+                if a is not None and isinstance(x.get("period"), str):
+                    r_periods[x["period"]] = max(r_periods.get(x["period"], 0.0), a)
+        paid = max([_num(r.get("paid_to_date")) or 0.0 for r in r_es] + [sum(r_periods.values())]) if r_es else 0.0
+        name = es[0]["deferred_payment_of"]["deal"] if es else r_es[0]["deal"]
+        d_periods = {e["period"]: float(e["amount"]) for e in es}
+        ds = sum(d_periods.values())
+        rec_txt = ", ".join(f"FY{q[:4]} {_usd_exact(v)}" for q, v in sorted(r_periods.items()))
+        if r_es and (not es or ds < paid - 1.0):
+            fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {name!r} "
+                 + ("is no longer declared" if not es else f"is declared for {_usd_exact(ds)} in all")
+                 + f", but the registry recorded a paid_to_date of {_usd_exact(paid)} for it ({REGISTRY} event "
+                 f"{IPRD_DEFERRED_EVENT}: {rec_txt}) — an entry was deleted or shrunk. A paid milestone counts toward "
+                 "the deal's lifetime contingent_total for good: restore the entries (WORKER_SPEC step 3)")
+        on_rec = sum(v for q, v in d_periods.items() if q in r_periods)
+        new = sum(v for q, v in d_periods.items() if q not in r_periods)
+        lifetime = max(on_rec, paid) + new
+        ct = es[0]["deferred_payment_of"]["contingent_total"]
+        cap = float(ct["value"])
+        if lifetime > cap + 1.0:
+            fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {name!r}: its lifetime deferred payments — "
+                 f"{_usd_exact(max(on_rec, paid))} on the periods the registry recorded ({rec_txt or 'none'}) + "
+                 f"{_usd_exact(new)} newly declared = {_usd_exact(lifetime)} — exceed its contingent_total "
+                 f"{_usd_exact(cap)} (the unrecognized milestones / deferred consideration its source discloses): a "
+                 "payment past it is a second purchase, a second charge")
+        merged = dict(r_periods)
+        merged.update(d_periods)
+        events.append({"ticker": ticker, "event": IPRD_DEFERRED_EVENT, "deal": name,
+                       "first_charged_period": es[0]["deferred_payment_of"]["first_charged_period"],
+                       "contingent_total": {"value": cap, "source": ct["source"]},
+                       "paid_to_date": lifetime,
+                       "periods": [{"period": q, "amount": v} for q, v in sorted(merged.items())]})
+    return events
+
+
 def check_iprd_amortized_ttm_current(folder, n):
     """[fixer review round] An iprd_amortized base on native_base ttm_json IS
     ttm.json's TTM base less the amortization: refuse it when ttm.json moved
@@ -1192,7 +1277,18 @@ def check_iprd_unconverted(n):
     # [Codex review r6 of PR #47] the same for an unconvertible cash outflow beside a positive expense: the cash is the
     # preferred amount, so the expense never stands in for it
     ucx = [p for p in ucc if (_num(p.get("expense")) or 0) > 0]
-    ucc = [p for p in ucc if p not in ucx]
+    # [Codex review r8 of PR #47] cash after a charge expensed in a currency with no rate: its remainder is unknown
+    ucr = [p for p in ucc if p not in ucx and p.get("unconverted_remainder_of")]
+    ucc = [p for p in ucc if p not in ucx and p not in ucr]
+    if ucr:
+        fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag, with "
+             "no acquired-IPR&D expense in its period, after a charge expensed in a currency the engine holds no FX "
+             "rate for, in "
+             + ", ".join(f"{lbl(p)} {_num(p['cash_native']):,.0f} {p.get('cash_unit')} (after "
+                         + ", ".join(f"FY{str(q)[:4]}" for q in p["unconverted_remainder_of"]) + ")" for p in ucr)
+             + " — that charge's unpaid remainder is unknown in USD, so the payment may settle it and the record's "
+             "IVs, IRRs and tier may be the UNADJUSTED ones. Block the folder NEEDS_MAIN_AGENT: currency (WORKER_SPEC "
+             "step 3); it is scored once the engine can convert the charge")
     if ucx:
         fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: the acquired-IPR&D cash outflow, the preferred "
              "amount, filed in a currency the engine holds no FX rate for, beside the expense, in "
@@ -1905,7 +2001,9 @@ _EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason
                       "manual_price": ("value",),
                       "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares", "native_base"),
                       "gterm": ("value",), "cik": ("value",), "ads_ratio": ("ratio", "source", "reason"),
-                      "scope_correction": ("old_cap", "new_cap", "in_scope")}
+                      "scope_correction": ("old_cap", "new_cap", "in_scope"),
+                      "iprd_deferred_payment": ("deal", "first_charged_period", "contingent_total", "paid_to_date",
+                                                "periods")}
 
 
 def _declaration(e, ignore=()):
@@ -1941,7 +2039,8 @@ def keep_first_dates(new_entries, prior_entries):
             e["date"] = d
 
 
-def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None, amortized_impact=None):
+def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None, amortized_impact=None,
+                    deferred_events=None):
     """Replace this ticker's registry entries wholesale on every score
     (round-2: the old upsert only replaced fields still applied, so a
     removed override's entry went stale and stayed forever). Records the
@@ -1961,8 +2060,13 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     PR #47] An iprd_amortized base_override event carries `amortized_impact`
     (iprd_amortized_impact: the one-time-deduction replay's IRR, tier,
     treatment and charge, measured by main() before any write), or those
-    fields null with counterfactual_note. make_score.py is the
-    single writer; the write is atomic under an fcntl lock."""
+    fields null with counterfactual_note. [Codex review r8 of PR #47]
+    deferred_events: one iprd_deferred_payment event per deal
+    (iprd_deferred_lifetime, checked by main() against the carried prior
+    events before any write) — the deal's every declared period and
+    paid_to_date, so deleting a judgment.json entry never erases a paid
+    milestone. make_score.py is the single writer; the write is atomic under
+    an fcntl lock."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     with locked(REGISTRY + ".lock"):
         try:
@@ -2052,6 +2156,9 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
             entries.append({"ticker": ticker, "event": "scope_correction", "date": today,
                             "old_cap": scope_event["old_cap"], "new_cap": scope_event["new_cap"],
                             "in_scope": scope_event["in_scope"]})
+        for ev in deferred_events or []:
+            # [Codex review r8 of PR #47] carried across runs: the merged record of every period ever declared
+            entries.append(dict(ev, date=today))
         keep_first_dates(entries[n_kept:], prior)
         reg["entries"] = entries
         tmp = REGISTRY + ".tmp"
@@ -2561,7 +2668,10 @@ def main():
     check_iprd_amortized(n, j_base_override)   # v5.6
     check_iprd_amortized_ttm_current(folder, n)   # [fixer review round]
     check_iprd_cash_flow(n, validate_iprd_cash_flow_check(j))   # [fixer review round]
-    check_iprd_deferred_payment(n, validate_iprd_deferred_payment(j))   # Andrew's 2026-10-20 ruling (delegated)
+    _deferred = validate_iprd_deferred_payment(j)   # Andrew's 2026-10-20 ruling (delegated)
+    check_iprd_deferred_payment(n, _deferred)
+    # [Codex review r8 of PR #47] the lifetime cap against the registry's carried record, before any write
+    deferred_events = iprd_deferred_lifetime(ticker, _deferred, registry_prior_entries(ticker))
     check_iprd_share_count_unverified(n, j)   # [Codex review r1 of PR #47]
     check_iprd_unconverted(n)   # [Codex review r3 of PR #47]
     j_ads = validate_ads_ratio(j)
@@ -2787,7 +2897,7 @@ def main():
     scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
                    if scope_corrected else None)
     update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact,
-                    amortized_impact=amortized_impact)
+                    amortized_impact=amortized_impact, deferred_events=deferred_events)
     write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 

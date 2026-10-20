@@ -323,7 +323,12 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    (judgment.json `iprd_cash_flow_check`, fixer review round): its `source` must cite the 10-K's operating
    add-back and investing line — a check whose source does not show both is P1 (NBIX pays inside OCF: a
    deduction there charges OE twice), and one declaring `inside_operating_cash_flow` / `paid_in_shares` where the
-   filing shows the add-back and an investing payment is P1 the other way; say "cannot verify from the diff"
+   filing shows the add-back and an investing payment is P1 the other way. [Codex review round 8 of PR #47] An
+   expense-basis period is excluded `already_in_capex` only beside presentation `paid_in_intangible_capex`, whose
+   source must cite the intangible-purchase line the engine sums into capex that holds the payment — declared where
+   the payment sits on its own investing line (HALO's custom line) it is P1 (a real charge deducted as $0); a
+   `capex_overlap_note` (the period's intangible capex is at least 98% of the charge) is a hint to read the
+   cash-flow statement, never an exclusion; say "cannot verify from the diff"
    when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
    (make_score refuses it), nor one with a period excluded `non_usd_no_rate` beside a positive `expense_native`
    (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47) or a positive
@@ -347,8 +352,13 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    from the diff" when the PR does not show the filing. (The engine already refuses one deal with two first
    charges, a first charge whose whole charge is itself declared deferred, a pre-window first charge
    companyfacts covers with no expense fact there, a source accession outside the original filing's years,
-   a current-YTD entry, a missing or inconsistent `contingent_total`, and one deal's declared amounts summing
-   past its `contingent_total`.)
+   a current-YTD entry, a missing or inconsistent `contingent_total`, one deal's declared amounts summing
+   past its `contingent_total`, and — round 8 — an impossible date; make_score refuses a deal whose
+   declarations sum below the `paid_to_date` its registry event recorded, or whose lifetime passes the cap.
+   A deal renamed between runs (another deal key, so another registry record) is the gap left to review: P1.)
+   [Codex review round 8 of PR #47] A period carrying `expense_tags_conflict` (both expense tags filed with
+   different positive values; the current tag is used) must be reconciled in analysis.md against the filing
+   (P2 otherwise).
    `ACQUIRED_IPRD_CHARGE` / `ACQUIRED_IPRD_RECURRENT` resolved without
    the deal, the cash vs stock consideration or the recurrence assessment is P2. An `iprd_amortized`
    `base_override` must reproduce native base − mean(figures) ÷ shares × ads_ratio to the cent (P1
@@ -594,8 +604,9 @@ misfit`. For them:
   `ACQUIRED_IPRD_RECURRENT` (that flag catches buying R&D as a habit, distinct
   deals, not one deal paid in installments). Only a cited per-period
   `iprd_deferred_payment` declaring the period's WHOLE charge removes it from the
-  count; a partly deferred period still counts. It is not a registry event (like
-  `iprd_cash_flow_check`, it records what a filing shows). Choices made in the
+  count; a partly deferred period still counts. [Codex review round 8 of PR #47]
+  Each deal's cumulative declared amount IS a registry event (`iprd_deferred_payment`,
+  below). Choices made in the
   Codex review round (same ruling, the main agent deciding): FY periods only (the
   recurrence count reads FY periods, so a current-YTD entry is refused rather than
   mislabelling a period that never counted); several deals may share one period
@@ -613,7 +624,16 @@ misfit`. For them:
   A rolled-out entry STAYS in judgment.json (`deferred_payments_rolled_out`: never
   applied, still counted toward the cap); a PR deleting one is P1 — it frees the
   deal's cap for a later declaration — and make_score refuses the run that counted
-  it once it is gone. [Codex review round 5] A run whose window holds no charge at
+  it once it is gone. [Codex review round 8 of PR #47] Deleting or shrinking one is
+  now refused MECHANICALLY, also after the engine is rerun (which used to leave
+  nothing to compare against): make_score records each deal's cumulative declared
+  deferred amount as a registry event (`iprd_deferred_payment`: deal,
+  contingent_total, paid_to_date, first_charged_period, periods) carried across
+  runs the way first-recorded dates are, refuses declarations for a recorded deal
+  summing to less than its paid_to_date, and caps max(the declarations on recorded
+  periods, paid_to_date) + newly declared periods at the contingent_total. Every
+  `period` and `first_charged_period` must be a real date (an impossible one is
+  malformed, never counted toward the cap). [Codex review round 5] A run whose window holds no charge at
   all still lists it (a minimal `deferred_payments_only` block, nothing deducted).
   [Codex review round 7] A rolled-out entry is kept and counted toward the cap only
   after the checks that need no window record (first charge before its period, the

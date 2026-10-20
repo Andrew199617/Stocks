@@ -233,8 +233,10 @@ def test_iprd_period_record_rules():
     """Detection rules per period (unit): cash preferred over the expense when both are filed; an expense-basis
     amount is deducted only beside a cash-flow check saying it was added back and paid in investing (none: excluded
     awaiting_cash_flow_check; paid inside OCF or in shares: excluded); a cash-only period is no record; a $0 expense
-    deducts nothing whatever the cash tag says; a negative expense is excluded; the overlap guard excludes an
-    expense-basis amount the capex intangible leg already covers (>= 98%), not a cash-basis one."""
+    deducts nothing whatever the cash tag says; a negative expense is excluded; [Codex review r8] an expense-basis
+    amount is excluded already_in_capex only beside a paid_in_intangible_capex check whose period's capex intangible
+    leg covers it (>= 98%; under it the check is not applied) — the leg's size alone is a note, never an exclusion;
+    a cash-basis amount is never excluded by it."""
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "2026-02-20"), (15e6, "USD", None, "2026-02-20"))
     assert (rec["amount"], rec["amount_basis"], rec["tag_used"], rec["deducted"]) == (15e6, "cash_outflow", CASH, 15e6), rec
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "2026-02-20"), None, check=ADDED_BACK)
@@ -251,9 +253,14 @@ def test_iprd_period_record_rules():
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, -5e6, "USD", None, "x"), None)
     assert rec["excluded"] == "negative" and rec["deducted"] == 0.0, rec
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "x"), None, capex_intang=19.6e6, check=ADDED_BACK)
-    assert rec["excluded"] == "already_in_capex" and rec["deducted"] == 0.0, rec
+    assert rec["excluded"] is None and rec["deducted"] == 20e6 and "capex_overlap_note" in rec, rec
+    in_capex = dict(ADDED_BACK, presentation="paid_in_intangible_capex")
+    rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "x"), None, capex_intang=19.6e6, check=in_capex)
+    assert rec["excluded"] == "already_in_capex" and rec["deducted"] == 0.0 and "capex_overlap_note" not in rec, rec
+    rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "x"), None, capex_intang=19.5e6, check=in_capex)
+    assert rec["excluded"] == "awaiting_cash_flow_check" and rec["cash_flow_check_mismatch"], rec
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "x"), None, capex_intang=19.5e6, check=ADDED_BACK)
-    assert rec["excluded"] is None and rec["deducted"] == 20e6, rec
+    assert rec["excluded"] is None and rec["deducted"] == 20e6 and "capex_overlap_note" not in rec, rec
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, 20e6, "USD", None, "x"), (20e6, "USD", None, "x"), capex_intang=20e6)
     assert rec["excluded"] is None and rec["deducted"] == 20e6 and rec["amount_basis"] == "cash_outflow", rec
     rec = E.iprd_period_record("2025-12-31", "fy", (EXPENSE, None, "EUR", None, "x"), None)
@@ -443,13 +450,15 @@ def test_deferred_cash_payment_of_an_accrued_charge_is_counted_biib():
 
 
 def test_overlap_guard_already_in_capex():
-    """Overlap guard (main-agent addition): an expense-basis charge (no cash tag) that the period's 5.5 capex already
-    charged to OE through intangible purchases (>= 98% of the expense) is not deducted — recorded
-    `excluded: already_in_capex`, the valuation equals the same filer's run without the IPR&D fact; below 98% it is
-    deducted."""
+    """Overlap guard (main-agent addition; [Codex review r8] declared, never inferred from size): an expense-basis
+    charge (no cash tag) whose cash-flow check says it was paid inside the intangible purchases the period's 5.5 capex
+    already charged to OE (presentation paid_in_intangible_capex, the leg >= 98% of the expense) is not deducted —
+    recorded `excluded: already_in_capex`, the valuation equals the same filer's run without the IPR&D fact; a leg
+    under 98% cannot hold it, so the check is not applied and the period stays gated; the added-back-and-paid-in-
+    investing check deducts it whatever the leg's size."""
     intang = {2025: 20e6}
     plain = _plain(intangibles=intang)
-    n = _ok(_run(_facts(expense={2025: 20e6}, intangibles=intang)))
+    n = _ok(_run(_facts(expense={2025: 20e6}, intangibles=intang), judgment={"iprd_cash_flow_check": _intang_check()}))
     blk = n["iprd_adjustment"]
     p = [x for x in blk["periods"] if x["period"] == "2025-12-31"][0]
     assert p["excluded"] == "already_in_capex" and p["deducted"] == 0.0 and blk["total"] == 0.0, p
@@ -458,6 +467,10 @@ def test_overlap_guard_already_in_capex():
     n2 = _ok(_run(_facts(expense={2025: 25e6}, intangibles=intang)))
     assert n2["iprd_adjustment"]["total"] == 25e6, n2["iprd_adjustment"]["periods"]
     _assert_shifted(n2, plain, 25e6 / SHARES)
+    n3 = _ok(_run(_facts(expense={2025: 25e6}, intangibles=intang),
+                  judgment={"iprd_cash_flow_check": _intang_check(amount=25e6)}))
+    p3 = [x for x in n3["iprd_adjustment"]["periods"] if x["period"] == "2025-12-31"][0]
+    assert p3["excluded"] == "awaiting_cash_flow_check" and p3["cash_flow_check_mismatch"], p3
 
 
 # ===========================================================================
@@ -1958,7 +1971,8 @@ def test_rolled_out_entry_is_validated_before_it_counts_toward_the_lifetime_cap(
            (old(first="2021-12-31", source=_src(26)), "source must cite the original acquisition filing"),
            (old(first="2019-12-31", source=_src(20), deal="Ghost Bio", contingent=ghost_ct),
             "no acquired-IPR&D expense fact"),
-           (old(first="2021-02-30", source=_src(21), deal="Ghost Bio", contingent=ghost_ct), "is not a date")]
+           # [Codex review r8] an impossible date is malformed now (iprd_date_ok), refused before any other check
+           (old(first="2021-02-30", source=_src(21), deal="Ghost Bio", contingent=ghost_ct), "malformed")]
     for e, needle in bad:
         iprd = {"periods": [_rec("2025-12-31", 60e6)]}
         ref, rolled = E.iprd_apply_deferred(iprd, [e], fy, cf)
@@ -1980,6 +1994,132 @@ def test_rolled_out_entry_is_validated_before_it_counts_toward_the_lifetime_cap(
     _refused(out, "source must cite the original acquisition filing")
     for e, needle in bad[2:3]:
         _refused(_run(_facts(expense={2021: 8e6, 2025: 60e6}), judgment={"iprd_deferred_payment": [e]}), needle)
+
+
+# --- Codex review round 8 of PR #47 -------------------------------------------------------------------------------
+FY3 = ["2023-12-31", "2024-12-31", "2025-12-31"]
+R8_CAP = {"value": 100e6, "source": CT_SRC}
+
+
+def test_deferred_periods_must_be_real_dates():
+    """[Codex review r8, #4323410495] A deferred entry's period was checked against \\d{4}-\\d{2}-\\d{2} only, never
+    parsed: "2020-99-99" sorts before the window, so it was kept rolled out and counted toward the deal's lifetime
+    contingent_total — a valid $60M FY2025 Old Bio milestone beside a bogus $50M "2020-99-99" one against $100M was
+    refused. Every period and first_charged_period is now parsed (date.fromisoformat): an impossible date is malformed
+    (refused for its own reason, never counted), and the valid entry is applied. The cash-flow check's period too."""
+    good = deferred(amount=60e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio", contingent=R8_CAP)
+    cf = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2021-01-01", "2021-12-31", 8e6)]}}}}}
+    assert E.iprd_deferred_entry_ok(good)
+    for bad_p in ("2020-99-99", "2020-02-30", "2020-13-01"):
+        bogus = dict(good, period=bad_p, amount=50e6)
+        assert not E.iprd_deferred_entry_ok(bogus), bad_p
+        iprd = {"periods": [_rec("2025-12-31", 60e6)]}
+        ref, rolled = E.iprd_apply_deferred(iprd, [bogus, good], FY3, cf)
+        assert [r["entry"] for r in ref] == [bogus] and "malformed" in ref[0]["reason"] and rolled == [], (ref, rolled)
+        assert iprd["periods"][0].get("recurrence_excluded") == "deferred_payment_of", iprd
+    for bad_f in ("2021-02-30", "2021-00-10"):
+        e = dict(good, deferred_payment_of=dict(good["deferred_payment_of"], first_charged_period=bad_f))
+        assert not E.iprd_deferred_entry_ok(e), bad_f
+    assert not E.iprd_cash_flow_check_entry_ok(dict(ADDED_BACK, period="2025-02-30", window="fy"))
+    assert E.iprd_cash_flow_check_entry_ok(dict(ADDED_BACK, period="2025-12-31", window="fy"))
+    _refused(_run(_facts(expense={2021: 8e6, 2025: 60e6}),
+                  judgment={"iprd_deferred_payment": [dict(good, period="2020-99-99")]}), "malformed")
+
+
+def _intang_check(presentation="paid_in_intangible_capex", amount=20e6):
+    return [{"period": "2025-12-31", "window": "fy", "amount": amount, "presentation": presentation,
+             "source": "SYN 10-K FY2025 (0000999001-26-000004) cash-flow statement R7.htm: investing activities "
+                       "'Purchases of intangible assets' include the $20.0M acquired IPR&D payment"}]
+
+
+def test_overlap_with_intangible_capex_is_declared_not_inferred_from_size():
+    """[Codex review r8, #4323410514] The overlap guard excluded an expense-basis period as already_in_capex whenever
+    the period's capex intangible leg was >= 98% of the charge — a size comparison only, ahead of the cash-flow check:
+    a confirmed $20M payment (added back, paid in investing) beside $100M of unrelated patent / software purchases
+    deducted $0, with no flag. Now only the worker's iprd_cash_flow_check presentation paid_in_intangible_capex (the
+    payment sits inside an intangible-purchase line the engine sums into capex, the line cited) excludes it; the size
+    comparison is a non-blocking capex_overlap_note. A paid_in_intangible_capex check where the engine's intangible
+    leg does not cover the charge is not applied: the period stays gated (awaiting_cash_flow_check)."""
+    intang = {2025: 100e6}
+    plain = _plain(intangibles=intang)
+    n = _ok(_run(_facts(expense={2025: 20e6}, intangibles=intang)))   # added_back_paid_in_investing
+    p = [x for x in n["iprd_adjustment"]["periods"] if x["period"] == "2025-12-31"][0]
+    assert p["excluded"] is None and p["deducted"] == 20e6 and "capex_overlap_note" in p, p
+    assert n["iprd_adjustment"]["total"] == 20e6
+    _assert_shifted(n, plain, 20e6 / SHARES)
+    n0 = _ok(_run(_facts(expense={2025: 20e6}, intangibles=intang), checks=False))
+    p0 = [x for x in n0["iprd_adjustment"]["periods"] if x["period"] == "2025-12-31"][0]
+    assert p0["excluded"] == "awaiting_cash_flow_check" and E.iprd_unresolved(n0), p0
+    n1 = _ok(_run(_facts(expense={2025: 20e6}, intangibles=intang), judgment={"iprd_cash_flow_check": _intang_check()}))
+    b1 = n1["iprd_adjustment"]
+    p1 = [x for x in b1["periods"] if x["period"] == "2025-12-31"][0]
+    assert p1["excluded"] == "already_in_capex" and p1["deducted"] == 0.0 and b1["total"] == 0.0, p1
+    assert p1["cash_flow_check"]["presentation"] == "paid_in_intangible_capex" and p1["capex_intangibles"] == 100e6, p1
+    assert n1["weighted"] == plain["weighted"] and not E.iprd_unresolved(n1)
+    n2 = _ok(_run(_facts(expense={2025: 20e6}), judgment={"iprd_cash_flow_check": _intang_check()}))
+    p2 = [x for x in n2["iprd_adjustment"]["periods"] if x["period"] == "2025-12-31"][0]
+    assert p2["excluded"] == "awaiting_cash_flow_check" and "cash_flow_check_mismatch" in p2, p2
+    assert "intangible" in p2["cash_flow_check_mismatch"]["note"] and E.iprd_unresolved(n2), p2
+
+
+def _eur_expense_usd_cash():
+    f = _syn_facts()
+    _syn_put(f, EXPENSE, "EUR", _ctx("2024-01-01", "2024-12-31", 85e6, filed="2025-02-20"))
+    _fy(f, CASH, 2024, 50e6)
+    _fy(f, CASH, 2025, 35e6)
+    return f
+
+
+def test_unconverted_expense_beside_usd_cash_fetches_its_rate_or_gates_later_cash():
+    """[Codex review r8, #4323410525] An expense with no FX rate beside a usable USD cash fact deducted that cash but
+    left the record's expense None, so no unpaid remainder accrued and a later cash-only settlement went to
+    ignored_cash_only with no flag (EUR 85M expensed FY2024, $50M paid FY2024, $35M FY2025: $50M deducted). Now the
+    expense period's rate is fetched (the round-4 fx_fetch helper, as for the cash leg): at 1.0 the $35M settles the
+    remainder ($85M). With no rate the native expense is kept and later window cash on it is gated
+    (non_usd_no_rate, unconverted_remainder_of, ACQUIRED_IPRD_UNCONVERTED) — never silently ignored."""
+    out = E.iprd_detect(_eur_expense_usd_cash(), FY3, fx_rates={},
+                        fx_fetch=lambda c, d: 1.0 if (c, d) == ("EUR", "2024-12-31") else None)
+    recs = {p["period"]: p for p in out["periods"]}
+    assert recs["2024-12-31"]["expense"] == 85e6 and recs["2024-12-31"]["deducted"] == 50e6, recs
+    assert recs["2025-12-31"]["deducted"] == 35e6 and recs["2025-12-31"].get("deferred_payment"), recs
+    assert out["ignored_cash_only"] == [], out["ignored_cash_only"]
+    out = E.iprd_detect(_eur_expense_usd_cash(), FY3, fx_rates={}, fx_fetch=lambda c, d: None)
+    recs = {p["period"]: p for p in out["periods"]}
+    r24, r25 = recs["2024-12-31"], recs["2025-12-31"]
+    assert r24["deducted"] == 50e6 and r24["expense"] is None and r24["expense_native"] == 85e6, r24
+    assert r25["excluded"] == "non_usd_no_rate" and r25["deducted"] == 0.0, r25
+    assert r25["unconverted_remainder_of"] == ["2024-12-31"] and r25["cash"] == 35e6, r25
+    assert out["ignored_cash_only"] == [], out["ignored_cash_only"]
+    assert E.iprd_unresolved({"iprd_adjustment": out})
+    fl = E.iprd_flags(dict(out, total=0.0))
+    assert any(f.startswith("ACQUIRED_IPRD_UNCONVERTED") and "FY2024" in f and "FY2025" in f for f in fl), fl
+    # end to end: the engine fetches the rate (fixture fx_rates) or gates the later cash
+    n = _ok(_run_fx(_eur_expense_usd_cash(), {"EUR": {"2024-12-31": 1.0}}, judgment={}))
+    assert n["iprd_adjustment"]["total"] == 85e6, n["iprd_adjustment"]["periods"]
+    m = _ok(_run_fx(_eur_expense_usd_cash(), {}, judgment={}))
+    assert m["iprd_adjustment"]["total"] == 50e6 and E.iprd_unresolved(m), m["iprd_adjustment"]["periods"]
+
+
+def test_both_expense_tags_filed_the_positive_one_is_read():
+    """[Codex review r8, #4323410542] With both detector tags filed for a period, the loop took the first one filed
+    whatever its value: a $0 current tag hid a positive ResearchAndDevelopmentInProcess fact, the period deducted $0
+    and the same-period $500M cash went to ignored_cash_only — no deduction, no flag. Now the positive one is read;
+    when both are positive and differ by more than $1 both are recorded (expense_tags_conflict) and the current tag is
+    used, with a reconcile note."""
+    out = E.iprd_detect(_facts(expense={2025: 0.0}, old_expense={2025: 500e6}, cash={2025: 500e6}), FY3)
+    r = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+    assert r["expense_tag"] == EXPENSE_OLD and r["expense"] == 500e6 and r["deducted"] == 500e6, r
+    assert out["ignored_cash_only"] == [], out
+    out = E.iprd_detect(_facts(expense={2025: 0.0}, old_expense={2025: 500e6}), FY3)
+    r = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+    assert r["expense_tag"] == EXPENSE_OLD and r["excluded"] == "awaiting_cash_flow_check", r
+    out = E.iprd_detect(_facts(expense={2025: 20e6}, old_expense={2025: 25e6}), FY3)
+    r = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+    assert r["expense_tag"] == EXPENSE and r["expense"] == 20e6, r
+    assert r["expense_tags_conflict"] == {EXPENSE: 20e6, EXPENSE_OLD: 25e6} and "reconcile" in r["expense_tags_note"], r
+    out = E.iprd_detect(_facts(expense={2025: 20e6}, old_expense={2025: 20e6}), FY3)
+    r = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+    assert r["expense_tag"] == EXPENSE and "expense_tags_conflict" not in r, r
 
 
 if __name__ == "__main__":
