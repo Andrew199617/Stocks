@@ -1,0 +1,287 @@
+{
+ "ticker": "OGE",
+ "cik": 1021635,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T07:07:35-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001021635.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526055414/oge-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/OGE/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/OGE/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "OGE ENERGY CORP.",
+  "cik": 1021635,
+  "description": {
+   "text": "OGE Energy is a holding company whose primary investment provides electricity in Oklahoma and western Arkansas. OGE Energy's electric company operations are conducted through its wholly-owned subsidiary, OG&E, which generates, transmits, distributes and sells electric energy in Oklahoma and western Arkansas and are reported through OGE Energy's electric company business segment. OG&E's rates are subject to regulation by the OCC, the APSC and the FERC. OG&E was incorporated in 1902 under the laws of the Oklahoma Territory and is the largest electric company in Oklahoma, with a franchised service territory that includes Fort Smith, Arkansas and the surrounding communities. OG&E sold its retail natural gas business in 1928 and is no longer engaged in the natural gas distribution business. OGE Energy exited its former midstream business in 2022 as a result of selling all equity securities of Energy Transfer that were previously held by OGE Energy. The Registrants' principal executive offices are located at 321 North Harvey, P.O. Box 321, Oklahoma City, Oklahoma, 73101-0321 (telephone 405-553-3000). OGE Energy's website address is www.oge.com.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-055414",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526055414/oge-20251231.htm"
+  },
+  "description_short": "OG&E, a subsidiary of OGE Energy Corp., provides our customers in Oklahoma and western Arkansas with the safe, reliable electricity needed to power their businesses and homes with some of the nation's lowest electric rates. We provide reliable electric service to approximately 915,000 customers and generate 6.9MW of electricity from nine power plants. OG&E delivers more than 34.4 million megawatt-hours of electricity each year through its network of power plants, transmission lines, and distribution infrastructure designed for reliability and resiliency. Our employees live, work, and volunteer in the communities we serve.",
+  "industry": "Electric Utilities: Central",
+  "sector": "Utilities",
+  "region": "North America",
+  "sic": "4911",
+  "sic_description": "Electric Services",
+  "state_of_incorporation": "OK",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ogeenergy.com",
+  "headquarters": "Oklahoma City, Oklahoma",
+  "address": {
+   "street": "321 North Harvey P.O. Box 321",
+   "city": "Oklahoma City",
+   "state": "Oklahoma",
+   "zip": "73101-0321",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-18"
+  },
+  "phone": "4055533000",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1995-09-29",
+  "first_sec_filing_form": "424B3",
+  "former_names": [
+   "OGE ENERGY CORP"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001021635&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001021635-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000031/oge-20261005.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-07-28",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001021635-26-000028",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000028/oge-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001021635-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000026/oge-20260729.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001021635-26-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000025/oge-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-12",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001021635-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000019/oge-20260612.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-14",
+   "period": "2026-05-14",
+   "items": [
+    "5.07",
+    "8.01"
+   ],
+   "description": "Shareholder vote; Other events",
+   "accession": "0001021635-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000016/oge-20260514.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001021635-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000014/oge-20260429.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001021635-26-000012",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000012/oge-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-15",
+   "period": "2026-04-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-155169",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526155169/oge-20260413.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-01",
+   "period": "2026-04-01",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-138065",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526138065/oge-20260401.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-04-01",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001021635-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000009/oge-20260401.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-19",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-071800",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526071800/oge-20260219.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-18",
+   "period": "2026-02-18",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-055417",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526055417/oge-20260218.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-055414",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526055414/oge-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-311307",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312525311307/oge-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-24",
+   "period": "2025-11-20",
+   "items": [
+    "1.01",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD; Other events",
+   "accession": "0001104659-25-115429",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000110465925115429/tm2530364d3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-17",
+   "period": "2025-11-13",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-283425",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312525283425/oge-20251113.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-253962",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312525253962/oge-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-29",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-253956",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312525253956/oge-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-099781",
+   "url": "https://www.sec.gov/Archives/edgar/data/1021635/000095017025099781/oge-20250730.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-18"
+ ]
+}

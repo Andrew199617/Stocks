@@ -1,0 +1,88 @@
+{
+ "ticker": "OGE",
+ "name": "OGE ENERGY CORP.",
+ "sector": "Utilities",
+ "price": 46.8145,
+ "market_cap_b": 9.48,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 1.0144787644787645,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Regulated electric monopoly: OG&E is the exclusive regulated electric utility for ~913,305 customers (FY2025 10-K) in Oklahoma and western Arkansas, with essential inelastic demand, rate-base recovery and a $7.3B 2026-2030 capital plan guided to 5-7% EPS growth through 2030 \u2014 a durable, visible franchise. Capped at 5 (moderate/narrow) because the return evidence does not support a wide moat: fundamentals.json roic_proxy stayed in a narrow 5.05%-6.31% band in FY2020-FY2025 (5.71% / 5.05% / 6.17% / 6.13% / 6.22% / 6.31%) and ROE was ~9.2-9.5% in FY2023-FY2025 \u2014 regulator-set returns at/below the cost of capital, not pricing power above it. Gross margin (fuel is largely pass-through) was 60.52% in FY2025 after 63.09% in FY2024 and 65.03% in FY2023, volatile in the Uri/midstream years (40.71% in FY2021). No pricing power beyond Oklahoma Corporation Commission / Arkansas PSC / FERC rate cases, single-state concentration, and growth funded with debt plus equity (forward equity for ~4.6M shares; Q1 2026 diluted count 207,200,000 vs 201,900,000 a year earlier). A 5 gives CAP = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Utilities sector \u2014 OE/capex DCF fits utilities names poorly; grade confidence low",
+  "BASE_DIVERGENCE: latest FY OE/share 0.34 vs 3-yr median 0.20 \u2014 one of them is distorted; find out which and why",
+  "HIGH_NET_DEBT: net debt is 27.6x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 4.95,
+   "irr": 0.0372
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 7.32,
+   "irr": 0.0444
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 9.6,
+   "irr": 0.0516
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 12.45,
+   "irr": 0.0605
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 16.67,
+   "irr": 0.0732
+  }
+ },
+ "iv_at_15": 9.98,
+ "iv_at_12": 13.3,
+ "implied_irr": 0.0529,
+ "implied_irr_base_case": 0.0516,
+ "upside_at_15_pct": -78.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Durable regulated Oklahoma utility, moat 5/10, but on a TTM owner's-earnings base of $1.01/share the weighted IRR is only 5.29% (IV@15% $9.98 vs $46.81) \u2014 Tier D, sector-model misfit at low confidence; it clears 15% only below ~$9.98, because growth capex runs at ~2x D&A and regulators cap the return.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0444,
+ "irr_bull": 0.0605,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 7.01,
+ "iv_at_25": 5.38,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5661000000,
+ "shares_diluted_latest": 202500000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Exclusive regulated electric franchise \u2014 OG&E serves ~913,305 customers in Oklahoma and western Arkansas with captive, essential-service demand",
+  "Visible rate-base compounding \u2014 $7.3B capital plan 2026-2030, management guides 5-7% EPS growth through 2030 off the 2026 midpoint of $2.43/share, targeting the top half in 2027-2028",
+  "Real load growth \u2014 weather-normalized load +6.6% in 2025, 4-6% expected in 2026, retail load up >24% since 2021; large-load / data-center demand (Google facilities) and SPP transmission assignments add duration",
+  "Stable regulated returns \u2014 ROE ~9.2-9.5% in FY2023-FY2025 and operating income rising $650.2M / $745.3M / $799.4M over the same years; 17 years of dividend growth in fundamentals.json"
+ ],
+ "moat_against": [
+  "Regulators cap the return \u2014 OCC, Arkansas PSC and FERC set allowed ROE and recovery; roic_proxy was only 5.05%-6.31% in FY2020-FY2025, never well above the cost of capital",
+  "No pricing power and fuel pass-through volatility \u2014 gross margin swung from 40.71% (FY2021, Winter Storm Uri) to 65.03% (FY2023) to 60.52% (FY2025); earnings are weather- and rate-case-timing-driven (Q1 2026 EPS $0.24 vs $0.31 a year earlier on milder weather)",
+  "Growth capex consumes the cash \u2014 capex $1,178.2M / $1,090.9M / $1,054.4M in FY2023-FY2025 against D&A of $506.6M / $539.5M / $559.8M, so conservative owner's earnings were positive in only 2 of the last 5 years",
+  "Leverage and dilution fund the plan \u2014 net debt $5,661M at FY2025 and equity issuance to fund capex (diluted shares 207,200,000 in Q1 2026 vs 201,900,000 in Q1 2025); single-state Oklahoma concentration and coal/gas transition and large-load contract risk (Google / large-load tariff still being finalized)"
+ ]
+}
