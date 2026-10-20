@@ -74,7 +74,9 @@ the specs for the old rule and list every stale passage with file:line.
   `share_basis.split.confirmed_against_period`; after the fourth,
   ttm.json `sbc_reconciliation_withdrawn_legs`); engine 5.6 adds `iprd_adjustment` (the acquired-IPR&D
   one-time value adjustment: periods, `charge_per_share`, `treatment`, and `before` — the unadjusted IVs and
-  IRRs; null when nothing was detected).
+  IRRs; null when nothing was detected — except that a run whose window holds no charge but whose
+  judgment.json declares `iprd_deferred_payment` entries records them in a minimal block,
+  `deferred_payments_only`, treatment `none`, no charge: Codex review round 5 of PR #47).
 - `judgment.json` — the worker's decisions: `moat_score`, `moat_for` /
   `moat_against`, `probs_used`, `confidence`, `tier_override` +
   `tier_override_reason`, per-field overrides as top-level keys
@@ -607,7 +609,8 @@ misfit`. For them:
   A rolled-out entry STAYS in judgment.json (`deferred_payments_rolled_out`: never
   applied, still counted toward the cap); a PR deleting one is P1 — it frees the
   deal's cap for a later declaration — and make_score refuses the run that counted
-  it once it is gone.
+  it once it is gone. [Codex review round 5] A run whose window holds no charge at
+  all still lists it (a minimal `deferred_payments_only` block, nothing deducted).
 
 ## Comment style
 

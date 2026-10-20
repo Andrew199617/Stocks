@@ -1291,6 +1291,64 @@ def test_entry_whose_period_rolled_out_of_the_window_is_kept_not_applied_not_ref
     assert ref == [] and unused == [old]
 
 
+def _rolled_only_case():
+    """[Codex review r5 of PR #47, #4322641225] The filer expensed Old Bio's first charge in FY2021 and paid a $60.0M
+    deferred milestone in FY2022; the FY2023-25 window holds no acquired-IPR&D fact at all. The FY2022 entry has
+    rolled out of the window and stays declared (its payment counts toward the deal's $100.0M contingent_total)."""
+    cap = {"value": 100e6, "source": CT_SRC}
+    old = deferred(period="2022-12-31", amount=60e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio",
+                   contingent=cap)
+    new = deferred(period="2025-12-31", amount=60e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio",
+                   contingent=cap)
+    return _facts(expense={2021: 8e6, 2022: 60e6}), old, new
+
+
+def test_rolled_out_entry_is_recorded_when_the_window_has_no_iprd_charge():
+    """[Codex review r5 of PR #47, #4322641225] iprd_detect finds nothing in the window, so the run had no
+    iprd_adjustment block and the rolled-out list was dropped (null block): make_score then refused the kept entry as
+    "did not apply", and deleting it — the only way to score — freed the deal's lifetime contingent_total cap. The
+    run now records a minimal block (treatment none, total and charge 0, no periods) carrying
+    deferred_payments_rolled_out, and nothing else moves: IVs, IRRs, tier and flags equal the undeclared run's, whose
+    block stays null. A replay (DCF_NO_OVERRIDES + DCF_IPRD_HOLD) records the list too, held charge or none."""
+    facts, old, new = _rolled_only_case()
+    plain = _ok(_run(facts))
+    assert plain["iprd_adjustment"] is None
+    n = _ok(_run(facts, judgment={"iprd_deferred_payment": [old]}))
+    blk = n["iprd_adjustment"]
+    assert isinstance(blk, dict), blk
+    assert blk["deferred_payments_rolled_out"] == [old], blk
+    assert (blk["treatment"] == "none" and blk["total"] == 0.0 and blk["charge_per_share"] == 0.0
+            and blk["periods"] == [] and blk["ignored_cash_only"] == [] and blk["recurrence_excluded"] == []
+            and blk["deferred_payments_only"] is True), blk
+    assert E.iprd_charge_per_share(n) == 0.0 and E.iprd_flags(blk) == [] and not flags(n, "ACQUIRED_IPRD")
+    assert {k: v for k, v in _strip(n).items() if k != "iprd_adjustment"} == \
+        {k: v for k, v in _strip(plain).items() if k != "iprd_adjustment"}
+    # reprice.py and build_site.py read the minimal block as no charge: the same live figures, table and hurdles
+    import reprice as R
+    import build_site as B
+    lv, lp = R.reprice(n, 25.0), R.reprice(plain, 25.0)
+    assert lv == lp and lv["iprd_charge_per_share"] == 0.0, (lv, lp)
+    paths, _ = E.replay_paths(n)
+    s = {"price": n["price"]}
+    assert B.scenario_sensitivity(n, s, paths, None) == B.scenario_sensitivity(plain, s, paths, None)
+    assert B.hurdle_prices(n, s, paths) == B.hurdle_prices(plain, s, paths) and B.iprd_charge(n) == 0.0
+    rec = {"numbers": copy.deepcopy(n), "row": {}, "score": {}}
+    B.restate_split(rec, 2.0, "2:1", {})
+    assert rec["numbers"]["iprd_adjustment"]["deferred_payments_rolled_out"] == [old], rec["numbers"]["iprd_adjustment"]
+    # kept declared, the entry still bounds the deal: a later $60.0M Old Bio milestone takes it past $100.0M
+    _refused(_run(_facts(expense={2021: 8e6, 2022: 60e6, 2025: 60e6}), judgment={"iprd_deferred_payment": [new, old]}),
+             "contingent_total")
+    # the override-impact replay: with no hold, and holding a one-time charge its own window does not see
+    for hold in ({"treatment": "none", "charge_per_share": 0.0},
+                 {"treatment": "one_time_value_deduction", "charge_per_share": 0.5}):
+        c = _run_env(facts, judgment={"iprd_deferred_payment": [old]},
+                     env={"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": json.dumps(hold)}, measure=True)
+        assert c["exit"] == 0, c["stdout"][-600:]
+        cb = c["numbers"]["iprd_adjustment"]
+        assert cb["deferred_payments_rolled_out"] == [old] and cb["recurrence_excluded"] == [], cb
+        assert E.iprd_charge_per_share(c["numbers"]) == hold["charge_per_share"], cb
+
+
 def test_a_period_made_of_two_earlier_deals_milestones_can_be_declared_whole():
     """[Codex review, finding 7] FY2025's $20M = a $12M Test Bio milestone (first charged FY2023, in the window) +
     an $8M Other Bio milestone (first charged FY2021, before it; companyfacts carries the FY2021 charge). Both are

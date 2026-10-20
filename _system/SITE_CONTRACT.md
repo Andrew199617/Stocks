@@ -158,7 +158,12 @@ engine's own rescale for a split between the latest annual filing and the run (a
 is unrelated to live.json's `split_factor` and `split_restated` (a split since scoring). score.json's
 `market_cap_basis` (a string) is not fundamentals.json's dividends-block `market_cap_basis`.
 Engine 5.6 (2026-10-19, the acquired-IPR&D one-time value adjustment) adds no record key either: `numbers` gains
-`iprd_adjustment` (null when nothing was detected; else `periods` — `period`, `window`, `amount`, `amount_basis`,
+`iprd_adjustment` (null when nothing was detected and judgment.json declares no `iprd_deferred_payment`; Codex review
+round 5 of PR #47: a run whose window holds no charge but which has such declarations records a minimal block —
+`deferred_payments_only` true, `treatment` "none", `total` and `charge_per_share` 0, empty `periods` /
+`ignored_cash_only` / `recurrence_excluded`, `notes`, `window` and `deferred_payments_rolled_out` (or, in an
+override-impact replay only, `deferred_payments_refused`) — which deducts nothing, raises no flag, reads as no charge
+in reprice.py / build_site.py / the app, and is not copied to score.json; else `periods` — `period`, `window`, `amount`, `amount_basis`,
 `tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source} on an
 expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved, `deferred_payment` (a note) on cash
 that settles an earlier window charge, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,

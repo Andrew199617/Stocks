@@ -48,7 +48,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      has left the engine's window — never delete it: the engine lists it in `deferred_payments_rolled_out`,
      never applies it (no deduction, no recurrence effect), and still counts its amount toward the deal's
      lifetime `contingent_total` cap; make_score refuses a run whose rolled-out entry judgment.json no longer
-     declares (Codex review round 4 of PR #47). Write the new analysis.md as a
+     declares (Codex review round 4 of PR #47) — also when the window holds no acquired-IPR&D charge at all
+     (a minimal `deferred_payments_only` block; Codex review round 5). Write the new analysis.md as a
      dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company

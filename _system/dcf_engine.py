@@ -3812,6 +3812,23 @@ def main():
                     "total": None, "treatment": IPRD_TREATMENT_ONE_TIME, "charge_per_share": iprd_charge_used,
                     "held_from_final_run": {"treatment": IPRD_TREATMENT_ONE_TIME, "charge_per_share": iprd_charge_used,
                                             "computed_treatment": None, "computed_charge_per_share": None}}
+        if _deferred is not None and (_deferred_rolled_out or _deferred_refused):
+            # [Codex review r5 of PR #47] the window holds no acquired-IPR&D charge, but judgment.json declares deferred
+            # payments (each one rolled out of the window, or refused in a counterfactual replay): record them in a
+            # minimal block — no charge, treatment none, nothing deducted or flagged — so make_score sees the
+            # rolled-out entries still declared instead of a null block that only deleting them (freeing the deal's
+            # lifetime contingent_total cap) could satisfy. A run without declarations keeps a null block.
+            if iprd is None:
+                iprd = {"periods": [], "ignored_cash_only": [],
+                        "notes": ["no acquired-IPR&D charge in this run's window: the block records only judgment.json "
+                                  f"{IPRD_DEFERRED_KEY} entries (nothing deducted)"],
+                        "window": {"fy": list(last3_periods), "ttm_current_ytd": list(_ytd) if _ytd else None},
+                        "total": 0.0, "treatment": "none", "charge_per_share": 0.0, "deferred_payments_only": True}
+            iprd["recurrence_excluded"] = []
+            if _deferred_refused:
+                iprd["deferred_payments_refused"] = _deferred_refused
+            if _deferred_rolled_out:
+                iprd["deferred_payments_rolled_out"] = _deferred_rolled_out
     if iprd_refusal:
         print(f"BAD_BASE_OVERRIDE for {ticker}: --base-oe-ps pins a judgment.json base_override of basis "
               f"{IPRD_AMORTIZED_BASIS!r} but {iprd_refusal}")

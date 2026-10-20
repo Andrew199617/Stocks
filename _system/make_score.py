@@ -293,7 +293,11 @@ value adjustment):
   are refused; an entry whose period left the window is listed in
   `deferred_payments_rolled_out` and STAYS declared ([Codex review round 4 of
   PR #47]: it counts toward its deal's lifetime contingent_total cap, so
-  dropping it from judgment.json is refused as out of sync). score.json `iprd_adjustment` carries
+  dropping it from judgment.json is refused as out of sync; [Codex review
+  round 5] a run whose window holds no charge records the entries in a
+  minimal block, `deferred_payments_only`, that score.json does not copy and
+  key_numbers.md shows as a "Rolled out of the window" line — before it the
+  block was null and only deleting the entry let the run score). score.json `iprd_adjustment` carries
   `recurrence_excluded` (when the run had declarations) and each period's
   `deferred_payment_of` / `recurrence_excluded`; key_numbers.md says on the
   period line whether it is excluded from the recurrence count or, partly
@@ -1204,7 +1208,9 @@ def iprd_score_block(n):
     """score.json iprd_adjustment from the engine's block (None when the run
     has none: older-release output, or no acquired-IPR&D expense filed)."""
     b = n.get("iprd_adjustment")
-    if not isinstance(b, dict):
+    if not isinstance(b, dict) or b.get("deferred_payments_only"):
+        # [Codex review r5 of PR #47] a block recording only rolled-out iprd_deferred_payment entries (no charge in
+        # the window) is dcf_numbers.json bookkeeping for check_iprd_deferred_payment: score.json shows no charge
         return None
     r2 = lambda v: round(v, 2) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
     r4 = lambda v: round(v, 4) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
@@ -1254,6 +1260,18 @@ def iprd_lines(n):
     if not isinstance(b, dict):
         return []
     L = ["", "## Acquired IPR&D adjustment (engine 5.6 — Andrew, 2026-10-19)"]
+    ro = [x for x in b.get("deferred_payments_rolled_out") or [] if isinstance(x, dict)]
+    # [Codex review r5 of PR #47] the entries kept for their deal's lifetime contingent_total cap, shown
+    ro_line = ("- Rolled out of the window (judgment.json iprd_deferred_payment, kept declared: counted toward the "
+               "deal's lifetime contingent_total, never applied): " + "; ".join(
+                   f"FY{str(x.get('period'))[:4]} {_usd_exact(x.get('amount'))} — "
+                   f"{(x.get('deferred_payment_of') or {}).get('deal')}, first charged "
+                   f"{(x.get('deferred_payment_of') or {}).get('first_charged_period')}, contingent_total "
+                   f"{_usd_exact(((x.get('deferred_payment_of') or {}).get('contingent_total') or {}).get('value'))}"
+                   for x in ro)) if ro else None
+    if b.get("deferred_payments_only"):
+        # no charge in the window: nothing deducted, no treatment to print
+        return L + ["- No acquired-IPR&D charge in this run's window: nothing deducted"] + ([ro_line] if ro_line else [])
     t = b.get("treatment")
     one_time = t == "one_time_value_deduction"
     for p in b.get("periods") or []:
@@ -1303,6 +1321,8 @@ def iprd_lines(n):
                  "first charged earlier; still deducted): " + "; ".join(
                      f"FY{str(x.get('period'))[:4]} {_usd_exact(x.get('amount'))} — {x.get('deal')}, first charged "
                      f"{x.get('first_charged_period')}" for x in rx))
+    if ro_line:
+        L.append(ro_line)
     if b.get("unconfirmed_total"):
         L.append(f"- Awaiting the cash-flow check (ACQUIRED_IPRD_UNCONFIRMED): {_usd_exact(b['unconfirmed_total'])} — not deducted")
     bw = ((b.get("before") or {}).get("weighted") or {}) if isinstance(b.get("before"), dict) else {}

@@ -598,12 +598,32 @@ def test_rolled_out_declaration_stays_declared_and_scores():
                                                          judgment={"iprd_deferred_payment": [d, old]})))
     r = _score(n, _j(iprd_deferred_payment=[d, old]))
     assert r.rc == 0, r.err[-800:]
+    # [Codex review r5 of PR #47] key_numbers.md shows the rolled-out entry beside the window's charge
+    assert "Rolled out of the window" in r.result["key"] and "Old Bio" in r.result["key"], r.result["key"][-1500:]
     r = _score(n, _j(iprd_deferred_payment=[d]))
     assert r.rc == 1 and "rolled-out" in r.err and "contingent_total" in r.err, r.err[-600:]
     other = TI.deferred(period="2021-12-31", amount=1e6, first="2020-12-31", source=TI.OK_SRC_2021, deal="Other Bio")
     r = _score(n, _j(iprd_deferred_payment=[d, old, other]))
     assert r.rc == 1 and "did not apply" in r.err, r.err[-600:]
 
+
+
+def test_rolled_out_entry_scores_when_the_window_has_no_iprd_charge():
+    """[Codex review r5 of PR #47, #4322641225] A window with no acquired-IPR&D charge used to drop the rolled-out
+    list (null block), so make_score refused the kept entry ("did not apply") and scored only once it was deleted —
+    freeing the deal's lifetime contingent_total cap. Now the run records the entry and scores with it kept; deleting
+    it is refused. score.json gains no iprd_adjustment (no charge, nothing to show on the site); key_numbers.md lists
+    the rolled-out entry and no charge line."""
+    facts, old, _ = TI._rolled_only_case()
+    n = TI._cached("ms_def_rolled_only", lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": [old]})))
+    r = _score(n, _j(iprd_deferred_payment=[old]))
+    assert r.rc == 0, r.err[-800:]
+    assert "iprd_adjustment" not in r.result["score"], r.result["score"].get("iprd_adjustment")
+    key = r.result["key"]
+    assert "Acquired IPR&D" in key and "Rolled out of the window" in key and "Old Bio" in key, key[-1500:]
+    assert "Total charge" not in key and "Treatment:" not in key, key[-1500:]
+    r = _score(n, _j())
+    assert r.rc == 1 and "rolled-out" in r.err and "contingent_total" in r.err, r.err[-600:]
 
 
 # --- the per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20) --------
