@@ -345,7 +345,7 @@ PAIRS = [
     ("_system/dcf_engine.py", 'rec["expense_reversal_note"] = (', "expense_reversal_note", [SYS_README, CONTRACT]),
     # Codex review round 15 of PR #47: unit conflicts, a cash-basis check the cash path cannot honor, the minimal
     # deferred_payments_only score block, a plain pin's basis_window
-    ("_system/dcf_engine.py", 'rec["unit_conflict"] = units_conflict', "unit_conflict", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'x["unit_conflict"] = units_conflict', "unit_conflict", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", 'IPRD_UNIT_TOLERANCE = 0.01', "IPRD_UNIT_TOLERANCE", [SYS_README]),
     ("_system/dcf_engine.py", 'rec["cash_flow_check_inapplicable"] = dict(', "cash_flow_check_inapplicable",
      [SYS_README, CONTRACT]),
@@ -356,6 +356,10 @@ PAIRS = [
     ("_system/dcf_engine.py", '**({"base_basis_window": base_basis_window}', "base_basis_window", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", "def base_basis_window_problem(", "base_basis_window_problem", [SYS_README]),
     ("_system/make_score.py", "def check_base_basis_window(", "basis_window", [SYS_README, CONTRACT]),
+    # Codex review round 16 of PR #47: units tiled beside an exact fact; the site note binds to the score's own run
+    ("_system/dcf_engine.py", "def iprd_tile(facts, tag, start, end, only_units=None):", "only_units", [SYS_README]),
+    ("_daily/site/app.js", "var nb = obj(obj(record.numbers).iprd_adjustment), r = num(nb.ads_ratio);",
+     "numbers.iprd_adjustment.ads_ratio", [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

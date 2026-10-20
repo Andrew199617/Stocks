@@ -183,7 +183,9 @@ naming the periods whose residual it assumed payable in cash), (round 12) `cash_
 on a cash-basis period, with `residual_paid_in_shares` (the expense less cash it declares settled in shares, never accrued as unpaid) and
 `residual_note`, (Codex review round 15 of PR #47) `unit_conflict` {tag: {units: {unit: {native, usd, fx_rate}}, used}}
 with `unit_conflict_note` when one tag's facts for the period in two units disagree after conversion (a positive fact
-outranks a zero one; the USD one is used between positive ones) and `cash_flow_check_inapplicable` {presentation,
+outranks a zero one; the USD one is used between positive ones; Codex review round 16 of PR #47: a unit with no
+exact-context fact is tiled beside one that has it, and the conflict rides on a cash-only period's deferred-payment
+record and on its `ignored_cash_only` entries too) and `cash_flow_check_inapplicable` {presentation,
 amount, source, note} on a cash-basis period whose matching check declares `inside_operating_cash_flow` or
 `paid_in_intangible_capex` (make_score refuses such a run, so no score carries it), (Codex review round 14 of PR #47) `expense_reversal_note` on a period whose negative detector fact (a reversal: no current-period charge) sits beside cash matched as its `deferred_payment` (the period is then not `excluded`), and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
@@ -209,7 +211,12 @@ units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record ca
 build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /
 `adjusted_irr`). The Overview's base-OE card shows one disclosure line (`iprdNote`): "Acquired IPR&D: −$2.33/sh one-time
 (FY2025, expense basis) — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE
-is unchanged." (the engine solves each IRR at price + charge: a higher price, a lower IRR — Codex review round 3 of PR #47) (score.json's block, else the engine record's; an amortized-in-base run says so; nothing for any other
+is unchanged." (the engine solves each IRR at price + charge: a higher price, a lower IRR — Codex review round 3 of PR #47) (score.json's own block only, and never beside a score from another run — Codex review round 16 of PR #47: with
+`live_withheld` reason `score_not_from_this_run` or `iprd_unresolved`, or a score.json with no block beside an engine
+record that has one, the engine record's one-time charge is shown as "Acquired IPR&D: the latest engine run deducts
+−$2.33/sh one-time (FY2025, expense basis), pending its score — the scored figures shown do not include it.", never as
+already in the figures; the unit is `/ADS` when the run's `numbers.iprd_adjustment.ads_ratio` (else `numbers.ads_ratio`)
+is not 1, since `charge_per_share` is per traded unit; an amortized-in-base run says so; nothing for any other
 record). A split since scoring divides `charge_per_share`, the `before` / `after` IVs and score.json's `iv_before` /
 `iv_after` like every per-share figure (`SPLIT_DIVIDE`) and multiplies `shares_denominator` (`SPLIT_MULTIPLY`); an
 amortized-in-base record's `amortized.native_base_per_share` / `pinned_per_share` (both blocks) and

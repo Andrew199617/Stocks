@@ -750,19 +750,39 @@ function renderFilings(record) {
 
 /* Engine 5.6 (acquired IPR&D, Andrew 2026-10-19): one disclosure line under the base OE card when the scored run
    deducted a one-time acquired-IPR&D charge per share from every intrinsic value and added it to the price each
-   IRR is solved at (score.json iprd_adjustment, else the engine record's; Codex review r3 of PR #47: added, not
-   deducted — a higher price, a lower IRR). The IVs, IRRs and hurdle prices on the page are already the adjusted
-   ones; the line says where the gap to the paths comes from. '' for every other record. */
-function iprdNote(record) {
-  var b = obj(obj(record.score).iprd_adjustment);
-  if (!Object.keys(b).length) b = obj(obj(record.numbers).iprd_adjustment);
-  if (b.treatment === 'amortized_in_base') return 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.';
-  var c = num(b.charge_per_share);
-  if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
-  var where = arr(b.periods).filter(function (p) { return p && num(p.deducted) > 0; }).map(function (p) {
+   IRR is solved at (Codex review r3 of PR #47: added, not deducted — a higher price, a lower IRR). The IVs, IRRs and
+   hurdle prices on the page are already the adjusted ones; the line says where the gap to the paths comes from.
+   [Codex review r16 of PR #47] Only the adjustment of the run the displayed score came from is described as applied:
+   score.json's own block, and never when the score on file is an earlier run's (live_withheld reason
+   score_not_from_this_run or iprd_unresolved). The engine record's block alone (the score carries none — make_score
+   copies it whenever the run has one, so that score is another run's) or beside a foreign score is named as the
+   latest run's adjustment pending its score, never as already in the figures. The charge is per traded unit: per ADS
+   when the run's applied ads_ratio (numbers.iprd_adjustment.ads_ratio, else numbers.ads_ratio) is not 1, as
+   key_numbers.md prints it. '' for every other record. */
+function iprdUnit(record) {
+  var nb = obj(obj(record.numbers).iprd_adjustment), r = num(nb.ads_ratio);
+  if (r === null) { var a = obj(record.numbers).ads_ratio; r = num(a && typeof a === 'object' ? a.ratio : a); }
+  return r !== null && r > 0 && Math.abs(r - 1) >= 1e-12 ? '/ADS' : '/sh';
+}
+function iprdWhere(b) {
+  return arr(b.periods).filter(function (p) { return p && num(p.deducted) > 0; }).map(function (p) {
     return (p.window === 'fy' ? 'FY' + esc(String(p.period).slice(0, 4)) : 'YTD ' + esc(p.period)) + ', ' + (p.amount_basis === 'cash_outflow' ? 'cash' : 'expense') + ' basis';
   }).join('; ');
-  return 'Acquired IPR&amp;D: −' + fmtMoney(c) + '/sh one-time' + (where ? ' (' + where + ')' : '') + ' — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE is unchanged.';
+}
+function iprdNote(record) {
+  var w = liveWithheld(record), foreign = !!w && (w.reason === 'score_not_from_this_run' || w.reason === 'iprd_unresolved');
+  var b = obj(obj(record.score).iprd_adjustment), c, where;
+  if (!foreign && Object.keys(b).length) {
+    if (b.treatment === 'amortized_in_base') return 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.';
+    c = num(b.charge_per_share);
+    if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
+    where = iprdWhere(b);
+    return 'Acquired IPR&amp;D: −' + fmtMoney(c) + iprdUnit(record) + ' one-time' + (where ? ' (' + where + ')' : '') + ' — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE is unchanged.';
+  }
+  b = obj(obj(record.numbers).iprd_adjustment); c = num(b.charge_per_share);
+  if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
+  where = iprdWhere(b);
+  return 'Acquired IPR&amp;D: the latest engine run deducts −' + fmtMoney(c) + iprdUnit(record) + ' one-time' + (where ? ' (' + where + ')' : '') + ', pending its score — the scored figures shown do not include it.';
 }
 
 function renderOverview(record) {

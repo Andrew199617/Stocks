@@ -360,7 +360,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    is filed and its outflow deducted) cannot exist (make_score refuses it, naming the presentation;
    `paid_in_shares` is still read there). A period carrying `unit_conflict` (one tag filed for the period in two
    units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive
-   ones) whose analysis.md does not reconcile the units against the filing is P2. A plain `base_override` pin
+   ones; [Codex review round 16 of PR #47] a cash-only deferred-payment period and an `ignored_cash_only` entry
+   carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact) whose analysis.md does
+   not reconcile the units against the filing is P2. A plain `base_override` pin
    that is not ttm.json's `ttm_oe_per_share` carries `basis_window`: `{window: "ttm", ytd_current_period:
    ttm.json's}` when the pin was built from ttm.json's TTM figures on another denominator (VNOM: TTM OE over total
    units — the IPR&D window then reads the current-YTD leg, recorded as `inputs.base_basis_window`; the share

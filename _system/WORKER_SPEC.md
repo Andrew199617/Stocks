@@ -171,7 +171,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    in any unit outranks a zero one — converted at the FX pass's rate or one fetched for its date, else the period
    is excluded `non_usd_no_rate` and the flag above applies — and two positive facts that disagree after
    conversion (by more than $1 and 1%) are both recorded on the period (`unit_conflict`, `unit_conflict_note`)
-   with the USD one used: reconcile the units against the filing in analysis.md.
+   with the USD one used: reconcile the units against the filing in analysis.md. Since Codex review round 16 of
+   PR #47 a unit filed only in quarters is tiled beside another unit's exact FY fact (so it is compared, or
+   recorded as `partial_coverage`), and a cash-only period (a deferred payment, an unconverted payment, an
+   `ignored_cash_only` entry) carries its cash tag's `unit_conflict` too: reconcile those the same way.
    `ACQUIRED_IPRD_PARTIAL_PERIOD` (Codex review round 11 of PR #47): an acquired-IPR&D tag is filed for only
    part of a window period — a 10-Q's nine-month figure with no FY fact in the 10-K (SMMT FY2023), or a quarter
    alone — and no set of three-month / year-to-date facts tiles the period, so NOTHING is counted for that tag

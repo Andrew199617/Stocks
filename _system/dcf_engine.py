@@ -459,6 +459,10 @@ cash_flow_check_inapplicable (make_score refuses it); paid_in_shares stays honor
 declare basis_window {window "ttm", ytd_current_period} (a pin built from ttm.json's TTM figures on another
 denominator): the IPR&D window then reads ttm.json's current-YTD leg (inputs.base_basis_window); a ttm window whose
 period is not ttm.json's is refused BAD_BASE_OVERRIDE (exit 3) outside make_score's override-impact replay.
+[Codex review round 16 of PR #47] (1) An exact-context fact wins for its own unit only: a unit with none is tiled
+(iprd_tile only_units) and merged beside it, so a USD 0 FY fact never hides EUR quarters (tiled and compared, or
+recorded as partial_coverage). (2) A period's unit_conflict rides on whatever record it ends with (a cash-only
+deferred-payment or unconverted record included) and on the ignored_cash_only entries it lists.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -2492,9 +2496,10 @@ def iprd_fy_starts(facts, fy_periods):
     return {end: max(c, key=lambda st: (c[st], st)) for end, c in counts.items()}
 
 
-def iprd_tile(facts, tag, start, end):
+def iprd_tile(facts, tag, start, end, only_units=None):
     """[Codex review r11 of PR #47] ONE us-gaap tag on the leg [start, end] from shorter facts, for a leg with no
-    exact-context fact: (by_unit, contexts, partial). by_unit {unit: (sum, latest filed)} and contexts {unit: [[start,
+    exact-context fact: (by_unit, contexts, partial). only_units: tile just these units ([Codex review r16 of PR #47]
+    the units with no exact-context fact beside one that has it). by_unit {unit: (sum, latest filed)} and contexts {unit: [[start,
     end], ...]} for each unit whose facts (10-K / 10-Q forms; per context the latest filing — a comparative column
     re-filed later never adds a second value) tile the leg exactly: three-month facts or a year-to-date fact starting
     on `start`, each starting the day after the one before ends, the first on `start`, the last on `end` (the fewest
@@ -2507,6 +2512,8 @@ def iprd_tile(facts, tag, start, end):
     day = datetime.timedelta(days=1)
     by_unit, ctx, partial = {}, {}, []
     for u in sorted(units, key=lambda x: (x != "USD", x)):
+        if only_units is not None and u not in only_units:
+            continue
         best = {}
         for e in units[u] or []:
             if not isinstance(e, dict) or e.get("form", "") not in IPRD_LEG_FORMS:
@@ -2711,9 +2718,12 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     fy_starts = []   # computed once, only when a leg needs it
 
     def _leg(tag, exact, p, window, start):
-        if exact:
-            return exact
-        if not (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units"):
+        # [Codex review r16 of PR #47] an exact-context fact wins for ITS unit only: the units with none are tiled and
+        # merged beside it, so a USD 0 FY fact never hides EUR quarters (tiled, or recorded as partial coverage) —
+        # before, any exact fact in any unit returned at once and _iprd_pick never saw the other unit
+        units = (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units") or {}
+        missing = [u for u in units if u not in exact]
+        if not missing:
             return exact
         if start is None:
             if not fy_starts:
@@ -2721,13 +2731,14 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             start = fy_starts[0].get(p)
             if start is None:
                 return exact
-        by_unit, ctx, part = iprd_tile(facts, tag, start, p)
+        by_unit, ctx, part = iprd_tile(facts, tag, start, p, only_units=missing if exact else None)
         if by_unit:
             u = "USD" if "USD" in ctx else sorted(ctx)[0]
             aggregated.setdefault((p, window), {})[tag] = {"unit": u, "contexts": ctx[u]}
-        elif part:
+        elif part and not any(_iprd_is_pos(vf[0]) for vf in exact.values()):
+            # a positive exact fact reads the leg: another unit's partial facts are then no missing charge
             pending.append({"period": p, "window": window, "start": start, "tag": tag, "units": part})
-        return by_unit
+        return dict(exact, **by_unit) if exact else by_unit
 
     def _legs(p, window, start, exact_exp, exact_cash):
         """Every tag's facts for one leg; the partly covered tags that matter are recorded: an expense tag when no
@@ -2788,8 +2799,29 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                                and rec["expense"] <= 0 and rec["excluded"] in (None, "negative"))
 
     def _resolve(p, window, exp_maps, cash_map, intang):
+        """The period's record (None when it has none); the tags' unit conflicts ride on whatever record the period
+        ends with and on the cash-only entries it lists. [Codex review r16 of PR #47] they were attached only to the
+        record iprd_period_record built, so a cash-only period's deferred-payment (or unconverted) record, built
+        later, dropped the cash tag's conflict with no trace."""
+        n0, units_conflict = len(cash_only), {}
+        rec = _resolve_period(p, window, exp_maps, cash_map, intang, units_conflict)
+        if units_conflict:
+            note = (
+                "an acquired-IPR&D tag is filed for this period in more than one unit with values that disagree after "
+                "conversion (" + "; ".join(
+                    f"{t}: " + ", ".join(f"{u} {x['native']:,.0f}" + (f" = ${x['usd']:,.0f}" if u != "USD" and x["usd"] is not None
+                                                                      else " (no FX rate)" if x["usd"] is None else "")
+                                         for u, x in v["units"].items()) + f" — {v['used']} used"
+                    for t, v in sorted(units_conflict.items()))
+                + "): a positive fact outranks a zero one and the USD fact is used between positive ones — reconcile "
+                "the units in analysis.md against the filing")
+            for x in ([rec] if rec is not None else []) + cash_only[n0:]:
+                x["unit_conflict"] = units_conflict
+                x["unit_conflict_note"] = note
+        return rec
+
+    def _resolve_period(p, window, exp_maps, cash_map, intang, units_conflict):
         hits = []
-        units_conflict = {}
         for tag, by_unit in exp_maps:
             # [Codex review r8 of PR #47] the FX pass holds rates for its own series' dates only: the expense period's
             # rate is fetched, as for the cash leg (round 4) — an unconverted expense accrues no remainder. [Codex
@@ -2845,17 +2877,6 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                 note=(f"judgment.json {IPRD_CF_CHECK_KEY} declares presentation {chk.get('presentation')} for a "
                       f"cash-basis period: the us-gaap investing cash tag ({IPRD_CASH_TAG}) is filed and deducted, "
                       "which contradicts it — remove the entry, or reconcile it with the filing's cash-flow statement"))
-        if rec is not None and units_conflict:
-            rec["unit_conflict"] = units_conflict
-            rec["unit_conflict_note"] = (
-                "an acquired-IPR&D tag is filed for this period in more than one unit with values that disagree after "
-                "conversion (" + "; ".join(
-                    f"{t}: " + ", ".join(f"{u} {x['native']:,.0f}" + (f" = ${x['usd']:,.0f}" if u != "USD" and x["usd"] is not None
-                                                                      else " (no FX rate)" if x["usd"] is None else "")
-                                         for u, x in v["units"].items()) + f" — {v['used']} used"
-                    for t, v in sorted(units_conflict.items()))
-                + "): a positive fact outranks a zero one and the USD fact is used between positive ones — reconcile "
-                "the units in analysis.md against the filing")
         if rec is not None and mismatch is not None:
             rec["cash_flow_check_mismatch"] = {"declared_amount": mismatch.get("amount"),
                                                "note": "judgment.json iprd_cash_flow_check names this period with "

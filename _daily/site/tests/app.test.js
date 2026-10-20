@@ -1818,8 +1818,9 @@ test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the
   const both = JSON.parse(JSON.stringify(rec));
   both.score.iprd_adjustment.periods.push({ period: '2026-06-30', start: '2026-01-01', window: 'ttm_current_ytd', amount_basis: 'cash_outflow', deducted: 5e6 });
   assert.ok(App.iprdNote(both).includes('(FY2025, expense basis; YTD 2026-06-30, cash basis)'), App.iprdNote(both));
+  // [Codex review r16 of PR #47] the engine record's block alone is a run the score on file did not come from: pending, never "deducted"
   const numbersOnly = JSON.parse(JSON.stringify(rec)); numbersOnly.numbers.iprd_adjustment = numbersOnly.score.iprd_adjustment; delete numbersOnly.score.iprd_adjustment;
-  assert.equal(App.iprdNote(numbersOnly), line, 'read from the engine record when score.json has none');
+  assert.ok(!App.iprdNote(numbersOnly).includes('deducted from every intrinsic value') && App.iprdNote(numbersOnly).includes('pending its score'), App.iprdNote(numbersOnly));
   const am = JSON.parse(JSON.stringify(rec)); am.score.iprd_adjustment.treatment = 'amortized_in_base';
   assert.equal(App.iprdNote(am), 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.');
   const none = JSON.parse(JSON.stringify(rec)); none.score.iprd_adjustment.treatment = 'none';
@@ -1833,6 +1834,41 @@ test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the
   assert.ok(!App.renderOverview(minimal).includes('Acquired IPR'), 'nothing shown for the minimal block');
   assert.equal(App.iprdNote(synthetic), '', 'a record without the block');
   assert.ok(!App.renderOverview(synthetic).includes('Acquired IPR'), 'nothing new on a pre-5.6 record');
+});
+
+test('acquired IPR&D note (Codex review r16): only the displayed score\'s own run is described; per ADS at an ADS filer', () => {
+  const blk = { treatment: 'one_time_value_deduction', total: 284887000, charge_per_share: 2.3333797464207318,
+    periods: [{ period: '2025-12-31', window: 'fy', amount_basis: 'expense', deducted: 284887000 }] };
+  const applied = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value';
+  const pending = 'Acquired IPR&amp;D: the latest engine run deducts −$2.33/sh one-time (FY2025, expense basis), pending its score — the scored figures shown do not include it.';
+  // #4331515981: make_score refused the new run, so the score on file is an earlier run's (no block of its own)
+  const foreign = JSON.parse(JSON.stringify(synthetic));
+  foreign.numbers.iprd_adjustment = Object.assign({ ads_ratio: 1.0 }, blk); delete foreign.score.iprd_adjustment;
+  foreign.live_withheld = { reason: 'score_not_from_this_run', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: '' };
+  assert.equal(App.iprdNote(foreign), pending);
+  assert.ok(!App.renderOverview(foreign).includes('deducted from every intrinsic value'), 'no "already net of" line beside a foreign score');
+  // the same with the earlier score carrying a block of its own: still not this run's figures — the newer run's charge is pending
+  const foreignBlk = JSON.parse(JSON.stringify(foreign)); foreignBlk.score.iprd_adjustment = Object.assign({}, blk, { charge_per_share: 1.5 });
+  assert.equal(App.iprdNote(foreignBlk), pending);
+  const unresolved = JSON.parse(JSON.stringify(foreign)); unresolved.live_withheld.reason = 'iprd_unresolved';
+  assert.equal(App.iprdNote(unresolved), pending, 'iprd_unresolved: the score on file is an earlier run\'s too');
+  const foreignNone = JSON.parse(JSON.stringify(foreign)); delete foreignNone.numbers.iprd_adjustment;
+  foreignNone.score.iprd_adjustment = blk;
+  assert.equal(App.iprdNote(foreignNone), '', 'a foreign score\'s block is never described as this page\'s adjustment');
+  // a score with no block beside a run that has one is not that run's score either (make_score copies the block)
+  const noBlock = JSON.parse(JSON.stringify(foreign)); delete noBlock.live_withheld;
+  assert.equal(App.iprdNote(noBlock), pending);
+  // #4331515990: the engine's charge_per_share is per traded unit (× the applied ADS ratio), as key_numbers.md says
+  const ads = JSON.parse(JSON.stringify(synthetic));
+  ads.score.iprd_adjustment = Object.assign({}, blk, { total: 100e6, charge_per_share: 2.0 });
+  ads.numbers.iprd_adjustment = Object.assign({ ads_ratio: 2.0 }, ads.score.iprd_adjustment);
+  assert.ok(App.iprdNote(ads).startsWith('Acquired IPR&amp;D: −$2.00/ADS one-time (FY2025, expense basis)'), App.iprdNote(ads));
+  ads.numbers.iprd_adjustment.ads_ratio = 1.0;
+  assert.ok(App.iprdNote(ads).startsWith('Acquired IPR&amp;D: −$2.00/sh one-time'), App.iprdNote(ads));
+  const adsPending = JSON.parse(JSON.stringify(ads)); adsPending.numbers.iprd_adjustment.ads_ratio = 2.0; delete adsPending.score.iprd_adjustment;
+  assert.ok(App.iprdNote(adsPending).includes('deducts −$2.00/ADS one-time'), App.iprdNote(adsPending));
+  const own = JSON.parse(JSON.stringify(synthetic)); own.score.iprd_adjustment = blk; own.numbers.iprd_adjustment = Object.assign({ ads_ratio: 1.0 }, blk);
+  assert.ok(App.iprdNote(own).startsWith(applied), 'the score\'s own run: as before');
 });
 
 Promise.all(pending).then(() => {

@@ -2575,6 +2575,97 @@ def test_a_declared_ttm_basis_window_reads_the_current_ytd_leg():
     assert cf["exit"] == 0, cf["stdout"][-600:]
 
 
+R16_QS = [("2025-01-01", "2025-03-31", "Q1"), ("2025-04-01", "2025-06-30", "Q2"), ("2025-07-01", "2025-09-30", "Q3"),
+          ("2025-10-01", "2025-12-31", "Q4")]
+
+
+def _r16_quarters(f, tag, unit, value, quarters=R16_QS):
+    for s, e, fp in quarters:
+        _syn_put(f, tag, unit, {"start": s, "end": e, "val": value, "form": "10-K" if fp == "Q4" else "10-Q",
+                                "fp": fp, "fy": 2025, "filed": "2026-02-20" if fp == "Q4" else f"2025-{e[5:7]}-28",
+                                "accn": f"0000999016-{s}"})
+
+
+def test_an_exact_fact_in_one_unit_never_stops_another_unit_from_being_tiled():
+    """[Codex review r16, #4331515968] An exact-context fact in ANY unit skipped tiling for every unit: a USD 10-K FY
+    fact of exactly 0 beside four EUR three-month facts of EUR 25M (rate 1.10) returned the USD 0 alone, so the EUR
+    quarters were neither tiled nor recorded as partial coverage — the period read as no charge (no unit_conflict, no
+    flag) and the score published without the EUR 100M acquired-IPR&D charge. Now the units with no exact-context
+    fact are tiled and merged beside the exact ones before a unit is picked: the positive tiled EUR $110M outranks
+    the USD 0 (round 15's rule), the disagreement is recorded (unit_conflict) and the period awaits its cash-flow check
+    like any expense-basis charge; a unit that only partly covers the leg is recorded (partial_coverage,
+    ACQUIRED_IPRD_PARTIAL_PERIOD). The cash leg reads the same way. An exact fact still wins for its own unit."""
+    P = "2025-12-31"
+
+    def detect(f, checks=None):
+        return E.iprd_detect(f, FY3, fx_rates=R15_RATE, checks=checks or [], fx_fetch=lambda c, d: 1.1)
+    f = _facts()
+    _fy(f, EXPENSE, 2025, 0.0)
+    _r16_quarters(f, EXPENSE, "EUR", 25e6)
+    out = detect(f)
+    r = _leg(out, "fy", P)
+    assert r is not None and r["expense"] == 100e6 * 1.1 and r["expense_unit"] == "EUR", r
+    assert r["excluded"] == "awaiting_cash_flow_check" and r["deducted"] == 0.0, r
+    assert r["unit_conflict"][EXPENSE]["used"] == "EUR" and r["unit_conflict"][EXPENSE]["units"]["USD"]["usd"] == 0.0, r
+    assert r["context_basis"] == "aggregated_quarters" and r["aggregated_contexts"][EXPENSE]["unit"] == "EUR", r
+    assert any(x.startswith("ACQUIRED_IPRD_UNCONFIRMED") for x in E.iprd_flags(out)), E.iprd_flags(out)
+    r = _leg(detect(f, checks=[_chk(P, "fy", 100e6 * 1.1)]), "fy", P)
+    assert r["deducted"] == 100e6 * 1.1 and r["excluded"] is None, r
+    # only part of the year in EUR (Q3 + Q4): recorded, never a silent $0
+    f = _facts()
+    _fy(f, EXPENSE, 2025, 0.0)
+    _r16_quarters(f, EXPENSE, "EUR", 50e6, quarters=R16_QS[2:])
+    out = detect(f)
+    pc = out.get("partial_coverage") or []
+    assert [(x["period"], x["tag"], [u["unit"] for u in x["units"]]) for x in pc] == [(P, EXPENSE, ["EUR"])], pc
+    assert any(x.startswith("ACQUIRED_IPRD_PARTIAL_PERIOD") for x in E.iprd_flags(out)), E.iprd_flags(out)
+    # the cash leg: a USD 0 cash fact never hides the EUR quarters' payment
+    f = _facts()
+    _fy(f, EXPENSE, 2025, 110e6)
+    _fy(f, CASH, 2025, 0.0)
+    _r16_quarters(f, CASH, "EUR", 25e6)
+    r = _leg(detect(f), "fy", P)
+    assert r["amount_basis"] == "cash_outflow" and r["deducted"] == 100e6 * 1.1 and r["cash_unit"] == "EUR", r
+    assert r["unit_conflict"][CASH]["used"] == "EUR", r
+    # an exact fact still wins for its own unit (round 11): USD quarters never replace the USD FY fact
+    f = _facts()
+    _fy(f, EXPENSE, 2025, 20e6)
+    _r16_quarters(f, EXPENSE, "USD", 25e6)
+    r = _leg(detect(f, checks=[_chk(P, "fy", 20e6)]), "fy", P)
+    assert r["expense"] == 20e6 and r["deducted"] == 20e6 and "context_basis" not in r and "unit_conflict" not in r, r
+
+
+def test_a_unit_conflict_on_a_cash_only_deferred_payment_is_kept():
+    """[Codex review r16, #4331515973] The cash tag's unit conflict was attached only to the record
+    iprd_period_record built; a cash-only period (no expense fact) gets None there and its record is built later
+    (a deferred payment of the window's unpaid remainder), so the conflict was dropped: after FY2023's $100M expense
+    with $40M paid ($60M unpaid), FY2024's cash tag filed as USD 5M beside EUR 100M ($110M at 1.10) deducted $5M with
+    no unit_conflict. Now every record the period ends with carries the conflict (and its note), and so does a
+    cash-only entry the period lists in ignored_cash_only."""
+    f = _facts()
+    _fy(f, EXPENSE, 2023, 100e6)
+    _fy(f, CASH, 2023, 40e6)
+    _fy(f, CASH, 2024, 5e6)
+    _syn_put(f, CASH, "EUR", _ctx("2024-01-01", "2024-12-31", 100e6, form="10-K", filed="2025-02-20"))
+    rates = {"EUR": {"2024-12-31": 1.1}}
+    out = E.iprd_detect(f, FY3, fx_rates=rates, checks=[], fx_fetch=lambda c, d: None)
+    r = _leg(out, "fy", "2024-12-31")
+    assert r["deducted"] == 5e6 and r.get("deferred_payment"), r
+    assert r["unit_conflict"][CASH]["used"] == "USD" and r["unit_conflict"][CASH]["units"]["EUR"]["usd"] == 100e6 * 1.1, r
+    assert "reconcile" in r["unit_conflict_note"], r
+    # beyond the remainder: the rest listed in ignored_cash_only carries it too
+    f = _facts()
+    _fy(f, EXPENSE, 2023, 100e6)
+    _fy(f, CASH, 2023, 40e6)
+    _fy(f, CASH, 2024, 70e6)
+    _syn_put(f, CASH, "EUR", _ctx("2024-01-01", "2024-12-31", 100e6, form="10-K", filed="2025-02-20"))
+    out = E.iprd_detect(f, FY3, fx_rates=rates, checks=[], fx_fetch=lambda c, d: None)
+    r = _leg(out, "fy", "2024-12-31")
+    assert r["deducted"] == 60e6 and r["unit_conflict"][CASH]["used"] == "USD", r
+    co = [x for x in out["ignored_cash_only"] if x["period"] == "2024-12-31"]
+    assert len(co) == 1 and co[0]["cash"] == 10e6 and co[0]["unit_conflict"][CASH]["used"] == "USD", co
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
