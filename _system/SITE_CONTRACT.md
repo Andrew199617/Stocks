@@ -175,7 +175,10 @@ currency with no FX rate (round 8; its `cash_native` is that payment), (Codex re
 `context_basis` `"aggregated_quarters"` with `aggregated_contexts` {tag: {unit, contexts: [[start, end], …]}} on a
 period (or an `ignored_cash_only` item) whose expense or cash figure was summed from three-month / year-to-date facts
 tiling the period because no fact covers it exactly (absent otherwise), `deferred_payment` (a note) on cash
-that settles an earlier window charge, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
+that settles an earlier window charge (Codex review round 12 of PR #47: with `deferred_payment_assumption`, a note
+naming the periods whose residual it assumed payable in cash), (round 12) `cash_flow_check` with presentation `paid_in_shares` also
+on a cash-basis period, with `residual_paid_in_shares` (the expense less cash it declares settled in shares, never accrued as unpaid) and
+`residual_note`, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
 deal) with `recurrence_excluded`
 ("deferred_payment_of", when the deals sum to the whole charge) on an FY period judgment.json
@@ -1783,7 +1786,12 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   log_residual, filed_splits_after_scoring}`), `score_json_fresh` and `score_mismatch` (null). `scored_price` and the IVs are
   in today's share units. An agent tier override is read only from a score.json built from THIS engine run
   (`score_matches_run`: `analysis_date` = the run's `as_of`, `tier_by_numbers` — itself the tier of the run's weighted IRR —,
-  `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`).
+  `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`;
+  [Codex review round 12 of PR #47] and, when score.json carries `dcf_content_hash` — make_score writes the run's verified
+  `content_hash` there since round 12 — that hash must equal dcf_numbers.json's `content_hash`, itself valid over the
+  record (`reprice.run_hash_problem`): another run with the same rounded headline figures, or a run edited after the
+  engine stamped it, is not this score's run; a score.json without the field, built earlier, is judged on the headline
+  figures alone).
   Until Codex review round 11 of PR #47 a score.json from another run still wrote live.json (`score_json_fresh` false,
   `score_mismatch` listing every disagreement, a `score_note`, no override); now it writes NO live.json (`check_score`; a
   stale one is removed; the main agent's general rule): the folder's live figures pause until make_score scores the
@@ -1821,7 +1829,7 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   latest run left an acquired-IPR&D charge unresolved".
   [Codex review round 11 of PR #47, the main agent's general rule] And, `reason: "score_not_from_this_run"`, for any live.json
   beside a score.json not built from the record's dcf_numbers.json run (`build_site.score_from_run`, mirroring
-  `reprice.score_matches_run`; a test holds them equal), whatever make_score refused the run for — a deleted deferred payment
+  `reprice.score_matches_run` with its round-12 `dcf_content_hash` binding; a test holds them equal), whatever make_score refused the run for — a deleted deferred payment
   its registry recorded included, which the engine record alone cannot show — or because make_score has not run on it yet:
   reprice.py writes no live.json for it either, and live figures pause between an engine run and its make_score. The more
   specific `iprd_unresolved` / `iprd_share_count_unverified` reasons keep precedence; a record without a dcf_numbers.json

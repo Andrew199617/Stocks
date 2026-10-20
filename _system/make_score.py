@@ -1513,6 +1513,11 @@ def iprd_lines(n):
         L.append(f"- {lbl}: {amt} — {p.get('amount_basis') or '—'} basis, tag {p.get('tag_used') or '—'}; {state}"
                  + (f"; cash-flow check: {chk.get('presentation')}" if chk else "")
                  + ("; deferred payment of an earlier window period's accrued charge" if p.get("deferred_payment") else "")
+                 # [Codex review r12 of PR #47] a share-paid residual accrues nothing; an assumed-cash one is named
+                 + (f"; residual {_usd_exact(p.get('residual_paid_in_shares'))} paid in shares (not accrued as unpaid)"
+                    if p.get("residual_paid_in_shares") else "")
+                 + ("; assumes the earlier remainder was payable in cash (no paid_in_shares check declares it settled "
+                    "in shares)" if p.get("deferred_payment_assumption") else "")
                  + dpo_txt
                  + ("; deal and consideration: not identified by the engine — name them in analysis.md" if p.get("deducted") else ""))
     mat = b.get("materiality")
@@ -2937,6 +2942,9 @@ def main():
         fail(_dbl)
     score.update({
         "engine_release": n.get("engine_release"),
+        # [Codex review r12 of PR #47] the run this score was built from (its verified content_hash): reprice.py and
+        # build_site show live figures only beside the run whose hash this is
+        "dcf_content_hash": ch,
         "irr_bear": round(n["irr_bear"], 4) if isinstance(n.get("irr_bear"), (int, float)) else None,
         "irr_bull": round(n["irr_bull"], 4) if isinstance(n.get("irr_bull"), (int, float)) else None,
         "tier_bear": n.get("tier_bear"), "tier_bull": n.get("tier_bull"),

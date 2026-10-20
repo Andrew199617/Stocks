@@ -114,7 +114,12 @@ engine_release. Any disagreement used to write live.json with
 since Codex review round 11 of PR #47 it writes NO live.json (check_score —
 the new run's figures beside another run's verdict are not a live repricing
 of that verdict), so `score_json_fresh` is true (null with no score.json) and
-`score_mismatch` null on every live.json written.
+`score_mismatch` null on every live.json written. Since Codex review round 12
+of PR #47 make_score also copies the run's content_hash into score.json
+(dcf_content_hash): a score carrying it matches only the run with that
+(valid) hash — run_hash_problem — since rounded headline figures cannot tell
+two same-day runs apart; a score built earlier, without it, is judged on the
+headline figures as before.
 
 Exit codes: 0 written; 2 usage; 3 single ticker skipped (reason printed).
 --all exits 0 whenever the sweep itself completes.
@@ -174,7 +179,7 @@ only scored folders). make_score copies the run's figures verbatim, so a
 release-mismatch rebuild of the same run still reprices. Live figures
 therefore pause between an engine run and its make_score.
 """
-import json, math, os, sys, datetime
+import json, math, os, sys, datetime, hashlib
 from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -513,15 +518,38 @@ def _same(a, b, tol):
     return a is not None and b is not None and abs(a - b) <= tol
 
 
+def run_hash_problem(scored, numbers):
+    """[Codex review r12 of PR #47] None when score.json carries no dcf_content_hash (a score built before round 12:
+    the headline comparison decides alone) or when it equals the run's content_hash and that hash matches the
+    record's content (make_score's own integrity check); else the mismatch."""
+    if "dcf_content_hash" not in scored:
+        return None
+    h, ch = scored.get("dcf_content_hash"), numbers.get("content_hash")
+    if not h or h != ch:
+        return f"dcf_content_hash {h!r} vs run content_hash {ch!r} (another engine run)"
+    canon = json.dumps({k: v for k, v in numbers.items() if k != "content_hash"},
+                       sort_keys=True, separators=(",", ":"), default=str)
+    if hashlib.sha256(canon.encode()).hexdigest() != ch:
+        return "run content_hash does not match its content (dcf_numbers.json edited after the engine run)"
+    return None
+
+
 def score_matches_run(scored, numbers):
     """(matches, mismatches): whether score.json was built by make_score.py
     from THIS dcf_numbers.json. make_score copies the run's figures verbatim
     (implied_irr rounded to 4 dp, iv_at_15 to 2 dp), so every one must agree,
     and the numbers tier must also be the tier the run's own weighted IRR
-    gives. A shared date alone is not identity (Codex review of PR #2)."""
+    gives. A shared date alone is not identity (Codex review of PR #2).
+    [Codex review r12 of PR #47] Nor are rounded headline figures: a score.json
+    carrying dcf_content_hash (make_score writes it since round 12) must name
+    this run's content_hash, itself valid (run_hash_problem); one without it
+    (every score built earlier) is judged on the headline figures as before."""
     if not isinstance(scored, dict):
         return False, ["score.json is not an object"]
     mm = []
+    hp = run_hash_problem(scored, numbers)
+    if hp:
+        mm.append(hp)
     if not scored.get("analysis_date") or scored.get("analysis_date") != numbers.get("as_of"):
         mm.append(f"analysis_date {scored.get('analysis_date')!r} vs run as_of {numbers.get('as_of')!r}")
     tier_run = numbers.get("tier_by_numbers")

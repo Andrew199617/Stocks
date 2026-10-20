@@ -41,7 +41,7 @@ SYS = os.path.dirname(HERE)
 for _p in (HERE, SYS):
     if _p not in sys.path:
         sys.path.insert(0, _p)
-from test_make_score_55 import Run, _judgment  # noqa: E402
+from test_make_score_55 import Run, _judgment, _stamp  # noqa: E402
 import test_engine_iprd as TI  # noqa: E402
 
 E = TI.E
@@ -1088,7 +1088,8 @@ def test_no_live_figures_unless_the_score_is_from_this_run():
     r2 = _score_reg(n_del, _j(), r1.result["entries"])
     assert r2.rc != 0 and "no longer declared" in r2.err, r2.err[-800:]
     assert n_del["iprd_adjustment"]["charge_per_share"] == 0 and E.iprd_unresolved(n_del) is None
-    m_del, m_decl = dict(copy.deepcopy(n_del), ticker="TST"), dict(copy.deepcopy(n_decl), ticker="TST")
+    # the runs as on disk: engine-stamped (round 12 binds the score to the run's content_hash)
+    m_del, m_decl = _stamp(dict(copy.deepcopy(n_del), ticker="TST")), _stamp(dict(copy.deepcopy(n_decl), ticker="TST"))
     day = m_del["as_of"]
     try:
         R.reprice(m_del, 18.75, day, s, today=day)
@@ -1138,10 +1139,74 @@ def test_a_release_mismatch_rebuild_of_the_same_run_still_reprices():
     assert r.rc == 0, r.err[-800:]
     s = r.result["score"]
     assert s["engine_release"] == "5.5.0" != E.ENGINE_RELEASE, s.get("engine_release")
-    m = dict(n, ticker="TST")
+    m = _stamp(dict(n, ticker="TST"))   # the run as on disk (round 12: the score carries its content_hash)
     live = R.reprice(m, 25.0, m["as_of"], s, today=m["as_of"])
     assert live["score_json_fresh"] is True and live["engine_release_of_run"] == "5.5.0", live
     assert B.score_from_run(s, m) == (True, []) and B.live_shown({"numbers": m, "score": s, "live": live}) == (live, None)
+
+
+# --- Codex review round 12 of PR #47 ------------------------------------------------------------------------------
+def test_live_figures_are_bound_to_the_runs_content_hash():
+    """[Codex review r12, summary-5584834562, the main agent's shape] score_matches_run / score_from_run took rounded
+    headline figures as proof that score.json came from the run: a second same-day run (or an edited one) that moved
+    scenario paths or the acquired-IPR&D record while keeping the tier, base, price, 4-dp IRR and 2-dp IV still
+    passed, so live figures were written for a run make_score refused or never scored. Now make_score copies the
+    run's content_hash into score.json (dcf_content_hash) and both checks require it to equal the dcf_numbers.json
+    content_hash, which must itself match the record's content (the integrity check make_score applies): another
+    run with the same headline (re-stamped) or the same run edited after stamping (stale hash) gets no live figures.
+    A score.json without the field (every score built before this round) keeps the headline comparison."""
+    import reprice as R
+    import build_site as B
+    n = _one_time()
+    r = _score(n)
+    assert r.rc == 0, r.err[-800:]
+    s = r.result["score"]
+    own = _stamp(dict(copy.deepcopy(n), ticker="TST"))
+    assert s.get("dcf_content_hash") == own["content_hash"], (s.get("dcf_content_hash"), own["content_hash"])
+    assert R.score_matches_run(s, own) == B.score_from_run(s, own) == (True, [])
+    day = own["as_of"]
+    live = R.reprice(own, 25.0, day, s, today=day)
+    assert live["score_json_fresh"] is True and B.live_shown({"numbers": own, "score": s, "live": live}) == (live, None)
+    edited = copy.deepcopy(own)
+    edited["iprd_adjustment"]["deferred_payments_rolled_out"] = [{"period": "2021-12-31", "amount": 5e6}]
+    for other, why in ((_stamp(edited), "dcf_content_hash"), (edited, "content_hash")):
+        ok, mm = R.score_matches_run(s, other)
+        assert not ok and any(why in x for x in mm), mm
+        assert B.score_from_run(s, other) == (ok, mm), (B.score_from_run(s, other), mm)
+        try:
+            R.reprice(other, 25.0, day, s, today=day)
+            raise AssertionError("repriced a run its score.json was not built from")
+        except R.Skip as e:
+            assert "score.json is not from this engine run" in str(e), str(e)
+        shown, w = B.live_shown({"numbers": other, "score": s, "live": live})
+        assert shown is None and w["reason"] == "score_not_from_this_run", w
+    # a pre-round-12 score.json (no dcf_content_hash): the headline comparison, as before
+    old = {k: v for k, v in s.items() if k != "dcf_content_hash"}
+    assert R.score_matches_run(old, _stamp(edited)) == B.score_from_run(old, _stamp(edited)) == (True, [])
+
+
+def test_a_share_paid_residual_check_on_a_cash_basis_period_is_scored_and_kept_in_sync():
+    """[Codex review r12, #4324802987] The paid_in_shares check applied to a cash-basis period ($100M FY2024 expense,
+    $0 cash fact) is what keeps the unrelated FY2025 cash-only payment out of the deduction, so make_score holds it
+    like any applied check: score.json names it on the period, key_numbers.md says the residual was paid in shares,
+    and a judgment.json that now declares it differently is refused as out of sync with the run. Without the check the
+    automatic deferred match prints its assumption."""
+    chk = TI._shares_check("2024-12-31", 100e6)
+    facts = lambda: TI._facts(expense={2024: 100e6}, cash={2024: 0.0, 2025: 100e6})
+    n = TI._cached("ms_r12_shares", lambda: TI._ok(TI._run(facts(), judgment={"iprd_cash_flow_check": [chk]},
+                                                          checks=False)))
+    r = _score(n, _j(iprd_cash_flow_check=[chk]))
+    assert r.rc == 0, r.err[-800:]
+    p24 = [p for p in r.result["score"]["iprd_adjustment"]["periods"] if p["period"] == "2024-12-31"][0]
+    assert p24["cash_flow_check"] == "paid_in_shares" and p24["deducted"] == 0.0, p24
+    assert "residual $100,000,000 paid in shares" in r.result["key"], r.result["key"]
+    r2 = _score(n, _j(iprd_cash_flow_check=[dict(chk, presentation="added_back_paid_in_investing")]))
+    assert r2.rc != 0 and "now declares differently" in r2.err, r2.err[-800:]
+    m = TI._cached("ms_r12_assumed", lambda: TI._ok(TI._run(facts(), checks=False)))
+    assert m["iprd_adjustment"]["total"] == 100e6, m["iprd_adjustment"]
+    r3 = _score(m, _j())
+    assert r3.rc == 0, r3.err[-800:]
+    assert "assumes the earlier remainder was payable in cash" in r3.result["key"], r3.result["key"]
 
 
 if __name__ == "__main__":

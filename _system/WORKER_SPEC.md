@@ -134,7 +134,13 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    is under 98% of the charge — Codex review round 8 of PR #47: the engine no longer infers this from the leg's
    size, which only adds a `capex_overlap_note` asking you to look). Rerun the
    engine; quote the line in analysis.md. Never guess: a filing you cannot read is `NEEDS_MAIN_AGENT:
-   iprd — cash-flow presentation unknown: <period> <amount>`.
+   iprd — cash-flow presentation unknown: <period> <amount>`. (Codex review round 12 of PR #47) A cash-basis
+   period (the cash tag is filed) needs no check for its own deduction — its cash outflow is deducted — but when
+   its expense exceeds its cash and the filing shows the rest paid in shares, declare `paid_in_shares` for it too
+   (amount: the filed expense): the residual is then recorded `residual_paid_in_shares` and never accrued as an
+   unpaid cash balance, so no later cash-only payment is deducted against it. A `deferred_payment` period that
+   carries `deferred_payment_assumption` was matched against a residual nothing declared: say in analysis.md how
+   that residual was settled (cash later: the deduction stands; shares: declare `paid_in_shares` and rerun).
    `ACQUIRED_IPRD_UNCONVERTED` (Codex review round 3 of PR #47): the charge was expensed only in a currency the
    engine holds no FX rate for, with no usable us-gaap cash fact — NOTHING is deducted, the tier is the
    UNADJUSTED one, and make_score refuses the score whatever judgment.json says. Block the folder

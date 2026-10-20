@@ -2311,6 +2311,74 @@ def test_fy_leg_without_a_10k_fact_is_tiled_from_quarters_or_flagged_partial():
         assert n[k] == plain[k], k
 
 
+# --- Codex review round 12 of PR #47 ------------------------------------------------------------------------------
+def test_a_zero_fact_on_one_detector_tag_never_hides_a_positive_partial_fact_on_the_other():
+    """[Codex review r12, #4324802973, the main agent's shape] An exact FY2025 $0 fact on the current detector tag
+    counted as having read the leg, so a positive partial-period fact on the pre-2022 tag (a $100M Q4 fact in the
+    10-K, no FY context for that tag) was dropped: the period printed $0 with no partial_coverage and no
+    ACQUIRED_IPRD_PARTIAL_PERIOD. Now a positive partial detector fact is kept unless a POSITIVE full-leg detector
+    fact was read: the $0 period stays (nothing deducted), the $100M Q4 fact is recorded in partial_coverage and the
+    flag names it. A positive exact fact on the other tag still decides the leg (the partial fact is not recorded)."""
+    def detect(current):
+        f = _facts(expense={2025: current})
+        _ytd(f, EXPENSE_OLD, "2025-10-01", "2025-12-31", 100e6, "2026-02-20", form="10-K", fp="FY")
+        return E.iprd_detect(f, FY3, fx_rates={}, checks=[_chk("2025-12-31", "fy", current)] if current else [])
+    out = detect(0.0)
+    rec = _leg(out, "fy", "2025-12-31")
+    assert rec is not None and rec["expense"] == 0.0 and rec["deducted"] == 0.0, out["periods"]
+    pc = out.get("partial_coverage")
+    assert pc and len(pc) == 1 and (pc[0]["period"], pc[0]["window"], pc[0]["tag"]) == ("2025-12-31", "fy", EXPENSE_OLD), pc
+    assert [(c["start"], c["end"], c["value"]) for u in pc[0]["units"] for c in u["contexts"]] == [
+        ("2025-10-01", "2025-12-31", 100e6)], pc
+    fl = [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_PARTIAL_PERIOD: ")]
+    assert len(fl) == 1 and "FY2025" in fl[0] and "100,000,000" in fl[0] and EXPENSE_OLD in fl[0], E.iprd_flags(out)
+    # a positive exact current-tag fact read the leg: the partial legacy fact is not recorded
+    out = detect(20e6)
+    rec = _leg(out, "fy", "2025-12-31")
+    assert rec["expense"] == 20e6 and rec["deducted"] == 20e6 and "partial_coverage" not in out, out
+
+
+def _shares_check(period, amount):
+    return {"period": period, "window": "fy", "amount": amount, "presentation": "paid_in_shares",
+            "source": f"test: the {period} 10-K's supplemental non-cash disclosure: the acquired IPR&D was paid in shares"}
+
+
+def test_share_paid_residual_is_never_accrued_as_an_unpaid_cash_balance():
+    """[Codex review r12, #4324802987, the main agent's shape] A $100M FY2024 expense beside a $0 cash fact (cash
+    basis: the cash tag is filed) was accrued whole into the window's unpaid remainder, and an iprd_cash_flow_check
+    declaring it paid in shares was consumed without effect (the record is cash-basis), so an unrelated $100M FY2025
+    cash-only payment was deducted as its deferred payment — the dilution the share count already carries, charged a
+    second time. Now a matching check with presentation paid_in_shares applies to a cash-basis record too: it is
+    recorded on the period (cash_flow_check, residual_paid_in_shares) and the residual is not accrued, so the FY2025
+    cash stays in ignored_cash_only; with $40M paid in cash only the $40M is deducted. The period's own deduction is
+    unchanged (its cash). Without any check the residual still accrues and the later payment is still deducted, with
+    deferred_payment_assumption naming the period whose remainder it assumed payable in cash."""
+    def detect(expense, cash24, cash25, checks):
+        f = _facts(expense={2024: expense}, cash={2024: cash24, 2025: cash25})
+        return E.iprd_detect(f, FY3, fx_rates={}, checks=checks)
+    out = detect(100e6, 0.0, 100e6, [_shares_check("2024-12-31", 100e6)])
+    r24 = _leg(out, "fy", "2024-12-31")
+    assert r24["amount_basis"] == "cash_outflow" and r24["deducted"] == 0.0 and r24["excluded"] is None, r24
+    assert r24["cash_flow_check"]["presentation"] == "paid_in_shares" and r24["residual_paid_in_shares"] == 100e6, r24
+    assert _leg(out, "fy", "2025-12-31") is None and not out["cash_flow_checks_unused"], out
+    assert [(c["period"], c["cash"]) for c in out["ignored_cash_only"]] == [("2025-12-31", 100e6)], out["ignored_cash_only"]
+    out = detect(100e6, 40e6, 60e6, [_shares_check("2024-12-31", 100e6)])
+    assert sum(p["deducted"] for p in out["periods"]) == 40e6 and _leg(out, "fy", "2025-12-31") is None, out["periods"]
+    assert _leg(out, "fy", "2024-12-31")["residual_paid_in_shares"] == 60e6
+    # no check: accrued as before, the automatic match names its assumption
+    out = detect(100e6, 0.0, 100e6, [])
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["deducted"] == 100e6 and r25.get("deferred_payment"), r25
+    assert "FY2024" in r25["deferred_payment_assumption"] and "paid_in_shares" in r25["deferred_payment_assumption"], r25
+    assert "residual_paid_in_shares" not in _leg(out, "fy", "2024-12-31")
+    # end to end: the share-paid run deducts nothing; make_score's sync check sees the applied check
+    n = _ok(_run(_facts(expense={2024: 100e6}, cash={2024: 0.0, 2025: 100e6}),
+                 judgment={"iprd_cash_flow_check": [_shares_check("2024-12-31", 100e6)]}, checks=False))
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 0.0 and blk["charge_per_share"] == 0.0, blk
+    assert n["weighted"] == _plain()["weighted"], "a share-paid charge moved the valuation"
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

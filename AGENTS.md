@@ -339,7 +339,12 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    than that remainder — or, declared in `iprd_deferred_payment` against a `first_charged_period` before the
    window that companyfacts shows expensed (`first_charge_evidence` `companyfacts_expense_fact`), a cash-tag-only
    payment of that pre-window charge (round 3): its cited filing must show the deferred consideration or
-   milestone paid in that period, P1 otherwise. `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
+   milestone paid in that period, P1 otherwise. [Codex review round 12 of PR #47] A cash-basis period carrying
+   a `paid_in_shares` check (`residual_paid_in_shares`: its expense less cash, never accrued as unpaid) needs a
+   source showing that residual paid in shares (a non-cash stock-consideration line), P1 otherwise; a
+   `deferred_payment` carrying `deferred_payment_assumption` (matched against a residual nothing declared) whose
+   analysis.md does not say how that residual was settled is P2 — one the filing shows paid in shares, deducted
+   again, is P1. `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
    the payment is (declared, or why it is not the earlier deal's) is P2. A period with `recurrence_excluded` `deferred_payment_of`
    (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred
    consideration of the named deal as the cited filing shows it: a distinct deal (another counterparty or
@@ -388,14 +393,17 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    general rule), any run its score.json was not built from, whatever make_score refused it for (a deleted
    deferred payment its registry recorded, any other refusal) or because make_score has not run yet:
    `live_withheld` reason `score_not_from_this_run` — live figures pause between an engine run and its
-   make_score, so a page showing live figures beside a score from another run is P1.
+   make_score, so a page showing live figures beside a score from another run is P1. Since round 12 a
+   score.json carrying `dcf_content_hash` is the run's only when that hash is the run's (valid) `content_hash`;
+   rounded headline figures alone are identity only for a score built before round 12.
    [Codex review round 11 of PR #47, the main agent's shape] A period whose expense or cash figure carries
    `context_basis` `aggregated_quarters` was summed from the three-month / year-to-date facts in
    `aggregated_contexts` (no fact covered the period exactly): those contexts must tile the period with no gap
    and no overlap, P1 otherwise. `ACQUIRED_IPRD_PARTIAL_PERIOD` (`iprd_adjustment.partial_coverage`: a tag
    filed for only part of a window period, nothing counted for it) resolved without the period's full figure
    from the filing and its effect on the IVs / IRR is P2; a material one OE never saw published without
-   `NEEDS_MAIN_AGENT: iprd_partial_period` is P1.
+   `NEEDS_MAIN_AGENT: iprd_partial_period` is P1. Since round 12 a $0 fact on one detector tag never hides a
+   positive partial fact on the other (only a positive full-period detector fact reads the period).
    With field overrides in force, `override_impact`'s counterfactual holds the
    final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`) in every branch (declared pin, TTM, median,
    payable), so the measured impact is the override's alone.

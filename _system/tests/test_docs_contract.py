@@ -328,6 +328,12 @@ PAIRS = [
     ("_system/reprice.py", "def check_score(", "check_score", [SYS_README, CONTRACT]),
     ("_system/build_site.py", '"reason": "score_not_from_this_run"', "score_not_from_this_run", [SYS_README, CONTRACT]),
     ("_system/build_site.py", "def score_from_run(", "score_from_run", [SYS_README, CONTRACT]),
+    # Codex review round 12 of PR #47: the score bound to its run's content hash; share-paid residuals
+    ("_system/make_score.py", '"dcf_content_hash": ch', "dcf_content_hash", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", "def run_hash_problem(", "run_hash_problem", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["residual_paid_in_shares"] = ', "residual_paid_in_shares", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["deferred_payment_assumption"] = (', "deferred_payment_assumption",
+     [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

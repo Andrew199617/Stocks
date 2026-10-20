@@ -2567,7 +2567,14 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     settle the window's unpaid remainder or a pre-window charge is recorded excluded non_usd_no_rate with its
     cash_native (ACQUIRED_IPRD_UNCONVERTED, make_score refuses it); one that could settle nothing is listed in
     ignored_cash_only with its native amount. [Codex review r6 of PR #47] Beside a positive expense such a cash fact
-    is the period's preferred amount: the period is gated the same way (iprd_period_record), never the expense."""
+    is the period's preferred amount: the period is gated the same way (iprd_period_record), never the expense.
+    [Codex review r12 of PR #47] A cash-basis period's residual (expense - cash) is accrued into the unpaid remainder
+    only when it is not declared settled in shares: a matching iprd_cash_flow_check with presentation paid_in_shares
+    (read for cash-basis periods too; the period still deducts its cash) is recorded on the period (cash_flow_check,
+    residual_paid_in_shares) and accrues nothing. Without one the residual accrues as before, and a deferred payment
+    matched against it records deferred_payment_assumption naming the periods assumed payable in cash (it still
+    deducts). Only a positive full-leg detector fact reads a leg, so a $0 fact on one detector tag never hides a
+    positive partial-period fact on the other (partial_coverage)."""
     exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
     cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
     periods, cash_only, notes = [], [], []
@@ -2596,13 +2603,16 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
 
     def _legs(p, window, start, exact_exp, exact_cash):
         """Every tag's facts for one leg; the partly covered tags that matter are recorded: an expense tag when no
-        expense tag reads the leg, the cash tag when it could be an amount — beside an expense on this leg (the
-        preferred amount), or where a payment could settle a charge (an earlier window expense, a pre-window one)."""
+        expense tag reads a positive full-leg value (an exact or tiled $0 fact does not), the cash tag when it could
+        be an amount — beside an expense on this leg (the preferred amount), or where a payment could settle a charge
+        (an earlier window expense, a pre-window one)."""
         del pending[:]
         exps = [(t, _leg(t, ex, p, window, start)) for t, ex in exact_exp]
         cash = _leg(IPRD_CASH_TAG, exact_cash, p, window, start)
         _pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
-        read = any(bu for _, bu in exps)
+        # [Codex review r12 of PR #47] only a POSITIVE full-leg detector fact reads the leg: an exact $0 fact on one
+        # tag never hides a positive partial-period fact on the other (it is recorded, ACQUIRED_IPRD_PARTIAL_PERIOD)
+        read = any(_pos(vf[0]) for _, bu in exps for vf in bu.values())
         keep = [x for x in pending if x["tag"] != IPRD_CASH_TAG and not read]
         if any(x["tag"] == IPRD_CASH_TAG for x in pending) and (
                 keep or prior or any(_pos(vf[0]) for _, bu in exps for vf in bu.values())
@@ -2632,6 +2642,9 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         by_key.setdefault((e.get("period"), e.get("window")), e)
     used = set()
     unpaid = [0.0]   # the window's accrued, not yet paid remainder of cash-basis charges
+    # [Codex review r12 of PR #47] the window periods whose residual (expense - cash) was accrued with nothing
+    # declaring how it was settled: a later automatic match against the remainder names them (its assumption)
+    assumed = []
     # [Codex review r8 of PR #47] window periods whose expense the run could not convert (no rate, even fetched) but
     # whose USD cash was deducted: their unpaid remainder is unknown, so later cash on them is gated, never ignored
     unknown_rest = []
@@ -2681,6 +2694,11 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             rec["expense_tags_note"] = ("both acquired-IPR&D expense tags are filed for this period with different "
                                         "positive values: the current tag " + expense[0] + " is used — reconcile "
                                         "the two in analysis.md against the filing")
+        if (rec is not None and chk is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
+                and chk.get("presentation") == "paid_in_shares"):
+            # [Codex review r12 of PR #47] a cash-basis period deducts its cash outflow whatever a check says; a
+            # paid_in_shares check says how the rest of the expense was settled — in shares, so nothing stays payable
+            rec["cash_flow_check"] = {k: chk.get(k) for k in ("presentation", "amount", "source")}
         if rec is not None and mismatch is not None:
             rec["cash_flow_check_mismatch"] = {"declared_amount": mismatch.get("amount"),
                                                "note": "judgment.json iprd_cash_flow_check names this period with "
@@ -2714,7 +2732,18 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             unknown_rest.append(p)
         if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
                 and isinstance(rec["expense"], (int, float)) and rec["expense"] > 0):
-            unpaid[0] = max(0.0, unpaid[0] + rec["expense"] - rec["amount"])
+            gap = rec["expense"] - rec["amount"]
+            if gap > 0 and (rec.get("cash_flow_check") or {}).get("presentation") == "paid_in_shares":
+                # [Codex review r12 of PR #47] the residual was paid in shares (the dilution is in the share count):
+                # it is no unpaid cash balance, so no later cash-only payment is deducted against it
+                rec["residual_paid_in_shares"] = float(gap)
+                rec["residual_note"] = (f"expense {rec['expense']:,.0f} less cash {rec['amount']:,.0f}: the "
+                                        f"{gap:,.0f} residual is declared paid in shares ({IPRD_CF_CHECK_KEY} "
+                                        "paid_in_shares) — not accrued into the window's unpaid remainder")
+            else:
+                unpaid[0] = max(0.0, unpaid[0] + gap)
+                if gap > 0:
+                    assumed.append(_iprd_period_label(rec))
         elif (cv is not None and cv > 0 and unknown_rest and p not in unknown_rest
               and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
             # [Codex review r8 of PR #47] cash with no expense in its period, after a charge whose USD remainder is
@@ -2744,6 +2773,13 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                                          f"{take:,.0f} of it settles the window's unpaid remainder of earlier "
                                          "cash-basis charges (expensed, not yet paid) — counted once, not a new "
                                          "charge and not counted toward recurrence"))
+            # [Codex review r12 of PR #47] the match rests on an assumption: name it (the deduction stands)
+            rec["deferred_payment_assumption"] = (
+                "the unpaid remainder this payment settles (expense less cash of " + ", ".join(assumed) + ") is "
+                f"assumed payable in cash: no judgment.json {IPRD_CF_CHECK_KEY} declares that residual "
+                "paid_in_shares. If the filing shows it was paid in shares (the dilution is already in the share "
+                "count), declare the check for that period (amount: the filed expense) and rerun — this payment is "
+                "then not deducted against it")
             if cv > take:
                 cash_only.append(_co(p, window, cv - take, cash, "cash tag beyond the window's unpaid remainder, no "
                                      "acquired-IPR&D expense tag: never a qualifying charge"))

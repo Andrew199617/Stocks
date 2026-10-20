@@ -134,6 +134,10 @@ engine record alone cannot show) or has not run on it yet, so the verdict on
 file is another run's and live figures pause until the folder is scored
 again; reprice.py writes no live.json for it either. The more specific
 iprd_unresolved / iprd_share_count_unverified reasons keep precedence.
+[Codex review round 12 of PR #47] A score.json carrying dcf_content_hash
+(make_score writes the run's content_hash since round 12) is from the run
+only when that hash is the run's, itself valid over the record; one without
+it is judged on the rounded headline figures as before.
 
 Splits since scoring (2026-10-16): reprice.py restates live.json in today's
 share units and records split_factor (new shares per scored-run share). The
@@ -171,6 +175,7 @@ import argparse
 import csv
 import datetime
 import glob
+import hashlib
 import json
 import math
 import os
@@ -506,11 +511,22 @@ def score_from_run(score, numbers):
     """[Codex review r11 of PR #47] (matches, mismatches): whether score.json was built by make_score.py from THIS
     dcf_numbers.json — reprice.score_matches_run mirrored here so the site needs no reprice import (a test holds the
     two equal): make_score copies the run's figures verbatim (implied_irr to 4 dp, iv_at_15 to 2 dp), and the run's
-    numbers tier must be the tier of its own weighted IRR."""
+    numbers tier must be the tier of its own weighted IRR. [Codex review r12 of PR #47] A score.json carrying
+    dcf_content_hash must name this run's content_hash, itself valid over the record (reprice.run_hash_problem); one
+    without it (built before round 12) is judged on the headline figures alone."""
     if not isinstance(score, dict):
         return False, ["score.json is not an object"]
     n = _d(numbers)
     mm = []
+    if "dcf_content_hash" in score:
+        h, ch = score.get("dcf_content_hash"), n.get("content_hash")
+        if not h or h != ch:
+            mm.append(f"dcf_content_hash {h!r} vs run content_hash {ch!r} (another engine run)")
+        else:
+            canon = json.dumps({k: v for k, v in n.items() if k != "content_hash"},
+                               sort_keys=True, separators=(",", ":"), default=str)
+            if hashlib.sha256(canon.encode()).hexdigest() != ch:
+                mm.append("run content_hash does not match its content (dcf_numbers.json edited after the engine run)")
     if not score.get("analysis_date") or score.get("analysis_date") != n.get("as_of"):
         mm.append(f"analysis_date {score.get('analysis_date')!r} vs run as_of {n.get('as_of')!r}")
     tier_run = n.get("tier_by_numbers")
