@@ -1,0 +1,88 @@
+{
+ "ticker": "BXP",
+ "name": "BXP, INC.",
+ "sector": "Real Estate / REIT \u2014 Office",
+ "price": 59.115,
+ "market_cap_b": 9.39,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 1.7589429159554173,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Real but narrow: scarce premier gateway locations, the largest premier-workplace platform in the US and a proven development engine are genuine advantages, and the current leasing cycle (occupancy 88.4% and rising, 91.3% leased) shows tenants paying up for the best buildings. But the filed evidence caps the score: gross margin has fallen four straight years to 59.1%, the measurable roic_proxy was only 8.5-8.7% (FY2016-17), GAAP ROE ran 0.3-5.4% in FY2023-25, and the model is capital-hungry ($953M TTM capex) and heavily levered. That is a moderate 5/10, not the sustained well-above-cost-of-capital record a 7+ requires.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "BIG_NET_CASH: net cash is 2.6x normalized OE \u2014 part of the price is a cash pile, not the operating business; note it in the verdict"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 6.59,
+   "irr": 0.0367
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 10.6,
+   "irr": 0.0462
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 14.52,
+   "irr": 0.0557
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 19.65,
+   "irr": 0.0683
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 29.76,
+   "irr": 0.0919
+  }
+ },
+ "iv_at_15": 15.1,
+ "iv_at_12": 19.97,
+ "implied_irr": 0.0576,
+ "implied_irr_base_case": 0.0557,
+ "upside_at_15_pct": -74.5,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Largest US premier-office REIT, moat 5/10 \u2014 scarce gateway assets and a leasing recovery (occupancy 88.4%, 2026 FFO guided $6.99-$7.05) are real, but on a TTM owner's-earnings base of $1.76/share, after $953M of TTM capex and against $15.63B of filed debt, the weighted IRR is 5.76% (IV@15% $15.10) at $59.12 \u2014 it clears the 15% hurdle only below ~$15; the REIT/FFO lens is kinder than the OE lens, but neither supports 15% at this price.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0462,
+ "irr_bull": 0.0683,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 10.71,
+ "iv_at_25": 8.28,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": -728206000,
+ "shares_diluted_latest": 158869000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Irreplaceable premier-workplace locations in six gateway markets (Boston, New York, San Francisco, Seattle, Washington, DC and Los Angeles) \u2014 scarcity, zoning and replacement cost keep competing new supply slow",
+  "Scale and integration: the largest publicly traded developer, owner and manager of premier workplaces in the United States, with an in-house development platform that delivered 290 Binney Street (570,000 sq ft, fully leased to AstraZeneca) ahead of schedule and under budget",
+  "Leasing momentum and visibility: ~1.8M sq ft leased in Q2 2026 (29% above the 10-year quarterly average), total portfolio occupancy up three straight quarters to 88.4%, leased rate 91.3% with most commencements due before year-end 2026",
+  "Pricing power in the tightest submarkets: asking rents rising sharply at trophy assets (e.g. 510 Madison in Manhattan, 680 Folsom in San Francisco) as premier supply stays constrained and AI-driven demand builds"
+ ],
+ "moat_against": [
+  "Hybrid work is a secular demand headwind for office as an asset class \u2014 total portfolio occupancy was still only 88.4% in Q2 2026, six years after the pandemic",
+  "Gross margin has eroded four straight years (62.8% FY2021 to 59.1% FY2025 and 59.1% TTM, fundamentals.json) \u2014 no demonstrated pricing power at the portfolio level",
+  "Returns are thin: the roic_proxy series is measurable only in FY2016-17 (8.7% / 8.5%) because the filer's operating-income tag stops after FY2017, and GAAP ROE ran 3.2% / 0.3% / 5.4% in FY2023-25 \u2014 near, not well above, the cost of capital",
+  "Capital intensity consumes the cash flow: capex was $900,437,000 in FY2025 and $953,249,000 TTM (ttm.json), and management expects 2026 leasing capital alone nearer $500M",
+  "Leverage: $15,633,220,000 of debt on the FY2025 10-K balance sheet (mortgage notes $4,280,067,000 + unsecured senior notes $9,806,100,000 + term loans $797,053,000 + commercial paper $750,000,000) against a $9,391,540,935 market cap \u2014 refinancing at higher rates is a standing drag"
+ ]
+}
