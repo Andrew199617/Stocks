@@ -289,6 +289,11 @@ PAIRS = [
     # engine 5.6 Codex review round 1 of PR #47
     ("_system/make_score.py", "def check_iprd_share_count_unverified(", "not_applied_share_count_unverified", [SYS_README]),
     ("_system/dcf_engine.py", "expense_fx_note=(", "expense_fx_note", [SYS_README]),
+    # engine 5.6 Codex review round 2 of PR #47
+    ("_system/dcf_engine.py", "def iprd_accession_year(", "iprd_accession_year", [SYS_README]),
+    ("_system/build_site.py", '"reason": "iprd_share_count_unverified"', "iprd_share_count_unverified", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", "def iprd_amortized_impact(", "iprd_amortized_impact", [SYS_README]),
+    ("_system/make_score.py", '"iprd_charge_per_share_without_override"', "iprd_charge_per_share_without_override", [SYS_README]),
 ]
 
 

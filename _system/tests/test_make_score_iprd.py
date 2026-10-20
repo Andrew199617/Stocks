@@ -27,6 +27,9 @@ dcf_engine.py / ttm.py stand-ins, the registry redirected). Each test fails on t
    amortized base_override event names the branch its impact is measured on. The records below come from runs that
    declare the check for every expense fact (test_engine_iprd's checks=True); _score / _bridged copy the checks the
    run applied into judgment.json unless a test sets them.
+6. Codex review round 2 of PR #47: the amortized base_override event records the measured one-time counterfactual
+   (the final run replayed on its native base: weighted IRR, pp change, tier pair, treatment and charge), so a
+   successful amortized score spawns that replay — those tests run through the real-engine stand-ins (_bridged).
 """
 import copy
 import json
@@ -168,7 +171,8 @@ def test_iprd_amortized_declaration_is_accepted_and_registered():
     mean"), and the registry base_override event (a judgment call) carries basis, figures, shares, native_base,
     the native -> pinned base and base_used "declared_pin" (a median native base)."""
     n, d = _amortized()
-    r = _score(n, _j(base_override=d))
+    # [Codex review r2] the event's one-time counterfactual is replayed through the real engine (_bridged)
+    r = _bridged(n, _j(base_override=d), TI._facts(expense={2023: 15e6, 2025: 20e6}))
     assert r.rc == 0, r.err
     s = r.result["score"]
     assert s["iprd_adjustment"]["treatment"] == "amortized_in_base" and "iv_before" not in s["iprd_adjustment"]
@@ -313,7 +317,8 @@ def _bridged(n, j, facts, ttm=None, ttm_no_override=None):
         for name in run.spawned():
             with open(os.path.join(run.sysdir, name), encoding="utf-8") as f:
                 spawns += [dict(json.loads(line), script=name) for line in f if line.strip()]
-        run.result = dict(run.state(), score=run.score() if run.rc == 0 else None, entries=run.entries(), spawns=spawns)
+        run.result = dict(run.state(), score=run.score() if run.rc == 0 else None, key=run.key() if run.rc == 0 else None,
+                          entries=run.entries(), spawns=spawns)
     finally:
         run.close()
     return run
@@ -720,6 +725,36 @@ def test_payable_counterfactual_holds_the_headline_charge():
     assert len(seen) == 1 and seen[0].get("DCF_NO_OVERRIDES") == "1", seen
     assert json.loads(seen[0].get("DCF_IPRD_HOLD") or "null") == {"treatment": "one_time_value_deduction",
                                                                    "charge_per_share": 0.5}, seen
+
+
+# ===========================================================================
+# Codex review round 2 of PR #47
+# ===========================================================================
+def test_amortized_base_override_event_records_the_one_time_counterfactual():
+    """[Codex review r2, #4321940606] The registry's iprd_amortized base_override event recorded the native and
+    pinned bases but only the IRR WITH the override. Without it the run takes the one-time value deduction on the
+    native base, so make_score replays exactly that (the final run's inputs and field overrides, no pin — the
+    median native base) and records both IRRs, the change in pp and the tier pair, as payable_pin_impact does for
+    the payable pin. The replay is the preliminary one-time run itself (TI._recurrent: same IRR, same tier)."""
+    facts = TI._facts(expense={2023: 15e6, 2025: 20e6})
+    n, d = _amortized()
+    one = TI._recurrent()
+    assert one["iprd_adjustment"]["treatment"] == "one_time_value_deduction"
+    r = _bridged(n, _j(base_override=d), facts)
+    assert r.rc == 0, r.err[-800:]
+    ev = [e for e in r.result["entries"] if e.get("event") == "base_override"]
+    assert len(ev) == 1, r.result["entries"]
+    ev = ev[0]
+    assert ev["weighted_irr_without_override"] == round(one["implied_irr_weighted"], 4), (ev, one["implied_irr_weighted"])
+    assert ev["weighted_irr_with_override"] == round(n["implied_irr_weighted"], 4), ev
+    assert ev["weighted_irr_impact_pp"] == round((n["implied_irr_weighted"] - one["implied_irr_weighted"]) * 100, 3), ev
+    assert (ev["tier_by_numbers_without_override"], ev["tier_by_numbers_with_override"]) == (
+        one["tier_by_numbers"], n["tier_by_numbers"]), ev
+    assert ev["iprd_charge_per_share_without_override"] == round(E.iprd_charge_per_share(one), 4), ev
+    assert ev["base_oe_without_override"] == round(one["base_oe_per_share"], 4), ev
+    cf = [s for s in r.result["spawns"] if s["script"].endswith("dcf_engine.py.txt")]
+    assert len(cf) == 1 and not cf[0]["no_overrides"] and cf[0]["hold"] is None, cf
+    assert "--base-oe-ps" not in cf[0]["argv"] and "--ttm" not in cf[0]["argv"], cf
 
 if __name__ == "__main__":
     fails = 0

@@ -158,7 +158,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    whole charge is itself declared a deferred payment (a deal's first charge is a purchase, not an
    installment); a first charge before the window that companyfacts covers but shows no acquired-IPR&D
    expense fact ending on that date (name the period end of the filing that first expensed it); a source whose
-   accession is not from the first charged fiscal year's start year through the year after its end (the
+   accession is not from the first charged fiscal year's start year through the year after its end (a two-digit
+   accession year 93–99 is 1993–1999, else 20YY; the
    original filing: an 8-K or 10-Q of that fiscal year, or the 10-K that closes it), inside or before the
    window, so the entry survives the first charge rolling out; entries summing past the period's charge; a
    missing or malformed `contingent_total`; one deal's entries carrying different `contingent_total` values (or
@@ -176,7 +177,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    ACQUIRED_IPRD_CHARGE not deducted: <total>` with the charge total; only the main agent may publish it,
    through a `tier_override` whose reason quantifies the hand deduction — the charge per share on the verified
    share count ($) and the adjusted weighted IRR (%); make_score refuses the score without one (Codex review
-   round 1 of PR #47). Impairments of previously capitalized intangibles are
+   round 1 of PR #47); reprice.py never reprices it (no live figures: the hand deduction cannot be replayed —
+   round 2). Impairments of previously capitalized intangibles are
    not this flag and are never deducted (that spend went through capex / intangible purchases when made); a
    cash-tag-only year (MAA's development-spend mistag) is never a charge.
    **Engine 5.5 flags (2026-10-19)** — each names its figures; quote them from

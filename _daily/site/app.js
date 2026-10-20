@@ -224,14 +224,18 @@ function isoDay(x) { return typeof x === 'string' && /^\d{4}-\d{2}-\d{2}/.test(x
 function fmtFactor(f) { return String(Number(Number(f).toPrecision(6))); } // a split factor as Python's {:g}: 2 → "2", 1.5 → "1.5", 0.1 → "0.1"
 /* record.live_withheld (build_site live_shown): a live.json whose close is older than the scored analysis (Nasdaq had not
    posted the scored session yet), or one left from an earlier run of a re-scored name, is not shown as current — record.live is null, the scored figures are the current ones
-   and this says why. {price, price_date, scored_date, method, note}, or null when nothing was withheld. */
+   and this says why; [Codex review r2 of PR #47] so is every live repricing of a record whose acquired-IPR&D charge was
+   deducted by hand (reason iprd_share_count_unverified: reprice.py never reprices it, live.json or not).
+   {reason, price, price_date, scored_date, method, note}, or null when nothing was withheld. */
 function liveWithheld(record) {
   var w = obj(obj(record).live_withheld);
   if (!Object.keys(w).length) return null;
-  return { price: num(w.price), price_date: isoDay(w.price_date), scored_date: isoDay(w.scored_date), method: typeof w.method === 'string' ? w.method : null, note: typeof w.note === 'string' ? w.note : '' };
+  return { reason: typeof w.reason === 'string' ? w.reason : null, price: num(w.price), price_date: isoDay(w.price_date), scored_date: isoDay(w.scored_date), method: typeof w.method === 'string' ? w.method : null, note: typeof w.note === 'string' ? w.note : '' };
 }
 function pendingText(w) { // plain text; escaped where it is printed
   w = obj(w);
+  // [Codex review r2 of PR #47] reprice.py never reprices a record whose acquired-IPR&D charge was deducted by hand
+  if (w.reason === 'iprd_share_count_unverified') return 'Live figures withheld — the acquired-IPR&D charge was deducted by hand (share count unverified), so the scored figures stand';
   if (w.price_date && w.scored_date && w.price_date >= w.scored_date) return 'Live figures pending — the live repricing on file predates the ' + w.scored_date + ' score';
   return 'Live figures pending — ' + (w.price_date && w.scored_date ? 'the ' + w.price_date + ' close predates the ' + w.scored_date + ' analysis' : 'the last close on file predates the analysis');
 }
@@ -1850,8 +1854,9 @@ function renderRowHTML(row, stars, repo) {
   // row.split_restated (build_site): the run's price / IV columns are restated for a split since scoring
   var srs = obj(row.split_restated), srf = num(srs.factor);
   if (srf !== null && srf > 0 && Math.abs(srf - 1) > 1e-9) badges.push('<span class="bdg sp" title="' + esc('A ' + (srs.split || fmtFactor(srf) + 'x') + ' split since scoring: the price and IV columns are the run restated to today\'s share units (÷ ' + fmtFactor(srf) + '); IRR, tier and upside are unchanged') + '">' + esc(srs.split || fmtFactor(srf) + 'x') + ' split since scoring</span>');
-  // row.live_withheld: live.json predates the scored analysis, so the row is ranked on its scored IRR (the live fields are null)
-  var pending = !live && row.live_withheld === true, pendingT = 'Live figures pending: the live repricing on file predates the scored analysis, so this row is ranked on its scored IRR until it is repriced';
+  // row.live_withheld: live.json predates the scored analysis, or the record is never repriced (an acquired-IPR&D charge
+  // deducted by hand — the record's live_withheld.reason says which), so the row is ranked on its scored IRR (the live fields are null)
+  var pending = !live && row.live_withheld === true, pendingT = 'Live figures pending: the live repricing on file predates the scored analysis, or the record is not repriced (an acquired-IPR&D charge deducted by hand; its page says which), so this row is ranked on its scored IRR';
   var tb = (live && row.tier_bear_live) || row.tier_bear, tu = (live && row.tier_bull_live) || row.tier_bull;
   var band = tb && tu ? '<span class="band" title="' + (live ? 'bear → bull tier at the last close' : 'bear → bull tier as scored') + '"><i style="background:' + (TIER_ACCENT[tb] || '#333') + '">' + esc(tb) + '</i>→<i style="background:' + (TIER_ACCENT[tu] || '#333') + '">' + esc(tu) + '</i></span>' : '—';
   var up = live ? num(row.upside15_live) : num(row.upside15), price = live && num(row.price_live) !== null ? row.price_live : row.price;

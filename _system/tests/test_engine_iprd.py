@@ -1432,6 +1432,94 @@ def test_usd_cash_fact_is_the_amount_when_the_expense_has_no_fx_rate():
         assert b["treatment"] == "one_time_value_deduction" and b["total"] == 200e6 and b["charge_per_share"] == 2.0, b
     assert n["weighted"]["iv_at_15"] == m["weighted"]["iv_at_15"] and n["implied_irr_weighted"] == m["implied_irr_weighted"]
 
+
+# --- Codex review round 2 of PR #47 -------------------------------------------------------------------------------
+def test_pre_2000_original_filing_accession_is_read_in_its_own_century():
+    """[Codex review r2, #4321940593] EDGAR accessions carry a two-digit year from 1993: a deal first charged in
+    FY1999 (or a June FY ending 2000-06-30, whose first-quarter 10-Q was filed in 1999) cites a -99- accession, which
+    the engine read as 2099 and refused (BAD_IPRD_DEFERRED_PAYMENT, so the company could not be scored). The
+    original filing's years are 1999..2000 for FY1999 and 1999..2001 for June FY2000: -99- and -00- pass, a -98- or
+    a -02- one does not, and FY1998 (only -98- / -99- accessions qualify) is no longer unscoreable."""
+    win = ["2023-12-31", "2024-12-31", "2025-12-31"]
+    for first, yy, ok in (("1999-12-31", 99, True), ("1999-12-31", 0, True), ("1999-12-31", 98, False),
+                          ("1999-12-31", 1, False), ("2000-06-30", 99, True), ("2000-06-30", 1, True),
+                          ("2000-06-30", 2, False), ("1998-12-31", 98, True), ("1998-12-31", 99, True),
+                          ("1998-12-31", 97, False), ("2005-12-31", 6, True), ("2005-12-31", 99, False)):
+        iprd = {"periods": [_rec("2025-12-31", 20e6)]}
+        ref, unused = E.iprd_apply_deferred(iprd, [deferred(first=first, source=_src(yy))], win, None)
+        assert (not ref) == ok and unused == [], (first, yy, ref)
+    assert [E.iprd_accession_year(y) for y in (93, 99, 0, 26, 92)] == [1993, 1999, 2000, 2026, 2092]
+    # end to end: the synthetic filer's companyfacts start in 2019, so the FY1999 first charge rests on the citation
+    n = _ok(_two_of_three([deferred(first="1999-12-31", source=_src(99))]))
+    p25 = next(p for p in n["iprd_adjustment"]["periods"] if p["period"] == "2025-12-31")
+    assert p25["deferred_payment_of"][0]["first_charge_evidence"] == "citation_only_before_companyfacts", p25
+    assert p25["recurrence_excluded"] == "deferred_payment_of"
+
+
+def _share_count_unverified_record():
+    """The adjusted synthetic record relabelled as the engine writes a share-scale rescue with no power-of-ten factor:
+    treatment not_applied_share_count_unverified, no denominator, charge 0.0 (nothing deducted)."""
+    n = copy.deepcopy(_adjusted())
+    blk = n["iprd_adjustment"]
+    blk.update(treatment="not_applied_share_count_unverified", shares_denominator=None, shares_source=None,
+               charge_per_share=0.0)
+    return n
+
+
+def test_reprice_withholds_a_record_whose_charge_was_deducted_by_hand():
+    """[Codex review r2, #4321940598] Treatment not_applied_share_count_unverified publishes only through the main
+    agent's tier_override carrying a hand deduction reprice cannot replay: before, reprice solved every live IRR on
+    the UNADJUSTED paths (charge 0) and, once the unadjusted numbers tier moved, superseded the override and
+    published an unadjusted live tier (A -> S at a lower close). Now the record is skipped like an unverifiable
+    per-share basis: Skip with the reason, and reprice_folder removes a stale live.json."""
+    import reprice as R
+    n = _share_count_unverified_record()
+    for fn in (lambda: R.check_eligible(n), lambda: R.reprice(n, 25.0)):
+        try:
+            fn()
+            raise AssertionError("not withheld: an unadjusted live tier would be published")
+        except R.Skip as e:
+            assert "not_applied_share_count_unverified" in str(e) and "hand" in str(e), str(e)
+    # the one-time record still reprices
+    assert R.reprice(_adjusted(), 25.0)["iprd_charge_per_share"] == 0.35
+    import tempfile
+    import shutil
+    tmp = tempfile.mkdtemp(prefix="reprice_iprd_")
+    saved = R.BASE
+    try:
+        os.makedirs(os.path.join(tmp, "TST"))
+        with open(os.path.join(tmp, "TST", "dcf_numbers.json"), "w", encoding="utf-8") as f:
+            json.dump(dict(n, ticker="TST"), f)
+        with open(os.path.join(tmp, "TST", "live.json"), "w", encoding="utf-8") as f:
+            json.dump({"price": 25.0, "irr_weighted": 0.3}, f)
+        R.BASE = tmp
+        try:
+            R.reprice_folder("TST")
+            raise AssertionError("reprice_folder wrote live.json")
+        except R.Skip as e:
+            assert "not_applied_share_count_unverified" in str(e), str(e)
+        assert not os.path.exists(os.path.join(tmp, "TST", "live.json")), "the stale live.json stayed"
+    finally:
+        R.BASE = saved
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
+    """[Codex review r2, #4321940598] build_site: a not_applied_share_count_unverified record never shows live
+    figures — a live.json on file (an older reprice) is withheld with reason iprd_share_count_unverified and a note,
+    and with no live.json the record still says why it carries none, so the page shows the scored figures (the
+    main agent's tier_override) as current; a one-time record's live.json is shown as before."""
+    import build_site as B
+    n = _share_count_unverified_record()
+    lv = {"price": 25.0, "irr_weighted": 0.3, "price_date": "2026-10-20", "scored_date": "2026-10-19"}
+    sc = {"analysis_date": "2026-10-19"}
+    for live in (lv, None):
+        shown, w = B.live_shown({"score": sc, "numbers": n, "live": live})
+        assert shown is None and w["reason"] == "iprd_share_count_unverified", w
+        assert w["scored_date"] == "2026-10-19" and w["price"] == (25.0 if live else None), w
+        assert "acquired-IPR&D" in w["note"] and "tier_override" in w["note"], w["note"]
+    assert B.live_shown({"score": sc, "numbers": _adjusted(), "live": lv}) == (lv, None)
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

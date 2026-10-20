@@ -1786,6 +1786,7 @@ IPRD_DEFERRED_KEY = "iprd_deferred_payment"
 IPRD_RECURRENCE_EXCLUDED = "deferred_payment_of"
 IPRD_DEFERRED_WINDOWS = ("fy",)
 IPRD_ACCESSION_RE = re.compile(r"\b\d{10}-(\d{2})-\d{6}\b")
+IPRD_ACCESSION_FIRST_YY = 93  # EDGAR accession numbers start in 1993: a two-digit year 93..99 is 19YY, else 20YY
 IPRD_WINDOW_DAYS = 357   # a first charge less than this before the oldest window FY end lies inside that FY
 IPRD_FY_SPAN_DAYS = 364  # first charged period - 364 days: the calendar year the fiscal year it closes started in
 
@@ -1872,6 +1873,13 @@ def load_iprd_deferred_payments(ticker):
     except Exception:
         return None
     return j.get(IPRD_DEFERRED_KEY) if isinstance(j, dict) else None
+
+
+def iprd_accession_year(yy):
+    """The calendar year an EDGAR accession's two-digit year names: 1993..1999 for 93..99 (EDGAR's first filings),
+    else 2000 + yy ([Codex review r2 of PR #47]: a -99- accession read as 2099 refused a valid pre-2000 deal)."""
+    yy = int(yy)
+    return 1900 + yy if yy >= IPRD_ACCESSION_FIRST_YY else 2000 + yy
 
 
 def iprd_original_filing_years(first_charged_period):
@@ -1973,7 +1981,7 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
         except ValueError:
             refused.append({"entry": e, "reason": f"first_charged_period {f} is not a date"})
             continue
-        if not any(2000 + int(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
+        if not any(iprd_accession_year(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
             refused.append({"entry": e, "reason": f"source must cite the original acquisition filing of the charge "
                             f"first made in the period ending {f}: an accession filed in {years[0]}..{years[-1]}"})
             continue

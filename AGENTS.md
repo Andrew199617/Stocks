@@ -347,7 +347,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    (total ÷ the verified share count and the adjusted weighted IRR) — resolving the flag with the deal and
    consideration alone is P1; make_score refuses the score without a `tier_override` whose reason names a
    dollar figure and a percentage (Codex review round 1 of PR #47) — whether those figures are the right hand
-   deduction is this check's. With field overrides in force, `override_impact`'s counterfactual holds the
+   deduction is this check's; reprice.py never reprices such a record (no live.json; the site shows the scored
+   figures with `live_withheld` reason `iprd_share_count_unverified` — Codex review round 2 of PR #47).
+   With field overrides in force, `override_impact`'s counterfactual holds the
    final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`) in every branch (declared pin, TTM, median,
    payable), so the measured impact is the override's alone.
 

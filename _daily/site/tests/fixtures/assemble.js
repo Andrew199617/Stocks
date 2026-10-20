@@ -46,7 +46,18 @@ function profileOf(dir) {
    a weighted IRR is not shown (live_ok); one whose close (price_date) is older than the later of score.json analysis_date
    and live.scored_date is withheld, and so is one left from an earlier run (live.scored_date before score.analysis_date) — record.live null, record.live_withheld says why, the scored figures are current. */
 function date10(v) { return typeof v === 'string' && v.length >= 10 ? v.slice(0, 10) : null; }
-function liveShown(score, lv) {
+/* [Codex review r2 of PR #47] a numbers.iprd_adjustment treatment not_applied_share_count_unverified is never repriced:
+   any live.json is withheld, and the record says so without one (reason iprd_share_count_unverified). */
+const IPRD_WITHHELD_NOTE = 'The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier '
+  + "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
+  + 'figures are the current ones and no live repricing is shown.';
+function liveShown(score, lv, numbers) {
+  const blk = isObj(numbers) && isObj(numbers.iprd_adjustment) ? numbers.iprd_adjustment : {};
+  if (blk.treatment === 'not_applied_share_count_unverified') {
+    const ok = isObj(lv) && n(lv.price) !== null && n(lv.irr_weighted) !== null;
+    return { live: null, withheld: { reason: 'iprd_share_count_unverified', price: ok ? n(lv.price) : null, price_date: ok ? date10(lv.price_date) : null,
+      scored_date: date10((score || {}).analysis_date) || date10((numbers || {}).as_of), method: null, note: IPRD_WITHHELD_NOTE } };
+  }
   if (!isObj(lv) || n(lv.price) === null || n(lv.irr_weighted) === null) return { live: null, withheld: null };
   const sa = date10((score || {}).analysis_date), ls = date10(lv.scored_date), pd = date10(lv.price_date);
   if (sa && ls && ls < sa) return { live: null, withheld: { reason: 'live_from_earlier_run', price: n(lv.price), price_date: pd, scored_date: sa, method: null,
@@ -112,7 +123,7 @@ function assemble(base, ticker) {
   const score = jload(path.join(dir, 'score.json'));
   const numbers = jload(path.join(dir, 'dcf_numbers.json'));
   if (!score || !numbers) return null;
-  const shown = liveShown(score, jload(path.join(dir, 'live.json'))), live = shown.live, split = liveSplit(live), sf = split.factor || 1;
+  const shown = liveShown(score, jload(path.join(dir, 'live.json')), numbers), live = shown.live, split = liveSplit(live), sf = split.factor || 1;
   const fundamentals = jload(path.join(dir, 'fundamentals.json'));
   const prices = jload(path.join(dir, 'prices.json'));
   const segments = jload(path.join(dir, 'segments.json'));

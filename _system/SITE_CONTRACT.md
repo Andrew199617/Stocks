@@ -115,7 +115,7 @@ these changes the row's keys.
               "growth_components": {...}, "growth_components_adjusted": {...} | null, "share_cagr": -0.027, "share_count_adj": 0.027, "share_adj_basis": "..." | null,
               "replayed": true | false},
  "live": { ...live.json verbatim... } | null,
- "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
+ "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "iprd_share_count_unverified", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
  "split_restated": {"factor": 2.0, "split": "2:1", "scored_date": "...", "price_date": "...", "fields": [...], "as_scored": {...}, "note": "..."} | null,
  "history": [ {financials_history.csv rows, numeric strings coerced to numbers, blanks to null} ],
  "fundamentals": { ...fundamentals.json verbatim (profile, annual, quarterly, ttm, dividends, tags_used, warnings, currency),
@@ -1718,6 +1718,11 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `forecast.sensitivity[*].irr_live` is null. `meta.counts.live_withheld` and a `meta.notes` line name them. A live.json
   left over from an earlier run (`live.scored_date` before score.json `analysis_date`: the name was re-scored and
   reprice.py has not run since) is withheld the same way with `reason: "live_from_earlier_run"`, whatever its close.
+  [Codex review round 2 of PR #47] A record whose `numbers.iprd_adjustment.treatment` is `not_applied_share_count_unverified`
+  is never repriced (reprice.py skips it: its tier is the main agent's `tier_override` with a hand acquired-IPR&D deduction
+  no replay carries), so `record.live_withheld` = `{reason: "iprd_share_count_unverified", price, price_date (both null without
+  a live.json), scored_date, method: null, note}` with or without a live.json on file, and the row is withheld the same way;
+  the app says "Live figures withheld — the acquired-IPR&D charge was deducted by hand" instead of "pending" (`pendingText`).
 - **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
   `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
   OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,

@@ -117,6 +117,10 @@ as_of) is not shown as current: record.live is null, record.live_withheld =
 fields stay null with row.live_withheld = true, so the ranking sorts on the
 scored IRR and the page shows the scored figures until a close after the
 scored session arrives.
+[Codex review round 2 of PR #47] A run whose acquired-IPR&D treatment is
+not_applied_share_count_unverified is never repriced (reprice.py skips it),
+so record.live_withheld carries reason iprd_share_count_unverified with or
+without a live.json on file, and the scored figures are the current ones.
 
 Splits since scoring (2026-10-16): reprice.py restates live.json in today's
 share units and records split_factor (new shares per scored-run share). The
@@ -463,6 +467,12 @@ def _date10(v):
     return v[:10] if isinstance(v, str) and len(v) >= 10 else None
 
 
+IPRD_SHARE_COUNT_UNVERIFIED = "not_applied_share_count_unverified"   # reprice.py never reprices this treatment
+IPRD_WITHHELD_NOTE = ("The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier "
+                      "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
+                      "figures are the current ones and no live repricing is shown.")
+
+
 def live_shown(c):
     """(live, withheld): the live.json the page shows as current, else None,
     and why it was withheld (None when it was not). A live.json whose close
@@ -472,8 +482,19 @@ def live_shown(c):
     had not posted the scored session yet (reprice's basis_check.method
     "no_close_since_scoring"). A live.json whose run (scored_date) predates
     score.json's analysis_date belongs to an earlier run of a re-scored name
-    and is withheld too. The scored figures are then the current ones."""
+    and is withheld too. The scored figures are then the current ones.
+    [Codex review r2 of PR #47] A run whose acquired-IPR&D treatment is
+    not_applied_share_count_unverified is never repriced (reprice.py skips it:
+    its published tier is the main agent's tier_override with a hand deduction
+    no replay can carry), so any live.json on file is withheld, and the record
+    says why it has none even without one (reason iprd_share_count_unverified)."""
     lv = c.get("live")
+    if _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
+        ok = live_ok(lv)
+        return None, {"reason": "iprd_share_count_unverified", "price": num(lv.get("price")) if ok else None,
+                      "price_date": _date10(lv.get("price_date")) if ok else None,
+                      "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
+                      "method": None, "note": IPRD_WITHHELD_NOTE}
     if not live_ok(lv):
         return None, None
     pd = _date10(lv.get("price_date"))
@@ -1437,7 +1458,9 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
              "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
              f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
     if withheld:
-        notes.append(f"{len(withheld)} live.json close(s) older than the scored analysis withheld (scored figures shown, row.live_withheld): " + ", ".join(withheld))
+        notes.append(f"{len(withheld)} live repricing(s) withheld — a live.json close older than the scored analysis, or a record "
+                     "reprice.py never reprices (acquired-IPR&D charge deducted by hand; record.live_withheld.reason) — "
+                     "scored figures shown, row.live_withheld: " + ", ".join(withheld))
     if restated:
         notes.append(f"{len(restated)} record(s) restated for a split since scoring (record.split_restated): " + ", ".join(restated))
     if failed:

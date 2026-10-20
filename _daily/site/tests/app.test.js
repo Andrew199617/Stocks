@@ -1519,7 +1519,7 @@ const withheldRec = (() => {
 })();
 test('Live older than the score: the header and the condensed bar show the scored price with the reason, never the older close; Overview / Forecast tiles say live pending', () => {
   const v = App.liveView(withheldRec); assert.equal(v.is_live, false); assert.equal(v.price, 50); assert.equal(v.irr, 0.142);
-  const w = App.liveWithheld(withheldRec); assert.deepEqual(w, { price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
+  const w = App.liveWithheld(withheldRec); assert.deepEqual(w, { reason: 'live_older_than_score', price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
   assert.equal(App.pendingText(w), 'Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis');
   assert.equal(App.liveWithheld(synthetic), null); assert.equal(App.liveWithheld({ live_withheld: null }), null); assert.equal(App.pendingText({}), 'Live figures pending — the last close on file predates the analysis');
   assert.equal(App.currentClose(withheldRec), null, 'the 2026-10-13 close predates the 2026-10-14 analysis');
@@ -1558,6 +1558,26 @@ test('Live older than the score: the ranking marks the row "live pending" and ra
   assert.ok(App.renderListHTML(noCount, rows).includes('1 pending a close after scoring'), 'counted from the rows without meta.counts.live_withheld');
   assert.ok(!App.renderListHTML(noCount, rows.slice(1)).includes('pending a close'), 'nothing pending: no clause');
 });
+/* [Codex review r2 of PR #47, #4321940598] A not_applied_share_count_unverified record (acquired-IPR&D charge deducted by
+   hand in the main agent's tier_override): build_site withholds its live figures with reason iprd_share_count_unverified. */
+const iprdNote = 'The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier is the main agent\'s tier_override with a hand deduction that reprice.py cannot replay, so the scored figures are the current ones and no live repricing is shown.';
+const iprdWithheldRec = (() => {
+  const r = clone(withheldRec);
+  r.live_withheld = { reason: 'iprd_share_count_unverified', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: iprdNote };
+  r.prices.stats.last_date = '2026-10-15';
+  return r;
+})();
+test('Hand-deducted acquired-IPR&D charge: the live figures are withheld with their own reason, never "pending a close"', () => {
+  const w = App.liveWithheld(iprdWithheldRec);
+  assert.equal(w.reason, 'iprd_share_count_unverified'); assert.equal(w.note, iprdNote);
+  assert.equal(App.pendingText(w), 'Live figures withheld — the acquired-IPR&D charge was deducted by hand (share count unverified), so the scored figures stand');
+  assert.deepEqual(App.currentClose(iprdWithheldRec), { last: 44, date: '2026-10-15', chg: -1.5 }, 'a close after the analysis is a current price');
+  const head = App.renderHeader(iprdWithheldRec);
+  assert.ok(head.includes('Live figures withheld — the acquired-IPR&amp;D charge was deducted by hand') && !head.includes('predates'), head);
+  assert.equal(App.liveView(iprdWithheldRec).is_live, false);
+  const html = App.renderRowHTML(iprdWithheldRec.row);
+  assert.ok(/title="Live figures pending: [^"]*not repriced[^"]*">live pending</.test(html), 'the row tooltip covers a record that is not repriced: ' + html);
+});
 test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
   const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
   const { assemble: asm, liveShown, liveSplit, SPLIT_DIVIDE, SPLIT_MULTIPLY } = require('./fixtures/assemble.js');
@@ -1582,6 +1602,12 @@ test('fixtures/assemble.js mirrors build_site: a live.json older than the later 
     put('live.json', Object.assign({}, live, { price: null })); r = asm(dir, 'T');
     assert.ok(r.live === null && r.live_withheld === null && r.row.live_withheld === false, 'a live.json without a price is not shown and not "withheld"');
     assert.deepEqual(liveShown(score, null), { live: null, withheld: null });
+    const unv = Object.assign(clone(numbers), { iprd_adjustment: { treatment: 'not_applied_share_count_unverified', total: 4e7, charge_per_share: 0 } });
+    for (const lv of [live, null]) {
+      const sh = liveShown(score, lv, unv);
+      assert.equal(sh.live, null); assert.equal(sh.withheld.reason, 'iprd_share_count_unverified'); assert.equal(sh.withheld.note, iprdNote);
+      assert.equal(sh.withheld.price, lv ? 45 : null); assert.equal(sh.withheld.scored_date, '2026-10-14');
+    }
     // a split since scoring: live.json in today's units (÷ 2) with split_factor 2
     const half = (o) => Object.assign({}, o, { price: o.price / 2, scored_price: o.scored_price / 2, iv_at_15: o.iv_at_15 / 2, iv_at_12: o.iv_at_12 / 2, iv_at_20: o.iv_at_20 / 2, iv_at_25: o.iv_at_25 / 2 });
     const splitLive = Object.assign(half(live), { price_date: '2026-10-20', split_factor: 2, basis_check: { status: 'split_adjusted', factor: 2, split: '2:1', method: 'ratio' } });

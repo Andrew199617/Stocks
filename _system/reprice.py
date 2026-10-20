@@ -139,6 +139,15 @@ the split factor like every per-share value), a replayed IV is
 dcf_engine.adjusted_value, and live.json records `iprd_charge_per_share` (in
 today's share units; 0.0 for every other record, which reprices exactly as
 before). Without it the site would show unadjusted live returns.
+[Codex review round 2 of PR #47] A run whose treatment is
+not_applied_share_count_unverified (a share-scale defect rescued by a pin with
+no power-of-ten factor: the engine deducted nothing, and make_score publishes
+it only through the main agent's tier_override quantifying a hand deduction)
+is skipped like an unverifiable per-share basis (check_eligible: no live.json,
+a stale one removed): its live IRRs would be the unadjusted ones, and a moved
+numbers tier would supersede the override with them. build_site withholds
+any live.json of such a record (record.live_withheld reason
+iprd_share_count_unverified) and shows the scored figures.
 """
 import json, math, os, sys, datetime
 from zoneinfo import ZoneInfo
@@ -154,6 +163,7 @@ BASIS = ("same base OE/share, scenario paths and probabilities as the scored run
          "charge per share, iprd_charge_per_share, when the run deducted one); only the price moved; "
          "per-share values are restated in today's share units when a split since the scored run is detected (split_factor); "
          "an agent tier override (score.json tier_final, from this same engine run) is preserved in `tier` unless the numbers tier itself moved")
+IPRD_SHARE_COUNT_UNVERIFIED = "not_applied_share_count_unverified"  # dcf_engine's treatment name; never repriced
 STALE_DAYS = 4  # a prices.json without fetched_at: last_date may trail as_of by a weekend + holiday, never more
 
 # Per-share basis check (see the module docstring). Tolerances are on |ln(ratio)|.
@@ -224,6 +234,13 @@ def check_eligible(numbers):
         raise Skip(f"base_oe_per_share {numbers.get('base_oe_per_share')!r} is not positive")
     if _f(numbers.get("price")) is None:
         raise Skip("scored run has no price")
+    blk = numbers.get("iprd_adjustment")
+    if isinstance(blk, dict) and blk.get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
+        # [Codex review r2 of PR #47] withheld like an unverifiable per-share basis: the engine deducted nothing and the
+        # published tier is the main agent's tier_override with a hand deduction reprice cannot replay, so live IRRs
+        # here would be the unadjusted ones and a moved numbers tier would supersede the override with them
+        raise Skip(f"acquired-IPR&D treatment {IPRD_SHARE_COUNT_UNVERIFIED}: the charge was deducted by hand in the main "
+                   "agent's tier_override (share count unverified), which a live repricing cannot replay — no live figures")
 
 
 def _date(s):

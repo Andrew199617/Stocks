@@ -239,7 +239,10 @@ value adjustment):
   amortized engine record without the declaration is refused as out of sync.
   It is a judgment call: the registry base_override event carries basis,
   figures, shares and native_base (part of the declaration identity) and the
-  native → pinned base from the run's own record. [v5.6 review] Figures are
+  native → pinned base from the run's own record, and ([Codex review r2 of
+  PR #47] iprd_amortized_impact) the weighted IRR and tier without the
+  override — the final run replayed on its native base, which then takes the
+  one-time deduction — beside the run's own. [v5.6 review] Figures are
   compared with the engine's own tolerance ($1 per figure). With
   native_base ttm_json the base is still ttm.json's TTM base: the PR #31
   TTM-leg rules (ttm_leg_overrides) compare ttm.json against the record's
@@ -1547,6 +1550,51 @@ def payable_pin_impact(ticker, n):
             "tier_by_numbers_with_override": n.get("tier_by_numbers")}
 
 
+def _iprd_amortized_record(n):
+    """The engine's amortized record (iprd_adjustment.amortized) when the run carried an iprd_amortized base, else None."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    am = (blk or {}).get("amortized")
+    return am if (blk and blk.get("treatment") == "amortized_in_base" and isinstance(am, dict)) else None
+
+
+IPRD_AMORTIZED_IMPACT_KEYS = ("weighted_irr_without_override", "weighted_irr_impact_pp",
+                              "tier_by_numbers_without_override", "tier_by_numbers_with_override",
+                              "iprd_treatment_without_override", "iprd_charge_per_share_without_override")
+
+
+def iprd_amortized_impact(ticker, n):
+    """[Codex review r2 of PR #47] The iprd_amortized base_override's own measured impact (registry event): without
+    the override the run scores its NATIVE base and takes the one-time value deduction, so the final run's inputs
+    and field overrides are replayed without the pin — `--ttm` for native base ttm_json (make_score has already
+    refused a ttm.json that changed after the run), no pin for the median — and its weighted IRR, tier, treatment
+    and charge are recorded beside the run's own (payable_pin_impact's shape). The replay's base must be the
+    record's native base (0.1%); a failed replay refuses the score like any other measurement failure."""
+    am = _iprd_amortized_record(n)
+    args = _final_run_args(n) + (["--ttm"] if am.get("native_base") == "ttm_json" else [])
+    m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args)
+    if m is None:
+        fail("one-time-deduction replay failed — cannot measure the iprd_amortized base override's impact")
+    bw, nb = _num(m.get("base_oe_per_share")), _num(am.get("native_base_per_share"))
+    if bw is None or nb is None or abs(bw - nb) > 0.001 * abs(nb):
+        fail(f"the one-time-deduction replay scored base {bw!r}, not the amortized record's native base {nb!r} — "
+             "cannot measure the iprd_amortized base override's impact; re-run the engine")
+    iw, ip = _num(m.get("implied_irr_weighted")), _num(n.get("implied_irr_weighted"))
+    mb = m.get("iprd_adjustment") if isinstance(m.get("iprd_adjustment"), dict) else {}
+    return {"weighted_irr_without_override": round(iw, 4) if iw is not None else None,
+            "weighted_irr_impact_pp": round((ip - iw) * 100, 3) if (ip is not None and iw is not None) else None,
+            "tier_by_numbers_without_override": m.get("tier_by_numbers"),
+            "tier_by_numbers_with_override": n.get("tier_by_numbers"),
+            "iprd_treatment_without_override": mb.get("treatment"),
+            "iprd_charge_per_share_without_override": round(_engine.iprd_charge_per_share(m), 4)}
+
+
+def iprd_amortized_not_measured(n, note):
+    """The amortized event's counterfactual fields, null, with why they were not measured."""
+    out = {k: None for k in IPRD_AMORTIZED_IMPACT_KEYS}
+    out.update({"tier_by_numbers_with_override": n.get("tier_by_numbers"), "counterfactual_note": note})
+    return out
+
+
 def _declared_pin_not_ttm(ticker, n):
     """[v5.5] True when the final run's --base-oe-ps pin equals a declared
     base_override without `basis`, or (v5.6) of basis iprd_amortized on the
@@ -1798,7 +1846,7 @@ def keep_first_dates(new_entries, prior_entries):
             e["date"] = d
 
 
-def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None):
+def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None, amortized_impact=None):
     """Replace this ticker's registry entries wholesale on every score
     (round-2: the old upsert only replaced fields still applied, so a
     removed override's entry went stale and stayed forever). Records the
@@ -1814,7 +1862,11 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     spawned here. [v5.5 — re-score audit] The base_override event records the
     declaration's `kind` and, on a share-scale rescue (pin_rescued), the pin's
     impact (pin_rescue_impact); an entry whose declaration is unchanged keeps
-    the date it was first recorded (keep_first_dates). make_score.py is the
+    the date it was first recorded (keep_first_dates). [Codex review r2 of
+    PR #47] An iprd_amortized base_override event carries `amortized_impact`
+    (iprd_amortized_impact: the one-time-deduction replay's IRR, tier,
+    treatment and charge, measured by main() before any write), or those
+    fields null with counterfactual_note. make_score.py is the
     single writer; the write is atomic under an fcntl lock."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     with locked(REGISTRY + ".lock"):
@@ -1863,7 +1915,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
             _am = (n.get("iprd_adjustment") or {}).get("amortized") if isinstance(n.get("iprd_adjustment"), dict) else None
             if bo.get("basis") == IPRD_AMORTIZED_BASIS and isinstance(_am, dict):
                 # v5.6: the amortized acquired-IPR&D base — the declaration and the native -> pinned base from the
-                # run's own record (the IRR without it is the one-time path's, not replayed here)
+                # run's own record; [Codex review r2 of PR #47] the IRR / tier without it are the one-time path's,
+                # replayed by main() (iprd_amortized_impact) before any write, or null with the reason
                 nb, pb_ = _num(_am.get("native_base_per_share")), _num(_am.get("pinned_per_share"))
                 ev.update({"basis": bo.get("basis"), "figures": bo.get("figures"), "shares": bo.get("shares"),
                            # [fixer review round] the branch compute_override_impact measures it on: "ttm" for a
@@ -1877,6 +1930,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                            if isinstance(n.get("implied_irr_weighted"), (int, float)) else None,
                            "impact_note": "acquired IPR&D amortized in the base (iprd_amortized): native base -> the pin; "
                                           "without it the run takes the one-time value deduction instead"})
+                ev.update(amortized_impact if amortized_impact is not None else iprd_amortized_not_measured(
+                    n, "not measured: update_registry was given no one-time-deduction replay"))
             if n.get("payable_base"):
                 pb = n["payable_base"]
                 ev.update({"basis": pb.get("basis"), "figures": pb.get("figures"), "shares": pb.get("shares"),
@@ -2507,6 +2562,13 @@ def main():
     if base_override_event_applies(j, n) and n.get("payable_base"):
         payable_impact = (carried_payable_impact(n, prior_payable_event(ticker)) if release_mismatch
                           else payable_pin_impact(ticker, n))
+    # [Codex review r2 of PR #47] the iprd_amortized base's own impact (the one-time-deduction path it replaces),
+    # measured through the current engine on current-release output only, before the first write
+    amortized_impact = None
+    if (base_override_event_applies(j, n) and (j.get("base_override") or {}).get("basis") == IPRD_AMORTIZED_BASIS
+            and _iprd_amortized_record(n) is not None):
+        amortized_impact = (iprd_amortized_not_measured(n, _not_measured_note(n.get("engine_release"))) if release_mismatch
+                            else iprd_amortized_impact(ticker, n))
 
     scenarios = {}
     for lbl in LABELS:
@@ -2628,7 +2690,8 @@ def main():
     # re-derived from THIS run (applied overrides + judgment-call events).
     scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
                    if scope_corrected else None)
-    update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact)
+    update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact,
+                    amortized_impact=amortized_impact)
     write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 
