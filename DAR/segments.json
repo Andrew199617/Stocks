@@ -1,0 +1,1310 @@
+{
+ "ticker": "DAR",
+ "cik": 916540,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000916540-26-000008",
+   "filed": "2026-03-03",
+   "period": "2026-01-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/916540/000091654026000008/dar-20260103_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000916540-26-000013",
+   "filed": "2026-05-08",
+   "period": "2026-04-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/916540/000091654026000013/dar-20260404_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000916540-26-000023",
+   "filed": "2026-08-07",
+   "period": "2026-07-04",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/916540/000091654026000023/dar-20260704_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dar:FeedIngredientsMember",
+     "label": "Feed Ingredients",
+     "values": [
+      4472592000,
+      3675609000,
+      3990088000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6589,
+      0.6431,
+      0.6503
+     ],
+     "growth_yoy": [
+      null,
+      -0.1782,
+      0.0856
+     ]
+    },
+    {
+     "member": "dar:FoodIngredientsMember",
+     "label": "Food Ingredients",
+     "values": [
+      1752065000,
+      1489101000,
+      1545030000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2581,
+      0.2606,
+      0.2518
+     ],
+     "growth_yoy": [
+      null,
+      -0.1501,
+      0.0376
+     ]
+    },
+    {
+     "member": "dar:FuelIngredientsMember",
+     "label": "Fuel Ingredients",
+     "values": [
+      563423000,
+      550465000,
+      600759000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.083,
+      0.0963,
+      0.0979
+     ],
+     "growth_yoy": [
+      null,
+      -0.023,
+      0.0914
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6788080000,
+     5715175000,
+     6135877000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dar:FeedIngredientsMember",
+     "label": "Feed Ingredients",
+     "values": [
+      896283000,
+      936532000,
+      985338000,
+      1149490000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6492,
+      0.6321,
+      0.6354,
+      0.6667
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0994,
+      0.2274
+     ]
+    },
+    {
+     "member": "dar:FoodIngredientsMember",
+     "label": "Food Ingredients",
+     "values": [
+      349240000,
+      386142000,
+      405233000,
+      408514000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.253,
+      0.2606,
+      0.2613,
+      0.2369
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1603,
+      0.0579
+     ]
+    },
+    {
+     "member": "dar:FuelIngredientsMember",
+     "label": "Fuel Ingredients",
+     "values": [
+      135071000,
+      158844000,
+      160250000,
+      166074000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0978,
+      0.1072,
+      0.1033,
+      0.0963
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1864,
+      0.0455
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1380594000,
+     1481518000,
+     1550821000,
+     1724078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dar:FeedIngredientsMember",
+     "label": "Feed Ingredients",
+     "values": [
+      419172000,
+      203952000,
+      215208000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4414,
+      0.4356,
+      0.787
+     ],
+     "growth_yoy": [
+      null,
+      -0.5134,
+      0.0552
+     ]
+    },
+    {
+     "member": "dar:FoodIngredientsMember",
+     "label": "Food Ingredients",
+     "values": [
+      211646000,
+      144682000,
+      151790000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2228,
+      0.309,
+      0.5551
+     ],
+     "growth_yoy": [
+      null,
+      -0.3164,
+      0.0491
+     ]
+    },
+    {
+     "member": "dar:FuelIngredientsMember",
+     "label": "Fuel Ingredients",
+     "values": [
+      425265000,
+      197167000,
+      3355000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4478,
+      0.4211,
+      0.0123
+     ],
+     "growth_yoy": [
+      null,
+      -0.5364,
+      -0.983
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -106357000,
+      -77584000,
+      -96913000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.112,
+      -0.1657,
+      -0.3544
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     949726000,
+     468217000,
+     273440000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dar:FuelIngredientsMember",
+     "label": "Fuel Ingredients",
+     "values": [
+      -20921000,
+      15876000,
+      127175000,
+      366770000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.7367,
+      0.2093,
+      0.5608,
+      0.6606
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      22.1022
+     ]
+    },
+    {
+     "member": "dar:FeedIngredientsMember",
+     "label": "Feed Ingredients",
+     "values": [
+      21011000,
+      39900000,
+      77810000,
+      150685000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7398,
+      0.5259,
+      0.3431,
+      0.2714
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      2.7033,
+      2.7766
+     ]
+    },
+    {
+     "member": "dar:FoodIngredientsMember",
+     "label": "Food Ingredients",
+     "values": [
+      41370000,
+      42555000,
+      50833000,
+      74912000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.4567,
+      0.5609,
+      0.2242,
+      0.1349
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2287,
+      0.7604
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -13060000,
+      -22463000,
+      -29047000,
+      -37129000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.4599,
+      -0.2961,
+      -0.1281,
+      -0.0669
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     28400000,
+     75868000,
+     226771000,
+     555238000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "dar:FatsMember",
+     "label": "Fats",
+     "values": [
+      1904079000,
+      1464012000,
+      1779595000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2805,
+      0.2562,
+      0.29
+     ],
+     "growth_yoy": [
+      null,
+      -0.2311,
+      0.2156
+     ]
+    },
+    {
+     "member": "dar:ProteinsMember",
+     "label": "Proteins",
+     "values": [
+      1672027000,
+      1484581000,
+      1409395000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2463,
+      0.2598,
+      0.2297
+     ],
+     "growth_yoy": [
+      null,
+      -0.1121,
+      -0.0506
+     ]
+    },
+    {
+     "member": "dar:FoodIngredientsProductsandServicesMember",
+     "label": "Food Ingredients, Products and Services",
+     "values": [
+      1476875000,
+      1232521000,
+      1253900000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2176,
+      0.2157,
+      0.2044
+     ],
+     "growth_yoy": [
+      null,
+      -0.1655,
+      0.0173
+     ]
+    },
+    {
+     "member": "dar:BioenergyMember",
+     "label": "Bioenergy",
+     "values": [
+      563423000,
+      550465000,
+      600759000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.083,
+      0.0963,
+      0.0979
+     ],
+     "growth_yoy": [
+      null,
+      -0.023,
+      0.0914
+     ]
+    },
+    {
+     "member": "dar:UsedCookingOilMember",
+     "label": "Used Cooking Oil",
+     "values": [
+      497657000,
+      351309000,
+      445494000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0733,
+      0.0615,
+      0.0726
+     ],
+     "growth_yoy": [
+      null,
+      -0.2941,
+      0.2681
+     ]
+    },
+    {
+     "member": "dar:OtherRenderingMember",
+     "label": "Other Rendering",
+     "values": [
+      243525000,
+      293648000,
+      295700000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0359,
+      0.0514,
+      0.0482
+     ],
+     "growth_yoy": [
+      null,
+      0.2058,
+      0.007
+     ]
+    },
+    {
+     "member": "dar:BakeryMember",
+     "label": "Bakery",
+     "values": [
+      255214000,
+      190462000,
+      195444000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0376,
+      0.0333,
+      0.0319
+     ],
+     "growth_yoy": [
+      null,
+      -0.2537,
+      0.0262
+     ]
+    },
+    {
+     "member": "dar:OtherProductsAndServicesMember",
+     "label": "Other, Products And Services",
+     "values": [
+      175280000,
+      148177000,
+      155590000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0258,
+      0.0259,
+      0.0254
+     ],
+     "growth_yoy": [
+      null,
+      -0.1546,
+      0.05
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6788080000,
+     5715175000,
+     6135877000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "dar:FatsMember",
+     "label": "Fats",
+     "values": [
+      385893000,
+      434672000,
+      432183000,
+      537977000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2795,
+      0.2934,
+      0.2787,
+      0.312
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.12,
+      0.2377
+     ]
+    },
+    {
+     "member": "dar:ProteinsMember",
+     "label": "Proteins",
+     "values": [
+      351217000,
+      326983000,
+      41416000,
+      370870000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2544,
+      0.2207,
+      0.0267,
+      0.2151
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.8821,
+      0.1342
+     ]
+    },
+    {
+     "member": "dar:FoodIngredientsProductsandServicesMember",
+     "label": "Food Ingredients, Products and Services",
+     "values": [
+      278582000,
+      311348000,
+      331044000,
+      335888000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2018,
+      0.2102,
+      0.2135,
+      0.1948
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1883,
+      0.0788
+     ]
+    },
+    {
+     "member": "dar:BioenergyMember",
+     "label": "Bioenergy",
+     "values": [
+      135071000,
+      158844000,
+      160250000,
+      166074000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0978,
+      0.1072,
+      0.1033,
+      0.0963
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1864,
+      0.0455
+     ]
+    },
+    {
+     "member": "dar:UsedCookingOilMember",
+     "label": "Used Cooking Oil",
+     "values": [
+      78940000,
+      85260000,
+      109486000,
+      164013000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0572,
+      0.0575,
+      0.0706,
+      0.0951
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.387,
+      0.9237
+     ]
+    },
+    {
+     "member": "dar:OtherRenderingMember",
+     "label": "Other Rendering",
+     "values": [
+      62199000,
+      70801000,
+      72200000,
+      63000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0451,
+      0.0478,
+      0.0466,
+      0.0365
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1608,
+      -0.1102
+     ]
+    },
+    {
+     "member": "dar:BakeryMember",
+     "label": "Bakery",
+     "values": [
+      50648000,
+      51552000,
+      366033000,
+      46985000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0367,
+      0.0348,
+      0.236,
+      0.0273
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      6.227,
+      -0.0886
+     ]
+    },
+    {
+     "member": "dar:OtherProductsAndServicesMember",
+     "label": "Other, Products And Services",
+     "values": [
+      38044000,
+      42058000,
+      38209000,
+      39271000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0276,
+      0.0284,
+      0.0246,
+      0.0228
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0043,
+      -0.0663
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1380594000,
+     1481518000,
+     1550821000,
+     1724078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-30",
+    "2024-12-28",
+    "2026-01-03"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      4165712000,
+      3249871000,
+      3455625000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6137,
+      0.5686,
+      0.5632
+     ],
+     "growth_yoy": [
+      null,
+      -0.2199,
+      0.0633
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      1691449000,
+      1627060000,
+      1786488000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2492,
+      0.2847,
+      0.2912
+     ],
+     "growth_yoy": [
+      null,
+      -0.0381,
+      0.098
+     ]
+    },
+    {
+     "member": "srt:SouthAmericaMember",
+     "label": "South America",
+     "values": [
+      534082000,
+      504516000,
+      570891000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0787,
+      0.0883,
+      0.093
+     ],
+     "growth_yoy": [
+      null,
+      -0.0554,
+      0.1316
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      308572000,
+      266468000,
+      261433000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0455,
+      0.0466,
+      0.0426
+     ],
+     "growth_yoy": [
+      null,
+      -0.1364,
+      -0.0189
+     ]
+    },
+    {
+     "member": "dar:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      88265000,
+      67260000,
+      61440000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.013,
+      0.0118,
+      0.01
+     ],
+     "growth_yoy": [
+      null,
+      -0.238,
+      -0.0865
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     6788080000,
+     5715175000,
+     6135877000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-29",
+    "2025-06-28",
+    "2026-04-04",
+    "2026-07-04"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      786664000,
+      819872000,
+      828214000,
+      1003671000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5698,
+      0.5534,
+      0.534,
+      0.5821
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0528,
+      0.2242
+     ]
+    },
+    {
+     "member": "srt:EuropeMember",
+     "label": "Europe",
+     "values": [
+      408170000,
+      447280000,
+      487720000,
+      470158000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2956,
+      0.3019,
+      0.3145,
+      0.2727
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1949,
+      0.0511
+     ]
+    },
+    {
+     "member": "srt:SouthAmericaMember",
+     "label": "South America",
+     "values": [
+      116961000,
+      139149000,
+      138458000,
+      152670000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0847,
+      0.0939,
+      0.0893,
+      0.0886
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1838,
+      0.0972
+     ]
+    },
+    {
+     "member": "country:CN",
+     "label": "CHINA",
+     "values": [
+      54035000,
+      61144000,
+      74888000,
+      74764000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0391,
+      0.0413,
+      0.0483,
+      0.0434
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3859,
+      0.2228
+     ]
+    },
+    {
+     "member": "dar:OtherGeographicalAreasMember",
+     "label": "Other Geographical Areas",
+     "values": [
+      14764000,
+      14073000,
+      21541000,
+      22815000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0107,
+      0.0095,
+      0.0139,
+      0.0132
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.459,
+      0.6212
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1380594000,
+     1481518000,
+     1550821000,
+     1724078000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}
