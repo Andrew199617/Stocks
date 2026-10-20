@@ -61,7 +61,7 @@
  "tier_by_numbers": "C",
  "tier_final": "D",
  "confidence": "low",
- "one_liner": "Americas long-steel scale with a weak commodity moat 3/10 - the normalized base OE of $0.42/share is a mid-cycle construct (FY2025 printed $0.09 on peak capex and crushed Brazil spreads); at $5.08 the weighted IRR is 10.21% by numbers (Tier C), but on each fiscal year's own filed diluted share count the median base is $0.4068/share and the weighted IRR replays to 9.89% - final Tier D via tier_override, IV@15% $3.14 by numbers ($3.01 on the corrected count); it clears 15% only below ~$3.14.",
+ "one_liner": "Americas long-steel scale with a weak commodity moat 3/10 - the normalized base OE of $0.42/share is a mid-cycle construct (FY2025 printed $0.09 on peak capex and crushed Brazil spreads); at $5.08 the weighted IRR is 10.21% by numbers (Tier C), but on each fiscal year's own filed diluted share count the median base is $0.4068/share and the weighted IRR replays to 9.89% - final Tier D via tier_override, IV@15% $3.14 by numbers ($3.01 on the corrected count); on the corrected count it clears 15% only below ~$3.01.",
  "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
  "engine_release": "5.5.0",
@@ -92,7 +92,7 @@
   "Returns are cyclical, not structural: roic_proxy in fundamentals.json swung from -6.7% (FY2016) to 41.7% (FY2021) and back down to 4.4% (FY2025) - a through-cycle record that does not stay above the cost of capital",
   "Scale rivals everywhere: Nucor, Steel Dynamics and Commercial Metals in the US, ArcelorMittal and CSN in Brazil; low-cost import supply (China-origin) disciplines every market Gerdau serves",
   "BRL and Brazil macro exposure: reporting currency BRL converted at period-end rates, Brazilian rates high for prolonged periods, and the controlling family structure (Metalurgica Gerdau) adds a governance layer",
-  "Capex intensity is rising into the trough: FY2025 capex R$6.85B (engine, incl. intangibles) on the Miguel Burnier mining build, against FY2025 conservative OE of only $179.9M"
+  "Capex intensity is rising into the trough: FY2025 capex $1.251B (R$6.85B incl. intangibles) on the Miguel Burnier mining build, against FY2025 conservative OE of only $179.9M (R$985M)"
  ],
  "overrides": [
   {
