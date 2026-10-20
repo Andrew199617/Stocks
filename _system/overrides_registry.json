@@ -3104,6 +3104,14 @@
    "weighted_irr_with_override": 0.0745,
    "weighted_irr_impact_pp": null,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "TFII",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count",
+   "reason": "TFI is a direct-listed foreign private issuer: the NYSE security is the common share itself (also listed on TSX under the same symbol), not an ADS, so one traded share is one ordinary share and per-share figures and the traded price are on the same basis."
   }
  ]
 }

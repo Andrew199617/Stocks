@@ -1,0 +1,569 @@
+{
+ "ticker": "TFII",
+ "name": "TFI INTERNATIONAL INC.",
+ "cik": 1588823,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-20",
+ "price": 111.59,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 83414310,
+ "shares_outstanding_dei_latest": 84408437,
+ "shares_outstanding_dei_asof": "2025-12-31",
+ "market_cap_est": 9308202852.9,
+ "net_debt_latest": 2367789000,
+ "net_debt_basis": "LongtermBorrowings+CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+ "lease_liabilities_latest": 637764000,
+ "latest_period_end": "2025-12-31",
+ "rev_cagr_5y": 0.15835330178039242,
+ "rev_cagr_3y": -0.03639590504370771,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 679717000.0,
+ "base_oe_per_share": 7.654390076908036,
+ "base_oe_latest_per_share": 8.148685759074192,
+ "base_oe_normalized_per_share": 7.654390076908036,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.15835330178039242,
+  "rev_cagr_3y": -0.03639590504370771,
+  "rev_yoy_latest": -0.060994327621257116,
+  "oe_ps_cagr_2y": 0.05602070606118237
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.18785819856409547,
+  "rev_cagr_3y": -0.006891008260004661,
+  "rev_yoy_latest": -0.03148943083755407,
+  "oe_ps_cagr_2y": 0.05602070606118237
+ },
+ "g_blend": 0.024564848900588854,
+ "share_cagr": -0.02950489678370305,
+ "share_count_adj": 0.02950489678370305,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "Revenue",
+  "net_income": "ProfitLoss",
+  "operating_income": "ProfitLossFromOperatingActivities",
+  "ocf": "CashFlowsFromUsedInOperatingActivities",
+  "capex": "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities+PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities",
+  "da": "DepreciationAndAmortisationExpense",
+  "sbc": "AdjustmentsForSharebasedPayments",
+  "tax": "IncomeTaxExpenseContinuingOperations",
+  "shares_diluted": "AdjustedWeightedAverageShares",
+  "cash": "CashAndCashEquivalents",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
+  "assets_current": "CurrentAssets",
+  "liab_current": "CurrentLiabilities",
+  "debt_current": "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings",
+  "debt_cur_ltd": "CurrentPortionOfLongtermBorrowings",
+  "debt_cur_st": null,
+  "debt_lt": "LongtermBorrowings",
+  "debt_total": "Borrowings",
+  "lease_liab_current": "CurrentLeaseLiabilities",
+  "lease_liab_lt": "NoncurrentLeaseLiabilities",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipment",
+  "equity": "Equity",
+  "shares_out_inst": null,
+  "capex_components": "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities+PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities"
+ },
+ "filer_annual_form": "40-F",
+ "ads_ratio": {
+  "ratio": 1.0,
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count",
+  "reason": "TFI is a direct-listed foreign private issuer: the NYSE security is the common share itself (also listed on TSX under the same symbol), not an ADS, so one traded share is one ordinary share and per-share figures and the traded price are on the same basis."
+ },
+ "fx_conversion": null,
+ "payable_base": null,
+ "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 83414310,
+  "shares_source": "diluted_latest",
+  "ads_ratio": 1.0,
+  "formula": "price \u00d7 shares \u00f7 ads_ratio"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": 84408437,
+  "dei_date": "2025-12-31",
+  "dei_ratio": 0.9882224214150536,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 0.9923088798763634
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2019-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 261295000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 3636000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2021-02-18",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2021-02-18"
+   }
+  },
+  "2020-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 142710000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 1665000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2022-03-15",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2022-03-15"
+   }
+  },
+  "2021-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 268656000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 7143000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2023-02-23",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2023-02-23"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 350824000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 6120000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2024-02-16",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2024-02-16"
+   }
+  },
+  "2023-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 361563000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 2758000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2025-02-19",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2025-02-19"
+   }
+  },
+  "2024-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 392819000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 6274000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-02-17",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-02-17"
+   }
+  },
+  "2025-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": 273220000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": 9703000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities": "2026-02-17",
+    "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities": "2026-02-17"
+   }
+  }
+ },
+ "sbc_provenance": {},
+ "g_base": 0.024564848900588854,
+ "moat_score": 4.0,
+ "cap_years": 7.2,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 4.0,
+  "probs": [
+   0.1,
+   0.25,
+   0.3,
+   0.25,
+   0.1
+  ],
+  "offsets": [
+   -0.12,
+   -0.05,
+   0.0,
+   0.05,
+   0.12
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "g_start": -0.0954,
+   "oe_mult": 0.75,
+   "iv_at_10": 46.57308356960636,
+   "iv_at_12": 37.581555827955754,
+   "iv_at_15": 29.39969459988489,
+   "iv_at_20": 21.85458463780726,
+   "iv_at_25": 17.55206353866313,
+   "irr": 0.05448681537937505,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.25,
+   "g_start": -0.0254,
+   "oe_mult": 0.9,
+   "iv_at_10": 75.90351981720818,
+   "iv_at_12": 60.43961244315939,
+   "iv_at_15": 46.46352978752379,
+   "iv_at_20": 33.72562120868827,
+   "iv_at_25": 26.5771393684873,
+   "irr": 0.07542000920870595,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.0246,
+   "oe_mult": 1.0,
+   "iv_at_10": 104.41771020547583,
+   "iv_at_12": 82.44084635078414,
+   "iv_at_15": 62.66099515939668,
+   "iv_at_20": 44.76387360152758,
+   "iv_at_25": 34.82020645254481,
+   "irr": 0.09517822102683715,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.25,
+   "g_start": 0.0746,
+   "oe_mult": 1.1,
+   "iv_at_10": 141.5929354328132,
+   "iv_at_12": 110.93100648458028,
+   "iv_at_15": 83.43606042312867,
+   "iv_at_20": 58.718727441179034,
+   "iv_at_25": 45.10914127680278,
+   "irr": 0.11945782041268915,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.1446,
+   "oe_mult": 1.25,
+   "iv_at_10": 214.09377657187304,
+   "iv_at_12": 166.1209270956783,
+   "iv_at_15": 123.2967435425785,
+   "iv_at_20": 85.1037845740236,
+   "iv_at_25": 64.30864050560085,
+   "irr": 0.1619148432711438,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 111.76611288829604,
+  "iv_at_12": 87.94515692953357,
+  "iv_at_15": 66.54283991472846,
+  "iv_at_20": 47.23608616410819,
+  "iv_at_25": 36.55370250151236,
+  "irr": 0.10011684733917348,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   5.192919,
+   4.697332,
+   4.327614,
+   4.059385,
+   3.875682,
+   3.765121,
+   3.720694,
+   3.739028,
+   3.819995,
+   3.915495,
+   4.013382,
+   4.113717,
+   4.21656,
+   4.321974,
+   4.430023
+  ],
+  "bear": [
+   6.71373,
+   6.542965,
+   6.422376,
+   6.348998,
+   6.320932,
+   6.337268,
+   6.398038,
+   6.504208,
+   6.657701,
+   6.824143,
+   6.994747,
+   7.169615,
+   7.348856,
+   7.532577,
+   7.720892
+  ],
+  "base": [
+   7.842419,
+   8.035067,
+   8.232933,
+   8.436169,
+   8.644931,
+   8.859383,
+   9.079689,
+   9.306023,
+   9.538561,
+   9.777025,
+   10.021451,
+   10.271987,
+   10.528787,
+   10.792006,
+   11.061807
+  ],
+  "bull": [
+   9.047652,
+   9.722289,
+   10.380302,
+   11.011391,
+   11.605047,
+   12.150818,
+   12.638611,
+   13.058981,
+   13.403435,
+   13.738521,
+   14.081984,
+   14.434034,
+   14.794885,
+   15.164757,
+   15.543876
+  ],
+  "super_bull": [
+   10.951182,
+   12.534338,
+   14.138215,
+   15.712539,
+   17.201242,
+   18.545346,
+   19.686509,
+   20.570975,
+   21.15357,
+   21.682409,
+   22.22447,
+   22.780081,
+   23.349583,
+   23.933323,
+   24.531656
+  ],
+  "weighted": [
+   7.907481,
+   8.200001,
+   8.517132,
+   8.84814,
+   9.182667,
+   9.510883,
+   9.823789,
+   10.113604,
+   10.374209,
+   10.633564,
+   10.899403,
+   11.171888,
+   11.451185,
+   11.737465,
+   12.030902
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.095435,
+   -0.095435,
+   -0.078708,
+   -0.061981,
+   -0.045254,
+   -0.028527,
+   -0.0118,
+   0.004927,
+   0.021655,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   -0.025435,
+   -0.025435,
+   -0.01843,
+   -0.011425,
+   -0.004421,
+   0.002584,
+   0.009589,
+   0.016594,
+   0.023599,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.024565,
+   0.024565,
+   0.024625,
+   0.024686,
+   0.024746,
+   0.024807,
+   0.024867,
+   0.024927,
+   0.024988,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.074565,
+   0.074565,
+   0.067681,
+   0.060797,
+   0.053913,
+   0.047029,
+   0.040145,
+   0.033261,
+   0.026377,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.144565,
+   0.144565,
+   0.127959,
+   0.111352,
+   0.094746,
+   0.07814,
+   0.061534,
+   0.044927,
+   0.028321,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.10011684733917348,
+ "implied_irr_base": 0.09517822102683715,
+ "irr_bear": 0.07542000920870595,
+ "irr_bull": 0.11945782041268915,
+ "irr_low": 0.05448681537937505,
+ "irr_high": 0.1619148432711438,
+ "tier_by_numbers": "C",
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 66.54283991472846,
+  "20": 47.23608616410819,
+  "25": 36.55370250151236
+ },
+ "upside_at_15": -0.403684560312497,
+ "upside_at_12": -0.21189034026764442,
+ "iv_at_15": 66.54283991472846,
+ "iv_at_12": 87.94515692953357,
+ "iv_at_20": 47.23608616410819,
+ "iv_at_25": 36.55370250151236,
+ "diagnostics": {
+  "oe_yield": 0.06859387110769814,
+  "tv_share_at_15": 0.18219778531092365,
+  "scenario_spread_iv15": 4.19381035145383,
+  "net_debt_to_normalized_oe": 3.708445033862514,
+  "months_since_fy_end": 9.625492772667542,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (11.9%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "content_hash": "b16d2190f823101704e36989b38a24d3ad4e58a6a4409533f9aabfae8bf2f345"
+}
