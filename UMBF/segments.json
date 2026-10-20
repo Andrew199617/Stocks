@@ -1,0 +1,1369 @@
+{
+ "ticker": "UMBF",
+ "cik": 101382,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-076496",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/umbf-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-194310",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526194310/umbf-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-325054",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526325054/umbf-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      313816000,
+      353843000,
+      405996000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6066,
+      0.6168,
+      0.5665
+     ],
+     "growth_yoy": [
+      null,
+      0.1275,
+      0.1474
+     ]
+    },
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      111126000,
+      123006000,
+      177678000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2148,
+      0.2144,
+      0.2479
+     ],
+     "growth_yoy": [
+      null,
+      0.1069,
+      0.4445
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      92418000,
+      96813000,
+      133017000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1786,
+      0.1688,
+      0.1856
+     ],
+     "growth_yoy": [
+      null,
+      0.0476,
+      0.374
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     517360000,
+     573662000,
+     716691000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      95732000,
+      99396000,
+      111301000,
+      119321000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5745,
+      0.5538,
+      0.5877,
+      0.5905
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1626,
+      0.2005
+     ]
+    },
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      40570000,
+      46560000,
+      44242000,
+      48318000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2435,
+      0.2594,
+      0.2336,
+      0.2391
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0905,
+      0.0378
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      30338000,
+      33535000,
+      33827000,
+      34417000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1821,
+      0.1868,
+      0.1786,
+      0.1703
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.115,
+      0.0263
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     166640000,
+     179491000,
+     189370000,
+     202056000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      241538000,
+      312452000,
+      496960000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6901,
+      0.7081,
+      0.7075
+     ],
+     "growth_yoy": [
+      null,
+      0.2936,
+      0.5905
+     ]
+    },
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      133267000,
+      157671000,
+      214268000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3807,
+      0.3573,
+      0.3051
+     ],
+     "growth_yoy": [
+      null,
+      0.1831,
+      0.359
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      -24781000,
+      -28880000,
+      -8830000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0708,
+      -0.0655,
+      -0.0126
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     350024000,
+     441243000,
+     702398000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NetIncomeLoss",
+   "tag": "us-gaap:NetIncomeLoss",
+   "label": "Net income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      62385000,
+      139788000,
+      175516000,
+      174693000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.767,
+      0.643,
+      0.6713,
+      0.6294
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8134,
+      0.2497
+     ]
+    },
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      50043000,
+      54350000,
+      67624000,
+      67401000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6153,
+      0.25,
+      0.2587,
+      0.2428
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3513,
+      0.2401
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      -31095000,
+      23256000,
+      18298000,
+      35476000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.3823,
+      0.107,
+      0.07,
+      0.1278
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.5255
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     81333000,
+     217394000,
+     261438000,
+     277570000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      600759000,
+      668235000,
+      1291140000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6529,
+      0.6676,
+      0.6933
+     ],
+     "growth_yoy": [
+      null,
+      0.1123,
+      0.9322
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      128980000,
+      135483000,
+      312753000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1402,
+      0.1354,
+      0.1679
+     ],
+     "growth_yoy": [
+      null,
+      0.0504,
+      1.3084
+     ]
+    },
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      190377000,
+      197174000,
+      258312000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2069,
+      0.197,
+      0.1387
+     ],
+     "growth_yoy": [
+      null,
+      0.0357,
+      0.3101
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     920116000,
+     1000892000,
+     1862205000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      273916000,
+      322619000,
+      365342000,
+      362575000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6889,
+      0.6908,
+      0.6837,
+      0.6809
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3338,
+      0.1238
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      62564000,
+      78074000,
+      91737000,
+      90902000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1573,
+      0.1672,
+      0.1717,
+      0.1707
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4663,
+      0.1643
+     ]
+    },
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      61159000,
+      66331000,
+      77287000,
+      79048000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1538,
+      0.142,
+      0.1446,
+      0.1484
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2637,
+      0.1917
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     397639000,
+     467024000,
+     534366000,
+     532525000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      342794000,
+      393984000,
+      444502000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6326,
+      0.6272,
+      0.5626
+     ],
+     "growth_yoy": [
+      null,
+      0.1493,
+      0.1282
+     ]
+    },
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      102753000,
+      134500000,
+      179612000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1896,
+      0.2141,
+      0.2273
+     ],
+     "growth_yoy": [
+      null,
+      0.309,
+      0.3354
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      96306000,
+      99633000,
+      165936000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1777,
+      0.1586,
+      0.21
+     ],
+     "growth_yoy": [
+      null,
+      0.0345,
+      0.6655
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     541853000,
+     628117000,
+     790050000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "umbf:InstitutionalBankingMember",
+     "label": "Institutional Banking",
+     "values": [
+      103797000,
+      107998000,
+      121829000,
+      129191000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6245,
+      0.4861,
+      0.5949,
+      0.5262
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1737,
+      0.1962
+     ]
+    },
+    {
+     "member": "umbf:PersonalBankingMember",
+     "label": "Personal Banking",
+     "values": [
+      25183000,
+      70968000,
+      36675000,
+      64375000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1515,
+      0.3194,
+      0.1791,
+      0.2622
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4563,
+      -0.0929
+     ]
+    },
+    {
+     "member": "umbf:CommercialBankingMember",
+     "label": "Commercial Banking",
+     "values": [
+      37218000,
+      43219000,
+      46289000,
+      51939000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2239,
+      0.1945,
+      0.226,
+      0.2116
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2437,
+      0.2018
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     166198000,
+     222185000,
+     204793000,
+     245505000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FiduciaryAndTrustMember",
+     "label": "Fiduciary and Trust",
+     "values": [
+      257200000,
+      290571000,
+      343398000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4747,
+      0.4626,
+      0.4347
+     ],
+     "growth_yoy": [
+      null,
+      0.1297,
+      0.1818
+     ]
+    },
+    {
+     "member": "us-gaap:CreditCardMember",
+     "label": "Credit Card",
+     "values": [
+      74719000,
+      87797000,
+      113924000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1379,
+      0.1398,
+      0.1442
+     ],
+     "growth_yoy": [
+      null,
+      0.175,
+      0.2976
+     ]
+    },
+    {
+     "member": "us-gaap:DepositAccountMember",
+     "label": "Deposit Account",
+     "values": [
+      84950000,
+      84512000,
+      113206000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1568,
+      0.1345,
+      0.1433
+     ],
+     "growth_yoy": [
+      null,
+      -0.0052,
+      0.3395
+     ]
+    },
+    {
+     "member": "umbf:OtherFinancialServicesMember",
+     "label": "Other Financial Services",
+     "values": [
+      53365000,
+      67470000,
+      82748000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0985,
+      0.1074,
+      0.1047
+     ],
+     "growth_yoy": [
+      null,
+      0.2643,
+      0.2264
+     ]
+    },
+    {
+     "member": "umbf:BrokerageFeesMember",
+     "label": "Brokerage Fees",
+     "values": [
+      54119000,
+      61564000,
+      79592000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0999,
+      0.098,
+      0.1007
+     ],
+     "growth_yoy": [
+      null,
+      0.1376,
+      0.2928
+     ]
+    },
+    {
+     "member": "umbf:InvestmentSecuritiesGainsLossesNetMember",
+     "label": "Investment Securities Gains Losses Net",
+     "values": [
+      -3139000,
+      10720000,
+      30967000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0058,
+      0.0171,
+      0.0392
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8887
+     ]
+    },
+    {
+     "member": "umbf:TradingAndInvestmentBankingMember",
+     "label": "Trading And Investment Banking",
+     "values": [
+      19630000,
+      24226000,
+      25305000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0362,
+      0.0386,
+      0.032
+     ],
+     "growth_yoy": [
+      null,
+      0.2341,
+      0.0445
+     ]
+    },
+    {
+     "member": "umbf:InsuranceFeesAndCommissionsMember",
+     "label": "Insurance Fees And Commissions",
+     "values": [
+      1009000,
+      1257000,
+      910000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0019,
+      0.002,
+      0.0012
+     ],
+     "growth_yoy": [
+      null,
+      0.2458,
+      -0.2761
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     541853000,
+     628117000,
+     790050000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:FiduciaryAndTrustMember",
+     "label": "Fiduciary and Trust",
+     "values": [
+      79781000,
+      83263000,
+      94667000,
+      98295000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.48,
+      0.3747,
+      0.4623,
+      0.4004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1866,
+      0.1805
+     ]
+    },
+    {
+     "member": "us-gaap:CreditCardMember",
+     "label": "Credit Card",
+     "values": [
+      26293000,
+      29018000,
+      28878000,
+      29954000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1582,
+      0.1306,
+      0.141,
+      0.122
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0983,
+      0.0323
+     ]
+    },
+    {
+     "member": "umbf:OtherFinancialServicesMember",
+     "label": "Other Financial Services",
+     "values": [
+      13258000,
+      16470000,
+      19644000,
+      29660000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0798,
+      0.0741,
+      0.0959,
+      0.1208
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4817,
+      0.8009
+     ]
+    },
+    {
+     "member": "us-gaap:DepositAccountMember",
+     "label": "Deposit Account",
+     "values": [
+      27457000,
+      28865000,
+      29474000,
+      29588000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1652,
+      0.1299,
+      0.1439,
+      0.1205
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0735,
+      0.025
+     ]
+    },
+    {
+     "member": "umbf:InvestmentSecuritiesGainsLossesNetMember",
+     "label": "Investment Securities Gains Losses Net",
+     "values": [
+      -4782000,
+      37685000,
+      3046000,
+      27087000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0288,
+      0.1696,
+      0.0149,
+      0.1103
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.2812
+     ]
+    },
+    {
+     "member": "umbf:BrokerageFeesMember",
+     "label": "Brokerage Fees",
+     "values": [
+      18102000,
+      20525000,
+      21089000,
+      25400000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1089,
+      0.0924,
+      0.103,
+      0.1035
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.165,
+      0.2375
+     ]
+    },
+    {
+     "member": "umbf:TradingAndInvestmentBankingMember",
+     "label": "Trading And Investment Banking",
+     "values": [
+      5911000,
+      6170000,
+      7740000,
+      5314000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0356,
+      0.0278,
+      0.0378,
+      0.0216
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3094,
+      -0.1387
+     ]
+    },
+    {
+     "member": "umbf:InsuranceFeesAndCommissionsMember",
+     "label": "Insurance Fees And Commissions",
+     "values": [
+      178000,
+      189000,
+      255000,
+      207000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0011,
+      0.0009,
+      0.0012,
+      0.0008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.4326,
+      0.0952
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     166198000,
+     222185000,
+     204793000,
+     245505000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

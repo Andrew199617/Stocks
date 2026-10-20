@@ -2987,6 +2987,14 @@
    "ratio": 1.0,
    "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-26, EDGAR klar-20251231.htm): the registered security is the ordinary share itself; the company's IPO prospectus (Form F-1, declared effective 2025-09-09) and its IPO completion release state the offering was of ordinary shares at $40.00 per ordinary share and that the ordinary shares began trading on the New York Stock Exchange on September 10, 2025 under the symbol KLAR \u2014 there is no ADS programme and no depositary ratio",
    "reason": "DATA_GAP:ads_ratio \u2014 Klarna is a direct-listed foreign private issuer: one NYSE-traded KLAR share is one ordinary share, so per-ordinary-share figures are directly comparable to the traded price with no scaling."
+  },
+  {
+   "ticker": "UMBF",
+   "event": "tier_override",
+   "date": "2026-10-19",
+   "tier_by_numbers": "C",
+   "tier_final": "D",
+   "reason": "SECTOR_MODEL_MISMATCH universal softening (Andrew's standing rule 2026-10-15, made universal 2026-10-19): a bank's OCF-based OE is not distributable earnings \u2014 loan growth consumes regulatory capital and the provision is a through-cycle cost OCF adds back ($154,500,000 in FY2025, Form 10-K cash-flow reconciliation), while FY2025 earnings also carry $139,775,000 of net purchase-accounting accretion from Heartland. The numbers tier C (weighted IRR 14.43%) already sits below the hurdle, and the identical scenario set on the filing-clean median base prints a weighted IRR of 10.67% (IV@15% $83.28) \u2014 the TTM print is the top of the defensible range, taken in a benign credit window (Q2 2026 net charge-offs 16bp). Softened one notch to D, confidence low."
   }
  ]
 }
