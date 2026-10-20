@@ -1,0 +1,244 @@
+{
+ "ticker": "QGEN",
+ "cik": 1015820,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T13:34:33-04:00",
+ "newest_filing_date": "2026-09-09",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001015820.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000018/qgen-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/QGEN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/QGEN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "QIAGEN N.V.",
+  "cik": 1015820,
+  "description": null,
+  "description_short": "QIAGEN N.V., a Netherlands-based holding company, is a global leader in Sample to Insight solutions that enable customers to extract and analyze molecular information from biological samples containing the building blocks of life. Our Sample technologies isolate and process DNA, RNA and proteins from blood, tissue and other materials. Assay technologies prepare these biomolecules for analysis, while bioinformatics support the interpretation of complex data to deliver actionable insights. Automation solutions integrate these steps into streamlined, cost-effective workflows. QIAGEN serves more than 500,000 customers worldwide in the Life Sciences (academia, pharmaceutical R&D and industrial applications such as forensics) and Molecular Diagnostics (clinical healthcare). As of June 30, 2026, QIAGEN employed about 5,500 people across more than 35 locations. For more information, visit www.qiagen.com.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "Europe",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": "P7",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.qiagen.com",
+  "headquarters": "Venlo, Netherlands",
+  "address": {
+   "street": "Hulsterweg 82",
+   "city": "Venlo",
+   "state": null,
+   "zip": "5912 PL",
+   "country": "Netherlands",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-03-20"
+  },
+  "phone": "31-77-35566-00",
+  "employees": {
+   "count": 5700,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 5,700 people in over 35 locations worldwide.",
+   "form": "20-F",
+   "filed": "2026-03-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000018/qgen-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1998-10-06",
+  "first_sec_filing_form": "SC 13G",
+  "former_names": [
+   "QIAGEN NV"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001015820&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000056",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000056/a08242026ceoappointment.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000053/a2026q2form6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000049/a2026q2prform6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-07",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000047/a2026agm6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000031/a2026q1form6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-08",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000029/a2026q1prform6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000024/a04272026q1preliminaryresu.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-03-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001015820-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000018/qgen-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000003/a2025q4prform6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000077/a12182025ssbb6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000074/a2025q3form6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000072/a2025q3prform6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-02",
+   "period": "2025-08-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000062/form6-kx2025convertibledebt.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-21",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000057/a2025q2form6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000049/a2025q2prform6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-06-30",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000044/a06262025agmrelease.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-05-13",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000037/a2025q1form6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-05-09",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000034/a2025q1prform6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-04-09",
+   "period": "2025-04-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001015820-25-000030",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000030/a04062025q1adhoc6-k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2025-03-31",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001015820-25-000027",
+   "url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582025000027/qgen-20241231.htm"
+  }
+ ],
+ "warnings": [
+  "description: no 20-F Item 4 Information on the Company / Overview section found outside the table of contents (20-F filed 2026-03-20)"
+ ]
+}
