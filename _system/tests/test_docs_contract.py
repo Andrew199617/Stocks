@@ -262,6 +262,9 @@ PAIRS = [
     ("_system/fundamentals.py", "def intangible_capex_ttm(", "intangible_capex_ttm", [SYS_README, CONTRACT]),
     ("_system/build_site.py", "def cross_currency_safe(", "cross_currency_safe", [SYS_README, CONTRACT]),
     ("_system/statements.py", "DEBT_LIKE_TAGS = [", "DEBT_LIKE_TAGS", [SYS_README, CONTRACT]),
+    # Codex review round 2 on PR #53
+    ("_system/fundamentals.py", "ENGINE_CAPEX_GROUPS = (_engine.CAPEX_ROLLUP_TAGS", "ENGINE_CAPEX_GROUPS", [SYS_README, CONTRACT]),
+    ("_system/fundamentals.py", "def annual_row_periods(", "annual_row_periods", [SYS_README, CONTRACT]),
 ]
 
 

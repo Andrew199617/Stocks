@@ -1139,7 +1139,13 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   (Codex review round 1 on PR #53: Q1 10, Q2 20, Q3 30 three-month facts beside FY 100 had read Q1 10, no Q2 / Q3, Q4 90); a year whose annual row is filed with no FY intangible figure (the 10-K leaves the line untagged or re-files it as $0,
   which the engine ignores) deducts nothing in any quarter, as its annual row deducts nothing (verifier round 2: RMD FY2024, BAX
   FY2025, NXT FY2026); the TTM leg is the engine's FY − prior-year YTD + current YTD, floored at zero (`intangible_capex_ttm`) — IREN's TTM
-  equals its FY2026 figure. **App:** the capex rows and the cash-flow chart say "Capex (PP&E)", the chart adds an "Intangible
+  equals its FY2026 figure. Codex review round 2 on PR #53: `capex` (annual, quarterly, TTM) is the engine's PP&E leg —
+  `capex_for_period` over `dcf_engine.CAPEX_ROLLUP_TAGS` / `CAPEX_COMPONENT_TAGS` (`fundamentals.ENGINE_CAPEX_GROUPS`): a filed
+  roll-up, else the additive components summed (GLPI FY2025 $495.7M, not construction in process alone at $191.3M; capital
+  improvements and the oil-and-gas lines count), assembled per fiscal year and per year-to-date context before quarters are
+  differenced — so `fcf` = `ocf` − `capex` − the intangible leg on the engine's capex definition. A completed year (the rule
+  above) is one with an annual row (`annual_row_periods`: fp FY on the annual-report forms), never a 6-K or 10-Q full-year
+  context. **App:** the capex rows and the cash-flow chart say "Capex (PP&E)", the chart adds an "Intangible
   capex" bar (ocf − capex − fcf of the row) and the Overview prose names it beside the PP&E capex.) (2) HBAN's provision total differs from the face by 2–3M in FY2024/FY2025 (a securities
   component the filer does not tag); the alternative is a blank line. (3) The app should render `basis_break_quarterly` (grey or
   a marker) and may label "Interest expense, net" lines from the file's label.

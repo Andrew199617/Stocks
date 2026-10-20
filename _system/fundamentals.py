@@ -129,7 +129,9 @@ than 18 months before the newest fiscal year end is stale (TLK's 1995
 count) and a cover-page dei count that is one class of a multi-class filer
 gives way to the same filing's all-class count (class_count_check, GGB);
 derived fcf / oe_conservative subtract the engine 5.5 intangible-capex leg
-too (ENGINE_INTANGIBLE_TAGS via dcf_engine.capex_for_period; GGB, GMED).
+too (ENGINE_INTANGIBLE_TAGS via dcf_engine.capex_for_period; GGB, GMED), and
+`capex` is the engine's PP&E leg (ENGINE_CAPEX_GROUPS: a roll-up, else the
+components summed; Codex review round 2 on PR #53).
 """
 import json, sys, os, csv, datetime, time, math, statistics, urllib.request
 
@@ -632,6 +634,24 @@ def core_fy_periods(facts, money=None):
     return out
 
 
+def annual_row_periods(facts, money=None):
+    """The (start, end) fiscal years that have an annual row: the revenue / net
+    income / OCF contexts annual_series reads (fp FY on MONEY_UNIT_FORMS, 330-380
+    days). Unlike core_fy_periods (every duration form), a full-year context
+    furnished on a 6-K or a 10-Q — AGI's 2016 6-K, TU's trailing-twelve-month Q2
+    6-Ks — is not a completed annual year (Codex review round 2 on PR #53)."""
+    out = set()
+    for k in ("revenue", "net_income", "ocf"):
+        for taxonomy, tag in _pairs(DUR[k]):
+            units = (facts.get("facts", {}).get(taxonomy, {}).get(tag) or {}).get("units") or {}
+            for unit_key in _units_pref(units, money):
+                for e in units[unit_key]:
+                    s, en = e.get("start"), e.get("end")
+                    if e.get("fp") == "FY" and e.get("form", "") in MONEY_UNIT_FORMS and s and en and 330 <= _days(s, en) <= 380:
+                        out.add((s, en))
+    return out
+
+
 def core_fy_starts(facts, money=None):
     """Fiscal-year start dates the core statements establish (annual revenue /
     net income / OCF periods and the year that follows each)."""
@@ -708,24 +728,95 @@ def debt_from_total_tag(tot, tot_tag, st=None, st_tag=None, cur_agg=None, unit_m
 # capitalized software, PaymentsToDevelopSoftware, which is not capex until
 # the Q6 / engine 5.7 follow-on) and is not what is deducted.
 ENGINE_INTANGIBLE_TAGS = _engine.CAPEX_INTANGIBLE_TAGS
+# Codex review round 2 on PR #53: the PP&E leg is the engine's too — its roll-up
+# and component lists (dcf_engine.CAPEX_ROLLUP_TAGS / CAPEX_COMPONENT_TAGS) through
+# capex_for_period: a filed roll-up is authoritative, else the additive components
+# are SUMMED (zero-guard, one unit, a retagged or same-filing duplicate counted
+# once, a component equal to the sum of others kept as the total). The annual,
+# quarterly and TTM `capex` field is that PP&E leg (it had been the first tag of
+# DUR["capex"] that reported the period: GLPI FY2025 191.3M of construction in
+# process against the engine's 495.7M; HST's capital improvements and AR's
+# oil-and-gas lines were not read at all). DUR["capex"] stays statements.py's list.
+ENGINE_CAPEX_GROUPS = (_engine.CAPEX_ROLLUP_TAGS, _engine.CAPEX_COMPONENT_TAGS, ENGINE_INTANGIBLE_TAGS)
 
 
-def intangible_capex_annual(facts, money, ppe):
-    """{period_end: intangible purchases the engine adds on top of the PP&E leg}
-    for FY periods, read in `money`. ppe: {period_end: (tag, value)} — the PP&E
-    leg capex_for_period checks the combined-tag rule against."""
+def _tag_name(t):
+    return t[1] if isinstance(t, tuple) else t
+
+
+def capex_assembly_annual(facts, money):
+    """{period_end: dcf_engine.capex_for_period result} for FY periods, as the engine
+    assembles them (dcf_engine.py v5.5): per tag the FY fact annual_series reads
+    (latest filing per period), read in `money`, then capex_for_period over the
+    roll-up, component and intangible lists with the cumulative-duplicate check."""
     cumulative = _engine.cumulative_context_values(facts, ENGINE_INTANGIBLE_TAGS, units=(money,))
-    per_tag = []
-    for t in ENGINE_INTANGIBLE_TAGS:
-        vals, _, units, filed = annual_series(facts, [t], True, with_filed=True, money=money)
-        per_tag.append((t[1] if isinstance(t, tuple) else t, vals, units, filed))
+    groups = []
+    for tags in ENGINE_CAPEX_GROUPS:
+        per_tag = []
+        for t in tags:
+            vals, _, units, filed = annual_series(facts, [t], True, with_filed=True, money=money)
+            per_tag.append((_tag_name(t), vals, units, filed))
+        groups.append(per_tag)
     out = {}
-    for pe in sorted({pe for _, vals, _, _ in per_tag for pe in vals}):
-        legs = [(name, vals[pe], units[pe], filed.get(pe)) for name, vals, units, filed in per_tag if pe in vals]
-        roll = [(ppe[pe][0], ppe[pe][1], money, None)] if pe in ppe else []
-        res = _engine.capex_for_period(roll, [], legs, cumulative=cumulative)
-        if res["intangible_tags"]:
-            out[pe] = _whole(res["intangibles"])
+    for pe in sorted({pe for grp in groups for _, vals, _, _ in grp for pe in vals}):
+        legs = [[(name, vals[pe], units[pe], filed.get(pe)) for name, vals, units, filed in grp if pe in vals] for grp in groups]
+        out[pe] = _engine.capex_for_period(*legs, cumulative=cumulative)
+    return out
+
+
+def intangible_capex_annual(facts, money, assembly=None):
+    """{period_end: intangible purchases the engine adds on top of the PP&E leg}
+    for FY periods, read in `money` (capex_assembly_annual)."""
+    asm = assembly if assembly is not None else capex_assembly_annual(facts, money)
+    return {pe: _whole(res["intangibles"]) for pe, res in asm.items() if res["intangible_tags"]}
+
+
+def _capex_context_maps(facts, money):
+    """Per engine capex group, [(tag, {(start, end): (val, tag, unit, filed, accn)})] — each tag's latest fact per exact
+    duration context in `money` (duration_facts); an intangible fact repeating a value the same tag files on a
+    multi-year context is left out first (ECHO), so it never hides the period's own fact. Plus that cumulative set."""
+    cumulative = _engine.cumulative_context_values(facts, ENGINE_INTANGIBLE_TAGS, units=(money,))
+    groups = []
+    for gi, tags in enumerate(ENGINE_CAPEX_GROUPS):
+        per_tag = []
+        for t in tags:
+            taxonomy, name = t if isinstance(t, tuple) else ("us-gaap", t)
+            units = ((facts.get("facts", {}).get(taxonomy, {}).get(name) or {}).get("units") or {})
+            if gi == 2:
+                units = {u: [e for e in es if not ((name, u, e.get("val")) in cumulative and e.get("start") and e.get("end")
+                                                   and _days(e["start"], e["end"]) <= _engine.CUMULATIVE_CONTEXT_DAYS)]
+                         for u, es in units.items()}
+            per_tag.append((name, duration_facts({"facts": {taxonomy: {name: {"units": units}}}}, [(taxonomy, name)], money=money)))
+        groups.append(per_tag)
+    return groups, cumulative
+
+
+def capex_assembly_periods(facts, money, maps=None):
+    """{(start, end): capex_for_period result} per exact duration context up to 380 days — ttm.py capex_assembly's
+    shape (each period's latest fact per tag, then capex_for_period), read in `money`."""
+    groups, cumulative = maps if maps is not None else _capex_context_maps(facts, money)
+    out = {}
+    for per in sorted({k for grp in groups for _, m in grp for k in m}):
+        if _days(per[0], per[1]) > _engine.CUMULATIVE_CONTEXT_DAYS:
+            continue
+        legs = [[(name, m[per][0], m[per][2], m[per][3]) for name, m in grp if per in m] for grp in groups]
+        out[per] = _engine.capex_for_period(*legs, cumulative=cumulative)
+    return out
+
+
+def ppe_capex_contexts(facts, money):
+    """{(start, end): (ppe, "tagA+tagB", unit, filed, accn)}: the engine's PP&E leg per exact context, in
+    quarterly_series' `prebuilt` shape — the quarterly `capex` series is derived from it (a year-to-date leg less the
+    one before it, Q4 = FY less the nine months), as ttm.py differences the engine's per-period legs."""
+    maps = _capex_context_maps(facts, money)
+    by_tag = {name: m for grp in maps[0][:2] for name, m in grp}
+    out = {}
+    for per, res in capex_assembly_periods(facts, money, maps).items():
+        if res["ppe"] is None:
+            continue
+        used = [by_tag[t][per] for t in res["ppe_tags"] if per in by_tag.get(t, {})]
+        out[per] = (_whole(res["ppe"]), "+".join(res["ppe_tags"]), res["ppe_unit"],
+                    max((u[3] or "" for u in used), default=None), used[0][4] if used else None)
     return out
 
 
@@ -745,34 +836,23 @@ def intangible_capex_periods(facts, money):
     """{(start, end): intangible purchases} per exact duration context (up to
     380 days) — each period through the engine's capex_for_period (its tags,
     negative / $0 / same-line-twice / cumulative-duplicate rules, the PP&E
-    leg's combined-tag rule against the period's own capex tag). A fiscal-year
-    period carries the annual figure (intangible_capex_annual), so the quarters
-    and the TTM can never disagree with the annual row for the same window."""
-    cumulative = _engine.cumulative_context_values(facts, ENGINE_INTANGIBLE_TAGS, units=(money,))
-    per_tag = []
-    for t in ENGINE_INTANGIBLE_TAGS:
-        taxonomy, name = t if isinstance(t, tuple) else ("us-gaap", t)
-        units = ((facts.get("facts", {}).get(taxonomy, {}).get(name) or {}).get("units") or {})
-        keep = {u: [e for e in es if not ((name, u, e.get("val")) in cumulative and e.get("start") and e.get("end")
-                                          and _days(e["start"], e["end"]) <= _engine.CUMULATIVE_CONTEXT_DAYS)]
-                for u, es in units.items()}
-        per_tag.append((name, duration_facts({"facts": {taxonomy: {name: {"units": keep}}}}, [(taxonomy, name)], money=money)))
-    ppe = duration_facts(facts, DUR["capex"], money=money)
-    pv, pt, _ = annual_series(facts, DUR["capex"], True, money=money)
-    annual = intangible_capex_annual(facts, money, {pe: (pt.get(pe), v) for pe, v in pv.items()})
+    leg's combined-tag rule against the period's own engine PP&E leg —
+    capex_assembly_periods). A fiscal-year period carries the annual figure
+    (intangible_capex_annual), so the quarters and the TTM can never disagree
+    with the annual row for the same window."""
+    maps = _capex_context_maps(facts, money)
+    asm = capex_assembly_periods(facts, money, maps)
+    annual = intangible_capex_annual(facts, money)
     out = {}
-    for per in sorted({k for _, m in per_tag for k in m}):
+    for per in sorted({k for _, m in maps[0][2] for k in m}):
         if _days(per[0], per[1]) > _engine.CUMULATIVE_CONTEXT_DAYS:
             continue
         if 330 <= _days(per[0], per[1]) <= 380:
             if per[1] in annual:
                 out[per] = annual[per[1]]
             continue
-        legs = [(name, m[per][0], m[per][2], m[per][3]) for name, m in per_tag if per in m]
-        roll = [(ppe[per][1], ppe[per][0], money, None)] if per in ppe else []
-        res = _engine.capex_for_period(roll, [], legs, cumulative=cumulative)
-        if res["intangible_tags"]:
-            out[per] = _whole(res["intangibles"])
+        if asm[per]["intangible_tags"]:
+            out[per] = _whole(asm[per]["intangibles"])
     return out
 
 
@@ -795,7 +875,8 @@ def intangible_capex_quarterly(facts, money, fy_starts=None, periods=None, fy_pe
     round 1 on PR #53: Q1 10, Q2 20, Q3 30 three-month facts beside FY 100 had
     read Q1 10, no Q2 / Q3, Q4 90 — the FY context alone made the year a
     year-to-date year and dropped the direct facts). A completed fiscal year (its annual row is
-    filed — fy_periods, core_fy_periods) with no FY intangible figure (the
+    filed — fy_periods, annual_row_periods: an annual-report context, never a
+    6-K or 10-Q full-year one, Codex review round 2 on PR #53) with no FY intangible figure (the
     10-K leaves the line untagged, or re-files it as $0, which the engine
     ignores) deducts nothing in any quarter, as its annual row and the engine
     deduct nothing (verifier round 2: RMD FY2024 YTD 10.8M / 12.0M / 14.0M,
@@ -803,7 +884,7 @@ def intangible_capex_quarterly(facts, money, fy_starts=None, periods=None, fy_pe
     per = periods if periods is not None else intangible_capex_periods(facts, money)
     starts = _intangible_fy_starts(per, fy_starts)
     if fy_periods is None:
-        fy_periods = core_fy_periods(facts, money=money) if facts is not None else set()
+        fy_periods = annual_row_periods(facts, money=money) if facts is not None else set()
     filed_years = {s for s, e in fy_periods if 330 <= _days(s, e) <= 380}
     fy_years = {s for (s, e) in per if 330 <= _days(s, e) <= 380}
     unreconciled = filed_years - fy_years  # completed years with no FY intangible figure
@@ -905,7 +986,11 @@ def build_annual(facts, money=None):
     rows = []
     currency = {money} if money != "USD" else set()
     st_same_unit = {}  # {unit: annual_series of debt_cur_st read in that unit only; "_any": read in every unit}
-    intang_by_end = intangible_capex_annual(facts, money, {pe: (tags["capex"].get(pe), v) for pe, v in series["capex"].items()})  # Q8: the engine's intangible leg
+    capex_asm = capex_assembly_annual(facts, money)  # Q8 / Codex r2: the engine's PP&E and intangible legs
+    series["capex"] = {pe: _whole(a["ppe"]) for pe, a in capex_asm.items() if a["ppe"] is not None}
+    tags["capex"] = {pe: "+".join(a["ppe_tags"]) for pe, a in capex_asm.items() if a["ppe"] is not None}
+    units["capex"] = {pe: a["ppe_unit"] for pe, a in capex_asm.items() if a["ppe"] is not None}
+    intang_by_end = intangible_capex_annual(facts, money, capex_asm)
     for p in periods:
         g = lambda k: series[k].get(p)
         rev, ni, oi, ocf, capex, sbc, da = g("revenue"), g("net_income"), g("operating_income"), g("ocf"), g("capex"), g("sbc"), g("da")
@@ -1030,7 +1115,8 @@ def build_annual(facts, money=None):
 
 def build_quarterly(facts, max_q=12, warnings=None, revenue_mode=None, annual=None, money=None):
     money = money or money_unit(facts)
-    q = {k: quarterly_series(facts, DUR[k], derive=(k not in DIRECT_ONLY), money=money) for k in QUARTERLY_FIELDS}
+    q = {k: quarterly_series(facts, DUR[k], derive=(k not in DIRECT_ONLY), money=money) for k in QUARTERLY_FIELDS if k != "capex"}
+    q["capex"] = quarterly_series(None, None, derive=True, prebuilt=ppe_capex_contexts(facts, money))  # the engine's PP&E leg (Codex r2)
     # bank presentation: revenue = Revenues total, else NII + noninterest income —
     # on ONE basis for every quarter (Codex review of PR #2); quarters with
     # neither are dropped from the revenue series rather than falling back to

@@ -563,6 +563,83 @@ def test_direct_three_month_intangible_facts_keep_their_quarters():
     assert got == {"2025-03-31": 10, "2025-06-30": 20, "2025-09-30": 30, "2025-12-31": 40}, got
 
 
+# ---------------- Codex review round 2 on PR #53 ----------------
+def _fact6k(tag, start, end, val, form, fp, filed, accn):
+    return (G, tag, "USD", {"start": start, "end": end, "val": val, "form": form, "fp": fp, "filed": filed, "accn": accn})
+
+
+def test_a_full_year_on_a_6k_is_not_a_completed_annual_year():
+    """Codex review round 2 on PR #53 (4322452072): core_fy_periods reads every duration form, so a full-year revenue /
+    profit / OCF context furnished on a 6-K before the 20-F (AGI's 2016 6-K with fp FY; TU's Q2 6-Ks carry trailing
+    twelve-month contexts) counted as a completed year with an annual row. annual_series makes no annual row from a
+    6-K, so the year had no FY intangible figure, landed in `unreconciled`, and every filed quarterly intangible fact of
+    the year was discarded: Q1's filed purchase of 10 deducted nothing (fcf 43, not 55 - 12 - 10 = 33). Only the
+    annual-report periods annual_series turns into an annual row (fp FY on MONEY_UNIT_FORMS) are completed years."""
+    T = {"rev": "RevenueFromContractWithCustomerExcludingAssessedTax", "ni": "NetIncomeLoss", "ocf": "NetCashProvidedByUsedInOperatingActivities",
+         "ppe": "PaymentsToAcquirePropertyPlantAndEquipment", "int": "PaymentsToAcquireIntangibleAssets"}
+    base = [_fact6k(T[k], "2024-01-01", "2024-12-31", v, "20-F", "FY", "2025-03-20", "A20F24") for k, v in (("rev", 1000), ("ni", 100), ("ocf", 200), ("ppe", 50), ("int", 40))]
+    base += [_fact6k(T[k], "2025-01-01", "2025-03-31", v, "6-K", "Q1", "2025-05-10", "A6KQ1") for k, v in (("rev", 260), ("ni", 26), ("ocf", 55), ("ppe", 12), ("int", 10))]
+    full_year_6k = [_fact6k(T[k], "2025-01-01", "2025-12-31", v, "6-K", "FY", "2026-02-10", "A6KFY") for k, v in (("rev", 1100), ("ni", 110), ("ocf", 220))]
+    ttm_6k = [_fact6k(T[k], "2024-04-01", "2025-03-31", v, "6-K", "Q1", "2025-05-10", "A6KQ1") for k, v in (("rev", 1050), ("ni", 105), ("ocf", 210))]
+    for extra in ([], full_year_6k, ttm_6k):
+        facts = _facts(base + extra)
+        assert F.intangible_capex_quarterly(facts, "USD", fy_starts=F.core_fy_starts(facts, money="USD")) == {"2024-12-31": 40, "2025-03-31": 10}, extra[:1]
+        q1 = next(r for r in F.build_quarterly(facts) if r["period_end"] == "2025-03-31")
+        assert q1["fcf"] == 55 - 12 - 10, (q1["fcf"], extra[:1])
+    assert F.annual_row_periods(_facts(base + full_year_6k), money="USD") == {("2024-01-01", "2024-12-31")}
+
+
+def _engine_annual_capex(facts, end):
+    """The engine's own annual capex assembly for one FY (dcf_engine.py v5.5: per tag the FY fact, then capex_for_period)."""
+    def legs(tags):
+        out = []
+        for t in tags:
+            vals, _, units, filed = F.annual_series(facts, [t], True, with_filed=True, money="USD")
+            if end in vals:
+                out.append((t[1] if isinstance(t, tuple) else t, vals[end], units[end], filed.get(end)))
+        return out
+    return E.capex_for_period(legs(E.CAPEX_ROLLUP_TAGS), legs(E.CAPEX_COMPONENT_TAGS), legs(E.CAPEX_INTANGIBLE_TAGS),
+                              cumulative=E.cumulative_context_values(facts, E.CAPEX_INTANGIBLE_TAGS, units=("USD",)))
+
+
+def test_the_ppe_leg_is_the_engine_assembly_not_the_first_tag():
+    """Codex review round 2 on PR #53 (4322452077): with no PP&E roll-up and several additive components, the
+    enrichment's capex was the first tag in its list (construction in process 10) while engine 5.5's PP&E leg sums the
+    components (capex_for_period: 10 + 20), so OCF 100, CIP 10, other PP&E 20, intangibles 5 gave fcf 85, not the
+    engine's 65 (GLPI FY2025 191.3M vs 495.7M, GSAT, LNT, IP). Components outside the old list count too (HST's
+    PaymentsForCapitalImprovements, AR's oil-and-gas lines). `capex` is now the engine's PP&E leg (a roll-up when filed,
+    else the components summed under its unit / duplicate / parts-of-total rules); fcf / oe_conservative = OCF - that
+    leg - the intangible leg [- SBC], on the annual rows, the quarters and the TTM alike."""
+    end = "2025-12-31"
+    base = [_fyd("NetCashProvidedByUsedInOperatingActivities", end, 100), _fyd("PaymentsToAcquireIntangibleAssets", end, 5),
+            _fyd("ShareBasedCompensation", end, 3), _fyd("NetIncomeLoss", end, 50), _fyd("Revenues", end, 500)]
+    comps = _facts(base + [_fyd("PaymentsForConstructionInProcess", end, 10), _fyd("PaymentsToAcquireOtherPropertyPlantAndEquipment", end, 20)])
+    rows, tags, _ = F.build_annual(comps)
+    r = next(x for x in rows if x["period_end"] == end)
+    eng = _engine_annual_capex(comps, end)
+    assert (eng["ppe"], eng["intangibles"]) == (30, 5)
+    assert r["capex"] == 30 and r["fcf"] == 65 and r["oe_conservative"] == 62, (r["capex"], r["fcf"], r["oe_conservative"])
+    assert tags["capex"] == ["+".join(eng["ppe_tags"])] == ["PaymentsToAcquireOtherPropertyPlantAndEquipment+PaymentsForConstructionInProcess"], tags["capex"]
+    hst = _facts(base + [_fyd("PaymentsForCapitalImprovements", end, 40), _fyd("PaymentsToAcquireOtherPropertyPlantAndEquipment", end, 20)])
+    r = _row(hst, end)
+    assert r["capex"] == 60 and r["fcf"] == 35, (r["capex"], r["fcf"])
+    rolled = _facts(base + [_fyd("PaymentsToAcquirePropertyPlantAndEquipment", end, 50), _fyd("PaymentsForConstructionInProcess", end, 10)])
+    r = _row(rolled, end)
+    assert r["capex"] == 50 and r["fcf"] == 45, "a filed roll-up is authoritative; components are never added to it"
+    # quarters and the TTM: each year-to-date context is assembled the engine's way, then differenced
+    cum = lambda per: [per * (i + 1) for i in range(4)]
+    q_facts = _facts(_ytd_facts("NetCashProvidedByUsedInOperatingActivities", cum(100)) + _ytd_facts("NetIncomeLoss", cum(50))
+                     + _ytd_facts("PaymentsForConstructionInProcess", cum(3)) + _ytd_facts("PaymentsToAcquireOtherPropertyPlantAndEquipment", cum(5))
+                     + _ytd_facts("ShareBasedCompensation", cum(1)))
+    annual, _, _ = F.build_annual(q_facts)
+    q = F.build_quarterly(q_facts, annual=annual)
+    assert [x["capex"] for x in q] == [8, 8, 8, 8], [x["capex"] for x in q]
+    assert [x["fcf"] for x in q] == [92, 92, 92, 92] and [x["oe_conservative"] for x in q] == [91, 91, 91, 91]
+    assert annual[-1]["capex"] == 32 and annual[-1]["fcf"] == 368
+    ttm = F.build_ttm(q, intang_ttm=F.intangible_capex_ttm(q_facts, "USD", q, fy_starts=F.core_fy_starts(q_facts, money="USD")))
+    assert ttm["capex"] == 32 and ttm["fcf"] == annual[-1]["fcf"], (ttm["capex"], ttm["fcf"])
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
