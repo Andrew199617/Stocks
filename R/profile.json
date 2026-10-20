@@ -1,0 +1,289 @@
+{
+ "ticker": "R",
+ "cik": 85961,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T18:36:11-04:00",
+ "newest_filing_date": "2026-07-23",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000085961.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000007/r-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/R/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/R/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RYDER SYSTEM INC",
+  "cik": 85961,
+  "description": {
+   "text": "Ryder System, Inc. (Ryder) is a leading provider of outsourced logistics and transportation services throughout North America. We offer port-to-door solutions that integrate every step of the supply chain, including international inbound flows and cross-border logistics, fleet and transportation management, warehousing, manufacturing support and multi-channel final delivery. Our complementary business segments provide a broad range of value-added solutions, which provides our customers with a seamless, end-to-end logistics network designed to reduce complexity and improve speed, reliability and efficiency across the entire flow of goods. Ryder connects every link in the supply chain, moving products smoothly from ports and suppliers all the way to customers’ doorsteps as illustrated below. We report our financial performance based on three business segments: (1) Fleet Management Solutions (FMS), which provides full service leasing, commercial rental and vehicle maintenance services; (2) Supply Chain Solutions (SCS), which provides fully integrated logistics solutions; and (3) Dedicated Transportation Solutions (DTS), which provides turnkey transportation solutions, including dedicated vehicles, professional drivers, management and administrative support. Dedicated transportation services provided as part of an operationally integrated, multi-service supply chain solution to SCS customers are primarily reported in the SCS business segment.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "accession": "0000085961-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000007/r-20251231.htm"
+  },
+  "description_short": "Ryder System, Inc. (NYSE: R) is a nearly $13 billion leading provider of outsourced logistics and transportation services throughout the United States, Canada, and Mexico. Ryder offers supply chain, dedicated transportation, and fleet management solutions that integrate every step of the supply chain port-to-door, including cross-border logistics, fleet and transportation management, warehousing and distribution, and final delivery to customers' doorsteps. Ryder's broad portfolio of services encompasses managed transportation, freight brokerage, dedicated contract carriage with professional drivers, full-service fleet leasing and maintenance, commercial truck rental, automation and robotics, digital technologies, contract manufacturing and packaging, omnichannel retail fulfillment including e-commerce and last-mile delivery, and used vehicle sales.",
+  "industry": "Rental/Leasing Companies",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "7510",
+  "sic_description": "Services-Auto Rental & Leasing (No Drivers)",
+  "state_of_incorporation": "FL",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ryder.com",
+  "headquarters": "Coral Gables, Florida",
+  "address": {
+   "street": "2333 Ponce de Leon Blvd. Suite 700",
+   "city": "Coral Gables",
+   "state": "Florida",
+   "zip": "33134",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-11"
+  },
+  "phone": "3055003726",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a single function's or location's headcount, not the company total",
+   "evidence": "As of December 31, 2025, we had 51,600 total employees in North America.",
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000007/r-20251231.htm"
+  },
+  "first_sec_filing": "1994-03-29",
+  "first_sec_filing_form": "DEF 14A",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000085961&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-23",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-049417",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828026049417/r-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000085961-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000020/r-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000085961-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000013/r-20260504.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-23",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-026847",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828026026847/r-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000085961-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000009/r-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-11",
+   "period": "2026-05-01",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001628280-26-016651",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828026016651/r-20260311.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-11",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000085961-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596126000007/r-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-26-007107",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828026007107/r-20260211.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-23",
+   "period": "2026-01-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001628280-26-003301",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828026003301/r-20260123.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-19",
+   "period": "2025-12-18",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-25-058084",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828025058084/r-20251218.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-11",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001628280-25-056650",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828025056650/r-20251211.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-23",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-046075",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828025046075/r-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-23",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001628280-25-045970",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000162828025045970/r-20251023.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-24",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000085961-25-000101",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000101/r-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000085961-25-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000096/r-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-05-05",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000085961-25-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000058/r-20250505.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-04-23",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000085961-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000053/r-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-23",
+   "period": "2025-04-23",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0000085961-25-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000051/r-20250423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-03-12",
+   "period": "2025-03-12",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000085961-25-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000043/r-20250311.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-12",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000085961-25-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/85961/000008596125000032/r-20241231.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a single function's or location's headcount, not the company total in the 10-K filed 2026-02-11: \"As of December 31, 2025, we had 51,600 total employees in North America.\""
+ ]
+}
