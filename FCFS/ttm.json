@@ -1,0 +1,149 @@
+{
+ "ticker": "FCFS",
+ "cik": 840489,
+ "entity": "FIRSTCASH HOLDINGS, INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 585942000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 243494000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 330405000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 672853000
+  },
+  "capex": {
+   "fy": 54906000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 30298904.10958904,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 30298904.10958904,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 54906000.0
+  },
+  "sbc": {
+   "fy": 20250000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 9050000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 10750000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 21950000
+  },
+  "shares_diluted": {
+   "fy": 44526000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 44670000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 44142000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 672853000,
+ "ttm_capex": 54906000.0,
+ "ttm_sbc": 21950000,
+ "ttm_shares_diluted": 44142000,
+ "ttm_oe_total": 595997000.0,
+ "ttm_oe_per_share": 13.501812332925558,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 61100000.0,
+   "kind": "estimate",
+   "source": "Average of the last three filed fiscal years' capex from financials_history.csv (FY2023 $60,148,000; FY2024 $68,245,000; FY2025 $54,906,000; PaymentsToAcquireProductiveAssets, 10-K filed 2026-02-09)",
+   "legs_filled": {
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-06-30"
+     ],
+     "amount": 30298904.10958904,
+     "days": 181,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-06-30"
+     ],
+     "amount": 30298904.10958904,
+     "days": 181,
+     "prorated": true
+    }
+   }
+  }
+ ],
+ "capex_components": {
+  "fy": {
+   "ppe": 54906000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_prior": null,
+  "ytd_current": null
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

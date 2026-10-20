@@ -1,0 +1,174 @@
+{
+ "ticker": "FRT",
+ "cik": 34903,
+ "entity": "FEDERAL REALTY INVESTMENT TRUST",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 622378000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 179044000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 184594000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 627928000
+  },
+  "capex": {
+   "fy": 291338000.0,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "OVERRIDE",
+   "ytd_prior": 71836767.12328768,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "OVERRIDE",
+   "ytd_current": 71836767.12328768,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "ttm": 291338000.0
+  },
+  "sbc": {
+   "fy": 15561000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 4112000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 4537000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 15986000
+  },
+  "shares_diluted": {
+   "fy": 86405000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 85472000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 86662000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 627928000,
+ "ttm_capex": 291338000.0,
+ "ttm_sbc": 15986000,
+ "ttm_shares_diluted": 86662000,
+ "ttm_oe_total": 320604000.0,
+ "ttm_oe_per_share": 3.6994761256375344,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "capex",
+   "value": 291338000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12, accession 0000034903-26-000017), Consolidated Statements of Cash Flows, investing activities lines 'Capital expenditures - development and redevelopment' ($179,086 thousand FY2025, $139,534 thousand FY2024, $214,062 thousand FY2023) and 'Capital expenditures - other' ($112,252 thousand FY2025, $107,226 thousand FY2024, $97,058 thousand FY2023) \u2014 totals $291,338 thousand / $246,760 thousand / $311,120 thousand; the override value is the median of the three filed years, which is also the FY2025 total",
+   "legs_filled": {
+    "fy": {
+     "period": [
+      "2025-01-01",
+      "2025-12-31"
+     ],
+     "amount": 291338000.0,
+     "days": 365,
+     "prorated": true
+    },
+    "ytd_prior": {
+     "period": [
+      "2025-01-01",
+      "2025-03-31"
+     ],
+     "amount": 71836767.12328768,
+     "days": 90,
+     "prorated": true
+    },
+    "ytd_current": {
+     "period": [
+      "2026-01-01",
+      "2026-03-31"
+     ],
+     "amount": 71836767.12328768,
+     "days": 90,
+     "prorated": true
+    }
+   }
+  }
+ ],
+ "capex_components": {
+  "fy": null,
+  "ytd_prior": null,
+  "ytd_current": null
+ },
+ "sbc_reconciled_legs": {
+  "fy": {
+   "share": 14608000,
+   "allocated": 15561000,
+   "note": "allocated 15,561,000 > share 14,608,000 USD, +6.5%",
+   "period": [
+    "2025-01-01",
+    "2025-12-31"
+   ]
+  },
+  "ytd_prior": {
+   "share": 3881000,
+   "allocated": 4112000,
+   "note": "allocated 4,112,000 > share 3,881,000 USD, +6.0%",
+   "period": [
+    "2025-01-01",
+    "2025-03-31"
+   ]
+  },
+  "ytd_current": {
+   "share": 4303000,
+   "allocated": 4537000,
+   "note": "allocated 4,537,000 > share 4,303,000 USD, +5.4%",
+   "period": [
+    "2026-01-01",
+    "2026-03-31"
+   ]
+  }
+ },
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

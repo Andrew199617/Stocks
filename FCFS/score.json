@@ -1,0 +1,109 @@
+{
+ "ticker": "FCFS",
+ "name": "FirstCash Holdings, Inc.",
+ "sector": "Consumer finance \u2014 pawn lending & retail (SIC 5900)",
+ "price": 214.78,
+ "market_cap_b": 9.56,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 13.501812332925558,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Largest international pawn operator (3,300+ stores across the U.S., Latin America and the U.K.) with scale in collateral appraisal and liquidation, state/local licensing barriers and a proven acquisition platform (H&T closed 2025, Ramsdens pending). Gross margin has held 46-56% for a decade and rose 47.8% -> 50.3% FY23-25; ROE rose 11.0% -> 14.5% over the same years (fundamentals.json; roic_proxy is null because the filer does not tag operating income). That is a moderate, scale-based moat, not a wide one: customers are transactional with no switching costs, local competition is fragmented but real, and returns are capped by pawn-rate regulation, FX and the declining AFF point-of-sale segment.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.0%/yr \u2014 already credited via the growth adjustment",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.5x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (9.7%) vs bull-case tier B (15.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 75.61,
+   "irr": 0.0682
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 121.38,
+   "irr": 0.0973
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 165.68,
+   "irr": 0.1235
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 223.42,
+   "irr": 0.1544
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 336.33,
+   "irr": 0.2057
+  }
+ },
+ "iv_at_15": 177.1,
+ "iv_at_12": 240.02,
+ "implied_irr": 0.1301,
+ "implied_irr_base_case": 0.1235,
+ "upside_at_15_pct": -17.5,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Quality pawn franchise, moat 5/10 \u2014 TTM owner's earnings $13.50/share but the weighted IRR is 13.0% at $214.78, short of the 15% hurdle; it clears 15% at or below the $177.10 weighted IV@15%.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0973,
+ "irr_bull": 0.1544,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 121.29,
+ "iv_at_25": 91.11,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2083237000,
+ "shares_diluted_latest": 44526000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Scale: largest international pawn operator, 3,300+ stores in the U.S., Latin America and U.K.",
+  "Collateral appraisal and liquidation expertise built over decades, hard to replicate store-by-store",
+  "Licensing and regulatory compliance barriers in pawn lending across many jurisdictions",
+  "Acquisition platform in a fragmented industry (H&T 2025, Ramsdens pending) with geographic diversification",
+  "Counter-cyclical pawn demand and durable gross margins (47.8% FY23 to 50.3% FY25)"
+ ],
+ "moat_against": [
+  "No network effects or switching costs \u2014 pawn customers are transactional and price-sensitive",
+  "Fragmented local competition from independent pawnshops, online lenders and lease-to-own providers",
+  "Regulatory risk: pawn-rate caps and consumer-credit rules (incl. the AFF point-of-sale business)",
+  "FX exposure (Mexican peso and now sterling) and gold-price exposure via jewelry collateral",
+  "AFF retail point-of-sale segment shrinking (management guides its net revenue down 20-25% in 2026) and goodwill-heavy balance sheet from acquisitions"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 61100000,
+   "kind": "estimate",
+   "source": "Average of the last three filed fiscal years' capex from financials_history.csv (FY2023 $60,148,000; FY2024 $68,245,000; FY2025 $54,906,000; PaymentsToAcquireProductiveAssets, 10-K filed 2026-02-09)",
+   "scope": "ttm_legs"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 13.5018,
+  "base_oe_with_override": 13.5018,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1301,
+  "weighted_irr_with_override": 0.1301,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}

@@ -1,0 +1,158 @@
+{
+ "ticker": "FCFS",
+ "cik": 840489,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000840489-26-000032",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000032/fcfs-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000840489-26-000049",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000049/fcfs-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000840489-26-000085",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000085/fcfs-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2348493000,
+      2576626000,
+      2620855000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7451,
+      0.7604,
+      0.7159
+     ],
+     "growth_yoy": [
+      null,
+      0.0971,
+      0.0172
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      762563000,
+      764431000,
+      836238000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2419,
+      0.2256,
+      0.2284
+     ],
+     "growth_yoy": [
+      null,
+      0.0024,
+      0.0939
+     ]
+    },
+    {
+     "member": "country:GB",
+     "label": "UNITED KINGDOM",
+     "values": [
+      0,
+      0,
+      150664000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0,
+      0.0412
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "fcfs:OtherLatinAmericaMember",
+     "label": "Other Latin America",
+     "values": [
+      40740000,
+      47457000,
+      53286000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0129,
+      0.014,
+      0.0146
+     ],
+     "growth_yoy": [
+      null,
+      0.1649,
+      0.1228
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3151796000,
+     3388514000,
+     3661043000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}
