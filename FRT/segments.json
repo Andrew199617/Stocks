@@ -1,0 +1,35 @@
+{
+ "ticker": "FRT",
+ "cik": 34903,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000034903-26-000017",
+   "filed": "2026-02-12",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/34903/000003490326000017/frt-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000034903-26-000026",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/34903/000003490326000026/frt-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000034903-26-000042",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/34903/000003490326000042/frt-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [],
+ "warnings": [
+  "no dimensioned facts for the tracked concepts on the segment / product / geography axes"
+ ],
+ "complete": true
+}
