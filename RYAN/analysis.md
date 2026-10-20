@@ -44,7 +44,7 @@ Engine release 5.5.0, price $41.91, base = TTM $1.5209422676495992/share (--ttm)
 | Super bull | 10% | 18.0% | 1.25 | $29.47 | 11.66% |
 | **Weighted** | | | | **$15.81** | **7.45%** |
 
-Weighted IV@20% $11.02, IV@25% $8.40; upside at the 15% hurdle −62.27% (dcf_numbers.json). Diagnostics: OE yield 3.63%, terminal value 19.5% of IV@15%, scenario spread 4.14x, net debt / normalized OE 7.52x. **Tier by numbers: D** — and every scenario, bear (5.93%) to super bull (11.66%), is individually a D: at $41.91 there is no modelled path to Andrew's 15% hurdle.
+Weighted IV@20% $11.02, IV@25% $8.40; upside at the 15% hurdle −62.27% (dcf_numbers.json). Diagnostics: OE yield 3.63%, terminal value 19.5% of IV@15%, scenario spread 4.14x, net debt / normalized OE 7.52x. **Tier by numbers: D** — and four of the five scenarios are individually D; only the super bull (11.66%) reaches the C band, still below the hurdle: at $41.91 there is no modelled path to Andrew's 15% hurdle.
 
 ## Flags — every fragility flag resolved
 
@@ -54,7 +54,7 @@ Weighted IV@20% $11.02, IV@25% $8.40; upside at the 15% hurdle −62.27% (dcf_nu
 - **SBC_TAG_RECONCILED:** FY2021 only — AllocatedShareBasedCompensationExpense $86,456,000 exceeded ShareBasedCompensation $67,534,000 by 28.0% and the Allocated figure was used. FY2022–FY2025 and every TTM leg use ShareBasedCompensation unreconciled (ttm.json sbc_reconciled_legs is empty), so the reconciliation does not touch the scored base; it is recorded here as required.
 - **SECTOR_MODEL_MISMATCH:** SIC 6411 (insurance agents/brokers) trips the Finance-sector flag, and confidence is graded low as the rule requires. On substance the fit is better than for a risk-bearing insurer: Ryan takes no underwriting risk, premium cash held in a fiduciary capacity ($1,426,148,000 at FY2025) is excluded from the engine's cash figure and its net change ($237,616,000 in FY2025) runs through financing, not OCF — so the OE numerator is commission cash flow, not policyholder float. Following the sweep's broker precedent (BRO, WTW: no notch), there is **no tier_override**; the misfit is carried as low confidence, not a notch.
 - **OVERRIDE_APPLIED:shares:** see OVERRIDE — the override fills a total filing gap (it replaces no filed value), is filing-sourced, and its construction and approximations are disclosed there and in judgment.json.
-- **WIDE_SCENARIO_SPREAD:** super-bull IV@15% is 4.14x super-bear. Confidence is low, and the verdict is sized to the conservative end — moot for direction here, since even the super-bull IRR (11.66%) is a Tier D.
+- **WIDE_SCENARIO_SPREAD:** super-bull IV@15% is 4.14x super-bear. Confidence is low, and the verdict is sized to the conservative end — moot for direction here, since even the super-bull IRR (11.66%) reaches only the C band, below the 15% hurdle.
 - **HIGH_NET_DEBT:** net debt $3,193,327,000 is 7.52x normalized OE (key_numbers.md), before $179,076,000 of lease liabilities, $459.0 million of expected TRA payments and $148,388,000 of accrued contingent consideration (10-K). The company's own ~3.3x net-leverage figure (Q2 2026) is measured against Adjusted EBITDAC, a far larger denominator than owner's earnings. The bear cases carry the stress: 40% combined weight on bear/super-bear with OE multipliers of 0.90/0.75 — levered OE is exactly what those cases haircut.
 
 ## My thoughts / overlay
