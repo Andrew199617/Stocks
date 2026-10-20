@@ -125,6 +125,15 @@ without a live.json on file, and the scored figures are the current ones.
 make_score refused for an unresolved acquired-IPR&D charge (a period awaiting
 its cash-flow check or one the engine cannot convert): reprice.py skips it
 too, and the score.json on disk is an earlier run's.
+[Codex review round 11 of PR #47, the main agent's general rule] And, reason
+score_not_from_this_run, for ANY live.json beside a score.json that was not
+built from the current dcf_numbers.json (score_from_run, reprice.py's
+score_matches_run mirrored here): make_score refused the new run (whatever
+its reason — a deleted deferred payment its registry recorded is one the
+engine record alone cannot show) or has not run on it yet, so the verdict on
+file is another run's and live figures pause until the folder is scored
+again; reprice.py writes no live.json for it either. The more specific
+iprd_unresolved / iprd_share_count_unverified reasons keep precedence.
 
 Splits since scoring (2026-10-16): reprice.py restates live.json in today's
 share units and records split_factor (new shares per scored-run share). The
@@ -483,6 +492,49 @@ IPRD_UNRESOLVED_NOTE = ("The latest engine run left an acquired-IPR&D charge unr
                         "folder is scored again.")
 
 
+SCORE_NOT_FROM_RUN_NOTE = ("The score on file was not built from the latest engine run (make_score refused that run or has "
+                           "not scored it yet), so the scored figures are the current ones and no live repricing is shown "
+                           "until the folder is scored again.")
+
+
+def _same(a, b, tol):
+    a, b = num(a), num(b)
+    return a is not None and b is not None and abs(a - b) <= tol
+
+
+def score_from_run(score, numbers):
+    """[Codex review r11 of PR #47] (matches, mismatches): whether score.json was built by make_score.py from THIS
+    dcf_numbers.json — reprice.score_matches_run mirrored here so the site needs no reprice import (a test holds the
+    two equal): make_score copies the run's figures verbatim (implied_irr to 4 dp, iv_at_15 to 2 dp), and the run's
+    numbers tier must be the tier of its own weighted IRR."""
+    if not isinstance(score, dict):
+        return False, ["score.json is not an object"]
+    n = _d(numbers)
+    mm = []
+    if not score.get("analysis_date") or score.get("analysis_date") != n.get("as_of"):
+        mm.append(f"analysis_date {score.get('analysis_date')!r} vs run as_of {n.get('as_of')!r}")
+    tier_run = n.get("tier_by_numbers")
+    tier_irr = tier_for_irr(num(n.get("implied_irr_weighted")))
+    if tier_run != tier_irr:
+        mm.append(f"run tier_by_numbers {tier_run!r} is not the tier of its weighted IRR ({tier_irr!r})")
+    if score.get("tier_by_numbers") != tier_run:
+        mm.append(f"tier_by_numbers {score.get('tier_by_numbers')!r} vs run {tier_run!r}")
+    if not _same(score.get("implied_irr"), n.get("implied_irr_weighted"), 0.5e-4 + 1e-9):
+        mm.append(f"implied_irr {score.get('implied_irr')!r} vs run {n.get('implied_irr_weighted')!r}")
+    for key, tol in (("price", 1e-9), ("base_oe_per_share", 1e-9), ("iv_at_15", 0.005 + 1e-9)):
+        a, b = score.get(key), n.get(key)
+        if a is None and b is None:
+            continue
+        if not _same(a, b, tol if key == "iv_at_15" else tol * max(1.0, abs(num(b) or 0.0))):
+            mm.append(f"{key} {a!r} vs run {b!r}")
+    for key in ("engine_version", "engine_release"):
+        if score.get(key) != n.get(key):
+            mm.append(f"{key} {score.get(key)!r} vs run {n.get(key)!r}")
+    if score.get("ticker") and n.get("ticker") and str(score["ticker"]).upper() != str(n["ticker"]).upper():
+        mm.append(f"ticker {score.get('ticker')!r} vs run {n.get('ticker')!r}")
+    return not mm, mm
+
+
 def iprd_unresolved(n):
     """[Codex review r6 of PR #47] True when the run's acquired-IPR&D record is one make_score refuses
     (dcf_engine.iprd_unresolved, mirrored here so the site needs no engine import): a period awaiting its cash-flow
@@ -514,7 +566,10 @@ def live_shown(c):
     no replay can carry), so any live.json on file is withheld, and the record
     says why it has none even without one (reason iprd_share_count_unverified).
     [Codex review r6 of PR #47] The same, reason iprd_unresolved, for a run make_score refused for an unresolved
-    acquired-IPR&D charge (iprd_unresolved): reprice.py skips it too, and the score.json on disk is an earlier run's."""
+    acquired-IPR&D charge (iprd_unresolved): reprice.py skips it too, and the score.json on disk is an earlier run's.
+    [Codex review r11 of PR #47] And, reason score_not_from_this_run, for any live.json beside a score.json not built
+    from this dcf_numbers.json (score_from_run), whatever make_score's reason: live figures pause until the run is
+    scored (reprice.py writes none either). A record with no run record has no run to compare (never published)."""
     lv = c.get("live")
     unresolved = iprd_unresolved(c.get("numbers"))
     if unresolved or _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
@@ -526,6 +581,11 @@ def live_shown(c):
                       "method": None, "note": IPRD_UNRESOLVED_NOTE if unresolved else IPRD_WITHHELD_NOTE}
     if not live_ok(lv):
         return None, None
+    if _d(c.get("numbers")) and not score_from_run(c.get("score"), c.get("numbers"))[0]:
+        return None, {"reason": "score_not_from_this_run", "price": num(lv.get("price")),
+                      "price_date": _date10(lv.get("price_date")),
+                      "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
+                      "method": None, "note": SCORE_NOT_FROM_RUN_NOTE}
     pd = _date10(lv.get("price_date"))
     sa, ls = _date10(_d(c.get("score")).get("analysis_date")), _date10(lv.get("scored_date"))
     if sa and ls and ls < sa:
@@ -1541,8 +1601,9 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
              "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
              f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
     if withheld:
-        notes.append(f"{len(withheld)} live repricing(s) withheld — a live.json close older than the scored analysis, or a record "
-                     "reprice.py never reprices (acquired-IPR&D charge deducted by hand; record.live_withheld.reason) — "
+        notes.append(f"{len(withheld)} live repricing(s) withheld — a live.json close older than the scored analysis, a score.json "
+                     "not built from the latest engine run, or a record reprice.py never reprices (acquired-IPR&D charge "
+                     "deducted by hand or unresolved; record.live_withheld.reason) — "
                      "scored figures shown, row.live_withheld: " + ", ".join(withheld))
     if restated:
         notes.append(f"{len(restated)} record(s) restated for a split since scoring (record.split_restated): " + ", ".join(restated))

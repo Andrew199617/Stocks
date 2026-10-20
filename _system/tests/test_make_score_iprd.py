@@ -1059,6 +1059,91 @@ def test_a_recorded_periods_amount_cannot_change():
     assert ev2[0]["paid_to_date"] == 95e6, ev2
 
 
+# --- Codex review round 11 of PR #47 ------------------------------------------------------------------------------
+def _r11_deferred_runs():
+    def go():
+        decl = TI.deferred(period="2024-12-31", amount=30e6, first="2022-12-31", source=TI.PRE_SRC, deal="Old Bio",
+                           contingent=TI.PRE_CT)
+        return decl, TI._ok(TI._pre_window([decl])), TI._ok(TI._pre_window())
+    return TI._cached("ms_r11_deferred", go)
+
+
+def test_no_live_figures_unless_the_score_is_from_this_run():
+    """[Codex review r11, #4324232845, the main agent's general rule] A recorded pre-window deferred payment ($30M Old
+    Bio, FY2024) deleted from judgment.json and the engine rerun: the new run deducts $0, make_score refuses it against
+    the durable registry and the declared run's score.json stays on disk — but iprd_unresolved does not see a
+    registry refusal, so reprice published live IRRs from paths that omit the recorded payment (score_json_fresh
+    false only dropped the override) and build_site showed them. Now no live figures exist for ANY run its score.json
+    was not built from, whatever the reason make_score refused (or has not run yet): reprice raises Skip (no
+    live.json, a stale one removed) and build_site withholds any live.json with reason score_not_from_this_run. The
+    score's own run reprices and shows as before."""
+    import reprice as R
+    import build_site as B
+    import shutil
+    import tempfile
+    decl, n_decl, n_del = _r11_deferred_runs()
+    r1 = _score_reg(n_decl, _j(iprd_deferred_payment=[decl]))
+    assert r1.rc == 0, r1.err[-800:]
+    s = r1.result["score"]
+    r2 = _score_reg(n_del, _j(), r1.result["entries"])
+    assert r2.rc != 0 and "no longer declared" in r2.err, r2.err[-800:]
+    assert n_del["iprd_adjustment"]["charge_per_share"] == 0 and E.iprd_unresolved(n_del) is None
+    m_del, m_decl = dict(copy.deepcopy(n_del), ticker="TST"), dict(copy.deepcopy(n_decl), ticker="TST")
+    day = m_del["as_of"]
+    try:
+        R.reprice(m_del, 18.75, day, s, today=day)
+        raise AssertionError("repriced a run its score.json was not built from")
+    except R.Skip as e:
+        assert "score.json is not from this engine run" in str(e) and "make_score" in str(e), str(e)
+    live = R.reprice(m_decl, 18.75, day, s, today=day)
+    assert live["score_json_fresh"] is True and live["score_mismatch"] is None, live
+    assert live["iprd_charge_per_share"] == n_decl["iprd_adjustment"]["charge_per_share"] > 0, live
+    shown, w = B.live_shown({"numbers": m_del, "score": s, "live": live})
+    assert shown is None and w["reason"] == "score_not_from_this_run" and w["price"] == 18.75, w
+    assert "make_score" in w["note"] and w["scored_date"] == s["analysis_date"], w
+    assert B.live_shown({"numbers": m_decl, "score": s, "live": live}) == (live, None)
+    ok, mm = B.score_from_run(s, m_del)
+    assert not ok and mm == R.score_matches_run(s, m_del)[1], (mm, R.score_matches_run(s, m_del))
+    assert B.score_from_run(s, m_decl) == R.score_matches_run(s, m_decl) == (True, [])
+    tmp = tempfile.mkdtemp(prefix="reprice_r11_")
+    saved = R.BASE
+    try:
+        d = os.path.join(tmp, "TST")
+        os.makedirs(d)
+        for fn, obj in (("dcf_numbers.json", m_del), ("score.json", s), ("live.json", live)):
+            with open(os.path.join(d, fn), "w", encoding="utf-8") as f:
+                json.dump(obj, f)
+        R.BASE = tmp
+        try:
+            R.reprice_folder("TST")
+            raise AssertionError("reprice_folder wrote live.json")
+        except R.Skip as e:
+            assert "score.json is not from this engine run" in str(e), str(e)
+        assert not os.path.exists(os.path.join(d, "live.json")), "the stale live.json stayed"
+    finally:
+        R.BASE = saved
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_a_release_mismatch_rebuild_of_the_same_run_still_reprices():
+    """[Codex review r11, the main agent's shape] make_score rebuilding a 5.5.0 run's score.json under 5.6.0 code
+    copies the run's engine_release and figures, so the score is from that run: reprice writes live figures and
+    build_site shows them (the general live-figure rule never pauses a release-mismatch rebuild)."""
+    import reprice as R
+    import build_site as B
+    n = copy.deepcopy(TI._plain())
+    n["engine_release"] = "5.5.0"
+    n.pop("iprd_adjustment", None)
+    r = _score(n)
+    assert r.rc == 0, r.err[-800:]
+    s = r.result["score"]
+    assert s["engine_release"] == "5.5.0" != E.ENGINE_RELEASE, s.get("engine_release")
+    m = dict(n, ticker="TST")
+    live = R.reprice(m, 25.0, m["as_of"], s, today=m["as_of"])
+    assert live["score_json_fresh"] is True and live["engine_release_of_run"] == "5.5.0", live
+    assert B.score_from_run(s, m) == (True, []) and B.live_shown({"numbers": m, "score": s, "live": live}) == (live, None)
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

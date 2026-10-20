@@ -1653,6 +1653,16 @@ test('[Codex review r6 of PR #47] A run make_score refused for an unresolved acq
   assert.ok(head.includes('acquired-IPR&amp;D charge unresolved') && !head.includes('predates'), head);
   assert.ok(/title="Live figures pending: [^"]*left unresolved[^"]*">live pending</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
 });
+test('[Codex review r11 of PR #47] A live repricing beside a score.json from another engine run: withheld with its own reason', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'score_not_from_this_run', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'score_not_from_this_run');
+  assert.equal(App.pendingText(w), 'Live figures withheld — the latest engine run is not scored yet (make_score refused it or has not run on it), so the scored figures stand');
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('the latest engine run is not scored yet') && !head.includes('predates'), head);
+  assert.ok(/title="Live figures pending: [^"]*not scored yet[^"]*">live pending</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+});
 test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
   const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
   const { assemble: asm, liveShown, liveSplit, SPLIT_DIVIDE, SPLIT_MULTIPLY } = require('./fixtures/assemble.js');

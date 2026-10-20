@@ -77,8 +77,9 @@ Everything else (Tier F, data gap, pre-v5 or pre-stamp runs without inputs,
 no / stale / foreign / unreadable prices.json, an unverifiable or unexplained
 per-share basis, a held split-sized move, unreadable dcf_numbers.json):
 nothing is written, a stale live.json is deleted, the reason is listed in the
---all summary and a single ticker exits 3. An unreadable score.json only
-degrades the scored block (tier_final unknown); it never fails the name.
+--all summary and a single ticker exits 3. So, since Codex review round 11
+of PR #47, does a score.json that is unreadable, not an object or not built
+from this run (below); a folder with no score.json yet is still repriced.
 A close that passes that gate but is older than STALE_DAYS against today
 (the refresh keeps failing) is still written — it is newer than the scored
 price — but flagged `stale_price` with `price_age_days`, named in the --all
@@ -108,9 +109,12 @@ as an "override"). make_score.py copies the run's numbers verbatim, so the
 score must agree with the run on analysis_date = as_of, tier_by_numbers
 (which must also be the tier the recorded weighted IRR gives), implied_irr
 (4 dp), price, base_oe_per_share, iv_at_15 (2 dp), engine_version and
-engine_release. Any disagreement: `score_json_fresh` false, `score_mismatch`
-lists each field, no override is applied and scored.tier_final is null
-(unknown for this run), exactly as for an unreadable score.json.
+engine_release. Any disagreement used to write live.json with
+`score_json_fresh` false, `score_mismatch` listing each field and no override;
+since Codex review round 11 of PR #47 it writes NO live.json (check_score —
+the new run's figures beside another run's verdict are not a live repricing
+of that verdict), so `score_json_fresh` is true (null with no score.json) and
+`score_mismatch` null on every live.json written.
 
 Exit codes: 0 written; 2 usage; 3 single ticker skipped (reason printed).
 --all exits 0 whenever the sweep itself completes.
@@ -156,6 +160,19 @@ dcf_numbers.json, the score.json on disk is an earlier run's, and
 score_matches_run's mismatch alone only drops the tier override — the live
 IRRs would be the refused run's unadjusted ones. build_site withholds any
 live.json of such a record (reason iprd_unresolved).
+[Codex review round 11 of PR #47, the main agent's general rule] No live
+figures exist for a run its score.json was not built from, whatever the
+reason: make_score refused the run (an unresolved charge, a deleted deferred
+payment its registry recorded, any other refusal) or has not run on it yet.
+reprice() raises Skip when the score.json it is given does not pass
+score_matches_run, and reprice_folder skips (no live.json, a stale one
+removed) when the folder's score.json is unreadable, not an object or not
+from this run — before, a mismatch only dropped the tier override and
+live.json still carried the new run's figures beside the old run's verdict.
+A folder with no score.json yet is repriced as before (build_site publishes
+only scored folders). make_score copies the run's figures verbatim, so a
+release-mismatch rebuild of the same run still reprices. Live figures
+therefore pause between an engine run and its make_score.
 """
 import json, math, os, sys, datetime
 from zoneinfo import ZoneInfo
@@ -530,6 +547,20 @@ def score_matches_run(scored, numbers):
     return not mm, mm
 
 
+def check_score(scored, numbers):
+    """[Codex review r11 of PR #47] Raise Skip unless `scored` (the folder's score.json, None when there is none)
+    was built from THIS run (score_matches_run). A score from another run means make_score refused this run or has
+    not run on it yet: its verdict is not this run's, so no live figures are written for either (they pause between
+    an engine run and its make_score)."""
+    if scored is None:
+        return
+    ok, mm = score_matches_run(scored, numbers)
+    if not ok:
+        raise Skip("score.json is not from this engine run (" + "; ".join(mm) + "): make_score refused this run or has "
+                   "not scored it yet, so the verdict on file is another run's — no live figures until make_score "
+                   "scores this run")
+
+
 def reprice(numbers, price, price_date=None, scored=None, today=None, prices=None, fund=None):
     """Pure function: the live.json payload for a recorded run at `price`.
     `scored` is the folder's score.json (for tier_final) when available.
@@ -541,6 +572,7 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
     Raises Skip when the run is not eligible, its per-share basis cannot be
     verified, or its paths cannot be replayed."""
     check_eligible(numbers)
+    check_score(scored, numbers)
     if prices is not None:
         basis = check_basis(numbers, prices, fund)
     else:
@@ -593,13 +625,9 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
     # is a judgment on the business, not on the price: keep it while the numbers
     # tier is where it was on scoring day; let the live numbers tier through —
     # flagged — only when the price move actually moved the numbers tier.
-    # Only a score.json built from THIS run carries this run's judgment: one
-    # left over from an earlier engine run (same day or not) is ignored, and
-    # its tier_final is unknown for this run, as for an unreadable score.json.
-    if isinstance(scored, dict):
-        scored_fresh, score_mismatch = score_matches_run(scored, numbers)
-    else:
-        scored_fresh, score_mismatch = False, []
+    # Only a score.json built from THIS run carries this run's judgment:
+    # [Codex review r11 of PR #47] check_score has already refused one from another run
+    scored_fresh = isinstance(scored, dict)
     scored_final = scored.get("tier_final") if scored_fresh else None
     override_active = bool(scored_fresh and scored_final and scored_tier and scored_final != scored_tier)
     numbers_moved = tier_numbers != scored_tier
@@ -628,8 +656,8 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         "split_factor": factor,
         "basis_check": basis,
         "iprd_charge_per_share": charge,
-        "score_json_fresh": scored_fresh if isinstance(scored, dict) else None,
-        "score_mismatch": score_mismatch if (isinstance(scored, dict) and not scored_fresh) else None,
+        "score_json_fresh": True if scored_fresh else None,
+        "score_mismatch": None,   # [Codex review r11 of PR #47] a mismatching score.json writes no live.json
         "price_change_pct": (price / scored_price - 1) * 100 if scored_price else None,
         "irr_weighted": irr_w,
         "tier": tier,
@@ -670,9 +698,6 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         "engine_release_of_run": numbers.get("engine_release") or f"pre-5.4 (engine_version {numbers.get('engine_version')})",
         "basis": BASIS,
     }
-    if isinstance(scored, dict) and not scored_fresh:
-        out["score_note"] = ("score.json is not from this engine run (" + "; ".join(score_mismatch)
-                             + ") — tier_final unknown, no override applied; re-run make_score.py")
     return out
 
 
@@ -690,8 +715,9 @@ def reprice_folder(ticker):
     when dcf_numbers.json or prices.json is missing, unreadable, foreign or
     stale, or when the run's per-share basis does not match today's and no
     single clean split explains it, or a fresh split-sized move is held
-    (check_basis). An unreadable score.json degrades to scored=None
-    (tier_final unknown, override not applied) and is noted in the payload;
+    (check_basis), or [Codex review r11 of PR #47] when score.json is
+    unreadable, not an object or not built from this run (check_score; no
+    score.json at all is repriced with scored=None, tier_final unknown);
     fundamentals.json is optional evidence only."""
     folder = os.path.join(BASE, ticker)
     try:
@@ -700,6 +726,17 @@ def reprice_folder(ticker):
             raise Skip("no dcf_numbers.json")
         numbers = _load(np_)
         check_eligible(numbers)
+        # [Codex review r11 of PR #47] a score.json that cannot be shown to be this run's writes no live.json
+        sp = os.path.join(folder, "score.json")
+        scored = None
+        if os.path.isfile(sp):
+            try:
+                scored = _load(sp)
+            except Skip as e:
+                raise Skip(f"{e} — it cannot be shown to be from this engine run, so no live figures") from e
+            if not isinstance(scored, dict):
+                raise Skip("score.json is not an object — it cannot be shown to be from this engine run, so no live figures")
+            check_score(scored, numbers)
         if not os.path.isfile(pp_):
             raise Skip("no prices.json — run prices.py first")
         prices = _load(pp_)
@@ -711,18 +748,7 @@ def reprice_folder(ticker):
                 fund = _load(fp)
             except Skip:
                 fund = None  # evidence only: never fails the name
-        sp = os.path.join(folder, "score.json")
-        scored, score_note = None, None
-        if os.path.isfile(sp):
-            try:
-                scored = _load(sp)
-                if not isinstance(scored, dict):
-                    scored, score_note = None, "score.json is not an object — tier_final unknown"
-            except Skip as e:
-                score_note = f"{e} — tier_final unknown, no override applied"
         live = reprice(numbers, price, price_date, scored, prices=prices, fund=fund)
-        if score_note:
-            live["score_note"] = score_note
     except Skip:
         _remove_stale(folder)
         raise
@@ -750,8 +776,7 @@ def one_line(live):
             f"{', at floor' if live['irr_at_floor'] else ''}{', capped' if live['irr_capped'] else ''}"
             f"{(', STALE PRICE (' + str(live['price_age_days']) + ' days old)') if live['stale_price'] else ''}"
             f"{(', SPLIT ' + str(_split_label(live)) + ' since scoring, per-share values restated') if _split_label(live) else ''}"
-            f"{', scored session close not posted yet' if _basis_method(live) == 'no_close_since_scoring' else ''}"
-            f"{', score.json from another run (no override)' if live.get('score_mismatch') else ''}); "
+            f"{', scored session close not posted yet' if _basis_method(live) == 'no_close_since_scoring' else ''}); "
             f"band {live['tier_bear']}->{live['tier_bull']}; IV@15 ${live['iv_at_15']:.2f} ({live['upside_at_15'] * 100:+.1f}%)")
 
 
@@ -780,15 +805,13 @@ def main():
     quiet = "--quiet" in argv
     args = [a for a in argv if not a.startswith("--")]
     if "--all" in argv:
-        written, skipped, changed, stale, split, foreign_score = [], [], [], [], [], []
+        written, skipped, changed, stale, split = [], [], [], [], []
         for t in company_folders():
             try:
                 live = reprice_folder(t)
                 written.append(t)
                 if _split_label(live):
                     split.append(f"{t} {_split_label(live)}")
-                if live.get("score_mismatch"):
-                    foreign_score.append(t)
                 if live["stale_price"]:
                     stale.append(f"{t} ({live['price_date']})")
                 elif live["delta"]["tier_changed"]:
@@ -803,9 +826,7 @@ def main():
         print(f"reprice.py --all: {len(written)} live.json written, {len(skipped)} skipped"
               + (f"; tier changed at the live price: {', '.join(changed)}" if changed else "")
               + (f"; STALE close (> {STALE_DAYS} days old, run prices.py): {', '.join(stale)}" if stale else "")
-              + (f"; split since scoring, per-share values restated: {', '.join(split)}" if split else "")
-              + (f"; score.json not from the current engine run (no override applied, re-run make_score.py): "
-                 f"{', '.join(foreign_score)}" if foreign_score else ""))
+              + (f"; split since scoring, per-share values restated: {', '.join(split)}" if split else ""))
         for t, why in skipped:
             print(f"  skipped {t}: {why}")
         sys.exit(0)

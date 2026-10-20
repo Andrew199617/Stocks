@@ -150,7 +150,16 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    payment, with no expense in its period, after a charge expensed in a currency with no rate (the engine first
    fetches the expense period's rate; with none it deducts that period's USD cash but cannot know what is still
    unpaid): the period carries `unconverted_remainder_of` — block it the same way. While the folder is blocked, reprice.py and the site
-   never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`).
+   never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`; since Codex review
+   round 11, any run make_score refused or has not yet scored: reason `score_not_from_this_run`).
+   `ACQUIRED_IPRD_PARTIAL_PERIOD` (Codex review round 11 of PR #47): an acquired-IPR&D tag is filed for only
+   part of a window period — a 10-Q's nine-month figure with no FY fact in the 10-K (SMMT FY2023), or a quarter
+   alone — and no set of three-month / year-to-date facts tiles the period, so NOTHING is counted for that tag
+   there (`iprd_adjustment.partial_coverage` lists the facts found). (Facts that DO tile it are summed and the
+   period carries `context_basis` `aggregated_quarters` with the contexts used; quote them in analysis.md.)
+   Read the filing for the period's full figure and state it in analysis.md with its effect on the IVs and
+   IRR; if a material charge owner's earnings never saw is missing from the deduction, block the folder
+   `NEEDS_MAIN_AGENT: iprd_partial_period — <period> <figure>`.
    `ACQUIRED_IPRD_CHARGE`: in-process R&D bought in
    an asset acquisition was expensed in the base window (ASC 805) — the expense is added back in OCF and
    the payment is not capex (the cash tag, or your cash-flow check), so owner's earnings never saw it. The engine deducts the charge ONCE: window
@@ -514,7 +523,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    → `statements.json`), `python3 _system/profile.py <T>` (About and filing feed →
    `profile.json`; Street consensus and market data → `street.json`),
    `python3 _system/reprice.py <T>` (the scored cash-flow paths
-   repriced at the last close → `live.json`; Tier F names are skipped by design). The
+   repriced at the last close → `live.json`; Tier F names are skipped by design; since Codex review round 11
+   of PR #47 it writes nothing until make_score has scored the CURRENT dcf_numbers.json — live figures pause
+   between an engine run and its make_score, and a run make_score refused gets none). The
    company page reads all of them. The SEC files (fundamentals, statements, segments,
    profile) are committed and rewritten only when their content changes; `prices.json`,
    `street.json` and `live.json` are gitignored caches rewritten every run. A failure here

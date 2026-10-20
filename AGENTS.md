@@ -384,7 +384,18 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    deduction is this check's; reprice.py never reprices such a record (no live.json; the site shows the scored
    figures with `live_withheld` reason `iprd_share_count_unverified` — Codex review round 2 of PR #47); nor
    a run make_score refused for an unresolved charge (`dcf_engine.iprd_unresolved`; the score.json on disk is
-   an earlier run's: `live_withheld` reason `iprd_unresolved` — round 6).
+   an earlier run's: `live_withheld` reason `iprd_unresolved` — round 6); nor, since round 11 (the main agent's
+   general rule), any run its score.json was not built from, whatever make_score refused it for (a deleted
+   deferred payment its registry recorded, any other refusal) or because make_score has not run yet:
+   `live_withheld` reason `score_not_from_this_run` — live figures pause between an engine run and its
+   make_score, so a page showing live figures beside a score from another run is P1.
+   [Codex review round 11 of PR #47, the main agent's shape] A period whose expense or cash figure carries
+   `context_basis` `aggregated_quarters` was summed from the three-month / year-to-date facts in
+   `aggregated_contexts` (no fact covered the period exactly): those contexts must tile the period with no gap
+   and no overlap, P1 otherwise. `ACQUIRED_IPRD_PARTIAL_PERIOD` (`iprd_adjustment.partial_coverage`: a tag
+   filed for only part of a window period, nothing counted for it) resolved without the period's full figure
+   from the filing and its effect on the IVs / IRR is P2; a material one OE never saw published without
+   `NEEDS_MAIN_AGENT: iprd_partial_period` is P1.
    With field overrides in force, `override_impact`'s counterfactual holds the
    final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`) in every branch (declared pin, TTM, median,
    payable), so the measured impact is the override's alone.
@@ -479,7 +490,7 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 `SHARE_BASIS_ADJUSTED`, `SHARE_BASIS_DIVERGENCE`, `CAPEX_COVERAGE_LOW`,
 `SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`, and engine 5.6's
 `ACQUIRED_IPRD_CHARGE`, `ACQUIRED_IPRD_RECURRENT`, `ACQUIRED_IPRD_UNCONFIRMED`,
-`ACQUIRED_IPRD_UNCONVERTED` and `ACQUIRED_IPRD_UNMATCHED_PAYMENT` (check 8).
+`ACQUIRED_IPRD_UNCONVERTED`, `ACQUIRED_IPRD_UNMATCHED_PAYMENT` and `ACQUIRED_IPRD_PARTIAL_PERIOD` (check 8).
 
 - `STALE_FY` resolved with "no TTM available" at a 20-F filer: ask whether
   the interim 6-K prints TTM operating cash flow and capex; the worker

@@ -1576,6 +1576,15 @@ def test_reprice_withholds_a_record_whose_charge_was_deducted_by_hand():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def _score_of(n):
+    """The identity fields make_score copies from engine record n into score.json (implied_irr to 4 dp, iv_at_15 to
+    2 dp) — a score.json built from THIS run (reprice.score_matches_run / build_site.score_from_run)."""
+    return {"ticker": n.get("ticker"), "analysis_date": n.get("as_of"), "tier_by_numbers": n.get("tier_by_numbers"),
+            "implied_irr": round(n["implied_irr_weighted"], 4), "price": n.get("price"),
+            "base_oe_per_share": n.get("base_oe_per_share"), "iv_at_15": round(n["iv_at_15"], 2),
+            "engine_version": n.get("engine_version"), "engine_release": n.get("engine_release")}
+
+
 def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
     """[Codex review r2, #4321940598] build_site: a not_applied_share_count_unverified record never shows live
     figures — a live.json on file (an older reprice) is withheld with reason iprd_share_count_unverified and a note,
@@ -1590,7 +1599,10 @@ def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
         assert shown is None and w["reason"] == "iprd_share_count_unverified", w
         assert w["scored_date"] == "2026-10-19" and w["price"] == (25.0 if live else None), w
         assert "acquired-IPR&D" in w["note"] and "tier_override" in w["note"], w["note"]
-    assert B.live_shown({"score": sc, "numbers": _adjusted(), "live": lv}) == (lv, None)
+    # a one-time record's live.json beside its own run's score is shown ([Codex review r11] the score must be this run's)
+    adj = _adjusted()
+    own = dict(lv, price_date=adj["as_of"], scored_date=adj["as_of"])
+    assert B.live_shown({"score": _score_of(adj), "numbers": adj, "live": own}) == (own, None)
 
 # --- Codex review round 3 of PR #47 -------------------------------------------------------------------------------
 def _eur_expense(native, start="2025-01-01", end="2025-12-31", form="10-K", filed="2026-02-20"):
@@ -1941,7 +1953,9 @@ def test_reprice_and_build_site_withhold_a_run_make_score_refused():
             shutil.rmtree(tmp, ignore_errors=True)
     # a resolved one-time run reprices and shows as before
     assert R.reprice(_adjusted(), 25.0)["iprd_charge_per_share"] == 0.35
-    assert B.live_shown({"score": sc, "numbers": _adjusted(), "live": lv}) == (lv, None)
+    adj = _adjusted()
+    own = dict(lv, price_date=adj["as_of"], scored_date=adj["as_of"])
+    assert B.live_shown({"score": _score_of(adj), "numbers": adj, "live": own}) == (own, None)
     assert E.iprd_unresolved(_adjusted()) is None and E.iprd_unresolved({"iprd_adjustment": None}) is None
 
 
@@ -2171,6 +2185,130 @@ def test_rolled_out_period_must_be_a_fiscal_year_end_of_the_filer():
     assert blk["fy_period_ends"] == [f"{y}-12-31" for y in range(2019, 2026)], blk.get("fy_period_ends")
     # a run without declarations gains no key
     assert "fy_period_ends" not in (_ok(_run(facts))["iprd_adjustment"] or {})
+
+
+# --- Codex review round 11 of PR #47 ------------------------------------------------------------------------------
+def _chk(period, window, amount):
+    return {"period": period, "window": window, "amount": amount, "presentation": "added_back_paid_in_investing",
+            "source": f"test: the cash-flow statement adds the {period} charge back and pays it in investing"}
+
+
+Q1, Q2, Q3 = ("2026-01-01", "2026-03-31"), ("2026-04-01", "2026-06-30"), ("2026-07-01", "2026-09-30")
+H1 = ("2026-01-01", "2026-06-30")
+
+
+def _leg(out, window="ttm_current_ytd", period=None):
+    recs = [p for p in out["periods"] if p["window"] == window and (period is None or p["period"] == period)]
+    assert len(recs) <= 1, recs
+    return recs[0] if recs else None
+
+
+def test_quarter_only_10q_facts_tile_the_current_ytd_leg():
+    """[Codex review r11, #4324232838, the main agent's shape] The TTM's current-YTD leg read an acquired-IPR&D fact
+    only on exactly the ttm.json ytd_current_period context: a 10-Q filing the charge for its quarters alone (Q1
+    $30M and Q2 $70M three-month facts, no January-June context) left the leg empty — "counted as 0" — and the $100M
+    paid in 2026 H1 never reached the deduction. Now a leg with no exact-context fact is read from same-tag, same-unit
+    facts that tile it exactly (three-month facts, or a year-to-date fact from the leg's first day), for the expense
+    and the cash tag alike: the leg deducts $100M (cash basis), records context_basis aggregated_quarters and the
+    contexts used, and every IV shifts by the whole $120M window total per share."""
+    facts = _facts(expense={2025: 20e6}, cash={2025: 20e6})
+    for tag in (EXPENSE, CASH):
+        _ytd(facts, tag, Q1[0], Q1[1], 30e6, "2026-05-05", fp="Q1")
+        _ytd(facts, tag, Q2[0], Q2[1], 70e6, "2026-08-05", fp="Q2")
+    ttm = _ttm_doc(2.1, 98e6)
+    plain = _ok(_run(_facts(), extra=["--ttm"], ttm=ttm))
+    n = _ok(_run(facts, extra=["--ttm"], ttm=ttm, checks=False))
+    blk = n["iprd_adjustment"]
+    rec = _leg(blk)
+    assert rec is not None, (blk["periods"], blk.get("notes"))
+    assert (rec["expense"], rec["cash"], rec["amount_basis"], rec["deducted"]) == (100e6, 100e6, "cash_outflow", 100e6), rec
+    q = {"unit": "USD", "contexts": [list(Q1), list(Q2)]}
+    assert rec["context_basis"] == "aggregated_quarters" and rec["aggregated_contexts"] == {CASH: q, EXPENSE: q}, rec
+    assert blk["total"] == 120e6 and not any("counted as 0" in x for x in blk.get("notes") or []), blk
+    assert all("context_basis" not in p for p in blk["periods"] if p["window"] == "fy"), blk["periods"]
+    _assert_shifted(n, plain, 120e6 / 98e6)
+    _assert_base_untouched(n, plain)
+
+
+def test_tiling_takes_the_exact_fact_first_never_double_counts_and_records_partial_coverage():
+    """[Codex review r11, #4324232838] The tiling rules: an exact-context fact always wins (H1 $90M beside Q1 + Q2
+    three-month facts); H1 + Q3 tile a nine-month leg; overlapping facts (Q1, H1, Q2, Q3) are never summed twice
+    (the fewest facts: H1 + Q3); a gap (Q1 and Q3, no Q2) or a unit change (Q1 USD, Q2 EUR) tiles nothing — the
+    leg is recorded in partial_coverage, its note says so and ACQUIRED_IPRD_PARTIAL_PERIOD names it, never a
+    silent $0."""
+    def facts_with(*facts_):
+        f = _facts(expense={2025: 20e6})
+        for (s, e), v, fp, unit in facts_:
+            filed = {"Q1": "2026-05-05", "Q2": "2026-08-05", "Q3": "2026-11-05"}[fp]
+            _syn_put(f, EXPENSE, unit, {"start": s, "end": e, "val": v, "form": "10-Q", "fp": fp, "fy": 2026,
+                                        "filed": filed, "accn": f"0000999001-{filed}"})
+        return f
+
+    def detect(f, leg, amount=None):
+        checks = [_chk("2025-12-31", "fy", 20e6)] + ([_chk(leg[1], "ttm_current_ytd", amount)] if amount else [])
+        return E.iprd_detect(f, FY3, ytd=leg, fx_rates={}, checks=checks)
+
+    nine = (Q1[0], Q3[1])
+    out = detect(facts_with((H1, 90e6, "Q2", "USD"), (Q1, 30e6, "Q1", "USD"), (Q2, 70e6, "Q2", "USD")), H1, 90e6)
+    rec = _leg(out)
+    assert rec["expense"] == 90e6 and rec["deducted"] == 90e6 and "context_basis" not in rec, rec
+    out = detect(facts_with((H1, 50e6, "Q2", "USD"), (Q3, 25e6, "Q3", "USD")), nine, 75e6)
+    rec = _leg(out)
+    assert rec["expense"] == 75e6 and rec["deducted"] == 75e6, rec
+    assert rec["aggregated_contexts"] == {EXPENSE: {"unit": "USD", "contexts": [list(H1), list(Q3)]}}, rec
+    out = detect(facts_with((Q1, 30e6, "Q1", "USD"), (H1, 100e6, "Q2", "USD"), (Q2, 70e6, "Q2", "USD"),
+                            (Q3, 25e6, "Q3", "USD")), nine, 125e6)
+    rec = _leg(out)
+    assert rec["expense"] == 125e6 and rec["aggregated_contexts"][EXPENSE]["contexts"] == [list(H1), list(Q3)], rec
+    for shape in (((Q1, 30e6, "Q1", "USD"), (Q3, 25e6, "Q3", "USD")), ((Q1, 30e6, "Q1", "USD"), (Q2, 70e6, "Q2", "EUR"))):
+        leg = nine if shape[-1][0] == Q3 else H1
+        out = detect(facts_with(*shape), leg)
+        assert _leg(out) is None and sum(p["deducted"] for p in out["periods"]) == 20e6, out["periods"]
+        pc = out.get("partial_coverage")
+        assert pc and pc[0]["window"] == "ttm_current_ytd" and pc[0]["tag"] == EXPENSE and pc[0]["start"] == leg[0], pc
+        assert sorted(c["value"] for u in pc[0]["units"] for c in u["contexts"]) == sorted(x[1] for x in shape), pc
+        assert any("cover only part of it" in x for x in out["notes"]), out["notes"]
+        fl = [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_PARTIAL_PERIOD: ")]
+        assert len(fl) == 1 and "current YTD" in fl[0] and "30,000,000" in fl[0], E.iprd_flags(out)
+
+
+def test_fy_leg_without_a_10k_fact_is_tiled_from_quarters_or_flagged_partial():
+    """[Codex review r11, #4324232838, the main agent's shape: every window leg] An FY leg read only the 10-K's FY
+    context: an FY2024 charge filed as four three-month facts (Q1-Q3 in the 10-Qs, Q4 in the 10-K) was missed, and so
+    was a cash outflow filed by quarter beside an exact FY expense. Now both tile (FY2024: $40M expense and cash,
+    cash basis; FY2025: the $40M expense exact, the cash from its quarters, cash basis). A 10-Q's nine-month fact with
+    no FY figure (the SMMT shape: $520.9M January-September 2023, no 10-K fact) covers only part of FY2023: the block
+    is kept for it (partial_coverage), ACQUIRED_IPRD_PARTIAL_PERIOD fires and nothing is deducted for it."""
+    f = _facts(expense={2025: 40e6})
+    quarters = (("01-01", "03-31", "Q1", "10-Q"), ("04-01", "06-30", "Q2", "10-Q"), ("07-01", "09-30", "Q3", "10-Q"),
+                ("10-01", "12-31", "FY", "10-K"))
+    for y, tags in ((2024, (EXPENSE, CASH)), (2025, (CASH,))):
+        for s, e, fp, form in quarters:
+            for tag in tags:
+                _ytd(f, tag, f"{y}-{s}", f"{y}-{e}", 10e6, f"{y + 1}-02-20" if form == "10-K" else f"{y}-11-05",
+                     form=form, fp=fp)
+    out = E.iprd_detect(f, FY3, fx_rates={}, checks=[])
+    r24, r25 = _leg(out, "fy", "2024-12-31"), _leg(out, "fy", "2025-12-31")
+    ctx = lambda y: [[f"{y}-{s}", f"{y}-{e}"] for s, e, _, _ in quarters]
+    assert (r24["expense"], r24["cash"], r24["amount_basis"], r24["deducted"]) == (40e6, 40e6, "cash_outflow", 40e6), r24
+    assert r24["aggregated_contexts"] == {CASH: {"unit": "USD", "contexts": ctx(2024)},
+                                          EXPENSE: {"unit": "USD", "contexts": ctx(2024)}}, r24
+    assert (r25["expense"], r25["cash"], r25["amount_basis"], r25["deducted"]) == (40e6, 40e6, "cash_outflow", 40e6), r25
+    assert r25["aggregated_contexts"] == {CASH: {"unit": "USD", "contexts": ctx(2025)}}, r25
+    assert "partial_coverage" not in out
+    # the SMMT shape: a nine-month 10-Q fact, no FY figure
+    smmt = _facts()
+    _ytd(smmt, EXPENSE, "2023-01-01", "2023-09-30", 520.915e6, "2023-11-06", fp="Q3")
+    out = E.iprd_detect(smmt, FY3, fx_rates={}, checks=[])
+    assert out is not None and out["periods"] == [] and out["partial_coverage"][0]["period"] == "2023-12-31", out
+    plain = _plain()
+    n = _ok(_run(smmt))
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 0 and blk["charge_per_share"] == 0 and blk["partial_coverage"] == out["partial_coverage"], blk
+    fl = flags(n, "ACQUIRED_IPRD_PARTIAL_PERIOD: ")
+    assert len(fl) == 1 and "FY2023 (2023-01-01..2023-12-31)" in fl[0] and "520,915,000" in fl[0], n.get("fragility_flags")
+    for k in ("implied_irr_weighted", "iv_at_15", "tier_by_numbers", "base_oe_per_share"):
+        assert n[k] == plain[k], k
 
 
 if __name__ == "__main__":

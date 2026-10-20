@@ -2345,6 +2345,93 @@ def _iprd_ytd_facts(facts, tag, start, end):
     return out
 
 
+# [Codex review r11 of PR #47, the main agent's shape] A window leg (an FY period or the TTM's current-YTD leg) with no
+# fact on its exact context is read from shorter facts of the same tag and unit that TILE it: three-month facts, or a
+# year-to-date fact starting on the leg's first day (H1 + Q3), consecutive, with no gap and no overlap — a 10-Q that
+# files the quarter alone, a 10-K that files no FY figure. Facts that cover only part of the leg are recorded
+# (partial_coverage, ACQUIRED_IPRD_PARTIAL_PERIOD), never read as a silent $0. An exact-context fact always wins.
+IPRD_AGGREGATED = "aggregated_quarters"
+IPRD_LEG_FORMS = IPRD_ANNUAL_FORMS + ("10-Q", "10-Q/A")
+IPRD_QUARTER_DAYS = (80, 100)   # a three-month fact (a 13- or 14-week quarter included), end - start in days
+
+
+def iprd_fy_starts(facts, fy_periods):
+    """{fy_end: fy_start} for the engine's FY window: the start shared by most companyfacts duration facts (any
+    taxonomy, tag and unit) filed in an annual report for fp FY that end on that date and span 330-380 days (ties: the
+    latest start); an FY end with no such fact is left out (its leg is read on its exact context only)."""
+    want = {p for p in fy_periods or () if iprd_date_ok(p)}
+    counts = {}
+    for tax in (((facts or {}).get("facts") or {}).values()):
+        if not isinstance(tax, dict):
+            continue
+        for tag in tax.values():
+            for entries in ((tag.get("units") or {}).values() if isinstance(tag, dict) else ()):
+                for e in entries or []:
+                    if not (isinstance(e, dict) and e.get("end") in want and e.get("fp") == "FY"
+                            and e.get("form") in IPRD_ANNUAL_FORMS and iprd_date_ok(e.get("start"))):
+                        continue
+                    d = (datetime.date.fromisoformat(e["end"]) - datetime.date.fromisoformat(e["start"])).days
+                    if 330 <= d <= 380:
+                        c = counts.setdefault(e["end"], {})
+                        c[e["start"]] = c.get(e["start"], 0) + 1
+    return {end: max(c, key=lambda st: (c[st], st)) for end, c in counts.items()}
+
+
+def iprd_tile(facts, tag, start, end):
+    """[Codex review r11 of PR #47] ONE us-gaap tag on the leg [start, end] from shorter facts, for a leg with no
+    exact-context fact: (by_unit, contexts, partial). by_unit {unit: (sum, latest filed)} and contexts {unit: [[start,
+    end], ...]} for each unit whose facts (10-K / 10-Q forms; per context the latest filing — a comparative column
+    re-filed later never adds a second value) tile the leg exactly: three-month facts or a year-to-date fact starting
+    on `start`, each starting the day after the one before ends, the first on `start`, the last on `end` (the fewest
+    facts when several tilings exist). partial: when no unit tiles it but a positive fact lies inside the leg, [{unit,
+    contexts: [{start, end, value, filed}, ...]}] (every such fact), else None."""
+    units = (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units", {})
+    if not units or not (iprd_date_ok(start) and iprd_date_ok(end)):
+        return {}, {}, None
+    s0, e0 = datetime.date.fromisoformat(start), datetime.date.fromisoformat(end)
+    day = datetime.timedelta(days=1)
+    by_unit, ctx, partial = {}, {}, []
+    for u in sorted(units, key=lambda x: (x != "USD", x)):
+        best = {}
+        for e in units[u] or []:
+            if not isinstance(e, dict) or e.get("form", "") not in IPRD_LEG_FORMS:
+                continue
+            st, en, v = e.get("start"), e.get("end"), e.get("val")
+            if (not (iprd_date_ok(st) and iprd_date_ok(en)) or isinstance(v, bool) or not isinstance(v, (int, float))
+                    or not math.isfinite(v) or (st, en) == (start, end)):
+                continue
+            ds, de = datetime.date.fromisoformat(st), datetime.date.fromisoformat(en)
+            if ds < s0 or de > e0 or de < ds:
+                continue
+            if not (st == start or IPRD_QUARTER_DAYS[0] <= (de - ds).days <= IPRD_QUARTER_DAYS[1]):
+                continue
+            if (st, en) not in best or e.get("filed", "") > best[(st, en)].get("filed", ""):
+                best[(st, en)] = e
+        if not best:
+            continue
+        keys = sorted(best)
+        reach, frontier, goal = {s0: []}, [s0], e0 + day
+        while frontier and goal not in reach:
+            nxt = []
+            for d in frontier:
+                for k in keys:
+                    if datetime.date.fromisoformat(k[0]) != d:
+                        continue
+                    nd = datetime.date.fromisoformat(k[1]) + day
+                    if nd not in reach:
+                        reach[nd] = reach[d] + [k]
+                        nxt.append(nd)
+            frontier = sorted(nxt)
+        if goal in reach:
+            path = reach[goal]
+            by_unit[u] = (sum(best[k]["val"] for k in path), max((best[k].get("filed") or "") for k in path) or None)
+            ctx[u] = [[k[0], k[1]] for k in path]
+        elif any(best[k]["val"] > 0 for k in keys):
+            partial.append({"unit": u, "contexts": [{"start": k[0], "end": k[1], "value": float(best[k]["val"]),
+                                                     "filed": best[k].get("filed")} for k in keys]})
+    return by_unit, ctx, (partial if (partial and not by_unit) else None)
+
+
 def iprd_period_record(period, window, expense, cash, capex_intang=None, check=None):
     """One period's acquired-IPR&D record. expense: (tag, value_usd | None, unit, rate, filed[, value_native]) from the
     first expense tag filed for the period, or None (value_native: the filed figure in its own unit, read only when
@@ -2484,6 +2571,54 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
     cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
     periods, cash_only, notes = [], [], []
+    # [Codex review r11 of PR #47] legs read from tiling shorter facts, and legs only partly covered
+    aggregated, partial, pending = {}, [], []
+    fy_starts = []   # computed once, only when a leg needs it
+
+    def _leg(tag, exact, p, window, start):
+        if exact:
+            return exact
+        if not (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units"):
+            return exact
+        if start is None:
+            if not fy_starts:
+                fy_starts.append(iprd_fy_starts(facts, fy_periods))
+            start = fy_starts[0].get(p)
+            if start is None:
+                return exact
+        by_unit, ctx, part = iprd_tile(facts, tag, start, p)
+        if by_unit:
+            u = "USD" if "USD" in ctx else sorted(ctx)[0]
+            aggregated.setdefault((p, window), {})[tag] = {"unit": u, "contexts": ctx[u]}
+        elif part:
+            pending.append({"period": p, "window": window, "start": start, "tag": tag, "units": part})
+        return by_unit
+
+    def _legs(p, window, start, exact_exp, exact_cash):
+        """Every tag's facts for one leg; the partly covered tags that matter are recorded: an expense tag when no
+        expense tag reads the leg, the cash tag when it could be an amount — beside an expense on this leg (the
+        preferred amount), or where a payment could settle a charge (an earlier window expense, a pre-window one)."""
+        del pending[:]
+        exps = [(t, _leg(t, ex, p, window, start)) for t, ex in exact_exp]
+        cash = _leg(IPRD_CASH_TAG, exact_cash, p, window, start)
+        _pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+        read = any(bu for _, bu in exps)
+        keep = [x for x in pending if x["tag"] != IPRD_CASH_TAG and not read]
+        if any(x["tag"] == IPRD_CASH_TAG for x in pending) and (
+                keep or prior or any(_pos(vf[0]) for _, bu in exps for vf in bu.values())
+                or any(_pos(r.get("expense")) or _pos(r.get("expense_native")) for r in periods)):
+            keep += [x for x in pending if x["tag"] == IPRD_CASH_TAG]
+        partial.extend(keep)
+        return exps, cash
+
+    def _mark(p, window, rec, n_cash_only):
+        a = aggregated.get((p, window))
+        if not a:
+            return
+        for x in ([rec] if rec is not None else []) + cash_only[n_cash_only:]:
+            x["context_basis"] = IPRD_AGGREGATED
+            x["aggregated_contexts"] = {t: {"unit": v["unit"], "contexts": [list(c) for c in v["contexts"]]}
+                                        for t, v in sorted(a.items())}
     prior = iprd_pre_window_charges(facts, fy_periods[0] if fy_periods else None)
 
     def _co(p, window, amount, cash, note):
@@ -2624,22 +2759,35 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         return rec
 
     for p in fy_periods:
-        rec = _resolve(p, "fy", [(t, _by(m, p)) for t, m in exp_fy], _by(cash_fy, p), (fy_capex_intang or {}).get(p))
+        n0 = len(cash_only)
+        exps, cash = _legs(p, "fy", None, [(t, _by(m, p)) for t, m in exp_fy], _by(cash_fy, p))
+        rec = _resolve(p, "fy", exps, cash, (fy_capex_intang or {}).get(p))
+        _mark(p, "fy", rec, n0)
         if rec is not None:
             periods.append(rec)
     if ytd:
         s, e = ytd
-        exp_ytd = [(t, _iprd_ytd_facts(facts, t, s, e)) for t in IPRD_EXPENSE_TAGS]
-        rec = _resolve(e, "ttm_current_ytd", exp_ytd, _iprd_ytd_facts(facts, IPRD_CASH_TAG, s, e), ytd_capex_intang)
+        n0 = len(cash_only)
+        exp_ytd, cash_ytd = _legs(e, "ttm_current_ytd", s, [(t, _iprd_ytd_facts(facts, t, s, e)) for t in IPRD_EXPENSE_TAGS],
+                                  _iprd_ytd_facts(facts, IPRD_CASH_TAG, s, e))
+        rec = _resolve(e, "ttm_current_ytd", exp_ytd, cash_ytd, ytd_capex_intang)
+        _mark(e, "ttm_current_ytd", rec, n0)
         if rec is not None:
             rec["start"] = s
             periods.append(rec)
         elif periods:
-            notes.append(f"current YTD {s}..{e}: no 10-Q acquired-IPR&D expense fact — counted as 0")
-    if not periods and not any(c.get("pre_window_charges") for c in cash_only):
+            if any(x["window"] == "ttm_current_ytd" and x["tag"] in IPRD_EXPENSE_TAGS for x in partial):
+                notes.append(f"current YTD {s}..{e}: acquired-IPR&D expense facts cover only part of it "
+                             "(partial_coverage) — nothing counted for it")
+            else:
+                notes.append(f"current YTD {s}..{e}: no 10-Q acquired-IPR&D expense fact — counted as 0")
+    if not periods and not any(c.get("pre_window_charges") for c in cash_only) and not partial:
         return None
-    return {"periods": periods, "ignored_cash_only": cash_only, "notes": notes,
-            "cash_flow_checks_unused": [e for k, e in by_key.items() if k not in used]}
+    out = {"periods": periods, "ignored_cash_only": cash_only, "notes": notes,
+           "cash_flow_checks_unused": [e for k, e in by_key.items() if k not in used]}
+    if partial:
+        out["partial_coverage"] = partial
+    return out
 
 
 def iprd_amortized_value(native_base, figures, shares, ads_ratio=None):
@@ -2728,6 +2876,20 @@ def iprd_flags(iprd):
                    + ". NOTHING is deducted for these periods, so the run's IVs, IRRs and tier are the UNADJUSTED "
                    "ones: make_score refuses the score — NEEDS_MAIN_AGENT: currency (block the folder; the charge is "
                    "deducted only once the run can convert it)")
+    pc = [x for x in iprd.get("partial_coverage") or [] if isinstance(x, dict)]
+    if pc:
+        # [Codex review r11 of PR #47] a leg only partly covered by shorter facts is shown, never read as a silent $0
+        out.append("ACQUIRED_IPRD_PARTIAL_PERIOD: an acquired-IPR&D tag is filed for only PART of a window period, with "
+                   "no fact for the whole period and no three-month / year-to-date facts tiling it — "
+                   + "; ".join((f"FY{x['period'][:4]}" if x.get("window") == "fy" else "current YTD")
+                               + f" ({x['start']}..{x['period']}) {x['tag']}: "
+                               + ", ".join(f"{c['start']}..{c['end']} {c['value']:,.0f} {u['unit']}"
+                                           for u in x.get("units") or [] for c in u.get("contexts") or [])
+                               for x in pc)
+                   + ". NOTHING is counted for that tag in that period, so a charge in the missing months (or the whole "
+                   "period's figure) may be missing from the deduction: read the filing for the period's full figure and "
+                   "state it in analysis.md with its effect on the IVs and IRR; a material one OE never saw is "
+                   "NEEDS_MAIN_AGENT: iprd_partial_period")
     um = [c for c in iprd.get("ignored_cash_only") or [] if c.get("pre_window_charges")]
     if um:
         # [Codex review r3 of PR #47] a payment that may settle a charge expensed before the window is shown, not dropped

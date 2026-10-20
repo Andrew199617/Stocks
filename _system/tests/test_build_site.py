@@ -175,6 +175,11 @@ class TempBase:
         sc = B.jload(os.path.join(dst, "score.json"))
         sc["ticker"] = ticker or folder
         self.write_json(folder, "score.json", obj=sc)
+        # make_score copies the run's ticker into score.json: the clone's run says the same, so its score.json is
+        # still the run's own (build_site.score_from_run — Codex review r11 of PR #47)
+        nb = B.jload(os.path.join(dst, "dcf_numbers.json"))
+        if isinstance(nb, dict):
+            self.write_json(folder, "dcf_numbers.json", obj=dict(nb, ticker=sc["ticker"]))
         for fname, fn in edits.items():
             path = os.path.join(dst, fname)
             cur = B.jload(path) if fname.endswith(".json") else B.tread(path)
@@ -1264,14 +1269,40 @@ def test_split_live_iv_fallback_is_restated_once():
     live = {"price": 50.0, "price_date": "2026-10-20", "scored_date": "2026-10-14", "irr_weighted": 0.12, "iv_at_15": 40.0,
             "iv_at_20": 30.0, "iv_at_25": 20.0, "split_factor": 2.0, "basis_check": {"factor": 2.0, "split": "2:1"}}
     c = {"folder": "T", "path": "", "ticker": "T", "score": {"ticker": "T", "price": 100.0, "iv_at_15": 80.0, "implied_irr": 0.12,
-                                                            "analysis_date": "2026-10-14"},
-         "numbers": {"engine_version": 5, "data_gap": [], "price": 100.0}, "live": live, "history": [], "files": []}
+                                                            "analysis_date": "2026-10-14", "tier_by_numbers": "C",
+                                                            "engine_version": 5},
+         # the run the score was built from (build_site.score_from_run — Codex review r11 of PR #47)
+         "numbers": {"engine_version": 5, "data_gap": [], "price": 100.0, "as_of": "2026-10-14", "tier_by_numbers": "C",
+                     "implied_irr_weighted": 0.12, "iv_at_15": 80.0}, "live": live, "history": [], "files": []}
     rec = B.build_record(c, {}, "2026-10-20T19:00:00-04:00", 0.0)
     assert rec["row"]["iv20"] == 30.0 and rec["row"]["iv25"] == 20.0 and rec["row"]["iv15"] == 40.0 and rec["row"]["price"] == 50.0
     assert rec["score"]["price"] == 50.0 and rec["numbers"]["price"] == 50.0 and rec["split_restated"]["split"] == "2:1"
     assert c["score"]["price"] == 100.0 and c["live"]["iv_at_20"] == 30.0, "the loaded files are never modified"
     assert B.live_split({"split_factor": 1.0}) == (None, None) and B.live_split({"basis_check": {"factor": 3.0}}) == (3.0, "3x")
     assert B.live_split(None) == (None, None) and B.live_split({"split_factor": -2}) == (None, None)
+
+
+# ---------------- 16b. [Codex review r11 of PR #47] live beside a score.json from another engine run
+def test_live_beside_a_score_from_another_run_is_withheld():
+    """The main agent's general rule: make_score refused the latest engine run (or has not run on it), so the
+    score.json on disk is another run's — the live.json on file is not shown as current, whatever make_score's reason:
+    record.live_withheld reason score_not_from_this_run, the row ranked on its scored IRR; the score's own run shows."""
+    with TempBase() as tb:
+        tb.build()
+        a = tb.record("APP")
+        assert a["live"] is not None and a["live_withheld"] is None
+        live = B.jload(os.path.join(tb.dir, "APP", "live.json"))
+        n = B.jload(os.path.join(tb.dir, "APP", "dcf_numbers.json"))
+        tb.write_json("APP", "dcf_numbers.json", obj=dict(n, implied_irr_weighted=n["implied_irr_weighted"] + 0.01,
+                                                         tier_by_numbers=B.tier_for_irr(n["implied_irr_weighted"] + 0.01)))
+        tb.build()
+        b = tb.record("APP")
+        w = b["live_withheld"]
+        assert b["live"] is None and w["reason"] == "score_not_from_this_run" and w["price"] == live["price"], w
+        assert "make_score" in w["note"] and b["row"]["live_withheld"] is True and b["row"]["irr_live"] is None
+        tb.write_json("APP", "dcf_numbers.json", obj=n)
+        tb.build()
+        assert tb.record("APP")["live"] is not None and tb.record("APP")["live_withheld"] is None
 
 
 # ---------------- 16. live older than the score

@@ -115,7 +115,7 @@ these changes the row's keys.
               "growth_components": {...}, "growth_components_adjusted": {...} | null, "share_cagr": -0.027, "share_count_adj": 0.027, "share_adj_basis": "..." | null,
               "replayed": true | false},
  "live": { ...live.json verbatim... } | null,
- "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "iprd_share_count_unverified" | "iprd_unresolved", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
+ "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "iprd_share_count_unverified" | "iprd_unresolved" | "score_not_from_this_run", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
  "split_restated": {"factor": 2.0, "split": "2:1", "scored_date": "...", "price_date": "...", "fields": [...], "as_scored": {...}, "note": "..."} | null,
  "history": [ {financials_history.csv rows, numeric strings coerced to numbers, blanks to null} ],
  "fundamentals": { ...fundamentals.json verbatim (profile, annual, quarterly, ttm, dividends, tags_used, warnings, currency),
@@ -136,7 +136,8 @@ bound, not a solved return); null when undecidable (see "Data policy, 2026-10-16
 `forecast.replayed` is true when paths were replayed (pre-5.4 run) rather than read from the file.
 `profile.street` / `profile.market` come from `<T>/street.json` (legacy: from an older profile.json).
 `live` is null and `live_withheld` set when live.json's close predates the scored analysis or live.json belongs to an
-earlier run of a re-scored name; `split_restated` is set when
+earlier run of a re-scored name, or (Codex review round 11 of PR #47) score.json was not built from the record's
+dcf_numbers.json run (`score_not_from_this_run`); `split_restated` is set when
 the run's per-share figures in this record were restated for a split since scoring; the dividends block is repriced at
 prices.json's last close when that close is newer than the block's own (all three: the 2026-10-16 round at the end).
 Engine 5.5 (2026-10-19) records ride inside these verbatim copies and add no record key: `numbers` gains
@@ -170,7 +171,10 @@ presentation `paid_in_intangible_capex` is the only way to `excluded` `already_i
 least 98% of the charge otherwise only adds the string `capex_overlap_note`), `expense_tags_conflict` {tag: value} +
 `expense_tags_note` when both detector tags carry different positive values (round 8; the current tag is used),
 `unconverted_remainder_of` (period ends) on a cash payment gated `non_usd_no_rate` after a charge expensed in a
-currency with no FX rate (round 8; its `cash_native` is that payment), `deferred_payment` (a note) on cash
+currency with no FX rate (round 8; its `cash_native` is that payment), (Codex review round 11 of PR #47)
+`context_basis` `"aggregated_quarters"` with `aggregated_contexts` {tag: {unit, contexts: [[start, end], …]}} on a
+period (or an `ignored_cash_only` item) whose expense or cash figure was summed from three-month / year-to-date facts
+tiling the period because no fact covers it exactly (absent otherwise), `deferred_payment` (a note) on cash
 that settles an earlier window charge, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
 deal) with `recurrence_excluded`
@@ -180,7 +184,10 @@ deal) with `recurrence_excluded`
 deal's lifetime is also a `record.registry` event `iprd_deferred_payment` {deal, first_charged_period,
 `contingent_total`, `paid_to_date`, `periods`}, rendered like any other judgment-call event), `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
 `charge_per_share`, `materiality`, `material`, `recurrent`, `treatment`, `before` — the unadjusted IVs and IRRs —,
-`after`, `amortized`), `score` gains
+`after`, `amortized`, and (Codex review round 11 of PR #47, only when set) `partial_coverage` — [{period, window,
+start, tag, units: [{unit, contexts: [{start, end, value, filed}]}]}], a tag filed for only part of a window period
+with no tiling, nothing counted for it, `ACQUIRED_IPRD_PARTIAL_PERIOD` raised; such a leg alone keeps the block, with
+empty `periods`), `score` gains
 `iprd_adjustment` when the run recorded one (`treatment`, `total`, `unconfirmed_total`, `charge_per_share`, `shares_denominator`,
 `shares_source`, `materiality`, `material`, `recurrent`, `periods` — each also carrying `cash_flow_check` (the
 presentation string), `deferred_payment: true`, `deferred_payment_of` [{deal, first_charged_period, amount}]
@@ -1773,12 +1780,18 @@ differently, THIS section wins (passages that had become plainly wrong were corr
 - **live.json additions.** `split_factor` (new shares per scored-run share; 1.0 without a split), `basis_check`
   (`{status: "ok" | "split_adjusted", factor, split: "2:1" | null, method: "ratio" | "no_close_since_scoring" |
   "within_scored_day_range", scored_price_raw, scored_price_adjusted, scored_date, ref_close, ref_close_date, observed_ratio,
-  log_residual, filed_splits_after_scoring}`), `score_mismatch` (list | null) and `score_note`. `scored_price` and the IVs are
+  log_residual, filed_splits_after_scoring}`), `score_json_fresh` and `score_mismatch` (null). `scored_price` and the IVs are
   in today's share units. An agent tier override is read only from a score.json built from THIS engine run
   (`score_matches_run`: `analysis_date` = the run's `as_of`, `tier_by_numbers` — itself the tier of the run's weighted IRR —,
-  `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`);
-  otherwise `score_json_fresh` is false, `score_mismatch` lists every disagreement, no override applies and
-  `scored.tier_final` is null. The `--all` summary names the splits restated and the scores from another run.
+  `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`).
+  Until Codex review round 11 of PR #47 a score.json from another run still wrote live.json (`score_json_fresh` false,
+  `score_mismatch` listing every disagreement, a `score_note`, no override); now it writes NO live.json (`check_score`; a
+  stale one is removed; the main agent's general rule): the folder's live figures pause until make_score scores the
+  current run, whatever make_score refused it for, and so does an unreadable score.json. A folder with no score.json yet is
+  repriced (`score_json_fresh` null; build_site publishes only scored folders). make_score copies the run's figures
+  verbatim, so a release-mismatch rebuild of the same run still reprices. On every live.json written `score_json_fresh` is
+  true (null without a score.json) and `score_mismatch` null. The `--all` summary names the splits restated; a score from
+  another run is listed among the skipped names with its reason.
 - **Live market cap** (`reprice.live_market_cap`, engine 5.5 / 2026-10-19). live.json `market_cap_est` = the last close ×
   the run's share count ÷ `numbers.ads_ratio.ratio` when an ADS ratio applies (the engine's own
   `dcf_engine.market_cap_est`; the close is per ADS, the count per ordinary share), × `split_factor`; `in_scope_under_40b`
@@ -1806,6 +1819,13 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `awaiting_cash_flow_check`, or excluded `non_usd_no_rate` with a positive `expense_native` or `cash_native`, whatever the
   treatment): reprice.py skips it, the score.json on disk is an earlier run's, and the app says "Live figures withheld — the
   latest run left an acquired-IPR&D charge unresolved".
+  [Codex review round 11 of PR #47, the main agent's general rule] And, `reason: "score_not_from_this_run"`, for any live.json
+  beside a score.json not built from the record's dcf_numbers.json run (`build_site.score_from_run`, mirroring
+  `reprice.score_matches_run`; a test holds them equal), whatever make_score refused the run for — a deleted deferred payment
+  its registry recorded included, which the engine record alone cannot show — or because make_score has not run on it yet:
+  reprice.py writes no live.json for it either, and live figures pause between an engine run and its make_score. The more
+  specific `iprd_unresolved` / `iprd_share_count_unverified` reasons keep precedence; a record without a dcf_numbers.json
+  is never published, so it is not checked. The app says "Live figures withheld — the latest engine run is not scored yet".
 - **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
   `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
   OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,
