@@ -1,0 +1,91 @@
+{
+ "ticker": "GMED",
+ "name": "Globus Medical, Inc.",
+ "sector": "Healthcare \u2014 Medical Devices (Spine & Musculoskeletal)",
+ "price": 75.65,
+ "market_cap_b": 10.37,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 5.094007417245458,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Clear #2 in spine, effectively neck-and-neck with Medtronic post-NuVasive, with the ExcelsiusGPS/Excelsius ecosystem creating implant pull-through and surgeon switching friction; but ROIC only just recovered to 10.5% in FY2025 after 2.8%/4.2% in the merger years, gross margin is still below pre-merger levels, and Medtronic/Stryker/Zimmer/J&J contest every placement \u2014 a moderate moat, not a wide one.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "DILUTION: share count growing 10.1%/yr \u2014 already deducted via the growth adjustment; check SBC trend",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "BASE_DIVERGENCE: latest FY OE/share 3.86 vs 3-yr median 2.55 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier D (9.8%) vs bull-case tier B (15.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 30.84,
+   "irr": 0.0758
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 43.69,
+   "irr": 0.0985
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.67,
+   "irr": 0.1254
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 80.5,
+   "irr": 0.1571
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 116.53,
+   "irr": 0.2043
+  }
+ },
+ "iv_at_15": 61.85,
+ "iv_at_12": 83.49,
+ "implied_irr": 0.129,
+ "implied_irr_base_case": 0.1254,
+ "upside_at_15_pct": -18.2,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "medium",
+ "one_liner": "Quality #2 spine franchise, moat 5/10, post-merger earnings recovering fast (TTM OE $5.09/share) \u2014 but at $75.65 the weighted IRR is 12.9%, short of the 15% hurdle; it clears 15% only at or below the $61.85 weighted IV@15%.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0985,
+ "irr_bull": 0.1571,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 42.6,
+ "iv_at_25": 32.15,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 137056000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#2 spine franchise at Medtronic's scale post-NuVasive (neck-and-neck on spine revenue), broadest musculoskeletal portfolio in the industry",
+  "ExcelsiusGPS robotics + ExcelsiusHub/3D ecosystem: installed robots pull through proprietary implants, instruments and service \u2014 a placement today is a recurring implant stream",
+  "Surgeon relationships and competitive recruiting: U.S. Spine grew 7% in Q2 2026, its fifth consecutive quarter of above-market growth",
+  "Vertical in-house manufacturing enabling rapid product iteration and supply control; 60+ projects in development",
+  "Debt-free balance sheet ($629M cash + marketable securities at FY2025 end) funds placements, leasing models and tuck-ins like Nevro"
+ ],
+ "moat_against": [
+  "ROIC history does not support a wide moat: 10.5% (2022) collapsed to 2.8% (2023) and 4.2% (2024) on merger amortization/integration and only recovered to 10.5% in FY2025",
+  "Gross margin still rebuilding: 74.2% (2022) -> 58.9% (2024) -> 67.4% (FY2025); management targets only low-70s by end-2026 and mid-70s in 2027",
+  "Robotics is contested, not owned: Medtronic Mazor/Stealth, Zimmer ROSA, Stryker and J&J all place rival platforms; surgeon loyalty is personal and reps can be poached",
+  "Enabling Technologies revenue fell 25.8% in Q2 2026 and Nevro fell 14.3% \u2014 the two newest growth legs are currently shrinking",
+  "Hospital capital budgets and procedure pricing pressure cap implant pricing power; spine market itself grows only ~3%/yr"
+ ]
+}
