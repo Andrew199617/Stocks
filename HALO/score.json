@@ -2,8 +2,9 @@
  "ticker": "HALO",
  "name": "Halozyme Therapeutics, Inc.",
  "sector": "Healthcare / Biotechnology",
- "price": 121.84,
- "market_cap_b": 15.1,
+ "price": 122.5,
+ "market_cap_b": 15.18,
+ "market_cap_basis": "diluted_latest",
  "engine_version": 5,
  "base_oe_per_share": 6.08686891852046,
  "base_year": "2025",
@@ -17,55 +18,56 @@
   "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
   "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ACQUIRED_IPRD_CHARGE: acquired in-process R&D expensed at acquisition in the base window \u2014 FY2025 $284,887,000 (expense, ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff); total $284,887,000 = 38.3% of the base OE total. Owner's earnings (OCF \u2212 capex \u2212 SBC) never saw this spend: the expense is added back in operating cash flow and the payment is not capex. Treatment: deducted once from every scenario's intrinsic value and added to the price each IRR is solved at ($2.3334/share on 122,092,000 shares, ttm.json ttm_shares_diluted); the base is unchanged \u2014 iprd_adjustment holds the figures before and after. analysis.md must name the amount, the deal, the cash vs stock consideration and the recurrence assessment",
   "BASE_DIVERGENCE: latest FY OE/share 4.79 vs 3-yr median 3.28 \u2014 one of them is distorted; find out which and why",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 5.1x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
-  "TIER_BAND: bear-case tier B (18.1%) vs bull-case tier S (26.3%) \u2014 the verdict spans tiers; size any position to the bear end"
+  "TIER_BAND: bear-case tier B (17.9%) vs bull-case tier S (26.0%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "iv_at_15": 99.01,
-   "irr": 0.1309
+   "iv_at_15": 96.68,
+   "irr": 0.1289
   },
   "bear": {
    "prob": 0.3,
-   "iv_at_15": 165.25,
-   "irr": 0.1815
+   "iv_at_15": 162.92,
+   "irr": 0.1787
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 231.9,
-   "irr": 0.221
+   "iv_at_15": 229.57,
+   "irr": 0.2178
   },
   "bull": {
    "prob": 0.2,
-   "iv_at_15": 321.45,
-   "irr": 0.2634
+   "iv_at_15": 319.11,
+   "irr": 0.2598
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 502.7,
-   "irr": 0.328
+   "iv_at_15": 500.37,
+   "irr": 0.3237
   }
  },
- "iv_at_15": 243.61,
- "iv_at_12": 354.56,
- "implied_irr": 0.2264,
- "implied_irr_base_case": 0.221,
- "upside_at_15_pct": 99.9,
+ "iv_at_15": 241.27,
+ "iv_at_12": 352.23,
+ "implied_irr": 0.2232,
+ "implied_irr_base_case": 0.2178,
+ "upside_at_15_pct": 97.0,
  "tier_by_numbers": "A",
  "tier_final": "A",
  "confidence": "medium",
- "one_liner": "Contractual royalty toll-booth on approved blockbusters, moat 7/10 \u2014 clears 15% at $121.84 on TTM numbers (22.6% weighted IRR, IV@15% $243.61) and on the bear case, but duration past the 2027-29 ENHANZE patent cliff is the bet; clears 15% up to $243.61, not the 25% hurdle (up to $103.09).",
- "analysis_date": "2026-10-18",
+ "one_liner": "Contractual royalty toll-booth on approved blockbusters, moat 7/10 \u2014 clears 15% at $122.50 on TTM numbers (22.3% weighted IRR, IV@15% $241.27 after the one-time $2.33/sh Surf Bio IPR&D deduction) and on the bear case, but duration past the 2027-29 ENHANZE patent cliff is the bet; clears 15% up to $241.27, not the 25% hurdle (up to $100.76).",
+ "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
- "engine_release": "5.4.0",
- "irr_bear": 0.1815,
- "irr_bull": 0.2634,
+ "engine_release": "5.6.0",
+ "irr_bear": 0.1787,
+ "irr_bull": 0.2598,
  "tier_bear": "B",
  "tier_bull": "S",
- "iv_at_20": 150.17,
- "iv_at_25": 103.09,
+ "iv_at_20": 147.83,
+ "iv_at_25": 100.76,
  "f_subtype": null,
  "irr_at_floor": false,
  "net_debt_latest": 2008810000,
@@ -86,5 +88,59 @@
   "Alteogen competition is live via Merck's Keytruda Qlex, with costly multi-country Mdase litigation",
   "Partner concentration in a handful of blockbusters whose patent cycles Halozyme does not control",
   "Acquisition appetite (Elektrofi, Surf Bio) converts a pure royalty stream into balance-sheet and integration risk"
- ]
+ ],
+ "iprd_adjustment": {
+  "treatment": "one_time_value_deduction",
+  "total": 284887000.0,
+  "charge_per_share": 2.3333797464207318,
+  "shares_denominator": 122092000.0,
+  "shares_source": "ttm.json ttm_shares_diluted",
+  "materiality": 0.3833,
+  "material": true,
+  "recurrent": false,
+  "unconfirmed_total": 0.0,
+  "periods": [
+   {
+    "period": "2023-12-31",
+    "window": "fy",
+    "amount": 0.0,
+    "amount_basis": "expense",
+    "tag_used": "ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff",
+    "deducted": 0.0,
+    "excluded": null
+   },
+   {
+    "period": "2024-12-31",
+    "window": "fy",
+    "amount": 0.0,
+    "amount_basis": "expense",
+    "tag_used": "ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff",
+    "deducted": 0.0,
+    "excluded": null
+   },
+   {
+    "period": "2025-12-31",
+    "window": "fy",
+    "amount": 284887000.0,
+    "amount_basis": "expense",
+    "tag_used": "ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff",
+    "deducted": 284887000.0,
+    "excluded": null,
+    "cash_flow_check": "added_back_paid_in_investing"
+   }
+  ],
+  "iv_before": {
+   "15": 243.61,
+   "20": 150.17,
+   "25": 103.09
+  },
+  "iv_after": {
+   "15": 241.27,
+   "20": 147.83,
+   "25": 100.76
+  },
+  "irr_before": 0.2257,
+  "irr_after": 0.2232,
+  "tier_before": "A"
+ }
 }

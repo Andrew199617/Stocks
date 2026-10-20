@@ -97,5 +97,50 @@
  "ttm_oe_total": 743158000,
  "ttm_oe_per_share": 6.08686891852046,
  "warnings": [],
- "overrides_used": []
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 6970000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_prior": {
+   "ppe": 2513000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_current": {
+   "ppe": 7914000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
 }
