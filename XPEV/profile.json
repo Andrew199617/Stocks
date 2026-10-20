@@ -1,0 +1,249 @@
+{
+ "ticker": "XPEV",
+ "cik": 1810997,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T09:07:43-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001810997.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526157849/d36361d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/XPEV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/XPEV/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "XPENG INC.",
+  "cik": 1810997,
+  "description": {
+   "text": "We are a leading Chinese Smart EV and NEV company that designs, develops, manufactures, and markets Smart EVs and NEVs that primarily appeal to the large and growing base of middle-class consumers in China. We are also expanding our international presence, with a focus on the mid- to high-end segment in the global passenger vehicle market. Since inception, we have taken an innovative technology path to our envisioned future of mobility. We intend to empower consumers with our differentiated Smart EVs and NEVs that can offer disruptive mobility experiences. We believe this can be achieved by fast iteration of software and seamless integration with hardware, which enable us to lead the innovation of Smart EV and NEV technologies and provide differentiated Smart EV and NEV products to consumers. Since our inception in 2015, we have become one of the leading Smart EV and NEV companies in China, with leading software and hardware technology at our core and bringing innovation in advanced driver assistance, smart connectivity and core vehicle systems. We develop full stack advanced driver assistance systems, or ADAS, software in house and have deployed such software on mass-produced vehicles. We started to roll out our XNGP in March 2023 and have made XNGP available in cities without HD map coverage since November 2023. As a result, its geographical coverage has expanded swiftly in China.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-04-16",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-157849",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526157849/d36361d20f.htm"
+  },
+  "description_short": "XPENG is a leading global Physical AI company, dedicated to bringing artificial intelligence into the physical world to reshape future mobility and smart living. Through in-house R&D, XPENG has developed a full-stack Physical AI architecture spanning Turing AI chips, world foundation models, and highly integrated software and hardware applications. This unified technology foundation powers an expansive product portfolio of smart EVs, robotaxis and humanoid robots, advancing the deployment of Physical AI at scale. Headquartered in Guangzhou, China, XPENG is dual-primary listed on the New York Stock Exchange and the Hong Kong Stock Exchange. With global capabilities across R&D, manufacturing, sales and services, XPENG drives continuous technological innovation and fosters an open Physical AI ecosystem, making life smarter, safer and better for users worldwide.",
+  "industry": "Auto Manufacturing",
+  "sector": "Industrials",
+  "region": "Asia",
+  "sic": "3711",
+  "sic_description": "Motor Vehicles & Passenger Car Bodies",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.xiaopeng.com",
+  "headquarters": "Guangzhou",
+  "address": {
+   "street": "No.10, Cencun Fengzhuang Avenue Tianhe District",
+   "city": "Guangzhou",
+   "state": null,
+   "zip": "510640",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-04-16"
+  },
+  "phone": "86-020-6680-6680",
+  "employees": {
+   "count": 19884,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2023, 2024 and 2025, we had a total of 13,550, 15,364 and 19,884 employees, respectively.",
+   "form": "20-F",
+   "filed": "2026-04-16",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526157849/d36361d20f.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-08-07",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001810997&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-10-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-423624",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526423624/d190286d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-02",
+   "period": "2026-10-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-411251",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526411251/d129675d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-28",
+   "period": "2026-09-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-403321",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526403321/d109999d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-377441",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526377441/d76421d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-25",
+   "period": "2026-08-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-364050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526364050/d75446d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-24",
+   "period": "2026-08-24",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-361758",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526361758/d46050d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-331640",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526331640/d251912d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-329541",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526329541/d168438d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-15",
+   "period": "2026-07-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-304222",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526304222/d149395d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-02",
+   "period": "2026-07-02",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-293394",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526293394/d114872d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-284719",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526284719/d27129d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-01",
+   "period": "2026-06-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-249856",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526249856/d33840d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-28",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-243143",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526243143/d139430d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-220720",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526220720/d737663d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-11",
+   "period": "2026-05-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-215961",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526215961/d100580d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-202397",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526202397/d119120d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-189285",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526189285/d623276d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-172540",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526172540/d45440d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-160727",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526160727/d131069d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-17",
+   "period": "2026-04-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-160201",
+   "url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526160201/d134229d6k.htm"
+  }
+ ],
+ "warnings": []
+}

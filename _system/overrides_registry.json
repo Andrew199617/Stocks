@@ -3079,6 +3079,14 @@
    "weighted_irr_with_override": 0.0903,
    "weighted_irr_impact_pp": -2.074,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "XPEV",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 2.0,
+   "source": "XPeng Inc. Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-16): the ADSs, each representing two Class A ordinary shares, are listed on NYSE under XPEV; the same ratio is stated in the company's quarterly earnings releases (each ADS represents two Class A ordinary shares, with per-ADS EPS stated at twice per-ordinary-share EPS)",
+   "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price"
   }
  ]
 }
