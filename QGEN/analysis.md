@@ -1,0 +1,54 @@
+# QGEN — QIAGEN N.V.
+Engine 5.5 run, 2026-10-20. All figures below are copied from key_numbers.md, dcf_numbers.json, financials_history.csv, fundamentals.json or a cited search result — none are recomputed.
+
+## What it is
+Dutch foreign private issuer (20-F, USD reporting) in molecular diagnostics and life-science tools: Sample technologies (sample prep instruments and consumables), QuantiFERON-TB latent-TB testing, QIAstat-Dx syndromic testing, QIAcuity digital PCR, and QIAGEN Digital Insights bioinformatics. The NYSE security is the common share itself (see ADS_RATIO_APPLIED below); the shares also trade in Frankfurt as QIA. Market cap $10.803B — in scope under $40B.
+
+## Owner's earnings
+**FY2025 (20-F via EDGAR, from financials_history.csv):** operating cash flow $654,326,000; capex $207,126,000 (PP&E $201,049,000 + intangible purchases $6,077,000, rollup tags); SBC $50,400,000 (always a real cost).
+- **Conservative owner's earnings FY2025: $396,800,000 = $1.81/share** (key_numbers.md: latest FY OE/share $1.81).
+- Maintenance version (NI + D&A − min(capex, D&A) − ΔNWC) prints only $35,216,000 for FY2025 because the CSV's ΔNWC line is a $389,664,000 working-capital build; the conservative OCF-based figure is the series used throughout — it is built on actual operating cash flow, and the median base below does not rest on the maintenance definition.
+- OE positive 5 of the last 5 fiscal years. Net debt $815.4M (cash $839,005,000 vs long-term debt $1,654,428,000, latest CSV row), 2.05x normalized OE — moderate, not a flag. The debt stack includes the $750M net-share-settled convertible bonds due 2032 issued in September 2025 (initial conversion price $64.6338/share, company announcement of August 28, 2025).
+- **Base used = median of the last 3 FY OE/share: $1.81** (base_source: median_of_last_3_fy_oe_per_share). Latest FY ($1.81) and normalized ($1.81) are the same figure, so no single year — distorted or not — sets the base on its own. The three years are FY2023 $1.08, FY2024 $2.04, FY2025 $1.81 per share (financials_history.csv).
+
+## Moat: 5/10 — moderate/narrow
+Evidence first (fundamentals.json): the roic_proxy series runs 12.41% (2021), 9.54% (2022), 7.00% (2023), 1.57% (2024, the NeuMoDx charge year), 8.79% (2025) — above the cost of capital in clean years but never at wide-moat rates, and not through the one stress year in the window. Gross margin (fundamentals.json) is 64.4% / 64.7% / 62.8% / 48.9% / 62.2% over the same years; the 2024 dip is the NeuMoDx inventory and asset charges, not price erosion, but a franchise that takes a ~$400M write-off on a platform bet does not get wide-moat credit for durability.
+- FOR: QuantiFERON-TB — dominant latent-TB franchise with automated-workflow lock-in; Sample technologies leadership with a large installed instrument base pulling recurring consumables; QIAstat-Dx installed base of more than 5,200 cumulative placements in 100+ countries at the end of 2025 with an expanding FDA-cleared menu (company Q2 2026 release); QIAGEN Digital Insights data/software with recurring revenue; 62–65% gross margins in clean years on a consumables-heavy mix.
+- AGAINST: revenue has stalled — 3-yr revenue CAGR −0.81% and the FY2026 outlook was reaffirmed at only +1–2% CER sales growth (Q2 2026 release); ROIC proxy ~7–12% in clean years is not wide-moat compounding; Thermo Fisher, Roche, Danaher/Cepheid and bioMérieux contest every platform category; QuantiFERON was hit by the decline in U.S. immigration testing demand and China sales fell low-teens in 2026 (Q2 2026 release); the NeuMoDx failure shows platform bets can miss, and goodwill is 43.0% of assets (fundamentals.json).
+- A 5 gives CAP = 8.5 years: growth holds 2 years, then converges linearly to the 2.5% terminal rate over 8.5 years, 15-year projection.
+
+## DCF — final run (2026-10-20)
+Growth sanity check (mandatory): the blend prints g_base 5.61% from rev CAGR 5y 2.25%, rev CAGR 3y −0.81%, latest rev YoY 5.65% and OE/share CAGR 2y 29.41%, plus a +1.66pp share-count adjustment (share count CAGR −1.66%). The 29.41% OE/share CAGR is an artifact of the depressed FY2023 OE/share ($1.08, a working-capital-build year) against FY2025 ($1.81); it is the top component but the median blend lands on the revenue components, so no recalibration of the base start was needed. Against actual prints — FY2025 revenue +5.65% reported, Q2 2026 net sales $535M, flat year-on-year at CER, H1 2026 sales −1% CER, FY2026 outlook reaffirmed at +1–2% CER with H2 guided to +3–4% CER (company Q2 2026 release) — a 5.6% OE/share start sits above the revenue guide and leans on buybacks (~1.7%/yr count decline) and post-NeuMoDx margin recovery; that is written here as the reason it is tolerated rather than trimmed. The bull end was trimmed instead: offsets −10/−4/0/+3/+7pp (defaults −12/−5/0/+5/+12), so super bull starts at 12.6% rather than 17.6% — no scenario assumes a return to the COVID-era +20% revenue prints. Probabilities 10/25/30/25/10; OE multipliers 0.75/0.90/1.00/1.10/1.25. Price $49.35.
+
+| Scenario | Prob | Growth start | OE mult | Story | IV@15 | IRR |
+|---|---|---|---|---|---|---|
+| Super bear | 10% | −4.4% | 0.75 | U.S. research-funding cuts and China weakness deepen; QuantiFERON immigration-testing drag persists | $8.36 | 4.44% |
+| Bear | 25% | 1.6% | 0.90 | FY2026-style stagnation (+1–2% CER) becomes the steady state | $12.89 | 5.74% |
+| Base | 30% | 5.6% | 1.00 | Guide-level revenue growth plus buybacks and margin recovery carry OE/share | $16.91 | 6.89% |
+| Bull | 25% | 8.6% | 1.10 | H2 2026 acceleration (guided +3–4% CER) sustains; new sample-prep systems and Parse contribute | $21.06 | 8.05% |
+| Super bull | 10% | 12.6% | 1.25 | A new platform cycle (QIAstat-Dx menu, QIAsymphony Connect, single-cell) re-rates growth durably | $28.21 | 9.97% |
+
+- **Probability-weighted: IV@15% $17.22 (−65.1% vs price), IV@12% $22.89, IV@10% $29.21, weighted IRR 7.00%, base-case IRR 6.89%**
+- **Tier by numbers: D** — and the band is D at both ends (bear 5.74%, bull 8.05%); even the super-bull path only reaches 9.97%.
+- Diagnostics (key_numbers.md): OE yield 3.67%, terminal value 18.8% of IV@15%, scenario spread 3.38x, net debt 2.05x normalized OE, 9.6 months since FY end.
+- Hurdle-clearing prices (weighted path): 15% at $17.22, 20% at $12.13, 25% at $9.33.
+
+## Flags — every fragility flag resolved
+- **STALE_FY** (latest FY ended 9.6 months ago): ttm.py was run and exits non-zero for this filer — it reads us-gaap quarterly facts and QGEN is a 20-F filer with no 10-Qs (fundamentals.json assembles 0 quarters), so no TTM base exists to pin. Per spec the median base is used, and here the median and the latest FY are the same $1.81, so staleness costs nothing in base choice. Interim evidence says the FY2025 base is still representative: H1 2026 operating cash flow was $301M and the FY2026 outlook was reaffirmed (net sales +1–2% CER, adjusted diluted EPS at least $2.43 CER) in the company's Q2 2026 release — no inflection in either direction.
+- **NI_OCF_DIVERGENCE** (2024: net income $83,591,000 vs operating cash flow $673,551,000, CSV): the one-off is the NeuMoDx discontinuation. On June 6, 2024 QIAGEN announced it would discontinue the NeuMoDx 96/288 systems and guided to a pre-tax restructuring charge of approximately $400M, including about $300M of non-cash items (about $90M inventory, about $210M long-term assets of which about $120M acquired intellectual property). Those non-cash charges crushed FY2024 net income and operating income ($97,711,000; gross margin 48.9% vs 62.8% in 2023, fundamentals.json) while operating cash flow added them back and rose on reduced working-capital requirements. The OE base is OCF-based by construction, so the divergence does not contaminate it; FY2024 OE/share of $2.04 is in the median window but is not the median year.
+- **ADS_RATIO_APPLIED** (×1.0): resolved from the filer's own 20-F. The cover page of the Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-20) registers under Section 12(b) "Common Shares, par value EUR 0.01 per share", trading symbol QGEN, on the New York Stock Exchange; Item 9 states the shares are listed on NYSE as QGEN and on the Frankfurt Stock Exchange as QIA, and no ADS or depositary ratio appears on the cover or in Item 9. QGEN is a direct listing — one traded share is one common share, per-share figures and the $49.35 price are already on the same basis, and judgment.json declares ads_ratio 1.0 with that citation.
+
+## Data notes
+- Enrichment: fundamentals.json (10 annual years, 0 quarters — 20-F filer without 10-Qs), segments.json, statements.json (18 annual years) and profile.json/street.json are written. profile.py found no Item 4 "Information on the Company" overview section outside the table of contents in the 20-F, so profile.json's description is null — noted, non-blocking.
+- Share basis: the December 2025 synthetic share repurchase (capital repayment combined with a reverse stock split, company 6-K of December 2025; a $500M synthetic repurchase was completed in early 2026 per the Q2 2026 release) predates the FY2025 20-F, whose share counts are already on the post-event basis — the engine raised no SHARE_BASIS flag, and the cover-page count (216,920,735) sits within 1% of the latest diluted count (218,880,000).
+- Capital returns: FY2025 declared DPS $0.25 (fundamentals.json); the Q2 2026 release reports the annual dividend was raised 40%.
+
+## My thoughts / overlay
+- This is a valuation verdict, not a quality verdict. The business converts sales to owner's earnings reliably (OE positive 5/5 years, net debt 2.05x), but at $49.35 the market is paying for a growth re-acceleration the company itself is not guiding to: FY2026 guided +1–2% CER against a model base start of 5.6% OE/share growth that already leans on buybacks.
+- Method range: there is no defensible input set that gets this name near 15% at $49.35 — the super-bull path (12.6% start, 1.25x OE) tops out at a 9.97% IRR. The tier is robust to method in a way APP-style names are not; the open question is only how far below $49.35 the hurdle prices sit, and the weighted answer is $17.22.
+- Watch items: whether H2 2026 delivers the guided +3–4% CER (the end of the NeuMoDx/DIALUNOX headwind plus new systems), the announced CEO transition in H2 2026 and the ongoing strategic review (Q2 2026 release), and Parse Biosciences integration — none of these change today's tier, all of them change the next run's growth evidence.
+
+## Final verdict
+- **Final tier: D** (weighted IRR 7.00%; bear→bull band D→D)
+- Confidence: **medium** (base is filing-direct and identical on latest-FY and median views; growth evidence is thin and the scenario spread is 3.38x)
+- One-liner: Solid diagnostics franchises, moat 5/10 — but growth has stalled (FY2026 guided +1–2% CER) and at $49.35 the weighted IRR is 7.0% (IV@15% $17.22); clears the 15% hurdle only below ~$17

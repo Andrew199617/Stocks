@@ -3112,6 +3112,14 @@
    "ratio": 1.0,
    "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count",
    "reason": "TFI is a direct-listed foreign private issuer: the NYSE security is the common share itself (also listed on TSX under the same symbol), not an ADS, so one traded share is one ordinary share and per-share figures and the traded price are on the same basis."
+  },
+  {
+   "ticker": "QGEN",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 1.0,
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-20), cover page: securities registered pursuant to Section 12(b) of the Act are 'Common Shares, par value EUR 0.01 per share', trading symbol QGEN, name of exchange: New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS",
+   "reason": "QIAGEN is a direct-listed foreign private issuer: one NYSE-traded QGEN share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
   }
  ]
 }
