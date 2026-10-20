@@ -3087,6 +3087,23 @@
    "ratio": 2.0,
    "source": "XPeng Inc. Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-04-16): the ADSs, each representing two Class A ordinary shares, are listed on NYSE under XPEV; the same ratio is stated in the company's quarterly earnings releases (each ADS represents two Class A ordinary shares, with per-ADS EPS stated at twice per-ordinary-share EPS)",
    "reason": "EDGAR diluted share counts are in ordinary shares while the Nasdaq/NYSE price is per ADS; per-share figures must be scaled x2 ordinary shares per ADS to be comparable to the ADS price"
+  },
+  {
+   "ticker": "RYAN",
+   "field": "shares",
+   "value": 279029000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 11 Earnings Per Share: weighted-average Class A diluted shares 138,246,414 for FY2025 (132,891,487 FY2024; 125,745,139 FY2023), with conversion of non-controlling interest LLC Common Units of 135,429,254 (FY2025) excluded as antidilutive in the same note; plus the company's Q4 2025 earnings release (Exhibit 99.1 to Form 8-K, 2026-02-12), Reconciliation of Adjusted Diluted EPS: FY2025 weighted-average Class A diluted 138,246k + impact of all LLC Common Units exchanged for Class A shares 135,429k + dilutive impact of unvested equity awards 5,354k = adjusted diluted share count 279,029k (FY2024 in the same table: 276,288k). Cover-page cross-check: 264,189,701 shares outstanding at February 9, 2026 (Class A 129,680,816 + Class B 134,508,885) in the same 10-K.",
+   "reason": "DATA_GAP:shares \u2014 no diluted share count is carried in EDGAR companyfacts for any fiscal year (shares_diluted blank in financials_history.csv), so the engine emits no tier. The GAAP Class A diluted count in the 10-K EPS note (138,246,414 for FY2025) is NOT the right denominator for consolidated owner's earnings: Ryan is an Up-C \u2014 consolidated OCF/capex/SBC cover 100% of Ryan Specialty, LLC including the noncontrolling interest, while the GAAP diluted count excludes the 135,429,254 exchangeable LLC Common Units as antidilutive for FY2025 (they were dilutive and included in several 2025 quarters, e.g. Q3 2025 diluted 273,462k \u2014 the GAAP denominator flips with the antidilution test and cannot divide a consolidated numerator). The company's own adjusted diluted share count (279,029k for FY2025) is the total-economic-share denominator built for exactly this perimeter: Class A diluted + all LLC Common Units as exchanged + unvested award dilution. The engine applies this single FY2025 value to every missing year; FY2024's own adjusted count in the same release is 276,288k, so FY2024 OE/share is understated ~1.0% and FY2023 by a similar small amount \u2014 disclosed, small, and in the conservative direction for the median base year. The same value is the TTM denominator in ttm.json (H1 2026's own adjusted count was 270,080k after Q2 2026 buybacks, so the TTM base is ~3% conservative).",
+   "date": "2026-10-20",
+   "base_used": "ttm",
+   "base_oe_without_override": null,
+   "base_oe_with_override": 1.5209,
+   "base_oe_impact_pct": null,
+   "weighted_irr_without_override": null,
+   "weighted_irr_with_override": 0.0745,
+   "weighted_irr_impact_pp": null,
+   "unblocks_tier": true
   }
  ]
 }

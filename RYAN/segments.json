@@ -1,0 +1,417 @@
+{
+ "ticker": "RYAN",
+ "cik": 1849253,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001849253-26-000006",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000006/ryan-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001849253-26-000026",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000026/ryan-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001849253-26-000036",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000036/ryan-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "ryan:WholesaleBrokerageMember",
+     "label": "Wholesale Brokerage",
+     "values": [
+      1319056000,
+      1489077000,
+      1600427000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6509,
+      0.6064,
+      0.5344
+     ],
+     "growth_yoy": [
+      null,
+      0.1289,
+      0.0748
+     ]
+    },
+    {
+     "member": "ryan:UnderwritingManagementMember",
+     "label": "Underwriting Management",
+     "values": [
+      431579000,
+      646215000,
+      1024000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.213,
+      0.2632,
+      0.342
+     ],
+     "growth_yoy": [
+      null,
+      0.4973,
+      0.5846
+     ]
+    },
+    {
+     "member": "ryan:BindingAuthoritiesMember",
+     "label": "Binding Authorities",
+     "values": [
+      275961000,
+      320379000,
+      370155000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1362,
+      0.1305,
+      0.1236
+     ],
+     "growth_yoy": [
+      null,
+      0.161,
+      0.1554
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2026596000,
+     2455671000,
+     2994582000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ryan:WholesaleBrokerageMember",
+     "label": "Wholesale Brokerage",
+     "values": [
+      360788000,
+      477165000,
+      377796000,
+      498802000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5336,
+      0.5675,
+      0.4826,
+      0.5525
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0471,
+      0.0453
+     ]
+    },
+    {
+     "member": "ryan:UnderwritingManagementMember",
+     "label": "Underwriting Management",
+     "values": [
+      213390000,
+      269168000,
+      295107000,
+      303756000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3156,
+      0.3201,
+      0.3769,
+      0.3365
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3829,
+      0.1285
+     ]
+    },
+    {
+     "member": "ryan:BindingAuthoritiesMember",
+     "label": "Binding Authorities",
+     "values": [
+      101950000,
+      94524000,
+      110000000,
+      100170000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1508,
+      0.1124,
+      0.1405,
+      0.111
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.079,
+      0.0597
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     676128000,
+     840857000,
+     782903000,
+     902728000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2022579000,
+      2391980000,
+      2864242000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9735,
+      0.9508,
+      0.9387
+     ],
+     "growth_yoy": [
+      null,
+      0.1826,
+      0.1974
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      54970000,
+      123730000,
+      186884000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0265,
+      0.0492,
+      0.0613
+     ],
+     "growth_yoy": [
+      null,
+      1.2509,
+      0.5104
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2077549000,
+     2515710000,
+     3051126000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      649097000,
+      801491000,
+      742598000,
+      852082000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9405,
+      0.9372,
+      0.9338,
+      0.9296
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.144,
+      0.0631
+     ]
+    },
+    {
+     "member": "us-gaap:NonUsMember",
+     "label": "Non-US",
+     "values": [
+      41069000,
+      53679000,
+      52631000,
+      64565000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0595,
+      0.0628,
+      0.0662,
+      0.0704
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2815,
+      0.2028
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     690166000,
+     855170000,
+     795229000,
+     916647000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Reporting Segment' (ryan:ReportingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/Revenues/quarterly: row 'Reporting Segment' (ryan:ReportingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reporting Segment' (ryan:ReportingSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reporting Segment' (ryan:ReportingSegmentMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

@@ -1,0 +1,157 @@
+{
+ "ticker": "RYAN",
+ "cik": 1849253,
+ "entity": "RYAN SPECIALTY HOLDINGS, INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 643667000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 210760000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 125618000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 558525000
+  },
+  "capex": {
+   "fy": 70967000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets+PaymentsForCapitalImprovements",
+   "ytd_prior": 37210000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets+PaymentsForCapitalImprovements",
+   "ytd_current": 31988000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets+PaymentsForCapitalImprovements",
+   "ttm": 65745000
+  },
+  "sbc": {
+   "fy": 69451000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 39798000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 38740000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 68393000
+  },
+  "shares_diluted": {
+   "fy": null,
+   "fy_period": null,
+   "fy_tag": null,
+   "ytd_prior": null,
+   "ytd_prior_period": null,
+   "ytd_prior_tag": null,
+   "ytd_current": 279029000.0,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "OVERRIDE",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 558525000,
+ "ttm_capex": 65745000,
+ "ttm_sbc": 68393000,
+ "ttm_shares_diluted": 279029000.0,
+ "ttm_oe_total": 424387000,
+ "ttm_oe_per_share": 1.5209422676495992,
+ "warnings": [],
+ "overrides_used": [
+  {
+   "field": "shares",
+   "value": 279029000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-13), Note 11 Earnings Per Share: weighted-average Class A diluted shares 138,246,414 for FY2025 (132,891,487 FY2024; 125,745,139 FY2023), with conversion of non-controlling interest LLC Common Units of 135,429,254 (FY2025) excluded as antidilutive in the same note; plus the company's Q4 2025 earnings release (Exhibit 99.1 to Form 8-K, 2026-02-12), Reconciliation of Adjusted Diluted EPS: FY2025 weighted-average Class A diluted 138,246k + impact of all LLC Common Units exchanged for Class A shares 135,429k + dilutive impact of unvested equity awards 5,354k = adjusted diluted share count 279,029k (FY2024 in the same table: 276,288k).",
+   "legs_filled": {
+    "ytd_current": {
+     "amount": 279029000.0,
+     "prorated": false,
+     "note": "share counts are weighted averages, not flows \u2014 used unprorated as the TTM denominator"
+    }
+   }
+  }
+ ],
+ "capex_components": {
+  "fy": {
+   "ppe": 70967000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets",
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets+PaymentsForCapitalImprovements"
+  },
+  "ytd_prior": {
+   "ppe": 37210000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets",
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets+PaymentsForCapitalImprovements"
+  },
+  "ytd_current": {
+   "ppe": 31988000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets",
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets+PaymentsForCapitalImprovements"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}
