@@ -10,7 +10,7 @@
  "base_year": "2025",
  "base_source": "median_of_last_3_fy_oe_per_share",
  "moat_score": 3,
- "moat_justification": "Weak moat: Sasol owns genuinely hard-to-replicate assets \u2014 the proprietary Fischer-Tropsch process, the integrated Secunda coal-to-liquids complex, its own coal mining feedstock and low-cost Mozambique gas \u2014 but it is a commodity price taker in fuels and chemicals with no pricing power, and the returns record proves it: the roic_proxy series in fundamentals.json runs 7.3% (FY2021), 18.1% (FY2022), 5.1% (FY2023), -9.8% (FY2024) and 5.4% (FY2025) \u2014 below a plausible cost of capital in most years and violently cyclical. Recurring impairments (R76.0B in FY2024, R21.8B in FY2025, R17.0B in FY2026 per the company's annual financial statements) show the asset base repeatedly fails to earn its carrying value, and Secunda carries structural carbon/regulatory exposure. A 3 gives CAP 5.9 years.",
+ "moat_justification": "Weak moat: Sasol owns genuinely hard-to-replicate assets \u2014 the proprietary Fischer-Tropsch process, the integrated Secunda coal-to-liquids complex, its own coal mining feedstock and low-cost Mozambique gas \u2014 but it is a commodity price taker in fuels and chemicals with no pricing power, and the returns record proves it: the roic_proxy series in fundamentals.json runs 7.3% (FY2021), 18.1% (FY2022), 5.1% (FY2023), -9.8% (FY2024) and 5.4% (FY2025) \u2014 below a plausible cost of capital in most years and violently cyclical. Recurring impairments (R76.0B in FY2024, R21.8B in FY2025, R16.8B in FY2026 per the company's annual financial statements) show the asset base repeatedly fails to earn its carrying value, and Secunda carries structural carbon/regulatory exposure. A 3 gives CAP 5.9 years.",
  "cap_years": 5.9,
  "fragility_flags": [
   "STALE_FY: latest fiscal year ended 16 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
@@ -85,7 +85,7 @@
  "moat_against": [
   "Pure commodity price taker \u2014 Brent, refining margins and chemical basket prices set earnings; no pricing power",
   "ROIC history is weak and volatile: roic_proxy -9.8% in FY2024, 5.1-5.4% in FY2023/FY2025, spiking only to 18.1% in the FY2022 price shock (fundamentals.json)",
-  "Recurring mega-impairments: R76.0B (FY2024), R21.8B (FY2025), R17.0B (FY2026) \u2014 Secunda/Sasolburg refinery CGUs remain fully impaired",
+  "Recurring mega-impairments: R76.0B (FY2024), R21.8B (FY2025), R16.8B (FY2026) \u2014 Secunda/Sasolburg refinery CGUs remain fully impaired",
   "Carbon and regulatory exposure: Secunda is one of the world's largest single-point CO2 emitters; South African carbon tax and emissions rules raise its cost curve over time",
   "Feedstock decline: Mozambique gas fields (Pande/Temane) in natural decline, FY2026 gas production -7%; South African chemicals swung to an EBIT loss in FY2026",
   "Dividend suspended until net debt is sustainably below US$3B (policy threshold not met at FY2025 or FY2026) \u2014 equity holders wait behind the balance sheet"
