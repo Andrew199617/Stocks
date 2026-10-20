@@ -1,0 +1,285 @@
+{
+ "ticker": "RRC",
+ "cik": 315852,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T07:48:38-04:00",
+ "newest_filing_date": "2026-10-14",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000315852.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/315852/000119312526067292/rrc-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RRC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RRC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RANGE RESOURCES CORP",
+  "cik": 315852,
+  "description": {
+   "text": "Our principal area of operations is the Marcellus Shale in Pennsylvania. Our corporate offices are located at 100 Throckmorton Street, Suite 1200, Fort Worth, Texas 76102 (telephone (817) 870-2601). We also maintain field offices in our area of operations. Our common stock is listed and traded on the New York Stock Exchange (the \"NYSE\") under the ticker symbol \"RRC.\" Range Resources Corporation was incorporated in 1980. As of December 31, 2025, we had 1,579 gross (1,499 net) operating producing wells that produced average daily production of 2.24 Bcfe per day for the year. As of December 31, 2025 we had estimated net proved reserves of 18.1 Tcfe of which 71% was proved developed and consisted of 65% gas, 34% NGLs and 1% oil.",
+   "source": "10-K Items 1 and 2 Business and Properties",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-067292",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526067292/rrc-20251231.htm"
+  },
+  "description_short": "Fort Worth-based Range Resources is an independent exploration and production company with that focuses entirely on its operations in the Marcellus Shale in Pennsylvania. At year-end 2021, Range's proved reserves totaled 17.8 trillion cubic feet equivalent, with net production of 2.1 billion cubic feet equivalent per day. Natural gas accounted for 70% of production.",
+  "industry": "Oil & Gas Production",
+  "sector": "Energy",
+  "region": "North America",
+  "sic": "1311",
+  "sic_description": "Crude Petroleum & Natural Gas",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.rangeresources.com",
+  "headquarters": "Fort Worth, Texas",
+  "address": {
+   "street": "100 Throckmorton Street Suite 1200",
+   "city": "Fort Worth",
+   "state": "Texas",
+   "zip": "76102",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "817-870-2601",
+  "employees": {
+   "count": 564,
+   "as_of": "2026-01-01",
+   "evidence": "As of January 1, 2026, we had 564 full-time employees, none of whom are currently covered by a labor union or other collective bargaining arrangement.",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526067292/rrc-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-03-28",
+  "first_sec_filing_form": "SC 13D/A",
+  "former_names": [
+   "LOMAK PETROLEUM INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000315852&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-14",
+   "period": "2026-10-14",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000315852-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000031585226000022/rrc-20261014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000315852-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000031585226000018/rrc-20260721.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-21",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-310446",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526310446/rrc-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-10",
+   "period": "2026-07-10",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000315852-26-000015",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000031585226000015/rrc-20260710.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-13",
+   "period": "2026-05-13",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000315852-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000031585226000013/rrc-20260513.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000315852-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000031585226000011/rrc-20260421.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-21",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-167076",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526167076/rrc-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-14",
+   "period": "2026-04-14",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000315852-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000031585226000008/rrc-20260414.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-13",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-134699",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526134699/rrc-20260325.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-069413",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526069413/rrc-20260224.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-067292",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526067292/rrc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-21",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-26-018029",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526018029/rrc-20260121.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-05",
+   "period": "2025-12-31",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-001385",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526001385/rrc-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-256135",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312525256135/rrc-20251028.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-28",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-253647",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312525253647/rrc-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-14",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001193125-25-239063",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312525239063/rrc-20251014.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-02",
+   "period": "2025-10-02",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-228412",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000119312525228412/rrc-20251002.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-23",
+   "period": "2025-07-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-097761",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000095017025097761/rrc-20250722.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-22",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-097592",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000095017025097592/rrc-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-14",
+   "period": "2025-07-14",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0000950170-25-095597",
+   "url": "https://www.sec.gov/Archives/edgar/data/315852/000095017025095597/rrc-20250714.htm"
+  }
+ ],
+ "warnings": []
+}

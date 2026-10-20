@@ -3045,6 +3045,40 @@
    "ratio": 1.0,
    "source": "Sasol Limited's own results documents (e.g. Reviewed interim financial results, Sasol Limited, filed with its 20-F reporting package): 'American depository receipts (ADR) program: CUSIP number 803866300 \u2014 ADR to ordinary share 1:1; Depositary: The Bank of New York Mellon' \u2014 the ratio stated by the filer itself in every results booklet and in the Form 20-F share-capital description",
    "reason": "20-F filer: engine per-share figures are per ordinary share while the NYSE price is per ADS. The filer's own documents state the ADR-to-ordinary-share ratio is 1:1, so per-share owner's earnings and the ADS price are directly comparable with no scaling, and the market cap (price x diluted shares) is already on the right basis."
+  },
+  {
+   "ticker": "RRC",
+   "field": "capex",
+   "value": 628580000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Cash Flows, investing activities (in thousands): 'Additions to natural gas, NGLs and oil properties' $581,489 (FY2025) / $570,426 (FY2024) / $571,819 (FY2023) \u2014 tagged us-gaap PaymentsToAcquireOilAndGasPropertyAndEquipment, a tag the engine does not read; 'Acreage purchases' $56,814 / $56,085 / $34,410; 'Additions to field service assets and other' $3,212 / $2,069 / $701. Total cash capex by year: FY2023 $606,930,000, FY2024 $628,580,000, FY2025 $641,515,000; the override value is the median of the three filed years (the FY2024 total).",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 under every candidate tag the engine reads: RRC's real E&P capex is filed as PaymentsToAcquireOilAndGasPropertyAndEquipment (discontinued sibling PaymentsToAcquireOilAndGasProperty ends FY2018), which is not in the engine's tag list, and the only rollup tag it does read (PaymentsToAcquirePropertyPlantAndEquipment) ends at FY2018 with the minor field-service line ($1,477,000 in FY2018). The engine applies this single value to every missing period; it is the median of the filer's own FY2023-25 total cash capex (all three investing lines above). Against the true per-year totals it overstates FY2023 capex by $21,650,000 (conservative direction \u2014 lowers that year's OE), is exact for FY2024, and understates FY2025 capex by $12,935,000 (flatters the latest year by ~1.1% of FY2025 OCF \u2014 noted, not hidden). Excluded: purchases of marketable securities for the deferred compensation plan ($23,117,000 in FY2025) \u2014 a compensation-plan investment, not capex.",
+   "date": "2026-10-20",
+   "base_used": "ttm",
+   "base_oe_without_override": 5.3503,
+   "base_oe_with_override": 2.9133,
+   "base_oe_impact_pct": -45.549,
+   "weighted_irr_without_override": 0.1111,
+   "weighted_irr_with_override": 0.0903,
+   "weighted_irr_impact_pp": -2.074,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "RRC",
+   "field": "sbc",
+   "value": 42072000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Stockholders' Equity, line 'Stock-based compensation expense' (credited to additional paid-in capital; EDGAR tag AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue): $45,828,000 for FY2025, $42,072,000 for FY2024 and $36,427,000 for FY2023; the override value is the median of the three filed years (the FY2024 figure).",
+   "reason": "DATA_GAP:sbc \u2014 SBC missing for FY2023, FY2024, FY2025 under the engine's tags: AllocatedShareBasedCompensationExpense was last filed for FY2017 ($82,776,000) and ShareBasedCompensation ends in FY2013, so the expense survives only in the equity statement (the ALLY situation in this sweep). The cash-flow statement's combined 'Deferred and stock-based compensation' line ($67,849,000 / $53,864,000 / $48,153,000 for FY2023/24/25) is NOT used: it bundles cash-settled deferred compensation with equity SBC. The engine applies this single value to every missing period; against the true per-year equity-statement figures it overstates FY2023 SBC by $5,645,000 (conservative direction) and understates FY2025 SBC by $3,756,000 \u2014 both immaterial against OCF of ~$1B. Against the last engine-filed SBC value ($82,776,000, FY2017) the value is 0.51x, inside the 0.1x-10x band.",
+   "date": "2026-10-20",
+   "base_used": "ttm",
+   "base_oe_without_override": 5.3503,
+   "base_oe_with_override": 2.9133,
+   "base_oe_impact_pct": -45.549,
+   "weighted_irr_without_override": 0.1111,
+   "weighted_irr_with_override": 0.0903,
+   "weighted_irr_impact_pp": -2.074,
+   "unblocks_tier": true
   }
  ]
 }

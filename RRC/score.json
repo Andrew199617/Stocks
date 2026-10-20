@@ -1,0 +1,115 @@
+{
+ "ticker": "RRC",
+ "name": "Range Resources Corporation",
+ "sector": "Energy / Natural gas & NGL E&P (Appalachia)",
+ "price": 43.6524,
+ "market_cap_b": 10.47,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 2.913288879110464,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "A real but narrow cost-and-resource moat, not a franchise: Range sits on low-cost Marcellus rock with 30+ years of inventory and a transport/marketing book that earns premium realizations over NYMEX and Mont Belvieu, which is worth something through a cycle. Against that it is a pure price-taker in a single basin whose reserves deplete and whose returns are the commodity cycle itself \u2014 filed ROE swung from -43% (FY2020) to +41% (FY2022), and fundamentals.json carries no roic_proxy series (operating income is untagged), so there is no evidence of through-cycle returns well above the cost of capital. That is a 4/10: better rock and costs than the average E&P, no pricing power. CAP = 2 + 1.3 x 4 = 7.2 years.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "OVERRIDE_APPLIED:sbc \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Stockholders' Equity, line 'Stock-based compensation expense' (credited to additional paid-in capital; EDGAR tag AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue): $45,828,000 for FY2025, $42,072,000 for FY2024 and $36,427,000 for FY2023; the override value is the median of the three filed years (the FY2024 figure).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Cash Flows, investing activities (in thousands): 'Additions to natural gas, NGLs and oil properties' $581,489 (FY2025) / $570,426 (FY2024) / $571,819 (FY2023) \u2014 tagged us-gaap PaymentsToAcquireOilAndGasPropertyAndEquipment, a tag the engine does not read; 'Acreage purchases' $56,814 / $56,085 / $34,410; 'Additions to field service assets and other' $3,212 / $2,069 / $701. Total cash capex by year: FY2023 $606,930,000, FY2024 $628,580,000, FY2025 $641,515,000; the override value is the median of the three filed years (the FY2024 total).); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "BASE_DIVERGENCE: latest FY OE/share 2.09 vs 3-yr median 1.28 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 5.7x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.6%) vs bull-case tier C (12.6%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 8.07,
+   "irr": 0.0453
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 14.86,
+   "irr": 0.0656
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 24.38,
+   "irr": 0.095
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 34.99,
+   "irr": 0.1264
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 46.18,
+   "irr": 0.1566
+  }
+ },
+ "iv_at_15": 22.63,
+ "iv_at_12": 29.88,
+ "implied_irr": 0.0903,
+ "implied_irr_base_case": 0.095,
+ "upside_at_15_pct": -48.2,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Low-cost Marcellus gas producer, moat 4/10 \u2014 even on a generous TTM base it does not clear 15% at $43.65 (weighted IRR 9.0%, Tier D; weighted IV@15% $22.63 is the hurdle-clearing price).",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0656,
+ "irr_bull": 0.1264,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 16.08,
+ "iv_at_25": 12.45,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1198130000,
+ "shares_diluted_latest": 239789000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "tier exists only because of a judgment override",
+ "moat_for": [
+  "Low-cost Marcellus core: southwest Pennsylvania acreage in the lowest-cost U.S. gas basin; all-in capital spending of $0.83 per mcfe in FY2025 (company Q4 2025 release) and record drilling/completion efficiency in Q2 2026",
+  "30+ years of undrilled Marcellus inventory (company) with proved reserves of 18.1 Tcfe at YE2025 \u2014 a resource life in-basin peers cannot replicate",
+  "Marketing and transport portfolio escapes Appalachia basis: realized price including hedges was a $0.64 per mcfe premium to NYMEX in Q2 2026, and pre-hedge NGL realizations carried a $3.49/bbl premium over Mont Belvieu (Q2 2026 release)",
+  "Repaired balance sheet: net debt $1,198,130,000 at YE2025 (dcf_numbers.json; 0.8x debt/EBITDAX per the company) and down to about $881M by Q2 2026, with buybacks and a rising dividend funded from free cash flow"
+ ],
+ "moat_against": [
+  "Pure commodity price-taker: no pricing power over natural gas or NGL prices, and OE/share has swung more than 3x in five years with the strip (OE_VOLATILE)",
+  "Single-basin concentration in Appalachia: pipeline takeaway limits and state/federal permitting cap growth and can blow out basis differentials",
+  "Depleting asset: the FY2026 capital budget is $650-700M just to grow production modestly (guided 2.35-2.40 Bcfe/d) \u2014 reinvestment is not optional",
+  "Returns are the cycle, not a franchise: fundamentals.json roic_proxy is null (operating income is untagged) and filed ROE swung from -43% in FY2020 to +41% in FY2022 (fundamentals.json annual series)"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 628580000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Cash Flows, investing activities (in thousands): 'Additions to natural gas, NGLs and oil properties' $581,489 (FY2025) / $570,426 (FY2024) / $571,819 (FY2023) \u2014 tagged us-gaap PaymentsToAcquireOilAndGasPropertyAndEquipment, a tag the engine does not read; 'Acreage purchases' $56,814 / $56,085 / $34,410; 'Additions to field service assets and other' $3,212 / $2,069 / $701. Total cash capex by year: FY2023 $606,930,000, FY2024 $628,580,000, FY2025 $641,515,000; the override value is the median of the three filed years (the FY2024 total)."
+  },
+  {
+   "field": "sbc",
+   "value": 42072000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-24, accession 0001193125-26-067292), Consolidated Statements of Stockholders' Equity, line 'Stock-based compensation expense' (credited to additional paid-in capital; EDGAR tag AdjustmentsToAdditionalPaidInCapitalSharebasedCompensationRequisiteServicePeriodRecognitionValue): $45,828,000 for FY2025, $42,072,000 for FY2024 and $36,427,000 for FY2023; the override value is the median of the three filed years (the FY2024 figure)."
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 5.3503,
+  "base_oe_with_override": 2.9133,
+  "base_oe_impact_pct": -45.549,
+  "weighted_irr_without_override": 0.1111,
+  "weighted_irr_with_override": 0.0903,
+  "weighted_irr_impact_pp": -2.074,
+  "unblocks_tier": true
+ }
+}
