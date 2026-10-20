@@ -1534,31 +1534,6 @@
    "unblocks_tier": true
   },
   {
-   "ticker": "RNR",
-   "field": "capex",
-   "value": 0.0,
-   "kind": "filing",
-   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000913144-26-000012), Consolidated Statements of Cash Flows (p. F-8): the investing-activities section lists only fixed-maturity / short-term / equity / other investment flows, derivatives settlements, investments in other ventures and the Validus purchase \u2014 there is no purchases-of-property-and-equipment (or any capex) line for FY2025, FY2024 or FY2023, and the Consolidated Balance Sheets (p. F-5) carry no property-and-equipment line. The statement fully reconciles without one: FY2025 operating $3,693,107 thousand + investing $(2,215,809) thousand + financing $(1,410,503) thousand + FX $(12,218) thousand = the reported net increase in cash of $54,577 thousand exactly; FY2024: $4,164,822 - $3,060,856 - $1,287,515 - $17,365 = reported $(200,914) thousand exactly; FY2023: $1,911,634 - $3,822,636 + $2,588,639 + $5,542 = reported $683,179 thousand exactly. EDGAR companyfacts for CIK 913144 contains no capex fact under any candidate tag in any year.",
-   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) because the filer does not report a capex line at all; the filer's own cash-flow statements fully account for investing activities in all three years, so capex is $0 as a filing fact, not an estimate (same presentation as the EG/CMPS precedents). Any premises/equipment spend is aggregated inside the filed investing lines and is immaterial at insurer scale \u2014 even a hypothetical $50M would move OE by ~$1.08/share (~1.4% of the $77.78 base). The engine's history already carried capex as assumed-zero, so the override changes no OE figure; it converts a silent zero-fill into a sourced, registered decision.",
-   "date": "2026-10-17",
-   "base_used": "median_3y",
-   "base_oe_without_override": 77.7834,
-   "base_oe_with_override": 77.7834,
-   "base_oe_impact_pct": 0.0,
-   "weighted_irr_without_override": 0.2731,
-   "weighted_irr_with_override": 0.2731,
-   "weighted_irr_impact_pp": 0.0,
-   "unblocks_tier": true
-  },
-  {
-   "ticker": "RNR",
-   "event": "tier_override",
-   "date": "2026-10-17",
-   "tier_by_numbers": "S",
-   "tier_final": "A",
-   "reason": "Insurer-float softening (Andrew's standing rule, 2026-10-15; same treatment as PFG/ACGL/EG): the OCF-based OE base capitalizes float and third-party-capital economics \u2014 FY2025 operating cash flow of $3,693,107,000 includes $935,409,000 of net income attributable to redeemable noncontrolling interests and a $998,854,000 increase in the reserve for claims and claim expenses (both FY2025 10-K), and the $77.78/share base sits well above the same filing's diluted EPS available to common shareholders of $56.03. Tier by numbers S (weighted IRR 27.31%) therefore overstates distributable owner's earnings to common shareholders; softened one notch to A, which is also the bear end of the TIER_BAND (bear A 22.27% / bull S 34.46%). Confidence low (SECTOR_MODEL_MISMATCH + WIDE_SCENARIO_SPREAD 4.5x)."
-  },
-  {
    "ticker": "WY",
    "field": "capex",
    "value": 447000000.0,
@@ -2949,6 +2924,53 @@
    "ratio": 1.0,
    "source": "Form 20-F for fiscal year ended December 31, 2025 (filed 2026-03-13), Item 9 / listing description: the NYSE-traded Level II ADSs (symbol GGB) are equivalent to one preferred share of Gerdau S.A. (GGBR4); the cover registers Preferred Shares, no par value, each represented by American Depositary Shares on the NYSE",
    "reason": "ADS_RATIO_MISSING: 20-F filer - EDGAR per-share figures are per share (common and preferred carry identical EPS) while the Nasdaq price is per ADS; each ADS represents exactly one preferred share, so the ratio is 1.0 and no scaling applies, but the declaration is required so make_score does not refuse on DATA_GAP:ads_ratio."
+  },
+  {
+   "ticker": "RNR",
+   "field": "capex",
+   "value": 0.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-11, accession 0000913144-26-000012), Consolidated Statements of Cash Flows (p. F-8): the investing-activities section lists only fixed-maturity / short-term / equity / other investment flows, derivatives settlements, investments in other ventures and the Validus purchase \u2014 there is no purchases-of-property-and-equipment (or any capex) line for FY2025, FY2024 or FY2023, and the Consolidated Balance Sheets (p. F-5) carry no property-and-equipment line. The statement fully reconciles without one: FY2025 operating $3,693,107 thousand + investing $(2,215,809) thousand + financing $(1,410,503) thousand + FX $(12,218) thousand = the reported net increase in cash of $54,577 thousand exactly; FY2024: $4,164,822 - $3,060,856 - $1,287,515 - $17,365 = reported $(200,914) thousand exactly; FY2023: $1,911,634 - $3,822,636 + $2,588,639 + $5,542 = reported $683,179 thousand exactly. EDGAR companyfacts for CIK 913144 contains no capex fact under any candidate tag in any year.",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) because the filer does not report a capex line at all; the filer's own cash-flow statements fully account for investing activities in all three years, so capex is $0 as a filing fact, not an estimate (same presentation as the EG/CMPS precedents). Any premises/equipment spend is aggregated inside the filed investing lines and is immaterial at insurer scale \u2014 even a hypothetical $50M would move OE by ~$1.08/share (~1.4% of the $77.78 base). The engine's history already carried capex as assumed-zero, so the override changes no OE figure; it converts a silent zero-fill into a sourced, registered decision.",
+   "date": "2026-10-17",
+   "base_used": "payable_5y",
+   "base_oe_without_override": 27.2074,
+   "base_oe_with_override": 27.2074,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1072,
+   "weighted_irr_with_override": 0.1072,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "RNR",
+   "event": "base_override",
+   "date": "2026-10-19",
+   "value": 27.207439278876148,
+   "source": "Operating income (loss) available to RenaissanceRe common shareholders, twelve months ended December 31, from the company's Q4 earnings releases (Form 8-K exhibit 99.1): FY2021 $81,599 thousand (release filed 2022-02, accession 0000913144-22-000010); FY2022 $322,791 thousand and FY2023 $1,824,910 thousand (FY2023 release, accession 0000913144-24-000005); FY2024 $2,234,426 thousand and FY2025 $1,859,691 thousand (FY2025 release, accession 0000913144-26-000003). Denominator: FY2025 diluted shares 46,483,000 (financials_history.csv shares_diluted, latest row; the same release's 'Average shares outstanding - diluted').",
+   "reason": "Insurer payable-earnings base (Andrew, 2026-10-19; WORKER_SPEC step 4): consolidated OCF at a reinsurer capitalizes the reserve build ($998,854,000 in FY2025) and the cash earned by consolidated Capital Partners vehicles ($935,409,000 of FY2025 net income attributable to redeemable noncontrolling interests), so the engine's $77.78/sh median base is not what common shareholders earn. Construction: ($81,599 + $322,791 + $1,824,910 + $2,234,426 + $1,859,691) thousand = $6,323,417 thousand; / 5 = $1,264,683.4 thousand; / 46,483 thousand diluted shares = $27.2074/share. Five-year average rather than 3-year median because FY2023-25 are three benign-cat hard-market years and FY2021-22 are the cycle's loss years (combined ratios 102.1% / 97.7%). Replaces the 2026-10-15 one-notch tier softening, which is not applied on top of this base.",
+   "kind": "filing",
+   "basis": "payable_earnings_5y",
+   "figures": [
+    81599000.0,
+    322791000.0,
+    1824910000.0,
+    2234426000.0,
+    1859691000.0
+   ],
+   "shares": 46483000.0,
+   "ads_ratio": 1.0,
+   "pinned_per_share": 27.207439278876148,
+   "sic": "6331",
+   "base_used": "payable_5y",
+   "base_oe_without_override": 77.7834,
+   "base_oe_with_override": 27.2074,
+   "base_oe_impact_pct": -65.022,
+   "weighted_irr_without_override": 0.2552,
+   "weighted_irr_with_override": 0.1072,
+   "weighted_irr_impact_pp": -14.802,
+   "tier_by_numbers_without_override": "S",
+   "tier_by_numbers_with_override": "C"
   }
  ]
 }
