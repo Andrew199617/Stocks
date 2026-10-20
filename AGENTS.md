@@ -344,7 +344,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    source showing that residual paid in shares (a non-cash stock-consideration line), P1 otherwise; a
    `deferred_payment` carrying `deferred_payment_assumption` (matched against a residual nothing declared) whose
    analysis.md does not say how that residual was settled is P2 — one the filing shows paid in shares, deducted
-   again, is P1. `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
+   again, is P1. [Codex review round 14 of PR #47] A score with a period carrying `cash_flow_check_mismatch` (a
+   declared check whose amount is not the filed expense, never applied) cannot exist on any basis (make_score
+   refuses it); a `deferred_payment` period with `expense_reversal_note` (a negative detector fact, a reversal,
+   beside cash matched like cash beside a $0 expense) follows the same `deferred_payment_assumption` rule above.
+   `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
    the payment is (declared, or why it is not the earlier deal's) is P2. A period with `recurrence_excluded` `deferred_payment_of`
    (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred
    consideration of the named deal as the cited filing shows it: a distinct deal (another counterparty or

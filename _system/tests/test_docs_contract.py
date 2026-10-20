@@ -339,6 +339,10 @@ PAIRS = [
     ("_system/reprice.py", "def requires_content_hash(", "requires_content_hash", [SYS_README, CONTRACT]),
     ("_system/build_site.py", "def run_repriceable(", "run_repriceable", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", "def _iprd_is_zero(", "_iprd_pick", [SYS_README]),
+    # Codex review round 14 of PR #47: a mismatched check refused on any basis; a negative detector fact is no charge
+    ("_system/make_score.py", 'mm = [p for p in periods if p.get("cash_flow_check_mismatch")', "cash_flow_check_mismatch",
+     [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["expense_reversal_note"] = (', "expense_reversal_note", [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

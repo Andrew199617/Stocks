@@ -141,6 +141,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    unpaid cash balance, so no later cash-only payment is deducted against it. A `deferred_payment` period that
    carries `deferred_payment_assumption` was matched against a residual nothing declared: say in analysis.md how
    that residual was settled (cash later: the deduction stands; shares: declare `paid_in_shares` and rerun).
+   A check's amount is the filed expense, within $1 (Codex review round 14 of PR #47): one that is not is never
+   applied (`cash_flow_check_mismatch` on the period) and make_score refuses the run whatever the period's basis —
+   correct the amount, or remove the entry if the period needs no check. A check whose period has left the
+   window has no record and still carries over (step 2).
    `ACQUIRED_IPRD_UNCONVERTED` (Codex review round 3 of PR #47): the charge was expensed only in a currency the
    engine holds no FX rate for, with no usable us-gaap cash fact — NOTHING is deducted, the tier is the
    UNADJUSTED one, and make_score refuses the score whatever judgment.json says. Block the folder

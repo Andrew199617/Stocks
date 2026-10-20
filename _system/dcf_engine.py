@@ -2286,6 +2286,7 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                        "cash": co["cash"], "cash_unit": co.get("cash_unit"), "excluded": None}
                 iprd["periods"].append(rec)
                 iprd["periods"].sort(key=lambda r: (r.get("window") != "fy", r.get("period") or ""))
+            _iprd_reversal_settles(rec)
             rec.update(amount=amt, amount_basis="cash_outflow", tag_used=IPRD_CASH_TAG, fx_rate=co.get("fx_rate"),
                        filed=co.get("filed"), deducted=amt,
                        deferred_payment=(f"cash tag {co['cash']:,.0f} with no acquired-IPR&D expense in this period: "
@@ -2560,6 +2561,16 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     return rec
 
 
+def _iprd_reversal_settles(rec):
+    """[Codex review r14 of PR #47] A period whose detector fact is negative (a reversal: no current-period charge)
+    and whose cash is deducted as a deferred payment no longer reads excluded "negative": the note keeps why."""
+    if rec.get("excluded") == "negative" and isinstance(rec.get("expense"), (int, float)) and rec["expense"] < 0:
+        rec["excluded"] = None
+        rec["expense_reversal_note"] = (f"the period's acquired-IPR&D expense is negative ({rec['expense']:,.0f}, a "
+                                        "reversal): no current-period charge, so its cash is matched as a deferred "
+                                        "payment like cash beside a $0 expense")
+
+
 def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_intang=None, fx_rates=None, checks=None,
                 fx_fetch=None):
     """The acquired-IPR&D records for the periods feeding the base: each of `fy_periods` (the engine's last 3 FY ends,
@@ -2590,7 +2601,10 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     residual_paid_in_shares) and accrues nothing. Without one the residual accrues as before, and a deferred payment
     matched against it records deferred_payment_assumption naming the periods assumed payable in cash (it still
     deducts). Only a positive full-leg detector fact reads a leg, so a $0 fact on one detector tag never hides a
-    positive partial-period fact on the other (partial_coverage)."""
+    positive partial-period fact on the other (partial_coverage).
+    [Codex review r14 of PR #47] A negative detector fact (a reversal) is no current-period charge, like a $0 one: the
+    period's cash settles the unpaid remainder (deferred_payment, expense_reversal_note, no longer excluded) or is
+    listed in ignored_cash_only — before, the payment was dropped with no trace."""
     exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
     cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
     periods, cash_only, notes = [], [], []
@@ -2668,6 +2682,13 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     def _by(d, p):
         return {u: vf for (pp, u), vf in d.items() if pp == p}
 
+    def _no_charge(rec):
+        """No current-period charge: no record, or a $0 or negative (a reversal) detector fact. [Codex review r14 of
+        PR #47] a negative fact had kept the period's cash from settling the unpaid remainder and from
+        ignored_cash_only alike (only an exact $0 counted), so the payment was dropped with no trace."""
+        return rec is None or (isinstance(rec.get("expense"), (int, float)) and not isinstance(rec["expense"], bool)
+                               and rec["expense"] <= 0 and rec["excluded"] in (None, "negative"))
+
     def _resolve(p, window, exp_maps, cash_map, intang):
         hits = []
         for tag, by_unit in exp_maps:
@@ -2722,7 +2743,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         cv = cash[0] if cash is not None else None
         cnative = cash_map[cash[1]][0] if (cash is not None and cv is None) else None
         if (isinstance(cnative, (int, float)) and not isinstance(cnative, bool) and math.isfinite(cnative)
-                and cnative > 0 and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
+                and cnative > 0 and _no_charge(rec)):
             # [Codex review r4 of PR #47] a cash-only payment with no FX rate, even fetched: never dropped silently
             if unpaid[0] > 0 or prior:
                 # it may settle the window's unpaid remainder or a pre-window charge: gated (ACQUIRED_IPRD_UNCONVERTED)
@@ -2761,7 +2782,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                 if gap > 0:
                     assumed.append(_iprd_period_label(rec))
         elif (cv is not None and cv > 0 and unknown_rest and p not in unknown_rest
-              and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
+              and _no_charge(rec)):
             # [Codex review r8 of PR #47] cash with no expense in its period, after a charge whose USD remainder is
             # unknown: it may settle that charge, so it is gated (ACQUIRED_IPRD_UNCONVERTED), never left in
             # ignored_cash_only or taken as a deferred payment of the known remainder alone
@@ -2776,13 +2797,13 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                                      "fetched): that charge's unpaid remainder is unknown in USD, so this payment "
                                      "may settle it — not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
             return rec
-        elif (cv is not None and cv > 0 and unpaid[0] > 0
-              and (rec is None or (rec["expense"] == 0 and rec["excluded"] is None))):
+        elif (cv is not None and cv > 0 and unpaid[0] > 0 and _no_charge(rec)):
             take = min(float(cv), unpaid[0])
             unpaid[0] -= take
             if rec is None:
                 rec = {"period": p, "window": window, "expense_tag": None, "expense": None, "expense_unit": None,
                        "cash": cv, "cash_unit": cash[1], "excluded": None}
+            _iprd_reversal_settles(rec)
             rec.update(amount=take, amount_basis="cash_outflow", tag_used=IPRD_CASH_TAG, fx_rate=cash[2],
                        filed=cash[3], deducted=take,
                        deferred_payment=(f"cash tag {cv:,.0f} with no acquired-IPR&D expense in this period: "
@@ -2803,11 +2824,14 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         if rec is None and cash is not None and cash[0]:
             cash_only.append(_co(p, window, cash[0], cash, "cash tag only, no acquired-IPR&D expense tag: never a "
                                  "qualifying charge"))
-        elif (rec is not None and isinstance(cv, (int, float)) and cv > 0 and rec.get("expense") == 0
-              and rec["excluded"] is None and not rec["deducted"]):
+        elif (rec is not None and isinstance(cv, (int, float)) and cv > 0 and _no_charge(rec)
+              and not rec["deducted"]):
             # [Codex review r3 of PR #47] cash beside a $0 expense was dropped without a trace: list it like cash-only
-            cash_only.append(_co(p, window, cv, cash, "cash tag beside a $0 acquired-IPR&D expense, beyond the window's "
-                                 "unpaid remainder: never a qualifying charge"))
+            # ([Codex review r14 of PR #47] beside a negative one too)
+            cash_only.append(_co(p, window, cv, cash, "cash tag beside a "
+                                 + ("negative (reversal)" if rec["expense"] < 0 else "$0")
+                                 + " acquired-IPR&D expense, beyond the window's unpaid remainder: never a qualifying "
+                                 "charge"))
         return rec
 
     for p in fy_periods:

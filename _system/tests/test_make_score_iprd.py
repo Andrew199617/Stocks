@@ -1359,6 +1359,35 @@ def test_a_foreign_score_is_reported_after_reprice_removed_live_json():
         R.BASE = saved
         shutil.rmtree(tmp, ignore_errors=True)
 
+
+# --- Codex review round 14 of PR #47 ------------------------------------------------------------------------------
+def test_a_mismatched_cash_flow_check_on_a_window_period_is_refused():
+    """[Codex review r14, #4325437550, the main agent's shape] A declared iprd_cash_flow_check whose amount is more
+    than $1 from the period's filed expense is not applied (the engine records cash_flow_check_mismatch), but
+    make_score refused it only on a period still awaiting a check: on a cash-basis period ($100M FY2024 expense, $0
+    cash fact) a paid_in_shares check mistyped by $1,000 was dropped, the $100M residual accrued as unpaid, an
+    unrelated $100M FY2025 cash-only payment was deducted against it ($1.00/sh) and the run scored. Now make_score
+    refuses every window period carrying cash_flow_check_mismatch, naming the declared and filed amounts. Round 2's
+    rule stands: a check for a period outside the run's window (no record) is not refused — it carries over."""
+    good = TI._shares_check("2024-12-31", 100e6)
+    bad = TI._shares_check("2024-12-31", 100e6 + 1000)
+    facts = lambda: TI._facts(expense={2024: 100e6}, cash={2024: 0.0, 2025: 100e6})
+    n = TI._cached("ms_r14_mismatch", lambda: TI._ok(TI._run(facts(), judgment={"iprd_cash_flow_check": [bad]},
+                                                            checks=False)))
+    p24 = [p for p in n["iprd_adjustment"]["periods"] if p["period"] == "2024-12-31"][0]
+    assert p24.get("cash_flow_check_mismatch") and p24["excluded"] is None, p24
+    assert n["iprd_adjustment"]["total"] == 100e6, n["iprd_adjustment"]
+    r = _score(n, _j(iprd_cash_flow_check=[bad]))
+    assert r.rc != 0, "a mistyped cash-flow check on a window period scored"
+    assert "$100,001,000" in r.err and "$100,000,000" in r.err and "FY2024" in r.err, r.err[-800:]
+    # a check for a period outside the window carries over (round 2), beside the exact one
+    old = TI._shares_check("2021-12-31", 50e6)
+    m = TI._cached("ms_r14_carry", lambda: TI._ok(TI._run(facts(), judgment={"iprd_cash_flow_check": [good, old]},
+                                                         checks=False)))
+    assert m["iprd_adjustment"]["total"] == 0.0 and m["iprd_adjustment"]["cash_flow_checks_unused"] == [old], m["iprd_adjustment"]
+    r2 = _score(m, _j(iprd_cash_flow_check=[good, old]))
+    assert r2.rc == 0, r2.err[-800:]
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

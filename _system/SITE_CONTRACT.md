@@ -178,7 +178,7 @@ tiling the period because no fact covers it exactly (absent otherwise), `deferre
 that settles an earlier window charge (Codex review round 12 of PR #47: with `deferred_payment_assumption`, a note
 naming the periods whose residual it assumed payable in cash), (round 12) `cash_flow_check` with presentation `paid_in_shares` also
 on a cash-basis period, with `residual_paid_in_shares` (the expense less cash it declares settled in shares, never accrued as unpaid) and
-`residual_note`, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
+`residual_note`, (Codex review round 14 of PR #47) `expense_reversal_note` on a period whose negative detector fact (a reversal: no current-period charge) sits beside cash matched as its `deferred_payment` (the period is then not `excluded`), and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
 deal) with `recurrence_excluded`
 ("deferred_payment_of", when the deals sum to the whole charge) on an FY period judgment.json

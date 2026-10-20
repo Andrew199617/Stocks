@@ -2410,6 +2410,39 @@ def test_a_zero_foreign_currency_fact_converts_to_zero_without_a_rate():
     assert E._iprd_pick({"EUR": (0, "2026-02-20"), "GBP": (5e6, "2026-02-21")}, {}, "2025-12-31") == (
         None, "GBP", None, "2026-02-21"), "a zero unit never hides a positive unconvertible one"
 
+
+# --- Codex review round 14 of PR #47 ------------------------------------------------------------------------------
+def test_a_negative_detector_fact_never_hides_a_deferred_payment():
+    """[Codex review r14, #4325437571, the main agent's shape] A negative acquired-IPR&D expense (a reversal) is no
+    current-period charge, yet only an exact $0 fact let a period's cash settle the window's unpaid remainder: with a
+    $100M FY2024 expense paid $40M in cash, a FY2025 -$5M fact beside a $60M cash payment left the period excluded
+    "negative", the $60M was neither matched against the $60M remainder nor listed in ignored_cash_only, and the run
+    deducted $40M with no warning. Now a negative detector fact is treated like a $0 one: the FY2025 cash settles the
+    remainder (deferred_payment; the record no longer reads excluded, its expense_reversal_note says why), cash past
+    the remainder is listed in ignored_cash_only, and with no remainder the whole payment is listed (the record stays
+    excluded "negative", nothing deducted)."""
+    def detect(cash24, cash25):
+        f = _facts(expense={2024: 100e6, 2025: -5e6}, cash={2024: cash24, 2025: cash25})
+        return E.iprd_detect(f, FY3, fx_rates={}, checks=[])
+    out = detect(40e6, 60e6)
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["expense"] == -5e6 and r25["excluded"] is None and r25["deducted"] == 60e6, r25
+    assert r25.get("deferred_payment") and "reversal" in r25.get("expense_reversal_note", ""), r25
+    assert sum(p["deducted"] for p in out["periods"]) == 100e6, out["periods"]
+    assert not out["ignored_cash_only"], out["ignored_cash_only"]
+    # past the remainder: the rest is listed, as beside a $0 expense
+    out = detect(40e6, 80e6)
+    assert _leg(out, "fy", "2025-12-31")["deducted"] == 60e6, out["periods"]
+    assert [(c["period"], c["cash"]) for c in out["ignored_cash_only"]] == [("2025-12-31", 20e6)], out["ignored_cash_only"]
+    # no remainder: nothing deducted, the payment is listed, never dropped without a trace
+    out = detect(100e6, 30e6)
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["excluded"] == "negative" and r25["deducted"] == 0.0, r25
+    assert [(c["period"], c["cash"]) for c in out["ignored_cash_only"]] == [("2025-12-31", 30e6)], out["ignored_cash_only"]
+    # end to end: the engine deducts the full $100M, as with a $0 FY2025 fact
+    n = _ok(_run(_facts(expense={2024: 100e6, 2025: -5e6}, cash={2024: 40e6, 2025: 60e6})))
+    assert n["iprd_adjustment"]["total"] == 100e6, n["iprd_adjustment"]
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

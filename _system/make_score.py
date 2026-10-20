@@ -987,7 +987,9 @@ def check_iprd_cash_flow(n, entries):
     """[fixer review round] The cash-flow checks and the engine record must
     agree, and no expense-basis period may still await one: the run's value
     is unknown until the worker declares what the 10-K's cash-flow statement
-    shows (WORKER_SPEC step 3, ACQUIRED_IPRD_UNCONFIRMED)."""
+    shows (WORKER_SPEC step 3, ACQUIRED_IPRD_UNCONFIRMED). [Codex review r14
+    of PR #47] Nor may any window period carry a declared check the run did
+    not apply (cash_flow_check_mismatch: its amount is not the filed expense)."""
     blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
     periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
     lbl = lambda p: (f"FY{p['period'][:4]}" if p.get("window") == "fy" else f"YTD to {p.get('period')}")
@@ -1003,6 +1005,18 @@ def check_iprd_cash_flow(n, entries):
                 + ", ".join(f"{lbl(p)} declared {_usd_exact((p.get('cash_flow_check_mismatch') or {}).get('declared_amount'))}"
                             for p in aw if p.get("cash_flow_check_mismatch")) + ")"
                 if any(p.get("cash_flow_check_mismatch") for p in aw) else ""))
+    # [Codex review r14 of PR #47] a declared check the run did not apply on a period it evaluated is refused on any
+    # basis, not only on an awaiting period: a cash-basis period's mistyped paid_in_shares check was dropped, its
+    # residual accrued as unpaid and a later unrelated cash payment deducted against it. A check for a period outside
+    # the window has no record here and still carries over across re-scores (round 2).
+    mm = [p for p in periods if p.get("cash_flow_check_mismatch") and p.get("excluded") != _engine.IPRD_AWAITING]
+    if mm:
+        fail(f"judgment.json {IPRD_CF_CHECK_KEY} names a period of this run's window with an amount that is not the "
+             "filed acquired-IPR&D expense, so the run did not apply it: "
+             + ", ".join(f"{lbl(p)} declared {_usd_exact((p.get('cash_flow_check_mismatch') or {}).get('declared_amount'))}"
+                         f", filed expense {_usd_exact(p.get('expense'))}" for p in mm)
+             + " — declare the amount as the filed expense (within $1) and rerun the engine, or remove the entry if "
+             "the period needs no check (WORKER_SPEC step 3)")
     by = {(e["period"], e["window"]): e for e in entries or []}
     for p in periods:
         k = (p.get("period"), p.get("window"))
