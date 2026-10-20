@@ -1,0 +1,284 @@
+{
+ "ticker": "KRYS",
+ "cik": 1711279,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T00:36:51-04:00",
+ "newest_filing_date": "2026-10-15",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001711279.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000016/krys-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/KRYS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/KRYS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Krystal Biotech, Inc.",
+  "cik": 1711279,
+  "description": {
+   "text": "We are a fully integrated, global, commercial-stage biotechnology company focused on the discovery, development, manufacturing and commercialization of genetic medicines to treat diseases with high unmet medical needs. Using our patented gene therapy technology platform that is based on engineered herpes simplex virus-1 (“HSV-1”), we create vectors that efficiently deliver therapeutic transgenes to cells of interest in multiple organ systems. The cell’s own machinery then transcribes and translates the transgene to treat the disease. Our vectors are amenable to formulation for non-invasive or minimally invasive routes of administration at a healthcare professional’s office or in the patient’s home by a healthcare professional, caregiver, or directly by the patient themselves. Our innovative technology platform is supported by two in-house, commercial scale Current Good Manufacturing Practice (“CGMP”) manufacturing facilities. Our first commercial product, VYJUVEK®, is now approved in the United States, the European Union (“EU”), and Japan for the treatment of dystrophic epidermolysis bullosa (“DEB”). We launched VYJUVEK in the United States in 2023 and started launching VYJUVEK in Europe and Japan in 2025. Our development pipeline includes multiple clinical stage product candidates for the treatment of rare and serious diseases, and we are investing in research and development to advance and grow this pipeline.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "accession": "0001711279-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000016/krys-20251231.htm"
+  },
+  "description_short": "Krystal Biotech, Inc. (NASDAQ: KRYS) is a fully integrated, commercial-stage, global biotechnology company focused on the discovery, development and commercialization of genetic medicines to treat diseases with high unmet medical needs. VYJUVEK, the Company's first commercial product, is the first-ever redosable gene therapy and the first genetic medicine approved in the United States, Europe, and Japan for the treatment of dystrophic epidermolysis bullosa. The Company is rapidly advancing a robust preclinical and clinical pipeline of investigational genetic medicines. Krystal Biotech is headquartered in Pittsburgh, Pennsylvania.",
+  "industry": "Biotechnology: Biological Products (No Diagnostic Substances)",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "2836",
+  "sic_description": "Biological Products, (No Diagnostic Substances)",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.krystalbio.com",
+  "headquarters": "Pittsburgh, Pennsylvania",
+  "address": {
+   "street": "2100 Wharton Street Suite 701",
+   "city": "Pittsburgh",
+   "state": "Pennsylvania",
+   "zip": "15203",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-17"
+  },
+  "phone": "(412) 586-5830",
+  "employees": {
+   "count": 295,
+   "as_of": "2026-02-11",
+   "evidence": "As of February 11, 2026, we had 295 full-time employees, primarily engaged in research and development, pre-clinical and clinical trials, manufacturing VYJUVEK and our pipeline product candidates, commercial activities for VYJUVEK in the United States, the European Union, and Japan, regulatory matters, strategic business development, finance and other technical matters, supply chain, and general and administrative services.",
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000016/krys-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2017-08-21",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001711279&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-15",
+   "period": "2026-10-15",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001711279-26-000064",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000064/krys-20261015.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001711279-26-000058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000058/krys-20260803.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-03",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001711279-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000057/krys-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-21",
+   "period": "2026-07-21",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001711279-26-000050",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000050/krys-20260721.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-20",
+   "period": "2026-05-15",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001711279-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000047/krys-20260515.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "9.01"
+   ],
+   "description": "Financial statements and exhibits",
+   "accession": "0001711279-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000044/krys-20260504.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-04",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001711279-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000043/krys-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-03",
+   "period": "2026-04-03",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001711279-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000036/krys-20260403.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001711279-26-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000018/krys-20260217.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001711279-26-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000016/krys-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-11",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001711279-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000008/krys-20260111.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-08",
+   "period": "2026-01-08",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001711279-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127926000005/krys-20260108.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-23",
+   "period": "2025-12-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001711279-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000092/krys-20251223.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-03",
+   "period": "2025-11-03",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001711279-25-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000088/krys-20251103.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-03",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001711279-25-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000087/krys-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-22",
+   "period": "2025-10-22",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001711279-25-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000082/krys-20251022.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-04",
+   "period": "2025-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001711279-25-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000078/krys-20250804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001711279-25-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000077/krys-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-25",
+   "period": "2025-07-25",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001711279-25-000071",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000071/krys-20250725.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001711279-25-000069",
+   "url": "https://www.sec.gov/Archives/edgar/data/1711279/000171127925000069/krys-20250724.htm"
+  }
+ ],
+ "warnings": []
+}
