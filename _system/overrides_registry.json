@@ -3137,6 +3137,24 @@
    "kind": "filing"
   },
   {
+   "ticker": "FCFS",
+   "field": "capex",
+   "value": 61100000,
+   "kind": "estimate",
+   "source": "Average of the last three filed fiscal years' capex from financials_history.csv (FY2023 $60,148,000; FY2024 $68,245,000; FY2025 $54,906,000; PaymentsToAcquireProductiveAssets, 10-K filed 2026-02-09)",
+   "reason": "FirstCash files capex annually in the 10-K but tags no capex in its 10-Qs, so ttm.py exits 3 (no post-FY YTD capex fact) and no TTM base can be built without an estimate for the two YTD legs. The estimate sits at 1.11x the last filed value (FY2025 $54.9M), inside the 0.1x-10x band; the two YTD legs are equal-length (H1 2025 vs H1 2026) so they substantially cancel in the TTM math, leaving the filed FY2025 capex as the dominant leg. The override fills no annual year \u2014 annual capex is filed for every year in the history.",
+   "date": "2026-10-20",
+   "scope": "ttm_legs",
+   "base_used": "ttm",
+   "base_oe_without_override": 13.5018,
+   "base_oe_with_override": 13.5018,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1301,
+   "weighted_irr_with_override": 0.1301,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
    "ticker": "FRT",
    "field": "capex",
    "value": 291338000.0,
