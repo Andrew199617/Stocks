@@ -1,0 +1,266 @@
+{
+ "ticker": "ORI",
+ "cik": 74260,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000074260-26-000008",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000008/ori-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000074260-26-000072",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000072/ori-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000074260-26-000092",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000092/ori-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "ori:SpecialtyInsuranceGroupMember",
+     "label": "Specialty Insurance Group",
+     "values": [
+      24563200000,
+      26750600000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8822,
+      0.8958
+     ],
+     "growth_yoy": [
+      null,
+      0.0891
+     ]
+    },
+    {
+     "member": "ori:TitleInsuranceGroupMember",
+     "label": "Title Insurance Group",
+     "values": [
+      1915800000,
+      1937700000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0688,
+      0.0649
+     ],
+     "growth_yoy": [
+      null,
+      0.0114
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1532400000,
+      1334800000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.055,
+      0.0447
+     ],
+     "growth_yoy": [
+      null,
+      -0.1289
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -168400000,
+      -160500000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.006,
+      -0.0054
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     27843100000,
+     29862700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "ori:GeneralInsuranceGroupMember",
+     "label": "General Insurance Group",
+     "values": [
+      26750600000,
+      27118900000,
+      28249200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8958,
+      0.9163,
+      0.8942
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "ori:TitleInsuranceGroupMember",
+     "label": "Title Insurance Group",
+     "values": [
+      1937700000,
+      1958300000,
+      1982200000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0649,
+      0.0662,
+      0.0627
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      1334800000,
+      631800000,
+      1529100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0447,
+      0.0213,
+      0.0484
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -160500000,
+      -113100000,
+      -168100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0054,
+      -0.0038,
+      -0.0053
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     29862700000,
+     29596000000,
+     31592400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: row 'Total of major segments' (ori:TotalOfMajorSegmentsMember) dropped: its name marks it as a subtotal of the other rows",
+  "business_segments/Assets/quarterly: row 'Total of major segments' (ori:TotalOfMajorSegmentsMember) dropped: its name marks it as a subtotal of the other rows"
+ ],
+ "complete": true
+}

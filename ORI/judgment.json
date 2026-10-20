@@ -1,0 +1,53 @@
+{
+ "base_override": {
+  "basis": "payable_earnings_5y",
+  "figures": [
+   935900000,
+   845100000,
+   749500000,
+   797000000,
+   792500000
+  ],
+  "kind": "filing",
+  "reason": "Insurer payable-earnings base (Andrew, 2026-10-19; WORKER_SPEC step 4): ORI is a P&C/specialty insurer (EDGAR SIC 6351, Surety Insurance \u2014 within the rule's 6331/6351 scope) whose releases and annual report print operating income attributable to common shareholders (labelled net income excluding investment gains/losses, i.e. operating income) every period. Consolidated OCF capitalizes the reserve build and unearned-premium float (FY2025 OCF adjustments include +$354.9M of loss-reserve build and +$260.6M of unearned premiums and other policyholder liabilities), so the engine's OCF-based median base of $4.4470/share is not what common shareholders earn \u2014 the filer's own operating income was $3.15/share diluted in FY2025. Construction: ($935,900,000 + $845,100,000 + $749,500,000 + $797,000,000 + $792,500,000) = $4,120,000,000; / 5 = $824,000,000; / 251,313,860 diluted shares = $3.2788/share. Five-year average rather than 3-year median because an insurance cycle is longer than three years: the window spans the FY2021 investment-gain year, the FY2022-23 soft underwriting years and the FY2024-25 hard-market years. Figures are as printed in millions to one decimal place, so each carries up to $50K of rounding. With this base in force the one-notch tier_override softening (2026-10-15) is NOT applied \u2014 make_score refuses the pair as double-counting; the sector-misfit low confidence and alert suppression stay.",
+  "shares": 251313860,
+  "source": "Net income excluding investment gains (losses) \u2014 the company's non-GAAP operating income attributable to shareholders \u2014 from the GAAP reconciliation table 'Overall Results Attributable to Shareholders' in Old Republic's 2025 Annual Report (the same reconciliation management presents in its earnings releases and 10-K reporting): FY2021 $935.9M, FY2022 $845.1M, FY2023 $749.5M, FY2024 $797.0M, FY2025 $792.5M (all as printed, in millions to one decimal). Cross-checks: the Q4/FY2024 earnings release (PRNewswire, Jan 23, 2025) prints FY2024 $797.0M and FY2023 $749.5M on the identical line; the FY2025 results summary prints FY2025 $792.5M, down 0.6% vs FY2024; the 2026 proxy pay-versus-performance table's Operating Income column prints the same five figures. Denominator: FY2025 diluted shares 251,313,860 (financials_history.csv shares_diluted, latest row).",
+  "value": 3.278768628200609
+ },
+ "capex_override": {
+  "ack_reason": "Out-of-band by construction: the engine's sanity band anchors on the last FILED capex value under its candidate tags and Old Republic has never filed one in any period (last_filed_value is null in companyfacts), so no in-band estimate exists. The value is not unanchored \u2014 it is the filer's own FY2024 depreciation of $39,300,000, filed in its financial statements (see source), used as the maintenance-capex proxy under the 2026-10-18 depreciation-anchor clause because no capex was ever filed.",
+  "kind": "estimate",
+  "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) under every candidate tag. The depreciation-anchor exception (Andrew, 2026-10-18) applies: for capex only, when no capex value was ever filed, a capex estimate may anchor on the filer's filed depreciation, within 0.1x\u201310x of that anchor; $39,300,000 is 1.0x the FY2024 filed depreciation anchor (and within 0.1x\u201310x of every filed FY2023\u2013FY2025 depreciation figure). Maintenance capex for an insurer (premises, IT hardware/software, leasehold) is proxied by its own depreciation at the top of the filed range, the conservative end. The figure is immaterial to the verdict: $39.3M is about $0.16/share against the $3.28/share payable-earnings base actually scored, and that base is built from net operating income, which already carries the depreciation charge; the override's binding effect is to unblock the engine's OCF history.",
+  "source": "Anchor: the filer's own filed depreciation (us-gaap Depreciation, financials_history.csv da column) \u2014 FY2023 $33,000,000, FY2024 $39,300,000, FY2025 $35,400,000; the value used is the top of that filed FY2023\u2013FY2025 range, FY2024's $39,300,000, as the maintenance-capex proxy. No capex value was ever filed: EDGAR companyfacts for CIK 74260 contains no PaymentsToAcquirePropertyPlantAndEquipment (or any candidate capex tag) fact in any period, and ORI's Consolidated Statements of Cash Flows present no purchases-of-property-and-equipment line \u2014 investing activities are maturities/sales/purchases of securities, other investments, and short-term investments, with premises/equipment spend folded into 'Other investments' / 'Other \u2014 net' and not isolable from the filing.",
+  "value": 39300000
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Insurance capacity is close to a commodity \u2014 no network effects, low switching costs, brokers can move specialty business; pricing is set by the industry cycle, which is softening in several specialty lines",
+  "Combined ratio is drifting the wrong way \u2014 92.6% (FY2023) to 93.9% (FY2024) to 94.7% (FY2025) to 95.3% in Q2 2026, with commercial-auto / long-haul trucking loss trends and a $40M reserve strengthening in Q2 2026",
+  "Title insurance is a housing-transaction derivative \u2014 premiums swing with mortgage rates and real-estate volumes, outside management's control",
+  "Operating income is flat in total dollars \u2014 $935.9M in FY2021 vs $792.5M in FY2025; all per-share growth has come from buybacks, not franchise growth, and H1 2026 operating income fell year over year",
+  "Reserve risk is the balance sheet \u2014 loss and LAE reserves are estimates; the favorable-development tailwind (2.4 points in FY2025) can reverse, as the slight unfavorable specialty development in Q2 2026 shows"
+ ],
+ "moat_for": [
+  "Diversified two-engine platform \u2014 Specialty Insurance (commercial auto, workers' comp, general liability, property, financial indemnity, warranty) plus the #3/#4 U.S. title insurer; title carried the result when specialty softened in Q2 2026 and vice versa in 2024",
+  "Conservative reserving culture over a century (founded 1923) \u2014 favorable prior-year loss reserve development in most recent years (2.4 points in FY2025, 2.9 points in Q4 2024) instead of reserve releases borrowed from the future",
+  "Sustained operating returns \u2014 operating ROE 14.1% in FY2025 and 12.1% annualized in H1 2026; combined ratio 92.6\u201394.7% across FY2023\u2013FY2025, below 100% through the cycle",
+  "Capital-return engine \u2014 $1,708M returned in FY2024 and over $1B in FY2025 including special dividends; diluted shares down from 303.7M (FY2021) to 251.3M (FY2025); regular dividend paid for 44+ consecutive years of increases / 85 years of dividends"
+ ],
+ "moat_justification": "Moderate/narrow moat, 5/10 \u2014 the peer-consistent grade for a diversified specialty insurer (ACGL, AFG, AIZ and RNR all scored 5 in this sweep). Return evidence first, as required: fundamentals.json's roic_proxy series is null for every year and its gross_margin is null, because ORI files no OperatingIncomeLoss tag (annual operating_income is null in fundamentals.json) \u2014 for an insurer neither ROIC-on-operating-income nor gross margin is computable from the tags, so the return evidence is the filer's own operating ROE and combined ratio. Those support 5, not 7+: operating return on beginning equity was 14.1% in FY2025 (Q4 2025 earnings call) and 12.1% annualized in H1 2026 (Q2 2026 call), book value per share rose 22.0% in FY2025 inclusive of dividends to $24.21, and the consolidated combined ratio stayed below 100% through the cycle (92.6% FY2023, 93.9% FY2024, 94.7% FY2025) \u2014 returns above the cost of capital, earned by underwriting discipline and a diversified specialty + title platform rather than by any structural pricing power: capacity is fungible, brokers can move the business, and the combined ratio has drifted up for three straight years (95.3% in Q2 2026). A moat of 7+ would need durable pricing power or switching costs this record does not show. CAP = 2 + 1.3 x 5 = 8.5 years.",
+ "moat_score": 5,
+ "name": "Old Republic International Corporation",
+ "one_liner": "Diversified specialty P&C + title insurer with a moderate moat (5/10), scored on a five-year payable operating-income base of $3.28/share (not the float-inflated OCF base): at $39.68 the weighted IRR is 11.7% (Tier C, bear-to-bull band D to C) \u2014 it does not clear the 15% hurdle, which needs a price at or below the weighted IV@15% of $29.00.",
+ "probs_used": [
+  0.15,
+  0.3,
+  0.3,
+  0.15,
+  0.1
+ ],
+ "sector": "Finance / Specialty Property & Casualty and Title Insurance",
+ "tier_override": null,
+ "tier_override_reason": null
+}

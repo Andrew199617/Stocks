@@ -3135,6 +3135,53 @@
    "source": "Form 6-K furnished 2026-07-27 (accession 0001193125-26-318068), Exhibit 99.3, Condensed Consolidated Interim Financial Statements for the second quarter ended June 30, 2026: condensed consolidated statements of cash flows print six-month legs for 2026 and 2025 \u2014 net cash from operating activities $377,110K / $440,238K; purchases of property and equipment $100,686K / $118,331K; purchases of intangible assets $2,125K / $7,334K; share-based payment transactions $8,526K / $7,257K; Note 16 (Earnings per share) prints the H1 2026 weighted average number of diluted common shares, 82,413,114. FY2025 legs from the Form 40-F for the fiscal year ended December 31, 2025 as extracted in financials_history.csv (OCF $977,788K; purchases of property and equipment $273,220K; purchases of intangible assets $9,703K; share-based payments $15,148K).",
    "reason": "Bridged TTM under Andrew's Q4 ruling (2026-10-19: when an interim prints the TTM legs, IFRS names score on the bridged TTM), directed re-run ordered by Andrew 2026-10-20. Construction, per leg: TTM = FY2025 + H1 2026 \u2212 H1 2025 \u2192 OCF $914,660K; capex $260,069K (property and equipment $255,575K + intangible assets $4,494K \u2014 the same two-line rollup as the scored chain); SBC $16,417K; owner's earnings $638,174K. Divided by the latest filed diluted count, 82,413,114 (H1 2026 weighted average diluted shares, Note 16 \u2014 the ttm.py denominator convention), = $7.7436/share. The prior base was the median of the last 3 FY, $7.6544/share (weighted IRR 10.01%, Tier C); both bases are recorded side by side in analysis.md.",
    "kind": "filing"
+  },
+  {
+   "ticker": "ORI",
+   "field": "capex",
+   "value": 39300000.0,
+   "kind": "estimate",
+   "source": "Anchor: the filer's own filed depreciation (us-gaap Depreciation, financials_history.csv da column) \u2014 FY2023 $33,000,000, FY2024 $39,300,000, FY2025 $35,400,000; the value used is the top of that filed FY2023\u2013FY2025 range, FY2024's $39,300,000, as the maintenance-capex proxy. No capex value was ever filed: EDGAR companyfacts for CIK 74260 contains no PaymentsToAcquirePropertyPlantAndEquipment (or any candidate capex tag) fact in any period, and ORI's Consolidated Statements of Cash Flows present no purchases-of-property-and-equipment line \u2014 investing activities are maturities/sales/purchases of securities, other investments, and short-term investments, with premises/equipment spend folded into 'Other investments' / 'Other \u2014 net' and not isolable from the filing.",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 (and every other year) under every candidate tag. The depreciation-anchor exception (Andrew, 2026-10-18) applies: for capex only, when no capex value was ever filed, a capex estimate may anchor on the filer's filed depreciation, within 0.1x\u201310x of that anchor; $39,300,000 is 1.0x the FY2024 filed depreciation anchor (and within 0.1x\u201310x of every filed FY2023\u2013FY2025 depreciation figure). Maintenance capex for an insurer (premises, IT hardware/software, leasehold) is proxied by its own depreciation at the top of the filed range, the conservative end. The figure is immaterial to the verdict: $39.3M is about $0.16/share against the $3.28/share payable-earnings base actually scored, and that base is built from net operating income, which already carries the depreciation charge; the override's binding effect is to unblock the engine's OCF history.",
+   "date": "2026-10-20",
+   "base_used": "payable_5y",
+   "base_oe_without_override": 3.2788,
+   "base_oe_with_override": 3.2788,
+   "base_oe_impact_pct": 0.0,
+   "weighted_irr_without_override": 0.1172,
+   "weighted_irr_with_override": 0.1172,
+   "weighted_irr_impact_pp": 0.0,
+   "unblocks_tier": true
+  },
+  {
+   "ticker": "ORI",
+   "event": "base_override",
+   "date": "2026-10-20",
+   "value": 3.278768628200609,
+   "source": "Net income excluding investment gains (losses) \u2014 the company's non-GAAP operating income attributable to shareholders \u2014 from the GAAP reconciliation table 'Overall Results Attributable to Shareholders' in Old Republic's 2025 Annual Report (the same reconciliation management presents in its earnings releases and 10-K reporting): FY2021 $935.9M, FY2022 $845.1M, FY2023 $749.5M, FY2024 $797.0M, FY2025 $792.5M (all as printed, in millions to one decimal). Cross-checks: the Q4/FY2024 earnings release (PRNewswire, Jan 23, 2025) prints FY2024 $797.0M and FY2023 $749.5M on the identical line; the FY2025 results summary prints FY2025 $792.5M, down 0.6% vs FY2024; the 2026 proxy pay-versus-performance table's Operating Income column prints the same five figures. Denominator: FY2025 diluted shares 251,313,860 (financials_history.csv shares_diluted, latest row).",
+   "reason": "Insurer payable-earnings base (Andrew, 2026-10-19; WORKER_SPEC step 4): ORI is a P&C/specialty insurer (EDGAR SIC 6351, Surety Insurance \u2014 within the rule's 6331/6351 scope) whose releases and annual report print operating income attributable to common shareholders (labelled net income excluding investment gains/losses, i.e. operating income) every period. Consolidated OCF capitalizes the reserve build and unearned-premium float (FY2025 OCF adjustments include +$354.9M of loss-reserve build and +$260.6M of unearned premiums and other policyholder liabilities), so the engine's OCF-based median base of $4.4470/share is not what common shareholders earn \u2014 the filer's own operating income was $3.15/share diluted in FY2025. Construction: ($935,900,000 + $845,100,000 + $749,500,000 + $797,000,000 + $792,500,000) = $4,120,000,000; / 5 = $824,000,000; / 251,313,860 diluted shares = $3.2788/share. Five-year average rather than 3-year median because an insurance cycle is longer than three years: the window spans the FY2021 investment-gain year, the FY2022-23 soft underwriting years and the FY2024-25 hard-market years. Figures are as printed in millions to one decimal place, so each carries up to $50K of rounding. With this base in force the one-notch tier_override softening (2026-10-15) is NOT applied \u2014 make_score refuses the pair as double-counting; the sector-misfit low confidence and alert suppression stay.",
+   "kind": "filing",
+   "basis": "payable_earnings_5y",
+   "figures": [
+    935900000.0,
+    845100000.0,
+    749500000.0,
+    797000000.0,
+    792500000.0
+   ],
+   "shares": 251313860.0,
+   "ads_ratio": 1.0,
+   "pinned_per_share": 3.278768628200609,
+   "sic": "6351",
+   "base_used": "payable_5y",
+   "base_oe_without_override": 4.2907,
+   "base_oe_with_override": 3.2788,
+   "base_oe_impact_pct": -23.583,
+   "weighted_irr_without_override": 0.1447,
+   "weighted_irr_with_override": 0.1172,
+   "weighted_irr_impact_pp": -2.756,
+   "tier_by_numbers_without_override": "C",
+   "tier_by_numbers_with_override": "C"
   }
  ]
 }

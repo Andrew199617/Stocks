@@ -1,0 +1,283 @@
+{
+ "ticker": "ORI",
+ "cik": 74260,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T17:22:04-04:00",
+ "newest_filing_date": "2026-07-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000074260.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000008/ori-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ORI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ORI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "OLD REPUBLIC INTERNATIONAL CORP",
+  "cik": 74260,
+  "description": {
+   "text": "(a) General Description of Business. Old Republic International Corporation is a Chicago-based holding company engaged in the business of insurance underwriting and related services. It conducts its business through a number of operating companies, which utilize one or more insurance company subsidiaries to issue their policies, and is organized into two segments: Specialty Insurance and Title Insurance. References herein to such segments apply to the Company's subsidiaries engaged in these respective segments of business. The results of the Republic Financial Indemnity Group (RFIG) Run-off business, previously a reportable segment, are deemed immaterial and reflected within the Corporate & Other caption of this report through the effective date of its sale of May 31, 2024, along with the results of a small life and accident insurance business. \"Old Republic\" or \"the Company\" refers to Old Republic International Corporation, its subsidiaries, and any variable interest entities that meet the requirements for consolidation, as the context requires. The insurance business is distinguished from most others in that the prices (premiums) charged for most products are set without knowing what the ultimate loss costs will be. The Company also cannot know exactly when claims will be paid, which may be many years after a policy was issued or expired. This casts Old Republic as a risk-taking enterprise managed for the long run.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0000074260-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000008/ori-20251231.htm"
+  },
+  "description_short": "Old Republic is a leading specialty insurer that operates diverse property & casualty and title insurance companies. Founded in 1923 and a member of the Fortune 500®, we are a leader in underwriting and risk management services for business partners across the United States and Canada. Our specialized operating companies offer significant expertise in their fields, enabling us to provide tailored solutions that set us apart.",
+  "industry": "Property-Casualty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6351",
+  "sic_description": "Surety Insurance",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.oldrepublic.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "307 North Michigan Avenue",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60601",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "3123468100",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-28",
+  "first_sec_filing_form": "S-8",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000074260&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000074260-26-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000092/ori-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000074260-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000087/ori-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-01",
+   "period": "2026-06-30",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000074260-26-000079",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000079/ori-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-21",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000074260-26-000074",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000074/ori-20260521.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-18",
+   "period": "2026-05-13",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001213900-26-058446",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000121390026058446/ea0291114-8k_oldrepublic.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000074260-26-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000072/ori-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000074260-26-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000066/ori-20260423.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-31",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001140361-26-012317",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000114036126012317/ny20056001x1_def14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000074260-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000008/ori-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-22",
+   "period": "2026-01-22",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000074260-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426026000002/ori-20260122.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-12",
+   "period": "2025-12-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000074260-25-000166",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000166/ori-20251212.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000074260-25-000153",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000153/ori-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-24",
+   "period": "2025-10-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000074260-25-000148",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000148/ori-20251023.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-19",
+   "period": "2025-08-19",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000074260-25-000138",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000138/ori-20250819.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000074260-25-000133",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000133/ori-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-24",
+   "period": "2025-07-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000074260-25-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000131/ori-20250724.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-28",
+   "period": "2025-05-22",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000074260-25-000106",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000106/ori-20250522.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-19",
+   "period": "2025-05-19",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-050274",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000110465925050274/tm2515343d2_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000074260-25-000096",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000007426025000096/ori-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-28",
+   "period": "2025-04-28",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-25-039823",
+   "url": "https://www.sec.gov/Archives/edgar/data/74260/000110465925039823/tm2513172d3_8k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-26"
+ ]
+}
