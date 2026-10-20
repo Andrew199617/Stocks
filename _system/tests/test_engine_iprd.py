@@ -1578,11 +1578,14 @@ def test_reprice_withholds_a_record_whose_charge_was_deducted_by_hand():
 
 def _score_of(n):
     """The identity fields make_score copies from engine record n into score.json (implied_irr to 4 dp, iv_at_15 to
-    2 dp) — a score.json built from THIS run (reprice.score_matches_run / build_site.score_from_run)."""
+    2 dp) — a score.json built from THIS run (reprice.score_matches_run / build_site.score_from_run). [Codex review
+    r13] It carries the run's content_hash as dcf_content_hash, as make_score writes it: a release-5.6.0 score.json
+    without it is another run's."""
     return {"ticker": n.get("ticker"), "analysis_date": n.get("as_of"), "tier_by_numbers": n.get("tier_by_numbers"),
             "implied_irr": round(n["implied_irr_weighted"], 4), "price": n.get("price"),
             "base_oe_per_share": n.get("base_oe_per_share"), "iv_at_15": round(n["iv_at_15"], 2),
-            "engine_version": n.get("engine_version"), "engine_release": n.get("engine_release")}
+            "engine_version": n.get("engine_version"), "engine_release": n.get("engine_release"),
+            "dcf_content_hash": n.get("content_hash")}
 
 
 def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
@@ -2378,6 +2381,34 @@ def test_share_paid_residual_is_never_accrued_as_an_unpaid_cash_balance():
     assert blk["total"] == 0.0 and blk["charge_per_share"] == 0.0, blk
     assert n["weighted"] == _plain()["weighted"], "a share-paid charge moved the valuation"
 
+
+
+# --- Codex review round 13 of PR #47 ------------------------------------------------------------------------------
+def test_a_zero_foreign_currency_fact_converts_to_zero_without_a_rate():
+    """[Codex review r13, #4325104002, the main agent's shape] A non-USD acquired-IPR&D fact of exactly 0 with no FX
+    rate (none in the FX pass, none fetched) was unconvertible (expense None, excluded non_usd_no_rate), though zero is
+    zero at every rate: with a $100M FY2024 expense paid $40M in cash, a FY2025 EUR 0 expense beside a $60M USD cash
+    fact deducted nothing for FY2025 (the record was excluded, so the deferred-payment branch never ran) and the $60M
+    vanished with no flag — $40M deducted instead of $100M. Now a zero native fact converts to 0.0 without a rate:
+    FY2025 reads as a $0 expense, the $60M settles the unpaid remainder, exactly as with the same $0 filed in USD."""
+    def detect(unit, rates):
+        f = _facts(expense={2024: 100e6}, cash={2024: 40e6, 2025: 60e6})
+        _syn_put(f, EXPENSE, unit, _ctx("2025-01-01", "2025-12-31", 0.0, form="10-K", filed="2026-02-20"))
+        return E.iprd_detect(f, FY3, fx_rates=rates, checks=[], fx_fetch=lambda c, d: None)
+    usd = detect("USD", {})
+    assert sum(p["deducted"] for p in usd["periods"]) == 100e6, usd["periods"]
+    for out in (detect("EUR", {}), detect("EUR", {"EUR": {"2025-12-31": 1.1}})):
+        r25 = _leg(out, "fy", "2025-12-31")
+        assert r25["expense"] == 0.0 and r25["excluded"] is None and r25["deducted"] == 60e6, r25
+        assert r25.get("deferred_payment"), r25
+        assert sum(p["deducted"] for p in out["periods"]) == 100e6, out["periods"]
+        assert not out["ignored_cash_only"], out["ignored_cash_only"]
+        assert E.iprd_unresolved({"iprd_adjustment": {"periods": out["periods"]}}) is None
+    # the pick itself: zero needs no rate; a positive native fact with no rate stays unconvertible
+    assert E._iprd_pick({"EUR": (0, "2026-02-20")}, {}, "2025-12-31") == (0.0, "EUR", None, "2026-02-20")
+    assert E._iprd_pick({"EUR": (5e6, "2026-02-20")}, {}, "2025-12-31") == (None, "EUR", None, "2026-02-20")
+    assert E._iprd_pick({"EUR": (0, "2026-02-20"), "GBP": (5e6, "2026-02-21")}, {}, "2025-12-31") == (
+        None, "GBP", None, "2026-02-21"), "a zero unit never hides a positive unconvertible one"
 
 if __name__ == "__main__":
     fails = 0

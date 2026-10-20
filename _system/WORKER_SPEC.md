@@ -157,7 +157,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    fetches the expense period's rate; with none it deducts that period's USD cash but cannot know what is still
    unpaid): the period carries `unconverted_remainder_of` — block it the same way. While the folder is blocked, reprice.py and the site
    never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`; since Codex review
-   round 11, any run make_score refused or has not yet scored: reason `score_not_from_this_run`).
+   round 11, any run make_score refused or has not yet scored: reason `score_not_from_this_run`). A non-USD
+   fact of exactly 0 needs no rate (Codex review round 13 of PR #47): it reads as $0, never `non_usd_no_rate`.
    `ACQUIRED_IPRD_PARTIAL_PERIOD` (Codex review round 11 of PR #47): an acquired-IPR&D tag is filed for only
    part of a window period — a 10-Q's nine-month figure with no FY fact in the 10-K (SMMT FY2023), or a quarter
    alone — and no set of three-month / year-to-date facts tiles the period, so NOTHING is counted for that tag

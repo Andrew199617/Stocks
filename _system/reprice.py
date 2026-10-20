@@ -179,7 +179,7 @@ only scored folders). make_score copies the run's figures verbatim, so a
 release-mismatch rebuild of the same run still reprices. Live figures
 therefore pause between an engine run and its make_score.
 """
-import json, math, os, sys, datetime, hashlib
+import json, math, os, re, sys, datetime, hashlib
 from zoneinfo import ZoneInfo
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -518,11 +518,36 @@ def _same(a, b, tol):
     return a is not None and b is not None and abs(a - b) <= tol
 
 
+# [Codex review r13 of PR #47] the first engine release whose score.json must carry dcf_content_hash (make_score
+# writes it for every run since round 12; build_site.HASH_REQUIRED_FROM_RELEASE mirrors it, a test holds the two equal)
+HASH_REQUIRED_FROM_RELEASE = "5.6.0"
+
+
+def _release_tuple(rel):
+    """'5.6.0' -> (5, 6, 0); '5.5' -> (5, 5, 0); None / unparseable -> None (make_score.release_tuple)."""
+    m = re.match(r"\s*(\d+)\.(\d+)(?:\.(\d+))?", rel) if isinstance(rel, str) else None
+    return tuple(int(x or 0) for x in m.groups()) if m else None
+
+
+def requires_content_hash(d):
+    """[Codex review r13 of PR #47] True when a score.json / dcf_numbers.json names an engine_release at or after
+    HASH_REQUIRED_FROM_RELEASE: its score is the run's only through dcf_content_hash."""
+    t = _release_tuple(d.get("engine_release")) if isinstance(d, dict) else None
+    return t is not None and t >= _release_tuple(HASH_REQUIRED_FROM_RELEASE)
+
+
 def run_hash_problem(scored, numbers):
-    """[Codex review r12 of PR #47] None when score.json carries no dcf_content_hash (a score built before round 12:
-    the headline comparison decides alone) or when it equals the run's content_hash and that hash matches the
-    record's content (make_score's own integrity check); else the mismatch."""
+    """[Codex review r12 of PR #47] None when score.json's dcf_content_hash equals the run's content_hash and that
+    hash matches the record's content (make_score's own integrity check); else the mismatch. [Codex review r13 of
+    PR #47] A score.json with no dcf_content_hash is judged on the headline comparison alone only when neither it
+    nor the run is release HASH_REQUIRED_FROM_RELEASE or later (a run from an earlier release); a current-release
+    score without it is another run's (make_score writes the hash for every such run)."""
     if "dcf_content_hash" not in scored:
+        if requires_content_hash(scored) or requires_content_hash(numbers):
+            rel = scored.get("engine_release") if requires_content_hash(scored) else numbers.get("engine_release")
+            return (f"score.json carries no dcf_content_hash though the run is release {rel} (make_score writes it "
+                    f"for every run since release {HASH_REQUIRED_FROM_RELEASE}: rounded headline figures are not "
+                    "run identity)")
         return None
     h, ch = scored.get("dcf_content_hash"), numbers.get("content_hash")
     if not h or h != ch:
@@ -543,7 +568,9 @@ def score_matches_run(scored, numbers):
     [Codex review r12 of PR #47] Nor are rounded headline figures: a score.json
     carrying dcf_content_hash (make_score writes it since round 12) must name
     this run's content_hash, itself valid (run_hash_problem); one without it
-    (every score built earlier) is judged on the headline figures as before."""
+    is judged on the headline figures as before only for a run from before
+    release 5.6.0 ([Codex review r13 of PR #47]: a current-release score.json
+    with no hash is another run's)."""
     if not isinstance(scored, dict):
         return False, ["score.json is not an object"]
     mm = []

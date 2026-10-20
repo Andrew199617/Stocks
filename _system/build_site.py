@@ -507,18 +507,38 @@ def _same(a, b, tol):
     return a is not None and b is not None and abs(a - b) <= tol
 
 
+# [Codex review r13 of PR #47] reprice.HASH_REQUIRED_FROM_RELEASE mirrored (a test holds the two equal)
+HASH_REQUIRED_FROM_RELEASE = "5.6.0"
+
+
+def _requires_content_hash(d):
+    """reprice.requires_content_hash mirrored: an engine_release at or after HASH_REQUIRED_FROM_RELEASE."""
+    rt = lambda rel: (tuple(int(x or 0) for x in m.groups())
+                      if (m := re.match(r"\s*(\d+)\.(\d+)(?:\.(\d+))?", rel) if isinstance(rel, str) else None)
+                      else None)
+    t = rt(d.get("engine_release")) if isinstance(d, dict) else None
+    return t is not None and t >= rt(HASH_REQUIRED_FROM_RELEASE)
+
+
 def score_from_run(score, numbers):
     """[Codex review r11 of PR #47] (matches, mismatches): whether score.json was built by make_score.py from THIS
     dcf_numbers.json — reprice.score_matches_run mirrored here so the site needs no reprice import (a test holds the
     two equal): make_score copies the run's figures verbatim (implied_irr to 4 dp, iv_at_15 to 2 dp), and the run's
     numbers tier must be the tier of its own weighted IRR. [Codex review r12 of PR #47] A score.json carrying
     dcf_content_hash must name this run's content_hash, itself valid over the record (reprice.run_hash_problem); one
-    without it (built before round 12) is judged on the headline figures alone."""
+    without it is judged on the headline figures alone only for a run from before release 5.6.0 ([Codex review r13
+    of PR #47]: a current-release score.json with no hash is another run's)."""
     if not isinstance(score, dict):
         return False, ["score.json is not an object"]
     n = _d(numbers)
     mm = []
-    if "dcf_content_hash" in score:
+    if "dcf_content_hash" not in score:
+        if _requires_content_hash(score) or _requires_content_hash(n):
+            rel = score.get("engine_release") if _requires_content_hash(score) else n.get("engine_release")
+            mm.append(f"score.json carries no dcf_content_hash though the run is release {rel} (make_score writes it "
+                      f"for every run since release {HASH_REQUIRED_FROM_RELEASE}: rounded headline figures are not "
+                      "run identity)")
+    else:
         h, ch = score.get("dcf_content_hash"), n.get("content_hash")
         if not h or h != ch:
             mm.append(f"dcf_content_hash {h!r} vs run content_hash {ch!r} (another engine run)")
@@ -549,6 +569,22 @@ def score_from_run(score, numbers):
     if score.get("ticker") and n.get("ticker") and str(score["ticker"]).upper() != str(n["ticker"]).upper():
         mm.append(f"ticker {score.get('ticker')!r} vs run {n.get('ticker')!r}")
     return not mm, mm
+
+
+def run_repriceable(n):
+    """[Codex review r13 of PR #47] reprice.check_eligible's structural tests mirrored (a test holds the two equal
+    over the committed folders; its acquired-IPR&D skips are live_shown's own reasons): engine v5+, no uncovered data
+    gap, a numbers tier other than F, scenarios and inputs recorded, a positive base and a price."""
+    n = _d(n)
+    ev = n.get("engine_version")
+    if not isinstance(ev, (int, float)) or ev < 5:
+        return False
+    if n.get("data_gap_uncovered") or n.get("tier_by_numbers") is None or n.get("tier_by_numbers") == "F":
+        return False
+    if not n.get("scenarios") or not n.get("inputs"):
+        return False
+    base = num(n.get("base_oe_per_share"))
+    return base is not None and base > 0 and num(n.get("price")) is not None
 
 
 def iprd_unresolved(n):
@@ -585,7 +621,12 @@ def live_shown(c):
     acquired-IPR&D charge (iprd_unresolved): reprice.py skips it too, and the score.json on disk is an earlier run's.
     [Codex review r11 of PR #47] And, reason score_not_from_this_run, for any live.json beside a score.json not built
     from this dcf_numbers.json (score_from_run), whatever make_score's reason: live figures pause until the run is
-    scored (reprice.py writes none either). A record with no run record has no run to compare (never published)."""
+    scored (reprice.py writes none either). A record with no run record has no run to compare (never published).
+    [Codex review r13 of PR #47] That check runs with or without a live.json on file (as the IPR&D reasons do; price
+    and price_date null without one): reprice.py removes the live.json beside a score from another run, and the
+    record must still say why it has no live figures. Without a live.json it applies only to a run reprice.py would
+    otherwise reprice (run_repriceable: a Tier F, untiered or gapped run has no live figures to withhold) beside a
+    score.json on file."""
     lv = c.get("live")
     unresolved = iprd_unresolved(c.get("numbers"))
     if unresolved or _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
@@ -595,13 +636,15 @@ def live_shown(c):
                       "price_date": _date10(lv.get("price_date")) if ok else None,
                       "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
                       "method": None, "note": IPRD_UNRESOLVED_NOTE if unresolved else IPRD_WITHHELD_NOTE}
-    if not live_ok(lv):
-        return None, None
-    if _d(c.get("numbers")) and not score_from_run(c.get("score"), c.get("numbers"))[0]:
-        return None, {"reason": "score_not_from_this_run", "price": num(lv.get("price")),
-                      "price_date": _date10(lv.get("price_date")),
+    ok = live_ok(lv)
+    if (_d(c.get("numbers")) and (ok or (c.get("score") is not None and run_repriceable(c.get("numbers"))))
+            and not score_from_run(c.get("score"), c.get("numbers"))[0]):
+        return None, {"reason": "score_not_from_this_run", "price": num(lv.get("price")) if ok else None,
+                      "price_date": _date10(lv.get("price_date")) if ok else None,
                       "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
                       "method": None, "note": SCORE_NOT_FROM_RUN_NOTE}
+    if not ok:
+        return None, None
     pd = _date10(lv.get("price_date"))
     sa, ls = _date10(_d(c.get("score")).get("analysis_date")), _date10(lv.get("scored_date"))
     if sa and ls and ls < sa:

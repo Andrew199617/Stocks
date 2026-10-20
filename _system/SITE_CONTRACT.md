@@ -1791,7 +1791,9 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `content_hash` there since round 12 — that hash must equal dcf_numbers.json's `content_hash`, itself valid over the
   record (`reprice.run_hash_problem`): another run with the same rounded headline figures, or a run edited after the
   engine stamped it, is not this score's run; a score.json without the field, built earlier, is judged on the headline
-  figures alone).
+  figures alone — [Codex review round 13 of PR #47] only when neither it nor the run is release
+  `HASH_REQUIRED_FROM_RELEASE` (5.6.0) or later (`reprice.requires_content_hash`; make_score writes the hash for every
+  such run): a current-release score.json without it is another run's).
   Until Codex review round 11 of PR #47 a score.json from another run still wrote live.json (`score_json_fresh` false,
   `score_mismatch` listing every disagreement, a `score_note`, no override); now it writes NO live.json (`check_score`; a
   stale one is removed; the main agent's general rule): the folder's live figures pause until make_score scores the
@@ -1834,6 +1836,11 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   reprice.py writes no live.json for it either, and live figures pause between an engine run and its make_score. The more
   specific `iprd_unresolved` / `iprd_share_count_unverified` reasons keep precedence; a record without a dcf_numbers.json
   is never published, so it is not checked. The app says "Live figures withheld — the latest engine run is not scored yet".
+  [Codex review round 13 of PR #47] It is set with or without a live.json on file (`price` / `price_date` null without
+  one): reprice.py removes the live.json beside a score from another run, and the record still says why it has no live
+  figures. Without a live.json it applies only to a run reprice.py would otherwise reprice (`build_site.run_repriceable`,
+  mirroring `reprice.check_eligible`; a test holds them equal over the committed folders) beside a score.json: a
+  Tier F, untiered or gapped run has no live figures to withhold.
 - **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
   `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
   OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,

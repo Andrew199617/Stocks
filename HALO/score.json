@@ -62,6 +62,7 @@
  "analysis_date": "2026-10-19",
  "in_scope_under_40b": true,
  "engine_release": "5.6.0",
+ "dcf_content_hash": "e348e9e7823126b053eb9e3a1523696a0e4c3d53b6d0967949b91f97582d58b1",
  "irr_bear": 0.1787,
  "irr_bull": 0.2598,
  "tier_bear": "B",

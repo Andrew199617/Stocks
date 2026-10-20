@@ -1180,9 +1180,10 @@ def test_live_figures_are_bound_to_the_runs_content_hash():
             assert "score.json is not from this engine run" in str(e), str(e)
         shown, w = B.live_shown({"numbers": other, "score": s, "live": live})
         assert shown is None and w["reason"] == "score_not_from_this_run", w
-    # a pre-round-12 score.json (no dcf_content_hash): the headline comparison, as before
+    # a score.json without dcf_content_hash: the headline comparison only for a run from before release 5.6.0
+    # (round 13 — a current-release score must carry the hash); see the round-13 test below
     old = {k: v for k, v in s.items() if k != "dcf_content_hash"}
-    assert R.score_matches_run(old, _stamp(edited)) == B.score_from_run(old, _stamp(edited)) == (True, [])
+    assert not R.score_matches_run(old, _stamp(edited))[0] and not B.score_from_run(old, _stamp(edited))[0]
 
 
 def test_a_share_paid_residual_check_on_a_cash_basis_period_is_scored_and_kept_in_sync():
@@ -1208,6 +1209,155 @@ def test_a_share_paid_residual_check_on_a_cash_basis_period_is_scored_and_kept_i
     assert r3.rc == 0, r3.err[-800:]
     assert "assumes the earlier remainder was payable in cash" in r3.result["key"], r3.result["key"]
 
+
+
+# --- Codex review round 13 of PR #47 ------------------------------------------------------------------------------
+def _legacy_release(d, rel="5.5.0"):
+    d = copy.deepcopy(d)
+    if rel is None:
+        d.pop("engine_release", None)
+    else:
+        d["engine_release"] = rel
+    return d
+
+
+def _r13_runs():
+    """(score.json with its hash, the run it was built from, another same-day 5.6.0 run with the same headline)."""
+    n = _one_time()
+    r = _score(n)
+    assert r.rc == 0, r.err[-800:]
+    s = r.result["score"]
+    own = _stamp(dict(copy.deepcopy(n), ticker="TST"))
+    other = copy.deepcopy(own)
+    other["iprd_adjustment"]["deferred_payments_rolled_out"] = [{"period": "2021-12-31", "amount": 5e6}]
+    other["iv_at_20"] = (other.get("iv_at_20") or 0.0) + 7.0
+    return s, own, _stamp(other)
+
+
+def test_a_current_release_score_must_carry_the_runs_content_hash():
+    """[Codex review r13, #4325103975, the main agent's shape] Round 12 bound live figures to the run's content hash
+    only when score.json carried dcf_content_hash; one without it fell back to the rounded headline figures whatever
+    its release, so a release-5.6.0 score.json with no hash (HALO's, committed before round 12) matched another
+    same-day 5.6.0 run with the same headline (scenario paths and the IPR&D record moved, re-stamped). Now
+    reprice.score_matches_run and build_site.score_from_run require the hash whenever the score's or the run's
+    engine_release is 5.6.0 or later (make_score writes it for every such run): a hashless current-release score is
+    another run's (no live figures, live_withheld score_not_from_this_run); the headline fallback stays only for a
+    run from an earlier release (every pre-5.6 folder on file, unchanged)."""
+    import reprice as R
+    import build_site as B
+    s, own, other = _r13_runs()
+    hashless = {k: v for k, v in s.items() if k != "dcf_content_hash"}
+    assert hashless["engine_release"] == own["engine_release"] == E.ENGINE_RELEASE == "5.6.0"
+    for run in (own, other):   # even its own run: a current-release score names its run by the hash, nothing else
+        ok, mm = R.score_matches_run(hashless, run)
+        assert not ok and any("dcf_content_hash" in x and "5.6.0" in x for x in mm), mm
+        assert B.score_from_run(hashless, run) == (ok, mm), (B.score_from_run(hashless, run), mm)
+    day = own["as_of"]
+    try:
+        R.reprice(other, 25.0, day, hashless, today=day)
+        raise AssertionError("repriced a current-release run beside a hashless score.json")
+    except R.Skip as e:
+        assert "score.json is not from this engine run" in str(e), str(e)
+    live = R.reprice(own, 25.0, day, s, today=day)
+    shown, w = B.live_shown({"numbers": other, "score": hashless, "live": live})
+    assert shown is None and w["reason"] == "score_not_from_this_run", w
+    # with the hash the score is its own run's and not the other's
+    assert R.score_matches_run(s, own) == B.score_from_run(s, own) == (True, [])
+    assert not R.score_matches_run(s, other)[0] and not B.score_from_run(s, other)[0]
+    # a run from an earlier release keeps the headline comparison (every pre-5.6 score on file)
+    for rel in ("5.5.0", "5.4.0", None):
+        lo, lrun = _legacy_release(hashless, rel), _stamp(_legacy_release(other, rel))
+        assert R.score_matches_run(lo, lrun) == B.score_from_run(lo, lrun) == (True, []), (rel, R.score_matches_run(lo, lrun))
+    # either side at 5.6.0 or later requires the hash (the release mismatch is reported too)
+    lo = _legacy_release(hashless)
+    ok, mm = R.score_matches_run(lo, other)
+    assert not ok and any("dcf_content_hash" in x for x in mm), mm
+    assert B.score_from_run(lo, other) == (ok, mm)
+    assert R.HASH_REQUIRED_FROM_RELEASE == B.HASH_REQUIRED_FROM_RELEASE == "5.6.0"
+
+
+def test_every_committed_current_release_score_carries_its_runs_content_hash():
+    """[Codex review r13, #4325103975] The committed data under the rule above: every score.json on file whose run is
+    release 5.6.0 or later (HALO, rebuilt by make_score this round) carries dcf_content_hash equal to its
+    dcf_numbers.json content_hash and matches its run, so it keeps its live figures."""
+    import reprice as R
+    import build_site as B
+    root = os.path.dirname(SYS)
+    seen, elig = [], 0
+    for t in sorted(os.listdir(root)):
+        sp, np_ = os.path.join(root, t, "score.json"), os.path.join(root, t, "dcf_numbers.json")
+        if not (os.path.isfile(sp) and os.path.isfile(np_)):
+            continue
+        with open(sp, encoding="utf-8") as f:
+            sc = json.load(f)
+        with open(np_, encoding="utf-8") as f:
+            nm = json.load(f)
+        try:
+            R.check_eligible(nm)
+            ok = True
+        except R.Skip:
+            ok = False
+        # build_site.run_repriceable mirrors reprice.check_eligible (round 13: the no-live.json notice uses it)
+        assert B.run_repriceable(nm) == ok, (t, ok)
+        elig += ok
+        if not (R.requires_content_hash(sc) or R.requires_content_hash(nm)):
+            continue
+        seen.append(t)
+        assert sc.get("dcf_content_hash") == nm.get("content_hash"), (t, sc.get("dcf_content_hash"), nm.get("content_hash"))
+        assert R.score_matches_run(sc, nm) == B.score_from_run(sc, nm) == (True, []), (t, R.score_matches_run(sc, nm))
+    assert "HALO" in seen and elig > 400, (seen, elig)
+
+
+def test_a_foreign_score_is_reported_after_reprice_removed_live_json():
+    """[Codex review r13, #4325103992, the main agent's shape] reprice.py removes live.json when score.json is not from
+    the run, and live_shown returned (None, None) before its score_from_run check whenever no live.json was on file,
+    so after the normal reprice cleanup the page combined the old run's verdict with the new run's forecast and flags
+    with no withholding notice. score_from_run now runs before the live_ok early return (as the IPR&D reasons do):
+    the record says why it has no live figures, price and price_date null when no live.json is on file."""
+    import reprice as R
+    import build_site as B
+    import shutil
+    import tempfile
+    s, own, other = _r13_runs()
+    for lv in (None, {"price": None}):
+        shown, w = B.live_shown({"numbers": other, "score": s, "live": lv})
+        assert shown is None and w is not None and w["reason"] == "score_not_from_this_run", w
+        assert w["price"] is None and w["price_date"] is None and w["note"] == B.SCORE_NOT_FROM_RUN_NOTE, w
+        assert w["scored_date"] == s["analysis_date"], w
+    assert B.live_shown({"numbers": own, "score": s, "live": None}) == (None, None), "its own run: nothing withheld"
+    assert B.live_shown({"numbers": other, "score": None, "live": None}) == (None, None), "no score.json: nothing to withhold"
+    # a run reprice.py never reprices (Tier F, no tier, a gap) has no live figures to withhold: no notice without a
+    # live.json (score_from_run never matches a Tier F run: it has no weighted IRR)
+    for change in ({"tier_by_numbers": "F", "implied_irr_weighted": None}, {"tier_by_numbers": None},
+                   {"data_gap_uncovered": ["DATA_GAP:shares"]}, {"scenarios": {}}):
+        ineligible = _stamp(dict(copy.deepcopy(other), **change))
+        assert not B.run_repriceable(ineligible) and not B.score_from_run(s, ineligible)[0], change
+        assert B.live_shown({"numbers": ineligible, "score": s, "live": None}) == (None, None), change
+    # end to end: reprice_folder removes the stale live.json, and the folder's record still says why
+    day = own["as_of"]
+    live = R.reprice(own, 25.0, day, s, today=day)
+    tmp = tempfile.mkdtemp(prefix="reprice_r13_")
+    saved = R.BASE
+    try:
+        d = os.path.join(tmp, "TST")
+        os.makedirs(d)
+        for fn, obj in (("dcf_numbers.json", other), ("score.json", s), ("live.json", live)):
+            with open(os.path.join(d, fn), "w", encoding="utf-8") as f:
+                json.dump(obj, f)
+        R.BASE = tmp
+        try:
+            R.reprice_folder("TST")
+            raise AssertionError("reprice_folder wrote live.json")
+        except R.Skip:
+            pass
+        assert not os.path.exists(os.path.join(d, "live.json")), "the stale live.json stayed"
+        c = B.load_company(d)
+        assert c["live"] is None
+        shown, w = B.live_shown(c)
+        assert shown is None and w["reason"] == "score_not_from_this_run" and w["price"] is None, w
+    finally:
+        R.BASE = saved
+        shutil.rmtree(tmp, ignore_errors=True)
 
 if __name__ == "__main__":
     fails = 0

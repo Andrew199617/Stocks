@@ -395,7 +395,10 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `live_withheld` reason `score_not_from_this_run` — live figures pause between an engine run and its
    make_score, so a page showing live figures beside a score from another run is P1. Since round 12 a
    score.json carrying `dcf_content_hash` is the run's only when that hash is the run's (valid) `content_hash`;
-   rounded headline figures alone are identity only for a score built before round 12.
+   rounded headline figures alone are identity only for a run from before release 5.6.0 (round 13: a
+   current-release score.json without the hash is another run's), and the notice stands with or without a
+   live.json on file (round 13: reprice.py removes it), so a page mixing an old verdict with a new run's
+   forecast and no `live_withheld` notice is P1.
    [Codex review round 11 of PR #47, the main agent's shape] A period whose expense or cash figure carries
    `context_basis` `aggregated_quarters` was summed from the three-month / year-to-date facts in
    `aggregated_contexts` (no fact covered the period exactly): those contexts must tile the period with no gap

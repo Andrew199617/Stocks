@@ -334,6 +334,11 @@ PAIRS = [
     ("_system/dcf_engine.py", 'rec["residual_paid_in_shares"] = ', "residual_paid_in_shares", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", 'rec["deferred_payment_assumption"] = (', "deferred_payment_assumption",
      [SYS_README, CONTRACT]),
+    # Codex review round 13 of PR #47: the hash required for current-release scores; the notice without live.json
+    ("_system/reprice.py", 'HASH_REQUIRED_FROM_RELEASE = "5.6.0"', "HASH_REQUIRED_FROM_RELEASE", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", "def requires_content_hash(", "requires_content_hash", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def run_repriceable(", "run_repriceable", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def _iprd_is_zero(", "_iprd_pick", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

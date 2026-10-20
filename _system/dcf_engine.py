@@ -447,6 +447,9 @@ refuses it) — before, it was dropped with no trace and the deduction understat
 cash outflow is the preferred amount, so the expense never stands in for it (before, the expense was deducted with
 no flag). reprice.py and build_site withhold live figures for any run make_score refuses for an unresolved charge
 (iprd_unresolved).
+[Codex review round 13 of PR #47] A non-USD fact of exactly 0 is 0 at every rate: it converts to 0.0 with no rate
+(_iprd_pick), so a $0 foreign-currency expense never excludes its period non_usd_no_rate and hides a USD cash
+payment of the window's unpaid remainder.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -2313,7 +2316,11 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
 def _iprd_pick(by_unit, fx_rates, period):
     """(value_usd, unit, rate, filed) for one period's facts of one tag ({unit: (value, filed)}): the USD fact when
     filed, else a non-USD fact converted at the FX pass's own period-end rate for its currency (fx_rates {ccy: {date:
-    rate}}); (None, unit, None, filed) when only a non-USD fact with no rate exists; None when nothing is filed."""
+    rate}}); (None, unit, None, filed) when only a non-USD fact with no rate exists; None when nothing is filed.
+    [Codex review r13 of PR #47] A non-USD fact of exactly 0 is 0 at every rate: (0.0, unit, None, filed) when every
+    unrated unit's fact is zero — before, it was unconvertible (expense None, excluded non_usd_no_rate) and a usable
+    USD cash fact beside it was dropped with no flag; a positive unrated fact still comes back unconvertible (the
+    nonzero unit is the one named)."""
     if not by_unit:
         return None
     if "USD" in by_unit:
@@ -2324,8 +2331,17 @@ def _iprd_pick(by_unit, fx_rates, period):
         if r is not None:
             v, fd = by_unit[u]
             return float(v) * r, u, r, fd
-    u = sorted(by_unit)[0]
+    nonzero = [u for u in sorted(by_unit) if not _iprd_is_zero(by_unit[u][0])]
+    if not nonzero:
+        u = sorted(by_unit)[0]
+        return 0.0, u, None, by_unit[u][1]
+    u = nonzero[0]
     return None, u, None, by_unit[u][1]
+
+
+def _iprd_is_zero(v):
+    """True for a filed figure of exactly 0 (a number, not a bool)."""
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and v == 0
 
 
 def _iprd_ytd_facts(facts, tag, start, end):
