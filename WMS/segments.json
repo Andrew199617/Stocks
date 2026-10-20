@@ -1,0 +1,682 @@
+{
+ "ticker": "WMS",
+ "cik": 1604028,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-Q",
+   "accession": "0001604028-26-000007",
+   "filed": "2026-02-05",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1604028/000160402826000007/wms-20251231_htm.xml"
+  },
+  {
+   "form": "10-K",
+   "accession": "0001604028-26-000019",
+   "filed": "2026-05-21",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1604028/000160402826000019/wms-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001604028-26-000037",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1604028/000160402826000037/wms-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "wms:StormwaterSegmentMember",
+     "label": "Stormwater Segment",
+     "values": [
+      2361520000,
+      2326370000,
+      2397414000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8215,
+      0.801,
+      0.7859
+     ],
+     "growth_yoy": [
+      null,
+      -0.0149,
+      0.0305
+     ]
+    },
+    {
+     "member": "wms:WastewaterSegmentMember",
+     "label": "Wastewater Segment",
+     "values": [
+      512953000,
+      577875000,
+      652962000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1785,
+      0.199,
+      0.2141
+     ],
+     "growth_yoy": [
+      null,
+      0.1266,
+      0.1299
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2874473000,
+     2904245000,
+     3050376000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-03-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q4 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q4 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "wms:StormwaterMember",
+     "label": "Stormwater",
+     "values": [
+      null,
+      null,
+      651527000,
+      null,
+      null,
+      809376000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.7851,
+      null,
+      null,
+      0.8085
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0.2423
+     ]
+    },
+    {
+     "member": "wms:WastewaterSegmentMember",
+     "label": "Wastewater Segment",
+     "values": [
+      null,
+      null,
+      178353000,
+      null,
+      null,
+      191736000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      null,
+      0.2149,
+      null,
+      null,
+      0.1915
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null,
+      null,
+      0.075
+     ]
+    },
+    {
+     "member": "wms:InternationalSegmentMember",
+     "label": "International Segment",
+     "values": [
+      50363000,
+      null,
+      null,
+      49091000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0729,
+      null,
+      null,
+      0.0708,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0253,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wms:PipeSegmentMember",
+     "label": "Pipe Segment",
+     "values": [
+      339629000,
+      null,
+      null,
+      326713000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4918,
+      null,
+      null,
+      0.4712,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.038,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wms:InfiltratorWaterTechnologiesSegmentMember",
+     "label": "Infiltrator Water Technologies Segment",
+     "values": [
+      150013000,
+      null,
+      null,
+      152881000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2172,
+      null,
+      null,
+      0.2205,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0191,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wms:AlliedProductsAndOtherBusinessSegmentsMember",
+     "label": "Allied Products And Other Business Segments",
+     "values": [
+      150533000,
+      null,
+      null,
+      164669000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.218,
+      null,
+      null,
+      0.2375,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0939,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "wms:ReportableSegmentMember",
+     "label": "Reportable Segment",
+     "values": [
+      565593000,
+      null,
+      null,
+      557324000,
+      null,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8191,
+      null,
+      null,
+      0.8038,
+      null,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0146,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      29350000,
+      -193184000,
+      -25685000,
+      32020000,
+      -200468000,
+      -28750000
+     ],
+     "derived": [
+      false,
+      true,
+      false,
+      false,
+      true,
+      false
+     ],
+     "share_of_total": [
+      0.0425,
+      -0.3137,
+      -0.031,
+      0.0462,
+      -0.2962,
+      -0.0287
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.091,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     690538000,
+     615761000,
+     829880000,
+     693354000,
+     676761000,
+     1001112000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2024-12-31",
+    "2025-06-30",
+    "2025-12-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q3 FY2025",
+    "Q1 FY2026",
+    "Q3 FY2026",
+    "Q1 FY2027"
+   ],
+   "rows": [
+    {
+     "member": "wms:StormwaterMember",
+     "label": "Stormwater",
+     "values": [
+      null,
+      28896000,
+      null,
+      40504000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.5753,
+      null,
+      0.6516
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.4017
+     ]
+    },
+    {
+     "member": "wms:WastewaterSegmentMember",
+     "label": "Wastewater Segment",
+     "values": [
+      null,
+      19254000,
+      null,
+      18867000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.3833,
+      null,
+      0.3035
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.0201
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      null,
+      2078000,
+      null,
+      2786000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0414,
+      null,
+      0.0448
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.3407
+     ]
+    },
+    {
+     "member": "us-gaap:MaterialReconcilingItemsMember",
+     "label": "Segment Reporting, Reconciling Item, Excluding Corporate Nonsegment",
+     "values": [
+      30754000,
+      null,
+      35141000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      null,
+      1.0,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1426,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     30754000,
+     50228000,
+     35141000,
+     62157000
+    ],
+    "basis": "mixed: sum of rows, consolidated fact, sum of rows, consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-03-31",
+    "2025-03-31",
+    "2026-03-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      2666704000,
+      2709615000,
+      2857553000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9277,
+      0.933,
+      0.9368
+     ],
+     "growth_yoy": [
+      null,
+      0.0161,
+      0.0546
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      126050000,
+      119492000,
+      119270000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0439,
+      0.0411,
+      0.0391
+     ],
+     "growth_yoy": [
+      null,
+      -0.052,
+      -0.0019
+     ]
+    },
+    {
+     "member": "wms:OtherCountriesMember",
+     "label": "Other Countries",
+     "values": [
+      81719000,
+      75138000,
+      73553000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0284,
+      0.0259,
+      0.0241
+     ],
+     "growth_yoy": [
+      null,
+      -0.0805,
+      -0.0211
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2874473000,
+     2904245000,
+     3050376000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Intersegment Eliminations' (us-gaap:IntersegmentEliminationMember) dropped: the other rows already tie to the consolidated total without it",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Reportable Segment, Aggregation before Other Operating Segment' (us-gaap:ReportableSegmentAggregationBeforeOtherOperatingSegmentMember) dropped: it is the parent of Infiltrator Water Technologies Segment, International Segment, Pipe Segment in the filing's definition linkbase",
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: rows sum to 97.1% of the consolidated total for 2026-06-30 (ties_to_total: false)"
+ ],
+ "complete": true
+}
