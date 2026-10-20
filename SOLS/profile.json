@@ -1,0 +1,298 @@
+{
+ "ticker": "SOLS",
+ "cik": 2064953,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T03:05:28-04:00",
+ "newest_filing_date": "2026-08-27",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002064953.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000008/sols-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/SOLS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/SOLS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Solstice Advanced Materials Inc.",
+  "cik": 2064953,
+  "description": {
+   "text": "Solstice Advanced Materials Inc. (“Solstice,” “Solstice Advanced Materials,” “we,” “us,” “our,” or the “Company”) is a global, differentiated advanced materials company and a leading global provider of refrigerants, blowing agents, conversion services for the nuclear energy sector, semiconductor materials, protective fibers and healthcare packaging. We operate through two segments, reported as Refrigerants & Applied Solutions (“RAS”) and Electronic & Specialty Materials (“ESM”). Our business is recognized as an industry innovator as well as a technology and quality leader, supported by some of the industry’s most well-known brands. Our RAS segment is a leading manufacturer of low global warming potential (“LGWP”) refrigerants, blowing agents, solvents, and aerosol materials, as well as conversion services for the nuclear energy sector. RAS serves the end markets of cooling, air conditioning and refrigeration (“HVAC/R”), automotive, nuclear energy, building and appliance insulation, and healthcare. RAS products include, among others, LGWP refrigerants, blowing agents, aerosol propellants, cleaning solvents, high-barrier pharmaceutical packaging materials and conversion services for nuclear energy providers. Our products are distributed and sold through well-known brands like Solstice, Genetron, and Aclar. Our ESM segment is a leading provider of electronic materials, high-strength fibers and laboratory life science chemicals.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "accession": "0002064953-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000008/sols-20251231.htm"
+  },
+  "description_short": "Solstice Advanced Materials is a prominent global specialty materials company dedicated to advancing science for smarter outcomes. They offer high-performance solutions that are integral to various industries, such as refrigerants, semiconductor manufacturing, data center cooling, alternative energy, protective fibers, and healthcare packaging. The company is known for developing next-generation materials under renowned brands like Solstice, Genetron, Aclar, Spectra, Fluka, and Hydranal. Solstice partners with over 3,000 customers across more than 120 countries and territories, supported by a portfolio of over 5,700 patents. With approximately 4,000 employees worldwide, Solstice is a leading innovator in materials science.",
+  "industry": "Major Chemicals",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "2800",
+  "sic_description": "Chemicals & Allied Products",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.solstice.com",
+  "headquarters": "Morris Plains, NJ",
+  "address": {
+   "street": "115 Tabor Rd",
+   "city": "Morris Plains",
+   "state": "NJ",
+   "zip": "07950-2546",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-19"
+  },
+  "phone": "704-627-6200",
+  "employees": {
+   "count": 4100,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had approximately 4,100 employees, over 300 of whom are technologists and engineers in our R&D operations.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000008/sols-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-08-21",
+  "first_sec_filing_form": "10-12B",
+  "former_names": [
+   "Solstice Advanced Materials, LLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002064953&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-27",
+   "period": "2026-08-27",
+   "items": [
+    "1.01",
+    "1.02",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Termination of agreement; Reg FD; Other events",
+   "accession": "0001104659-26-102503",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000110465926102503/tm2620579d9_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002064953-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000087/sols-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002064953-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000085/sols-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-24",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001104659-26-086878",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000110465926086878/tm2620579d3_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001213900-26-079407",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000121390026079407/ea0298500-8k425_solstice.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-17",
+   "period": "2026-07-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0002064953-26-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000081/sols-20260717.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-07-09",
+   "period": "2026-07-06",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001213900-26-076547",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000121390026076547/ea0297404-8ka1425_sols.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-06",
+   "items": [
+    "1.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Other events",
+   "accession": "0001213900-26-075618",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000121390026075618/ea0297143-8k425_solstice.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001213900-26-075267",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000121390026075267/ea0297095-8k425_solstice.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-22",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001104659-26-065732",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000110465926065732/tm2615477d1_8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002064953-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000047/sols-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-06",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002064953-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000045/sols-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-24",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0002064953-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000040/sols-20260424.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-02",
+   "period": "2026-05-22",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0002064953-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000034/sols-20260402.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-24",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0002064953-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000013/sols-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-20",
+   "period": "2026-02-18",
+   "items": [
+    "5.08",
+    "8.01"
+   ],
+   "description": "Shareholder nominations; Other events",
+   "accession": "0002064953-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000010/sols-20260218.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0002064953-26-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000008/sols-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0002064953-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495326000003/sols-20260211.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-13",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0002064953-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495325000018/sols-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-06",
+   "period": "2025-11-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0002064953-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/2064953/000206495325000013/sols-20251106.htm"
+  }
+ ],
+ "warnings": []
+}
