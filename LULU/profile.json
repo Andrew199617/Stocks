@@ -1,0 +1,306 @@
+{
+ "ticker": "LULU",
+ "cik": 1397187,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T22:38:58-04:00",
+ "newest_filing_date": "2026-10-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001397187.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/LULU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/LULU/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "lululemon athletica inc.",
+  "cik": 1397187,
+  "description": {
+   "text": "lululemon athletica inc. is principally a designer, distributor, and retailer of technical athletic apparel, footwear, and accessories. Our vision is to create transformative products and experiences that build meaningful connections, unlocking greater possibility and wellbeing for all. Since our inception, we have fostered a distinctive corporate culture; we promote a set of core values in our business which include taking personal responsibility, acting with courage, valuing connection and inclusion, and choosing to have fun. These core values attract passionate and motivated employees who are driven to achieve personal and professional goals, and share our purpose \"to elevate human potential by helping people feel their best.\" In this Annual Report on Form 10-K for the fiscal year ended February 1, 2026, lululemon athletica inc. (together with its subsidiaries) is referred to as \"lululemon,\" \"the Company,\" \"we,\" \"us,\" or \"our.\" We refer to the fiscal year ended February 1, 2026 as \"2025,\" the fiscal year ended February 2, 2025 as \"2024.\" Our next fiscal year ends on January 31, 2027 and is referred to as \"2026.\"",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-03-17",
+   "period": "2026-02-01",
+   "accession": "0001397187-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm"
+  },
+  "description_short": "lululemon athletica inc. (NASDAQ:LULU) is a technical athletic apparel, footwear, and accessories company for yoga, running, training, and most other activities, creating transformational products and experiences that build meaningful connections, unlocking greater possibility and wellbeing for all. Setting the bar in innovation of fabrics and functional designs, lululemon works with yogis and athletes in local communities around the world for continuous research and product feedback.",
+  "industry": "Apparel",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "2300",
+  "sic_description": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "0131",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.lululemon.com",
+  "headquarters": "Vancouver, British Columbia",
+  "address": {
+   "street": "1818 Cornwall Avenue",
+   "city": "Vancouver",
+   "state": "British Columbia",
+   "zip": "V6J 1C7",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-03-17"
+  },
+  "phone": "604-732-6124",
+  "employees": {
+   "count": 39000,
+   "as_of": "2026-02-01",
+   "evidence": "As of February 1, 2026, we had approximately 39,000 employees worldwide.",
+   "form": "10-K",
+   "filed": "2026-03-17",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2007-05-01",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Lululemon Corp."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001397187&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-07",
+   "period": "2026-09-30",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001397187-26-000131",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000131/lulu-20260930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-14",
+   "period": "2026-09-08",
+   "items": [
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment",
+   "accession": "0001397187-26-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000129/lulu-20260908.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-09-03",
+   "period": "2026-08-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001397187-26-000127",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000127/lulu-20260802.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-03",
+   "period": "2026-09-03",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001397187-26-000126",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000126/lulu-20260903.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001397187-26-000120",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000120/lulu-20260813.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-26",
+   "period": "2026-06-24",
+   "items": [
+    "5.02",
+    "5.07"
+   ],
+   "description": "Officer/director change; Shareholder vote",
+   "accession": "0001397187-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000088/lulu-20260624.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-06-04",
+   "period": "2026-05-03",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001397187-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000078/lulu-20260503.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-04",
+   "period": "2026-06-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001397187-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000077/lulu-20260604.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-26",
+   "items": [
+    "1.01",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Reg FD",
+   "accession": "0001213900-26-061531",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000121390026061531/ea0292191-8k_lululemon.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-26",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001213900-26-048264",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000121390026048264/ea0287949-8k_lululemon.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-21",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001397187-26-000070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000070/lulu-20260421.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-03-17",
+   "period": "2026-02-01",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001397187-26-000020",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-17",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001397187-26-000019",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000019/lulu-20260317.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-17",
+   "period": "2026-03-13",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001397187-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000017/lulu-20260313.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001397187-26-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000005/lulu-20260112.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-29",
+   "period": "2025-12-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001213900-25-126119",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000121390025126119/ea0271178-8k_lulu.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-12-11",
+   "period": "2025-11-02",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001397187-25-000055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718725000055/lulu-20251102.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-11",
+   "period": "2025-12-03",
+   "items": [
+    "2.02",
+    "5.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Officer/director change; Other events",
+   "accession": "0001397187-25-000054",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718725000054/lulu-20251203.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-21",
+   "period": "2025-11-17",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001397187-25-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718725000047/lulu-20251117.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-21",
+   "period": "2025-10-15",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001397187-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718725000045/lulu-20251015.htm"
+  }
+ ],
+ "warnings": []
+}

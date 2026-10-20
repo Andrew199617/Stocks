@@ -1,0 +1,146 @@
+{
+ "ticker": "LULU",
+ "cik": 1397187,
+ "entity": "lululemon athletica inc.",
+ "fy_end": "2026-02-01",
+ "ytd_end": "2026-08-02",
+ "inputs": {
+  "ocf": {
+   "fy": 1602477000,
+   "fy_period": [
+    "2025-02-03",
+    "2026-02-01"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 209722000,
+   "ytd_prior_period": [
+    "2025-02-03",
+    "2025-08-03"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 589278000,
+   "ytd_current_period": [
+    "2026-02-02",
+    "2026-08-02"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1982033000
+  },
+  "capex": {
+   "fy": 680802000,
+   "fy_period": [
+    "2025-02-03",
+    "2026-02-01"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 330161000,
+   "ytd_prior_period": [
+    "2025-02-03",
+    "2025-08-03"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 277056000,
+   "ytd_current_period": [
+    "2026-02-02",
+    "2026-08-02"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 627697000
+  },
+  "sbc": {
+   "fy": 62203000,
+   "fy_period": [
+    "2025-02-03",
+    "2026-02-01"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 21247000,
+   "ytd_prior_period": [
+    "2025-02-03",
+    "2025-08-03"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 50275000,
+   "ytd_current_period": [
+    "2026-02-02",
+    "2026-08-02"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 91231000
+  },
+  "shares_diluted": {
+   "fy": 119068000,
+   "fy_period": [
+    "2025-02-03",
+    "2026-02-01"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 120262000,
+   "ytd_prior_period": [
+    "2025-02-03",
+    "2025-08-03"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 114201000,
+   "ytd_current_period": [
+    "2026-02-02",
+    "2026-08-02"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1982033000,
+ "ttm_capex": 627697000,
+ "ttm_sbc": 91231000,
+ "ttm_shares_diluted": 114201000,
+ "ttm_oe_total": 1263105000,
+ "ttm_oe_per_share": 11.060367247222004,
+ "warnings": [],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 680802000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_prior": {
+   "ppe": 330161000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_current": {
+   "ppe": 277056000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}
