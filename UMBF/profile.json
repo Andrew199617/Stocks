@@ -1,0 +1,297 @@
+{
+ "ticker": "UMBF",
+ "cik": 101382,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T23:51:15-04:00",
+ "newest_filing_date": "2026-09-01",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000101382.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/umbf-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/UMBF/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/UMBF/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "UMB FINANCIAL CORP",
+  "cik": 101382,
+  "description": {
+   "text": "UMB Financial Corporation (together with its consolidated subsidiaries, unless the context requires otherwise, the Company) is a financial holding company that is headquartered in Kansas City, Missouri. The Company provides banking services and asset servicing to its customers in the United States and around the globe. The Company was organized as a corporation under Missouri law in 1967 and is registered as a bank holding company under the Bank Holding Company Act of 1956, as amended (the BHCA) and a financial holding company under the Gramm-Leach-Bliley Act of 1999, as amended (the GLBA). The Company currently owns all of the outstanding stock of one national bank and several nonbank subsidiaries. On January 31, 2025, the Company acquired all of the outstanding stock of Heartland Financial USA, Inc., a Delaware corporation (HTLF), in an all-stock transaction, issuing a total of 23.6 million shares of the Company’s common stock and 4.6 million depositary shares, each representing a 1/400th interest in a share of the Company’s 7.00% Fixed-Rate Reset Non-Cumulative Perpetual Preferred Stock, Series A (the Company’s preferred stock).",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-076496",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/umbf-20251231.htm"
+  },
+  "description_short": "UMB Financial Corporation (Nasdaq: UMBF) is a financial services company headquartered in Kansas City, Mo. UMB offers commercial banking, which includes comprehensive deposit, lending, investment and retirement plan services; personal banking, which includes comprehensive deposit, lending, wealth management and financial planning services; and institutional banking, which includes asset servicing, corporate trust solutions, investment banking and healthcare services. UMB operates branches throughout Missouri, Arizona, California, Colorado, Iowa, Kansas, Illinois, Minnesota, Nebraska, New Mexico, Oklahoma, Texas, Utah, and Wisconsin. As the company's reach continues to grow, it also serves business clients nationwide and institutional clients in several countries. For more information, visit UMB.com, UMB Blog, UMB Facebook and UMB LinkedIn.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6021",
+  "sic_description": "National Commercial Banks",
+  "state_of_incorporation": "MO",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.umb.com",
+  "headquarters": "Kansas City, Missouri",
+  "address": {
+   "street": "1010 Grand Boulevard",
+   "city": "Kansas City",
+   "state": "Missouri",
+   "zip": "64106",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-26"
+  },
+  "phone": "8168607000",
+  "employees": {
+   "count": 5222,
+   "as_of": "2025-12-31",
+   "evidence": "On a full-time equivalent basis on December 31, 2025, the Company and its subsidiaries employed 5,222 associates across the country.",
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/umbf-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-02-14",
+  "first_sec_filing_form": "SC 13G/A",
+  "former_names": [
+   "UNITED MISSOURI BANCSHARES INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000101382&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-09-01",
+   "period": "2026-09-01",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-378379",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526378379/umbf-20260901.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-30",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-325054",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526325054/umbf-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-320980",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526320980/umbf-20260728.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-28",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-197753",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526197753/umbf-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-194310",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526194310/umbf-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-28",
+   "period": "2026-04-28",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-186932",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526186932/umbf-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-12",
+   "period": "2026-04-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-103203",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526103203/d82141ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-076496",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526076496/umbf-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-10",
+   "period": "2026-02-09",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-044638",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526044638/umbf-20260209.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-27",
+   "period": "2026-01-27",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-26-024400",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312526024400/umbf-20260127.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-30",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-25-257610",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525257610/umbf-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001193125-25-253477",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525253477/umbf-20251028.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-27",
+   "period": "2025-08-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-25-189680",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525189680/umbf-20250827.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-07-31",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-100572",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000095017025100572/umbf-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-29",
+   "period": "2025-07-29",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000950170-25-099619",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000095017025099619/umbf-20250729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-15",
+   "period": "2025-07-15",
+   "items": [
+    "5.03",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Charter or bylaw amendment; Other events",
+   "accession": "0001193125-25-159412",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525159412/d15364d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-12",
+   "items": [
+    "3.03",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment",
+   "accession": "0001193125-25-139927",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525139927/d37089d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-12",
+   "period": "2025-06-12",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-139563",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525139563/d91628d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-30",
+   "period": "2025-05-29",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-25-130904",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000119312525130904/d92024d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-02",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000950170-25-062287",
+   "url": "https://www.sec.gov/Archives/edgar/data/101382/000095017025062287/umbf-20250331.htm"
+  }
+ ],
+ "warnings": []
+}
