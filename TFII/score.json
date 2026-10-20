@@ -6,9 +6,9 @@
  "market_cap_b": 9.31,
  "market_cap_basis": "diluted_latest",
  "engine_version": 5,
- "base_oe_per_share": 7.654390076908036,
+ "base_oe_per_share": 7.743597699754435,
  "base_year": "2025",
- "base_source": "median_of_last_3_fy_oe_per_share",
+ "base_source": "agent_supplied_ttm_override",
  "moat_score": 4,
  "moat_justification": "Scale and a proven decentralized acquisition platform in a fragmented industry, but freight is a commodity with low switching costs: ROIC proxy fell from 24.4% in FY2022 to 8.6% in FY2025 and operating margin from 13.0% to 7.2% through the freight recession, showing no pricing power that survives the cycle.",
  "cap_years": 7.2,
@@ -20,53 +20,53 @@
   "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
   "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
   "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
-  "TIER_BAND: bear-case tier D (7.5%) vs bull-case tier C (11.9%) \u2014 the verdict spans tiers; size any position to the bear end"
+  "TIER_BAND: bear-case tier D (7.6%) vs bull-case tier C (12.1%) \u2014 the verdict spans tiers; size any position to the bear end"
  ],
  "scenarios": {
   "super_bear": {
    "prob": 0.1,
-   "iv_at_15": 29.4,
-   "irr": 0.0545
+   "iv_at_15": 29.74,
+   "irr": 0.0548
   },
   "bear": {
    "prob": 0.25,
-   "iv_at_15": 46.46,
-   "irr": 0.0754
+   "iv_at_15": 47.01,
+   "irr": 0.076
   },
   "base": {
    "prob": 0.3,
-   "iv_at_15": 62.66,
-   "irr": 0.0952
+   "iv_at_15": 63.39,
+   "irr": 0.096
   },
   "bull": {
    "prob": 0.25,
-   "iv_at_15": 83.44,
-   "irr": 0.1195
+   "iv_at_15": 84.41,
+   "irr": 0.1205
   },
   "super_bull": {
    "prob": 0.1,
-   "iv_at_15": 123.3,
-   "irr": 0.1619
+   "iv_at_15": 124.73,
+   "irr": 0.1634
   }
  },
- "iv_at_15": 66.54,
- "iv_at_12": 87.95,
- "implied_irr": 0.1001,
- "implied_irr_base_case": 0.0952,
- "upside_at_15_pct": -40.4,
+ "iv_at_15": 67.32,
+ "iv_at_12": 88.97,
+ "implied_irr": 0.101,
+ "implied_irr_base_case": 0.096,
+ "upside_at_15_pct": -39.7,
  "tier_by_numbers": "C",
  "tier_final": "C",
  "confidence": "low",
- "one_liner": "North American trucking consolidator, moat 4/10 \u2014 Tier C: weighted IRR 10.0%, IV@15% $66.54 vs $111.59 price; does not clear the 15% hurdle until ~$67, and with the bear case at 7.5% (Tier D) any position should be sized to the bear end.",
+ "one_liner": "North American trucking consolidator, moat 4/10 \u2014 Tier C on the bridged-TTM base (Q4 re-score 2026-10-20): weighted IRR 10.1%, IV@15% $67.32 vs $111.59 price; the median base gives 10.0% \u2014 Tier C on both; does not clear the 15% hurdle until ~$67, and with the bear case at 7.6% (Tier D) any position should be sized to the bear end.",
  "analysis_date": "2026-10-20",
  "in_scope_under_40b": true,
  "engine_release": "5.5.0",
- "irr_bear": 0.0754,
- "irr_bull": 0.1195,
+ "irr_bear": 0.076,
+ "irr_bull": 0.1205,
  "tier_bear": "D",
  "tier_bull": "C",
- "iv_at_20": 47.24,
- "iv_at_25": 36.55,
+ "iv_at_20": 47.79,
+ "iv_at_25": 36.98,
  "f_subtype": null,
  "irr_at_floor": false,
  "net_debt_latest": 2367789000,

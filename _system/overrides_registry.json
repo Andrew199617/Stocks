@@ -3120,6 +3120,21 @@
    "ratio": 1.0,
    "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-03-20), cover page: securities registered pursuant to Section 12(b) of the Act are 'Common Shares, par value EUR 0.01 per share', trading symbol QGEN, name of exchange: New York Stock Exchange \u2014 the NYSE security is the common share itself, not an ADS",
    "reason": "QIAGEN is a direct-listed foreign private issuer: one NYSE-traded QGEN share is one common share, so no ADS conversion applies; per-share figures and the traded price are on the same basis."
+  },
+  {
+   "ticker": "TFII",
+   "event": "manual_price",
+   "date": "2026-10-20",
+   "value": 111.59
+  },
+  {
+   "ticker": "TFII",
+   "event": "base_override",
+   "date": "2026-10-20",
+   "value": 7.743597699754435,
+   "source": "Form 6-K furnished 2026-07-27 (accession 0001193125-26-318068), Exhibit 99.3, Condensed Consolidated Interim Financial Statements for the second quarter ended June 30, 2026: condensed consolidated statements of cash flows print six-month legs for 2026 and 2025 \u2014 net cash from operating activities $377,110K / $440,238K; purchases of property and equipment $100,686K / $118,331K; purchases of intangible assets $2,125K / $7,334K; share-based payment transactions $8,526K / $7,257K; Note 16 (Earnings per share) prints the H1 2026 weighted average number of diluted common shares, 82,413,114. FY2025 legs from the Form 40-F for the fiscal year ended December 31, 2025 as extracted in financials_history.csv (OCF $977,788K; purchases of property and equipment $273,220K; purchases of intangible assets $9,703K; share-based payments $15,148K).",
+   "reason": "Bridged TTM under Andrew's Q4 ruling (2026-10-19: when an interim prints the TTM legs, IFRS names score on the bridged TTM), directed re-run ordered by Andrew 2026-10-20. Construction, per leg: TTM = FY2025 + H1 2026 \u2212 H1 2025 \u2192 OCF $914,660K; capex $260,069K (property and equipment $255,575K + intangible assets $4,494K \u2014 the same two-line rollup as the scored chain); SBC $16,417K; owner's earnings $638,174K. Divided by the latest filed diluted count, 82,413,114 (H1 2026 weighted average diluted shares, Note 16 \u2014 the ttm.py denominator convention), = $7.7436/share. The prior base was the median of the last 3 FY, $7.6544/share (weighted IRR 10.01%, Tier C); both bases are recorded side by side in analysis.md.",
+   "kind": "filing"
   }
  ]
 }
