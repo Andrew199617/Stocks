@@ -1,0 +1,176 @@
+{
+ "ticker": "KLAR",
+ "cik": 2003292,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T23:19:20-04:00",
+ "newest_filing_date": "2026-08-18",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0002003292.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000007/klar-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/KLAR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/KLAR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Klarna Group plc",
+  "cik": 2003292,
+  "description": {
+   "text": "Our mission is to reimagine how consumers spend and save in their daily lives. We help people save time, money and put them in control of their finances through AI-powered, transparent and flexible financial services. Our vision is a world where Klarna empowers everyone, everywhere, through seamless commerce experiences—as a personalized, trusted AI-enabled assistant making financial empowerment effortless.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "accession": "0002003292-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000007/klar-20251231.htm"
+  },
+  "description_short": "Klarna is the everyday finance network. With over 120 million global active Klarna users and 3.8 million transactions per day, Klarna's AI-powered payments and commerce network is empowering people to pay smarter with a mission to be available everywhere for everything. Consumers can pay with Klarna online, in-store and through Apple Pay & Google Pay. Over 1.2 million retailers trust Klarna's innovative solutions to drive growth and loyalty, including Uber, H&M, Saks, Sephora, Macy's, Ikea, Expedia Group, Nike and Airbnb. Klarna is listed on the New York Stock Exchange (NYSE: KLAR). For more information, visit Klarna.com.",
+  "industry": "Finance: Consumer Services",
+  "sector": "Finance",
+  "region": null,
+  "sic": "6199",
+  "sic_description": "Finance Services",
+  "state_of_incorporation": "X0",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Non-accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": null,
+  "headquarters": "London",
+  "address": {
+   "street": "10 York Road",
+   "city": "London",
+   "state": null,
+   "zip": "SE1 7ND",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-02-26"
+  },
+  "phone": "0046734205795",
+  "employees": {
+   "count": 2831,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, 2024, and 2023, we had approximately 2,831, 3,422, and 4,352 full-time employees, respectively.",
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000007/klar-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2025-03-14",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0002003292&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-08-18",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-057573",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026057573/form6-kxklarnagroupplcxh126.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-28",
+   "period": "2026-07-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-049939",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026049939/form6-kxklarnagroupplcappl.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-06",
+   "period": "2026-07-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-047131",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026047131/form6-kxklarnagroupplcilca.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-01",
+   "period": "2026-07-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-046370",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026046370/form6-kxklarnagroupplcomega.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-23",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-044898",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026044898/form6-kxklarnagroupplc2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-27",
+   "period": "2026-05-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-038366",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026038366/form6-kxklarnagroupplc2026.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-05-14",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-26-034877",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828026034877/form6-kxklarnagroupplcxq126.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-02-26",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0002003292-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000007/klar-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0002003292-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000004/form6-kxklarnagroupplcearn.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0002003292-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000200329226000002/form6-kxklarnagroupplcearn.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-18",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-052805",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828025052805/form6-kxklarnagroupplcinte.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-18",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001628280-25-052803",
+   "url": "https://www.sec.gov/Archives/edgar/data/2003292/000162828025052803/form6-kxklarnagroupplcearn.htm"
+  }
+ ],
+ "warnings": []
+}

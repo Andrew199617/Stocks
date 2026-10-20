@@ -2971,6 +2971,22 @@
    "weighted_irr_impact_pp": -14.802,
    "tier_by_numbers_without_override": "S",
    "tier_by_numbers_with_override": "C"
+  },
+  {
+   "ticker": "KLAR",
+   "event": "tier_override",
+   "date": "2026-10-19",
+   "tier_by_numbers": "B",
+   "tier_final": "C",
+   "reason": "SECTOR_MODEL_MISMATCH softening (Andrew's standing rule, 2026-10-15): Klarna is a deposit-funded lender (SIC 6199, Swedish banking licence), so consolidated OCF capitalizes balance-sheet flows \u2014 deposit inflows and consumer-lending book movements \u2014 exactly as insurer OCF capitalizes float. The median OCF base is $450,000,000 total (FY2024 oe_conservative, financials_history.csv; $1.2349/share) against payable earnings of $21,000,000 net income in that same FY2024, a -$273,000,000 net loss in FY2025 and adjusted operating profit of $65M in FY2025 (company release) \u2014 the base runs ~7-20x above what common shareholders actually earned in any filed year. Tier-by-numbers B (18.47% weighted IRR) therefore overstates distributable owner's earnings; sized down one notch to C, confidence low. The bear end of the band (15.4%) is the ceiling of what the numbers support, and on a payable-earnings base the name does not clear 15% at $13.08."
+  },
+  {
+   "ticker": "KLAR",
+   "event": "ads_ratio",
+   "date": "2026-10-19",
+   "ratio": 1.0,
+   "source": "Form 20-F for the fiscal year ended December 31, 2025 (filed 2026-02-26, EDGAR klar-20251231.htm): the registered security is the ordinary share itself; the company's IPO prospectus (Form F-1, declared effective 2025-09-09) and its IPO completion release state the offering was of ordinary shares at $40.00 per ordinary share and that the ordinary shares began trading on the New York Stock Exchange on September 10, 2025 under the symbol KLAR \u2014 there is no ADS programme and no depositary ratio",
+   "reason": "DATA_GAP:ads_ratio \u2014 Klarna is a direct-listed foreign private issuer: one NYSE-traded KLAR share is one ordinary share, so per-ordinary-share figures are directly comparable to the traded price with no scaling."
   }
  ]
 }
