@@ -3153,6 +3153,23 @@
    "weighted_irr_with_override": 0.1301,
    "weighted_irr_impact_pp": 0.0,
    "unblocks_tier": true
+  },
+  {
+   "ticker": "FRT",
+   "field": "capex",
+   "value": 291338000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12, accession 0000034903-26-000017), Consolidated Statements of Cash Flows, investing activities lines 'Capital expenditures - development and redevelopment' ($179,086 thousand FY2025, $139,534 thousand FY2024, $214,062 thousand FY2023) and 'Capital expenditures - other' ($112,252 thousand FY2025, $107,226 thousand FY2024, $97,058 thousand FY2023) \u2014 totals $291,338 thousand / $246,760 thousand / $311,120 thousand; the override value is the median of the three filed years, which is also the FY2025 total",
+   "reason": "DATA_GAP:capex \u2014 capex missing for FY2023, FY2024, FY2025 of the last 3 under every candidate tag the engine reads, because Federal Realty tags those two cash-flow lines only under its own extension tags (frt:CapitalExpendituresDevelopmentRedevelopment and frt:CapitalExpendituresOther in the FY2025 10-K's inline XBRL), which EDGAR companyfacts does not carry under any us-gaap candidate tag; the engine-read PaymentsForCapitalImprovements series ends at FY2019 ($82,836,000), so the override sits 3.5x that last filed value, inside the 0.1x\u201310x band. The engine applies this single value to every missing period (in fact FY2020\u2013FY2025 are all assumed_zero in the preliminary history). Against the true per-year filed totals it understates FY2023 capex by $19,782,000 (flattering that year's OE), overstates FY2024 by $44,578,000 (conservative direction) and is exact for FY2025. The score is pinned to the TTM base (ttm.json), whose capex leg is this same FY2025-level spend. Excluded, deliberately: 'Acquisition of real estate' ($735,274 thousand / $273,927 thousand / $60,628 thousand for FY2025/24/23, same statement) \u2014 property acquisition (growth) spend presented separately by the filer, not capital expenditures, the same treatment as WPC/KIM/REG; and 'Leasing costs' ($25,361 thousand / $30,809 thousand / $23,510 thousand), a separate investing line the filer does not label capital expenditures.",
+   "date": "2026-10-20",
+   "base_used": "ttm",
+   "base_oe_without_override": 7.0612,
+   "base_oe_with_override": 3.6995,
+   "base_oe_impact_pct": -47.609,
+   "weighted_irr_without_override": 0.103,
+   "weighted_irr_with_override": 0.0694,
+   "weighted_irr_impact_pp": -3.352,
+   "unblocks_tier": true
   }
  ]
 }
