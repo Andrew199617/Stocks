@@ -1682,6 +1682,27 @@ test('Split since scoring: filed OE/share years still on the pre-split basis are
   assert.deepEqual(App.yearAgoQuarterAdj(synthetic, { period: 'Q1 2026' }, synthetic.fundamentals.quarterly), App.yearAgoQuarter({ period: 'Q1 2026' }, synthetic.fundamentals.quarterly));
 });
 
+test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the base OE card; no block, no line', () => {
+  const rec = JSON.parse(JSON.stringify(synthetic));
+  rec.score.iprd_adjustment = { treatment: 'one_time_value_deduction', total: 284887000, charge_per_share: 2.3333797464207318,
+    periods: [{ period: '2024-12-31', window: 'fy', amount_basis: 'expense', deducted: 0 },
+      { period: '2025-12-31', window: 'fy', amount_basis: 'expense', deducted: 284887000 }] };
+  const line = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value and from the price each IRR is solved at; the base OE is unchanged.';
+  assert.equal(App.iprdNote(rec), line);
+  assert.ok(App.renderOverview(rec).includes('<p class="note">' + line + '</p>'), 'under the base OE card');
+  const both = JSON.parse(JSON.stringify(rec));
+  both.score.iprd_adjustment.periods.push({ period: '2026-06-30', start: '2026-01-01', window: 'ttm_current_ytd', amount_basis: 'cash_outflow', deducted: 5e6 });
+  assert.ok(App.iprdNote(both).includes('(FY2025, expense basis; YTD 2026-06-30, cash basis)'), App.iprdNote(both));
+  const numbersOnly = JSON.parse(JSON.stringify(rec)); numbersOnly.numbers.iprd_adjustment = numbersOnly.score.iprd_adjustment; delete numbersOnly.score.iprd_adjustment;
+  assert.equal(App.iprdNote(numbersOnly), line, 'read from the engine record when score.json has none');
+  const am = JSON.parse(JSON.stringify(rec)); am.score.iprd_adjustment.treatment = 'amortized_in_base';
+  assert.equal(App.iprdNote(am), 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.');
+  const none = JSON.parse(JSON.stringify(rec)); none.score.iprd_adjustment.treatment = 'none';
+  assert.equal(App.iprdNote(none), '');
+  assert.equal(App.iprdNote(synthetic), '', 'a record without the block');
+  assert.ok(!App.renderOverview(synthetic).includes('Acquired IPR'), 'nothing new on a pre-5.6 record');
+});
+
 Promise.all(pending).then(() => {
   const failed = results.filter((r) => r[1]);
   results.forEach((r) => console.log((r[1] ? 'FAIL ' : 'ok   ') + r[0]));

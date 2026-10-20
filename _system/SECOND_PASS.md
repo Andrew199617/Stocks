@@ -148,7 +148,12 @@ the new engine run.
    `python3 _system/build_site.py`. Finish silently.
 7. **Material finding**: quantify it; rerun the engine with the pass-1 sanity checks
    (`python3 _system/dcf_engine.py <T> --moat ... --probs ... [--offsets] [--mults] [--ttm] [--gterm] [--cik]`,
-   `--ttm` after a fresh, saving `ttm.py` run when the base moved); write the new judgment.json
+   `--ttm` after a fresh, saving `ttm.py` run when the base moved; a judgment.json carrying an
+   `iprd_amortized` `base_override` (engine 5.6) is rebuilt from that rerun's dcf_numbers.json
+   `iprd_adjustment` and ttm.json exactly as WORKER_SPEC step 8 builds it — the changed inputs move its
+   native base, so the old value no longer reproduces — and the final rerun passes
+   `--base-oe-ps <the new value>` instead of `--ttm`; drop the declaration when the rerun no longer
+   raises `ACQUIRED_IPRD_RECURRENT`); write the new judgment.json
    with the `second_pass {verdict: "changed", prior_*}` object; `make_score.py <T>`; write
    second_pass.md with what pass 1 missed, the evidence with sources, old vs new inputs,
    old vs new scenario table and weighted result; append a dated

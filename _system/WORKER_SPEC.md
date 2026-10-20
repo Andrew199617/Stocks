@@ -1,9 +1,10 @@
 # Pass-1 worker spec (single source — both sweep crons point here)
 
 Run ONE company through the owner's-earnings DCF sweep. Method: v5 data gate + engine
-release 5.5 (normalized base, blended growth, moat-driven fade, five scenarios, IRR band;
+release 5.6 (normalized base, blended growth, moat-driven fade, five scenarios, IRR band;
 5.5 adds the share-basis checks, additive capex with intangible purchases, SBC tag
-reconciliation and USD-declared overrides — README "Fixes & lessons", Engine 5.5).
+reconciliation and USD-declared overrides; 5.6 the one-time acquired-IPR&D value
+adjustment — README "Fixes & lessons", Engine 5.5 / Engine 5.6).
 `README.md` has the method and "Fixes & lessons"; `DCF_AUDIT.md` explains why each rule
 exists; `APP/` is the worked example of the output shape (including an override).
 
@@ -36,7 +37,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      entry carries `refresh_reason: NEW_FILING…`), read its analysis.md first; judgment.json
      and its overrides carry over and the tools apply them, except its `second_pass` object:
      remove it, since it reviewed the previous score (pass 2 reviews the new one, and
-     make_score.py would otherwise copy the old badge onto it). Write the new analysis.md as a
+     make_score.py would otherwise copy the old badge onto it). An `iprd_amortized`
+     `base_override` is not carried either: rebuild it from this re-score's preliminary run
+     (step 8 — the new filing moves its native base, window and share count, so the carried
+     value no longer reproduces and the engine refuses it), or drop it when that run no longer
+     raises `ACQUIRED_IPRD_RECURRENT`. `iprd_cash_flow_check` entries carry over (they record
+     what a filed cash-flow statement shows); add one for each new period the run names. Write the new analysis.md as a
      dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
@@ -50,7 +56,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `ttm.json`) and pass `--ttm` in the final run; quote ttm.json's legs. IFRS filers: ttm.py
    reads us-gaap only and exits non-zero — use the median base and say so.
    `BASE_DIVERGENCE`: say which base is distorted and why. `NI_OCF_DIVERGENCE`: find the
-   one-off. `BASIS_BREAK_SUSPECT`: name the divestiture / M&A / restatement and pick growth
+   one-off (an acquired-IPR&D expense added back in OCF is not "OCF unaffected": it is
+   `ACQUIRED_IPRD_CHARGE`'s, below). `BASIS_BREAK_SUSPECT`: name the divestiture / M&A / restatement and pick growth
    inputs that do not straddle it. `HIGH_NET_DEBT` / `BIG_NET_CASH` / `DEBT_TAGS_BLANK`
    (5.4: no debt tag found — net debt is unknown, not zero): state the balance sheet from
    the filing. `SHARES_FALLBACK` (5.4): history years on a non-diluted count — note it.
@@ -95,6 +102,44 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    misfit suppression and the low-confidence grade stay. Life insurers, banks and REITs,
    and any filer without that printed line, keep the 2026-10-15 rule.
    `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
+   **Acquired IPR&D (engine 5.6 — Andrew's 2026-10-19 decision: the one-time deduction, cash preferred, the
+   5% flag, recurrence and the impairment non-goal; the no-cliff deduction, the cash-flow check and the
+   amortized declaration are main-agent / review additions awaiting his ratification).**
+   `ACQUIRED_IPRD_UNCONFIRMED` (fixer review round): the period's charge was expensed with no us-gaap
+   investing cash tag, and companyfacts cannot show where the payment went — NOTHING is deducted for it and
+   make_score refuses to score until you resolve it. Open that 10-K's (or 10-Q's) cash-flow statement
+   (EDGAR filing index → FilingSummary.xml → the cash-flow R page) and declare in judgment.json one
+   `iprd_cash_flow_check` entry per period the flag names: `{period: <the period end>, window: "fy" |
+   "ttm_current_ytd", amount: <the expense as the flag prints it>, presentation, source: <accession, R page
+   and the exact line(s)>}`, presentation `added_back_paid_in_investing` when operating activities add the
+   charge back as non-cash and investing activities show the payment (HALO: "Acquired in-process research and
+   development expense" added back, "Acquisition of in-process research and development" in investing —
+   deducted), `inside_operating_cash_flow` when there is no add-back (NBIX FY2023–25 — the cash went out
+   through OCF, which OE already carries; not deducted), `paid_in_shares` when it was added back as a non-cash
+   stock payment with no investing outflow (the dilution is in the share count; not deducted). Rerun the
+   engine; quote the line in analysis.md. Never guess: a filing you cannot read is `NEEDS_MAIN_AGENT:
+   iprd — cash-flow presentation unknown: <period> <amount>`.
+   `ACQUIRED_IPRD_CHARGE`: in-process R&D bought in
+   an asset acquisition was expensed in the base window (ASC 805) — the expense is added back in OCF and
+   the payment is not capex (the cash tag, or your cash-flow check), so owner's earnings never saw it. The engine deducts the charge ONCE: window
+   total ÷ the base's share count (× `ads_ratio`) comes off every scenario's IV and is added to the price
+   every IRR is solved at; the base is never cut. The flag fires at ≥ 5% of the base OE total, but the
+   deduction applies to any qualifying charge (no cliff). key_numbers.md's "Acquired IPR&D adjustment"
+   section prints each period (amount, cash or expense basis, tag), the total and per-share charge, the
+   weighted IVs before → after at 15/20/25% and the weighted IRR before → after — quote them from there.
+   Resolve it in analysis.md with: the amount, the deal (the acquired company or asset and the 10-K note),
+   the consideration mix (cash vs stock — stock is already in the diluted count; the engine prefers the
+   `PaymentsToAcquireInProcessResearchAndDevelopment` cash figure when filed), and the recurrence assessment
+   (a one-off deal, or the way this company buys its pipeline). `ACQUIRED_IPRD_RECURRENT`: charges in 2 or
+   more of the last 3 FY (material). The engine does not amortize: either justify the one-time treatment in
+   analysis.md (why the next three years will not repeat it), or declare the amortized base of step 8 and
+   run the final pass with `--base-oe-ps <its value>`. Treatment `not_applied_share_count_unverified` (the
+   flag says "not deducted — the share count behind the base is unverified": a share-scale defect rescued by
+   a pin with no power-of-ten factor): the tier is UNADJUSTED — block `NEEDS_MAIN_AGENT: shares —
+   ACQUIRED_IPRD_CHARGE not deducted: <total>` with the charge total; only the main agent may publish it,
+   through a `tier_override` whose reason quantifies the hand deduction. Impairments of previously capitalized intangibles are
+   not this flag and are never deducted (that spend went through capex / intangible purchases when made); a
+   cash-tag-only year (MAA's development-spend mistag) is never a charge.
    **Engine 5.5 flags (2026-10-19)** — each names its figures; quote them from
    dcf_numbers.json / key_numbers.md. `SHARE_SCALE_SUSPECT`: the filed diluted counts look
    mis-scaled (base OE/share above 20× the price, the latest diluted count outside
@@ -228,7 +273,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (`--base-judgment` is the insurer payable-earnings pin from step 4; a declared
    `base_override` with `basis` that the final run does not pass is unused and make_score
    refuses the score; `--base-oe-ps <x>` pins a declared `base_override` value from
-   step 8 (c), the only pin that carries a `SHARE_SCALE_SUSPECT` base).
+   step 8 (c), the only pin that carries a `SHARE_SCALE_SUSPECT` base, and the
+   `iprd_amortized` base of step 8).
    Exit 4 here → block as in step 2 and finish.
 7. **Write `analysis.md`** in APP's shape: what it is; owner's earnings (both definitions,
    which base and why, ttm.json legs quoted if TTM); MOAT (score, FOR/AGAINST, CAP);
@@ -261,6 +307,28 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    finish. If judgment.json already carries overrides when you start (a main-agent
    decision), the tools apply them — carry the fields through unchanged and quote the
    measured impact.
+   **Amortized acquired IPR&D (engine 5.6 — main-agent addition awaiting Andrew's ratification; his decision
+   is that the engine does not amortize and the worker decides).** Beside `ACQUIRED_IPRD_RECURRENT` only, a
+   `base_override` under clause (c) may carry the charge in the base instead of the one-time deduction:
+   `{basis: "iprd_amortized", kind: "filing", native_base: "ttm_json" | "median_of_last_3_fy_oe_per_share",
+   figures: [the FY charges dcf_numbers.json iprd_adjustment.periods deducted, one per FY of
+   iprd_adjustment.window.fy — three, or two at a filer with only two FY —, oldest first, $0 years included,
+   copied as printed (both tools accept each within $1)], shares: <the native base's count — ttm.json
+   ttm_shares_diluted, or the CSV's latest shares_diluted>, value: <native base − mean(figures) ÷ shares
+   (× ads_ratio)>, source, reason}`, final run `--base-oe-ps <value>`. The native base is the base the
+   one-time run scored, not a free choice: `ttm_json` when that run was `--ttm` (always under `STALE_FY` with a
+   ttm.json TTM base — step 4; the engine refuses the median there), else the median. The amortized run reads
+   the native base's own window and share count (a `ttm_json` native base keeps the current-YTD leg) and
+   judges recurrence against the native base, so a filer the one-time run flagged RECURRENT stays recurrent.
+   The engine recomputes it to the cent and refuses the run (BAD_BASE_OVERRIDE, exit 3)
+   otherwise, or when the charges are not recurrent; with it in force no one-time deduction is applied
+   (`iprd_adjustment.treatment` `amortized_in_base`). make_score checks the declaration against the engine's
+   record and refuses a malformed one, one the run did not carry, and an amortized record whose declaration
+   is gone, and (native base `ttm_json`) a ttm.json that changed after the run; the registry `base_override`
+   event records it. It is the one override NOT carried through unchanged on a re-score: rebuild it from
+   every re-score's preliminary run (the new filing moves the native base, the window and the share count),
+   pass the new value to the final `--base-oe-ps` run, and drop it when the new run no longer raises
+   `ACQUIRED_IPRD_RECURRENT`.
    **Engine 5.5 (2026-10-19).** `share_class_mismatch: {value: true, source, reason}` —
    declare it, filing-sourced, when the filer's EPS note presents EPS for a class other
    than the traded security, or the traded security is an exchangeable / paired share
@@ -365,8 +433,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
     itself is blocked. Never invent a number. A score rebuilt by make_score.py on engine
     output from another release (engine 5.5: `engine_release` ≠ the current release)
     never alerts — `alert_eligible` and `exit_alert_eligible` are false with "engine output
-    predates release 5.5.0 — re-run the engine before an entry / exit alert"; re-run the
-    engine first.
+    predates release <the current release> — re-run the engine before an entry / exit alert"
+    (5.6.0 since the acquired-IPR&D release); re-run the engine first.
 
 Parallel workers: `queue.py claim` is atomic under a lock — two workers can never claim
 the same company. Never coordinate by editing the queue.

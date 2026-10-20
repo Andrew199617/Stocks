@@ -251,6 +251,27 @@ PAIRS = [
     ("_system/ttm.py", '"sbc_reconciliation_withdrawn_legs": sbc_withdrawn', "sbc_reconciliation_withdrawn_legs",
      [SYS_README, CONTRACT]),
     ("_system/ttm.py", '"remainder_unknown"', "remainder_unknown", [SYS_README, CONTRACT]),
+    # engine 5.6 (2026-10-19, acquired IPR&D one-time value adjustment — Andrew): the records, helpers and the site line
+    ("_system/dcf_engine.py", '"iprd_adjustment": iprd', "iprd_adjustment", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def adjusted_value(", "adjusted_value", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def adjusted_irr(", "adjusted_irr", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_charge_per_share(", "iprd_charge_per_share", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["excluded"] = "already_in_capex"', "already_in_capex", [SYS_README]),
+    ("_system/make_score.py", 'score["iprd_adjustment"] = _iprd', "iprd_adjustment", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", '"iprd_charge_per_share": charge', "iprd_charge_per_share", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def iprd_charge(", "iprd_charge", [CONTRACT]),
+    ("_daily/site/app.js", "function iprdNote(", "iprdNote", [CONTRACT, SYS_README]),
+    # engine 5.6 review round: the counterfactual's held IPR&D charge and its record
+    ("_system/make_score.py", '"DCF_IPRD_HOLD": _iprd_hold(n)', "DCF_IPRD_HOLD", [SYS_README]),
+    ("_system/dcf_engine.py", 'iprd["held_from_final_run"] = held', "held_from_final_run", [SYS_README]),
+    # engine 5.6 fixer review round: the cash-flow check for an expense-basis period, deferred payments
+    ("_system/dcf_engine.py", 'IPRD_CF_CHECK_KEY = "iprd_cash_flow_check"', "iprd_cash_flow_check", [SYS_README]),
+    ("_system/dcf_engine.py", 'IPRD_AWAITING = "awaiting_cash_flow_check"', "awaiting_cash_flow_check", [SYS_README]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_UNCONFIRMED: ', "ACQUIRED_IPRD_UNCONFIRMED", [SYS_README]),
+    ("_system/dcf_engine.py", "deferred_payment=(", "deferred_payment", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["cash_flow_check"] = ', "cash_flow_check", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["cash_sign_note"] = ', "cash_sign_note", [SYS_README]),
+    ("_system/make_score.py", '"unconfirmed_total": b.get("unconfirmed_total")', "unconfirmed_total", [SYS_README, CONTRACT]),
 ]
 
 
@@ -317,6 +338,21 @@ def test_automation_day_table_matches_the_cron_files():
 
 # ---------------------------------------------------------------- 4
 STALE = [
+    # engine 5.6 fixer review round: provenance (no scratch-brief labels, no "settled" credit for main-agent fills)
+    # and the iprd_amortized shape / declared_pin definitions
+    (SYS_README, "**No cliff (F4):**"),
+    (SYS_README, "**Treatment (settled):**"),
+    (SYS_README, "`figures` = this run's three FY charges"),
+    (SYS_README, "equal to a declared `base_override` (no `basis`) and not ttm.json's figure"),
+    (SYS_README, "a base_override's `kind` and payable shape (`basis`, `figures`, `shares`)"),
+    ("_system/make_score.py", "base_override without `basis` (within 0.1%)"),
+    (AGENTS_MD, "- Engine 5.6 (Andrew, 2026-10-19): an impairment"),
+    (WORKER_SPEC, "**Acquired IPR&D (engine 5.6, Andrew 2026-10-19).**"),
+    (WORKER_SPEC, "**Amortized acquired IPR&D (engine 5.6, Andrew 2026-10-19).**"),
+    # engine 5.6 (2026-10-19): the stale-release gate text names the current release, not a pinned 5.5.0
+    (SYS_README, '"engine output predates release 5.5.0 — re-run the engine before an entry / exit alert"'),
+    (WORKER_SPEC, "predates release 5.5.0 — re-run the engine"),
+    (AGENTS_MD, "(\"engine output predates release 5.5.0 —"),
     (CONTRACT, "still reads `stats.last` / `stats.last_date` only"),
     (CONTRACT, "GitHub Pages at\n   `_daily/site/`"),
     (CONTRACT, "is still not emitted"),
@@ -383,6 +419,28 @@ def test_depreciation_anchor_clause_present():
         "README Fixes & lessons lost the depreciation-anchor entry"
     assert "amended 2026-10-18" in readme and "filed depreciation" in readme, \
         "README's bounded-authority summary lost the amendment"
+
+
+def _flat(rel):
+    return " ".join(_read(rel).split())
+
+
+def test_iprd_amortized_is_rebuilt_on_every_rescore():
+    """[engine 5.6 fixer review round] The re-score and second-pass specs say to carry overrides through unchanged,
+    but an iprd_amortized base_override is recomputed from the run's own native base, window and share count, so a
+    carried one can never reproduce on a new filing: WORKER_SPEC step 2 (re-score after a new filing), step 8 (the
+    bounded authority) and SECOND_PASS step 7 must say to rebuild it (or drop it when no longer recurrent). Fails on
+    the documents before the round."""
+    spec = _flat(WORKER_SPEC)
+    for phrase in ("An `iprd_amortized` `base_override` is not carried either: rebuild it from this re-score's "
+                   "preliminary run", "or drop it when that run no longer raises `ACQUIRED_IPRD_RECURRENT`",
+                   "It is the one override NOT carried through unchanged on a re-score: rebuild it from every "
+                   "re-score's preliminary run", "`iprd_cash_flow_check` entries carry over"):
+        assert phrase in spec, f"WORKER_SPEC.md lost: {phrase!r}"
+    sp = _flat("_system/SECOND_PASS.md")
+    for phrase in ("an `iprd_amortized` `base_override` (engine 5.6) is rebuilt from that rerun's dcf_numbers.json",
+                   "passes `--base-oe-ps <the new value>` instead of `--ttm`"):
+        assert phrase in sp, f"SECOND_PASS.md lost: {phrase!r}"
 
 
 def test_corrected_passages_stay_corrected():

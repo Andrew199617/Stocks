@@ -213,6 +213,63 @@ drafts, DESIGN_5.5 §1 / §2c / §7 / §8):
   declare a currency (ruling 7 reserves that for kind filing) and the 0.1x-10x
   band admits a local-currency figure (CNY ~7.2x — HTHT's RMB 828M relabelled
   "estimate" would score as $828M). No recorded folder has such an estimate.
+
+v5.6 (2026-10-19, engine release 5.6.0 — Andrew's acquired-IPR&D one-time
+value adjustment):
+- score.json `iprd_adjustment` (only when dcf_numbers.json carries the block —
+  output from an older release, or a 5.6 run with no IPR&D expense filed,
+  gets no key): treatment, total, charge_per_share, shares_denominator /
+  shares_source, materiality / material / recurrent, the per-period records
+  (amount, basis, tag, deducted, excluded), the weighted IVs at 15/20/25
+  before and after (2 dp), the weighted IRR before and after (4 dp) and the
+  tier before; the score's own tier / IRR / IV fields are the engine's
+  ADJUSTED figures (the alert gates read them). key_numbers.md prints an
+  "Acquired IPR&D adjustment" section: one line per period (amount, basis,
+  tag; the deal is not known to the code — analysis.md names it), the total
+  and per-share charge, the IVs before → after at 15/20/25% and the weighted
+  IRR before → after. The adjustment is mechanical: no registry event.
+- base_override basis "iprd_amortized" (the worker's amortized
+  maintenance-acquisition base beside ACQUIRED_IPRD_RECURRENT): validated for
+  shape (kind filing, one non-negative figure per FY of the engine's
+  last-3-FY window — three, or two at a filer with only two FY — a positive share count,
+  native_base "ttm_json" | "median_of_last_3_fy_oe_per_share", a numeric
+  value) and checked figure for figure against the engine's
+  iprd_adjustment.amortized record (treatment amortized_in_base, the run
+  pinned through --base-oe-ps at the value); anything else is refused, and an
+  amortized engine record without the declaration is refused as out of sync.
+  It is a judgment call: the registry base_override event carries basis,
+  figures, shares and native_base (part of the declaration identity) and the
+  native → pinned base from the run's own record. [v5.6 review] Figures are
+  compared with the engine's own tolerance ($1 per figure). With
+  native_base ttm_json the base is still ttm.json's TTM base: the PR #31
+  TTM-leg rules (ttm_leg_overrides) compare ttm.json against the record's
+  native base, and the override impact is measured on the TTM branch (the
+  no-override TTM base less the same amortization per share).
+- [v5.6 review] The declared_pin and ttm override-impact counterfactuals
+  pass DCF_IPRD_HOLD so the replay holds the final run's
+  IPR&D treatment and charge per share: the charge is mechanical, so the
+  measured impact is the override's alone (a --base-oe-ps replay would
+  otherwise read another window and share denominator than the --ttm run).
+- Release handling is unchanged: 5.5.0 output rebuilt under the 5.6.0 code is
+  another release (both alert gates closed, "engine output predates release
+  5.6.0"); predates_55 is False for 5.5.0 and 5.6.0 output alike.
+- [ADDITION — fixer review round 2026-10-19, awaiting Andrew's ratification]
+  judgment.json `iprd_cash_flow_check` (the worker's reading of the 10-K's
+  cash-flow statement for an EXPENSE-basis period, which companyfacts cannot
+  show — HALO adds the charge back and pays it in investing, NBIX pays it
+  inside OCF): validated for shape (period, window, amount, presentation,
+  source; one entry per period and window). make_score refuses a record with
+  a period still awaiting the check (ACQUIRED_IPRD_UNCONFIRMED — the run's
+  value is not known until the check is declared), a declared check the run
+  did not apply or applied differently (judgment.json changed after the run,
+  or the amount is not the filed expense), and a check the run applied that
+  judgment.json no longer declares. Not a registry event: it records what
+  the filing shows, like the cash tag the engine reads itself.
+- [fixer review round] An iprd_amortized base on native_base ttm_json is
+  refused when ttm.json changed after the run (ttm_oe_per_share no longer
+  the record's native base within 0.1%, or ttm_shares_diluted not its share
+  count) — the same staleness rule a plain --ttm pin meets; its registry
+  event's base_used is "ttm" (the branch its impact is measured on).
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -229,6 +286,9 @@ SYS_DIR = f"{BASE}/_system"
 ENGINE = f"{SYS_DIR}/dcf_engine.py"
 TTM_PY = f"{SYS_DIR}/ttm.py"
 PAYABLE_BASIS = "payable_earnings_5y"
+IPRD_AMORTIZED_BASIS = getattr(_engine, "IPRD_AMORTIZED_BASIS", "iprd_amortized")   # v5.6
+IPRD_NATIVE_BASES = tuple(getattr(_engine, "IPRD_NATIVE_BASES", ("ttm_json", "median_of_last_3_fy_oe_per_share")))
+IPRD_CF_CHECK_KEY = _engine.IPRD_CF_CHECK_KEY   # [fixer review round] judgment.json iprd_cash_flow_check
 PAYABLE_SIC = frozenset({"6331", "6351"})  # P&C insurers and reinsurers (mirrors dcf_engine.PAYABLE_SIC)
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
 TIERS = ("S", "A", "B", "C", "D", "F")
@@ -771,11 +831,30 @@ def validate_base_override(j):
         fail("judgment.json: base_override.source must be a non-empty string")
     if not str(o.get("reason") or "").strip():
         fail("judgment.json: base_override.reason must be a non-empty string")
+    if o.get("basis") == IPRD_AMORTIZED_BASIS:
+        # v5.6 (acquired IPR&D; a main-agent addition awaiting Andrew's ratification): the amortized
+        # maintenance-acquisition base, pinned through --base-oe-ps; the engine
+        # recomputes it and check_iprd_amortized compares the record.
+        if o.get("kind") != "filing":
+            fail("judgment.json: an iprd_amortized base_override must have kind 'filing' (its figures are the filed charges)")
+        figs = o.get("figures")
+        # one figure per FY of the engine's last-3-FY window: three, or two at a filer with only two FY (the
+        # engine's record holds the window; check_iprd_amortized compares the two figure for figure)
+        if not (isinstance(figs, list) and len(figs) in (2, 3)
+                and all(isinstance(x, (int, float)) and not isinstance(x, bool) and x >= 0 for x in figs)):
+            fail("judgment.json: an iprd_amortized base_override.figures must list the last-3-FY window's acquired-IPR&D "
+                 "charges (one non-negative dollar figure per FY — three, or two at a filer with only two FY — oldest "
+                 "first, from dcf_numbers.json iprd_adjustment)")
+        if not isinstance(o.get("shares"), (int, float)) or isinstance(o.get("shares"), bool) or o["shares"] <= 0:
+            fail("judgment.json: an iprd_amortized base_override.shares must be a positive share count")
+        if o.get("native_base") not in IPRD_NATIVE_BASES:
+            fail(f"judgment.json: an iprd_amortized base_override.native_base must be one of {list(IPRD_NATIVE_BASES)}")
+        return o
     if o.get("basis") is not None:
         # Insurer payable-earnings base (2026-10-19): the engine reads this
         # shape via --base-judgment; make_score checks it reproduces.
         if o.get("basis") != PAYABLE_BASIS:
-            fail(f"judgment.json: base_override.basis must be {PAYABLE_BASIS!r} when set")
+            fail(f"judgment.json: base_override.basis must be {PAYABLE_BASIS!r} or {IPRD_AMORTIZED_BASIS!r} when set")
         if o.get("kind") != "filing":
             fail("judgment.json: a payable-earnings base_override must have kind 'filing'")
         figs = o.get("figures")
@@ -788,6 +867,241 @@ def validate_base_override(j):
         if abs(per_ord - float(o["value"])) > 0.005:
             fail(f"judgment.json: base_override.value {o['value']} does not reproduce from figures/shares ({per_ord:.6f}) to the cent")
     return o
+
+
+def _figures_agree(recorded, declared):
+    """[v5.6 review] The engine's own figure tolerance for an iprd_amortized declaration: the same count, each
+    within $1 (an FX-converted charge is a float such as value x rate; a dollar-rounded declaration the engine
+    accepted must not be refused here)."""
+    if not (isinstance(recorded, list) and isinstance(declared, list) and len(recorded) == len(declared)):
+        return False
+    try:
+        return all(abs(float(a) - float(b)) <= 1.0 for a, b in zip(declared, recorded))
+    except (TypeError, ValueError):
+        return False
+
+
+def _iprd_amortized_ttm(n):
+    """[v5.6 review] The engine's amortized record when the run carries the acquired-IPR&D charge in a base whose
+    native base is ttm.json's TTM figure (treatment amortized_in_base, native_base ttm_json), else None. The score's
+    base is then the TTM base less the amortization, so the PR #31 TTM-leg rules still apply to it."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    am = (blk or {}).get("amortized")
+    if (blk and blk.get("treatment") == "amortized_in_base" and isinstance(am, dict)
+            and am.get("native_base") == "ttm_json" and _num(am.get("native_base_per_share")) is not None
+            and _num(am.get("pinned_per_share")) is not None):
+        return am
+    return None
+
+
+def _iprd_hold(n):
+    """[v5.6 review] DCF_IPRD_HOLD for an override-impact counterfactual: the final run's IPR&D treatment and charge
+    per share (0.0 unless it took the one-time deduction), so the replay toggles the field overrides only."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    return json.dumps({"treatment": (blk or {}).get("treatment") or "none",
+                       "charge_per_share": _engine.iprd_charge_per_share(n)})
+
+
+def validate_iprd_cash_flow_check(j):
+    """[fixer review round] judgment.json iprd_cash_flow_check: a list of
+    {period, window, amount, presentation, source} (dcf_engine's rule), one
+    entry per (period, window). None when absent; refuses anything else."""
+    v = j.get(IPRD_CF_CHECK_KEY)
+    if v is None:
+        return None
+    shape = ("{period: 'YYYY-MM-DD', window: 'fy' | 'ttm_current_ytd', amount: the period's filed expense (> 0), "
+             f"presentation: one of {sorted(_engine.IPRD_CF_PRESENTATIONS)}, source: the filing and the cash-flow line}}")
+    if not isinstance(v, list) or not v:
+        fail(f"judgment.json: {IPRD_CF_CHECK_KEY} must be a non-empty list of {shape}")
+    seen = set()
+    for e in v:
+        if not _engine.iprd_cash_flow_check_entry_ok(e):
+            fail(f"judgment.json: {IPRD_CF_CHECK_KEY} entry {e!r} is malformed — each entry is {shape}")
+        k = (e["period"], e["window"])
+        if k in seen:
+            fail(f"judgment.json: {IPRD_CF_CHECK_KEY} names {k[1]} {k[0]} twice")
+        seen.add(k)
+    return v
+
+
+def check_iprd_cash_flow(n, entries):
+    """[fixer review round] The cash-flow checks and the engine record must
+    agree, and no expense-basis period may still await one: the run's value
+    is unknown until the worker declares what the 10-K's cash-flow statement
+    shows (WORKER_SPEC step 3, ACQUIRED_IPRD_UNCONFIRMED)."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
+    lbl = lambda p: (f"FY{p['period'][:4]}" if p.get("window") == "fy" else f"YTD to {p.get('period')}")
+    aw = [p for p in periods if p.get("excluded") == _engine.IPRD_AWAITING]
+    if aw:
+        fail("ACQUIRED_IPRD_UNCONFIRMED: acquired IPR&D expensed with no us-gaap investing cash tag in "
+             + ", ".join(f"{lbl(p)} {_usd_exact(p.get('awaiting'))}" for p in aw)
+             + " — companyfacts cannot show whether the 10-K's cash-flow statement added it back in operating "
+             "activities and paid it in investing (deducted: HALO) or left it inside operating cash flow (not "
+             f"deducted: NBIX). Read the cash-flow statement, declare judgment.json {IPRD_CF_CHECK_KEY} for each period "
+             "(period, window, amount, presentation, source citing the line — WORKER_SPEC step 3) and rerun the engine"
+             + ("; a declared check whose amount is not the filed expense was not applied ("
+                + ", ".join(f"{lbl(p)} declared {_usd_exact((p.get('cash_flow_check_mismatch') or {}).get('declared_amount'))}"
+                            for p in aw if p.get("cash_flow_check_mismatch")) + ")"
+                if any(p.get("cash_flow_check_mismatch") for p in aw) else ""))
+    by = {(e["period"], e["window"]): e for e in entries or []}
+    for p in periods:
+        k = (p.get("period"), p.get("window"))
+        applied = p.get("cash_flow_check") if isinstance(p.get("cash_flow_check"), dict) else None
+        d = by.get(k)
+        if applied is not None:
+            if (d is None or d.get("presentation") != applied.get("presentation")
+                    or not isinstance(applied.get("amount"), (int, float)) or abs(float(d["amount"]) - float(applied["amount"])) > 1.0
+                    or str(d.get("source")) != str(applied.get("source"))):
+                fail(f"dcf_numbers.json applied an {IPRD_CF_CHECK_KEY} for {lbl(p)} ({applied.get('presentation')}, "
+                     f"{_usd_exact(applied.get('amount'))}) that judgment.json "
+                     + ("no longer declares" if d is None else "now declares differently")
+                     + " — the judgment file and the engine run are out of sync; rerun the engine")
+
+
+def check_iprd_amortized_ttm_current(folder, n):
+    """[fixer review round] An iprd_amortized base on native_base ttm_json IS
+    ttm.json's TTM base less the amortization: refuse it when ttm.json moved
+    after the run (the plain --ttm pin's provenance rule), so the stale base
+    is never scored and the TTM-leg overrides are never silently dropped."""
+    am = _iprd_amortized_ttm(n)
+    if am is None:
+        return
+    try:
+        with open(f"{folder}/ttm.json", encoding="utf-8") as f:
+            tt = json.load(f)
+    except Exception:
+        tt = None
+    tv = _num((tt or {}).get("ttm_oe_per_share")) if isinstance(tt, dict) else None
+    ts = _num((tt or {}).get("ttm_shares_diluted")) if isinstance(tt, dict) else None
+    nb, sh = _num(am.get("native_base_per_share")), _num(am.get("shares"))
+    if not (tv and nb is not None and abs(nb - tv) <= 0.001 * abs(tv) and ts is not None and sh is not None
+            and abs(ts - sh) < 1.0):
+        fail(f"the {IPRD_AMORTIZED_BASIS} base_override's native base is ttm.json's TTM base (record: "
+             f"{nb} per share on {sh} shares) but ttm.json now holds ttm_oe_per_share {tv} on ttm_shares_diluted {ts} — "
+             "ttm.json changed after the engine run; rerun ttm.py and the engine, then rebuild the declaration from the "
+             "new run (WORKER_SPEC step 8)")
+
+
+def check_iprd_amortized(n, j_base_override):
+    """v5.6: an iprd_amortized declaration and the engine record must agree —
+    the run pinned through --base-oe-ps at the declared value, the engine's
+    iprd_adjustment treatment amortized_in_base, and its amortized record
+    holding the same figures, shares, native base and value (the engine
+    recomputed it to the cent). Also refuses the converse: an amortized engine
+    record without the declaration (judgment.json changed after the run)."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    am = (blk or {}).get("amortized") if isinstance((blk or {}).get("amortized"), dict) else None
+    declared = bool(j_base_override and j_base_override.get("basis") == IPRD_AMORTIZED_BASIS)
+    if not declared:
+        if blk and blk.get("treatment") == "amortized_in_base":
+            fail("dcf_numbers.json carries the acquired-IPR&D charge amortized in the base (iprd_adjustment treatment "
+                 "amortized_in_base) but judgment.json declares no iprd_amortized base_override — the judgment file and "
+                 "the engine run are out of sync; rerun the engine")
+        return
+    inp = n.get("inputs") or {}
+    pin = inp.get("base_oe_ps_arg")
+    if (inp.get("base_pin_source") != "base_oe_ps_arg" or not isinstance(pin, (int, float)) or isinstance(pin, bool)
+            or not blk or blk.get("treatment") != "amortized_in_base" or not am):
+        fail(f"judgment.json declares an {IPRD_AMORTIZED_BASIS} base_override but the engine run did not carry it "
+             f"(base_pin_source {inp.get('base_pin_source')!r}, iprd_adjustment treatment "
+             f"{(blk or {}).get('treatment')!r}) — rerun the final pass with --base-oe-ps <its value> so the engine "
+             "recomputes and records the amortized base (it is only for ACQUIRED_IPRD_RECURRENT)")
+    o = j_base_override
+    same = (abs(float(o["value"]) - float(pin)) <= 0.005
+            and isinstance(am.get("expected_value"), (int, float)) and abs(float(am["expected_value"]) - float(o["value"])) <= 0.005
+            and _figures_agree(am.get("figures"), o["figures"])
+            and isinstance(am.get("shares"), (int, float)) and abs(float(am["shares"]) - float(o["shares"])) < 1.0
+            and am.get("native_base") == o.get("native_base"))
+    if not same:
+        fail(f"judgment.json {IPRD_AMORTIZED_BASIS} base_override (value {o['value']}, figures {o['figures']}, shares "
+             f"{o['shares']}, native_base {o.get('native_base')!r}) disagrees with the engine's record (value "
+             f"{am.get('expected_value')}, figures {am.get('figures')}, shares {am.get('shares')}, native_base "
+             f"{am.get('native_base')!r}) — rebuild the declaration from this run's dcf_numbers.json and rerun")
+
+
+def iprd_score_block(n):
+    """score.json iprd_adjustment from the engine's block (None when the run
+    has none: older-release output, or no acquired-IPR&D expense filed)."""
+    b = n.get("iprd_adjustment")
+    if not isinstance(b, dict):
+        return None
+    r2 = lambda v: round(v, 2) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+    r4 = lambda v: round(v, 4) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+    before = ((b.get("before") or {}).get("weighted") or {}) if isinstance(b.get("before"), dict) else {}
+    after = ((b.get("after") or {}).get("weighted") or {}) if isinstance(b.get("after"), dict) else {}
+    out = {"treatment": b.get("treatment"), "total": b.get("total"), "charge_per_share": b.get("charge_per_share"),
+           "shares_denominator": b.get("shares_denominator"), "shares_source": b.get("shares_source"),
+           "materiality": r4(b.get("materiality")), "material": b.get("material"), "recurrent": b.get("recurrent"),
+           "unconfirmed_total": b.get("unconfirmed_total"),
+           "periods": [dict({k: p.get(k) for k in ("period", "window", "start", "amount", "amount_basis", "tag_used",
+                                                   "deducted", "excluded") if k in p},
+                            **({"cash_flow_check": p["cash_flow_check"].get("presentation")}
+                               if isinstance(p.get("cash_flow_check"), dict) else {}),
+                            **({"deferred_payment": True} if p.get("deferred_payment") else {}))
+                       for p in (b.get("periods") or []) if isinstance(p, dict)]}
+    if before:
+        out.update({"iv_before": {k[-2:]: r2(before.get(k)) for k in ("iv_at_15", "iv_at_20", "iv_at_25")},
+                    "iv_after": {k[-2:]: r2(after.get(k)) for k in ("iv_at_15", "iv_at_20", "iv_at_25")},
+                    "irr_before": r4(before.get("irr")), "irr_after": r4((b.get("after") or {}).get("irr")),
+                    "tier_before": b.get("tier_before")})
+    if isinstance(b.get("amortized"), dict):
+        am = b["amortized"]
+        out["amortized"] = {k: am.get(k) for k in ("native_base", "native_base_per_share", "figures", "mean_annual_charge",
+                                                   "shares", "pinned_per_share")}
+    return out
+
+
+def iprd_lines(n):
+    """key_numbers.md's acquired-IPR&D section ([] when the run has no block)."""
+    b = n.get("iprd_adjustment")
+    if not isinstance(b, dict):
+        return []
+    L = ["", "## Acquired IPR&D adjustment (engine 5.6 — Andrew, 2026-10-19)"]
+    t = b.get("treatment")
+    one_time = t == "one_time_value_deduction"
+    for p in b.get("periods") or []:
+        lbl = (f"FY{p['period'][:4]} ({p['period']})" if p.get("window") == "fy"
+               else f"Current YTD {p.get('start') or '?'}..{p['period']} (TTM leg)")
+        amt = _usd_exact(p.get("amount"))
+        # [fixer review round] "deducted" only under the one-time treatment: an amortized run carries the FY charges
+        # in the base (the mean reads FY figures only), any other treatment deducts nothing
+        counted = ("deducted" if one_time
+                   else ("counted in the amortization mean" if p.get("window") == "fy"
+                         else "in neither the amortization mean (FY figures only) nor a deduction")
+                   if t == "amortized_in_base" else f"counted, not deducted ({t})")
+        state = (f"excluded — {p['excluded']}" if p.get("excluded")
+                 else f"{counted} {_usd_exact(p.get('deducted'))}" if p.get("deducted") else "nothing to deduct")
+        chk = p.get("cash_flow_check") if isinstance(p.get("cash_flow_check"), dict) else None
+        L.append(f"- {lbl}: {amt} — {p.get('amount_basis') or '—'} basis, tag {p.get('tag_used') or '—'}; {state}"
+                 + (f"; cash-flow check: {chk.get('presentation')}" if chk else "")
+                 + ("; deferred payment of an earlier window period's accrued charge" if p.get("deferred_payment") else "")
+                 + ("; deal and consideration: not identified by the engine — name them in analysis.md" if p.get("deducted") else ""))
+    mat = b.get("materiality")
+    tail = "" if one_time else f" (treatment {t}: no one-time deduction)"
+    L.append(f"- Total charge: {_usd_exact(b.get('total'))} ÷ {b['shares_denominator']:,.0f} shares ({b.get('shares_source')})"
+             f" = {_money(b.get('charge_per_share'))}/share{tail}" if b.get("shares_denominator")
+             else f"- Total charge: {_usd_exact(b.get('total'))} (no share denominator: not deducted)")
+    L.append(f"- Treatment: {t}" + (f" · {mat * 100:.2f}% of the base OE total" if isinstance(mat, (int, float)) else "")
+             + (" · material (ACQUIRED_IPRD_CHARGE)" if b.get("material")
+                else (" · below the 5% flag threshold (deducted, no flag)" if one_time else " · below the 5% flag threshold (no flag)")
+                if b.get("total") else "")
+             + (" · recurrent (ACQUIRED_IPRD_RECURRENT)" if b.get("recurrent") else ""))
+    if b.get("unconfirmed_total"):
+        L.append(f"- Awaiting the cash-flow check (ACQUIRED_IPRD_UNCONFIRMED): {_usd_exact(b['unconfirmed_total'])} — not deducted")
+    bw = ((b.get("before") or {}).get("weighted") or {}) if isinstance(b.get("before"), dict) else {}
+    if bw:
+        w = n.get("weighted") or {}
+        L.append("- Weighted IV before → after: " + " · ".join(
+            f"@{r}% {_money(bw.get(f'iv_at_{r}'))} → {_money(w.get(f'iv_at_{r}'))}" for r in (15, 20, 25)))
+        L.append(f"- Weighted IRR before → after: {_pct(bw.get('irr'))} → {_pct(n.get('implied_irr_weighted'))} · "
+                 f"tier {b.get('tier_before')} → {n.get('tier_by_numbers')}")
+    am = b.get("amortized") if isinstance(b.get("amortized"), dict) else None
+    if am:
+        L.append(f"- Amortized in the base (iprd_amortized base_override): native base {_money(am.get('native_base_per_share'))} "
+                 f"({am.get('native_base')}) − mean annual charge {_usd_exact(am.get('mean_annual_charge'))} ÷ "
+                 f"{(am.get('shares') or 0):,.0f} shares = pinned base {_money(am.get('pinned_per_share'))}; no one-time deduction")
+    return L
 
 
 def check_no_double_softening(n, j, model_fit):
@@ -968,6 +1282,11 @@ def ttm_leg_overrides(folder, n, j_over, applied):
     inp = n.get("inputs") or {}
     pinned = inp.get("base_oe_ps_arg") is not None or "ttm" in (n.get("base_source") or "").lower()
     tv, b = _num(tt.get("ttm_oe_per_share")), _num(n.get("base_oe_per_share"))
+    am = _iprd_amortized_ttm(n)
+    if am is not None:
+        # [v5.6 review] an iprd_amortized base on native_base ttm_json IS ttm.json's TTM base less the
+        # amortization: the TTM legs it rests on are compared through the record's native base
+        b = _num(am.get("native_base_per_share"))
     if not (pinned and tv and b is not None and abs(b - tv) <= 0.001 * abs(tv)):
         return {}
     out = {}
@@ -1077,10 +1396,12 @@ def payable_pin_impact(ticker, n):
 
 def _declared_pin_not_ttm(ticker, n):
     """[v5.5] True when the final run's --base-oe-ps pin equals a declared
-    base_override without `basis` (within 0.1%) and does NOT equal ttm.json's
+    base_override without `basis`, or (v5.6) of basis iprd_amortized on the
+    median native base (within 0.1%), and does NOT equal ttm.json's
     ttm_oe_per_share (within 0.1%): a pin built from engine outputs (NTNX /
     TEM / VIV), whose override impact is measured with the pin held constant,
-    not by re-running ttm.py."""
+    not by re-running ttm.py. An iprd_amortized pin on native_base ttm_json is
+    measured on the TTM branch instead (False)."""
     inp = n.get("inputs") or {}
     pin = inp.get("base_oe_ps_arg")
     if inp.get("base_pin_source") != "base_oe_ps_arg" or not isinstance(pin, (int, float)) or isinstance(pin, bool) or pin == 0:
@@ -1090,9 +1411,11 @@ def _declared_pin_not_ttm(ticker, n):
             bo = (json.load(f) or {}).get("base_override")
     except Exception:
         return False
-    if (not isinstance(bo, dict) or bo.get("basis") is not None or not isinstance(bo.get("value"), (int, float))
+    if (not isinstance(bo, dict) or bo.get("basis") not in (None, IPRD_AMORTIZED_BASIS) or not isinstance(bo.get("value"), (int, float))
             or isinstance(bo.get("value"), bool) or abs(float(bo["value"]) - pin) > 0.001 * abs(pin)):
         return False
+    if bo.get("basis") == IPRD_AMORTIZED_BASIS and _iprd_amortized_ttm(n) is not None:
+        return False    # [v5.6 review] ttm.json's TTM base less the amortization: measured on the TTM branch
     try:
         with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as f:
             tv = json.load(f).get("ttm_oe_per_share")
@@ -1137,7 +1460,11 @@ def compute_override_impact(ticker, n, ttm_only=None):
         # figure, and at an IFRS filer ttm.py cannot run at all (VIV).
         base_without = base_with
         m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
-                      + ["--base-oe-ps", repr(float(base_with))], {"DCF_NO_OVERRIDES": "1"})
+                      + ["--base-oe-ps", repr(float(base_with))],
+                      # [v5.6 review] a declared pin holds the final run's IPR&D treatment and charge (an
+                      # iprd_amortized one stays amortized_in_base); the payable pin's replay keeps its own FY basis
+                      {"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": _iprd_hold(n)} if base_used == "declared_pin"
+                      else {"DCF_NO_OVERRIDES": "1"})
         if m is None:
             fail("counterfactual engine --measure run failed — cannot measure override impact on the " + ("payable" if base_used == "payable_5y" else "declared pinned") + " base")
         if m.get("implied_irr_weighted") is None:
@@ -1154,13 +1481,20 @@ def compute_override_impact(ticker, n, ttm_only=None):
         base_without, built_without = _ttm_base_without_overrides(ticker, n)
         if ttm_only and not built_without:
             unblocks = True
+        am = _iprd_amortized_ttm(n)
+        if am is not None and base_without is not None:
+            # [v5.6 review] the amortized TTM base: the no-override TTM base less the same amortization per share
+            base_without = base_without - (float(am["native_base_per_share"]) - float(am["pinned_per_share"]))
         if base_without is None:
             if not unblocks:
                 fail("no no-override TTM base exists but the override covers no data gap — cannot measure override impact")
             irr_without = None
         else:
+            # [v5.6 review] DCF_IPRD_HOLD: the --base-oe-ps replay would otherwise read the FY window and the
+            # latest FY share count, not the --ttm run's current-YTD leg and ttm_shares_diluted
             m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
-                          + ["--base-oe-ps", repr(float(base_without))], {"DCF_NO_OVERRIDES": "1"})
+                          + ["--base-oe-ps", repr(float(base_without))],
+                          {"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": _iprd_hold(n)})
             if m is None:
                 fail("counterfactual engine --measure run failed — cannot measure override impact on the TTM base")
             irr_without = m.get("implied_irr_weighted")
@@ -1269,7 +1603,7 @@ def pin_rescue_impact(n):
 _FIELD_DECLARATION = ("value", "kind", "source", "reason", "currency", "scope")
 _EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason"),
                       "manual_price": ("value",),
-                      "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares"),
+                      "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares", "native_base"),
                       "gterm": ("value",), "cik": ("value",), "ads_ratio": ("ratio", "source", "reason"),
                       "scope_correction": ("old_cap", "new_cap", "in_scope")}
 
@@ -1369,6 +1703,23 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                 ev["kind"] = bo["kind"]
             if pin_rescued(n) and not n.get("payable_base"):
                 ev.update(pin_rescue_impact(n))
+            _am = (n.get("iprd_adjustment") or {}).get("amortized") if isinstance(n.get("iprd_adjustment"), dict) else None
+            if bo.get("basis") == IPRD_AMORTIZED_BASIS and isinstance(_am, dict):
+                # v5.6: the amortized acquired-IPR&D base — the declaration and the native -> pinned base from the
+                # run's own record (the IRR without it is the one-time path's, not replayed here)
+                nb, pb_ = _num(_am.get("native_base_per_share")), _num(_am.get("pinned_per_share"))
+                ev.update({"basis": bo.get("basis"), "figures": bo.get("figures"), "shares": bo.get("shares"),
+                           # [fixer review round] the branch compute_override_impact measures it on: "ttm" for a
+                           # ttm_json native base (ttm.json's TTM base less the amortization), else "declared_pin"
+                           "native_base": bo.get("native_base"),
+                           "base_used": "ttm" if _iprd_amortized_ttm(n) is not None else "declared_pin",
+                           "base_oe_without_override": round(nb, 4) if nb is not None else None,
+                           "base_oe_with_override": round(pb_, 4) if pb_ is not None else None,
+                           "base_oe_impact_pct": round((pb_ / nb - 1) * 100, 2) if (nb and pb_ is not None) else None,
+                           "weighted_irr_with_override": round(n["implied_irr_weighted"], 4)
+                           if isinstance(n.get("implied_irr_weighted"), (int, float)) else None,
+                           "impact_note": "acquired IPR&D amortized in the base (iprd_amortized): native base -> the pin; "
+                                          "without it the run takes the one-time value deduction instead"})
             if n.get("payable_base"):
                 pb = n["payable_base"]
                 ev.update({"basis": pb.get("basis"), "figures": pb.get("figures"), "shares": pb.get("shares"),
@@ -1448,6 +1799,11 @@ def _usd(v):
     if a >= 1e3:
         return f"${v:,.0f}"
     return f"${v:,.2f}"
+
+
+def _usd_exact(v):
+    """A dollar amount to the dollar ($284,887,000) — the IPR&D lines quote filed figures exactly."""
+    return f"${v:,.0f}" if isinstance(v, (int, float)) and not isinstance(v, bool) else "—"
 
 
 def _pct(x, digits=2):
@@ -1664,6 +2020,7 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
               f"- Average: ${pb.get('average'):,.1f} · shares diluted (latest): {pb.get('shares'):,.0f}" if pb.get("shares") else f"- Average: {_usd(pb.get('average'))}",
               f"- Per ordinary share: {_money(pb.get('per_ordinary_share'))} × ADS ratio {pb.get('ads_ratio')} = pinned base {_money(pb.get('pinned_per_share'))}",
               f"- Source: {(j.get('base_override') or {}).get('source')}"]
+    L += iprd_lines(n)   # v5.6: acquired IPR&D (nothing for a record without the block)
     gc = n.get("growth_components") or {}
     L += ["", "## Growth & moat",
           f"- Growth blend: {_pct(n.get('g_blend'))}" + (f" → g_base {_pct(n.get('g_base'))}" if n.get("g_base") is not None else ""),
@@ -1894,6 +2251,9 @@ def main():
             fail(f"payable-earnings base at a filer outside the rule's scope: engine recorded SIC {_sic or 'unknown'} "
                  f"({(n.get('payable_base') or {}).get('sic_description') or 'n/a'}); the rule covers P&C insurers and "
                  f"reinsurers only (SIC {sorted(PAYABLE_SIC)}) — drop the declaration and keep the OCF base + notch")
+    check_iprd_amortized(n, j_base_override)   # v5.6
+    check_iprd_amortized_ttm_current(folder, n)   # [fixer review round]
+    check_iprd_cash_flow(n, validate_iprd_cash_flow_check(j))   # [fixer review round]
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 
@@ -2089,6 +2449,9 @@ def main():
         score["override_impact"] = impact
     if scope_corrected:
         score["in_scope_corrected_by_make_score"] = True
+    _iprd = iprd_score_block(n)   # v5.6: only when the engine recorded the block
+    if _iprd is not None:
+        score["iprd_adjustment"] = _iprd
     nd_ads = ads_net_debt_basis(n)  # [ADDITION — M1] pre-5.5 ADS record: the ratio on the ADS basis
     if nd_ads is not None:
         score["net_debt_to_normalized_oe_ads_basis"] = round(nd_ads["ads_basis"], 4)

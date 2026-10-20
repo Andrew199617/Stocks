@@ -68,7 +68,9 @@ the specs for the old rule and list every stale passage with file:line.
   second, `share_scale.pin_over_price` / `growth_inputs_kept`; after the
   third, `share_scale.pin_factor_withheld` and
   `share_basis.split.confirmed_against_period`; after the fourth,
-  ttm.json `sbc_reconciliation_withdrawn_legs`).
+  ttm.json `sbc_reconciliation_withdrawn_legs`); engine 5.6 adds `iprd_adjustment` (the acquired-IPR&D
+  one-time value adjustment: periods, `charge_per_share`, `treatment`, and `before` — the unadjusted IVs and
+  IRRs; null when nothing was detected).
 - `judgment.json` — the worker's decisions: `moat_score`, `moat_for` /
   `moat_against`, `probs_used`, `confidence`, `tier_override` +
   `tier_override_reason`, per-field overrides as top-level keys
@@ -85,7 +87,11 @@ the specs for the old rule and list every stale passage with file:line.
   `market_cap_b` carries `market_cap_basis`,
   `in_scope_corrected_by_make_score` marks a scope make_score corrected,
   and `net_debt_to_normalized_oe_ads_basis` is a pre-5.5 ADS record's
-  net-debt ratio on the ADS basis.
+  net-debt ratio on the ADS basis; since 5.6 `iprd_adjustment` whenever the
+  engine recorded the block — any treatment, including `none`,
+  `no_value_to_adjust`, `not_applied_share_count_unverified` and
+  `amortized_in_base` (the charge; the weighted IV@15/20/25 and IRR
+  before → after only when a one-time deduction ran).
 - `key_numbers.md` — generated quotable figures. `analysis.md` may only
   quote numbers from here.
 - `analysis.md` — the narrative; must resolve every flag.
@@ -95,7 +101,8 @@ the specs for the old rule and list every stale passage with file:line.
   balance-sheet history; use it to cross-check the CSV.
 
 Method in one line: OE = operating cash flow − total capex − stock-based
-compensation. Base OE/share = median of the last 3 fiscal years, or a TTM
+compensation (engine 5.6: acquired in-process R&D expensed at acquisition is
+deducted once from every IV and the IRR price, never from the base). Base OE/share = median of the last 3 fiscal years, or a TTM
 figure when the last FY is stale. Five probability-weighted scenarios give
 the headline IRR. Tiers: S ≥ 25%, A 20–25%, B 15–20%, C 10–15%, D < 10%,
 F = no positive normalized OE. Hurdle prices: IV@15 (B), IV@20 (A), IV@25
@@ -275,7 +282,7 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `engine_version` 5 and no `engine_release` is a pre-5.4 run and must
    not claim the band or alert fields. Since 5.5, make_score rebuilding a
    score on output from another engine release sets `alert_eligible` and
-   `exit_alert_eligible` false ("engine output predates release 5.5.0 —
+   `exit_alert_eligible` false ("engine output predates release <the current release> (5.6.0 since 2026-10-19) —
    re-run the engine before an entry / exit alert") and carries
    `override_impact` from the prior score.json
    (`impact_carried_from_prior_score: true`) or records it as not
@@ -294,6 +301,39 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    land-premium payment in operating cash flow). A base year that still
    contains a sold or discontinued business is P1 (VOD).
 
+8. **Acquired IPR&D (engine 5.6 — Andrew 2026-10-19 decided the one-time value deduction, cash preferred,
+   the 5% flag, recurrence and the impairment non-goal; the rest of this check enforces main-agent / review
+   additions awaiting his ratification).** When `dcf_numbers.json` carries
+   `iprd_adjustment` with treatment `one_time_value_deduction`: `charge_per_share` must equal
+   `total ÷ shares_denominator × ads_ratio` (the denominator is ttm.json `ttm_shares_diluted` for a TTM
+   base — a `--ttm` pin, a `--base-oe-ps` pin equal to ttm.json's `ttm_oe_per_share`, or an `iprd_amortized`
+   pin on native base `ttm_json` —, else the CSV's latest `shares_diluted`, × the share-scale factor when
+   `shares_source` is `diluted_latest_scale_corrected`); `total` is the sum of the periods' `deducted`; every
+   scenario's and the weighted IV must equal the `before` figure minus `charge_per_share`, and the base and
+   the paths are unchanged (a base cut by the charge is P1 — the rule is a value deduction, never a base
+   deduction). `tier_by_numbers` is the band of the ADJUSTED weighted IRR. A period with `amount_basis`
+   `expense` is deducted only beside a `cash_flow_check` of presentation `added_back_paid_in_investing`
+   (judgment.json `iprd_cash_flow_check`, fixer review round): its `source` must cite the 10-K's operating
+   add-back and investing line — a check whose source does not show both is P1 (NBIX pays inside OCF: a
+   deduction there charges OE twice), and one declaring `inside_operating_cash_flow` / `paid_in_shares` where the
+   filing shows the add-back and an investing payment is P1 the other way; say "cannot verify from the diff"
+   when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
+   (make_score refuses it). A `deferred_payment` period counts cash the window's earlier cash-basis charge left
+   unpaid (BIIB), never more than that remainder. `ACQUIRED_IPRD_CHARGE` / `ACQUIRED_IPRD_RECURRENT` resolved without
+   the deal, the cash vs stock consideration or the recurrence assessment is P2. An `iprd_amortized`
+   `base_override` must reproduce native base − mean(figures) ÷ shares × ads_ratio to the cent (P1
+   otherwise), its figures must be the run's FY `deducted` amounts (three; two at a filer with only two FY;
+   each within $1) and the treatment `amortized_in_base` (no one-time deduction on top — both is
+   double-counting, P1). Its `native_base` must be the base the one-time run scored — `ttm_json` when that
+   run was `--ttm`, and always when `STALE_FY` fires and ttm.json carries a TTM base (the engine refuses the
+   median there) — else the median; a native base chosen for a better tier is P1. Treatment
+   `not_applied_share_count_unverified` (a share-scale defect rescued by a pin, no power-of-ten factor):
+   nothing was deducted, so the published tier is the UNADJUSTED one; the score must be blocked
+   `NEEDS_MAIN_AGENT` or carry a main-agent `tier_override` whose reason quantifies the hand deduction
+   (total ÷ the verified share count and the adjusted weighted IRR) — resolving the flag with the deal and
+   consideration alone is P1. With field overrides in force, `override_impact`'s counterfactual holds the
+   final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`), so the measured impact is the override's alone.
+
 ## Overrides
 
 Every override in `judgment.json` needs `{value, source, reason, kind}`:
@@ -308,6 +348,9 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
   `payable_earnings_5y` at a P&C insurer or reinsurer is built from five
   filing figures (operating income available to common, FY by FY) that are
   not in the run outputs; see "Sector misfits" below for what to check.
+  Engine 5.6: a `base_override` with `basis` `iprd_amortized` (beside
+  `ACQUIRED_IPRD_RECURRENT` only) is built from the run's own `iprd_adjustment`
+  figures — check 8 above.
 - `ads_ratio`: only when stated in the filer's own 20-F/40-F, and the
   filing citation must be in `reason`.
 - `currency: "USD"` (engine 5.5): allowed only on a kind `filing`
@@ -379,7 +422,8 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 `ADS_RATIO_APPLIED`, `CASH_INCLUDES_RESTRICTED`, `DEBT_TAGS_BLANK`,
 `DATA_GAP:<field>`, and engine 5.5's `SHARE_SCALE_SUSPECT`,
 `SHARE_BASIS_ADJUSTED`, `SHARE_BASIS_DIVERGENCE`, `CAPEX_COVERAGE_LOW`,
-`SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`.
+`SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`, and engine 5.6's
+`ACQUIRED_IPRD_CHARGE`, `ACQUIRED_IPRD_RECURRENT` and `ACQUIRED_IPRD_UNCONFIRMED` (check 8).
 
 - `STALE_FY` resolved with "no TTM available" at a 20-F filer: ask whether
   the interim 6-K prints TTM operating cash flow and capex; the worker
@@ -489,6 +533,22 @@ misfit`. For them:
 - A `tier_override` with a quantified written reason (see Sector misfits).
 - The two cron files under `automation/crons/daily/` showing as deleted in
   a Windows checkout: a filename artifact, not a change.
+- Engine 5.6. Andrew's decision (2026-10-19): an impairment of a previously capitalized
+  intangible (`ImpairmentOfIntangibleAssetsExcludingGoodwill`) is never deducted —
+  that spend went through capex / intangible purchases when it was made; the cash
+  outflow is preferred over the expense even when it is lower (BIIB FY2025: $85.0M
+  expensed, $50.0M paid → $50.0M; the rest is paid later — counted as a
+  `deferred_payment` when that falls in the window — or in shares, which the diluted
+  count already holds). Main-agent / review additions awaiting his ratification: a
+  cash-tag-only `PaymentsToAcquireInProcessResearchAndDevelopment` year (MAA's
+  development-spend mistag) is never a charge unless it settles the window's unpaid
+  remainder of an expensed charge; a below-5% acquired-IPR&D
+  charge is deducted with no flag (the deduction has no cliff; the threshold only
+  decides the flag); an expense-basis charge (no us-gaap cash tag — HALO, NBIX) is
+  deducted only on the worker's `iprd_cash_flow_check` and then at the expense figure
+  (HALO $284.9M, not its $287.8M investing line net of cash acquired); and the
+  `iprd_amortized` mean reads the FY figures only, so a current-YTD charge is in
+  neither the mean nor a deduction until it lands in an FY.
 
 ## Comment style
 

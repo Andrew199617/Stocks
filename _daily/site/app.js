@@ -714,6 +714,22 @@ function renderFilings(record) {
   return section('Filings', '<div class="card fcard" data-fk="all"><div class="fchips" role="group" aria-label="Filter by form">' + chips + '</div><div class="twrap"><table class="mini filings"><thead><tr><th>Filed</th><th>Form</th><th>What</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">From EDGAR submissions' + (p.as_of ? ', updated ' + esc(p.as_of) : '') + (fp.eight_k_count_12m !== undefined && fp.eight_k_count_12m !== null ? ' · ' + esc(fp.eight_k_count_12m) + ' 8-Ks in the last 12 months' : '') + '.</p></div>');
 }
 
+/* Engine 5.6 (acquired IPR&D, Andrew 2026-10-19): one disclosure line under the base OE card when the scored run
+   deducted a one-time acquired-IPR&D charge per share from every intrinsic value and the IRR price (score.json
+   iprd_adjustment, else the engine record's). The IVs, IRRs and hurdle prices on the page are already the adjusted
+   ones; the line says where the gap to the paths comes from. '' for every other record. */
+function iprdNote(record) {
+  var b = obj(obj(record.score).iprd_adjustment);
+  if (!Object.keys(b).length) b = obj(obj(record.numbers).iprd_adjustment);
+  if (b.treatment === 'amortized_in_base') return 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.';
+  var c = num(b.charge_per_share);
+  if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
+  var where = arr(b.periods).filter(function (p) { return p && num(p.deducted) > 0; }).map(function (p) {
+    return (p.window === 'fy' ? 'FY' + esc(String(p.period).slice(0, 4)) : 'YTD ' + esc(p.period)) + ', ' + (p.amount_basis === 'cash_outflow' ? 'cash' : 'expense') + ' basis';
+  }).join('; ');
+  return 'Acquired IPR&amp;D: −' + fmtMoney(c) + '/sh one-time' + (where ? ' (' + where + ')' : '') + ' — deducted from every intrinsic value and from the price each IRR is solved at; the base OE is unchanged.';
+}
+
 function renderOverview(record) {
   var s = obj(record.score), n = obj(record.numbers), row = obj(record.row), diag = obj(n.diagnostics);
   var v = liveView(record), tier = v.tier, acc = TIER_ACCENT[tier] || '#9AA3B2', irr = v.irr;
@@ -753,7 +769,8 @@ function renderOverview(record) {
   ].join('');
   var baseSrc = { ttm_json: 'TTM from ttm.py (10-Q YTD math)', agent_supplied_ttm_override: 'TTM pin (agent-supplied)', median_of_last_3_fy_oe_per_share: 'median of the last 3 fiscal years' }[s.base_source] || esc(s.base_source);
   var kn = '<div class="tiles">' + tiles + '</div><div class="card baseoe"><span class="k">Base owner\'s earnings</span><span class="bv mono">' + fmtMoney(s.base_oe_per_share) + '<span class="bu"> / share</span></span>'
-    + '<p class="note">Basis: ' + baseSrc + '. Latest FY ' + fmtMoney(n.base_oe_latest_per_share) + '/sh · 3-yr median ' + fmtMoney(n.base_oe_normalized_per_share) + '/sh · growth blend ' + fmtPct(n.g_blend) + ' → start ' + fmtPct(n.g_base) + ' · terminal ' + fmtPct(n.g_terminal) + '.</p></div>';
+    + '<p class="note">Basis: ' + baseSrc + '. Latest FY ' + fmtMoney(n.base_oe_latest_per_share) + '/sh · 3-yr median ' + fmtMoney(n.base_oe_normalized_per_share) + '/sh · growth blend ' + fmtPct(n.g_blend) + ' → start ' + fmtPct(n.g_base) + ' · terminal ' + fmtPct(n.g_terminal) + '.</p>'
+    + (iprdNote(record) ? '<p class="note">' + iprdNote(record) + '</p>' : '') + '</div>';
   // scenarios
   // a scenario IRR the solver clamped at its floor (irr_at_floor / irr_live_at_floor) is a bound, not a solved return:
   // it is marked like the Forecast tab's sensitivity table, never presented as a bare figure
@@ -2900,7 +2917,7 @@ var API = {
   condenseNow: condenseNow, TABSUM_H: TABSUM_H, sparkLabels: sparkLabels, oeGapNote: oeGapNote, oeYoyNote: oeYoyNote, histYoy: histYoy, overrideWhy: overrideWhy, isOverrideTag: isOverrideTag, runCapText: runCapText, SHARE_BASIS_X: SHARE_BASIS_X, SHARE_JUMP_X: SHARE_JUMP_X, renderStatementsBody: renderStatementsBody,
   parseHash: parseHash, TABS: TABS, TAB_KEYS: TAB_KEYS, SORTS: SORTS, TIER_ACCENT: TIER_ACCENT, tabScrollLeft: tabScrollLeft, TAB_PAD: TAB_PAD,
   liveWithheld: liveWithheld, pendingText: pendingText, currentClose: currentClose, splitInfo: splitInfo, splitRefs: splitRefs, splitDivisor: splitDivisor, fmtFactor: fmtFactor, splitBrief: splitBrief,
-  renderOverrides: renderOverrides, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
+  renderOverrides: renderOverrides, iprdNote: iprdNote, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
   drawChart: drawChart, drawPrice: drawPrice // DOM-touching only through the element they are handed
 };
 if (typeof module !== 'undefined' && module.exports) module.exports = API;

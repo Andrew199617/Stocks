@@ -157,6 +157,27 @@ attachment drops `capex_provenance`, `sbc_provenance` and `share_basis` (below).
 engine's own rescale for a split between the latest annual filing and the run (already applied to `shares_diluted`); it
 is unrelated to live.json's `split_factor` and `split_restated` (a split since scoring). score.json's
 `market_cap_basis` (a string) is not fundamentals.json's dividends-block `market_cap_basis`.
+Engine 5.6 (2026-10-19, the acquired-IPR&D one-time value adjustment) adds no record key either: `numbers` gains
+`iprd_adjustment` (null when nothing was detected; else `periods` — `period`, `window`, `amount`, `amount_basis`,
+`tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source} on an
+expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved, `deferred_payment` (a note) on cash
+that settles an earlier window charge —, `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
+`charge_per_share`, `materiality`, `material`, `recurrent`, `treatment`, `before` — the unadjusted IVs and IRRs —,
+`after`, `amortized`), `score` gains
+`iprd_adjustment` when the run recorded one (`treatment`, `total`, `unconfirmed_total`, `charge_per_share`, `shares_denominator`,
+`shares_source`, `materiality`, `material`, `recurrent`, `periods` — each also carrying `cash_flow_check` (the
+presentation string) and `deferred_payment: true` when set —, `iv_before` / `iv_after` keyed `15` / `20` / `25`,
+`irr_before`, `irr_after`, `tier_before`, `amortized`), and live.json gains `iprd_charge_per_share` (in today's share
+units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record carries is already the adjusted figure;
+build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /
+`adjusted_irr`). The Overview's base-OE card shows one disclosure line (`iprdNote`): "Acquired IPR&D: −$2.33/sh one-time
+(FY2025, expense basis) — deducted from every intrinsic value and from the price each IRR is solved at; the base OE is
+unchanged." (score.json's block, else the engine record's; an amortized-in-base run says so; nothing for any other
+record). A split since scoring divides `charge_per_share`, the `before` / `after` IVs and score.json's `iv_before` /
+`iv_after` like every per-share figure (`SPLIT_DIVIDE`) and multiplies `shares_denominator` (`SPLIT_MULTIPLY`); an
+amortized-in-base record's `amortized.native_base_per_share` / `pinned_per_share` (both blocks) and
+`expected_value` / `declared_value` (numbers) are divided and its `amortized.shares` multiplied the same way (its
+`figures` and `mean_annual_charge` are dollars and stay as scored).
 
 ## Attachment trimming (`--attachment`, top N rows only)
 Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y`, `prices.sessions_5d`,
