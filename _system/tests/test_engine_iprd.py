@@ -1799,6 +1799,137 @@ def test_local_currency_cash_settlement_is_converted_at_its_own_date_or_gated():
     assert z["iprd_adjustment"]["total"] == 10e6 and flags(z, "ACQUIRED_IPRD_UNCONVERTED"), z["iprd_adjustment"]
 
 
+# --- Codex review round 6 of PR #47 -------------------------------------------------------------------------------
+def _usd_expense_eur_cash(expense, eur_cash, extra_cash=None):
+    """A mixed-unit filer: the acquired-IPR&D expense in USD, the same FY2025 payment on the cash tag in EUR only."""
+    f = _facts(expense=expense, cash=extra_cash)
+    _syn_put(f, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", eur_cash, filed="2026-02-20"))
+    return f
+
+
+def _refused_by(fn, *args):
+    try:
+        fn(*args)
+    except SystemExit as e:
+        return e.code
+    return None
+
+
+def test_unconvertible_cash_beside_a_usd_expense_is_gated_not_replaced_by_the_expense():
+    """[Codex review r6, #4322859272] The cash outflow is the preferred amount when it is filed. A FY2025 $20M USD
+    expense beside a EUR 10M payment on the cash tag deducts $11M at a 1.10 rate (the cash basis); with no rate at
+    all (none in the FX pass, none fetched) the record fell back to the $20M EXPENSE, the cash-flow check matched to
+    the expense let it be deducted, and no flag was raised: make_score published a $9M over-deduction (and, where the
+    payment exceeds the expense, an under-deduction). The unconverted cash leg was gated only for a cash-only or $0
+    expense period. Now a positive cash fact the run cannot convert gates its period whatever the expense: excluded
+    non_usd_no_rate with cash_native kept, nothing deducted, ACQUIRED_IPRD_UNCONVERTED naming the payment, and
+    make_score refuses the score (NEEDS_MAIN_AGENT: currency)."""
+    import make_score as M
+    f = _usd_expense_eur_cash({2025: 20e6}, 10e6)
+    conv = _ok(_run_fx(f, {"EUR": {"2025-12-31": 1.10}}))["iprd_adjustment"]
+    assert abs(conv["total"] - 11e6) < 1.0 and conv["periods"][-1]["amount_basis"] == "cash_outflow", conv["periods"]
+    g = _ok(_run_fx(_usd_expense_eur_cash({2025: 20e6}, 10e6), {}))
+    blk = g["iprd_adjustment"]
+    p = [x for x in blk["periods"] if x["period"] == "2025-12-31"][0]
+    assert (p["excluded"] == "non_usd_no_rate" and p.get("cash_native") == 10e6 and p["cash_unit"] == "EUR"
+            and p["deducted"] == 0 and p["expense"] == 20e6), p
+    assert blk["total"] == 0 and blk["treatment"] == "non_usd_no_rate", blk
+    fl = flags(g, "ACQUIRED_IPRD_UNCONVERTED")
+    assert len(fl) == 1 and "FY2025 10,000,000 EUR" in fl[0] and "20,000,000" in fl[0], fl
+    assert _refused_by(M.check_iprd_unconverted, g) == 1, "make_score accepted an unconverted preferred cash leg"
+    # the payment exceeds the expense (FY2024 $15M expensed, $5M paid; FY2025 $20M expensed, EUR 30M paid): with no
+    # rate the FY2025 period is gated, never the $20M expense standing in for the larger payment
+    h = _ok(_run_fx(_usd_expense_eur_cash({2024: 15e6, 2025: 20e6}, 30e6, extra_cash={2024: 5e6}), {}))
+    hb = h["iprd_adjustment"]
+    q = [x for x in hb["periods"] if x["period"] == "2025-12-31"][0]
+    assert q["excluded"] == "non_usd_no_rate" and q.get("cash_native") == 30e6 and q["deducted"] == 0, q
+    assert hb["total"] == 5e6 and flags(h, "ACQUIRED_IPRD_UNCONVERTED"), hb
+    assert _refused_by(M.check_iprd_unconverted, h) == 1
+    # a negative native cash fact beside a positive expense stays the sign error it was: the expense decides
+    fy = ["2023-12-31", "2024-12-31", "2025-12-31"]
+    neg = _usd_expense_eur_cash({2025: 20e6}, -10e6)
+    out = E.iprd_detect(neg, fy, fx_rates={}, checks=auto_checks(neg), fx_fetch=lambda c, d: None)
+    r = [x for x in out["periods"] if x["period"] == "2025-12-31"][0]
+    assert r["excluded"] is None and r["amount_basis"] == "expense" and r["deducted"] == 20e6, r
+
+
+def _refused_iprd_records():
+    """dcf_numbers.json shapes make_score refuses for an unresolved acquired-IPR&D charge (the new run is left on disk
+    beside the score.json of an earlier run): both refused treatments, and a partly deducted one-time run that still
+    carries a period awaiting its cash-flow check or one the run cannot convert."""
+    base = _adjusted()
+    out = []
+    for t, per in (("awaiting_cash_flow_check", {"excluded": "awaiting_cash_flow_check", "awaiting": 284.9e6}),
+                   ("non_usd_no_rate", {"excluded": "non_usd_no_rate", "expense_native": 250e6, "expense_unit": "EUR"}),
+                   ("non_usd_no_rate", {"excluded": "non_usd_no_rate", "cash_native": 10e6, "cash_unit": "EUR"})):
+        n = copy.deepcopy(base)
+        blk = n["iprd_adjustment"]
+        blk["periods"] = [dict(blk["periods"][-1], deducted=0.0, **per)]
+        blk.update(treatment=t, total=0.0, charge_per_share=0.0)
+        out.append(n)
+    for per in ({"excluded": "awaiting_cash_flow_check", "awaiting": 9e6},
+                {"excluded": "non_usd_no_rate", "cash_native": 9e6, "cash_unit": "EUR"}):
+        n = copy.deepcopy(base)
+        n["iprd_adjustment"]["periods"].append({"period": "2026-03-31", "window": "ttm_current_ytd", "deducted": 0.0,
+                                                **per})
+        assert n["iprd_adjustment"]["treatment"] == "one_time_value_deduction"
+        out.append(n)
+    return out
+
+
+def test_reprice_and_build_site_withhold_a_run_make_score_refused():
+    """[Codex review r6, #4322859281] make_score refuses a run with an acquired-IPR&D period awaiting its cash-flow
+    check or one the engine cannot convert, but the engine has already written dcf_numbers.json and the earlier
+    run's score.json stays on disk. The freshness checks did not stop it: reprice.score_matches_run only marked
+    score_json_fresh false and dropped the tier override (live.json still written, on the UNADJUSTED paths, charge
+    0), build_site.qualifies needs only a score.json, and live_shown withheld only an older live.json or the
+    share-count treatment, so the site ranked the name on the refused run's unadjusted live IRR. Now every such run
+    is skipped by reprice (no live.json; a stale one removed) and build_site withholds any live.json with reason
+    iprd_unresolved (the scored figures stand); a resolved one-time run reprices and shows as before."""
+    import reprice as R
+    import build_site as B
+    import make_score as M
+    import shutil
+    import tempfile
+    lv = {"price": 25.0, "irr_weighted": 0.3, "price_date": "2026-10-21", "scored_date": "2026-10-20"}
+    sc = {"analysis_date": "2026-10-19"}
+    for n in _refused_iprd_records():
+        refused = [_refused_by(M.check_iprd_cash_flow, n, []), _refused_by(M.check_iprd_unconverted, n)]
+        assert 1 in refused, ("make_score accepts this shape", n["iprd_adjustment"])
+        for fn in (lambda: R.check_eligible(n), lambda: R.reprice(n, 25.0)):
+            try:
+                fn()
+                raise AssertionError("repriced a run make_score refused: " + str(n["iprd_adjustment"]["periods"][-1]))
+            except R.Skip as e:
+                assert "acquired-IPR&D" in str(e) and "make_score" in str(e), str(e)
+        for live in (lv, None):
+            shown, w = B.live_shown({"score": sc, "numbers": n, "live": live})
+            assert shown is None and w is not None and w["reason"] == "iprd_unresolved", w
+            assert w["price"] == (25.0 if live else None) and w["scored_date"] == "2026-10-19", w
+            assert "acquired-IPR&D" in w["note"] and "make_score" in w["note"], w["note"]
+        tmp = tempfile.mkdtemp(prefix="reprice_iprd_r6_")
+        saved = R.BASE
+        try:
+            os.makedirs(os.path.join(tmp, "TST"))
+            with open(os.path.join(tmp, "TST", "dcf_numbers.json"), "w", encoding="utf-8") as f:
+                json.dump(dict(n, ticker="TST"), f)
+            with open(os.path.join(tmp, "TST", "live.json"), "w", encoding="utf-8") as f:
+                json.dump({"price": 25.0, "irr_weighted": 0.3}, f)
+            R.BASE = tmp
+            try:
+                R.reprice_folder("TST")
+                raise AssertionError("reprice_folder wrote live.json")
+            except R.Skip:
+                pass
+            assert not os.path.exists(os.path.join(tmp, "TST", "live.json")), "the stale live.json stayed"
+        finally:
+            R.BASE = saved
+            shutil.rmtree(tmp, ignore_errors=True)
+    # a resolved one-time run reprices and shows as before
+    assert R.reprice(_adjusted(), 25.0)["iprd_charge_per_share"] == 0.35
+    assert B.live_shown({"score": sc, "numbers": _adjusted(), "live": lv}) == (lv, None)
+    assert E.iprd_unresolved(_adjusted()) is None and E.iprd_unresolved({"iprd_adjustment": None}) is None
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

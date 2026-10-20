@@ -1181,13 +1181,26 @@ def check_iprd_unconverted(n):
     rate for the expense's currency and date, no usable cash fact), so it deducted nothing and the tier is
     the UNADJUSTED one. Refused like a period awaiting its cash-flow check: the worker blocks
     NEEDS_MAIN_AGENT: currency; no judgment.json field publishes it (a hand deduction is the share-count
-    case's escape only)."""
+    case's escape only). [Codex review r6 of PR #47] The same for a positive cash_native beside a positive expense
+    (the period's preferred amount, its cash outflow, could not be converted)."""
     blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
     periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
     lbl = lambda p: (f"FY{p['period'][:4]}" if p.get("window") == "fy" else f"YTD to {p.get('period')}")
     uc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("expense_native")) or 0) > 0]
     # [Codex review r4 of PR #47] a cash-only payment with no FX rate that could settle a charge: gated the same way
     ucc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("cash_native")) or 0) > 0]
+    # [Codex review r6 of PR #47] the same for an unconvertible cash outflow beside a positive expense: the cash is the
+    # preferred amount, so the expense never stands in for it
+    ucx = [p for p in ucc if (_num(p.get("expense")) or 0) > 0]
+    ucc = [p for p in ucc if p not in ucx]
+    if ucx:
+        fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: the acquired-IPR&D cash outflow, the preferred "
+             "amount, filed in a currency the engine holds no FX rate for, beside the expense, in "
+             + ", ".join(f"{lbl(p)} {_num(p['cash_native']):,.0f} {p.get('cash_unit')} (expense "
+                         f"{_usd_exact(p.get('expense'))})" for p in ucx)
+             + " — the engine deducted nothing for it, so the record's IVs, IRRs and tier may be the UNADJUSTED ones. "
+             "Block the folder NEEDS_MAIN_AGENT: currency (WORKER_SPEC step 3); it is scored once the engine can "
+             "convert the payment")
     if ucc:
         fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag, with "
              "no acquired-IPR&D expense in its period, filed in a currency the engine holds no FX rate for, in "

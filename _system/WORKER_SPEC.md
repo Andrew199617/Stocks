@@ -134,7 +134,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    payment on the cash tag, with no acquired-IPR&D expense in its period, filed in a currency the engine has
    no rate for even after fetching one for its date, that could settle the window's unpaid remainder or a
    charge expensed before the window (`cash_native` on the period): block the folder the same way,
-   `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <native amount and currency>`.
+   `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <native amount and currency>`. So does
+   (Codex review round 6 of PR #47) a period's cash outflow beside a positive expense when that cash fact cannot
+   be converted: the cash is the preferred amount, so the expense never stands in for it and nothing is
+   deducted for the period — block the folder the same way. While the folder is blocked, reprice.py and the site
+   never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`).
    `ACQUIRED_IPRD_CHARGE`: in-process R&D bought in
    an asset acquisition was expensed in the base window (ASC 805) — the expense is added back in OCF and
    the payment is not capex (the cash tag, or your cash-flow check), so owner's earnings never saw it. The engine deducts the charge ONCE: window

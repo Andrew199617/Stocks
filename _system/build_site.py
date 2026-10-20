@@ -121,6 +121,10 @@ scored session arrives.
 not_applied_share_count_unverified is never repriced (reprice.py skips it),
 so record.live_withheld carries reason iprd_share_count_unverified with or
 without a live.json on file, and the scored figures are the current ones.
+[Codex review round 6 of PR #47] The same, reason iprd_unresolved, for a run
+make_score refused for an unresolved acquired-IPR&D charge (a period awaiting
+its cash-flow check or one the engine cannot convert): reprice.py skips it
+too, and the score.json on disk is an earlier run's.
 
 Splits since scoring (2026-10-16): reprice.py restates live.json in today's
 share units and records split_factor (new shares per scored-run share). The
@@ -471,6 +475,27 @@ IPRD_SHARE_COUNT_UNVERIFIED = "not_applied_share_count_unverified"   # reprice.p
 IPRD_WITHHELD_NOTE = ("The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier "
                       "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
                       "figures are the current ones and no live repricing is shown.")
+# [Codex review r6 of PR #47] dcf_engine's names for the acquired-IPR&D states make_score refuses (dcf_engine.iprd_unresolved)
+IPRD_AWAITING, IPRD_UNCONVERTED = "awaiting_cash_flow_check", "non_usd_no_rate"
+IPRD_UNRESOLVED_NOTE = ("The latest engine run left an acquired-IPR&D charge unresolved (awaiting the worker's cash-flow check, "
+                        "or in a currency the engine cannot convert), so make_score refused it: the score on file is an earlier "
+                        "run's, a live repricing of the new run would carry unadjusted figures, and none is shown until the "
+                        "folder is scored again.")
+
+
+def iprd_unresolved(n):
+    """[Codex review r6 of PR #47] True when the run's acquired-IPR&D record is one make_score refuses
+    (dcf_engine.iprd_unresolved, mirrored here so the site needs no engine import): a period awaiting its cash-flow
+    check, or excluded non_usd_no_rate with a positive native expense or cash outflow, or such a treatment."""
+    blk = _d(_d(n).get("iprd_adjustment"))
+    pos = lambda v: num(v) is not None and num(v) > 0
+    for p in _l(blk.get("periods")):
+        p = _d(p)
+        if p.get("excluded") == IPRD_AWAITING:
+            return True
+        if p.get("excluded") == IPRD_UNCONVERTED and (pos(p.get("expense_native")) or pos(p.get("cash_native"))):
+            return True
+    return blk.get("treatment") in (IPRD_AWAITING, IPRD_UNCONVERTED)
 
 
 def live_shown(c):
@@ -487,14 +512,18 @@ def live_shown(c):
     not_applied_share_count_unverified is never repriced (reprice.py skips it:
     its published tier is the main agent's tier_override with a hand deduction
     no replay can carry), so any live.json on file is withheld, and the record
-    says why it has none even without one (reason iprd_share_count_unverified)."""
+    says why it has none even without one (reason iprd_share_count_unverified).
+    [Codex review r6 of PR #47] The same, reason iprd_unresolved, for a run make_score refused for an unresolved
+    acquired-IPR&D charge (iprd_unresolved): reprice.py skips it too, and the score.json on disk is an earlier run's."""
     lv = c.get("live")
-    if _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
+    unresolved = iprd_unresolved(c.get("numbers"))
+    if unresolved or _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
         ok = live_ok(lv)
-        return None, {"reason": "iprd_share_count_unverified", "price": num(lv.get("price")) if ok else None,
+        return None, {"reason": "iprd_unresolved" if unresolved else "iprd_share_count_unverified",
+                      "price": num(lv.get("price")) if ok else None,
                       "price_date": _date10(lv.get("price_date")) if ok else None,
                       "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
-                      "method": None, "note": IPRD_WITHHELD_NOTE}
+                      "method": None, "note": IPRD_UNRESOLVED_NOTE if unresolved else IPRD_WITHHELD_NOTE}
     if not live_ok(lv):
         return None, None
     pd = _date10(lv.get("price_date"))

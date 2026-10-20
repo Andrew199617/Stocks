@@ -51,12 +51,29 @@ function date10(v) { return typeof v === 'string' && v.length >= 10 ? v.slice(0,
 const IPRD_WITHHELD_NOTE = 'The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier '
   + "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
   + 'figures are the current ones and no live repricing is shown.';
+/* [Codex review r6 of PR #47] build_site.iprd_unresolved: a run make_score refused for an unresolved acquired-IPR&D charge
+   (a period awaiting its cash-flow check, or excluded non_usd_no_rate with a positive native expense or cash outflow) —
+   withheld the same way, reason iprd_unresolved. */
+const IPRD_UNRESOLVED_NOTE = "The latest engine run left an acquired-IPR&D charge unresolved (awaiting the worker's cash-flow check, "
+  + 'or in a currency the engine cannot convert), so make_score refused it: the score on file is an earlier '
+  + "run's, a live repricing of the new run would carry unadjusted figures, and none is shown until the "
+  + 'folder is scored again.';
+function iprdUnresolved(blk) {
+  const pos = (v) => n(v) !== null && n(v) > 0;
+  for (const p of Array.isArray(blk.periods) ? blk.periods : []) {
+    if (!isObj(p)) continue;
+    if (p.excluded === 'awaiting_cash_flow_check') return true;
+    if (p.excluded === 'non_usd_no_rate' && (pos(p.expense_native) || pos(p.cash_native))) return true;
+  }
+  return blk.treatment === 'awaiting_cash_flow_check' || blk.treatment === 'non_usd_no_rate';
+}
 function liveShown(score, lv, numbers) {
   const blk = isObj(numbers) && isObj(numbers.iprd_adjustment) ? numbers.iprd_adjustment : {};
-  if (blk.treatment === 'not_applied_share_count_unverified') {
+  const unresolved = iprdUnresolved(blk);
+  if (unresolved || blk.treatment === 'not_applied_share_count_unverified') {
     const ok = isObj(lv) && n(lv.price) !== null && n(lv.irr_weighted) !== null;
-    return { live: null, withheld: { reason: 'iprd_share_count_unverified', price: ok ? n(lv.price) : null, price_date: ok ? date10(lv.price_date) : null,
-      scored_date: date10((score || {}).analysis_date) || date10((numbers || {}).as_of), method: null, note: IPRD_WITHHELD_NOTE } };
+    return { live: null, withheld: { reason: unresolved ? 'iprd_unresolved' : 'iprd_share_count_unverified', price: ok ? n(lv.price) : null, price_date: ok ? date10(lv.price_date) : null,
+      scored_date: date10((score || {}).analysis_date) || date10((numbers || {}).as_of), method: null, note: unresolved ? IPRD_UNRESOLVED_NOTE : IPRD_WITHHELD_NOTE } };
   }
   if (!isObj(lv) || n(lv.price) === null || n(lv.irr_weighted) === null) return { live: null, withheld: null };
   const sa = date10((score || {}).analysis_date), ls = date10(lv.scored_date), pd = date10(lv.price_date);

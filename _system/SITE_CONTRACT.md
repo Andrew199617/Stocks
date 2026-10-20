@@ -115,7 +115,7 @@ these changes the row's keys.
               "growth_components": {...}, "growth_components_adjusted": {...} | null, "share_cagr": -0.027, "share_count_adj": 0.027, "share_adj_basis": "..." | null,
               "replayed": true | false},
  "live": { ...live.json verbatim... } | null,
- "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "iprd_share_count_unverified", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
+ "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "iprd_share_count_unverified" | "iprd_unresolved", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
  "split_restated": {"factor": 2.0, "split": "2:1", "scored_date": "...", "price_date": "...", "fields": [...], "as_scored": {...}, "note": "..."} | null,
  "history": [ {financials_history.csv rows, numeric strings coerced to numbers, blanks to null} ],
  "fundamentals": { ...fundamentals.json verbatim (profile, annual, quarterly, ttm, dividends, tags_used, warnings, currency),
@@ -1794,6 +1794,11 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   no replay carries), so `record.live_withheld` = `{reason: "iprd_share_count_unverified", price, price_date (both null without
   a live.json), scored_date, method: null, note}` with or without a live.json on file, and the row is withheld the same way;
   the app says "Live figures withheld — the acquired-IPR&D charge was deducted by hand" instead of "pending" (`pendingText`).
+  [Codex review round 6 of PR #47] The same, `reason: "iprd_unresolved"`, for a run make_score refused for an unresolved
+  acquired-IPR&D charge (`build_site.iprd_unresolved`, mirroring `dcf_engine.iprd_unresolved`: a period still
+  `awaiting_cash_flow_check`, or excluded `non_usd_no_rate` with a positive `expense_native` or `cash_native`, whatever the
+  treatment): reprice.py skips it, the score.json on disk is an earlier run's, and the app says "Live figures withheld — the
+  latest run left an acquired-IPR&D charge unresolved".
 - **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
   `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
   OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,

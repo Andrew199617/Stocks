@@ -327,7 +327,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
    (make_score refuses it), nor one with a period excluded `non_usd_no_rate` beside a positive `expense_native`
    (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47) or a positive
-   `cash_native` (a cash-only payment with no FX rate that could settle a charge — round 4). A
+   `cash_native` (a cash-only payment with no FX rate that could settle a charge — round 4 — or the period's
+   cash outflow beside a positive expense, the preferred amount, with no FX rate: never replaced by the
+   expense — round 6). A
    `deferred_payment` period counts cash the window's earlier cash-basis charge left unpaid (BIIB), never more
    than that remainder — or, declared in `iprd_deferred_payment` against a `first_charged_period` before the
    window that companyfacts shows expensed (`first_charge_evidence` `companyfacts_expense_fact`), a cash-tag-only
@@ -362,7 +364,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    consideration alone is P1; make_score refuses the score without a `tier_override` whose reason names a
    dollar figure and a percentage (Codex review round 1 of PR #47) — whether those figures are the right hand
    deduction is this check's; reprice.py never reprices such a record (no live.json; the site shows the scored
-   figures with `live_withheld` reason `iprd_share_count_unverified` — Codex review round 2 of PR #47).
+   figures with `live_withheld` reason `iprd_share_count_unverified` — Codex review round 2 of PR #47); nor
+   a run make_score refused for an unresolved charge (`dcf_engine.iprd_unresolved`; the score.json on disk is
+   an earlier run's: `live_withheld` reason `iprd_unresolved` — round 6).
    With field overrides in force, `override_impact`'s counterfactual holds the
    final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`) in every branch (declared pin, TTM, median,
    payable), so the measured impact is the override's alone.

@@ -440,6 +440,10 @@ date (always the case for the current-YTD 10-Q end) is converted at a rate fetch
 5.5 intangible capex leg does); with none, a payment that could settle the window's unpaid remainder or a pre-window
 charge keeps its native amount (cash_native, excluded non_usd_no_rate) and raises ACQUIRED_IPRD_UNCONVERTED (make_score
 refuses it) — before, it was dropped with no trace and the deduction understated.
+[Codex review round 6 of PR #47] The same gate for a positive cash fact with no rate beside a positive expense: the
+cash outflow is the preferred amount, so the expense never stands in for it (before, the expense was deducted with
+no flag). reprice.py and build_site withhold live figures for any run make_score refuses for an unresolved charge
+(iprd_unresolved).
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -564,6 +568,31 @@ def iprd_charge_per_share(numbers):
     if isinstance(c, bool) or not isinstance(c, (int, float)) or not math.isfinite(c) or c <= 0:
         return 0.0
     return float(c)
+
+
+def iprd_unresolved(numbers):
+    """[Codex review r6 of PR #47] Why make_score refuses this run's acquired-IPR&D record, or None: a period still
+    awaiting its cash-flow check (ACQUIRED_IPRD_UNCONFIRMED) or one excluded non_usd_no_rate with a positive native
+    expense or cash outflow (ACQUIRED_IPRD_UNCONVERTED) — whatever the treatment, a partly deducted one-time run
+    included. The engine has written such a run's dcf_numbers.json before make_score refuses it, so the score.json on
+    disk is an earlier run's: reprice.py never reprices it and build_site withholds its live figures (reason
+    iprd_unresolved). The share-count treatment, which make_score publishes through a tier_override, is not this."""
+    blk = numbers.get("iprd_adjustment") if isinstance(numbers, dict) else None
+    if not isinstance(blk, dict):
+        return None
+    pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+    why = []
+    for p in blk.get("periods") or []:
+        if not isinstance(p, dict):
+            continue
+        lbl = f"{p.get('window')} {p.get('period')}"
+        if p.get("excluded") == IPRD_AWAITING:
+            why.append(f"{lbl} {IPRD_AWAITING}")
+        elif p.get("excluded") == IPRD_UNCONVERTED and (pos(p.get("expense_native")) or pos(p.get("cash_native"))):
+            why.append(f"{lbl} {IPRD_UNCONVERTED}")
+    if not why and blk.get("treatment") in (IPRD_AWAITING, IPRD_UNCONVERTED):
+        why.append(f"treatment {blk['treatment']}")
+    return "; ".join(why) or None
 
 
 def adjusted_value(flows, r, gterm=DEFAULT_GTERM, charge_ps=0.0):
@@ -1770,6 +1799,7 @@ IPRD_CHECK_WINDOWS = ("fy", "ttm_current_ytd")
 # usable cash fact: excluded (and, when nothing else is deducted, the treatment) non_usd_no_rate, and gated —
 # ACQUIRED_IPRD_UNCONVERTED, which make_score refuses (NEEDS_MAIN_AGENT: currency) like an unconfirmed expense.
 # [Codex review r4] the same for a cash-tag-only payment with no rate (cash_native) that could settle a charge.
+# [Codex review r6] and for a period's cash outflow with no rate beside a positive expense (cash_native kept).
 IPRD_UNCONVERTED = "non_usd_no_rate"
 
 
@@ -2187,7 +2217,8 @@ def _iprd_ytd_facts(facts, tag, start, end):
 def iprd_period_record(period, window, expense, cash, capex_intang=None, check=None):
     """One period's acquired-IPR&D record. expense: (tag, value_usd | None, unit, rate, filed[, value_native]) from the
     first expense tag filed for the period, or None (value_native: the filed figure in its own unit, read only when
-    value_usd is None — the sign still detects the charge); cash: (value_usd | None, unit, rate, filed) or None; check: the judgment.json
+    value_usd is None — the sign still detects the charge); cash: (value_usd | None, unit, rate, filed[, value_native])
+    or None (value_native as for the expense); check: the judgment.json
     iprd_cash_flow_check entry matched to this period (or None). Returns None when no expense tag is filed (a
     cash-only period is no record here; iprd_detect counts one only as a deferred payment). `deducted` is what the
     window total counts: the cash outflow when filed, else the expense once the cash-flow check says it was added
@@ -2197,7 +2228,10 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     `paid_in_shares`: what the check says). A negative cash fact beside a positive expense is a sign error: the
     period falls back to the expense (cash_sign_note). [Codex review r1 of PR #47] An expense with no FX rate still
     detects the charge by its native sign: a usable cash fact (USD, or converted) is then the amount; with none the
-    period is excluded `non_usd_no_rate`."""
+    period is excluded `non_usd_no_rate`. [Codex review r6 of PR #47] The cash outflow is the preferred amount, so a
+    positive cash fact the run cannot convert beside a USD (or converted) positive expense never falls back to the
+    expense: the period is excluded `non_usd_no_rate` with its cash_native kept (ACQUIRED_IPRD_UNCONVERTED, make_score
+    refuses it) — before, the expense was deducted in its place (over- or under-stating the charge) with no flag."""
     if expense is None:
         return None
     etag, ev, eunit, erate, efiled = expense[:5]
@@ -2225,6 +2259,15 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
             rec["expense_native"] = float(enative)
         return rec
     use_cash = cash is not None and cash[0] is not None
+    cnat = cash[4] if (cash is not None and cash[0] is None and len(cash) > 4) else None
+    if (ev > 0 and isinstance(cnat, (int, float)) and not isinstance(cnat, bool) and math.isfinite(cnat)
+            and cnat > 0):
+        # [Codex review r6 of PR #47] the preferred amount is unknown in USD: gated, never replaced by the expense
+        rec.update(excluded=IPRD_UNCONVERTED, cash_native=float(cnat),
+                   cash_fx_note=(f"cash tag {float(cnat):,.0f} {cash[1]} beside the ${ev:,.0f} acquired-IPR&D expense, "
+                                 f"with no FX rate for {period}: the cash outflow is the preferred amount and its USD "
+                                 "value is unknown — not converted, so not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
+        return rec
     if use_cash and cash[0] < 0 and ev > 0:
         # [fixer review round] a payments element is positive by definition: a negative figure beside a positive
         # expense is a sign error, never a reason to drop the charge the expense confirms
@@ -2287,7 +2330,8 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     fetched rate, as the 5.5 intangible capex leg is. With none, a cash-only payment (no or a $0 expense) that could
     settle the window's unpaid remainder or a pre-window charge is recorded excluded non_usd_no_rate with its
     cash_native (ACQUIRED_IPRD_UNCONVERTED, make_score refuses it); one that could settle nothing is listed in
-    ignored_cash_only with its native amount."""
+    ignored_cash_only with its native amount. [Codex review r6 of PR #47] Beside a positive expense such a cash fact
+    is the period's preferred amount: the period is gated the same way (iprd_period_record), never the expense."""
     exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
     cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
     periods, cash_only, notes = [], [], []
@@ -2322,7 +2366,8 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             r = fx_fetch(c[1], p)
             if r is not None:
                 c = (float(cash_map[c[1]][0]) * r, c[1], r, c[3])
-        cash = (c[0], c[1], c[2], c[3]) if c is not None else None
+        # [Codex review r6 of PR #47] the native figure rides along for a cash fact with no FX rate
+        cash = (c[0], c[1], c[2], c[3], cash_map[c[1]][0] if c[0] is None else None) if c is not None else None
         chk, mismatch = by_key.get((p, window)), None
         if chk is not None:
             if expense is not None and expense[1] is not None and abs(float(chk["amount"]) - expense[1]) <= 1.0:
@@ -2450,6 +2495,18 @@ def iprd_flags(iprd):
           and isinstance(p.get("expense_native"), (int, float)) and p["expense_native"] > 0]
     ucc = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED
            and isinstance(p.get("cash_native"), (int, float)) and p["cash_native"] > 0]
+    ucx = [p for p in ucc if isinstance(p.get("expense"), (int, float)) and p["expense"] > 0]
+    ucc = [p for p in ucc if p not in ucx]
+    if ucx:
+        # [Codex review r6 of PR #47] the period's preferred amount (its cash outflow) cannot be converted: gated, the
+        # expense never stands in for it
+        out.append("ACQUIRED_IPRD_UNCONVERTED: the acquired-IPR&D cash outflow (" + IPRD_CASH_TAG + "), the preferred "
+                   "amount, filed in a currency the run holds no FX rate for (none fetched either), beside the expense, in "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['cash_native']:,.0f} {p.get('cash_unit')} (expense "
+                               f"${p['expense']:,.0f})" for p in ucx)
+                   + ". NOTHING is deducted for these periods (the expense is not the amount paid), so the run's IVs, "
+                   "IRRs and tier may be UNADJUSTED: make_score refuses the score — NEEDS_MAIN_AGENT: currency (block "
+                   "the folder; it is scored once the run can convert the payment)")
     if ucc:
         # [Codex review r4 of PR #47] a cash-only payment the run cannot convert may settle a charge: gated, not dropped
         out.append("ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag "

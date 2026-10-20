@@ -148,6 +148,14 @@ a stale one removed): its live IRRs would be the unadjusted ones, and a moved
 numbers tier would supersede the override with them. build_site withholds
 any live.json of such a record (record.live_withheld reason
 iprd_share_count_unverified) and shows the scored figures.
+[Codex review round 6 of PR #47] So is every run make_score refuses for an
+unresolved acquired-IPR&D charge (dcf_engine.iprd_unresolved: a period
+awaiting its cash-flow check, or excluded non_usd_no_rate with a positive
+native expense or cash outflow, whatever the treatment): the engine wrote its
+dcf_numbers.json, the score.json on disk is an earlier run's, and
+score_matches_run's mismatch alone only drops the tier override — the live
+IRRs would be the refused run's unadjusted ones. build_site withholds any
+live.json of such a record (reason iprd_unresolved).
 """
 import json, math, os, sys, datetime
 from zoneinfo import ZoneInfo
@@ -241,6 +249,12 @@ def check_eligible(numbers):
         # here would be the unadjusted ones and a moved numbers tier would supersede the override with them
         raise Skip(f"acquired-IPR&D treatment {IPRD_SHARE_COUNT_UNVERIFIED}: the charge was deducted by hand in the main "
                    "agent's tier_override (share count unverified), which a live repricing cannot replay — no live figures")
+    why = E.iprd_unresolved(numbers)
+    if why:
+        # [Codex review r6 of PR #47] make_score refused this run (ACQUIRED_IPRD_UNCONFIRMED / _UNCONVERTED), so the
+        # score.json on disk is an earlier run's: live IRRs here would be the refused run's unadjusted ones
+        raise Skip(f"acquired-IPR&D charge unresolved ({why}): make_score refuses this run, so the score on file is an "
+                   "earlier run's and a live repricing would carry unadjusted figures — no live figures")
 
 
 def _date(s):

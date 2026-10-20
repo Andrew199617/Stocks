@@ -1643,6 +1643,16 @@ test('Hand-deducted acquired-IPR&D charge: the live figures are withheld with th
   const html = App.renderRowHTML(iprdWithheldRec.row);
   assert.ok(/title="Live figures pending: [^"]*not repriced[^"]*">live pending</.test(html), 'the row tooltip covers a record that is not repriced: ' + html);
 });
+test('[Codex review r6 of PR #47] A run make_score refused for an unresolved acquired-IPR&D charge: live figures withheld with their own reason', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'iprd_unresolved', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'iprd_unresolved');
+  assert.equal(App.pendingText(w), 'Live figures withheld — the latest run left an acquired-IPR&D charge unresolved, so the scored figures stand');
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('acquired-IPR&amp;D charge unresolved') && !head.includes('predates'), head);
+  assert.ok(/title="Live figures pending: [^"]*left unresolved[^"]*">live pending</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+});
 test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
   const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
   const { assemble: asm, liveShown, liveSplit, SPLIT_DIVIDE, SPLIT_MULTIPLY } = require('./fixtures/assemble.js');
@@ -1673,6 +1683,20 @@ test('fixtures/assemble.js mirrors build_site: a live.json older than the later 
       assert.equal(sh.live, null); assert.equal(sh.withheld.reason, 'iprd_share_count_unverified'); assert.equal(sh.withheld.note, iprdNote);
       assert.equal(sh.withheld.price, lv ? 45 : null); assert.equal(sh.withheld.scored_date, '2026-10-14');
     }
+    // [Codex review r6 of PR #47] a run make_score refused for an unresolved acquired-IPR&D charge: withheld, reason iprd_unresolved
+    const unres = [
+      { treatment: 'awaiting_cash_flow_check', total: 0, periods: [{ period: '2025-12-31', window: 'fy', excluded: 'awaiting_cash_flow_check', awaiting: 2e7 }] },
+      { treatment: 'non_usd_no_rate', total: 0, periods: [{ period: '2025-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense: 2e7, cash_native: 1e7, cash_unit: 'EUR' }] },
+      { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2025-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2026-03-31', window: 'ttm_current_ytd', excluded: 'non_usd_no_rate', expense_native: 5e6 }] }];
+    for (const blk of unres) {
+      for (const lv of [live, null]) {
+        const sh = liveShown(score, lv, Object.assign(clone(numbers), { iprd_adjustment: blk }));
+        assert.equal(sh.live, null); assert.equal(sh.withheld.reason, 'iprd_unresolved'); assert.ok(sh.withheld.note.includes('make_score refused'), sh.withheld.note);
+        assert.equal(sh.withheld.price, lv ? 45 : null);
+      }
+    }
+    const resolved = { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2025-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2024-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense_native: -1 }] };
+    assert.equal(liveShown(score, Object.assign({}, live, { price_date: '2026-10-20' }), Object.assign(clone(numbers), { iprd_adjustment: resolved })).withheld, null, 'a resolved run is shown');
     // a split since scoring: live.json in today's units (÷ 2) with split_factor 2
     const half = (o) => Object.assign({}, o, { price: o.price / 2, scored_price: o.scored_price / 2, iv_at_15: o.iv_at_15 / 2, iv_at_12: o.iv_at_12 / 2, iv_at_20: o.iv_at_20 / 2, iv_at_25: o.iv_at_25 / 2 });
     const splitLive = Object.assign(half(live), { price_date: '2026-10-20', split_factor: 2, basis_check: { status: 'split_adjusted', factor: 2, split: '2:1', method: 'ratio' } });

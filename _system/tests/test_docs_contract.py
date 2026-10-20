@@ -294,7 +294,7 @@ PAIRS = [
     # engine 5.6 Codex review round 4 of PR #47
     ("_system/dcf_engine.py", "cash_native=float(cnative)", "cash_native", [SYS_README]),
     ("_system/make_score.py", "def _ads_factor(", "ADS ratio", [SYS_README]),
-    ("_system/build_site.py", '"reason": "iprd_share_count_unverified"', "iprd_share_count_unverified", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", 'else "iprd_share_count_unverified"', "iprd_share_count_unverified", [SYS_README, CONTRACT]),
     ("_system/make_score.py", "def iprd_amortized_impact(", "iprd_amortized_impact", [SYS_README]),
     ("_system/make_score.py", '"iprd_charge_per_share_without_override"', "iprd_charge_per_share_without_override", [SYS_README]),
     # engine 5.6 Codex review round 3 of PR #47
@@ -305,6 +305,10 @@ PAIRS = [
     ("_system/dcf_engine.py", 'x["pre_window_charges"] = ', "pre_window_charges", [SYS_README]),
     ("_system/dcf_engine.py", "def iprd_pre_window_charges(", "iprd_pre_window_charges", [SYS_README]),
     ("_system/make_score.py", "def check_iprd_unconverted(", "expense_native", [SYS_README]),
+    # engine 5.6 Codex review round 6 of PR #47
+    ("_system/dcf_engine.py", "cash_native=float(cnat)", "cash_fx_note", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_unresolved(", "iprd_unresolved", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", '"iprd_unresolved" if unresolved', "iprd_unresolved", [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),
