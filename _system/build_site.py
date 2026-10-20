@@ -131,6 +131,14 @@ do not change. record.split_restated = {factor, split, scored_date,
 price_date, fields, as_scored, note}, row.split_restated = {factor, split}
 (null otherwise).
 
+Engine 5.6 (acquired IPR&D, Andrew 2026-10-19): a run with a one-time
+acquired-IPR&D deduction (numbers.iprd_adjustment, treatment
+one_time_value_deduction) stores adjusted IVs, hurdle prices and IRRs, which
+are shown as stored; every replay fallback below subtracts the same charge
+(dcf_engine.iprd_charge_per_share / adjusted_value / adjusted_irr), so a
+recomputed sensitivity cell, hurdle price or at-floor flag equals the
+engine's. A record without the block replays exactly as before.
+
 Every number comes from a file; the only computation here is the forecast
 replay through the engine's own functions (dcf_engine.replay_paths,
 present_value, solve_irr, tier_for_irr) when a pre-5.4 run lacks the stored
@@ -191,13 +199,29 @@ SPLIT_DIVIDE = (tuple(f"score.{k}" for k in ("price", "base_oe_per_share") + _IV
                    "score.second_pass.prior_iv_at_15")
                 + tuple(f"numbers.{k}" for k in ("price", "base_oe_per_share", "base_oe_latest_per_share", "base_oe_normalized_per_share") + _IV_KEYS)
                 + tuple(f"numbers.scenarios.*.{k}" for k in _IV_KEYS) + tuple(f"numbers.weighted.{k}" for k in _IV_KEYS)
+                # engine 5.6: the one-time acquired-IPR&D charge per share and the IVs kept beside it
+                + ("numbers.iprd_adjustment.charge_per_share", "numbers.iprd_adjustment.base_oe_per_share",
+                   "numbers.iprd_adjustment.before.*.iv_at_10", "numbers.iprd_adjustment.before.*.iv_at_12",
+                   "numbers.iprd_adjustment.before.*.iv_at_15", "numbers.iprd_adjustment.before.*.iv_at_20",
+                   "numbers.iprd_adjustment.before.*.iv_at_25", "numbers.iprd_adjustment.after.weighted.*",
+                   "score.iprd_adjustment.charge_per_share", "score.iprd_adjustment.iv_before.*",
+                   "score.iprd_adjustment.iv_after.*",
+                   # [v5.6 review] an amortized_in_base run's native and pinned bases (and the declared value)
+                   "numbers.iprd_adjustment.amortized.native_base_per_share",
+                   "numbers.iprd_adjustment.amortized.pinned_per_share",
+                   "numbers.iprd_adjustment.amortized.expected_value",
+                   "numbers.iprd_adjustment.amortized.declared_value",
+                   "score.iprd_adjustment.amortized.native_base_per_share",
+                   "score.iprd_adjustment.amortized.pinned_per_share")
                 + ("numbers.hurdle_prices.*", "numbers.inputs.base_oe_ps_arg",
                    "numbers.override_impact.base_oe_per_share_zero_fill", "numbers.override_impact.base_oe_per_share_final")
                 + ("forecast.paths.*.*", "forecast.hurdle_prices.*", "forecast.inputs.base_oe_ps_arg")
                 + tuple(f"forecast.sensitivity.*.{r}" for r in RATES)
                 + tuple(f"row.{k}" for k in ("price", "iv15", "iv12", "iv20", "iv25"))
                 + ("ttm.ttm_oe_per_share",))
-SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "ttm.ttm_shares_diluted")
+SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "ttm.ttm_shares_diluted",
+                  "numbers.iprd_adjustment.shares_denominator", "score.iprd_adjustment.shares_denominator",
+                  "numbers.iprd_adjustment.amortized.shares", "score.iprd_adjustment.amortized.shares")
 _NUM_RX = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INT_RX = re.compile(r"-?\d+")
 
@@ -650,14 +674,34 @@ def _scored_price(n, s):
     return num(s.get("price")) or num(n.get("price"))
 
 
-def scored_floor(recorded, flows, px, g):
+def iprd_charge(n):
+    """The run's one-time acquired-IPR&D charge per share (engine 5.6:
+    dcf_engine.iprd_charge_per_share — 0.0 for every record without one, and
+    when the engine module is unavailable)."""
+    if ENGINE is None or not hasattr(ENGINE, "iprd_charge_per_share"):
+        return 0.0
+    try:
+        return float(ENGINE.iprd_charge_per_share(n))
+    except Exception:
+        return 0.0
+
+
+def _value(flows, r, g, charge_ps):
+    """IV at r on the replayed flows less the run's one-time charge (dcf_engine.adjusted_value; the identity at 0)."""
+    if charge_ps and hasattr(ENGINE, "adjusted_value"):
+        return ENGINE.adjusted_value(flows, r, g, charge_ps)
+    return ENGINE.present_value(flows, r, g)
+
+
+def scored_floor(recorded, flows, px, g, charge_ps=0.0):
     """Whether a SCORED IRR sits at the solver's floor. The first boolean in
     `recorded` (the run's own flags — engine 5.4 writes them per scenario and
     for the weighted case) wins. A pre-5.4 run recorded none, so the flag is
     inferred through the engine: solve_irr's at_floor on the replayed flows at
-    the scored price. Only the flag is taken from the replay — the recorded
-    (historical) IRR is never replaced. None when there is neither a flag nor
-    anything to replay."""
+    the scored price (engine 5.6: plus the run's one-time acquired-IPR&D
+    charge, dcf_engine.adjusted_irr — the price the scored IRR was solved at).
+    Only the flag is taken from the replay — the recorded (historical) IRR is
+    never replaced. None when there is neither a flag nor anything to replay."""
     for v in recorded:
         if isinstance(v, bool):
             return v
@@ -665,6 +709,8 @@ def scored_floor(recorded, flows, px, g):
     if not flows or px is None or px <= 0 or ENGINE is None or not hasattr(ENGINE, "solve_irr"):
         return None
     try:
+        if charge_ps and hasattr(ENGINE, "adjusted_irr"):
+            return bool(ENGINE.adjusted_irr(flows, px, g, charge_ps)[2])
         return bool(ENGINE.solve_irr(flows, px, g)[2])
     except Exception:
         return None
@@ -685,8 +731,8 @@ def hurdle_prices(n, s, paths):
         return stored
     if not paths or ENGINE is None or not paths.get("weighted"):
         return {"15": num(s.get("iv_at_15")) if s.get("iv_at_15") is not None else num(n.get("iv_at_15")), "20": None, "25": None} if (s.get("iv_at_15") is not None or n.get("iv_at_15") is not None) else None
-    g, w = _gterm(n), paths["weighted"]
-    return {"15": ENGINE.present_value(w, 0.15, g), "20": ENGINE.present_value(w, 0.20, g), "25": ENGINE.present_value(w, 0.25, g)}
+    g, w, c = _gterm(n), paths["weighted"], iprd_charge(n)
+    return {"15": _value(w, 0.15, g, c), "20": _value(w, 0.20, g, c), "25": _value(w, 0.25, g, c)}
 
 
 def scenario_sensitivity(n, s, paths, lv):
@@ -700,6 +746,7 @@ def scenario_sensitivity(n, s, paths, lv):
         return None
     g = _gterm(n)
     px = _scored_price(n, s)
+    c = iprd_charge(n)
     live = lv if live_ok(lv) else None
     paths = _d(paths)
     out = {}
@@ -712,13 +759,13 @@ def scenario_sensitivity(n, s, paths, lv):
                 v = s.get(f"iv_at_{rate}")
             if v is None and ENGINE is not None and _l(paths.get(k)):
                 try:
-                    v = ENGINE.present_value(paths[k], rate / 100, g)
+                    v = _value(paths[k], rate / 100, g, c)
                 except Exception:
                     v = None
             row[str(rate)] = num(v)
         row["irr"] = num(r.get("irr")) if k != "weighted" else (num(r.get("irr")) if r.get("irr") is not None else num(n.get("implied_irr_weighted") if n.get("implied_irr_weighted") is not None else s.get("implied_irr")))
         recorded = (r.get("irr_at_floor"),) if k != "weighted" else _weighted_floor_recorded(n, s)
-        row["irr_at_floor"] = scored_floor(recorded, paths.get(k), px, g) if row["irr"] is not None else None
+        row["irr_at_floor"] = scored_floor(recorded, paths.get(k), px, g, c) if row["irr"] is not None else None
         if live:
             lscn = _d(_d(live.get("scenarios")).get(k))
             lr = live.get("irr_weighted") if k == "weighted" else lscn.get("irr")
@@ -747,7 +794,8 @@ def irr_at_floor_flag(c, paths):
     at the scored price (scored_floor; the same answer as
     forecast.sensitivity.weighted.irr_at_floor). False when undecidable."""
     s, n = c["score"], c["numbers"]
-    return bool(scored_floor(_weighted_floor_recorded(n, s), _d(paths).get("weighted"), _scored_price(n, s), _gterm(n)))
+    return bool(scored_floor(_weighted_floor_recorded(n, s), _d(paths).get("weighted"), _scored_price(n, s), _gterm(n),
+                             iprd_charge(n)))
 
 
 # ---------------------------------------------------------------- index row

@@ -2,7 +2,8 @@
 """Fixture builder for _system/tests/test_engine_55.py (engine release 5.5).
 
 Run MANUALLY, with network: python _system/tests/fixtures/engine55/build_fixtures.py [TICKER ...]
-The tests themselves never fetch anything.
+The tests themselves never fetch anything. `TICKER=PATH` builds from a companyfacts file already on disk (the
+engine 5.6 HALO fixture: python build_fixtures.py HALO=<scratch>/halo_facts.json) instead of fetching it.
 
 For each ticker it writes <TICKER>.json.gz beside this file:
   {"ticker", "cik", "entityName", "price", "price_source", "filer_annual_form",
@@ -37,7 +38,11 @@ US = ["RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", 
       "LongTermNotesPayable", "LongTermDebt", "DebtLongtermAndShorttermCombinedAmount", "LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities",
       "OperatingLeaseLiabilityCurrent", "OperatingLeaseLiabilityNoncurrent", "Assets", "Liabilities", "PropertyPlantAndEquipmentNet",
       "StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", "CommonStockSharesOutstanding",
-      "StockholdersEquityNoteStockSplitConversionRatio1", "StockholdersEquityNoteStockSplitConversionRatio"]
+      "StockholdersEquityNoteStockSplitConversionRatio1", "StockholdersEquityNoteStockSplitConversionRatio",
+      # engine 5.6 (acquired IPR&D, Andrew 2026-10-19): the two expense tags the detector reads, the cash tag it
+      # prefers, and the intangible-impairment tag it must NOT read (kept so a fixture proves the non-goal)
+      "ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff", "ResearchAndDevelopmentInProcess",
+      "PaymentsToAcquireInProcessResearchAndDevelopment", "ImpairmentOfIntangibleAssetsExcludingGoodwill"]
 IFRS = ["Revenue", "RevenueFromContractsWithCustomers", "ProfitLoss", "ProfitLossFromOperatingActivities",
         "CashFlowsFromUsedInOperatingActivities", "CashFlowsFromUsedInOperatingActivitiesContinuingOperations",
         "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment",
@@ -85,11 +90,15 @@ def trim(facts):
     return {"cik": facts.get("cik"), "entityName": facts.get("entityName"), "facts": out}
 
 
-def build(ticker):
+def build(ticker, facts_path=None):
     folder = f"{BASE}/{ticker}"
     n = json.load(open(f"{folder}/dcf_numbers.json", encoding="utf-8"))
     cik = int(n["cik"])
-    facts = fetch(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json")
+    if facts_path:
+        facts = json.load(open(facts_path, encoding="utf-8"))
+        assert int(facts.get("cik") or 0) == cik, f"{facts_path}: CIK {facts.get('cik')} is not {ticker}'s {cik}"
+    else:
+        facts = fetch(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json")
     uni = None
     with open(f"{BASE}/_system/universe.csv", encoding="utf-8") as f:
         for row in csv.DictReader(f):
@@ -108,7 +117,8 @@ def build(ticker):
     with gzip.open(path, "wt", encoding="utf-8") as f:
         json.dump(fixture, f, separators=(",", ":"))
     print(f"{ticker}: {os.path.getsize(path) / 1024:.0f} KB")
-    time.sleep(0.3)
+    if not facts_path:
+        time.sleep(0.3)
 
 
 DEFAULT = ["AR", "APA", "ELS", "JLL", "DD", "NTNX", "TEM", "VIV", "TLK", "PUK", "CX", "CCJ", "STZ", "APP",
@@ -116,4 +126,5 @@ DEFAULT = ["AR", "APA", "ELS", "JLL", "DD", "NTNX", "TEM", "VIV", "TLK", "PUK", 
 
 if __name__ == "__main__":
     for t in sys.argv[1:] or DEFAULT:
-        build(t.upper())
+        tk, _, fp = t.partition("=")
+        build(tk.upper(), fp or None)

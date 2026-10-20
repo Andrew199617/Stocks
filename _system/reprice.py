@@ -129,6 +129,16 @@ bit (close × shares_diluted_latest × split_factor) for a run whose
 market_cap_basis.shares_source is diluted_latest, or with no basis record;
 otherwise the count is market_cap_basis.shares_used (M6, round-1
 verification: an HBAN-shaped dei_latest run prices on the cover-page count).
+
+v5.6 (2026-10-19, engine release 5.6.0 — Andrew's acquired-IPR&D decision): a
+run whose dcf_numbers.json carries iprd_adjustment with treatment
+one_time_value_deduction deducted a one-time charge per share from every IV
+and solved every IRR at price + charge. The live IRRs are solved the same way
+(dcf_engine.adjusted_irr at the last close + the charge, the charge divided by
+the split factor like every per-share value), a replayed IV is
+dcf_engine.adjusted_value, and live.json records `iprd_charge_per_share` (in
+today's share units; 0.0 for every other record, which reprices exactly as
+before). Without it the site would show unadjusted live returns.
 """
 import json, math, os, sys, datetime
 from zoneinfo import ZoneInfo
@@ -140,7 +150,8 @@ import dcf_engine as E  # noqa: E402
 
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
 PRICE_SOURCE = "prices.json (Nasdaq last close)"
-BASIS = ("same base OE/share, scenario paths and probabilities as the scored run; only the price moved; "
+BASIS = ("same base OE/share, scenario paths and probabilities as the scored run (and the same one-time acquired-IPR&D "
+         "charge per share, iprd_charge_per_share, when the run deducted one); only the price moved; "
          "per-share values are restated in today's share units when a split since the scored run is detected (split_factor); "
          "an agent tier override (score.json tier_final, from this same engine run) is preserved in `tier` unless the numbers tier itself moved")
 STALE_DAYS = 4  # a prices.json without fetched_at: last_date may trail as_of by a weekend + holiday, never more
@@ -513,24 +524,32 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
     inp = numbers["inputs"]
     gterm = inp.get("g_terminal", E.DEFAULT_GTERM)
     scn_rec, w_rec = numbers["scenarios"], numbers.get("weighted") or {}
+    # v5.6: the scored run's one-time acquired-IPR&D charge per share (0.0 — the identity — for every record without
+    # one): a year-0 outflow on the same paths, so the live IRR is solved at the close + the charge, exactly as the
+    # engine solved the scored IRR. Per scored-run share, so restated per today's share like the paths.
+    charge = E.iprd_charge_per_share(numbers)
+    if factor != 1.0:
+        charge = charge / factor
 
     scenarios = {}
     for k in LABELS:
-        irr, capped, floor = E.solve_irr(paths[k], price, gterm)
+        irr, capped, floor = E.adjusted_irr(paths[k], price, gterm, charge)
         scenarios[k] = {"irr": irr, "tier": E.tier_for_irr(irr), "irr_capped": bool(capped), "irr_at_floor": bool(floor)}
     w = paths["weighted"]
-    irr_w, w_capped, w_floor = E.solve_irr(w, price, gterm)
+    irr_w, w_capped, w_floor = E.adjusted_irr(w, price, gterm, charge)
     tier_numbers = E.tier_for_irr(irr_w)
 
     # Intrinsic values do not depend on the price: copy the run's own figures;
     # a pre-5.4 run never stored the 20 / 25% hurdle prices, so replay those
     # on the same weighted path (present_value is the engine's own function).
     # The recorded ones are per scored-run share: divided by the split factor.
+    # (A 5.6 record's recorded IVs already carry the IPR&D deduction; the
+    # replay subtracts it through the engine's adjusted_value.)
     def iv(rate_key, rate):
         v = _f(w_rec.get(rate_key))
         if v is None:
             v = _f(numbers.get(rate_key))
-        return v / factor if v is not None else E.present_value(w, rate, gterm)
+        return v / factor if v is not None else E.adjusted_value(w, rate, gterm, charge)
     iv15, iv12, iv20, iv25 = iv("iv_at_15", 0.15), iv("iv_at_12", 0.12), iv("iv_at_20", 0.20), iv("iv_at_25", 0.25)
 
     mcap = live_market_cap(numbers, price, factor)  # v5.5: ÷ ads_ratio when one applies
@@ -577,6 +596,7 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         "scored_date": numbers.get("as_of"),
         "split_factor": factor,
         "basis_check": basis,
+        "iprd_charge_per_share": charge,
         "score_json_fresh": scored_fresh if isinstance(scored, dict) else None,
         "score_mismatch": score_mismatch if (isinstance(scored, dict) and not scored_fresh) else None,
         "price_change_pct": (price / scored_price - 1) * 100 if scored_price else None,

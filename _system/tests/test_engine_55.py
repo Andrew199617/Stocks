@@ -305,8 +305,9 @@ def nd_identity(n, ratio=None):
 # 1. Release constants and shared plumbing
 # ===========================================================================
 def test_release_constant():
-    """Release: ENGINE_RELEASE is bumped to 5.5.0 (engine_version stays 5 — checked on the CCJ run)."""
-    assert E.ENGINE_RELEASE == "5.5.0", E.ENGINE_RELEASE
+    """Release: ENGINE_RELEASE was bumped to 5.5.0 by this release (engine_version stays 5 — checked on the CCJ run);
+    a later release (5.6.0, acquired IPR&D — test_engine_iprd pins it) keeps every 5.5 rule, so this checks >= 5.5.0."""
+    assert tuple(int(x) for x in E.ENGINE_RELEASE.split(".")) >= (5, 5, 0), E.ENGINE_RELEASE
 
 
 def test_capex_tag_lists_match_the_design():
@@ -1696,7 +1697,7 @@ def test_ccj_numerically_identical_to_its_recorded_run():
     assert_same_math(n, rec, "CCJ")
     assert n["market_cap_est"] == rec["market_cap_est"] == 35456212000.0
     assert n["diagnostics"]["net_debt_to_normalized_oe"] == rec["diagnostics"]["net_debt_to_normalized_oe"]
-    assert n["engine_release"] == "5.5.0" and n["engine_version"] == 5
+    assert n["engine_release"] == E.ENGINE_RELEASE and n["engine_version"] == 5
     for prefix in ("CAPEX_COVERAGE_LOW", "SBC_TAG_RECONCILED", "SHARE_", "OVERRIDE_SUPERSEDED"):
         assert not flags(n, prefix), (prefix, flags(n, prefix))
     assert n["share_scale"]["defect"] is False and not n["share_basis"]["split"], (n["share_scale"], n["share_basis"])
@@ -2985,7 +2986,7 @@ def _content_hash(n):
 def _ms_numbers(basis=True, **over):
     """An engine-stamped dcf_numbers.json for ticker TST (valid content_hash). basis=False leaves out
     market_cap_basis (pre-5.5 output never has one)."""
-    n = {"ticker": "TST", "name": "Test Co", "cik": 1, "engine_version": 5, "engine_release": "5.5.0",
+    n = {"ticker": "TST", "name": "Test Co", "cik": 1, "engine_version": 5, "engine_release": E.ENGINE_RELEASE,
          "as_of": "2026-10-18", "price": 50.0, "price_source": "nasdaq_quote_api",
          "shares_diluted_latest": 1.0e8, "market_cap_est": 5.0e9, "net_debt_latest": 0.0,
          "latest_period_end": "2025-12-31", "filer_annual_form": "10-K", "ads_ratio": None,
@@ -3166,7 +3167,7 @@ def test_make_score_release_mismatch_without_a_prior_score_records_nulls():
     for k in ("base_oe_without_override", "base_oe_impact_pct", "weighted_irr_without_override", "weighted_irr_impact_pp"):
         assert oi.get(k) is None, (k, oi.get(k))
     assert oi["unblocks_tier"] is True
-    assert "not measured" in oi.get("note", "") and "5.5.0" in oi.get("note", ""), oi
+    assert "not measured" in oi.get("note", "") and E.ENGINE_RELEASE in oi.get("note", ""), oi
 
 
 def test_make_score_stale_release_closes_both_alert_gates():
@@ -3177,10 +3178,10 @@ def test_make_score_stale_release_closes_both_alert_gates():
     res = _ms_run(_ms_numbers(basis=False, engine_release="5.4.0", tier_by_numbers="A"), _ms_judgment())
     assert res["code"] == 0, res["stderr"]
     s = res["score"]
-    assert s["alert_eligible"] is False and "predates release 5.5.0" in s.get("alert_suppressed_reason", ""), s
+    assert s["alert_eligible"] is False and f"predates release {E.ENGINE_RELEASE}" in s.get("alert_suppressed_reason", ""), s
     res = _ms_run(_ms_numbers(basis=False, engine_release="5.4.0", tier_by_numbers="B"), _ms_judgment())
     s = res["score"]
-    assert s["exit_alert_eligible"] is False and "predates release 5.5.0" in s.get("exit_alert_suppressed_reason", ""), s
+    assert s["exit_alert_eligible"] is False and f"predates release {E.ENGINE_RELEASE}" in s.get("exit_alert_suppressed_reason", ""), s
     res = _ms_run(_ms_numbers(basis=False, engine_release=None, tier_by_numbers="A"), _ms_judgment())
     assert res["code"] == 0, res["stderr"]
     assert res["score"]["alert_eligible"] is False, res["score"]
