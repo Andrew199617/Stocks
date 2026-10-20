@@ -1,0 +1,1374 @@
+{
+ "ticker": "LULU",
+ "cik": 1397187,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001397187-26-000020",
+   "filed": "2026-03-17",
+   "period": "2026-02-01",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000020/lulu-20260201_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001397187-26-000078",
+   "filed": "2026-06-04",
+   "period": "2026-05-03",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000078/lulu-20260503_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001397187-26-000127",
+   "filed": "2026-09-03",
+   "period": "2026-08-02",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1397187/000139718726000127/lulu-20260802_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-02-02",
+    "2026-02-01"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lulu:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      7631647000,
+      7928156000,
+      7847044000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7934,
+      0.7488,
+      0.7068
+     ],
+     "growth_yoy": [
+      null,
+      0.0389,
+      -0.0102
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandSegmentMember",
+     "label": "China Mainland Segment",
+     "values": [
+      963760000,
+      1361337000,
+      1754799000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1002,
+      0.1286,
+      0.1581
+     ],
+     "growth_yoy": [
+      null,
+      0.4125,
+      0.289
+     ]
+    },
+    {
+     "member": "lulu:OtherCountrySegmentMember",
+     "label": "Other Country Segment",
+     "values": [
+      1023871000,
+      1298633000,
+      1500757000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1064,
+      0.1226,
+      0.1352
+     ],
+     "growth_yoy": [
+      null,
+      0.2684,
+      0.1556
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9619278000,
+     10588126000,
+     11102600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-04",
+    "2025-08-03",
+    "2026-05-03",
+    "2026-08-02"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lulu:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      1674558000,
+      1758217000,
+      1621210000,
+      1616772000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.7064,
+      0.6963,
+      0.6559,
+      0.6693
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0319,
+      -0.0804
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandSegmentMember",
+     "label": "China Mainland Segment",
+     "values": [
+      368101000,
+      392898000,
+      478395000,
+      407095000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1553,
+      0.1556,
+      0.1936,
+      0.1685
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2996,
+      0.0361
+     ]
+    },
+    {
+     "member": "lulu:OtherCountrySegmentMember",
+     "label": "Other Country Segment",
+     "values": [
+      328001000,
+      374104000,
+      371998000,
+      391764000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1384,
+      0.1481,
+      0.1505,
+      0.1622
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1341,
+      0.0472
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2370660000,
+     2525219000,
+     2471603000,
+     2415631000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-02-02",
+    "2026-02-01"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lulu:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      2937184000,
+      3015557000,
+      2560658000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3772,
+      1.2035,
+      1.1583
+     ],
+     "growth_yoy": [
+      null,
+      0.0267,
+      -0.1509
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandSegmentMember",
+     "label": "China Mainland Segment",
+     "values": [
+      337316000,
+      509859000,
+      701123000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1582,
+      0.2035,
+      0.3172
+     ],
+     "growth_yoy": [
+      null,
+      0.5115,
+      0.3751
+     ]
+    },
+    {
+     "member": "lulu:OtherCountrySegmentMember",
+     "label": "Other Country Segment",
+     "values": [
+      201832000,
+      314946000,
+      345901000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0946,
+      0.1257,
+      0.1565
+     ],
+     "growth_yoy": [
+      null,
+      0.5604,
+      0.0983
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -1343656000,
+      -1334665000,
+      -1397067000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.63,
+      -0.5327,
+      -0.632
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2132676000,
+     2505697000,
+     2210615000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-04",
+    "2025-08-03",
+    "2026-05-03",
+    "2026-08-02"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lulu:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      589331000,
+      619394000,
+      408480000,
+      594413000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.3436,
+      1.1825,
+      1.4749,
+      1.3103
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3069,
+      -0.0403
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandSegmentMember",
+     "label": "China Mainland Segment",
+     "values": [
+      153635000,
+      152490000,
+      203069000,
+      151270000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3503,
+      0.2911,
+      0.7332,
+      0.3334
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3218,
+      -0.008
+     ]
+    },
+    {
+     "member": "lulu:OtherCountrySegmentMember",
+     "label": "Other Country Segment",
+     "values": [
+      72856000,
+      81243000,
+      69423000,
+      74973000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1661,
+      0.1551,
+      0.2507,
+      0.1653
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0471,
+      -0.0772
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      -377197000,
+      -329313000,
+      -404026000,
+      -367003000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.86,
+      -0.6287,
+      -1.4589,
+      -0.809
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     438625000,
+     523814000,
+     276946000,
+     453653000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-02-02",
+    "2026-02-01"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lulu:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      170417000,
+      204922000,
+      224684000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4492,
+      0.4589,
+      0.4528
+     ],
+     "growth_yoy": [
+      null,
+      0.2025,
+      0.0964
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandSegmentMember",
+     "label": "China Mainland Segment",
+     "values": [
+      25746000,
+      33206000,
+      38198000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0679,
+      0.0744,
+      0.077
+     ],
+     "growth_yoy": [
+      null,
+      0.2898,
+      0.1503
+     ]
+    },
+    {
+     "member": "lulu:OtherCountrySegmentMember",
+     "label": "Other Country Segment",
+     "values": [
+      23644000,
+      30872000,
+      36585000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0623,
+      0.0691,
+      0.0737
+     ],
+     "growth_yoy": [
+      null,
+      0.3057,
+      0.1851
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      159577000,
+      177524000,
+      196761000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4206,
+      0.3976,
+      0.3965
+     ],
+     "growth_yoy": [
+      null,
+      0.1125,
+      0.1084
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     379384000,
+     446524000,
+     496228000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "DepreciationDepletionAndAmortization",
+   "tag": "us-gaap:DepreciationDepletionAndAmortization",
+   "label": "Depreciation & amortization by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-04",
+    "2025-08-03",
+    "2026-05-03",
+    "2026-08-02"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lulu:AmericasSegmentMember",
+     "label": "Americas Segment",
+     "values": [
+      51441000,
+      54499000,
+      62254000,
+      65757000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4492,
+      0.4552,
+      0.46,
+      0.462
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2102,
+      0.2066
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandSegmentMember",
+     "label": "China Mainland Segment",
+     "values": [
+      8576000,
+      8871000,
+      11990000,
+      11144000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0749,
+      0.0741,
+      0.0886,
+      0.0783
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3981,
+      0.2562
+     ]
+    },
+    {
+     "member": "lulu:OtherCountrySegmentMember",
+     "label": "Other Country Segment",
+     "values": [
+      8712000,
+      8574000,
+      10538000,
+      11092000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0761,
+      0.0716,
+      0.0779,
+      0.0779
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2096,
+      0.2937
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Segment Reporting, Reconciling Item, Corporate Nonsegment",
+     "values": [
+      45800000,
+      47771000,
+      50553000,
+      54339000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3999,
+      0.399,
+      0.3735,
+      0.3818
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1038,
+      0.1375
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     114529000,
+     119715000,
+     135335000,
+     142332000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-02-02",
+    "2026-02-01"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "lulu:WomensApparelMember",
+     "label": "Women's Apparel",
+     "values": [
+      6147372000,
+      6692630000,
+      6995365000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6391,
+      0.6321,
+      0.6301
+     ],
+     "growth_yoy": [
+      null,
+      0.0887,
+      0.0452
+     ]
+    },
+    {
+     "member": "lulu:MensApparelMember",
+     "label": "Men's Apparel",
+     "values": [
+      2252753000,
+      2558380000,
+      2663986000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2342,
+      0.2416,
+      0.2399
+     ],
+     "growth_yoy": [
+      null,
+      0.1357,
+      0.0413
+     ]
+    },
+    {
+     "member": "lulu:AccessoriesAndOtherCategoriesMember",
+     "label": "Accessories and Other Categories",
+     "values": [
+      1219153000,
+      1337116000,
+      1443249000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1267,
+      0.1263,
+      0.13
+     ],
+     "growth_yoy": [
+      null,
+      0.0968,
+      0.0794
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9619278000,
+     10588126000,
+     11102600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-04",
+    "2025-08-03",
+    "2026-05-03",
+    "2026-08-02"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "lulu:WomensApparelMember",
+     "label": "Women's Apparel",
+     "values": [
+      1535172000,
+      1547321000,
+      1602985000,
+      1488241000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6476,
+      0.6127,
+      0.6486,
+      0.6161
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0442,
+      -0.0382
+     ]
+    },
+    {
+     "member": "lulu:MensApparelMember",
+     "label": "Men's Apparel",
+     "values": [
+      544788000,
+      624598000,
+      581878000,
+      621380000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2298,
+      0.2473,
+      0.2354,
+      0.2572
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0681,
+      -0.0052
+     ]
+    },
+    {
+     "member": "lulu:AccessoriesAndOtherCategoriesMember",
+     "label": "Accessories and Other Categories",
+     "values": [
+      290700000,
+      353300000,
+      286740000,
+      306010000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1226,
+      0.1399,
+      0.116,
+      0.1267
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0136,
+      -0.1339
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2370660000,
+     2525219000,
+     2471603000,
+     2415631000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-01-28",
+    "2025-02-02",
+    "2026-02-01"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      6346392000,
+      6483183000,
+      6328380000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6598,
+      0.6123,
+      0.57
+     ],
+     "growth_yoy": [
+      null,
+      0.0216,
+      -0.0239
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandMember",
+     "label": "China Mainland",
+     "values": [
+      963760000,
+      1361337000,
+      1754799000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1002,
+      0.1286,
+      0.1581
+     ],
+     "growth_yoy": [
+      null,
+      0.4125,
+      0.289
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      1285255000,
+      1411673000,
+      1423178000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1336,
+      0.1333,
+      0.1282
+     ],
+     "growth_yoy": [
+      null,
+      0.0984,
+      0.0081
+     ]
+    },
+    {
+     "member": "lulu:RestOfWorldMember",
+     "label": "Rest of World",
+     "values": [
+      853338000,
+      1118541000,
+      1301678000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0887,
+      0.1056,
+      0.1172
+     ],
+     "growth_yoy": [
+      null,
+      0.3108,
+      0.1637
+     ]
+    },
+    {
+     "member": "lulu:HongKongSARTaiwanAndMacauSARMember",
+     "label": "Hong Kong SAR, Taiwan, and Macau SAR",
+     "values": [
+      170533000,
+      180092000,
+      199079000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0177,
+      0.017,
+      0.0179
+     ],
+     "growth_yoy": [
+      null,
+      0.0561,
+      0.1054
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      0,
+      33300000,
+      95486000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0,
+      0.0031,
+      0.0086
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.8674
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     9619278000,
+     10588126000,
+     11102600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-05-04",
+    "2025-08-03",
+    "2026-05-03",
+    "2026-08-02"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      1362524000,
+      1415002000,
+      1313206000,
+      1302069000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5747,
+      0.5603,
+      0.5313,
+      0.539
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0362,
+      -0.0798
+     ]
+    },
+    {
+     "member": "lulu:ChinaMainlandMember",
+     "label": "China Mainland",
+     "values": [
+      368101000,
+      392898000,
+      478395000,
+      407095000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1553,
+      0.1556,
+      0.1936,
+      0.1685
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2996,
+      0.0361
+     ]
+    },
+    {
+     "member": "lulu:RestOfWorldMember",
+     "label": "Rest of World",
+     "values": [
+      283897000,
+      326470000,
+      320590000,
+      340345000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1198,
+      0.1293,
+      0.1297,
+      0.1409
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1292,
+      0.0425
+     ]
+    },
+    {
+     "member": "country:CA",
+     "label": "CANADA",
+     "values": [
+      292820000,
+      321293000,
+      283341000,
+      285815000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1235,
+      0.1272,
+      0.1146,
+      0.1183
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0324,
+      -0.1104
+     ]
+    },
+    {
+     "member": "lulu:HongKongSARTaiwanAndMacauSARMember",
+     "label": "Hong Kong SAR, Taiwan, and Macau SAR",
+     "values": [
+      44104000,
+      47634000,
+      51408000,
+      51419000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0186,
+      0.0189,
+      0.0208,
+      0.0213
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1656,
+      0.0795
+     ]
+    },
+    {
+     "member": "country:MX",
+     "label": "MEXICO",
+     "values": [
+      19214000,
+      21922000,
+      24663000,
+      28888000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0081,
+      0.0087,
+      0.01,
+      0.012
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2836,
+      0.3178
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2370660000,
+     2525219000,
+     2471603000,
+     2415631000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Americas' (srt:AmericasMember) dropped: it is the parent of CANADA, MEXICO, UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'CHINA' (country:CN) dropped: its values equal the sum of China Mainland, Hong Kong SAR, Taiwan, and Macau SAR",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'Americas' (srt:AmericasMember) dropped: it is the parent of CANADA, MEXICO, UNITED STATES in the filing's definition linkbase",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/quarterly: row 'CHINA' (country:CN) dropped: its values equal the sum of China Mainland, Hong Kong SAR, Taiwan, and Macau SAR"
+ ],
+ "complete": true
+}

@@ -1,0 +1,90 @@
+{
+ "ticker": "LULU",
+ "name": "lululemon athletica inc.",
+ "sector": "Consumer Discretionary / Apparel retail",
+ "price": 97.76,
+ "market_cap_b": 11.64,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 11.060367247222004,
+ "base_year": "2026",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Historically elite franchise \u2014 ROIC proxy 42-76% over the last six fiscal years and gross margin 55-59% on proprietary fabrics (Nulu, Everlux), premium pricing and a direct-to-consumer store + digital model \u2014 but the moat is measurably eroding: Americas comparable sales -12% in Q2 FY2026, leggings revenue down ~20%, share ceded to Alo Yoga and Vuori, product misses, and a CEO transition after a founder proxy fight. A 5 (moderate/narrow) scores the franchise that exists today, not the one that compounded at 20%+.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 9 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 2.4%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2019 (28,568,000 vs 29,600,000, +3.6%), FY2020 (45,593,000 vs 46,100,000, +1.1%), FY2021 (50,797,000 vs 56,600,000, +11.4%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "BASE_DIVERGENCE: latest FY OE/share 7.22 vs 3-yr median 12.05 \u2014 one of them is distorted; find out which and why",
+  "TIER_BAND: bear-case tier D (9.3%) vs bull-case tier B (15.4%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 40.91,
+   "irr": 0.0727
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 55.31,
+   "irr": 0.0931
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 73.57,
+   "irr": 0.1184
+  },
+  "bull": {
+   "prob": 0.18,
+   "iv_at_15": 100.67,
+   "irr": 0.1536
+  },
+  "super_bull": {
+   "prob": 0.07,
+   "iv_at_15": 136.15,
+   "irr": 0.1948
+  }
+ },
+ "iv_at_15": 72.45,
+ "iv_at_12": 94.89,
+ "implied_irr": 0.1172,
+ "implied_irr_base_case": 0.1184,
+ "upside_at_15_pct": -25.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Premium athleisure brand, moat 5/10 and eroding \u2014 at $97.76 it does not clear 15% on reset numbers (weighted IRR 11.7%, weighted IV@15% $72.45; bear case 9.3%); it clears the 15% hurdle only below ~$72.",
+ "analysis_date": "2026-10-19",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0931,
+ "irr_bull": 0.1536,
+ "tier_bear": "D",
+ "tier_bull": "B",
+ "iv_at_20": 52.09,
+ "iv_at_25": 40.73,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 119068000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Proprietary technical fabrics (Nulu, Everlux) and fit reputation supporting premium pricing \u2014 gross margin 56.6% in the latest FY, 55-59% across the last six years",
+  "Returns on capital far above cost through a cycle: ROIC proxy 41.9% / 65.9% / 42.7% / 76.4% / 75.4% / 49.4% over the last six fiscal years (fundamentals.json)",
+  "Direct-to-consumer model (825 stores at Q2 FY2026 plus digital ~39% of Q2 revenue) \u2014 owns pricing, presentation and customer data, no wholesale dependence",
+  "International business still growing (international revenue +4% in Q2 FY2026 while Americas fell 8%) and a net-cash, no-funded-debt balance sheet that funds the turnaround without creditors"
+ ],
+ "moat_against": [
+  "Americas is ~71% of revenue and is in decline: comparable sales -12% and revenue -8% in Q2 FY2026; core leggings sales down ~20% as silhouettes shifted away from the franchise product",
+  "Alo Yoga and Vuori are taking the premium customer with the same community playbook lululemon pioneered; reported US athleisure share down ~10pp to 43.9%",
+  "Product execution failures (pulled 'Get Low' leggings) and brand-sentiment damage in China (Great Wall campaign backlash) hit the fit/quality reputation the premium rests on",
+  "Leadership vacuum and governance fight: CEO departure, interim co-CEOs through 2026, founder Chip Wilson proxy battle; incoming CEO Heidi O'Neill's plan is unproven",
+  "Premium discretionary price point ($118 leggings) is exactly what consumers defer when budgets tighten \u2014 no cost or price moat underneath the brand"
+ ]
+}
