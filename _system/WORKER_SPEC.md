@@ -42,7 +42,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      (step 8 — the new filing moves its native base, window and share count, so the carried
      value no longer reproduces and the engine refuses it), or drop it when that run no longer
      raises `ACQUIRED_IPRD_RECURRENT`. `iprd_cash_flow_check` entries carry over (they record
-     what a filed cash-flow statement shows); add one for each new period the run names. Write the new analysis.md as a
+     what a filed cash-flow statement shows); add one for each new period the run names.
+     `iprd_deferred_payment` entries carry over too (they record which deal a filed charge
+     belongs to; they name FY periods only, so a change of basis never strands one); drop one whose period
+     has left the engine's window (the engine lists it in `deferred_payments_unused` and make_score refuses to
+     score until it is dropped). Write the new analysis.md as a
      dated supersession (state what the new filing changed), keep the prior flag and
      override decisions unless the filing changes them, and re-run every enrichment step.
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
@@ -133,7 +137,40 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (a one-off deal, or the way this company buys its pipeline). `ACQUIRED_IPRD_RECURRENT`: charges in 2 or
    more of the last 3 FY (material). The engine does not amortize: either justify the one-time treatment in
    analysis.md (why the next three years will not repeat it), or declare the amortized base of step 8 and
-   run the final pass with `--base-oe-ps <its value>`. Treatment `not_applied_share_count_unverified` (the
+   run the final pass with `--base-oe-ps <its value>`. **Deferred payments (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided).** A charge that
+   is a contingent milestone or other deferred payment on a deal already charged in an earlier period (inside
+   the window or before it) is the same purchase, not a second one: it stays deducted (real cash spent on that
+   pipeline), but it is not evidence of buying R&D as a habit. Declare it in judgment.json
+   `iprd_deferred_payment`, one entry per FY period and deal: `{period: <the FY end>, window: "fy", amount:
+   <this deal's part of that period's charge>, deferred_payment_of: {deal: <the deal's name>,
+   first_charged_period: <the period end the deal was first charged>, source: <the original acquisition
+   filing's accession + section / page showing the contingent milestone or deferred consideration>,
+   contingent_total: {value: <the deal's unrecognized milestones / deferred consideration, USD>, source:
+   <accession + section / page disclosing that total>}}}` (the per-deal cap — the main agent's decision on the
+   review's open item, delegated by Andrew 2026-10-20: required, declared once and identically on every entry of
+   the deal). Only FY
+   periods count toward recurrence, so a current-YTD charge is not declared (window `ttm_current_ytd` is
+   refused): declare it once it lands in an FY. A period paying milestones of two earlier deals takes one entry
+   per deal. When the period's entries sum to its whole charge it leaves the recurrence count
+   (`recurrence_excluded: "deferred_payment_of"`); a partly deferred period still counts. The engine refuses
+   (`BAD_IPRD_DEFERRED_PAYMENT`, exit 3): a `first_charged_period` that does not precede the period; one deal
+   with two first charges; a first charge inside the window whose record shows no charge there, or whose
+   whole charge is itself declared a deferred payment (a deal's first charge is a purchase, not an
+   installment); a first charge before the window that companyfacts covers but shows no acquired-IPR&D
+   expense fact ending on that date (name the period end of the filing that first expensed it); a source whose
+   accession is not from the first charged fiscal year's start year through the year after its end (the
+   original filing: an 8-K or 10-Q of that fiscal year, or the 10-K that closes it), inside or before the
+   window, so the entry survives the first charge rolling out; entries summing past the period's charge; a
+   missing or malformed `contingent_total`; one deal's entries carrying different `contingent_total` values (or
+   sources); and one deal's declared amounts, summed across every entry in judgment.json (a rolled-out one
+   included), exceeding its `contingent_total`. Never declare a new deal (another counterparty or asset) as an
+   installment, and never overstate `contingent_total`: it is the contingent consideration the filing
+   discloses for that deal, and a payment past it is a second purchase, a second charge.
+   key_numbers.md prints the excluded periods;
+   quote them in analysis.md beside the recurrence assessment. HALO: the FY2025 10-K discloses $100.0M of
+   unrecognized Surf Bio milestones — when one is expensed, declare it (once it lands in an FY) against
+   `first_charged_period` 2025-12-31, citing that 10-K (0001159036-26-000024), with `contingent_total`
+   {value 100000000, source: that 10-K's accession + the note disclosing the $100.0M of milestones}. Treatment `not_applied_share_count_unverified` (the
    flag says "not deducted — the share count behind the base is unverified": a share-scale defect rescued by
    a pin with no power-of-ten factor): the tier is UNADJUSTED — block `NEEDS_MAIN_AGENT: shares —
    ACQUIRED_IPRD_CHARGE not deducted: <total>` with the charge total; only the main agent may publish it,

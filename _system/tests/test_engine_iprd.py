@@ -1014,6 +1014,379 @@ def _amortized_record():
         return n, d
     return _cached("amort_rec", go)
 
+# ===========================================================================
+# 7. Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided)
+# ===========================================================================
+# A contingent milestone or other deferred payment on an acquired-IPR&D deal already charged in an earlier period
+# is the SAME purchase: it is still deducted once when expensed / paid, but its period does not count toward
+# ACQUIRED_IPRD_RECURRENT (which catches buying R&D as a habit — distinct deals). The link is declared per period
+# in judgment.json iprd_deferred_payment and cited, so a genuine second purchase cannot be relabelled.
+DEAL_SRC = ("SYN 10-K FY2023 (0000999001-24-000010) Note 5 'Asset acquisition', p. 71: up to $20.0 million of "
+            "contingent development milestones payable to Test Bio's former holders, not recognized at acquisition")
+
+
+# the deal's contingent consideration (the per-deal cap): generous by default so the window rules are tested apart
+CT_SRC = ("SYN 10-K FY2025 (0000999001-26-000004) Note 5 'Commitments', p. 80: $1.0 billion of contingent "
+          "development milestones payable to the seller, not recognized")
+CT = {"value": 1e9, "source": CT_SRC}
+
+
+def deferred(period="2025-12-31", amount=20e6, first="2023-12-31", source=DEAL_SRC, window="fy", deal="Test Bio",
+             contingent=CT):
+    return {"period": period, "window": window, "amount": amount,
+            "deferred_payment_of": {"deal": deal, "first_charged_period": first, "source": source,
+                                    "contingent_total": contingent}}
+
+
+def _two_of_three(entries, **kw):
+    facts = _facts(expense={2023: 15e6, 2025: 20e6})
+    return _run(facts, judgment={"iprd_deferred_payment": entries}, **kw)
+
+
+def _refused(out, needle):
+    assert out["exit"] == 3, (out["exit"], out["stdout"][-1500:])
+    assert "BAD_IPRD_DEFERRED_PAYMENT" in out["stdout"] and needle in out["stdout"], out["stdout"][-1500:]
+
+
+def test_deferred_payment_of_an_earlier_deal_is_deducted_but_not_recurrent():
+    """The 2-of-3-FY synthetic filer (FY2023 $15M, FY2025 $20M) whose FY2025 charge is declared, whole, the
+    deferred milestone of the FY2023 deal: ACQUIRED_IPRD_RECURRENT does not fire (FY2025 is recorded
+    recurrence_excluded: deferred_payment_of), both years are still deducted ($0.35/share, exactly as the
+    undeclared run), and the base is untouched. Before the ruling the declaration was ignored and RECURRENT fired."""
+    plain = _plain()
+    n = _ok(_two_of_three([deferred()]))
+    blk = n["iprd_adjustment"]
+    assert not blk["recurrent"] and blk["fy_with_charge"] == ["2023-12-31"], blk
+    assert not flags(n, "ACQUIRED_IPRD_RECURRENT")
+    cf = flags(n, "ACQUIRED_IPRD_CHARGE")
+    assert len(cf) == 1 and "deferred payment of Test Bio (first charged 2023-12-31) — not counted toward recurrence" in cf[0], cf
+    p25 = next(p for p in blk["periods"] if p["period"] == "2025-12-31")
+    assert p25["recurrence_excluded"] == "deferred_payment_of" and p25["deducted"] == 20e6, p25
+    assert p25["deferred_payment_of"] == [{"deal": "Test Bio", "first_charged_period": "2023-12-31", "source": DEAL_SRC,
+                                           "contingent_total": CT, "amount": 20e6,
+                                           "first_charge_evidence": "window_record"}], p25
+    assert blk["recurrence_excluded"] == [{"period": "2025-12-31", "window": "fy", "deal": "Test Bio",
+                                           "first_charged_period": "2023-12-31", "amount": 20e6}], blk
+    assert blk["total"] == 35e6 and blk["charge_per_share"] == 35e6 / SHARES
+    _assert_base_untouched(n, plain)
+    _assert_shifted(n, plain, 35e6 / SHARES)
+    # the deduction is exactly the undeclared run's
+    r = _recurrent()
+    for lbl in LABELS + ["weighted"]:
+        a = n["weighted"] if lbl == "weighted" else n["scenarios"][lbl]
+        b = r["weighted"] if lbl == "weighted" else r["scenarios"][lbl]
+        assert all(a[k] == b[k] for k in IV_KEYS) and a["irr"] == b["irr"], lbl
+
+
+def test_partly_deferred_year_still_counts_toward_recurrence():
+    """Only $5M of FY2025's $20M charge is declared the FY2023 deal's milestone: the rest is a new purchase, so the
+    year still counts — RECURRENT fires, the declaration is recorded (whole: false) without recurrence_excluded."""
+    n = _ok(_two_of_three([deferred(amount=5e6)]))
+    blk = n["iprd_adjustment"]
+    assert blk["recurrent"] and blk["fy_with_charge"] == ["2023-12-31", "2025-12-31"], blk
+    assert flags(n, "ACQUIRED_IPRD_RECURRENT")
+    p25 = next(p for p in blk["periods"] if p["period"] == "2025-12-31")
+    assert [x["amount"] for x in p25["deferred_payment_of"]] == [5e6], p25
+    assert "recurrence_excluded" not in p25 and blk["recurrence_excluded"] == [], blk
+    assert blk["total"] == 35e6
+
+
+def test_deferred_declaration_without_a_charge_at_its_first_period_is_refused():
+    """first_charged_period inside the engine's window must be a period whose record shows a charge: FY2024 has
+    none, and a date inside the window that is no period end (2024-06-30) names no record — both refused (exit 3,
+    BAD_IPRD_DEFERRED_PAYMENT), so a second purchase cannot be relabelled as an installment of a deal that never
+    charged there. A declaration on a period with no charge, or for more than the period's charge, is refused too."""
+    _refused(_two_of_three([deferred(first="2024-12-31")]), "no acquired-IPR&D charge")
+    _refused(_two_of_three([deferred(first="2024-06-30")]), "no acquired-IPR&D charge")
+    _refused(_two_of_three([deferred(period="2024-12-31", first="2023-12-31")]), "names no acquired-IPR&D charge")
+    _refused(_two_of_three([deferred(amount=25e6)]), "more than the period's charge")
+
+
+def test_deferred_declaration_citing_a_later_or_the_same_period_is_refused():
+    """first_charged_period must precede the declared period: FY2023 declared the deferred payment of a deal first
+    charged in FY2025 (later), or of FY2023 itself, is refused."""
+    _refused(_two_of_three([deferred(period="2023-12-31", amount=15e6, first="2025-12-31")]), "must precede")
+    _refused(_two_of_three([deferred(period="2023-12-31", amount=15e6, first="2023-12-31")]), "must precede")
+
+
+OK_SRC_2021 = "SYN 10-K FY2021 (0000999001-22-000007) Note 4: Test Bio asset acquisition, contingent milestones up to $20.0M"
+
+
+def _with_2021_charge(entries):
+    """The 2-of-3-FY filer plus a FY2021 acquired-IPR&D expense fact ($8M, before the engine's 2023-2025 window)."""
+    facts = _facts(expense={2021: 8e6, 2023: 15e6, 2025: 20e6})
+    return _run(facts, judgment={"iprd_deferred_payment": entries})
+
+
+def test_pre_window_first_charge_needs_the_original_acquisition_filing():
+    """A first charge before the window (FY2021: the engine has no record of it) must be cited from the original
+    acquisition filing — an accession filed from that fiscal year's start through the year after its end. No
+    accession at all is malformed; an accession from a later filing (2025) is refused; the FY2021 10-K (filed 2022)
+    is accepted (companyfacts carries the FY2021 expense fact) and FY2025 leaves the recurrence count. A malformed
+    entry (no deal) and a period declared twice for one deal are refused."""
+    _refused(_with_2021_charge([deferred(first="2021-12-31", source="the FY2025 10-K mentions a milestone")]), "malformed")
+    _refused(_with_2021_charge([deferred(first="2021-12-31", source="SYN 10-K FY2025 (0000999001-26-000004) Note 5")]),
+             "original acquisition filing")
+    n = _ok(_with_2021_charge([deferred(first="2021-12-31", source=OK_SRC_2021)]))
+    blk = n["iprd_adjustment"]
+    assert not blk["recurrent"] and blk["fy_with_charge"] == ["2023-12-31"], blk
+    p25 = next(p for p in blk["periods"] if p["period"] == "2025-12-31")
+    assert p25["deferred_payment_of"][0]["first_charge_evidence"] == "companyfacts_expense_fact", p25
+    assert p25["recurrence_excluded"] == "deferred_payment_of"
+    _refused(_two_of_three([deferred(deal=" ")]), "malformed")
+    _refused(_two_of_three([deferred(), deferred()]), "twice")
+
+
+def test_counterfactual_replay_never_refuses_a_deferred_declaration():
+    """make_score's override-impact counterfactual (DCF_NO_OVERRIDES=1 --measure) reads another basis; a declaration
+    checked on the final run is not refused there (recorded unapplied with its reason), like an iprd_amortized one."""
+    facts = _facts(expense={2023: 15e6, 2025: 20e6})
+    out = _run_env(facts, judgment={"iprd_deferred_payment": [deferred(first="2024-12-31")]},
+                   env={"DCF_NO_OVERRIDES": "1"}, measure=True)
+    assert out["exit"] == 0, out["stdout"][-1500:]
+    blk = out["numbers"]["iprd_adjustment"]
+    assert blk["recurrent"] and blk["deferred_payments_refused"], blk
+    assert "no acquired-IPR&D charge" in blk["deferred_payments_refused"][0]["reason"], blk
+
+
+def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
+    """HALO (the motivating case: $100.0M of unrecognized Surf Bio milestones in the FY2025 10-K may arrive as a
+    later expensed charge): its judgment.json declares no deferred payment today, and the engine on its real
+    companyfacts at the recorded price, inputs, judgment.json and ttm.json reproduces the committed
+    dcf_numbers.json field for field (the run date and its month count aside) — no new key in iprd_adjustment."""
+    rec = json.load(open(os.path.join(ROOT, "HALO", "dcf_numbers.json"), encoding="utf-8"))
+    j = json.load(open(os.path.join(ROOT, "HALO", "judgment.json"), encoding="utf-8"))
+    tt = json.load(open(os.path.join(ROOT, "HALO", "ttm.json"), encoding="utf-8"))
+    assert "iprd_deferred_payment" not in j
+    args = list(HALO_ARGS)
+    args[args.index("--price") + 1] = repr(rec["price"])
+    out = run("HALO", args, judgment=j, ttm=tt, fixture=H.load_fixture("HALO"))
+    assert out["exit"] == 0, out["stdout"][-2000:]
+    n = out["numbers"]
+    assert n["iprd_adjustment"] == rec["iprd_adjustment"]
+    assert "recurrence_excluded" not in n["iprd_adjustment"] and "deferred_payments_refused" not in n["iprd_adjustment"]
+    dated = {"as_of", "price_source", "content_hash", "diagnostics"}
+    assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
+    assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
+            == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})
+
+
+# --- Codex review of the deferred-payment rule (fixes amended into the follow-up commit) -------------------------
+def _src(yy, what="Note 5: contingent development milestones payable to the seller, not recognized at acquisition"):
+    return f"SYN filing (0000999001-{yy:02d}-000010) {what}"
+
+
+def _three_years(entries):
+    """FY2023 $50M, FY2024 $200M, FY2025 $300M — three charges in three years."""
+    facts = _facts(expense={2023: 50e6, 2024: 200e6, 2025: 300e6})
+    return _run(facts, judgment={"iprd_deferred_payment": entries})
+
+
+def test_deferred_a_deals_first_charge_cannot_itself_be_declared_an_installment():
+    """[Codex review, finding 1] FY2024 declared, whole, deal A's installment (first charged FY2023) AND named as
+    deal B's first charge (FY2025 declared B's installment): FY2024 cannot be both, so a genuine second purchase
+    would have been relabelled and RECURRENT silenced. Refused (exit 3). The same deal declared first charged on two
+    dates (in any letter case) is refused too. The legitimate shape — FY2024 only PARTLY deal A's milestone, the
+    rest deal B's purchase, and FY2025 wholly deal B's milestone — is accepted: FY2025 leaves the count, FY2023 and
+    FY2024 stay, RECURRENT still fires."""
+    a24 = deferred(period="2024-12-31", amount=200e6, first="2023-12-31", deal="Deal A", source=_src(24))
+    b25 = deferred(period="2025-12-31", amount=300e6, first="2024-12-31", deal="Deal B", source=_src(25))
+    _refused(_three_years([a24, b25]), "would be a second purchase in that period")
+    _refused(_three_years([a24, b25]), "names it its first charge")
+    a25 = deferred(period="2025-12-31", amount=300e6, first="2024-12-31", deal=" deal  a", source=_src(25))
+    _refused(_three_years([a24, a25]), "one deal has one first charge")
+    n = _ok(_three_years([dict(a24, amount=50e6), b25]))
+    blk = n["iprd_adjustment"]
+    assert blk["fy_with_charge"] == ["2023-12-31", "2024-12-31"] and blk["recurrent"], blk
+    assert [x["period"] for x in blk["recurrence_excluded"]] == ["2025-12-31"], blk
+    assert blk["total"] == 550e6
+
+
+def test_deferred_source_must_be_the_original_filing_inside_the_window_too():
+    """[Codex review, findings 1 and 3] An in-window first charge (FY2023) is also checked against the original
+    acquisition filing's years (2023..2024), so an entry accepted today does not start failing once FY2023 rolls out
+    of the window: a 2021 accession (before the deal) and a 2026 one (a later 10-K) are refused; 2023 and 2024 pass."""
+    for yy in (21, 26):
+        _refused(_two_of_three([deferred(source=_src(yy))]), "original acquisition filing")
+    for yy in (23, 24):
+        _ok(_two_of_three([deferred(source=_src(yy))]))
+
+
+def test_pre_window_first_charge_must_be_an_expense_fact_in_companyfacts():
+    """[Codex review, finding 2] A first charge before the window is checked against companyfacts: FY2019 (the
+    synthetic filer's facts start 2019-01-01, so companyfacts covers it) carries no acquired-IPR&D expense fact, so
+    citing any 2020 accession does not prove a charge that never happened — refused. A first charge before
+    companyfacts starts (FY2017, pre-XBRL in effect) rests on the cited original filing alone and is recorded so
+    (first_charge_evidence citation_only_before_companyfacts)."""
+    _refused(_two_of_three([deferred(first="2019-12-31", source="9999999999-20-000001 p1")]), "companyfacts covers it")
+    n = _ok(_two_of_three([deferred(first="2017-12-31", source=_src(18))]))
+    p25 = next(p for p in n["iprd_adjustment"]["periods"] if p["period"] == "2025-12-31")
+    assert p25["deferred_payment_of"][0]["first_charge_evidence"] == "citation_only_before_companyfacts", p25
+    assert p25["recurrence_excluded"] == "deferred_payment_of"
+
+
+def _rec(period, amount, window="fy"):
+    return {"period": period, "window": window, "amount": amount, "expense": amount, "deducted": amount}
+
+
+def _fy_fact(start, end, val):
+    return {"start": start, "end": end, "val": val, "form": "10-K", "fp": "FY", "filed": end}
+
+
+def test_original_filing_years_follow_the_fiscal_year_not_the_calendar():
+    """[Codex review, findings 3 and 8] A January FY end (2022-01-29): the deal closed and was first expensed in a
+    10-Q filed in calendar 2021 — that accession (-21-) is the original filing and is accepted. A June FY (first
+    charge FY2024, 2024-06-30): the September 2023 8-K / 10-Q (-23-) is accepted. A -20- accession is still too early
+    for the January filer. The flag names the first charge by its date, not a calendar-year 'FY' label."""
+    win = ["2023-01-28", "2024-02-03", "2025-02-01"]
+    facts = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2021-01-31", "2022-01-29", 5e6)]}}}}}
+    for yy, ok in ((21, True), (22, True), (23, True), (20, False)):
+        iprd = {"periods": [_rec("2025-02-01", 20e6)]}
+        ref, unused = E.iprd_apply_deferred(iprd, [deferred(period="2025-02-01", first="2022-01-29", source=_src(yy))],
+                                            win, facts)
+        assert (not ref) == ok and unused == [], (yy, ref)
+        assert (iprd["periods"][0].get("recurrence_excluded") == "deferred_payment_of") == ok, (yy, iprd)
+    win = ["2025-06-30", "2026-06-30", "2027-06-30"]
+    facts = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2023-07-01", "2024-06-30", 5e6)]}}}}}
+    iprd = {"periods": [_rec("2027-06-30", 20e6)]}
+    ref, _ = E.iprd_apply_deferred(iprd, [deferred(period="2027-06-30", first="2024-06-30", source=_src(23))], win, facts)
+    assert ref == [] and iprd["periods"][0]["recurrence_excluded"] == "deferred_payment_of", ref
+    iprd.update(total=20e6, treatment=E.IPRD_TREATMENT_ONE_TIME, charge_per_share=0.2, shares_denominator=100e6,
+                shares_source="test", material=True, materiality=0.5, recurrent=False, fy_with_charge=[])
+    iprd["periods"][0].update(amount_basis="expense", tag_used=EXPENSE)
+    txt = " ".join(E.iprd_flags(iprd))
+    assert "first charged 2024-06-30" in txt and "FY2024)" not in txt, txt
+
+
+def test_ytd_declaration_is_refused_it_never_counts_toward_recurrence():
+    """[Codex review, findings 4, 5 and 6] The recurrence count reads FY periods only, so a current-YTD declaration
+    could only mislabel a period that never counted ("excluded from" / "still counts toward" the recurrence count)
+    and, valid on a --ttm run only, would make every non-TTM run (WORKER_SPEC step 2's preliminary run) exit 3.
+    Window "ttm_current_ytd" is malformed: declare the charge once it lands in an FY."""
+    assert not E.iprd_deferred_entry_ok(deferred(period="2026-06-30", window="ttm_current_ytd", first="2025-12-31"))
+    iprd = {"periods": [_rec("2025-12-31", 20e6), _rec("2026-06-30", 30e6, window="ttm_current_ytd")]}
+    ref, _ = E.iprd_apply_deferred(iprd, [deferred(period="2026-06-30", window="ttm_current_ytd", amount=30e6,
+                                                   first="2025-12-31", source=_src(26))],
+                                   ["2023-12-31", "2024-12-31", "2025-12-31"], None)
+    assert len(ref) == 1 and "malformed" in ref[0]["reason"] and "lands in an FY" in ref[0]["reason"], ref
+    assert "recurrence_excluded" not in iprd["periods"][1] and "deferred_payment_of" not in iprd["periods"][1]
+    out = _run(_ttm_ytd_facts(), extra=["--ttm"], ttm=_ttm_doc(2.1, 98e6),
+               judgment={"iprd_deferred_payment": [deferred(period="2026-06-30", window="ttm_current_ytd", amount=30e6,
+                                                            first="2025-12-31", source=_src(26))]})
+    _refused(out, "lands in an FY")
+
+
+def test_entry_whose_period_rolled_out_of_the_window_is_unused_not_refused():
+    """[Codex review, finding 5] An entry carried over from an earlier scoring whose period (FY2022) is now older
+    than the engine's window is neither applied nor refused: the run exits 0 and lists it in
+    deferred_payments_unused (like cash_flow_checks_unused); make_score then asks for it to be dropped. The
+    in-window entry beside it still applies."""
+    old = deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio")
+    n = _ok(_two_of_three([deferred(), old]))
+    blk = n["iprd_adjustment"]
+    assert blk["deferred_payments_unused"] == [old], blk
+    assert "deferred_payments_refused" not in blk and [x["period"] for x in blk["recurrence_excluded"]] == ["2025-12-31"]
+    ref, unused = E.iprd_apply_deferred({"periods": [_rec("2025-12-31", 20e6)]}, [old],
+                                        ["2023-12-31", "2024-12-31", "2025-12-31"], None)
+    assert ref == [] and unused == [old]
+
+
+def test_a_period_made_of_two_earlier_deals_milestones_can_be_declared_whole():
+    """[Codex review, finding 7] FY2025's $20M = a $12M Test Bio milestone (first charged FY2023, in the window) +
+    an $8M Other Bio milestone (first charged FY2021, before it; companyfacts carries the FY2021 charge). Both are
+    declared: their sum is the whole charge, so FY2025 leaves the recurrence count and RECURRENT does not fire
+    (before the fix the second entry was refused as 'twice'). Declarations summing past the charge are refused, and
+    a deal still declares a period once."""
+    tb = deferred(amount=12e6)
+    ob = deferred(amount=8e6, deal="Other Bio", first="2021-12-31", source=OK_SRC_2021)
+    n = _ok(_with_2021_charge([tb, ob]))
+    blk = n["iprd_adjustment"]
+    assert not blk["recurrent"] and blk["fy_with_charge"] == ["2023-12-31"], blk
+    p25 = next(p for p in blk["periods"] if p["period"] == "2025-12-31")
+    assert p25["recurrence_excluded"] == "deferred_payment_of"
+    assert [(x["deal"], x["amount"], x["first_charge_evidence"]) for x in p25["deferred_payment_of"]] == [
+        ("Test Bio", 12e6, "window_record"), ("Other Bio", 8e6, "companyfacts_expense_fact")], p25
+    assert [(x["deal"], x["amount"]) for x in blk["recurrence_excluded"]] == [("Test Bio", 12e6), ("Other Bio", 8e6)]
+    assert blk["total"] == 35e6
+    cf = flags(n, "ACQUIRED_IPRD_CHARGE")
+    assert ("deferred payment of Test Bio (first charged 2023-12-31) and Other Bio (first charged 2021-12-31) — not "
+            "counted toward recurrence") in cf[0], cf
+    # one deal only part of it: the year still counts
+    p = _ok(_with_2021_charge([tb]))["iprd_adjustment"]
+    assert p["recurrent"] and p["recurrence_excluded"] == [], p
+    _refused(_with_2021_charge([tb, dict(ob, amount=9e6)]), "sum to 21,000,000, more than the period's charge")
+    _refused(_with_2021_charge([tb, dict(tb, amount=8e6)]), "twice")
+
+
+
+# --- the per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20) --------
+def _deal_a(period, amount, contingent):
+    return deferred(period=period, amount=amount, first="2023-12-31", deal="Deal A", source=_src(24),
+                    contingent=contingent)
+
+
+def test_deferred_declaration_needs_the_deals_contingent_total():
+    """Each deferred_payment_of carries contingent_total {value (USD, > 0), source (accession + section showing the
+    unrecognized milestones / deferred consideration)}: without it, with a non-positive value or with a source
+    carrying no accession, the entry is malformed and refused (exit 3)."""
+    d = deferred()
+    for bad in (None, {"source": CT_SRC}, {"value": 0, "source": CT_SRC}, {"value": True, "source": CT_SRC},
+                {"value": float("nan"), "source": CT_SRC}, {"value": 20e6, "source": "Note 5: $20.0M milestones"},
+                {"value": 20e6, "source": "0000999001-26-000004"}, 20e6):
+        dd = dict(d["deferred_payment_of"], contingent_total=bad)
+        if bad is None:
+            del dd["contingent_total"]
+        e = dict(d, deferred_payment_of=dd)
+        assert not E.iprd_deferred_entry_ok(e), bad
+    _refused(_two_of_three([dict(d, deferred_payment_of={k: v for k, v in d["deferred_payment_of"].items()
+                                                         if k != "contingent_total"})]), "contingent_total")
+
+
+def test_deferred_amounts_for_one_deal_are_capped_by_its_contingent_total():
+    """One deal's declared deferred amounts, summed across every entry of the run, may not exceed the deal's
+    contingent_total: FY2025's $20M declared a Test Bio milestone against a $15M contingent_total is refused; Deal A
+    paying $30M (FY2024) + $40M (FY2025) against $60M is refused (both entries), against $70M accepted (the sum
+    equals the cap) and the record carries the cap on each item. A rolled-out entry still counts toward its deal's
+    sum. The deduction never changes."""
+    _refused(_two_of_three([deferred(contingent={"value": 15e6, "source": CT_SRC})]),
+             "more than its contingent_total")
+    cap60, cap70 = {"value": 60e6, "source": CT_SRC}, {"value": 70e6, "source": CT_SRC}
+    out = _three_years([_deal_a("2024-12-31", 30e6, cap60), _deal_a("2025-12-31", 40e6, cap60)])
+    _refused(out, "more than its contingent_total")
+    assert out["stdout"].count("more than its contingent_total") >= 2, out["stdout"][-1500:]
+    n = _ok(_three_years([_deal_a("2024-12-31", 30e6, cap70), _deal_a("2025-12-31", 40e6, cap70)]))
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 550e6 and blk["recurrent"], blk
+    for p in ("2024-12-31", "2025-12-31"):
+        rec = next(x for x in blk["periods"] if x["period"] == p)
+        assert [x["contingent_total"] for x in rec["deferred_payment_of"]] == [cap70], rec
+    # a rolled-out entry of the same deal is unused, not applied, but its amount still counts toward the cap
+    old = deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio",
+                   contingent={"value": 22e6, "source": CT_SRC})
+    new = deferred(amount=20e6, first="2021-12-31", source=OK_SRC_2021, deal="old bio",
+                   contingent={"value": 22e6, "source": CT_SRC})
+    facts = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2021-01-01", "2021-12-31", 8e6)]}}}}}
+    iprd = {"periods": [_rec("2025-12-31", 20e6)]}
+    ref, unused = E.iprd_apply_deferred(iprd, [old, new], ["2023-12-31", "2024-12-31", "2025-12-31"], facts)
+    assert [r["entry"] for r in ref] == [old, new] and unused == [], (ref, unused)
+    assert all("more than its contingent_total" in r["reason"] for r in ref), ref
+    assert "deferred_payment_of" not in iprd["periods"][0]
+    ref, unused = E.iprd_apply_deferred(iprd, [old, dict(new, amount=17e6)], ["2023-12-31", "2024-12-31", "2025-12-31"],
+                                        facts)
+    assert ref == [] and unused == [old] and "recurrence_excluded" not in iprd["periods"][0], (ref, iprd)
+
+
+def test_one_deal_declares_one_contingent_total():
+    """A deal's contingent_total is declared once, consistently: two entries for Deal A carrying different values, or
+    the same value cited from different sources, are refused (every entry of that deal); identical declarations
+    (the source compared without extra spacing) pass."""
+    a = {"value": 70e6, "source": CT_SRC}
+    for b in ({"value": 80e6, "source": CT_SRC}, {"value": 70e6, "source": _src(26, "Note 9: $70.0M milestones")}):
+        out = _three_years([_deal_a("2024-12-31", 30e6, a), _deal_a("2025-12-31", 40e6, b)])
+        _refused(out, "one deal has one contingent_total")
+    _ok(_three_years([_deal_a("2024-12-31", 30e6, a),
+                      _deal_a("2025-12-31", 40e6, {"value": 70e6, "source": "  " + CT_SRC.replace(" ", "  ")})]))
+
 
 if __name__ == "__main__":
     fails = 0

@@ -404,6 +404,25 @@ instead of being dropped. (3) Cash paid in a window period against an earlier wi
 counts as a deferred payment, bounded by the window's unpaid remainder (expense - cash of its cash-basis periods);
 a filer that never expenses (MAA) has no remainder, so its cash-only periods still never qualify. A deferred
 payment does not count toward recurrence.
+Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided): a
+contingent milestone or other deferred payment on an acquired-IPR&D deal already charged in an earlier period
+(inside the window or before it) is the same purchase — still deducted once when expensed / paid, but its period
+does not count toward ACQUIRED_IPRD_RECURRENT (which catches buying R&D as a habit: distinct deals). The worker
+declares the link per FY period and deal in judgment.json iprd_deferred_payment ({period, window "fy", amount:
+this deal's part of the period's charge, deferred_payment_of: {deal, first_charged_period, source: accession +
+section / page showing the contingent milestone or deferred consideration, contingent_total: {value (USD), source:
+accession + section showing the deal's unrecognized milestones / deferred consideration}}); iprd_apply_deferred
+validates it against this run's window and companyfacts — one first charge per deal; one contingent_total per deal,
+declared consistently, and the deal's declared amounts across every entry summing to no more than it (the per-deal
+cap: the main agent's decision on the review's open item, delegated by Andrew 2026-10-20); first_charged_period before the declared
+period; inside the window, a period whose record shows a charge that is not itself wholly declared deferred;
+before the window, an acquired-IPR&D expense fact ending there when companyfacts covers the date; the source's
+accession from the first charged fiscal year's start year through the year after its end (the original
+acquisition filing); the deals' amounts within the period's charge — and refuses anything else as
+BAD_IPRD_DEFERRED_PAYMENT (exit 3; the override-impact counterfactual records it in deferred_payments_refused
+instead). An entry whose period has rolled out of the window is listed in deferred_payments_unused (make_score asks
+for it to be dropped). A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a
+partly deferred period still counts. The deduction is unchanged, and a run with no declaration gains no key.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -1756,6 +1775,271 @@ def load_iprd_cash_flow_checks(ticker):
     return [e for e in v if iprd_cash_flow_check_entry_ok(e)] if isinstance(v, list) else []
 
 
+# Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided):
+# judgment.json iprd_deferred_payment — a SIBLING of iprd_cash_flow_check, not an extension of it: the cash-flow
+# check answers how the 10-K presents one period's expense (expense-basis periods only, keyed to the filed
+# expense), while this answers which deal a period's charge belongs to — any basis, possibly only part of the
+# charge, possibly several deals in one period — so folding it into the check would force a presentation onto
+# cash-basis periods and a second amount onto one entry. The deduction never changes; only the recurrence count
+# does, and that count reads FY periods only, so an entry names an FY period (window "fy").
+IPRD_DEFERRED_KEY = "iprd_deferred_payment"
+IPRD_RECURRENCE_EXCLUDED = "deferred_payment_of"
+IPRD_DEFERRED_WINDOWS = ("fy",)
+IPRD_ACCESSION_RE = re.compile(r"\b\d{10}-(\d{2})-\d{6}\b")
+IPRD_WINDOW_DAYS = 357   # a first charge less than this before the oldest window FY end lies inside that FY
+IPRD_FY_SPAN_DAYS = 364  # first charged period - 364 days: the calendar year the fiscal year it closes started in
+
+
+def _deal_key(name):
+    """One deal name, compared without case or extra whitespace ("Test Bio" == " test  bio")."""
+    return " ".join(str(name).split()).casefold()
+
+
+def _cited(src):
+    """A filing citation: an EDGAR accession (0001234567-YY-NNNNNN) plus some text naming the section / page."""
+    return bool(isinstance(src, str) and IPRD_ACCESSION_RE.search(src) and IPRD_ACCESSION_RE.sub("", src).strip(" ,;:()-"))
+
+
+def iprd_contingent_total_ok(c):
+    """True for a well-formed deferred_payment_of contingent_total {value: USD > 0, source: an accession + the
+    section / page showing the deal's unrecognized milestones / deferred consideration (any filing: the latest 10-K
+    that discloses them, e.g. HALO FY2025 10-K 0001159036-26-000024, $100.0M of Surf Bio milestones)}."""
+    if not isinstance(c, dict):
+        return False
+    v = c.get("value")
+    return bool(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+                and _cited(c.get("source")))
+
+
+def iprd_deferred_entry_ok(e):
+    """True for a well-formed judgment.json iprd_deferred_payment entry {period: "YYYY-MM-DD" (an FY end), window:
+    "fy", amount: > 0 (this deal's deferred part of the period's charge), deferred_payment_of: {deal: non-empty,
+    first_charged_period: "YYYY-MM-DD", source: a filing citation carrying an EDGAR accession
+    (0001234567-YY-NNNNNN) and the section / page showing the contingent milestone or deferred consideration,
+    contingent_total: {value, source} (the deal's cap: iprd_contingent_total_ok)}}.
+    A current-YTD leg is never in the recurrence count (FY periods only), so window "ttm_current_ytd" is refused:
+    declare the charge once it lands in an FY."""
+    if not isinstance(e, dict):
+        return False
+    p, a, d = e.get("period"), e.get("amount"), e.get("deferred_payment_of")
+    if not (isinstance(p, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", p) and e.get("window") in IPRD_DEFERRED_WINDOWS
+            and isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a) and a > 0
+            and isinstance(d, dict)):
+        return False
+    f = d.get("first_charged_period")
+    return bool(isinstance(d.get("deal"), str) and d["deal"].strip()
+                and isinstance(f, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", f)
+                and _cited(d.get("source")) and iprd_contingent_total_ok(d.get("contingent_total")))
+
+
+def _contingent_key(c):
+    """One contingent_total declaration, compared by value and by source without extra whitespace."""
+    return (float(c["value"]), " ".join(c["source"].split()))
+
+
+def iprd_deferred_cap_problems(entries):
+    """The per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20), over
+    well-formed entries (every one judgment.json carries, a rolled-out one included: its milestone was paid): {deal
+    key: reason} for each deal whose entries carry different contingent_total declarations (value or source) or
+    whose declared amounts sum past its contingent_total (by more than $1). A deal's contingent_total is declared
+    once, consistently."""
+    by = {}
+    for e in entries:
+        by.setdefault(_deal_key(e["deferred_payment_of"]["deal"]), []).append(e)
+    out = {}
+    for k, es in by.items():
+        caps = {_contingent_key(e["deferred_payment_of"]["contingent_total"]) for e in es}
+        name = es[0]["deferred_payment_of"]["deal"]
+        if len(caps) > 1:
+            out[k] = (f"deal {name!r} is declared with contingent_total "
+                      + " and ".join(f"{v:,.0f} ({src})" for v, src in sorted(caps))
+                      + ": one deal has one contingent_total, declared once consistently")
+            continue
+        cap = next(iter(caps))[0]
+        s = sum(float(e["amount"]) for e in es)
+        if s > cap + 1.0:
+            out[k] = (f"deal {name!r}'s declared deferred amounts sum to {s:,.0f}, more than its contingent_total "
+                      f"{cap:,.0f} (the unrecognized milestones / deferred consideration its source discloses): a "
+                      "payment past it is a second purchase, a second charge")
+    return out
+
+
+def load_iprd_deferred_payments(ticker):
+    """judgment.json iprd_deferred_payment as declared (None when absent or unreadable); iprd_apply_deferred
+    refuses a malformed entry."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        return None
+    return j.get(IPRD_DEFERRED_KEY) if isinstance(j, dict) else None
+
+
+def iprd_original_filing_years(first_charged_period):
+    """The calendar years an accession of the original acquisition filing may carry for a deal first charged in the
+    period ending `first_charged_period`: from the calendar year the fiscal year it closes started in (a January FY
+    end's 10-Qs / 8-K were filed the year before; so was a June FY's first-quarter 10-Q) through the year after its
+    end (the 10-K that closes it)."""
+    fd = datetime.date.fromisoformat(first_charged_period)
+    return range((fd - datetime.timedelta(days=IPRD_FY_SPAN_DAYS)).year, fd.year + 2)
+
+
+def iprd_companyfacts_charge(facts, date):
+    """What companyfacts shows of an acquired-IPR&D charge for the period ending `date` (a first charge before the
+    engine's window): "charged" when an IPRD_EXPENSE_TAGS fact of any duration / form / unit ends there with a
+    positive value; "not_charged" when the filer's duration facts reach back to that date (companyfacts covers it)
+    and none does; "not_covered" when companyfacts starts after it (a pre-XBRL charge: the citation alone)."""
+    gaap = ((facts or {}).get("facts") or {}).get("us-gaap") or {}
+    for t in IPRD_EXPENSE_TAGS:
+        for entries in ((gaap.get(t) or {}).get("units") or {}).values():
+            for e in entries or []:
+                v = e.get("val")
+                if (e.get("end") == date and isinstance(v, (int, float)) and not isinstance(v, bool)
+                        and math.isfinite(v) and v > 0):
+                    return "charged"
+    earliest = min((e["start"] for tag in gaap.values() if isinstance(tag, dict)
+                    for entries in (tag.get("units") or {}).values() for e in entries or []
+                    if isinstance(e, dict) and isinstance(e.get("start"), str) and e["start"]), default=None)
+    return "not_charged" if (earliest is not None and earliest <= date) else "not_covered"
+
+
+def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
+    """Validate judgment.json iprd_deferred_payment against this run's acquired-IPR&D records (iprd_detect's dict or
+    None; fy_periods the engine's last-3-FY ends, oldest first; facts the companyfacts the run read) and mark each
+    accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
+    item per deal; several deals may share a period) and, when the declared amounts sum to the period's whole charge
+    (within $1), recurrence_excluded "deferred_payment_of". The deduction is not touched. Returns (refused
+    [{"entry", "reason"}], unused [entries whose period is older than the window: it rolled out, so they are
+    neither applied nor refused]). Nothing is applied for a refused entry.
+    Checks: the shape (an FY period, an accession in the source, the deal's contingent_total); one entry per period
+    and deal; one first_charged_period per deal across all entries; one contingent_total per deal (value and
+    source) and the deal's declared amounts across all entries (a rolled-out one included) summing to no more than
+    it (iprd_deferred_cap_problems: every entry of such a deal is refused); the declared period inside the window with a charge, the
+    deals' amounts summing to no more than it; first_charged_period before the period; the source citing the
+    original acquisition filing (an accession filed from the first charged fiscal year's start year through the year
+    after its end — inside the window too, so an accepted entry survives the first charge rolling out); inside the
+    window, the first period's record shows a charge and its WHOLE charge is not itself declared a deferred payment
+    (a deal's first charge cannot be another deal's installment); before the window, companyfacts shows an
+    acquired-IPR&D expense fact ending there (unless companyfacts starts after it)."""
+    if entries is None:
+        return [], []
+    if not isinstance(entries, list) or not entries:
+        return [{"entry": entries, "reason": f"judgment.json {IPRD_DEFERRED_KEY} must be a non-empty list"}], []
+    rec_of = {p.get("period"): p for p in ((iprd or {}).get("periods") or []) if p.get("window") == "fy"}
+    oldest = datetime.date.fromisoformat(fy_periods[0]) if fy_periods else None
+    refused, unused, ok, seen, first_of = [], [], [], set(), {}
+    for e in entries:
+        if not iprd_deferred_entry_ok(e):
+            refused.append({"entry": e, "reason": "malformed: each entry is {period: an FY end, window: \"fy\" (a "
+                            "current-YTD charge never counts toward recurrence: declare it once it lands in an FY), "
+                            "amount > 0, deferred_payment_of: {deal, first_charged_period, source: accession + section "
+                            "/ page, contingent_total: {value (USD) > 0, source: accession + section / page showing the "
+                            "deal's unrecognized milestones / deferred consideration}}}"})
+            continue
+        d = e["deferred_payment_of"]
+        k = (e["period"], _deal_key(d["deal"]))
+        if k in seen:
+            refused.append({"entry": e, "reason": f"names FY {e['period']} a deferred payment of {d['deal']!r} twice"})
+            continue
+        seen.add(k)
+        first_of.setdefault(k[1], set()).add(d["first_charged_period"])
+        ok.append(e)
+    cap_problems = iprd_deferred_cap_problems(ok)
+    cand = []
+    for e in ok:
+        d = e["deferred_payment_of"]
+        f = d["first_charged_period"]
+        fs = first_of[_deal_key(d["deal"])]
+        if len(fs) > 1:
+            refused.append({"entry": e, "reason": f"deal {d['deal']!r} is declared first charged on "
+                            f"{' and '.join(sorted(fs))}: one deal has one first charge"})
+            continue
+        if _deal_key(d["deal"]) in cap_problems:
+            refused.append({"entry": e, "reason": cap_problems[_deal_key(d["deal"])]})
+            continue
+        if oldest is not None and e["period"] < fy_periods[0]:
+            unused.append(e)   # its period rolled out of the window: drop it from judgment.json
+            continue
+        rec = rec_of.get(e["period"])
+        charge = rec.get("amount") if rec is not None else None
+        if not (isinstance(charge, (int, float)) and charge > 0):
+            refused.append({"entry": e, "reason": f"FY {e['period']} names no acquired-IPR&D charge in this run's "
+                            f"window ({', '.join(fy_periods)})"})
+            continue
+        if not f < e["period"]:
+            refused.append({"entry": e, "reason": f"first_charged_period {f} must precede the declared period {e['period']}"})
+            continue
+        try:
+            years = iprd_original_filing_years(f)
+        except ValueError:
+            refused.append({"entry": e, "reason": f"first_charged_period {f} is not a date"})
+            continue
+        if not any(2000 + int(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
+            refused.append({"entry": e, "reason": f"source must cite the original acquisition filing of the charge "
+                            f"first made in the period ending {f}: an accession filed in {years[0]}..{years[-1]}"})
+            continue
+        if oldest is not None and (oldest - datetime.date.fromisoformat(f)).days < IPRD_WINDOW_DAYS:
+            first = rec_of.get(f)
+            if first is None or not ((isinstance(first.get("amount"), (int, float)) and first["amount"] > 0)
+                                     or (isinstance(first.get("expense"), (int, float)) and first["expense"] > 0)):
+                refused.append({"entry": e, "reason": f"first_charged_period {f} lies inside the engine's window "
+                                f"({', '.join(fy_periods)}) but this run's record shows no acquired-IPR&D charge there"})
+                continue
+            evidence = "window_record"
+        else:
+            cf = iprd_companyfacts_charge(facts, f)
+            if cf == "not_charged":
+                refused.append({"entry": e, "reason": f"first_charged_period {f} is before the engine's window and "
+                                "companyfacts covers it, but no acquired-IPR&D expense fact "
+                                f"({', '.join(IPRD_EXPENSE_TAGS)}) ends there: name the period end of the filing that "
+                                "first expensed the deal"})
+                continue
+            evidence = "companyfacts_expense_fact" if cf == "charged" else "citation_only_before_companyfacts"
+        cand.append((e, rec, float(charge), evidence))
+    # the deals' amounts in one period sum to no more than its charge
+    accepted = []
+    for p in sorted({c[0]["period"] for c in cand}):
+        cs = [c for c in cand if c[0]["period"] == p]
+        s = sum(float(c[0]["amount"]) for c in cs)
+        if s > cs[0][2] + 1.0:
+            refused.extend({"entry": c[0], "reason": f"FY {p}'s declarations sum to {s:,.0f}, more than the period's "
+                            f"charge {cs[0][2]:,.0f}"} for c in cs)
+            continue
+        accepted.extend(cs)
+
+    def _whole(p, cs):
+        mine = [c for c in cs if c[0]["period"] == p]
+        return bool(mine) and sum(float(c[0]["amount"]) for c in mine) >= mine[0][2] - 1.0
+
+    # a deal's first charge inside the window cannot itself be wholly declared another deal's installment
+    clash = {}
+    for c in accepted:
+        f = c[0]["deferred_payment_of"]["first_charged_period"]
+        if c[3] == "window_record" and _whole(f, accepted):
+            installs = [x for x in accepted if x[0]["period"] == f]
+            clash[id(c[0])] = (c[0], f"its first_charged_period {f} is itself declared, whole, a deferred payment of "
+                               + ", ".join(repr(x[0]["deferred_payment_of"]["deal"]) for x in installs)
+                               + ": a deal first charged there would be a second purchase in that period")
+            for x in installs:
+                clash.setdefault(id(x[0]), (x[0], f"FY {f} is declared, whole, a deferred payment, yet "
+                                            f"{c[0]['deferred_payment_of']['deal']!r} names it its first charge"))
+    refused.extend({"entry": e, "reason": r} for e, r in clash.values())
+    accepted = [c for c in accepted if id(c[0]) not in clash]
+    for p in sorted({c[0]["period"] for c in accepted}):
+        cs = [c for c in accepted if c[0]["period"] == p]
+        rec = cs[0][1]
+        rec["deferred_payment_of"] = [
+            {"deal": c[0]["deferred_payment_of"]["deal"],
+             "first_charged_period": c[0]["deferred_payment_of"]["first_charged_period"],
+             "source": c[0]["deferred_payment_of"]["source"],
+             "contingent_total": {"value": float(c[0]["deferred_payment_of"]["contingent_total"]["value"]),
+                                  "source": c[0]["deferred_payment_of"]["contingent_total"]["source"]},
+             "amount": float(c[0]["amount"]),
+             "first_charge_evidence": c[3]} for c in cs]
+        if _whole(p, cs):
+            rec["recurrence_excluded"] = IPRD_RECURRENCE_EXCLUDED
+    return refused, unused
+
+
 def _iprd_pick(by_unit, fx_rates, period):
     """(value_usd, unit, rate, filed) for one period's facts of one tag ({unit: (value, filed)}): the USD fact when
     filed, else a non-USD fact converted at the FX pass's own period-end rate for its currency (fx_rates {ccy: {date:
@@ -1985,7 +2269,11 @@ def iprd_flags(iprd):
                    f"{sorted(IPRD_CF_PRESENTATIONS)}, source citing the cash-flow line) and rerun the engine")
     if not iprd.get("total"):
         return out
-    parts = ", ".join(f"{_iprd_period_label(p)} ${p['deducted']:,.0f} ({p['amount_basis']}, {p['tag_used']})"
+    parts = ", ".join(f"{_iprd_period_label(p)} ${p['deducted']:,.0f} ({p['amount_basis']}, {p['tag_used']}"
+                      + (("; deferred payment of " + " and ".join(
+                          f"{x['deal']} (first charged {x['first_charged_period']})" for x in p["deferred_payment_of"])
+                          + (" — not counted toward recurrence" if p.get("recurrence_excluded") else ", in part"))
+                         if isinstance(p.get("deferred_payment_of"), list) and p["deferred_payment_of"] else "") + ")"
                       for p in iprd["periods"] if p["deducted"] > 0)
     t = iprd["treatment"]
     if t == IPRD_TREATMENT_ONE_TIME:
@@ -3155,6 +3443,15 @@ def main():
                        fx_rates=rates_by_ccy, checks=load_iprd_cash_flow_checks(ticker))
     iprd_charge_used = 0.0
     iprd_refusal = None
+    # judgment.json iprd_deferred_payment (Andrew's 2026-10-20 ruling, delegated): validated against this run's
+    # window and marked on the records before the recurrence count; refused (exit 3) outside the counterfactual
+    _deferred = load_iprd_deferred_payments(ticker)
+    _deferred_refused, _deferred_unused = iprd_apply_deferred(iprd, _deferred, last3_periods, facts)
+    if _deferred_refused and not iprd_counterfactual:
+        print(f"BAD_IPRD_DEFERRED_PAYMENT for {ticker}: judgment.json {IPRD_DEFERRED_KEY} "
+              + "; ".join(f"{r['entry'].get('period') if isinstance(r['entry'], dict) else r['entry']!r}: {r['reason']}"
+                          for r in _deferred_refused))
+        sys.exit(3)
     if iprd is not None:
         if _ytd_note:
             iprd["notes"].append(_ytd_note)
@@ -3186,9 +3483,11 @@ def main():
             _nshares = ((ttm_doc or {}).get("ttm_shares_diluted") if _nb == "ttm_json" else shares)
         _mat_base = _native if (amort_decl and isinstance(_native, (int, float)) and _native > 0) else oe_ps
         materiality = (charge_ps / _mat_base) if (valued and charge_ps and _mat_base) else None
-        # a deferred payment settles an earlier window period's charge: it is not a new charge in its own year
+        # a deferred payment settles an earlier window period's charge: it is not a new charge in its own year; nor
+        # is a period the worker declared, whole, a deferred payment of an earlier deal (Andrew's 2026-10-20 ruling)
         fy_with = [p["period"] for p in iprd["periods"]
-                   if p["window"] == "fy" and p["deducted"] > 0 and not p.get("deferred_payment")]
+                   if p["window"] == "fy" and p["deducted"] > 0 and not p.get("deferred_payment")
+                   and not p.get("recurrence_excluded")]
         unconfirmed = sum((p.get("awaiting") or 0.0 for p in iprd["periods"] if p.get("excluded") == IPRD_AWAITING), 0.0)
         unconfirmed_mat = ((unconfirmed / denom * ratio) / _mat_base
                            if (valued and unconfirmed and denom and _mat_base) else None)
@@ -3268,6 +3567,18 @@ def main():
                      "unconfirmed_materiality": unconfirmed_mat})
         if amort_decl:
             iprd["materiality_base"] = "native_base_per_share"
+        if _deferred is not None:
+            # only when judgment.json declares deferred payments: a run without them gains no key
+            iprd["recurrence_excluded"] = [
+                {"period": p["period"], "window": p["window"], "deal": x["deal"],
+                 "first_charged_period": x["first_charged_period"], "amount": x["amount"]}
+                for p in iprd["periods"] if p.get("recurrence_excluded") == IPRD_RECURRENCE_EXCLUDED
+                for x in p["deferred_payment_of"]]
+            if _deferred_refused:
+                iprd["deferred_payments_refused"] = _deferred_refused
+            if _deferred_unused:
+                # periods older than the window (rolled out): neither applied nor refused; make_score asks to drop them
+                iprd["deferred_payments_unused"] = _deferred_unused
         if held is not None:
             iprd["held_from_final_run"] = held
     else:

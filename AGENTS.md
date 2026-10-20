@@ -319,7 +319,21 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    filing shows the add-back and an investing payment is P1 the other way; say "cannot verify from the diff"
    when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
    (make_score refuses it). A `deferred_payment` period counts cash the window's earlier cash-basis charge left
-   unpaid (BIIB), never more than that remainder. `ACQUIRED_IPRD_CHARGE` / `ACQUIRED_IPRD_RECURRENT` resolved without
+   unpaid (BIIB), never more than that remainder. A period with `recurrence_excluded` `deferred_payment_of`
+   (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred
+   consideration of the named deal as the cited filing shows it: a distinct deal (another counterparty or
+   asset) declared as an installment so `ACQUIRED_IPRD_RECURRENT` does not fire is P1, so is a
+   `contingent_total` whose value is not the unrecognized milestones / deferred consideration its cited filing
+   discloses for that deal (HALO FY2025 10-K: $100.0M of Surf Bio milestones; an overstated cap lets a second
+   purchase pass as an installment) and a `first_charge_evidence` `citation_only_before_companyfacts` whose cited
+   filing does not show the deal expensed, and so is a declared period missing from `total` (the deferred
+   payment is still deducted); a partly deferred period still counts toward recurrence; say "cannot verify
+   from the diff" when the PR does not show the filing. (The engine already refuses one deal with two first
+   charges, a first charge whose whole charge is itself declared deferred, a pre-window first charge
+   companyfacts covers with no expense fact there, a source accession outside the original filing's years,
+   a current-YTD entry, a missing or inconsistent `contingent_total`, and one deal's declared amounts summing
+   past its `contingent_total`.)
+   `ACQUIRED_IPRD_CHARGE` / `ACQUIRED_IPRD_RECURRENT` resolved without
    the deal, the cash vs stock consideration or the recurrence assessment is P2. An `iprd_amortized`
    `base_override` must reproduce native base − mean(figures) ÷ shares × ads_ratio to the cent (P1
    otherwise), its figures must be the run's FY `deducted` amounts (three; two at a filer with only two FY;
@@ -549,6 +563,29 @@ misfit`. For them:
   (HALO $284.9M, not its $287.8M investing line net of cash acquired); and the
   `iprd_amortized` mean reads the FY figures only, so a current-YTD charge is in
   neither the mean nor a deduction until it lands in an FY.
+- Engine 5.6, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided: a contingent milestone or other
+  deferred payment on an acquired-IPR&D deal already charged in an earlier period
+  (inside the window or before it) is the same purchase — it is still deducted
+  once when expensed or paid, but its period does not count toward
+  `ACQUIRED_IPRD_RECURRENT` (that flag catches buying R&D as a habit, distinct
+  deals, not one deal paid in installments). Only a cited per-period
+  `iprd_deferred_payment` declaring the period's WHOLE charge removes it from the
+  count; a partly deferred period still counts. It is not a registry event (like
+  `iprd_cash_flow_check`, it records what a filing shows). Choices made in the
+  Codex review round (same ruling, the main agent deciding): FY periods only (the
+  recurrence count reads FY periods, so a current-YTD entry is refused rather than
+  mislabelling a period that never counted); several deals may share one period
+  (their amounts sum to the charge); a first charge before companyfacts begins
+  rests on the citation alone, recorded `citation_only_before_companyfacts`; the
+  accession's CIK is NOT matched to the filer (filer agents file under their own
+  CIK), so that stays a review check (check 8). The per-deal cap (the main agent's
+  decision on the review's open item, delegated by Andrew 2026-10-20):
+  `deferred_payment_of` carries a required `contingent_total` {value (USD), source:
+  accession + section disclosing the deal's unrecognized milestones / deferred
+  consideration}, declared once and identically for a deal; the engine refuses
+  (`BAD_IPRD_DEFERRED_PAYMENT`) a deal whose declared amounts, summed across every
+  entry (a rolled-out one included), exceed it — so the cap is mechanical and the
+  review checks the cap's value against the filing.
 
 ## Comment style
 

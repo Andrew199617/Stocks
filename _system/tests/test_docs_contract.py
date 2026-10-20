@@ -272,6 +272,20 @@ PAIRS = [
     ("_system/dcf_engine.py", 'rec["cash_flow_check"] = ', "cash_flow_check", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", 'rec["cash_sign_note"] = ', "cash_sign_note", [SYS_README]),
     ("_system/make_score.py", '"unconfirmed_total": b.get("unconfirmed_total")', "unconfirmed_total", [SYS_README, CONTRACT]),
+    # deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent)
+    ("_system/dcf_engine.py", 'IPRD_DEFERRED_KEY = "iprd_deferred_payment"', "iprd_deferred_payment", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["deferred_payment_of"] = ', "deferred_payment_of", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["recurrence_excluded"] = ', "recurrence_excluded", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'iprd["deferred_payments_refused"] = ', "deferred_payments_refused", [SYS_README]),
+    ("_system/dcf_engine.py", '"BAD_IPRD_DEFERRED_PAYMENT for ', "BAD_IPRD_DEFERRED_PAYMENT", [SYS_README]),
+    ("_system/make_score.py", 'out["recurrence_excluded"] = ', "recurrence_excluded", [SYS_README, CONTRACT]),
+    # Codex review round of the same ruling
+    ("_system/dcf_engine.py", 'iprd["deferred_payments_unused"] = ', "deferred_payments_unused", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"first_charge_evidence": c[3]', "first_charge_evidence", [SYS_README]),
+    ("_system/dcf_engine.py", 'IPRD_DEFERRED_WINDOWS = ("fy",)', "fy", [SYS_README]),
+    # the per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20)
+    ("_system/dcf_engine.py", '"contingent_total": {"value": float(', "contingent_total", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_deferred_cap_problems(", "iprd_deferred_cap_problems", [SYS_README]),
 ]
 
 

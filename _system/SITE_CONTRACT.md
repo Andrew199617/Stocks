@@ -161,12 +161,18 @@ Engine 5.6 (2026-10-19, the acquired-IPR&D one-time value adjustment) adds no re
 `iprd_adjustment` (null when nothing was detected; else `periods` — `period`, `window`, `amount`, `amount_basis`,
 `tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source} on an
 expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved, `deferred_payment` (a note) on cash
-that settles an earlier window charge —, `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
+that settles an earlier window charge, and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
+one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
+deal) with `recurrence_excluded`
+("deferred_payment_of", when the deals sum to the whole charge) on an FY period judgment.json
+`iprd_deferred_payment` declared — and, only when the run had such declarations, the list `recurrence_excluded`
+(one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_unused`, `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
 `charge_per_share`, `materiality`, `material`, `recurrent`, `treatment`, `before` — the unadjusted IVs and IRRs —,
 `after`, `amortized`), `score` gains
 `iprd_adjustment` when the run recorded one (`treatment`, `total`, `unconfirmed_total`, `charge_per_share`, `shares_denominator`,
 `shares_source`, `materiality`, `material`, `recurrent`, `periods` — each also carrying `cash_flow_check` (the
-presentation string) and `deferred_payment: true` when set —, `iv_before` / `iv_after` keyed `15` / `20` / `25`,
+presentation string), `deferred_payment: true`, `deferred_payment_of` [{deal, first_charged_period, amount}]
+and `recurrence_excluded` when set — and its `recurrence_excluded` list when the run had deferred-payment declarations, `iv_before` / `iv_after` keyed `15` / `20` / `25`,
 `irr_before`, `irr_after`, `tier_before`, `amortized`), and live.json gains `iprd_charge_per_share` (in today's share
 units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record carries is already the adjusted figure;
 build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /

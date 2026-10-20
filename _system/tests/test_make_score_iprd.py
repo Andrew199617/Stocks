@@ -444,6 +444,186 @@ def test_iprd_amortized_figures_follow_the_engine_window_and_tolerance():
     assert refused(M.check_iprd_amortized, n, dict(base, figures=[12345681, 0, 5000000]))
     assert refused(M.check_iprd_amortized, n, dict(base, figures=[12345679, 0]))
 
+# ===========================================================================
+# Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided)
+# ===========================================================================
+def _deferred_run(key, entries):
+    facts = TI._facts(expense={2023: 15e6, 2025: 20e6})
+    return TI._cached(key, lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": entries})))
+
+
+def test_deferred_payment_scores_and_shows_the_excluded_period():
+    """judgment.json iprd_deferred_payment declaring FY2025's whole $20M charge the FY2023 deal's milestone: the
+    record scores; score.json iprd_adjustment carries recurrence_excluded (the excluded period, its deal and first
+    charge) and the period's deferred_payment_of; key_numbers.md says on the period line and on its own line that
+    FY2025 is excluded from the recurrence count but still deducted; recurrent is false; no registry event (it
+    records what the filing shows, like iprd_cash_flow_check)."""
+    d = TI.deferred()
+    n = _deferred_run("ms_def_whole", [d])
+    r = _score(n, _j(iprd_deferred_payment=[d]))
+    assert r.rc == 0, r.err[-800:]
+    b = r.result["score"]["iprd_adjustment"]
+    assert b["recurrent"] is False and b["total"] == 35e6, b
+    assert b["recurrence_excluded"] == [{"period": "2025-12-31", "window": "fy", "deal": "Test Bio",
+                                         "first_charged_period": "2023-12-31", "amount": 20e6}], b
+    p25 = [p for p in b["periods"] if p["period"] == "2025-12-31"][0]
+    assert p25["recurrence_excluded"] == "deferred_payment_of" and p25["deducted"] == 20e6, p25
+    assert p25["deferred_payment_of"] == [{"deal": "Test Bio", "first_charged_period": "2023-12-31", "amount": 20e6}], p25
+    key = r.result["key"]
+    assert ("; deducted $20,000,000; cash-flow check: added_back_paid_in_investing; deferred payment of Test Bio "
+            "($20,000,000, first charged 2023-12-31): excluded from the recurrence count") in key, key
+    assert ("- Excluded from the recurrence count (judgment.json iprd_deferred_payment — a deferred payment of a deal "
+            "first charged earlier; still deducted): FY2025 $20,000,000 — Test Bio, first charged 2023-12-31") in key, key
+    assert "recurrent (ACQUIRED_IPRD_RECURRENT)" not in key
+    assert not [e for e in r.result["entries"] if "iprd" in json.dumps(e)], r.result["entries"]
+
+
+def test_partly_deferred_period_is_shown_and_still_counts():
+    """A partly deferred FY2025 ($5M of $20M): key_numbers.md says it still counts toward recurrence, score.json
+    records the declaration (whole: false) and an empty recurrence_excluded list; recurrent stays true."""
+    d = TI.deferred(amount=5e6)
+    n = _deferred_run("ms_def_part", [d])
+    r = _score(n, _j(iprd_deferred_payment=[d]))
+    assert r.rc == 0, r.err[-800:]
+    b = r.result["score"]["iprd_adjustment"]
+    assert b["recurrent"] is True and b["recurrence_excluded"] == [], b
+    p25 = [p for p in b["periods"] if p["period"] == "2025-12-31"][0]
+    assert [x["amount"] for x in p25["deferred_payment_of"]] == [5e6] and "recurrence_excluded" not in p25, p25
+    assert ("partly a deferred payment of Test Bio ($5,000,000, first charged 2023-12-31) — $5,000,000 of "
+            "$20,000,000: still counts toward recurrence") in r.result["key"], r.result["key"]
+
+
+def test_deferred_declaration_malformed_or_out_of_sync_is_refused():
+    """make_score refuses a malformed iprd_deferred_payment (no deal, no accession in the source, an empty list, a
+    period declared twice), a declaration the run did not apply (judgment.json changed after the run — the run
+    then still counts the period), one now declared differently, and an applied one judgment.json dropped."""
+    d = TI.deferred()
+    n = _deferred_run("ms_def_whole", [d])
+    bad_deal = dict(d, deferred_payment_of=dict(d["deferred_payment_of"], deal=""))
+    bad_src = dict(d, deferred_payment_of=dict(d["deferred_payment_of"], source="Note 5"))
+    for entries, needle in (([bad_deal], "is malformed"), ([bad_src], "is malformed"), ([], "non-empty list"),
+                            ([d, dict(d)], "twice"),
+                            ([dict(d, amount=19e6)], "now declares differently"),
+                            ([dict(d, deferred_payment_of=dict(d["deferred_payment_of"], first_charged_period="2022-12-31"))],
+                             "now declares differently"),
+                            ([dict(d, deferred_payment_of=dict(d["deferred_payment_of"], deal="Other Bio"))],
+                             "no longer declares")):
+        r = _score(n, _j(iprd_deferred_payment=entries))
+        assert r.rc == 1 and needle in r.err, (entries, r.err[-600:])
+    r = _score(n, _j())
+    assert r.rc == 1 and "no longer declares" in r.err, r.err[-600:]
+    r = _score(TI._recurrent(), _j(iprd_deferred_payment=[d]))
+    assert r.rc == 1 and "did not apply" in r.err, r.err[-600:]
+
+
+def test_halo_score_and_key_numbers_are_unchanged():
+    """HALO's committed record (no deferred payment declared): validate / check accept its judgment.json, and the
+    score.json block and the key_numbers.md section make_score builds from its dcf_numbers.json are the committed
+    ones, unchanged by the deferred-payment rule."""
+    import make_score as M
+    root = os.path.dirname(SYS)
+    rd = lambda f: open(os.path.join(root, "HALO", f), encoding="utf-8").read()
+    rec, j, score = json.loads(rd("dcf_numbers.json")), json.loads(rd("judgment.json")), json.loads(rd("score.json"))
+    assert M.validate_iprd_deferred_payment(j) is None
+    assert M.check_iprd_deferred_payment(rec, None) is None
+    assert M.iprd_score_block(rec) == score["iprd_adjustment"]
+    lines = M.iprd_lines(rec)
+    key = rd("key_numbers.md").splitlines()
+    start = key.index(lines[1])
+    assert key[start - 1:start - 1 + len(lines)] == lines, (lines, key[start - 1:start - 1 + len(lines)])
+    assert not any("recurrence" in x for x in lines), lines
+
+
+# --- Codex review of the deferred-payment rule (fixes amended into the follow-up commit) -------------------------
+def test_two_deal_period_scores_and_prints_both_deals():
+    """[Codex review, finding 7] FY2025's $20M declared as a $12M Test Bio milestone (first charged FY2023) plus an
+    $8M Other Bio milestone (first charged FY2021): make_score accepts two entries for one period with distinct
+    deals, score.json lists both (period and block), key_numbers.md prints both on the period line and in the
+    excluded-periods line, by first-charge date (not a calendar-year FY label), and recurrent is false."""
+    tb = TI.deferred(amount=12e6)
+    ob = TI.deferred(amount=8e6, deal="Other Bio", first="2021-12-31", source=TI.OK_SRC_2021)
+    facts = TI._facts(expense={2021: 8e6, 2023: 15e6, 2025: 20e6})
+    n = TI._cached("ms_def_two", lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": [tb, ob]})))
+    r = _score(n, _j(iprd_deferred_payment=[tb, ob]))
+    assert r.rc == 0, r.err[-800:]
+    b = r.result["score"]["iprd_adjustment"]
+    assert b["recurrent"] is False, b
+    assert [(x["deal"], x["amount"]) for x in b["recurrence_excluded"]] == [("Test Bio", 12e6), ("Other Bio", 8e6)], b
+    p25 = [p for p in b["periods"] if p["period"] == "2025-12-31"][0]
+    assert p25["deferred_payment_of"] == [{"deal": "Test Bio", "first_charged_period": "2023-12-31", "amount": 12e6},
+                                          {"deal": "Other Bio", "first_charged_period": "2021-12-31", "amount": 8e6}], p25
+    key = r.result["key"]
+    assert ("deferred payment of Test Bio ($12,000,000, first charged 2023-12-31) and Other Bio ($8,000,000, first "
+            "charged 2021-12-31): excluded from the recurrence count") in key, key
+    assert ("FY2025 $12,000,000 — Test Bio, first charged 2023-12-31; FY2025 $8,000,000 — Other Bio, first charged "
+            "2021-12-31") in key, key
+    # judgment.json now declaring only one of the two is out of sync
+    r = _score(n, _j(iprd_deferred_payment=[tb]))
+    assert r.rc == 1 and "no longer declares" in r.err, r.err[-600:]
+
+
+def test_validate_deferred_refuses_a_ytd_window_and_one_deal_twice_in_a_period():
+    """[Codex review, findings 4, 6 and 7] make_score's shape check matches the engine's: window ttm_current_ytd is
+    malformed (the recurrence count is FY-only); two entries for one period with distinct deals pass; the same deal
+    twice in one period (in any letter case) is refused."""
+    import make_score as M
+    d = TI.deferred()
+    for bad, needle in (([dict(d, window="ttm_current_ytd", period="2026-06-30")], "is malformed"),
+                        ([d, dict(d, amount=1e6, deferred_payment_of=dict(d["deferred_payment_of"], deal=" test BIO"))],
+                         "twice")):
+        try:
+            M.validate_iprd_deferred_payment({"iprd_deferred_payment": bad})
+        except SystemExit:
+            continue
+        raise AssertionError(f"accepted {bad!r} ({needle})")
+    two = [d, dict(d, amount=1e6, deferred_payment_of=dict(d["deferred_payment_of"], deal="Other Bio"))]
+    assert M.validate_iprd_deferred_payment({"iprd_deferred_payment": two}) == two
+
+
+def test_rolled_out_declaration_is_asked_to_be_dropped():
+    """[Codex review, finding 5] The engine lists an entry whose period is older than its window in
+    deferred_payments_unused (exit 0); make_score refuses to score with judgment.json still carrying it and says
+    why: its period has left the window, so drop it."""
+    old = TI.deferred(period="2022-12-31", amount=5e6, first="2021-12-31", source=TI.OK_SRC_2021, deal="Old Bio")
+    d = TI.deferred()
+    n = TI._cached("ms_def_old", lambda: TI._ok(TI._run(TI._facts(expense={2023: 15e6, 2025: 20e6}),
+                                                         judgment={"iprd_deferred_payment": [d, old]})))
+    r = _score(n, _j(iprd_deferred_payment=[d, old]))
+    assert r.rc == 1 and "has left the engine's window" in r.err and "drop it" in r.err, r.err[-600:]
+    r = _score(n, _j(iprd_deferred_payment=[d]))
+    assert r.rc == 0, r.err[-800:]
+
+
+
+# --- the per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20) --------
+def test_validate_deferred_refuses_a_missing_or_inconsistent_contingent_total_or_amounts_past_it():
+    """make_score's shape check matches the engine's cap: an entry without contingent_total is malformed; one deal
+    declaring two contingent_total values, or amounts summing past its contingent_total across the entries, is
+    refused; a record whose applied contingent_total differs from judgment.json's is out of sync."""
+    import make_score as M
+    d = TI.deferred()
+    dd = d["deferred_payment_of"]
+    no_cap = dict(d, deferred_payment_of={k: v for k, v in dd.items() if k != "contingent_total"})
+    other = dict(d, period="2024-12-31", amount=1e6,
+                 deferred_payment_of=dict(dd, contingent_total={"value": 2e9, "source": TI.CT_SRC}))
+    small = {"value": 15e6, "source": TI.CT_SRC}
+    over = [dict(d, amount=10e6, deferred_payment_of=dict(dd, contingent_total=small)),
+            dict(d, period="2024-12-31", amount=6e6, deferred_payment_of=dict(dd, contingent_total=small))]
+    for bad, needle in (([no_cap], "is malformed"), ([d, other], "one deal has one contingent_total"),
+                        (over, "more than its contingent_total")):
+        try:
+            M.validate_iprd_deferred_payment({"iprd_deferred_payment": bad})
+        except SystemExit:
+            continue
+        raise AssertionError(f"accepted {bad!r} ({needle})")
+    n = _deferred_run("ms_def_whole", [d])
+    r = _score(n, _j(iprd_deferred_payment=[no_cap]))
+    assert r.rc == 1 and "is malformed" in r.err and "contingent_total" in r.err, r.err[-600:]
+    recap = dict(d, deferred_payment_of=dict(dd, contingent_total={"value": 2e9, "source": TI.CT_SRC}))
+    r = _score(n, _j(iprd_deferred_payment=[recap]))
+    assert r.rc == 1 and "now declares differently" in r.err, r.err[-600:]
+    r = _score(n, _j(iprd_deferred_payment=[d]))
+    assert r.rc == 0, r.err[-800:]
 
 if __name__ == "__main__":
     fails = 0

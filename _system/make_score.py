@@ -270,6 +270,28 @@ value adjustment):
   the record's native base within 0.1%, or ttm_shares_diluted not its share
   count) — the same staleness rule a plain --ttm pin meets; its registry
   event's base_used is "ttm" (the branch its impact is measured on).
+- Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling,
+  delegated to the main agent, who decided): judgment.json
+  `iprd_deferred_payment` ({period, window "fy", amount, deferred_payment_of:
+  {deal, first_charged_period, source, contingent_total: {value, source}}})
+  is validated for shape (an FY period; an EDGAR accession in the source and
+  in the contingent_total's source; one entry per period and deal — several
+  deals may share a period; one contingent_total per deal, declared
+  consistently, that the deal's declared amounts do not sum past — the
+  per-deal cap, the main agent's decision on the review's open item,
+  delegated by Andrew 2026-10-20) and must agree with the engine record,
+  which validated it against the window and marked the period
+  `deferred_payment_of` (a list, one item per deal; `recurrence_excluded`
+  when the deals sum to the whole charge): a declaration the run did not
+  apply (or listed in `deferred_payments_unused` because its period left the
+  window: drop it), an applied one judgment.json dropped or now declares
+  differently, are refused. score.json `iprd_adjustment` carries
+  `recurrence_excluded` (when the run had declarations) and each period's
+  `deferred_payment_of` / `recurrence_excluded`; key_numbers.md says on the
+  period line whether it is excluded from the recurrence count or, partly
+  deferred, still counts, plus one "Excluded from the recurrence count" line,
+  naming each first charge by its date. The deduction is unchanged. Not a
+  registry event, like iprd_cash_flow_check: it records what the filing shows.
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -289,6 +311,7 @@ PAYABLE_BASIS = "payable_earnings_5y"
 IPRD_AMORTIZED_BASIS = getattr(_engine, "IPRD_AMORTIZED_BASIS", "iprd_amortized")   # v5.6
 IPRD_NATIVE_BASES = tuple(getattr(_engine, "IPRD_NATIVE_BASES", ("ttm_json", "median_of_last_3_fy_oe_per_share")))
 IPRD_CF_CHECK_KEY = _engine.IPRD_CF_CHECK_KEY   # [fixer review round] judgment.json iprd_cash_flow_check
+IPRD_DEFERRED_KEY = _engine.IPRD_DEFERRED_KEY   # Andrew's 2026-10-20 ruling (delegated): judgment.json iprd_deferred_payment
 PAYABLE_SIC = frozenset({"6331", "6351"})  # P&C insurers and reinsurers (mirrors dcf_engine.PAYABLE_SIC)
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
 TIERS = ("S", "A", "B", "C", "D", "F")
@@ -959,6 +982,83 @@ def check_iprd_cash_flow(n, entries):
                      + " — the judgment file and the engine run are out of sync; rerun the engine")
 
 
+def validate_iprd_deferred_payment(j):
+    """Andrew's 2026-10-20 ruling (delegated to the main agent): judgment.json
+    iprd_deferred_payment — a list of {period, window "fy", amount,
+    deferred_payment_of: {deal, first_charged_period, source,
+    contingent_total: {value, source}}} (dcf_engine's rule), one entry per
+    period and deal (distinct deals may share a period), one contingent_total
+    per deal declared consistently and not exceeded by the deal's declared
+    amounts summed across the entries (the per-deal cap). None when absent;
+    refuses anything else. The window checks (one first
+    charge per deal, first charge before the period and not itself wholly an
+    installment, the original filing's years, companyfacts before the
+    window, amounts within the charge) are the engine's:
+    check_iprd_deferred_payment compares its record."""
+    v = j.get(IPRD_DEFERRED_KEY)
+    if v is None:
+        return None
+    shape = ("{period: 'YYYY-MM-DD' (an FY end), window: 'fy' (a current-YTD charge never counts toward recurrence: "
+             "declare it once it lands in an FY), amount: this deal's deferred part of the period's charge (> 0), "
+             "deferred_payment_of: {deal, first_charged_period: 'YYYY-MM-DD', source: the original acquisition filing's "
+             "accession (0001234567-YY-NNNNNN) and the section / page showing the contingent milestone or deferred "
+             "consideration, contingent_total: {value: the deal's unrecognized milestones / deferred consideration in "
+             "USD (> 0), source: accession + section / page disclosing it} — declared once, the same on every entry of "
+             "the deal}}")
+    if not isinstance(v, list) or not v:
+        fail(f"judgment.json: {IPRD_DEFERRED_KEY} must be a non-empty list of {shape}")
+    seen = set()
+    for e in v:
+        if not _engine.iprd_deferred_entry_ok(e):
+            fail(f"judgment.json: {IPRD_DEFERRED_KEY} entry {e!r} is malformed — each entry is {shape}")
+        k = (e["period"], _engine._deal_key(e["deferred_payment_of"]["deal"]))
+        if k in seen:
+            fail(f"judgment.json: {IPRD_DEFERRED_KEY} names FY {k[0]} a deferred payment of "
+                 f"{e['deferred_payment_of']['deal']!r} twice")
+        seen.add(k)
+    for reason in _engine.iprd_deferred_cap_problems(v).values():
+        fail(f"judgment.json: {IPRD_DEFERRED_KEY}: {reason}")
+    return v
+
+
+def check_iprd_deferred_payment(n, entries):
+    """The declared deferred payments and the engine record must agree: every
+    declaration applied (the engine refuses one its window does not support,
+    so an unapplied one means judgment.json changed after the run), every
+    applied one still declared, and declared the same way."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
+    lbl = lambda k: f"FY{k[0][:4]}"
+    applied = {(p.get("period"), p.get("window"), _engine._deal_key(a.get("deal"))): a for p in periods
+               if isinstance(p.get("deferred_payment_of"), list)
+               for a in p["deferred_payment_of"] if isinstance(a, dict)}
+    by = {(e["period"], e["window"], _engine._deal_key(e["deferred_payment_of"]["deal"])): e for e in entries or []}
+    unused = {(e.get("period"), e.get("window"), _engine._deal_key((e.get("deferred_payment_of") or {}).get("deal")))
+              for e in (blk or {}).get("deferred_payments_unused") or [] if isinstance(e, dict)}
+    for k, a in applied.items():
+        d = by.get(k)
+        dd = (d or {}).get("deferred_payment_of") or {}
+        if (d is None or dd.get("deal") != a.get("deal") or dd.get("first_charged_period") != a.get("first_charged_period")
+                or str(dd.get("source")) != str(a.get("source"))
+                or dd.get("contingent_total") != a.get("contingent_total")
+                or not isinstance(a.get("amount"), (int, float)) or abs(float(d["amount"]) - float(a["amount"])) > 1.0):
+            fail(f"dcf_numbers.json applied an {IPRD_DEFERRED_KEY} for {lbl(k)} ({a.get('deal')!r}, first charged "
+                 f"{a.get('first_charged_period')}, {_usd_exact(a.get('amount'))}) that judgment.json "
+                 + ("no longer declares" if d is None else "now declares differently")
+                 + " — the judgment file and the engine run are out of sync; rerun the engine")
+    for k, d in by.items():
+        if k in unused:
+            fail(f"judgment.json {IPRD_DEFERRED_KEY} declares {lbl(k)} a deferred payment of "
+                 f"{d['deferred_payment_of']['deal']!r}, but that period has left the engine's window "
+                 f"({', '.join(((blk or {}).get('window') or {}).get('fy') or [])}): it no longer feeds the recurrence "
+                 "count — drop it from judgment.json and rerun the engine")
+        if k not in applied:
+            fail(f"judgment.json {IPRD_DEFERRED_KEY} declares {lbl(k)} a deferred payment of "
+                 f"{d['deferred_payment_of']['deal']!r} but the engine run did not apply it — judgment.json changed "
+                 "after the run; rerun the engine (it refuses a declaration its window does not support: "
+                 "BAD_IPRD_DEFERRED_PAYMENT)")
+
+
 def check_iprd_amortized_ttm_current(folder, n):
     """[fixer review round] An iprd_amortized base on native_base ttm_json IS
     ttm.json's TTM base less the amortization: refuse it when ttm.json moved
@@ -1038,8 +1138,15 @@ def iprd_score_block(n):
                                                    "deducted", "excluded") if k in p},
                             **({"cash_flow_check": p["cash_flow_check"].get("presentation")}
                                if isinstance(p.get("cash_flow_check"), dict) else {}),
-                            **({"deferred_payment": True} if p.get("deferred_payment") else {}))
+                            **({"deferred_payment": True} if p.get("deferred_payment") else {}),
+                            **({"deferred_payment_of": [{k: x.get(k) for k in ("deal", "first_charged_period", "amount")}
+                                                        for x in p["deferred_payment_of"] if isinstance(x, dict)]}
+                               if isinstance(p.get("deferred_payment_of"), list) else {}),
+                            **({"recurrence_excluded": p["recurrence_excluded"]} if p.get("recurrence_excluded") else {}))
                        for p in (b.get("periods") or []) if isinstance(p, dict)]}
+    if isinstance(b.get("recurrence_excluded"), list):
+        # only when the run had iprd_deferred_payment declarations (Andrew's 2026-10-20 ruling, delegated)
+        out["recurrence_excluded"] = b["recurrence_excluded"]
     if before:
         out.update({"iv_before": {k[-2:]: r2(before.get(k)) for k in ("iv_at_15", "iv_at_20", "iv_at_25")},
                     "iv_after": {k[-2:]: r2(after.get(k)) for k in ("iv_at_15", "iv_at_20", "iv_at_25")},
@@ -1073,9 +1180,21 @@ def iprd_lines(n):
         state = (f"excluded — {p['excluded']}" if p.get("excluded")
                  else f"{counted} {_usd_exact(p.get('deducted'))}" if p.get("deducted") else "nothing to deduct")
         chk = p.get("cash_flow_check") if isinstance(p.get("cash_flow_check"), dict) else None
+        dpo = ([x for x in p["deferred_payment_of"] if isinstance(x, dict)]
+               if isinstance(p.get("deferred_payment_of"), list) else [])
+        dpo_txt = ""
+        if dpo:
+            # each first charge by its date: a calendar-year "FY" label misnames a non-December filer's quarter
+            deals = " and ".join(f"{x.get('deal')} ({_usd_exact(x.get('amount'))}, first charged "
+                                 f"{x.get('first_charged_period') or '?'})" for x in dpo)
+            _sum = sum(float(x["amount"]) for x in dpo if isinstance(x.get("amount"), (int, float)))
+            dpo_txt = (f"; deferred payment of {deals}: excluded from the recurrence count" if p.get("recurrence_excluded")
+                       else (f"; partly a deferred payment of {deals} — {_usd_exact(_sum)} of "
+                             f"{_usd_exact(p.get('amount'))}: still counts toward recurrence"))
         L.append(f"- {lbl}: {amt} — {p.get('amount_basis') or '—'} basis, tag {p.get('tag_used') or '—'}; {state}"
                  + (f"; cash-flow check: {chk.get('presentation')}" if chk else "")
                  + ("; deferred payment of an earlier window period's accrued charge" if p.get("deferred_payment") else "")
+                 + dpo_txt
                  + ("; deal and consideration: not identified by the engine — name them in analysis.md" if p.get("deducted") else ""))
     mat = b.get("materiality")
     tail = "" if one_time else f" (treatment {t}: no one-time deduction)"
@@ -1087,6 +1206,12 @@ def iprd_lines(n):
                 else (" · below the 5% flag threshold (deducted, no flag)" if one_time else " · below the 5% flag threshold (no flag)")
                 if b.get("total") else "")
              + (" · recurrent (ACQUIRED_IPRD_RECURRENT)" if b.get("recurrent") else ""))
+    rx = b.get("recurrence_excluded") if isinstance(b.get("recurrence_excluded"), list) else []
+    if rx:
+        L.append("- Excluded from the recurrence count (judgment.json iprd_deferred_payment — a deferred payment of a deal "
+                 "first charged earlier; still deducted): " + "; ".join(
+                     f"FY{str(x.get('period'))[:4]} {_usd_exact(x.get('amount'))} — {x.get('deal')}, first charged "
+                     f"{x.get('first_charged_period')}" for x in rx))
     if b.get("unconfirmed_total"):
         L.append(f"- Awaiting the cash-flow check (ACQUIRED_IPRD_UNCONFIRMED): {_usd_exact(b['unconfirmed_total'])} — not deducted")
     bw = ((b.get("before") or {}).get("weighted") or {}) if isinstance(b.get("before"), dict) else {}
@@ -2254,6 +2379,7 @@ def main():
     check_iprd_amortized(n, j_base_override)   # v5.6
     check_iprd_amortized_ttm_current(folder, n)   # [fixer review round]
     check_iprd_cash_flow(n, validate_iprd_cash_flow_check(j))   # [fixer review round]
+    check_iprd_deferred_payment(n, validate_iprd_deferred_payment(j))   # Andrew's 2026-10-20 ruling (delegated)
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 
