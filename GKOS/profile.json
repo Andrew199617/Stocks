@@ -1,0 +1,294 @@
+{
+ "ticker": "GKOS",
+ "cik": 1192448,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T02:32:32-04:00",
+ "newest_filing_date": "2026-08-03",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001192448.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526061944/gkos-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/GKOS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/GKOS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "GLAUKOS Corp",
+  "cik": 1192448,
+  "description": {
+   "text": "Glaukos is an ophthalmic pharmaceutical and medical technology company focused on developing novel, dropless therapies and commercializing associated products for the treatment of glaucoma, corneal disorders, and retinal disease. We first developed Micro-Invasive Glaucoma Surgery (MIGS) as an alternative to the traditional glaucoma treatment paradigm, launching our first MIGS device, the iStent, commercially in 2012. In 2024, we commenced commercialization activities for iDose® TR, a first-of-its-kind, long-duration, intracameral procedural pharmaceutical implant designed to continuously deliver glaucoma drug therapy inside the eye for extended periods of time. We also offer commercially proprietary bio-activated pharmaceutical therapies for the treatment of corneal disorders. Beyond our approved products, we continue to develop and advance a robust pipeline of novel, dropless platform technologies designed to meaningfully advance the standard of care and improve outcomes for patients suffering from chronic eye diseases. Ophthalmic diseases and disorders are a national and global health concern and, as the population ages, the number of individuals with vision impairment and blindness is increasing.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "accession": "0001193125-26-061944",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526061944/gkos-20251231.htm"
+  },
+  "description_short": "Glaukos ( www.glaukos.com ) is an ophthalmic pharmaceutical and medical technology company focused on developing and commercializing novel therapies for the treatment of glaucoma, corneal disorders, and retinal diseases. Glaukos first developed Micro-Invasive Glaucoma Surgery (MIGS) as an alternative to the traditional glaucoma treatment paradigm, launching its first MIGS device commercially in 2012. In 2024, Glaukos commenced commercial launch activities for iDose TR, a first-of-its-kind, long-duration, intracameral procedural pharmaceutical designed to deliver 24/7 glaucoma drug therapy inside the eye for extended periods of time. Glaukos also markets the only FDA-approved corneal cross-linking therapy utilizing a proprietary bio-activated pharmaceutical for the treatment of keratoconus, a rarely diagnosed corneal disorder.",
+  "industry": "Medical/Dental Instruments",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "3841",
+  "sic_description": "Surgical & Medical Instruments & Apparatus",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.glaukos.com",
+  "headquarters": "Aliso Viejo, California",
+  "address": {
+   "street": "One Glaukos Way",
+   "city": "Aliso Viejo",
+   "state": "California",
+   "zip": "92656",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-23"
+  },
+  "phone": "949-367-9600",
+  "employees": {
+   "count": 1094,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had 1,094 full-time employees.",
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526061944/gkos-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2015-05-12",
+  "first_sec_filing_form": "S-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001192448&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-03",
+   "period": "2026-08-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001192448-26-000002",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119244826000002/gkos-20260729.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-324201",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526324201/gkos-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-323729",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526323729/gkos-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-03",
+   "period": "2026-05-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-255758",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526255758/gkos-20260528.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001193125-26-202466",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526202466/d135093d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-30",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001193125-26-193004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526193004/gkos-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001193125-26-191553",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526191553/gkos-20260429.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-16",
+   "period": "2026-05-28",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-157829",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526157829/gkos-20260415.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-02",
+   "period": "2026-03-02",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-26-021885",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000110465926021885/gkos-20260302x8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-23",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001193125-26-061944",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000119312526061944/gkos-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-016410",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000110465926016410/gkos-20260217x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-13",
+   "period": "2026-01-13",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-26-003321",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000110465926003321/gkos-20260113x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-10",
+   "period": "2025-11-10",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001104659-25-108796",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000110465925108796/gkos-20251110x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001104659-25-104529",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000110465925104529/gkos-20250930x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001104659-25-103722",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000110465925103722/gkos-20251029x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-12",
+   "period": "2025-08-12",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001558370-25-011142",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000155837025011142/gkos-20250812x8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-04",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001558370-25-010113",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000155837025010113/gkos-20250630x10q.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Reg FD",
+   "accession": "0001558370-25-009798",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000155837025009798/gkos-20250730x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-03",
+   "period": "2025-05-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001558370-25-008365",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000155837025008365/gkos-20250529x8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-14",
+   "period": "2025-05-14",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001558370-25-007647",
+   "url": "https://www.sec.gov/Archives/edgar/data/1192448/000155837025007647/gkos-20250514x8k.htm"
+  }
+ ],
+ "warnings": []
+}
