@@ -1039,23 +1039,23 @@
     "complete": false
    }
   },
-  "price": null,
-  "price_date": null,
-  "price_source": null,
-  "price_note": "price: neither prices.json nor score.json carries a price \u2014 yields null",
+  "price": 46.55,
+  "price_date": "2026-10-19",
+  "price_source": "prices.json stats.last",
+  "price_note": null,
   "shares_outstanding": 216920735,
   "shares_as_of": "2025-12-31",
   "shares_source": "dei:EntityCommonStockSharesOutstanding (20-F filed 2026-03-20)",
   "shares_basis": "instant",
   "shares_diluted": 218880000,
   "shares_diluted_source": "latest annual weighted-average diluted",
-  "ads_ratio": null,
-  "market_cap": null,
-  "market_cap_basis": null,
-  "dividend_yield": null,
-  "buyback_yield": null,
-  "net_buyback_yield": null,
-  "shareholder_yield": null,
+  "ads_ratio": 1.0,
+  "market_cap": 10097660214.25,
+  "market_cap_basis": "46.55 \u00d7 216,920,735 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-03-20) \u00f7 ADS ratio 1.0, as of 2025-12-31)",
+  "dividend_yield": 0.0053705692803437165,
+  "buyback_yield": 0.027737712901523225,
+  "net_buyback_yield": 0.027737712901523225,
+  "shareholder_yield": 0.03310955141154273,
   "shareholder_yield_basis": "dividends_paid (FY2025 annual fact) + buybacks (FY2025 annual fact) \u2212 share_issuance NOT INCLUDED (not filed for FY2025); FY2025 annual flows (period ended 2025-12-31) \u2014 no quarterly filings (20-F/40-F filer)",
   "shareholder_yield_complete": false,
   "yield_basis": {
@@ -1072,7 +1072,7 @@
     "bound": "exact",
     "complete": true,
     "numerator": 280086000.0,
-    "denominator": null
+    "denominator": "46.55 \u00d7 216,920,735 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-03-20) \u00f7 ADS ratio 1.0, as of 2025-12-31)"
    },
    "net_buyback_yield": {
     "legs": {
@@ -1090,7 +1090,8 @@
     "bound": "upper",
     "complete": false,
     "numerator": 280086000.0,
-    "denominator": null
+    "denominator": "46.55 \u00d7 216,920,735 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-03-20) \u00f7 ADS ratio 1.0, as of 2025-12-31)",
+    "note": "an upper bound \u2014 the issuance leg is filed for only some quarters or not at all"
    },
    "shareholder_yield": {
     "legs": {
@@ -1110,44 +1111,45 @@
     "bound": "upper",
     "complete": false,
     "numerator": 334329000.0,
-    "denominator": null
+    "denominator": "46.55 \u00d7 216,920,735 shares (dei:EntityCommonStockSharesOutstanding (20-F filed 2026-03-20) \u00f7 ADS ratio 1.0, as of 2025-12-31)",
+    "note": "an upper bound \u2014 the issuance leg is filed for only some quarters or not at all"
    },
    "dividend_yield": {
     "numerator": 0.25,
     "basis": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 no quarterly DPS fact since",
     "bound": "exact",
     "complete": true,
-    "denominator": null
+    "denominator": "price 46.55 (prices.json stats.last); DPS \u00d7 ADS ratio 1.0 (per-ADS basis)"
    }
   },
   "yields_display": {
    "dividend_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.0053705692803437165,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
-    "note": "dps_ttm: fewer than four quarterly DPS facts \u2014 FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 no quarterly DPS fact since"
+    "label": "0.54%",
+    "note": "FY2025 DPS (fy_fact, period ended 2025-12-31) \u2014 no quarterly DPS fact since"
    },
    "buyback_yield": {
-    "value": null,
-    "bound": null,
+    "value": 0.027737712901523225,
+    "bound": "exact",
     "prefix": "",
-    "label": "\u2014",
+    "label": "2.77%",
     "note": null
    },
    "net_buyback_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "share_issuance: not filed for FY2025"
+    "value": 0.027737712901523225,
+    "bound": "upper",
+    "prefix": "\u2264",
+    "label": "\u2264 2.77%",
+    "note": "share_issuance: not filed for FY2025 \u2014 no deduction made, so this yield is an upper bound"
    },
    "shareholder_yield": {
-    "value": null,
-    "bound": null,
-    "prefix": "",
-    "label": "\u2014",
-    "note": "share_issuance: not filed for FY2025"
+    "value": 0.03310955141154273,
+    "bound": "upper",
+    "prefix": "\u2264",
+    "label": "\u2264 3.31%",
+    "note": "share_issuance: not filed for FY2025 \u2014 no deduction made, so this yield is an upper bound"
    }
   },
   "history": [
