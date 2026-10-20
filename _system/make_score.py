@@ -1086,6 +1086,20 @@ def check_iprd_deferred_payment(n, entries):
                  + ("no longer declares" if d is None else "now declares differently")
                  + " — keep every rolled-out entry as declared (it bounds the deal's lifetime contingent_total cap); "
                  "the judgment file and the engine run are out of sync: restore it, or rerun the engine")
+    if rolled:
+        # [Codex review r9 of PR #47] a rolled-out period must be a fiscal-year end of this filer: re-checked with the
+        # engine's helper against the FY ends the run recorded, so a quarter end never counts toward a deal's cap
+        fy = (blk or {}).get("fy_period_ends")
+        if not (isinstance(fy, list) and fy and all(isinstance(x, str) for x in fy)):
+            fail(f"dcf_numbers.json lists rolled-out {IPRD_DEFERRED_KEY} entries but records no fy_period_ends (the "
+                 "filer's fiscal-year ends a rolled-out period must be one of: an engine run that predates Codex "
+                 "review round 9 of PR #47) — rerun the engine")
+        for k, e in rolled.items():
+            why = _engine.iprd_fy_end_problem(e.get("period"), fy)
+            if why is not None:
+                fail(f"dcf_numbers.json counted a rolled-out {IPRD_DEFERRED_KEY} for "
+                     f"{(e.get('deferred_payment_of') or {}).get('deal')!r} toward its deal's contingent_total, but "
+                     f"{why} — fix the entry's period in judgment.json and rerun the engine")
     for k, d in by.items():
         if k in rolled:
             continue
@@ -1115,6 +1129,18 @@ def registry_prior_entries(ticker):
             if isinstance(e, dict) and e.get("ticker") == ticker]
 
 
+def _norm_src(src):
+    """A citation compared without extra whitespace."""
+    return " ".join(str(src).split())
+
+
+def _deal_evidence(first, contingent_total):
+    """[Codex review r9 of PR #47] What identifies a deal beyond its name: (first_charged_period, the EDGAR accessions
+    its contingent_total source cites)."""
+    src = (contingent_total or {}).get("source") if isinstance(contingent_total, dict) else None
+    return first, frozenset(m.group(0) for m in _engine.IPRD_ACCESSION_RE.finditer(str(src or "")))
+
+
 def iprd_deferred_lifetime(ticker, entries, prior):
     """[Codex review r8 of PR #47] The durable lifetime contingent_total cap. entries: judgment.json
     iprd_deferred_payment as validated (or None); prior: this ticker's registry entries from earlier runs. Returns the
@@ -1125,7 +1151,14 @@ def iprd_deferred_lifetime(ticker, entries, prior):
         NOW, so a rolled-out $60M payment deleted and the engine rerun let a later $60M declaration pass a $100M
         contingent_total);
       * a deal whose lifetime — max(the declarations on recorded periods, the recorded paid_to_date) + the
-        declarations on periods never recorded — exceeds its declared contingent_total."""
+        declarations on periods never recorded — exceeds its declared contingent_total;
+      * [Codex review r9 of PR #47] a recorded deal declared with another contingent_total (value more than $1 apart,
+        or a source that differs beyond whitespace) or another first_charged_period: the recorded ones are immutable
+        (raising the cap reopened it: a $100M deal with $60M recorded took $140M once the cap read $200M) and the
+        event keeps them;
+      * [Codex review r9 of PR #47] a new deal key whose evidence (_deal_evidence: the first_charged_period and a
+        contingent_total source accession) matches a recorded event, or another deal declared beside it, under a
+        different name — a renamed copy, which would get its own copy of the cap."""
     rec = {}
     for e in prior or []:
         if e.get("event") == IPRD_DEFERRED_EVENT and isinstance(e.get("deal"), str):
@@ -1133,9 +1166,49 @@ def iprd_deferred_lifetime(ticker, entries, prior):
     decl = {}
     for e in entries or []:
         decl.setdefault(_engine._deal_key(e["deferred_payment_of"]["deal"]), []).append(e)
+    # [Codex review r9 of PR #47] deal identity is the evidence, not the name: every other deal's evidence, recorded
+    # (registry events) or declared (this judgment.json)
+    others = [(rk, r.get("deal"), "recorded in the registry",
+               _deal_evidence(r.get("first_charged_period"), r.get("contingent_total")))
+              for rk, rs in rec.items() for r in rs]
+    others += [(dk, des[0]["deferred_payment_of"]["deal"], "declared beside it",
+                _deal_evidence(des[0]["deferred_payment_of"]["first_charged_period"],
+                               des[0]["deferred_payment_of"]["contingent_total"]))
+               for dk, des in decl.items()]
     events = []
     for k in sorted(set(rec) | set(decl)):
         r_es, es = rec.get(k, []), decl.get(k, [])
+        if es and not r_es:
+            first, accs = _deal_evidence(es[0]["deferred_payment_of"]["first_charged_period"],
+                                         es[0]["deferred_payment_of"]["contingent_total"])
+            for ok_, oname, where, (ofirst, oaccs) in others:
+                if ok_ != k and ofirst == first and accs & oaccs:
+                    fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {es[0]['deferred_payment_of']['deal']!r} carries the "
+                         f"evidence of deal {oname!r} ({where}): the same first_charged_period {first} and a "
+                         f"contingent_total cited to the same filing ({', '.join(sorted(accs & oaccs))}) — a renamed "
+                         f"copy, which would get its own copy of the deal's cap. Declare the payment under {oname!r} "
+                         "(WORKER_SPEC step 3); two distinct deals first charged in one period whose caps one filing "
+                         "discloses are a main-agent decision (NEEDS_MAIN_AGENT)")
+        if es and r_es:
+            # [Codex review r9 of PR #47] a recorded deal's contingent_total and first charge are immutable
+            d0 = es[0]["deferred_payment_of"]
+            for r in r_es:
+                r_ct, r_first = r.get("contingent_total"), r.get("first_charged_period")
+                if not (_engine.iprd_contingent_total_ok(r_ct) and _engine.iprd_date_ok(r_first)):
+                    fail(f"{REGISTRY} event {IPRD_DEFERRED_EVENT} for deal {r.get('deal')!r} is malformed (contingent_total "
+                         f"{r_ct!r}, first_charged_period {r_first!r}) — restore it from git before scoring")
+                if (abs(float(d0["contingent_total"]["value"]) - float(r_ct["value"])) > 1.0
+                        or _norm_src(d0["contingent_total"]["source"]) != _norm_src(r_ct["source"])):
+                    fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {d0['deal']!r} is declared with contingent_total "
+                         f"{_usd_exact(d0['contingent_total']['value'])} ({d0['contingent_total']['source']}), but the "
+                         f"registry recorded {_usd_exact(r_ct['value'])} ({r_ct['source']}) for it ({REGISTRY} event "
+                         f"{IPRD_DEFERRED_EVENT}) — a recorded deal's contingent_total is immutable (changing it would "
+                         "reopen the lifetime cap): declare the recorded one; a filing that revises the deal's milestones "
+                         "is a main-agent decision (NEEDS_MAIN_AGENT)")
+                if d0["first_charged_period"] != r_first:
+                    fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {d0['deal']!r} is declared first charged "
+                         f"{d0['first_charged_period']}, but the registry recorded first_charged_period {r_first} for it "
+                         f"({REGISTRY} event {IPRD_DEFERRED_EVENT}) — a recorded deal's first charge is immutable")
         r_periods = {}
         for r in r_es:
             for x in r.get("periods") or []:
@@ -1156,7 +1229,9 @@ def iprd_deferred_lifetime(ticker, entries, prior):
         on_rec = sum(v for q, v in d_periods.items() if q in r_periods)
         new = sum(v for q, v in d_periods.items() if q not in r_periods)
         lifetime = max(on_rec, paid) + new
-        ct = es[0]["deferred_payment_of"]["contingent_total"]
+        # the recorded deal keeps its recorded cap (checked equal above); a new one takes the declared cap
+        ct = r_es[0]["contingent_total"] if r_es else es[0]["deferred_payment_of"]["contingent_total"]
+        first = r_es[0]["first_charged_period"] if r_es else es[0]["deferred_payment_of"]["first_charged_period"]
         cap = float(ct["value"])
         if lifetime > cap + 1.0:
             fail(f"judgment.json {IPRD_DEFERRED_KEY}: deal {name!r}: its lifetime deferred payments — "
@@ -1167,7 +1242,7 @@ def iprd_deferred_lifetime(ticker, entries, prior):
         merged = dict(r_periods)
         merged.update(d_periods)
         events.append({"ticker": ticker, "event": IPRD_DEFERRED_EVENT, "deal": name,
-                       "first_charged_period": es[0]["deferred_payment_of"]["first_charged_period"],
+                       "first_charged_period": first,
                        "contingent_total": {"value": cap, "source": ct["source"]},
                        "paid_to_date": lifetime,
                        "periods": [{"period": q, "amount": v} for q, v in sorted(merged.items())]})

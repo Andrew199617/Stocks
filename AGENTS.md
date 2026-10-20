@@ -355,7 +355,12 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    a current-YTD entry, a missing or inconsistent `contingent_total`, one deal's declared amounts summing
    past its `contingent_total`, and — round 8 — an impossible date; make_score refuses a deal whose
    declarations sum below the `paid_to_date` its registry event recorded, or whose lifetime passes the cap.
-   A deal renamed between runs (another deal key, so another registry record) is the gap left to review: P1.)
+   [Codex review round 9 of PR #47] The rename gap is mechanical now: make_score refuses a recorded deal declared
+   with another `contingent_total` or `first_charged_period` (both immutable), and a new deal name carrying a
+   recorded (or co-declared) deal's evidence — the same `first_charged_period` and a `contingent_total` source
+   accession — as a renamed copy; the engine refuses a rolled-out `period` that is not one of the filer's
+   fiscal-year ends. Still P1 for review: a renamed deal whose evidence was changed too (a first charge or cap
+   filing the cited filings do not show for it).)
    [Codex review round 8 of PR #47] A period carrying `expense_tags_conflict` (both expense tags filed with
    different positive values; the current tag is used) must be reconciled in analysis.md against the filing
    (P2 otherwise).
@@ -639,6 +644,12 @@ misfit`. For them:
   after the checks that need no window record (first charge before its period, the
   original filing's accession year, companyfacts' expense fact for a pre-window first
   charge); an invalid one is refused (`BAD_IPRD_DEFERRED_PAYMENT`), not kept.
+  [Codex review round 9] A rolled-out period must be one of the filer's fiscal-year ends
+  (companyfacts' annual period ends where they reach the date, else within 7 days of
+  the nearest FY end's month-day; the run records `fy_period_ends` and make_score
+  re-checks); a recorded deal's `contingent_total` and `first_charged_period` are
+  immutable; a new deal name with a recorded or co-declared deal's first charge and
+  cap filing is refused as a renamed copy.
 
 ## Comment style
 

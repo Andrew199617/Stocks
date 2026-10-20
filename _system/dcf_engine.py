@@ -1898,7 +1898,9 @@ def iprd_deferred_entry_ok(e):
     contingent_total: {value, source} (the deal's cap: iprd_contingent_total_ok)}}.
     A current-YTD leg is never in the recurrence count (FY periods only), so window "ttm_current_ytd" is refused:
     declare the charge once it lands in an FY. [Codex review r8 of PR #47] period and first_charged_period must be
-    real dates (iprd_date_ok), so an impossible one is malformed, never kept rolled out or counted toward the cap."""
+    real dates (iprd_date_ok), so an impossible one is malformed, never kept rolled out or counted toward the cap.
+    [Codex review r9] That the period is an FY end is checked against the window (in it) or iprd_fy_end_problem
+    (rolled out) by iprd_apply_deferred, which knows the filer's fiscal-year ends."""
     if not isinstance(e, dict):
         return False
     p, a, d = e.get("period"), e.get("amount"), e.get("deferred_payment_of")
@@ -2041,7 +2043,76 @@ def _iprd_deferred_semantic_problem(e, oldest, facts):
     return None, cf
 
 
-def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
+IPRD_ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
+IPRD_FY_GAP_DAYS = 380   # two annual period ends at most this far apart are consecutive fiscal years
+IPRD_FY_MD_DAYS = 7      # a 52/53-week fiscal year ends within a week of its usual month-day
+
+
+def iprd_fy_period_ends(facts, fy_periods=()):
+    """[Codex review r9 of PR #47] This filer's fiscal-year ends, sorted: the end of every companyfacts duration fact
+    (any taxonomy, tag and unit) filed in an annual report for fp FY that spans a fiscal year (330-380 days: a 52/53-week
+    year included), plus the engine's own FY window (fy_periods). Instants are not read: a 10-K's dei cover facts end
+    after the fiscal year."""
+    out = {p for p in fy_periods or () if iprd_date_ok(p)}
+    for tax in (((facts or {}).get("facts") or {}).values()):
+        if not isinstance(tax, dict):
+            continue
+        for tag in tax.values():
+            for entries in ((tag.get("units") or {}).values() if isinstance(tag, dict) else ()):
+                for e in entries or []:
+                    if not (isinstance(e, dict) and e.get("fp") == "FY" and e.get("form") in IPRD_ANNUAL_FORMS):
+                        continue
+                    st, end = e.get("start"), e.get("end")
+                    if not (iprd_date_ok(st) and iprd_date_ok(end)) or end in out:
+                        continue
+                    if 330 <= (datetime.date.fromisoformat(end) - datetime.date.fromisoformat(st)).days <= 380:
+                        out.add(end)
+    return sorted(out)
+
+
+def iprd_fy_end_problem(period, fy_ends):
+    """[Codex review r9 of PR #47] Why `period` (a deferred entry's period older than the window) is not a fiscal-year
+    end of this filer, or None when it is. fy_ends: iprd_fy_period_ends (the run records it as iprd_adjustment
+    fy_period_ends, so make_score re-checks with this same helper). A period among them is one. Where the filer's
+    annual periods reach the date — an FY end on each side of it, at most IPRD_FY_GAP_DAYS apart (consecutive fiscal
+    years) — any other date is not. Where they do not (before companyfacts begins, or a gap in it), the period's
+    month-day must lie within IPRD_FY_MD_DAYS of the month-day of the nearest known FY end (a 52/53-week year moves it
+    by days, never by a quarter). The check matters only for a rolled-out period: an in-window one must already name
+    a window FY record."""
+    if not iprd_date_ok(period):
+        return f"period {period!r} is not a fiscal-year end of this filer: not a date"
+    ends = sorted({x for x in fy_ends or [] if iprd_date_ok(x)})
+    if period in ends:
+        return None
+    p = datetime.date.fromisoformat(period)
+    ds = [datetime.date.fromisoformat(x) for x in ends]
+    lo = max((d for d in ds if d < p), default=None)
+    hi = min((d for d in ds if d > p), default=None)
+    if lo is not None and hi is not None and (hi - lo).days <= IPRD_FY_GAP_DAYS:
+        return (f"period {period} is not a fiscal-year end of this filer: its annual periods end {lo} and {hi} around "
+                "it — name the fiscal-year end of the 10-K that recorded the payment")
+    near = [d for d in (lo, hi) if d is not None]
+    if not near:
+        return f"period {period} is not a fiscal-year end of this filer: no fiscal-year end of this filer is known"
+
+    def md_gap(d):
+        gaps = []
+        for y in (p.year - 1, p.year, p.year + 1):
+            try:
+                c = d.replace(year=y)
+            except ValueError:   # Feb 29 in a common year
+                c = d.replace(year=y, day=28)
+            gaps.append(abs((p - c).days))
+        return min(gaps)
+
+    if min(md_gap(d) for d in near) <= IPRD_FY_MD_DAYS:
+        return None
+    return (f"period {period} is not a fiscal-year end of this filer: companyfacts' annual periods do not reach it and "
+            f"its month-day is more than {IPRD_FY_MD_DAYS} days from the nearest fiscal-year end "
+            f"({', '.join(d.isoformat() for d in near)}) — name the fiscal-year end of the 10-K that recorded the payment")
+
+
+def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     """Validate judgment.json iprd_deferred_payment against this run's acquired-IPR&D records (iprd_detect's dict or
     None; fy_periods the engine's last-3-FY ends, oldest first; facts the companyfacts the run read) and mark each
     accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
@@ -2050,7 +2121,8 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
     [{"entry", "reason"}], rolled_out [entries whose period is older than the window: never applied, they stay in
     judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47 — once they pass the
     checks that need no window record (_iprd_deferred_semantic_problem; an invalid one is refused and never counted
-    toward the cap — Codex review r7 of PR #47)]).
+    toward the cap — Codex review r7 of PR #47) and their period is a fiscal-year end of this filer
+    (iprd_fy_end_problem against fy_ends, default iprd_fy_period_ends(facts, fy_periods) — Codex review r9)]).
     Nothing is applied for a refused entry.
     Checks: the shape (an FY period, an accession in the source, the deal's contingent_total); one entry per period
     and deal; one first_charged_period per deal across all entries; one contingent_total per deal (value and
@@ -2096,7 +2168,13 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None):
     pre_bad = {}
     for e in ok:
         if oldest is not None and e["period"] < fy_periods[0]:
-            why, _ = _iprd_deferred_semantic_problem(e, oldest, facts)
+            # [Codex review r9 of PR #47] its period must be one of the filer's fiscal-year ends (an in-window one
+            # already names a window FY record): a quarter end or any other date is refused, never counted
+            if fy_ends is None:
+                fy_ends = iprd_fy_period_ends(facts, fy_periods)
+            why = iprd_fy_end_problem(e["period"], fy_ends)
+            if why is None:
+                why, _ = _iprd_deferred_semantic_problem(e, oldest, facts)
             if why is not None:
                 pre_bad[id(e)] = why
     cap_problems = iprd_deferred_cap_problems([e for e in ok if id(e) not in pre_bad])
@@ -3844,7 +3922,9 @@ def main():
     # judgment.json iprd_deferred_payment (Andrew's 2026-10-20 ruling, delegated): validated against this run's
     # window and marked on the records before the recurrence count; refused (exit 3) outside the counterfactual
     _deferred = load_iprd_deferred_payments(ticker)
-    _deferred_refused, _deferred_rolled_out = iprd_apply_deferred(iprd, _deferred, last3_periods, facts)
+    # [Codex review r9 of PR #47] the filer's fiscal-year ends (a rolled-out period must be one), recorded for make_score
+    _fy_ends = iprd_fy_period_ends(facts, last3_periods) if _deferred is not None else None
+    _deferred_refused, _deferred_rolled_out = iprd_apply_deferred(iprd, _deferred, last3_periods, facts, _fy_ends)
     if _deferred_refused and not iprd_counterfactual:
         print(f"BAD_IPRD_DEFERRED_PAYMENT for {ticker}: judgment.json {IPRD_DEFERRED_KEY} "
               + "; ".join(f"{r['entry'].get('period') if isinstance(r['entry'], dict) else r['entry']!r}: {r['reason']}"
@@ -3981,6 +4061,7 @@ def main():
                 # [Codex review r4 of PR #47] periods older than the window: neither applied nor refused, kept in
                 # judgment.json for the deal's lifetime contingent_total cap (make_score checks they are still declared)
                 iprd["deferred_payments_rolled_out"] = _deferred_rolled_out
+            iprd["fy_period_ends"] = _fy_ends   # [Codex review r9 of PR #47] make_score re-checks rolled-out periods
         if held is not None:
             iprd["held_from_final_run"] = held
     else:
@@ -4011,6 +4092,7 @@ def main():
                 iprd["deferred_payments_refused"] = _deferred_refused
             if _deferred_rolled_out:
                 iprd["deferred_payments_rolled_out"] = _deferred_rolled_out
+            iprd["fy_period_ends"] = _fy_ends   # [Codex review r9 of PR #47]
     if iprd_refusal:
         print(f"BAD_BASE_OVERRIDE for {ticker}: --base-oe-ps pins a judgment.json base_override of basis "
               f"{IPRD_AMORTIZED_BASIS!r} but {iprd_refusal}")

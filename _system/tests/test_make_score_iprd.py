@@ -929,6 +929,100 @@ def test_validate_deferred_refuses_an_impossible_date():
         raise AssertionError(f"accepted {bad!r}")
 
 
+# --- Codex review round 9 of PR #47 -------------------------------------------------------------------------------
+R9_CT = {"value": 100e6, "source": TI.CT_SRC}
+
+
+def _refusal(fn, *a):
+    """make_score's refusal text when fn(*a) refuses (SystemExit), else None."""
+    import contextlib
+    import io
+    buf = io.StringIO()
+    try:
+        with contextlib.redirect_stderr(buf):
+            fn(*a)
+    except SystemExit:
+        return buf.getvalue()
+    return None
+
+
+def _r9(deal="Surf Bio", period="2024-12-31", amount=60e6, first="2021-12-31", source=TI.OK_SRC_2021, contingent=R9_CT):
+    return TI.deferred(period=period, amount=amount, first=first, source=source, deal=deal, contingent=contingent)
+
+
+def _lifetime(entries, prior):
+    import make_score as M
+    return M.iprd_deferred_lifetime("TST", M.validate_iprd_deferred_payment({"iprd_deferred_payment": entries}), prior)
+
+
+def test_a_recorded_deals_contingent_total_and_first_charge_cannot_change():
+    """[Codex review r9, #4323764885] The lifetime check read the cap from the current declaration only: with Surf
+    Bio's $60M FY2024 milestone recorded against a $100M contingent_total, raising the cap to $200M on every entry and
+    adding an $80M FY2025 milestone passed, and the registry event was rewritten with cap $200M and $140M paid. A
+    recorded deal's contingent_total (value and source) is now immutable: a declaration whose cap differs from the
+    recorded one by more than $1, or whose source differs beyond whitespace, is refused, and the event keeps the
+    recorded cap. A changed first_charged_period on a recorded deal is refused too."""
+    ev1 = _lifetime([_r9()], [])
+    assert ev1[0]["contingent_total"] == R9_CT and ev1[0]["paid_to_date"] == 60e6, ev1
+    # control: the recorded cap holds a second $80M milestone off
+    assert "more than its contingent_total" in (_refusal(_lifetime, [_r9(), _r9(period="2025-12-31", amount=80e6)], ev1)
+                                                or "")
+    other_src = TI.CT_SRC.replace("0000999001-26-000004", "0000999001-26-000009")
+    for ct in ({"value": 200e6, "source": TI.CT_SRC}, {"value": 200e6, "source": other_src},
+               {"value": 100e6, "source": other_src}, {"value": 90e6, "source": TI.CT_SRC}):
+        msg = _refusal(_lifetime, [_r9(contingent=ct), _r9(period="2025-12-31", amount=30e6, contingent=ct)], ev1)
+        assert msg and "contingent_total" in msg and "recorded" in msg and "Surf Bio" in msg, (ct, msg)
+    # within $1 and only whitespace apart: accepted, the event keeps the recorded cap exactly
+    ws = {"value": 100e6 + 0.5, "source": "  " + TI.CT_SRC.replace(" ", "  ") + " "}
+    ev2 = _lifetime([_r9(contingent=ws), _r9(period="2025-12-31", amount=40e6, contingent=ws)], ev1)
+    assert ev2[0]["contingent_total"] == R9_CT and ev2[0]["paid_to_date"] == 100e6, ev2
+    # the deal's first charge moved
+    msg = _refusal(_lifetime, [_r9(first="2020-12-31")], ev1)
+    assert msg and "first_charged_period" in msg and "recorded" in msg, msg
+
+
+def test_a_renamed_copy_of_a_recorded_deal_is_refused():
+    """[Codex review r9, #4323764895] Every cap check keyed a deal on its name: with "Surf Bio" recorded ($60M of a
+    $100M contingent_total), a second $60M declared as "Surf Bio acquisition" (the same first charge, the same
+    contingent_total filing) got its own copy of the cap — $120M paid against $100M. Deal identity is now the
+    evidence: a new deal key whose first_charged_period and contingent_total source accession match a recorded event
+    (or another deal declared beside it) under a different name is refused as a renamed copy, naming the recorded
+    deal. A distinct deal (another first charge, or a cap disclosed in another filing) is accepted."""
+    ev1 = _lifetime([_r9()], [])
+    dup = _r9(deal="Surf Bio acquisition", period="2025-12-31")
+    msg = _refusal(_lifetime, [_r9(), dup], ev1)
+    assert msg and "renamed copy" in msg and "'Surf Bio'" in msg and "Surf Bio acquisition" in msg, msg
+    # the same two names in one declaration, nothing recorded yet
+    msg = _refusal(_lifetime, [_r9(), dup], [])
+    assert msg and "renamed copy" in msg, msg
+    # distinct deals: another first charge, or a cap disclosed in another filing
+    other_first = _r9(deal="Other Bio", period="2025-12-31", first="2022-12-31", source=TI._src(23))
+    other_cap = _r9(deal="Other Bio", period="2025-12-31",
+                    contingent={"value": 80e6, "source": "SYN 10-K FY2024 (0000999001-25-000003) Note 6, p. 77: $80.0 "
+                                                         "million of Other Bio milestones, not recognized"})
+    for o in (other_first, other_cap):
+        ev = _lifetime([_r9(), o], ev1)
+        assert sorted(e["deal"] for e in ev) == ["Other Bio", "Surf Bio"], ev
+
+
+def test_record_check_refuses_a_rolled_out_period_that_is_not_a_fiscal_year_end():
+    """[Codex review r9, #4323764891] make_score re-checks every rolled-out entry with the engine's helper against the
+    FY ends the run recorded (iprd_adjustment.fy_period_ends): a non-FY-end period is refused, and a record carrying
+    rolled-out entries without fy_period_ends (an engine run that predates the rule) is refused — rerun the engine."""
+    import make_score as M
+    old = _r9(deal="Old Bio", period="2022-12-31")
+    blk = {"periods": [], "deferred_payments_rolled_out": [old],
+           "fy_period_ends": [f"{y}-12-31" for y in range(2019, 2026)]}
+    assert M.check_iprd_deferred_payment({"iprd_adjustment": blk}, [old]) is None
+    bad = dict(old, period="2022-06-30")
+    msg = _refusal(M.check_iprd_deferred_payment, {"iprd_adjustment": dict(blk, deferred_payments_rolled_out=[bad])},
+                   [bad])
+    assert msg and "not a fiscal-year end" in msg, msg
+    msg = _refusal(M.check_iprd_deferred_payment,
+                   {"iprd_adjustment": {k: v for k, v in blk.items() if k != "fy_period_ends"}}, [old])
+    assert msg and "fy_period_ends" in msg, msg
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

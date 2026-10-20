@@ -2122,6 +2122,57 @@ def test_both_expense_tags_filed_the_positive_one_is_read():
     assert r["expense_tag"] == EXPENSE and "expense_tags_conflict" not in r, r
 
 
+# --- Codex review round 9 of PR #47 -------------------------------------------------------------------------------
+def _calendar_cf(years=range(2019, 2026)):
+    """companyfacts of a calendar-year filer: an FY duration fact per year (Revenues), a Q2 fact ending 2022-06-30 and
+    the FY2021 Old Bio acquired-IPR&D charge."""
+    rev = [_fy_fact(f"{y}-01-01", f"{y}-12-31", 1e9) for y in years]
+    rev.append({"start": "2022-01-01", "end": "2022-06-30", "val": 5e8, "form": "10-Q", "fp": "Q2", "filed": "2022-08-01"})
+    return {"facts": {"us-gaap": {"Revenues": {"units": {"USD": rev}},
+                                  EXPENSE: {"units": {"USD": [_fy_fact("2021-01-01", "2021-12-31", 8e6)]}}}}}
+
+
+def _r9_old(period):
+    return deferred(period=period, amount=60e6, first="2021-12-31", source=OK_SRC_2021, deal="Old Bio", contingent=R8_CAP)
+
+
+def test_rolled_out_period_must_be_a_fiscal_year_end_of_the_filer():
+    """[Codex review r9, #4323764891] A rolled-out entry's period was checked only as a real date: at a calendar-year
+    filer, period 2022-06-30 (a quarter end) or 2022-02-14 was kept rolled out and its amount counted toward the deal's
+    lifetime contingent_total for good. Now a rolled-out period must be one of the filer's fiscal-year ends: one of
+    companyfacts' annual period ends (fp FY, annual form, a 330-380 day duration) or the engine's window, wherever
+    those annual periods reach the date (FY ends within a fiscal year of each other on both sides of it); where they
+    do not, the month-day of the nearest known FY end (within 7 days: a 52/53-week year). Otherwise refused
+    (BAD_IPRD_DEFERRED_PAYMENT), never kept rolled out, never counted. The run records the FY ends it read
+    (iprd_adjustment.fy_period_ends) so make_score re-checks every rolled-out entry with the same helper."""
+    cf = _calendar_cf()
+    for p in ("2022-06-30", "2022-02-14"):
+        iprd = {"periods": [_rec("2025-12-31", 60e6)]}
+        ref, rolled = E.iprd_apply_deferred(iprd, [_r9_old(p)], FY3, cf)
+        assert rolled == [] and len(ref) == 1 and "not a fiscal-year end" in ref[0]["reason"], (p, ref, rolled)
+    ref, rolled = E.iprd_apply_deferred({"periods": [_rec("2025-12-31", 60e6)]}, [_r9_old("2022-12-31")], FY3, cf)
+    assert ref == [] and rolled == [_r9_old("2022-12-31")], (ref, rolled)
+    assert E.iprd_fy_period_ends(cf, FY3) == [f"{y}-12-31" for y in range(2019, 2026)], E.iprd_fy_period_ends(cf, FY3)
+    # companyfacts does not reach the date: the nearest FY end's month-day decides, 52/53-week years within 7 days
+    assert E.iprd_fy_end_problem("2022-12-31", FY3) is None
+    assert "not a fiscal-year end" in (E.iprd_fy_end_problem("2022-06-30", FY3) or "")
+    wk = ["2023-09-30", "2024-09-28", "2025-09-27"]
+    assert E.iprd_fy_end_problem("2022-10-01", wk) is None and E.iprd_fy_end_problem("2021-09-25", wk) is None
+    assert E.iprd_fy_end_problem("2022-12-31", wk) is not None and E.iprd_fy_end_problem("2022-10-15", wk) is not None
+    # a gap in companyfacts' annual periods (no FY end within a fiscal year on one side): the month-day again
+    assert E.iprd_fy_end_problem("2022-12-31", ["2015-12-31", "2021-12-31"] + FY3) is None
+    assert E.iprd_fy_end_problem("2022-06-30", ["2015-12-31", "2021-12-31"] + FY3) is not None
+    # end to end: the engine refuses the quarter-end period; the FY end is kept and the record carries the FY ends
+    facts = _facts(expense={2021: 8e6, 2025: 60e6})
+    _refused(_run(facts, judgment={"iprd_deferred_payment": [_r9_old("2022-06-30")]}), "not a fiscal-year end")
+    n = _ok(_run(facts, judgment={"iprd_deferred_payment": [_r9_old("2022-12-31")]}))
+    blk = n["iprd_adjustment"]
+    assert blk["deferred_payments_rolled_out"] == [_r9_old("2022-12-31")], blk
+    assert blk["fy_period_ends"] == [f"{y}-12-31" for y in range(2019, 2026)], blk.get("fy_period_ends")
+    # a run without declarations gains no key
+    assert "fy_period_ends" not in (_ok(_run(facts))["iprd_adjustment"] or {})
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
