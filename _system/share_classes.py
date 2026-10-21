@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Declared share classes (Up-C / multi-class share basis) — engine 5.7, Andrew's ruling R6 (2026-10-19/20: "Fix the
 engine so it can use the real total share count for two-class companies like VNOM"). Pure, stdlib only: no I/O at
-import, no network; load() is the one file read. Policy-bearing (dcf_engine.py, ttm.py and make_score.py import it).
+import, no network; load() and load_interim_end() are the file reads (judgment.json). Policy-bearing (dcf_engine.py,
+ttm.py and make_score.py import it).
 
 An Up-C filer (VNOM, OWL, SYM, IBKR ...) consolidates 100% of its operating company's cash flows, but its tagged
 diluted share count is the traded class only: the noncontrolling holders' OpCo units — exchangeable into the traded
@@ -36,8 +37,10 @@ Rules (validate; numbers are 08_share_classes.md §2, amended by the rebase map 
     engine / ttm.py know it: a class that existed for part of a period declares its weighted-average units. Some
     period must carry a value > 0.
  5b. in_filed_count: true (value > 0 only): the filed diluted count of that period already includes the units
-    (if-converted) — verified by exchange_test, nothing added.
- 6. (engine / make_score) units / filed traded count <= UNITS_MAX_MULT unless ack_reason.
+    (if-converted) — verified by exchange_test, nothing added; never on a leg with no basic count to verify it (an
+    OVERRIDE row, a cover-page / outstanding fallback row).
+ 6. (engine / ttm.py / make_score) units / filed traded count <= UNITS_MAX_MULT unless ack_reason (out_of_band) — on
+    every applied leg: the engine's FY rows and ttm.py's current-YTD / interim leg.
  8. declaration_sha256 over the whole object: any edit is a new declaration (rerun ttm.py and the engine).
  9. the optional reasons (OPTIONAL_REASONS) are non-empty strings carrying a digit when present.
  11. split_basis: only needed when a split is confirmed and the entry's accession is not in the filer's companyfacts.
@@ -665,15 +668,43 @@ def units_split_scale(norm, period_end, accn_filed, ev_date, ratio_used, include
     return num / den, (bases.pop() if len(bases) == 1 else "mixed")
 
 
-def load(base, ticker):
-    """judgment.json's share_classes value (None when absent or null, or when judgment.json is unreadable); never
-    raises. Any other value is returned as found — validate() refuses a non-object."""
+def _judgment(base, ticker):
     try:
         with open(os.path.join(base, ticker, "judgment.json"), encoding="utf-8") as f:
             j = json.load(f)
     except Exception:
         return None
-    return j.get("share_classes") if isinstance(j, dict) else None
+    return j if isinstance(j, dict) else None
+
+
+def load(base, ticker):
+    """judgment.json's share_classes value (None when absent or null, or when judgment.json is unreadable); never
+    raises. Any other value is returned as found — validate() refuses a non-object."""
+    j = _judgment(base, ticker)
+    return j.get("share_classes") if j is not None else None
+
+
+def load_interim_end(base, ticker):
+    """The end of judgment.json's declared 6-K interim bridge's current interim (interim_bridge.current_interim.period
+    [1], an ISO date), else None; never raises. A 20-F / 40-F filer's interim share counts come from the 6-K, which
+    companyfacts does not carry, so that period end is no filed share-fact period end: the engine's typo guard accepts
+    it as the declared bridge's period (review 2026-10-21, finding 1) — ttm.py --interim verifies the period against
+    the 6-K's own instance."""
+    j = _judgment(base, ticker)
+    ib = j.get("interim_bridge") if j is not None else None
+    per = (ib.get("current_interim") or {}).get("period") if isinstance(ib, dict) and isinstance(
+        ib.get("current_interim"), dict) else None
+    if isinstance(per, list) and len(per) == 2 and _date(per[1]) is not None:
+        return per[1]
+    return None
+
+
+def out_of_band(units, filed):
+    """Rule 6: True when the declared class-equivalent units of one leg are more than UNITS_MAX_MULT x its filed
+    traded count — an engine FY row, ttm.py's current-YTD / interim leg (make_score refuses either without
+    ack_reason). False when either figure is missing or the count is not positive (nothing to band)."""
+    u, f = _num(units), _num(filed)
+    return bool(u is not None and f is not None and f > 0 and u / f > UNITS_MAX_MULT)
 
 
 # ---------------------------------------------------------------------------

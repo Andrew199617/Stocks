@@ -24,6 +24,12 @@ M-8  R-6 (ttm.json on another declaration); A-6 TTM_CHANGED on a rewritten decla
 M-9  R-7 / R-7b (the NCI and cap cross-checks).
 M-10 score.json carries share_classes / up_c_check only when the engine record does.
 M-11 R-10 (share_basis values; an OVERRIDE period added without the attestation).
+Review fixes (2026-10-21; each fails on the lane's first build 49c125a):
+M-1b the current-YTD period's units are banded too (rule 6: a --ttm record's share_classes.ttm, ttm.json's block).
+M-3b R-4: a total_units-attested pin equal to a filed-basis per-share figure is refused (SC_REFUSE_FILED_BASIS_PIN).
+M-4d a crashed / unparseable share-class replay refuses; only the engine's exit 3 is "not measured".
+M-8b R-6 covers an iprd_amortized pin on native ttm_json and a basis_window "ttm" pin.
+M-13 a declared 6-K interim bridge at a declaring filer scores end to end (step 4 on the filed-basis twins).
 Every test fails on the code before this lane (4f7d6f1).
 """
 import copy
@@ -235,6 +241,43 @@ def test_shape_refusals():
     refused(run_ms(declared(rec=rec)), "out of band", "ack_reason")
 
 
+OOB_UNITS = 187553000 * 21 + 6746384     # VNOM's 2026-06-30 Class B units at 21x the YTD Class A count, + TWR IV's
+
+
+def _oob_decl(ack=None):
+    d = decl()
+    for p in d["classes"][0]["periods"]:
+        if p["period_end"] == "2026-06-30":
+            p["value"], p["snippet"] = 187553000 * 21, f"{187553000 * 21:,} units outstanding (test)"
+    if ack:
+        d["ack_reason"] = ack
+    return d
+
+
+def _oob_ttm(d):
+    tt = ttm_doc(d, per_unit=1488000000 / (YTD[0] + OOB_UNITS))
+    tt["share_classes"].update(units_equivalent=float(OOB_UNITS), total_units=float(YTD[0] + OOB_UNITS))
+    tt["ttm_shares_diluted"] = float(YTD[0] + OOB_UNITS)
+    return tt
+
+
+def test_ttm_period_out_of_band_needs_ack_reason():
+    """M-1b (rule 6 / R-1; review 2026-10-21 finding 5): the current-YTD period's units over 20x its traded count —
+    in a --ttm record's share_classes.ttm, or in ttm.json's block on this declaration beside a median score — refuse
+    without share_classes.ack_reason, like an out-of-band FY row (they had scored: R-1 read share_classes.applied
+    only); with an ack_reason that carries the counts both score."""
+    d = _oob_decl()
+    n, tt = ttm_pinned(d, tt=_oob_ttm(d))
+    n["share_classes"]["ttm"].update(units_equivalent=float(OOB_UNITS), total_units=float(YTD[0] + OOB_UNITS))
+    refused(run_ms(n, j=_judgment(share_classes=d), tt=tt), "out of band", "TTM to 2026-06-30", "ack_reason")
+    refused(run_ms(declared(d), j=_judgment(share_classes=d), tt=tt), "out of band", "TTM to 2026-06-30", "ack_reason")
+    da = _oob_decl(ack=f"test: the YTD units {OOB_UNITS:,} are a multiple of the 187,553,000 traded Class A shares")
+    na, tta = ttm_pinned(da, tt=_oob_ttm(da))
+    na["share_classes"]["ttm"].update(units_equivalent=float(OOB_UNITS), total_units=float(YTD[0] + OOB_UNITS))
+    ok(run_ms(na, j=_judgment(share_classes=da), tt=tta))
+    ok(run_ms(declared(da), j=_judgment(share_classes=da), tt=tta))
+
+
 def test_sync_refusals():
     """M-2 (R-2): the record's declaration_sha256 not the declaration's; applied units that are not the declaration's;
     no record while declared (a run before the declaration); a record while judgment.json declares none — each "out
@@ -286,6 +329,97 @@ def test_mismatch_pins_and_payable():
     pay = {"value": 1.0, "kind": "filing", "basis": "payable_earnings_5y", "figures": [1e6] * 5, "shares": 1e6,
            "source": "t", "reason": "t"}
     refused(run_ms(declared(), j=_judgment(share_classes=decl(), base_override=pay)))
+
+
+# VNOM-shaped FY owner's earnings for the CSV rows the R-4 filed-basis test reads (period: OE, filed, total units)
+FY_OE = {"2023-12-31": 600e6, "2024-12-31": 700e6, "2025-12-31": 1046e6}
+
+
+def _fy_rows(oe=None):
+    oe = oe or FY_OE
+    return [{"period_end": p, "oe_conservative": repr(oe[p]), "shares_diluted": repr(float(f + u)),
+             "shares_tag": f"{DIL}+SHARE_CLASSES", "oe_per_share": repr(oe[p] / (f + u))} for p, (f, u) in VN.items()]
+
+
+def _sync_refusal(n, j, tt=None, rows=None):
+    """check_share_classes_sync (R-2 … R-10) in process on a temp folder holding j, tt and the CSV rows: None when it
+    passes, else the refusal text."""
+    import contextlib
+    import csv
+    import io
+    base = tempfile.mkdtemp(prefix="sc_sync_")
+    folder = os.path.join(base, T)
+    os.makedirs(folder)
+    with open(os.path.join(folder, "judgment.json"), "w", encoding="utf-8") as f:
+        json.dump(j, f)
+    if tt is not None:
+        with open(os.path.join(folder, "ttm.json"), "w", encoding="utf-8") as f:
+            json.dump(tt, f)
+    if rows:
+        with open(os.path.join(folder, "financials_history.csv"), "w", encoding="utf-8", newline="") as f:
+            w = csv.DictWriter(f, fieldnames=list(rows[0]))
+            w.writeheader()
+            w.writerows(rows)
+    saved, err = M.BASE, io.StringIO()
+    try:
+        M.BASE = base
+        with contextlib.redirect_stderr(err):
+            M.check_share_classes_sync(n, j.get("share_classes"), folder)
+        return None
+    except SystemExit:
+        return err.getvalue()
+    finally:
+        M.BASE = saved
+        shutil.rmtree(base, ignore_errors=True)
+
+
+def test_attested_pin_on_a_filed_basis_figure_is_refused():
+    """M-3b (R-4; a rule beyond 08's attestation text — review 2026-10-21 finding 3, raised with Andrew; switch
+    make_score.SC_REFUSE_FILED_BASIS_PIN): a base_override attested share_basis "total_units" whose value is a
+    filed-basis per-share figure the run or ttm.json carries — ttm.json's ttm_oe_per_share_filed_basis ($7.9338:
+    VNOM's fake Tier S, 25.05%, which had scored) or an applied FY's OE ÷ its filed traded count (financials_history.csv)
+    — is refused; the per-unit figures (TTM $4.1438, FY2025 OE ÷ total units) pass; a value that is a total-unit
+    figure as well as a filed-basis one is not refused; the switch off restores 08's attestation-only rule."""
+    n, tt = ttm_pinned()
+    fb = tt["ttm_oe_per_share_filed_basis"]
+    bw = {"window": "ttm", "ytd_current_period": ["2026-01-01", "2026-06-30"]}
+    inp = dict(n["inputs"], base_oe_ps_arg=fb, base_pin_source="base_oe_ps_arg", base_basis_window=bw)
+    nf = dict(n, base_oe_per_share=fb, base_source="agent_supplied_ttm_override", inputs=inp, tier_by_numbers="S",
+              implied_irr_weighted=0.2505, implied_irr_base=0.2505)
+    bo = {"value": fb, "share_basis": "total_units", "basis_window": bw,
+          "source": f"test: ttm.json ttm_oe_per_share_filed_basis {fb:.6f} (TTM to 2026-06-30)",
+          "reason": "test: TTM owner's earnings per share, 1,488,000,000 / 187,553,000"}
+    refused(run_ms(nf, j=_judgment(share_classes=decl(), base_override=bo), tt=tt),
+            "filed-basis", "ttm_oe_per_share_filed_basis", "total_units")
+    # in process: the FY figures from financials_history.csv (applied periods' OE ÷ filed traded count)
+    rows = _fy_rows()
+    fy25_filed = FY_OE["2025-12-31"] / VN["2025-12-31"][0]
+    fy23_filed = FY_OE["2023-12-31"] / VN["2023-12-31"][0]
+    fy25_total = FY_OE["2025-12-31"] / sum(VN["2025-12-31"])
+    fyw = {"window": "fy"}
+    for val, needle in ((fy25_filed, "FY2025"), (fy23_filed, "FY2023"), (fb, "ttm_oe_per_share_filed_basis")):
+        nn = dict(n, base_oe_per_share=val, inputs=dict(n["inputs"], base_oe_ps_arg=val, base_pin_source="base_oe_ps_arg"))
+        msg = _sync_refusal(nn, {"share_classes": decl(), "base_override": dict(bo, value=val, basis_window=fyw)}, tt, rows)
+        assert msg and "filed-basis" in msg and needle in msg, (val, msg)
+    for val in (fy25_total, tt["ttm_oe_per_share"]):
+        nn = dict(n, base_oe_per_share=val, inputs=dict(n["inputs"], base_oe_ps_arg=val, base_pin_source="base_oe_ps_arg"))
+        assert _sync_refusal(nn, {"share_classes": decl(), "base_override": dict(bo, value=val, basis_window=fyw)},
+                             tt, rows) is None, val
+    # FY2024's per-unit figure built equal to FY2025's filed-basis one: a total-unit figure too, so not refused
+    oe = dict(FY_OE, **{"2024-12-31": fy25_filed * sum(VN["2024-12-31"])})
+    nn = dict(n, base_oe_per_share=fy25_filed,
+              inputs=dict(n["inputs"], base_oe_ps_arg=fy25_filed, base_pin_source="base_oe_ps_arg"))
+    assert _sync_refusal(nn, {"share_classes": decl(), "base_override": dict(bo, value=fy25_filed, basis_window=fyw)},
+                         tt, _fy_rows(oe)) is None
+    saved = M.SC_REFUSE_FILED_BASIS_PIN
+    try:
+        M.SC_REFUSE_FILED_BASIS_PIN = False
+        nn = dict(n, base_oe_per_share=fy25_filed,
+                  inputs=dict(n["inputs"], base_oe_ps_arg=fy25_filed, base_pin_source="base_oe_ps_arg"))
+        assert _sync_refusal(nn, {"share_classes": decl(), "base_override": dict(bo, value=fy25_filed, basis_window=fyw)},
+                             tt, rows) is None
+    finally:
+        M.SC_REFUSE_FILED_BASIS_PIN = saved
 
 
 # ---------------------------------------------------------------------------
@@ -379,6 +513,42 @@ def test_amortized_and_via_ttm_replay_pins():
     assert blk["measured"] is False and "the filed-class run does not score (BAD_TTM_SHARE_BASIS" in blk["note"], blk
     blk, _ = impact(declared(), {"share_classes": decl()}, None, release="9.9.9")
     assert blk["measured"] is False and blk["note"].startswith("not measured"), blk
+
+
+def _impact_refusal(n, j, tt=None, replies=(FILED,)):
+    """share_classes_impact's refusal text (None when it returned a block)."""
+    import contextlib
+    import io
+    err = io.StringIO()
+    try:
+        with contextlib.redirect_stderr(err):
+            impact(n, j, tt, replies=replies)
+        return None
+    except SystemExit:
+        return err.getvalue()
+
+
+def test_a_crashed_share_class_replay_refuses():
+    """M-4d (08 §8.4 "a replay failure refuses (nothing written)", rebase A-17; review 2026-10-21 finding 4): only the
+    engine's own refusal (exit 3) is recorded measured: false. A replay that crashed (exit 1, a traceback — it had been
+    recorded "the filed-class run does not score", which also skipped the R6 entry-alert suppression), exited 2,
+    timed out (no exit code) or exited 0 without a JSON object refuses the score — on the one-step replay and on step 1
+    of the amortized two-step; exit 3 at step 1 is "not measured" with no second replay."""
+    tb = (1, None, "Traceback (most recent call last):")
+    for rep in (tb, (2, None, "NO_CIK for TST"), (None, None, ""), (0, None, "Traceback (most recent call last):")):
+        msg = _impact_refusal(declared(), {"share_classes": decl()}, None, replies=(rep,))
+        assert msg and "did not complete" in msg and "retry make_score" in msg, (rep, msg)
+    blk, _ = impact(declared(), {"share_classes": decl()}, None, replies=((3, None, "BAD_SHARE_CLASSES for TST: x"),))
+    assert blk["measured"] is False and "does not score (BAD_SHARE_CLASSES" in blk["note"], blk
+    nm = _amort_record("median_of_last_3_fy_oe_per_share", 4.0, [15e6, 0.0, 20e6], 339647368.0, None)
+    bm = {"basis": "iprd_amortized", "kind": "filing", "native_base": "median_of_last_3_fy_oe_per_share",
+          "figures": [15e6, 0.0, 20e6], "shares": 339647368.0, "value": 4.0, "source": "t", "reason": "t"}
+    for rep in (tb, (0, None, "")):
+        msg = _impact_refusal(nm, {"share_classes": decl(), "base_override": bm}, None, replies=(rep,))
+        assert msg and "did not complete" in msg and "step 1" in msg, (rep, msg)
+    blk, calls = impact(nm, {"share_classes": decl(), "base_override": bm}, None,
+                        replies=((3, None, "BAD_TTM_SHARES for TST: x"),))
+    assert blk["measured"] is False and "BAD_TTM_SHARES" in blk["note"] and len(calls) == 1, (blk, calls)
 
 
 # ===========================================================================
@@ -522,6 +692,49 @@ def test_ttm_json_off_the_declaration():
     ok(run_ms(declared(), tt=other))
 
 
+def _r6_refusal(n, j_sc, tt):
+    """check_ttm_on_declaration (R-6) in process: None when it passes, else the refusal text."""
+    import contextlib
+    import io
+    base = tempfile.mkdtemp(prefix="sc_r6_")
+    saved, err = M.BASE, io.StringIO()
+    try:
+        M.BASE = base
+        with contextlib.redirect_stderr(err):
+            M.check_ttm_on_declaration(n, j_sc, tt)
+        return None
+    except SystemExit:
+        return err.getvalue()
+    finally:
+        M.BASE = saved
+        shutil.rmtree(base, ignore_errors=True)
+
+
+def test_ttm_basis_pins_off_the_declaration_refuse():
+    """M-8b (R-6 / 08 §5.3 "the same table runs for an IPR&D ttm_json basis"; review 2026-10-21 finding 2): an
+    iprd_amortized pin on native base ttm_json and a plain pin the engine read on basis_window "ttm" are TTM-basis
+    scores too, so a ttm.json that is not on the declaration beside them (another declaration_sha256, or no block)
+    is refused like a --ttm one (they had passed: R-6 saw only --ttm and a via-TTM --base-oe-ps); on the declaration
+    they pass; a median score is still never refused."""
+    tt = ttm_doc()
+    other = copy.deepcopy(tt)
+    other["share_classes"]["declaration_sha256"] = "f" * 64
+    no_block = {k: v for k, v in tt.items() if k != "share_classes"}
+    na = _amort_record("ttm_json", 4.0, [15e6, 0.0, 20e6], float(sum(YTD)), tt)
+    nw, _ = ttm_pinned(tt=tt)
+    bw = {"window": "ttm", "ytd_current_period": ["2026-01-01", "2026-06-30"]}
+    nw = dict(nw, base_oe_per_share=2.0, base_source="agent_supplied_ttm_override",
+              inputs=dict(nw["inputs"], base_oe_ps_arg=2.0, base_pin_source="base_oe_ps_arg", base_basis_window=bw))
+    for n in (na, nw):
+        assert _r6_refusal(n, decl(), tt) is None
+        msg = _r6_refusal(n, decl(), other)
+        assert msg and "ttm.json is not on this share_classes declaration" in msg and "another share_classes" in msg, msg
+        msg = _r6_refusal(n, decl(), no_block)
+        assert msg and "built before the share_classes declaration" in msg and "R-6" in msg, msg
+        assert "on total units but judgment.json declares no share_classes" in (_r6_refusal(n, None, tt) or "")
+    assert _r6_refusal(declared(), decl(), other) is None
+
+
 # ===========================================================================
 # M-9 / M-10 / M-11
 # ===========================================================================
@@ -559,6 +772,80 @@ def test_share_basis_values_and_attestation():
     rec = sc_record()
     rec["applied"][-1].update(filed_traded_tag="OVERRIDE", share_basis_attested=None)
     refused(run_ms(declared(rec=rec)), "without a traded_class attestation", "rerun the engine")
+
+
+# ===========================================================================
+# M-13 — a declared 6-K interim bridge at a declaring filer, end to end
+# ===========================================================================
+IB_UNITS = {"2023-12-31": 61560000, "2024-12-31": 61560000, "2025-12-31": 61560000, "2026-06-30": 61700000}
+_IB_CACHE = {}
+
+
+def _ib_declared_pipeline():
+    """(n, csv rows, ttm.json, fixture, judgment): test_make_score_57_interim's synthetic 20-F filer (615,600,000
+    ordinary shares each FY, 617,000,000 in the 6-K interim; a basic count beside each FY diluted count) with a 10%
+    multi_class_common declaration (61,560,000 Class B per FY, 61,700,000 at 2026-06-30) and the bridge's share leg
+    attested traded_class — the real preliminary engine run, ttm.py --interim and the final --ttm run, offline."""
+    if "pipe" in _IB_CACHE:
+        return copy.deepcopy(_IB_CACHE["pipe"])
+    import engine55_harness as H
+    import test_make_score_57_interim as IB
+    from test_share_classes_57 import ent
+    fx = IB.foreign_fixture()
+    for y in IB.YEARS:
+        IB._put(fx["facts"], IB.IF, "WeightedAverageShares", "shares",
+                {"accn": f"0009990030-{(y + 1) % 100:02d}-000010", "fy": y, "fp": "FY", "form": "20-F",
+                 "filed": f"{y + 1}-03-18", "start": f"{y}-01-01", "end": f"{y}-12-31", "val": 615600000})
+    sc = {"basis": "multi_class_common", "traded_class": "Ordinary shares (test)",
+          "reason": "test: the Class B shares, 61,560,000 at FY2025, are outside the 615,600,000 ordinary count",
+          "classes": [{"name": "Class B shares (test)", "holder": "founders (test)", "exchange_ratio": 1,
+                       "periods": [ent(p, v) for p, v in IB_UNITS.items()]}]}
+    d = IB.decl()
+    d["legs"]["shares_diluted"]["current_interim"]["share_basis"] = "traded_class"
+    j = IB.judgment(share_classes=sc, interim_bridge=d)
+    base = H.make_base(fx, j, None, copy_repo_files=False)
+    try:
+        pre = H.run_engine(IB.FX_T, args=IB.ARGS, base=base, fixture=fx, keep_base=True)
+        assert pre["exit"] == 0, pre["stdout"][-2000:]
+        t = H.run_ttm(IB.FX_T, base=base, fixture=fx, patch=IB._ttm_patch, keep_base=True)
+        assert t["exit"] == 0, t["stderr"][-2000:]
+        fin = H.run_engine(IB.FX_T, args=IB.ARGS + ["--ttm"], base=base, fixture=fx, keep_base=True)
+        assert fin["exit"] == 0, fin["stdout"][-2000:]
+        out = (fin["numbers"], fin["rows"], t["ttm"], fx, j)
+    finally:
+        shutil.rmtree(base, ignore_errors=True)
+    _IB_CACHE["pipe"] = out
+    return copy.deepcopy(out)
+
+
+def test_declared_interim_bridge_at_a_declaring_filer_scores():
+    """M-13 (08 §5.4 / §9 "interim bridge (L4)"; review 2026-10-21 finding 1): at a declaring filer ttm.py --interim
+    rescales the bridge's per-share figures onto total units (617,000,000 + 61,700,000 = 678,700,000), so make_score's
+    step-4 re-derivation of the bridge (interim_bridge.recompute_from_record, on the filed share leg) is compared with
+    the filed-basis twins and the rescale is re-derived from the share_classes block — it had read every such ttm.json
+    as edited and refused every declared bridge. End to end: the --ttm score on the bridge scores, with the share-class
+    replay at ttm_oe_per_share_filed_basis; a ttm.json whose total-unit pin was edited (or whose block disagrees with
+    the declaration) is still refused at step 4."""
+    n, rows, tt, fx, j = _ib_declared_pipeline()
+    import test_make_score_57_interim as IB
+    assert tt["ttm_shares_diluted"] == 678700000 and tt["ttm_shares_diluted_filed"] == 617000000, tt["ttm_shares_diluted"]
+    assert n["base_oe_per_share"] == tt["ttm_oe_per_share"] and n["share_classes"]["ttm"]["leg"] == "interim"
+    r = IB.score(n, j, rows, tt, fx)
+    assert r.rc == 0, r.err[-3000:]
+    s = r.result["score"]
+    assert s["interim_bridge"]["basis"] == "declared_interim", s["interim_bridge"]
+    sc = s["share_classes"]
+    assert sc["base_used"] == "ttm" and sc["measured"] and sc["replay_pin"] == tt["ttm_oe_per_share_filed_basis"], sc
+    assert sc["base_oe_total_units"] == round(tt["ttm_oe_per_share"], 4), sc
+    # in process: step 4 on the declared ttm.json, then on ttm.json edited after ttm.py
+    assert [m for st, m in M._interim_problems(n, j, tt) if st == 4] == []
+    for edit in (lambda t: t.update(ttm_oe_per_share=t["ttm_oe_per_share"] * 1.01),
+                 lambda t: t.update(ttm_shares_diluted=t["ttm_shares_diluted"] + 1e6),
+                 lambda t: t["share_classes"].update(units_equivalent=t["share_classes"]["units_equivalent"] + 1e6),
+                 lambda t: t.update(ttm_oe_per_share_filed_basis=t["ttm_oe_per_share_filed_basis"] * 1.01)):
+        bad = copy.deepcopy(tt)
+        edit(bad)
+        assert [m for st, m in M._interim_problems(n, j, bad) if st == 4], bad
 
 
 if __name__ == "__main__":

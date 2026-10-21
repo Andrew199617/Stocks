@@ -570,8 +570,10 @@ def apply_share_classes(out, ticker, base, facts, overrides, leg="ytd_10q", engi
     path; none -> diluted_gap_reason), never on an OVERRIDE leg. Then every per-share field (SC_PER_SHARE_FIELDS) x
     k = filed / (filed + units), each original kept as <field>_filed_basis; ttm_shares_diluted = filed + units,
     ttm_shares_diluted_filed = filed; out["share_classes"] records the declaration's sha256 (the engine's and
-    make_score's sync rule, share_classes.ttm_on_declaration). A zero YTD period writes the block with k = 1. Off only
-    in make_score's replay: DCF_NO_SHARE_CLASSES with DCF_TTM_NO_WRITE (a filed-basis ttm.json is never written)."""
+    make_score's sync rule, share_classes.ttm_on_declaration) and the leg's out_of_band (rule 6: units over
+    UNITS_MAX_MULT x the traded count; make_score refuses it without ack_reason). A zero YTD period writes the block
+    with k = 1. Off only in make_score's replay: DCF_NO_SHARE_CLASSES with DCF_TTM_NO_WRITE (a filed-basis ttm.json
+    is never written)."""
     decl = None if (os.environ.get(_sc.ENV_OFF) and os.environ.get("DCF_TTM_NO_WRITE")) else _sc.load(base, ticker)
     if decl is None:
         return None
@@ -643,7 +645,10 @@ def apply_share_classes(out, ticker, base, facts, overrides, leg="ytd_10q", engi
                             "units_split_factor": f, "units_split_basis": ubasis, "split_source": ev and ev[2],
                             "exchange_test": xrec, "diluted_minus_basic": xrec.get("gap"), "zero_period": u == 0,
                             "classes": _sc.period_detail(norm, end), "filed_traded": filed, "total_units": filed + u,
-                            "rescale_factor": k, "rescaled_fields": rescaled}
+                            "rescale_factor": k, "rescaled_fields": rescaled,
+                            # rule 6 on the TTM leg (review 2026-10-21 finding 5): make_score refuses it without
+                            # share_classes.ack_reason, as for an engine FY row
+                            "out_of_band": _sc.out_of_band(u, filed)}
     sh_leg["basis"] = (sh_leg.get("basis") or "") + " + declared share-class units (judgment.json share_classes)"
     return None
 

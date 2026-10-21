@@ -28,6 +28,11 @@ T-16 multi_class_common: the exchange ratio scales the units.
 T-17 / T-17b ADS filers: units in ordinary shares; the declared interim bridge rescales every per-share field.
 T-18 the cap cross-check (universe.csv's own price).
 A-6  ttm.json's share-class keys are optional hashed input legs (every committed ttm.json hashes as before).
+Review fixes (2026-10-21; each fails on the lane's first build 49c125a):
+T-4b rule 6's band covers the current-YTD period (ttm.json's block and the record's share_classes.ttm: out_of_band).
+T-8c an iprd_amortized pin on native ttm_json and a basis_window "ttm" pin need ttm.json on the declaration.
+T-14c a dei / outstanding fallback row cannot carry in_filed_count units (rule 5b: no basic count to verify them).
+T-17c a 20-F filer's declared 6-K bridge current-interim period passes the typo guard (the preliminary run scores).
 Every test fails on the code before this lane (4f7d6f1) except T-13 (a guard) and the A-6 compat half.
 """
 import copy
@@ -326,6 +331,35 @@ def test_base_window_and_ttm_period_must_be_declared():
     assert n["share_classes"]["unused_periods"] == ["2026-06-30"] and n["share_classes"]["ttm_ytd_end_seen"] is None
 
 
+def _vnom_ytd_units(mult):
+    """VNOM's judgment with the 2026-06-30 Class B units set to `mult` x the YTD Class A count (187,553,000)."""
+    j = vj()
+    big = 187553000 * mult
+    for p in j["share_classes"]["classes"][0]["periods"]:
+        if p["period_end"] == "2026-06-30":
+            p["value"], p["snippet"] = big, f"{big:,} units outstanding (test)"
+    return j
+
+
+def test_ttm_period_units_are_banded():
+    """T-4b (rule 6; review 2026-10-21 finding 5): the sanity band (units <= 20x the traded count unless ack_reason)
+    covers the current-YTD period ttm.py applies — the period a --ttm base divides by — not only the engine's FY rows.
+    VNOM's own YTD units (0.91x the Class A count) are in band in ttm.json's block and the engine record's
+    share_classes.ttm; at 21x (3,945,359,384 units on 187,553,000) both record out_of_band true while every FY row
+    stays in band (make_score refuses it without ack_reason, M-1b)."""
+    tt, out = v_declared()
+    assert tt["share_classes"]["out_of_band"] is False, tt["share_classes"]
+    assert out["numbers"]["share_classes"]["ttm"]["out_of_band"] is False, out["numbers"]["share_classes"]["ttm"]
+    j = _vnom_ytd_units(21)
+    t = H.run_ttm("VNOM", judgment=j)
+    assert t["exit"] == 0, t["stderr"][-1500:]
+    blk = t["ttm"]["share_classes"]
+    assert blk["units_equivalent"] == 3945359384 and blk["out_of_band"] is True, blk
+    n = _ok(v_run(["--ttm"], j=j, ttm=t["ttm"]))
+    rec = n["share_classes"]
+    assert rec["ttm"]["out_of_band"] is True and not any(a["out_of_band"] for a in rec["applied"]), rec["ttm"]
+
+
 # ===========================================================================
 # T-5 / T-5b — the per-share series, zero periods, A-21
 # ===========================================================================
@@ -604,6 +638,39 @@ def test_declared_pin_replay_keeps_its_basis_window():
     assert rp["inputs"]["base_basis_window"]["window"] == "ttm", rp["inputs"]
     ns = _ok(s_run(f, j, ["--base-oe-ps", repr(2.5)], ttm=tt, env={"DCF_NO_SHARE_CLASSES": "1"}, measure=True))
     assert ns["iprd_adjustment"]["window"]["ttm_current_ytd"] is None and "base_basis_window" not in ns["inputs"]
+
+
+def test_ttm_basis_pins_need_ttm_json_on_the_declaration():
+    """T-8c (08 §5.3: "the same table runs for an IPR&D ttm_json basis"; review 2026-10-21 finding 2): an
+    iprd_amortized pin on native base ttm_json and a plain pin declaring basis_window "ttm" read ttm.json as their TTM
+    basis (its figure, current-YTD leg and share count), so at a declaring filer a ttm.json not on the declaration —
+    the filed-basis file left from before it (ttm.py refuses to rewrite it until the YTD is declared) — refuses
+    BAD_TTM_SHARE_BASIS exactly as --ttm does (the amortized pin had shipped 2.5 per filed share beside 125M total
+    units); on the declared ttm.json both score (T-8 / T-8b); without a declaration the same pins on the block-less
+    ttm.json score as before."""
+    from test_engine_iprd import _ttm_doc, ttm_window_decl
+    f = _iprd_facts({2023: 15e6, 2025: 20e6})
+    stale = _ttm_doc(2.5, 100e6)
+    d = {"basis": "iprd_amortized", "kind": "filing", "native_base": "ttm_json", "figures": [15e6, 0.0, 20e6],
+         "shares": 100e6, "value": 2.5 - 35e6 / 3 / 100e6, "source": "test: this run's figures on the filed count",
+         "reason": "test: acquisition-led R&D recurs"}
+    _refused(s_run(f, _with_checks(f, {"share_classes": DECL25, "base_override": d}), ["--base-oe-ps", repr(d["value"])],
+                   ttm=stale),
+             "BAD_TTM_SHARE_BASIS", "native base is ttm.json's TTM", "built before the share_classes declaration")
+    und = _ok(s_run(f, _with_checks(f, {"base_override": d}), ["--base-oe-ps", repr(d["value"])], ttm=stale))
+    assert und["iprd_adjustment"]["treatment"] == "amortized_in_base", und["iprd_adjustment"]["treatment"]
+    f2 = _iprd_facts({2025: 20e6}, ytd=30e6)
+    bo = dict(ttm_window_decl(2.0), share_basis="total_units")
+    _refused(s_run(f2, _with_checks(f2, {"share_classes": DECL25, "base_override": bo}), ["--base-oe-ps", "2.0"],
+                   ttm=_ttm_doc(2.5, 100e6)),
+             "BAD_TTM_SHARE_BASIS", "basis_window \"ttm\"", "built before the share_classes declaration")
+    other = dict(DECL25, reason=DECL25["reason"] + " (another declaration)")
+    _refused(s_run(f2, _with_checks(f2, {"share_classes": other, "base_override": bo}), ["--base-oe-ps", "2.0"],
+                   ttm=_declared_ttm(DECL25, 2.1, 125e6, 100e6)),
+             "BAD_TTM_SHARE_BASIS", "another share_classes declaration")
+    plain = {k: v for k, v in ttm_window_decl(2.0).items()}
+    n = _ok(s_run(f2, _with_checks(f2, {"base_override": plain}), ["--base-oe-ps", "2.0"], ttm=_ttm_doc(2.5, 100e6)))
+    assert n["iprd_adjustment"]["window"]["ttm_current_ytd"] == ["2026-01-01", "2026-06-30"], n["iprd_adjustment"]["window"]
 
 
 # ===========================================================================
@@ -914,6 +981,28 @@ def test_all_class_override_beside_a_declaration_is_refused():
     shutil.rmtree(b, ignore_errors=True)
 
 
+def test_fallback_row_cannot_carry_in_filed_count_units():
+    """T-14c (rule 5b; review 2026-10-21 finding 6): in_filed_count units are verified by diluted − basic, and a
+    cover-page / outstanding fallback row has no basic count to verify them — while ack_reason attests that count is
+    the traded class only, the opposite of in_filed_count. T-14's dei fallback FY2022 with its units marked
+    in_filed_count is refused, with ack_reason or without (it had scored, "skipped_fallback_ack", nothing added, the
+    year's per-share figure on the traded class only); the same row without in_filed_count takes the units (T-14)."""
+    f = syn(shares={2022: None}, basic={2022: None}, extra_dei=((100e6, "2023-01-31", "2023-02-20"),))
+    d = sdecl(None, entries=[ent(p, 25e6) for p in ("2022-12-31",) + LAST3])
+    d["classes"][0]["periods"][0]["in_filed_count"] = True
+    for ack in (True, False):
+        dd = copy.deepcopy(d)
+        if ack:
+            dd["ack_reason"] = "test: the cover page counts 100,000,000 Class A shares only (the 10-K cover)"
+        _refused(s_run(f, {"share_classes": dd}), "BAD_SHARE_CLASSES", "FY2022", "fallback", "in_filed_count")
+    ok = copy.deepcopy(d)
+    ok["classes"][0]["periods"][0].pop("in_filed_count")
+    ok["ack_reason"] = "test: the cover page counts 100,000,000 Class A shares only (the 10-K cover)"
+    out = s_run(f, {"share_classes": ok})
+    n = _ok(out)
+    assert float(rowmap(out)["2022-12-31"]["shares_diluted"]) == 125e6 and n["share_classes"]["included_periods"] == []
+
+
 def test_no_override_replay_leaves_fallback_rows_without_units():
     """T-14b (08 §8.3, revision 3 finding 11): FY2025's only count is the all-class CommonStockSharesOutstanding
     (125M) and FY2024's a basic count; a traded-class shares_override fills both on the final run. In the field-
@@ -1085,6 +1174,34 @@ def test_interim_ads_bridge_rescales_every_per_share_field():
     out = TI._once(args=("--interim-draft", TI.ACC), judgment={"interim_bridge": None, "share_classes": sc})
     assert out["exit"] == 0, out["stderr"][-1000:]
     assert out["ttm"]["interim_bridge"]["legs"]["shares_diluted"]["current_interim"]["share_basis"] == "traded_class"
+
+
+def test_bridge_period_passes_the_typo_guard_at_a_20f_filer():
+    """T-17c (08 §4.3's typo guard beside §5.4's bridge; review 2026-10-21 finding 1): a 20-F filer's 6-K interim share
+    count is not in companyfacts, so its current-interim period end is no filed share-fact period end. Declared
+    beside an interim_bridge whose current interim ends there, the preliminary (median) run — the first step of the
+    bridge workflow, before ttm.py --interim writes ttm.json — records it unused and scores (it had refused, so the
+    bridge could never start at a declaring filer); without the bridge declaration, at a period the bridge does not
+    end on, or at a 10-K filer it is still refused as a typo."""
+    import test_make_score_57_interim as IB
+    fx = IB.foreign_fixture()
+    for y in IB.YEARS:
+        IB._put(fx["facts"], IB.IF, "WeightedAverageShares", "shares",
+                {"accn": f"0009990030-{(y + 1) % 100:02d}-000010", "fy": y, "fp": "FY", "form": "20-F",
+                 "filed": f"{y + 1}-03-18", "start": f"{y}-01-01", "end": f"{y}-12-31", "val": 615600000})
+
+    def run(ytd, bridge):
+        sc = sdecl(None, entries=[ent(p, 61560000) for p in LAST3] + [ent(ytd, 61700000)], basis="multi_class_common")
+        j = {"ads_ratio": dict(IB.ADS), "share_classes": sc}
+        if bridge:
+            j["interim_bridge"] = IB.decl()
+        return H.run_engine(IB.FX_T, args=IB.ARGS, judgment=j, fixture=fx)
+    _refused(run("2026-06-30", False), "BAD_SHARE_CLASSES", "declares 2026-06-30", "no period end")
+    n = _ok(run("2026-06-30", True))
+    assert n["share_classes"]["unused_periods"] == ["2026-06-30"], n["share_classes"]["unused_periods"]
+    assert [a["period_end"] for a in n["share_classes"]["applied"]] == list(LAST3) and n["shares_diluted_latest"] == 677160000
+    _refused(run("2026-03-31", True), "BAD_SHARE_CLASSES", "declares 2026-03-31")
+    _refused(s_run(syn(), {"share_classes": DECL25, "interim_bridge": IB.decl()}), "BAD_SHARE_CLASSES", "declares 2026-06-30")
 
 
 # ===========================================================================

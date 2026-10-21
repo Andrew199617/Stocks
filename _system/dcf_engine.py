@@ -641,18 +641,22 @@ closed, as for every release change). The items below are written by the lane th
   market cap (shares_source ...+share_classes; the scope test is about the company's real size) and the leverage
   diagnostic are on total economic units. Refused (exit 3, nothing written): BAD_SHARE_CLASSES — a malformed
   declaration, one beside share_class_mismatch, a base-window FY undeclared, a stray period that is no filed
-  share-fact period end, a 0 entry not dated outside its period (a class that existed for part of a period declares
-  its weighted-average units; kind calc is the straddle year's day-weighted average, re-derived), a shares_override
-  row without share_basis "traded_class" (an all-class override already counts the units), a dei / outstanding
-  fallback row without ack_reason, a diluted count that already carries the exchange (diluted - basic >= half the
-  units) unless in_filed_count (verified, nothing added) or diluted_gap_reason, units whose split basis cannot be
-  read (each entry on the basis of the filing that printed it), a share-scale defect beside the units (fix the
-  traded count first); BAD_TTM_SHARE_BASIS — a --ttm (or via-TTM --base-oe-ps) pin on a ttm.json not built on this
-  declaration (share_classes.ttm_on_declaration). A history year without a declaration keeps its filed count and
-  leaves the per-share series (series_excluded_periods, growth_inputs_shortened / _dropped). The share-scale guard,
-  the cover-page divergence (a cover page summing every class is recorded compared_to total_units, no switch; a
-  switched cap is topped up with the units nearest the cover-page date) and the detector test the FILED traded
-  count. Records: share_classes (null when nothing is declared; applied periods with the exchange test and split
+  share-fact period end (a 20-F / 40-F filer's declared 6-K bridge current-interim end is accepted: companyfacts
+  carries no 6-K share fact), a 0 entry not dated outside its period (a class that existed for part of a period
+  declares its weighted-average units; kind calc is the straddle year's day-weighted average, re-derived), a
+  shares_override row without share_basis "traded_class" (an all-class override already counts the units), a dei /
+  outstanding fallback row without ack_reason or with in_filed_count units (no basic count can verify them), a
+  diluted count that already carries the exchange (diluted - basic >= half the units) unless in_filed_count
+  (verified, nothing added) or diluted_gap_reason, units whose split basis cannot be read (each entry on the basis of
+  the filing that printed it), a share-scale defect beside the units (fix the traded count first);
+  BAD_TTM_SHARE_BASIS — a pin that reads ttm.json as its TTM basis (--ttm, a via-TTM --base-oe-ps, an iprd_amortized
+  pin on native base ttm_json, a basis_window "ttm" pin) on a ttm.json not built on this declaration
+  (share_classes.ttm_on_declaration). share_classes.ttm records the TTM leg's out_of_band (rule 6, as the FY rows'
+  applied[].out_of_band; make_score refuses either without ack_reason). A history year without a declaration keeps
+  its filed count and leaves the per-share series (series_excluded_periods, growth_inputs_shortened / _dropped). The
+  share-scale guard, the cover-page divergence (a cover page summing every class is recorded compared_to total_units,
+  no switch; a switched cap is topped up with the units nearest the cover-page date) and the detector test the FILED
+  traded count. Records: share_classes (null when nothing is declared; applied periods with the exchange test and split
   basis, zero / in_filed_count / unused periods, latest, ttm, market_cap, nci_check, cap_check) and up_c_check (every
   run: the detector — noncontrolling interests' share of 3-FY consolidated net income or of equity s >= 0.20, the
   units not in the diluted count, count-gap evidence from the cover page or universe.csv's own price and cap, a
@@ -1292,18 +1296,22 @@ def check_ttm_share_basis(ttm_doc, decl):
 
 
 def share_class_pass(hist, norm, decl, facts, ttm_ytd_end, split_conf, share_filed_used, overrides, no_ov_replay,
-                     latest_fy_end, today):
+                     latest_fy_end, today, interim_end=None):
     """v5.7 (L8, R6; 08 §4.2-§4.4): add the declared class-equivalent units to the filed traded-class diluted count of
     every declared history row, in place (after the v5.5 split pass, before any per-share figure is formed). Returns
     (record, excluded period ends, refusal text | None). Refusals (exit 3 BAD_SHARE_CLASSES in main): a base-window
     FY undeclared; a stray declared period that is no filed share-fact period end (or later than the latest one /
-    today); a 0 entry dated inside its period, a calc entry that does not reproduce (rule 5, A-21); an OVERRIDE row
-    without share_basis "traded_class" or with in_filed_count units (rule 10); a non-basic fallback row without
-    ack_reason (in make_score's field-override replay, DCF_NO_OVERRIDES + --measure, such a row keeps its count and
-    is listed in checks_relaxed instead); units whose split basis cannot be read (rule 11); a filed diluted count
-    that already carries the exchange or does not carry in_filed_count units (exchange_test). An undeclared history
-    row keeps its filed count and leaves the per-share series (oe_per_share / fcf_per_share blanked; main() drops it
-    from oe_ps_hist and the share series). A zero period (every class 0) applies nothing."""
+    today) — except interim_end, a 20-F / 40-F filer's declared 6-K bridge's current-interim end after the latest FY
+    (no 6-K share fact is in companyfacts; review 2026-10-21 finding 1: the preliminary run of the bridge workflow had
+    refused every declaring filer's bridge period), recorded unused like any other stray period; a 0 entry dated
+    inside its period, a calc entry that does not reproduce (rule 5, A-21); an OVERRIDE row without share_basis
+    "traded_class" or with in_filed_count units (rule 10); a non-basic fallback row with in_filed_count units (rule
+    5b: no basic count can verify them — review 2026-10-21 finding 6) or without ack_reason (in make_score's
+    field-override replay, DCF_NO_OVERRIDES + --measure, such a row keeps its count and is listed in checks_relaxed
+    instead); units whose split basis cannot be read (rule 11); a filed diluted count that already carries the
+    exchange or does not carry in_filed_count units (exchange_test). An undeclared history row keeps its filed count
+    and leaves the per-share series (oe_per_share / fcf_per_share blanked; main() drops it from oe_ps_hist and the
+    share series). A zero period (every class 0) applies nothing."""
     units = _sc.units_by_period(norm)
     run_periods = [h["period_end"] for h in hist]
     missing = [p for p in run_periods[-3:] if p not in units]
@@ -1314,7 +1322,8 @@ def share_class_pass(hist, norm, decl, facts, ttm_ytd_end, split_conf, share_fil
     filed_ends = _sc.share_period_ends(facts)
     latest_filed_end = max(filed_ends) if filed_ends else latest_fy_end
     stray = [p for p in sorted(units) if p not in run_periods and p != ttm_ytd_end]
-    bad = [p for p in stray if p not in filed_ends or p > latest_filed_end or p > today]
+    bad = [p for p in stray if p > today or (not (interim_end is not None and p == interim_end and p > latest_fy_end)
+                                             and (p not in filed_ends or p > latest_filed_end))]
     if bad:
         return None, set(), (f"share_classes declares {', '.join(bad)}, which is no period end of the filer's filed share "
                              f"facts (a typo?) or lies after the latest one ({latest_filed_end})")
@@ -1355,6 +1364,12 @@ def share_class_pass(hist, norm, decl, facts, ttm_ytd_end, split_conf, share_fil
             # outstanding count that may already sum every class — no units on it (left on the fallback count)
             left_on_fallback.append({"period_end": p, "tag": tag, "count": filed, "units_not_added": units[p]})
             continue
+        if nonbasic_fb and inc:
+            # rule 5b: in_filed_count units are verified by the diluted - basic gap; a cover-page / outstanding count
+            # has no basic count beside it (and ack_reason attests it is the traded class only — the opposite claim)
+            return None, set(), (f"FY{fy}'s count is a cover-page / outstanding fallback ({tag}): no basic count can "
+                                 "verify units marked in_filed_count — remove in_filed_count (the units are then "
+                                 "added), or declare a traded-class shares_override")
         if nonbasic_fb and not norm.get("ack_reason"):
             return None, set(), (f"FY{fy}'s count is a fallback ({tag}) that may already count every class; confirm it "
                                  "is the traded class only in share_classes.ack_reason (with the figure), or declare a "
@@ -1395,7 +1410,7 @@ def share_class_pass(hist, norm, decl, facts, ttm_ytd_end, split_conf, share_fil
                         "declared_units": units[p], "units_split_factor": f, "units_split_basis": ubasis,
                         "units_equivalent": u, "total_units": h["shares_diluted"], "included_units": ui,
                         "diluted_minus_basic": xrec.get("gap"), "exchange_test": xrec,
-                        "count_bases": _sc.count_bases(norm, p), "out_of_band": u / filed > _sc.UNITS_MAX_MULT,
+                        "count_bases": _sc.count_bases(norm, p), "out_of_band": _sc.out_of_band(u, filed),
                         "share_basis_attested": "traded_class" if tag == "OVERRIDE" else None,
                         "classes": _sc.period_detail(norm, p)})
     last = hist[-1] if hist else {}
@@ -6180,7 +6195,8 @@ def main():
     if sc_norm:
         sc_record, sc_excluded, _why = share_class_pass(
             hist, sc_norm, sc_decl, facts, ttm_ytd_end, split_conf, share_filed_used, overrides,
-            bool(MEASURE and os.environ.get("DCF_NO_OVERRIDES")), latest_fy_end, ET_TODAY.isoformat())
+            bool(MEASURE and os.environ.get("DCF_NO_OVERRIDES")), latest_fy_end, ET_TODAY.isoformat(),
+            interim_end=(_sc.load_interim_end(BASE, ticker) if annual_form in ("20-F", "40-F") else None))
         if _why:
             print(f"BAD_SHARE_CLASSES for {ticker}: {_why}")
             sys.exit(3)
@@ -6260,7 +6276,10 @@ def main():
                                 "total_units": _tb.get("total_units"), "units_split_basis": _tb.get("units_split_basis"),
                                 "diluted_minus_basic": _tb.get("diluted_minus_basic"), "leg": _tb.get("leg"),
                                 "ttm_oe_per_share": _tj.get("ttm_oe_per_share"),
-                                "ttm_oe_per_share_filed_basis": _tj.get("ttm_oe_per_share_filed_basis")}
+                                "ttm_oe_per_share_filed_basis": _tj.get("ttm_oe_per_share_filed_basis"),
+                                # rule 6 on the TTM leg (review 2026-10-21 finding 5): make_score refuses it without
+                                # ack_reason, as for an FY row
+                                "out_of_band": _sc.out_of_band(_tb.get("units_equivalent"), _tb.get("filed_traded"))}
     elif "--base-judgment" in sys.argv:
         # Insurer payable-earnings base (2026-10-19): the pin is the declared
         # 5-yr average operating income to common / latest diluted shares, in
@@ -6656,12 +6675,24 @@ def main():
         iprd_ttm_basis = False
     else:
         iprd_ttm_basis = _num_ttm
-    if pin_source == "base_oe_ps_arg" and _num_ttm and not sc_counterfactual:
-        # v5.7 (L8, R6; 08 §5.3): a --base-oe-ps pin equal to ttm.json's figure is a TTM base — per total unit exactly
-        # when ttm.py built ttm.json on this share_classes declaration (the same table as the --ttm read)
+    # v5.7 (L8, R6; 08 §5.3 — "the same table runs for an IPR&D ttm_json basis"): every --base-oe-ps pin that reads
+    # ttm.json as its TTM basis is per total unit exactly when ttm.py built ttm.json on this share_classes declaration
+    # (the same table as the --ttm read): an iprd_amortized pin on native base ttm_json (its native base, window and
+    # share count are ttm.json's), a plain pin declaring basis_window "ttm" (its current-YTD leg), and a pin equal to
+    # ttm.json's figure. [review 2026-10-21 finding 2] only the last was checked: an amortized pin on a filed-basis
+    # ttm.json left from before the declaration shipped per filed share beside a declaration that says per unit.
+    _ttm_basis_pin = None
+    if pin_source == "base_oe_ps_arg" and not sc_counterfactual:
+        if amort_decl and decl.get("native_base") == "ttm_json":
+            _ttm_basis_pin = f"the {IPRD_AMORTIZED_BASIS} pin's native base is ttm.json's TTM"
+        elif base_basis_window is not None and base_basis_window["window"] == "ttm":
+            _ttm_basis_pin = "the base_override pin declares basis_window \"ttm\" (it reads ttm.json's current-YTD leg)"
+        elif _num_ttm:
+            _ttm_basis_pin = "the --base-oe-ps pin is ttm.json's TTM figure"
+    if _ttm_basis_pin:
         _why = check_ttm_share_basis(ttm_doc, sc_decl)
         if _why:
-            print(f"BAD_TTM_SHARE_BASIS for {ticker}: the --base-oe-ps pin is ttm.json's TTM figure, but {_why}")
+            print(f"BAD_TTM_SHARE_BASIS for {ticker}: {_ttm_basis_pin}, but {_why}")
             sys.exit(3)
     _stale_fy = bool(latest.get("period_end")
                      and (ET_TODAY - datetime.date.fromisoformat(latest["period_end"])).days / 30.44 > 7)
