@@ -49,8 +49,9 @@ pre-v5 or drifted inputs).
   `history/` (one small CSV per day: that day's ranking), and the dated ranking
   HTML from before 2026-10-16
 - `automation/` — the scheduled-job definitions that run the sweep (pass-1
-  workers every 15 minutes, pass 2 every 30, a 06:30 filing watcher, a
-  market-hours live refresh, and the 19:07 daily ranking)
+  and pass-2 workers, a filing watcher, a market-hours live refresh, and the
+  daily ranking; which jobs are enabled and their cadences live there and in
+  each job's front matter)
 
 ## What is in git
 
