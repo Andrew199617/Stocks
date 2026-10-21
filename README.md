@@ -60,7 +60,8 @@ and the daily ranking CSVs in `_daily/history/`. Not committed: data anyone
 can re-fetch or rebuild in minutes. That covers Nasdaq prices
 (`<T>/prices.json`), the Street block (`<T>/street.json`), live returns
 (`<T>/live.json`), the built site data (`_daily/site/data/`, `index.json`,
-`meta.json`) and the ~45 MB dated ranking attachments. `.gitignore` lists them.
+`meta.json`, `state.json`), `_daily/latest.html`, `_daily/preview-*.html` and
+the ~45 MB dated ranking attachments. `.gitignore` lists them.
 
 ## Run it on your own computer
 
