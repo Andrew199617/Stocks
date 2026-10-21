@@ -1296,7 +1296,7 @@ def test_live_older_than_the_score_is_withheld():
         assert b["live"] is None and b["live_withheld"]["reason"] == "live_older_than_score"
         w = b["live_withheld"]
         assert (w["price_date"], w["scored_date"], w["method"], w["price"]) == ("2026-10-13", "2026-10-14", "no_close_since_scoring", live["price"])
-        assert "older than the scored analysis" in w["note"]
+        assert "predates the scored analysis" in w["note"] and "latest available" in w["note"] and "pending" not in w["note"].lower(), w["note"]
         assert row["live_withheld"] is True and row["has"]["live"] is False
         for k in ("irr_live", "price_live", "tier_live", "upside15_live", "market_cap_b_live", "price_date"):
             assert row[k] is None, k
@@ -1329,7 +1329,7 @@ def test_live_older_than_the_score_is_withheld():
                "live": {"price": 50.0, "irr_weighted": 0.2, "price_date": "2026-10-17", "scored_date": "2026-10-01"}}
     lv, w = B.live_shown(old_run)
     assert lv is None and w["reason"] == "live_from_earlier_run" and w["scored_date"] == "2026-10-16", w
-    assert "2026-10-01 run" in w["note"] and "reprice.py" in w["note"], w["note"]
+    assert "2026-10-01 run" in w["note"] and "latest available" in w["note"] and "pending" not in w["note"].lower(), w["note"]
     old_run["live"]["scored_date"] = "2026-10-16"
     assert B.live_shown(old_run) == (old_run["live"], None), "same run, close after scoring: shown"
 

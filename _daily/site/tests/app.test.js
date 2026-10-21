@@ -1572,7 +1572,7 @@ test('Dividends: the yields name the price they stand on from price_source (last
 });
 
 /* A record as build_site writes it when live.json's close predates the scored analysis (live_shown). */
-const withheldNote = 'The last close on file (2026-10-13) is older than the scored analysis (2026-10-14): Nasdaq had not posted the scored session when prices were last pulled, so the scored figures are the current ones; the live repricing returns with the first close after scoring.';
+const withheldNote = 'The last close on file (2026-10-13) predates the scored analysis (2026-10-14) — no close after the analysis is on file, so the scored figures are the latest available, as of the 2026-10-13 close.';
 const withheldRec = (() => {
   const r = clone(synthetic);
   r.live = null;
@@ -1582,46 +1582,50 @@ const withheldRec = (() => {
   r.prices = { source: 'nasdaq historical', as_of: '2026-10-13', stats: { last: 44, last_date: '2026-10-13', change_1d_pct: -1.5, low_52w: 38.4, high_52w: 55.2, ret_1y_pct: 12.5 }, weekly: [['2026-10-02', 45], ['2026-10-09', 44.5]], daily_1y: [] };
   return r;
 })();
-test('Live older than the score: the header and the condensed bar show the scored price with the reason, never the older close; Overview / Forecast tiles say live pending', () => {
+test('Live older than the score: the header and the condensed bar show the scored price with the reason, never the older close; Overview / Forecast tiles present the scored figures as the latest available', () => {
   const v = App.liveView(withheldRec); assert.equal(v.is_live, false); assert.equal(v.price, 50); assert.equal(v.irr, 0.142);
   const w = App.liveWithheld(withheldRec); assert.deepEqual(w, { price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
-  assert.equal(App.pendingText(w), 'Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis');
-  assert.equal(App.liveWithheld(synthetic), null); assert.equal(App.liveWithheld({ live_withheld: null }), null); assert.equal(App.pendingText({}), 'Live figures pending — the last close on file predates the analysis');
+  assert.equal(App.latestText(w), 'Scored figures are the latest — the 2026-10-13 close on file predates the 2026-10-14 analysis');
+  assert.equal(App.latestText({ price_date: '2026-10-17', scored_date: '2026-10-16' }), 'Scored figures are the latest — the live repricing on file predates the 2026-10-16 score', 'an earlier run\'s repricing: the scored figures are still the latest');
+  assert.equal(App.liveWithheld(synthetic), null); assert.equal(App.liveWithheld({ live_withheld: null }), null); assert.equal(App.latestText({}), 'Scored figures are the latest — the last close on file predates the analysis');
   assert.equal(App.currentClose(withheldRec), null, 'the 2026-10-13 close predates the 2026-10-14 analysis');
   const head = App.renderHeader(withheldRec);
   assert.ok(head.includes('<span class="k">Scored price</span><span class="v mono">$50.00</span>'), 'scored price as the current price: ' + head);
-  assert.ok(head.includes('title="' + App.esc(withheldNote) + '">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis</span>'), 'the reason beside it, the note in the tooltip');
+  assert.ok(head.includes('title="' + App.esc(withheldNote) + '">Scored figures are the latest — the 2026-10-13 close on file predates the 2026-10-14 analysis</span>'), 'the reason beside it, the note in the tooltip');
   assert.ok(!head.includes('$44.00') && !head.includes('-1.50%') && head.includes('52-wk $38.40–$55.20'), 'not the older close nor its 1-day change; the 52-week range stays');
   assert.ok(head.includes('Probability-weighted IRR at $50.00') && !head.includes('· live'), 'the scored IRR');
   const sum = App.renderTabSummary(withheldRec);
-  assert.ok(sum.includes('title="Scored price — live figures pending">$50.00') && !sum.includes('$44.00') && !sum.includes('-1.50%'), 'condensed bar: ' + sum);
+  assert.ok(sum.includes('title="Scored price — the latest available">$50.00') && !sum.includes('$44.00') && !sum.includes('-1.50%'), 'condensed bar: ' + sum);
   // a close not older than the analysis is current again (prices.py ran after the scored session; reprice has not yet)
   const fresh = clone(withheldRec); fresh.prices.stats.last_date = '2026-10-14';
   assert.deepEqual(App.currentClose(fresh), { last: 44, date: '2026-10-14', chg: -1.5 });
-  const fh = App.renderHeader(fresh); assert.ok(fh.includes('<span class="k">Last close</span>') && fh.includes('$44.00') && fh.includes('Live figures pending'), 'current close, still pending');
+  const fh = App.renderHeader(fresh); assert.ok(fh.includes('<span class="k">Last close</span>') && fh.includes('$44.00') && fh.includes('Scored figures are the latest'), 'current close, the scored figures still badged as the latest');
   // nothing withheld: unchanged — the last close shows whatever its date (AEE-style record without live.json)
   const plain = clone(withheldRec); delete plain.live_withheld; plain.row.live_withheld = false;
   assert.equal(App.currentClose(plain).last, 44); assert.ok(App.renderHeader(plain).includes('<span class="k">Last close</span>') && !App.renderHeader(plain).includes('pending'));
   assert.ok(App.renderTabSummary(plain).includes('$44.00') && App.renderTabSummary(plain).includes('-1.50%'));
-  const ov = App.renderOverview(withheldRec); assert.ok(ov.includes('scored 2026-10-14 · live pending') && ov.includes('title="Live figures pending'), 'Overview price tile');
+  const ov = App.renderOverview(withheldRec); assert.ok(ov.includes('scored 2026-10-14 · latest available') && ov.includes('title="Scored figures are the latest'), 'Overview price tile');
   const fc = App.renderForecastDCF(withheldRec);
-  assert.ok(fc.includes('<span class="k">Scored price</span><span class="v ">$50.00</span><span class="tsub">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis') && fc.includes('Green = at or above the scored price') && !fc.includes("Today's price"), 'Forecast hurdle tiles');
+  assert.ok(fc.includes('<span class="k">Scored price</span><span class="v ">$50.00</span><span class="tsub">Scored figures are the latest — the 2026-10-13 close on file predates the 2026-10-14 analysis') && fc.includes('Green = at or above the scored price') && !fc.includes("Today's price"), 'Forecast hurdle tiles');
+  // Andrew's ruling (2026-10-20): in this state the scored figures ARE the latest available — no surface calls them pending
+  [head, sum, fh, ov, fc].forEach((h) => assert.ok(!/pending/i.test(h), 'no "pending" wording for the latest-available state'));
   App.TAB_KEYS.forEach((t) => { const h = App.renderCompanyHTML(withheldRec, t); assert.ok(!h.includes('could not be rendered'), t); });
   assert.ok(!App.TAB_KEYS.map((t) => App.renderCompanyHTML(inject(withheldRec), t)).join('').includes('<x-inj>'), 'escaped');
 });
-test('Live older than the score: the ranking marks the row "live pending" and ranks it on its scored IRR; the header counts the pending rows', () => {
+test('Live older than the score: the ranking marks the row "scored · latest" and ranks it on its scored IRR; the header counts the latest-available rows', () => {
   const row = withheldRec.row, html = App.renderRowHTML(row);
-  assert.ok(/<td class="num mono strong"><span class="sub lvpend" title="Live figures pending: [^"]*">live pending<\/span><\/td>/.test(html), 'Live IRR cell: ' + html);
-  assert.ok(html.includes('title="scored price — live figures pending">$50.00</td>') && html.includes('>14.2%</td>'), 'scored price and IRR');
-  assert.ok(!App.renderRowHTML(Object.assign({}, row, { live_withheld: false })).includes('live pending'), 'no marker otherwise');
-  assert.ok(!App.renderRowHTML(synthetic.row).includes('live pending'), 'a live row never');
+  assert.ok(/<td class="num mono strong"><span class="sub lvpend" title="The scored figures are the latest available: [^"]*">scored · latest<\/span><\/td>/.test(html), 'Live IRR cell: ' + html);
+  assert.ok(html.includes('title="scored price — the latest available">$50.00</td>') && html.includes('>14.2%</td>'), 'scored price and IRR');
+  assert.ok(!/pending/i.test(html), 'no "pending" wording in the row');
+  assert.ok(!App.renderRowHTML(Object.assign({}, row, { live_withheld: false })).includes('scored · latest'), 'no marker otherwise');
+  assert.ok(!App.renderRowHTML(synthetic.row).includes('scored · latest'), 'a live row never');
   const rows = [Object.assign({}, row, { ticker: 'W' }), Object.assign({}, synthetic.row, { ticker: 'L1', irr_live: 0.15, irr: 0.1 }), Object.assign({}, synthetic.row, { ticker: 'L2', irr_live: 0.13, irr: 0.2 })];
   assert.deepEqual(App.filterSortIndex(rows, { sort: 'irr_live', fit: 'all' }).map((r) => r.ticker), ['L1', 'W', 'L2'], 'ranked on the scored IRR (14.2%) between 15% and 13% live');
   const m = Object.assign({}, meta, { counts: Object.assign({}, meta.counts, { with_live: 2, live_withheld: 1 }) });
-  assert.ok(App.renderListHTML(m, rows).includes('(2 of 3 repriced live, 1 pending a close after scoring; the rest at their scored price)'));
+  assert.ok(App.renderListHTML(m, rows).includes('(2 of 3 repriced live, 1 at their scored figures (the latest available); the rest at their scored price)'));
   const noCount = Object.assign({}, m, { counts: { tiers: {} } });
-  assert.ok(App.renderListHTML(noCount, rows).includes('1 pending a close after scoring'), 'counted from the rows without meta.counts.live_withheld');
-  assert.ok(!App.renderListHTML(noCount, rows.slice(1)).includes('pending a close'), 'nothing pending: no clause');
+  assert.ok(App.renderListHTML(noCount, rows).includes('1 at their scored figures (the latest available)'), 'counted from the rows without meta.counts.live_withheld');
+  assert.ok(!App.renderListHTML(noCount, rows.slice(1)).includes('at their scored figures'), 'none withheld: no clause');
 });
 test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
   const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
