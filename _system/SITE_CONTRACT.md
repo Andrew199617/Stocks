@@ -171,10 +171,10 @@ and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps
   close) · IV@15 · Upside · Moat · Conf · Mkt cap · 1y price · Take (badges: pass 2, overrides,
   tier override, misfit, IRR at floor; one-liner; flags count; date). Card layout under 760px.
   Collapsed "Pre-v5 results" box from `meta.stale`.
-- **Company page**: nav (← Ranking, pass/date), header (tier tile, ticker, name, sector · cap ·
-  exchange · filer category; big live or scored expected return with the scored/live sub-line and
-  the bear→bull band; price used; value @15% with upside; last close with 1-day change, 52-week
-  range, 1-year return; one-liner), price-vs-value chart (ranges 1Y/3Y/5Y/10Y/MAX, toggles for
+- **Company page**: nav (← Ranking, pass/date), header (the compact "stat strip" since 2026-10-21:
+  tier tile, ticker, name, sector · cap; big live or scored expected return with the bear→bull band
+  beside it; a status line only when there is something to say; a strip of price · value @15% ·
+  upside — see "Decisions (static app — compact header …)"), price-vs-value chart (ranges 1Y/3Y/5Y/10Y/MAX, toggles for
   weighted value, bear–bull range, 20%/25% hurdle prices; falls back to the number line without
   prices), tabs:
   - Overview: hurdle gauge, chips, pass-2 box, key-number tiles (price, IV@15, price for 20% and
@@ -329,9 +329,9 @@ Choices made where the text above was silent or ambiguous; none changes a data s
   bar / point carries a `<title>` tooltip "label · series: value" plus the optional per-point `tips[i]` (YoY on the DPS chart,
   share of total on segments — v2 emitted these tips but never rendered them). Charts are drawn after mount, on tab switch and
   150 ms after the last resize; hidden panes are drawn when they become visible.
-- **Owner layout decision (header → sticky tab bar → tab content)** is implemented as: compact hero (tier tile, ticker, name,
-  tier chip, sector · cap · exchange · filer line; expected return with the scored figure beside it; last close with 1-day
-  change, 52-week range and 1-year return; value @15% with upside) → `.tabbar` (`position: sticky`, with a `.tabsum` line
+- **Owner layout decision (header → sticky tab bar → tab content)** is implemented as: compact hero (since 2026-10-21 the
+  "stat strip": tier tile, ticker, name, sector · cap line; expected return with the bear → bull band; an optional status line;
+  last close with 1-day change · value @15% · upside — "Decisions (static app — compact header …)" below) → `.tabbar` (`position: sticky`, with a `.tabsum` line
   "tier · ticker · last close · 1d change · expected return" that appears once the hero scrolls above the viewport, toggled by a
   frame-throttled scroll listener) → panes. The price-vs-value card is the first card of the Overview pane; the one-liner moved
   from the hero into the verdict card. Overview order: price chart, verdict (gauge + chips + one-liner), pass-2 box, About,
@@ -442,8 +442,8 @@ Fixes from the adversarial review of `app.js` / `app.css` / `tests/app.test.js`;
   only a real boolean is accepted). A "★ Watchlist N" button sits between the tier and fit segments; N counts index rows with
   `row.watchlist === true` plus the tickers starred on this device (`oe-dcf.stars.v1`, an array, normalised and upper-cased).
   Canonical watchlist rows show a fixed star (no toggle — the file is the source of truth); every other row gets a ☆/★ button
-  that adds a per-device extra, which the watch filter includes. The company hero shows a "★ Watchlist" chip for canonical rows
-  only (the record does not know about device stars). `filterSortIndex`, `renderListRowsHTML`, `renderRowHTML` and
+  that adds a per-device extra, which the watch filter includes. The company hero marked canonical rows only (the record does not
+  know about device stars) with a "★ Watchlist" chip; since 2026-10-21 it is the fixed repo star in the hero's corner. `filterSortIndex`, `renderListRowsHTML`, `renderRowHTML` and
   `renderListHTML` take the stars as an extra argument so they stay pure.
 - **Ranking table geometry.** `renderListHTML` emits a `<colgroup>` with the width % from `COLS[i][3]` (Company 14, Tier 4.5,
   Band 5.5, Live / Scored IRR 6 each, Price 6, IV 6, Upside 5, Moat 4.5, Conf. 5, Mkt cap 6, 1y 5, Take 26.5 — sums to 100), so
@@ -842,7 +842,7 @@ Choices made in `app.js` / `app.css` / `tests/` for the Financials statements vi
 - **Cash-flow sign**: lines with `cf_sign: -1` (capex, buybacks, dividends, repayments, acquisitions, investment purchases) are displayed as negatives — the file stores them as positive amounts paid, as filed; the units note says so. Growth figures are the file's (computed on the filed positive amounts).
 - **Sparkline**: a line's label is a `<button class="stl" aria-expanded>`; tapping it renders a card **directly below the table** (all widths — an in-table row would scroll sideways with the table on a phone, so the card sits under the `.twrap` and is scrolled into view on screens under 760 px) charting the line over the selected periodicity (the TTM view charts the fiscal years) with the existing `drawChart` (bars for money / shares, a line for per-share / ratio / pct; `yfmt` `cnt` added for share counts so they are not printed with a `$`), with a close button; tapping the same label again closes it.
 - **Phone containment (Segments tab measured at scrollWidth 684 vs 375).** The only element in that pane with an intrinsic width above the viewport is `table.fin.segt` (`min-width: 640px` + nowrap cells; 16 body + 14 card + 640 + 14 = 684 is exactly that table laid out uncontained). Fixes in `app.css`: (1) `.pane{min-width:0;max-width:100%;overflow-x:hidden;overflow-x:clip}` — a tab pane can never widen the page, `clip` so no scroll container is created and the sticky label column keeps working inside `.twrap`; (2) `.card{max-width:100%}`, `.twrap{min-width:0}`, `.chart{min-width:0}`, `svg{max-width:100%}`, legend items and notes `overflow-wrap:anywhere`; (3) the sticky rule was `table.fin th` — EVERY header cell, so the period headers piled up at the left edge on scroll — it is now `table.fin tbody th, table.fin thead th:first-child` (the row-label column only). `tests/app.test.js` reads `app.css` and asserts these rules and that every `min-width` above 320 px sits on `table.fin` / `#t` (both always inside a `.twrap`).
-- **Watchlist**: the repo list = `meta.watchlist` ∪ index rows with `watchlist: true` (`repoList`); viewer stars persist under `localStorage["stocks.watchlist"]` (JSON array of tickers; every read / write in try/catch; the earlier key `oe-dcf.stars.v1` is read once, merged and removed). Repo rows show a fixed blue repo star (not a toggle — the file is the source of truth); every other row and the company hero carry the gold ☆/★ toggle (`starButtonHTML`, the hero one `.hstar`; repo names show the "★ Watchlist repo" chip in the hero instead). The "★ Watchlist N" toggle counts repo ∪ starred; "Copy tickers" next to it copies the combined list (`watchTickers`: index order first, then starred / repo tickers absent from the index A–Z, deduped, upper-cased) via `navigator.clipboard.writeText`, falling back to a read-only input with the text selected when the API is missing or refuses. `filterSortIndex`, `renderListRowsHTML`, `renderRowHTML`, `watchCount`, `watchButtonHTML` take `repo` as an extra trailing argument (`renderListHTML` derives it from `meta`), so the earlier three-argument calls still work.
+- **Watchlist**: the repo list = `meta.watchlist` ∪ index rows with `watchlist: true` (`repoList`); viewer stars persist under `localStorage["stocks.watchlist"]` (JSON array of tickers; every read / write in try/catch; the earlier key `oe-dcf.stars.v1` is read once, merged and removed). Repo rows show a fixed blue repo star (not a toggle — the file is the source of truth); every other row and the company hero carry the gold ☆/★ toggle (`starButtonHTML`, the hero one `.hstar`; repo names show the fixed blue repo star in the hero's corner instead, `.star.fixed.repo.hstar` — a "★ Watchlist repo" chip until 2026-10-21). The "★ Watchlist N" toggle counts repo ∪ starred; "Copy tickers" next to it copies the combined list (`watchTickers`: index order first, then starred / repo tickers absent from the index A–Z, deduped, upper-cased) via `navigator.clipboard.writeText`, falling back to a read-only input with the text selected when the API is missing or refuses. `filterSortIndex`, `renderListRowsHTML`, `renderRowHTML`, `watchCount`, `watchButtonHTML` take `repo` as an extra trailing argument (`renderListHTML` derives it from `meta`), so the earlier three-argument calls still work.
 - **Dividends review findings**: (i) "No dividend" is decided from `frequency` and the absence of dividends paid / DPS history — `payer = frequency === 'none' ? dividends_paid_ttm > 0 : (any DPS fact in history / annual_dps || dividends_paid_ttm > 0)`; never from `dps_ttm` being null. CCL (quarterly, `dps_ttm` null after the staleness rule) and TKO (`frequency` null, dividends paid, per-share rate untagged) render as payers with a "Pays a dividend — no trailing-twelve-month per-share figure" card naming what IS filed, "—" yield tiles that point to the notes, and "Not inferable" frequency. (ii) Filed per-share dividends print at their filed precision via `fmtDps` (at least two, at most four decimals, float noise trimmed: $0.155 stays $0.155) — in the history table, the tiles, the quarterly DPS rows and the DPS chart (`yfmt: 'dps'`). (iii) The meta line under the tiles names the share basis the block used (`shares_source`, count, `shares_as_of`) and the market cap on that basis (`market_cap_basis`), and says in one line that the header's market cap uses the engine's diluted count at the last close, so the two can differ.
 - **Test suite note**: the pre-existing `drawPrice` assertion expected an integer period return; the price-chart owner's `fmtRange` prints one decimal under 100%, so the regex now accepts decimals (`drawPrice` itself untouched).
 - **Data-layer dependency (resolved during the round)**: `build_site.py` now copies `<T>/statements.json` to `data/<T>.statements.json` and sets `row.has.statements`; the app skips the fetch and shows the "not built yet" note straight away when `has.statements === false`, and fetches otherwise (404 → the same note). The viewer was verified against the served `data/APP|HBAN|KR.statements.json` as well as scratch fixtures generated from `statements.py`'s `build_statements()`; nothing was written into any company folder by the app work.
@@ -1309,7 +1309,7 @@ No data shape changes.
     column: this filer reports annual periods only". An `error` status is retried when the tab is reopened, and the error note carries a
     Retry button. Duplicate quarter labels (ADM, HSY, KVUE, ON, TDY, TTWO, YUM) get " · Mon 'YY" in the sparkline; drawChart thins x
     labels by their length. `basis_break_quarterly` cells were already greyed with a title (unchanged).
-  - *Hero chip.* With a repo list in hand (meta ∪ index, as mountCompany passes) the "★ Watchlist repo" chip comes from it alone;
+  - *Hero repo star* (a chip until 2026-10-21). With a repo list in hand (meta ∪ index, as mountCompany passes) the hero's repo star comes from it alone;
     `record.row.watchlist` is consulted only when no list is given.
 
 ## Decisions (fundamentals.py dividends block 5.4.5, 2026-10-15 — re-verification fixes)
@@ -1830,7 +1830,7 @@ differently, THIS section wins (passages that had become plainly wrong were corr
 - **prices.py `last_minute`.** `intraday.last_minute` (the raw last print) is copied to every `sessions_5d` entry, and
   `merge_sessions` orders two captures of one session by it (the corrected bullet in the prices.py review round).
 - **Static app.** *Live pending:* with `record.live_withheld` the header's price tile reads "Scored price" with the reason
-  (the note in its title) and never shows a close older than the analysis (`currentClose`; the condensed bar the same), the
+  (since 2026-10-21 a "Live pending" marker whose title holds the reason and the note; the sentence itself is in the price chart card) and never shows a close older than the analysis (`currentClose`; the condensed bar the same), the
   Overview / Forecast price tiles say "live pending", the ranking's Live IRR cell reads "live pending" (`row.live_withheld`),
   and the list header counts the pending rows (`meta.counts.live_withheld`). *Split since scoring* (`record.split_restated`):
   a header chip, a short note above the Overview, notes on the Forecast, Data, Analysis, Financials and Dividends tabs
@@ -1862,3 +1862,33 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `test_profile.py`, `test_docs_contract.py` (these documents against the code: every index row / record / `meta.counts`
   key and the history CSV columns named here, the keys and options this round added, automation/README.md's day table
   against the cron files).
+
+## Decisions (static app — compact header, option A "stat strip", owner 2026-10-21)
+Andrew asked for a shorter, simpler card at the top of a company page and picked option A ("stat strip") of three phone-width
+mockups (2026-10-21). `renderHeader` and the `.hero` rules in `app.css` change; no data-layer key changes. The 2026-10-14 layout
+decision's "nothing that exists today is removed" holds: every item the header no longer prints is in a card below it.
+- **Layout.** Four rows. (1) Identity: tier tile, ticker, name, a `sector · market cap` line, the watchlist star in the top-right
+  corner. (2) The expected return (48 px, 40 px under 760 px, tier-coloured, "· live" on a live page) with the bear → bull band
+  beside it as two rows of tier chip + IRR (a floored end keeps its "at floor" mark; Tier F shows its subtype in that place).
+  (3) A status line, only when it has something to say: on a live page "Scored **x%** at $p" (the pp move at the last close in
+  its title) and the tier-shift chip or the muted "Scored X · live Y" chip; an override pill "Override · numbers S → final D"
+  whenever `tier_by_numbers` differs from the scored tier (VOD, which showed a D tile beside 25.2% with no marker); "IRR at the
+  model floor"; the split chip. (4) `.hstrip`: three cells, price · Value @15% · Upside.
+- **Price cell.** Live page: "Last close" with the 1-day change and the price date (title: the move vs the scored price). No
+  live.json but a `prices.stats` close newer than the analysis (`currentClose`): "Last close" with its change and date, the status
+  line names the return's basis ("Return at the scored price $X (date)") and the upside reads "vs scored price".
+  `live_withheld`: "Scored price" with a "Live pending" marker (title: `pendingText` — the note). Otherwise "Price used" with the
+  analysis date (title: `price_source` · date). A 1-day change is still never shown beside a price it was not measured on.
+- **Moved, not removed.** Exchange and SEC filer category → the meta line's title and the About card. `price_source` → the price
+  cell's title and the Data tab. The 52-week range, the 1-year return and the live-pending sentence → the top of the price chart
+  card (`priceFactsNote`, in both the chart and the number-line fallback). The "★ Watchlist repo" chip → the fixed blue repo star
+  (`.star.fixed.repo.hstar`, the ranking row's mark) in the corner, so a repo name no longer adds a row; other names keep the gold
+  `.hstar` toggle there, a 44 px target.
+- **Measured** (Playwright, the real app.js + app.css): at 375 px LTM 258, VOD 271, SYN (live) 287, AEE (Tier F) 237, NVR 258 px
+  tall; at 428 px 240 / 274 / 273 / 240 / 260 (before: 390–444 at 428). No horizontal scroll at 375, 428 or 1280. A figure of
+  nine or more characters ($2,901.18) takes the smaller phone size (`.long`) so it does not wrap.
+- **Tests.** `tests/app.test.js` (97): a "compact header" test pins the strip order and upside basis, the band, the live status
+  line, the meta line and its title, the override pill, the `currentClose` case, the price source shown once (in a title) and in
+  the Data tab, the 52-week range in the price chart card, and the CSS (`.hstrip`, no `.hstats`, an absolute 44 px `.hstar`); the
+  withheld and watchlist assertions read the marker and the repo star. `test_docs_contract.py` keeps the replaced header wording
+  out of this document.
