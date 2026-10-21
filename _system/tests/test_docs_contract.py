@@ -372,6 +372,10 @@ PAIRS = [
      [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", "automatic_settlement=auto, declared_residual=amt", "automatic_settlement",
      [SYS_README, CONTRACT]),
+    # Codex review round 22 of PR #47: the run's hash of its IPR&D judgment inputs, checked by make_score
+    ("_system/dcf_engine.py", '"iprd_judgment_hash": iprd_judgment', "iprd_judgment_hash", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_judgment_inputs(", "iprd_judgment_inputs", [SYS_README]),
+    ("_system/make_score.py", "def check_iprd_judgment_current(", "check_iprd_judgment_current", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

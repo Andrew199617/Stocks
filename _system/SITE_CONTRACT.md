@@ -212,7 +212,10 @@ presentation string), `deferred_payment: true`, `deferred_payment_of` [{deal, fi
 and `recurrence_excluded` when set — and its `recurrence_excluded` list when the run had deferred-payment declarations, `iv_before` / `iv_after` keyed `15` / `20` / `25`,
 `irr_before`, `irr_after`, `tier_before`, `amortized`; the minimal `deferred_payments_only` block above as is), `numbers.inputs`
 gains `base_basis_window` (Codex review round 15 of PR #47: judgment.json base_override's `basis_window`, {window "ttm",
-ytd_current_period} or {window "fy"}, on a plain `--base-oe-ps` pin that declares it), and live.json gains `iprd_charge_per_share` (in today's share
+ytd_current_period} or {window "fy"}, on a plain `--base-oe-ps` pin that declares it), `numbers` gains
+`iprd_judgment_hash` (Codex review round 22 of PR #47: the sha256 of the judgment.json IPR&D inputs the run read —
+`dcf_engine.iprd_judgment_hash`; make_score refuses a judgment.json that no longer hashes to it; the site never
+reads it), and live.json gains `iprd_charge_per_share` (in today's share
 units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record carries is already the adjusted figure;
 build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /
 `adjusted_irr`). The Overview's base-OE card shows one disclosure line (`iprdNote`): "Acquired IPR&D: −$2.33/sh one-time

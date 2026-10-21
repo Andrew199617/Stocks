@@ -60,10 +60,21 @@ def applied_checks(n):
             for p in blk.get("periods") or [] if isinstance(p.get("cash_flow_check"), dict)]
 
 
+def read_checks(n):
+    """[Codex review r22] Every iprd_cash_flow_check entry engine record n read: the applied ones (with their unit
+    when declared) and the ones it listed unused (a period outside its window) — the declaration judgment.json must
+    still hold for the run's iprd_judgment_hash."""
+    blk = n.get("iprd_adjustment") or {}
+    out = [dict(c, **({"unit": p["cash_flow_check"]["unit"]} if p["cash_flow_check"].get("unit") is not None else {}))
+           for c, p in zip(applied_checks(n), [p for p in blk.get("periods") or []
+                                               if isinstance(p.get("cash_flow_check"), dict)])]
+    return out + [dict(e) for e in blk.get("cash_flow_checks_unused") or []]
+
+
 def _with_applied(n, j):
     j = dict(j)
-    if "iprd_cash_flow_check" not in j and applied_checks(n):
-        j["iprd_cash_flow_check"] = applied_checks(n)
+    if "iprd_cash_flow_check" not in j and read_checks(n):
+        j["iprd_cash_flow_check"] = read_checks(n)
     return j
 
 
@@ -620,7 +631,8 @@ def test_rolled_out_entry_scores_when_the_window_has_no_iprd_charge():
     and no charge line."""
     facts, old, _ = TI._rolled_only_case()
     n = TI._cached("ms_def_rolled_only", lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": [old]})))
-    r = _score(n, _j(iprd_deferred_payment=[old]))
+    # [Codex review r22] judgment.json declares what the run read: auto_checks' pre-window FY2021 / FY2022 checks too
+    r = _score(n, _j(iprd_deferred_payment=[old], iprd_cash_flow_check=TI.auto_checks(facts)))
     assert r.rc == 0, r.err[-800:]
     b = r.result["score"]["iprd_adjustment"]
     assert b["deferred_payments_only"] is True and b["treatment"] == "none" and b["charge_per_share"] == 0.0, b
@@ -819,7 +831,8 @@ def test_unconvertible_cash_settlement_is_refused_needs_main_agent():
     assert r.rc == 1 and "ACQUIRED_IPRD_UNCONVERTED" in r.err and "NEEDS_MAIN_AGENT: currency" in r.err, (r.rc, r.err[-800:])
     assert "FY2025 24,000,000 EUR" in r.err, r.err[-800:]
     m = TI._ok(TI._run_fx(fyf, {"EUR": {"2025-12-31": 1.25}}))
-    r = _score(m)
+    # [Codex review r22] the run read the FY2024 check auto_checks declares (a cash-basis period: consumed, no trace)
+    r = _score(m, _j(iprd_cash_flow_check=TI.auto_checks(fyf)))
     assert r.rc == 0, r.err[-800:]
 
 
@@ -1431,7 +1444,8 @@ def test_a_deferred_payments_only_block_is_kept_minimal_in_score_json():
     import build_site as B
     facts, old, _ = TI._rolled_only_case()
     n = TI._cached("ms_def_rolled_only", lambda: TI._ok(TI._run(facts, judgment={"iprd_deferred_payment": [old]})))
-    r = _score(n, _j(iprd_deferred_payment=[old]))
+    # [Codex review r22] judgment.json declares what the run read: auto_checks' pre-window FY2021 / FY2022 checks too
+    r = _score(n, _j(iprd_deferred_payment=[old], iprd_cash_flow_check=TI.auto_checks(facts)))
     assert r.rc == 0, r.err[-800:]
     b = r.result["score"]["iprd_adjustment"]
     assert b == {"treatment": "none", "total": 0.0, "charge_per_share": 0.0, "deferred_payments_only": True, "periods": [],
@@ -1782,6 +1796,87 @@ def test_a_native_check_mismatch_names_the_native_expense_and_unit():
     msg = _refusal(M.check_iprd_cash_flow, {"iprd_adjustment": {"periods": [applied]}}, [decl])
     assert msg and "out of sync" in msg, msg
     assert _refusal(M.check_iprd_cash_flow, {"iprd_adjustment": {"periods": [applied]}}, [dict(decl, unit="EUR")]) is None
+
+
+
+# --- Codex review round 22 of PR #47 ------------------------------------------------------------------------------
+R22_CHANGED = "judgment.json changed after the engine run"
+
+
+def _r22_runs():
+    """The finding's filer (FY2024 $100M expense beside $40M cash; FY2025 $60M cash only) run without and with the
+    FY2024 paid_in_shares check, and a cash-basis filer (FY2025 $100M expense, $100M cash) run without a check."""
+    chk = TI._shares_check("2024-12-31", 100e6)
+    facts = lambda: TI._facts(expense={2024: 100e6}, cash={2024: 40e6, 2025: 60e6})
+    stale = TI._cached("ms_r22_stale", lambda: TI._ok(TI._run(facts(), checks=False)))
+    fresh = TI._cached("ms_r22_fresh", lambda: TI._ok(TI._run(facts(), judgment={"iprd_cash_flow_check": [chk]},
+                                                             checks=False)))
+    cash = TI._cached("ms_r22_cash", lambda: TI._ok(TI._run(TI._facts(expense={2025: 100e6}, cash={2025: 100e6}),
+                                                           checks=False)))
+    return chk, stale, fresh, cash
+
+
+def _legacy_hashless(n):
+    """Record n as a run that predates the IPR&D judgment hash (HALO's committed 5.6.0 record and anything older)."""
+    m = copy.deepcopy(n)
+    m.pop("iprd_judgment_hash", None)
+    return m
+
+
+def test_a_cash_flow_check_added_after_the_run_is_refused():
+    """[Codex review r22] make_score compared judgment.json's iprd_cash_flow_check with the run in one direction only
+    (every check the run APPLIED must still be declared), so a check added after the run, on a cash-basis period of
+    its window, left no trace and scored: the finding's filer run without the FY2024 paid_in_shares check deducts
+    $100M (FY2025's $60M cash as the deferred payment of the accrued residual), the same filer run with it deducts
+    $40M, and the stale run scored beside the judgment.json that now declares the check. Now the engine records a
+    hash of every judgment.json input it read for IPR&D (iprd_judgment_hash) and make_score refuses a judgment.json
+    whose inputs hash differently; a record that predates the hash falls back to a per-declaration rule (every check
+    naming a window period of the run must show as applied, mismatched, inapplicable or unused). The same for an
+    inapplicable presentation added after a run (a rerun records cash_flow_check_inapplicable, which is refused). An
+    unchanged judgment.json scores."""
+    chk, stale, fresh, cash = _r22_runs()
+    assert stale["iprd_adjustment"]["total"] == 100e6 and fresh["iprd_adjustment"]["total"] == 40e6, \
+        (stale["iprd_adjustment"]["total"], fresh["iprd_adjustment"]["total"])
+    for n in (stale, _legacy_hashless(stale)):
+        r = _score(n, _j(iprd_cash_flow_check=[chk]))
+        assert r.rc != 0, "a cash-flow check added after the run scored the stale run"
+        assert R22_CHANGED in r.err and "rerun dcf_engine.py" in r.err, r.err[-800:]
+    r = _score(fresh, _j(iprd_cash_flow_check=[chk]))
+    assert r.rc == 0, r.err[-800:]
+    assert r.result["score"]["iprd_adjustment"]["total"] == 40e6, r.result["score"]["iprd_adjustment"]
+    bad = {"period": "2025-12-31", "window": "fy", "amount": 100e6, "presentation": "inside_operating_cash_flow",
+           "source": "test: the FY2025 10-K cash-flow statement"}
+    for n in (cash, _legacy_hashless(cash)):
+        r = _score(n, _j(iprd_cash_flow_check=[bad]))
+        assert r.rc != 0 and R22_CHANGED in r.err and "FY2025" in r.err, r.err[-800:]
+    r = _score(cash, _j())
+    assert r.rc == 0, r.err[-800:]
+
+
+def test_a_judgment_whose_iprd_inputs_hash_differently_from_the_run_is_refused():
+    """[Codex review r22] The hash covers every IPR&D input the run read, so make_score refuses on a mismatch even
+    where no per-period record would show the change: a record carrying another hash, and a check added after a
+    hash-carrying run for a period outside its window (a rerun reads it into cash_flow_checks_unused). A record that
+    predates the hash keeps round 2's carry-over: that out-of-window check scores beside it. make_score recomputes
+    the hash with the engine's own function; HALO's committed record (it predates the hash, its one check applied)
+    passes the fallback rule."""
+    import make_score as M
+    chk, _, fresh, _ = _r22_runs()
+    assert isinstance(fresh.get("iprd_judgment_hash"), str) and len(fresh["iprd_judgment_hash"]) == 64, fresh.get("iprd_judgment_hash")
+    r = _score(dict(copy.deepcopy(fresh), iprd_judgment_hash="0" * 64), _j(iprd_cash_flow_check=[chk]))
+    assert r.rc != 0 and R22_CHANGED in r.err, r.err[-800:]
+    old = TI._shares_check("2021-12-31", 50e6)
+    r = _score(fresh, _j(iprd_cash_flow_check=[chk, old]))
+    assert r.rc != 0 and R22_CHANGED in r.err, r.err[-800:]
+    r = _score(_legacy_hashless(fresh), _j(iprd_cash_flow_check=[chk, old]))
+    assert r.rc == 0, r.err[-800:]
+    root = os.path.dirname(SYS)
+    rd = lambda f: json.loads(open(os.path.join(root, "HALO", f), encoding="utf-8").read())
+    rec, j = rd("dcf_numbers.json"), rd("judgment.json")
+    assert "iprd_judgment_hash" not in rec
+    assert _refusal(M.check_iprd_judgment_current, rec, j) is None
+    assert _refusal(M.check_iprd_judgment_current, rec, dict(j, iprd_cash_flow_check=j["iprd_cash_flow_check"] + [
+        dict(j["iprd_cash_flow_check"][0], period="2024-12-31", amount=1e6)])) is not None
 
 
 if __name__ == "__main__":

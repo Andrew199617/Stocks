@@ -342,6 +342,14 @@ value adjustment):
   {window: "fy"}), recorded by the run as inputs.base_basis_window and, for
   "ttm", still ttm.json's ytd_current_period; output from an earlier release
   is not held to it (VNOM's 5.4.0 record rebuilds unchanged).
+- [Codex review round 22 of PR #47] judgment.json's IPR&D inputs must be
+  the ones the run read (check_iprd_judgment_current): a run recording
+  iprd_judgment_hash is refused when the current judgment.json hashes
+  differently (dcf_engine.iprd_judgment_hash); a record predating the hash
+  is refused when an iprd_cash_flow_check names a period the run has a
+  record of without a trace of reading it (applied, mismatched,
+  inapplicable or unused) — "judgment.json changed after the engine run —
+  rerun dcf_engine.py".
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -1183,6 +1191,51 @@ def check_iprd_deferred_payment(n, entries):
                  f"{d['deferred_payment_of']['deal']!r} but the engine run did not apply it — judgment.json changed "
                  "after the run; rerun the engine (it refuses a declaration its window does not support: "
                  "BAD_IPRD_DEFERRED_PAYMENT)")
+
+
+IPRD_JUDGMENT_CHANGED = ("judgment.json changed after the engine run — rerun dcf_engine.py (its acquired-IPR&D "
+                         "inputs: iprd_cash_flow_check, iprd_deferred_payment, base_override basis / basis_window / "
+                         "iprd_amortized value, native_base, figures, shares — WORKER_SPEC step 3)")
+
+
+def check_iprd_judgment_current(n, j):
+    """[Codex review r22 of PR #47] judgment.json's acquired-IPR&D inputs must be the ones the engine run read. The
+    other checks compare one way only (what the run applied must still be declared), so an input added after the run
+    that leaves no trace scored the stale run: a paid_in_shares check added for a cash-basis period (FY2024 $100M
+    expense, $40M cash; FY2025 $60M cash only) — the stale run deducts $100M, a rerun $40M; an
+    inside_operating_cash_flow one, which a rerun records cash_flow_check_inapplicable (refused).
+    A run that records iprd_judgment_hash (the engine's iprd_judgment_hash of the judgment.json it read) is refused
+    when the current judgment.json hashes differently. A record that predates the hash (HALO's committed 5.6.0
+    record, anything older) falls back to a per-declaration rule: every iprd_cash_flow_check naming a period the run
+    evaluated (a period record of its window) must show on it as applied (cash_flow_check), mismatched or
+    inapplicable, or be listed in cash_flow_checks_unused; a check for a period the run has no record of still
+    carries over (round 2)."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    periods = {(p.get("period"), p.get("window")): p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)}
+    unused = [_engine._iprd_canon(e) for e in (blk or {}).get("cash_flow_checks_unused") or [] if isinstance(e, dict)]
+    untraced = []
+    for e in validate_iprd_cash_flow_check(j) or []:
+        p = periods.get((e["period"], e["window"]))
+        if p is None:
+            continue
+        if (isinstance(p.get("cash_flow_check"), dict) or p.get("cash_flow_check_mismatch")
+                or isinstance(p.get("cash_flow_check_inapplicable"), dict) or _engine._iprd_canon(e) in unused):
+            continue
+        untraced.append(e)
+    named = (f"judgment.json {IPRD_CF_CHECK_KEY} declares "
+             + ", ".join(f"{'FY' + e['period'][:4] if e['window'] == 'fy' else 'YTD to ' + e['period']} "
+                         f"({e['presentation']}, {_usd_exact(e['amount'])})" for e in untraced)
+             + ", a period this run evaluated, but the run shows no trace of reading it (not applied, mismatched, "
+             "inapplicable or unused): it was added after the run") if untraced else None
+    rec = n.get("iprd_judgment_hash")
+    if rec is not None:
+        now = _engine.iprd_judgment_hash(j)
+        if rec != now:
+            fail(f"{IPRD_JUDGMENT_CHANGED}: dcf_numbers.json records iprd_judgment_hash {str(rec)[:12]}…, the current "
+                 f"judgment.json hashes to {now[:12]}…" + (f"; {named}" if named else ""))
+        return
+    if named:
+        fail(f"{IPRD_JUDGMENT_CHANGED}: {named}")
 
 
 IPRD_DEFERRED_EVENT = "iprd_deferred_payment"   # [Codex review r8 of PR #47] the registry event (one per deal)
@@ -2978,6 +3031,8 @@ def main():
     iprd_deferred_lifetime(ticker, _deferred, registry_prior_entries(ticker))
     check_iprd_share_count_unverified(n, j)   # [Codex review r1 of PR #47]
     check_iprd_unconverted(n)   # [Codex review r3 of PR #47]
+    # [Codex review r22 of PR #47] last of the IPR&D checks, so a specific refusal above names its own cause
+    check_iprd_judgment_current(n, j)
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
 

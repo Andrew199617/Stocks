@@ -694,7 +694,9 @@ def test_halo_every_other_field_equals_the_run_without_the_charge():
     assert z["iprd_adjustment"] is None
     moved = {"iprd_adjustment", "scenarios", "weighted", "implied_irr_weighted", "implied_irr_base", "irr_bear", "irr_bull",
              "irr_low", "irr_high", "hurdle_prices", "upside_at_15", "upside_at_12", "iv_at_15", "iv_at_12", "iv_at_20",
-             "iv_at_25", "fragility_flags", "content_hash"}
+             "iv_at_25", "fragility_flags", "content_hash",
+             # [Codex review r22] the fixture without the tags declares no cash-flow check: another judgment input
+             "iprd_judgment_hash"}
     diff = {k for k in set(n) | set(z) if n.get(k) != z.get(k)}
     assert diff <= moved | {"diagnostics"}, diff - moved
     # [review] the TV share is of the ADJUSTED IV@15 (the same terminal PV over the published IV); the rest is equal
@@ -1178,7 +1180,9 @@ def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
     n = out["numbers"]
     assert n["iprd_adjustment"] == rec["iprd_adjustment"]
     assert "recurrence_excluded" not in n["iprd_adjustment"] and "deferred_payments_refused" not in n["iprd_adjustment"]
-    dated = {"as_of", "price_source", "content_hash", "diagnostics"}
+    # [Codex review r22] a fresh run also records iprd_judgment_hash, which the committed record predates
+    assert "iprd_judgment_hash" not in rec and n["iprd_judgment_hash"] == E.iprd_judgment_hash(j), n.get("iprd_judgment_hash")
+    dated = {"as_of", "price_source", "content_hash", "diagnostics", "iprd_judgment_hash"}
     assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
     assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
             == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})
@@ -1335,8 +1339,10 @@ def test_rolled_out_entry_is_recorded_when_the_window_has_no_iprd_charge():
             and blk["periods"] == [] and blk["ignored_cash_only"] == [] and blk["recurrence_excluded"] == []
             and blk["deferred_payments_only"] is True), blk
     assert E.iprd_charge_per_share(n) == 0.0 and E.iprd_flags(blk) == [] and not flags(n, "ACQUIRED_IPRD")
-    assert {k: v for k, v in _strip(n).items() if k != "iprd_adjustment"} == \
-        {k: v for k, v in _strip(plain).items() if k != "iprd_adjustment"}
+    # [Codex review r22] the declaration is a judgment input: iprd_judgment_hash differs with it, nothing else
+    assert n["iprd_judgment_hash"] != plain["iprd_judgment_hash"]
+    assert {k: v for k, v in _strip(n).items() if k not in ("iprd_adjustment", "iprd_judgment_hash")} == \
+        {k: v for k, v in _strip(plain).items() if k not in ("iprd_adjustment", "iprd_judgment_hash")}
     # reprice.py and build_site.py read the minimal block as no charge: the same live figures, table and hurdles
     import reprice as R
     import build_site as B
@@ -3063,6 +3069,61 @@ def test_a_native_paid_in_shares_check_matches_an_unconvertible_expense():
     assert E.iprd_cash_flow_check_entry_ok(_r21_check())
     assert not E.iprd_cash_flow_check_entry_ok(_r21_check(unit=""))
     assert not E.iprd_cash_flow_check_entry_ok(dict(_r21_check(), unit=7))
+
+
+
+# --- Codex review round 22 of PR #47 ------------------------------------------------------------------------------
+def test_the_run_records_a_hash_of_every_iprd_judgment_input_it_read():
+    """[Codex review r22] A judgment.json input changed after the run could leave no trace in the record (a
+    paid_in_shares check added for a cash-basis period changes the deduction, yet a run without it records nothing
+    on the period), so the engine stamps iprd_judgment_hash — a canonical sha256 of every judgment.json input it reads
+    for IPR&D: iprd_cash_flow_check, iprd_deferred_payment and the base_override fields (basis, basis_window, and the
+    iprd_amortized value / native_base / figures / shares) — inside the content-hashed payload. make_score recomputes
+    it with E.iprd_judgment_hash. Canonical: entry order, int vs float, an absent vs a null unit and fields the engine
+    never reads do not change it; every field it reads does."""
+    chk = _shares_check("2024-12-31", 100e6)
+    j = {"iprd_cash_flow_check": [chk]}
+    n = _ok(_run(_facts(expense={2024: 100e6}, cash={2024: 40e6, 2025: 60e6}), judgment=j, checks=False))
+    assert n["iprd_judgment_hash"] == E.iprd_judgment_hash(j), n.get("iprd_judgment_hash")
+    assert E._content_hash(n) == n["content_hash"]
+    assert _plain()["iprd_judgment_hash"] == E.iprd_judgment_hash({}) == E.iprd_judgment_hash(None)
+    h = E.iprd_judgment_hash
+    other = _shares_check("2021-12-31", 50e6)
+    ded = {"period": "2025-12-31", "window": "fy", "amount": 6e7,
+           "deferred_payment_of": {"deal": "Test Bio", "first_charged_period": "2024-12-31",
+                                   "source": "0000999001-25-000001, note 4",
+                                   "contingent_total": {"value": 1e8, "source": "0000999001-25-000001, note 4"}}}
+    amort = {"basis": "iprd_amortized", "native_base": "ttm_json", "value": 1.5, "figures": [1e6, 0.0, 2e6],
+             "shares": 1e7, "kind": "filing", "source": "s", "reason": "r"}
+    base = {"iprd_cash_flow_check": [chk, other], "iprd_deferred_payment": [ded], "base_override": amort,
+            "moat_score": 5}
+    same = [dict(base, iprd_cash_flow_check=[other, chk]),
+            dict(base, iprd_cash_flow_check=[dict(chk, amount=100000000), dict(other, unit=None)]),
+            dict(base, iprd_cash_flow_check=[dict(chk, note="ignored"), other]),
+            dict(base, base_override=dict(amort, source="another", reason="another", kind="estimate")),
+            dict(base, moat_score=7, tier_override="B", in_scope_under_40b=False)]
+    for v in same:
+        assert h(v) == h(base), v
+    changed = [dict(base, iprd_cash_flow_check=[chk]),
+               dict(base, iprd_cash_flow_check=[dict(chk, presentation="added_back_paid_in_investing"), other]),
+               dict(base, iprd_cash_flow_check=[dict(chk, amount=100e6 + 1), other]),
+               dict(base, iprd_cash_flow_check=[dict(chk, source="x"), other]),
+               dict(base, iprd_cash_flow_check=[dict(chk, unit="USD"), other]),
+               dict(base, iprd_cash_flow_check=[dict(chk, window="ttm_current_ytd"), other]),
+               dict(base, iprd_deferred_payment=None),
+               dict(base, iprd_deferred_payment=[dict(ded, amount=5e7)]),
+               dict(base, iprd_deferred_payment=[dict(ded, deferred_payment_of=dict(ded["deferred_payment_of"], deal="B"))]),
+               dict(base, base_override=None),
+               dict(base, base_override=dict(amort, value=1.6)),
+               dict(base, base_override=dict(amort, figures=[2e6, 0.0, 1e6])),
+               dict(base, base_override=dict(amort, shares=2e7)),
+               dict(base, base_override=dict(amort, native_base="median_of_last_3_fy_oe_per_share")),
+               dict(base, base_override={"value": 1.5, "source": "s", "reason": "r", "basis_window": {"window": "fy"}})]
+    for v in changed:
+        assert h(v) != h(base), v
+    plain_pin = {"value": 1.5, "source": "s", "reason": "r"}
+    assert h({"base_override": plain_pin}) == h({"base_override": dict(plain_pin, value=1.6)})
+    assert h({"base_override": plain_pin}) != h({"base_override": dict(plain_pin, basis_window={"window": "fy"})})
 
 
 if __name__ == "__main__":

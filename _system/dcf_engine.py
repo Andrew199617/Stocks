@@ -488,6 +488,13 @@ is applied (cash_flow_check, with the unit) and the residual — unknown in USD 
 payment is no longer gated against it. Before, every check was compared with the USD expense (None) and recorded
 cash_flow_check_mismatch, so a correct declaration could never close the period. A unit, when named, is the unit of
 the amount everywhere (USD for a USD or converted expense).
+[Codex review round 22 of PR #47] The record carries iprd_judgment_hash: the sha256 of every judgment.json input the
+run reads for IPR&D (iprd_judgment_inputs — the read fields of the iprd_cash_flow_check and iprd_deferred_payment
+entries, entry order and number spelling ignored, and base_override's basis, basis_window and, for basis
+iprd_amortized, value / native_base / figures / shares), inside the content-hashed payload. make_score recomputes it
+and refuses a judgment.json changed after the run: a check added later can change the deduction while leaving no
+trace on the run's periods (a paid_in_shares check on a cash-basis period stops a later cash-only payment being
+deducted against the residual).
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -2029,6 +2036,74 @@ def load_iprd_deferred_payments(ticker):
     except Exception:
         return None
     return j.get(IPRD_DEFERRED_KEY) if isinstance(j, dict) else None
+
+
+# [Codex review r22 of PR #47] The judgment.json inputs this engine reads for acquired IPR&D, hashed into the record
+# (iprd_judgment_hash, inside the content-hashed payload) so make_score can refuse a judgment.json changed after the
+# run: before, it compared them one way only (every check the run APPLIED must still be declared), so a check added
+# after the run on a cash-basis period — which a run without it leaves no trace of — scored the stale run (a
+# paid_in_shares check: $100M deducted where a rerun deducts $40M). The fields are the ones the engine reads:
+IPRD_JUDGMENT_CHECK_FIELDS = ("period", "window", "amount", "presentation", "source", "unit")
+IPRD_JUDGMENT_DEFERRED_FIELDS = ("period", "window", "amount", "deferred_payment_of")
+IPRD_JUDGMENT_BASE_FIELDS = ("basis", "basis_window")   # any base_override (the basis decides the IPR&D window)
+IPRD_JUDGMENT_AMORTIZED_FIELDS = ("value", "native_base", "figures", "shares")   # basis iprd_amortized only
+
+
+def _iprd_canon(v):
+    """A JSON value with every number as a float (20000000 == 20e6) and null dict members dropped (an absent unit
+    is a null one), so the hash sees what the engine reads, not how it was typed."""
+    if isinstance(v, bool) or v is None or isinstance(v, str):
+        return v
+    if isinstance(v, (int, float)):
+        return float(v)
+    if isinstance(v, dict):
+        return {str(k): _iprd_canon(x) for k, x in v.items() if x is not None}
+    if isinstance(v, (list, tuple)):
+        return [_iprd_canon(x) for x in v]
+    return repr(v)
+
+
+def _iprd_entries(v, fields):
+    """A declared entry list as the engine reads it: the read fields of each entry, in a canonical order (the
+    engine keys entries by period / window / deal, never by position); anything else as declared."""
+    if not isinstance(v, list):
+        return _iprd_canon(v)
+    out = [_iprd_canon({k: e.get(k) for k in fields}) if isinstance(e, dict) else _iprd_canon(e) for e in v]
+    return sorted(out, key=lambda x: json.dumps(x, sort_keys=True, default=str))
+
+
+def iprd_judgment_inputs(j):
+    """The canonical IPR&D inputs of judgment.json object j (None or unreadable: no inputs): iprd_cash_flow_check
+    and iprd_deferred_payment (their read fields, entry order ignored), and base_override's basis and basis_window,
+    plus value / native_base / figures / shares when the basis is iprd_amortized (a plain pin's value reaches the run
+    through --base-oe-ps and is checked against the score's base by make_score; its source / reason are never read)."""
+    j = j if isinstance(j, dict) else {}
+    bo = j.get("base_override")
+    if isinstance(bo, dict):
+        keep = IPRD_JUDGMENT_BASE_FIELDS + (IPRD_JUDGMENT_AMORTIZED_FIELDS if bo.get("basis") == IPRD_AMORTIZED_BASIS
+                                            else ())
+        bo = _iprd_canon({k: bo.get(k) for k in keep})
+    else:
+        bo = _iprd_canon(bo) if bo is not None else {}
+    return {IPRD_CF_CHECK_KEY: _iprd_entries(j.get(IPRD_CF_CHECK_KEY), IPRD_JUDGMENT_CHECK_FIELDS),
+            IPRD_DEFERRED_KEY: _iprd_entries(j.get(IPRD_DEFERRED_KEY), IPRD_JUDGMENT_DEFERRED_FIELDS),
+            "base_override": bo}
+
+
+def iprd_judgment_hash(j):
+    """sha256 of iprd_judgment_inputs(j) (canonical JSON): the engine records it as iprd_judgment_hash and make_score
+    recomputes it from the current judgment.json (check_iprd_judgment_current)."""
+    canon = json.dumps(iprd_judgment_inputs(j), sort_keys=True, separators=(",", ":"), default=str)
+    return hashlib.sha256(canon.encode()).hexdigest()
+
+
+def load_iprd_judgment_hash(ticker):
+    """iprd_judgment_hash of the folder's judgment.json as this run reads it (no inputs when absent or unreadable)."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        j = None
+    return iprd_judgment_hash(j)
 
 
 def iprd_accession_year(yy):
@@ -4475,6 +4550,9 @@ def main():
     # base, and so is an iprd_amortized pin whose declared native base is ttm_json (its recurrence is judged on the
     # native base's own window, denominator and value).
     decl = load_declared_base_override(ticker)
+    # [Codex review r22 of PR #47] the hash of every judgment.json input this run reads for IPR&D (recorded beside
+    # iprd_adjustment; make_score refuses a judgment.json whose inputs no longer hash to it)
+    iprd_judgment = load_iprd_judgment_hash(ticker)
     amort_decl = bool(pin_source == "base_oe_ps_arg" and isinstance(decl, dict) and decl.get("basis") == IPRD_AMORTIZED_BASIS
                       and isinstance(decl.get("value"), (int, float)) and not isinstance(decl.get("value"), bool)
                       and abs(float(decl["value"]) - base_override) <= 0.001 * abs(base_override))
@@ -4752,7 +4830,9 @@ def main():
               "share_class_mismatch": share_class, "capex_provenance": capex_provenance,
               "sbc_provenance": {p: sbc_recon[p] for p in periods if p in sbc_recon},
               # v5.6: acquired IPR&D (None when no expense tag is filed for a base period — the run is untouched)
-              "iprd_adjustment": iprd}
+              "iprd_adjustment": iprd,
+              # [Codex review r22 of PR #47] iprd_judgment_hash(judgment.json) as this run read it
+              "iprd_judgment_hash": iprd_judgment}
     if fx_info:
         # v5.5 (decision 7): overrides used verbatim as USD figures, and which rule fired
         # ({} when every override was converted, or none is declared).

@@ -42,7 +42,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      (step 8 — the new filing moves its native base, window and share count, so the carried
      value no longer reproduces and the engine refuses it), or drop it when that run no longer
      raises `ACQUIRED_IPRD_RECURRENT`. `iprd_cash_flow_check` entries carry over (they record
-     what a filed cash-flow statement shows); add one for each new period the run names.
+     what a filed cash-flow statement shows); add one for each new period the run names, then rerun the
+     engine (step 3: make_score refuses a judgment.json whose IPR&D declarations changed after the run).
      `iprd_deferred_payment` entries carry over too (they record which deal a filed charge
      belongs to; they name FY periods only, so a change of basis never strands one); KEEP one whose period
      has left the engine's window — never delete it: the engine lists it in `deferred_payments_rolled_out`,
@@ -154,6 +155,15 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    investing cash tag the engine deducts: it is recorded `cash_flow_check_inapplicable` and make_score refuses
    the run, naming the presentation — remove the entry (the period needs no check for its own deduction) or
    reconcile it with the cash-flow statement and rerun; `paid_in_shares` is read there as above.
+   (Codex review round 22 of PR #47) Changing an IPR&D declaration means rerunning the engine before
+   make_score: adding, removing or editing any `iprd_cash_flow_check` or `iprd_deferred_payment` entry, or
+   `base_override`'s `basis`, `basis_window` or (basis `iprd_amortized`) `value` / `native_base` / `figures` /
+   `shares`. The engine records a hash of those inputs as it read them (`iprd_judgment_hash` in
+   dcf_numbers.json) and make_score refuses a judgment.json whose inputs no longer hash to it ("judgment.json
+   changed after the engine run — rerun dcf_engine.py"): a check added after the run can change the deduction
+   while leaving no trace on the period (a `paid_in_shares` check on a cash-basis period stops a later cash-only
+   payment being deducted against the residual). Entry order, `20000000` vs `20e6` and the text of fields the
+   engine never reads (a plain pin's `source` / `reason`) do not count.
    `ACQUIRED_IPRD_UNCONVERTED` (Codex review round 3 of PR #47): the charge was expensed only in a currency the
    engine holds no FX rate for, with no usable us-gaap cash fact — NOTHING is deducted, the tier is the
    UNADJUSTED one, and make_score refuses the score whatever judgment.json says. Block the folder
