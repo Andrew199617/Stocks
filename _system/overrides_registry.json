@@ -3219,6 +3219,14 @@
    "tier_by_numbers_with_override": "C"
   },
   {
+   "ticker": "ZION",
+   "event": "tier_override",
+   "date": "2026-10-20",
+   "tier_by_numbers": "C",
+   "tier_final": "D",
+   "reason": "SECTOR_MODEL_MISMATCH bank artifact (Andrew's standing rule 2026-10-15, universal per his 2026-10-19 Q2 ruling): a bank's operating cash flow includes deposit and loan balance-sheet flows, so the OCF-based OE base is not distributable owner's earnings. Quantified: the TTM OCF base of $11.21/share (ttm.py: TTM OCF $1,801M vs FY2025 OCF $1,073M \u2014 H1 2026 YTD OCF $845M vs H1 2025 $117M, a $728M half-year swing) prints weighted IRR 21.65% / Tier A on the identical scenario set, while the earnings record is far lower \u2014 diluted EPS FY2023/24/25 was $4.35 / $4.95 / $6.01 (median $4.95) against the $6.23 OE base, and TTM net income of $1,171M itself contains Q2 2026's one-off equity securities gain (reported EPS $3.05 vs $1.74 adjusted). Sized one notch down from the numbers tier C to D, confidence low."
+  },
+  {
    "ticker": "EDU",
    "event": "ads_ratio",
    "date": "2026-10-20",
