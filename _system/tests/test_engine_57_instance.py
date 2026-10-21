@@ -26,6 +26,8 @@ reader in the engine (CSV rows, base, tier, scenarios, FX, the acquired-IPR&D de
    PUK runs), DILUTED_ONLY_TAGS without the basic tags.
 Amendment 7: merged entries carry companyfacts' full shape, so a merged 10-K FY's acquired-IPR&D charge reaches the
 one-time deduction (HALO drop-and-restore: the same iprd_adjustment).
+Review fix (2026-10-21; fails on the pre-fix L4 head 6fc70cd): under python -P the engine still imports its own
+xbrl_instance / _stable (a subprocess with _system off sys.path), and a module it cannot import degrades.
 """
 import copy
 import json
@@ -431,6 +433,64 @@ def test_merged_fy_reaches_the_iprd_detection():
     assert n["annual_from_instance"]["applied"] is True and n["annual_from_instance"]["form"] == "10-K"
     assert n["iprd_adjustment"] == p["iprd_adjustment"], (n["iprd_adjustment"], p["iprd_adjustment"])
     assert strip(n) == strip(p) and out["rows"] == plain["rows"]
+
+
+# ---------------------------------------------------------------------------
+# Review fix (2026-10-21): the engine finds its own modules under python -P
+# ---------------------------------------------------------------------------
+SAFE_PATH_DRIVER = r'''import json, os, sys
+engine, inst, mode = sys.argv[1:4]
+sysdir = os.path.dirname(os.path.abspath(engine))
+assert all(os.path.abspath(p or os.getcwd()) != sysdir for p in sys.path), sys.path   # python -P: not on the path
+import importlib.util
+spec = importlib.util.spec_from_file_location("dcf_engine", engine)
+E = importlib.util.module_from_spec(spec)
+sys.modules["dcf_engine"] = E
+spec.loader.exec_module(E)
+if mode == "blocked":
+    sys.modules["xbrl_instance"] = None          # the module cannot be imported: the run must degrade
+data = open(inst, "rb").read()
+E.edgar_submissions = lambda cik: {"filings": {"recent": {
+    "form": ["20-F"], "accessionNumber": ["0009990020-26-000001"], "filingDate": ["2026-05-29"],
+    "reportDate": ["2026-03-31"], "primaryDocument": ["tst-20260331.htm"], "isXBRL": [1]}}}
+E.fetch_instance = lambda cik, filing: (data, "https://www.sec.gov/x/tst-20260331_htm.xml")
+ocf = {"start": "2024-04-01", "end": "2025-03-31", "val": 550000000, "accn": "0009990020-25-000001", "fy": 2025,
+       "fp": "FY", "form": "20-F", "filed": "2025-05-30"}
+facts = {"cik": 999002, "facts": {"ifrs-full": {"CashFlowsFromUsedInOperatingActivities": {"units": {"EUR": [ocf]}}}}}
+merged, rec = E.load_annual_instance("TST", 999002, facts)
+print(json.dumps({"rec": rec, "merged_is_input": merged is facts}))
+'''
+
+
+def test_engine_imports_its_own_modules_under_safe_path():
+    """python -P (or PYTHONSAFEPATH) leaves the script's folder off sys.path. Before the fix the engine's lazy
+    `import xbrl_instance` (and `from _stable import ...`) raised ModuleNotFoundError on every lagging filer (the
+    review's live RDY run: exit 1 at load_annual_instance); now the engine adds its own folder before importing its
+    modules, and a module that still cannot be imported degrades (applied false) like every other failure (B.2)."""
+    import subprocess
+    import tempfile
+    tmp = tempfile.mkdtemp(prefix="l4_safe_path_")
+    try:
+        os.makedirs(os.path.join(tmp, "TST"))
+        env = {k: v for k, v in os.environ.items() if k not in ("PYTHONPATH", "PYTHONSTARTUP")}
+        env.update(STOCKS_BASE=tmp, PYTHONIOENCODING="utf-8")
+        inst = os.path.join(HERE, "fixtures", "instance", "tiny_annual.xml")
+        res = {}
+        for mode in ("ok", "blocked"):
+            p = subprocess.run([sys.executable, "-P", "-c", SAFE_PATH_DRIVER, os.path.join(SYS, "dcf_engine.py"), inst,
+                                mode], capture_output=True, text=True, encoding="utf-8", errors="replace", cwd=tmp,
+                               env=env, timeout=300)
+            assert p.returncode == 0, (mode, p.returncode, p.stderr[-1500:])
+            res[mode] = json.loads(p.stdout.strip().splitlines()[-1])
+        ok = res["ok"]["rec"]
+        assert ok["applied"] is True and ok["periods_added"] == ["2026-03-31"] and ok["form"] == "20-F", ok
+        assert os.path.exists(os.path.join(tmp, "TST", "annual_instance.json"))     # the _stable write ran too
+        blocked = res["blocked"]["rec"]
+        assert blocked["applied"] is False and blocked["checked"] is True, blocked
+        assert blocked["reason"].startswith("xbrl_instance unavailable"), blocked
+        assert res["blocked"]["merged_is_input"] is True
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":

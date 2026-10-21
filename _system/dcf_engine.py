@@ -591,7 +591,10 @@ closed, as for every release change). The items below are written by the lane th
   facts_sha256, cache, reason} — absent when no candidate exists (every run today but the lagging filers); applied
   false with the reason when the check failed (submissions unavailable: checked false). Flag ANNUAL_FROM_INSTANCE
   when a merged fiscal year reaches the history. DCF_NO_INSTANCE=1 disables it. make_score requires the committed
-  file (annual_instance_check). The tag hoist (behaviour-neutral, the same list objects in main()):
+  file (annual_instance_check). The engine imports xbrl_instance / _stable through _own_module, which puts its own
+  folder on sys.path first (review fix 2026-10-21: under python -P the bare import crashed every lagging filer's
+  run); an import or cache write that still fails records applied false. The tag hoist (behaviour-neutral, the
+  same list objects in main()):
   ENGINE_OCF_TAGS, ENGINE_SBC_TAGS, ENGINE_SHARES_DILUTED_TAGS, DILUTED_SHARE_TAGS, BASIC_SHARE_TAGS and the derived
   DILUTED_ONLY_TAGS, which ttm.py --interim reads.
 - (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT: [L8 writes this item]
@@ -1161,12 +1164,24 @@ CF_ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")   # period_series' own annu
 INSTANCE_DEI_DAYS = 3                              # the instance's DocumentPeriodEndDate vs submissions reportDate
 
 
+def _own_module(name):
+    """v5.7 (L4; review fix 2026-10-21): import one of _system's own modules (xbrl_instance, _stable) lazily. The
+    engine never put its folder on sys.path (it had no local import before 5.7), so under `python -P` /
+    PYTHONSAFEPATH — where the script's folder is not on the path — a bare `import xbrl_instance` raised
+    ModuleNotFoundError on every lagging filer. The folder is appended (never put first: _system holds queue.py and
+    profile.py, which share stdlib names) before the import, as ttm.py / make_score.py put theirs."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    if here not in sys.path:
+        sys.path.append(here)
+    return __import__(name)
+
+
 def fetch_instance(cik, filing):
     """v5.7 (L4, R2b): the annual filing's own XBRL 2.1 instance as an (instance bytes, instance URL) pair, (None,
     None) when its folder holds none (an inline document only) — xbrl_instance.locate_instance (lazy import:
     segments.py's EDGAR fetch). A non-404 fetch failure raises; load_annual_instance records it. Tests patch it
     (engine55_harness.run_engine)."""
-    import xbrl_instance as _xi
+    _xi = _own_module("xbrl_instance")
     return _xi.locate_instance(cik, filing.get("accession"), filing.get("primary"), filing.get("form"),
                                filing.get("period"))
 
@@ -1219,11 +1234,11 @@ def annual_instance_candidate(sub, cf_latest):
     return latest if gap >= INSTANCE_MIN_NEW_DAYS else None
 
 
-def _instance_cache(ticker, filing, cik, cf_latest):
+def _instance_cache(ticker, filing, cik, cf_latest, _xi):
     """(cached document | None, edited: bool) — <T>/annual_instance.json when it is this filing's (accession, CIK)
     and was extracted against the same companyfacts latest period; edited when it is but its facts no longer hash
-    to its facts_sha256 (amendment 6 of the rebase: the file is a run input, bound like ttm.json)."""
-    import xbrl_instance as _xi
+    to its facts_sha256 (amendment 6 of the rebase: the file is a run input, bound like ttm.json). `_xi`: the
+    xbrl_instance module load_annual_instance imported."""
     try:
         with open(f"{BASE}/{ticker}/{INSTANCE_CACHE_NAME}", encoding="utf-8") as f:
             doc = json.load(f)
@@ -1265,11 +1280,14 @@ def load_annual_instance(ticker, cik, facts):
     filing = annual_instance_candidate(sub, cf_latest)
     if filing is None:
         return facts, None
-    import xbrl_instance as _xi
     rec = {"applied": False, "checked": True, "form": filing["form"], "accession": filing["accession"],
            "filed": filing.get("filed"), "report_date": filing.get("period"),
            "companyfacts_latest_annual_end": cf_latest, "reason": None}
-    doc, edited = _instance_cache(ticker, filing, cik, cf_latest)
+    try:
+        _xi = _own_module("xbrl_instance")
+    except Exception as e:      # degrade like every other failure (B.2), never crash the run
+        return facts, dict(rec, reason=f"xbrl_instance unavailable: {type(e).__name__}: {e}")
+    doc, edited = _instance_cache(ticker, filing, cik, cf_latest, _xi)
     fresh = doc is None
     if fresh:
         def refused(why):
@@ -1328,9 +1346,12 @@ def load_annual_instance(ticker, cik, facts):
     cf_entries = _xi.to_companyfacts_entries(doc["facts"], filing, doc.get("fiscal_year_focus"))
     merged, n_added = _xi.merge_into_companyfacts(facts, cf_entries)
     if fresh and not MEASURE:
-        from _stable import write_json_if_changed   # lazy: the engine imports nothing else from _stable
-        write_json_if_changed(f"{BASE}/{ticker}/{INSTANCE_CACHE_NAME}", doc,
-                              volatile=("extracted_at", "extracted_by"), indent=1)
+        try:      # lazy: the engine imports nothing else from _stable
+            _own_module("_stable").write_json_if_changed(f"{BASE}/{ticker}/{INSTANCE_CACHE_NAME}", doc,
+                                                         volatile=("extracted_at", "extracted_by"), indent=1)
+        except Exception as e:  # no committed cache -> make_score would refuse the run: degrade here instead
+            return facts, dict(rec, reason=f"{ticker}/{INSTANCE_CACHE_NAME} could not be written "
+                                           f"({type(e).__name__}: {e})")
     rec.update({"applied": True, "instance_url": doc.get("instance_url"), "instance_sha256": doc.get("instance_sha256"),
                 "periods_added": sorted({e["end"] for e in doc["facts"] if e.get("start")}),
                 "facts_merged": n_added, "conflicts": doc.get("conflicts") or [],
