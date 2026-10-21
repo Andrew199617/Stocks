@@ -373,6 +373,12 @@ def test_attachment_prerendered():
         assert 'data-ticker="APP"' in static_only and "$376.12" in static_only  # ranking row + IV@15 as plain text
         assert 'id="c-APP"' in static_only and 'data-pane="forecast"' in static_only  # company page, every tab pane
         assert 'name="prtf"' in static_only and "Loading the ranking" not in static_only  # CSS tier filter, no dead card
+        # static nav is radios + labels with no fragment anchors (2026-10-20:
+        # the iOS chat viewer ignores fragment navigation — taps were dead)
+        assert 'href="#c-' not in static_only and ":target" not in static_only
+        assert 'name="conav"' in static_only and 'id="co-list"' in static_only and 'id="co-APP"' in static_only  # the nav radio group
+        assert '<label for="co-APP"' in static_only and '<label class="back" for="co-list"' in static_only  # row link + back control
+        assert "#static #co-APP:checked ~ .page#c-APP{display:block}" in static_only  # generated per-company show rule
         res2 = tb.build(attachment=True, top=2, prerender=False)
         assert res2["prerender"] is None
         with open(res2["attachment"][0], encoding="utf-8") as f:
