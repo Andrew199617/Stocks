@@ -1,0 +1,88 @@
+{
+ "ticker": "TFII",
+ "name": "TFI International Inc.",
+ "sector": "Transportation / Trucking & Logistics (LTL, Truckload, Logistics)",
+ "price": 111.59,
+ "market_cap_b": 9.31,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 7.743597699754435,
+ "base_year": "2025",
+ "base_source": "agent_supplied_ttm_override",
+ "moat_score": 4,
+ "moat_justification": "Scale and a proven decentralized acquisition platform in a fragmented industry, but freight is a commodity with low switching costs: ROIC proxy fell from 24.4% in FY2022 to 8.6% in FY2025 and operating margin from 13.0% to 7.2% through the freight recession, showing no pricing power that survives the cycle.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 3.0%/yr \u2014 already credited via the growth adjustment",
+  "BASIS_BREAK_SUSPECT: a >60% revenue jump/drop in the last 5 yrs \u2014 check for divestitures, big M&A, or restatements before trusting any CAGR",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2024, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 40-F filer \u2014 per-share figures scaled x1.0 ordinary shares per ADS (Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 3.7x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.6%) vs bull-case tier C (12.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 29.74,
+   "irr": 0.0548
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 47.01,
+   "irr": 0.076
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 63.39,
+   "irr": 0.096
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 84.41,
+   "irr": 0.1205
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 124.73,
+   "irr": 0.1634
+  }
+ },
+ "iv_at_15": 67.32,
+ "iv_at_12": 88.97,
+ "implied_irr": 0.101,
+ "implied_irr_base_case": 0.096,
+ "upside_at_15_pct": -39.7,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "North American trucking consolidator, moat 4/10 \u2014 Tier C on the bridged-TTM base (Q4 re-score 2026-10-20): weighted IRR 10.1%, IV@15% $67.32 vs $111.59 price; the median base gives 10.0% \u2014 Tier C on both; does not clear the 15% hurdle until ~$67, and with the bear case at 7.6% (Tier D) any position should be sized to the bear end.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.076,
+ "irr_bull": 0.1205,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 47.79,
+ "iv_at_25": 36.98,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 2367789000,
+ "shares_diluted_latest": 83414310,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "Scale: one of North America's largest trucking groups and the largest flatbed/specialized carrier via Daseke, with LTL terminal-network density from TForce Freight (ex-UPS Freight)",
+  "Decentralized acquisition platform under Alain Bedard: decades of buying fragmented carriers cheaply, keeping local brands/operators and improving their operating ratios",
+  "Diversification across LTL, Truckload and Logistics and across industrial end markets cushions any single freight lane"
+ ],
+ "moat_against": [
+  "Commodity freight, low shipper switching costs, deep rival set (Old Dominion, XPO, ArcBest, FedEx Freight, Heartland) \u2014 no network effect or lock-in",
+  "Returns have compressed through the cycle: ROIC proxy 24.4% (FY2022) to 8.6% (FY2025), operating margin 13.0% to 7.2% \u2014 pricing power does not hold in a freight recession",
+  "Cyclical and cost-exposed: unionized U.S. LTL workforce, driver and purchased-transportation cost pressure flagged into Q3 2026",
+  "Acquisition-led model carries leverage (net debt 3.7x normalized OE) and execution risk (Daseke integration/separation talk, planned U.S. redomiciliation)"
+ ]
+}

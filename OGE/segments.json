@@ -1,0 +1,578 @@
+{
+ "ticker": "OGE",
+ "cik": 1021635,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-055414",
+   "filed": "2026-02-18",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1021635/000119312526055414/oge-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001021635-26-000012",
+   "filed": "2026-04-29",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000012/oge-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001021635-26-000025",
+   "filed": "2026-07-29",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1021635/000102163526000025/oge-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "oge:ElectricsCompanyMember",
+     "label": "Electrics Company",
+     "values": [
+      651600000,
+      745600000,
+      800000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0022,
+      1.0004,
+      1.0008
+     ],
+     "growth_yoy": [
+      null,
+      0.1443,
+      0.073
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -1400000,
+      -300000,
+      -600000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0022,
+      -0.0004,
+      -0.0008
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     650200000,
+     745300000,
+     799400000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "oge:ElectricsCompanyMember",
+     "label": "Electrics Company",
+     "values": [
+      133300000,
+      187400000,
+      112800000,
+      191700000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.0,
+      1.0043,
+      0.9973,
+      1.0005
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1538,
+      0.0229
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      0,
+      -800000,
+      300000,
+      -100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0,
+      -0.0043,
+      0.0027,
+      -0.0005
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     133300000,
+     186600000,
+     113100000,
+     191600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "ProfitLoss",
+   "tag": "us-gaap:ProfitLoss",
+   "label": "Net income incl. noncontrolling interests by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "oge:ElectricsCompanyMember",
+     "label": "Electrics Company",
+     "values": [
+      426400000,
+      469900000,
+      499800000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.023,
+      1.0643,
+      1.0618
+     ],
+     "growth_yoy": [
+      null,
+      0.102,
+      0.0636
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -9600000,
+      -28400000,
+      -29100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.023,
+      -0.0643,
+      -0.0618
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     416800000,
+     441500000,
+     470700000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "ProfitLoss",
+   "tag": "us-gaap:ProfitLoss",
+   "label": "Net income incl. noncontrolling interests by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "oge:ElectricsCompanyMember",
+     "label": "Electrics Company",
+     "values": [
+      71000000,
+      107700000,
+      57900000,
+      120100000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.1324,
+      1.0019,
+      1.1534,
+      1.0327
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.1845,
+      0.1151
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      -8300000,
+      -200000,
+      -7700000,
+      -3800000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.1324,
+      -0.0019,
+      -0.1534,
+      -0.0327
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     62700000,
+     107500000,
+     50200000,
+     116300000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "oge:ElectricsCompanyMember",
+     "label": "Electrics Company",
+     "values": [
+      12642600000,
+      13581300000,
+      14277500000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9884,
+      0.9902,
+      0.9935
+     ],
+     "growth_yoy": [
+      null,
+      0.0742,
+      0.0513
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      301100000,
+      402900000,
+      134100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0235,
+      0.0294,
+      0.0093
+     ],
+     "growth_yoy": [
+      null,
+      0.3381,
+      -0.6672
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -153000000,
+      -268200000,
+      -41100000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.012,
+      -0.0196,
+      -0.0029
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     12790700000,
+     13716000000,
+     14370500000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "oge:ElectricsCompanyMember",
+     "label": "Electrics Company",
+     "values": [
+      13810400000,
+      13990800000,
+      14301700000,
+      15026300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9898,
+      0.993,
+      0.9882,
+      1.0273
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0356,
+      0.074
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Operating Segment",
+     "values": [
+      582600000,
+      140400000,
+      182200000,
+      125300000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0418,
+      0.01,
+      0.0126,
+      0.0086
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.6873,
+      -0.1075
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -439800000,
+      -42100000,
+      -11800000,
+      -525000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0315,
+      -0.003,
+      -0.0008,
+      -0.0359
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     13953200000,
+     14089100000,
+     14472100000,
+     14626600000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Revenues/annual: row 'Electrics Company' (oge:ElectricsCompanyMember) dropped: its values equal the consolidated total",
+  "business_segments/Revenues/quarterly: row 'Electrics Company' (oge:ElectricsCompanyMember) dropped: its values equal the consolidated total"
+ ],
+ "complete": true
+}

@@ -1,0 +1,146 @@
+{
+ "ticker": "HLI",
+ "cik": 1302215,
+ "entity": "HOULIHAN LOKEY, INC.",
+ "fy_end": "2026-03-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 704131000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": -132000000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": -336000000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 500131000
+  },
+  "capex": {
+   "fy": 22312000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 13000000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 6000000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 15312000
+  },
+  "sbc": {
+   "fy": 201304000,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_prior": 42000000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "AllocatedShareBasedCompensationExpense",
+   "ytd_current": 45000000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 204304000
+  },
+  "shares_diluted": {
+   "fy": 68434896,
+   "fy_period": [
+    "2025-04-01",
+    "2026-03-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 68900000,
+   "ytd_prior_period": [
+    "2025-04-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 67600000,
+   "ytd_current_period": [
+    "2026-04-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 500131000,
+ "ttm_capex": 15312000,
+ "ttm_sbc": 204304000,
+ "ttm_shares_diluted": 67600000,
+ "ttm_oe_total": 280515000,
+ "ttm_oe_per_share": 4.149630177514793,
+ "warnings": [],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 22312000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_prior": {
+   "ppe": 13000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_current": {
+   "ppe": 6000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

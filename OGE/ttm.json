@@ -1,0 +1,146 @@
+{
+ "ticker": "OGE",
+ "cik": 1021635,
+ "entity": "OGE ENERGY CORP.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-03-31",
+ "inputs": {
+  "ocf": {
+   "fy": 1137100000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 15900000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 175500000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1296700000
+  },
+  "capex": {
+   "fy": 1054400000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 249500000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 266800000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 1071700000
+  },
+  "sbc": {
+   "fy": 14000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 3000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 3800000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 14800000
+  },
+  "shares_diluted": {
+   "fy": 202500000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 201900000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-03-31"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 207200000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-03-31"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1296700000,
+ "ttm_capex": 1071700000,
+ "ttm_sbc": 14800000,
+ "ttm_shares_diluted": 207200000,
+ "ttm_oe_total": 210200000,
+ "ttm_oe_per_share": 1.0144787644787645,
+ "warnings": [],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 1054400000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_prior": {
+   "ppe": 249500000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_current": {
+   "ppe": 266800000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

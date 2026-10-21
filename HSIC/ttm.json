@@ -1,0 +1,146 @@
+{
+ "ticker": "HSIC",
+ "cik": 1000228,
+ "entity": "HENRY SCHEIN, INC.",
+ "fy_end": "2025-12-27",
+ "ytd_end": "2026-06-27",
+ "inputs": {
+  "ocf": {
+   "fy": 712000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 157000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 145000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 700000000
+  },
+  "capex": {
+   "fy": 139000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_prior": 63000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireProductiveAssets",
+   "ytd_current": 55000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireProductiveAssets",
+   "ttm": 131000000
+  },
+  "sbc": {
+   "fy": 39000000,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 16000000,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 16000000,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 39000000
+  },
+  "shares_diluted": {
+   "fy": 121717876,
+   "fy_period": [
+    "2024-12-29",
+    "2025-12-27"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 123739381,
+   "ytd_prior_period": [
+    "2024-12-29",
+    "2025-06-28"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 115238506,
+   "ytd_current_period": [
+    "2025-12-28",
+    "2026-06-27"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 700000000,
+ "ttm_capex": 131000000,
+ "ttm_sbc": 39000000,
+ "ttm_shares_diluted": 115238506,
+ "ttm_oe_total": 530000000,
+ "ttm_oe_per_share": 4.599157160194354,
+ "warnings": [],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 139000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_prior": {
+   "ppe": 63000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  },
+  "ytd_current": {
+   "ppe": 55000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireProductiveAssets"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireProductiveAssets"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

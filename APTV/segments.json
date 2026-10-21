@@ -1,0 +1,1105 @@
+{
+ "ticker": "APTV",
+ "cik": 1521332,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001521332-26-000009",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000009/aptv-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001521332-26-000048",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000048/aptv-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001521332-26-000061",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000061/aptv-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aptv:ElectricalDistributionSystemsMember",
+     "label": "Electrical Distribution Systems",
+     "values": [
+      8832000000,
+      8309000000,
+      8818000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4405,
+      0.4215,
+      0.4323
+     ],
+     "growth_yoy": [
+      null,
+      -0.0592,
+      0.0613
+     ]
+    },
+    {
+     "member": "aptv:EngineeredComponentsGroupMember",
+     "label": "Engineered Components Group",
+     "values": [
+      6415000000,
+      6384000000,
+      6662000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3199,
+      0.3238,
+      0.3266
+     ],
+     "growth_yoy": [
+      null,
+      -0.0048,
+      0.0435
+     ]
+    },
+    {
+     "member": "aptv:AdvancedSafetyandUserExperienceMember",
+     "label": "Advanced Safety and User Experience",
+     "values": [
+      5695000000,
+      5791000000,
+      5792000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.284,
+      0.2938,
+      0.2839
+     ],
+     "growth_yoy": [
+      null,
+      0.0169,
+      0.0002
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -891000000,
+      -771000000,
+      -874000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0444,
+      -0.0391,
+      -0.0428
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20051000000,
+     19713000000,
+     20398000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aptv:EngineeredComponentsMember",
+     "label": "Engineered Components",
+     "values": [
+      1581000000,
+      1718000000,
+      1657000000,
+      1800000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3277,
+      0.537,
+      0.3258,
+      0.5498
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0481,
+      0.0477
+     ]
+    },
+    {
+     "member": "aptv:IntelligentSystemsMember",
+     "label": "Intelligent Systems",
+     "values": [
+      1424000000,
+      1507000000,
+      1433000000,
+      1501000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2951,
+      0.4711,
+      0.2818,
+      0.4585
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0063,
+      -0.004
+     ]
+    },
+    {
+     "member": "aptv:ElectricalDistributionSystemsMember",
+     "label": "Electrical Distribution Systems",
+     "values": [
+      2024000000,
+      null,
+      2212000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4195,
+      null,
+      0.4349,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0929,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -204000000,
+      -26000000,
+      -216000000,
+      -27000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0423,
+      -0.0081,
+      -0.0425,
+      -0.0082
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4825000000,
+     3199000000,
+     5086000000,
+     3274000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "aptv:ElectricalDistributionSystemsMember",
+     "label": "Electrical Distribution Systems",
+     "values": [
+      8829000000,
+      8307000000,
+      8814000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4403,
+      0.4214,
+      0.4321
+     ],
+     "growth_yoy": [
+      null,
+      -0.0591,
+      0.061
+     ]
+    },
+    {
+     "member": "aptv:EngineeredComponentsGroupMember",
+     "label": "Engineered Components Group",
+     "values": [
+      5527000000,
+      5621000000,
+      5813000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2756,
+      0.2851,
+      0.285
+     ],
+     "growth_yoy": [
+      null,
+      0.017,
+      0.0342
+     ]
+    },
+    {
+     "member": "aptv:AdvancedSafetyandUserExperienceMember",
+     "label": "Advanced Safety and User Experience",
+     "values": [
+      5695000000,
+      5785000000,
+      5771000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.284,
+      0.2935,
+      0.2829
+     ],
+     "growth_yoy": [
+      null,
+      0.0158,
+      -0.0024
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20051000000,
+     19713000000,
+     20398000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aptv:EngineeredComponentsMember",
+     "label": "Engineered Components",
+     "values": [
+      1381000000,
+      1696000000,
+      1448000000,
+      1781000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2862,
+      0.5302,
+      0.2847,
+      0.544
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0485,
+      0.0501
+     ]
+    },
+    {
+     "member": "aptv:IntelligentSystemsMember",
+     "label": "Intelligent Systems",
+     "values": [
+      1421000000,
+      1503000000,
+      1428000000,
+      1493000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2945,
+      0.4698,
+      0.2808,
+      0.456
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0049,
+      -0.0067
+     ]
+    },
+    {
+     "member": "aptv:ElectricalDistributionSystemsMember",
+     "label": "Electrical Distribution Systems",
+     "values": [
+      2023000000,
+      null,
+      2210000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4193,
+      null,
+      0.4345,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0924,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4825000000,
+     3199000000,
+     5086000000,
+     3274000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-06-30",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q2 FY2025",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aptv:EngineeredComponentsMember",
+     "label": "Engineered Components",
+     "values": [
+      209000000,
+      267000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6431,
+      0.7275
+     ],
+     "growth_yoy": [
+      null,
+      0.2775
+     ]
+    },
+    {
+     "member": "aptv:IntelligentSystemsMember",
+     "label": "Intelligent Systems",
+     "values": [
+      116000000,
+      100000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3569,
+      0.2725
+     ],
+     "growth_yoy": [
+      null,
+      -0.1379
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     325000000,
+     367000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "aptv:EngineeredComponentsGroupMember",
+     "label": "Engineered Components Group",
+     "values": [
+      9707000000,
+      10236000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4138,
+      0.4372
+     ],
+     "growth_yoy": [
+      null,
+      0.0545
+     ]
+    },
+    {
+     "member": "aptv:AdvancedSafetyandUserExperienceMember",
+     "label": "Advanced Safety and User Experience",
+     "values": [
+      9585000000,
+      9213000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4086,
+      0.3935
+     ],
+     "growth_yoy": [
+      null,
+      -0.0388
+     ]
+    },
+    {
+     "member": "aptv:ElectricalDistributionSystemsMember",
+     "label": "Electrical Distribution Systems",
+     "values": [
+      5019000000,
+      5575000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.214,
+      0.2381
+     ],
+     "growth_yoy": [
+      null,
+      0.1108
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      -853000000,
+      3964000000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0364,
+      0.1693
+     ],
+     "growth_yoy": [
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     23458000000,
+     23413000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "aptv:EngineeredComponentsMember",
+     "label": "Engineered Components",
+     "values": [
+      10236000000,
+      10376000000,
+      10734000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4372,
+      0.4117,
+      0.5965
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "aptv:IntelligentSystemsMember",
+     "label": "Intelligent Systems",
+     "values": [
+      9213000000,
+      9846000000,
+      9856000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3935,
+      0.3907,
+      0.5477
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "aptv:ElectricalDistributionSystemsMember",
+     "label": "Electrical Distribution Systems",
+     "values": [
+      5575000000,
+      6108000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2381,
+      0.2424,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:IntersegmentEliminationMember",
+     "label": "Intersegment Eliminations",
+     "values": [
+      3964000000,
+      -1127000000,
+      -2594000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1693,
+      -0.0447,
+      -0.1441
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     23413000000,
+     25203000000,
+     17996000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      7021000000,
+      6934000000,
+      7361000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3502,
+      0.3517,
+      0.3609
+     ],
+     "growth_yoy": [
+      null,
+      -0.0124,
+      0.0616
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      6738000000,
+      6489000000,
+      6566000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.336,
+      0.3292,
+      0.3219
+     ],
+     "growth_yoy": [
+      null,
+      -0.037,
+      0.0119
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      5697000000,
+      5722000000,
+      5872000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2841,
+      0.2903,
+      0.2879
+     ],
+     "growth_yoy": [
+      null,
+      0.0044,
+      0.0262
+     ]
+    },
+    {
+     "member": "srt:SouthAmericaMember",
+     "label": "South America",
+     "values": [
+      421000000,
+      361000000,
+      392000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.021,
+      0.0183,
+      0.0192
+     ],
+     "growth_yoy": [
+      null,
+      -0.1425,
+      0.0859
+     ]
+    },
+    {
+     "member": "aptv:OtherNorthAmericaMember",
+     "label": "Other North America",
+     "values": [
+      174000000,
+      207000000,
+      207000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0087,
+      0.0105,
+      0.0101
+     ],
+     "growth_yoy": [
+      null,
+      0.1897,
+      0.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     20051000000,
+     19713000000,
+     20398000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:NorthAmericaMember",
+     "label": "North America",
+     "values": [
+      1783000000,
+      1099000000,
+      1934000000,
+      1193000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3695,
+      0.3435,
+      0.3803,
+      0.3644
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0847,
+      0.0855
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1626000000,
+      1255000000,
+      1647000000,
+      1180000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.337,
+      0.3923,
+      0.3238,
+      0.3604
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0129,
+      -0.0598
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      1337000000,
+      809000000,
+      1411000000,
+      863000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2771,
+      0.2529,
+      0.2774,
+      0.2636
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0553,
+      0.0667
+     ]
+    },
+    {
+     "member": "srt:SouthAmericaMember",
+     "label": "South America",
+     "values": [
+      79000000,
+      36000000,
+      94000000,
+      38000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0164,
+      0.0113,
+      0.0185,
+      0.0116
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1899,
+      0.0556
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4825000000,
+     3199000000,
+     5086000000,
+     3274000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/Assets/annual: rows sum to 123.8% of the consolidated total for 2025-12-31 (ties_to_total: false)",
+  "geography/Revenues/annual: row 'North America' (srt:NorthAmericaMember) dropped: its values equal the sum of UNITED STATES, Other North America",
+  "geography/Revenues/annual: row 'GERMANY' (country:DE) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, Other North America, EMEA, Asia Pacific, South America)"
+ ],
+ "complete": true
+}

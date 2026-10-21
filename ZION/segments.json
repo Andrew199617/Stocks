@@ -1,0 +1,2417 @@
+{
+ "ticker": "ZION",
+ "cik": 109380,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0000109380-26-000046",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000046/zions-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000109380-26-000083",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000083/zions-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0000109380-26-000111",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000111/zions-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      181000000,
+      181000000,
+      188000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2938,
+      0.2833,
+      0.284
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.0387
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      162000000,
+      165000000,
+      177000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.263,
+      0.2582,
+      0.2674
+     ],
+     "growth_yoy": [
+      null,
+      0.0185,
+      0.0727
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      110000000,
+      113000000,
+      119000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1786,
+      0.1768,
+      0.1798
+     ],
+     "growth_yoy": [
+      null,
+      0.0273,
+      0.0531
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      45000000,
+      48000000,
+      51000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0731,
+      0.0751,
+      0.077
+     ],
+     "growth_yoy": [
+      null,
+      0.0667,
+      0.0625
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      39000000,
+      43000000,
+      45000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0633,
+      0.0673,
+      0.068
+     ],
+     "growth_yoy": [
+      null,
+      0.1026,
+      0.0465
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      28000000,
+      29000000,
+      33000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0455,
+      0.0454,
+      0.0498
+     ],
+     "growth_yoy": [
+      null,
+      0.0357,
+      0.1379
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      7000000,
+      8000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0114,
+      0.0125,
+      0.0121
+     ],
+     "growth_yoy": [
+      null,
+      0.1429,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      48000000,
+      52000000,
+      41000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0779,
+      0.0814,
+      0.0619
+     ],
+     "growth_yoy": [
+      null,
+      0.0833,
+      -0.2115
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     616000000,
+     639000000,
+     662000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      42000000,
+      48000000,
+      49000000,
+      48000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2658,
+      0.2927,
+      0.2849,
+      0.2637
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1667,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      46000000,
+      40000000,
+      45000000,
+      45000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2911,
+      0.2439,
+      0.2616,
+      0.2473
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0217,
+      0.125
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      26000000,
+      31000000,
+      35000000,
+      33000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1646,
+      0.189,
+      0.2035,
+      0.1813
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3462,
+      0.0645
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      10000000,
+      11000000,
+      12000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0633,
+      0.0671,
+      0.0698,
+      0.0714
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2,
+      0.1818
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      12000000,
+      13000000,
+      13000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0759,
+      0.0793,
+      0.0756,
+      0.0714
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0833,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      8000000,
+      8000000,
+      9000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0506,
+      0.0488,
+      0.0523,
+      0.044
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.125,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:TheCommerceBankNorthwestSegmentMember",
+     "label": "The Commerce Bank Northwest Segment",
+     "values": [
+      null,
+      2000000,
+      null,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0122,
+      null,
+      0.011
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      2000000,
+      null,
+      2000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0127,
+      null,
+      0.0116,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      null
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      12000000,
+      11000000,
+      7000000,
+      20000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0759,
+      0.0671,
+      0.0407,
+      0.1099
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.4167,
+      0.8182
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     158000000,
+     164000000,
+     172000000,
+     182000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      157000000,
+      157000000,
+      155000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3121,
+      0.306,
+      0.293
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      -0.0127
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      125000000,
+      131000000,
+      138000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2485,
+      0.2554,
+      0.2609
+     ],
+     "growth_yoy": [
+      null,
+      0.048,
+      0.0534
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      75000000,
+      74000000,
+      81000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1491,
+      0.1442,
+      0.1531
+     ],
+     "growth_yoy": [
+      null,
+      -0.0133,
+      0.0946
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      44000000,
+      46000000,
+      46000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0875,
+      0.0897,
+      0.087
+     ],
+     "growth_yoy": [
+      null,
+      0.0455,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      37000000,
+      39000000,
+      40000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0736,
+      0.076,
+      0.0756
+     ],
+     "growth_yoy": [
+      null,
+      0.0541,
+      0.0256
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      25000000,
+      27000000,
+      28000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0497,
+      0.0526,
+      0.0529
+     ],
+     "growth_yoy": [
+      null,
+      0.08,
+      0.037
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      6000000,
+      6000000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0119,
+      0.0117,
+      0.0113
+     ],
+     "growth_yoy": [
+      null,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      34000000,
+      33000000,
+      35000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0676,
+      0.0643,
+      0.0662
+     ],
+     "growth_yoy": [
+      null,
+      -0.0294,
+      0.0606
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     503000000,
+     513000000,
+     529000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      38000000,
+      38000000,
+      40000000,
+      41000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2857,
+      0.2923,
+      0.2985,
+      0.2908
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0526,
+      0.0789
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      40000000,
+      32000000,
+      34000000,
+      36000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3008,
+      0.2462,
+      0.2537,
+      0.2553
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.15,
+      0.125
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      18000000,
+      20000000,
+      21000000,
+      21000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1353,
+      0.1538,
+      0.1567,
+      0.1489
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1667,
+      0.05
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      11000000,
+      12000000,
+      12000000,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0827,
+      0.0923,
+      0.0896,
+      0.0851
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0909,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      10000000,
+      10000000,
+      10000000,
+      11000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0752,
+      0.0769,
+      0.0746,
+      0.078
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.1
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      6000000,
+      7000000,
+      7000000,
+      7000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0451,
+      0.0538,
+      0.0522,
+      0.0496
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1667,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:TheCommerceBankNorthwestSegmentMember",
+     "label": "The Commerce Bank Northwest Segment",
+     "values": [
+      null,
+      2000000,
+      null,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0154,
+      null,
+      0.0071
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      -0.5
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      2000000,
+      null,
+      1000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.015,
+      null,
+      0.0075,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.5,
+      null
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      8000000,
+      9000000,
+      9000000,
+      12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0602,
+      0.0692,
+      0.0672,
+      0.0851
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.125,
+      0.3333
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     133000000,
+     130000000,
+     134000000,
+     141000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      698000000,
+      692000000,
+      738000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2863,
+      0.2848,
+      0.2809
+     ],
+     "growth_yoy": [
+      null,
+      -0.0086,
+      0.0665
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      602000000,
+      584000000,
+      647000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2469,
+      0.2403,
+      0.2463
+     ],
+     "growth_yoy": [
+      null,
+      -0.0299,
+      0.1079
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      457000000,
+      496000000,
+      565000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1874,
+      0.2041,
+      0.2151
+     ],
+     "growth_yoy": [
+      null,
+      0.0853,
+      0.1391
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      249000000,
+      245000000,
+      262000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1021,
+      0.1008,
+      0.0997
+     ],
+     "growth_yoy": [
+      null,
+      -0.0161,
+      0.0694
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      192000000,
+      197000000,
+      213000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0788,
+      0.0811,
+      0.0811
+     ],
+     "growth_yoy": [
+      null,
+      0.026,
+      0.0812
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      151000000,
+      148000000,
+      143000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0619,
+      0.0609,
+      0.0544
+     ],
+     "growth_yoy": [
+      null,
+      -0.0199,
+      -0.0338
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      61000000,
+      63000000,
+      71000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.025,
+      0.0259,
+      0.027
+     ],
+     "growth_yoy": [
+      null,
+      0.0328,
+      0.127
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      28000000,
+      5000000,
+      -12000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0115,
+      0.0021,
+      -0.0046
+     ],
+     "growth_yoy": [
+      null,
+      -0.8214,
+      -3.4
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2438000000,
+     2430000000,
+     2627000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "InterestIncomeExpenseNet",
+   "tag": "us-gaap:InterestIncomeExpenseNet",
+   "label": "Net interest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      176000000,
+      182000000,
+      182000000,
+      187000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2821,
+      0.2809,
+      0.2749,
+      0.2762
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0341,
+      0.0275
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      152000000,
+      161000000,
+      163000000,
+      164000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2436,
+      0.2485,
+      0.2462,
+      0.2422
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0724,
+      0.0186
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      132000000,
+      137000000,
+      144000000,
+      147000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2115,
+      0.2114,
+      0.2175,
+      0.2171
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0909,
+      0.073
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      64000000,
+      64000000,
+      67000000,
+      68000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1026,
+      0.0988,
+      0.1012,
+      0.1004
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0469,
+      0.0625
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      53000000,
+      53000000,
+      54000000,
+      55000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0849,
+      0.0818,
+      0.0816,
+      0.0812
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0189,
+      0.0377
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      35000000,
+      36000000,
+      34000000,
+      34000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0561,
+      0.0556,
+      0.0514,
+      0.0502
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0286,
+      -0.0556
+     ]
+    },
+    {
+     "member": "zions:TheCommerceBankNorthwestSegmentMember",
+     "label": "The Commerce Bank Northwest Segment",
+     "values": [
+      null,
+      18000000,
+      null,
+      21000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0278,
+      null,
+      0.031
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.1667
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      17000000,
+      null,
+      20000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0272,
+      null,
+      0.0302,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1765,
+      null
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      -5000000,
+      -3000000,
+      -2000000,
+      1000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.008,
+      -0.0046,
+      -0.003,
+      0.0015
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     624000000,
+     648000000,
+     662000000,
+     677000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      192000000,
+      187000000,
+      190000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2836,
+      0.2671,
+      0.2507
+     ],
+     "growth_yoy": [
+      null,
+      -0.026,
+      0.016
+     ]
+    },
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      184000000,
+      175000000,
+      189000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2718,
+      0.25,
+      0.2493
+     ],
+     "growth_yoy": [
+      null,
+      -0.0489,
+      0.08
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      116000000,
+      121000000,
+      126000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1713,
+      0.1729,
+      0.1662
+     ],
+     "growth_yoy": [
+      null,
+      0.0431,
+      0.0413
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      45000000,
+      52000000,
+      52000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0665,
+      0.0743,
+      0.0686
+     ],
+     "growth_yoy": [
+      null,
+      0.1556,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      40000000,
+      43000000,
+      44000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0591,
+      0.0614,
+      0.058
+     ],
+     "growth_yoy": [
+      null,
+      0.075,
+      0.0233
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      28000000,
+      29000000,
+      36000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0414,
+      0.0414,
+      0.0475
+     ],
+     "growth_yoy": [
+      null,
+      0.0357,
+      0.2414
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      7000000,
+      8000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0103,
+      0.0114,
+      0.0106
+     ],
+     "growth_yoy": [
+      null,
+      0.1429,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      65000000,
+      85000000,
+      113000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.096,
+      0.1214,
+      0.1491
+     ],
+     "growth_yoy": [
+      null,
+      0.3077,
+      0.3294
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     677000000,
+     700000000,
+     758000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "NoninterestIncome",
+   "tag": "us-gaap:NoninterestIncome",
+   "label": "Noninterest income by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "zions:AmegyCorporationSegmentMember",
+     "label": "Amegy Corporation Segment",
+     "values": [
+      48000000,
+      43000000,
+      47000000,
+      50000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2807,
+      0.2263,
+      0.2513,
+      0.1087
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.0208,
+      0.1628
+     ]
+    },
+    {
+     "member": "zions:ZionsBankSegmentMember",
+     "label": "Zions Bank Segment",
+     "values": [
+      42000000,
+      49000000,
+      52000000,
+      47000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2456,
+      0.2579,
+      0.2781,
+      0.1022
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2381,
+      -0.0408
+     ]
+    },
+    {
+     "member": "zions:CaliforniaBankAndTrustSegmentMember",
+     "label": "California Bank And Trust Segment",
+     "values": [
+      28000000,
+      32000000,
+      38000000,
+      38000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1637,
+      0.1684,
+      0.2032,
+      0.0826
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3571,
+      0.1875
+     ]
+    },
+    {
+     "member": "zions:NationalBankOfArizonaSegmentMember",
+     "label": "National Bank Of Arizona Segment",
+     "values": [
+      10000000,
+      10000000,
+      12000000,
+      14000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0585,
+      0.0526,
+      0.0642,
+      0.0304
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2,
+      0.4
+     ]
+    },
+    {
+     "member": "zions:NevadaStateBankSegmentMember",
+     "label": "Nevada State Bank Segment",
+     "values": [
+      12000000,
+      13000000,
+      13000000,
+      13000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0702,
+      0.0684,
+      0.0695,
+      0.0283
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0833,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:VectraBankColoradoSegmentMember",
+     "label": "Vectra Bank Colorado Segment",
+     "values": [
+      8000000,
+      11000000,
+      9000000,
+      8000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0468,
+      0.0579,
+      0.0481,
+      0.0174
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.125,
+      -0.2727
+     ]
+    },
+    {
+     "member": "zions:TheCommerceBankNorthwestSegmentMember",
+     "label": "The Commerce Bank Northwest Segment",
+     "values": [
+      null,
+      2000000,
+      null,
+      2000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      null,
+      0.0105,
+      null,
+      0.0043
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:CommerceBankOfWashingtonSegmentMember",
+     "label": "Commerce Bank Of Washington Segment",
+     "values": [
+      2000000,
+      null,
+      2000000,
+      null
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0117,
+      null,
+      0.0107,
+      null
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      null
+     ]
+    },
+    {
+     "member": "zions:CorporateReconcilingItemsAndEliminationsMember",
+     "label": "Corporate Reconciling Items And Eliminations",
+     "values": [
+      21000000,
+      30000000,
+      14000000,
+      288000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1228,
+      0.1579,
+      0.0749,
+      0.6261
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.3333,
+      8.6
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     171000000,
+     190000000,
+     187000000,
+     460000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "zions:ProductsAndServicesCommercialAccountFeesMember",
+     "label": "Products And Services, Commercial Account Fees",
+     "values": [
+      174000000,
+      182000000,
+      185000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3459,
+      0.3548,
+      0.3497
+     ],
+     "growth_yoy": [
+      null,
+      0.046,
+      0.0165
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesCardFeesMember",
+     "label": "Products And Services, Card Fees",
+     "values": [
+      146000000,
+      144000000,
+      139000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2903,
+      0.2807,
+      0.2628
+     ],
+     "growth_yoy": [
+      null,
+      -0.0137,
+      -0.0347
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesRetailAndBusinessBankingFeesMember",
+     "label": "Products And Services, Retail And Business Banking Fees",
+     "values": [
+      66000000,
+      67000000,
+      74000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1312,
+      0.1306,
+      0.1399
+     ],
+     "growth_yoy": [
+      null,
+      0.0152,
+      0.1045
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesOtherCustomerRelatedFeesMember",
+     "label": "Products And Services, Other Customer-Related Fees",
+     "values": [
+      60000000,
+      55000000,
+      58000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1193,
+      0.1072,
+      0.1096
+     ],
+     "growth_yoy": [
+      null,
+      -0.0833,
+      0.0545
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesWealthManagementFeesMember",
+     "label": "Products And Services, Wealth Management Fees",
+     "values": [
+      53000000,
+      54000000,
+      54000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1054,
+      0.1053,
+      0.1021
+     ],
+     "growth_yoy": [
+      null,
+      0.0189,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesCapitalMarketsFeesMember",
+     "label": "Products And Services, Capital Markets Fees",
+     "values": [
+      4000000,
+      11000000,
+      19000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.008,
+      0.0214,
+      0.0359
+     ],
+     "growth_yoy": [
+      null,
+      1.75,
+      0.7273
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     503000000,
+     513000000,
+     529000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "zions:ProductsAndServicesCommercialAccountFeesMember",
+     "label": "Products And Services, Commercial Account Fees",
+     "values": [
+      45000000,
+      46000000,
+      48000000,
+      49000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3383,
+      0.3538,
+      0.3582,
+      0.3475
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0667,
+      0.0652
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesCardFeesMember",
+     "label": "Products And Services, Card Fees",
+     "values": [
+      34000000,
+      36000000,
+      34000000,
+      36000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2556,
+      0.2769,
+      0.2537,
+      0.2553
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0,
+      0.0
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesRetailAndBusinessBankingFeesMember",
+     "label": "Products And Services, Retail And Business Banking Fees",
+     "values": [
+      17000000,
+      18000000,
+      20000000,
+      20000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1278,
+      0.1385,
+      0.1493,
+      0.1418
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1765,
+      0.1111
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesOtherCustomerRelatedFeesMember",
+     "label": "Products And Services, Other Customer-Related Fees",
+     "values": [
+      13000000,
+      15000000,
+      15000000,
+      16000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0977,
+      0.1154,
+      0.1119,
+      0.1135
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.1538,
+      0.0667
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesWealthManagementFeesMember",
+     "label": "Products And Services, Wealth Management Fees",
+     "values": [
+      14000000,
+      13000000,
+      15000000,
+      14000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1053,
+      0.1,
+      0.1119,
+      0.0993
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0714,
+      0.0769
+     ]
+    },
+    {
+     "member": "zions:ProductsAndServicesCapitalMarketsAndForeignExchangeFeesMember",
+     "label": "Products And Services, Capital Markets And Foreign Exchange Fees",
+     "values": [
+      10000000,
+      2000000,
+      2000000,
+      6000000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0752,
+      0.0154,
+      0.0149,
+      0.0426
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      -0.8,
+      2.0
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     133000000,
+     130000000,
+     134000000,
+     141000000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

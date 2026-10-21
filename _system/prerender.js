@@ -21,11 +21,17 @@
  *   index row…</div>
  * Full pages for embedded records; the app's own "not embedded" page for the
  * rest, so every ranking row's link lands somewhere. Navigation is plain
- * HTML: rows link to #c-<TICKER> sections shown via :target (the list hides
- * while a company is targeted, via :has, with a graceful both-visible
- * fallback), the tier filter is CSS radios + :has over the rows' data-tier,
- * and every tab pane is stacked visible (the app's tab strips are hidden —
- * inert buttons would be dead taps).
+ * HTML with NO fragment anchors: a radio group (name="conav") sits at the
+ * top of #static — one co-list input (checked by default) plus one
+ * co-<TICKER> input per company — the row / details / prev-next links are
+ * <label for="co-<TICKER>"> elements, the back control is a label for
+ * co-list, each section shows via a generated sibling rule
+ * (#co-<T>:checked ~ .page#c-<T>) and the list hides while any company
+ * radio is checked. (Fragment navigation was dropped 2026-10-20: the iOS
+ * chat viewer ignores it, so tapping a company did nothing.) The tier
+ * filter is CSS radios + :has over the rows' data-tier, and every tab
+ * pane is stacked visible (the app's tab strips are hidden — inert
+ * buttons would be dead taps).
  *
  * Usage: node prerender.js --payload P.json --app APPJS --out FRAGMENT.html
  * Exit 0 on success (warnings on stderr); non-zero on any hard failure —
@@ -45,9 +51,12 @@ const FAN_H = 260;     // app.css .fanchart height
 
 const STATIC_CSS = [
   '#static .controls{display:none}',                       // the app's seg buttons / sort / search are JS-only; the radio filter below replaces the tier one
-  '#static .page{display:none}',                           // company sections wait for :target (overrides .page.open by id specificity)
-  '#static .page:target{display:block}',
-  '#static:has(.page:target) #listView{display:none}',     // one page at a time; without :has both show and the browser still jumps to the target
+  '#static .page{display:none}',                           // company sections wait for their nav radio (per-company rules are generated in main; id specificity overrides .page.open)
+  '#static input[name="conav"]{position:absolute;opacity:0;width:1px;height:1px}',   // the nav radios themselves are invisible; their labels are the tap targets
+  '#static .coradio:checked ~ #listView{display:none}',    // any company radio checked (co-list lacks .coradio) hides the list — one page at a time
+  '#static label[for^="co-"]{cursor:pointer}',
+  '#static #t td.co label{color:var(--txt);text-decoration:none;display:flex;flex-direction:column;gap:2px;min-width:0}',   // mirror of app.css #t td.co a for the row label
+  '#static #t td.co label b{font-size:15px}',
   '#static .pane{display:block}',                          // every tab's panel, stacked — present as plain HTML, no tab tap needed
   '#static .subpane{display:block}',
   '#static .tabbar .tabs{display:none}',                   // inert tab buttons would be dead taps; the panes below them are all visible
@@ -167,7 +176,9 @@ function main() {
     sections.push(html);
   }
 
-  /* ---- hash links (#T, #T.tab, #T.forecast.sub) -> in-file section anchors */
+  /* ---- hash links (#T, #T.tab, #T.forecast.sub) -> in-file section anchors.
+     Intermediate step only: navLabels below turns every section anchor into
+     a radio label, so no fragment link survives into the fragment. */
   function anchorFor(token) {
     const up = token.toUpperCase();
     if (byUpper[up]) return anchors[byUpper[up]];
@@ -182,8 +193,29 @@ function main() {
     });
   }
 
-  const fragment = '<style>\n' + STATIC_CSS + '\n</style>\n<div id="static">\n'
-    + rewriteLinks(list) + '\n' + sections.map(rewriteLinks).join('\n') + '\n</div>\n';
+  /* ---- no-JS navigation (2026-10-20): anchors -> labels for the conav
+     radios. The viewer's fragment navigation is inert, but a <label> tap
+     checks its radio in any HTML renderer, and the sibling rules in the
+     generated CSS do the rest. The back anchor (href="#") becomes the
+     co-list label; every #c-<T> anchor keeps its classes and content. */
+  function navLabels(html) {
+    html = html.replace(/<a class="back" href="#">← Ranking<\/a>/g,
+      '<label class="back" for="co-list">← Ranking</label>');
+    return html.replace(/<a\b([^>]*?)href="#c-([A-Za-z0-9_.-]+)"([^>]*)>([\s\S]*?)<\/a>/g,
+      (m, pre, suf, post, inner) => {
+        const attrs = (pre + post).trim().replace(/\s+/g, ' ');
+        return '<label' + (attrs ? ' ' + attrs : '') + ' for="co-' + suf + '">' + inner + '</label>';
+      });
+  }
+  // safeId's only selector-special character is the dot (kept for tickers like BF.B)
+  function cssId(s) { return s.replace(/\./g, '\\.'); }
+  const suffixes = index.map((row) => anchors[row.ticker].slice(2));   // anchors[t] is 'c-<suffix>'
+  const navRadios = '<input type="radio" name="conav" id="co-list" checked>'
+    + suffixes.map((s) => '<input type="radio" name="conav" class="coradio" id="co-' + s + '">').join('');
+  const navCss = suffixes.map((s) => '#static #co-' + cssId(s) + ':checked ~ .page#c-' + cssId(s) + '{display:block}').join('\n');
+
+  const fragment = '<style>\n' + STATIC_CSS + '\n' + navCss + '\n</style>\n<div id="static">\n'
+    + navRadios + '\n' + navLabels(rewriteLinks(list)) + '\n' + sections.map((h) => navLabels(rewriteLinks(h))).join('\n') + '\n</div>\n';
   fs.writeFileSync(outPath, fragment);
   warnings.forEach((w) => console.error('prerender: warning: ' + w));
   console.log('prerender: ' + index.length + ' sections (' + full + ' full, ' + missing + ' not-embedded), fragment '

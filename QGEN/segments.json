@@ -1,0 +1,232 @@
+{
+ "ticker": "QGEN",
+ "cik": 1015820,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001015820-26-000018",
+   "filed": "2026-03-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1015820/000101582026000018/qgen-20251231_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "qgen:ConsumablesandRelatedMember",
+     "label": "Consumables and Related",
+     "values": [
+      1726213000,
+      1760239000,
+      1876424000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8783,
+      0.8898,
+      0.8978
+     ],
+     "growth_yoy": [
+      null,
+      0.0197,
+      0.066
+     ]
+    },
+    {
+     "member": "qgen:InstrumentsMember",
+     "label": "Instruments",
+     "values": [
+      239098000,
+      217975000,
+      213575000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1217,
+      0.1102,
+      0.1022
+     ],
+     "growth_yoy": [
+      null,
+      -0.0883,
+      -0.0202
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1965311000,
+     1978214000,
+     2089999000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "country:US",
+     "label": "UNITED STATES",
+     "values": [
+      935281000,
+      942009000,
+      998448000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.4759,
+      0.4762,
+      0.4777
+     ],
+     "growth_yoy": [
+      null,
+      0.0072,
+      0.0599
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      624573000,
+      648494000,
+      712759000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3178,
+      0.3278,
+      0.341
+     ],
+     "growth_yoy": [
+      null,
+      0.0383,
+      0.0991
+     ]
+    },
+    {
+     "member": "qgen:AsiaPacificAndRestOfWorldMember",
+     "label": "Asia Pacific and Rest of World",
+     "values": [
+      320683000,
+      298154000,
+      290727000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1632,
+      0.1507,
+      0.1391
+     ],
+     "growth_yoy": [
+      null,
+      -0.0703,
+      -0.0249
+     ]
+    },
+    {
+     "member": "qgen:OtherAmericasMember",
+     "label": "Other Americas",
+     "values": [
+      84774000,
+      89557000,
+      88065000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0431,
+      0.0453,
+      0.0421
+     ],
+     "growth_yoy": [
+      null,
+      0.0564,
+      -0.0167
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     1965311000,
+     1978214000,
+     2089999000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Reportable Segment' (qgen:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/OperatingIncomeLoss/annual: row 'Reportable Segment' (qgen:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "business_segments/NetIncomeLoss/annual: row 'Reportable Segment' (qgen:ReportableSegmentMember) dropped: its values equal the consolidated total",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Sample Technologies' (qgen:SampleTechnologiesMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Consumables and Related, Instruments)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Diagnostic Solutions' (qgen:DiagnosticSolutionsMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Consumables and Related, Instruments)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'PCR / Nucleic Acid Amplification' (qgen:PCRNucleicAcidAmplificationMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Consumables and Related, Instruments)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Genomics / NGS' (qgen:GenomicsNGSMember) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (Consumables and Related, Instruments)",
+  "product/RevenueFromContractWithCustomerExcludingAssessedTax/annual: reconciling row 'Product and Service, Other' (us-gaap:ProductAndServiceOtherMember) dropped: the other rows already tie to the consolidated total without it",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'Total Americas' (qgen:TotalAmericasMember) dropped: its name marks it as a subtotal of the other rows",
+  "geography/RevenueFromContractWithCustomerExcludingAssessedTax/annual: row 'NETHERLANDS' (country:NL) dropped: a second classification on the same axis; the table keeps the split that sums to the consolidated total (UNITED STATES, Other Americas, EMEA, Asia Pacific and Rest of World)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

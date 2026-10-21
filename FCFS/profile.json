@@ -1,0 +1,304 @@
+{
+ "ticker": "FCFS",
+ "cik": 840489,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T16:12:47-04:00",
+ "newest_filing_date": "2026-08-31",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000840489.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000032/fcfs-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/FCFS/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/FCFS/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "FirstCash Holdings, Inc.",
+  "cik": 840489,
+  "description": {
+   "text": "FirstCash Holdings, Inc., along with its wholly owned subsidiaries (together, “FirstCash” or the “Company”), is the leading operator of pawn stores in the U.S., Latin America and the U.K. FirstCash’s primary line of business is the operation of retail pawn stores, also known as “pawnshops.” The Company also operates a retail POS payment solutions business. The Company’s two business lines are organized into four reportable segments: •The U.S. pawn segment consists of pawn operations in 29 U.S. states and the District of Columbia •The Latin America pawn segment consists of pawn operations in Mexico, Guatemala, El Salvador and Colombia •The U.K. pawn segment consists of pawn operations in England, Scotland and Wales •The retail POS payment solutions segment consists of the operations of American First Finance, LLC (“AFF”), which offers products in the U.S. The Company completed the acquisition of H&T, the leading pawn operator in the United Kingdom with 286 store locations, on August 14, 2025, the date which the balance sheet and operating results of H&T were included in the Company’s consolidated financial results. For further detail, see Note 3 of Notes to Consolidated Financial Statements. As of December 31, 2025, the Company operated over 3,300 pawnshops across its network. Pawn stores help customers meet small, short-term cash needs by providing non-recourse pawn loans and buying merchandise directly from customers.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "accession": "0000840489-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000032/fcfs-20251231.htm"
+  },
+  "description_short": "FirstCash is the leading international operator of pawn stores focused on serving cash and credit-constrained consumers. FirstCash operates more than 3,300 pawn stores in the U.S., Latin America and the U.K. Most of the stores buy and sell a wide variety of jewelry, electronics, tools, appliances, sporting goods, musical instruments and other merchandise, and make small non-recourse pawn loans secured by pledged personal property. FirstCash's pawn operations account for approximately 90% of net revenue, with the remainder provided by its wholly owned subsidiary, AFF, a leading provider of customer payment solutions at the point-of-sale for retailers of consumer goods and services.",
+  "industry": "Other Specialty Stores",
+  "sector": "Consumer Discretionary",
+  "region": "North America",
+  "sic": "5900",
+  "sic_description": "Retail-Miscellaneous Retail",
+  "state_of_incorporation": "TX",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.firstcash.com",
+  "headquarters": "Fort Worth, Texas",
+  "address": {
+   "street": "1600 West 7th Street",
+   "city": "Fort Worth",
+   "state": "Texas",
+   "zip": "76102",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-09"
+  },
+  "phone": "817-258-2650",
+  "employees": {
+   "count": 22000,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, the Company had approximately 22,000 employees across seven countries (the U.S., Mexico, Guatemala, El Salvador, Colombia, Jamaica and the U.K.).",
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000032/fcfs-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-06-05",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "FIRSTCASH, INC",
+   "FIRST CASH FINANCIAL SERVICES INC",
+   "FIRST CASH INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000840489&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-31",
+   "period": "2026-08-27",
+   "items": [
+    "1.01",
+    "2.03",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation; Reg FD",
+   "accession": "0001104659-26-103556",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000110465926103556/tm2624268d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-06",
+   "period": "2026-08-06",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000840489-26-000087",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000087/fcfs-20260806.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-27",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000840489-26-000085",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000085/fcfs-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-23",
+   "period": "2026-07-23",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0000840489-26-000082",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000082/fcfs-20260723.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-22",
+   "period": "2026-07-22",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000840489-26-000080",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000080/fcfs-20260722.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-16",
+   "period": "2026-07-16",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001104659-26-084072",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000110465926084072/tm2620535d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-23",
+   "period": "2026-06-23",
+   "items": [
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Reg FD; Other events",
+   "accession": "0001104659-26-076623",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000110465926076623/tm2618455d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-18",
+   "period": "2026-06-18",
+   "items": [
+    "3.03",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Change to security holders' rights; Charter or bylaw amendment",
+   "accession": "0001104659-26-075855",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000110465926075855/tm2618096d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-09",
+   "period": "2026-06-09",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000840489-26-000073",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000073/fcfs-20260609.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-12",
+   "period": "2026-05-11",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000840489-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000061/fcfs-20260511.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-05-01",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001104659-26-054143",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000110465926054143/tm2613265d1_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-28",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000840489-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000057/fcfs-20260428.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-28",
+   "period": "2026-06-09",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001104659-26-049885",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000110465926049885/tm2610930d9_def14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000840489-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000053/fcfs-20260427.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-24",
+   "period": "2026-04-24",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000840489-26-000051",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000051/fcfs-20260424.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-04-24",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000840489-26-000049",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000049/fcfs-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-23",
+   "period": "2026-04-23",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000840489-26-000047",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000047/fcfs-20260423.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-03",
+   "period": "2026-03-03",
+   "items": [
+    "7.01",
+    "9.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0000840489-26-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000042/fcfs-20260303.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-09",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000840489-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000032/fcfs-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-05",
+   "period": "2026-02-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000840489-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/840489/000084048926000024/fcfs-20260205.htm"
+  }
+ ],
+ "warnings": []
+}

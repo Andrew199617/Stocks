@@ -1,0 +1,300 @@
+{
+ "ticker": "RYAN",
+ "cik": 1849253,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T09:50:37-04:00",
+ "newest_filing_date": "2026-08-07",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001849253.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000006/ryan-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/RYAN/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/RYAN/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "RYAN SPECIALTY HOLDINGS, INC.",
+  "cik": 1849253,
+  "description": {
+   "text": "Founded by Patrick G. Ryan in 2010, Ryan Specialty is an international specialty insurance intermediary that provides specialty products, solutions, and services for insurance brokers, agents, and carriers. We provide distribution, underwriting, product development, administration, and risk management services through our wholesale brokerage platform and, on behalf of insurance carriers, through delegated underwriting authority via our managing underwriter, binding authority, and national program operations. Our expertise spans an extensive array of property, casualty, professional lines, transportation, personal lines, workers’ compensation, and employee benefits insurance. Our mission is to provide industry-leading innovative solutions for insurance brokers, agents, and carriers. For retail insurance brokers, we assist in the placement of complex or otherwise hard-to-place risks. For insurance carriers, we work with retail and wholesale insurance brokers to source, onboard, underwrite, and service these same types of risks. A significant majority of the premiums we place are bound in the E&S market, which includes Lloyd’s of London, which we refer to as Lloyd’s. There is often significantly more flexibility in terms, conditions, and rates in the E&S market relative to the Admitted or “standard” insurance market.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "accession": "0001849253-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000006/ryan-20251231.htm"
+  },
+  "description_short": "Founded in 2010, Ryan Specialty (NYSE: RYAN) is a service provider of specialty products and solutions for insurance brokers, agents, and carriers. Ryan Specialty provides distribution, underwriting, product development, administration, and risk management services by acting as a wholesale broker and a managing underwriter with delegated authority from insurance carriers. Our mission is to provide industry-leading innovative specialty insurance solutions for insurance brokers, agents, and carriers. Learn more at ryanspecialty.com.",
+  "industry": "Specialty Insurers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6411",
+  "sic_description": "Insurance Agents, Brokers & Service",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.ryanspecialty.com",
+  "headquarters": "Chicago, Illinois",
+  "address": {
+   "street": "155 North Wacker Drive Suite 4000",
+   "city": "Chicago",
+   "state": "Illinois",
+   "zip": "60606",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-13"
+  },
+  "phone": "312-784-6001",
+  "employees": {
+   "count": 6110,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 6,110 people with 129 offices across the United States and in the United Kingdom, Europe, Canada, Australia, the United Arab Emirates, India, and Singapore.",
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000006/ryan-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2021-06-21",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "RYAN SPECIALTY GROUP HOLDINGS, INC.",
+   "MAVERICK SPECIALTY, INC."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001849253&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-08-07",
+   "period": "2026-08-04",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001849253-26-000040",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000040/ryan-20260804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001849253-26-000036",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000036/ryan-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001849253-26-000034",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000034/ryan-20260730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-26",
+   "period": "2026-05-26",
+   "items": [
+    "7.01"
+   ],
+   "description": "Reg FD",
+   "accession": "0001849253-26-000031",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000031/ryan-20260526.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-01",
+   "period": "2026-04-28",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001849253-26-000029",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000029/ryan-20260428.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-01",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001849253-26-000026",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000026/ryan-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001849253-26-000023",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000023/ryan-20260430.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001849253-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000022/ryan-20260430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-17",
+   "period": "2026-03-17",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001849253-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000013/ryan-20260317.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-13",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001849253-26-000006",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000006/ryan-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-10",
+   "items": [
+    "2.02",
+    "2.05",
+    "7.01",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Exit costs; Reg FD; Other events",
+   "accession": "0001849253-26-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925326000004/ryan-20260212.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-12",
+   "period": "2026-02-10",
+   "items": [
+    "5.08",
+    "8.01"
+   ],
+   "description": "Shareholder nominations; Other events",
+   "accession": "0001628280-26-007479",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000162828026007479/ryan-20260210.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-08",
+   "period": "2025-12-05",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001849253-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925325000018/ryan-20251205.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-10-31",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001849253-25-000016",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925325000016/ryan-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-30",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001849253-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925325000013/ryan-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-08",
+   "period": "2025-10-02",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001849253-25-000008",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925325000008/ryan-20251002.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-03",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001849253-25-000004",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000184925325000004/ryan-20250903.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-01",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-25-037141",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000162828025037141/ryan-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-31",
+   "period": "2025-07-31",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001628280-25-036997",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000162828025036997/ryan-20250731.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-17",
+   "period": "2025-07-17",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001628280-25-035218",
+   "url": "https://www.sec.gov/Archives/edgar/data/1849253/000162828025035218/ryan-20250717.htm"
+  }
+ ],
+ "warnings": []
+}

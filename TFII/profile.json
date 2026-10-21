@@ -1,0 +1,238 @@
+{
+ "ticker": "TFII",
+ "cik": 1588823,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T12:57:54-04:00",
+ "newest_filing_date": "2026-10-16",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001588823.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526054689/tfii-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/TFII/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/TFII/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "TFI International Inc.",
+  "cik": 1588823,
+  "description": null,
+  "description_short": "TFI International Inc. is a North American leader in the transportation and logistics industry, operating across the United States, Canada and Mexico through its subsidiaries. TFI International creates value for shareholders by identifying strategic acquisitions and managing a growing network of wholly-owned operating subsidiaries. Under the TFI International umbrella, companies benefit from financial and operational resources to build their businesses and increase their efficiency. TFI International companies service the following segments: Less-Than-Truckload; Truckload; Logistics.",
+  "industry": "Trucking Freight/Courier Services",
+  "sector": "Industrials",
+  "region": "North America",
+  "sic": "4210",
+  "sic_description": "Trucking & Courier Services (No Air)",
+  "state_of_incorporation": "A8",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": null,
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.tfiintl.com",
+  "headquarters": "Saint-Laurent, Québec",
+  "address": {
+   "street": "8801 Trans-Canada Suite 500",
+   "city": "Saint-Laurent",
+   "state": "Québec",
+   "zip": "H4S 1Z6",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "40-F",
+   "filed": "2026-02-17"
+  },
+  "phone": "514-331-4113",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2020-02-10",
+  "first_sec_filing_form": "8-A12B",
+  "former_names": [
+   "TransForce Inc. \\ Quebec Canada"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001588823&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-16",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-424082",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526424082/tfii_6k_oct_16_press_rel.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-01",
+   "period": "2026-10-01",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-410678",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526410678/tfii_6k_oct_1_press_rele.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-17",
+   "period": "2026-09-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-394341",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526394341/tfii_6k_sep_17_press_rel.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-15",
+   "period": "2026-09-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-391894",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526391894/tfii_6k_sep_15_press_rel.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-27",
+   "period": "2026-07-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-318068",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526318068/tfii_2026_q-2_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-29",
+   "period": "2026-06-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-288404",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526288404/tfii_6k_june_29_press_re.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-06-15",
+   "period": "2026-06-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-271109",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526271109/tfii_6k_june_15_press_re.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-182136",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526182136/tfii_6k_april_27_press_r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-27",
+   "period": "2026-04-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-182067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526182067/tfii_2026_q-1_6-k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-164015",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526164015/tfii_6k_april_20_press_r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-30",
+   "period": "2026-03-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-131812",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526131812/tfii_6k_march_30_press_r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-25",
+   "period": "2026-03-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-124354",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526124354/tfii_6k_march_25_circula.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-16",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-108337",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526108337/tfii_6k_march_16_press_r.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-27",
+   "period": "2026-02-27",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-083070",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526083070/tfii_6k_fe_27_change_of_.htm"
+  },
+  {
+   "form": "40-F",
+   "filed": "2026-02-17",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report (Canadian issuer)",
+   "accession": "0001193125-26-054689",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526054689/tfii-20251231.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-054656",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526054656/tfii_6k_earnings_release.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-054642",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526054642/tfii_6k_feb_17_press_rel.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-21",
+   "period": "2026-01-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-017258",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526017258/tfii_6k_jan_21_press_rel.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-016821",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312526016821/tfii_6k_jan_20_press_rel.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-12-15",
+   "period": "2025-12-15",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-319224",
+   "url": "https://www.sec.gov/Archives/edgar/data/1588823/000119312525319224/tfii_6k_dec._15_press_re.htm"
+  }
+ ],
+ "warnings": [
+  "description: 40-F primary document is a wrapper; no Item 1 Business section (40-F filed 2026-02-17)",
+  "employees: no headcount sentence found in the 40-F filed 2026-02-17"
+ ]
+}

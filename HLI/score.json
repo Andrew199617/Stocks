@@ -1,0 +1,91 @@
+{
+ "ticker": "HLI",
+ "name": "Houlihan Lokey, Inc.",
+ "sector": "Finance / Investment banking advisory",
+ "price": 130.33,
+ "market_cap_b": 8.92,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 7.021490907212017,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "No. 1 global M&A advisor by deal count and No. 1 global restructuring franchise, with a three-segment mix (Corporate Finance, countercyclical Financial Restructuring, Financial & Valuation Advisory) that kept ROIC at 24% or better in every one of the last five fiscal years including the FY2023-24 deal trough (24.0-34.5% across FY2023-26; FY2022 printed 72.9% on a small net invested-capital base) \u2014 but it is a people business: no contracts or switching costs per mandate, managing directors can walk, and a ~61.5% compensation ratio means the bankers capture most of the economics.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2017 (39,357,000 vs 45,059,000, +14.5%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (7.3%) vs bull-case tier C (12.0%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 30.64,
+   "irr": 0.0527
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 50.05,
+   "irr": 0.0732
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 70.35,
+   "irr": 0.0944
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 96.63,
+   "irr": 0.1204
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 131.5,
+   "irr": 0.151
+  }
+ },
+ "iv_at_15": 67.66,
+ "iv_at_12": 90.6,
+ "implied_irr": 0.0923,
+ "implied_irr_base_case": 0.0944,
+ "upside_at_15_pct": -48.1,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Premier mid-market advisory franchise, moat 6/10 \u2014 but at $130.33 the price pays full price for peak-cycle earnings: weighted IRR 9.2% (Tier D) on the $7.02 normalized base with TTM OE already down to $4.15/share, and it clears 15% only at or below $67.66.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0732,
+ "irr_bull": 0.1204,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 47.18,
+ "iv_at_25": 35.99,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 68434896,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "No. 1 global M&A advisor by transaction count and No. 1 global restructuring franchise (11 years) \u2014 scale and reputation in the mid-market segment bulge brackets underserve",
+  "Countercyclical mix: restructuring and valuation work offsets M&A downturns (FY2023 revenue fell 20% while M&A froze, and the firm stayed solidly profitable)",
+  "ROIC proxy 24.0-34.5% across FY2024-26 and 29.8% even in trough FY2023 \u2014 returns stayed well above cost of capital through the cycle",
+  "Asset-light, debt-free balance sheet: $1,189,454,000 cash at FY2026 against no filed funded debt \u2014 no balance-sheet risk to the franchise",
+  "Gross margin held in a 29.8-35.0% band over FY2022-25 despite the cycle \u2014 fee pricing power in its niches"
+ ],
+ "moat_against": [
+  "People business: clients hire individuals, not the platform \u2014 managing-director departures take revenue with them and there are no contracts or switching costs per mandate",
+  "Bankers capture the economics: adjusted compensation ratio guided to the 61.5% long-term target for FY2027, capping shareholder margin leverage",
+  "Deal fees are cyclical and closing-dependent: Q1 FY2027 Corporate Finance revenue fell to $303M from $398M on delayed larger-fee closings (Middle East instability, software-sector disruption)",
+  "Intense competition from bulge brackets moving downmarket and boutiques (Evercore, Moelis, Lazard) moving into the mid-market",
+  "Stock compensation is large and rising ($201,304,000 in FY2026) \u2014 a real, recurring cost of retaining the talent that is the moat"
+ ]
+}

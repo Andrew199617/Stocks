@@ -1,0 +1,99 @@
+{
+ "ticker": "XPEV",
+ "cik": 1810997,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-157849",
+   "filed": "2026-04-16",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1810997/000119312526157849/d36361d20f_htm.xml"
+  }
+ ],
+ "currency": "CNY",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "xpev:VehicleMember",
+     "label": "Vehicle",
+     "values": [
+      28010857000,
+      35829402000,
+      68378920000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9131,
+      0.8767,
+      0.8913
+     ],
+     "growth_yoy": [
+      null,
+      0.2791,
+      0.9085
+     ]
+    },
+    {
+     "member": "xpev:ServicesAndOthersMember",
+     "label": "Services And Others",
+     "values": [
+      2665210000,
+      5036907000,
+      8340822000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0869,
+      0.1233,
+      0.1087
+     ],
+     "growth_yoy": [
+      null,
+      0.8899,
+      0.6559
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     30676067000,
+     40866309000,
+     76719742000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "product/Revenues/annual: row 'Service, Other' (us-gaap:ServiceOtherMember) dropped: same numbers as 'Services And Others' (xpev:ServicesAndOthersMember)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}

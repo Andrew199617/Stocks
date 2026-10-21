@@ -1,0 +1,88 @@
+{
+ "ticker": "WMS",
+ "name": "Advanced Drainage Systems, Inc.",
+ "sector": "Industrials / Water management \u2014 stormwater & wastewater products",
+ "price": 127.78,
+ "market_cap_b": 10.02,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 6.354708480453573,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 6,
+ "moat_justification": "Moderate-strong moat: North America's leading stormwater manager with scale in corrugated HDPE pipe, a dense local plant/distribution network that gives a freight-cost advantage on bulky pipe rivals cannot replicate, Infiltrator's dominant plastic leachfield-chamber position, spec/code approvals and one of the largest plastic-recycling operations (resin cost integration). Evidence: ROIC proxy (fundamentals.json) 17.6% / 16.3% / 29.3% / 28.8% / 21.5% over FY2021\u2013FY2025 \u2014 well above the cost of capital through a resin-price cycle \u2014 easing to 14.5% in FY2026 as the ~$991M NDS acquisition (closed Feb 2026) inflated invested capital ahead of its earnings contribution; gross margin recovered from the FY2022 resin squeeze (28.9%) to 36.4\u201339.9% in FY2023\u2013FY2026 (38.6% TTM), proving pricing power with a lag. Capped at 6 because the core pipe product is close to commodity (JM Eagle, Lane Enterprises, concrete/steel substitutes), resin and freight costs squeeze margins before price actions catch up (FY2027 adjusted EBITDA margin guided down ~170\u2013200bp), and demand is construction-cyclical. CAP = 9.8 years.",
+ "cap_years": 9.8,
+ "fragility_flags": [
+  "BUYBACK_TAILWIND: share count shrinking 2.0%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.8x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier D (6.6%) vs bull-case tier C (10.8%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 26.13,
+   "irr": 0.0473
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 42.79,
+   "irr": 0.0659
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.4,
+   "irr": 0.0844
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 81.6,
+   "irr": 0.1077
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 126.39,
+   "irr": 0.1488
+  }
+ },
+ "iv_at_15": 62.23,
+ "iv_at_12": 83.15,
+ "implied_irr": 0.088,
+ "implied_irr_base_case": 0.0844,
+ "upside_at_15_pct": -51.3,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "medium",
+ "one_liner": "High-quality stormwater franchise, moat 6/10 with ROIC 16\u201329% through the cycle \u2014 but at $127.78 the OE yield is only 4.97% and weighted IRR is 8.80% (IV@15% $62.23); it clears 15% only below ~$62, and even the super-bull case (14.88%) stays under the hurdle.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0659,
+ "irr_bull": 0.1077,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 43.52,
+ "iv_at_25": 33.28,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 1388811000,
+ "shares_diluted_latest": 78383000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "#1 North American stormwater position \u2014 scale in corrugated HDPE pipe and the broadest water-management product line (pipe, chambers, Infiltrator, NDS, Orenco)",
+  "Dense network of 60+ local plants and distribution \u2014 freight is the binding cost on bulky low-value-density pipe, so local scale is a structural cost advantage smaller rivals cannot match",
+  "ROIC proxy 16\u201329% across FY2021\u2013FY2025 and gross margin rebuilt to ~38\u201340% after the FY2022 resin squeeze \u2014 pricing power proven, with a lag",
+  "Spec-in / code-approval position and Infiltrator's dominant share of plastic leachfield chambers \u2014 engineers and distributors default to ADS systems",
+  "Vertical integration into recycled resin (one of North America's largest plastic recyclers) \u2014 input-cost and supply advantage vs virgin-resin buyers"
+ ],
+ "moat_against": [
+  "Core corrugated pipe is near-commodity: JM Eagle, Lane Enterprises and regional makers plus concrete/steel pipe substitution contest every bid",
+  "Resin and transportation cost inflation compresses margins before pricing catches up \u2014 FY2022 gross margin fell to 28.9% and FY2027 EBITDA margin is guided down ~170\u2013200bp on resin/freight",
+  "Construction cyclicality: revenue fell in FY2024 (-6.4%) and OE/share ranged from $1.39 (FY2022) to $6.85 (FY2026) over five years",
+  "Growth increasingly bought: NDS (~$991M, Feb 2026) and Orenco ($237M, FY2025) add goodwill, integration risk and debt \u2014 net debt $1,388.8M, 2.79x normalized OE",
+  "No recurring-revenue or contractual lock-in \u2014 every project is re-bid; the moat is cost/spec position, not switching costs on installed product"
+ ]
+}

@@ -1,0 +1,291 @@
+{
+ "ticker": "HSIC",
+ "cik": 1000228,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T13:13:26-04:00",
+ "newest_filing_date": "2026-10-08",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001000228.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000013/hsic-20251227.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HSIC/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HSIC/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HENRY SCHEIN INC",
+  "cik": 1000228,
+  "description": {
+   "text": "Henry Schein, Inc. is a solutions company for health care professionals powered technology. provider of health care products and services primarily to based dental and medical practitioners, as well as alternate sites of care. commitment to serve as trusted advisors and help customers operate a more",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-27",
+   "accession": "0001000228-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000013/hsic-20251227.htm"
+  },
+  "description_short": "Henry Schein, Inc. (Nasdaq: HSIC) is a products, services, and technology platforms company for healthcare customers. With more than 25,000 Team Schein Members worldwide, the Company's network of trusted advisors provides more than 1 million customers globally with more than 300 valued solutions that help improve operational success and clinical outcomes. Our Business, Clinical, Technology, and Supply Chain solutions help office-based dental and medical practitioners work more efficiently so they can provide quality care more effectively. These solutions also support dental laboratories, government and institutional healthcare clinics, as well as other alternate care sites. Henry Schein operates through a centralized and automated distribution network, with a selection of more than 300,000 branded products and Henry Schein corporate brand products in our distribution centers.",
+  "industry": "Medical Specialities",
+  "sector": "Health Care",
+  "region": "North America",
+  "sic": "5047",
+  "sic_description": "Wholesale-Medical, Dental & Hospital Equipment & Supplies",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1226",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq"
+  ],
+  "website": "https://www.henryschein.com",
+  "headquarters": "Melville, New York",
+  "address": {
+   "street": "135 Duryea Road",
+   "city": "Melville",
+   "state": "New York",
+   "zip": "11747",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "6318435500",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1996-05-13",
+  "first_sec_filing_form": "10-Q",
+  "former_names": [
+   "SCHEIN HENRY INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001000228&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-06",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-417409",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312526417409/d159348d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-21",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-26-397208",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312526397208/d110297d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001000228-26-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000045/hsic-20260627.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001000228-26-000043",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000043/hsic-20260804.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-27",
+   "items": [
+    "5.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Reg FD",
+   "accession": "0001193125-26-324857",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312526324857/d55491d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-22",
+   "period": "2026-05-21",
+   "items": [
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Shareholder vote; Reg FD",
+   "accession": "0001193125-26-235496",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312526235496/d21093d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001000228-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000024/hsic-20260328.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001000228-26-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000021/hsic-20260505.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-08",
+   "period": "2026-05-21",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-146317",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312526146317/d904292ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-27",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001000228-26-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000013/hsic-20251227.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001000228-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022826000010/hsic-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-12",
+   "period": "2026-01-09",
+   "items": [
+    "5.02",
+    "5.03",
+    "9.01"
+   ],
+   "description": "Officer/director change; Charter or bylaw amendment",
+   "accession": "0001193125-26-009725",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312526009725/d52378d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-23",
+   "period": "2025-12-23",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-330853",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312525330853/d54755d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-23",
+   "period": "2025-12-19",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-329486",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312525329486/d901619d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-09",
+   "period": "2025-12-07",
+   "items": [
+    "1.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-311953",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312525311953/d943200d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-27",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001000228-25-000066",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022825000066/hsic-20250927.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-11-04",
+   "period": "2025-11-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001000228-25-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022825000063/hsic-20251104.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-09",
+   "period": "2025-09-05",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-199164",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000119312525199164/d918815d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-28",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001000228-25-000045",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022825000045/hsic-20250628.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-05",
+   "period": "2025-08-05",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001000228-25-000042",
+   "url": "https://www.sec.gov/Archives/edgar/data/1000228/000100022825000042/hsic-20250805.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-24"
+ ]
+}

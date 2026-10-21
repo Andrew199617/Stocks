@@ -1,0 +1,40 @@
+{
+ "ads_ratio": {
+  "ratio": 1.0,
+  "reason": "TFI is a direct-listed foreign private issuer: the NYSE security is the common share itself (also listed on TSX under the same symbol), not an ADS, so one traded share is one ordinary share and per-share figures and the traded price are on the same basis.",
+  "source": "Form 40-F for the fiscal year ended December 31, 2025 (filed 2026-02-17), cover page: securities registered under Section 12(b) are 'Common Shares', trading symbol TFII, listed on the New York Stock Exchange; the cover states 84,408,437 common shares outstanding, matching the engine's dei count"
+ },
+ "confidence": "low",
+ "in_scope_under_40b": true,
+ "moat_against": [
+  "Commodity freight, low shipper switching costs, deep rival set (Old Dominion, XPO, ArcBest, FedEx Freight, Heartland) \u2014 no network effect or lock-in",
+  "Returns have compressed through the cycle: ROIC proxy 24.4% (FY2022) to 8.6% (FY2025), operating margin 13.0% to 7.2% \u2014 pricing power does not hold in a freight recession",
+  "Cyclical and cost-exposed: unionized U.S. LTL workforce, driver and purchased-transportation cost pressure flagged into Q3 2026",
+  "Acquisition-led model carries leverage (net debt 3.7x normalized OE) and execution risk (Daseke integration/separation talk, planned U.S. redomiciliation)"
+ ],
+ "moat_for": [
+  "Scale: one of North America's largest trucking groups and the largest flatbed/specialized carrier via Daseke, with LTL terminal-network density from TForce Freight (ex-UPS Freight)",
+  "Decentralized acquisition platform under Alain Bedard: decades of buying fragmented carriers cheaply, keeping local brands/operators and improving their operating ratios",
+  "Diversification across LTL, Truckload and Logistics and across industrial end markets cushions any single freight lane"
+ ],
+ "moat_justification": "Scale and a proven decentralized acquisition platform in a fragmented industry, but freight is a commodity with low switching costs: ROIC proxy fell from 24.4% in FY2022 to 8.6% in FY2025 and operating margin from 13.0% to 7.2% through the freight recession, showing no pricing power that survives the cycle.",
+ "moat_score": 4,
+ "name": "TFI International Inc.",
+ "one_liner": "North American trucking consolidator, moat 4/10 \u2014 Tier C on the bridged-TTM base (Q4 re-score 2026-10-20): weighted IRR 10.1%, IV@15% $67.32 vs $111.59 price; the median base gives 10.0% \u2014 Tier C on both; does not clear the 15% hurdle until ~$67, and with the bear case at 7.6% (Tier D) any position should be sized to the bear end.",
+ "probs_used": [
+  0.1,
+  0.25,
+  0.3,
+  0.25,
+  0.1
+ ],
+ "sector": "Transportation / Trucking & Logistics (LTL, Truckload, Logistics)",
+ "tier_override": null,
+ "tier_override_reason": null,
+ "base_override": {
+  "value": 7.743597699754435,
+  "kind": "filing",
+  "source": "Form 6-K furnished 2026-07-27 (accession 0001193125-26-318068), Exhibit 99.3, Condensed Consolidated Interim Financial Statements for the second quarter ended June 30, 2026: condensed consolidated statements of cash flows print six-month legs for 2026 and 2025 \u2014 net cash from operating activities $377,110K / $440,238K; purchases of property and equipment $100,686K / $118,331K; purchases of intangible assets $2,125K / $7,334K; share-based payment transactions $8,526K / $7,257K; Note 16 (Earnings per share) prints the H1 2026 weighted average number of diluted common shares, 82,413,114. FY2025 legs from the Form 40-F for the fiscal year ended December 31, 2025 as extracted in financials_history.csv (OCF $977,788K; purchases of property and equipment $273,220K; purchases of intangible assets $9,703K; share-based payments $15,148K).",
+  "reason": "Bridged TTM under Andrew's Q4 ruling (2026-10-19: when an interim prints the TTM legs, IFRS names score on the bridged TTM), directed re-run ordered by Andrew 2026-10-20. Construction, per leg: TTM = FY2025 + H1 2026 \u2212 H1 2025 \u2192 OCF $914,660K; capex $260,069K (property and equipment $255,575K + intangible assets $4,494K \u2014 the same two-line rollup as the scored chain); SBC $16,417K; owner's earnings $638,174K. Divided by the latest filed diluted count, 82,413,114 (H1 2026 weighted average diluted shares, Note 16 \u2014 the ttm.py denominator convention), = $7.7436/share. The prior base was the median of the last 3 FY, $7.6544/share (weighted IRR 10.01%, Tier C); both bases are recorded side by side in analysis.md."
+ }
+}

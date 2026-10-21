@@ -1,0 +1,161 @@
+{
+ "ticker": "BXP",
+ "cik": 1037540,
+ "entity": "BXP, INC.",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1245157000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 563181000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 602524000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1284500000
+  },
+  "capex": {
+   "fy": 900437000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquireOtherProductiveAssets+PaymentsForCapitalImprovements",
+   "ytd_prior": 407698000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquireOtherProductiveAssets+PaymentsForCapitalImprovements",
+   "ytd_current": 460510000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquireOtherProductiveAssets+PaymentsForCapitalImprovements",
+   "ttm": 953249000
+  },
+  "sbc": {
+   "fy": 44334000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 34860000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 41500000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "AllocatedShareBasedCompensationExpense",
+   "ttm": 50974000
+  },
+  "shares_diluted": {
+   "fy": 158869000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 158713000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 159344000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1284500000,
+ "ttm_capex": 953249000,
+ "ttm_sbc": 50974000,
+ "ttm_shares_diluted": 159344000,
+ "ttm_oe_total": 280277000,
+ "ttm_oe_per_share": 1.7589429159554173,
+ "warnings": [
+  "sbc: AllocatedShareBasedCompensationExpense replaced a smaller ShareBasedCompensation on ytd_current only, so the TTM mixes tags across legs (fy ShareBasedCompensation, ytd_prior ShareBasedCompensation, ytd_current AllocatedShareBasedCompensationExpense) \u2014 check that each leg's figure is the filer's total stock compensation for its period (a 10-Q often files only one of the two tags)"
+ ],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 900437000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireOtherProductiveAssets",
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireOtherProductiveAssets+PaymentsForCapitalImprovements"
+  },
+  "ytd_prior": {
+   "ppe": 407698000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireOtherProductiveAssets",
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireOtherProductiveAssets+PaymentsForCapitalImprovements"
+  },
+  "ytd_current": {
+   "ppe": 460510000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquireOtherProductiveAssets",
+    "PaymentsForCapitalImprovements"
+   ],
+   "ppe_source": "components",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquireOtherProductiveAssets+PaymentsForCapitalImprovements"
+  }
+ },
+ "sbc_reconciled_legs": {
+  "ytd_current": {
+   "share": 41057000,
+   "allocated": 41500000,
+   "note": "allocated 41,500,000 > share 41,057,000 USD, +1.1%",
+   "period": [
+    "2026-01-01",
+    "2026-06-30"
+   ]
+  }
+ },
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

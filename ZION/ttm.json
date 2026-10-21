@@ -1,0 +1,146 @@
+{
+ "ticker": "ZION",
+ "cik": 109380,
+ "entity": "ZIONS BANCORPORATION, NATIONAL ASSOCIATION",
+ "fy_end": "2025-12-31",
+ "ytd_end": "2026-06-30",
+ "inputs": {
+  "ocf": {
+   "fy": 1073000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_prior": 117000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ytd_current": 845000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "NetCashProvidedByUsedInOperatingActivities",
+   "ttm": 1801000000
+  },
+  "capex": {
+   "fy": 121000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_prior": 58000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ytd_current": 58000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "PaymentsToAcquirePropertyPlantAndEquipment",
+   "ttm": 121000000
+  },
+  "sbc": {
+   "fy": 35000000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "ShareBasedCompensation",
+   "ytd_prior": 23000000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "ShareBasedCompensation",
+   "ytd_current": 24000000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "ShareBasedCompensation",
+   "ttm": 36000000
+  },
+  "shares_diluted": {
+   "fy": 147157000,
+   "fy_period": [
+    "2025-01-01",
+    "2025-12-31"
+   ],
+   "fy_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_prior": 147210000,
+   "ytd_prior_period": [
+    "2025-01-01",
+    "2025-06-30"
+   ],
+   "ytd_prior_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "ytd_current": 146621000,
+   "ytd_current_period": [
+    "2026-01-01",
+    "2026-06-30"
+   ],
+   "ytd_current_tag": "WeightedAverageNumberOfDilutedSharesOutstanding",
+   "basis": "ttm_shares_diluted = ytd_current (weighted average diluted shares for the current YTD period)"
+  }
+ },
+ "ttm_ocf": 1801000000,
+ "ttm_capex": 121000000,
+ "ttm_sbc": 36000000,
+ "ttm_shares_diluted": 146621000,
+ "ttm_oe_total": 1644000000,
+ "ttm_oe_per_share": 11.212582099426413,
+ "warnings": [],
+ "overrides_used": [],
+ "capex_components": {
+  "fy": {
+   "ppe": 121000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_prior": {
+   "ppe": 58000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  },
+  "ytd_current": {
+   "ppe": 58000000,
+   "ppe_unit": "USD",
+   "ppe_tags": [
+    "PaymentsToAcquirePropertyPlantAndEquipment"
+   ],
+   "ppe_source": "rollup",
+   "intangibles": 0.0,
+   "intangibles_unit": null,
+   "intangible_tags": [],
+   "dropped": [],
+   "provenance": "PaymentsToAcquirePropertyPlantAndEquipment"
+  }
+ },
+ "sbc_reconciled_legs": {},
+ "split_adjustment": null,
+ "capex_override_superseded_legs": {},
+ "sbc_reconciliation_withdrawn_legs": {}
+}

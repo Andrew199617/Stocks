@@ -1,0 +1,197 @@
+{
+ "ticker": "RRC",
+ "cik": 315852,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001193125-26-067292",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526067292/rrc-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-167076",
+   "filed": "2026-04-21",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526167076/rrc-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001193125-26-310446",
+   "filed": "2026-07-21",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/315852/000119312526310446/rrc-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "rrc:NaturalGasNaturalGasLiquidsAndOilSalesMember",
+     "label": "Natural Gas Natural Gas Liquids And Oil Sales",
+     "values": [
+      2334661000,
+      2213850000,
+      2815591000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9187,
+      0.9433,
+      0.9422
+     ],
+     "growth_yoy": [
+      null,
+      -0.0517,
+      0.2718
+     ]
+    },
+    {
+     "member": "rrc:BrokeredNaturalGasAndMarketingMember",
+     "label": "Brokered Natural Gas and Marketing",
+     "values": [
+      206552000,
+      133048000,
+      172573000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0813,
+      0.0567,
+      0.0578
+     ],
+     "growth_yoy": [
+      null,
+      -0.3559,
+      0.2971
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2541213000,
+     2346898000,
+     2988164000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by product / service",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "rrc:NaturalGasNaturalGasLiquidsAndOilSalesMember",
+     "label": "Natural Gas Natural Gas Liquids And Oil Sales",
+     "values": [
+      791920000,
+      666638000,
+      1010252000,
+      702087000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9357,
+      0.9528,
+      0.9464,
+      0.9243
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.2757,
+      0.0532
+     ]
+    },
+    {
+     "member": "rrc:BrokeredNaturalGasAndMarketingMember",
+     "label": "Brokered Natural Gas and Marketing",
+     "values": [
+      54408000,
+      33009000,
+      57229000,
+      57496000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0643,
+      0.0472,
+      0.0536,
+      0.0757
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0518,
+      0.7418
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     846328000,
+     699647000,
+     1067481000,
+     759583000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}

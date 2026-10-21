@@ -1,0 +1,743 @@
+{
+ "ticker": "DAR",
+ "name": "DARLING INGREDIENTS INC.",
+ "cik": 916540,
+ "engine_version": 5,
+ "engine_release": "5.5.0",
+ "as_of": "2026-10-20",
+ "price": 60.52,
+ "price_source": "nasdaq_quote_api",
+ "shares_diluted_latest": 160157000,
+ "shares_outstanding_dei_latest": 157802916,
+ "shares_outstanding_dei_asof": "2026-08-03",
+ "market_cap_est": 9692701640.0,
+ "net_debt_latest": 3848789000,
+ "net_debt_basis": "LongTermDebtAndCapitalLeaseObligations+LongTermDebtAndCapitalLeaseObligationsCurrent",
+ "lease_liabilities_latest": 224107000,
+ "latest_period_end": "2026-01-03",
+ "rev_cagr_5y": 0.1142319810102419,
+ "rev_cagr_3y": -0.020587225518094776,
+ "oe_positive_years_of_last_5": "5/5",
+ "base_oe_total_latest_fy": 657430000.0,
+ "base_oe_per_share": 3.0101351769938915,
+ "base_oe_latest_per_share": 4.104909557496707,
+ "base_oe_normalized_per_share": 3.0101351769938915,
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "growth_components": {
+  "rev_cagr_5y": 0.1142319810102419,
+  "rev_cagr_3y": -0.020587225518094776,
+  "rev_yoy_latest": 0.07361139422677354,
+  "oe_ps_cagr_2y": 0.46515931405010247
+ },
+ "growth_components_adjusted": {
+  "rev_cagr_5y": 0.12232474815515193,
+  "rev_cagr_3y": -0.012494458373184747,
+  "rev_yoy_latest": 0.08170416137168357,
+  "oe_ps_cagr_2y": 0.46515931405010247
+ },
+ "g_blend": 0.10201445476341775,
+ "share_cagr": -0.008092767144910029,
+ "share_count_adj": 0.008092767144910029,
+ "share_adj_basis": "applied to revenue components only (v5.4); OE/share CAGR enters unadjusted",
+ "used_tags": {
+  "revenue": "RevenueFromContractWithCustomerExcludingAssessedTax",
+  "net_income": "NetIncomeLoss",
+  "operating_income": "OperatingIncomeLoss",
+  "ocf": "NetCashProvidedByUsedInOperatingActivities",
+  "capex": "PaymentsToAcquirePropertyPlantAndEquipment+PaymentsToAcquireIntangibleAssets",
+  "da": "DepreciationAndAmortization",
+  "sbc": "AllocatedShareBasedCompensationExpense",
+  "tax": "IncomeTaxExpenseBenefit",
+  "shares_diluted": "WeightedAverageNumberOfDilutedSharesOutstanding",
+  "cash": "CashAndCashEquivalentsAtCarryingValue",
+  "restricted_cash": "RestrictedCashAndCashEquivalents",
+  "assets_current": "AssetsCurrent",
+  "liab_current": "LiabilitiesCurrent",
+  "debt_current": null,
+  "debt_cur_ltd": "LongTermDebtAndCapitalLeaseObligationsCurrent",
+  "debt_cur_st": null,
+  "debt_lt": "LongTermDebtNoncurrent",
+  "debt_total": "LongTermDebt",
+  "lease_liab_current": "OperatingLeaseLiabilityCurrent",
+  "lease_liab_lt": "OperatingLeaseLiabilityNoncurrent",
+  "assets": "Assets",
+  "liabilities": "Liabilities",
+  "ppe_net": "PropertyPlantAndEquipmentNet",
+  "equity": "StockholdersEquity",
+  "shares_out_inst": null,
+  "capex_components": "PaymentsToAcquireIntangibleAssets+PaymentsToAcquireProductiveAssets+PaymentsToAcquirePropertyPlantAndEquipment"
+ },
+ "filer_annual_form": "10-K",
+ "ads_ratio": null,
+ "fx_conversion": null,
+ "payable_base": null,
+ "override_checks": {},
+ "market_cap_basis": {
+  "shares_used": 160157000,
+  "shares_source": "diluted_latest",
+  "ads_ratio": null,
+  "formula": "price \u00d7 shares"
+ },
+ "share_scale": {
+  "defect": false,
+  "tests": {
+   "a": false,
+   "b": false,
+   "cap": false
+  },
+  "reasons": [],
+  "dei_count": 157802916,
+  "dei_date": "2026-08-03",
+  "dei_ratio": 1.0149178738877043,
+  "scale_factor": null,
+  "factor_basis": null,
+  "rescued_by_pin": false,
+  "skipped": null,
+  "pin_rejected": null,
+  "leverage_unverifiable": false,
+  "scale_breaks": [],
+  "growth_inputs_dropped": [],
+  "growth_inputs_dropped_values": {},
+  "pin_over_price": false,
+  "growth_inputs_kept": [],
+  "pin_factor_withheld": null,
+  "cap_ratio": 1.019296875683992
+ },
+ "share_basis": {
+  "split": null,
+  "divergence": null,
+  "unconfirmed_split_facts": [],
+  "in_history_split_facts": [],
+  "nonpositive_counts": []
+ },
+ "share_class_mismatch": null,
+ "capex_provenance": {
+  "2016-12-31": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 243523000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 23000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2019-02-27",
+    "PaymentsToAcquireIntangibleAssets": "2019-02-27"
+   }
+  },
+  "2017-12-30": {
+   "ppe_source": "components",
+   "ppe": {
+    "PaymentsToAcquireProductiveAssets": 274168000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 7135000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquireProductiveAssets": "2020-02-25",
+    "PaymentsToAcquireIntangibleAssets": "2020-02-25"
+   }
+  },
+  "2018-12-29": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 321896000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 3883000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2021-03-02",
+    "PaymentsToAcquireIntangibleAssets": "2021-03-02"
+   }
+  },
+  "2019-12-28": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 359498000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 3651000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2022-03-01",
+    "PaymentsToAcquireIntangibleAssets": "2022-03-01"
+   }
+  },
+  "2021-01-02": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 280115000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 3810000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2023-02-27",
+    "PaymentsToAcquireIntangibleAssets": "2023-02-27"
+   }
+  },
+  "2022-01-01": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 274126000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 274000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2024-02-28",
+    "PaymentsToAcquireIntangibleAssets": "2024-02-28"
+   }
+  },
+  "2022-12-31": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 391309000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 1492000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2025-02-25",
+    "PaymentsToAcquireIntangibleAssets": "2025-02-25"
+   }
+  },
+  "2023-12-30": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 555480000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 1524000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2026-03-03",
+    "PaymentsToAcquireIntangibleAssets": "2026-03-03"
+   }
+  },
+  "2024-12-28": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 332465000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 16000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2026-03-03",
+    "PaymentsToAcquireIntangibleAssets": "2026-03-03"
+   }
+  },
+  "2026-01-03": {
+   "ppe_source": "rollup",
+   "ppe": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": 380477000
+   },
+   "ppe_unit": "USD",
+   "intangibles": {
+    "PaymentsToAcquireIntangibleAssets": 12000
+   },
+   "intangibles_unit": "USD",
+   "dropped": [],
+   "filed": {
+    "PaymentsToAcquirePropertyPlantAndEquipment": "2026-03-03",
+    "PaymentsToAcquireIntangibleAssets": "2026-03-03"
+   }
+  }
+ },
+ "sbc_provenance": {
+  "2016-12-31": {
+   "share": [
+    10330000,
+    "USD"
+   ],
+   "allocated": [
+    10300000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2017-12-30": {
+   "share": [
+    17598000,
+    "USD"
+   ],
+   "allocated": [
+    17600000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 17,600,000 > share 17,598,000 USD, +0.0%"
+  },
+  "2018-12-29": {
+   "share": [
+    18779000,
+    "USD"
+   ],
+   "allocated": [
+    18800000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 18,800,000 > share 18,779,000 USD, +0.1%"
+  },
+  "2019-12-28": {
+   "share": [
+    21007000,
+    "USD"
+   ],
+   "allocated": [
+    21000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2021-01-02": {
+   "share": [
+    23222000,
+    "USD"
+   ],
+   "allocated": [
+    23200000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2022-01-01": {
+   "share": [
+    21837000,
+    "USD"
+   ],
+   "allocated": [
+    21800000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2022-12-31": {
+   "share": [
+    25005000,
+    "USD"
+   ],
+   "allocated": [
+    25000000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2023-12-30": {
+   "share": [
+    33156000,
+    "USD"
+   ],
+   "allocated": [
+    33200000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 33,200,000 > share 33,156,000 USD, +0.1%"
+  },
+  "2024-12-28": {
+   "share": [
+    20918000,
+    "USD"
+   ],
+   "allocated": [
+    20900000,
+    "USD"
+   ],
+   "used": "ShareBasedCompensation",
+   "reconciled": false,
+   "note": "share_ge_allocated"
+  },
+  "2026-01-03": {
+   "share": [
+    21795000,
+    "USD"
+   ],
+   "allocated": [
+    21800000,
+    "USD"
+   ],
+   "used": "AllocatedShareBasedCompensationExpense",
+   "reconciled": true,
+   "note": "allocated 21,800,000 > share 21,795,000 USD, +0.0%"
+  }
+ },
+ "g_base": 0.10201445476341775,
+ "moat_score": 5.0,
+ "cap_years": 8.5,
+ "g_terminal": 0.025,
+ "inputs": {
+  "moat": 5.0,
+  "probs": [
+   0.12,
+   0.28,
+   0.3,
+   0.2,
+   0.1
+  ],
+  "offsets": [
+   -0.14,
+   -0.07,
+   -0.03,
+   0.02,
+   0.09
+  ],
+  "mults": [
+   0.75,
+   0.9,
+   1.0,
+   1.1,
+   1.25
+  ],
+  "g_terminal": 0.025,
+  "base_oe_ps_arg": null,
+  "base_pin_source": null
+ },
+ "data_gap": [],
+ "data_gap_uncovered": [],
+ "overrides_applied": [],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.12,
+   "g_start": -0.038,
+   "oe_mult": 0.75,
+   "iv_at_10": 22.974084203957258,
+   "iv_at_12": 18.38651814331371,
+   "iv_at_15": 14.226722082887946,
+   "iv_at_20": 10.414812013993929,
+   "iv_at_25": 8.260506640155993,
+   "irr": 0.052369853299305213,
+   "irr_at_floor": false
+  },
+  "bear": {
+   "prob": 0.28,
+   "g_start": 0.032,
+   "oe_mult": 0.9,
+   "iv_at_10": 38.24845631360451,
+   "iv_at_12": 30.153217065284235,
+   "iv_at_15": 22.873029397095657,
+   "iv_at_20": 16.29476564307005,
+   "iv_at_25": 12.646628948922418,
+   "irr": 0.07250419020421964,
+   "irr_at_floor": false
+  },
+  "base": {
+   "prob": 0.3,
+   "g_start": 0.072,
+   "oe_mult": 1.0,
+   "iv_at_10": 51.08935635853899,
+   "iv_at_12": 39.96502759154871,
+   "iv_at_15": 30.001464784118923,
+   "iv_at_20": 21.0615823028007,
+   "iv_at_25": 16.15108947381311,
+   "irr": 0.0886678842939089,
+   "irr_at_floor": false
+  },
+  "bull": {
+   "prob": 0.2,
+   "g_start": 0.122,
+   "oe_mult": 1.1,
+   "iv_at_10": 70.50611021214903,
+   "iv_at_12": 54.66572684693968,
+   "iv_at_15": 40.542877367173574,
+   "iv_at_20": 27.97095962701703,
+   "iv_at_25": 21.140472278365383,
+   "irr": 0.11145915254985239,
+   "irr_at_floor": false
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "g_start": 0.192,
+   "oe_mult": 1.25,
+   "iv_at_10": 109.34547322917433,
+   "iv_at_12": 83.84632166078659,
+   "iv_at_15": 61.23813824025802,
+   "iv_at_20": 41.30711069748186,
+   "iv_at_25": 30.624034689390673,
+   "irr": 0.15128089161747205,
+   "irr_at_floor": false
+  }
+ },
+ "weighted": {
+  "iv_at_10": 53.82903414519306,
+  "iv_at_12": 41.95656876840843,
+  "iv_at_15": 31.34448361382953,
+  "iv_at_20": 21.855689507730688,
+  "iv_at_25": 16.668141669273073,
+  "irr": 0.09206964116088001,
+  "irr_at_floor": false
+ },
+ "paths": {
+  "super_bear": [
+   2.171845,
+   2.089346,
+   2.025464,
+   1.978543,
+   1.94737,
+   1.931119,
+   1.929313,
+   1.941805,
+   1.968767,
+   2.010692,
+   2.060959,
+   2.112483,
+   2.165295,
+   2.219427,
+   2.274913
+  ],
+  "bear": [
+   2.795853,
+   2.88536,
+   2.975353,
+   3.065696,
+   3.156253,
+   3.24688,
+   3.33743,
+   3.427751,
+   3.517688,
+   3.607082,
+   3.697259,
+   3.78969,
+   3.884433,
+   3.981543,
+   4.081082
+  ],
+  "base": [
+   3.226908,
+   3.459292,
+   3.689278,
+   3.914148,
+   4.131074,
+   4.337173,
+   4.529565,
+   4.705438,
+   4.862114,
+   4.997113,
+   5.122041,
+   5.250092,
+   5.381344,
+   5.515878,
+   5.653775
+  ],
+  "bull": [
+   3.715157,
+   4.16846,
+   4.629495,
+   5.088683,
+   5.535338,
+   5.95802,
+   6.344976,
+   6.684646,
+   6.966204,
+   7.180114,
+   7.359616,
+   7.543607,
+   7.732197,
+   7.925502,
+   8.123639
+  ],
+  "super_bull": [
+   4.485156,
+   5.346371,
+   6.267901,
+   7.225116,
+   8.186549,
+   9.115063,
+   9.969788,
+   10.708768,
+   11.292108,
+   11.685349,
+   11.977482,
+   12.276919,
+   12.583842,
+   12.898439,
+   13.2209
+  ],
+  "weighted": [
+   3.20308,
+   3.464739,
+   3.735627,
+   4.010313,
+   4.28248,
+   4.545123,
+   4.790842,
+   5.012224,
+   5.20229,
+   5.354957,
+   5.488831,
+   5.626052,
+   5.766703,
+   5.910871,
+   6.058643
+  ]
+ },
+ "growth_paths": {
+  "super_bear": [
+   -0.037986,
+   -0.037986,
+   -0.030575,
+   -0.023165,
+   -0.015755,
+   -0.008345,
+   -0.000935,
+   0.006475,
+   0.013885,
+   0.021295,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bear": [
+   0.032014,
+   0.032014,
+   0.031189,
+   0.030364,
+   0.029539,
+   0.028714,
+   0.027888,
+   0.027063,
+   0.026238,
+   0.025413,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "base": [
+   0.072014,
+   0.072014,
+   0.066483,
+   0.060952,
+   0.055421,
+   0.04989,
+   0.044359,
+   0.038828,
+   0.033297,
+   0.027766,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "bull": [
+   0.122014,
+   0.122014,
+   0.110601,
+   0.099188,
+   0.087774,
+   0.076361,
+   0.064947,
+   0.053534,
+   0.04212,
+   0.030707,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ],
+  "super_bull": [
+   0.192014,
+   0.192014,
+   0.172366,
+   0.152717,
+   0.133068,
+   0.113419,
+   0.093771,
+   0.074122,
+   0.054473,
+   0.034824,
+   0.025,
+   0.025,
+   0.025,
+   0.025,
+   0.025
+  ]
+ },
+ "implied_irr_weighted": 0.09206964116088001,
+ "implied_irr_base": 0.0886678842939089,
+ "irr_bear": 0.07250419020421964,
+ "irr_bull": 0.11145915254985239,
+ "irr_low": 0.052369853299305213,
+ "irr_high": 0.15128089161747205,
+ "tier_by_numbers": "D",
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "hurdle_prices": {
+  "15": 31.34448361382953,
+  "20": 21.855689507730688,
+  "25": 16.668141669273073
+ },
+ "upside_at_15": -0.4820805747880117,
+ "upside_at_12": -0.3067321750097748,
+ "iv_at_15": 31.34448361382953,
+ "iv_at_12": 41.95656876840843,
+ "iv_at_20": 21.855689507730688,
+ "iv_at_25": 16.668141669273073,
+ "diagnostics": {
+  "oe_yield": 0.049737858179013404,
+  "tv_share_at_15": 0.19478722695986905,
+  "scenario_spread_iv15": 4.30444468398774,
+  "net_debt_to_normalized_oe": 7.983478838758831,
+  "months_since_fy_end": 9.526938239159001,
+  "irr_capped": false,
+  "irr_at_floor": false
+ },
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2017 (17,598,000 vs 17,600,000, +0.0%), FY2018 (18,779,000 vs 18,800,000, +0.1%), FY2023 (33,156,000 vs 33,200,000, +0.1%), FY2026 (21,795,000 vs 21,800,000, +0.0%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "BASE_DIVERGENCE: latest FY OE/share 4.10 vs 3-yr median 3.01 \u2014 one of them is distorted; find out which and why",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.3x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 8.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.3%) vs bull-case tier C (11.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "content_hash": "646a8287b43ec2aa440fa0fa72254c87bd85f4191a30353782d86334634799a8"
+}

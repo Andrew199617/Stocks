@@ -50,7 +50,9 @@ field is missing from an older file. The app never computes a valuation figure.
 `watchlist` is every ticker in `_system/watchlist.json` (upper-cased, in file order, whether or not it is in the universe);
 `counts.watchlist` is how many index rows carry the flag. `failed` lists tickers whose record could not be built this
 run (`counts.failed`); they keep their previous row/record, if any. `counts.live_withheld` / `counts.split_restated`
-count the rows whose live.json was withheld / whose run was restated for a split (the 2026-10-16 round at the end).
+count the rows whose live.json was withheld / whose run was restated for a split (the 2026-10-16 round at the end);
+`counts.prices_stale` counts the rows whose last close on file is more than one session behind the sweep's newest
+close (the 2026-10-20 staleness-guard round at the end).
 `site_url` is `$STOCKS_SITE_URL` when set, else null (the attachment then names the site without a link).
 
 ## `index.json` — one row per CURRENT company (engine v5+, no uncovered gap), ranked by `irr_live` when present else `irr`
@@ -62,6 +64,7 @@ count the rows whose live.json was withheld / whose run was restated for a split
  "irr": 0.1843,               "irr_live": 0.199 | null, "irr_bear": 0.1293 | null, "irr_bull": 0.227 | null,
  "irr_at_floor": false,       "irr_capped": false,     "f_subtype": null | "sbc_exceeds_cash" | "no_cash_generation" | "payable_earnings_nonpositive",
  "live_withheld": false,      "split_restated": null | {"factor": 2.0, "split": "2:1"},
+ "prices_stale": null | {"last_date": "2026-10-16", "sessions_behind": 2, "latest_close": "2026-10-20"},
  "price": 272.28,             "price_live": 262.19 | null, "price_date": "2026-10-14" | null, "ret_1y_pct": -55.6 | null,
  "iv15": 376.12, "iv12": 535.47, "iv20": 290.1 | null, "iv25": 230.4 | null,
  "upside15": 38.1,            "upside15_live": 43.5 | null,
@@ -82,7 +85,10 @@ count the rows whose live.json was withheld / whose run was restated for a split
 filters filters on it). Stale (pre-v5) scores are listed under `meta.stale` as
 `[{ticker, name, tier, irr, analysis_date, watchlist}]`, never in `index`. `live_withheld` true means live.json's close
 predates the scored analysis: the live fields stay null and the row ranks on its scored IRR; `split_restated` names a
-split since scoring the row's price / IV columns were restated for (both: the 2026-10-16 round at the end).
+split since scoring the row's price / IV columns were restated for (both: the 2026-10-16 round at the end). `prices_stale`
+(the 2026-10-20 round at the end) is set when the name's last close on file is more than one session behind the newest
+close the sweep holds — the refresh missed it; it is re-derived on every build (a record's embedded row carries it
+null), surfaced through `counts.prices_stale` and the meta.notes line, and not rendered from the row itself.
 `market_cap_b` is score.json's. Since engine 5.5 (2026-10-19) score.json also carries `market_cap_basis`: the engine's
 `market_cap_basis.shares_source` (`diluted_latest` | `diluted_latest_split_adjusted` | `diluted_latest_scale_corrected` |
 `dei_latest`) for 5.5 output; for older output `ads_corrected_by_make_score` (an ADS filer's pre-5.5 cap was the per-ADS
@@ -345,7 +351,12 @@ pre-render with the app's own code, not a second renderer.
   every pane and forecast subpane in the markup and the charts drawn into `{clientWidth, clientHeight, innerHTML}` stubs (fixed
   828×280 price / 828×260 fan sizes) so they land as inline SVG; rows without an embedded record get the app's own missing-record
   page. The fragment replaces the shell's "Loading…" card inside `#app`; row links `#T[.tab…]` are rewritten to `#c-<T>` and the
-  company article ids `d-<T>` to `c-<T>`, so CSS `:target` shows one company at a time and the list returns at `#`; a `<style>`
+  company article ids `d-<T>` to `c-<T>`; navigation is a radio group (`name="conav"`: a default `co-list` input plus one
+  `co-<T>` per company, all first children of `#static`) with those anchors rewritten as `<label for="co-<T>">` elements and
+  the back anchor as a `co-list` label — generated sibling rules (`#co-<T>:checked ~ .page#c-<T>`, plus one shared rule
+  hiding the list while any company radio is checked) show one company at a time, and no fragment anchors remain in the
+  static layer (2026-10-20: the iOS chat viewer ignores fragment navigation, so the earlier `:target` scheme was dead taps
+  there); a `<style>`
   block stacks all panes visible in the static layer and hides the app's interactive chrome (controls, tab bars, the price-chart
   range bar). Statements parity is automatic: embedded records render the same "full statements are on the site" note the app
   shows, in both layers.
@@ -1839,7 +1850,7 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `row.market_cap_b_live` is this value ÷ 1e9.
 - **Live older than the score** (`build_site.live_shown`). A live.json repriced on scoring day can carry the close BEFORE the
   scored session. When `live.price_date` is earlier than the later of score.json `analysis_date` and `live.scored_date`, the
-  scored figures are the current ones: `record.live` is null and `record.live_withheld` = `{reason: "live_older_than_score",
+  scored figures are the latest available: `record.live` is null and `record.live_withheld` = `{reason: "live_older_than_score",
   price, price_date, scored_date, method (basis_check.method), note}` (null otherwise); the row keeps `irr_live` / `tier_live` /
   `price_live` / `price_date` null, `has.live` false and `live_withheld: true`, so it ranks on its scored IRR;
   `forecast.sensitivity[*].irr_live` is null. `meta.counts.live_withheld` and a `meta.notes` line name them. A live.json
@@ -1849,7 +1860,7 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   is never repriced (reprice.py skips it: its tier is the main agent's `tier_override` with a hand acquired-IPR&D deduction
   no replay carries), so `record.live_withheld` = `{reason: "iprd_share_count_unverified", price, price_date (both null without
   a live.json), scored_date, method: null, note}` with or without a live.json on file, and the row is withheld the same way;
-  the app says "Live figures withheld — the acquired-IPR&D charge was deducted by hand" instead of "pending" (`pendingText`).
+  the app says "Live figures withheld — the acquired-IPR&D charge was deducted by hand" instead of the date reasons' "Scored figures are the latest" (`latestText`).
   [Codex review round 6 of PR #47] The same, `reason: "iprd_unresolved"`, for a run make_score refused for an unresolved
   acquired-IPR&D charge (`build_site.iprd_unresolved`, mirroring `dcf_engine.iprd_unresolved`: a period still
   `awaiting_cash_flow_check`, or excluded `non_usd_no_rate` with a positive `expense_native` or `cash_native`, whatever the
@@ -1870,6 +1881,21 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `score_from_run` never matched a Tier F run, so a new run that turned Tier F published the earlier run's verdict
   beside its own flags with no notice. A Tier F / untiered score now matches its own run (the content hash, else tier,
   `f_subtype`, base, release and `as_of`): no committed folder shows the notice.
+  [Merge of main #83 into PR #47] Precedence: the three PR #47 reasons are checked first and win over the two date reasons
+  (`live_from_earlier_run`, `live_older_than_score`); only the date reasons are worded "Scored figures are the latest — …"
+  (`latestText`), the PR #47 reasons keep "Live figures withheld — …". The ranking row carries no reason, so its Live IRR
+  cell reads "scored · latest" for every reason (its title names the not-repriced cases), never "pending". The prices
+  staleness guard below is not a withheld reason: `row.prices_stale` is derived on every row independently of
+  `live_withheld` and never changes the reason or its note (a withheld row can also be stale).
+- **Prices staleness guard** (`reprice.sweep_price_staleness`, build_site step 5; 2026-10-20). A scored name whose last
+  close on file (`prices.json` `stats.last_date`) is more than one session behind the newest close the sweep holds was
+  missed by the refresh: `row.prices_stale` = `{last_date, sessions_behind, latest_close}` (null otherwise; the session
+  set is the union of the names' own `daily_1y` series dates plus their terminal dates, so no market calendar is
+  needed, a session no cache happens to end on still counts, and one session behind is the normal posting
+  lag), `meta.counts.prices_stale` counts them, a `meta.notes` line names them, and `reprice.py --all` prints the same
+  names as a WARNING block after its summary. (October 2026: the bulk refresh silently never ran — the live-refresh
+  job existed only as a repo definition, never registered in the scheduler — and HALO sat two sessions behind for two
+  days, visible only as a withheld live block.)
 - **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
   `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
   OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,
@@ -1937,10 +1963,14 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   pull retried on the next run, `--street-only` for a Nasdaq-only refresh with no EDGAR request.
 - **prices.py `last_minute`.** `intraday.last_minute` (the raw last print) is copied to every `sessions_5d` entry, and
   `merge_sessions` orders two captures of one session by it (the corrected bullet in the prices.py review round).
-- **Static app.** *Live pending:* with `record.live_withheld` the header's price tile reads "Scored price" with the reason
-  (the note in its title) and never shows a close older than the analysis (`currentClose`; the condensed bar the same), the
-  Overview / Forecast price tiles say "live pending", the ranking's Live IRR cell reads "live pending" (`row.live_withheld`),
-  and the list header counts the pending rows (`meta.counts.live_withheld`). *Split since scoring* (`record.split_restated`):
+- **Static app.** *Scored figures are the latest:* with `record.live_withheld` the header's price tile reads "Scored price" with the reason
+  (the note in its title) and never shows a close older than the analysis (`currentClose`; the condensed bar the same,
+  titled "Scored price — the latest available"), the header badge and the Overview / Forecast price tiles say "Scored
+  figures are the latest — …" (`latestText`; the Overview tile's sub reads "scored <date> · latest available"), the
+  ranking's Live IRR cell reads "scored · latest" (`row.live_withheld`), and the list header counts the rows at their
+  scored figures, "(the latest available)" (`meta.counts.live_withheld`). Nothing in this state is labelled "pending"
+  (Andrew's ruling, 2026-10-20): no newer close exists, so the scored figures are the latest available, not an
+  incomplete version of them. *Split since scoring* (`record.split_restated`):
   a header chip, a short note above the Overview, notes on the Forecast, Data, Analysis, Financials and Dividends tabs
   (analysis.md, judgment.json, the override values, the filed statements and the dividends block stay as scored / as
   filed), a ranking badge from

@@ -1,0 +1,90 @@
+{
+ "ticker": "EDU",
+ "name": "New Oriental Education & Technology Group Inc.",
+ "sector": "Consumer Services / Private education (China)",
+ "price": 61.15,
+ "market_cap_b": 9.76,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 4.335584812898514,
+ "base_year": "2026",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 5,
+ "moat_justification": "China's largest private-education brand with a nationwide learning-center network, sustained 52-58% gross margins and ROIC that recovered to 21.7% in FY2026 (21%+ in FY2017-19 pre-crackdown) \u2014 but the moat is regulatory-contingent: the 2021 'double reduction' policy destroyed the core K-9 tutoring business overnight (FY2022 operating loss, ROIC -30.4%), switching costs for parents/students are low, teaching talent is poachable, and the VIE structure's enforceability is untested. A franchise the state can drain by decree is a narrow moat, however strong the brand.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2024, 2025, 2026 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "ADS_RATIO_APPLIED: 20-F filer \u2014 per-share figures scaled x10.0 ordinary shares per ADS (Form 20-F for the fiscal year ended May 31, 2026 (filed 2026-09-22): the company's ADSs, each representing ten common shares, are listed and traded on the NYSE \u2014 stated in the 20-F's ADS description and restated verbatim in the company's own September 22, 2026 announcement of that filing; the FY2026 results release (July 29, 2026) states the same ratio in its per-share notes and prints diluted net income per share of $0.30 against $2.97 per ADS, a 10x internal consistency check) so they are comparable to the ADS price; TTM pins are taken as per-ADS already",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.4x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "TIER_BAND: bear-case tier C (11.6%) vs bull-case tier B (18.2%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 27.19,
+   "irr": 0.0808
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 43.59,
+   "irr": 0.1161
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 59.43,
+   "irr": 0.1469
+  },
+  "bull": {
+   "prob": 0.2,
+   "iv_at_15": 80.05,
+   "irr": 0.1823
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 120.26,
+   "irr": 0.2399
+  }
+ },
+ "iv_at_15": 60.84,
+ "iv_at_12": 82.85,
+ "implied_irr": 0.1494,
+ "implied_irr_base_case": 0.1469,
+ "upside_at_15_pct": -0.5,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "China's largest private-education franchise, moat 5/10 \u2014 at $61.15 the weighted IRR is 14.94% with IV@15% of $60.84, essentially the price: it just misses the 15% hurdle (clears it only below ~$60.84), and the bear case at 11.6% sizes the verdict to Tier C",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.1161,
+ "irr_bull": 0.1823,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 41.38,
+ "iv_at_25": 30.9,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 1595505635,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "moat_for": [
+  "Largest private-education brand in China \u2014 nationwide learning-center network and the default name for test prep / overseas study consulting",
+  "Sustained gross margins of 52-58% across the last decade (54.6% in FY2026) \u2014 pricing power through the cycle",
+  "ROIC recovered to 21.7% in FY2026, matching the 21%+ prints of FY2017-19 \u2014 the post-2021 pivot (non-academic tutoring, high school, tourism, livestreaming e-commerce) rebuilt a high-return model",
+  "Net-cash balance sheet (cash $1,821,202,000 plus term deposits and short-term investments inside $5,831,755,000 of current assets; no funded debt) funds expansion and buybacks without capital markets",
+  "Diversified post-2021 revenue mix \u2014 no single segment is the whole company the way K-9 academic tutoring was before 2021"
+ ],
+ "moat_against": [
+  "Regulatory discretion is the moat's ceiling: the 2021 double-reduction policy banned for-profit K-9 academic tutoring outright \u2014 FY2022 revenue -27.4%, operating loss -$982,513,000, ROIC -30.4%",
+  "VIE structure: contractual control over the operating entities is legally untested in PRC courts and exists only because foreign ownership in education is restricted",
+  "Low switching costs \u2014 parents and students choose per course/per term; local and online rivals compete on price, including free/low-price summer courses noted by management",
+  "People business: star teachers and anchors can leave \u2014 East Buy's top anchor departure in 2024 is the standing example",
+  "OE conversion has not kept pace with revenue: OE/share 2-yr CAGR is -1.81% despite revenue +31% cumulatively over FY2024-26, because the deferred-revenue float build varies year to year"
+ ]
+}

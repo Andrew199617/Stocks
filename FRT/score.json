@@ -1,0 +1,106 @@
+{
+ "ticker": "FRT",
+ "name": "Federal Realty Investment Trust",
+ "sector": "Real Estate / REIT \u2014 Mixed-use shopping centers",
+ "price": 106.53,
+ "market_cap_b": 9.2,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 3.6994761256375344,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 5,
+ "moat_justification": "Prime, supply-constrained coastal mixed-use centers (Santana Row, Assembly Row, Pike & Rose) with demonstrated pricing power \u2014 Q2 2026 comparable leases signed at +15% cash rent spreads, trailing-12-month rollover +17%, portfolio 96% leased and small-shop leased 93.9% (highest since 2007) \u2014 but the measured returns are thin: roic_proxy in fundamentals.json runs only 3.8% / 4.8% / 5.8% / 4.4% / 4.9% / 5.9% for FY2020\u2013FY2025, the model is capital-intensive (filed capital expenditures of $246.8\u2013311.1M a year against OCF of $555.8\u2013622.4M), growth is partly bought ($735.3M of real-estate acquisitions in FY2025), and leverage is real (net debt $4,856,187,000 in financials_history.csv; 5.4x net debt/EBITDA per Q2 2026 reporting). A moderate 5 gives CAP 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "SBC_TAG_RECONCILED: AllocatedShareBasedCompensationExpense exceeds ShareBasedCompensation for FY2016 (9,917,000 vs 11,227,000, +13.2%), FY2017 (10,986,000 vs 12,371,000, +12.6%), FY2018 (11,719,000 vs 12,736,000, +8.7%), FY2019 (12,276,000 vs 13,330,000, +8.6%), FY2020 (11,924,000 vs 13,243,000, +11.1%), FY2021 (13,009,000 vs 14,434,000, +11.0%), FY2022 (13,704,000 vs 15,018,000, +9.6%), FY2023 (14,308,000 vs 15,427,000, +7.8%), FY2024 (16,357,000 vs 17,379,000, +6.2%), FY2025 (14,608,000 vs 15,561,000, +6.5%); the Allocated figure was used \u2014 the Share tag carries only part of stock compensation at this filer (a difference under 1% is tag rounding and needs one line in the analysis)",
+  "SECTOR_MODEL_MISMATCH: Real Estate sector \u2014 OE/capex DCF fits real estate names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (filing: Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12, accession 0000034903-26-000017), Consolidated Statements of Cash Flows, investing activities lines 'Capital expenditures - development and redevelopment' ($179,086 thousand FY2025, $139,534 thousand FY2024, $214,062 thousand FY2023) and 'Capital expenditures - other' ($112,252 thousand FY2025, $107,226 thousand FY2024, $97,058 thousand FY2023) \u2014 totals $291,338 thousand / $246,760 thousand / $311,120 thousand; the override value is the median of the three filed years, which is also the FY2025 total); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.5x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 15.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.1,
+   "iv_at_15": 15.44,
+   "irr": 0.041
+  },
+  "bear": {
+   "prob": 0.25,
+   "iv_at_15": 24.85,
+   "irr": 0.0535
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 34.0,
+   "irr": 0.0658
+  },
+  "bull": {
+   "prob": 0.25,
+   "iv_at_15": 45.98,
+   "irr": 0.0817
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 69.53,
+   "irr": 0.1106
+  }
+ },
+ "iv_at_15": 36.4,
+ "iv_at_12": 48.53,
+ "implied_irr": 0.0694,
+ "implied_irr_base_case": 0.0658,
+ "upside_at_15_pct": -65.8,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Prime coastal mixed-use REIT, moat 5/10 \u2014 Tier D on the standardized screen: TTM owner's earnings of $3.70/share after charging all $291.3M of filed capital expenditures give a 6.94% weighted IRR and IV@15% of $36.40 vs a $106.53 price; it clears 15% only below ~$36. The REIT lens is kinder (FY2026 Core FFO guided to $7.48\u2013$7.56/share, +6.5%), but no reading of the filed numbers supports a 15% owner's-earnings return at this price.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0535,
+ "irr_bull": 0.0817,
+ "tier_bear": "D",
+ "tier_bull": "D",
+ "iv_at_20": 25.53,
+ "iv_at_25": 19.57,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 4856187000,
+ "shares_diluted_latest": 86405000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Irreplaceable high-barrier coastal locations \u2014 104 mixed-use / shopping-center properties (Santana Row, Assembly Row, Pike & Rose) in affluent, supply-constrained markets",
+  "Proven pricing power \u2014 Q2 2026 comparable leases at +15% cash rent spreads, trailing-12-month comparable rollover +17%, the highest in over 10 years",
+  "Occupancy and demand depth \u2014 portfolio 96% leased, small-shop 93.9% leased / 92.3% occupied (levels not seen since 2007), record 819,000 sq ft of comparable leasing in Q2 2026",
+  "Durability through cycles \u2014 59 consecutive years of dividend increases (longest in the REIT sector), raised FY2026 Core FFO guidance to $7.48\u2013$7.56/share (+6.5% at midpoint)"
+ ],
+ "moat_against": [
+  "Low measured returns on capital \u2014 roic_proxy only ~4\u20136% across FY2020\u2013FY2025 in fundamentals.json, well below a wide-moat level",
+  "Capital intensity \u2014 filed capital expenditures run $246.8\u2013311.1M/yr, roughly half of operating cash flow; development/redevelopment must be re-earned continuously",
+  "Growth partly bought, not only earned \u2014 $735,274,000 of real-estate acquisitions in FY2025 (10-K cash flow statement) funded with debt and share issuance (shares_diluted 81,313,000 in FY2023 to 86,405,000 in FY2025)",
+  "Leverage and rate exposure \u2014 net debt $4,856,187,000 (financials_history.csv), 5.4x net debt/EBITDA in Q2 2026 reporting; retail tenant / consumer-cycle exposure at anchor transitions"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 291338000.0,
+   "kind": "filing",
+   "source": "Form 10-K for fiscal year ended December 31, 2025 (filed 2026-02-12, accession 0000034903-26-000017), Consolidated Statements of Cash Flows, investing activities lines 'Capital expenditures - development and redevelopment' ($179,086 thousand FY2025, $139,534 thousand FY2024, $214,062 thousand FY2023) and 'Capital expenditures - other' ($112,252 thousand FY2025, $107,226 thousand FY2024, $97,058 thousand FY2023) \u2014 totals $291,338 thousand / $246,760 thousand / $311,120 thousand; the override value is the median of the three filed years, which is also the FY2025 total"
+  }
+ ],
+ "override_impact": {
+  "base_used": "ttm",
+  "base_oe_without_override": 7.0612,
+  "base_oe_with_override": 3.6995,
+  "base_oe_impact_pct": -47.609,
+  "weighted_irr_without_override": 0.103,
+  "weighted_irr_with_override": 0.0694,
+  "weighted_irr_impact_pp": -3.352,
+  "unblocks_tier": true
+ }
+}

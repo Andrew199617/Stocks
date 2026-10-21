@@ -1,0 +1,108 @@
+{
+ "ticker": "ORI",
+ "name": "Old Republic International Corporation",
+ "sector": "Finance / Specialty Property & Casualty and Title Insurance",
+ "price": 39.68,
+ "market_cap_b": 9.97,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 3.278768628200609,
+ "base_year": "2025",
+ "base_source": "judgment_base_override",
+ "moat_score": 5,
+ "moat_justification": "Moderate/narrow moat, 5/10 \u2014 the peer-consistent grade for a diversified specialty insurer (ACGL, AFG, AIZ and RNR all scored 5 in this sweep). Return evidence first, as required: fundamentals.json's roic_proxy series is null for every year and its gross_margin is null, because ORI files no OperatingIncomeLoss tag (annual operating_income is null in fundamentals.json) \u2014 for an insurer neither ROIC-on-operating-income nor gross margin is computable from the tags, so the return evidence is the filer's own operating ROE and combined ratio. Those support 5, not 7+: operating return on beginning equity was 14.1% in FY2025 (Q4 2025 earnings call) and 12.1% annualized in H1 2026 (Q2 2026 call), book value per share rose 22.0% in FY2025 inclusive of dividends to $24.21, and the consolidated combined ratio stayed below 100% through the cycle (92.6% FY2023, 93.9% FY2024, 94.7% FY2025) \u2014 returns above the cost of capital, earned by underwriting discipline and a diversified specialty + title platform rather than by any structural pricing power: capacity is fungible, brokers can move the business, and the combined ratio has drifted up for three straight years (95.3% in Q2 2026). A moat of 7+ would need durable pricing power or switching costs this record does not show. CAP = 2 + 1.3 x 5 = 8.5 years.",
+ "cap_years": 8.5,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 6.1%/yr \u2014 already credited via the growth adjustment",
+  "DEBT_TAGS_BLANK: no debt tag reports for the latest fiscal year \u2014 net debt is UNKNOWN (not zero); no leverage verdict is possible from the engine, state the balance sheet from the filing in analysis.md",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "OVERRIDE_APPLIED:capex \u2014 filing gap in the last 3 FY filled by a judgment override (estimate: Anchor: the filer's own filed depreciation (us-gaap Depreciation, financials_history.csv da column) \u2014 FY2023 $33,000,000, FY2024 $39,300,000, FY2025 $35,400,000; the value used is the top of that filed FY2023\u2013FY2025 range, FY2024's $39,300,000, as the maintenance-capex proxy. No capex value was ever filed: EDGAR companyfacts for CIK 74260 contains no PaymentsToAcquirePropertyPlantAndEquipment (or any candidate capex tag) fact in any period, and ORI's Consolidated Statements of Cash Flows present no purchases-of-property-and-equipment line \u2014 investing activities are maturities/sales/purchases of securities, other investments, and short-term investments, with premises/equipment spend folded into 'Other investments' / 'Other \u2014 net' and not isolable from the filing.); an override never replaces a filed value \u2014 see overrides_applied and override_impact",
+  "TIER_BAND: bear-case tier D (9.3%) vs bull-case tier C (14.7%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 15.37,
+   "irr": 0.0708
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 21.8,
+   "irr": 0.0927
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 29.83,
+   "irr": 0.1196
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 38.72,
+   "irr": 0.1472
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 54.01,
+   "irr": 0.1896
+  }
+ },
+ "iv_at_15": 29.0,
+ "iv_at_12": 38.46,
+ "implied_irr": 0.1172,
+ "implied_irr_base_case": 0.1196,
+ "upside_at_15_pct": -26.9,
+ "tier_by_numbers": "C",
+ "tier_final": "C",
+ "confidence": "low",
+ "one_liner": "Diversified specialty P&C + title insurer with a moderate moat (5/10), scored on a five-year payable operating-income base of $3.28/share (not the float-inflated OCF base): at $39.68 the weighted IRR is 11.7% (Tier C, bear-to-bull band D to C) \u2014 it does not clear the 15% hurdle, which needs a price at or below the weighted IV@15% of $29.00.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0927,
+ "irr_bull": 0.1472,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 20.49,
+ "iv_at_25": 15.8,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": null,
+ "shares_diluted_latest": 251313860,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit; tier exists only because of a judgment override",
+ "moat_for": [
+  "Diversified two-engine platform \u2014 Specialty Insurance (commercial auto, workers' comp, general liability, property, financial indemnity, warranty) plus the #3/#4 U.S. title insurer; title carried the result when specialty softened in Q2 2026 and vice versa in 2024",
+  "Conservative reserving culture over a century (founded 1923) \u2014 favorable prior-year loss reserve development in most recent years (2.4 points in FY2025, 2.9 points in Q4 2024) instead of reserve releases borrowed from the future",
+  "Sustained operating returns \u2014 operating ROE 14.1% in FY2025 and 12.1% annualized in H1 2026; combined ratio 92.6\u201394.7% across FY2023\u2013FY2025, below 100% through the cycle",
+  "Capital-return engine \u2014 $1,708M returned in FY2024 and over $1B in FY2025 including special dividends; diluted shares down from 303.7M (FY2021) to 251.3M (FY2025); regular dividend paid for 44+ consecutive years of increases / 85 years of dividends"
+ ],
+ "moat_against": [
+  "Insurance capacity is close to a commodity \u2014 no network effects, low switching costs, brokers can move specialty business; pricing is set by the industry cycle, which is softening in several specialty lines",
+  "Combined ratio is drifting the wrong way \u2014 92.6% (FY2023) to 93.9% (FY2024) to 94.7% (FY2025) to 95.3% in Q2 2026, with commercial-auto / long-haul trucking loss trends and a $40M reserve strengthening in Q2 2026",
+  "Title insurance is a housing-transaction derivative \u2014 premiums swing with mortgage rates and real-estate volumes, outside management's control",
+  "Operating income is flat in total dollars \u2014 $935.9M in FY2021 vs $792.5M in FY2025; all per-share growth has come from buybacks, not franchise growth, and H1 2026 operating income fell year over year",
+  "Reserve risk is the balance sheet \u2014 loss and LAE reserves are estimates; the favorable-development tailwind (2.4 points in FY2025) can reverse, as the slight unfavorable specialty development in Q2 2026 shows"
+ ],
+ "overrides": [
+  {
+   "field": "capex",
+   "value": 39300000.0,
+   "kind": "estimate",
+   "source": "Anchor: the filer's own filed depreciation (us-gaap Depreciation, financials_history.csv da column) \u2014 FY2023 $33,000,000, FY2024 $39,300,000, FY2025 $35,400,000; the value used is the top of that filed FY2023\u2013FY2025 range, FY2024's $39,300,000, as the maintenance-capex proxy. No capex value was ever filed: EDGAR companyfacts for CIK 74260 contains no PaymentsToAcquirePropertyPlantAndEquipment (or any candidate capex tag) fact in any period, and ORI's Consolidated Statements of Cash Flows present no purchases-of-property-and-equipment line \u2014 investing activities are maturities/sales/purchases of securities, other investments, and short-term investments, with premises/equipment spend folded into 'Other investments' / 'Other \u2014 net' and not isolable from the filing."
+  }
+ ],
+ "override_impact": {
+  "base_used": "payable_5y",
+  "base_oe_without_override": 3.2788,
+  "base_oe_with_override": 3.2788,
+  "base_oe_impact_pct": 0.0,
+  "weighted_irr_without_override": 0.1172,
+  "weighted_irr_with_override": 0.1172,
+  "weighted_irr_impact_pp": 0.0,
+  "unblocks_tier": true
+ }
+}
