@@ -495,6 +495,13 @@ iprd_amortized, value / native_base / figures / shares), inside the content-hash
 and refuses a judgment.json changed after the run: a check added later can change the deduction while leaving no
 trace on the run's periods (a paid_in_shares check on a cash-basis period stops a later cash-only payment being
 deducted against the residual).
+[Codex review round 23 of PR #47] The record carries ttm_inputs: what this run read from ttm.json (ttm_oe_per_share,
+ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash — the sha256 of ttm.json's input legs,
+ttm_input_legs), inside the content-hashed payload, for every pinned run (--ttm or --base-oe-ps: whether the pin is
+ttm.json's figure decides the IPR&D window and share denominator); null for a median-base run, which never reads
+ttm.json. make_score recomputes it from the current ttm.json and refuses any difference: before, it compared only the
+base within 0.1%, so a ttm.json regenerated with twice the shares (and twice the OE) scored the run's charge per share
+on the old denominator, and a new 10-Q's YTD period scored the stale window.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -2104,6 +2111,51 @@ def load_iprd_judgment_hash(ticker):
     except Exception:
         j = None
     return iprd_judgment_hash(j)
+
+
+# [Codex review r23 of PR #47] The ttm.json inputs a pinned run reads, recorded as ttm_inputs (inside the
+# content-hashed payload) so make_score can refuse a ttm.json regenerated after the run. Before, it compared only
+# ttm_oe_per_share within 0.1%, but the run also takes from ttm.json the IPR&D share denominator
+# (ttm_shares_diluted), the current-YTD window (inputs.ocf.ytd_current_period) and its intangible-capex leg
+# (capex_components.ytd_current), and the Tier F legs (ttm_ocf / ttm_capex / ttm_sbc): twice the shares at the same
+# per-share base scored the run's $0.50 charge where a rerun deducts $0.25. The hash covers ttm.json's input legs:
+TTM_INPUT_TOP_FIELDS = ("fy_end", "ytd_end", "inputs", "ttm_ocf", "ttm_capex", "ttm_sbc", "ttm_shares_diluted",
+                        "ttm_oe_total", "ttm_oe_per_share", "capex_components", "split_adjustment")
+TTM_INPUT_OVERRIDE_FIELDS = ("field", "value", "kind", "legs_filled")   # overrides_used (never the source text)
+
+
+def ttm_input_legs(tt):
+    """The canonical input legs of ttm.json object tt (None when absent or unreadable): TTM_INPUT_TOP_FIELDS (numbers
+    as floats, null members dropped) and overrides_used's TTM_INPUT_OVERRIDE_FIELDS (entry order ignored). Identity
+    (ticker, cik, entity), warnings and provenance-only notes are not inputs."""
+    if not isinstance(tt, dict):
+        return None
+    out = {k: _iprd_canon(tt.get(k)) for k in TTM_INPUT_TOP_FIELDS}
+    out["overrides_used"] = _iprd_entries(tt.get("overrides_used"), TTM_INPUT_OVERRIDE_FIELDS)
+    return out
+
+
+def _ttm_num(v):
+    return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
+def ttm_inputs_record(tt):
+    """What a run reads from ttm.json object tt, as recorded in dcf_numbers.json ttm_inputs: ttm_oe_per_share,
+    ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash (sha256 of ttm_input_legs; every field null
+    when ttm.json is absent or unreadable). make_score recomputes it from the current ttm.json
+    (check_ttm_inputs_current)."""
+    legs = ttm_input_legs(tt)
+    if legs is None:
+        return {"ttm_oe_per_share": None, "ttm_shares_diluted": None, "ytd_current_period": None,
+                "ttm_input_hash": None}
+    ins = tt.get("inputs") if isinstance(tt.get("inputs"), dict) else {}
+    ocf = ins.get("ocf") if isinstance(ins.get("ocf"), dict) else {}
+    per = ocf.get("ytd_current_period")
+    canon = json.dumps(legs, sort_keys=True, separators=(",", ":"), default=str)
+    return {"ttm_oe_per_share": _ttm_num(tt.get("ttm_oe_per_share")),
+            "ttm_shares_diluted": _ttm_num(tt.get("ttm_shares_diluted")),
+            "ytd_current_period": _iprd_canon(per),
+            "ttm_input_hash": hashlib.sha256(canon.encode()).hexdigest()}
 
 
 def iprd_accession_year(yy):
@@ -4558,6 +4610,8 @@ def main():
                       and abs(float(decl["value"]) - base_override) <= 0.001 * abs(base_override))
     _ttm_v = (ttm_doc or {}).get("ttm_oe_per_share")
     _ttm_v = float(_ttm_v) if (isinstance(_ttm_v, (int, float)) and not isinstance(_ttm_v, bool) and _ttm_v) else None
+    # [Codex review r23 of PR #47] what a pinned run read from ttm.json (null for a median base: never read)
+    ttm_inputs = ttm_inputs_record(ttm_doc) if pin_source in ("ttm_json", "base_oe_ps_arg") else None
     iprd_ttm_basis = bool(pin_source == "ttm_json" or (pin_source == "base_oe_ps_arg" and (
         (amort_decl and decl.get("native_base") == "ttm_json")
         or (_ttm_v is not None and abs(base_override - _ttm_v) <= 0.001 * abs(_ttm_v)))))
@@ -4832,7 +4886,9 @@ def main():
               # v5.6: acquired IPR&D (None when no expense tag is filed for a base period — the run is untouched)
               "iprd_adjustment": iprd,
               # [Codex review r22 of PR #47] iprd_judgment_hash(judgment.json) as this run read it
-              "iprd_judgment_hash": iprd_judgment}
+              "iprd_judgment_hash": iprd_judgment,
+              # [Codex review r23 of PR #47] ttm_inputs_record(ttm.json) as this pinned run read it
+              "ttm_inputs": ttm_inputs}
     if fx_info:
         # v5.5 (decision 7): overrides used verbatim as USD figures, and which rule fired
         # ({} when every override was converted, or none is declared).

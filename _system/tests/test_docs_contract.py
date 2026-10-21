@@ -376,6 +376,11 @@ PAIRS = [
     ("_system/dcf_engine.py", '"iprd_judgment_hash": iprd_judgment', "iprd_judgment_hash", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", "def iprd_judgment_inputs(", "iprd_judgment_inputs", [SYS_README]),
     ("_system/make_score.py", "def check_iprd_judgment_current(", "check_iprd_judgment_current", [SYS_README]),
+    # Codex review round 23 of PR #47: what a pinned run read from ttm.json, checked by make_score
+    ("_system/dcf_engine.py", '"ttm_inputs": ttm_inputs', "ttm_inputs", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def ttm_input_legs(", "ttm_input_legs", [SYS_README]),
+    ("_system/dcf_engine.py", "def ttm_inputs_record(", "ttm_inputs_record", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", "def check_ttm_inputs_current(", "check_ttm_inputs_current", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

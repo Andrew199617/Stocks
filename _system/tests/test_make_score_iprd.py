@@ -1879,6 +1879,92 @@ def test_a_judgment_whose_iprd_inputs_hash_differently_from_the_run_is_refused()
         dict(j["iprd_cash_flow_check"][0], period="2024-12-31", amount=1e6)])) is not None
 
 
+# --- Codex review round 23 of PR #47 ------------------------------------------------------------------------------
+R23_CHANGED = "ttm.json changed after the engine run"
+
+
+def _r23_runs():
+    """A --ttm run (FY2025 $20M + 2026 H1 $30M on ttm.json's 2.1/sh, 100M shares: $0.50/sh) and a --base-oe-ps pin
+    equal to ttm.json's figure (a TTM basis too)."""
+    ttm = TI._ttm_doc(2.1, 100e6)
+    n = TI._cached("ms_r23_ttm", lambda: TI._ok(TI._run(TI._ttm_ytd_facts(), extra=["--ttm"], ttm=ttm)))
+    p = TI._cached("ms_r23_pin", lambda: TI._ok(TI._run(TI._ttm_ytd_facts(), extra=["--base-oe-ps", "2.1"], ttm=ttm)))
+    return ttm, n, p
+
+
+def _legacy_ttmless(n):
+    """Record n as a run that predates ttm_inputs (HALO's committed 5.6.0 record and anything older)."""
+    m = copy.deepcopy(n)
+    m.pop("ttm_inputs", None)
+    return m
+
+
+def _ytd_moved(ttm):
+    t = copy.deepcopy(ttm)
+    t["inputs"]["ocf"]["ytd_current_period"] = ["2026-01-01", "2026-09-30"]
+    t["ytd_end"] = "2026-09-30"
+    return t
+
+
+def test_a_ttm_json_changed_after_the_run_is_refused():
+    """[Codex review r23] make_score compared ttm.json with a TTM-basis run on ttm_oe_per_share alone (within 0.1%),
+    but the run also took its IPR&D share denominator (ttm_shares_diluted) and current-YTD window
+    (inputs.ocf.ytd_current_period) from ttm.json: regenerated after the run with twice the shares at the same
+    per-share base, it scored the run's $0.50 charge on 100M shares where a rerun deducts $0.25 on 200M, and a new
+    10-Q's YTD period scored the stale window. Now the run records ttm_inputs and make_score refuses any difference
+    from the current ttm.json ("ttm.json changed after the engine run — rerun dcf_engine.py"), for a --ttm pin and a
+    --base-oe-ps pin equal to ttm.json's figure alike, even a change only in an input leg. A record that predates
+    ttm_inputs and carries a positive IPR&D charge on ttm.json's share count falls back to its own record: the
+    current ttm_shares_diluted must equal shares_denominator and ytd_current_period its window. An unchanged
+    ttm.json scores; a base moved by more than 0.1% keeps its base pin provenance refusal."""
+    ttm, n, p = _r23_runs()
+    b = n["iprd_adjustment"]
+    assert b["charge_per_share"] == 0.5 and b["shares_denominator"] == 100e6, b
+    assert b["shares_source"] == "ttm.json ttm_shares_diluted" and b["window"]["ttm_current_ytd"] == ["2026-01-01", "2026-06-30"], b
+    assert p["iprd_adjustment"]["charge_per_share"] == 0.5 and p["iprd_adjustment"]["shares_source"] == b["shares_source"]
+    doubled, near = TI._ttm_doc(2.1, 200e6), TI._ttm_doc(2.1 * 1.0009, 200e6)
+    for m in (n, p, _legacy_ttmless(n), _legacy_ttmless(p)):
+        r = _score(m, ttm=ttm)
+        assert r.rc == 0, r.err[-800:]
+        assert r.result["score"]["iprd_adjustment"]["charge_per_share"] == 0.5, r.result["score"]["iprd_adjustment"]
+        for t in (doubled, near, _ytd_moved(ttm)):
+            r = _score(m, ttm=t)
+            assert r.rc != 0, ("a ttm.json changed after the run scored the stale run", t)
+            assert R23_CHANGED in r.err and "rerun dcf_engine.py" in r.err, r.err[-800:]
+    # only the recorded inputs see a change in a leg the share count and period do not show
+    leg = dict(copy.deepcopy(ttm), ttm_ocf=99e6, capex_components={"ytd_current": {"intangibles": 5e6,
+                                                                                "intangible_tags": ["X"]}})
+    r = _score(n, ttm=leg)
+    assert r.rc != 0 and R23_CHANGED in r.err, r.err[-800:]
+    r = _score(_legacy_ttmless(n), ttm=leg)
+    assert r.rc == 0, r.err[-800:]
+    r = _score(n, ttm=TI._ttm_doc(2.1 * 1.002, 100e6))
+    assert r.rc != 0 and "base pin provenance" in r.err, r.err[-800:]
+
+
+def test_halo_committed_record_still_scores_beside_its_ttm_json():
+    """[Codex review r23] HALO's committed 5.6.0 record predates ttm_inputs; its $2.33/sh charge is on ttm.json's
+    122,092,000 shares, so the fallback holds it to that count and its 2026 H1 window: its own ttm.json passes, a
+    doubled share count or a new YTD period is refused, and a record whose charge is zero is not held to the rule."""
+    import make_score as M
+    root = os.path.dirname(SYS)
+    rd = lambda f: json.loads(open(os.path.join(root, "HALO", f), encoding="utf-8").read())
+    rec, tt = rd("dcf_numbers.json"), rd("ttm.json")
+    assert "ttm_inputs" not in rec and rec["iprd_adjustment"]["shares_source"] == "ttm.json ttm_shares_diluted"
+    assert _refusal(M.check_ttm_inputs_current, rec, tt) is None
+    for t in (dict(tt, ttm_shares_diluted=tt["ttm_shares_diluted"] * 2), _ytd_moved(tt), None):
+        msg = _refusal(M.check_ttm_inputs_current, rec, t)
+        assert msg is not None and R23_CHANGED in msg, (msg, t and t.get("ttm_shares_diluted"))
+    zero = copy.deepcopy(rec)
+    zero["iprd_adjustment"].update(total=0.0, charge_per_share=0.0)
+    assert _refusal(M.check_ttm_inputs_current, zero, dict(tt, ttm_shares_diluted=1.0)) is None
+    # a record with ttm_inputs is held to all of it; null (no pin) to nothing
+    fresh = dict(copy.deepcopy(rec), ttm_inputs=TI.E.ttm_inputs_record(tt))
+    assert _refusal(M.check_ttm_inputs_current, fresh, tt) is None
+    assert R23_CHANGED in (_refusal(M.check_ttm_inputs_current, fresh, dict(tt, ttm_ocf=1.0)) or "")
+    assert _refusal(M.check_ttm_inputs_current, dict(fresh, ttm_inputs=None), None) is None
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

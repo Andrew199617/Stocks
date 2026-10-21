@@ -1182,7 +1182,10 @@ def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
     assert "recurrence_excluded" not in n["iprd_adjustment"] and "deferred_payments_refused" not in n["iprd_adjustment"]
     # [Codex review r22] a fresh run also records iprd_judgment_hash, which the committed record predates
     assert "iprd_judgment_hash" not in rec and n["iprd_judgment_hash"] == E.iprd_judgment_hash(j), n.get("iprd_judgment_hash")
-    dated = {"as_of", "price_source", "content_hash", "diagnostics", "iprd_judgment_hash"}
+    # [Codex review r23] ... and ttm_inputs, what it read from HALO's ttm.json (its 122,092,000-share denominator)
+    assert "ttm_inputs" not in rec and n["ttm_inputs"] == E.ttm_inputs_record(tt), n.get("ttm_inputs")
+    assert n["ttm_inputs"]["ttm_shares_diluted"] == rec["iprd_adjustment"]["shares_denominator"] == 122092000
+    dated = {"as_of", "price_source", "content_hash", "diagnostics", "iprd_judgment_hash", "ttm_inputs"}
     assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
     assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
             == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})
@@ -3124,6 +3127,72 @@ def test_the_run_records_a_hash_of_every_iprd_judgment_input_it_read():
     plain_pin = {"value": 1.5, "source": "s", "reason": "r"}
     assert h({"base_override": plain_pin}) == h({"base_override": dict(plain_pin, value=1.6)})
     assert h({"base_override": plain_pin}) != h({"base_override": dict(plain_pin, basis_window={"window": "fy"})})
+
+
+# --- Codex review round 23 of PR #47 ------------------------------------------------------------------------------
+def _r23_ttm():
+    """test_ttm's ttm.json shape with the legs a real ttm.py writes (inputs legs, capex_components, overrides_used)."""
+    t = _ttm_doc(2.1, 100e6)
+    t["inputs"]["ocf"].update(ytd_current=50e6, ttm=230e6)
+    t["inputs"]["shares_diluted"] = {"ytd_current": 100e6, "ytd_current_period": ["2026-01-01", "2026-06-30"]}
+    t.update(ttm_ocf=230e6, ttm_capex=10e6, ttm_sbc=10e6, entity="SYN INC", ticker="SYN", cik=999001,
+             capex_components={"ytd_current": {"ppe": 4e6, "intangibles": 1e6, "intangibles_not_added": False,
+                                               "intangible_tags": ["PaymentsToAcquireIntangibleAssets"]}},
+             overrides_used=[{"field": "sbc", "value": 10e6, "kind": "filing", "source": "10-K note 9",
+                              "reason": "the 10-Qs print no SBC line", "legs_filled": ["ytd_current"]}])
+    return t
+
+
+def test_the_run_records_the_ttm_json_inputs_it_read():
+    """[Codex review r23] The engine reads ttm.json for a --ttm pin (the base, the Tier F legs) and for any
+    --base-oe-ps pin (whether it is ttm.json's figure decides the IPR&D window and share denominator; an
+    iprd_amortized ttm_json native base; a basis_window "ttm" period), but recorded none of it, so make_score could
+    only compare the base within 0.1%: a ttm.json regenerated after the run with twice the shares (and twice the OE)
+    scored the run's $0.50 charge where a rerun deducts $0.25, and a new 10-Q's YTD period scored the stale window.
+    The run now records ttm_inputs — ttm_oe_per_share, ttm_shares_diluted, ytd_current_period and ttm_input_hash, a
+    canonical sha256 of ttm.json's input legs (inputs, the TTM totals, fy_end / ytd_end, capex_components,
+    split_adjustment, overrides_used's field / value / kind / legs_filled) — inside the content-hashed payload; it is
+    null for a run with no pin (the median base never reads ttm.json). Canonical: int vs float, warnings, identity
+    and override source text do not change the hash; every leg does."""
+    facts, ttm = _ttm_ytd_facts(), _r23_ttm()
+    n = _ok(_run(facts, extra=["--ttm"], ttm=ttm))
+    ti = n.get("ttm_inputs")
+    assert isinstance(ti, dict), n.get("ttm_inputs")
+    assert ti == E.ttm_inputs_record(ttm), (ti, E.ttm_inputs_record(ttm))
+    assert ti["ttm_oe_per_share"] == 2.1 and ti["ttm_shares_diluted"] == 100e6, ti
+    assert ti["ytd_current_period"] == ["2026-01-01", "2026-06-30"], ti
+    assert isinstance(ti["ttm_input_hash"], str) and len(ti["ttm_input_hash"]) == 64, ti
+    assert E._content_hash(n) == n["content_hash"]
+    # a --base-oe-ps pin reads ttm.json too (the TTM-basis test); a median run does not
+    p = _ok(_run(facts, extra=["--base-oe-ps", "2.1"], ttm=ttm))
+    assert p["ttm_inputs"] == ti, p.get("ttm_inputs")
+    assert _ok(_run(facts, ttm=ttm))["ttm_inputs"] is None
+    # a --base-oe-ps pin beside no ttm.json records that it read none
+    q = _ok(_run(facts, extra=["--base-oe-ps", "2.1"]))
+    assert q["ttm_inputs"] == E.ttm_inputs_record(None) and q["ttm_inputs"]["ttm_input_hash"] is None, q.get("ttm_inputs")
+    h = lambda t: E.ttm_inputs_record(t)["ttm_input_hash"]
+    same = [dict(ttm, ttm_shares_diluted=100000000, ttm_ocf=230000000),
+            dict(ttm, warnings=["ttm.py: a warning"], entity="Another name"),
+            dict(ttm, overrides_used=[dict(ttm["overrides_used"][0], source="another", reason="another")]),
+            dict(ttm, sbc_reconciled_legs={"ytd_current": {"note": "provenance only"}})]
+    for v in same:
+        assert h(v) == h(ttm), v
+    cc = ttm["capex_components"]["ytd_current"]
+    changed = [dict(ttm, ttm_shares_diluted=200e6, ttm_oe_total=420e6),
+               dict(ttm, ttm_oe_per_share=2.1001), dict(ttm, ttm_ocf=231e6), dict(ttm, ttm_capex=11e6),
+               dict(ttm, ttm_sbc=9e6), dict(ttm, ytd_end="2026-09-30"),
+               dict(ttm, inputs=dict(ttm["inputs"], ocf=dict(ttm["inputs"]["ocf"],
+                                                            ytd_current_period=["2026-01-01", "2026-09-30"]))),
+               dict(ttm, inputs=dict(ttm["inputs"], ocf=dict(ttm["inputs"]["ocf"], ytd_current=51e6))),
+               dict(ttm, capex_components={"ytd_current": dict(cc, intangibles=2e6)}),
+               dict(ttm, capex_components={"ytd_current": dict(cc, intangibles_not_added=True)}),
+               dict(ttm, capex_components={"ytd_current": dict(cc, intangible_tags=[])}),
+               dict(ttm, split_adjustment={"ratio_used": 2.0, "applied": True}),
+               dict(ttm, overrides_used=[dict(ttm["overrides_used"][0], value=11e6)]),
+               dict(ttm, overrides_used=[])]
+    for v in changed:
+        assert h(v) != h(ttm), v
+    assert E.ttm_inputs_record(dict(ttm, ttm_shares_diluted=200e6))["ttm_shares_diluted"] == 200e6
 
 
 if __name__ == "__main__":

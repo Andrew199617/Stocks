@@ -350,6 +350,16 @@ value adjustment):
   record of without a trace of reading it (applied, mismatched,
   inapplicable or unused) — "judgment.json changed after the engine run —
   rerun dcf_engine.py".
+- [Codex review round 23 of PR #47] ttm.json must be the one the run read
+  (check_ttm_inputs_current): a pinned run records ttm_inputs
+  (dcf_engine.ttm_inputs_record — ttm_oe_per_share, ttm_shares_diluted,
+  inputs.ocf.ytd_current_period and ttm_input_hash over ttm.json's input
+  legs) and is refused when the current ttm.json gives anything else; a
+  record predating ttm_inputs whose positive IPR&D charge is on ttm.json's
+  share count (HALO's committed 5.6.0 record) is refused unless the current
+  ttm_shares_diluted equals its shares_denominator and ytd_current_period
+  its window.ttm_current_ytd — "ttm.json changed after the engine run —
+  rerun dcf_engine.py". Older records keep the 0.1% base check alone.
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -1236,6 +1246,61 @@ def check_iprd_judgment_current(n, j):
         return
     if named:
         fail(f"{IPRD_JUDGMENT_CHANGED}: {named}")
+
+
+TTM_CHANGED = ("ttm.json changed after the engine run — rerun dcf_engine.py (the run read ttm.json's TTM base, "
+               "share count, current-YTD period and input legs: regenerating ttm.json means rerunning the engine — "
+               "WORKER_SPEC step 4)")
+
+
+def _ttm_inputs_txt(r):
+    r = r if isinstance(r, dict) else {}
+    h = r.get("ttm_input_hash")
+    return (f"ttm_oe_per_share {r.get('ttm_oe_per_share')}, ttm_shares_diluted {r.get('ttm_shares_diluted')}, "
+            f"ytd_current_period {r.get('ytd_current_period')}, ttm_input_hash {str(h)[:12] + '…' if h else h}")
+
+
+def check_ttm_inputs_current(n, tt):
+    """[Codex review r23 of PR #47] ttm.json (object tt, None when absent or unreadable) must be the one the engine run
+    read. The pin-provenance rule compares only the base with ttm_oe_per_share (within 0.1%), but a TTM-basis run also
+    takes its IPR&D share denominator (ttm_shares_diluted) and current-YTD window (inputs.ocf.ytd_current_period)
+    from ttm.json: regenerated after the run with twice the shares and twice the OE, the run's $0.50 charge on 100M
+    shares scored where a rerun deducts $0.25 on 200M; a new 10-Q's YTD period scored the stale window.
+    A run that records ttm_inputs (dcf_engine.ttm_inputs_record of the ttm.json it read; null when no pin, so
+    ttm.json was never read) is refused when the current ttm.json gives anything else. A record that predates it
+    (HALO's committed 5.6.0 record, anything older) whose positive IPR&D charge is on ttm.json's share count
+    (shares_source "ttm.json ttm_shares_diluted") falls back to its own record: the current ttm_shares_diluted must
+    equal shares_denominator (within one share) and, when the window names a current YTD, ytd_current_period must be
+    it. Any other older record keeps the 0.1% base check alone."""
+    if "ttm_inputs" in n:
+        rec = n.get("ttm_inputs")
+        if rec is None:
+            return
+        now = _engine.ttm_inputs_record(tt)
+        if rec != now:
+            fail(f"{TTM_CHANGED}: dcf_numbers.json records ttm_inputs {_ttm_inputs_txt(rec)}; the current ttm.json "
+                 f"gives {_ttm_inputs_txt(now)}")
+        return
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    if not blk or blk.get("shares_source") != "ttm.json ttm_shares_diluted":
+        return
+    cps, tot = _num(blk.get("charge_per_share")), _num(blk.get("total"))
+    if not ((cps is not None and cps > 0) or (tot is not None and tot > 0)):
+        return
+    tt = tt if isinstance(tt, dict) else {}
+    ts, sd = _num(tt.get("ttm_shares_diluted")), _num(blk.get("shares_denominator"))
+    ins = tt.get("inputs") if isinstance(tt.get("inputs"), dict) else {}
+    per = (ins.get("ocf") if isinstance(ins.get("ocf"), dict) else {}).get("ytd_current_period")
+    win = (blk.get("window") or {}).get("ttm_current_ytd") if isinstance(blk.get("window"), dict) else None
+    why = []
+    if ts is None or sd is None or abs(ts - sd) >= 1.0:
+        why.append(f"the run's acquired-IPR&D charge is on ttm.json's ttm_shares_diluted {sd} (iprd_adjustment."
+                   f"shares_denominator) but ttm.json now holds {ts}")
+    if isinstance(win, list) and per != win:
+        why.append(f"the run's current-YTD window is {win} (iprd_adjustment.window.ttm_current_ytd) but ttm.json's "
+                   f"inputs.ocf.ytd_current_period is now {per!r}")
+    if why:
+        fail(f"{TTM_CHANGED}: " + "; ".join(why))
 
 
 IPRD_DEFERRED_EVENT = "iprd_deferred_payment"   # [Codex review r8 of PR #47] the registry event (one per deal)
@@ -3093,6 +3158,13 @@ def main():
                      f"ttm_oe_per_share {ttm_val} by >0.1% (or ttm.json is missing) and judgment.json declares no "
                      "matching base_override {value, source, reason} — a pinned base must come from ttm.py "
                      "(ttm.json, via --ttm) or be declared as a base_override; an arbitrary pin is not scoreable")
+    # [Codex review r23 of PR #47] ...and the rest of what the run read from ttm.json must still be ttm.json's
+    try:
+        with open(f"{folder}/ttm.json", encoding="utf-8") as f:
+            _tt_now = json.load(f)
+    except Exception:
+        _tt_now = None
+    check_ttm_inputs_current(n, _tt_now)
 
     # [v5.5 — Codex, PR #31] Overrides ttm.py used to fill the legs of the
     # TTM base this score is pinned to, where the annual engine applied none

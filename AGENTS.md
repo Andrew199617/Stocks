@@ -367,7 +367,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    iprd_amortized figures) changed after the engine run: the run records `iprd_judgment_hash` and make_score
    refuses a mismatch; a record that predates the hash (HALO's) is refused when a declared check names a window
    period the run shows no trace of reading. A diff that edits those declarations without a fresh
-   dcf_numbers.json is P1. A period carrying `unit_conflict` (one tag filed for the period in two
+   dcf_numbers.json is P1. [Codex review round 23 of PR #47] Nor can a score whose ttm.json changed after a
+   pinned engine run: the run records `ttm_inputs` (ttm_oe_per_share, ttm_shares_diluted, ytd_current_period,
+   ttm_input_hash) and make_score refuses any difference; a record that predates it (HALO's) is refused when its
+   positive IPR&D charge is on a ttm.json share count or YTD window the current ttm.json no longer holds. A diff
+   that regenerates ttm.json without a fresh dcf_numbers.json is P1. A period carrying `unit_conflict` (one tag filed for the period in two
    units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive
    ones; [Codex review round 16 of PR #47] a cash-only deferred-payment period and an `ignored_cash_only` entry
    carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact; round 17: so does a
