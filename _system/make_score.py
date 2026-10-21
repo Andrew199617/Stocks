@@ -462,9 +462,13 @@ rebuilt as before, both alert gates closed ("engine output predates release
   catches OSCR / MOH / CNC (6324) and AES (4991) with no engine re-run. A
   present SIC outside 6000-6799 and every misfit range sets a misfit universe
   sector aside (default Q1 (b), main agent 2026-10-21, pending Andrew; the
-  switch is dcf_engine.SIC_SETS_ASIDE_SECTOR): such a name is modeled and
-  score.json misfit_sector_set_aside says why (EDU 8200, WCN 4953, FN 3661,
-  CSGP 7389, EFX / TRU 7320 on file). model_fit keeps its meaning.
+  switch is dcf_engine.SIC_SETS_ASIDE_SECTOR, and it reaches a 5.7 engine
+  record too: misfit_status re-reads its recorded sector and SIC under the
+  current rules): such a name is modeled and score.json
+  misfit_sector_set_aside says why (EDU 8200, WCN 4953, FN 3661, CSGP 7389,
+  EFX / TRU 7320 on a rebuild; GFL 4953, with no folder SIC, on its first
+  5.7 engine run). A 5.7 SIC-only misfit's basis names no universe sector.
+  model_fit keeps its meaning.
   misfit_notch(...) (after check_no_double_softening, whose refusal keeps
   priority) sets tier_final and score.json misfit_notch {applies,
   tier_by_numbers, tier_after_notch, reason, reason_source judgment |
@@ -2371,9 +2375,11 @@ def misfit_notch(n, j, model_fit, basis, override, run57):
                            "which already measures what common shareholders earn — a notch on top would double-count"))
         return (override or tb), blk, bool(override)
     if tb == "D":
+        # never "there is no tier below D": a D misfit's judgment may still publish F (01 §3.3 keeps a D -> F
+        # override), and key_numbers.md prints that F right above this reason (review of d9618aa)
         blk.update(not_applied="tier_floor_D",
-                   reason=(f"cannot notch: numbers tier D (weighted IRR {irr_s}) is the lowest graded tier, so there is "
-                           f"no tier below it to publish — {NOTCH_RULING} is not applied"))
+                   reason=(f"cannot notch: numbers tier D (weighted IRR {irr_s}) is the lowest graded tier (F means no "
+                           f"positive owner's earnings, not a notch) — {NOTCH_RULING} is not applied"))
         return (override or tb), blk, bool(override)
     if tb not in TIERS[:4]:   # F (or no tier: make_score refused that earlier)
         sub = n.get("f_subtype") or "no positive owner's earnings"
@@ -3155,8 +3161,11 @@ def keep_first_dates(new_entries, prior_entries):
                 legacy[lk] = min(legacy.get(lk, d), d)
             if e.get("event") == "tier_override":
                 # v5.7 (L1, R1): a legacy one-notch tier_override is the same judgment as the misfit_notch event that
-                # replaces it (same tiers, same reason) — that event keeps the date the notch was first taken
-                nk = _declaration(dict(e, event="misfit_notch"))
+                # replaces it (same tiers, same reason) — that event keeps the date the notch was first taken. The old
+                # event recorded the reason raw, misfit_notch records it stripped (misfit_notch), so the cross-index
+                # strips it too: surrounding whitespace never re-dates a legacy notch (review of d9618aa)
+                r = e.get("reason")
+                nk = _declaration(dict(e, event="misfit_notch", reason=r.strip() if isinstance(r, str) else r))
                 first[nk] = min(first.get(nk, d), d)
     for e in new_entries:
         d = first.get(_declaration(e))

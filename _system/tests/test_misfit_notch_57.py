@@ -31,11 +31,19 @@ Each test names how it fails on the scaffold (e22e814) — the code before this 
  T-14 test_live_tier_follows_notch and T-18 test_notched_score_live_is_shown: reprice's live notch and build_site
       showing live figures beside every notched state, the unrebuilt legacy score included (e22e814: the live tier
       is the raw numbers tier; T-18 also fails because the score is not notched).
+Review fixes of 2026-10-21 (each fails on d9618aa, the lane's first commit, as well as on e22e814):
+ test_switch_reaches_a_57_record: SIC_SETS_ASIDE_SECTOR reaches a 5.7 engine record on its next rebuild (d9618aa:
+      the recorded misfit=false was final). test_sic_only_57_basis_names_no_sector: a 5.7 SIC-only misfit's basis
+      and refusal heads name no universe sector (d9618aa: 'universe sector Health Care'). test_legacy_date_carries_
+      through_whitespace: a legacy reason with surrounding whitespace keeps its first date (d9618aa: re-dated).
+      test_d_not_applied_reason_beside_a_d_to_f_override: the D block never says there is no tier below D (d9618aa:
+      it did, under a published F).
 """
 import copy
 import json
 import os
 import shutil
+import subprocess
 import sys
 import tempfile
 import types
@@ -51,7 +59,7 @@ import dcf_engine as E  # noqa: E402  (the shared module make_score and reprice 
 import reprice as R  # noqa: E402
 import engine55_harness as H  # noqa: E402
 import rulings57  # noqa: E402
-from test_make_score_55 import Run, _numbers, _judgment, _stamp, _with, _run_with_registry, T  # noqa: E402
+from test_make_score_55 import Run, _numbers, _judgment, _stamp, _with, _run_with_registry, T, MAKE_SCORE  # noqa: E402
 
 CUR = E.ENGINE_RELEASE
 OLD = "5.5.0"   # output from before the rulings release: rebuilt, never bound by the 5.7 obligations
@@ -620,6 +628,168 @@ def test_iprd_hand_override_on_a_misfit():
     assert "agent override at the notched tier (acquired-IPR&D hand deduction)" in r.result["key"], r.result["key"]
     r = TMI._score(n, TMI._j(base_override=bo, tier_override=tb, tier_override_reason=why, misfit_notch_reason=WHY57))
     assert r.rc == 1 and f"tier_override {tb} is above the misfit-notched tier" in r.err, r.err[-800:]
+
+
+# ===========================================================================
+# Review fixes (2026-10-21) — each of these fails on d9618aa, the lane's first commit
+# ===========================================================================
+# make_score.py with dcf_engine.SIC_SETS_ASIDE_SECTOR set False before make_score imports the engine — Q1 option (a),
+# exactly as Andrew would set it by editing the one constant
+SWITCH_OFF = r'''import runpy, sys
+sys.path.insert(0, sys.argv[1])
+import dcf_engine
+dcf_engine.SIC_SETS_ASIDE_SECTOR = False
+script, ticker = sys.argv[2], sys.argv[3]
+sys.argv = [script, ticker]
+runpy.run_path(script, run_name="__main__")
+'''
+
+
+class _SwitchOffRun(Run):
+    """Run, with make_score.py started through SWITCH_OFF (the same temp STOCKS_BASE, registry and folder)."""
+
+    def run(self):
+        env = dict(os.environ, STOCKS_BASE=self.base, PYTHONIOENCODING="utf-8", MAKE_SCORE_REGISTRY=self.registry)
+        r = subprocess.run([sys.executable, "-P", "-c", SWITCH_OFF, SYS, MAKE_SCORE, T], capture_output=True,
+                           text=True, encoding="utf-8", env=env, timeout=120)
+        self.rc, self.out, self.err = r.returncode, r.stdout, r.stderr
+        return self
+
+
+def _with_switch_off(n, j):
+    r = _SwitchOffRun(n, j).run()
+    try:
+        r.result = dict(r.state(), score=r.score() if r.rc == 0 else None, key=r.key() if r.rc == 0 else None,
+                        entries=r.entries())
+    finally:
+        r.close()
+    return r
+
+
+EDU_SIC = ("8200", "Services-Educational Services", "edgar_submissions")
+
+
+def test_switch_reaches_a_57_record():
+    """Review fix 1: SIC_SETS_ASIDE_SECTOR is the ONE switch for Q1 — it reaches a record the 5.7 engine wrote, not only
+    an older one. misfit_status re-derives a 5.7 record's answer from the universe sector and SIC the engine recorded,
+    under the current rules (sector_model_record), so EDU scored at 5.7 with the switch on (set aside, no flag) is a
+    misfit once the switch is off: notched C -> D, no misfit_sector_set_aside; and a record the engine wrote with the
+    switch off (the Real Estate flag, misfit) is set aside once it is on. (d9618aa: the recorded misfit was final, so
+    flipping the switch left every 5.7 set-aside name modeled until an engine re-run.)"""
+    on = E.sector_model_record("Real Estate", *EDU_SIC)
+    assert on["misfit"] is False and on["sector_set_aside_by_sic"] is True, on
+    edu = _numbers(release=CUR, tier_by_numbers="C", implied_irr_weighted=0.1494, implied_irr_base=0.1494,
+                   fragility_flags=[], sector_model=on)
+    saved = E.SIC_SETS_ASIDE_SECTOR
+    try:
+        E.SIC_SETS_ASIDE_SECTOR = False
+        fit, b = E.misfit_status(edu)
+        assert fit == "misfit" and b == {"source": "engine_sector_model", "sector": "Real Estate", "sic": "8200",
+                                         "sic_description": "Services-Educational Services", "sic_class": None,
+                                         "sic_source": "edgar_submissions"}, (fit, b)
+        assert M.misfit_set_aside_record(fit, b) is None
+        written_off = dict(edu, sector_model=E.sector_model_record("Real Estate", *EDU_SIC), fragility_flags=[RE_FLAG])
+        assert written_off["sector_model"]["misfit"] is True and E.misfit_status(written_off)[0] == "misfit"
+    finally:
+        E.SIC_SETS_ASIDE_SECTOR = saved
+    fit, b = E.misfit_status(written_off)          # the switch back on: the record written with it off is set aside
+    assert fit == "modeled" and b["sector_set_aside_by_sic"] is True and b["source"] == "engine_sector_model", (fit, b)
+    # make_score end to end: the default switch, then option (a)
+    j = _judgment(None, misfit_notch_reason=WHY57)
+    r = _with(edu, j)
+    assert r.rc == 0, r.err
+    s = r.result["score"]
+    assert s["model_fit"] == "modeled" and s["tier_final"] == "C" and "misfit_notch" not in s, s
+    sa = s["misfit_sector_set_aside"]
+    assert (sa["sector"], sa["sic"], sa["sic_source"], sa["source"]) == ("Real Estate", "8200", "edgar_submissions",
+                                                                         "engine_sector_model"), sa
+    r = _with_switch_off(edu, j)
+    assert r.rc == 0, r.err
+    s = r.result["score"]
+    assert s["model_fit"] == "misfit" and s["tier_final"] == "D" and "misfit_sector_set_aside" not in s, s
+    mn = s["misfit_notch"]
+    assert mn["applies"] and mn["tier_after_notch"] == "D" and mn["reason"] == WHY57, mn
+    assert mn["basis"]["sector"] == "Real Estate" and mn["basis"]["source"] == "engine_sector_model", mn["basis"]
+    assert "- Tier: D (sector-misfit notch: numbers tier C → D)" in r.result["key"], r.result["key"]
+    assert "Sector misfit set aside" not in r.result["key"], r.result["key"]
+    assert [e["tier_final"] for e in r.result["entries"] if e.get("event") == "misfit_notch"] == ["D"]
+
+
+def test_sic_only_57_basis_names_no_sector():
+    """Review fix 2: on a 5.7 run of a misfit caught only by its SIC (OSCR / MOH / CNC: universe sector Health Care,
+    SIC 6324) the basis names no universe sector (01 §6.3: the misfit sector or null), so the reason and every refusal
+    head read 'sector misfit (EDGAR SIC 6324 ...)', exactly as a rebuild from the folder SIC does; a record where the
+    sector rule fired keeps its sector. (d9618aa: basis.sector 'Health Care', and 'universe sector Health Care' in every
+    head, as if the sector rule had fired.)"""
+    sm = E.sector_model_record("Health Care", "6324", "Hospital & Medical Service Plans", "edgar_submissions")
+    want = {"source": "engine_sector_model", "sector": None, "sic": "6324",
+            "sic_description": "Hospital & Medical Service Plans", "sic_class": "insurance_carrier",
+            "sic_source": "edgar_submissions"}
+    assert E.misfit_status({"sector_model": sm}) == ("misfit", want), E.misfit_status({"sector_model": sm})
+    rebuilt = E.misfit_status({}, sic=("6324", "Hospital & Medical Service Plans", "fundamentals.json"))[1]
+    same = lambda b: {k: v for k, v in b.items() if k not in ("source", "sic_source")}  # noqa: E731
+    assert same(rebuilt) == same(want), rebuilt
+    for sector, sic, desc in (("Finance", "6211", "Security Brokers, Dealers & Flotation Companies"),
+                              ("Finance", "6282", "Investment Advice"), ("Utilities", "4924", "Natural Gas Distribution"),
+                              ("Utilities", None, None)):
+        rec = E.sector_model_record(sector, sic, desc, "edgar_submissions")
+        assert E.misfit_status({"sector_model": rec})[1]["sector"] == sector, rec
+    flag = ("SECTOR_MODEL_MISMATCH: SIC 6324 (Hospital & Medical Service Plans) — OE/capex DCF fits insurance carriers "
+            "poorly (universe sector Health Care; EDGAR SIC rule, 2026-10-19); grade confidence low")
+    n = _numbers(release=CUR, tier_by_numbers="C", implied_irr_weighted=0.1213, implied_irr_base=0.1213,
+                 fragility_flags=[flag], sector_model=sm)
+    head = ("sector misfit (EDGAR SIC 6324 Hospital & Medical Service Plans (insurance carriers)): numbers tier C at a "
+            "weighted IRR of 12.13% publishes one notch lower as D")
+    r = _with(n, _judgment(None, misfit_notch_reason=None))    # R-3 (None keeps rulings57 from adding a reason)
+    r.refused(f"misfit_notch_reason is required on a 5.7 run of a sector misfit ({head})")
+    assert "universe sector" not in r.err, r.err
+    r = _with(n, _judgment(None, misfit_notch_reason=WHY57, tier_override="B", tier_override_reason="test: a lift 1%"))
+    r.refused(f"tier_override B is above the misfit-notched tier D — {head}")                                   # R-1
+    r = _with(n, _judgment(None, misfit_notch_reason=WHY57))
+    assert r.rc == 0, r.err
+    assert r.result["score"]["misfit_notch"]["basis"] == want, r.result["score"]["misfit_notch"]["basis"]
+
+
+def test_legacy_date_carries_through_whitespace():
+    """Review fix 4: a legacy one-notch reason saved with surrounding whitespace keeps the date it was first taken.
+    The old tier_override event recorded the raw text and the misfit_notch event records it stripped (score.json too),
+    so keep_first_dates' cross-index compares the legacy reason stripped. (d9618aa: re-dated the run day.)"""
+    core = "insurer float in OCF; softened one notch to C (NI vs OCF gap 41%)"
+    for raw in (core + " ", "\n" + core + "  \n"):
+        prior = [{"ticker": T, "event": "tier_override", "date": "2026-10-14", "tier_by_numbers": "B",
+                  "tier_final": "C", "reason": raw}]
+        r = _run_with_registry(_misfit(release=OLD), _judgment(None, tier_override="C", tier_override_reason=raw), prior)
+        assert r.rc == 0, r.err
+        ev = _events(r, "misfit_notch")
+        assert len(ev) == 1 and ev[0]["date"] == "2026-10-14" and ev[0]["reason"] == core, (repr(raw), ev)
+        assert r.result["score"]["misfit_notch"]["reason"] == core, r.result["score"]["misfit_notch"]
+    new = [{"ticker": T, "event": "misfit_notch", "date": "2026-10-21", "tier_by_numbers": "B", "tier_final": "C",
+            "reason": core}]
+    M.keep_first_dates(new, prior)
+    assert new[0]["date"] == "2026-10-14", new
+    other = [dict(new[0], date="2026-10-21", reason=core + " (v2)")]   # a changed reason is still a new declaration
+    M.keep_first_dates(other, prior)
+    assert other[0]["date"] == "2026-10-21", other
+
+
+D_NOT_APPLIED = ("cannot notch: numbers tier D (weighted IRR 6.10%) is the lowest graded tier (F means no positive "
+                 "owner's earnings, not a notch) — the mechanical sector-misfit notch (Andrew, 2026-10-19) is not applied")
+
+
+def test_d_not_applied_reason_beside_a_d_to_f_override():
+    """Review fix 5: the D block's reason never claims there is no tier below D — 01 §3.3 keeps a D misfit's D -> F
+    judgment override, and key_numbers.md prints that published F right above the reason. (d9618aa: 'so there is no
+    tier below it to publish'.)"""
+    why_f = "test: going concern doubt, 2 covenant breaches"
+    for j, tier in ((_judgment(None), "D"), (_judgment(None, tier_override="F", tier_override_reason=why_f), "F")):
+        r = _with(_misfit(tier="D", irr=0.061), j)
+        assert r.rc == 0, r.err
+        s = r.result["score"]
+        mn = s["misfit_notch"]
+        assert s["tier_final"] == tier and mn["not_applied"] == "tier_floor_D" and mn["reason"] == D_NOT_APPLIED, s
+        assert f"- Misfit notch: not applied — “{D_NOT_APPLIED}”" in r.result["key"], r.result["key"]
+        assert "no tier below" not in r.result["key"], r.result["key"]
+    assert f"- Tier: F (agent override of D: “{why_f}”)" in r.result["key"], r.result["key"]
 
 
 # ===========================================================================

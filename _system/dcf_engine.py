@@ -589,8 +589,11 @@ closed, as for every release change). The items below are written by the lane th
   "SECTOR_MODEL_MISMATCH: SIC 6324 (Hospital & Medical Service Plans) — OE/capex DCF fits insurance carriers poorly
   (universe sector Health Care; EDGAR SIC rule, 2026-10-19); grade confidence low". misfit_status(numbers, base,
   ticker) is the one reading of a record (engine sector_model, else the pre-5.7 flag checked against the folder SIC,
-  else the folder SIC alone) shared by make_score's notch, reprice and the rebuild tool. With no SIC anywhere only the
-  sector rule applies; nothing raises and nothing is printed.
+  else the folder SIC alone) shared by make_score's notch, reprice and the rebuild tool. It re-reads a 5.7
+  sector_model through sector_model_record (the recorded sector and SIC under the current rules), so flipping
+  SIC_SETS_ASIDE_SECTOR changes a 5.7 record's status on its next make_score rebuild, with no engine re-run — only
+  its SECTOR_MODEL_MISMATCH flag text stays as the engine wrote it until then. With no SIC anywhere only the sector
+  rule applies; nothing raises and nothing is printed.
   (3) delta_nwc (HII #29, AVTR). Net working capital subtracts the ASSEMBLED current debt (the aggregate DebtCurrent
   tag, else current long-term debt + short-term borrowings — the same d_cur as the debt basis), not only the
   aggregate tag: a filer of components only had its current debt counted as an operating liability. Only the CSV
@@ -940,7 +943,11 @@ def folder_sic(base, ticker):
 # TransUnion (7320 credit bureaus) under Finance. The filer's own industry code wins: the sector rule does not make such
 # a name a misfit. A finance fee business (6200 exchanges, 6282 asset managers, 6411 brokers, 6531 agents) sits inside
 # 6000-6799 and keeps the sector rule. THE SWITCH: SIC_SETS_ASIDE_SECTOR = False restores option (a), the universe
-# sector rule applied literally (EDU C -> D; WCN, FN, CSGP, EFX, TRU misfits again, all D, no other tier change).
+# sector rule applied literally (EDU C -> D; WCN, FN, CSGP, EFX, TRU misfits again, all D, no other tier change), on
+# the next make_score rebuild of every record — a 5.7 engine record too (misfit_status re-reads its sector_model).
+# Measured 2026-10-21: those six are the names a rebuild sets aside today (their folder holds the SIC); GFL (4953
+# Refuse Systems, universe sector Utilities, D) has no folder SIC, so it stays a misfit on a rebuild and is set aside
+# on its first 5.7 engine run (EDGAR SIC) — the only other scored name the switch decides.
 SIC_SETS_ASIDE_SECTOR = True
 SIC_FINANCE_SPAN = (6000, 6799)
 # the v5 sector-rule flag text ("SECTOR_MODEL_MISMATCH: Finance sector — ..."); a SIC-rule flag reads "...: SIC 6324 (...)"
@@ -989,10 +996,15 @@ def misfit_status(numbers, base=None, ticker=None, sic=None):
     """v5.7 (L1, R1): (model_fit, basis) for an engine record — "misfit" or "modeled" — read the same way by
     make_score's mechanical notch, reprice's pure path and the rebuild tool, offline (the folder's own SIC files
     under base/ticker are the only thing read; a caller that must not read passes sic=(code, description, source)
-    instead, or nothing). Rules, in order:
-      1. a 5.7 record's sector_model says misfit -> misfit (basis.source "engine_sector_model");
-      2. a 5.7 sector_model that read a SIC and says not misfit -> modeled: the engine's answer is final (the basis is
-         returned, with sector_set_aside_by_sic, only when that SIC set a misfit universe sector aside);
+    instead, or nothing). A 5.7 record's sector_model is re-read, not trusted: its recorded universe sector and SIC
+    (the engine's inputs, final — a rebuild never swaps in the folder's copy) go back through sector_model_record
+    under the CURRENT rules, so the one switch SIC_SETS_ASIDE_SECTOR reaches records the 5.7 engine already wrote
+    (review of d9618aa: a stored misfit=false kept a set-aside name modeled after the switch went off). Rules, in order:
+      1. the re-read sector_model is a misfit -> misfit (basis.source "engine_sector_model"; basis.sector is the
+         universe sector only when the sector rule fired — a SIC-only misfit (OSCR's Health Care, SIC 6324) names
+         none, as a rebuild from the folder SIC does, 01 §6.3);
+      2. the re-read sector_model has a SIC and is not a misfit -> modeled (the basis is returned, with
+         sector_set_aside_by_sic and the set-aside sector, only when that SIC set a misfit universe sector aside);
       3. a SECTOR_MODEL_MISMATCH flag (output from before 5.7, which flagged the universe sector only) -> misfit
          (basis.source "engine_flag", the sector parsed from the sector-rule text, the folder SIC attached for the
          reason text) — unless the folder SIC sets that sector aside (Q1 (b)): modeled, basis.source "folder_sic",
@@ -1004,12 +1016,15 @@ def misfit_status(numbers, base=None, ticker=None, sic=None):
     n = numbers if isinstance(numbers, dict) else {}
     sm = n.get("sector_model") if isinstance(n.get("sector_model"), dict) else None
     if sm is not None:
-        b = _misfit_basis("engine_sector_model", sm.get("sector"), sm.get("sic"), sm.get("sic_description"),
-                          sm.get("sic_source"))
-        if sm.get("misfit"):
-            return "misfit", b
-        if b["sic"]:
-            return "modeled", (dict(b, sector_set_aside_by_sic=True) if sm.get("sector_set_aside_by_sic") else None)
+        cur = sector_model_record(sm.get("sector"), sm.get("sic"), sm.get("sic_description"), sm.get("sic_source"))
+        if cur["misfit"]:
+            return "misfit", _misfit_basis("engine_sector_model", cur["sector"] if "sector" in cur["basis"] else None,
+                                           cur["sic"], cur["sic_description"], cur["sic_source"])
+        if cur["sic"]:
+            if not cur["sector_set_aside_by_sic"]:
+                return "modeled", None
+            return "modeled", dict(_misfit_basis("engine_sector_model", cur["sector"], cur["sic"],
+                                                 cur["sic_description"], cur["sic_source"]), sector_set_aside_by_sic=True)
     if sic is not None:
         fsic, fdesc, fsrc = (tuple(sic) + (None, None, None))[:3]
     elif base is not None and ticker is not None:
