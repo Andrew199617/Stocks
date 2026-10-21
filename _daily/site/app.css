@@ -182,6 +182,10 @@ ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
  .sgrow{grid-template-columns:1fr} .fanchart{height:220px}
  table.stm th:first-child,table.stm tbody th{min-width:118px;max-width:150px;font-size:12.5px} table.stm tr.l1 th{padding-left:18px} table.stm tr.l2 th{padding-left:30px} .spark{padding:12px 8px 8px}
 }
+@media (min-width:900px){ /* wide screens: the strip sits beside the return instead of under it, so the card stays shorter than the old one there too */
+ .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:28px} .hrow{grid-column:1/-1} .hret{grid-column:1;grid-row:2} .hstatus{grid-column:1/-1;grid-row:3;margin-top:-2px}
+ .hstrip{grid-column:2;grid-row:2;align-self:center;margin:0;padding:2px 0 2px 24px;border-top:0;border-left:1px solid var(--line)}
+}
 @media (max-width:480px){.tabsum{gap:8px;font-size:13px} .hs .v.long{font-size:16px}}
 @media (max-width:400px){.hs .v{font-size:18px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

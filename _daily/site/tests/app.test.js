@@ -1626,6 +1626,7 @@ test('compact header: one strip for price, value @15% and upside; override and l
   // meta = sector · cap; exchange and filer category in its title only (the About card lists both)
   const face = head.match(/<span class="note hmeta"[^>]*>([^<]*)<\/span>/)[1];
   assert.ok(!/NYSE|accelerated filer/.test(face) && head.includes('title="Market cap at the last close · NYSE · Large accelerated filer"'), 'meta face: ' + face);
+  assert.ok(face.includes('\u00a0· $'), 'a long sector wraps after the dot, so the cap never starts a line with "·": ' + face);
   assert.ok(App.renderAbout(synthetic).includes('Large accelerated filer'), 'filer category still in About');
   assert.ok(!App.renderHeader(synthetic).includes('class="hov"'), 'no override marker when the final tier is the numbers tier');
   // not live, a current close: the return and upside stay at the scored price, and the header says so
@@ -1642,6 +1643,8 @@ test('compact header: one strip for price, value @15% and upside; override and l
   assert.ok(!ch.includes('52-wk') && App.renderPriceChart(cc).includes('52-wk $38.40–$55.20'), '52-week range in the chart card');
   const css = fs.readFileSync(path.join(SITE, 'app.css'), 'utf8');
   assert.ok(css.includes('.hstrip{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(0,.9fr)') && !css.includes('.hstats') && !css.includes('.hstat '), 'one three-cell strip at every width; the stacked .hstats grid is gone');
+  const wide = (css.match(/@media \(min-width:900px\)\{[^]*?\n\}/) || [''])[0];
+  assert.ok(/\.hstrip\{grid-column:2;grid-row:2;/.test(wide) && /\.hret\{grid-column:1;grid-row:2\}/.test(wide), 'wide screens: the strip sits beside the return, not under it: ' + wide);
   assert.ok(/\.hstar\{position:absolute;[^}]*min-width:44px;min-height:44px/.test(css), 'star: a 44px target in the corner');
 });
 test('Live older than the score: the ranking marks the row "live pending" and ranks it on its scored IRR; the header counts the pending rows', () => {

@@ -406,7 +406,7 @@ function renderHeader(record, stars, repo) {
   // header meta is sector · market cap; exchange and filer category sit in its title (and the About card), the price
   // source in the price cell's title (and the Data tab), the 52-week range, 1y return and pending sentence in the price chart card
   var prof = obj(obj(record.fundamentals).profile);
-  var meta = joinNonEmpty([esc(s.sector || record.sector || row.sector), fmtCap(v.cap_b)], ' · ');
+  var meta = joinNonEmpty([esc(s.sector || record.sector || row.sector), fmtCap(v.cap_b)], '\u00a0· '); // a wrap breaks after the dot, never before it
   var metaT = joinNonEmpty([v.is_live ? 'Market cap at the last close' : '', first(prof.exchanges) ? esc(first(prof.exchanges)) : '', prof.filer_category ? esc(prof.filer_category) : ''], ' · ');
   // compact header (owner decision, 2026-10-21, option A "stat strip"): identity row; the expected return with the
   // bear → bull band beside it; one status line only when there is something to say; then price | value @15% | upside

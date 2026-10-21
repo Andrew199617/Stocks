@@ -1873,7 +1873,9 @@ decision's "nothing that exists today is removed" holds: every item the header n
   (3) A status line, only when it has something to say: on a live page "Scored **x%** at $p" (the pp move at the last close in
   its title) and the tier-shift chip or the muted "Scored X · live Y" chip; an override pill "Override · numbers S → final D"
   whenever `tier_by_numbers` differs from the scored tier (VOD, which showed a D tile beside 25.2% with no marker); "IRR at the
-  model floor"; the split chip. (4) `.hstrip`: three cells, price · Value @15% · Upside.
+  model floor"; the split chip. (4) `.hstrip`: three cells, price · Value @15% · Upside. From 900 px wide the strip sits beside
+  the return (column 2 of a two-column grid; the status line spans both), so the card is shorter on a desktop too. The meta
+  line joins with a no-break space before the dot, so a long sector wraps after it and the cap never starts a line with "·".
 - **Price cell.** Live page: "Last close" with the 1-day change and the price date (title: the move vs the scored price). No
   live.json but a `prices.stats` close newer than the analysis (`currentClose`): "Last close" with its change and date, the status
   line names the return's basis ("Return at the scored price $X (date)") and the upside reads "vs scored price".
@@ -1885,10 +1887,12 @@ decision's "nothing that exists today is removed" holds: every item the header n
   (`.star.fixed.repo.hstar`, the ranking row's mark) in the corner, so a repo name no longer adds a row; other names keep the gold
   `.hstar` toggle there, a 44 px target.
 - **Measured** (Playwright, the real app.js + app.css): at 375 px LTM 258, VOD 271, SYN (live) 287, AEE (Tier F) 237, NVR 258 px
-  tall; at 428 px 240 / 274 / 273 / 240 / 260 (before: 390–444 at 428). No horizontal scroll at 375, 428 or 1280. A figure of
+  tall; at 428 px 240 / 274 / 273 / 240 / 260 (before: 390–444 at 428). On the published 2026-10-20 data at 428 px: LTM 444 → 240,
+  VOD 395 → 274, LDOS (live) 480 → 293, KLAR (live + override) 465 → 323, AEE 390 → 240, APP (repo) 428 → 240; at 1280 px
+  220–226 → 176–212; at 900 px 290–326 → 176–212. No horizontal scroll at 375, 428 or 1280. A figure of
   nine or more characters ($2,901.18) takes the smaller phone size (`.long`) so it does not wrap.
 - **Tests.** `tests/app.test.js` (97): a "compact header" test pins the strip order and upside basis, the band, the live status
   line, the meta line and its title, the override pill, the `currentClose` case, the price source shown once (in a title) and in
-  the Data tab, the 52-week range in the price chart card, and the CSS (`.hstrip`, no `.hstats`, an absolute 44 px `.hstar`); the
+  the Data tab, the 52-week range in the price chart card, and the CSS (`.hstrip`, no `.hstats`, an absolute 44 px `.hstar`, the strip beside the return from 900 px), the meta line's no-break separator; the
   withheld and watchlist assertions read the marker and the repo star. `test_docs_contract.py` keeps the replaced header wording
   out of this document.
