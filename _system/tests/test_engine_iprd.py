@@ -1511,12 +1511,17 @@ def test_pre_2000_original_filing_accession_is_read_in_its_own_century():
     FY1999 (or a June FY ending 2000-06-30, whose first-quarter 10-Q was filed in 1999) cites a -99- accession, which
     the engine read as 2099 and refused (BAD_IPRD_DEFERRED_PAYMENT, so the company could not be scored). The
     original filing's years are 1999..2000 for FY1999 and 1999..2001 for June FY2000: -99- and -00- pass, a -98- or
-    a -02- one does not, and FY1998 (only -98- / -99- accessions qualify) is no longer unscoreable."""
+    a -02- one does not, and FY1998 (only -98- / -99- accessions qualify) is no longer unscoreable.
+    [Codex review r18, #4332318439] With no annual context filed for the first charged fiscal year (a pre-XBRL
+    charge: companyfacts cannot say when that year started) the start is the end less 380 days, the longest fiscal
+    year read, so a 53-week year is never cut short: FY1999 (a December end) then also admits a -98- accession, and
+    FY1998 a -97- one; a -97- one for FY1999 or a -96- one for FY1998 is still refused."""
     win = ["2023-12-31", "2024-12-31", "2025-12-31"]
-    for first, yy, ok in (("1999-12-31", 99, True), ("1999-12-31", 0, True), ("1999-12-31", 98, False),
-                          ("1999-12-31", 1, False), ("2000-06-30", 99, True), ("2000-06-30", 1, True),
-                          ("2000-06-30", 2, False), ("1998-12-31", 98, True), ("1998-12-31", 99, True),
-                          ("1998-12-31", 97, False), ("2005-12-31", 6, True), ("2005-12-31", 99, False)):
+    for first, yy, ok in (("1999-12-31", 99, True), ("1999-12-31", 0, True), ("1999-12-31", 98, True),
+                          ("1999-12-31", 97, False), ("1999-12-31", 1, False), ("2000-06-30", 99, True),
+                          ("2000-06-30", 1, True), ("2000-06-30", 2, False), ("1998-12-31", 98, True),
+                          ("1998-12-31", 99, True), ("1998-12-31", 97, True), ("1998-12-31", 96, False),
+                          ("2005-12-31", 6, True), ("2005-12-31", 99, False)):
         iprd = {"periods": [_rec("2025-12-31", 20e6)]}
         ref, unused = E.iprd_apply_deferred(iprd, [deferred(first=first, source=_src(yy))], win, None)
         assert (not ref) == ok and unused == [], (first, yy, ref)
@@ -2790,6 +2795,53 @@ def test_a_declaration_claims_the_residual_beside_an_automatic_settlement():
     assert both["iprd_adjustment"]["total"] == 160e6 and q["deducted"] == 100e6, q
     assert sorted((x["deal"], x["amount"], x["first_charge_evidence"]) for x in q["deferred_payment_of"]) == [
         ("Old Bio", 60e6, "companyfacts_expense_fact"), ("Window Bio", 40e6, "window_record")], q
+
+
+def test_aggregated_contexts_name_the_unit_the_period_was_read_from():
+    """[Codex review r18, #4332318423] When several units tile a leg, aggregated_contexts recorded the USD tiling
+    whenever one existed, whatever unit _iprd_pick then used: four USD 0 quarters beside four EUR 25M quarters (rate
+    1.10) read expense $110M in EUR (unit_conflict used EUR) while aggregated_contexts named the USD zero facts — the
+    provenance pointed at facts that did not produce the charge. Now aggregated_contexts holds the contexts of the
+    unit the period's figure was read from, and every other tiled unit is kept under
+    aggregated_contexts_other_units {tag: {unit: contexts}}."""
+    P = "2025-12-31"
+    f = _facts()
+    _r16_quarters(f, EXPENSE, "USD", 0.0)
+    _r16_quarters(f, EXPENSE, "EUR", 25e6)
+    out = E.iprd_detect(f, FY3, fx_rates=R15_RATE, fx_fetch=lambda c, d: 1.1)
+    r = _leg(out, "fy", P)
+    q = [[s, e] for s, e, _ in R16_QS]
+    assert r["expense_unit"] == "EUR" and r["unit_conflict"][EXPENSE]["used"] == "EUR", r
+    assert r["context_basis"] == "aggregated_quarters", r
+    assert r["aggregated_contexts"] == {EXPENSE: {"unit": "EUR", "contexts": q}}, r
+    assert r["aggregated_contexts_other_units"] == {EXPENSE: {"USD": q}}, r
+    # one tiled unit only: no other-units key (the round 11 shape is unchanged)
+    f = _facts()
+    _r16_quarters(f, EXPENSE, "USD", 25e6)
+    r = _leg(E.iprd_detect(f, FY3, fx_rates=R15_RATE), "fy", P)
+    assert r["aggregated_contexts"] == {EXPENSE: {"unit": "USD", "contexts": q}}, r
+    assert "aggregated_contexts_other_units" not in r, r
+
+
+def test_original_filing_years_reach_a_53_week_years_start():
+    """[Codex review r18, #4332318439] The allowed accession years started at (first charged period - 364 days).year:
+    a 53-week fiscal year 2019-12-30..2021-01-03 started in 2019, but 2021-01-03 - 364 days is 2020-01-05, so an 8-K
+    filed 2019-12-30 (-19-) — the original acquisition filing, inside that fiscal year — was refused
+    (BAD_IPRD_DEFERRED_PAYMENT). The start year is now read from the annual context filed for that fiscal year
+    (iprd_fy_starts) when companyfacts has one, else from the end less 380 days (the longest fiscal year the engine
+    reads)."""
+    facts = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2019-12-30", "2021-01-03", 5e6)]}}}}}
+    assert 2019 in E.iprd_original_filing_years("2021-01-03", facts), list(E.iprd_original_filing_years("2021-01-03", facts))
+    assert 2019 in E.iprd_original_filing_years("2021-01-03"), list(E.iprd_original_filing_years("2021-01-03"))
+    win = ["2023-01-01", "2023-12-31", "2024-12-29"]
+    for yy, ok in ((19, True), (20, True), (22, True), (18, False)):
+        iprd = {"periods": [_rec("2024-12-29", 20e6)]}
+        ref, unused = E.iprd_apply_deferred(iprd, [deferred(period="2024-12-29", first="2021-01-03", source=_src(yy))],
+                                            win, facts)
+        assert (not ref) == ok and unused == [], (yy, ref)
+    # a calendar filer's filed annual context keeps the start year exact (not loosened by the 380-day fallback)
+    facts = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2024-01-01", "2024-12-31", 5e6)]}}}}}
+    assert list(E.iprd_original_filing_years("2024-12-31", facts)) == [2024, 2025]
 
 
 if __name__ == "__main__":

@@ -322,6 +322,9 @@ PAIRS = [
     # Codex review round 11 of PR #47: tiled window legs, partial coverage, and the general live-figure rule
     ("_system/dcf_engine.py", 'IPRD_AGGREGATED = "aggregated_quarters"', "aggregated_quarters", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", 'x["aggregated_contexts"] = ', "aggregated_contexts", [SYS_README, CONTRACT]),
+    # Codex review round 18 of PR #47: the tiled unit the figure was read from; the other tiled units beside it
+    ("_system/dcf_engine.py", 'x["aggregated_contexts_other_units"] = ', "aggregated_contexts_other_units",
+     [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", 'out["partial_coverage"] = partial', "partial_coverage", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", '"ACQUIRED_IPRD_PARTIAL_PERIOD: ', "ACQUIRED_IPRD_PARTIAL_PERIOD", [SYS_README]),
     ("_system/dcf_engine.py", "def iprd_tile(", "iprd_tile", [SYS_README]),

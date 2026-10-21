@@ -1921,7 +1921,8 @@ IPRD_DEFERRED_WINDOWS = ("fy",)
 IPRD_ACCESSION_RE = re.compile(r"\b\d{10}-(\d{2})-\d{6}\b")
 IPRD_ACCESSION_FIRST_YY = 93  # EDGAR accession numbers start in 1993: a two-digit year 93..99 is 19YY, else 20YY
 IPRD_WINDOW_DAYS = 357   # a first charge less than this before the oldest window FY end lies inside that FY
-IPRD_FY_SPAN_DAYS = 364  # first charged period - 364 days: the calendar year the fiscal year it closes started in
+IPRD_FY_SPAN_DAYS = 380  # the longest fiscal year read (a 53-week year included): first charged period - 380 days
+                         # is on or before the start of the fiscal year it closes when no annual context is filed
 
 
 def _deal_key(name):
@@ -2017,13 +2018,19 @@ def iprd_accession_year(yy):
     return 1900 + yy if yy >= IPRD_ACCESSION_FIRST_YY else 2000 + yy
 
 
-def iprd_original_filing_years(first_charged_period):
+def iprd_original_filing_years(first_charged_period, facts=None):
     """The calendar years an accession of the original acquisition filing may carry for a deal first charged in the
     period ending `first_charged_period`: from the calendar year the fiscal year it closes started in (a January FY
     end's 10-Qs / 8-K were filed the year before; so was a June FY's first-quarter 10-Q) through the year after its
-    end (the 10-K that closes it)."""
+    end (the 10-K that closes it).
+    [Codex review r18 of PR #47] That start is the start of the annual context companyfacts files for the fiscal year
+    ending there (iprd_fy_starts) when `facts` has one, else the end less IPRD_FY_SPAN_DAYS (380, the longest fiscal
+    year read): the end less 364 days missed a 53-week year's start (2019-12-30..2021-01-03 read as starting in 2020),
+    so a -19- accession of its original filing was refused."""
     fd = datetime.date.fromisoformat(first_charged_period)
-    return range((fd - datetime.timedelta(days=IPRD_FY_SPAN_DAYS)).year, fd.year + 2)
+    st = iprd_fy_starts(facts, [first_charged_period]).get(first_charged_period) if facts else None
+    start = (datetime.date.fromisoformat(st) if st else fd - datetime.timedelta(days=IPRD_FY_SPAN_DAYS)).year
+    return range(start, fd.year + 2)
 
 
 def iprd_companyfacts_charge(facts, date):
@@ -2082,7 +2089,7 @@ def _iprd_deferred_semantic_problem(e, oldest, facts):
     if not f < e["period"]:
         return f"first_charged_period {f} must precede the declared period {e['period']}", None
     try:
-        years = iprd_original_filing_years(f)
+        years = iprd_original_filing_years(f, facts)
     except ValueError:
         return f"first_charged_period {f} is not a date", None
     if not any(iprd_accession_year(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
@@ -2767,6 +2774,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     periods, cash_only, notes = [], [], []
     # [Codex review r11 of PR #47] legs read from tiling shorter facts, and legs only partly covered
     aggregated, partial, pending = {}, [], []
+    picked = {}      # [Codex review r18 of PR #47] {(period, window): {tag: the unit _iprd_pick read}}
     fy_starts = []   # computed once, only when a leg needs it
 
     def _leg(tag, exact, p, window, start):
@@ -2785,8 +2793,8 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                 return exact
         by_unit, ctx, part = iprd_tile(facts, tag, start, p, only_units=missing if exact else None)
         if by_unit:
-            u = "USD" if "USD" in ctx else sorted(ctx)[0]
-            aggregated.setdefault((p, window), {})[tag] = {"unit": u, "contexts": ctx[u]}
+            # [Codex review r18 of PR #47] every tiled unit's contexts: _mark records the one the period was read from
+            aggregated.setdefault((p, window), {})[tag] = {u: ctx[u] for u in sorted(ctx)}
         if part and not any(_iprd_is_pos(vf[0]) for vf in list(exact.values()) + list(by_unit.values())):
             # a positive exact or tiled fact reads the leg: another unit's partial facts are then no missing charge.
             # [Codex review r17 of PR #47] beside a $0 tiling they are recorded too (iprd_tile keeps them)
@@ -2814,13 +2822,29 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         return exps, cash
 
     def _mark(p, window, rec, n_cash_only):
+        """[Codex review r18 of PR #47] aggregated_contexts names, per tag, the tiled unit _iprd_pick read the period
+        from (picked) — it had named the USD tiling whenever one existed, so four USD 0 quarters beside four EUR 25M
+        ones (EUR used) pointed at the zero facts; every other tiled unit is kept under
+        aggregated_contexts_other_units {tag: {unit: contexts}}. A tag read from an exact-context fact in a unit that
+        was not tiled lists its tiled units there only; with no tag read from a tiling the figure is not aggregated
+        (no context_basis)."""
         a = aggregated.get((p, window))
         if not a:
             return
+        sel, used_ctx, other = picked.get((p, window)) or {}, {}, {}
+        for t, units in sorted(a.items()):
+            u = sel.get(t, "USD" if "USD" in units else sorted(units)[0])
+            if u in units:
+                used_ctx[t] = {"unit": u, "contexts": [list(c) for c in units[u]]}
+            rest = {k: [list(c) for c in v] for k, v in units.items() if k != u}
+            if rest:
+                other[t] = rest
         for x in ([rec] if rec is not None else []) + cash_only[n_cash_only:]:
-            x["context_basis"] = IPRD_AGGREGATED
-            x["aggregated_contexts"] = {t: {"unit": v["unit"], "contexts": [list(c) for c in v["contexts"]]}
-                                        for t, v in sorted(a.items())}
+            if used_ctx:
+                x["context_basis"] = IPRD_AGGREGATED
+                x["aggregated_contexts"] = used_ctx
+            if other:
+                x["aggregated_contexts_other_units"] = other
     prior = iprd_pre_window_charges(facts, fy_periods[0] if fy_periods else None)
 
     def _co(p, window, amount, cash, note):
@@ -2884,6 +2908,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             if uc:
                 units_conflict[tag] = uc
             if hit is not None:
+                picked.setdefault((p, window), {})[tag] = hit[1]
                 # [Codex review r1 of PR #47] the native figure rides along for an expense with no FX rate
                 hits.append((tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None))
         _ev = lambda h: h[1] if h[1] is not None else h[5]
@@ -2900,6 +2925,8 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         c = _iprd_pick(cash_map, fx_rates, p, fx_fetch=fx_fetch, conflict=uc)
         if uc:
             units_conflict[IPRD_CASH_TAG] = uc
+        if c is not None:
+            picked.setdefault((p, window), {})[IPRD_CASH_TAG] = c[1]
         # [Codex review r6 of PR #47] the native figure rides along for a cash fact with no FX rate
         cash = (c[0], c[1], c[2], c[3], cash_map[c[1]][0] if c[0] is None else None) if c is not None else None
         chk, mismatch = by_key.get((p, window)), None

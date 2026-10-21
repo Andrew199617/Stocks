@@ -175,7 +175,8 @@ least 98% of the charge otherwise only adds the string `capex_overlap_note`), `e
 `expense_tags_note` when both detector tags carry different positive values (round 8; the current tag is used),
 `unconverted_remainder_of` (period ends) on a cash payment gated `non_usd_no_rate` after a charge expensed in a
 currency with no FX rate (round 8; its `cash_native` is that payment), (Codex review round 11 of PR #47)
-`context_basis` `"aggregated_quarters"` with `aggregated_contexts` {tag: {unit, contexts: [[start, end], …]}} on a
+`context_basis` `"aggregated_quarters"` with `aggregated_contexts` {tag: {unit, contexts: [[start, end], …]}} (round 18:
+the unit the figure was read from; other tiled units under `aggregated_contexts_other_units` {tag: {unit: contexts}}) on a
 period (or an `ignored_cash_only` item) whose expense or cash figure was summed from three-month / year-to-date facts
 tiling the period because no fact covers it exactly (absent otherwise), `deferred_payment` (a note) on cash
 that settles an earlier window charge (Codex review round 12 of PR #47: with `deferred_payment_assumption`, a note

@@ -431,7 +431,8 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    forecast and no `live_withheld` notice is P1.
    [Codex review round 11 of PR #47, the main agent's shape] A period whose expense or cash figure carries
    `context_basis` `aggregated_quarters` was summed from the three-month / year-to-date facts in
-   `aggregated_contexts` (no fact covered the period exactly): those contexts must tile the period with no gap
+   `aggregated_contexts` (no fact covered the period exactly; since round 18 the unit the figure was read from, other
+   tiled units under `aggregated_contexts_other_units`): those contexts must tile the period with no gap
    and no overlap, P1 otherwise. `ACQUIRED_IPRD_PARTIAL_PERIOD` (`iprd_adjustment.partial_coverage`: a tag
    filed for only part of a window period, nothing counted for it) resolved without the period's full figure
    from the filing and its effect on the IVs / IRR is P2; a material one OE never saw published without
