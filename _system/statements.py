@@ -150,6 +150,7 @@ from fundamentals import (DUR, INST, DURATION_FORMS, core_fy_starts, _days, _g, 
                           resolve_cik, get_json, split_direction, share_refilings, split_filing_cutoffs,
                           split_factor, _split_desc, _split_cutoff, _shares_with_filed, _units_pref, class_count_check, pick_money_unit)
 from _stable import write_json_if_changed  # noqa: E402  (committed SEC file: no run-date-only rewrites)
+import moat_evidence  # noqa: E402  (moat rubric 2: the one ROIC formula, roic_row — fundamentals.py's annual rows use it too)
 
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 IF = "ifrs-full"
@@ -161,7 +162,9 @@ SOURCE = "SEC EDGAR companyfacts (filing-direct)"
 # 4 (2026-10-19, ruling-sheet Q8 bugs 2-3, Codex review round 1 on PR #53): net cash needs a filed debt figure, the
 # all-class share count, the one money unit of the newest annual filing — no field marks a file written before them, so
 # --all rebuilds every schema-3 file once (each rewrites once: schema_version is in the file).
-SCHEMA_VERSION = 4
+# 5 (2026-10-21, moat rubric 2): the ROIC proxy line is moat_evidence.roic_row (operating invested capital, no sign
+# flip on negative capital, blank at a financial SIC) — every file's metrics change, so --all rebuilds each once.
+SCHEMA_VERSION = 5
 FILING_FORMS = ("10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F", "40-F/A")
 INSTANT_FORMS = ("10-Q", "10-Q/A", "10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
@@ -2591,13 +2594,6 @@ def _opt(get, present, key):
     return None if present(key) else 0.0
 
 
-def _tax_rate(get):
-    pre, tax = get("pretax_income"), get("income_tax")
-    if _num(pre) and pre > 0 and _num(tax) and 0 <= tax / pre <= 0.5:
-        return tax / pre
-    return None
-
-
 def _ocf_key(get):
     """The OCF the free-cash-flow figures subtract capex from: continuing-operations OCF in a period whose cash-flow
     statement reports discontinued investing flows on their own line (capex is then continuing only), else OCF."""
@@ -2649,6 +2645,21 @@ def _prov_conflict(p):
     return p is not None and not p[0] and bool(p[1])
 
 
+def _current_debt(get, tag_of):
+    """The period's current debt as total_debt adds it: the DebtCurrent aggregate, else IFRS current borrowings that
+    include the current portion, else short-term debt + the current portion of long-term debt; None when none is filed."""
+    agg_cur, st, cur_ltd = get("debt_current_agg"), get("short_term_debt"), get("current_lt_debt")
+    st_is_agg = bool(tag_of and tag_of("short_term_debt") in DEBT_CURRENT_AGG_TAGS)
+    cur_is_agg = bool(tag_of and tag_of("current_lt_debt") in DEBT_CURRENT_AGG_TAGS)
+    if _num(agg_cur):
+        return agg_cur
+    if cur_is_agg and _num(cur_ltd):  # IFRS current borrowings incl. the current portion: the whole current debt
+        return cur_ltd
+    if _num(st) or _num(cur_ltd):
+        return (st if _num(st) else 0.0) + (cur_ltd if (_num(cur_ltd) and not st_is_agg) else 0.0)
+    return None
+
+
 def _available_cash(cash, get, tag_of):
     """The period's cash a derived figure may treat as available: the cash cell minus its restricted part when the cell
     is the combined cash + restricted total (CASH_WITH_RESTRICTED_TAGS) and the period's restricted figure is shown
@@ -2660,7 +2671,7 @@ def _available_cash(cash, get, tag_of):
     return cash
 
 
-def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_ttm=None):
+def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_ttm=None, rev_ttm=None, sic=None):
     """One derived figure for one period. get(key) -> the period's value of a
     line (None when absent), present(key) -> the line carries a value in SOME
     period; tag_of(key) -> the tag that supplied the period's value;
@@ -2676,19 +2687,10 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
         ok = _ocf_key(get)
         return get(ok) - get("capex") - get("sbc") if req(ok, "capex", "sbc") else None
     if name == "total_debt":
-        lt, agg_cur, agg_tot = get("long_term_debt"), get("debt_current_agg"), get("debt_total_agg")
-        st, cur_ltd = get("short_term_debt"), get("current_lt_debt")
+        lt, agg_tot, st = get("long_term_debt"), get("debt_total_agg"), get("short_term_debt")
         st_is_agg = bool(tag_of and tag_of("short_term_debt") in DEBT_CURRENT_AGG_TAGS)
-        cur_is_agg = bool(tag_of and tag_of("current_lt_debt") in DEBT_CURRENT_AGG_TAGS)
         lt_is_total = bool(tag_of and tag_of("long_term_debt") in DEBT_TOTAL_TAGS)
-        if _num(agg_cur):
-            cur = agg_cur
-        elif cur_is_agg and _num(cur_ltd):  # IFRS current borrowings incl. the current portion: the whole current debt
-            cur = cur_ltd
-        elif _num(st) or _num(cur_ltd):
-            cur = (st if _num(st) else 0.0) + (cur_ltd if (_num(cur_ltd) and not st_is_agg) else 0.0)
-        else:
-            cur = None
+        cur = _current_debt(get, tag_of)
         if _num(lt) and lt_is_total:  # the long-term-debt line is the filer's combined total (current maturities inside)
             agg_tot = lt
         elif _num(lt):
@@ -2725,14 +2727,24 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
         den = get("total_common_equity") if name == "roe" else get("total_assets")
         return _ratio(ni, den) if (_num(ni) and _num(den) and den > 0) else None
     if name == "roic_proxy":
-        oi = oi_ttm if oi_ttm is not None else get("operating_income")
-        t = tax_ttm if tax_ttm is not None else _tax_rate(get)
-        eq = get("total_common_equity")
-        debt, cash = _opt(get, present, "total_debt"), _available_cash(_opt(get, present, "cash"), get, tag_of)
-        if not (_num(oi) and t is not None and _num(eq) and debt is not None and cash is not None):
-            return None
-        invested = eq + debt - cash
-        return _ratio(oi * (1 - t), invested) if invested > 0 else None
+        # moat rubric 2 (2026-10-21): moat_evidence.roic_row on this cell's lines — after-tax operating income (the
+        # pretax + interest fallback only at a known non-financial SIC) over operating invested capital (total assets −
+        # available cash − short-term investments − non-debt current liabilities), shown only on capital >= 10% of
+        # revenue (TTM revenue on a quarterly / TTM cell); blank at SIC 6000-6799. The old equity + debt − cash
+        # denominator flipped sign on negative capital (VRSN) and exploded where cash ≈ equity (MANH).
+        ie = get("interest_expense")
+        if _num(ie) and tag_of is not None and tag_of("interest_expense") in NET_INTEREST_TAGS:
+            ie = max(0.0, ie)  # a net figure (negated on the expense line): net interest income adds nothing back
+        row = {"operating_income": oi_ttm if oi_ttm is not None else get("operating_income"),
+               "pretax_income": get("pretax_income"), "tax": get("income_tax"), "interest_expense": ie,
+               "net_income": get("net_income"), "revenue": rev_ttm if rev_ttm is not None else get("revenue"),
+               "assets": get("total_assets"), "liab_current": get("total_current_liabilities"),
+               "cash": _available_cash(get("cash"), get, tag_of), "short_term_investments": get("short_term_investments"),
+               "debt_current": _current_debt(get, tag_of),
+               "debt_lt": None if (tag_of and tag_of("long_term_debt") in DEBT_TOTAL_TAGS) else get("long_term_debt"),
+               "total_debt": get("total_debt"), "equity": get("total_common_equity"), "liabilities": get("total_liabilities"),
+               "goodwill": get("goodwill"), "intangibles": get("intangibles")}
+        return moat_evidence.roic_row(row, sic, tax_ttm)["roic_proxy"]
     if name == "debt_to_equity":
         eq = get("total_common_equity")
         return _ratio(get("total_debt"), eq) if (_num(eq) and eq > 0) else None
@@ -2769,17 +2781,19 @@ DERIVED_INPUTS = {
     "net_cash_per_share": ("net_cash", "shares_outstanding"), "book_value_per_share": ("shares_outstanding",),
     "tangible_book_value_per_share": ("shares_outstanding",),
     "gross_margin": ("gross_profit", "revenue"), "operating_margin": ("operating_income", "revenue"), "net_margin": ("net_income", "revenue"),
-    "fcf_margin": ("fcf", "revenue"), "roe": ("net_income",), "roa": ("net_income",), "roic_proxy": ("operating_income", "income_tax", "pretax_income"),
+    "fcf_margin": ("fcf", "revenue"), "roe": ("net_income",), "roa": ("net_income",), "roic_proxy": ("operating_income", "income_tax", "pretax_income", "revenue"),
 }
 
 
-def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
+def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None, sic=None):
     """Compute every derived line over annual / quarterly / ttm columns, in
     spec order (a derived line may use an earlier derived line: fcf ->
-    fcf_per_share, total_debt -> net_cash)."""
+    fcf_per_share, total_debt -> net_cash). sic: the filer's SIC (int or None)
+    for the ROIC proxy (moat_evidence.roic_row)."""
     present = lambda k: k in lines and any(_num(v) for v in lines[k]["annual"] + lines[k]["quarterly"] + [lines[k]["ttm"]])  # noqa: E731
     mixed = []
-    ni, oi, tax, pre = lines.get("net_income"), lines.get("operating_income"), lines.get("income_tax"), lines.get("pretax_income")
+    ni, oi, tax, pre, rev = (lines.get(k) for k in ("net_income", "operating_income", "income_tax", "pretax_income", "revenue"))
+    rate = lambda t4, p4: (t4 / p4) if (_num(t4) and _num(p4) and p4 > 0 and 0 <= t4 / p4 <= 0.5) else None  # noqa: E731
     for stmt, specs in STATEMENTS:
         for spec in specs:
             if not spec["derived"]:
@@ -2789,7 +2803,7 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
             for i in range(len(annual_ends)):
                 get = lambda k, i=i: (_eff(lines[k], "annual", i) if k in lines and i < len(lines[k]["annual"]) else None)  # noqa: E731
                 tag_of = lambda k, i=i: (lines[k].get("_atags", {}).get(annual_ends[i]) if k in lines else None)  # noqa: E731
-                v = derive_value(name, get, present, tag_of)
+                v = derive_value(name, get, present, tag_of, sic=sic)
                 e = annual_ends[i]
                 p = _prov_join([_prov(lines.get(k), e) for k in derived_input_keys(name, get) if k in lines and _num(lines[k]["annual"][i])])
                 if _num(v) and name in SAME_FILING_DERIVED and _prov_conflict(p):
@@ -2806,22 +2820,27 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
                 if name in ("roe", "roa", "roic_proxy"):
                     kw["ni_ttm"] = _trailing4(ni, q_ends, i)
                     kw["oi_ttm"] = _trailing4(oi, q_ends, i)
-                    t4, p4 = _trailing4(tax, q_ends, i), _trailing4(pre, q_ends, i)
-                    kw["tax_ttm"] = (t4 / p4) if (_num(t4) and _num(p4) and p4 > 0 and 0 <= t4 / p4 <= 0.5) else None
+                    kw["tax_ttm"] = rate(_trailing4(tax, q_ends, i), _trailing4(pre, q_ends, i))
                     if name in ("roe", "roa") and kw["ni_ttm"] is None:
                         quarterly.append(None)
                         continue
-                    if name == "roic_proxy" and (kw["oi_ttm"] is None or kw["tax_ttm"] is None):
-                        quarterly.append(None)
-                        continue
+                    if name == "roic_proxy":
+                        # moat rubric 2: trailing-four-quarter operating income over the quarter-end capital (floor
+                        # on TTM revenue); a TTM tax rate outside 0-50% is 21%, as on the annual rows
+                        if kw["oi_ttm"] is None:
+                            quarterly.append(None)
+                            continue
+                        kw.update(tax_ttm=kw["tax_ttm"] if kw["tax_ttm"] is not None else 0.21,
+                                  rev_ttm=_trailing4(rev, q_ends, i), sic=sic)
                 quarterly.append(derive_value(name, get, present, tag_of, **kw))
             get = lambda k: (lines[k]["ttm"] if k in lines else None)  # noqa: E731
             tag_of = lambda k: (lines[k].get("_qtags", {}).get(q_ends[-1]) if (k in lines and q_ends) else None)  # noqa: E731
             kw = {}
             if name in ("roe", "roa", "roic_proxy"):
-                kw = {"ni_ttm": get("net_income"), "oi_ttm": get("operating_income"),
-                      "tax_ttm": (get("income_tax") / get("pretax_income")) if (_num(get("income_tax")) and _num(get("pretax_income")) and get("pretax_income") > 0 and 0 <= get("income_tax") / get("pretax_income") <= 0.5) else None}
-                ttm = None if ((name != "roic_proxy" and kw["ni_ttm"] is None) or (name == "roic_proxy" and (kw["oi_ttm"] is None or kw["tax_ttm"] is None))) else derive_value(name, get, present, tag_of, **kw)
+                kw = {"ni_ttm": get("net_income"), "oi_ttm": get("operating_income"), "tax_ttm": rate(get("income_tax"), get("pretax_income"))}
+                if name == "roic_proxy":
+                    kw.update(tax_ttm=kw["tax_ttm"] if kw["tax_ttm"] is not None else 0.21, rev_ttm=get("revenue"), sic=sic)
+                ttm = None if ((name != "roic_proxy" and kw["ni_ttm"] is None) or (name == "roic_proxy" and kw["oi_ttm"] is None)) else derive_value(name, get, present, tag_of, **kw)
             else:
                 ttm = derive_value(name, get, present, tag_of)
             inputs = [lines[k] for k in DERIVED_INPUTS.get(name, ()) if k in lines]
@@ -2934,7 +2953,7 @@ def basis_breaks(lines, annual_ends, q_ends, qmeta, warnings):
                         "discontinued operations; those quarters carry basis_break_quarterly and the growth cells across them are blank): " + "; ".join(found))
 
 
-def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
+def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings, sic=None):
     """TTM for the filed lines, then the derived lines, the basis-break flags,
     then growth arrays for every line, then the statements dict (lines with
     at least one value, in spec order)."""
@@ -2955,7 +2974,7 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
     for key in ZERO_WHEN_UNFILED:
         if key in lines and lines[key].get("_ttm_eff") is not None:
             lines[key]["ttm"] = lines[key]["_ttm_eff"]
-    add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings)
+    add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings, sic=sic)
     for key in ZERO_WHEN_UNFILED:
         if key in lines and lines[key].get("_ttm_eff") is not None:
             lines[key]["ttm"] = None
@@ -3187,7 +3206,8 @@ def build_statements(facts, warnings=None, sub=None):
         ttm = {"end": q_ends[-1], "quarters": q_ends[-4:]}
     elif q_ends:
         warnings.append(f"ttm: the last four quarters ({', '.join(q_ends[-4:])}) are not four consecutive fiscal quarters — flow lines carry no TTM")
-    statements = finish_lines(lines, annual_ends, q_ends, qmeta, (ttm or {}).get("quarters"), warnings)
+    statements = finish_lines(lines, annual_ends, q_ends, qmeta, (ttm or {}).get("quarters"), warnings,
+                              sic=moat_evidence.sic_int((sub or {}).get("sic")))
     for i, w in enumerate(warnings):
         if isinstance(w, str) and w.startswith(NET_CASH_NO_DEBT_WARNING):
             dl = debt_like_unread(facts, money)

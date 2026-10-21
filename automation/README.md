@@ -17,8 +17,10 @@ platform behaves differently from what a body assumes, fix the body, not the spe
 Find companies whose **true owner's earnings** — operating cash flow minus capex minus
 stock-based compensation, filing-direct, with every data gap surfaced instead of
 zero-filled — support a probability-weighted DCF that clears the 15 / 20 / 25% hurdles at
-today's price. The moat score, justified on evidence such as the **return on invested
-capital** history and margin stability now pulled per company, sets how fast growth fades.
+today's price. The moat score sets how fast growth fades; since moat rubric 2 (2026-10-21)
+it starts from an anchor measured from the **return on invested capital** history
+(`moat_evidence.py`, from the fundamentals pulled per company before the moat is set) and
+stays within two points of it unless a written, tested reason explains the gap.
 Everything else (pages, charts, statements, live repricing) exists to make that verdict
 and its evidence readable and current.
 
@@ -26,7 +28,7 @@ and its evidence readable and current.
 | When | Job | What it does |
 |---|---|---|
 | 06:30 daily | `dcf-filing-watch` | `filing_watch.py`: one small EDGAR request per done name; a newer 10-K/10-Q than the one scored sends the name back to pending with the reason (`queue.py refresh`, which also reopens a finished second pass: the re-score is a new scoring generation), so the sweep re-scores it on fresh filings (the audit's "freshness" item). |
-| every 15 min | `dcf-hourly-sweep` (name is historical) | Pass 1 on one company per `_system/WORKER_SPEC.md`: claim → engine → research → flags → moat → scenarios → analysis.md → judgment.json → make_score → enrichment (fundamentals, prices, segments, statements, profile, reprice) → done → `build_site.py`. |
+| every 15 min | `dcf-hourly-sweep` (name is historical) | Pass 1 on one company per `_system/WORKER_SPEC.md`: claim → engine → fundamentals (before the moat, moat rubric 2) → research → flags → moat → scenarios → analysis.md → judgment.json → make_score → enrichment (prices, segments, statements, profile, reprice) → done → `build_site.py`. |
 | every 15 min, offset | `dcf-sweep-parallel` | A second pass-1 worker, identical spec. **Disabled**: the round-1 audit said hold at one worker until correctness landed; v5.4 landed it. Enabling doubles throughput; the queue lock makes it safe. Andrew's call. |
 | every 30 min | `dcf-second-pass` | Pass 2 on one already-scored company per `_system/SECOND_PASS.md` (materiality ≥2pp or a tier change, adversarial tier tests, guidance check; verdicts flow through judgment.json → make_score). One review per scoring generation: `queue.py pass2-check` before the first write, and `pass2-done`, refuse a claim whose name was refreshed or re-scored meanwhile (the worker then writes nothing, or deletes the second_pass.md it wrote, and reports nothing). **Re-enabled 2026-10-14** now that the governance the audit required exists; 30 min so it never starves pass 1. |
 | every 15 min, offset | `dcf-second-pass-parallel` | Second pass-2 worker. **Disabled**; same reasoning as above. |
@@ -50,7 +52,8 @@ It schedules nothing.
   `build_universe.py`'s universe rebuild, which keeps every surviving queue entry and takes
   queue.py's lock).
 - Chat is for exceptions: an alert-eligible S/A name (`alert_eligible`: medium+ confidence,
-  not a sector misfit, tier not resting on an override, IRR not at the model's floor), a
+  not a sector misfit, tier not resting on an override, IRR not at the model's floor, moat
+  not above its evidence band without a tested reason), a
   pass-2 change that takes a name out of S/A with `exit_alert_eligible` (medium+ confidence,
   not a sector misfit, tier not existing only because an override fills a data gap), or a
   broken job. Everything else is read on the site or in the daily file.

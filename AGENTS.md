@@ -76,7 +76,10 @@ the specs for the old rule and list every stale passage with file:line.
   `ads_ratio`; each `{value, source, reason, kind}`, and since engine 5.5
   an optional `currency: "USD"` on a kind `filing` override),
   `share_class_mismatch` (5.5: `true` or `{value: true, source, reason}`;
-  any other shape is malformed and make_score refuses it),
+  any other shape is malformed and make_score refuses it), since moat
+  rubric 2 (2026-10-21) `moat_sources` (`[{source, evidence}]`, Dorsey's
+  five sources) and `moat_evidence_reason` (`{code, text, ...}`, only for a
+  moat outside its evidence band; a malformed one refuses),
   `second_pass` when pass 2 ran.
 - `score.json` — generated ONLY by `make_score.py`: `tier_final`,
   `tier_by_numbers`, `implied_irr`, `iv_at_15`, `irr_bear` / `irr_bull`,
@@ -85,7 +88,8 @@ the specs for the old rule and list every stale passage with file:line.
   `market_cap_b` carries `market_cap_basis`,
   `in_scope_corrected_by_make_score` marks a scope make_score corrected,
   and `net_debt_to_normalized_oe_ads_basis` is a pre-5.5 ADS record's
-  net-debt ratio on the ADS basis.
+  net-debt ratio on the ADS basis; since moat rubric 2 `moat_evidence`
+  (the measured anchor and band, and where the moat sits against them).
 - `key_numbers.md` — generated quotable figures. `analysis.md` may only
   quote numbers from here.
 - `analysis.md` — the narrative; must resolve every flag.
@@ -287,6 +291,12 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `base_override` (no `basis`) that is not ttm.json's figure is
    measured as `base_used` `declared_pin` (pin held constant, engine
    replayed with field overrides off), never through ttm.py.
+   Since moat rubric 2 (2026-10-21) make_score also sets `alert_eligible`
+   false on an S/A score whose moat sits above its evidence band with no
+   mechanically tested reason ("moat N above the evidence band lo–hi (…) —
+   MOAT_ABOVE_EVIDENCE"); it never touches `exit_alert_eligible`. An
+   alert-eligible S/A score whose `moat_evidence.entry_gate_closed` is true
+   is P1.
 7. **Base year choice.** When `BASE_DIVERGENCE` fires (latest FY vs 3-year
    median differ a lot), `analysis.md` must say which one is distorted and
    why, with the cash-flow line that explains it. "Working-capital timing"
@@ -407,9 +417,17 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 - Probabilities sum to 1. Default probabilities with a narrative that
   describes a specific committed capex program or a known cliff is P3.
 - The moat score needs FOR and AGAINST pillars in `analysis.md` and the
-  ROIC or margin history `WORKER_SPEC` step 5 requires. When
-  `fundamentals.json` is in the PR, its `roic_proxy` series is the
-  evidence; a moat of 7+ with ROIC below 10% needs a reason.
+  `moat_evidence.py` lines `WORKER_SPEC` step 5 requires (moat rubric 2,
+  2026-10-21: the same lines key_numbers.md prints under "Growth & moat").
+  score.json `moat_evidence` is the check: `outside_band_unexplained` is
+  P2 (P1 when it left the entry gate open — see Tier and band); a
+  `moat_evidence_reason` whose text the filing does not bear out (the
+  deals, the spend, the `since_fy` event, the cycle) is P2; a moat of 5+
+  with no `moat_sources`, or a source that restates a mistaken moat (a
+  great product, share, execution, management), is P3. The ROIC is
+  `moat_evidence.roic_row` (operating invested capital, goodwill in);
+  never argue from an older file's `roic_proxy` without `roic_class`,
+  which used equity + debt − cash.
 - Consolidated OE at a company with a listed majority-owned subsidiary
   (Sands China at LVS, JD Logistics/Health at JD): the analysis must say
   what share belongs to minority holders. Silence is P3; it is a method
@@ -469,6 +487,9 @@ misfit`. For them:
   is not a finding. Only per-company PRs are reviewed row by row; the CSV
   appears in state PRs, where the only checks are append-only dates and
   row count = scored folders minus uncovered DATA_GAPs.
+- A `moat_evidence` block absent from a score.json built before moat
+  rubric 2 (2026-10-21), or `sources_declared: false` on a carried-over
+  judgment: the rubric applies at the next re-score.
 - `alert_eligible` / `exit_alert_eligible` empty in the CSV means the
   score predates make_score 5.4, not "false".
 
@@ -477,10 +498,13 @@ misfit`. For them:
 - Missing `prices.json`, `live.json`, `street.json`, `_daily/site/data/`,
   `index.json`, `meta.json`, `latest.html`, new `ranking-*.html`:
   gitignored caches, rebuilt by `_system/refresh.py`.
-- `fundamentals.json` / `statements.json` / `segments.json` / `profile.json`
-  absent from a brand-new folder: enrichment runs later (the 19:07 job and
+- `statements.json` / `segments.json` / `profile.json` absent from a
+  brand-new folder: enrichment runs later (the 19:07 job and
   `refresh.py --sec`). Note it as P3 only when the PR claims the page is
-  complete.
+  complete. `fundamentals.json` runs at WORKER_SPEC step 2b since moat
+  rubric 2 (2026-10-21); a new folder without it scores with
+  `moat_evidence` `not_measured` — P3 unless the analysis says why
+  (fundamentals.py failed).
 - `$0` overrides with kind `filing` where the filer genuinely does not
   report the item, with the cash-flow statement cited.
 - Ordinary-share counts in the CSV at ADS filers; per-ADS figures use

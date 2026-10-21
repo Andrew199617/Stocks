@@ -95,6 +95,21 @@ If judgment.json is absent but score.json exists, judgment.json is seeded
 from the existing score.json first (the v5 re-run path), then score.json is
 rebuilt from the current dcf_numbers.json.
 
+Moat rubric 2 (2026-10-21 — Andrew's request in the "Tighten moat scoring"
+thread, 2026-10-20: moats sat 82% at 4-6 and tracked measured returns only at
+Spearman 0.30). The judged moat_score is checked against the evidence band
+moat_evidence.py measures from <TICKER>/fundamentals.json (operating-basis
+ROIC, or ROE on the financial / utility paths; anchor ± 2, 9-10 only on an
+anchor of 8+) and the result is written to score.json `moat_evidence` and
+key_numbers.md. judgment.json may carry moat_sources [{source, evidence}]
+(Dorsey's five sources; an explicitly empty list caps the band at 4) and
+moat_evidence_reason {code, text, ...}; a malformed one refuses. Nothing else
+about the band refuses — a missing fundamentals.json is "not_measured". A moat
+ABOVE the band that no mechanically tested reason explains closes the entry
+alert gate ("... — MOAT_ABOVE_EVIDENCE"); a moat below it is recorded
+(MOAT_BELOW_EVIDENCE) and touches no gate. The moat still reaches the engine
+only through the moat_score the final run used (CAP unchanged).
+
 v5.5 (2026-10-19, engine release 5.5.0 — Andrew's rulings on the seven spec
 drafts, DESIGN_5.5 §1 / §2c / §7 / §8):
 - ADS market cap (decision 1). A run from an engine before 5.5.0
@@ -222,6 +237,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
+import moat_evidence as _moat  # moat rubric 2: the evidence band for the judged moat (pure, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1402,14 +1418,18 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
         os.replace(tmp, REGISTRY)
 
 
-def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor, stale_release=None):
+def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor, stale_release=None,
+                  moat_gate=None):
     """(entry_reasons, exit_reasons): why an alert for this score is
     suppressed. Entry reasons apply only to a final S/A tier (alert_eligible),
     exit reasons only to a final tier below A (exit_alert_eligible); both are
     empty when the score clears its gate. stale_release (v5.5): the
     release_mismatch_reason() text when the engine output is not from the
     current ENGINE_RELEASE — it closes BOTH gates ("... — re-run the engine
-    before an entry / exit alert"); None leaves every gate as in 5.4."""
+    before an entry / exit alert"); None leaves every gate as in 5.4.
+    moat_gate (moat rubric 2): moat_gate_reason()'s text when the judged moat
+    sits above its evidence band with no mechanically tested reason — it
+    closes the ENTRY gate only (an exit is a warning a holder needs)."""
     sa = ("S", "A")
     entry, exit_ = [], []
     if stale_release:
@@ -1428,6 +1448,10 @@ def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unbloc
         if override and tier_by_numbers not in sa:
             entry.append(f"tier rests on a judgment tier override (numeric tier {tier_by_numbers})")
         if irr_at_floor: entry.append("IRR at solver floor")
+        # Moat rubric 2 (Andrew's request, 2026-10-20): the CAP rests on the
+        # moat, so a moat the measured returns do not support never opens an
+        # entry alert. A moat below its band closes nothing.
+        if moat_gate: entry.append(moat_gate)
     else:
         # Confidence never suppresses an exit alert either (same decision).
         if model_fit == "misfit": exit_.append("sector model misfit")
@@ -1435,6 +1459,17 @@ def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unbloc
         # No tier-override rule here: a judgment downgrade out of S/A is a valid
         # exit warning (the entry rule stops judgment-only upgrades).
     return entry, exit_
+
+
+def moat_gate_reason(a):
+    """The entry-alert suppression text for a moat above its evidence band
+    (moat_evidence.assess() entry_gate_closed), else None."""
+    if not a.get("entry_gate_closed"):
+        return None
+    lo, hi = a["band"]
+    why = (f"explained only by the text reason {a['reason_code']}" if a.get("status") == "outside_band_explained"
+           else "unexplained")
+    return f"moat {a['moat']:g} above the evidence band {lo}–{hi} ({why}) — MOAT_ABOVE_EVIDENCE"
 
 
 def _usd(v):
@@ -1596,11 +1631,13 @@ def sbc_reconciled_lines(n):
     return out
 
 
-def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
+def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, moat_ev=None, moat_as=None):
     """key_numbers.md — every headline figure from the final dcf_numbers.json.
     The single source workers quote in analysis.md. ads_corr (v5.5): the
     pre-5.5 ADS market-cap correction, printed with its label instead of the
-    engine's uncorrected cap (the net-debt line follows its own rule, M1)."""
+    engine's uncorrected cap (the net-debt line follows its own rule, M1).
+    moat_ev / moat_as (moat rubric 2): moat_evidence.evidence() / assess(),
+    printed under "## Growth & moat" by moat_evidence.key_numbers_lines()."""
     L = [f"# {n['ticker']} — key numbers",
          f"Generated by make_score.py from dcf_numbers.json (engine v{n.get('engine_version')}, as of {n.get('as_of')}).",
          "Quote these figures verbatim in analysis.md — never recompute or retype a derived figure.",
@@ -1670,6 +1707,8 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
           f"- Components: rev CAGR 5y {_pct(gc.get('rev_cagr_5y'))} · rev CAGR 3y {_pct(gc.get('rev_cagr_3y'))} · latest rev YoY {_pct(gc.get('rev_yoy_latest'))} · OE/share CAGR 2y {_pct(gc.get('oe_ps_cagr_2y'))}",
           f"- Share count CAGR: {_pct(n.get('share_cagr'))} (growth adj {_pct(n.get('share_count_adj'))})",
           f"- Moat: {j['moat_score']}/10 · CAP {n.get('cap_years')} yrs · terminal growth {_pct(n.get('g_terminal'))}"]
+    if moat_ev is not None:
+        L += _moat.key_numbers_lines(moat_ev, moat_as)
     scn = n.get("scenarios") or {}
     if scn:
         L += ["", "## Scenarios",
@@ -1826,6 +1865,12 @@ def main():
             fail(f"judgment.json: missing required field '{field}'")
     check_str_list(j, "moat_for")
     check_str_list(j, "moat_against")
+    # Moat rubric 2: the optional source / reason fields refuse only when malformed.
+    try:
+        _moat.check_sources(j.get("moat_sources"))
+        _moat.check_reason_shape(j.get("moat_evidence_reason"))
+    except ValueError as e:
+        fail(f"judgment.json: {e}")
     probs = j["probs_used"]
     if not (isinstance(probs, list) and len(probs) == 5 and all(isinstance(p, (int, float)) for p in probs)):
         fail("judgment.json: probs_used must be a list of 5 numbers")
@@ -1839,6 +1884,10 @@ def main():
                 fail(f"judgment.json probs_used[{i}]={probs[i]} does not match engine scenario '{lbl}' prob {ep} — judgment.json is not the input set for this engine run")
     if n.get("moat_score") is not None and abs(float(j["moat_score"]) - float(n["moat_score"])) > 0.01:
         fail(f"judgment.json moat_score {j['moat_score']} does not match engine moat_score {n['moat_score']} — rerun the engine with this judgment or fix judgment.json")
+    # Moat rubric 2: the judged moat against the band its own fundamentals.json
+    # measures. Never a refusal (shapes were checked above); no file → not_measured.
+    moat_ev = _moat.evidence(_moat.load_fundamentals(folder))
+    moat_as = _moat.assess(moat_ev, float(j["moat_score"]), j.get("moat_evidence_reason"), j.get("moat_sources"))
     if j["confidence"] not in CONFIDENCE:
         fail(f"judgment.json: confidence must be one of {CONFIDENCE}")
     override = j.get("tier_override")
@@ -2064,7 +2113,8 @@ def main():
     reasons, exit_reasons = alert_reasons(
         tier_final, n.get("tier_by_numbers"), override, conf, model_fit,
         bool(reported and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
-        stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None)
+        stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None,
+        moat_gate=moat_gate_reason(moat_as))
     score["alert_eligible"] = tier_final in ("S", "A") and not reasons
     if reasons:
         score["alert_suppressed_reason"] = "; ".join(reasons)
@@ -2081,6 +2131,9 @@ def main():
         score["moat_for"] = j["moat_for"]
     if j.get("moat_against"):
         score["moat_against"] = j["moat_against"]
+    if j.get("moat_sources") is not None:
+        score["moat_sources"] = j["moat_sources"]
+    score["moat_evidence"] = _moat.record(moat_ev, moat_as)
     if reported:
         score["overrides"] = [dict({"field": f, "value": reported[f]["value"], "kind": reported[f]["kind"],
                                     "source": reported[f]["source"]},
@@ -2107,8 +2160,14 @@ def main():
     scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
                    if scope_corrected else None)
     update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact)
-    write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
+    write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr, moat_ev=moat_ev, moat_as=moat_as)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
+    if moat_as.get("status") == "outside_band_unexplained" or moat_as.get("entry_gate_closed"):
+        print(f"make_score.py: {ticker} moat {moat_as['moat']:g} is {moat_as['direction']} the evidence band "
+              f"{moat_as['band'][0]}–{moat_as['band'][1]} — "
+              + (moat_as.get("flag") or f"text reason {moat_as.get('reason_code')}")
+              + ("; entry alert closed" if moat_as.get("entry_gate_closed") else "; recorded, no gate")
+              + " (WORKER_SPEC step 5, moat rubric 2)")
 
 
 if __name__ == "__main__":

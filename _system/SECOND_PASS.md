@@ -46,10 +46,20 @@ Andrew's fundamental-analysis checklist, baked in. `forensic_pull.py` computes t
 filing-direct half automatically (paste its output into second_pass.md); the worker
 resolves every tripped flag in writing and runs the judgment checks. The battery feeds
 three things only: moat evidence, base-OE reconstruction, and confidence.
-- **Return on invested capital (added 2026-10-14)** — the `roic_proxy` series and the
-  gross-margin series in `fundamentals.json` are the measured half of the moat. Compare
-  pass 1's moat score against them: a 7+ on ROIC below ~10% without a written reason is a
-  finding (moat evidence AGAINST); a 4 on sustained 20%+ ROIC is the reverse case.
+- **Return on invested capital (added 2026-10-14; moat rubric 2, 2026-10-21 — Andrew's
+  request in the "Tighten moat scoring" thread, 2026-10-20)** — key_numbers.md "Moat
+  evidence" and score.json `moat_evidence` (`moat_evidence.py`, the operating-basis ROIC,
+  or ROE on the financial / utility paths) are the measured half of the moat, with the
+  gross-margin series in `fundamentals.json`. Findings: a moat `outside_band_unexplained`
+  (re-rate it into the band with a final engine re-run, or write a reason that passes); a
+  `moat_evidence_reason` whose text does not reproduce (name the deals, the spend, the event
+  and its `since_fy`, the cycle; for `MEASUREMENT_DEFECT` confirm the figure in the filing);
+  a moat of 5+ without `moat_sources`, or a source that restates a mistaken moat (a great
+  product, share, execution, management, size without a cost edge); a 7+ whose
+  `moat_against` names no erosion force. A moat below its band (`MOAT_BELOW_EVIDENCE`)
+  needs `NO_DURABLE_SOURCE` naming the force (float, leverage, a cycle peak, a patent
+  cliff) or a re-rate upward; otherwise it is a finding. `not_measured`: run
+  fundamentals.py when the file is missing, else judge from the rubric.
 - **Margin structure** — gross margin level + trend (≥40% is the durable-advantage rule
   of thumb, judged sector-relative: a grocer and a software firm are not the same test);
   COGS % of revenue stability (swings in non-compounders = weak cost control = moat
@@ -101,7 +111,8 @@ three things only: moat evidence, base-OE reconstruction, and confidence.
 - **Alerts.** Report to chat ONLY when a change moves the company INTO or OUT of Tier S/A
   AND the new score.json clears that direction's gate: an entry needs `alert_eligible: true`
   (medium+ confidence, not a sector misfit, tier not resting on an override, IRR not at
-  the floor); an exit needs `exit_alert_eligible: true` (medium+ confidence, not a sector
+  the floor, moat not above its evidence band without a tested reason —
+  `MOAT_ABOVE_EVIDENCE`, which never closes an exit); an exit needs `exit_alert_eligible: true` (medium+ confidence, not a sector
   misfit, tier not existing only because of a data override; a floor IRR reads "at most
   terminal growth", which confirms the drop, and a judgment tier override that takes the
   name below A is still a warning, so neither suppresses an exit; `alert_eligible` is

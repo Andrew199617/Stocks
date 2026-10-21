@@ -1765,13 +1765,79 @@ def test_files_written_before_the_q8_rules_are_rebuilt_once():
     """Codex review round 1 on PR #53 (4322240089): --all skips the companyfacts download when the existing file records
     the same newest filing, schema_version and coverage, so a file written before the Q8 rules (net cash needs a filed
     debt figure, the all-class share count, the one-money-unit rule) kept MICC's +EUR441M and GGB's +R$5.929B net cash
-    until the next 20-F. schema_version 4 rebuilds every schema-3 file once."""
+    until the next 20-F. schema_version 4 rebuilds every schema-3 file once (5, moat rubric 2, rebuilds them again)."""
     latest = {"form": "20-F", "filed": "2026-03-18", "period": "2025-12-31"}
     pre = {"latest_filed": dict(latest), "schema_version": 3, "covered_through": "2025-12-31",
            "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalents"]}]}}
-    assert S.SCHEMA_VERSION == 4, S.SCHEMA_VERSION
+    assert S.SCHEMA_VERSION >= 4, S.SCHEMA_VERSION
     assert S.can_skip(pre, latest) is False, "a schema-3 file is rebuilt"
     assert S.can_skip(dict(pre, schema_version=S.SCHEMA_VERSION), latest) is True, "and skipped again once rebuilt"
+
+
+# ---- moat rubric 2 (2026-10-21): the ROIC proxy line is moat_evidence.roic_row
+def _roic_cells(**kw):
+    return dict(kw).get
+
+
+def test_roic_proxy_is_the_operating_basis_formula():
+    """Moat rubric 2 (Andrew's request, 2026-10-20): the metrics line "Return on invested capital (proxy)" is
+    moat_evidence.roic_row on the cell's lines, the formula fundamentals.json's annual rows use. Each case is a
+    committed fundamentals.json row the old equity + debt − cash line got wrong (fails on the old derive_value)."""
+    every = lambda k: True  # noqa: E731
+    # ROP FY2025: operating capital 34,577.0 − 297.4 − (3,725.6 − 705.2) = 31,259.2M, goodwill included; the old
+    # financing denominator read 19,881.5 + 9,301.0 − 297.4 = 28,885.1M
+    rop = _roic_cells(revenue=7_902.5e6, operating_income=2_235.4e6, pretax_income=1_936.1e6, income_tax=399.8e6,
+                      total_assets=34_577.0e6, total_current_liabilities=3_725.6e6, cash=297.4e6, debt_current_agg=705.2e6,
+                      long_term_debt=8_595.8e6, total_debt=9_301.0e6, total_common_equity=19_881.5e6, goodwill=21_341.2e6,
+                      intangibles=9_764.2e6)
+    t = 399.8 / 1_936.1
+    assert approx(S.derive_value("roic_proxy", rop, every, sic=3823), 2_235.4 * (1 - t) / 31_259.2), S.derive_value("roic_proxy", rop, every, sic=3823)
+    # MANH FY2024: the old line divided by 299.1 − 266.2 = 32.9M of "capital" (650.8%); operating capital is
+    # 757.6 − 266.2 − 400.3 = 91.0M, below 10% of the 1,042.4M revenue → no ratio (capital-light)
+    manh = _roic_cells(revenue=1_042.352e6, operating_income=261.596e6, pretax_income=266.814e6, income_tax=48.45e6,
+                       total_assets=757.551e6, total_current_liabilities=400.304e6, cash=266.23e6, total_common_equity=299.126e6)
+    assert S.derive_value("roic_proxy", manh, lambda k: k != "total_debt", sic=7372) is None
+    # MTD FY2025 files no operating-income line: pretax 1,048.9M + interest 68.5M, on capital 3,712.6 − 66.9 −
+    # (1,198.1 − 63.9) = 2,511.7M (the old line had no figure at all)
+    mtd = _roic_cells(revenue=4_026.399e6, pretax_income=1_048.909e6, income_tax=179.716e6, interest_expense=68.515e6,
+                      net_income=869.193e6, total_assets=3_712.646e6, total_current_liabilities=1_198.116e6, cash=66.888e6,
+                      debt_current_agg=63.931e6, long_term_debt=2_088.241e6, total_debt=2_152.172e6, total_common_equity=-23.636e6)
+    v = S.derive_value("roic_proxy", mtd, every, sic=3826)
+    assert approx(v, (1_048.909 + 68.515) * (1 - 179.716 / 1_048.909) / (3_712.646 - 66.888 - (1_198.116 - 63.931))), v
+    # ... but no EBIT fallback at a blank or financial SIC, and a bank (SIC 6021) has no ROIC proxy at all
+    assert S.derive_value("roic_proxy", mtd, every) is None
+    assert S.derive_value("roic_proxy", rop, every, sic=6021) is None
+    # a loss year keeps its sign (the old line blanked it: no tax rate on a pretax loss)
+    loss = _roic_cells(revenue=1_000.0, operating_income=-100.0, pretax_income=-110.0, income_tax=0.0, total_assets=900.0,
+                       total_current_liabilities=200.0, cash=100.0, total_common_equity=500.0, total_debt=100.0)
+    assert approx(S.derive_value("roic_proxy", loss, every, sic=7372), -100 * 0.79 / 600)
+    # a net interest line is a net expense (negated): net interest income adds nothing back in the fallback
+    net_inc = _roic_cells(revenue=1_000.0, pretax_income=200.0, income_tax=42.0, interest_expense=-30.0, total_assets=1_000.0,
+                          total_current_liabilities=200.0, cash=0.0, total_debt=0.0)
+    tag = lambda k: "InterestIncomeExpenseNet" if k == "interest_expense" else None  # noqa: E731
+    assert approx(S.derive_value("roic_proxy", net_inc, every, tag, sic=7372), 200 * 0.79 / 800)
+
+
+def test_roic_proxy_quarterly_cells_use_the_trailing_four_quarters():
+    """Moat rubric 2: a quarterly / TTM ROIC cell is trailing-four-quarter operating income (TTM tax rate, 21% outside
+    0-50%) over the quarter-end balance sheet, the 10%-of-revenue floor on TTM revenue. The fixture files no income tax,
+    so the old line was blank everywhere; the TTM column equals the last quarter's cell."""
+    _, st, _, _ = S.build_statements(make_facts(), [])
+    roic = line(st, "metrics", "roic_proxy")
+    assert roic is not None and roic["label"] == "Return on invested capital (proxy)"
+    assert all(v is not None for v in roic["annual"]), roic["annual"]
+    assert roic["ttm"] is not None and approx(roic["ttm"], roic["quarterly"][-1]), (roic["ttm"], roic["quarterly"])
+    assert all(v is None for v in roic["quarterly"][:3]), "fewer than four quarters: no TTM numerator"
+
+
+def test_schema_5_rebuilds_files_written_before_moat_rubric_2():
+    """Moat rubric 2 changes the ROIC proxy line in every file, so schema 5 rebuilds each schema-4 file once on --all."""
+    latest = {"form": "10-K", "filed": "2026-02-05", "period": "2025-12-31"}
+    pre = {"latest_filed": dict(latest), "schema_version": 4, "covered_through": "2025-12-31",
+           "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalents"]}]}}
+    assert S.SCHEMA_VERSION == 5, S.SCHEMA_VERSION
+    assert S.can_skip(pre, latest) is False
+    assert S.can_skip(dict(pre, schema_version=5), latest) is True
 
 
 if __name__ == "__main__":

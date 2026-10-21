@@ -11,7 +11,10 @@ rewritten only when its content apart from `as_of` changed
 count is the 12 months to that date, and a run whose only other difference is
 8-Ks ageing out of a later window leaves it alone (write_fundamentals). The
 company page's Financials and Data tabs render from it. Nothing here feeds the DCF —
-dcf_numbers.json stays the engine's domain and score.json make_score's.
+dcf_numbers.json stays the engine's domain and score.json make_score's — but since
+moat rubric 2 (2026-10-21) make_score reads the annual rows for score.json
+`moat_evidence` (moat_evidence.py), so WORKER_SPEC step 2b runs this file before
+the moat is set.
 
 Contents (every figure is a filed value, or arithmetic on filed values —
 growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
@@ -23,7 +26,9 @@ growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
   interest, pretax, tax, net income, EPS, shares, OCF, capex, SBC, D&A,
   dividends, buybacks, acquisitions, cash, debt, leases, assets, equity,
   goodwill, prepaids, deferred revenue) with margins, growth rates, per-share
-  figures, ROE and an ROIC proxy, and the tag that supplied each core line.
+  figures, ROE and the operating-basis ROIC (`roic_proxy` with `roic_class`,
+  `roic_basis`, `roic_tangible`; moat_evidence.roic_row), and the tag that
+  supplied each core line.
 - quarterly: the last 12 fiscal quarters. Income-statement lines come from the
   filed 3-month facts where present; cash-flow lines (filed year-to-date
   only) are derived as YTD minus the prior YTD in the same fiscal year, and
@@ -132,6 +137,21 @@ derived fcf / oe_conservative subtract the engine 5.5 intangible-capex leg
 too (ENGINE_INTANGIBLE_TAGS via dcf_engine.capex_for_period; GGB, GMED), and
 `capex` is the engine's PP&E leg (ENGINE_CAPEX_GROUPS: a roll-up, else the
 components summed; Codex review round 2 on PR #53).
+Moat rubric 2 (Andrew's request, 2026-10-20 "Tighten moat scoring"; enrichment
+and make_score only, no engine release): `roic_proxy` was NOPAT / (equity +
+debt − cash), which flipped sign on negative capital (VRSN −35% to −46% on
+buyback-driven negative equity), exploded where cash ≈ equity (MANH +2301% /
+−1540%), read a loss over negative capital as a gain (IBRX +43%), left a filer
+with no operating-income line blank (MTD, ZTS) and tripled one with an unread
+debt tag (DKS 75%). It is now moat_evidence.roic_row on each annual row:
+after-tax operating income (the pretax + interest fallback only at a known
+non-financial SIC) over operating invested capital (assets − cash − short-term
+investments − non-debt current liabilities, goodwill included), shown only when
+that capital is at least 10% of revenue; `roic_class` says why a row has no
+figure (capital_light / customer_funded / loss / financial — SIC 6000-6799, whose
+evidence is ROE), `roic_basis` names the capital basis and `roic_tangible` is the
+ex-goodwill context figure. build_annual computes the rows without a SIC; main()
+re-applies them with the submissions profile's SIC (apply_roic).
 """
 import json, sys, os, csv, datetime, time, math, statistics, urllib.request
 
@@ -139,6 +159,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from _stable import write_json_if_changed, same_content  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 import dcf_engine as _engine  # noqa: E402  (ruling-sheet Q8: the engine's intangible-capex leg and dei staleness rule; no I/O at import)
+import moat_evidence  # noqa: E402  (moat rubric 2: the one ROIC formula, roic_row; pure, no I/O)
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
 SYS = f"{BASE}/_system"
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
@@ -955,9 +976,11 @@ def intangible_capex_ttm(facts, money, qrows, fy_starts=None, periods=None):
     return _whole(max(0, (fy or 0) - prior + cur))
 
 
-def build_annual(facts, money=None):
+def build_annual(facts, money=None, sic=None):
     """(rows, tag_summary, [currency] — empty for USD). Every money / per-share
-    line is read in the file's one money unit (money_unit; ruling-sheet Q8 bug 3)."""
+    line is read in the file's one money unit (money_unit; ruling-sheet Q8 bug 3).
+    The ROIC keys are moat_evidence.roic_row's at `sic` (None: no EBIT fallback and
+    no financial class — main() re-applies them with the filer's SIC)."""
     money = money or money_unit(facts)
     series, tags, units = {}, {}, {}
     for k, t in DUR.items():
@@ -1066,8 +1089,6 @@ def build_annual(facts, money=None):
             sh, sh_src = g("shares_basic"), f"BASIC:{tags['shares_basic'].get(p)}"
         eq = g("equity")
         pretax, tax = g("pretax_income"), g("tax")
-        tax_rate = _ratio(tax, pretax) if (pretax and pretax > 0 and tax is not None and 0 <= tax / pretax <= 0.5) else 0.21
-        invested = (eq + (total_debt or 0) - (cash or 0)) if eq is not None else None
         rows.append({
             "period_end": p, "fy": p[:4],
             "revenue": rev, "revenue_basis": rev_basis, "cogs": cogs, "gross_profit": gp, "gross_margin": _ratio(gp, rev),
@@ -1093,7 +1114,7 @@ def build_annual(facts, money=None):
             "oe_per_share": _ratio(oe, sh), "fcf_per_share": _ratio(fcf, sh), "ocf_per_share": _ratio(ocf, sh),
             "revenue_per_share": _ratio(rev, sh), "book_value_per_share": _ratio(eq, sh),
             "roe": _ratio(ni, eq), "roa": _ratio(ni, g("assets")),
-            "roic_proxy": (_ratio(oi * (1 - tax_rate), invested) if (oi is not None and invested) else None),
+            "roic_proxy": None,  # moat_evidence.roic_row, below (moat rubric 2)
             "net_debt_to_oe": _ratio(net_debt, oe) if (oe and oe > 0) else None,
             "goodwill_pct_assets": _ratio(g("goodwill"), g("assets")),
             "prepaids_pct_assets": _ratio(g("prepaids"), g("assets")),
@@ -1107,6 +1128,9 @@ def build_annual(facts, money=None):
         prev = rows[i - 1] if i else None
         for k in ("revenue", "gross_profit", "operating_income", "net_income", "eps_diluted", "ocf", "oe_conservative", "fcf", "shares_diluted", "oe_per_share"):
             r[f"{k}_growth"] = _g(r.get(k), prev.get(k)) if prev else None
+    # moat rubric 2: the operating-basis ROIC from the row's own fields (roic_class / roic_basis / roic_tangible
+    # appended after the growth columns, so the earlier keys keep their order)
+    moat_evidence.apply_roic(rows, sic)
     core_tags = {k: tags[k] for k in ("revenue", "net_income", "operating_income", "ocf", "capex", "sbc", "da", "shares_diluted", "cash", "debt_lt", "debt_total", "equity", "assets")}
     tag_summary = {k: sorted({v for v in m.values()}) for k, m in core_tags.items()}
     tag_summary["revenue_mode"] = [revenue_mode]
@@ -3736,6 +3760,7 @@ def main():
     ttm = build_ttm(quarterly, intang_ttm=intangible_capex_ttm(facts, money, quarterly, fy_starts=core_fy_starts(facts, money=money)))
     eight_k_dates = []
     profile = build_profile(cik, facts, eight_k_dates=eight_k_dates)
+    moat_evidence.apply_roic(annual, moat_evidence.sic_int(profile.get("sic")))  # moat rubric 2: the filer's SIC
     dps_q, dps_fy, dmeta = dividends_inputs(facts, money=money)
     path = f"{folder}/fundamentals.json"
     prev = _prev_file(path)

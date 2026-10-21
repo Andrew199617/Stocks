@@ -550,7 +550,13 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   net_cash = cash + short_term_investments − total_debt; working_capital; book / tangible book value (+ per share on period-end
   shares, falling back to diluted weighted); fcf / owner-earnings per share (diluted weighted); gross / operating / net / fcf margin;
   roe / roa (quarterly columns use the trailing-four-quarter numerator, null when those four are not all present); roic_proxy =
-  operating income × (1 − tax rate) ÷ (equity + debt − cash), tax rate = income tax ÷ pretax within 0–50%; debt_to_equity;
+  `moat_evidence.roic_row` since schema 5 (moat rubric 2, 2026-10-21 — the formula fundamentals.json's annual rows use):
+  operating income × (1 − tax rate) ÷ operating invested capital (total assets − cash − short-term investments − (current
+  liabilities − current debt); goodwill in), shown only when that capital is at least 10% of revenue, tax rate = income tax ÷
+  pretax within 0–50% else 21% (quarterly columns: trailing four quarters of operating income, tax, pretax and revenue over the
+  quarter-end balance sheet, blank without four quarters of operating income); on an annual cell with operating income
+  unfiled, pretax + interest at a known SIC outside 6000–6799, never at a financial or blank SIC; null at SIC 6000–6799;
+  debt_to_equity;
   current_ratio) are computed per period only from lines present in the SAME period. A component the filer has NEVER filed in any
   period (no short-term investments, no goodwill, no intangibles) counts as zero where the definition allows it; one filed in
   other periods but not this one gives null. The debt stock is never such a component in `net_cash` (ruling-sheet Q8 bug 2, Andrew
@@ -558,7 +564,7 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   unknown, not the cash balance (MICC FY2025 printed +€441M, GGB FY2025 +R$5.929B against R$14.182B of gross debt) — and a
   `net_cash:` warning names the periods and the debt rule ("no total-debt figure the statements' debt rule reads …"), and lists any
   debt-like line the filer files that the rule does not read as gross debt (`DEBT_LIKE_TAGS`: GGB's partial
-  `ifrs-full:NotesAndDebenturesIssued`, MICC's `ifrs-full:NetDebt`); a filed debt of 0 still nets to cash. (`roic_proxy` still counts never-filed debt as zero.) `total_debt` = long_term_debt + (DebtCurrent aggregate, else short_term_debt +
+  `ifrs-full:NotesAndDebenturesIssued`, MICC's `ifrs-full:NetDebt`); a filed debt of 0 still nets to cash. (`roic_proxy` reads no debt tag since schema 5 — the debt sits inside total assets; MICC FY2025 223.6% → 10.4%.) `total_debt` = long_term_debt + (DebtCurrent aggregate, else short_term_debt +
   current_lt_debt); without a noncurrent line, the filer's combined `LongTermDebt` / `DebtLongtermAndShorttermCombinedAmount` total
   (+ short-term borrowings unless the short-term tag was itself `DebtCurrent`); the current-only sum otherwise. Totals are never
   synthesised: a missing GrossProfit, OperatingExpenses, Liabilities or LiabilitiesAndStockholdersEquity stays absent even when the
@@ -1134,6 +1140,9 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   "newest filing already recorded and covered". `schema_version` is 4 since 2026-10-19 (ruling-sheet Q8 bugs 2–3; Codex review
   round 1 on PR #53): the net-cash debt rule, the all-class share count and the one-money-unit rule leave no field that marks a
   file written before them, so `--all` rebuilds every schema-3 file once — each rewrites once, as `schema_version` is in the file.
+  `schema_version` is 5 since 2026-10-21 (moat rubric 2 — Andrew's request in the "Tighten moat scoring" thread, 2026-10-20):
+  `roic_proxy` moved to the operating basis above, and no field marks a file written before it, so every schema-4 file is rebuilt
+  once the same way.
 - **Open questions for the owner.** (1) Whether FCF should subtract purchases of intangibles / capitalised software for filers
   with no PP&E line (APP: 28,318K in FY2025; the engine's capex override does); the file keeps the contract's ocf − capex and shows
   the intangibles line beside it. (2026-10-19, Q8: fundamentals.json's `fcf` / `oe_conservative` now subtract the engine 5.5
