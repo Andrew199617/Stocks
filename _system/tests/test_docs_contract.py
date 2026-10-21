@@ -409,6 +409,9 @@ PAIRS = [
     ("_system/build_site.py", "def live_score_identity_missing(", "live_score_identity_missing", [SYS_README, CONTRACT]),
     # the round-29 second polish review: a year's own expense reads every expense tag in every unit; unknown only there
     ("_system/dcf_engine.py", "def iprd_own_expense_unknown(", "iprd_own_expense_unknown", [SYS_README]),
+    # Codex review round 30 of PR #47: a TTM base's IPR&D share count is ttm.json's, validated, or the run is refused
+    ("_system/dcf_engine.py", "def iprd_ttm_share_count(", "iprd_ttm_share_count", [SYS_README]),
+    ("_system/dcf_engine.py", 'print(f"BAD_TTM_SHARES for {ticker}: ', "BAD_TTM_SHARES", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),
@@ -742,6 +745,61 @@ def test_the_recurrence_figure_is_documented_on_the_expense_side():
     for phrase in ("**Round-29 second polish review", "the recurrence figure reads the expense side",
                    "the whole charge adds the cash side", "`expense_tags_conflict` figures too"):
         assert phrase in readme, f"README.md lost: {phrase!r}"
+
+
+R30_TOLERANCE_PHRASES = ("unit-agreement tolerance", "`IPRD_UNIT_TOLERANCE`", "max($1, 1% of the larger)",
+                         "a unit within it is the figure used")
+
+
+def test_every_unit_filed_reads_the_units_that_disagree_beyond_the_unit_agreement_tolerance():
+    """[Codex review r30 of PR #47, #4336863087 — behaviour unchanged] The round-29 rule says a year's own expense and
+    whole charge are its largest figures "in every unit filed", but a unit that agrees with the figure used within the
+    engine's unit-agreement tolerance (IPRD_UNIT_TOLERANCE, 0.01: units disagree only when, after conversion, they
+    differ by more than max($1, 1% of the larger)) records no unit_conflict and is that same figure — so USD 100M beside
+    EUR converting to $100.7M is a $100M charge. WORKER_SPEC, AGENTS.md, README (its round-29 entry and the round-30
+    entry) and the three helpers' docstrings name the tolerance and its value and say a unit within it is the figure
+    used."""
+    for rel in (WORKER_SPEC, AGENTS_MD, SYS_README):
+        text = _flat(rel)
+        missing = [p for p in R30_TOLERANCE_PHRASES if p not in text]
+        assert not missing, f"{rel} does not say which units 'every unit filed' reads: missing {missing}"
+    readme = _flat(SYS_README)
+    r29 = readme.find("**Round-29 second polish review")
+    r30 = readme.find("**Codex review round 30 of PR #47")
+    assert 0 <= r29 < r30, "README's round-30 entry must follow the round-29 second polish review"
+    assert "a unit within it is the figure used" in readme[r29:r30], "README's round-29 entry does not name the tolerance"
+    assert "a unit within it is the figure used" in readme[r30:], "README's round-30 entry does not name the tolerance"
+    tree = _module("_system/dcf_engine.py")
+    for fn in ("iprd_own_charge_usd", "iprd_own_expense_unknown", "iprd_whole_charge_unknown"):
+        doc = " ".join((ast.get_docstring(_function(tree, fn)) or "").split())
+        missing = [p for p in ("IPRD_UNIT_TOLERANCE", "max($1, 1% of the larger)", "a unit within it is the figure used")
+                   if p not in doc]
+        assert not missing, f"dcf_engine.{fn}'s docstring: missing {missing}"
+
+
+R30_SPREAD_PHRASE = "the tolerance applies to their spread"
+
+
+def test_the_unit_agreement_tolerance_is_documented_as_a_spread_across_every_unit():
+    """[Codex review r30 of PR #47, review of the round's doc fix] The round-30 wording ("a unit within it is the figure
+    used") read pairwise; the engine tests the spread across every unit filed (_iprd_pick). WORKER_SPEC, AGENTS.md,
+    README and the three helpers' docstrings say so."""
+    for rel in (WORKER_SPEC, AGENTS_MD, SYS_README):
+        assert R30_SPREAD_PHRASE in _flat(rel), f"{rel} does not say the tolerance applies to the units' spread"
+    tree = _module("_system/dcf_engine.py")
+    for fn in ("iprd_own_charge_usd", "iprd_own_expense_unknown", "iprd_whole_charge_unknown"):
+        doc = " ".join((ast.get_docstring(_function(tree, fn)) or "").split())
+        assert R30_SPREAD_PHRASE in doc, f"dcf_engine.{fn}'s docstring does not say the tolerance applies to the spread"
+
+
+def test_a_ttm_base_without_ttm_shares_is_documented_as_refused():
+    """[Codex review r30 of PR #47, #4336863102] A TTM base's acquired-IPR&D figures are per share on ttm.json's
+    ttm_shares_diluted; without a positive one the run is refused (BAD_TTM_SHARES), never put on the latest-FY count.
+    WORKER_SPEC, AGENTS.md and README say so."""
+    for rel in (WORKER_SPEC, AGENTS_MD, SYS_README):
+        text = _flat(rel)
+        missing = [p for p in ("`BAD_TTM_SHARES`", "never the latest-FY count") if p not in text]
+        assert not missing, f"{rel}: missing {missing}"
 
 
 def test_corrected_passages_stay_corrected():

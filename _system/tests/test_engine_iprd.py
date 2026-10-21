@@ -4299,6 +4299,194 @@ def test_the_charge_flag_never_calls_a_cash_settlement_expensed_at_acquisition()
         "expense is added back in operating cash flow and the payment is not capex. Treatment: "), pf
 
 
+# --- Codex review round 30 of PR #47 ------------------------------------------------------------------------------
+def _r30_two_units(tag, usd_of_eur):
+    """FY2023: Test Bio's $15M acquired-IPR&D expense, paid. FY2025: USD 100M expensed and paid, and `tag` (the
+    expense tag or the cash tag) also filed for FY2025 in EUR at the figure that converts, at R29_EUR_RATE's 1.08, to
+    `usd_of_eur`."""
+    f = _facts(expense={2023: 15e6, 2025: 100e6}, cash={2023: 15e6, 2025: 100e6})
+    _syn_put(f, tag, "EUR", _ctx("2025-01-01", "2025-12-31", usd_of_eur / 1.08, filed="2026-02-20"))
+    return f
+
+
+def test_a_unit_within_the_unit_agreement_tolerance_is_the_figure_used():
+    """[Codex review r30 of PR #47, #4336863087 — behaviour unchanged, the main agent's decision on Andrew's
+    delegation] The round-29 rule reads a year's own expense and whole charge as the largest figure "in every unit
+    filed". Units that agree within the engine's unit-agreement tolerance (IPRD_UNIT_TOLERANCE: they disagree only
+    when, after conversion, they differ by more than max($1, 1% of the larger)) record no unit_conflict: they are one
+    charge translated at two rates (the run's period-end rate is not the filer's), so the figure used is the charge.
+    USD 100M beside EUR converting to $100.7M (0.7% apart): the whole charge and own expense are $100M, a $100M
+    declaration is whole (the year leaves the recurrence count) and $100.7M is more than the charge. Taking the larger
+    translation would make that correct declaration a part on FX noise and keep the year counted. Beyond the tolerance
+    (EUR converting to $102M, 2% apart) the units disagree: unit_conflict is recorded and the largest converted figure
+    is the whole charge ($100M declared is a part, $102M the whole). The same on the expense tag and the cash tag."""
+    assert E.IPRD_UNIT_TOLERANCE == 0.01
+    for tag in (EXPENSE, CASH):
+        # within the tolerance: one charge
+        n = _ok(_run_fx(_r30_two_units(tag, 100.7e6), R29_EUR_RATE))
+        b = n["iprd_adjustment"]
+        p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+        assert not p25.get("unit_conflict"), (tag, p25)
+        assert E.iprd_own_charge_usd(p25) == (100e6, 100e6) and E.iprd_whole_charge_unknown(p25) is None, (tag, p25)
+        assert b["total"] == 115e6 and b["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and b["recurrent"], (tag, b)
+        w = _ok(_run_fx(_r30_two_units(tag, 100.7e6), R29_EUR_RATE,
+                        judgment={"iprd_deferred_payment": [deferred(amount=100e6)]}))
+        wb = w["iprd_adjustment"]
+        assert wb["fy_with_charge"] == ["2023-12-31"] and not wb["recurrent"] and wb["total"] == 115e6, (tag, wb)
+        assert wb["recurrence_excluded"][0]["amount"] == 100e6 and not flags(w, "ACQUIRED_IPRD_RECURRENT"), (tag, wb)
+        _refused(_run_fx(_r30_two_units(tag, 100.7e6), R29_EUR_RATE,
+                         judgment={"iprd_deferred_payment": [deferred(amount=100.7e6)]}),
+                 "FY 2025-12-31's declarations sum to 100,700,000, more than the period's charge 100,000,000")
+        # beyond the tolerance: two figures, the largest converted one is the whole charge
+        u = _ok(_run_fx(_r30_two_units(tag, 102e6), R29_EUR_RATE))
+        q25 = next(p for p in u["iprd_adjustment"]["periods"] if p["period"] == "2025-12-31")
+        uc = q25["unit_conflict"][tag]
+        assert uc["used"] == "USD" and abs(uc["units"]["EUR"]["usd"] - 102e6) < 1e-3, (tag, q25)
+        charge, own = E.iprd_own_charge_usd(q25)
+        assert abs(charge - 102e6) < 1e-3 and abs(own - (102e6 if tag == EXPENSE else 100e6)) < 1e-3, (tag, charge, own)
+        part = _ok(_run_fx(_r30_two_units(tag, 102e6), R29_EUR_RATE,
+                           judgment={"iprd_deferred_payment": [deferred(amount=100e6)]}))["iprd_adjustment"]
+        assert part["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and part["recurrent"], (tag, part)
+        whole = _ok(_run_fx(_r30_two_units(tag, 102e6), R29_EUR_RATE,
+                            judgment={"iprd_deferred_payment": [deferred(amount=102e6)]}))["iprd_adjustment"]
+        assert whole["fy_with_charge"] == ["2023-12-31"] and not whole["recurrent"], (tag, whole)
+        assert part["total"] == whole["total"] == b["total"] == 115e6, tag
+
+
+def test_three_units_within_the_tolerance_of_the_figure_used_but_spread_beyond_it_all_count():
+    """[Codex review r30 of PR #47, review of the round's doc fix — behaviour unchanged] The unit-agreement tolerance
+    is tested on the SPREAD across every unit a tag is filed in (_iprd_pick: the largest and smallest converted figures
+    more than max($1, 1% of the larger) apart), not on each unit against the figure used. USD 100M beside EUR converting
+    to $99.2M (-0.8%) and GBP converting to $100.9M (+0.9%): each is within 1% of the USD figure, but the spread is
+    $1.7M, so every unit is recorded (unit_conflict) and the largest, $100.9M, is the whole charge — a $100M
+    declaration is a part (the year stays counted) and $100.9M is the whole. The same on the expense and cash tags."""
+    rates = {"EUR": {"2025-12-31": 1.08, "2025-12-30": 1.08}, "GBP": {"2025-12-31": 1.25, "2025-12-30": 1.25}}
+
+    def three(tag):
+        f = _facts(expense={2023: 15e6, 2025: 100e6}, cash={2023: 15e6, 2025: 100e6})
+        _syn_put(f, tag, "EUR", _ctx("2025-01-01", "2025-12-31", 99.2e6 / 1.08, filed="2026-02-20"))
+        _syn_put(f, tag, "GBP", _ctx("2025-01-01", "2025-12-31", 100.9e6 / 1.25, filed="2026-02-20"))
+        return f
+
+    for tag in (EXPENSE, CASH):
+        n = _ok(_run_fx(three(tag), rates))
+        p25 = next(p for p in n["iprd_adjustment"]["periods"] if p["period"] == "2025-12-31")
+        uc = (p25.get("unit_conflict") or {}).get(tag) or {}
+        assert set(uc.get("units") or {}) == {"USD", "EUR", "GBP"} and uc.get("used") == "USD", (tag, p25)
+        charge, own = E.iprd_own_charge_usd(p25)
+        assert abs(charge - 100.9e6) < 1e-3, (tag, charge)
+        assert abs(own - (100.9e6 if tag == EXPENSE else 100e6)) < 1e-3, (tag, own)
+        part = _ok(_run_fx(three(tag), rates, judgment={"iprd_deferred_payment": [deferred(amount=100e6)]}))
+        assert part["iprd_adjustment"]["fy_with_charge"] == ["2023-12-31", "2025-12-31"], (tag, part["iprd_adjustment"])
+        assert part["iprd_adjustment"]["recurrent"] and flags(part, "ACQUIRED_IPRD_RECURRENT"), tag
+        whole = _ok(_run_fx(three(tag), rates, judgment={"iprd_deferred_payment": [deferred(amount=100.9e6)]}))
+        assert whole["iprd_adjustment"]["fy_with_charge"] == ["2023-12-31"], (tag, whole["iprd_adjustment"])
+
+
+def _r30_ttm(shares="drop"):
+    """ttm.json for the synthetic TTM base ($2.10/share): ttm_shares_diluted 50M, else `shares` in its place ("drop":
+    the key is absent)."""
+    t = _ttm_doc(2.1, 50e6)
+    if shares == "drop":
+        del t["ttm_shares_diluted"]
+    else:
+        t["ttm_shares_diluted"] = shares
+    return t
+
+
+R30_BAD_TTM_SHARES = (("missing", "drop"), ("null", None), ("zero", 0), ("negative", -50e6),
+                      ("a string", "50000000"), ("a bool", True), ("infinite", float("inf")))
+
+
+def _r30_refused(out, label):
+    assert out["exit"] == 3, (label, out["exit"], out["stdout"][-1500:])
+    s = out["stdout"]
+    assert "BAD_TTM_SHARES for SYN" in s and "ttm_shares_diluted" in s and "never the latest-FY count" in s, (label, s[-1500:])
+
+
+def _r30_paid_in_shares(facts):
+    return {"iprd_cash_flow_check": [dict(c, presentation="paid_in_shares") for c in auto_checks(facts)]}
+
+
+def test_a_ttm_base_never_puts_its_iprd_figures_on_the_latest_fy_count():
+    """[Codex review r30 of PR #47, #4336863102] On a TTM base the acquired-IPR&D figures are per share on ttm.json's
+    current-YTD diluted count (ttm_shares_diluted). When that count was missing or invalid (absent, null, 0, negative,
+    a string, a bool, non-finite) the engine silently fell back to the latest-FY count (shares_source diluted_latest),
+    exited 0 and make_score published it: $50M on 100M FY shares ($0.50) where the TTM basis is 50M ($1.00). The
+    unverified-share-count treatment would not cover it (make_score refuses that one only for a deducted charge, and
+    its way through is a hand-deduction tier_override), so the run is refused like any other defective ttm.json
+    input (exit 3, BAD_TTM_SHARES: rerun ttm.py) whenever it carries an acquired-IPR&D figure per share — a charge,
+    an unconfirmed charge, or two or more charge years (the recurrence figure) — on a --ttm pin and on a --base-oe-ps
+    pin equal to ttm.json's figure alike. A TTM run with no such figure is not refused (and records no denominator,
+    never the FY count); an FY-median base keeps the latest-FY count whatever ttm.json holds; make_score's
+    override-impact replay is never refused (it holds the final run's charge)."""
+    import reprice as R
+    facts = _ttm_ytd_facts()   # FY2025 $20M + 2026 H1 $30M
+    good = _ok(_run(facts, extra=["--ttm"], ttm=_r30_ttm(50e6)))
+    gb = good["iprd_adjustment"]
+    assert gb["total"] == 50e6 and gb["shares_denominator"] == 50e6, gb
+    assert gb["shares_source"] == "ttm.json ttm_shares_diluted" and gb["charge_per_share"] == 1.0, gb
+    # reprice / build_site choose no denominator: the live charge is the recorded one, on ttm.json's count
+    assert E.iprd_charge_per_share(good) == 1.0 and R.reprice(good, good["price"])["iprd_charge_per_share"] == 1.0
+    for label, sh in R30_BAD_TTM_SHARES:
+        for extra in (["--ttm"], ["--base-oe-ps", "2.1"]):
+            _r30_refused(_run(facts, extra=extra, ttm=_r30_ttm(sh)), (label, extra))
+    # the recurrence figure alone: two FY charge years paid in shares, nothing deducted
+    f2 = _facts(expense={2024: 15e6, 2025: 20e6})
+    j2 = _r30_paid_in_shares(f2)
+    r2 = _ok(_run(f2, extra=["--ttm"], ttm=_r30_ttm(50e6), judgment=j2))["iprd_adjustment"]
+    assert r2["total"] == 0 and r2["fy_with_charge"] == ["2024-12-31", "2025-12-31"] and r2["recurrent"], r2
+    assert r2["recurrence_expense_total"] == 35e6 and r2["shares_denominator"] == 50e6, r2
+    _r30_refused(_run(f2, extra=["--ttm"], ttm=_r30_ttm(), judgment=j2), "recurrence only")
+    # the unconfirmed figure alone: a charge awaiting its cash-flow check
+    f3 = _facts(expense={2025: 20e6})
+    r3 = _ok(_run(f3, extra=["--ttm"], ttm=_r30_ttm(50e6), checks=False))["iprd_adjustment"]
+    assert r3["total"] == 0 and r3["unconfirmed_total"] == 20e6 and r3["shares_denominator"] == 50e6, r3
+    _r30_refused(_run(f3, extra=["--ttm"], ttm=_r30_ttm(0), checks=False), "unconfirmed only")
+    # no acquired-IPR&D figure per share: not refused, valued exactly as with the count, no FY denominator recorded
+    plain_ok = _ok(_run(_facts(), extra=["--ttm"], ttm=_r30_ttm(50e6)))
+    plain = _ok(_run(_facts(), extra=["--ttm"], ttm=_r30_ttm()))
+    assert plain["iprd_adjustment"] is None and plain["weighted"] == plain_ok["weighted"], plain["iprd_adjustment"]
+    f4 = _facts(expense={2025: 20e6})
+    one = _ok(_run(f4, extra=["--ttm"], ttm=_r30_ttm(), judgment=_r30_paid_in_shares(f4)))
+    ob = one["iprd_adjustment"]
+    assert ob["total"] == 0 and ob["fy_with_charge"] == ["2025-12-31"] and not ob["unconfirmed_total"], ob
+    assert ob["shares_denominator"] is None and ob["shares_source"] is None, ob
+    assert one["weighted"] == plain["weighted"] and E.iprd_charge_per_share(one) == 0.0
+    # an FY-median base: the latest-FY count, whatever ttm.json holds
+    m = _ok(_run(facts, ttm=_r30_ttm()))["iprd_adjustment"]
+    assert m["total"] == 20e6 and m["shares_denominator"] == SHARES and m["shares_source"] == "diluted_latest", m
+    assert m["charge_per_share"] == 20e6 / SHARES and m["window"]["ttm_current_ytd"] is None, m
+    # make_score's override-impact replay is never refused: no denominator, the final run's charge held
+    hold = json.dumps({"treatment": "one_time_value_deduction", "charge_per_share": 1.0})
+    cf = _run_env(facts, ["--ttm"], ttm=_r30_ttm(), env={"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": hold}, measure=True)
+    assert cf["exit"] == 0 and "BAD_TTM_SHARES" not in cf["stdout"], cf["stdout"][-1500:]
+    cb = cf["numbers"]["iprd_adjustment"]
+    assert cb["shares_denominator"] is None and cb["treatment"] == "one_time_value_deduction", cb
+    assert E.iprd_charge_per_share(cf["numbers"]) == 1.0, cb
+
+
+def test_an_amortized_ttm_native_base_reads_only_a_valid_ttm_share_count():
+    """[Codex review r30 of PR #47] An iprd_amortized declaration on native base ttm_json takes its share count from
+    ttm.json's ttm_shares_diluted, read unvalidated: a string "50000000" passed the truthiness test and was
+    float()-coerced into the declaration's check. Its count is now the same validated figure as the TTM base's
+    denominator (dcf_engine.iprd_ttm_share_count), and a run without one is refused BAD_TTM_SHARES like any TTM base
+    carrying acquired-IPR&D figures per share."""
+    f = _facts(expense={2023: 15e6, 2025: 20e6})
+    d = {"basis": "iprd_amortized", "kind": "filing", "native_base": "ttm_json", "figures": [15e6, 0.0, 20e6],
+         "shares": 50e6, "value": 2.1 - 35e6 / 3 / 50e6, "source": "test: this run's figures",
+         "reason": "test: acquisition-led R&D recurs"}
+    ok = _ok(_run(f, extra=["--base-oe-ps", repr(d["value"])], ttm=_r30_ttm(50e6), judgment={"base_override": d}))
+    assert ok["iprd_adjustment"]["treatment"] == "amortized_in_base", ok["iprd_adjustment"]["treatment"]
+    assert ok["iprd_adjustment"]["amortized"]["shares"] == 50e6, ok["iprd_adjustment"]["amortized"]
+    for label, sh in R30_BAD_TTM_SHARES:
+        _r30_refused(_run(f, extra=["--base-oe-ps", repr(d["value"])], ttm=_r30_ttm(sh), judgment={"base_override": d}),
+                     ("amortized", label))
+        assert E.iprd_ttm_share_count(_r30_ttm(sh)) is None, label
+    assert E.iprd_ttm_share_count(_r30_ttm(50e6)) == 50e6 and E.iprd_ttm_share_count(_r30_ttm(50_000_000)) == 50e6
+    assert E.iprd_ttm_share_count(None) is None and E.iprd_ttm_share_count({}) is None
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

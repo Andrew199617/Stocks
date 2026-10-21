@@ -322,7 +322,10 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `total ÷ shares_denominator × ads_ratio` (the denominator is ttm.json `ttm_shares_diluted` for a TTM
    base — a `--ttm` pin, a `--base-oe-ps` pin equal to ttm.json's `ttm_oe_per_share`, or an `iprd_amortized`
    pin on native base `ttm_json` —, else the CSV's latest `shares_diluted`, × the share-scale factor when
-   `shares_source` is `diluted_latest_scale_corrected`); `total` is the sum of the periods' `deducted`; every
+   `shares_source` is `diluted_latest_scale_corrected`; [Codex review round 30 of PR #47] a TTM base's figures
+   are never the latest-FY count: without a positive `ttm_shares_diluted` the engine refuses a TTM run carrying
+   an acquired-IPR&D figure per share, `BAD_TTM_SHARES` — so a TTM base whose `shares_source` is not
+   `ttm.json ttm_shares_diluted` is P1); `total` is the sum of the periods' `deducted`; every
    scenario's and the weighted IV must equal the `before` figure minus `charge_per_share`, and the base and
    the paths are unchanged (a base cut by the charge is P1 — the rule is a value deduction, never a base
    deduction). `tier_by_numbers` is the band of the ADJUSTED weighted IRR. A period with `amount_basis`
@@ -381,7 +384,8 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `--base-oe-ps` 0.004 beside a zero TTM base or a plain declaration of 0.0 is an arbitrary pin (refused); the
    half-cent band at zero is the `iprd_amortized` arithmetic's alone, and an amortized pin on the other side of
    zero from the value its figures reproduce is refused (a base <= 0 is Tier F). A period carrying `unit_conflict` (one tag filed for the period in two
-   units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive
+   units that disagree after conversion beyond the unit-agreement tolerance, `IPRD_UNIT_TOLERANCE`: max($1, 1% of the
+   larger); a positive fact outranks a zero one, the USD one is used between positive
    ones; [Codex review round 16 of PR #47] a cash-only deferred-payment period and an `ignored_cash_only` entry
    carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact; round 17: so does a
    record a declaration builds from an `ignored_cash_only` payment) whose analysis.md does
@@ -418,7 +422,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    (round-29 polish reviews, `dcf_engine.iprd_own_charge_usd`: the largest of its own expense — the largest
    positive figure on any acquired-IPR&D expense tag, the parallel one too, in every unit filed — and its cash in
    every unit; EUR 100M at 1.08 filed beside the USD 40M used, or the parallel tag at $108M, makes $108M the whole
-   and $40M a part), a pre-window first charge
+   and $40M a part; [Codex review round 30 of PR #47] "every unit filed" is every unit that disagrees with the
+   figure used beyond the unit-agreement tolerance — a unit within it is the figure used, so USD 100M beside EUR
+   converting to $100.7M is a $100M charge and a $100M declaration of it is whole; with three or more units filed, the tolerance applies to their spread: once the largest and smallest converted figures differ by more than it, every unit is recorded and the largest counts), a pre-window first charge
    companyfacts covers with no expense fact there, a source accession outside the original filing's years,
    a current-YTD entry, a missing or inconsistent `contingent_total`, one deal's declared amounts summing
    past its `contingent_total`, and — round 8 — an impossible date; make_score refuses a deal whose
@@ -759,6 +765,13 @@ misfit`. For them:
   its whole charge the largest of that, every positive cash-tag figure in every unit
   and the cash deducted — EUR 100M at 1.08 on either tag, or the parallel tag at
   $108M, beside the USD 40M expensed and paid makes $40M a part and $108M the whole.
+  [Codex review round 30 of PR #47] "Every unit filed" is every unit that disagrees
+  with the figure used beyond the engine's unit-agreement tolerance
+  (`IPRD_UNIT_TOLERANCE`, 0.01: more than max($1, 1% of the larger) after conversion,
+  the units `unit_conflict` records); a unit within it is the figure used — the same
+  charge translated at another rate — so USD 100M beside EUR converting to $100.7M is
+  a $100M charge (a $100M declaration is whole) and EUR converting to $102M makes
+  $102M the whole. With three or more units filed, the tolerance applies to their spread: once the largest and smallest converted figures differ by more than it, every unit is recorded and the largest counts.
   The whole test and its cap read the whole charge; the recurrence figure reads the
   expense side (the own expense, less only a declared part beyond the whole charge
   less that expense) and the whole charge adds the cash side, so the recurrence

@@ -77,7 +77,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    matches within 0.1%: the acquired-IPR&D share denominator and current-YTD window come from
    ttm.json too. Warnings and an override's source text do not count. (Codex review round 26 of
    PR #47) A pin is ttm.json's figure only within 0.1%, and a $0.00 TTM base only at exactly 0:
-   pass `--ttm` (or the exact figure), never a number near it.
+   pass `--ttm` (or the exact figure), never a number near it. (Codex review round 30 of PR #47) A
+   TTM base's acquired-IPR&D figures are per share on ttm.json's `ttm_shares_diluted`, never the
+   latest-FY count: when ttm.json carries no positive count (missing, null, 0, negative, not a
+   number) the engine refuses a TTM run whose window holds an acquired-IPR&D charge, a charge
+   awaiting its cash-flow check or charges in 2 or more of the last 3 FY (`BAD_TTM_SHARES`, exit 3)
+   — rerun ttm.py (it always writes the count beside `ttm_oe_per_share`), then the engine.
    `BASE_DIVERGENCE`: say which base is distorted and why. `NI_OCF_DIVERGENCE`: find the
    one-off (an acquired-IPR&D expense added back in OCF is not "OCF unaffected": it is
    `ACQUIRED_IPRD_CHARGE`'s, below). `BASIS_BREAK_SUSPECT`: name the divestiture / M&A / restatement and pick growth
@@ -206,7 +211,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    When one tag is filed for one period in more than one unit (Codex review round 15 of PR #47), a positive fact
    in any unit outranks a zero one — converted at the FX pass's rate or one fetched for its date, else the period
    is excluded `non_usd_no_rate` and the flag above applies — and two positive facts that disagree after
-   conversion (by more than $1 and 1%) are both recorded on the period (`unit_conflict`, `unit_conflict_note`)
+   conversion (by more than the engine's unit-agreement tolerance, `IPRD_UNIT_TOLERANCE`: max($1, 1% of the
+   larger)) are both recorded on the period (`unit_conflict`, `unit_conflict_note`)
    with the USD one used: reconcile the units against the filing in analysis.md. Since Codex review round 16 of
    PR #47 a unit filed only in quarters is tiled beside another unit's exact FY fact (so it is compared, or
    recorded as `partial_coverage`), and a cash-only period (a deferred payment, an unconverted payment, an
@@ -287,7 +293,13 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    parallel one) in every unit filed, and its whole charge is the largest of that expense, every positive
    cash-tag figure in every unit and the cash deducted: EUR 100M at 1.08 ($108M) filed on either tag, or the
    parallel expense tag filed at $108M on its own, beside the USD 40M expensed and paid makes $40M a part (the
-   year still counts), $108M the whole, and more than $108M is refused. The recurrence figure reads the expense
+   year still counts), $108M the whole, and more than $108M is refused. "Every unit filed" (Codex review round
+   30 of PR #47) is every unit that disagrees with the figure used beyond the engine's unit-agreement tolerance
+   (`IPRD_UNIT_TOLERANCE`, 0.01: units disagree only when, after conversion, they differ by more than
+   max($1, 1% of the larger) — the units `unit_conflict` records); a unit within it is the figure used, the
+   same charge translated at another rate (the run's period-end rate is not the filer's): USD 100M beside EUR
+   converting to $100.7M is a $100M charge, so declare the $100M the filing states ($100.7M is refused as more
+   than the charge), while EUR converting to $102M makes $102M the whole. With three or more units filed, the tolerance applies to their spread: once the largest and smallest converted figures differ by more than it, every unit is recorded and the largest counts. The recurrence figure reads the expense
    side only — the own expense, less only the part of a declaration beyond the whole charge less that expense —
    and the whole charge adds the cash side: with EUR 100M at 1.08 on the cash tag the recurrence figure is $40M
    and the whole charge $108M. The recurrence figure is unknown (read as material) only when the own expense has
@@ -305,7 +317,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    accession year 93–99 is 1993–1999, else 20YY; the
    original filing: an 8-K or 10-Q of that fiscal year, or the 10-K that closes it), inside or before the
    window, so the entry survives the first charge rolling out; entries summing past the period's whole charge
-   (the largest of its own expense and its cash, in every unit filed: round 29's polish reviews); a
+   (the largest of its own expense and its cash, in every unit filed that disagrees beyond the unit-agreement
+   tolerance: round 29's polish reviews, round 30); a
    missing or malformed `contingent_total`; one deal's entries carrying different `contingent_total` values (or
    sources); one deal's declared amounts, summed across every entry in judgment.json (a rolled-out one
    included), exceeding its `contingent_total`; and (Codex review round 8 of PR #47) a `period` or

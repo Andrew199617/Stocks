@@ -546,6 +546,12 @@ ignored_cash_only. (3) A positive detector tag that cannot be converted is never
 figure (or another currency's native one): expense_tags_conflict records each tag's {native, unit, usd}, the period
 carries expense_tag_unconverted {tag, native, unit}, no iprd_cash_flow_check is applied (cash_flow_check_not_applied)
 and it is excluded non_usd_no_rate (ACQUIRED_IPRD_UNCONVERTED; iprd_unresolved, make_score refuses it).
+[Codex review round 30 of PR #47] A TTM base's acquired-IPR&D share denominator is ttm.json's ttm_shares_diluted,
+validated (iprd_ttm_share_count: a finite number > 0), and never the latest-FY count: a missing or invalid one had
+silently put the charge on the FY count. A TTM run whose window carries an acquired-IPR&D figure per share (a charge,
+an unconfirmed charge, or charges in 2 or more of the last 3 FY: the recurrence figure) without it is refused
+BAD_TTM_SHARES (exit 3; make_score's override-impact replay is not refused and has no denominator); one with no such
+figure runs, its block recording no denominator.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -1904,6 +1910,10 @@ IPRD_OVERLAP_RATIO = 0.98
 # [Codex review r15 of PR #47] one tag's facts for one period in two units disagree when, after conversion, they differ
 # by more than max($1, 1% of the larger): both are recorded (unit_conflict) and the USD one is used. Period-end FX
 # rates are not the filer's translation rates, so a 1% band keeps an ordinary translation difference out of it.
+# [Codex review r30 of PR #47] The unit-agreement tolerance: round 29's "largest figure in every unit filed"
+# (iprd_own_charge_usd) reads the units that disagree beyond it; a unit within it is the figure used. With three or
+# more units filed the tolerance applies to their spread (_iprd_pick): once the largest and smallest converted
+# figures differ by more than it, every unit is recorded and the largest counts.
 IPRD_UNIT_TOLERANCE = 0.01
 IPRD_NATIVE_BASES = ("ttm_json", "median_of_last_3_fy_oe_per_share")
 # [ADDITION — fixer review round 2026-10-19, awaiting Andrew's ratification] judgment.json iprd_cash_flow_check:
@@ -2209,6 +2219,26 @@ def ttm_inputs_record(tt):
             "ttm_shares_diluted": _ttm_num(tt.get("ttm_shares_diluted")),
             "ytd_current_period": _iprd_canon(per),
             "ttm_input_hash": hashlib.sha256(canon.encode()).hexdigest()}
+
+
+def iprd_ttm_share_count(tt):
+    """[Codex review r30 of PR #47] ttm.json's ttm_shares_diluted (object tt) as a TTM base's acquired-IPR&D share
+    denominator — the iprd_adjustment shares_denominator of a TTM base and an iprd_amortized declaration's count on
+    native base ttm_json: a finite number > 0 (not a bool), as a float; None when ttm.json is absent or unreadable or
+    the figure is missing, null, zero, negative, non-finite or not a number. A TTM base never falls back to the
+    latest-FY count: a TTM run whose window carries an acquired-IPR&D figure per share without this count is refused
+    (BAD_TTM_SHARES, exit 3 — rerun ttm.py, which always writes the count beside ttm_oe_per_share)."""
+    v = tt.get("ttm_shares_diluted") if isinstance(tt, dict) else None
+    if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v <= 0:
+        return None
+    return float(v)
+
+
+def _ttm_share_count_said(tt):
+    """How BAD_TTM_SHARES names ttm.json's ttm_shares_diluted when iprd_ttm_share_count reads none."""
+    if not isinstance(tt, dict):
+        return "unreadable (no ttm.json object)"
+    return "missing" if "ttm_shares_diluted" not in tt else f"{tt['ttm_shares_diluted']!r}, not a finite number > 0"
 
 
 # [Codex review r25 of PR #47] A per-share pin matches a declared value or ttm.json's figure within 0.1% of the
@@ -3221,7 +3251,11 @@ def iprd_whole_charge_unknown(rec):
     "whole" at $40M, so a $40M declaration took the year out of the recurrence count though its own expense was
     unknown; the round's review notes added the unit_conflict reasons. Recurrence materiality does not read this: it
     is unknown only when the own expense is (iprd_recurrence_expense), so a known USD expense beside cash with no FX
-    rate reads that expense."""
+    rate reads that expense. [Codex review r30 of PR #47] "Every unit filed" is every unit that disagrees with the
+    figure used beyond the unit-agreement tolerance (IPRD_UNIT_TOLERANCE: more than max($1, 1% of the larger) after
+    conversion; a unit with no USD figure always disagrees); a unit within it is the figure used. With three or
+    more units filed the tolerance applies to their spread: once the largest and smallest converted figures differ
+    by more than it, every unit is recorded and the largest counts."""
     if not isinstance(rec, dict):
         return None
     return iprd_own_expense_unknown(rec) or _iprd_cash_unknown(rec)
@@ -3236,7 +3270,12 @@ def iprd_own_expense_unknown(rec):
     expense_tags_conflict entry whose usd is null), or an expense tag also filed with a positive fact in a unit with
     no USD figure beside the one the run used (unit_conflict). None when it is known (or there is no record). Zero and
     negative figures never make it unknown. The one reason recurrence materiality is unknown (iprd_recurrence_expense
-    None, read as material, listed in recurrence_expense_unknown_usd)."""
+    None, read as material, listed in recurrence_expense_unknown_usd). [Codex review r30 of PR #47] "Every unit
+    filed" is every unit that disagrees with the figure used beyond the unit-agreement tolerance (IPRD_UNIT_TOLERANCE:
+    more than max($1, 1% of the larger) after conversion); a unit within it is the figure used. With three or more
+    units filed the tolerance applies to their spread: once the largest and smallest converted figures differ by
+    more than it, every unit is recorded and the largest counts. A unit with no USD
+    figure cannot be shown to agree, so it is always one that disagrees (unit_conflict, its usd null)."""
     if not isinstance(rec, dict):
         return None
     tu = rec.get("expense_tag_unconverted")
@@ -3300,8 +3339,8 @@ def _iprd_unit_conflict_usd(rec, cash):
     """[Codex review r29 of PR #47, polish review] The positive USD figures a record's unit_conflict holds for the cash
     tag (cash True) or for its acquired-IPR&D expense tags (cash False): every unit filed for the period that disagreed
     after conversion, the unit the run used included, each other unit at the run's rate. [] without a conflict (units
-    that agree record none). A unit with no USD figure is not listed: that side is then unknown in USD
-    (_iprd_unit_conflict_unknown)."""
+    that agree within IPRD_UNIT_TOLERANCE record none: one figure, translated at another rate — Codex review r30). A
+    unit with no USD figure is not listed: that side is then unknown in USD (_iprd_unit_conflict_unknown)."""
     uc = rec.get("unit_conflict") if isinstance(rec, dict) else None
     out = []
     for tag, c in (sorted(uc.items()) if isinstance(uc, dict) else ()):
@@ -3341,6 +3380,14 @@ def iprd_own_charge_usd(rec):
     2. the WHOLE CHARGE is the largest of that own expense, every positive cash-tag figure in every unit filed
        (converted) and the deducted cash (its amount: round 28's "larger of its cash and its own expense"); None
        (unknown) when the own expense is, or when any positive cash-tag figure has no USD value (_iprd_cash_unknown).
+    [Codex review r30 of PR #47, behaviour unchanged] "Every unit filed" reads every unit that disagrees with the
+    figure used beyond the engine's unit-agreement tolerance (IPRD_UNIT_TOLERANCE, 0.01: two units of one tag and
+    period disagree only when, after conversion, they differ by more than max($1, 1% of the larger)) — the units
+    unit_conflict records; a unit within it is the figure used, translated at another rate (the run's period-end rate
+    is not the filer's), and records nothing: USD 100M beside EUR converting to $100.7M is a $100M charge, so a $100M
+    declaration is whole and $100.7M more than the charge; EUR converting to $102M makes $102M the whole. With
+    three or more units filed the tolerance applies to their spread: once the largest and smallest converted
+    figures differ by more than it, every unit is recorded and the largest counts.
     The deduction does not read it (round 15's amount rule stands). A year with no unit conflict and no parallel-tag
     conflict reads its USD expense and the larger of that and its amount, exactly as before. Before: the round-29
     polish read the parallel tag only when it carried a unit conflict (the current tag's USD 40M beside the parallel
@@ -4109,8 +4156,12 @@ def _iprd_charge_flag(iprd, t):
     added_back = ("the expense is added back in operating cash flow" if not settles else
                   "the expense is added back in operating cash flow (a settled charge's in the year that expensed it)")
     if t == IPRD_TREATMENT_ONE_TIME:
+        # [Codex review r30 of PR #47] an override-impact replay holding the final run's charge on a TTM base whose
+        # ttm.json carries no valid count has no denominator of its own (never the latest-FY count)
+        on = (f"on {iprd['shares_denominator']:,.0f} shares, {iprd['shares_source']}"
+              if isinstance(iprd.get("shares_denominator"), (int, float)) else "held from the final run")
         how = (f"deducted once from every scenario's intrinsic value and added to the price each IRR is solved at "
-               f"(${iprd['charge_per_share']:,.4f}/share on {iprd['shares_denominator']:,.0f} shares, {iprd['shares_source']}); "
+               f"(${iprd['charge_per_share']:,.4f}/share {on}); "
                "the base is unchanged — iprd_adjustment holds the figures before and after")
     elif t == IPRD_TREATMENT_AMORTIZED:
         how = "carried in the base by the declared iprd_amortized base_override (no one-time deduction on top)"
@@ -5346,18 +5397,19 @@ def main():
             iprd["notes"].append(_ytd_note)
         total = sum(p["deducted"] for p in iprd["periods"])
         # the base's own share denominator: ttm.json's current-YTD diluted count for a TTM base, else the latest FY
-        # diluted count (split-adjusted; scale-corrected when a rescued share-scale defect found a factor)
+        # diluted count (split-adjusted; scale-corrected when a rescued share-scale defect found a factor).
+        # [Codex review r30 of PR #47] a TTM base's is ttm.json's count (iprd_ttm_share_count) or none — never the
+        # latest-FY count, which a missing or invalid ttm_shares_diluted had silently put the charge on (refused below)
         denom, denom_src = None, None
         if iprd_ttm_basis:
-            _ts = (ttm_doc or {}).get("ttm_shares_diluted")
-            if isinstance(_ts, (int, float)) and not isinstance(_ts, bool) and _ts > 0:
-                denom, denom_src = float(_ts), "ttm.json ttm_shares_diluted"
-        if denom is None:
-            if share_scale["defect"]:
-                if share_scale.get("scale_factor") and shares:
-                    denom, denom_src = float(shares) * share_scale["scale_factor"], "diluted_latest_scale_corrected"
-            elif shares and shares > 0:
-                denom, denom_src = float(shares), shares_source if shares_source.startswith("diluted_latest") else "diluted_latest"
+            _ts = iprd_ttm_share_count(ttm_doc)
+            if _ts is not None:
+                denom, denom_src = _ts, "ttm.json ttm_shares_diluted"
+        elif share_scale["defect"]:
+            if share_scale.get("scale_factor") and shares:
+                denom, denom_src = float(shares) * share_scale["scale_factor"], "diluted_latest_scale_corrected"
+        elif shares and shares > 0:
+            denom, denom_src = float(shares), shares_source if shares_source.startswith("diluted_latest") else "diluted_latest"
         _r = _ratio_value(ads_ratio)
         ratio = _r if (_r is not None and _r > 0) else 1.0
         charge_ps = (total / denom * ratio) if (denom and total) else 0.0
@@ -5369,7 +5421,9 @@ def main():
             _nb = decl.get("native_base")
             _native = (_ttm_v if _nb == "ttm_json"
                        else oe_ps_norm if _nb == "median_of_last_3_fy_oe_per_share" else None)
-            _nshares = ((ttm_doc or {}).get("ttm_shares_diluted") if _nb == "ttm_json" else shares)
+            # [Codex review r30 of PR #47] a ttm_json native base's count is the validated TTM denominator (a string
+            # count had passed the truthiness test and been float()-coerced into the declaration's check)
+            _nshares = (iprd_ttm_share_count(ttm_doc) if _nb == "ttm_json" else shares)
         _mat_base = _native if (amort_decl and isinstance(_native, (int, float)) and _native > 0) else oe_ps
         materiality = (charge_ps / _mat_base) if (valued and charge_ps and _mat_base) else None
         # a deferred payment settles an earlier window period's charge: it is not a new charge in its own year; nor
@@ -5378,6 +5432,29 @@ def main():
         # [Codex review r28 of PR #47] nor its cash presentation (iprd_own_charge)
         fy_with = [p["period"] for p in iprd["periods"] if iprd_charge_year(p)]
         unconfirmed = sum((p.get("awaiting") or 0.0 for p in iprd["periods"] if p.get("excluded") == IPRD_AWAITING), 0.0)
+        if iprd_ttm_basis and denom is None:
+            # [Codex review r30 of PR #47] a TTM base without ttm.json's count: the figures this run would put per
+            # share — the charge, the unconfirmed charge, and the recurrence figure (decisive at 2 or more FY charge
+            # years) — refuse the run, like any other defective ttm.json input (NO_TTM; an amortized ttm_json native
+            # base without the count was already refused). The unverified-share-count treatment does not fit: make_score
+            # refuses it only for a deducted charge, and its way through is a hand-deduction tier_override, which would
+            # publish a run built on a defective ttm.json. make_score's override-impact replay holds the final run's
+            # charge and is never refused (the final run, on the same ttm.json, already was).
+            _per_share = ([f"an acquired-IPR&D charge of ${total:,.0f}"] if total > 0 else []) + (
+                [f"an unconfirmed charge of ${unconfirmed:,.0f} awaiting its cash-flow check"] if unconfirmed > 0 else []) + (
+                [f"charges in {len(fy_with)} of the last 3 FY ({', '.join(fy_with)}), whose recurrence figure is per share"]
+                if len(fy_with) >= 2 else [])
+            if _per_share and not iprd_counterfactual:
+                print(f"BAD_TTM_SHARES for {ticker}: the base is ttm.json's TTM base, so its acquired-IPR&D figures are "
+                      "per share on ttm.json's current-YTD diluted count (ttm_shares_diluted), never the latest-FY "
+                      f"count — but ttm.json ttm_shares_diluted is {_ttm_share_count_said(ttm_doc)}, and this run "
+                      f"carries {'; '.join(_per_share)}. Rerun ttm.py {ticker} (it writes the count beside "
+                      "ttm_oe_per_share), then the engine")
+                sys.exit(3)
+            iprd["notes"].append(f"ttm.json ttm_shares_diluted is {_ttm_share_count_said(ttm_doc)}: this TTM base has no "
+                                 "share denominator (never the latest-FY count)"
+                                 + ("; not refused in this override-impact replay (DCF_NO_OVERRIDES)" if _per_share else
+                                    "; the run carries no acquired-IPR&D figure per share"))
         unconfirmed_mat = ((unconfirmed / denom * ratio) / _mat_base
                            if (valued and unconfirmed and denom and _mat_base) else None)
         # the deduction's materiality: ACQUIRED_IPRD_CHARGE (and the key_numbers / score.json `material`)
