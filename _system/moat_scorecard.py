@@ -58,8 +58,9 @@ OQ10) — and widening_declined is not declared; else 2. WIDENING_FROM_TROUGH (n
 first-two-year return below the cost-of-capital line. moat_evidence.fade records it all with the counterfactual at
 the holds that matter; on a 5.7 record with scenarios fade_sync checks the engine ran it (authoring: refused;
 rebuild: gate drift, FADE_DRIFT_ON_REBUILD). An erosion_rebuttal restoring hold 2 must be anchored outside the trend
-test (fade_trace_leaves trace, never anchor; fade_anchor_leaves are the plain-ROIC / ROA figures of the tangible-only
-/ ROE-only erosion case).
+test (fade_trace_leaves trace, never anchor — every figure the hold moves included, in the record and in its saved
+runs; fade_anchor_leaves are the plain-ROIC / ROA figures of the tangible-only / ROE-only erosion case); on a rebuild
+it restores the hold only when the prior score already ran it as the hold-restoring field (rebuttal_unchecked).
 
 Output from an engine release before 5.7.0 (every folder on file until its next engine run) is evaluated
 report_only: mechanical pillars, flags and lint, nothing refused. A scorecard that is present is shape-checked on
@@ -224,6 +225,15 @@ FADE_TRACE_PATHS = (("hold_years", "inputs.hold_years", "implied_irr_weighted", 
                      "iprd_adjustment.after", "diagnostics.tv_share_at_15", "diagnostics.scenario_spread_iv15")
                     + tuple(f"scenarios.{k}.{f}" for k in ("super_bear", "bear", "base", "bull", "super_bull")
                             for f in ("iv_at_10", "iv_at_12", "iv_at_15", "iv_at_20", "iv_at_25", "irr", "hold_years")))
+# [L3b review, 2026-10-21] of those, the per-year series: never an engine source (check_quotes.SKIP_KEYS), they trace
+# through the path, but their values are not trace-only VALUES (an independent engine figure equal to one still
+# anchors) — five scenarios x the projection years are so dense that, as values, they would refuse 32% of the 0-dp and
+# 9% of the 1-dp filed-history percentages on the 34 eroding folders (r57/L3b/fix3/series_collateral.out); every other
+# FADE_TRACE_PATHS figure is a trace-only value
+FADE_SERIES_PATHS = ("paths", "growth_paths")
+# the engine flags whose numbers the hold moves (dcf_engine main: the bear / bull IRR, the scenario IV spread, the
+# terminal share of IV@15, the hold): their numbers reach the engine set through the flag string, outside any path
+FADE_TRACE_FLAGS = ("TIER_BAND", "WIDE_SCENARIO_SPREAD", "HIGH_TV_SHARE", "MOAT_TREND_HOLD")
 REASON_FIELDS = ("moat_divergence_reason", "low_roic_reason", "high_return_low_moat_reason", "erosion_rebuttal")
 REASON_GATE = {"moat_divergence_reason": "divergence", "low_roic_reason": "low_return",
                "high_return_low_moat_reason": "reverse", "erosion_rebuttal": "erosion"}
@@ -1143,7 +1153,8 @@ def fade_counterfactual(n, holds, report_only=False):
     return out
 
 
-def fade_trend(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, n, is_57, assume_projection=False):
+def fade_trend(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, n, is_57, assume_projection=False,
+               rebuttal_checked=True):
     """moat_evidence.fade (10 §6.3): the direction, the guards and the hold a 5.7 run must run, computed from the trend
     test (tt), the governing pillar, the counted sources, the business type, the committed SIC and latest annual row,
     the two declarations (erosion_rebuttal, widening_declined) and the engine record n. Pure, never refuses (the sync
@@ -1151,7 +1162,11 @@ def fade_trend(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, n, is_
     only when every guard passes and widening_declined is not declared; contradicting / flat / not measured -> 2. On
     output older than 5.7 the direction and the would-be hold are reported (rule report_only); on a record without
     scenarios (Tier F) the hold changes nothing (rule no_projection). assume_projection: the dry run, before the final
-    engine run, always names the trend the final run must pass."""
+    engine run, always names the trend the final run must pass.
+    rebuttal_checked=False [L3b review, 2026-10-21]: a REBUILD whose prior score did not already run the rebuttal as
+    the hold-restoring influence field (its fade rule was not eroding_rebutted — the rebuttal was unused when it was
+    authored, and a rebuild skips the influence checks): a declared rebuttal restores no hold — rule
+    eroding_not_rebutted with rebuttal_declared true (rebuttal_unchecked(fade)), so the sync records the drift."""
     n = n if isinstance(n, dict) else {}
     sc = sc if isinstance(sc, dict) else {}
     has_proj = bool(n.get("scenarios")) or bool(assume_projection)
@@ -1172,7 +1187,7 @@ def fade_trend(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, n, is_
     elif tt.get("status") != "measured":
         rule = "not_measured"
     elif d == "eroding":
-        rule = "eroding_rebutted" if reb_on else "eroding_not_rebutted"
+        rule = "eroding_rebutted" if reb_on and rebuttal_checked else "eroding_not_rebutted"
     elif d == "widening":
         rule = "widening_guard_failed" if guards["failed"] else "widening_declined" if dec_on else "widening_confirmed"
     elif d == "contradicting":
@@ -1224,6 +1239,16 @@ RULE_TEXT = {"eroding_not_rebutted": "eroding, erosion_rebuttal not declared",
              "widening_declined": "widening, widening declined in judgment.json",
              "contradicting": "contradicting: returns and margin move in opposite directions",
              "no_trend": "no trend", "not_measured": "not measured"}
+UNCHECKED_TEXT = ("eroding, erosion_rebuttal declared but never checked (it was declared while no erosion was measured, "
+                  "and a rebuild skips the influence checks)")
+
+
+def rebuttal_unchecked(f):
+    """[L3b review, 2026-10-21] True when a declared erosion_rebuttal restores no hold because no run has checked it
+    (fade_trend's rebuttal_checked=False on a rebuild): rule eroding_not_rebutted with rebuttal_declared — the one
+    case where a declared rebuttal leaves the erosion unrebutted."""
+    f = f if isinstance(f, dict) else {}
+    return f.get("rule") == "eroding_not_rebutted" and bool(f.get("rebuttal_declared"))
 
 
 def _measured_clause(f):
@@ -1271,7 +1296,12 @@ def fade_sync(fade, n):
         return True, None, False
     want, rule = fade.get("trend"), fade.get("rule")
     head = f"moat fade: make_score's trend test says {want} ("
-    if rule == "eroding_not_rebutted":
+    if rebuttal_unchecked(fade):
+        head += (f"{_measured_clause(fade)}; the erosion_rebuttal was declared while no erosion was measured and no run "
+                 "has checked it")
+        tail = (" — rerun the final pass: an authoring run checks moat_scorecard.erosion_rebuttal (a traced number "
+                "anchored outside the trend test), or remove it and run --moat-trend eroding")
+    elif rule == "eroding_not_rebutted":
         head += f"{_measured_clause(fade)}; no erosion_rebuttal"
         tail = (" — rerun the final pass with --moat-trend eroding, or declare moat_scorecard.erosion_rebuttal carrying a "
                 "traced number")
@@ -1294,9 +1324,13 @@ def fade_drift_detail(fade, n):
     """The gate_drift entry's text when a REBUILD finds the engine's trend out of date (data moved since the run)."""
     eng = engine_trend(n)
     et = eng["moat_trend"] if eng["moat_trend"] is not None else "stable"
-    return (f"engine ran {et} (hold {eng['hold_years']}); the trend computed now is {fade.get('trend')} "
-            f"({fade.get('rule')}: {_measured_clause(fade)}) — data moved since the engine run; the next engine run "
-            f"passes --moat-trend {fade.get('trend')}")
+    head = (f"engine ran {et} (hold {eng['hold_years']}); the trend computed now is {fade.get('trend')} "
+            f"({fade.get('rule')}: {_measured_clause(fade)}) — data moved since the engine run")
+    if rebuttal_unchecked(fade):   # [L3b review, 2026-10-21]
+        return (head + "; the erosion_rebuttal, declared while no erosion was measured, has never been checked (a rebuild "
+                "skips the influence checks), so it restores no hold here — the next authoring run checks it (a traced "
+                "number anchored outside the trend test keeps --moat-trend stable) or passes --moat-trend eroding")
+    return head + f"; the next engine run passes --moat-trend {fade.get('trend')}"
 
 
 def _pp_forms(x):
@@ -1317,13 +1351,60 @@ def fade_anchor_leaves(ev):
     return [v for v in [leg.get("first2"), leg.get("last2")] + _pp_forms(leg.get("change_pp")) if v is not None]
 
 
-def fade_trace_leaves(ev):
+def _at(obj, path):
+    """The value at dotted path `path` of a JSON object, or None (check_quotes.path_value's rule)."""
+    cur = obj
+    for k in str(path).split("."):
+        if not isinstance(cur, dict) or k not in cur:
+            return None
+        cur = cur[k]
+    return cur
+
+
+def _nums(x):
+    """Every finite number in x (a number, a list or a dict, at any depth; bools excluded)."""
+    if isinstance(x, bool) or x is None:
+        return []
+    if isinstance(x, (int, float)):
+        return [float(x)] if math.isfinite(x) else []
+    if isinstance(x, dict):
+        return [v for y in x.values() for v in _nums(y)]
+    if isinstance(x, list):
+        return [v for y in x for v in _nums(y)]
+    return []
+
+
+def hold_moved_values(rec):
+    """[L3b review, 2026-10-21] The figures of engine record `rec` that the growth hold moves and that reach a reason's
+    engine set (check_quotes.engine_sources) OUTSIDE FADE_TRACE_PATHS: check_quotes.derived_values' price / IV@15 and
+    its premium / discount, and the numbers inside the FADE_TRACE_FLAGS flag strings (TIER_BAND's bear / bull IRR,
+    WIDE_SCENARIO_SPREAD's IV ratio, HIGH_TV_SHARE's terminal share), as plain values (a percent as its fraction)."""
+    rec = rec if isinstance(rec, dict) else {}
+    out = []
+    p, iv = rec.get("price"), rec.get("iv_at_15")
+    if all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (p, iv)) and iv:
+        out += [p / iv, p / iv - 1.0]
+    for fl in rec.get("fragility_flags") or []:
+        if isinstance(fl, str) and fl.split(":", 1)[0].strip() in FADE_TRACE_FLAGS:
+            for t in _qt.numbers(fl):
+                out.append(t.v / 100.0 if t.kind in ("pct", "pp") else t.v / 1e4 if t.kind == "bps" else t.val)
+    return [float(v) for v in out if isinstance(v, (int, float)) and math.isfinite(v)]
+
+
+def fade_trace_leaves(ev, n=None, saved=()):
     """make_score.check_influence's trace_only for an erosion_rebuttal / commodity-exemption reason (10 §1.4, §(l)):
     {"values": the trend block's own figures (the governing first-2 / last-2 averages and change, the margin change,
     both slopes, in moat_evidence.fade and .erosion_test), the EROSION_T thresholds, the three holds, the plain-ROIC /
     ROA figures outside the anchor case and every counterfactual figure; "paths": FADE_TRACE_PATHS — the record's hold
     keys and valuation outputs}. A number matching them traces (quoting the measurement beside the evidence is not
-    refused as untraced) but never anchors."""
+    refused as untraced) but never anchors.
+    [L3b review, 2026-10-21] Every figure the hold moves is a trace-only VALUE too (10 §1.4: the implied IRRs, the
+    weighted and per-scenario IV / IRR and the tier figures trace but never anchor), so an engine leaf with the same
+    value no longer anchors it: n, the scored record — its figures at FADE_TRACE_PATHS (not the per-year
+    FADE_SERIES_PATHS, which only trace) and hold_moved_values(n); saved, the verified saved runs
+    (dcf_numbers_<label>.json) the reason's engine set reads — every such figure where the saved run differs from n
+    (a preliminary run at another hold: its IRR and IVs stay in the engine set, check_quotes.engine_sources dropping a
+    saved run's path only where it repeats n's) and hold_moved_values(saved run)."""
     ev = ev or {}
     f, e = ev.get("fade") or {}, ev.get("erosion_test") or {}
     vals = []
@@ -1338,15 +1419,29 @@ def fade_trace_leaves(ev):
             vals += [leg.get("first2"), leg.get("last2"), leg.get("slope")] + _pp_forms(leg.get("change_pp"))
     for c in f.get("counterfactual") or []:
         vals += [c.get("irr_weighted"), c.get("iv_at_15"), c.get("hold_years")]
+    if isinstance(n, dict):
+        for p in FADE_TRACE_PATHS:
+            if p not in FADE_SERIES_PATHS:
+                vals += _nums(_at(n, p))
+        vals += hold_moved_values(n)
+    for rec in saved or ():
+        if isinstance(rec, dict):
+            for p in FADE_TRACE_PATHS:
+                v = _at(rec, p)
+                if p not in FADE_SERIES_PATHS and v is not None and v != _at(n, p):
+                    vals += _nums(v)
+            vals += hold_moved_values(rec)
     vals = [float(v) for v in vals if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)]
     return {"values": vals, "paths": list(FADE_TRACE_PATHS)}
 
 
-def fade_extra_leaves(ev):
+def fade_extra_leaves(ev, trace=None):
     """check_influence's `extra` (the anchors moat_evidence supplies) for an erosion_rebuttal / commodity-exemption
     reason: every number of moat_evidence OUTSIDE the trend block (numeric_leaves without fade and erosion_test), minus
-    any value equal to a trace-only figure (a value the trend block shares never anchors), plus fade_anchor_leaves."""
-    trace = [abs(w) for w in fade_trace_leaves(ev)["values"]]
+    any value equal to a trace-only figure (a value the trend block shares never anchors), plus fade_anchor_leaves.
+    trace: the trace-only values to filter against (default fade_trace_leaves(ev)'s; make_score passes the full set,
+    the record's hold-moved figures included)."""
+    trace = [abs(w) for w in (fade_trace_leaves(ev)["values"] if trace is None else trace)]
     # signs are ignored the way quote matching ignores them (quote_tokens.ValueSet)
     out = [v for v in numeric_leaves(ev, exclude=("fade", "erosion_test"))
            if not any(abs(abs(v) - w) <= 1e-9 * max(1.0, w) for w in trace)]
@@ -2274,8 +2369,16 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
                  "moat_scorecard.erosion_rebuttal carrying a number (why this is a cycle, not a moat eroding), or score "
                  "erosion_risks <= 0", True)
     # ---- L3b (M6): the moat's direction -> the growth hold, and the check that the engine ran it ----
+    # [L3b review, 2026-10-21] a rebuild skips the influence checks, so a rebuttal restores the hold on a rebuild only
+    # when the prior score already ran it as the hold-restoring field (rule eroding_rebutted, set only by an authoring
+    # run that checked it, then carried by rebuilds); one that was unused when authored and meets a newly measured
+    # erosion on a rebuild restores nothing until an authoring run checks it (fade sync drift; no registry event)
+    pme = prior.get("moat_evidence") if isinstance(prior, dict) else None
+    prior_fade = pme.get("fade") if isinstance(pme, dict) else None
+    reb_checked = not (rebuild and not dry_run) or (isinstance(prior_fade, dict)
+                                                    and prior_fade.get("rule") == "eroding_rebutted")
     fade = fade_trend(tt, gm, sources_rec.get("items") or [], bt, tbasis, sic, last_raw, sc, ctx["facts"], n, strict,
-                      assume_projection=dry_run)
+                      assume_projection=dry_run, rebuttal_checked=reb_checked)
     if TROUGH_FLAG in fade["flags"]:
         flags.insert(flags.index(TREND_FLAGS["widening"]) + 1 if TREND_FLAGS["widening"] in flags else 0, TROUGH_FLAG)
     if strict and sync and not dry_run and n.get("scenarios"):
@@ -2417,6 +2520,8 @@ def fade_lines(f):
         head = {"widening_confirmed": "widening, guards: " + _guard_summary(f),
                 "widening_guard_failed": "widening, guard failed: " + "; ".join((f.get("guards") or {}).get("failed") or []),
                 "contradicting": "contradicting (stable)"}.get(rule, RULE_TEXT.get(rule, rule))
+        if rebuttal_unchecked(f):
+            head = UNCHECKED_TEXT
         if f.get("rebuttal_unused"):
             head += " · erosion_rebuttal declared but unused (no measured erosion)"
         if f.get("decline_unused"):

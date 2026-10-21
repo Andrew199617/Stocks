@@ -3039,8 +3039,9 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
     / return series / derived figures key_numbers.md prints, and `extra`'s numeric leaves; never judgment.json, and
     never the worker text the engine echoes into its flag strings (check_quotes.influence_sources blanks
     check_folder's worker text and the record's own copies of it, review r02) — nor a CITED fact's value
-    (`trace_only` values, and the values at its dcf_numbers.json paths, which are removed from the engine set — from
-    a saved run too where it repeats them — are accepted but never count as an engine match); (4) every number rests
+    (`trace_only` values are accepted but never an engine match, even where an engine leaf has the same value; the
+    values at its dcf_numbers.json paths leave the engine set — from a saved run too where it repeats them — and are
+    accepted without blocking another leaf's match, L3b review 2026-10-21); (4) every number rests
     only on third-party facts (R3: they calibrate scenarios and give context only); (5) a cited fact does not list the
     field's used_for tag (facts.INFLUENCE_TAGS); (6) require_anchor, the text has a number, and no number matched an
     engine source outside trace_only, `extra`, or a cited non-third-party fact tagged for the field (a plain
@@ -3060,13 +3061,16 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
                 "per-share charge as a calc fact, and quote the adjusted IRR from a saved run — check_quotes.py "
                 f"--save-run {n.get('ticker')} <label>)")
     vals, paths = _trace_only_split(trace_only)
+    acc = None
     if paths:
-        vals = vals or _qt.ValueSet()
+        # [L3b review, 2026-10-21] the figures at the excluded paths trace (`accepted`) but only trace_only's VALUES are
+        # never an engine match: a per-year series there (paths, growth_paths) may coincide with an independent figure
+        acc = _qt.ValueSet()
         for p in paths:
-            vals.merge(_numeric_values(_quotes.path_value(n, p)))
+            acc.merge(_numeric_values(_quotes.path_value(n, p)))
     engine = _quotes.influence_sources(folder, n, facts_doc=fc.doc if fc is not None else None, exclude_paths=paths)
     res = _facts.influence_support(s, ids, fc, engine, tag, extra=_numeric_values(extra) if extra is not None else None,
-                                   trace_only=vals, not_quantities=nq)
+                                   trace_only=vals, not_quantities=nq, accepted=acc)
     if res.unknown:
         fail(f"judgment.json {field} cites {res.unknown[0]}, which facts.json does not declare")
     if field not in _facts.NUMBER_OPTIONAL_FIELDS and not res.carries_number:
@@ -4255,7 +4259,8 @@ def _moat_events(ticker, today, moat_ev, n=None, j=None):
     guards pass (rule widening_declined); both carry the measured change, the hold run and the hold without the
     declaration, and the weighted IRR both ways (n: the engine record; the IRR without from fade.counterfactual; j:
     the judgment, whose moat_scorecard.widening_declined is the decline's reason) — never on a rebuild whose fade sync
-    drifted."""
+    drifted, and never for a rebuttal no run has checked (moat_scorecard.rebuttal_unchecked: declared while no erosion
+    was measured, met by a rebuild; L3b review, 2026-10-21)."""
     me = moat_ev if isinstance(moat_ev, dict) else None
     if not me or me.get("status") != "checked":
         return []
@@ -4288,7 +4293,9 @@ def _moat_events(ticker, today, moat_ev, n=None, j=None):
         out.append(dict(base, event="moat_high_return_low_moat", measure=(me.get("governing") or {}).get("measure"),
                         median=rv.get("median"), median_note=rv.get("median_note"), min=rv.get("min"), reason=rv["reason"]))
     rebutted = fade_ok and fade.get("rule") == "eroding_rebutted"
-    if due("erosion") or rebutted:
+    # [L3b review, 2026-10-21] a rebuttal no run has checked (declared while unused, met by a rebuild) records nothing,
+    # under G6 either: the registry keeps checked declarations only
+    if (due("erosion") or rebutted) and not _moat.rebuttal_unchecked(fade):
         er = me.get("erosion_test") or {}
         reason = (g.get("erosion") or {}).get("reason")
         out.append(dict(base, event="moat_erosion_rebuttal", governing_change_pp=er.get("governing_change_pp"),
@@ -4378,9 +4385,15 @@ def fade_anchor_check(field, text, me, fc, folder, n):
     evidence outside the trend block (moat_scorecard.fade_extra_leaves, with the plain-ROIC / ROA anchors of the
     tangible-only / ROE-only erosion case); trace-only: the trend block's figures, the counterfactual and the record's
     hold keys and valuation outputs (moat_scorecard.fade_trace_leaves); require_anchor: at least one number must rest
-    on a cited non-third-party fact tagged for the field or an engine figure outside the measurement."""
-    check_influence(field, text, _facts.parse_refs(text), fc, folder, n, extra=_moat.fade_extra_leaves(me),
-                    trace_only=_moat.fade_trace_leaves(me), require_anchor=True)
+    on a cited non-third-party fact tagged for the field or an engine figure outside the measurement.
+    [L3b review, 2026-10-21] Every figure the hold moves is trace-only, wherever the engine set meets it: the scored
+    record's, and those of every saved run the engine set reads (check_quotes.influence_sources counts each verified
+    dcf_numbers_<label>.json) — a preliminary run saved at another hold carries the hold-0 IRR."""
+    ticker = (n or {}).get("ticker") or os.path.basename(os.path.normpath(folder))
+    saved = [rec for label, _, rec in _quotes.saved_runs(folder) if _quotes.bound_saved_run(label, rec, ticker)]
+    trace = _moat.fade_trace_leaves(me, n=n, saved=saved)
+    check_influence(field, text, _facts.parse_refs(text), fc, folder, n,
+                    extra=_moat.fade_extra_leaves(me, trace["values"]), trace_only=trace, require_anchor=True)
 
 
 SCORE_DECISION_KEYS += ("moat_evidence",)   # L3 (R4 revised): moat_evidence carries a decision (L5's prepare compares it)

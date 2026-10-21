@@ -20,7 +20,9 @@ Scorecard (moat_scorecard):     T13 test_trend_test_mirror · T14 test_fade_tren
   guard, T14c DD-shaped tangible-only erosion, T14d MOH-shaped ROA guard) · T15 test_widening_from_trough_flag · T15b
   test_commodity_guard_mechanical · T15c test_commodity_guard_reads_no_universe_csv · test_fade_leaves ·
   test_widening_declined_shape · test_fade_sync_record_consistency · test_rebuild_drift_switch (T19b) ·
-  test_operating_margin_fallback_moves_the_trend (10b COVERAGE, lane default Q4).
+  test_operating_margin_fallback_moves_the_trend (10b COVERAGE, lane default Q4). Review fixes (2026-10-21; they fail
+  on 82ef9b9, r57/L3b/fix3/failing_first.log): test_unused_rebuttal_is_unchecked_on_a_rebuild (T19c in-process) ·
+  test_hold_moved_values_and_trace_leaves_of_records.
 Reprice (reprice):              T23 test_reprice_hold_zero_record · T23b test_reprice_reads_the_record_not_the_rule.
 make_score end to end (T16-T22, T28): test_make_score_57_fade.py; T7 (the repo regression's replay through
 recorded_scenario_holds): test_engine_math.py.
@@ -882,6 +884,93 @@ def test_rebuild_drift_switch():
             M.FADE_DRIFT_ON_REBUILD = saved
     finally:
         c.close()
+
+
+def test_unused_rebuttal_is_unchecked_on_a_rebuild():
+    """T19c in-process, review 2026-10-21: a rebuttal unused when authored (flat data) that meets a measured erosion on
+    a REBUILD restores no hold — fade_trend(rebuttal_checked=False): rule eroding_not_rebutted with rebuttal_declared
+    (rebuttal_unchecked), the fade_sync drift text says why; an identical rerun stays so; a prior that ran the rebuttal
+    as the hold-restoring field (rule eroding_rebutted) keeps it; an authoring run (no prior) and the dry run give
+    eroding_rebutted (make_score then checks it); FADE_DRIFT_ON_REBUILD = False refuses with the unchecked text."""
+    sc = TM.base_scorecard()
+    sc["erosion_rebuttal"] = "n/a"
+    c = TM.Case(rows=_gm_rows([0.20] * 5, [0.40] * 5), sic="3561", sc=sc,
+                n_extra={"scenarios": _scn(), "moat_trend": "stable", "hold_years": 2,
+                         "inputs": {"moat_trend": "stable", "hold_years": 2}})
+    for k in LABELS:
+        c.n["scenarios"][k]["hold_years"] = 2
+    try:
+        facts = {f["id"]: f for f in c.facts}
+        ev0 = lambda prior=None, **kw: M.evaluate(c.folder, c.n, c.j, facts=facts, is_57=True, sic=c.sic,  # noqa: E731
+                                                  prior=prior, **kw)
+        first = ev0()
+        assert first["fade"]["rule"] == "no_trend" and first["fade"]["rebuttal_unused"] is True
+        prior = {"moat_evidence": first, "dcf_content_hash": c.n["content_hash"]}
+        json.dump({"cik": 1, "currency": "USD", "annual": _gm_rows(DNV, DNGM)},
+                  open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
+        ev = ev0(prior)
+        f = ev["fade"]
+        assert (f["rule"], f["trend"], f["hold_years"], f["in_sync"]) == ("eroding_not_rebutted", "eroding", 0, False), f
+        assert f["rebuttal_declared"] and not f["rebuttal_unused"] and M.rebuttal_unchecked(f)
+        assert {k: v for k, v in f.items() if k not in ("rule", "trend", "hold_years", "in_sync", "counterfactual")} == {
+            k: v for k, v in ev0(prior=None, sync=False)["fade"].items()
+            if k not in ("rule", "trend", "hold_years", "in_sync", "counterfactual")}, "only the rule and hold differ"
+        dr = [d for d in ev["gate_drift"] if d["gate"] == "fade_sync"]
+        assert len(dr) == 1 and dr[0]["detail"] == (
+            "engine ran stable (hold 2); the trend computed now is eroding (eroding_not_rebutted: governing roic -8.50pp "
+            "FY2021-22 -> FY2024-25, gross margin -4.00pp) — data moved since the engine run; the erosion_rebuttal, "
+            "declared while no erosion was measured, has never been checked (a rebuild skips the influence checks), so "
+            "it restores no hold here — the next authoring run checks it (a traced number anchored outside the trend "
+            "test keeps --moat-trend stable) or passes --moat-trend eroding"), dr
+        assert any(x.startswith(f"- Fade direction: {M.UNCHECKED_TEXT} -> growth hold 0 yrs") for x in M.fade_lines(f))
+        assert ev0({"moat_evidence": ev, "dcf_content_hash": c.n["content_hash"]}) == ev, "an identical rerun differs"
+        checked = dict(first, fade=dict(first["fade"], rule="eroding_rebutted"))
+        kept = ev0({"moat_evidence": checked, "dcf_content_hash": c.n["content_hash"]})["fade"]
+        assert (kept["rule"], kept["in_sync"]) == ("eroding_rebutted", True) and not M.rebuttal_unchecked(kept)
+        assert ev0()["fade"]["rule"] == "eroding_rebutted"
+        assert ev0(prior, dry_run=True)["fade"]["rule"] == "eroding_rebutted"
+        saved = M.FADE_DRIFT_ON_REBUILD
+        M.FADE_DRIFT_ON_REBUILD = False
+        try:
+            ev0(prior)
+            raise AssertionError("FADE_DRIFT_ON_REBUILD = False still drifted")
+        except M.MoatRefusal as e:
+            assert str(e) == (
+                "moat fade: make_score's trend test says eroding (governing roic -8.50pp FY2021-22 -> FY2024-25, gross "
+                "margin -4.00pp; the erosion_rebuttal was declared while no erosion was measured and no run has checked "
+                "it) -> --moat-trend eroding (growth hold 0 years), but the engine ran --moat-trend stable (hold 2) — "
+                "rerun the final pass: an authoring run checks moat_scorecard.erosion_rebuttal (a traced number anchored "
+                "outside the trend test), or remove it and run --moat-trend eroding"), str(e)
+        finally:
+            M.FADE_DRIFT_ON_REBUILD = saved
+    finally:
+        c.close()
+
+
+def test_hold_moved_values_and_trace_leaves_of_records():
+    """Review 2026-10-21: hold_moved_values reads the derived price / IV@15 figures and the numbers inside the
+    hold-moved flags (TIER_BAND, WIDE_SCENARIO_SPREAD, HIGH_TV_SHARE) and nothing else; fade_trace_leaves(ev, n,
+    saved) adds the record's figures at FADE_TRACE_PATHS (not the per-year FADE_SERIES_PATHS, never an engine source)
+    and a saved run's wherever they differ from the record's; fade_extra_leaves drops a moat-evidence number equal to
+    any of them."""
+    n = {"price": 20.0, "iv_at_15": 25.0, "implied_irr_weighted": 0.1712, "scenarios": {"bear": {"irr": 0.1234}},
+         "growth_paths": {"base": [0.0661, 0.0662]}, "base_oe_per_share": 3.0,
+         "fragility_flags": ["TIER_BAND: bear-case tier C (12.3%) vs bull-case tier A (27.1%) — the verdict spans tiers",
+                             "WIDE_SCENARIO_SPREAD: super-bull IV is 6.1x super-bear IV — uncertainty is huge",
+                             "HIGH_TV_SHARE: terminal value is 82% of IV@15% — result is mostly a terminal assumption",
+                             "LOW_OE_YIELD: base OE yield 1.9% — valuation rests almost entirely on growth"]}
+    hm = M.hold_moved_values(n)
+    for v in (0.8, -0.2, 0.123, 0.271, 6.1, 0.82):
+        assert any(abs(v - w) < 1e-9 for w in hm), (v, hm)
+    assert not any(abs(w - 0.019) < 1e-9 or abs(w - 0.15) < 1e-9 for w in hm), hm
+    vals = M.fade_trace_leaves({}, n=n)["values"]
+    assert 0.1712 in vals and 0.1234 in vals and 0.0661 not in vals and 0.82 in vals
+    s0 = dict(n, implied_irr_weighted=0.1555, growth_paths={"base": [0.0612, 0.0571]}, iv_at_15=23.0)
+    vals = M.fade_trace_leaves({}, n=n, saved=[s0, n])["values"]
+    assert 0.1555 in vals and 0.0612 not in vals and 0.0571 not in vals and 0.0661 not in vals
+    assert any(abs(w - (20.0 / 23.0 - 1)) < 1e-12 for w in vals)
+    me = {"core_evidence_score": 0.1712, "supporting_adjustment": 0.5}
+    assert M.fade_extra_leaves(me, M.fade_trace_leaves({}, n=n)["values"]) == [0.5]
 
 
 def test_operating_margin_fallback_moves_the_trend():

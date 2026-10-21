@@ -11,6 +11,10 @@ test_make_score_refuses_trend_mismatch · T18 test_make_score_in_sync_records_fa
 test_no_projection_records_fade · test_commodity_exemption_is_an_anchored_influence_field. Each fails on 4f7d6f1
 (r57/L3b/failing_first.log): there the engine record carries no hold, make_score never checks the trend, the rebuttal
 is checked only under G6, and no fade block, line or event exists.
+Review fixes (2026-10-21; each fails on 82ef9b9 except the T19d guard, r57/L3b/fix3/failing_first.log): T16b
+test_rebuttal_hold_moved_outputs_never_anchor · T16b test_rebuttal_thresholds_and_saved_runs_never_anchor · 10 §(l)
+test_trace_only_values_are_never_an_engine_match · T19c test_unused_rebuttal_on_a_rebuild_restores_no_hold · T19d
+(guard) test_unused_decline_on_a_rebuild_is_what_an_authoring_run_gives.
 """
 import copy
 import json
@@ -68,16 +72,17 @@ def syn(trend="stable", release=None, moat=MOAT, tier_f=False):
     return m
 
 
-def fade_run(rows, n=None, sc="base", facts=None, sic="3561", csv_rows=None, prior_score=None, moat=MOAT):
+def fade_run(rows, n=None, sc="base", facts=None, sic="3561", csv_rows=None, prior_score=None, moat=MOAT, files=None):
     n = n if n is not None else syn()
     j = H._judgment(n, moat_score=moat)
     if sc == "base":
         sc = TM.base_scorecard()
     if sc is not None:
         j["moat_scorecard"] = sc
-    files = {"TST/fundamentals.json": {"cik": 1, "currency": "USD", "profile": {"sic": sic}, "annual": rows},
-             "TST/facts.json": {"schema": 1, "ticker": "TST", "facts": facts if facts is not None else TM.base_facts()}}
-    return H.Run(n, j, files=files, csv_rows=csv_rows, prior_score=prior_score).run()
+    fl = {"TST/fundamentals.json": {"cik": 1, "currency": "USD", "profile": {"sic": sic}, "annual": rows},
+          "TST/facts.json": {"schema": 1, "ticker": "TST", "facts": facts if facts is not None else TM.base_facts()}}
+    fl.update(files or {})
+    return H.Run(n, j, files=fl, csv_rows=csv_rows, prior_score=prior_score).run()
 
 
 def ero_rows():
@@ -195,6 +200,119 @@ def test_rebuttal_needs_an_anchor():
     _done(r)
 
 
+RESTATE = "governing ROIC -8.50pp and gross margin -4.00pp: cyclical"
+ANCHOR_NEEDLE = "judgment.json moat_scorecard.erosion_rebuttal traces only through figures that restate the measurement"
+
+
+def _csv(revs):
+    return [{"period_end": f"{y}-12-31", "fy_label": str(y), "revenue": rev, "net_income": 1, "operating_income": 1,
+             "ocf": 10, "capex": 1, "capex_assumed_zero": "False", "equity": 1000, "cash": 0, "debt_current": 0,
+             "debt_lt": 0, "tax": 0} for y, rev in zip((2021, 2022, 2023, 2024, 2025), revs)]
+
+
+def _in_engine_set(r, text):
+    """The bypass's precondition: the numbers of `text` that the reason's engine set still holds once
+    FADE_TRACE_PATHS are excluded (check_quotes.engine_sources over the run's own folder: flag strings, derived
+    values, saved runs, filed history)."""
+    import check_quotes as Q
+    import quote_tokens as QT
+    rec = json.load(open(os.path.join(r.folder, "dcf_numbers.json"), encoding="utf-8"))
+    vs = Q.engine_sources(r.folder, rec, exclude_paths=M.FADE_TRACE_PATHS)
+    return [t.raw for t in QT.numbers(text) if vs.match(t)]
+
+
+def _refused_though_in_engine_set(rows, rec, extra, **kw):
+    sc, facts = rebut(f"{RESTATE}; {extra}")
+    r = fade_run(rows, rec, sc=sc, facts=facts, **kw)
+    try:
+        assert _in_engine_set(r, extra), f"precondition: {extra!r} reaches the engine set outside FADE_TRACE_PATHS"
+        check(r, False, ANCHOR_NEEDLE)
+    finally:
+        _done(r)
+
+
+def test_rebuttal_hold_moved_outputs_never_anchor():
+    """T16b, review 2026-10-21 (10 §1.4: the implied IRRs, the weighted and per-scenario IV / IRR and the tier figures
+    trace but never anchor): a hold-moved figure that reaches the engine set OUTSIDE FADE_TRACE_PATHS — check_quotes'
+    derived price / IV@15 discount, the bear / bull IRR inside the engine's TIER_BAND flag, the IV ratio inside
+    WIDE_SCENARIO_SPREAD — is refused beside the restated measurement (before the fix each one scored and restored
+    hold 2). A filed-history figure that coincides with a per-year growth-path value still anchors (the series trace
+    but are not trace-only values: they are too dense)."""
+    n = syn("stable")
+    s_ = n["scenarios"]
+    ib, iu = s_["bear"]["irr"], s_["bull"]["irr"]
+    tb, tu = E.tier_for_irr(ib), E.tier_for_irr(iu)
+    spread = s_["super_bull"]["iv_at_15"] / s_["super_bear"]["iv_at_15"]
+    assert tb != tu and spread > 4, (tb, tu, spread)   # the engine writes both flags for these scenarios
+    nf = dict(n, irr_bear=ib, irr_bull=iu, fragility_flags=[   # dcf_engine main's own texts
+        f"WIDE_SCENARIO_SPREAD: super-bull IV is {spread:.1f}x super-bear IV — uncertainty is huge; confidence should "
+        "not be high",
+        f"TIER_BAND: bear-case tier {tb} ({ib * 100:.1f}%) vs bull-case tier {tu} ({iu * 100:.1f}%) — the verdict spans "
+        "tiers; size any position to the bear end"])
+    prem = abs(n["price"] / n["iv_at_15"] - 1) * 100
+    for rec, extra in ((n, f"at hold 2 the price sits {prem:.1f}% below IV@15"),
+                       (nf, f"the bear-case IRR at the 2-year hold is {ib * 100:.1f}%"),
+                       (nf, f"the bull case returns {iu * 100:.1f}%"),
+                       (nf, f"super-bull IV is {spread:.1f}x super-bear IV")):
+        _refused_though_in_engine_set(ero_rows(), rec, extra)
+    # the guard against over-reach: FY2024 revenue growth equal to the bull path's year-4 growth (a per-year series
+    # value: it traces, but it is no trace-only value) is a filed-history figure and still anchors
+    g = n["growth_paths"]["bull"][3]
+    extra = f"revenue grew {g * 100:.2f}% in FY2024 off the FY2023 trough"
+    import quote_tokens as QT
+    series = QT.ValueSet()
+    for v in n["growth_paths"]["bull"]:
+        series.add(v)
+    assert all(series.match(t) for t in QT.numbers(extra))
+    sc, facts = rebut(f"{RESTATE}; {extra}")
+    r = check(fade_run(ero_rows(), n, sc=sc, facts=facts, csv_rows=_csv((1500e6, 1400e6, 1234.5e6, 1234.5e6 * (1 + g),
+                                                                          1400e6))))
+    try:
+        assert r.score()["moat_evidence"]["fade"]["rule"] == "eroding_rebutted"
+    finally:
+        _done(r)
+
+
+def test_rebuttal_thresholds_and_saved_runs_never_anchor():
+    """T16b, review 2026-10-21 (10 §(l) step 5: an anchor is an engine source NOT in trace_only): a restated trend
+    threshold (3pp / 2pp) that coincides with an engine leaf, and the figures of a preliminary run saved at hold 0
+    (dcf_numbers_prelim.json, the normal worker flow) — its weighted IRR (= the hold-0 counterfactual), weighted and
+    super-bull IV@15 and base-case IRR — are refused (before the fix each one scored and restored hold 2)."""
+    n = syn("stable")
+    _refused_though_in_engine_set(ero_rows(), n, "beyond the 3pp and 2pp thresholds")
+    m0 = hold_record(dict(n, ticker="TST"), "eroding")
+    m0.pop("content_hash", None)
+    m0 = H._stamp(dict(m0, ticker="TST"))
+    cf0 = M.fade_counterfactual(H._stamp(dict(n, ticker="TST")), [0])[0]
+    assert round(m0["implied_irr_weighted"], 4) == cf0["irr_weighted"]
+    files = {"TST/dcf_numbers_prelim.json": m0}
+    for extra in (f"at hold 0 it would be {m0['implied_irr_weighted'] * 100:.2f}%",
+                  f"at hold 0 IV@15 is ${m0['iv_at_15']:.2f}",
+                  f"at hold 0 the base case returns {m0['scenarios']['base']['irr'] * 100:.2f}%",
+                  f"at hold 0 the super-bull IV@15 is ${m0['scenarios']['super_bull']['iv_at_15']:.2f}"):
+        _refused_though_in_engine_set(ero_rows(), n, extra, files=files)
+
+
+def test_trace_only_values_are_never_an_engine_match():
+    """10 §(l) steps (3) and (5), review 2026-10-21 (make_score.check_influence in-process, test_facts' fixture whose
+    record carries 17.00% as the weighted, base-case and every scenario IRR): a number matching a trace_only VALUE is
+    neither an engine match nor an anchor even where an engine leaf has the same value (before: the leaf anchored
+    it, and it kept a third-party-only reason from being refused); a trace_only PATH only leaves the engine set — its
+    figure traces without blocking another leaf with that value; a cited tagged filing fact still anchors."""
+    import test_facts as TF
+    fc, why = TF._check(TF._doc(TF.F1(), TF.F4(used_for=["erosion_rebuttal"]), TF.F5()))
+    assert fc is not None, why
+    fld = "moat_scorecard.erosion_rebuttal"
+    why = TF._influence(fld, "IRR 17.00% at hold 2", fc, trace_only=[0.17], require_anchor=True)
+    assert why and "traces only through figures that restate the measurement" in why, why
+    assert TF._influence(fld, "IRR 17.00% at hold 2", fc, trace_only=[0.17]) is None
+    why = TF._influence(fld, "IRR 17.00%; consensus $4.10 a share [F5]", fc, trace_only=[0.17], require_anchor=True)
+    assert why and "rests only on third-party facts (F5)" in why, why
+    assert TF._influence(fld, "IRR 17.00% at hold 2", fc, trace_only=["implied_irr_weighted", "implied_irr_base"],
+                         require_anchor=True) is None
+    assert TF._influence(fld, "IRR 17.00%; retention 126% [F4]", fc, trace_only=[0.17], require_anchor=True) is None
+
+
 def test_make_score_refuses_trend_mismatch():
     """T17: on a 5.7 authoring run make_score refuses (before any write) an engine run whose recorded trend or hold is
     not the trend test's — eroding data run at stable; a confirmed widening run at stable; a failed widening guard run
@@ -279,6 +397,97 @@ def test_fade_gate_drift_on_rebuild():
             assert s[k] == first[k], k
         kn = r.key()
         assert "OUT OF SYNC — gate drift on this rebuild" in kn and "- Gate drift on this rebuild" in kn and "fade_sync" in kn
+    finally:
+        _done(r)
+
+
+def _move_rows(r, rows):
+    path = os.path.join(r.folder, "fundamentals.json")
+    doc = json.load(open(path, encoding="utf-8"))
+    doc["annual"] = rows
+    json.dump(doc, open(path, "w", encoding="utf-8"), indent=1)
+
+
+FLAT = _gm_rows([0.20] * 5, [0.40] * 5)
+
+
+def test_unused_rebuttal_on_a_rebuild_restores_no_hold():
+    """T19c, review 2026-10-21: an erosion_rebuttal declared while no erosion was measured is unused, so no run checks
+    it; when fundamentals.json later moves so MOAT_EROSION fires, the REBUILD (same run, declaration and facts; the
+    influence checks are skipped) must not let the never-checked text restore 2 hold years: rule eroding_not_rebutted
+    with the rebuttal declared, trend eroding, fade_sync gate drift saying it was never checked, in_sync false, no
+    moat_erosion_rebuttal event, the engine's numbers kept (before the fix: rule eroding_rebutted, in sync, and an event
+    carrying 'n/a'). An identical rerun stays so; the next AUTHORING run checks the rebuttal (refused: no number). The
+    G6 path (erosion_risks +1, a numeric rebuttal) writes no event for the unchecked rebuttal either."""
+    sc = TM.base_scorecard()
+    sc["erosion_rebuttal"] = "n/a"
+    r = check(fade_run(FLAT, syn("stable"), sc=sc))
+    try:
+        first = r.score()
+        f0 = first["moat_evidence"]["fade"]
+        assert f0["rule"] == "no_trend" and f0["rebuttal_unused"] is True, f0
+        _move_rows(r, ero_rows())
+        r.run().ok()
+        s = r.score()
+        f = s["moat_evidence"]["fade"]
+        assert (f["rule"], f["trend"], f["hold_years"], f["in_sync"]) == ("eroding_not_rebutted", "eroding", 0, False), f
+        assert f["rebuttal_declared"] is True and f["rebuttal_unused"] is False and M.rebuttal_unchecked(f)
+        dr = [d for d in s["moat_evidence"]["gate_drift"] if d["gate"] == "fade_sync"]
+        assert len(dr) == 1 and "the erosion_rebuttal, declared while no erosion was measured, has never been checked" \
+            in dr[0]["detail"] and "or passes --moat-trend eroding" in dr[0]["detail"], dr
+        assert r.entries("moat_erosion_rebuttal") == [], r.entries()
+        for k in ("implied_irr", "iv_at_15", "tier_by_numbers", "hold_years", "moat_trend"):
+            assert s[k] == first[k], k
+        assert ("- Fade direction: eroding, erosion_rebuttal declared but never checked (it was declared while no "
+                "erosion was measured, and a rebuild skips the influence checks) -> growth hold 0 yrs · engine ran "
+                "--moat-trend stable (hold 2): OUT OF SYNC") in r.key(), r.key()
+        r.run().ok()   # an identical rerun: still a rebuild of a run that never checked the rebuttal
+        assert r.score()["moat_evidence"] == s["moat_evidence"] and r.entries("moat_erosion_rebuttal") == []
+        # a new engine run makes the next run an AUTHORING run: the rebuttal is checked now, and 'n/a' has no number
+        path = os.path.join(r.folder, "dcf_numbers.json")
+        rec = json.load(open(path, encoding="utf-8"))
+        json.dump(H._stamp(dict(rec, as_of="2026-10-19")), open(path, "w", encoding="utf-8"), indent=1)
+        r.run()
+        assert r.rc == 1 and "REFUSED" in r.err and \
+            "judgment.json moat_scorecard.erosion_rebuttal carries no number" in r.err, (r.rc, r.err[-800:])
+    finally:
+        _done(r)
+    sc = TM.base_scorecard()
+    sc["pillars"]["erosion_risks"] = {"score": 1, "rationale": "r", "facts": ["F14"]}
+    sc["erosion_rebuttal"] = "a price cycle: price realization 4.5% [F3]"
+    r = check(fade_run(FLAT, syn("stable"), sc=sc, facts=TM.with_facts([])))
+    try:
+        _move_rows(r, ero_rows())
+        r.run().ok()
+        me = r.score()["moat_evidence"]
+        assert me["gates"]["erosion"]["applies"] is True and M.rebuttal_unchecked(me["fade"]), me["fade"]["rule"]
+        assert r.entries("moat_erosion_rebuttal") == [], r.entries()
+    finally:
+        _done(r)
+
+
+def test_unused_decline_on_a_rebuild_is_what_an_authoring_run_gives():
+    """T19d (guard), review 2026-10-21: the decline's half of the finding is no defect. widening_declined is no
+    influence field (10 §1.5: it needs no number and is shape-checked on every run, a rebuild included) and only
+    lowers the value, so a decline declared while no widening was measured that meets a newly measured widening on a
+    rebuild applies exactly what an authoring run of the same declaration gives — rule widening_declined, trend stable
+    = the engine's, in sync, the moat_widening_declined event — and the engine's stable IS what the next run passes."""
+    sc = TM.base_scorecard()
+    sc["widening_declined"] = "a recovery from the 2021 trough, not a wider moat"
+    r = check(fade_run(FLAT, syn("stable"), sc=sc))
+    try:
+        assert r.score()["moat_evidence"]["fade"]["decline_unused"] is True
+        _move_rows(r, wid_rows())
+        r.run().ok()
+        f = r.score()["moat_evidence"]["fade"]
+        assert (f["rule"], f["trend"], f["in_sync"]) == ("widening_declined", "stable", True), f
+        ev = [{k: v for k, v in e.items() if k != "date"} for e in r.entries("moat_widening_declined")]
+    finally:
+        _done(r)
+    r = check(fade_run(wid_rows(), syn("stable"), sc=sc))
+    try:
+        assert r.score()["moat_evidence"]["fade"] == f
+        assert [{k: v for k, v in e.items() if k != "date"} for e in r.entries("moat_widening_declined")] == ev and ev
     finally:
         _done(r)
 
