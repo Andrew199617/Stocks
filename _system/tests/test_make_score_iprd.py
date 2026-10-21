@@ -2047,6 +2047,113 @@ def test_an_unconvertible_parallel_tag_or_payment_after_an_unknown_remainder_is_
     assert B.iprd_unresolved(u), u["iprd_adjustment"]
 
 
+# --- Codex review round 25 of PR #47 ------------------------------------------------------------------------------
+def test_an_fy_built_run_scores_beside_a_ttm_json_changed_after_it():
+    """[Codex review r25, #4333638581] A --base-oe-ps pin declared built on FY figures (basis_window {"window": "fy"})
+    reads nothing from ttm.json, yet round 23 stamped the whole ttm.json into its ttm_inputs and make_score refused
+    the unchanged run once ttm.json was regenerated, written or deleted ("ttm.json changed after the engine run").
+    The run now records ttm_inputs null and make_score's check follows the record: it scores beside any ttm.json
+    (base pin provenance and check_base_basis_window still apply), while a TTM-basis run stays held to its record."""
+    facts, ta = TI._ttm_ytd_facts(), TI._ttm_doc(2.1, 98e6)
+    fy = TI.ttm_window_decl(2.1, "fy")
+    run = TI._cached("r25_fy_pin", lambda: TI._ok(TI._run(facts, extra=["--base-oe-ps", "2.1"], ttm=ta,
+                                                          judgment={"base_override": fy})))
+    assert run["ttm_inputs"] is None, run.get("ttm_inputs")
+    for t in (ta, TI._r25_ttm_moved(), None):
+        r = _score(run, _j(base_override=fy), ttm=t)
+        assert r.rc == 0, (t and t.get("ttm_shares_diluted"), r.err[-800:])
+    ttm, n, _p = _r23_runs()
+    r = _score(n, ttm=TI._ttm_doc(2.1, 200e6))
+    assert r.rc != 0 and R23_CHANGED in r.err, r.err[-800:]
+
+
+def _r25_zero_amortized(capex_override=False):
+    """The 2-of-3 synthetic filer whose FY2023 / FY2025 charges (1.5 x the native median x 100M shares each) make the
+    mean annual charge per share exactly the native median: the amortized base is $0.00, declared 0.0."""
+    J = {"capex_override": TI._o(80e6)} if capex_override else {}
+    capex = {"capex": {2024: None}} if capex_override else {}
+    N = TI._ok(TI._run_env(TI._facts(expense={2023: 15e6, 2025: 20e6}, **capex), judgment=J))["base_oe_normalized_per_share"]
+    c = 1.5 * N * TI.SHARES
+    facts = TI._facts(expense={2023: c, 2025: c}, **capex)
+    rec = TI._ok(TI._run_env(facts, judgment=J))
+    assert rec["base_oe_normalized_per_share"] == N
+    d = TI.amortized_decl(rec, value=0.0)
+    n = TI._ok(TI._run_env(facts, ["--base-oe-ps", "0.0"], dict(J, base_override=d)))
+    assert n["iprd_adjustment"]["treatment"] == "amortized_in_base" and n["base_oe_per_share"] == 0.0, n["iprd_adjustment"]
+    return facts, J, d, n
+
+
+def test_a_zero_amortized_base_is_scored():
+    """[Codex review r25, #4333638587] When the recurrent acquired-IPR&D charge exactly exhausts the native base
+    (the mean annual charge per share equals the median), the engine records amortized_in_base on a declared $0.00
+    base, but make_score's pin-provenance predicate required a non-zero base and refused the run as having no
+    matching declaration; beside a field override, _declared_pin_not_ttm (pin == 0: False) also sent it to the TTM
+    branch, which re-ran ttm.py for a run that never read ttm.json. A zero declaration now matches a zero base at
+    half a cent per share (dcf_engine.pin_matches): it scores, its override impact is measured on the declared pin
+    with the final run's treatment held, and a non-zero mismatch is still refused."""
+    facts, _J, d, n = _r25_zero_amortized()
+    r = _bridged(n, _j(base_override=d), facts)
+    assert r.rc == 0, r.err[-800:]
+    assert r.result["score"]["iprd_adjustment"]["treatment"] == "amortized_in_base"
+    facts, J, d, n = _r25_zero_amortized(capex_override=True)
+    r = _bridged(n, _j(base_override=d, capex_override=J["capex_override"]), facts)
+    assert r.rc == 0, r.err[-800:]
+    assert r.result["score"]["override_impact"]["base_used"] == "declared_pin", r.result["score"]["override_impact"]
+    cf = [s for s in r.result["spawns"] if s["script"].endswith("dcf_engine.py.txt") and s["no_overrides"]]
+    assert len(cf) == 1 and json.loads(cf[0]["hold"]) == {"treatment": "amortized_in_base", "charge_per_share": 0.0}, cf
+    assert not [s for s in r.result["spawns"] if s["script"].endswith("ttm.py.txt")], r.result["spawns"]
+    # a plain pin a cent off its zero declaration is still not declared
+    plain = TI.ttm_window_decl(0.0, "fy")
+    p = TI._ok(TI._run(TI._ttm_ytd_facts(), extra=["--base-oe-ps", "0.01"], judgment={"base_override": plain}))
+    legacy = copy.deepcopy(p)
+    legacy.pop("iprd_judgment_hash", None)
+    r = _score(legacy, _j(base_override=plain))
+    assert r.rc != 0 and "base pin provenance" in r.err, r.err[-800:]
+
+
+def test_a_zero_ttm_base_is_ttm_json_s_pin():
+    """[Codex review r25, #4333638587 siblings] A ttm.json ttm_oe_per_share of exactly 0 was never ttm.json's pin:
+    the --ttm run the engine accepts (Tier F) was refused as an arbitrary pin ("0.0 differs from ttm.json's
+    ttm_oe_per_share 0.0 by >0.1%"); the TTM-leg override rules, _declared_pin_not_ttm, declared_fy_built_pin and
+    the amortized ttm_json check all excluded a zero figure. Each now matches zero within half a cent."""
+    import tempfile
+    import make_score as M
+    t0 = TI._ttm_doc(0.0, 100e6)
+    n = TI._cached("r25_zero_ttm", lambda: TI._ok(TI._run(TI._ttm_ytd_facts(), extra=["--ttm"], ttm=t0)))
+    assert n["base_oe_per_share"] == 0.0 and n["ttm_inputs"] == E.ttm_inputs_record(t0), n.get("ttm_inputs")
+    r = _score(n, ttm=t0)
+    assert r.rc == 0, r.err[-800:]
+    r = _score(n, ttm=TI._ttm_doc(0.006, 100e6))
+    assert r.rc != 0, "a ttm.json moved off the run's zero base scored"
+    # the predicates
+    fy, ttmw = TI.ttm_window_decl(0.0, "fy"), TI.ttm_window_decl(0.0)
+    amort = {"basis": "iprd_amortized", "kind": "filing", "native_base": "median_of_last_3_fy_oe_per_share",
+             "figures": [15e6, 0.0, 20e6], "shares": 100e6, "value": 0.0, "source": "test", "reason": "test"}
+    bare = {k: v for k, v in fy.items() if k != "basis_window"}
+    assert M.declared_fy_built_pin(fy, 0.0) and M.declared_fy_built_pin(amort, 0.003)
+    assert not M.declared_fy_built_pin(fy, 0.01) and not M.declared_fy_built_pin(bare, 0.0)
+    pin = {"inputs": {"base_pin_source": "base_oe_ps_arg", "base_oe_ps_arg": 0.0}, "base_oe_per_share": 0.0}
+    ttm = _ttm_with_sbc_legs(0.0, 100e6)
+    old_base = M.BASE
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            M.BASE = tmp
+            for decl, not_ttm in ((amort, True), (fy, True), (bare, False), (ttmw, False)):
+                folder = _r24_folder(tmp, {"base_override": decl}, ttm)
+                assert M._declared_pin_not_ttm("TST", pin) is not_ttm, decl
+                legs = M.ttm_leg_overrides(folder, pin, {"sbc": SBC_OVERRIDE}, {})
+                assert (legs == {}) is not_ttm, (decl, legs)
+            # an amortized base on native_base ttm_json of zero is ttm.json's zero TTM base less the amortization
+            am = {"treatment": "amortized_in_base", "amortized": {"native_base": "ttm_json", "native_base_per_share": 0.0,
+                                                                 "pinned_per_share": -0.35, "shares": 100e6}}
+            folder = _r24_folder(tmp, {"base_override": dict(amort, native_base="ttm_json")}, TI._ttm_doc(0.0, 100e6))
+            assert _refusal(M.check_iprd_amortized_ttm_current, folder, {"iprd_adjustment": am}) is None
+            _r24_folder(tmp, {"base_override": dict(amort, native_base="ttm_json")}, TI._ttm_doc(0.01, 100e6))
+            assert _refusal(M.check_iprd_amortized_ttm_current, folder, {"iprd_adjustment": am}) is not None
+        finally:
+            M.BASE = old_base
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

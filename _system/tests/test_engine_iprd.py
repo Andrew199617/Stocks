@@ -3386,6 +3386,89 @@ def test_an_unconvertible_parallel_detector_tag_is_a_conflict_that_gates_the_per
     assert m["exit"] == 0 and E.iprd_unresolved(m["numbers"]), m["numbers"].get("iprd_adjustment")
 
 
+# --- Codex review round 25 of PR #47 ------------------------------------------------------------------------------
+def _r25_ttm_moved():
+    t = _ttm_doc(2.6, 120e6)
+    t["inputs"]["ocf"]["ytd_current_period"] = ["2026-01-01", "2026-09-30"]
+    t["ytd_end"] = "2026-09-30"
+    return t
+
+
+def _r25_strip(n):
+    return {k: v for k, v in n.items() if k not in ("as_of", "price_source", "diagnostics", "content_hash")}
+
+
+def test_ttm_inputs_are_recorded_only_when_the_runs_basis_reads_ttm_json():
+    """[Codex review r25, #4333638581] Round 23 recorded ttm_inputs for every --base-oe-ps pin, deciding before the
+    basis was chosen: a plain pin declaring basis_window {"window": "fy"}, or an iprd_amortized pin on the median
+    native base, reads nothing from ttm.json (the FY window, the latest FY count, no Tier F legs), yet the whole
+    current ttm.json was stamped into its record, so a ttm.json regenerated (or written, or deleted) after the run
+    refused an unchanged FY-based run. ttm_inputs is now recorded only when the selected basis reads ttm.json — a
+    --ttm pin, a pin no declaration places (ttm.json's figure decides its basis), basis_window "ttm", an amortized
+    native_base ttm_json, or a median-native amortized pin under STALE_FY (ttm.json's TTM base decides whether the
+    median may be the native base) — and is null otherwise: the FY runs on two ttm.json files and on none are
+    identical, ttm_inputs included."""
+    facts = _ttm_ytd_facts()
+    ta, tb = _ttm_doc(2.1, 98e6), _r25_ttm_moved()
+    fy = {"base_override": ttm_window_decl(2.1, "fy")}
+    runs = [_ok(_run(facts, extra=["--base-oe-ps", "2.1"], ttm=t, judgment=fy)) for t in (ta, tb, None)]
+    for n in runs:
+        assert n["ttm_inputs"] is None, n.get("ttm_inputs")
+        assert n["inputs"]["base_basis_window"] == {"window": "fy"} and n["iprd_adjustment"]["total"] == 20e6, n["inputs"]
+        assert E._content_hash(n) == n["content_hash"]
+    assert _r25_strip(runs[0]) == _r25_strip(runs[1]) == _r25_strip(runs[2])
+    # a median-native amortized pin on a fresh FY: null whatever ttm.json holds
+    f2 = _facts(expense={2023: 15e6, 2025: 20e6})
+    _ytd(f2, EXPENSE, "2026-01-01", "2026-06-30", 30e6, "2026-08-05")
+    d2 = _r24_median_decl(_ok(_r24_run(f2))["base_oe_normalized_per_share"], [15e6, 0.0, 20e6])
+    a2 = ["--base-oe-ps", repr(d2["value"])]
+    am = [_ok(_r24_run(f2, extra=a2, judgment={"base_override": d2}, ttm=t))
+          for t in (_ttm_doc(d2["value"], 50e6), _ttm_doc(9.0, 70e6))]
+    for n in am:
+        assert n["iprd_adjustment"]["treatment"] == "amortized_in_base" and n["ttm_inputs"] is None, n.get("ttm_inputs")
+    assert _r25_strip(am[0]) == _r25_strip(am[1])
+    # ... but under STALE_FY ttm.json's TTM base decides whether the median may be its native base: recorded
+    rec = _recurrent()
+    d = amortized_decl(rec)
+    st = _ok(_run(_facts(expense={2023: 15e6, 2025: 20e6}), extra=["--base-oe-ps", repr(d["value"])],
+                  judgment={"base_override": d}))
+    assert st["iprd_adjustment"]["treatment"] == "amortized_in_base", st["iprd_adjustment"]["treatment"]
+    assert st["ttm_inputs"] == E.ttm_inputs_record(None), st.get("ttm_inputs")
+    # a basis_window "ttm" pin reads ttm.json's current-YTD leg: recorded
+    w = _ok(_run(facts, extra=["--base-oe-ps", "1.75"], ttm=ta, judgment={"base_override": ttm_window_decl(1.75)}))
+    assert w["inputs"]["base_basis_window"]["window"] == "ttm" and w["ttm_inputs"] == E.ttm_inputs_record(ta), w.get("ttm_inputs")
+
+
+def test_a_zero_pin_matches_a_zero_figure_at_an_absolute_tolerance():
+    """[Codex review r25, #4333638587 siblings] Every declared-pin and ttm.json-figure match was 0.1% of the
+    reference, which is zero-width at zero, and ttm.json's ttm_oe_per_share of exactly 0 was read as no TTM base:
+    an undeclared --base-oe-ps 0.0 beside a ttm.json figure of 0.0 was scored on the FY window and count, and an
+    iprd_amortized declaration of $0.003 (inside the engine's own cent check) on a zero pin was not the pin's
+    declaration, so the run took the one-time deduction. dcf_engine.pin_matches compares within 0.1% of the
+    reference, or within half a cent per share when either side is zero; a non-zero mismatch is still refused."""
+    m = E.pin_matches
+    assert m(0.0, 0.0) and m(0.004, 0.0) and m(0.0, 0.004) and m(0.0, 2.2e-16) and m(-0.004, 0.0)
+    assert not m(0.006, 0.0) and not m(0.0, 0.006) and not m(0.01, 0.0)
+    assert m(2.1021, 2.1) and not m(2.103, 2.1) and m(-2.1021, -2.1) and not m(2.1, -2.1)
+    assert not m(None, 0.0) and not m(True, 1.0) and not m(float("nan"), 0.0) and not m("0", 0.0)
+    facts = _ttm_ytd_facts()
+    n = _ok(_run(facts, extra=["--base-oe-ps", "0.0"], ttm=_ttm_doc(0.0, 98e6)))
+    blk = n["iprd_adjustment"]
+    assert blk["window"]["ttm_current_ytd"] == ["2026-01-01", "2026-06-30"], blk["window"]
+    assert blk["total"] == 50e6 and blk["shares_denominator"] == 98e6, blk
+    # an amortized declaration of $0.003 on a zero pin: the native median less the mean charge is exactly zero
+    N = _recurrent()["base_oe_normalized_per_share"]
+    c = 1.5 * N * SHARES
+    f0 = _facts(expense={2023: c, 2025: c})
+    probe = _ok(_run(f0))
+    d = amortized_decl(probe, value=0.003)
+    z = _ok(_run(f0, extra=["--base-oe-ps", "0.0"], judgment={"base_override": d}))
+    assert z["iprd_adjustment"]["treatment"] == "amortized_in_base" and E.iprd_charge_per_share(z) == 0.0, z["iprd_adjustment"]
+    # a declaration a cent off a zero pin is not its declaration
+    out = _run(f0, extra=["--base-oe-ps", "0.0"], judgment={"base_override": amortized_decl(probe, value=0.01)})
+    assert out["exit"] != 0 or out["numbers"]["iprd_adjustment"]["treatment"] != "amortized_in_base", out["stdout"][-800:]
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

@@ -360,6 +360,12 @@ value adjustment):
   ttm_shares_diluted equals its shares_denominator and ytd_current_period
   its window.ttm_current_ytd — "ttm.json changed after the engine run —
   rerun dcf_engine.py". Older records keep the 0.1% base check alone.
+- [Codex review round 25 of PR #47] The ttm.json check follows the record:
+  ttm_inputs null (a median run, a pin declared built on FY figures) is
+  held to nothing. Every declared-pin and ttm.json-figure match
+  (dcf_engine.pin_matches) is 0.1% of the reference, or half a cent per
+  share when either side is zero, so a $0.00 amortized base and a zero
+  TTM base are scoreable.
 - [Codex review round 24 of PR #47] A --base-oe-ps pin its judgment.json
   base_override declares built on FY figures (declared_fy_built_pin:
   iprd_amortized on the median native base, or basis_window {"window":
@@ -1276,8 +1282,11 @@ def check_ttm_inputs_current(n, tt):
     takes its IPR&D share denominator (ttm_shares_diluted) and current-YTD window (inputs.ocf.ytd_current_period)
     from ttm.json: regenerated after the run with twice the shares and twice the OE, the run's $0.50 charge on 100M
     shares scored where a rerun deducts $0.25 on 200M; a new 10-Q's YTD period scored the stale window.
-    A run that records ttm_inputs (dcf_engine.ttm_inputs_record of the ttm.json it read; null when no pin, so
-    ttm.json was never read) is refused when the current ttm.json gives anything else. A record that predates it
+    A run that records ttm_inputs (dcf_engine.ttm_inputs_record of the ttm.json it read) is refused when the current
+    ttm.json gives anything else. [Codex review r25 of PR #47] The check follows the record: null — a median run, a
+    --base-oe-ps pin declared built on FY figures (basis_window "fy", or iprd_amortized on the median native base
+    outside STALE_FY), whose basis reads nothing from ttm.json — is held to nothing here (base pin provenance and
+    check_base_basis_window still apply). A record that predates it
     (HALO's committed 5.6.0 record, anything older) whose positive IPR&D charge is on ttm.json's share count
     (shares_source "ttm.json ttm_shares_diluted") falls back to its own record: the current ttm_shares_diluted must
     equal shares_denominator (within one share) and, when the window names a current YTD, ytd_current_period must be
@@ -1543,7 +1552,7 @@ def check_iprd_amortized_ttm_current(folder, n):
     tv = _num((tt or {}).get("ttm_oe_per_share")) if isinstance(tt, dict) else None
     ts = _num((tt or {}).get("ttm_shares_diluted")) if isinstance(tt, dict) else None
     nb, sh = _num(am.get("native_base_per_share")), _num(am.get("shares"))
-    if not (tv and nb is not None and abs(nb - tv) <= 0.001 * abs(tv) and ts is not None and sh is not None
+    if not (_engine.pin_matches(nb, tv) and ts is not None and sh is not None
             and abs(ts - sh) < 1.0):
         fail(f"the {IPRD_AMORTIZED_BASIS} base_override's native base is ttm.json's TTM base (record: "
              f"{nb} per share on {sh} shares) but ttm.json now holds ttm_oe_per_share {tv} on ttm_shares_diluted {ts} — "
@@ -2063,7 +2072,7 @@ def ttm_leg_overrides(folder, n, j_over, applied):
         # [v5.6 review] an iprd_amortized base on native_base ttm_json IS ttm.json's TTM base less the
         # amortization: the TTM legs it rests on are compared through the record's native base
         b = _num(am.get("native_base_per_share"))
-    if not (pinned and tv and b is not None and abs(b - tv) <= 0.001 * abs(tv)):
+    if not (pinned and _engine.pin_matches(b, tv)):     # [Codex review r25 of PR #47] a zero TTM base too
         return {}
     if am is None and declared_fy_built_pin(_judgment_base_override(folder), inp.get("base_oe_ps_arg")):
         return {}       # [Codex review r24 of PR #47] a pin declared built on FY figures rests on no TTM leg
@@ -2197,7 +2206,7 @@ def iprd_amortized_impact(ticker, n):
     if m is None:
         fail("one-time-deduction replay failed — cannot measure the iprd_amortized base override's impact")
     bw, nb = _num(m.get("base_oe_per_share")), _num(am.get("native_base_per_share"))
-    if bw is None or nb is None or abs(bw - nb) > 0.001 * abs(nb):
+    if not _engine.pin_matches(bw, nb):
         fail(f"the one-time-deduction replay scored base {bw!r}, not the amortized record's native base {nb!r} — "
              "cannot measure the iprd_amortized base override's impact; re-run the engine")
     iw, ip = _num(m.get("implied_irr_weighted")), _num(n.get("implied_irr_weighted"))
@@ -2224,9 +2233,7 @@ def declared_fy_built_pin(bo, pin):
     pin, even when it equals ttm_oe_per_share within 0.1% — the engine reads the IPR&D window and share denominator
     from the declaration (the FY window, the latest FY count), and so do the base-pin provenance check, the
     override-impact branch and the TTM-leg override rules here."""
-    if (not isinstance(bo, dict) or not isinstance(pin, (int, float)) or isinstance(pin, bool) or not pin
-            or not isinstance(bo.get("value"), (int, float)) or isinstance(bo.get("value"), bool)
-            or abs(float(bo["value"]) - float(pin)) > 0.001 * abs(float(pin))):
+    if not isinstance(bo, dict) or not _engine.pin_matches(bo.get("value"), pin):   # [Codex review r25] zero too
         return False
     if bo.get("basis") == IPRD_AMORTIZED_BASIS:
         return bo.get("native_base") == "median_of_last_3_fy_oe_per_share"
@@ -2255,15 +2262,15 @@ def _declared_pin_not_ttm(ticker, n):
     is a declared pin even when it equals ttm.json's figure (True)."""
     inp = n.get("inputs") or {}
     pin = inp.get("base_oe_ps_arg")
-    if inp.get("base_pin_source") != "base_oe_ps_arg" or not isinstance(pin, (int, float)) or isinstance(pin, bool) or pin == 0:
-        return False
+    if inp.get("base_pin_source") != "base_oe_ps_arg" or not isinstance(pin, (int, float)) or isinstance(pin, bool):
+        return False    # [Codex review r25 of PR #47] a zero pin (a $0.00 amortized base) is a pin like any other
     try:
         with open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8") as f:
             bo = (json.load(f) or {}).get("base_override")
     except Exception:
         return False
-    if (not isinstance(bo, dict) or bo.get("basis") not in (None, IPRD_AMORTIZED_BASIS) or not isinstance(bo.get("value"), (int, float))
-            or isinstance(bo.get("value"), bool) or abs(float(bo["value"]) - pin) > 0.001 * abs(pin)):
+    if (not isinstance(bo, dict) or bo.get("basis") not in (None, IPRD_AMORTIZED_BASIS)
+            or not _engine.pin_matches(bo.get("value"), pin)):
         return False
     if bo.get("basis") == IPRD_AMORTIZED_BASIS and _iprd_amortized_ttm(n) is not None:
         return False    # [v5.6 review] ttm.json's TTM base less the amortization: measured on the TTM branch
@@ -2272,7 +2279,7 @@ def _declared_pin_not_ttm(ticker, n):
     try:
         with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as f:
             tv = json.load(f).get("ttm_oe_per_share")
-        if isinstance(tv, (int, float)) and not isinstance(tv, bool) and tv != 0 and abs(tv - pin) <= 0.001 * abs(tv):
+        if _engine.pin_matches(pin, tv):
             return False
     except Exception:
         pass
@@ -3192,8 +3199,11 @@ def main():
                 ttm_val = json.load(f).get("ttm_oe_per_share")
         except Exception:
             ttm_val = None
-        via_ttm = (isinstance(ttm_val, (int, float)) and isinstance(score_base, (int, float))
-                   and ttm_val != 0 and abs(score_base - ttm_val) <= 0.001 * abs(ttm_val))
+        # [Codex review r25 of PR #47] within 0.1%, or half a cent at zero (dcf_engine.pin_matches) for a --ttm or
+        # --base-oe-ps pin: a zero TTM base is ttm.json's pin (a payable pin keeps its own declaration check)
+        via_ttm = (_engine.pin_matches(score_base, ttm_val)
+                   and ((ttm_val != 0 and score_base != 0)
+                        or inp.get("base_pin_source") in ("ttm_json", "base_oe_ps_arg")))
         # [Codex review r24 of PR #47] a --base-oe-ps pin its declaration says was built on FY figures is checked as
         # the declared base (check_base_basis_window included) even when it equals ttm.json's figure
         if via_ttm and inp.get("base_oe_ps_arg") is not None and declared_fy_built_pin(j_base_override, score_base):
@@ -3215,13 +3225,14 @@ def main():
                             and [float(x) for x in (pb.get("figures") or [])] == [float(x) for x in j_base_override["figures"]]
                             and abs(float(pb.get("shares") or 0) - float(j_base_override["shares"])) < 1.0)
             else:
-                declared = (j_base_override and isinstance(score_base, (int, float)) and score_base != 0
-                            and abs(float(j_base_override["value"]) - score_base) <= 0.001 * abs(score_base))
+                # [Codex review r25 of PR #47] a $0.00 base (an amortized base the mean charge exhausts) is
+                # declared by a zero value: half a cent at zero, 0.1% otherwise (dcf_engine.pin_matches)
+                declared = bool(j_base_override and _engine.pin_matches(j_base_override.get("value"), score_base))
                 if declared:
                     check_base_basis_window(folder, n, j_base_override)   # [Codex review r15 of PR #47]
             if not declared:
                 fail(f"base pin provenance: the score's base OE/share {score_base} differs from ttm.json's "
-                     f"ttm_oe_per_share {ttm_val} by >0.1% (or ttm.json is missing) and judgment.json declares no "
+                     f"ttm_oe_per_share {ttm_val} by >0.1% (half a cent at zero; or ttm.json is missing) and judgment.json declares no "
                      "matching base_override {value, source, reason} — a pinned base must come from ttm.py "
                      "(ttm.json, via --ttm) or be declared as a base_override; an arbitrary pin is not scoreable")
     # [Codex review r23 of PR #47] ...and the rest of what the run read from ttm.json must still be ttm.json's

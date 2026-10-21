@@ -68,8 +68,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `ttm.json`) and pass `--ttm` in the final run; quote ttm.json's legs. IFRS filers: ttm.py
    reads us-gaap only and exits non-zero — use the median base and say so.
    (Codex review round 23 of PR #47) Regenerating ttm.json — rerunning ttm.py after a new 10-Q,
-   a shares override or a split — means rerunning the engine before make_score. Every pinned run
-   (`--ttm` or `--base-oe-ps`) records what it read from ttm.json (`ttm_inputs` in
+   a shares override or a split — means rerunning the engine before make_score. Every run whose
+   base reads ttm.json (`--ttm`, or a `--base-oe-ps` pin that is not declared built on FY figures —
+   round 25 of PR #47) records what it read from ttm.json (`ttm_inputs` in
    dcf_numbers.json: `ttm_oe_per_share`, `ttm_shares_diluted`, `ytd_current_period` and
    `ttm_input_hash` over its input legs), and make_score refuses a ttm.json that no longer gives
    it ("ttm.json changed after the engine run — rerun dcf_engine.py"), even when the base still

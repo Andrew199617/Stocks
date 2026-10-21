@@ -373,7 +373,8 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    period the run shows no trace of reading. A diff that edits those declarations without a fresh
    dcf_numbers.json is P1. [Codex review round 23 of PR #47] Nor can a score whose ttm.json changed after a
    pinned engine run: the run records `ttm_inputs` (ttm_oe_per_share, ttm_shares_diluted, ytd_current_period,
-   ttm_input_hash) and make_score refuses any difference; a record that predates it (HALO's) is refused when its
+   ttm_input_hash) and make_score refuses any difference (round 25: recorded only when the run's basis reads
+   ttm.json — null for a pin declared built on FY figures, which no ttm.json change refuses); a record that predates it (HALO's) is refused when its
    positive IPR&D charge is on a ttm.json share count or YTD window the current ttm.json no longer holds. A diff
    that regenerates ttm.json without a fresh dcf_numbers.json is P1. A period carrying `unit_conflict` (one tag filed for the period in two
    units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive

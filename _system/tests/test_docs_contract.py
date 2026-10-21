@@ -385,6 +385,9 @@ PAIRS = [
     ("_system/make_score.py", "def declared_fy_built_pin(", "declared_fy_built_pin", [SYS_README]),
     ("_system/dcf_engine.py", "expense_tag_unconverted=tags_unconv", "expense_tag_unconverted", [SYS_README, CONTRACT]),
     ("_system/dcf_engine.py", "rec[\"cash_flow_check_not_applied\"]", "cash_flow_check_not_applied", [SYS_README, CONTRACT]),
+    # Codex review round 25 of PR #47: declared-pin and ttm.json-figure matches at half a cent when either is zero
+    ("_system/dcf_engine.py", "def pin_matches(", "pin_matches", [SYS_README]),
+    ("_system/dcf_engine.py", "PIN_MATCH_ZERO_ABS = 0.005", "PIN_MATCH_ZERO_ABS", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

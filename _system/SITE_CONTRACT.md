@@ -227,7 +227,8 @@ ytd_current_period} or {window "fy"}, on a plain `--base-oe-ps` pin that declare
 `dcf_engine.iprd_judgment_hash`; make_score refuses a judgment.json that no longer hashes to it; the site never
 reads it), `numbers` gains `ttm_inputs` (Codex review round 23 of PR #47: what a pinned run read from ttm.json —
 {ttm_oe_per_share, ttm_shares_diluted, ytd_current_period, ttm_input_hash}, `dcf_engine.ttm_inputs_record`; null for
-a median-base run; make_score refuses a ttm.json that no longer gives it; the site never reads it), and live.json gains `iprd_charge_per_share` (in today's share
+a median-base run and, Codex review round 25, for any run whose selected basis reads nothing from ttm.json (a
+`--base-oe-ps` pin declared built on FY figures); make_score refuses a ttm.json that no longer gives it; the site never reads it), and live.json gains `iprd_charge_per_share` (in today's share
 units; 0.0 without a charge). Every IV, IRR, tier and hurdle price the record carries is already the adjusted figure;
 build_site's replay fallbacks subtract the same charge (`iprd_charge`, through the engine's `adjusted_value` /
 `adjusted_irr`). The Overview's base-OE card shows one disclosure line (`iprdNote`): "Acquired IPR&D: −$2.33/sh one-time

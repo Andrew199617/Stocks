@@ -499,9 +499,12 @@ deducted against the residual).
 ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash — the sha256 of ttm.json's input legs,
 ttm_input_legs), inside the content-hashed payload, for every pinned run (--ttm or --base-oe-ps: whether the pin is
 ttm.json's figure decides the IPR&D window and share denominator); null for a median-base run, which never reads
-ttm.json. make_score recomputes it from the current ttm.json and refuses any difference: before, it compared only the
+ttm.json. [Codex review round 25] Only when the selected basis reads ttm.json: null too for a --base-oe-ps pin
+declared built on FY figures (basis_window "fy"; iprd_amortized on the median native base outside STALE_FY). make_score recomputes it from the current ttm.json and refuses any difference: before, it compared only the
 base within 0.1%, so a ttm.json regenerated with twice the shares (and twice the OE) scored the run's charge per share
 on the old denominator, and a new 10-Q's YTD period scored the stale window.
+[Codex review round 25 of PR #47] Declared-pin and ttm.json-figure matches (pin_matches) are 0.1% of the reference,
+or half a cent per share when either side is zero: a $0.00 amortized base and a zero TTM base match their figures.
 [Codex review round 24 of PR #47] (1) A declaration matching a --base-oe-ps pin picks the IPR&D window and share
 denominator alone: iprd_amortized by its native_base (ttm_json: the TTM window and ttm_shares_diluted; the median: the
 FY window and the latest FY count), a plain one with basis_window {"window": "fy"} the FY window and count; the 0.1%
@@ -1403,7 +1406,7 @@ def share_scale_pin_rescue(pin_source, pin, price, declared):
         return False, ["no --base-oe-ps pin"]
     ok_decl = (isinstance(declared, dict) and not declared.get("basis")
                and isinstance(declared.get("value"), (int, float)) and not isinstance(declared.get("value"), bool)
-               and abs(float(declared["value"]) - pin) <= 0.001 * abs(pin))
+               and pin_matches(declared["value"], pin))
     if not ok_decl:
         if not isinstance(declared, dict):
             why.append("judgment.json declares no base_override")
@@ -1412,7 +1415,7 @@ def share_scale_pin_rescue(pin_source, pin, price, declared):
                        "through --base-judgment, never --base-oe-ps)")
         else:
             why.append(f"judgment.json's base_override value {declared.get('value')!r} does not equal the pin {pin:.6g} "
-                       "within 0.1%")
+                       "within 0.1% (half a cent when either is zero)")
     if price and abs(pin) > SHARE_SCALE_PRICE_MULT * price:
         why.append(f"the pin itself is {abs(pin) / price:,.0f}x the price {price:,.2f} (limit {SHARE_SCALE_PRICE_MULT}x) — "
                    "it inherits the mis-scaled counts")
@@ -2177,6 +2180,28 @@ def ttm_inputs_record(tt):
             "ttm_shares_diluted": _ttm_num(tt.get("ttm_shares_diluted")),
             "ytd_current_period": _iprd_canon(per),
             "ttm_input_hash": hashlib.sha256(canon.encode()).hexdigest()}
+
+
+# [Codex review r25 of PR #47] A per-share pin matches a declared value or ttm.json's figure within 0.1% of the
+# reference, which is zero-width at zero: a valid $0.00 amortized base (the mean annual IPR&D charge exhausting the
+# native base) was "no matching declaration", and a ttm.json ttm_oe_per_share of exactly 0 was never ttm.json's pin.
+# When either side is zero the match is absolute, half a cent per share (the engine's own cent check on an
+# iprd_amortized value); a non-zero mismatch is still no match.
+PIN_MATCH_REL = 0.001
+PIN_MATCH_ZERO_ABS = 0.005
+
+
+def pin_matches(v, ref):
+    """True when per-share figure v equals reference ref within 0.1% of ref, or within PIN_MATCH_ZERO_ABS (half a cent)
+    when v or ref is zero. Non-numbers (None, bools, strings) and non-finite values never match."""
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (v, ref)):
+        return False
+    v, ref = float(v), float(ref)
+    if not (math.isfinite(v) and math.isfinite(ref)):
+        return False
+    if v == 0 or ref == 0:
+        return abs(v - ref) <= PIN_MATCH_ZERO_ABS
+    return abs(v - ref) <= PIN_MATCH_REL * abs(ref)
 
 
 def iprd_accession_year(yy):
@@ -4696,11 +4721,11 @@ def main():
     iprd_judgment = load_iprd_judgment_hash(ticker)
     amort_decl = bool(pin_source == "base_oe_ps_arg" and isinstance(decl, dict) and decl.get("basis") == IPRD_AMORTIZED_BASIS
                       and isinstance(decl.get("value"), (int, float)) and not isinstance(decl.get("value"), bool)
-                      and abs(float(decl["value"]) - base_override) <= 0.001 * abs(base_override))
+                      and pin_matches(decl["value"], base_override))
+    # [Codex review r25 of PR #47] a ttm.json figure of exactly 0 is a TTM base (pin_matches compares it at half a cent)
     _ttm_v = (ttm_doc or {}).get("ttm_oe_per_share")
-    _ttm_v = float(_ttm_v) if (isinstance(_ttm_v, (int, float)) and not isinstance(_ttm_v, bool) and _ttm_v) else None
-    # [Codex review r23 of PR #47] what a pinned run read from ttm.json (null for a median base: never read)
-    ttm_inputs = ttm_inputs_record(ttm_doc) if pin_source in ("ttm_json", "base_oe_ps_arg") else None
+    _ttm_v = (float(_ttm_v) if (isinstance(_ttm_v, (int, float)) and not isinstance(_ttm_v, bool) and math.isfinite(_ttm_v))
+              else None)
     # [v5.6 review] make_score's override-impact counterfactual (DCF_NO_OVERRIDES=1 with --measure) toggles only the
     # field overrides: the IPR&D charge is mechanical, so the replay holds the final run's treatment and charge per
     # share (DCF_IPRD_HOLD = {"treatment", "charge_per_share"}) instead of re-detecting it on another basis, and an
@@ -4730,7 +4755,7 @@ def main():
     _dv = decl.get("value") if isinstance(decl, dict) else None
     if (_bw is not None and pin_source == "base_oe_ps_arg" and decl.get("basis") is None
             and isinstance(_dv, (int, float)) and not isinstance(_dv, bool) and base_override is not None
-            and abs(float(_dv) - base_override) <= 0.001 * abs(base_override)):
+            and pin_matches(_dv, base_override)):
         _why = base_basis_window_problem(_bw)
         if _why is None and _bw["window"] == "ttm":
             _ocf = ((ttm_doc or {}).get("inputs") or {}).get("ocf") if isinstance((ttm_doc or {}).get("inputs"), dict) else None
@@ -4752,8 +4777,7 @@ def main():
     # only for a pin no declaration places (or a plain one declaring basis_window "ttm", whose share-denominator rule
     # is round 15's): a median-native amortized pin that happened to equal the TTM figure had read the current-YTD leg
     # on ttm.json's shares, so a non-recurrent charge could pass as recurrent and the declaration be accepted.
-    _num_ttm = bool(_ttm_v is not None and base_override is not None
-                    and abs(base_override - _ttm_v) <= 0.001 * abs(_ttm_v))
+    _num_ttm = bool(_ttm_v is not None and base_override is not None and pin_matches(base_override, _ttm_v))
     if pin_source == "ttm_json":
         iprd_ttm_basis = True
     elif pin_source != "base_oe_ps_arg":
@@ -4766,6 +4790,20 @@ def main():
         iprd_ttm_basis = _num_ttm
     _stale_fy = bool(latest.get("period_end")
                      and (ET_TODAY - datetime.date.fromisoformat(latest["period_end"])).days / 30.44 > 7)
+    # [Codex review r23 of PR #47] what the run read from ttm.json, recorded as ttm_inputs; [Codex review r25] only
+    # when the selected basis reads it: a --ttm pin; a --base-oe-ps pin no declaration places (whether it is
+    # ttm.json's figure decides its window and denominator); a TTM basis (an amortized native_base ttm_json, a
+    # numeric match); basis_window "ttm" (the current-YTD leg); a median-native amortized pin under STALE_FY (whether
+    # ttm.json carries a TTM base decides whether the median may be its native base). Null for a median run, a plain
+    # pin declaring basis_window "fy" and a median-native amortized pin on a fresh FY: they read nothing from it.
+    _fy_placed = bool(pin_source == "base_oe_ps_arg"
+                      and ((amort_decl and decl.get("native_base") != "ttm_json")
+                           or (base_basis_window is not None and base_basis_window["window"] == "fy")))
+    _reads_ttm = bool(pin_source == "ttm_json" or iprd_ttm_basis
+                      or (base_basis_window is not None and base_basis_window["window"] == "ttm")
+                      or (pin_source == "base_oe_ps_arg" and not _fy_placed)
+                      or (amort_decl and decl.get("native_base") == "median_of_last_3_fy_oe_per_share" and _stale_fy))
+    ttm_inputs = ttm_inputs_record(ttm_doc) if _reads_ttm else None
     _ytd = None
     _ytd_note = None
     if base_basis_window is not None and base_basis_window["window"] == "ttm" and not iprd_ttm_basis:
