@@ -83,4 +83,5 @@ folder). `--attachment` also writes the dated ranking file
 The APP folder is the worked example of the required output shape, including a
 proper override. This repo is the live working tree itself — the sweep runs
 in this clone, on `main` — so queue state and company outputs change as runs
-complete.
+complete. That scheduled run happens only in the canonical VM checkout; a
+fresh clone elsewhere schedules nothing on its own.
