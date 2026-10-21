@@ -271,7 +271,12 @@ pre-render with the app's own code, not a second renderer.
   every pane and forecast subpane in the markup and the charts drawn into `{clientWidth, clientHeight, innerHTML}` stubs (fixed
   828×280 price / 828×260 fan sizes) so they land as inline SVG; rows without an embedded record get the app's own missing-record
   page. The fragment replaces the shell's "Loading…" card inside `#app`; row links `#T[.tab…]` are rewritten to `#c-<T>` and the
-  company article ids `d-<T>` to `c-<T>`, so CSS `:target` shows one company at a time and the list returns at `#`; a `<style>`
+  company article ids `d-<T>` to `c-<T>`; navigation is a radio group (`name="conav"`: a default `co-list` input plus one
+  `co-<T>` per company, all first children of `#static`) with those anchors rewritten as `<label for="co-<T>">` elements and
+  the back anchor as a `co-list` label — generated sibling rules (`#co-<T>:checked ~ .page#c-<T>`, plus one shared rule
+  hiding the list while any company radio is checked) show one company at a time, and no fragment anchors remain in the
+  static layer (2026-10-20: the iOS chat viewer ignores fragment navigation, so the earlier `:target` scheme was dead taps
+  there); a `<style>`
   block stacks all panes visible in the static layer and hides the app's interactive chrome (controls, tab bars, the price-chart
   range bar). Statements parity is automatic: embedded records render the same "full statements are on the site" note the app
   shows, in both layers.
