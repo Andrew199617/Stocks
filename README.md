@@ -83,6 +83,12 @@ folder). `--attachment` also writes the dated ranking file
 `python _system/tests/test_engine_math.py`, and
 `node _daily/site/tests/app.test.js`.
 
+The site is published at https://andrew199617.github.io/Stocks/ and always
+shows `main`'s latest state: `.github/workflows/jekyll-gh-pages.yml` runs on every push
+to `main`, rebuilds the site there (`refresh.py --quick`, plus the day's
+history CSV committed back to `main`), and deploys it via GitHub Actions
+(Pages source: "GitHub Actions").
+
 The APP folder is the worked example of the required output shape, including a
 proper override. This repo is the live working tree itself — the sweep runs
 in this clone, on `main` — so queue state and company outputs change as runs

@@ -1839,8 +1839,8 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
                        "profiles": sum(1 for r in index if _d(r.get("has")).get("profile"))},
             # Where the complete site is hosted, for the attachment's "open the site"
             # links (statements are served on demand there, never embedded). Set
-            # STOCKS_SITE_URL once a host exists; null otherwise (the repo is
-            # private, so GitHub Pages needs a paid plan).
+            # STOCKS_SITE_URL once a host exists; the Pages workflow sets it
+            # to https://andrew199617.github.io/Stocks/; null otherwise.
             "site_url": (os.environ.get("STOCKS_SITE_URL") or "").strip() or None,
             "hurdles": HURDLES, "tabs": TABS, "watchlist": watchlist, "watchlist_outside": watchlist_outside,
             "watchlist_entries": watchlist_entries, "stale": stale, "failed": failed, "notes": notes}
