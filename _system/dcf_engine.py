@@ -408,7 +408,12 @@ counts as a deferred payment, bounded by the window's unpaid remainder (expense 
 a filer that never expenses (MAA) has no remainder, so its cash-only periods still never qualify. A deferred
 payment does not count toward recurrence. [Codex review r27 of PR #47] The recurrence count reads each FY period's
 own positive expense, paid in the year or accrued (iprd_charge_year), never deducted > 0: a charge expensed with $0
-cash and paid in a later year still counts in its own year, and the later settlement does not.
+cash and paid in a later year still counts in its own year, and the later settlement does not. [Codex review r28
+of PR #47] ...whatever its cash presentation too (iprd_own_charge: paid in shares, inside operating cash flow,
+inside intangible capex, awaiting the check or with no FX rate — those still deduct nothing), and the recurrence
+gate's materiality is its own figure (iprd_recurrence_materiality): the counted periods' acquisition expense (the
+TTM current-YTD leg's too on a TTM base, less a declared installment part), never the cash the window deducted;
+ACQUIRED_IPRD_CHARGE keeps the deduction's materiality.
 Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided): a
 contingent milestone or other deferred payment on an acquired-IPR&D deal already charged in an earlier period
 (inside the window or before it) is the same purchase — still deducted once when expensed / paid, but its period
@@ -433,6 +438,10 @@ filing's accession year, companyfacts' expense fact for a pre-window first charg
 never counted toward the cap ([Codex review r7 of PR #47]).
 A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a partly deferred period
 still counts (a period expensed with $0 cash, paid later: its charge is the expense, Codex review r27 of PR #47).
+[Codex review r28 of PR #47, re-verification] A charge year's whole charge is the larger of its amount (the cash
+outflow) and its own USD expense, whatever its cash: $1 paid on a $100M acquisition is a part, never the whole; the
+declared part comes first from the cash beyond the period's own expense (an earlier deal's settlement) and only
+the rest off that expense (iprd_recurrence_expense).
 The deduction is unchanged, and a run with no declaration gains no key.
 [Codex review round 3 of PR #47] Two gaps closed. (1) A positive acquired-IPR&D expense filed only in a currency
 with no FX rate and no usable cash fact is excluded non_usd_no_rate with its expense_native kept, raises
@@ -2443,7 +2452,8 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     None; fy_periods the engine's last-3-FY ends, oldest first; facts the companyfacts the run read) and mark each
     accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
     item per deal; several deals may share a period) and, when the declared amounts sum to the period's whole charge
-    (within $1), recurrence_excluded "deferred_payment_of". The deduction is not touched. Returns (refused
+    (within $1; [Codex review r28 of PR #47, re-verification] for a charge year the larger of its amount and its own
+    USD expense, whatever its cash), recurrence_excluded "deferred_payment_of". The deduction is not touched. Returns (refused
     [{"entry", "reason"}], rolled_out [entries whose period is older than the window: never applied, they stay in
     judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47 — once they pass the
     checks that need no window record (_iprd_deferred_semantic_problem; an invalid one is refused and never counted
@@ -2541,12 +2551,19 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                                   if c.get("period") == e["period"] and c.get("window") == "fy"
                                   and c.get("pre_window_charges") and isinstance(c.get("cash"), (int, float))
                                   and c["cash"] > 0), None)
-        if not (isinstance(charge, (int, float)) and charge > 0) and _iprd_accrued_charge(rec) is not None:
+        _own = _iprd_claimable_expense(rec)
+        if _own is not None and not (_iprd_finite(charge) and charge >= _own):
             # [Codex review r27 of PR #47] a charge expensed with $0 cash (accrued, paid later) counts toward
             # recurrence by its expense, so its declaration claims that expense — before, its $0 cash-basis amount
             # left nothing a declaration could claim, and the year could not leave the count. The deduction is not
-            # touched (the later cash is the automatic settlement of the window's unpaid remainder)
-            charge = _iprd_accrued_charge(rec)
+            # touched (the later cash is the automatic settlement of the window's unpaid remainder). [Codex review
+            # r28 of PR #47] the same for a $0-cash charge whose residual is declared paid in shares. [Codex review
+            # r28 of PR #47, re-verification] ...and for ANY cash below the expense: a charge year is its own expense
+            # whatever its cash, so its whole charge is the larger of its amount and that expense — $1 paid on a
+            # $100M acquisition had made a $1 declaration "whole", taking the year out of the count (Andrew's
+            # 2026-10-20 rule takes it out only when its whole charge is declared). The cap below reads the same
+            # figure; the deduction is not touched
+            charge = _own
         if not (isinstance(charge, (int, float)) and charge > 0):
             # [Codex review r3 of PR #47] a cash-tag-only payment (no or a $0 expense) the window's remainder did not
             # absorb, at a filer that expensed acquired IPR&D before the window: the payment is the "charge" a
@@ -3061,39 +3078,114 @@ def _iprd_detector_value(rec):
     return None
 
 
-def _iprd_accrued_charge(rec):
-    """[Codex review r27 of PR #47] A record's own positive USD acquired-IPR&D expense when the period paid none of it
-    in cash (cash basis, the cash tag filed at $0: deducted 0, the expense accrued into the window's unpaid
-    remainder, its residual not declared paid in shares); else None."""
-    if not isinstance(rec, dict) or rec.get("excluded") or rec.get("deferred_payment") or rec.get("deducted"):
+def _iprd_claimable_expense(rec):
+    """[Codex review r27 of PR #47] What a whole iprd_deferred_payment declaration claims on a charge year whose own
+    amount is not positive (cash basis, the cash tag filed at $0: the expense accrued into the window's unpaid
+    remainder) — its own positive USD expense; else None. [Codex review r28 of PR #47] Every FY charge year
+    (iprd_charge_year) with a USD expense qualifies, so a $0-cash charge whose residual is declared paid in shares
+    (which now counts toward recurrence) can leave the count the same way; an expense with no USD figure cannot be
+    claimed (its run is gated ACQUIRED_IPRD_UNCONVERTED)."""
+    if not iprd_charge_year(rec):
         return None
     v = rec.get("expense")
-    if not (_iprd_finite(v) and v > 0) or rec.get("amount_basis") != "cash_outflow":
-        return None
-    if rec.get("residual_paid_in_shares") or rec.get("residual_paid_in_shares_unknown_usd"):
+    if not (_iprd_finite(v) and v > 0) or rec.get("expense_tag_unconverted"):
         return None
     return float(v)
+
+
+# [Codex review r28 of PR #47] every `excluded` reason a period record can carry, by whether the period still holds
+# its OWN acquired-IPR&D expense charge (the recurrence count and its materiality read that expense, whatever the
+# cash presentation; the deduction rules are unchanged — these presentations still deduct nothing):
+#   paid_in_shares, paid_in_operating_cash_flow, already_in_capex — the expense was paid in stock, inside OCF or
+#     inside the intangible capex leg: OE or the share count already carries the payment, but it is an acquisition;
+#   awaiting_cash_flow_check — an expense no check has placed yet: an acquisition whatever its presentation;
+#   non_usd_no_rate — when its detector figure (USD, else native) is positive: an expense the run cannot convert
+#     (alone, beside unconvertible cash, or beside an unconvertible parallel tag); a cash-only payment gated
+#     non_usd_no_rate has no expense of its own (detector None, $0 or negative) and is not one;
+#   negative — a reversal (a negative detector figure): no charge of its own, never counted.
+IPRD_OWN_CHARGE_EXCLUSIONS = ("paid_in_shares", "paid_in_operating_cash_flow", "already_in_capex", IPRD_AWAITING,
+                              IPRD_UNCONVERTED)
+
+
+def iprd_own_charge(rec):
+    """[Codex review r28 of PR #47] Whether a window record (FY or the TTM current-YTD leg) carries its OWN positive
+    acquired-IPR&D expense charge: its detector figure (USD, else native) > 0, paid in the year or not, whatever its
+    cash presentation (paid in investing, in shares, inside operating cash flow, inside intangible capex, awaiting the
+    cash-flow check, no FX rate: IPRD_OWN_CHARGE_EXCLUSIONS). Not a charge: a deferred_payment (cash settling an
+    earlier charge, with no expense of its own: none, $0 or a reversal), a period declared, whole, an installment of
+    an earlier deal (recurrence_excluded, Andrew's 2026-10-20 ruling), a negative, $0 or missing expense, and any
+    other exclusion (`negative`)."""
+    if not isinstance(rec, dict) or rec.get("window") not in IPRD_CHECK_WINDOWS:
+        return False
+    if rec.get("deferred_payment") or rec.get("recurrence_excluded"):
+        return False
+    if rec.get("excluded") is not None and rec["excluded"] not in IPRD_OWN_CHARGE_EXCLUSIONS:
+        return False
+    v = _iprd_detector_value(rec)
+    return v is not None and v > 0
 
 
 def iprd_charge_year(rec):
     """[Codex review r27 of PR #47] Whether an FY record counts as a year with a qualifying charge toward
     ACQUIRED_IPRD_RECURRENT (charges in 2 or more of the last 3 FY, Andrew 2026-10-19): the period's OWN positive
-    acquired-IPR&D expense (its detector figure: USD, else native), not excluded, paid in the year (deducted > 0) or
-    accrued unpaid (_iprd_accrued_charge) — whatever the cash timing. Not counted: a deferred_payment (cash settling an
-    earlier charge, with no expense of its own: none, $0 or a reversal), a period declared, whole, a deferred payment
-    of an earlier deal (recurrence_excluded, Andrew's 2026-10-20 ruling), and an excluded one (paid_in_shares,
-    paid_in_operating_cash_flow, already_in_capex, awaiting_cash_flow_check, non_usd_no_rate, negative), as before.
-    The recurrence list had read deducted > 0, so a charge expensed with $0 cash and paid in a later year dropped out
-    of the count (fy_with_charge [] for two deals expensed in FY2023 / FY2024 and paid in FY2025) while $1 of in-year
-    cash put it back."""
-    if not isinstance(rec, dict) or rec.get("window") != "fy":
-        return False
-    if rec.get("excluded") or rec.get("deferred_payment") or rec.get("recurrence_excluded"):
-        return False
-    v = _iprd_detector_value(rec)
-    if v is None or v <= 0:
-        return False
-    return bool(rec.get("deducted")) or _iprd_accrued_charge(rec) is not None
+    acquired-IPR&D expense (its detector figure: USD, else native), whatever the cash timing — the list had read
+    deducted > 0, so a charge expensed with $0 cash and paid in a later year dropped out of the count (fy_with_charge
+    [] for two deals expensed in FY2023 / FY2024 and paid in FY2025) while $1 of in-year cash put it back.
+    [Codex review r28 of PR #47] ...and whatever its cash presentation (iprd_own_charge): round 27 still dropped every
+    excluded period, so a $100M acquisition paid in cash in FY2023 beside a separate $100M one paid in shares in
+    FY2024 read one charge year. Now a year paid in shares, inside operating cash flow, inside intangible capex,
+    awaiting its cash-flow check or with no FX rate counts too (the deduction rules are unchanged). Not counted: a
+    deferred_payment, a period declared, whole, an installment of an earlier deal (recurrence_excluded), and a
+    negative (a reversal), $0 or missing expense. The current-YTD leg is never an FY charge year."""
+    return bool(isinstance(rec, dict) and rec.get("window") == "fy" and iprd_own_charge(rec))
+
+
+def iprd_recurrence_expense(rec):
+    """[Codex review r28 of PR #47] A charge period's (iprd_own_charge) acquired-IPR&D expense as the recurrence
+    materiality reads it: its USD expense less the part judgment.json iprd_deferred_payment declares an installment
+    of an earlier deal (a partly declared period still counts, for its undeclared rest; a wholly declared one is out
+    of the count), never below 0 — the declared amount taken first from the period's amount (cash) beyond its own
+    expense, so only what the cash beyond the expense cannot hold comes off the expense (re-verification of round
+    28). None when the expense has no USD figure: filed only in a currency the run holds no
+    FX rate for (expense None, its native figure detecting the charge), or beside a parallel detector tag that cannot
+    be converted (expense_tag_unconverted: the period's charge is unknown in USD)."""
+    v = rec.get("expense") if isinstance(rec, dict) else None
+    if not (_iprd_finite(v) and v > 0) or rec.get("expense_tag_unconverted"):
+        return None
+    declared = sum(float(x["amount"]) for x in (rec.get("deferred_payment_of") or [])
+                   if isinstance(x, dict) and _iprd_finite(x.get("amount")))
+    # [Codex review r28 of PR #47, re-verification] the declared installment comes first from the period's cash
+    # beyond its own expense (cash that settles an earlier charge: a pre-window deal's deferred consideration) and
+    # only the rest off the expense — max(0, expense - declared) had wiped out a new $6M deal expensed beside Old
+    # Bio's $30M settlement ($6M expensed, $36M paid, the $30M declared), silencing RECURRENT once the installment was
+    # declared. Cash at or below the expense leaves no excess: the declared part comes off the expense, as before
+    a = rec.get("amount")
+    excess = max(0.0, float(a) - float(v)) if _iprd_finite(a) else 0.0
+    return max(0.0, float(v) - max(0.0, declared - excess))
+
+
+def iprd_recurrence_materiality(periods, denom, ratio, valued, mat_base):
+    """[Codex review r28 of PR #47] The recurrence gate's own figure — ACQUIRED_IPRD_RECURRENT needs charges in 2 or
+    more of the last 3 FY AND a material window (Andrew 2026-10-19), and since round 27 a charge year is its own
+    expense, so the gate measures those expenses, never the cash the window deducted (two $100M acquisitions with $1
+    paid in each year read $2, not material, though both years counted). periods: the run's records; every one that
+    carries its own charge (iprd_own_charge: each window period once, the TTM current-YTD leg too when the base is
+    TTM) contributes iprd_recurrence_expense; a cash settlement (deferred_payment) contributes nothing, so a
+    pre-window deal's installment never makes tiny in-window charges material. Per share on the run's denominator
+    and ADS ratio, against `mat_base` (the base per share; an iprd_amortized declaration's native base) and the
+    same IPRD_MATERIALITY threshold. Returns (expense_total (the USD-known part), materiality | None, material,
+    unknown [period labels with no USD figure]). materiality is None when a counted period has no USD figure, or
+    the run has no valuation, share denominator or base to measure against: read as material when any charge is
+    counted (the `materiality is None` convention; an unconvertible expense also gates the run
+    ACQUIRED_IPRD_UNCONVERTED). ACQUIRED_IPRD_CHARGE keeps the deduction's own materiality."""
+    counted = [p for p in periods or [] if iprd_own_charge(p)]
+    vals = [iprd_recurrence_expense(p) for p in counted]
+    unknown = [_iprd_period_label(p) for p, v in zip(counted, vals) if v is None]
+    total = sum(v for v in vals if v is not None)
+    per_share = (total / denom * ratio) if (denom and total) else 0.0
+    mat = None if unknown else ((per_share / mat_base) if (valued and per_share and mat_base) else None)
+    material = bool(counted and (unknown or total > 0) and (mat is None or mat >= IPRD_MATERIALITY))
+    return total, mat, material, unknown
 
 
 def _iprd_reversal_settles(rec):
@@ -3557,7 +3649,12 @@ def iprd_flags(iprd):
     value to adjust) and ACQUIRED_IPRD_RECURRENT (charges in 2 or more of the last 3 FY, material). The deduction
     itself has no cliff: a below-threshold charge is still deducted and reported, it only raises no flag. The
     worker resolves each flag in analysis.md: the amount, the deal, cash vs stock consideration, the recurrence
-    assessment."""
+    assessment. [Codex review r28 of PR #47] CHARGE reads the deducted total; RECURRENT reads the block's
+    `recurrent` (the acquisitions' own expense: iprd_recurrence_materiality), so it is raised even when nothing was
+    deducted, and names that expense figure when the block records it. [Codex review r28 of PR #47, re-verification]
+    It also names what an iprd_amortized base carries — the FY charges the window deducted (the cash), not that
+    expense — and, when nothing was deducted in the last 3 FY, asks for the recurrence assessment instead of a
+    declaration the engine refuses (nothing to amortize)."""
     if not iprd:
         return []
     out = []
@@ -3667,15 +3764,57 @@ def iprd_flags(iprd):
                    f"{IPRD_DEFERRED_KEY} for the FY period (the deal, first_charged_period, the original acquisition "
                    "filing, contingent_total) and rerun — the engine then deducts it once, outside the recurrence count; "
                    "otherwise analysis.md says what the payment is")
-    if not iprd.get("total"):
-        return out
+    t = iprd.get("treatment")
+    if iprd.get("total"):
+        out.extend(_iprd_charge_flag(iprd, t))
+    if iprd.get("recurrent"):
+        # [Codex review r28 of PR #47] the recurrence gate reads the acquisitions' expense, so it can fire with
+        # nothing deducted (charges expensed with $0 cash, or paid in shares / inside OCF): never behind the total
+        rt, rm = iprd.get("recurrence_expense_total"), iprd.get("recurrence_materiality")
+        ru = iprd.get("recurrence_expense_unknown_usd")
+        fig = ""
+        if isinstance(rt, (int, float)) and not isinstance(rt, bool):
+            fig = (f"; acquired IPR&D expensed in the window's charge periods ${rt:,.0f}"
+                   + (f" (and {', '.join(ru)} with no USD figure: its share of the base OE total is unknown, read as "
+                      "material)" if ru else f" = {rm * 100:.1f}% of the base OE total" if isinstance(rm, (int, float))
+                      else " (no valuation to measure it against: read as material)"))
+        # [Codex review r28 of PR #47, re-verification] an iprd_amortized base carries the FY charges the window
+        # DEDUCTED (the cash), not the expense this gate measures: the flag names those figures, and with nothing
+        # deducted in the last 3 FY it no longer asks for a declaration the engine refuses (nothing to amortize)
+        am = iprd.get("amortized") if isinstance(iprd.get("amortized"), dict) else None
+        figs = (am.get("figures") if t == IPRD_TREATMENT_AMORTIZED and am and isinstance(am.get("figures"), list)
+                else [next((p.get("deducted") or 0.0 for p in iprd.get("periods") or []
+                            if p.get("window") == "fy" and p.get("period") == q), 0.0)
+                      for q in (iprd.get("window") or {}).get("fy") or []])
+        figs_txt = " / ".join(f"${float(x):,.0f}" for x in figs)
+        if t == IPRD_TREATMENT_AMORTIZED:
+            how = (f"the declared iprd_amortized base_override carries the FY charges the window deducted in the base "
+                   f"({figs_txt}: the cash deducted, not the expense this gate measured) — show its construction in "
+                   "analysis.md")
+        elif not any(isinstance(x, (int, float)) and x > 0 for x in figs):
+            how = ("nothing was deducted in the last 3 fiscal years (the charges were paid in shares, inside operating "
+                   "cash flow or intangible capex, await their cash-flow check, or were not paid in cash in the "
+                   "window), so there is nothing to amortize (the engine refuses an iprd_amortized base_override): "
+                   "give the recurrence assessment in analysis.md")
+        else:
+            how = (f"declare an iprd_amortized base_override (WORKER_SPEC step 8: its figures are the FY charges the "
+                   f"window deducted, {figs_txt} — the cash, not the expense this gate measured) or justify the "
+                   "one-time treatment in analysis.md")
+        out.append("ACQUIRED_IPRD_RECURRENT: qualifying acquired-IPR&D charges in "
+                   + ", ".join(f"FY{p[:4]}" for p in iprd["fy_with_charge"])
+                   + f" ({len(iprd['fy_with_charge'])} of the last 3 fiscal years){fig} — acquisition-led R&D that "
+                   "recurs is a running cost, not a one-off; the engine does not amortize it: " + how)
+    return out
+
+
+def _iprd_charge_flag(iprd, t):
+    """ACQUIRED_IPRD_CHARGE for a block whose window deducted a total ([] when that total is not material)."""
     parts = ", ".join(f"{_iprd_period_label(p)} ${p['deducted']:,.0f} ({p['amount_basis']}, {p['tag_used']}"
                       + (("; deferred payment of " + " and ".join(
                           f"{x['deal']} (first charged {x['first_charged_period']})" for x in p["deferred_payment_of"])
                           + (" — not counted toward recurrence" if p.get("recurrence_excluded") else ", in part"))
                          if isinstance(p.get("deferred_payment_of"), list) and p["deferred_payment_of"] else "") + ")"
                       for p in iprd["periods"] if p["deducted"] > 0)
-    t = iprd["treatment"]
     if t == IPRD_TREATMENT_ONE_TIME:
         how = (f"deducted once from every scenario's intrinsic value and added to the price each IRR is solved at "
                f"(${iprd['charge_per_share']:,.4f}/share on {iprd['shares_denominator']:,.0f} shares, {iprd['shares_source']}); "
@@ -3687,24 +3826,15 @@ def iprd_flags(iprd):
     else:
         how = "not deducted — the share count behind the base is unverified (share-scale defect without a factor)"
     mat = iprd.get("materiality")
-    if iprd.get("material"):
-        out.append("ACQUIRED_IPRD_CHARGE: acquired in-process R&D expensed at acquisition in the base window — "
-                   f"{parts}; total ${iprd['total']:,.0f}"
-                   + (f" = {mat * 100:.1f}% of the base OE total" if mat is not None else "")
-                   + ". Owner's earnings (OCF − capex − SBC) never saw this spend: the expense is added back in "
-                   "operating cash flow and the payment is not capex. Treatment: " + how
-                   + ". analysis.md must name the amount, the deal, the cash vs stock consideration and the recurrence "
-                   "assessment")
-    if iprd.get("recurrent"):
-        out.append("ACQUIRED_IPRD_RECURRENT: qualifying acquired-IPR&D charges in "
-                   + ", ".join(f"FY{p[:4]}" for p in iprd["fy_with_charge"])
-                   + f" ({len(iprd['fy_with_charge'])} of the last 3 fiscal years) — acquisition-led R&D that recurs is "
-                   "a running cost, not a one-off; the engine does not amortize it: "
-                   + ("the declared iprd_amortized base_override carries it in the base — show its construction in "
-                      "analysis.md" if t == IPRD_TREATMENT_AMORTIZED else
-                      "declare an iprd_amortized base_override (WORKER_SPEC step 8) or justify the one-time treatment "
-                      "in analysis.md"))
-    return out
+    if not iprd.get("material"):
+        return []
+    return ["ACQUIRED_IPRD_CHARGE: acquired in-process R&D expensed at acquisition in the base window — "
+            f"{parts}; total ${iprd['total']:,.0f}"
+            + (f" = {mat * 100:.1f}% of the base OE total" if mat is not None else "")
+            + ". Owner's earnings (OCF − capex − SBC) never saw this spend: the expense is added back in "
+            "operating cash flow and the payment is not capex. Treatment: " + how
+            + ". analysis.md must name the amount, the deal, the cash vs stock consideration and the recurrence "
+            "assessment"]
 
 
 def period_series(facts, tags, duration=True, with_filed=False):
@@ -4951,13 +5081,20 @@ def main():
         materiality = (charge_ps / _mat_base) if (valued and charge_ps and _mat_base) else None
         # a deferred payment settles an earlier window period's charge: it is not a new charge in its own year; nor
         # is a period the worker declared, whole, a deferred payment of an earlier deal (Andrew's 2026-10-20 ruling).
-        # [Codex review r27 of PR #47] the period's own expense decides, never its cash timing (iprd_charge_year)
+        # [Codex review r27 of PR #47] the period's own expense decides, never its cash timing (iprd_charge_year);
+        # [Codex review r28 of PR #47] nor its cash presentation (iprd_own_charge)
         fy_with = [p["period"] for p in iprd["periods"] if iprd_charge_year(p)]
         unconfirmed = sum((p.get("awaiting") or 0.0 for p in iprd["periods"] if p.get("excluded") == IPRD_AWAITING), 0.0)
         unconfirmed_mat = ((unconfirmed / denom * ratio) / _mat_base
                            if (valued and unconfirmed and denom and _mat_base) else None)
+        # the deduction's materiality: ACQUIRED_IPRD_CHARGE (and the key_numbers / score.json `material`)
         material = bool(total > 0 and (materiality is None or materiality >= IPRD_MATERIALITY))
-        recurrent = bool(len(fy_with) >= 2 and material)
+        # [Codex review r28 of PR #47] the recurrence gate's own materiality: the counted periods' acquisition expense
+        # on the same denominator, ADS ratio, base and threshold — never the cash the window deducted (two $100M
+        # acquisitions with $1 paid in each year read $2, not material, though both years counted)
+        rec_total, rec_mat, rec_material, rec_unknown = iprd_recurrence_materiality(
+            iprd["periods"], denom, ratio, valued, _mat_base)
+        recurrent = bool(len(fy_with) >= 2 and rec_material)
         amortized = None
         if amort_decl:
             # The worker's amortized maintenance-acquisition base (WORKER_SPEC step 8): recomputed here from this
@@ -4971,6 +5108,16 @@ def main():
             if not recurrent:
                 why.append("an iprd_amortized base is only for recurrent charges (ACQUIRED_IPRD_RECURRENT: qualifying charges "
                            f"in 2 or more of the last 3 FY and material); this run's FY charges: {fy_with or 'none'}")
+            elif not any(a > 0 for a in _fy_amts):
+                # [Codex review r28 of PR #47, re-verification] RECURRENT reads the acquisitions' expense since round
+                # 28, so it fires with nothing deducted (charges paid in shares, inside OCF or not yet in cash); an
+                # amortized base carries only the DEDUCTED FY figures, so [0, 0, 0] is a no-op the run recorded with
+                # treatment "none" and make_score then always refused — refused here, by name
+                why.append(f"nothing to amortize: this run deducted no acquired-IPR&D charge in the last 3 FY (figures "
+                           f"{_fy_amts}) — its recurrent charges were paid in shares, inside operating cash flow or "
+                           "intangible capex, await their cash-flow check, or were not paid in cash in the window, so "
+                           "the base has no deducted charge to carry; resolve ACQUIRED_IPRD_RECURRENT in analysis.md "
+                           "(the recurrence assessment) and drop the declaration")
             if _nb not in IPRD_NATIVE_BASES or _native is None:
                 why.append(f"native_base must be one of {list(IPRD_NATIVE_BASES)} (and that base must exist in this run)")
             elif _nb == "median_of_last_3_fy_oe_per_share" and _stale_fy and _ttm_v is not None:
@@ -5042,6 +5189,13 @@ def main():
                      "unconfirmed_materiality": unconfirmed_mat})
         if amort_decl:
             iprd["materiality_base"] = "native_base_per_share"
+        if len(fy_with) >= 2:
+            # [Codex review r28 of PR #47] recorded only where the figure decides the flag (2 or more FY charge years):
+            # a run with one charge year (HALO's committed block) gains no key
+            iprd["recurrence_expense_total"] = rec_total
+            iprd["recurrence_materiality"] = rec_mat
+            if rec_unknown:
+                iprd["recurrence_expense_unknown_usd"] = rec_unknown
         if _deferred is not None:
             # only when judgment.json declares deferred payments: a run without them gains no key
             iprd["recurrence_excluded"] = [

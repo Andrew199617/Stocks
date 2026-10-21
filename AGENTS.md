@@ -419,7 +419,14 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    [Codex review round 26 of PR #47] It refuses an `overrides_registry.json` that is not a JSON object with an
    `entries` list of objects ("overrides_registry.json is malformed — restore it from git"), never reading or
    rewriting it as empty: a registry without `entries` read as $0 paid and was rewritten holding one ticker. A
-   diff that changes the registry's shape is P1.
+   diff that changes the registry's shape is P1. [Codex review round 28 of PR #47] The same refusal covers any
+   malformed `iprd_deferred_payment` event, for any ticker (ticker or deal not a non-empty string, an invalid
+   first_charged_period, contingent_total, paid_to_date, periods or date — the message names the entry, its
+   ticker and the field): a missing `deal` had been skipped, reading the deal's recorded payments as none. A
+   diff that hand-edits such an event is P1. Since the round 28 re-verification it also covers an entry
+   carrying such an event's fields under a misspelt, missing or other `event` name (it had passed as another
+   entry and been erased), a lower-case ticker on such an event (no run reads it), and an entry that is neither
+   a field override nor an event make_score writes.
    [Codex review round 9 of PR #47] The rename gap is mechanical now: make_score refuses a recorded deal declared
    with another `contingent_total` or `first_charged_period` (both immutable), and a new deal name carrying a
    recorded (or co-declared) deal's evidence — the same `first_charged_period` and a `contingent_total` source
@@ -701,7 +708,31 @@ misfit`. For them:
   A year counts by its own expense, paid that year or accrued and paid later, never
   by its cash timing: two deals expensed with $0 cash and paid the next year are two
   charge years; cash that settles an earlier year's charge (no expense of its own)
-  is not a new one, and an accrued year's whole charge is its expense. [Codex review round 8 of PR #47]
+  is not a new one, and an accrued year's whole charge is its expense. [Codex review round 28 of PR #47]
+  REVERSES round 27's carve-out: a year counts by its own expense whatever its cash
+  presentation too — paid in shares, inside operating cash flow, inside intangible
+  capex, awaiting its cash-flow check or with no FX rate is still a charge year (round
+  27 had left those presentations out, so a cash deal beside a separate share-paid
+  deal read one year); the habit is the acquisitions, however paid. Those
+  presentations still deduct nothing (OE or the share count carries them) and the
+  `iprd_amortized` figures stay the deducted FY figures. The recurrence gate's
+  "material" is its own figure: the counted periods' acquired-IPR&D expense (the
+  current-YTD leg's too on a TTM base, less a declared installment part) on the same
+  denominator, base and 5% threshold — never the cash the window deducted ($1 paid on
+  each of two $100M deals read $2, not material) — recorded as
+  `recurrence_expense_total` / `recurrence_materiality` only when 2 or more FY charge
+  years are counted; a counted period with no USD figure reads as material.
+  `ACQUIRED_IPRD_CHARGE` keeps the deduction's materiality, and a cash settlement
+  (a pre-window deal's declared installment) never makes tiny in-window charges
+  material. Round 28 re-verification: a charge year's whole charge, for Andrew's
+  2026-10-20 declared-installment rule, is the larger of its cash and its own
+  expense ($1 paid on a $100M deal is a part, so declaring the $1 no longer takes
+  the year out of the count), and a declared part comes first from the cash beyond
+  the period's expense, so a new deal expensed beside an earlier deal's settlement
+  still counts in full. An `iprd_amortized` base carries only the deducted FY
+  figures: with nothing deducted in the last 3 FY there is nothing to amortize
+  (`BAD_BASE_OVERRIDE`), and the RECURRENT flag then asks only for the recurrence
+  assessment. [Codex review round 8 of PR #47]
   Each deal's cumulative declared amount IS a registry event (`iprd_deferred_payment`,
   below). Choices made in the
   Codex review round (same ruling, the main agent deciding): FY periods only (the

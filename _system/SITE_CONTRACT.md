@@ -211,13 +211,13 @@ deal) with `recurrence_excluded`
 (one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_rolled_out` (Codex review round 4 of PR #47: entries whose period left the window, kept in judgment.json and counted toward the deal's cap; was `deferred_payments_unused`; Codex review round 9: such a run also records `fy_period_ends`, the filer's fiscal-year ends a rolled-out period must be one of, in the minimal block too; Codex review round 8: each
 deal's lifetime is also a `record.registry` event `iprd_deferred_payment` {deal, first_charged_period,
 `contingent_total`, `paid_to_date`, `periods`}, rendered like any other judgment-call event), `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
-`charge_per_share`, `materiality`, `material`, `recurrent`, `treatment`, `before` — the unadjusted IVs and IRRs —,
+`charge_per_share`, `materiality`, `material` (the deduction's: `ACQUIRED_IPRD_CHARGE`), `recurrent`, (Codex review round 28 of PR #47, only when 2 or more FY charge years are counted) `recurrence_expense_total` / `recurrence_materiality` — the recurrence gate's own figure, the counted periods' acquired-IPR&D expense in USD (less a declared installment part, taken first from the period's cash beyond its own expense) and its share of the base OE total (null when unknown or unvalued: read as material) — and `recurrence_expense_unknown_usd` (the counted periods with no USD figure, when any), `treatment`, `before` — the unadjusted IVs and IRRs —,
 `after`, `amortized`, and (Codex review round 11 of PR #47, only when set) `partial_coverage` — [{period, window,
 start, tag, units: [{unit, contexts: [{start, end, value, filed}]}]}], a tag filed for only part of a window period
 with no tiling, nothing counted for it, `ACQUIRED_IPRD_PARTIAL_PERIOD` raised; such a leg alone keeps the block, with
 empty `periods`), `score` gains
 `iprd_adjustment` when the run recorded one (`treatment`, `total`, `unconfirmed_total`, `charge_per_share`, `shares_denominator`,
-`shares_source`, `materiality`, `material`, `recurrent`, `periods` — each also carrying `cash_flow_check` (the
+`shares_source`, `materiality`, `material`, `recurrent`, `recurrence_expense_total` / `recurrence_materiality` (Codex review round 28 of PR #47: only when the record carries them), `periods` — each also carrying `cash_flow_check` (the
 presentation string), `deferred_payment: true`, `deferred_payment_of` [{deal, first_charged_period, amount}]
 and `recurrence_excluded` when set — and its `recurrence_excluded` list when the run had deferred-payment declarations, `iv_before` / `iv_after` keyed `15` / `20` / `25`,
 `irr_before`, `irr_after`, `tier_before`, `amortized`; the minimal `deferred_payments_only` block above as is), `numbers.inputs`

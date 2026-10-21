@@ -386,8 +386,28 @@ value adjustment):
   ttm.json's overrides_used. check_iprd_unconverted also refuses a period
   the engine gated for a positive detector tag it cannot compare with the
   other (expense_tag_unconverted).
+- [Codex review round 28 of PR #47] load_registry also refuses a registry
+  holding any malformed iprd_deferred_payment event, whatever its ticker
+  (registry_deferred_event_problem: ticker and deal non-empty strings, the
+  ticker without surrounding whitespace, a real first_charged_period and date, a valid contingent_total, paid_to_date
+  a finite number > 0, periods a non-empty list of {real date, finite
+  amount > 0} with no period twice), naming the entry's index, its ticker
+  and the field; iprd_deferred_lifetime no longer skips one silently (a
+  missing deal had read the deal's recorded payments as none, and the
+  wholesale replace erased them). When the engine records the recurrence
+  gate's own figure (recurrence_expense_total / recurrence_materiality: 2 or
+  more FY charge years), score.json `iprd_adjustment` copies it and
+  key_numbers.md prints a "Recurrence" line beside the deduction's
+  materiality. [Re-verification of round 28] Every entry is read for what
+  it is (registry_entry_problem): one carrying a deferred-payment event's
+  fields (deal, first_charged_period, contingent_total, paid_to_date,
+  periods) must be an iprd_deferred_payment event by its exact name (a
+  misspelt or deleted event name had passed, its payments read as none
+  and the record erased), a deferred-payment event's ticker must be
+  upper-case (make_score's own), and an entry that is neither a field
+  override nor an event make_score writes is refused too.
 """
-import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib
+import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib, math
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
 # UTF-8 text; Windows Python otherwise defaults to cp1252 and mangles it).
 from zoneinfo import ZoneInfo
@@ -1386,6 +1406,66 @@ def write_score_json(spath, score):
     _atomic_write(spath, json.dumps(score, indent=1))
 
 
+def _finite_pos(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+
+
+# [Codex review r28 of PR #47, re-verification] the fields only an iprd_deferred_payment registry event carries: an
+# entry holding any of them is read as one (registry_entry_problem), whatever its `event` says
+IPRD_DEFERRED_EVENT_KEYS = ("deal", "first_charged_period", "contingent_total", "paid_to_date", "periods")
+
+
+def registry_deferred_event_problem(e, need_date=True):
+    """[Codex review r28 of PR #47] (field, why) for the first field of a registry iprd_deferred_payment event that
+    is missing or invalid, else None — every field iprd_deferred_lifetime, update_registry and keep_first_dates read,
+    checked with the engine's own helpers: [re-verification] `event` exactly iprd_deferred_payment and no `field`
+    key (the entry carries the event's fields: a misspelt or missing event name had passed as another entry);
+    `ticker` (upper-case, as make_score's own, with no surrounding whitespace) and `deal` non-empty strings;
+    `first_charged_period` a real YYYY-MM-DD date (dcf_engine.iprd_date_ok); `contingent_total` {value > 0,
+    source: an accession + section} (dcf_engine.iprd_contingent_total_ok); `paid_to_date` a finite number > 0;
+    `periods` a non-empty list of {period: a real date, amount: a finite number > 0}, no period twice; `date` a real
+    date (need_date; the events make_score writes always carry it). A missing or non-string `deal` had been skipped silently, so the deal's
+    recorded payments read as none — a new declaration passed as the first payment against the deal's cap, and the
+    wholesale replace erased the event; a periods list of strings or a string paid_to_date read as $0 paid."""
+    def got(k):
+        return "missing" if k not in e else f"{e[k]!r}"
+    if e.get("event") != IPRD_DEFERRED_EVENT or "field" in e:
+        # [Codex review r28 of PR #47, re-verification] an entry carrying a deferred-payment event's fields under a
+        # misspelt, missing or other event name (or as a field override) had passed as some other entry, so the
+        # deal's recorded payments read as none and the wholesale replace erased them
+        return "event", (f"is {got('event')}" + (f" beside field {e.get('field')!r}" if "field" in e else "")
+                         + f", but the entry carries an {IPRD_DEFERRED_EVENT} event's fields "
+                         f"({', '.join(k for k in IPRD_DEFERRED_EVENT_KEYS if k in e)})")
+    t = e.get("ticker")
+    if not (isinstance(t, str) and t.strip() and t == t.strip().upper()):
+        # a ticker with surrounding whitespace is no folder's: every run would read the event as nobody's prior;
+        # [Codex review r28 of PR #47, re-verification] nor is a lower-case one (make_score upper-cases its ticker)
+        return "ticker", f"is {got('ticker')}, not a non-empty upper-case string without surrounding whitespace"
+    d = e.get("deal")
+    if not (isinstance(d, str) and d.strip()):
+        return "deal", f"is {got('deal')}, not a non-empty string"
+    if not _engine.iprd_date_ok(e.get("first_charged_period")):
+        return "first_charged_period", f"is {got('first_charged_period')}, not a real YYYY-MM-DD date"
+    if not _engine.iprd_contingent_total_ok(e.get("contingent_total")):
+        return "contingent_total", (f"is {got('contingent_total')}, not {{value: USD > 0, source: an EDGAR "
+                                    "accession + the section / page}")
+    if not _finite_pos(e.get("paid_to_date")):
+        return "paid_to_date", f"is {got('paid_to_date')}, not a finite number > 0"
+    ps = e.get("periods")
+    if not (isinstance(ps, list) and ps):
+        return "periods", f"is {got('periods')}, not a non-empty list of {{period, amount}}"
+    seen = set()
+    for k, x in enumerate(ps):
+        if not (isinstance(x, dict) and _engine.iprd_date_ok(x.get("period")) and _finite_pos(x.get("amount"))):
+            return "periods", f"item {k} is {x!r}, not {{period: a real YYYY-MM-DD date, amount: a finite number > 0}}"
+        if x["period"] in seen:
+            return "periods", f"lists period {x['period']} twice"
+        seen.add(x["period"])
+    if (need_date or "date" in e) and not _engine.iprd_date_ok(e.get("date")):
+        return "date", f"is {got('date')}, not a real YYYY-MM-DD date"
+    return None
+
+
 def load_registry():
     """[Codex review r26 of PR #47] The registry as every make_score reader and writer takes it: None when the file
     does not exist yet (the first run), else the parsed object — refused unless it is a JSON object whose `entries`
@@ -1393,7 +1473,13 @@ def load_registry():
     missing, null, a dict or a string, a non-object entry) are refused alike, never defaulted to empty: a registry
     object without `entries` read as no prior events, so a recorded $60M paid_to_date counted $0 against the deal's
     contingent_total, and update_registry rewrote the file holding only this ticker's events — every other ticker's
-    durable record erased."""
+    durable record erased. [Codex review r28 of PR #47] So is one holding a malformed iprd_deferred_payment event,
+    whatever its ticker (registry_deferred_event_problem): the refusal names the entry's index, its ticker and the
+    field. Every ticker's events are checked, since update_registry keeps the other tickers' entries as they are and
+    their own runs read them. [Re-verification of round 28] Every entry goes through registry_entry_problem: an
+    entry carrying a deferred-payment event's fields under a misspelt, missing or other event name, a lower-case
+    deferred-payment ticker, and an entry that is neither a field override nor an event make_score writes are
+    refused alike."""
     try:
         with open(REGISTRY, encoding="utf-8") as f:
             reg = json.load(f)
@@ -1411,7 +1497,34 @@ def load_registry():
         fail(f"overrides_registry.json is malformed — restore it from git ({REGISTRY}: {why}); it carries the "
              f"lifetime record of every deal's declared deferred payments ({IPRD_DEFERRED_EVENT} events) and every "
              "ticker's override events, so it is never read as empty or rewritten")
+    for i, e in enumerate(ents):
+        bad = registry_entry_problem(e)
+        if bad is not None:
+            fail(f"overrides_registry.json is malformed — restore it from git ({REGISTRY}: entry {i} (ticker "
+                 f"{e.get('ticker')!r}, event {e.get('event')!r}): field {bad[0]!r} {bad[1]}); it carries the "
+                 "lifetime record of every deal's declared deferred payments, so an event that cannot be read is "
+                 "never skipped or rewritten")
     return reg
+
+
+def registry_entry_problem(e, need_date=True):
+    """[Codex review r28 of PR #47, re-verification] (field, why) when a registry entry cannot be read for what it
+    is, else None. An entry whose `event` is iprd_deferred_payment, or that carries any field only such an event
+    carries (IPRD_DEFERRED_EVENT_KEYS), is a deferred-payment event: registry_deferred_event_problem, which also
+    requires the exact event name. Any other entry is a field override (a `field`) or an event make_score writes
+    (_EVENT_DECLARATION); one with an unknown or missing event name is refused too, since it may be a damaged
+    deferred-payment event. Round 28 had checked only entries named exactly iprd_deferred_payment, so the recorded
+    Old Bio event with its event name misspelt or deleted passed, iprd_deferred_lifetime ignored it, a new $60M
+    declaration scored as the deal's first payment past its $100M cap, and the wholesale replace erased the record."""
+    if e.get("event") == IPRD_DEFERRED_EVENT or any(k in e for k in IPRD_DEFERRED_EVENT_KEYS):
+        return registry_deferred_event_problem(e, need_date)
+    if e.get("field"):
+        return None
+    if not (isinstance(e.get("event"), str) and e["event"] in _EVENT_DECLARATION):
+        return "event", (f"is {e['event']!r}" if "event" in e else "is missing") + (
+            f", not an event make_score writes ({', '.join(sorted(_EVENT_DECLARATION))}), and the entry is no field "
+            "override")
+    return None
 
 
 def registry_prior_entries(ticker):
@@ -1462,7 +1575,15 @@ def iprd_deferred_lifetime(ticker, entries, prior):
         different name — a renamed copy, which would get its own copy of the cap."""
     rec = {}
     for e in prior or []:
-        if e.get("event") == IPRD_DEFERRED_EVENT and isinstance(e.get("deal"), str):
+        # [Codex review r28 of PR #47] never skipped silently (a missing deal had dropped the recorded payments):
+        # load_registry already refuses such a registry; a prior list from elsewhere is held to the same check —
+        # [re-verification] every entry, so one carrying a deferred-payment event's fields under a damaged event name
+        # is refused, not ignored
+        bad = registry_entry_problem(e, need_date=False)
+        if bad is not None:
+            fail(f"{REGISTRY} event {e.get('event')!r} for ticker {e.get('ticker')!r} is malformed (field "
+                 f"{bad[0]!r} {bad[1]}) — restore it from git before scoring")
+        if e.get("event") == IPRD_DEFERRED_EVENT:
             rec.setdefault(_engine._deal_key(e["deal"]), []).append(e)
     decl = {}
     for e in entries or []:
@@ -1803,6 +1924,11 @@ def iprd_score_block(n):
     if isinstance(b.get("recurrence_excluded"), list):
         # only when the run had iprd_deferred_payment declarations (Andrew's 2026-10-20 ruling, delegated)
         out["recurrence_excluded"] = b["recurrence_excluded"]
+    if "recurrence_expense_total" in b:
+        # [Codex review r28 of PR #47] the recurrence gate's own figure, only when the engine recorded it (2 or more FY
+        # charge years): the acquisitions' expense, which `material` (the deduction's) does not measure
+        out["recurrence_expense_total"] = b.get("recurrence_expense_total")
+        out["recurrence_materiality"] = r4(b.get("recurrence_materiality"))
     if before:
         out.update({"iv_before": {k[-2:]: r2(before.get(k)) for k in ("iv_at_15", "iv_at_20", "iv_at_25")},
                     "iv_after": {k[-2:]: r2(after.get(k)) for k in ("iv_at_15", "iv_at_20", "iv_at_25")},
@@ -1893,6 +2019,17 @@ def iprd_lines(n):
                 else (" · below the 5% flag threshold (deducted, no flag)" if one_time else " · below the 5% flag threshold (no flag)")
                 if b.get("total") else "")
              + (" · recurrent (ACQUIRED_IPRD_RECURRENT)" if b.get("recurrent") else ""))
+    if "recurrence_expense_total" in b:
+        # [Codex review r28 of PR #47] the recurrence gate measures the counted years' acquisition expense, never the
+        # cash deducted: shown beside the deduction's materiality so a recurrent run with little deducted reads right
+        rm, ru = b.get("recurrence_materiality"), [x for x in b.get("recurrence_expense_unknown_usd") or []]
+        L.append("- Recurrence: charge years " + ", ".join(f"FY{str(q)[:4]}" for q in b.get("fy_with_charge") or [])
+                 + f" — acquired IPR&D expensed in the counted periods {_usd_exact(b.get('recurrence_expense_total'))}"
+                 + (f" (and {', '.join(ru)} with no USD figure: unknown, read as material)" if ru
+                    else f" = {rm * 100:.2f}% of the base OE total" if isinstance(rm, (int, float))
+                    else " (no valuation to measure it against: read as material)")
+                 + (" · recurrent (ACQUIRED_IPRD_RECURRENT)" if b.get("recurrent")
+                    else " · below the 5% threshold: not recurrent"))
     rx = b.get("recurrence_excluded") if isinstance(b.get("recurrence_excluded"), list) else []
     if rx:
         L.append("- Excluded from the recurrence count (judgment.json iprd_deferred_payment — a deferred payment of a deal "

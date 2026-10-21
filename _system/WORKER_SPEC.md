@@ -237,9 +237,20 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    more of the last 3 FY (material). A year counts by its own acquired-IPR&D expense, paid that year or
    accrued and paid later, never by its cash timing (Codex review round 27 of PR #47); cash that settles an
    earlier year's charge, with no expense of its own, is not a new charge year, so one deal expensed once
-   and paid in installments is one year. The engine does not amortize: either justify the one-time treatment in
+   and paid in installments is one year. A year counts whatever its cash presentation too (Codex review round
+   28 of PR #47): paid in shares, inside operating cash flow, inside intangible capex, awaiting its cash-flow
+   check or with no FX rate, it is still a charge year (those presentations still deduct nothing). "Material"
+   is the recurrence gate's own figure: the counted periods' acquired-IPR&D expense (the current-YTD leg's too
+   on a TTM base, less any part declared an installment) against the base OE total, never the cash deducted —
+   key_numbers.md prints it on its "Recurrence" line; a counted period with no USD figure reads as material.
+   So the flag can fire with little or nothing deducted (deals paid in stock, inside OCF, or not yet paid):
+   resolve it the same way. The engine does not amortize: either justify the one-time treatment in
    analysis.md (why the next three years will not repeat it), or declare the amortized base of step 8 and
-   run the final pass with `--base-oe-ps <its value>`. **Deferred payments (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided).** A charge that
+   run the final pass with `--base-oe-ps <its value>`. The amortized base carries only the FY charges the
+   window deducted (the cash), not the expense the gate measured — the flag names both; when nothing was
+   deducted in the last 3 FY there is nothing to amortize (the engine refuses the declaration,
+   `BAD_BASE_OVERRIDE`) and the flag asks only for the recurrence assessment in analysis.md (round 28
+   re-verification). **Deferred payments (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided).** A charge that
    is a contingent milestone or other deferred payment on a deal already charged in an earlier period (inside
    the window or before it) is the same purchase, not a second one: it stays deducted (real cash spent on that
    pipeline), but it is not evidence of buying R&D as a habit. Declare it in judgment.json
@@ -257,7 +268,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (`recurrence_excluded: "deferred_payment_of"`); a partly deferred period still counts. A period that
    expensed the charge with $0 cash (paid in a later year) counts by that expense, so its whole charge is the
    expense (Codex review round 27 of PR #47; the later cash is still deducted once, as the settlement of the
-   window's unpaid remainder). The engine refuses
+   window's unpaid remainder; round 28: the same when its residual is declared paid in shares). Whatever its
+   cash, a charge year's whole charge is the larger of its cash and its own expense (round 28 re-verification):
+   $1 or $20M paid in the year on a $100M acquisition is a part, so declaring that cash leaves the year
+   counted; and a declared part comes first from the cash beyond the period's expense (an earlier deal's
+   settlement), so a new deal expensed beside it still counts in full. The engine refuses
    (`BAD_IPRD_DEFERRED_PAYMENT`, exit 3): a `first_charged_period` that does not precede the period; one deal
    with two first charges; a first charge inside the window whose record shows no charge there, or whose
    whole charge is itself declared a deferred payment (a deal's first charge is a purchase, not an
@@ -266,7 +281,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    accession is not from the first charged fiscal year's start year through the year after its end (a two-digit
    accession year 93–99 is 1993–1999, else 20YY; the
    original filing: an 8-K or 10-Q of that fiscal year, or the 10-K that closes it), inside or before the
-   window, so the entry survives the first charge rolling out; entries summing past the period's charge; a
+   window, so the entry survives the first charge rolling out; entries summing past the period's charge (the
+   larger of its cash and its own expense); a
    missing or malformed `contingent_total`; one deal's entries carrying different `contingent_total` values (or
    sources); one deal's declared amounts, summed across every entry in judgment.json (a rolled-out one
    included), exceeding its `contingent_total`; and (Codex review round 8 of PR #47) a `period` or
@@ -281,6 +297,15 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    period, and the event keeps the recorded amounts (only a new period is added). Declare a recorded period exactly
    as recorded; never move an amount from one period to another (that could make another period wholly deferred
    and drop it from the recurrence count). A filing that restates a paid milestone is NEEDS_MAIN_AGENT.
+   Never edit the registry's `iprd_deferred_payment` events by hand: since Codex review round 28 of PR #47
+   make_score refuses the whole registry ("restore it from git"), naming the entry, its ticker and the field,
+   when any such event — for any ticker — has a ticker or deal that is not a non-empty string (a ticker
+   with surrounding whitespace included), or a missing or
+   invalid first_charged_period, contingent_total, paid_to_date (a number > 0), periods (a list of {period:
+   a real date, amount > 0}, no period twice) or date. Since the round 28 re-verification the same refusal
+   covers an entry carrying such an event's fields (deal, first_charged_period, contingent_total,
+   paid_to_date, periods) under a misspelt, missing or other `event` name, a lower-case ticker on such an
+   event, and any entry that is neither a field override nor an event make_score writes.
    Since Codex review round 9 the recorded deal is fixed by its evidence: a recorded deal's `contingent_total`
    (value, source) and `first_charged_period` cannot change (declare the recorded ones; a filing that revises
    the deal's milestones is NEEDS_MAIN_AGENT), and a later milestone is declared under the deal's recorded name —
@@ -501,8 +526,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `base_override` under clause (c) may carry the charge in the base instead of the one-time deduction:
    `{basis: "iprd_amortized", kind: "filing", native_base: "ttm_json" | "median_of_last_3_fy_oe_per_share",
    figures: [the FY charges dcf_numbers.json iprd_adjustment.periods deducted, one per FY of
-   iprd_adjustment.window.fy — three, or two at a filer with only two FY —, oldest first, $0 years included,
-   copied as printed (both tools accept each within $1)], shares: <the native base's count — ttm.json
+   iprd_adjustment.window.fy — three, or two at a filer with only two FY —, oldest first, $0 years included
+   (a charge year that deducted nothing — paid in shares, inside OCF or not yet paid — enters at its deducted
+   $0: Codex review round 28 of PR #47; figures that are all $0 have nothing to amortize and the engine refuses
+   them, round 28 re-verification), copied as printed (both tools accept each within $1)], shares: <the native base's count — ttm.json
    ttm_shares_diluted, or the CSV's latest shares_diluted>, value: <native base − mean(figures) ÷ shares
    (× ads_ratio)>, source, reason}`, final run `--base-oe-ps <value>`. The native base is the base the
    one-time run scored, not a free choice: `ttm_json` when that run was `--ttm` (always under `STALE_FY` with a
@@ -513,14 +540,14 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (Codex review round 26 of PR #47) Pin `--base-oe-ps` at that value: the cent tolerance is the declaration's
    arithmetic, and a pin on the other side of zero from the reproduced value (0.004 on a $0.00 base) is refused.
    The engine recomputes it to the cent and refuses the run (BAD_BASE_OVERRIDE, exit 3)
-   otherwise, or when the charges are not recurrent; with it in force no one-time deduction is applied
+   otherwise, or when the charges are not recurrent, or when nothing was deducted in the last 3 FY; with it in force no one-time deduction is applied
    (`iprd_adjustment.treatment` `amortized_in_base`). make_score checks the declaration against the engine's
    record and refuses a malformed one, one the run did not carry, and an amortized record whose declaration
    is gone, and (native base `ttm_json`) a ttm.json that changed after the run; the registry `base_override`
    event records it. It is the one override NOT carried through unchanged on a re-score: rebuild it from
    every re-score's preliminary run (the new filing moves the native base, the window and the share count),
    pass the new value to the final `--base-oe-ps` run, and drop it when the new run no longer raises
-   `ACQUIRED_IPRD_RECURRENT`.
+   `ACQUIRED_IPRD_RECURRENT` or no longer deducts an FY charge.
    **Engine 5.5 (2026-10-19).** `share_class_mismatch: {value: true, source, reason}` —
    declare it, filing-sourced, when the filer's EPS note presents EPS for a class other
    than the traded security, or the traded security is an exchangeable / paired share

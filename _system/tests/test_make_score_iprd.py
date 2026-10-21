@@ -2255,6 +2255,206 @@ def test_a_malformed_registry_is_refused_never_read_or_rewritten_as_empty():
             M.REGISTRY = old_reg
 
 
+# --- Codex review round 28 of PR #47 ------------------------------------------------------------------------------
+_R28_DROP = object()
+
+
+def _r28_bad_events(ev):
+    """(field, event) pairs: the recorded Old Bio iprd_deferred_payment event with one field missing or invalid."""
+    def bad(**kw):
+        e = copy.deepcopy(ev)
+        for k, v in kw.items():
+            if v is _R28_DROP:
+                e.pop(k, None)
+            else:
+                e[k] = v
+        return e
+    return [("deal", bad(deal=_R28_DROP)), ("deal", bad(deal=None)), ("deal", bad(deal=123)), ("deal", bad(deal="  ")),
+            ("ticker", bad(ticker=_R28_DROP)), ("ticker", bad(ticker=7)), ("ticker", bad(ticker=" ")),
+            ("ticker", bad(ticker="TST ")),
+            ("periods", bad(periods="x")), ("periods", bad(periods=[])), ("periods", bad(periods=[1])),
+            ("periods", bad(periods=[{"period": "2022-12-31", "amount": "60e6"}])),
+            ("periods", bad(periods=[{"period": "2022-99-99", "amount": 60e6}])),
+            ("periods", bad(periods=[{"period": "2022-12-31", "amount": -60e6}])),
+            ("periods", bad(periods=[{"period": "2022-12-31"}])),
+            ("periods", bad(periods=[{"period": "2022-12-31", "amount": 60e6}, {"period": "2022-12-31", "amount": 1e6}])),
+            ("paid_to_date", bad(paid_to_date=_R28_DROP)), ("paid_to_date", bad(paid_to_date="60000000")),
+            ("paid_to_date", bad(paid_to_date=float("inf"))), ("paid_to_date", bad(paid_to_date=0.0)),
+            ("first_charged_period", bad(first_charged_period="2021-02-30")),
+            ("first_charged_period", bad(first_charged_period=_R28_DROP)),
+            ("contingent_total", bad(contingent_total={"value": 100e6})),
+            ("contingent_total", bad(contingent_total=_R28_DROP)),
+            ("date", bad(date="yesterday")), ("date", bad(date=_R28_DROP))]
+
+
+def test_a_malformed_deferred_payment_registry_event_is_refused():
+    """[Codex review r28 of PR #47, #4334315288] Round 26 refused a registry of the wrong outer shape only: an
+    iprd_deferred_payment event with the matching ticker but a missing or non-string `deal` passed load_registry and
+    iprd_deferred_lifetime skipped it silently, so the deal's recorded $60M read as no payment — a new $60M
+    declaration against the $100M contingent_total was accepted as the first one, and update_registry, replacing the
+    ticker's entries wholesale, erased the old event for good. An event with no ticker (or a non-string one) was
+    never read as any ticker's prior at all, and a periods list of strings or a string paid_to_date read as $0 paid.
+    load_registry now validates every iprd_deferred_payment event, whatever its ticker, with the engine's own helpers:
+    ticker and deal non-empty strings, first_charged_period a real date, contingent_total {value > 0, a cited
+    source}, paid_to_date a finite number > 0, periods a non-empty list of {period: a real date, amount: a finite
+    number > 0} with no period twice, date a real date. Any other value refuses the registry ("restore it from git"),
+    naming the entry's index, its ticker and the field; the file is left untouched and nothing is scored. A valid
+    registry — the committed _system/overrides_registry.json and one a real run wrote — still loads."""
+    import tempfile
+    import make_score as M
+    cap, old, new, n = _r8_cases()
+    r1 = _score_reg(n["old"], _j(iprd_deferred_payment=[old]))
+    assert r1.rc == 0, r1.err[-800:]
+    reg = r1.result["entries"]
+    i = next(k for k, e in enumerate(reg) if e.get("event") == "iprd_deferred_payment")
+    ev = reg[i]
+    other = {"ticker": "ZZZ", "event": "gterm", "date": "2026-10-01", "value": 0.02}
+    cases = _r28_bad_events(ev)
+    # end to end: the finding's case and its siblings refuse the next scoring (a new $60M FY2025 Old Bio declaration)
+    for field, e in [c for c in cases if c[0] in ("deal", "ticker")][:5] + [c for c in cases if c[0] == "periods"][:1] \
+            + [c for c in cases if c[0] == "paid_to_date"][1:2]:
+        raw = json.dumps({"entries": reg[:i] + [e] + reg[i + 1:] + [other]})
+        m = copy.deepcopy(n["new"])
+        m["ticker"] = "TST"
+        run = Run(m, _with_applied(n["new"], _j(iprd_deferred_payment=[new])))
+        try:
+            with open(run.registry, "w", encoding="utf-8") as f:
+                f.write(raw)
+            run.run()
+            with open(run.registry, encoding="utf-8") as f:
+                after = f.read()
+            assert run.rc == 1 and R26_MALFORMED in run.err and "Traceback" not in run.err, (field, run.err[-800:])
+            assert f"entry {i}" in run.err and f"'{field}'" in run.err, (field, run.err[-800:])
+            assert after == raw and not run.state()["score_exists"], field
+        finally:
+            run.close()
+    # every reader and the writer, for any ticker's event (a ZZZ run reads a registry holding TST's bad event)
+    old_reg = M.REGISTRY
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            M.REGISTRY = os.path.join(tmp, "overrides_registry.json")
+            for field, e in cases:
+                shape = {"entries": [other] + reg[:i] + [e] + reg[i + 1:]}
+                with open(M.REGISTRY, "w", encoding="utf-8") as f:
+                    json.dump(shape, f)
+                for fn in (M.load_registry, lambda: M.registry_prior_entries("ZZZ"), lambda: M.prior_payable_event("ZZZ"),
+                           lambda: M.update_registry("ZZZ", {}, {}, None, {}, {}, lock_held=True)):
+                    msg = _refusal(fn)
+                    assert (msg is not None and R26_MALFORMED in msg and f"entry {i + 1}" in msg and f"'{field}'" in msg
+                            and repr(e.get("ticker")) in msg), (field, e, msg)
+                with open(M.REGISTRY, encoding="utf-8") as f:
+                    assert json.load(f) == shape, field
+            # a valid registry still loads: the one the run wrote (beside another ticker's entry) ...
+            with open(M.REGISTRY, "w", encoding="utf-8") as f:
+                json.dump({"entries": reg + [other]}, f)
+            assert _refusal(M.load_registry) is None and M.registry_prior_entries("TST") == reg
+        finally:
+            M.REGISTRY = old_reg
+    # ... and the committed registry (no compatibility break)
+    committed = os.path.join(SYS, "overrides_registry.json")
+    try:
+        M.REGISTRY = committed
+        loaded = M.load_registry()
+        assert isinstance(loaded, dict) and len(loaded["entries"]) > 0
+    finally:
+        M.REGISTRY = old_reg
+    # iprd_deferred_lifetime no longer skips a malformed prior event silently either
+    for field, e in [c for c in cases if c[0] in ("deal", "periods", "paid_to_date")]:
+        msg = _refusal(_lifetime, [_r9(deal="Old Bio", period="2025-12-31", first="2021-12-31", contingent=cap)], [e])
+        assert msg and "malformed" in msg and f"'{field}'" in msg, (field, e, msg)
+
+
+def test_a_deferred_payment_event_with_a_damaged_event_name_or_ticker_is_refused():
+    """[Codex review r28 of PR #47, re-verification of d7ccc6e] Round 28 validated an entry only when its `event` was
+    exactly "iprd_deferred_payment": the recorded Old Bio event ($60M paid on FY2022 against a $100M
+    contingent_total) with its event name misspelt ("iprd_deferred_paymnt") or its `event` key gone passed
+    load_registry and was ignored by iprd_deferred_lifetime, so a new $60M FY2025 declaration scored as the deal's
+    first payment ($120M in all, past the cap) and the wholesale replace erased the FY2022 record; with the ticker
+    lowercased ("tst") the event passed the ticker check but no TST run (make_score upper-cases its ticker) read it —
+    the same bypass, leaving an orphan beside a fresh TST event. load_registry now refuses ("restore it from git"),
+    naming the entry, its ticker and the field: an entry carrying a deferred-payment event's fields (deal,
+    first_charged_period, contingent_total, paid_to_date, periods) whose `event` is not exactly
+    iprd_deferred_payment; an entry that is neither a field override nor an event make_score writes (an unknown or
+    missing event name); and a deferred-payment event whose ticker is not upper-case. The committed registry still
+    loads."""
+    import tempfile
+    import make_score as M
+    cap, old, new, n = _r8_cases()
+    r1 = _score_reg(n["old"], _j(iprd_deferred_payment=[old]))
+    assert r1.rc == 0, r1.err[-800:]
+    reg = r1.result["entries"]
+    i = next(k for k, e in enumerate(reg) if e.get("event") == "iprd_deferred_payment")
+    ev = reg[i]
+
+    def bad(**kw):
+        e = copy.deepcopy(ev)
+        for k, v in kw.items():
+            if v is _R28_DROP:
+                e.pop(k, None)
+            else:
+                e[k] = v
+        return e
+    cases = [("event", bad(event="iprd_deferred_paymnt")), ("event", bad(event=_R28_DROP)), ("event", bad(event=None)),
+             ("event", bad(event="tier_override")), ("event", bad(event=_R28_DROP, field="capex")),
+             ("ticker", bad(ticker="tst")), ("ticker", bad(ticker="Tst"))]
+    # end to end: the finding's three cases refuse the next scoring and leave the registry as it was
+    for field, e in cases[:2] + cases[5:6]:
+        raw = json.dumps({"entries": reg[:i] + [e] + reg[i + 1:]})
+        m = copy.deepcopy(n["new"])
+        m["ticker"] = "TST"
+        run = Run(m, _with_applied(n["new"], _j(iprd_deferred_payment=[new])))
+        try:
+            with open(run.registry, "w", encoding="utf-8") as f:
+                f.write(raw)
+            run.run()
+            with open(run.registry, encoding="utf-8") as f:
+                after = f.read()
+            assert run.rc == 1 and R26_MALFORMED in run.err and "Traceback" not in run.err, (field, run.err[-800:])
+            assert f"entry {i}" in run.err and f"'{field}'" in run.err, (field, run.err[-800:])
+            assert after == raw and not run.state()["score_exists"], field
+        finally:
+            run.close()
+    other = {"ticker": "ZZZ", "event": "gterm", "date": "2026-10-01", "value": 0.02}
+    # an entry that is no field override and no event make_score writes: it may be a damaged deferred-payment event
+    unknown = [("event", {"ticker": "TST", "event": "iprd_deferred", "date": "2026-10-01"}),
+               ("event", {"ticker": "TST", "date": "2026-10-01", "value": 1.0}),
+               ("event", {"ticker": "TST", "event": ["iprd_deferred_payment"], "date": "2026-10-01"})]
+    old_reg = M.REGISTRY
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            M.REGISTRY = os.path.join(tmp, "overrides_registry.json")
+            for field, e in cases + unknown:
+                shape = {"entries": [other] + reg[:i] + [e] + reg[i + 1:]}
+                with open(M.REGISTRY, "w", encoding="utf-8") as f:
+                    json.dump(shape, f)
+                for fn in (M.load_registry, lambda: M.registry_prior_entries("ZZZ"), lambda: M.prior_payable_event("ZZZ"),
+                           lambda: M.update_registry("ZZZ", {}, {}, None, {}, {}, lock_held=True)):
+                    msg = _refusal(fn)
+                    assert (msg is not None and R26_MALFORMED in msg and f"entry {i + 1}" in msg and f"'{field}'" in msg
+                            and repr(e.get("ticker")) in msg), (field, e, msg)
+                with open(M.REGISTRY, encoding="utf-8") as f:
+                    assert json.load(f) == shape, field
+            # the valid registry the run wrote still loads, beside another ticker's events and field overrides
+            fld = {"ticker": "ZZZ", "field": "capex", "value": 1.0, "kind": "filing", "source": "x", "reason": "y",
+                   "date": "2026-10-01"}
+            with open(M.REGISTRY, "w", encoding="utf-8") as f:
+                json.dump({"entries": reg + [other, fld]}, f)
+            assert _refusal(M.load_registry) is None and M.registry_prior_entries("TST") == reg
+        finally:
+            M.REGISTRY = old_reg
+    committed = os.path.join(SYS, "overrides_registry.json")
+    try:
+        M.REGISTRY = committed
+        loaded = M.load_registry()
+        assert isinstance(loaded, dict) and len(loaded["entries"]) > 0
+    finally:
+        M.REGISTRY = old_reg
+    # iprd_deferred_lifetime holds a prior list to the same check
+    for field, e in cases[:2] + cases[5:6]:
+        msg = _refusal(_lifetime, [_r9(deal="Old Bio", period="2025-12-31", first="2021-12-31", contingent=cap)], [e])
+        assert msg and "malformed" in msg and f"'{field}'" in msg, (field, e, msg)
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
