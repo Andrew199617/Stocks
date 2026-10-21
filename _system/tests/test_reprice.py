@@ -419,11 +419,9 @@ def test_reprice_folder_unreadable_and_foreign_files():
         # a score.json from an earlier run of the day: [Codex review r11 of PR #47] no live figures, the reason given
         folder("OLDSCORE", score=dict(s, tier_final="C", implied_irr=0.2125, tier_override_reason="stale"))
         expect_skip("OLDSCORE", "score.json is not from this engine run (implied_irr 0.2125")
-        # no score.json yet (the engine has run, make_score not): repriced, tier_final unknown
-        d = folder("NOSCORE", score="missing")
-        live = R.reprice_folder("NOSCORE")
-        assert os.path.isfile(os.path.join(d, "live.json")) and live["score_json_fresh"] is None
-        assert live["scored"]["tier_final"] is None and live["override_active"] is False
+        # no score.json yet (the engine has run, make_score not): [Codex review r29 of PR #47] no live figures either —
+        # there is no verdict to reprice, the stale live.json is removed and the reason given
+        folder("NOSCORE", score="missing"); expect_skip("NOSCORE", "no score.json")
         # --all never lets one bad folder stop the sweep and reports every reason
         names = R.company_folders()
         assert set(names) == {"BADN", "BADP", "BADS", "FOREIGN", "GOOD", "NOP", "SPLIT", "SPLITNOFUND", "MISMATCH", "OLDSCORE",
@@ -439,10 +437,62 @@ def test_reprice_folder_unreadable_and_foreign_files():
         finally:
             sys.argv = old_argv
         out = buf.getvalue()
-        assert "4 live.json written, 7 skipped" in out, out
+        assert "3 live.json written, 8 skipped" in out, out
+        assert "skipped NOSCORE: no score.json" in out, out
         assert "split since scoring, per-share values restated: SPLIT 2:1, SPLITNOFUND 2:1" in out, out
         assert "skipped OLDSCORE: score.json is not from this engine run" in out, out
         assert "skipped MISMATCH: per-share basis mismatch" in out, out
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_a_folder_with_no_score_json_gets_no_live_figures():
+    """[Codex review r29 of PR #47, #4335127671] With no score.json, check_score returned and reprice_folder wrote
+    live.json from the numbers tier alone (score_json_fresh null, tier_final unknown). make_score then scored the same
+    run with a tier_override, and build_site published the old live.json's tier beside the new verdict until the next
+    reprice — the agent's override silently dropped. A folder with no score.json is now unscored: reprice_folder
+    writes no live.json, removes an existing one and gives the reason (Skip, like a score.json from another run; the
+    single ticker exits 3, --all lists it). Once make_score has scored the run, reprice writes live figures as before,
+    and live.json records the score it was computed against (score_json_fresh true, scored.tier_final /
+    tier_override_reason / dcf_content_hash) so build_site can refuse it beside any other score."""
+    n, s = _app()
+    tmp = tempfile.mkdtemp(prefix="reprice_r29_")
+    old_base = R.BASE
+    try:
+        R.BASE = tmp
+        d = os.path.join(tmp, "APP")
+        os.makedirs(d)
+        _write(os.path.join(d, "dcf_numbers.json"), n)
+        _write(os.path.join(d, "prices.json"), _prices())
+        _write(os.path.join(d, "live.json"), dict(n, tier="B"))   # one written before this rule
+        try:
+            R.reprice_folder("APP")
+            raise AssertionError("reprice_folder wrote live.json with no score.json on file")
+        except R.Skip as e:
+            assert "no score.json" in str(e) and "make_score" in str(e) and "pending" not in str(e).lower(), str(e)
+        assert not os.path.exists(os.path.join(d, "live.json")), "the old live.json stayed"
+        for argv, code, needle in ((["reprice.py", "--all", "--quiet"], 0, "0 live.json written, 1 skipped"),
+                                   (["reprice.py", "--all", "--quiet"], 0, "skipped APP: no score.json"),
+                                   (["reprice.py", "APP", "--quiet"], 3, "APP skipped — no score.json")):
+            buf, old_argv = io.StringIO(), sys.argv
+            try:
+                sys.argv = argv
+                with contextlib.redirect_stdout(buf):
+                    try:
+                        R.main()
+                    except SystemExit as e:
+                        assert e.code == code, (argv, e.code)
+            finally:
+                sys.argv = old_argv
+            assert needle in buf.getvalue() and not os.path.exists(os.path.join(d, "live.json")), buf.getvalue()
+        # make_score has scored the run (with a tier override): live figures, bound to that score
+        over = dict(s, tier_final="C", tier_override_reason="test: the agent's override")
+        _write(os.path.join(d, "score.json"), over)
+        live = R.reprice_folder("APP")
+        assert live["score_json_fresh"] is True and live["tier"] == "C" and live["override_active"] is True, live
+        assert live["scored"]["tier_final"] == "C" and live["scored"]["tier_override_reason"] == over["tier_override_reason"]
+        assert "dcf_content_hash" in live["scored"] and live["scored"]["dcf_content_hash"] == s.get("dcf_content_hash")
     finally:
         R.BASE = old_base
         shutil.rmtree(tmp, ignore_errors=True)
@@ -569,6 +619,14 @@ def _app_rerun(price):
     return m
 
 
+def _score_of_run(m):
+    """APP's score.json as make_score would build it from run `m` (the identity fields score_matches_run reads)."""
+    _, s = _app()
+    return dict(s, analysis_date=m["as_of"], price=m["price"], tier_by_numbers=m["tier_by_numbers"],
+                tier_final=m["tier_by_numbers"], implied_irr=round(m["implied_irr_weighted"], 4),
+                iv_at_15=round(m["iv_at_15"], 2), base_oe_per_share=m["base_oe_per_share"])
+
+
 def test_score_from_another_run_is_not_an_override():
     """Codex finding 4289642862: APP's original B/B score left in place
     after a same-day rerun at $217.824 (21.2495% / A). [Codex review r11 of
@@ -669,8 +727,11 @@ def test_scored_session_close_not_posted_yet():
     try:
         R.BASE = tmp
         d = os.path.join(tmp, "APP"); os.makedirs(d)
-        _write(os.path.join(d, "dcf_numbers.json"), _app_rerun(231.44))
+        rerun = _app_rerun(231.44)
+        _write(os.path.join(d, "dcf_numbers.json"), rerun)
         _write(os.path.join(d, "prices.json"), _lag_prices())
+        # the score make_score builds from that run ([Codex review r29 of PR #47]: no score.json, no live figures)
+        _write(os.path.join(d, "score.json"), _score_of_run(rerun))
         live = R.reprice_folder("APP")
         assert os.path.isfile(os.path.join(d, "live.json")) and live["basis_check"]["method"] == "no_close_since_scoring"
     finally:
@@ -736,6 +797,7 @@ def test_unadjusted_split_step_is_held():
         d = os.path.join(tmp, "HELD"); os.makedirs(d)
         _write(os.path.join(d, "dcf_numbers.json"), n)
         _write(os.path.join(d, "prices.json"), _prices(ticker="HELD", daily=unadjusted, fetched_at="2026-10-19T19:30:00-04:00"))
+        _write(os.path.join(d, "score.json"), s)   # scored ([Codex review r29 of PR #47]: else skipped for that)
         _write(os.path.join(d, "live.json"), "{}")
         buf = io.StringIO()
         sys.argv = ["reprice.py", "--all", "--quiet"]

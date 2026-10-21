@@ -1668,6 +1668,36 @@ test('[Codex review r11 of PR #47] A live repricing beside a score.json from ano
   assert.ok(head.includes('the latest engine run is not scored yet') && !head.includes('predates'), head);
   assert.ok(/title="The scored figures are the latest available: [^"]*not scored yet[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
 });
+test('[Codex review r29 of PR #47] A live repricing not computed against the score on file: the scored figures are the latest, never "pending"', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'live_not_from_this_score', price: 44, price_date: '2026-10-14', scored_date: '2026-10-14', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'live_not_from_this_score');
+  const txt = App.latestText(w);
+  assert.equal(txt, 'Scored figures are the latest — the live repricing on file was computed before the 2026-10-14 score');
+  assert.ok(!/pending/i.test(txt) && !txt.includes('close on file predates'), 'its own wording, not the older-close one: ' + txt);
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('was computed before the 2026-10-14 score'), head);
+  assert.equal(App.liveView(r).is_live, false);
+  assert.ok(/title="The scored figures are the latest available: [^"]*computed before the current score[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+  // the score on file is this run's: its acquired-IPR&D block is described as applied, as for the date reasons
+  assert.equal(App.iprdNote(r), App.iprdNote(Object.assign(clone(r), { live_withheld: Object.assign({}, r.live_withheld, { reason: 'live_from_earlier_run' }) })));
+});
+test('[Codex review r29 of PR #47, polish review] A live repricing that records no score identity: its own wording, never "computed before" nor "pending"', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'live_without_score_identity', price: 44, price_date: '2026-10-14', scored_date: '2026-10-14', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'live_without_score_identity');
+  const txt = App.latestText(w);
+  assert.equal(txt, 'Scored figures are the latest — the live repricing on file records no score identity; the next repricing refreshes it');
+  assert.ok(!/pending/i.test(txt) && !txt.includes('computed before') && !txt.includes('close on file predates'), 'its own wording: ' + txt);
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('records no score identity; the next repricing refreshes it'), head);
+  assert.equal(App.liveView(r).is_live, false);
+  assert.ok(/title="The scored figures are the latest available: [^"]*records no score identity[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+  // the score on file is this run's: its acquired-IPR&D block is described as applied, as for the date reasons
+  assert.equal(App.iprdNote(r), App.iprdNote(Object.assign(clone(r), { live_withheld: Object.assign({}, r.live_withheld, { reason: 'live_from_earlier_run' }) })));
+});
 test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
   const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
   const { assemble: asm, liveShown, liveSplit, SPLIT_DIVIDE, SPLIT_MULTIPLY } = require('./fixtures/assemble.js');

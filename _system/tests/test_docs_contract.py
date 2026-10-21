@@ -393,6 +393,22 @@ PAIRS = [
     ("_system/dcf_engine.py", "def declared_value_matches(", "declared_value_matches", [SYS_README]),
     ("_system/dcf_engine.py", "IPRD_AMORTIZED_ZERO_EPS = 1e-9", "IPRD_AMORTIZED_ZERO_EPS", [SYS_README]),
     ("_system/make_score.py", "def load_registry(", "load_registry", [SYS_README]),
+    # Codex review round 29 of PR #47: a first charge carries its own expense; a whole charge unknown in USD is never
+    # declared whole; live figures need the run's current score and are bound to it
+    ("_system/dcf_engine.py", "def iprd_has_own_expense(", "iprd_has_own_expense", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_whole_charge_unknown(", "iprd_whole_charge_unknown", [SYS_README]),
+    ("_system/build_site.py", '"reason": "live_not_from_this_score"', "live_not_from_this_score", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def live_score_problem(", "live_score_problem", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", '"dcf_content_hash": scored.get("dcf_content_hash")', "dcf_content_hash", [CONTRACT]),
+    # the round-29 review notes: ACQUIRED_IPRD_CHARGE names a cash settlement as one
+    ("_system/dcf_engine.py", "def _iprd_settles_earlier_charge(", "_iprd_settles_earlier_charge", [SYS_README]),
+    # the round-29 polish review: one rule for a year's own charge in USD; a live.json with no score identity has its
+    # own reason
+    ("_system/dcf_engine.py", "def iprd_own_charge_usd(", "iprd_own_charge_usd", [SYS_README]),
+    ("_system/build_site.py", '"reason": "live_without_score_identity"', "live_without_score_identity", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def live_score_identity_missing(", "live_score_identity_missing", [SYS_README, CONTRACT]),
+    # the round-29 second polish review: a year's own expense reads every expense tag in every unit; unknown only there
+    ("_system/dcf_engine.py", "def iprd_own_expense_unknown(", "iprd_own_expense_unknown", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),
@@ -473,6 +489,45 @@ def test_automation_day_table_matches_the_cron_files():
 
 # ---------------------------------------------------------------- 4
 STALE = [
+    # Codex review round 29 of PR #47: a folder with no score.json is no longer repriced; an expense with no USD figure
+    # beside usable cash is not gated, so the claim that its run is was wrong
+    (CONTRACT, "A folder with no score.json yet is\n  repriced"),
+    ("_system/reprice.py", "a folder with no score.json yet is still repriced"),
+    ("_system/reprice.py", "A folder with no score.json yet is repriced as before"),
+    ("_system/dcf_engine.py", "claimed (its run is gated ACQUIRED_IPRD_UNCONVERTED)"),
+    # Codex review round 29 of PR #47, review notes: live_shown checks live_from_earlier_run, live_not_from_this_score
+    # and live_older_than_score after the PR #47 reasons, and all three read "Scored figures are the latest — …"; a
+    # live.json with no scored.dcf_content_hash is not computed against a score.json that carries one
+    (CONTRACT, "Precedence: the three PR #47 reasons are checked first and win over the two date reasons"),
+    (CONTRACT, 'only the date reasons are worded "Scored figures are the latest'),
+    (CONTRACT, "`scored.dcf_content_hash`, when the live.json records it, not the score's"),
+    ("_system/build_site.py", "are checked first and win over main's two date reasons"),
+    ("_system/build_site.py", 'only those two carry the "scored figures are the'),
+    ("_system/build_site.py", "a live.json written before carries no such"),
+    ("_daily/site/app.js", "Those three PR #47 reasons take precedence"),
+    # the round-29 polish review: a live.json with no score identity has its own reason (live_without_score_identity),
+    # never live_not_from_this_score's "computed before the current score"; four reasons read "Scored figures ..."
+    (CONTRACT, "was not computed against it and is withheld the same way"),
+    (CONTRACT, "`live_not_from_this_score` and `live_older_than_score` (the score on file is the run's: all"),
+    ("_system/build_site.py", "or — written before round 29 — with no"),
+    ("_system/build_site.py", "no score identity recorded beside a score.json that carries one)"),
+    ("_system/build_site.py", "the app words all three"),
+    ("_daily/site/app.js", "or one from before round 29 that records no score identity beside a score that has one) is"),
+    ("_daily/site/app.js", "live_not_from_this_score and live_older_than_score, all three worded"),
+    ("AGENTS.md", "is not computed against it either"),
+    # the round-29 second polish review: the recurrence figure reads the expense side (unknown only when the own
+    # expense is), the whole charge adds the cash side, and a parallel expense tag's figure always counts
+    (WORKER_SPEC, "the recurrence figure reads the same way"),
+    (WORKER_SPEC, "a counted period with no USD figure reads as material"),
+    (AGENTS_MD, "a counted period with no USD figure reads as material"),
+    (AGENTS_MD, "and any such figure with no USD value makes the materiality unknown"),
+    (SYS_README, "(`expense_tags_conflict`, no unit conflict: the current tag is used) is not read"),
+    (SYS_README, "now for a USD expense beside cash with no FX rate as well"),
+    ("_system/dcf_engine.py", "(expense_tags_conflict, no unit conflict: the current tag is used) is not read here"),
+    ("_system/dcf_engine.py", "with no USD figure: its share of the base OE total is unknown"),
+    ("_system/make_score.py", "with no USD figure: unknown, read as material"),
+    ("_daily/site/app.js", 'only the two date reasons read "Scored figures are the latest"'),
+    (SYS_README, "has no `dcf_content_hash` key and is compared on the rest"),
     # engine 5.6 Codex review round 3 of PR #47: the IPR&D charge is ADDED to the price each IRR is solved at
     (CONTRACT, "and from the price each IRR is solved at"),
     ("_daily/site/app.js", "and from the price each IRR is solved at"),
@@ -612,6 +667,81 @@ def test_halo_iprd_example_names_the_price_of_each_irr():
     committed = f"weighted IRR {before:.2f}% → {after:.2f}% at the re-score's ${n['price']:.2f}"
     assert committed in readme, f"README's HALO example lost the committed pair: {committed!r}"
     assert "weighted IRR 22.64% → 22.39% at the 5.5.0 record's $121.84" in readme, "README lost the $121.84 pair's price"
+
+
+def _live_shown_reasons():
+    """record.live_withheld's reasons in the order build_site.live_shown checks them, read from its code (a dict's
+    "reason" value: a string, or `a if cond else b`)."""
+    src = _read("_system/build_site.py")
+    tree = ast.parse(src)
+    fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "live_shown")
+    found = []
+    for node in ast.walk(fn):
+        if not isinstance(node, ast.Dict):
+            continue
+        for k, v in zip(node.keys, node.values):
+            if isinstance(k, ast.Constant) and k.value == "reason":
+                vals = [v.body, v.orelse] if isinstance(v, ast.IfExp) else [v]
+                found.extend((x.lineno, x.col_offset, x.value) for x in vals
+                             if isinstance(x, ast.Constant) and isinstance(x.value, str))
+    return [r for _, _, r in sorted(found)], ast.get_docstring(tree) or "", ast.get_docstring(fn) or ""
+
+
+def _names_in_order(text, anchor, names, span=1600):
+    """The first occurrence of each of `names` after `anchor` in `text` (within `span` characters), in that order."""
+    i = text.find(anchor)
+    assert i >= 0, f"anchor {anchor!r} is gone"
+    win = text[i:i + span]
+    pos = [win.find(n) for n in names]
+    return [n for n, p in zip(names, pos) if p < 0], pos == sorted(pos)
+
+
+def test_live_withheld_reasons_are_documented_in_the_order_live_shown_checks_them():
+    """[Codex review r29 of PR #47, review notes] Round 29 checked live_not_from_this_score after
+    live_from_earlier_run and before live_older_than_score, and worded it like the date reasons ("Scored figures are
+    the latest — …"), but SITE_CONTRACT.md, live_shown's docstring and app.js's header comment still said the three
+    PR #47 reasons are checked first and only the two date reasons carry that wording, and build_site's module
+    docstring did not list the new reason. Every reason live_shown sets is named in build_site's module docstring
+    and in live_shown's own, and the three precedence passages name all of them in the order the code checks them —
+    since the round's polish review live_without_score_identity too, right after live_not_from_this_score."""
+    reasons, module_doc, fn_doc = _live_shown_reasons()
+    assert reasons == ["iprd_unresolved", "iprd_share_count_unverified", "score_not_from_this_run",
+                       "live_from_earlier_run", "live_not_from_this_score", "live_without_score_identity",
+                       "live_older_than_score"], reasons
+    for where, doc in (("build_site module docstring", module_doc), ("live_shown docstring", fn_doc)):
+        missing = [r for r in reasons if r not in doc]
+        assert not missing, f"{where} does not name {missing}"
+    for rel, text, anchor in ((CONTRACT, _flat(CONTRACT), "[Merge of main #83 into PR #47] Precedence:"),
+                              ("_system/build_site.py", " ".join(fn_doc.split()), "[merge of main #83 into PR #47] Precedence:"),
+                              ("_daily/site/app.js", _flat("_daily/site/app.js"), "[merge of main #83] Precedence:")):
+        missing, ordered = _names_in_order(text, anchor, reasons)
+        assert not missing and ordered, f"{rel}'s precedence passage: missing {missing}, in order {ordered}"
+        # ...and the two wordings: score_not_from_this_run's last, then the three that read "Scored figures ..."
+        missing, ordered = _names_in_order(text, anchor, ["score_not_from_this_run", "Live figures withheld",
+                                                          "live_from_earlier_run", "Scored figures are the latest"])
+        assert not missing and ordered, f"{rel}'s precedence passage wording: missing {missing}, in order {ordered}"
+
+
+def test_the_recurrence_figure_is_documented_on_the_expense_side():
+    """[Codex review r29 of PR #47, second polish review] WORKER_SPEC said a year's whole charge is the largest of its
+    expense and cash figures in every unit filed and "the recurrence figure reads the same way", but the recurrence
+    figure reads the expense side (EUR 100M at 1.08 on the cash tag beside the USD 40M expensed and paid: $40M, the
+    whole charge $108M) and is unknown only when the own expense is; and a parallel expense tag's figure counts
+    whether or not that tag carries a unit conflict. WORKER_SPEC, AGENTS.md and README's round-29 entry say so."""
+    spec = _flat(WORKER_SPEC)
+    for phrase in ("The recurrence figure reads the expense side only", "the whole charge adds the cash side",
+                   "on any of its acquired-IPR&D expense tags (the detector tag and the parallel one)",
+                   "is unknown (read as material) only when the own expense has no USD figure",
+                   "a USD expense beside cash with no FX rate reads that expense"):
+        assert phrase in spec, f"WORKER_SPEC.md lost: {phrase!r}"
+    agents = _flat(AGENTS_MD)
+    for phrase in ("the recurrence figure reads the expense side", "the whole charge adds the cash side",
+                   "whose acquired-IPR&D expense has no USD figure reads as material"):
+        assert phrase in agents, f"AGENTS.md lost: {phrase!r}"
+    readme = _flat(SYS_README)
+    for phrase in ("**Round-29 second polish review", "the recurrence figure reads the expense side",
+                   "the whole charge adds the cash side", "`expense_tags_conflict` figures too"):
+        assert phrase in readme, f"README.md lost: {phrase!r}"
 
 
 def test_corrected_passages_stay_corrected():

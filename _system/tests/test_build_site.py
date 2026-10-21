@@ -1280,7 +1280,9 @@ def test_split_live_iv_fallback_is_restated_once():
     """A run whose hurdle prices are unknown takes iv20 / iv25 from live.json, already in today's units:
     the row must show them once restated, not divided again."""
     live = {"price": 50.0, "price_date": "2026-10-20", "scored_date": "2026-10-14", "irr_weighted": 0.12, "iv_at_15": 40.0,
-            "iv_at_20": 30.0, "iv_at_25": 20.0, "split_factor": 2.0, "basis_check": {"factor": 2.0, "split": "2:1"}}
+            "iv_at_20": 30.0, "iv_at_25": 20.0, "split_factor": 2.0, "basis_check": {"factor": 2.0, "split": "2:1"},
+            # computed against the score below (reprice records which one: Codex review r29 of PR #47)
+            "score_json_fresh": True, "scored": {"tier_final": None, "tier_override_reason": None}}
     c = {"folder": "T", "path": "", "ticker": "T", "score": {"ticker": "T", "price": 100.0, "iv_at_15": 80.0, "implied_irr": 0.12,
                                                             "analysis_date": "2026-10-14", "tier_by_numbers": "C",
                                                             "engine_version": 5},
@@ -1316,6 +1318,154 @@ def test_live_beside_a_score_from_another_run_is_withheld():
         tb.write_json("APP", "dcf_numbers.json", obj=n)
         tb.build()
         assert tb.record("APP")["live"] is not None and tb.record("APP")["live_withheld"] is None
+
+
+# ---------------- 16c. [Codex review r29 of PR #47] live figures bound to the score they were computed against
+def test_live_not_computed_against_the_current_score_is_withheld():
+    """[Codex review r29 of PR #47, #4335127671] reprice.py wrote live.json for a folder with no score.json yet (the
+    numbers tier, tier_final unknown); make_score then scored the SAME run with a tier_override, and live_shown
+    accepted the old live.json (same run, same dates), so the page and the ranking showed the numbers tier at the
+    last close and the agent's override was silently dropped — and a live.json computed against an earlier score of
+    the same run (an override since removed by a make_score re-run) survived the same way. live.json now records the
+    score it was computed against (score_json_fresh, scored.tier_final / tier_override_reason / dcf_content_hash) and
+    a live.json not computed against the score on file is withheld: record.live null, reason
+    live_not_from_this_score, the row ranked on its scored figures — the latest available, never "pending" (Andrew,
+    2026-10-20). A live.json computed against the score on file is shown, the override kept."""
+    import reprice as R
+    with TempBase() as tb:
+        n = B.jload(os.path.join(tb.dir, "APP", "dcf_numbers.json"))
+        s = B.jload(os.path.join(tb.dir, "APP", "score.json"))
+        over = dict(s, tier_final="D", tier_override_reason="test: the agent's override (analysis.md)")
+        price, day = 262.19, "2026-10-14"
+        pre = R.reprice(n, price, day, None, today="2026-10-15")      # written before make_score scored the run
+        assert pre["score_json_fresh"] is None and pre["tier"] == "B", pre
+        on_over = R.reprice(n, price, day, over, today="2026-10-15")  # computed against the override score
+        assert on_over["tier"] == "D" and on_over["override_active"] is True, on_over
+        for live, score, why in ((pre, over, "no score.json"), (on_over, s, "earlier score")):
+            tb.write_json("APP", "score.json", obj=score)
+            tb.write_json("APP", "live.json", obj=live)
+            tb.build()
+            r = tb.record("APP")
+            w = r["live_withheld"]
+            assert r["live"] is None and w and w["reason"] == "live_not_from_this_score", (why, w)
+            assert w["price"] == price and w["price_date"] == day and w["scored_date"] == day, (why, w)
+            assert "latest available" in w["note"] and "pending" not in w["note"].lower(), (why, w["note"])
+            assert r["row"]["live_withheld"] is True and r["row"]["tier_live"] is None and r["row"]["irr_live"] is None, why
+            assert r["row"]["tier"] == score["tier_final"], (why, r["row"]["tier"])
+        # computed against the score on file: shown, the override kept
+        tb.write_json("APP", "score.json", obj=over)
+        tb.write_json("APP", "live.json", obj=on_over)
+        tb.build()
+        r = tb.record("APP")
+        assert r["live"] is not None and r["live_withheld"] is None and r["row"]["tier_live"] == "D", r["live_withheld"]
+    # the score's run identity is part of what live.json was computed against (a same-day score of another run)
+    hashed = dict(s, dcf_content_hash=n.get("content_hash"))
+    assert B.score_from_run(hashed, n) == (True, [])
+    lv = R.reprice(n, price, day, hashed, today="2026-10-15")
+    assert lv["scored"]["dcf_content_hash"] == n["content_hash"], lv["scored"]
+    assert B.live_shown({"score": hashed, "numbers": n, "live": lv}) == (lv, None)
+    other = dict(lv, scored=dict(lv["scored"], dcf_content_hash="0" * 64))
+    shown, w = B.live_shown({"score": hashed, "numbers": n, "live": other})
+    assert shown is None and w["reason"] == "live_not_from_this_score", w
+    # a hand-made live.json beside no run record is judged on its dates alone, as before
+    assert B.live_shown({"score": {}, "live": {"price": 1.0, "irr_weighted": 0.1}})[1] is None
+
+
+def test_a_live_json_with_no_score_identity_is_not_from_a_score_that_carries_one():
+    """[Codex review r29 of PR #47, review note] live_score_problem compared scored.dcf_content_hash only when the
+    live.json recorded it, so a live.json written before round 29 (no such key) beside a same-day score.json of
+    ANOTHER engine run — one that carries dcf_content_hash — was shown as current: the earlier run's live IRR beside
+    the new run's score (live_not_from_this_score never fired). A live.json that records no score identity was not
+    computed against a score that has one: withheld until the next reprice rewrites it — since the round's polish
+    review with its own reason, live_without_score_identity (it records no identity, so it is never said to have been
+    computed before the score). Beside a score.json with no dcf_content_hash (a run from before release 5.6.0) there
+    is no identity to bind, and such a live.json is shown as before."""
+    import copy
+    import hashlib
+    import json
+    import reprice as R
+    with TempBase() as tb:
+        n = B.jload(os.path.join(tb.dir, "APP", "dcf_numbers.json"))
+        s = B.jload(os.path.join(tb.dir, "APP", "score.json"))
+    assert "dcf_content_hash" not in s and B.score_from_run(s, n) == (True, []), s.get("dcf_content_hash")
+    price, day = 262.19, n["as_of"]
+    legacy = copy.deepcopy(R.reprice(n, price, day, s, today=day))
+    assert legacy["scored"].pop("dcf_content_hash", "absent") is None, legacy["scored"]
+    # beside its own (unhashed) score: nothing to bind, shown
+    assert B.live_shown({"score": s, "numbers": n, "live": legacy}) == (legacy, None)
+    # run B, the same day: another engine run record (a new content_hash), the same headline figures, scored with
+    # its hash (make_score writes dcf_content_hash since round 12)
+    nb = copy.deepcopy(n)
+    nb["diagnostics"] = dict(nb.get("diagnostics") or {}, test_run="B: another engine run of the same day")
+    nb.pop("content_hash", None)
+    nb["content_hash"] = hashlib.sha256(json.dumps(nb, sort_keys=True, separators=(",", ":"),
+                                                   default=str).encode()).hexdigest()
+    assert nb["content_hash"] != n.get("content_hash")
+    sb = dict(s, dcf_content_hash=nb["content_hash"])
+    assert B.score_from_run(sb, nb) == (True, [])
+    shown, w = B.live_shown({"score": sb, "numbers": nb, "live": legacy})
+    assert shown is None and w and w["reason"] == "live_without_score_identity", w
+    assert w["price"] == price and "latest available" in w["note"], w
+    assert B.live_score_problem(legacy, sb, nb) is None
+    assert "records no score identity" in B.live_score_identity_missing(legacy, sb)
+    # the same score.json hashed for run A (its own run): a legacy live.json still records no identity — withheld
+    sa = dict(s, dcf_content_hash=n.get("content_hash"))
+    assert B.score_from_run(sa, n) == (True, [])
+    assert B.live_shown({"score": sa, "numbers": n, "live": legacy})[1]["reason"] == "live_without_score_identity"
+    # the next reprice records the identity and is shown
+    fresh = R.reprice(nb, price, day, sb, today=day)
+    assert fresh["scored"]["dcf_content_hash"] == nb["content_hash"]
+    assert B.live_shown({"score": sb, "numbers": nb, "live": fresh}) == (fresh, None)
+
+
+def test_a_live_json_with_no_score_identity_never_claims_it_was_computed_before_the_score():
+    """[Codex review r29 of PR #47, polish review] A live.json written by the pre-round-29 reprice records no
+    scored.dcf_content_hash. Beside a score.json that carries one it was withheld as live_not_from_this_score, whose
+    note says it "was computed before the current score of this run (make_score has scored it since)" — false for the
+    common case right after the merge: reprice ran AFTER make_score scored its own run, against that same score, and
+    only the identity is missing (every published name's live.json on the VM until the next reprice). It now has its
+    own reason, live_without_score_identity, checked right after live_not_from_this_score: the note says the
+    repricing records no score identity and is refreshed by the next repricing (never "pending", Andrew 2026-10-20).
+    A legacy live.json that also disagrees on what it did record (score_json_fresh, tier_final, the override reason)
+    was computed against another score: live_not_from_this_score, as before. A live.json carrying the identity, or
+    beside a score.json with none, is unchanged."""
+    import copy
+    import reprice as R
+    with TempBase() as tb:
+        n = B.jload(os.path.join(tb.dir, "APP", "dcf_numbers.json"))
+        s = B.jload(os.path.join(tb.dir, "APP", "score.json"))
+    sa = dict(s, dcf_content_hash=n.get("content_hash"))      # make_score writes the run's hash (since round 12)
+    assert B.score_from_run(sa, n) == (True, [])
+    day = n["as_of"]
+    lv = R.reprice(n, 262.19, day, sa, today=day)               # computed against THIS score
+    assert B.live_shown({"score": sa, "numbers": n, "live": lv}) == (lv, None)
+    legacy = copy.deepcopy(lv)
+    legacy["scored"].pop("dcf_content_hash")                   # what the pre-round-29 reprice wrote
+    assert B.live_score_problem(legacy, sa, n) is None, B.live_score_problem(legacy, sa, n)
+    why = B.live_score_identity_missing(legacy, sa)
+    assert why and "records no score identity" in why and sa["dcf_content_hash"] in why, why
+    shown, w = B.live_shown({"score": sa, "numbers": n, "live": legacy})
+    assert shown is None and w["reason"] == "live_without_score_identity", w
+    assert w["price"] == 262.19 and w["price_date"] == day and w["scored_date"] == day and w["method"] is None, w
+    assert w["note"] == B.LIVE_NO_SCORE_IDENTITY_NOTE, w
+    note = w["note"].lower()
+    assert "records no score identity" in note and "next repricing" in note and "latest available" in note, note
+    assert "computed before" not in note and "scored it since" not in note and "pending" not in note, note
+    # a legacy live.json that also disagrees on what it recorded was computed against another score: the known
+    # mismatch is named first, as before
+    over = dict(sa, tier_final="D", tier_override_reason="test: the agent's override (analysis.md)")
+    assert B.live_shown({"score": over, "numbers": n, "live": legacy})[1]["reason"] == "live_not_from_this_score"
+    pre = copy.deepcopy(legacy)
+    pre["score_json_fresh"] = None
+    assert B.live_shown({"score": sa, "numbers": n, "live": pre})[1]["reason"] == "live_not_from_this_score"
+    # a recorded identity that is null (computed against a score with no hash) beside a hashed score: another score
+    nulled = copy.deepcopy(legacy)
+    nulled["scored"]["dcf_content_hash"] = None
+    assert B.live_shown({"score": sa, "numbers": n, "live": nulled})[1]["reason"] == "live_not_from_this_score"
+    assert B.live_score_identity_missing(nulled, sa) is None
+    # beside a score.json with no hash there is no identity to bind: shown, as before
+    assert B.live_score_identity_missing(legacy, s) is None
+    assert B.live_shown({"score": s, "numbers": n, "live": legacy}) == (legacy, None)
 
 
 # ---------------- 16. live older than the score

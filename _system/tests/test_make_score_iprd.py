@@ -861,6 +861,27 @@ def test_iprd_equations_carry_the_ads_ratio():
     assert tot1 == "- Total charge: $100,000,000 ÷ 100,000,000 shares (diluted_latest) = $1.00/share", tot1
 
 
+def test_the_recurrence_line_names_a_year_whose_acquired_iprd_expense_has_no_usd_figure():
+    """[Codex review r29 of PR #47, second polish review] recurrence_expense_unknown_usd lists only the counted years
+    whose own acquired-IPR&D expense has no USD figure (a USD expense beside cash with no FX rate is read): the
+    key_numbers.md "Recurrence" line says so of those years, never just "with no USD figure"."""
+    import make_score as M
+    blk = {"treatment": "none", "total": 15e6, "shares_denominator": 100e6, "shares_source": "diluted_latest",
+           "ads_ratio": 1.0, "charge_per_share": 0.15, "materiality": 0.01, "material": False, "recurrent": True,
+           "periods": [], "fy_with_charge": ["2023-12-31", "2025-12-31"], "recurrence_expense_total": 15e6,
+           "recurrence_materiality": None, "recurrence_expense_unknown_usd": ["FY2025"]}
+    line = [x for x in M.iprd_lines({"iprd_adjustment": blk}) if x.startswith("- Recurrence:")][0]
+    assert ("acquired IPR&D expensed in the counted periods $15,000,000 (and FY2025: its acquired-IPR&D expense has "
+            "no USD figure — unknown, read as material) · recurrent (ACQUIRED_IPRD_RECURRENT)") in line, line
+    two = dict(blk, recurrence_expense_unknown_usd=["FY2024", "FY2025"])
+    line2 = [x for x in M.iprd_lines({"iprd_adjustment": two}) if x.startswith("- Recurrence:")][0]
+    assert "(and FY2024, FY2025: each year's acquired-IPR&D expense has no USD figure — unknown" in line2, line2
+    known = dict(blk, recurrence_materiality=0.08)
+    del known["recurrence_expense_unknown_usd"]
+    line3 = [x for x in M.iprd_lines({"iprd_adjustment": known}) if x.startswith("- Recurrence:")][0]
+    assert "$15,000,000 = 8.00% of the base OE total" in line3 and "no USD figure" not in line3, line3
+
+
 # --- Codex review round 8 of PR #47 -------------------------------------------------------------------------------
 def _score_reg(n, j, registry_entries=None):
     """_score with the registry seeded first (registry_entries: what an earlier make_score run left there)."""

@@ -121,7 +121,7 @@ these changes the row's keys.
               "growth_components": {...}, "growth_components_adjusted": {...} | null, "share_cagr": -0.027, "share_count_adj": 0.027, "share_adj_basis": "..." | null,
               "replayed": true | false},
  "live": { ...live.json verbatim... } | null,
- "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "iprd_share_count_unverified" | "iprd_unresolved" | "score_not_from_this_run", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
+ "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "live_not_from_this_score" | "live_without_score_identity" | "iprd_share_count_unverified" | "iprd_unresolved" | "score_not_from_this_run", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
  "split_restated": {"factor": 2.0, "split": "2:1", "scored_date": "...", "price_date": "...", "fields": [...], "as_scored": {...}, "note": "..."} | null,
  "history": [ {financials_history.csv rows, numeric strings coerced to numbers, blanks to null} ],
  "fundamentals": { ...fundamentals.json verbatim (profile, annual, quarterly, ttm, dividends, tags_used, warnings, currency),
@@ -143,7 +143,9 @@ bound, not a solved return); null when undecidable (see "Data policy, 2026-10-16
 `profile.street` / `profile.market` come from `<T>/street.json` (legacy: from an older profile.json).
 `live` is null and `live_withheld` set when live.json's close predates the scored analysis or live.json belongs to an
 earlier run of a re-scored name, or (Codex review round 11 of PR #47) score.json was not built from the record's
-dcf_numbers.json run (`score_not_from_this_run`); `split_restated` is set when
+dcf_numbers.json run (`score_not_from_this_run`), or (Codex review round 29 of PR #47) live.json was not computed
+against the score.json on file (`live_not_from_this_score`) or records no score identity beside a score.json that
+carries one (`live_without_score_identity`, the round's polish review); `split_restated` is set when
 the run's per-share figures in this record were restated for a split since scoring; the dividends block is repriced at
 prices.json's last close when that close is newer than the block's own (all three: the 2026-10-16 round at the end).
 Engine 5.5 (2026-10-19) records ride inside these verbatim copies and add no record key: `numbers` gains
@@ -211,7 +213,7 @@ deal) with `recurrence_excluded`
 (one item per excluded period and deal) and, when set, `deferred_payments_refused` / `deferred_payments_rolled_out` (Codex review round 4 of PR #47: entries whose period left the window, kept in judgment.json and counted toward the deal's cap; was `deferred_payments_unused`; Codex review round 9: such a run also records `fy_period_ends`, the filer's fiscal-year ends a rolled-out period must be one of, in the minimal block too; Codex review round 8: each
 deal's lifetime is also a `record.registry` event `iprd_deferred_payment` {deal, first_charged_period,
 `contingent_total`, `paid_to_date`, `periods`}, rendered like any other judgment-call event), `total`, `unconfirmed_total`, `shares_denominator`, `shares_source`,
-`charge_per_share`, `materiality`, `material` (the deduction's: `ACQUIRED_IPRD_CHARGE`), `recurrent`, (Codex review round 28 of PR #47, only when 2 or more FY charge years are counted) `recurrence_expense_total` / `recurrence_materiality` — the recurrence gate's own figure, the counted periods' acquired-IPR&D expense in USD (less a declared installment part, taken first from the period's cash beyond its own expense) and its share of the base OE total (null when unknown or unvalued: read as material) — and `recurrence_expense_unknown_usd` (the counted periods with no USD figure, when any), `treatment`, `before` — the unadjusted IVs and IRRs —,
+`charge_per_share`, `materiality`, `material` (the deduction's: `ACQUIRED_IPRD_CHARGE`), `recurrent`, (Codex review round 28 of PR #47, only when 2 or more FY charge years are counted) `recurrence_expense_total` / `recurrence_materiality` — the recurrence gate's own figure, the counted periods' own acquired-IPR&D expense in USD (Codex review round 29 of PR #47, polish reviews: each period's own expense is the largest positive figure on any of its acquired-IPR&D expense tags in every unit filed, less a declared installment part, taken first from the period's whole charge beyond that expense) and its share of the base OE total (null when unknown or unvalued: read as material) — and `recurrence_expense_unknown_usd` (the counted periods whose acquired-IPR&D expense has no USD figure, when any; a USD expense beside cash with no FX rate is read), `treatment`, `before` — the unadjusted IVs and IRRs —,
 `after`, `amortized`, and (Codex review round 11 of PR #47, only when set) `partial_coverage` — [{period, window,
 start, tag, units: [{unit, contexts: [{start, end, value, filed}]}]}], a tag filed for only part of a window period
 with no tiling, nothing counted for it, `ACQUIRED_IPRD_PARTIAL_PERIOD` raised; such a leg alone keeps the block, with
@@ -1841,11 +1843,18 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   Until Codex review round 11 of PR #47 a score.json from another run still wrote live.json (`score_json_fresh` false,
   `score_mismatch` listing every disagreement, a `score_note`, no override); now it writes NO live.json (`check_score`; a
   stale one is removed; the main agent's general rule): the folder's live figures pause until make_score scores the
-  current run, whatever make_score refused it for, and so does an unreadable score.json. A folder with no score.json yet is
-  repriced (`score_json_fresh` null; build_site publishes only scored folders). make_score copies the run's figures
-  verbatim, so a release-mismatch rebuild of the same run still reprices. On every live.json written `score_json_fresh` is
-  true (null without a score.json) and `score_mismatch` null. The `--all` summary names the splits restated; a score from
-  another run is listed among the skipped names with its reason.
+  current run, whatever make_score refused it for, and so does an unreadable score.json. [Codex review round 29 of PR
+  #47, the main agent's shape] So does a folder with no score.json yet (`reprice.NO_SCORE_REASON`; any live.json is
+  removed): it had been repriced (`score_json_fresh` null, tier_final unknown) because build_site publishes only scored
+  folders, but once make_score scored that same run the old live.json was published beside the new verdict (its numbers
+  tier in place of a `tier_override`). make_score copies the run's figures verbatim, so a release-mismatch rebuild of the
+  same run still reprices. On every live.json written `score_json_fresh` is true and `score_mismatch` null. live.json
+  `scored` records the score it was computed against: `tier_final`, `tier_override_reason` (while the override is
+  active) and, since round 29, `dcf_content_hash` (the score.json's, null when it carries none) — what
+  `build_site.live_score_problem` compares with the score.json on file (a live.json with no `dcf_content_hash` key,
+  written before round 29, beside a score.json that carries one: `build_site.live_score_identity_missing`). The `--all`
+  summary names the splits restated; a
+  score from another run, and a folder with no score.json, are listed among the skipped names with their reason.
 - **Live market cap** (`reprice.live_market_cap`, engine 5.5 / 2026-10-19). live.json `market_cap_est` = the last close ×
   the run's share count ÷ `numbers.ads_ratio.ratio` when an ADS ratio applies (the engine's own
   `dcf_engine.market_cap_est`; the close is per ADS, the count per ordinary share), × `split_factor`; `in_scope_under_40b`
@@ -1888,10 +1897,37 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `score_from_run` never matched a Tier F run, so a new run that turned Tier F published the earlier run's verdict
   beside its own flags with no notice. A Tier F / untiered score now matches its own run (the content hash, else tier,
   `f_subtype`, base, release and `as_of`): no committed folder shows the notice.
-  [Merge of main #83 into PR #47] Precedence: the three PR #47 reasons are checked first and win over the two date reasons
-  (`live_from_earlier_run`, `live_older_than_score`); only the date reasons are worded "Scored figures are the latest — …"
-  (`latestText`), the PR #47 reasons keep "Live figures withheld — …". The ranking row carries no reason, so its Live IRR
-  cell reads "scored · latest" for every reason (its title names the not-repriced cases), never "pending". The prices
+  [Codex review round 29 of PR #47, the main agent's shape] And, `reason: "live_not_from_this_score"` (after
+  `live_from_earlier_run`, before `live_without_score_identity` and `live_older_than_score`), for a live.json beside a
+  run record that was not computed against the score.json on file (`build_site.live_score_problem`): `score_json_fresh`
+  not true (written before make_score scored the run), `scored.tier_final` or `scored.tier_override_reason` (the reason
+  only while the override is active) not the score's, or a recorded `scored.dcf_content_hash` not the score's (another
+  run's same-day score; null on both sides beside a score.json with no `dcf_content_hash`). The score is the run's, so
+  the app words it like the date reasons: "Scored figures are the latest — the live repricing on file was computed before the <analysis_date>
+  score", never "pending" (Andrew, 2026-10-20); the record's acquired-IPR&D line describes the score's own block as
+  applied. Before, live_shown compared only dates, so a live.json written before make_score scored the run with a
+  `tier_override` showed the numbers tier at the last close.
+  [Codex review round 29 of PR #47, the round's review notes and polish review] Right after it, `reason:
+  "live_without_score_identity"`, for a live.json that records no `scored.dcf_content_hash` key (written by the
+  reprice before round 29) beside a score.json that carries one (`build_site.live_score_identity_missing`): it cannot
+  be bound to the score on file and is withheld until the next reprice rewrites it (the review notes: it had been
+  exempt from the identity check, so beside another run's same-day score the earlier run's live IRR was shown as
+  current). Nothing it records shows it was computed against another score (right after the merge every published
+  name's live.json is one, usually computed against this very score), so it is never said to be: it had been
+  `live_not_from_this_score`, whose note says it was computed before the current score. Its note says it records no
+  score identity and the next repricing rewrites it; the app says "Scored figures are the latest — the live repricing
+  on file records no score identity; the next repricing refreshes it", never "pending". One that also disagrees on
+  what it did record (`score_json_fresh`, `scored.tier_final`, `scored.tier_override_reason`) is
+  `live_not_from_this_score`; a recorded null identity beside a hashed score is another score's
+  (`live_not_from_this_score`); beside a score.json with no `dcf_content_hash` there is no identity to bind and nothing
+  changes.
+  [Merge of main #83 into PR #47] Precedence: (as corrected in Codex review round 29 of PR #47) the reasons are checked in
+  this order — `iprd_unresolved` / `iprd_share_count_unverified`, then `score_not_from_this_run` (the run is never
+  repriced, or the score on file is not its verdict: the app keeps "Live figures withheld — …"), then
+  `live_from_earlier_run`, `live_not_from_this_score`, `live_without_score_identity` and `live_older_than_score` (the
+  score on file is the run's: all four are worded "Scored figures are the latest — …", `latestText`). The ranking
+  row carries no reason, so its Live IRR cell reads "scored · latest" for every reason (its title names the
+  not-repriced cases), never "pending". The prices
   staleness guard below is not a withheld reason: `row.prices_stale` is derived on every row independently of
   `live_withheld` and never changes the reason or its note (a withheld row can also be stale).
 - **Prices staleness guard** (`reprice.sweep_price_staleness`, build_site step 5; 2026-10-20). A scored name whose last

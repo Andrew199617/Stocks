@@ -250,8 +250,16 @@ function fmtFactor(f) { return String(Number(Number(f).toPrecision(6))); } // a 
    deducted by hand (reason iprd_share_count_unverified: reprice.py never reprices it, live.json or not); [Codex review r6]
    and of a record whose latest engine run make_score refused for an unresolved acquired-IPR&D charge (reason iprd_unresolved);
    [Codex review r11] and any live.json beside a score.json not built from the latest engine run (reason score_not_from_this_run).
-   [merge of main #83] Those three PR #47 reasons take precedence (build_site checks them first) and keep their own "Live figures withheld"
-   wording; only the two date reasons read "Scored figures are the latest".
+   [Codex review r29] A live.json not computed against the score on file (written before make_score scored the run, or
+   before it re-scored it, or beside another run's same-day score) is withheld with reason live_not_from_this_score: the
+   score is this run's, so it reads as the date reasons do — "Scored figures are the latest", never "pending".
+   [Codex review r29, polish review] One from before round 29 that records no score identity beside a score that has one
+   is withheld with its own reason, live_without_score_identity — never said to be computed before the score (nothing it
+   records shows that): it records no score identity, and the next repricing refreshes it.
+   [merge of main #83] Precedence: (as corrected in Codex review r29) build_site checks iprd_unresolved /
+   iprd_share_count_unverified, then score_not_from_this_run — the PR #47 reasons, worded "Live figures withheld" — then
+   live_from_earlier_run, live_not_from_this_score, live_without_score_identity and live_older_than_score, all four worded
+   "Scored figures are the latest".
    {reason, price, price_date, scored_date, method, note}, or null when nothing was withheld. */
 function liveWithheld(record) {
   var w = obj(obj(record).live_withheld);
@@ -266,6 +274,10 @@ function latestText(w) { // plain text; escaped where it is printed
   if (w.reason === 'iprd_unresolved') return 'Live figures withheld — the latest run left an acquired-IPR&D charge unresolved, so the scored figures stand';
   // [Codex review r11 of PR #47] nor any live repricing beside a score.json from another engine run
   if (w.reason === 'score_not_from_this_run') return 'Live figures withheld — the latest engine run is not scored yet (make_score refused it or has not run on it), so the scored figures stand';
+  // [Codex review r29 of PR #47] a live repricing computed before the score on file (the score is this run's)
+  if (w.reason === 'live_not_from_this_score') return 'Scored figures are the latest — the live repricing on file was computed before the ' + (w.scored_date ? w.scored_date + ' ' : 'current ') + 'score';
+  // [Codex review r29 of PR #47, polish review] a live repricing from before round 29: no score identity recorded
+  if (w.reason === 'live_without_score_identity') return 'Scored figures are the latest — the live repricing on file records no score identity; the next repricing refreshes it';
   // the recorded reason decides the wording, not the dates: an earlier run's repricing usually ALSO has a close
   // before the new score, so inferring from the dates alone renders the older-close text for it (Codex review, PR #83)
   var earlierRun = w.reason === 'live_from_earlier_run' || (!w.reason && w.price_date && w.scored_date && w.price_date >= w.scored_date);
@@ -1922,7 +1934,7 @@ function renderRowHTML(row, stars, repo) {
   // row.live_withheld: live.json predates the scored analysis, or the record is never repriced (an acquired-IPR&D charge
   // deducted by hand, or left unresolved by the latest run, or a latest run not scored yet — the record's live_withheld.reason says which), so the row is ranked on its scored IRR (the live fields are null).
   // The row carries no reason, so one label covers every reason: "scored · latest", never "pending" (Andrew's ruling, 2026-10-20; merge of main #83)
-  var withheld = !live && row.live_withheld === true, withheldT = 'The scored figures are the latest available: the live repricing on file predates the scored analysis, or the record is not repriced (an acquired-IPR&D charge deducted by hand or left unresolved, or a latest engine run not scored yet; its page says which), so this row is ranked on its scored IRR';
+  var withheld = !live && row.live_withheld === true, withheldT = 'The scored figures are the latest available: the live repricing on file predates the scored analysis, was computed before the current score or records no score identity, or the record is not repriced (an acquired-IPR&D charge deducted by hand or left unresolved, or a latest engine run not scored yet; its page says which), so this row is ranked on its scored IRR';
   var tb = (live && row.tier_bear_live) || row.tier_bear, tu = (live && row.tier_bull_live) || row.tier_bull;
   var band = tb && tu ? '<span class="band" title="' + (live ? 'bear → bull tier at the last close' : 'bear → bull tier as scored') + '"><i style="background:' + (TIER_ACCENT[tb] || '#333') + '">' + esc(tb) + '</i>→<i style="background:' + (TIER_ACCENT[tu] || '#333') + '">' + esc(tu) + '</i></span>' : '—';
   var up = live ? num(row.upside15_live) : num(row.upside15), price = live && num(row.price_live) !== null ? row.price_live : row.price;

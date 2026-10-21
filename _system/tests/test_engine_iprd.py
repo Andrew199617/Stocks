@@ -1613,6 +1613,7 @@ def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
     and with no live.json the record still says why it carries none, so the page shows the scored figures (the
     main agent's tier_override) as current; a one-time record's live.json is shown as before."""
     import build_site as B
+    import reprice as R
     n = _share_count_unverified_record()
     lv = {"price": 25.0, "irr_weighted": 0.3, "price_date": "2026-10-20", "scored_date": "2026-10-19"}
     sc = {"analysis_date": "2026-10-19"}
@@ -1623,7 +1624,8 @@ def test_build_site_withholds_live_figures_for_a_hand_deducted_charge():
         assert "acquired-IPR&D" in w["note"] and "tier_override" in w["note"], w["note"]
     # a one-time record's live.json beside its own run's score is shown ([Codex review r11] the score must be this run's)
     adj = _adjusted()
-    own = dict(lv, price_date=adj["as_of"], scored_date=adj["as_of"])
+    # [Codex review r29 of PR #47] live.json computed against that score (reprice records which one)
+    own = R.reprice(adj, 25.0, adj["as_of"], _score_of(adj), today=adj["as_of"])
     assert B.live_shown({"score": _score_of(adj), "numbers": adj, "live": own}) == (own, None)
 
 # --- Codex review round 3 of PR #47 -------------------------------------------------------------------------------
@@ -1976,7 +1978,8 @@ def test_reprice_and_build_site_withhold_a_run_make_score_refused():
     # a resolved one-time run reprices and shows as before
     assert R.reprice(_adjusted(), 25.0)["iprd_charge_per_share"] == 0.35
     adj = _adjusted()
-    own = dict(lv, price_date=adj["as_of"], scored_date=adj["as_of"])
+    # [Codex review r29 of PR #47] live.json computed against that score (reprice records which one)
+    own = R.reprice(adj, 25.0, adj["as_of"], _score_of(adj), today=adj["as_of"])
     assert B.live_shown({"score": _score_of(adj), "numbers": adj, "live": own}) == (own, None)
     assert E.iprd_unresolved(_adjusted()) is None and E.iprd_unresolved({"iprd_adjustment": None}) is None
 
@@ -3851,6 +3854,449 @@ def test_an_iprd_amortized_base_needs_a_deducted_fy_charge_to_carry():
     assert a["iprd_adjustment"]["treatment"] == "amortized_in_base", a["iprd_adjustment"]
     af = flags(a, "ACQUIRED_IPRD_RECURRENT")
     assert len(af) == 1 and "$1 / $1 / $0" in af[0] and "not the expense" in af[0], af
+
+
+# ===========================================================================
+# [Codex review r29 of PR #47] a deal's first charge is a period with its OWN acquired-IPR&D expense; a year whose
+# whole charge is unknown in USD can never be declared whole
+# ===========================================================================
+GHOST_SRC = "SYN 10-K FY2024 (0000999001-25-000003) Note 5 'Asset acquisition', p. 70: Ghost Bio acquired IPR&D"
+
+
+def _r29_ghost(amount=50e6):
+    return deferred(amount=amount, first="2024-12-31", source=GHOST_SRC, deal="Ghost Bio")
+
+
+def _r29_settled(exp24=None, cash23=0.0):
+    """FY2023: a $100M acquisition expensed with $0 cash (accrued). FY2024: $100M on the cash tag that settles it (no
+    expense; `exp24` files one: $0, or a negative reversal). FY2025: a separate $50M acquisition, paid."""
+    exp = {2023: 100e6, 2025: 50e6}
+    if exp24 is not None:
+        exp[2024] = exp24
+    return _facts(expense=exp, cash={2023: cash23, 2024: 100e6, 2025: 50e6})
+
+
+def test_a_first_charge_inside_the_window_must_carry_its_own_acquired_iprd_expense():
+    """[Codex review r29 of PR #47, #4335127654] iprd_apply_deferred accepted an in-window first_charged_period whose
+    record had amount > 0 or expense > 0, so the automatic settlement of the window's unpaid remainder — cash with no
+    expense of its own (deferred_payment) — passed on its cash alone. $100M expensed in FY2023 with $0 cash, its
+    $100M cash settlement in FY2024 and a distinct $50M acquisition in FY2025: declaring FY2025 an installment of a
+    deal "first charged" in FY2024 was accepted, FY2025 left the recurrence count and ACQUIRED_IPRD_RECURRENT went
+    silent. A first charge must now be a period whose record carries its OWN positive acquired-IPR&D expense (the
+    iprd_own_charge rule: the detector figure, USD or native, > 0, however it was paid): a cash settlement (no
+    expense, a $0 one or a negative reversal) and a $0-expense period are refused (BAD_IPRD_DEFERRED_PAYMENT). A real
+    first charge — accrued with $0 cash, paid in shares, or filed only in a currency with no FX rate (which had been
+    refused: its record has no USD amount) — is accepted; so is a pre-window first charge (companyfacts' expense
+    fact). The deduction is never touched."""
+    for exp24 in (None, 0.0, -10e6):
+        u = _ok(_run(_r29_settled(exp24)))["iprd_adjustment"]
+        p24 = next(p for p in u["periods"] if p["period"] == "2024-12-31")
+        assert p24.get("deferred_payment") and p24["deducted"] == 100e6, (exp24, p24)
+        assert u["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and u["recurrent"], (exp24, u)
+        out = _run(_r29_settled(exp24), judgment={"iprd_deferred_payment": [_r29_ghost()]})
+        _refused(out, "first_charged_period 2024-12-31 lies inside the engine's window")
+        assert "no acquired-IPR&D charge there" in out["stdout"], out["stdout"][-1500:]
+        why = "is negative (-10,000,000, a reversal)" if exp24 else "settles an earlier charge"
+        assert why in out["stdout"], (exp24, out["stdout"][-1500:])
+    # a $0-expense period whose cash settles nothing (no unpaid remainder): no charge there either
+    z = _facts(expense={2024: 0.0, 2025: 50e6}, cash={2024: 30e6, 2025: 50e6})
+    _refused(_run(z, judgment={"iprd_deferred_payment": [_r29_ghost()]}), "no acquired-IPR&D charge there")
+    # the same filer, the installment declared against the deal that really charged FY2023: accepted (Andrew's rule)
+    n = _ok(_run(_r29_settled(), judgment={"iprd_deferred_payment": [deferred(amount=50e6)]}))
+    b = n["iprd_adjustment"]
+    p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+    assert p25["deferred_payment_of"][0]["first_charge_evidence"] == "window_record", p25
+    assert b["fy_with_charge"] == ["2023-12-31"] and not b["recurrent"] and b["total"] == 150e6, b
+    # a first charge paid in shares (no cash, the expense excluded paid_in_shares): its own expense — accepted
+    sh = _facts(expense={2023: 15e6, 2025: 20e6}, cash={2025: 20e6})
+    j = {"iprd_cash_flow_check": [_r28_check("2023-12-31", 15e6, "paid_in_shares")] + auto_checks(sh)[1:],
+         "iprd_deferred_payment": [deferred()]}
+    assert [c["period"] for c in j["iprd_cash_flow_check"]] == ["2023-12-31", "2025-12-31"], j
+    s = _ok(_run(sh, judgment=j))["iprd_adjustment"]
+    p23 = next(p for p in s["periods"] if p["period"] == "2023-12-31")
+    assert p23["excluded"] == "paid_in_shares" and s["fy_with_charge"] == ["2023-12-31"], s
+    # a first charge filed only in EUR with no FX rate (excluded non_usd_no_rate, no USD amount): its own expense too
+    eur = _facts(expense={2025: 20e6}, cash={2025: 20e6})
+    _syn_put(eur, EXPENSE, "EUR", _ctx("2023-01-01", "2023-12-31", 15e6, filed="2024-02-20"))
+    m = _ok(_run_fx(eur, {}, judgment={"iprd_deferred_payment": [deferred()]}))
+    mb = m["iprd_adjustment"]
+    p23 = next(p for p in mb["periods"] if p["period"] == "2023-12-31")
+    assert p23["excluded"] == "non_usd_no_rate" and p23.get("amount") is None and p23["expense_native"] == 15e6, p23
+    p25 = next(p for p in mb["periods"] if p["period"] == "2025-12-31")
+    assert p25["recurrence_excluded"] == "deferred_payment_of", p25
+    assert p25["deferred_payment_of"][0]["first_charge_evidence"] == "window_record", p25
+    assert E.iprd_unresolved(m), "still gated ACQUIRED_IPRD_UNCONVERTED"
+    # before the window: companyfacts' expense fact is the evidence, as before
+    w = _ok(_with_2021_charge([deferred(first="2021-12-31", source=OK_SRC_2021)]))["iprd_adjustment"]
+    p25 = next(p for p in w["periods"] if p["period"] == "2025-12-31")
+    assert p25["deferred_payment_of"][0]["first_charge_evidence"] == "companyfacts_expense_fact", p25
+
+
+def _r29_eur25(cash25=40e6, eur_cash=False):
+    """FY2023: Test Bio's $15M acquired-IPR&D expense, paid. FY2025: a EUR 100M expense with no FX rate (even fetched)
+    beside a $40M USD cash outflow (eur_cash: beside EUR 40M of cash with no rate; cash25 None: no cash fact)."""
+    f = _facts(expense={2023: 15e6}, cash={2023: 15e6, **({2025: cash25} if (cash25 and not eur_cash) else {})})
+    _syn_put(f, EXPENSE, "EUR", _ctx("2025-01-01", "2025-12-31", 100e6, filed="2026-02-20"))
+    if eur_cash:
+        _syn_put(f, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", cash25, filed="2026-02-20"))
+    return f
+
+
+def _r29_reason(facts, entries, judgment=None):
+    """iprd_apply_deferred's refusal reasons for `entries` on the run's own detection (no FX rate for EUR)."""
+    fy = ["2023-12-31", "2024-12-31", "2025-12-31"]
+    iprd = E.iprd_detect(facts, fy, fx_rates={}, checks=(judgment or {}).get("iprd_cash_flow_check") or auto_checks(facts))
+    refused, _ = E.iprd_apply_deferred(iprd, entries, fy, facts)
+    return [r["reason"] for r in refused]
+
+
+def test_a_year_whose_whole_charge_is_unknown_in_usd_can_never_be_declared_whole():
+    """[Codex review r29 of PR #47, #4335127660] For a positive foreign-currency expense with no FX rate beside usable
+    USD cash, _iprd_claimable_expense returned None, so the period's "whole charge" stayed its cash: EUR 100M expensed
+    (USD value unknown) with $40M paid in FY2025 beside Test Bio's FY2023 charge — declaring the $40M an installment
+    of Test Bio made the declaration "whole", FY2025 left the recurrence count and ACQUIRED_IPRD_RECURRENT went silent
+    (nothing gated the run), though its own expense may be far larger. A charge year's declaration is whole only when
+    the year's whole charge (the larger of its cash and its own USD expense) is known in USD. The existing convention
+    for counted years with no USD figure (an unconvertible expense with no usable cash, an unconvertible parallel
+    detector tag) is a refusal, "names no acquired-IPR&D charge": every declaration on a year whose own expense or
+    cash has no USD figure is now refused with that same message (BAD_IPRD_DEFERRED_PAYMENT), whatever its amount, so
+    the year stays in the recurrence count — the FX-less cash-basis year, the same with its residual declared paid in
+    shares, and a USD expense beside cash with no rate. The deduction is unchanged. With the rate, the expense
+    converts and a declaration is measured against it as before ($40M is a part, $100M the whole)."""
+    u = _ok(_run(_r29_eur25()))
+    b = u["iprd_adjustment"]
+    p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+    assert p25["expense"] is None and p25["expense_native"] == 100e6 and p25["amount"] == 40e6, p25
+    assert p25["excluded"] is None and b["total"] == 55e6, (p25, b)
+    assert b["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and b["recurrent"] and E.iprd_unresolved(u) is None, b
+    for amt in (40e6, 20e6):
+        out = _run(_r29_eur25(), judgment={"iprd_deferred_payment": [deferred(amount=amt)]})
+        _refused(out, "FY 2025-12-31 names no acquired-IPR&D charge in this run's window")
+        assert "has no USD figure" in out["stdout"] and "stays in the recurrence count" in out["stdout"], \
+            out["stdout"][-1500:]
+    # the same message as the existing convention: an unconvertible expense with no usable cash (and, below, a USD
+    # expense beside cash with no rate; the residual declared paid in shares)
+    msg = _r29_reason(_r29_eur25(), [deferred(amount=40e6)])
+    assert len(msg) == 1 and "100,000,000 EUR" in msg[0], msg
+    assert _r29_reason(_r29_eur25(cash25=None), [deferred(amount=40e6)]) == msg
+    sh = {"iprd_cash_flow_check": [dict(_r21_check(), period="2025-12-31")] + auto_checks(_r29_eur25())}
+    s = _ok(_run(_r29_eur25(), judgment=sh))["iprd_adjustment"]
+    assert next(p for p in s["periods"] if p["period"] == "2025-12-31").get("residual_paid_in_shares_unknown_usd"), s
+    assert _r29_reason(_r29_eur25(), [deferred(amount=40e6)], judgment=sh) == msg
+    _refused(_run(_r29_eur25(), judgment=dict(sh, iprd_deferred_payment=[deferred(amount=40e6)])), "has no USD figure")
+    # a USD expense beside cash with no FX rate: its whole charge (the larger of the two) is unknown in USD as well
+    ue = _facts(expense={2023: 15e6, 2025: 100e6}, cash={2023: 15e6})
+    _syn_put(ue, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", 40e6, filed="2026-02-20"))
+    r = _r29_reason(ue, [deferred(amount=100e6)])
+    assert len(r) == 1 and r[0].startswith("FY 2025-12-31 names no acquired-IPR&D charge") and "40,000,000 EUR" in r[0], r
+    # with the FX rate the expense converts: $40M is a part (the year still counts), $100M the whole
+    rate = {"EUR": {"2025-12-31": 1.0}}
+    part = _ok(_run_fx(_r29_eur25(), rate, judgment={"iprd_deferred_payment": [deferred(amount=40e6)]}))["iprd_adjustment"]
+    assert part["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and part["recurrent"] and part["total"] == 55e6, part
+    whole = _ok(_run_fx(_r29_eur25(), rate, judgment={"iprd_deferred_payment": [deferred(amount=100e6)]}))["iprd_adjustment"]
+    assert whole["fy_with_charge"] == ["2023-12-31"] and not whole["recurrent"] and whole["total"] == 55e6, whole
+
+
+def _r29_unit_conflict(tag):
+    """FY2023: Test Bio's $15M acquired-IPR&D expense, paid. FY2025: $40M expensed and $40M paid in USD, and `tag` (the
+    expense tag or the cash tag) also filed for FY2025 at EUR 100M with no FX rate (even fetched): the two units
+    disagree (unit_conflict, the EUR figure's usd None) and the USD fact is used."""
+    f = _facts(expense={2023: 15e6, 2025: 40e6}, cash={2023: 15e6, 2025: 40e6})
+    _syn_put(f, tag, "EUR", _ctx("2025-01-01", "2025-12-31", 100e6, filed="2026-02-20"))
+    return f
+
+
+def test_a_unit_with_no_usd_figure_beside_the_usd_fact_used_leaves_the_whole_charge_unknown():
+    """[Codex review r29 of PR #47, review note] iprd_whole_charge_unknown read only the record's chosen figures, so a
+    year whose expense tag (or cash tag) also carries a positive fact in a unit with no FX rate — EUR 100M beside the
+    USD 40M used (unit_conflict, its usd None) — read "whole" at $40M: a $40M declaration took FY2025 out of the
+    recurrence count though the EUR filing says the charge may be far larger. Such a year's whole charge is unknown
+    in USD too: every declaration on it is refused with the round-29 message (NEEDS_MAIN_AGENT: currency) and the year
+    stays counted; the deduction is unchanged. A USD 0 fact beside the EUR one (the EUR figure used: its own expense
+    unknown) is refused with the message it had."""
+    for tag in (EXPENSE, CASH):
+        f = _r29_unit_conflict(tag)
+        b = _ok(_run(f))["iprd_adjustment"]
+        p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+        uc = p25["unit_conflict"][tag]
+        assert uc["used"] == "USD" and uc["units"]["EUR"]["usd"] is None and uc["units"]["EUR"]["native"] == 100e6, p25
+        assert p25["expense"] == 40e6 and p25["amount"] == 40e6 and p25["excluded"] is None, p25
+        assert b["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and b["recurrent"] and b["total"] == 55e6, (tag, b)
+        why = E.iprd_whole_charge_unknown(p25)
+        assert why and tag in why and "100,000,000 EUR" in why and "USD" in why, (tag, why)
+        for amt in (40e6, 20e6):
+            r = _r29_reason(f, [deferred(amount=amt)])
+            assert len(r) == 1 and r[0].startswith("FY 2025-12-31 names no acquired-IPR&D charge in this run's window"), r
+            assert why in r[0] and "stays in the recurrence count (NEEDS_MAIN_AGENT: currency)" in r[0], r
+        out = _run(f, judgment={"iprd_deferred_payment": [deferred(amount=40e6)]})
+        _refused(out, "names no acquired-IPR&D charge")
+        assert "NEEDS_MAIN_AGENT: currency" in out["stdout"], out["stdout"][-1500:]
+    # USD 0 beside EUR 100M on the expense tag: the EUR fact is used, its own expense has no USD figure — unchanged
+    f = _facts(expense={2023: 15e6, 2025: 0.0}, cash={2023: 15e6, 2025: 40e6})
+    _syn_put(f, EXPENSE, "EUR", _ctx("2025-01-01", "2025-12-31", 100e6, filed="2026-02-20"))
+    assert _r29_reason(f, [deferred(amount=40e6)]) == [
+        "FY 2025-12-31 names no acquired-IPR&D charge in this run's window (2023-12-31, 2024-12-31, 2025-12-31) that a "
+        "declaration can be measured against: its own acquired-IPR&D expense (100,000,000 EUR) has no USD figure (no FX "
+        "rate, even fetched), so its whole charge (the largest of its own expense and its cash, in every unit filed) is "
+        "unknown in USD and no "
+        "declaration on it can be whole — none is applied and the year stays in the recurrence count "
+        "(NEEDS_MAIN_AGENT: currency)"]
+
+
+R29_EUR_RATE = {"EUR": {"2025-12-31": 1.08, "2025-12-30": 1.08}}
+
+
+def test_a_years_own_charge_is_its_largest_figure_in_every_unit_filed():
+    """[Codex review r29 of PR #47, polish review] The whole-declaration test and the recurrence materiality read a
+    year's own charge from the record's chosen figures only, so a tag filed in two units that disagree — EUR 100M (at
+    1.08: $108M) on the expense tag or the cash tag beside the USD 40M expensed and paid (unit_conflict, the USD fact
+    used: round 15) — read $40M: a $40M declaration was "whole" and took FY2025 out of the recurrence count, $108M
+    was refused as more than the charge, and the materiality read the $40M. One rule now (iprd_own_charge_usd, used
+    by both): the year's own charge is the largest positive figure on its acquired-IPR&D expense tags and cash tag in
+    every unit filed for the period (each other unit converted at the run's rate), never less than its amount (the
+    cash deducted); its own expense the largest on the expense tags. $40M declared is a part (the year stays
+    counted), $108M the whole, more than $108M is refused (the cap). The materiality reads that own expense less a
+    declared part taken first from the charge beyond it (round 28): $108M with EUR on the expense tag, $40M with EUR on
+    the cash tag (cash beyond the expense). When any positive figure on those tags has no USD figure the year's whole
+    charge is unknown in USD: no declaration on it is whole (round 29). [Codex review r29 of PR #47, second polish
+    review] Its recurrence figure is unknown, read as material, only when the figure with no USD value is on the
+    expense side (the own expense is unknown); EUR on the cash tag with no rate leaves the $40M expense read. The
+    deduction never changes."""
+    for tag, own_exp in ((EXPENSE, 108e6), (CASH, 40e6)):
+        u = _ok(_run_fx(_r29_unit_conflict(tag), R29_EUR_RATE))
+        b = u["iprd_adjustment"]
+        p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+        uc = p25["unit_conflict"][tag]
+        assert uc["used"] == "USD" and uc["units"]["EUR"]["usd"] == 108e6, (tag, p25)
+        assert p25["expense"] == 40e6 and p25["amount"] == 40e6 and p25["excluded"] is None and b["total"] == 55e6, p25
+        assert E.iprd_whole_charge_unknown(p25) is None and E.iprd_own_charge_usd(p25) == (108e6, own_exp), (tag, p25)
+        assert b["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and b["recurrent"], (tag, b)
+        assert b["recurrence_expense_total"] == 15e6 + own_exp, (tag, b)
+        assert abs(b["recurrence_materiality"] - _r28_mat(u, 15e6 + own_exp)) < 1e-12, (tag, b)
+        # $40M declared: a part of the $108M — the year stays counted, for its own expense less what the charge beyond
+        # it cannot hold (EUR on the expense tag: $108M - $40M; on the cash tag the $68M of cash beyond the expense holds it)
+        n = _ok(_run_fx(_r29_unit_conflict(tag), R29_EUR_RATE, judgment={"iprd_deferred_payment": [deferred(amount=40e6)]}))
+        pb = n["iprd_adjustment"]
+        q25 = next(p for p in pb["periods"] if p["period"] == "2025-12-31")
+        assert q25.get("recurrence_excluded") is None and q25["deferred_payment_of"][0]["amount"] == 40e6, (tag, q25)
+        assert pb["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and pb["recurrent"] and pb["total"] == 55e6, (tag, pb)
+        assert pb["recurrence_expense_total"] == 15e6 + (68e6 if tag == EXPENSE else 40e6), (tag, pb)
+        assert flags(n, "ACQUIRED_IPRD_RECURRENT"), tag
+        # the whole $108M: the year leaves the count; the deduction is unchanged
+        w = _ok(_run_fx(_r29_unit_conflict(tag), R29_EUR_RATE,
+                        judgment={"iprd_deferred_payment": [deferred(amount=108e6)]}))["iprd_adjustment"]
+        assert w["fy_with_charge"] == ["2023-12-31"] and not w["recurrent"] and w["total"] == 55e6, (tag, w)
+        assert w["recurrence_excluded"][0]["amount"] == 108e6, (tag, w)
+        # more than the whole: refused (the existing cap)
+        _refused(_run_fx(_r29_unit_conflict(tag), R29_EUR_RATE, judgment={"iprd_deferred_payment": [deferred(amount=109e6)]}),
+                 "FY 2025-12-31's declarations sum to 109,000,000, more than the period's charge 108,000,000")
+        # no FX rate for the EUR figure (even fetched): the year's whole charge is unknown in USD (no declaration
+        # applies); its recurrence figure is unknown (read as material) only when the EUR figure is on the expense
+        # side — on the cash tag the $40M USD expense is known and read (the second polish review's final rule)
+        x = _ok(_run(_r29_unit_conflict(tag)))
+        xb = x["iprd_adjustment"]
+        x25 = next(p for p in xb["periods"] if p["period"] == "2025-12-31")
+        assert E.iprd_whole_charge_unknown(x25), (tag, x25)
+        assert xb["recurrent"] and xb["total"] == 55e6, (tag, xb)
+        rf = flags(x, "ACQUIRED_IPRD_RECURRENT")
+        if tag == EXPENSE:
+            assert E.iprd_own_charge_usd(x25) == (None, None) and E.iprd_recurrence_expense(x25) is None, x25
+            assert xb["recurrence_materiality"] is None and xb["recurrence_expense_unknown_usd"] == ["FY2025"], xb
+            assert xb["recurrence_expense_total"] == 15e6, xb
+            assert len(rf) == 1 and "FY2025: its acquired-IPR&D expense has no USD figure" in rf[0], rf
+        else:
+            assert E.iprd_own_charge_usd(x25) == (None, 40e6) and E.iprd_recurrence_expense(x25) == 40e6, x25
+            assert xb["recurrence_expense_total"] == 55e6 and "recurrence_expense_unknown_usd" not in xb, xb
+            assert abs(xb["recurrence_materiality"] - _r28_mat(x, 55e6)) < 1e-12, xb
+            assert len(rf) == 1 and "no USD figure" not in rf[0], rf
+
+
+def _r29_parallel(case):
+    """FY2023: Test Bio's $15M acquired-IPR&D expense, paid. FY2025: $40M expensed on the current detector tag and $40M
+    paid, in USD, and the parallel (pre-2022) expense tag ResearchAndDevelopmentInProcess also filed for FY2025, per
+    case: A EUR 100M only (at 1.08, $108M: expense_tags_conflict, no unit conflict); B USD 40M + EUR 100M
+    (unit_conflict on the parallel tag); C USD 108M only (expense_tags_conflict); D USD 108M + EUR 30M ($32.4M:
+    unit_conflict on the parallel tag beside the expense_tags_conflict); E EUR 100M with no FX rate, even fetched
+    (expense_tag_unconverted); F USD 108M + EUR 30M with no FX rate (unit_conflict, the EUR unit's usd null); G EUR
+    -5M with no FX rate (a negative figure: no USD value, but not positive); H USD 108M + EUR 0 with no FX rate (a
+    zero is 0 at every rate: unit_conflict, the EUR unit's usd 0)."""
+    f = _facts(expense={2023: 15e6, 2025: 40e6}, cash={2023: 15e6, 2025: 40e6})
+    for unit, v in {"A": [("EUR", 100e6)], "B": [("USD", 40e6), ("EUR", 100e6)], "C": [("USD", 108e6)],
+                    "D": [("USD", 108e6), ("EUR", 30e6)], "E": [("EUR", 100e6)],
+                    "F": [("USD", 108e6), ("EUR", 30e6)], "G": [("EUR", -5e6)],
+                    "H": [("USD", 108e6), ("EUR", 0.0)]}[case]:
+        _syn_put(f, EXPENSE_OLD, unit, _ctx("2025-01-01", "2025-12-31", v, filed="2026-02-20"))
+    return f
+
+
+def test_a_years_own_expense_is_its_largest_figure_on_every_expense_tag_in_every_unit():
+    """[Codex review r29 of PR #47, second polish review] iprd_own_charge_usd read the parallel expense tag's figures
+    only when that tag also carried a unit conflict: beside the current tag's USD 40M expensed and paid in FY2025, the
+    parallel tag filed at $108M on its own (EUR 100M at 1.08, or USD 108M: expense_tags_conflict, no unit conflict)
+    left the year's own expense at $40M, so a $40M declaration was "whole" and took FY2025 out of the recurrence count
+    — while the same $108M filed beside a USD 40M fact on that tag (unit_conflict) read $108M. The final rule: a
+    year's own expense in USD is the largest positive figure on ANY of its acquired-IPR&D expense tags (the detector
+    tag and the parallel one, expense_tags_conflict figures too) in every unit filed for the period, each other unit
+    converted at the run's rate — $108M in all four cases; its whole charge is the largest of that, every positive
+    cash-tag figure in every unit and the deducted cash. $40M declared is a part (the year stays counted, for $108M
+    less the $40M), $108M the whole, more than $108M is refused (the cap). A positive figure on an expense tag with no
+    USD value (the parallel tag with no FX rate, alone or beside a USD fact on it) leaves the own expense unknown:
+    every declaration is refused (NEEDS_MAIN_AGENT: currency, the message naming the tag and unit) and the recurrence
+    figure is unknown, read as material, the RECURRENT flag saying the year's acquired-IPR&D expense has no USD
+    figure. The deduction never changes."""
+    for case in "ABCD":
+        u = _ok(_run_fx(_r29_parallel(case), R29_EUR_RATE))
+        b = u["iprd_adjustment"]
+        p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+        assert p25["expense"] == 40e6 and p25["amount"] == 40e6 and p25["excluded"] is None, (case, p25)
+        assert b["total"] == 55e6 and b["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and b["recurrent"], (case, b)
+        assert E.iprd_whole_charge_unknown(p25) is None and E.iprd_own_charge_usd(p25) == (108e6, 108e6), (case, p25)
+        assert E.iprd_recurrence_expense(p25) == 108e6 and b["recurrence_expense_total"] == 123e6, (case, b)
+        assert abs(b["recurrence_materiality"] - _r28_mat(u, 123e6)) < 1e-12, (case, b)
+        # $40M declared: a part of the $108M — the year stays counted, for $108M less the $40M
+        n = _ok(_run_fx(_r29_parallel(case), R29_EUR_RATE, judgment={"iprd_deferred_payment": [deferred(amount=40e6)]}))
+        pb = n["iprd_adjustment"]
+        q25 = next(p for p in pb["periods"] if p["period"] == "2025-12-31")
+        assert q25.get("recurrence_excluded") is None and q25["deferred_payment_of"][0]["amount"] == 40e6, (case, q25)
+        assert pb["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and pb["recurrent"] and pb["total"] == 55e6, (case, pb)
+        assert pb["recurrence_expense_total"] == 15e6 + 68e6 and flags(n, "ACQUIRED_IPRD_RECURRENT"), (case, pb)
+        # the whole $108M: the year leaves the count; more than the whole is refused (the cap)
+        w = _ok(_run_fx(_r29_parallel(case), R29_EUR_RATE,
+                        judgment={"iprd_deferred_payment": [deferred(amount=108e6)]}))["iprd_adjustment"]
+        assert w["fy_with_charge"] == ["2023-12-31"] and not w["recurrent"] and w["total"] == 55e6, (case, w)
+        _refused(_run_fx(_r29_parallel(case), R29_EUR_RATE, judgment={"iprd_deferred_payment": [deferred(amount=109e6)]}),
+                 "FY 2025-12-31's declarations sum to 109,000,000, more than the period's charge 108,000,000")
+    # a positive parallel-tag figure with no USD value: the own expense (and so the whole charge) is unknown
+    for case, needle in (("E", "ResearchAndDevelopmentInProcess (100,000,000 EUR) has no USD figure"),
+                         ("F", "acquired-IPR&D expense tag ResearchAndDevelopmentInProcess is also filed at 30,000,000 "
+                               "EUR, which has no USD figure")):
+        x = _ok(_run(_r29_parallel(case)))
+        xb = x["iprd_adjustment"]
+        x25 = next(p for p in xb["periods"] if p["period"] == "2025-12-31")
+        assert E.iprd_own_charge_usd(x25) == (None, None) and E.iprd_recurrence_expense(x25) is None, (case, x25)
+        why = E.iprd_whole_charge_unknown(x25)
+        assert why and needle in why, (case, why)
+        assert xb["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and xb["recurrent"], (case, xb)
+        assert xb["recurrence_materiality"] is None and xb["recurrence_expense_unknown_usd"] == ["FY2025"], (case, xb)
+        rf = flags(x, "ACQUIRED_IPRD_RECURRENT")
+        assert len(rf) == 1 and "FY2025: its acquired-IPR&D expense has no USD figure" in rf[0], (case, rf)
+        r = _r29_reason(_r29_parallel(case), [deferred(amount=40e6)])
+        assert len(r) == 1 and r[0].startswith("FY 2025-12-31 names no acquired-IPR&D charge") and why in r[0], (case, r)
+        assert "stays in the recurrence count (NEEDS_MAIN_AGENT: currency)" in r[0], (case, r)
+    # zero and negative figures never raise the own expense, nor leave it unknown (no FX rate in either case: a
+    # negative figure is not a positive one, a zero is 0 at every rate)
+    for case, own in (("G", 40e6), ("H", 108e6)):
+        x = _ok(_run(_r29_parallel(case)))
+        xb = x["iprd_adjustment"]
+        x25 = next(p for p in xb["periods"] if p["period"] == "2025-12-31")
+        assert x25["expense"] == 40e6 and x25["amount"] == 40e6 and x25["excluded"] is None, (case, x25)
+        assert E.iprd_whole_charge_unknown(x25) is None and E.iprd_own_charge_usd(x25) == (own, own), (case, x25)
+        assert E.iprd_recurrence_expense(x25) == own and xb["recurrence_expense_total"] == 15e6 + own, (case, xb)
+        assert "recurrence_expense_unknown_usd" not in xb and xb["total"] == 55e6, (case, xb)
+        assert "no USD figure" not in flags(x, "ACQUIRED_IPRD_RECURRENT")[0], case
+        assert _r29_reason(_r29_parallel(case), [deferred(amount=40e6)]) == [], case
+
+
+def test_the_recurrence_figure_reads_the_expense_side_and_the_whole_charge_adds_the_cash_side():
+    """[Codex review r29 of PR #47, second polish review] The round-29 polish made a year's recurrence figure unknown
+    whenever its whole charge was, so a known USD expense beside cash with no FX rate — USD 100M expensed, EUR 40M
+    paid (no rate, even fetched: gated ACQUIRED_IPRD_UNCONVERTED, no unit conflict) — dropped out of the recurrence
+    figure and the RECURRENT flag said FY2025 had "no USD figure", though its expense is $100M in USD. The final rule:
+    the recurrence figure reads the expense side — the year's own expense, less only the part of a declaration that
+    exceeds the whole charge less that expense — and is unknown only when the own expense is; the whole charge adds
+    the cash side (every positive cash-tag figure in every unit, the deducted cash) for the whole-declaration test and
+    its cap, unknown when any positive cash-tag figure has no USD value (every declaration then refused, naming the
+    cash figure and its unit). USD 100M + EUR 40M cash with no rate reads $100M again (f29b9e9's figure) and its
+    declarations stay refused; the cash tag also filed at EUR 100M with no rate beside the USD 40M expensed and paid
+    reads the $40M expense; EUR 100M at 1.08 on the cash tag reads a $40M recurrence figure and a $108M whole charge.
+    The deduction never changes."""
+    ue = _facts(expense={2023: 15e6, 2025: 100e6}, cash={2023: 15e6})
+    _syn_put(ue, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", 40e6, filed="2026-02-20"))
+    a = _ok(_run(ue))
+    ab = a["iprd_adjustment"]
+    a25 = next(p for p in ab["periods"] if p["period"] == "2025-12-31")
+    assert a25["excluded"] == "non_usd_no_rate" and a25["expense"] == 100e6 and a25["cash_native"] == 40e6, a25
+    assert "unit_conflict" not in a25 and "expense_tags_conflict" not in a25, a25
+    assert E.iprd_own_charge_usd(a25) == (None, 100e6) and E.iprd_recurrence_expense(a25) == 100e6, a25
+    why = E.iprd_whole_charge_unknown(a25)
+    assert why == "its cash outflow (40,000,000 EUR) has no USD figure (no FX rate, even fetched)", why
+    assert ab["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and ab["recurrent"] and ab["total"] == 15e6, ab
+    assert ab["recurrence_expense_total"] == 115e6 and "recurrence_expense_unknown_usd" not in ab, ab
+    assert abs(ab["recurrence_materiality"] - _r28_mat(a, 115e6)) < 1e-12, ab
+    rf = flags(a, "ACQUIRED_IPRD_RECURRENT")
+    assert len(rf) == 1 and "periods $115,000,000 = " in rf[0] and "no USD figure" not in rf[0], rf
+    assert flags(a, "ACQUIRED_IPRD_UNCONVERTED") and E.iprd_unresolved(a), "still gated"
+    for amt in (100e6, 40e6):
+        r = _r29_reason(ue, [deferred(amount=amt)])
+        assert len(r) == 1 and r[0].startswith("FY 2025-12-31 names no acquired-IPR&D charge") and why in r[0], r
+        assert "stays in the recurrence count (NEEDS_MAIN_AGENT: currency)" in r[0], r
+    # the cash tag also filed at EUR 100M with no rate beside the USD 40M expensed and paid (unit_conflict): the
+    # expense side is known, so the recurrence figure reads it; the whole charge is not, so no declaration applies
+    c = _ok(_run(_r29_unit_conflict(CASH)))
+    cb = c["iprd_adjustment"]
+    c25 = next(p for p in cb["periods"] if p["period"] == "2025-12-31")
+    assert E.iprd_own_charge_usd(c25) == (None, 40e6) and E.iprd_recurrence_expense(c25) == 40e6, c25
+    cw = E.iprd_whole_charge_unknown(c25)
+    assert cw and "its cash tag PaymentsToAcquireInProcessResearchAndDevelopment is also filed at 100,000,000 EUR" in cw, cw
+    assert cb["recurrence_expense_total"] == 55e6 and "recurrence_expense_unknown_usd" not in cb and cb["recurrent"], cb
+    r = _r29_reason(_r29_unit_conflict(CASH), [deferred(amount=40e6)])
+    assert len(r) == 1 and cw in r[0] and "stays in the recurrence count" in r[0], r
+    # with the rate: the expense side and the cash side apart
+    for tag, fig in ((EXPENSE, 108e6), (CASH, 40e6)):
+        p25 = next(p for p in _ok(_run_fx(_r29_unit_conflict(tag), R29_EUR_RATE))["iprd_adjustment"]["periods"]
+                   if p["period"] == "2025-12-31")
+        assert E.iprd_own_charge_usd(p25) == (108e6, fig) and E.iprd_recurrence_expense(p25) == fig, (tag, p25)
+
+
+def test_a_refused_first_charge_names_a_reversal_with_no_fx_rate_in_its_own_currency():
+    """[Codex review r29 of PR #47, review note] _iprd_no_own_expense_why printed a reversal filed only in a currency
+    with no FX rate as if it were dollars ("negative (-5,000,000, a reversal)" for EUR -5M); it now names the unit and
+    the missing rate, as _iprd_reversal_settles does. A USD reversal reads as before."""
+    f = _facts(expense={2023: 100e6, 2025: 50e6}, cash={2023: 0.0, 2024: 100e6, 2025: 50e6})
+    _syn_put(f, EXPENSE, "EUR", _ctx("2024-01-01", "2024-12-31", -5e6, filed="2025-02-20"))
+    r = _r29_reason(f, [_r29_ghost()])
+    assert len(r) == 1 and ("its acquired-IPR&D expense is negative (-5,000,000 EUR, no FX rate, a reversal) and its "
+                            "cash settles an earlier charge (deferred_payment)") in r[0], r
+    u = _r29_reason(_r29_settled(-10e6), [_r29_ghost()])
+    assert len(u) == 1 and "is negative (-10,000,000, a reversal) and its cash settles" in u[0], u
+
+
+def test_the_charge_flag_never_calls_a_cash_settlement_expensed_at_acquisition():
+    """[Codex review r29 of PR #47, review note] ACQUIRED_IPRD_CHARGE opened "acquired in-process R&D expensed at
+    acquisition in the base window — …" whatever the periods were, so the automatic cash settlement of an earlier
+    charge (deferred_payment: cash with no acquired-IPR&D expense of its own) was listed as an acquisition expensed
+    that year. A settlement period is named as cash settling an earlier charge, and the opening says so; a window
+    with no settlement (HALO) reads exactly as before."""
+    n = _ok(_run(_r29_settled()))
+    cf = flags(n, "ACQUIRED_IPRD_CHARGE")
+    assert len(cf) == 1, cf
+    assert cf[0].startswith("ACQUIRED_IPRD_CHARGE: acquired in-process R&D in the base window, expensed at acquisition "
+                            "or cash settling an earlier charge — "), cf
+    assert ("FY2024 $100,000,000 (cash_outflow, PaymentsToAcquireInProcessResearchAndDevelopment; cash settling an "
+            "earlier charge, not an acquisition expensed that year)") in cf[0], cf
+    assert "FY2025 $50,000,000 (cash_outflow, PaymentsToAcquireInProcessResearchAndDevelopment);" in cf[0], cf
+    assert "expensed at acquisition in the base window" not in cf[0], cf
+    # a window whose only deduction is a settlement
+    s = _ok(_run(_facts(expense={2023: 100e6}, cash={2023: 0.0, 2024: 100e6})))
+    sf = flags(s, "ACQUIRED_IPRD_CHARGE")
+    assert len(sf) == 1 and sf[0].startswith("ACQUIRED_IPRD_CHARGE: cash settling an earlier acquired in-process R&D "
+                                             "charge in the base window — FY2024 $100,000,000 ("), sf
+    assert "expensed at acquisition" not in sf[0] and "cash settling an earlier charge, not an acquisition" in sf[0], sf
+    # a pre-window deal's declared installment (cash only, deferred_payment): a settlement too
+    f = _facts(expense={2022: 40e6, 2023: 1e6, 2024: 1e6}, cash={2022: 10e6, 2023: 1e6, 2024: 1e6, 2025: 30e6})
+    decl = deferred(period="2025-12-31", amount=30e6, first="2022-12-31", source=PRE_SRC, deal="Old Bio", contingent=PRE_CT)
+    mf = flags(_ok(_run(f, judgment={"iprd_deferred_payment": [decl]})), "ACQUIRED_IPRD_CHARGE")
+    assert len(mf) == 1 and ("FY2025 $30,000,000 (cash_outflow, PaymentsToAcquireInProcessResearchAndDevelopment; cash "
+                             "settling an earlier charge, not an acquisition expensed that year; deferred payment of Old "
+                             "Bio (first charged 2022-12-31) — not counted toward recurrence)") in mf[0], mf
+    # no settlement: exactly the wording before
+    p = _ok(_run(_facts(expense={2025: 20e6})))
+    pf = flags(p, "ACQUIRED_IPRD_CHARGE")
+    assert len(pf) == 1 and pf[0].startswith(
+        "ACQUIRED_IPRD_CHARGE: acquired in-process R&D expensed at acquisition in the base window — FY2025 $20,000,000 "
+        "(expense, ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff); total "
+        "$20,000,000 = 10.2% of the base OE total. Owner's earnings (OCF − capex − SBC) never saw this spend: the "
+        "expense is added back in operating cash flow and the payment is not capex. Treatment: "), pf
 
 
 if __name__ == "__main__":

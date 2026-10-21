@@ -242,7 +242,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    check or with no FX rate, it is still a charge year (those presentations still deduct nothing). "Material"
    is the recurrence gate's own figure: the counted periods' acquired-IPR&D expense (the current-YTD leg's too
    on a TTM base, less any part declared an installment) against the base OE total, never the cash deducted —
-   key_numbers.md prints it on its "Recurrence" line; a counted period with no USD figure reads as material.
+   key_numbers.md prints it on its "Recurrence" line; a counted period whose acquired-IPR&D expense has no
+   USD figure reads as material (a known USD expense beside cash with no FX rate is read).
    So the flag can fire with little or nothing deducted (deals paid in stock, inside OCF, or not yet paid):
    resolve it the same way. The engine does not amortize: either justify the one-time treatment in
    analysis.md (why the next three years will not repeat it), or declare the amortized base of step 8 and
@@ -272,17 +273,39 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    cash, a charge year's whole charge is the larger of its cash and its own expense (round 28 re-verification):
    $1 or $20M paid in the year on a $100M acquisition is a part, so declaring that cash leaves the year
    counted; and a declared part comes first from the cash beyond the period's expense (an earlier deal's
-   settlement), so a new deal expensed beside it still counts in full. The engine refuses
+   settlement), so a new deal expensed beside it still counts in full. A year whose whole charge has no USD
+   figure — its own expense, or its cash, filed in a currency with no FX rate (even fetched), or an expense tag
+   (the parallel one too) or the cash tag also filed in such a currency beside the USD figure the engine used
+   (`unit_conflict` with no USD value: EUR 100M filed beside the USD 40M expensed and paid) — cannot be declared
+   at all (Codex review round 29 of PR #47): its cash had stood in for the whole charge, so declaring the $40M
+   paid on a EUR 100M expense took the year out of the count; the engine refuses any amount there ("names no
+   acquired-IPR&D charge … that a declaration can be measured against", the message it already gave a year with
+   no usable cash, naming the figure with no USD value — the expense or the cash tag — and its unit) and the
+   year stays in the recurrence count — block it `NEEDS_MAIN_AGENT: currency` if the
+   year should leave. When every figure converts (Codex review round 29 of PR #47, polish reviews), the year's
+   own expense is the largest positive figure on any of its acquired-IPR&D expense tags (the detector tag and the
+   parallel one) in every unit filed, and its whole charge is the largest of that expense, every positive
+   cash-tag figure in every unit and the cash deducted: EUR 100M at 1.08 ($108M) filed on either tag, or the
+   parallel expense tag filed at $108M on its own, beside the USD 40M expensed and paid makes $40M a part (the
+   year still counts), $108M the whole, and more than $108M is refused. The recurrence figure reads the expense
+   side only — the own expense, less only the part of a declaration beyond the whole charge less that expense —
+   and the whole charge adds the cash side: with EUR 100M at 1.08 on the cash tag the recurrence figure is $40M
+   and the whole charge $108M. The recurrence figure is unknown (read as material) only when the own expense has
+   no USD figure: a USD expense beside cash with no FX rate reads that expense (its declarations are still
+   refused, its whole charge being unknown). The engine refuses
    (`BAD_IPRD_DEFERRED_PAYMENT`, exit 3): a `first_charged_period` that does not precede the period; one deal
-   with two first charges; a first charge inside the window whose record shows no charge there, or whose
+   with two first charges; a first charge inside the window whose record shows no acquired-IPR&D expense of
+   its own there (Codex review round 29 of PR #47: cash that settles an earlier charge, a reversal or a $0
+   expense is no deal's first charge — name the period that expensed it; an expense accrued with $0 cash, paid
+   in shares or filed with no FX rate is one), or whose
    whole charge is itself declared a deferred payment (a deal's first charge is a purchase, not an
    installment); a first charge before the window that companyfacts covers but shows no acquired-IPR&D
    expense fact ending on that date (name the period end of the filing that first expensed it); a source whose
    accession is not from the first charged fiscal year's start year through the year after its end (a two-digit
    accession year 93–99 is 1993–1999, else 20YY; the
    original filing: an 8-K or 10-Q of that fiscal year, or the 10-K that closes it), inside or before the
-   window, so the entry survives the first charge rolling out; entries summing past the period's charge (the
-   larger of its cash and its own expense); a
+   window, so the entry survives the first charge rolling out; entries summing past the period's whole charge
+   (the largest of its own expense and its cash, in every unit filed: round 29's polish reviews); a
    missing or malformed `contingent_total`; one deal's entries carrying different `contingent_total` values (or
    sources); one deal's declared amounts, summed across every entry in judgment.json (a rolled-out one
    included), exceeding its `contingent_total`; and (Codex review round 8 of PR #47) a `period` or
@@ -637,7 +660,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `python3 _system/reprice.py <T>` (the scored cash-flow paths
    repriced at the last close → `live.json`; Tier F names are skipped by design; since Codex review round 11
    of PR #47 it writes nothing until make_score has scored the CURRENT dcf_numbers.json — live figures pause
-   between an engine run and its make_score, and a run make_score refused gets none). The
+   between an engine run and its make_score, and a run make_score refused gets none; since round 29 a folder
+   with no score.json gets none either, any old live.json is removed, and the site withholds a live.json not
+   computed against the score.json on file, so run it after make_score, never before). The
    company page reads all of them. The SEC files (fundamentals, statements, segments,
    profile) are committed and rewritten only when their content changes; `prices.json`,
    `street.json` and `live.json` are gitignored caches rewritten every run. A failure here

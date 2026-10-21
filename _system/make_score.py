@@ -2023,9 +2023,13 @@ def iprd_lines(n):
         # [Codex review r28 of PR #47] the recurrence gate measures the counted years' acquisition expense, never the
         # cash deducted: shown beside the deduction's materiality so a recurrent run with little deducted reads right
         rm, ru = b.get("recurrence_materiality"), [x for x in b.get("recurrence_expense_unknown_usd") or []]
+        # [Codex review r29 of PR #47, second polish review] recurrence_expense_unknown_usd lists only the counted years
+        # whose own acquired-IPR&D expense has no USD figure (a USD expense beside cash with no FX rate is read)
+        who = "its" if len(ru) == 1 else "each year's"
         L.append("- Recurrence: charge years " + ", ".join(f"FY{str(q)[:4]}" for q in b.get("fy_with_charge") or [])
                  + f" — acquired IPR&D expensed in the counted periods {_usd_exact(b.get('recurrence_expense_total'))}"
-                 + (f" (and {', '.join(ru)} with no USD figure: unknown, read as material)" if ru
+                 + (f" (and {', '.join(ru)}: {who} acquired-IPR&D expense has no USD figure — unknown, read as material)"
+                    if ru
                     else f" = {rm * 100:.2f}% of the base OE total" if isinstance(rm, (int, float))
                     else " (no valuation to measure it against: read as material)")
                  + (" · recurrent (ACQUIRED_IPRD_RECURRENT)" if b.get("recurrent")

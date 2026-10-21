@@ -442,6 +442,19 @@ still counts (a period expensed with $0 cash, paid later: its charge is the expe
 outflow) and its own USD expense, whatever its cash: $1 paid on a $100M acquisition is a part, never the whole; the
 declared part comes first from the cash beyond the period's own expense (an earlier deal's settlement) and only
 the rest off that expense (iprd_recurrence_expense).
+[Codex review r29 of PR #47, polish reviews] The final rule (iprd_own_charge_usd). A year's OWN EXPENSE in USD is the
+largest positive figure on ANY of its acquired-IPR&D expense tags (the current detector tag and the parallel one,
+expense_tags_conflict figures too) in every unit filed for the period (USD as filed, other units at the run's rate);
+it is unknown when any positive figure on an expense tag has no USD value (iprd_own_expense_unknown); zero and
+negative figures never raise it. Its WHOLE CHARGE is the largest of that expense, every positive cash-tag figure in
+every unit (converted) and the deducted cash; unknown when the own expense is or any positive cash-tag figure has no
+USD value (iprd_whole_charge_unknown, naming the figure and its unit). The whole-declaration test and its cap read
+the whole charge (unknown: every declaration refused, NEEDS_MAIN_AGENT: currency, the year stays counted); the
+recurrence materiality reads the own expense, less only the part of a declaration beyond (whole charge - own
+expense), and is unknown (read as material) only when the own expense is: a known USD expense beside cash with no FX
+rate reads that expense. EUR 100M (at 1.08) on either tag, or the parallel tag filed at $108M on its own, beside the
+USD 40M expensed and paid: $40M declared is a part, $108M the whole; EUR on the cash tag reads a $40M recurrence
+figure. A year with no unit conflict and no parallel-tag conflict reads exactly as before.
 The deduction is unchanged, and a run with no declaration gains no key.
 [Codex review round 3 of PR #47] Two gaps closed. (1) A positive acquired-IPR&D expense filed only in a currency
 with no FX rate and no usable cash fact is excluded non_usd_no_rate with its expense_native kept, raises
@@ -2453,7 +2466,11 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
     item per deal; several deals may share a period) and, when the declared amounts sum to the period's whole charge
     (within $1; [Codex review r28 of PR #47, re-verification] for a charge year the larger of its amount and its own
-    USD expense, whatever its cash), recurrence_excluded "deferred_payment_of". The deduction is not touched. Returns (refused
+    USD expense, whatever its cash; [Codex review r29 of PR #47, polish reviews] the year's WHOLE charge,
+    iprd_own_charge_usd: the largest of its own expense — the largest positive figure on any of its acquired-IPR&D
+    expense tags, the parallel tag's included, in every unit filed — every positive cash-tag figure in every unit and
+    its amount; recurrence materiality reads the own expense side only), recurrence_excluded
+    "deferred_payment_of". The deduction is not touched. Returns (refused
     [{"entry", "reason"}], rolled_out [entries whose period is older than the window: never applied, they stay in
     judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47 — once they pass the
     checks that need no window record (_iprd_deferred_semantic_problem; an invalid one is refused and never counted
@@ -2467,9 +2484,18 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     deals' amounts summing to no more than it; first_charged_period before the period; the source citing the
     original acquisition filing (an accession filed from the first charged fiscal year's start year through the year
     after its end — inside the window too, so an accepted entry survives the first charge rolling out); inside the
-    window, the first period's record shows a charge and its WHOLE charge is not itself declared a deferred payment
+    window, the first period's record carries its own acquired-IPR&D expense (iprd_has_own_expense: USD or native,
+    however paid — [Codex review r29 of PR #47] never a cash settlement of an earlier charge, a reversal or a $0
+    expense; an amount > 0 had sufficed) and its WHOLE charge is not itself declared a deferred payment
     (a deal's first charge cannot be another deal's installment); before the window, companyfacts shows an
-    acquired-IPR&D expense fact ending there (unless companyfacts starts after it).
+    acquired-IPR&D expense fact ending there (unless companyfacts starts after it). [Codex review r29 of PR #47] A
+    declared period whose whole charge has no USD figure (iprd_whole_charge_unknown: its own expense, or its cash, in
+    a currency with no FX rate, or — the round's review notes — an expense tag (the parallel one too) or the cash tag
+    also filed in such a currency beside the USD fact used, unit_conflict; the reason names that figure and its unit)
+    is refused whatever the amount, so it is never declared whole and a charge year stays in the recurrence count. [Codex review r29 of PR #47, polish reviews] With every figure in USD, a
+    declaration is measured against the whole charge: EUR 100M at 1.08 ($108M) filed on either tag, or a parallel
+    expense tag filed at $108M on its own, beside the USD 40M expensed and paid makes $40M a part (the year stays
+    counted), $108M the whole and more than $108M refused (the cap).
     [Codex review r3 of PR #47] The one case where a declaration changes the deduction: a declared FY period with no
     charge but a cash-tag-only payment in ignored_cash_only carrying pre_window_charges (iprd_detect) — the payment is
     the period's "charge" when first_charged_period lies BEFORE the window and companyfacts shows an acquired-IPR&D
@@ -2545,6 +2571,21 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
             rolled_out.append(e)
             continue
         rec = rec_of.get(e["period"])
+        unknown = iprd_whole_charge_unknown(rec)
+        if unknown is not None:
+            # [Codex review r29 of PR #47] a declaration is whole only when the period's whole charge (the largest of
+            # its own expense and its cash, every unit) is known in USD: with an expense (or cash) the run cannot convert, its
+            # cash had stood in for the whole charge, so $40M declared on a EUR 100M expense with $40M paid took the
+            # year out of the recurrence count. Refused, as the existing convention refuses a declaration on an
+            # unconvertible charge with no usable cash ("names no acquired-IPR&D charge": one message for all)
+            refused.append({"entry": e, "reason": (
+                f"FY {e['period']} names no acquired-IPR&D charge in this run's window ({', '.join(fy_periods)}) that "
+                f"a declaration can be measured against: {unknown}, so its whole charge (the largest of its own expense "
+                "and its cash, in every unit filed) is unknown in USD and no declaration on it can be whole — none is applied and "
+                + ("the year stays in the recurrence count" if iprd_has_own_expense(rec)
+                   else "nothing is deducted for it")
+                + " (NEEDS_MAIN_AGENT: currency)")})
+            continue
         charge = rec.get("amount") if rec is not None else None
         co = None
         _residual = lambda: next((c for c in (iprd or {}).get("ignored_cash_only") or []
@@ -2562,7 +2603,10 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
             # whatever its cash, so its whole charge is the larger of its amount and that expense — $1 paid on a
             # $100M acquisition had made a $1 declaration "whole", taking the year out of the count (Andrew's
             # 2026-10-20 rule takes it out only when its whole charge is declared). The cap below reads the same
-            # figure; the deduction is not touched
+            # figure; the deduction is not touched. [Codex review r29 of PR #47, polish reviews] _own is the year's
+            # whole charge (iprd_own_charge_usd): any expense tag (the parallel one too) or the cash tag filed in any
+            # unit at more than the cash and the USD expense raises it (EUR 100M at 1.08 beside the USD 40M used, or the
+            # parallel tag's $108M beside the current tag's $40M: $108M)
             charge = _own
         if not (isinstance(charge, (int, float)) and charge > 0):
             # [Codex review r3 of PR #47] a cash-tag-only payment (no or a $0 expense) the window's remainder did not
@@ -2592,10 +2636,15 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                                 f"({', '.join(fy_periods)}), where the window's unpaid remainder already decides"})
                 continue
             first = rec_of.get(f)
-            if first is None or not ((isinstance(first.get("amount"), (int, float)) and first["amount"] > 0)
-                                     or (isinstance(first.get("expense"), (int, float)) and first["expense"] > 0)):
+            # [Codex review r29 of PR #47] the first charge is a period with its OWN acquired-IPR&D expense
+            # (iprd_has_own_expense: USD or native, however paid) — an amount > 0 had let the automatic cash
+            # settlement of an earlier charge (no expense, a $0 or a negative one) be named a deal's first charge
+            if first is None or not iprd_has_own_expense(first):
                 refused.append({"entry": e, "reason": f"first_charged_period {f} lies inside the engine's window "
-                                f"({', '.join(fy_periods)}) but this run's record shows no acquired-IPR&D charge there"})
+                                f"({', '.join(fy_periods)}) but this run's record shows no acquired-IPR&D charge there"
+                                + ("" if first is None else (
+                                    f": {_iprd_no_own_expense_why(first)} — a deal's first charge is the period that "
+                                    "expensed it, never cash settling an earlier charge"))})
                 continue
             evidence = "window_record"
         else:
@@ -3083,14 +3132,22 @@ def _iprd_claimable_expense(rec):
     amount is not positive (cash basis, the cash tag filed at $0: the expense accrued into the window's unpaid
     remainder) — its own positive USD expense; else None. [Codex review r28 of PR #47] Every FY charge year
     (iprd_charge_year) with a USD expense qualifies, so a $0-cash charge whose residual is declared paid in shares
-    (which now counts toward recurrence) can leave the count the same way; an expense with no USD figure cannot be
-    claimed (its run is gated ACQUIRED_IPRD_UNCONVERTED)."""
+    (which now counts toward recurrence) can leave the count the same way. An expense with no USD figure is never
+    claimed: [Codex review r29 of PR #47] iprd_apply_deferred refuses every declaration on a period whose whole charge
+    is unknown in USD (iprd_whole_charge_unknown) before it reads this — the docstring had said "its run is gated
+    ACQUIRED_IPRD_UNCONVERTED", which is not so for a foreign-currency expense beside usable USD cash (that cash-basis
+    period is not excluded and nothing gates it), and that period's cash had stood in for its whole charge.
+    [Codex review r29 of PR #47, polish reviews] It returns the year's WHOLE charge (iprd_own_charge_usd's first
+    figure: the largest of its own expense — the largest positive figure on any of its acquired-IPR&D expense tags
+    in every unit filed — every positive cash-tag figure in every unit and its amount), None when that is unknown in
+    USD — it had returned the USD expense alone, so EUR 100M (at 1.08, $108M) filed beside the USD 40M expensed and
+    paid read $40M and a $40M declaration was whole. A year with no unit conflict and no parallel-tag conflict gets
+    the larger of its USD expense and amount, as before. Recurrence materiality reads the own expense instead
+    (iprd_recurrence_expense)."""
     if not iprd_charge_year(rec):
         return None
-    v = rec.get("expense")
-    if not (_iprd_finite(v) and v > 0) or rec.get("expense_tag_unconverted"):
-        return None
-    return float(v)
+    oc = iprd_own_charge_usd(rec)
+    return oc[0] if oc is not None else None
 
 
 # [Codex review r28 of PR #47] every `excluded` reason a period record can carry, by whether the period still holds
@@ -3107,6 +3164,202 @@ IPRD_OWN_CHARGE_EXCLUSIONS = ("paid_in_shares", "paid_in_operating_cash_flow", "
                               IPRD_UNCONVERTED)
 
 
+def iprd_has_own_expense(rec):
+    """[Codex review r29 of PR #47] Whether a window record (FY or the TTM current-YTD leg) carries its OWN positive
+    acquired-IPR&D expense as detected: its detector figure (USD, else native) > 0, paid in the year or not, whatever
+    its cash presentation (paid in investing, in shares, inside operating cash flow, inside intangible capex, awaiting
+    the cash-flow check, no FX rate: IPRD_OWN_CHARGE_EXCLUSIONS). Not one: a deferred_payment (cash settling an earlier
+    charge, with no expense of its own: none, $0 or a reversal), a negative, $0 or missing expense, and any other
+    exclusion (`negative`). This is iprd_own_charge without its recurrence_excluded test (what a whole
+    iprd_deferred_payment declaration does to a period): iprd_apply_deferred requires it of the record a declaration
+    names as its deal's first charge inside the window — before, any record with a positive amount passed, so the
+    automatic cash settlement of an earlier charge could be named a deal's first charge and a later, distinct
+    acquisition declared its installment."""
+    if not isinstance(rec, dict) or rec.get("window") not in IPRD_CHECK_WINDOWS:
+        return False
+    if rec.get("deferred_payment"):
+        return False
+    if rec.get("excluded") is not None and rec["excluded"] not in IPRD_OWN_CHARGE_EXCLUSIONS:
+        return False
+    v = _iprd_detector_value(rec)
+    return v is not None and v > 0
+
+
+def _iprd_no_own_expense_why(rec):
+    """[Codex review r29 of PR #47] Why a window record carries no acquired-IPR&D expense of its own
+    (iprd_has_own_expense is False): the words a refused first_charged_period names. [Codex review r29 of PR #47,
+    review note] A figure read from the native fact (no USD figure: expense None) names its unit and the missing FX
+    rate, as _iprd_reversal_settles does — it had printed EUR -5M as "-5,000,000"."""
+    v = _iprd_detector_value(rec)
+    if v is not None and v < 0:
+        fig = f"{v:,.0f}" if rec.get("expense") is not None else f"{v:,.0f} {rec.get('expense_unit')}, no FX rate"
+        return (f"its acquired-IPR&D expense is negative ({fig}, a reversal)"
+                + (" and its cash settles an earlier charge (deferred_payment)" if rec.get("deferred_payment") else ""))
+    if rec.get("deferred_payment"):
+        return ("its record is cash that settles an earlier charge (deferred_payment), with no acquired-IPR&D expense "
+                "of its own")
+    return "its acquired-IPR&D expense is $0 or not filed"
+
+
+def iprd_whole_charge_unknown(rec):
+    """[Codex review r29 of PR #47] Why a window record's WHOLE charge in USD — what iprd_apply_deferred measures an
+    iprd_deferred_payment declaration against, the whole-declaration test and its cap (round 28) — has no USD figure,
+    or None when it has one (or there is no record). [Codex review r29 of PR #47, second polish review] The final
+    rule: a year's whole charge is the largest of its own expense (iprd_own_expense_unknown: the largest positive
+    figure on any of its acquired-IPR&D expense tags in every unit filed), every positive figure on the cash tag in
+    every unit filed (each converted at the run's rate) and the cash deducted (its amount) — iprd_own_charge_usd. It
+    is unknown when the own expense is (its own positive acquired-IPR&D expense filed only in a currency with no FX
+    rate, even fetched: expense None, expense_native > 0 — with no usable cash, beside usable USD cash on the
+    cash-basis path, or with its residual declared paid in shares; a parallel detector tag that cannot be converted,
+    expense_tag_unconverted; an expense tag also filed with a positive fact in a unit with no USD figure beside the
+    one the run used, unit_conflict) or when any positive cash-tag figure has no USD value (_iprd_cash_unknown: a cash
+    outflow with no FX rate, cash_native > 0 and no amount — beside a USD expense, or a cash-only payment gated
+    non_usd_no_rate; cash that may settle a remainder unknown in USD, unconverted_remainder_of; the cash tag also
+    filed with a positive fact in a unit with no USD figure, unit_conflict). The reason names which figure has no USD
+    value — the expense or the cash tag, and its unit. Every declaration on such a year is refused (NEEDS_MAIN_AGENT:
+    currency) and the year stays counted. Before round 29 a foreign-currency expense beside $40M of USD cash read
+    "whole" at $40M, so a $40M declaration took the year out of the recurrence count though its own expense was
+    unknown; the round's review notes added the unit_conflict reasons. Recurrence materiality does not read this: it
+    is unknown only when the own expense is (iprd_recurrence_expense), so a known USD expense beside cash with no FX
+    rate reads that expense."""
+    if not isinstance(rec, dict):
+        return None
+    return iprd_own_expense_unknown(rec) or _iprd_cash_unknown(rec)
+
+
+def iprd_own_expense_unknown(rec):
+    """[Codex review r29 of PR #47, second polish review] Why a window record's OWN EXPENSE in USD — the largest
+    positive figure on any of its acquired-IPR&D expense tags (the current detector tag and the parallel one,
+    expense_tags_conflict figures too) in every unit filed for the period — is unknown: a positive figure on an
+    expense tag has no USD value (no FX rate, even fetched). The detector figure itself (expense None, expense_native
+    > 0), a parallel detector tag that cannot be converted beside the other (expense_tag_unconverted, or an
+    expense_tags_conflict entry whose usd is null), or an expense tag also filed with a positive fact in a unit with
+    no USD figure beside the one the run used (unit_conflict). None when it is known (or there is no record). Zero and
+    negative figures never make it unknown. The one reason recurrence materiality is unknown (iprd_recurrence_expense
+    None, read as material, listed in recurrence_expense_unknown_usd)."""
+    if not isinstance(rec, dict):
+        return None
+    tu = rec.get("expense_tag_unconverted")
+    if isinstance(tu, dict) and _iprd_finite(tu.get("native")) and tu["native"] > 0:
+        return (f"its acquired-IPR&D expense tag {tu.get('tag')} ({float(tu['native']):,.0f} {tu.get('unit')}) has no "
+                "USD figure beside the other detector tag (no FX rate, even fetched)")
+    en = rec.get("expense_native")
+    if rec.get("expense") is None and _iprd_finite(en) and en > 0:
+        return (f"its own acquired-IPR&D expense ({float(en):,.0f} {rec.get('expense_unit')}) has no USD figure (no FX "
+                "rate, even fetched)")
+    etc = rec.get("expense_tags_conflict")
+    for tag, x in (sorted(etc.items()) if isinstance(etc, dict) else ()):
+        if isinstance(x, dict) and x.get("usd") is None and _iprd_finite(x.get("native")) and x["native"] > 0:
+            return (f"its acquired-IPR&D expense tag {tag} ({float(x['native']):,.0f} {x.get('unit')}) has no USD "
+                    "figure beside the other detector tag (no FX rate, even fetched)")
+    return _iprd_unit_conflict_unknown(rec, cash=False)
+
+
+def _iprd_cash_unknown(rec):
+    """[Codex review r29 of PR #47, second polish review] Why a positive figure on a window record's cash tag has no
+    USD value — its cash outflow filed in a currency with no FX rate (cash_native > 0 and no amount), cash that may
+    settle a remainder unknown in USD (unconverted_remainder_of), or the cash tag also filed with a positive fact in
+    a unit with no USD figure beside the one the run used (unit_conflict) — or None. The cash side of the whole
+    charge (iprd_whole_charge_unknown); never the own expense, so never the recurrence materiality."""
+    if not _iprd_finite(rec.get("amount")):
+        if rec.get("unconverted_remainder_of"):
+            return ("its cash may settle the remainder, unknown in USD, of the acquired-IPR&D charge in "
+                    + ", ".join(rec["unconverted_remainder_of"]) + " (no FX rate, even fetched)")
+        cn = rec.get("cash_native")
+        if _iprd_finite(cn) and cn > 0:
+            return (f"its cash outflow ({float(cn):,.0f} {rec.get('cash_unit')}) has no USD figure (no FX rate, even "
+                    "fetched)")
+    return _iprd_unit_conflict_unknown(rec, cash=True)
+
+
+def _iprd_unit_conflict_unknown(rec, cash):
+    """[Codex review r29 of PR #47, review note] Why a record's unit_conflict leaves a figure unknown in USD — the cash
+    tag (cash True) or an acquired-IPR&D expense tag (cash False) also filed for the period with a positive fact in a
+    unit that has no USD figure (no FX rate, even fetched) beside the unit the run used — or None. [Codex review r29
+    of PR #47, second polish review] Split by side: an expense tag's makes the own expense unknown
+    (iprd_own_expense_unknown), the cash tag's only the whole charge (_iprd_cash_unknown)."""
+    uc = rec.get("unit_conflict") if isinstance(rec, dict) else None
+    for tag, c in (sorted(uc.items()) if isinstance(uc, dict) else ()):
+        if (tag == IPRD_CASH_TAG) != cash or not isinstance(c, dict) or not isinstance(c.get("units"), dict):
+            continue
+        used = c.get("used")
+        for u, x in sorted(c["units"].items()):
+            if u == used or not isinstance(x, dict) or x.get("usd") is not None:
+                continue
+            if _iprd_finite(x.get("native")) and x["native"] > 0:
+                ux = c["units"].get(used) if isinstance(c["units"].get(used), dict) else {}
+                what = "cash tag" if tag == IPRD_CASH_TAG else "acquired-IPR&D expense tag"
+                beside = (f"the {used} {float(ux['native']):,.0f} the run used" if _iprd_finite(ux.get("native"))
+                          else f"the {used} fact the run used")
+                return (f"its {what} {tag} is also filed at {float(x['native']):,.0f} {u}, which has no USD figure (no "
+                        f"FX rate, even fetched) to compare with {beside} (unit_conflict)")
+    return None
+
+
+def _iprd_unit_conflict_usd(rec, cash):
+    """[Codex review r29 of PR #47, polish review] The positive USD figures a record's unit_conflict holds for the cash
+    tag (cash True) or for its acquired-IPR&D expense tags (cash False): every unit filed for the period that disagreed
+    after conversion, the unit the run used included, each other unit at the run's rate. [] without a conflict (units
+    that agree record none). A unit with no USD figure is not listed: that side is then unknown in USD
+    (_iprd_unit_conflict_unknown)."""
+    uc = rec.get("unit_conflict") if isinstance(rec, dict) else None
+    out = []
+    for tag, c in (sorted(uc.items()) if isinstance(uc, dict) else ()):
+        if (tag == IPRD_CASH_TAG) != cash or not isinstance(c, dict) or not isinstance(c.get("units"), dict):
+            continue
+        for _, x in sorted(c["units"].items()):
+            v = x.get("usd") if isinstance(x, dict) else None
+            if _iprd_finite(v) and v > 0:
+                out.append(float(v))
+    return out
+
+
+def _iprd_expense_tags_usd(rec):
+    """[Codex review r29 of PR #47, second polish review] The positive USD figures a record's expense_tags_conflict
+    holds — both detector tags filed positive at different figures (the current tag used): each tag's USD value (a
+    float, or a dict's usd). [] without a conflict. A tag with no USD figure is not listed: the own expense is then
+    unknown (iprd_own_expense_unknown)."""
+    etc = rec.get("expense_tags_conflict") if isinstance(rec, dict) else None
+    out = []
+    for _, x in (sorted(etc.items()) if isinstance(etc, dict) else ()):
+        v = x.get("usd") if isinstance(x, dict) else x
+        if _iprd_finite(v) and v > 0:
+            out.append(float(v))
+    return out
+
+
+def iprd_own_charge_usd(rec):
+    """[Codex review r29 of PR #47, polish reviews] (whole charge, own expense) in USD for a window record that carries
+    its own acquired-IPR&D expense (iprd_has_own_expense; None for any other record) — the final rule (the second
+    polish review), read by the whole-declaration test and its cap (iprd_apply_deferred, through
+    _iprd_claimable_expense: the whole charge) and by recurrence materiality (iprd_recurrence_expense: the own expense,
+    less only the part of a declaration beyond the whole charge less that expense):
+    1. the OWN EXPENSE is the largest positive figure on ANY of its acquired-IPR&D expense tags — the current detector
+       tag and the parallel one (expense_tags_conflict figures too) — in EVERY unit filed for the period (USD as
+       filed, other units at the run's rate: unit_conflict); None (unknown) when any positive figure on an expense
+       tag has no USD value (iprd_own_expense_unknown). Zero and negative figures never raise it;
+    2. the WHOLE CHARGE is the largest of that own expense, every positive cash-tag figure in every unit filed
+       (converted) and the deducted cash (its amount: round 28's "larger of its cash and its own expense"); None
+       (unknown) when the own expense is, or when any positive cash-tag figure has no USD value (_iprd_cash_unknown).
+    The deduction does not read it (round 15's amount rule stands). A year with no unit conflict and no parallel-tag
+    conflict reads its USD expense and the larger of that and its amount, exactly as before. Before: the round-29
+    polish read the parallel tag only when it carried a unit conflict (the current tag's USD 40M beside the parallel
+    tag's $108M read $40M, so a $40M declaration was whole), and made the recurrence figure unknown whenever the
+    whole charge was (a USD 100M expense beside EUR 40M cash with no FX rate read unknown, not $100M)."""
+    if not iprd_has_own_expense(rec):
+        return None
+    v = rec.get("expense")
+    if iprd_own_expense_unknown(rec) is not None or not (_iprd_finite(v) and v > 0):
+        return None, None
+    expense = max([float(v)] + _iprd_expense_tags_usd(rec) + _iprd_unit_conflict_usd(rec, cash=False))
+    if _iprd_cash_unknown(rec) is not None:
+        return None, expense
+    c, a = rec.get("cash"), rec.get("amount")
+    charge = max([expense] + ([float(c)] if (_iprd_finite(c) and c > 0) else [])
+                 + _iprd_unit_conflict_usd(rec, cash=True) + ([float(a)] if (_iprd_finite(a) and a > 0) else []))
+    return charge, expense
+
+
 def iprd_own_charge(rec):
     """[Codex review r28 of PR #47] Whether a window record (FY or the TTM current-YTD leg) carries its OWN positive
     acquired-IPR&D expense charge: its detector figure (USD, else native) > 0, paid in the year or not, whatever its
@@ -3114,15 +3367,9 @@ def iprd_own_charge(rec):
     cash-flow check, no FX rate: IPRD_OWN_CHARGE_EXCLUSIONS). Not a charge: a deferred_payment (cash settling an
     earlier charge, with no expense of its own: none, $0 or a reversal), a period declared, whole, an installment of
     an earlier deal (recurrence_excluded, Andrew's 2026-10-20 ruling), a negative, $0 or missing expense, and any
-    other exclusion (`negative`)."""
-    if not isinstance(rec, dict) or rec.get("window") not in IPRD_CHECK_WINDOWS:
-        return False
-    if rec.get("deferred_payment") or rec.get("recurrence_excluded"):
-        return False
-    if rec.get("excluded") is not None and rec["excluded"] not in IPRD_OWN_CHARGE_EXCLUSIONS:
-        return False
-    v = _iprd_detector_value(rec)
-    return v is not None and v > 0
+    other exclusion (`negative`). [Codex review r29 of PR #47] iprd_has_own_expense less a recurrence_excluded
+    period."""
+    return iprd_has_own_expense(rec) and not rec.get("recurrence_excluded")
 
 
 def iprd_charge_year(rec):
@@ -3148,20 +3395,33 @@ def iprd_recurrence_expense(rec):
     expense, so only what the cash beyond the expense cannot hold comes off the expense (re-verification of round
     28). None when the expense has no USD figure: filed only in a currency the run holds no
     FX rate for (expense None, its native figure detecting the charge), or beside a parallel detector tag that cannot
-    be converted (expense_tag_unconverted: the period's charge is unknown in USD)."""
-    v = rec.get("expense") if isinstance(rec, dict) else None
-    if not (_iprd_finite(v) and v > 0) or rec.get("expense_tag_unconverted"):
+    be converted (expense_tag_unconverted: the period's charge is unknown in USD).
+    [Codex review r29 of PR #47, polish reviews] The final rule: the figure reads the expense side —
+    iprd_own_charge_usd's OWN EXPENSE (the largest positive figure on any of its acquired-IPR&D expense tags, the
+    parallel tag's included, in every unit filed for the period), less only the part of a declaration that exceeds
+    its WHOLE CHARGE less that expense (the whole charge adds the cash side: every positive cash-tag figure in every
+    unit and the deducted cash) — so EUR 100M (at 1.08) filed on an expense tag beside the USD 40M used reads $108M,
+    and EUR 100M on the cash tag reads $40M (charge beyond the expense, from which a declared part comes first). None
+    (the materiality unknown, read as material) ONLY when the own expense is unknown (iprd_own_expense_unknown: a
+    positive figure on an expense tag with no USD value); a known USD expense beside cash with no FX rate reads that
+    expense (no declaration applies to such a year: its whole charge is unknown, iprd_whole_charge_unknown). A period
+    with no unit conflict and no parallel-tag conflict reads exactly as before."""
+    oc = iprd_own_charge_usd(rec)
+    if oc is None or oc[1] is None:
         return None
+    charge, v = oc
     declared = sum(float(x["amount"]) for x in (rec.get("deferred_payment_of") or [])
                    if isinstance(x, dict) and _iprd_finite(x.get("amount")))
     # [Codex review r28 of PR #47, re-verification] the declared installment comes first from the period's cash
     # beyond its own expense (cash that settles an earlier charge: a pre-window deal's deferred consideration) and
     # only the rest off the expense — max(0, expense - declared) had wiped out a new $6M deal expensed beside Old
     # Bio's $30M settlement ($6M expensed, $36M paid, the $30M declared), silencing RECURRENT once the installment was
-    # declared. Cash at or below the expense leaves no excess: the declared part comes off the expense, as before
-    a = rec.get("amount")
-    excess = max(0.0, float(a) - float(v)) if _iprd_finite(a) else 0.0
-    return max(0.0, float(v) - max(0.0, declared - excess))
+    # declared. Cash at or below the expense leaves no excess: the declared part comes off the expense, as before.
+    # [Codex review r29 of PR #47, polish reviews] the excess is the year's whole charge beyond its own expense (with
+    # no unit or parallel-tag conflict: the amount beyond the USD expense, as before); a whole charge unknown in USD
+    # (cash with no FX rate) holds no excess — no declaration applies to such a year, so the expense is read whole
+    excess = max(0.0, charge - v) if charge is not None else 0.0
+    return max(0.0, v - max(0.0, declared - excess))
 
 
 def iprd_recurrence_materiality(periods, denom, ratio, valued, mat_base):
@@ -3174,7 +3434,11 @@ def iprd_recurrence_materiality(periods, denom, ratio, valued, mat_base):
     pre-window deal's installment never makes tiny in-window charges material. Per share on the run's denominator
     and ADS ratio, against `mat_base` (the base per share; an iprd_amortized declaration's native base) and the
     same IPRD_MATERIALITY threshold. Returns (expense_total (the USD-known part), materiality | None, material,
-    unknown [period labels with no USD figure]). materiality is None when a counted period has no USD figure, or
+    unknown [labels of the counted periods whose acquired-IPR&D expense has no USD figure]). [Codex review r29 of PR
+    #47, polish reviews] A period's figure is its own expense (iprd_own_charge_usd: the largest positive figure on any
+    of its expense tags in every unit filed, less a declared part beyond its whole charge less that expense), unknown
+    only when that expense is (iprd_own_expense_unknown) — never because its cash has no USD figure.
+    materiality is None when a counted period's acquired-IPR&D expense has no USD figure, or
     the run has no valuation, share denominator or base to measure against: read as material when any charge is
     counted (the `materiality is None` convention; an unconvertible expense also gates the run
     ACQUIRED_IPRD_UNCONVERTED). ACQUIRED_IPRD_CHARGE keeps the deduction's own materiality."""
@@ -3774,9 +4038,14 @@ def iprd_flags(iprd):
         ru = iprd.get("recurrence_expense_unknown_usd")
         fig = ""
         if isinstance(rt, (int, float)) and not isinstance(rt, bool):
+            # [Codex review r29 of PR #47, second polish review] recurrence_expense_unknown_usd lists only the years
+            # whose own acquired-IPR&D expense has no USD figure (a USD expense beside cash with no FX rate is read):
+            # the flag says exactly that of them
+            who, whose = ("its", "its") if (isinstance(ru, list) and len(ru) == 1) else ("each year's", "their")
             fig = (f"; acquired IPR&D expensed in the window's charge periods ${rt:,.0f}"
-                   + (f" (and {', '.join(ru)} with no USD figure: its share of the base OE total is unknown, read as "
-                      "material)" if ru else f" = {rm * 100:.1f}% of the base OE total" if isinstance(rm, (int, float))
+                   + (f" (and {', '.join(ru)}: {who} acquired-IPR&D expense has no USD figure, so {whose} share of "
+                      "the base OE total is unknown, read as material)"
+                      if ru else f" = {rm * 100:.1f}% of the base OE total" if isinstance(rm, (int, float))
                       else " (no valuation to measure it against: read as material)"))
         # [Codex review r28 of PR #47, re-verification] an iprd_amortized base carries the FY charges the window
         # DEDUCTED (the cash), not the expense this gate measures: the flag names those figures, and with nothing
@@ -3807,14 +4076,38 @@ def iprd_flags(iprd):
     return out
 
 
+def _iprd_settles_earlier_charge(p):
+    """[Codex review r29 of PR #47, review note] Whether a deducted period is cash settling an earlier charge — a
+    deferred_payment (the automatic settlement of the window's unpaid remainder, or a pre-window deal's declared
+    installment) with no acquired-IPR&D expense of its own (iprd_has_own_expense) — never an acquisition expensed
+    that year."""
+    return bool(isinstance(p, dict) and p.get("deferred_payment") and not iprd_has_own_expense(p))
+
+
 def _iprd_charge_flag(iprd, t):
-    """ACQUIRED_IPRD_CHARGE for a block whose window deducted a total ([] when that total is not material)."""
+    """ACQUIRED_IPRD_CHARGE for a block whose window deducted a total ([] when that total is not material).
+    [Codex review r29 of PR #47, review note] A period that is cash settling an earlier charge
+    (_iprd_settles_earlier_charge) is named so, and the opening no longer calls the window's deductions "expensed at
+    acquisition" when one of them is such a settlement; a window with none (HALO) reads exactly as before."""
+    ded = [p for p in iprd["periods"] if p["deducted"] > 0]
+    settles = [p for p in ded if _iprd_settles_earlier_charge(p)]
     parts = ", ".join(f"{_iprd_period_label(p)} ${p['deducted']:,.0f} ({p['amount_basis']}, {p['tag_used']}"
+                      + ("; cash settling an earlier charge, not an acquisition expensed that year"
+                         if _iprd_settles_earlier_charge(p) else "")
                       + (("; deferred payment of " + " and ".join(
                           f"{x['deal']} (first charged {x['first_charged_period']})" for x in p["deferred_payment_of"])
                           + (" — not counted toward recurrence" if p.get("recurrence_excluded") else ", in part"))
                          if isinstance(p.get("deferred_payment_of"), list) and p["deferred_payment_of"] else "") + ")"
-                      for p in iprd["periods"] if p["deducted"] > 0)
+                      for p in ded)
+    if not settles:
+        opening = "acquired in-process R&D expensed at acquisition in the base window — "
+    elif len(settles) == len(ded):
+        opening = "cash settling an earlier acquired in-process R&D charge in the base window — "
+    else:
+        opening = ("acquired in-process R&D in the base window, expensed at acquisition or cash settling an earlier "
+                   "charge — ")
+    added_back = ("the expense is added back in operating cash flow" if not settles else
+                  "the expense is added back in operating cash flow (a settled charge's in the year that expensed it)")
     if t == IPRD_TREATMENT_ONE_TIME:
         how = (f"deducted once from every scenario's intrinsic value and added to the price each IRR is solved at "
                f"(${iprd['charge_per_share']:,.4f}/share on {iprd['shares_denominator']:,.0f} shares, {iprd['shares_source']}); "
@@ -3828,11 +4121,11 @@ def _iprd_charge_flag(iprd, t):
     mat = iprd.get("materiality")
     if not iprd.get("material"):
         return []
-    return ["ACQUIRED_IPRD_CHARGE: acquired in-process R&D expensed at acquisition in the base window — "
-            f"{parts}; total ${iprd['total']:,.0f}"
+    return ["ACQUIRED_IPRD_CHARGE: " + opening
+            + f"{parts}; total ${iprd['total']:,.0f}"
             + (f" = {mat * 100:.1f}% of the base OE total" if mat is not None else "")
-            + ". Owner's earnings (OCF − capex − SBC) never saw this spend: the expense is added back in "
-            "operating cash flow and the payment is not capex. Treatment: " + how
+            + ". Owner's earnings (OCF − capex − SBC) never saw this spend: " + added_back
+            + " and the payment is not capex. Treatment: " + how
             + ". analysis.md must name the amount, the deal, the cash vs stock consideration and the recurrence "
             "assessment"]
 

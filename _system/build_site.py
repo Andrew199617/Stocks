@@ -113,10 +113,12 @@ BEFORE the scored session (reprice's basis_check.method
 "no_close_since_scoring") — older than the verdict's own price. Such a
 live.json (price_date earlier than score.json analysis_date / the run's
 as_of) is not shown as current: record.live is null, record.live_withheld =
-{reason, note, price, price_date, scored_date, method}, the row's live
-fields stay null with row.live_withheld = true, so the ranking sorts on the
-scored IRR and the page shows the scored figures until a close after the
-scored session arrives.
+{reason, note, price, price_date, scored_date, method} (reason
+live_older_than_score; live_from_earlier_run for one left from an earlier
+run of a re-scored name), the row's live fields stay null with
+row.live_withheld = true, so the ranking sorts on the scored IRR and the
+page shows the scored figures until a close after the scored session
+arrives.
 [Codex review round 2 of PR #47] A run whose acquired-IPR&D treatment is
 not_applied_share_count_unverified is never repriced (reprice.py skips it),
 so record.live_withheld carries reason iprd_share_count_unverified with or
@@ -138,6 +140,22 @@ iprd_unresolved / iprd_share_count_unverified reasons keep precedence.
 (make_score writes the run's content_hash since round 12) is from the run
 only when that hash is the run's, itself valid over the record; one without
 it is judged on the rounded headline figures as before.
+[Codex review round 29 of PR #47] And, reason live_not_from_this_score, for
+a live.json beside a run record that was not computed against the
+score.json on file (live_score_problem; reprice.py records what it read:
+score_json_fresh, scored.tier_final / tier_override_reason /
+dcf_content_hash): repriced before make_score scored or re-scored the run,
+or beside another run's same-day score. [Codex review round 29 of PR #47,
+polish review] A live.json written before round 29 records no score
+identity: beside a score.json that carries one it is withheld with its own
+reason, live_without_score_identity (live_score_identity_missing; its note
+says it records no score identity and the next repricing rewrites it, never
+that it was computed before the score). The score is the run's, so the
+scored figures are the latest available. Precedence, in the order
+live_shown checks them: iprd_unresolved / iprd_share_count_unverified, then
+score_not_from_this_run, then live_from_earlier_run,
+live_not_from_this_score, live_without_score_identity and
+live_older_than_score.
 
 Splits since scoring (2026-10-16): reprice.py restates live.json in today's
 share units and records split_factor (new shares per scored-run share). The
@@ -500,6 +518,15 @@ IPRD_UNRESOLVED_NOTE = ("The latest engine run left an acquired-IPR&D charge unr
 SCORE_NOT_FROM_RUN_NOTE = ("The score on file was not built from the latest engine run (make_score refused that run or has "
                            "not scored it yet), so the scored figures are the current ones and no live repricing is shown "
                            "until the folder is scored again.")
+# [Codex review r29 of PR #47] a live.json not computed against the score on file (live_score_problem)
+LIVE_NOT_FROM_SCORE_NOTE = ("The live repricing on file was computed before the current score of this run (make_score has "
+                            "scored it since), so the scored figures are the latest available until the folder is repriced.")
+# [Codex review r29 of PR #47, polish review] a live.json from before round 29 beside a score.json that carries its run's
+# identity (live_score_identity_missing): it may well have been computed against this very score, so the note never says
+# it was computed before it — only that it records no score identity and that the next repricing rewrites it
+LIVE_NO_SCORE_IDENTITY_NOTE = ("The live repricing on file records no score identity (it was written before live.json "
+                               "recorded the score it was computed against), so it is not shown beside this score: the "
+                               "scored figures are the latest available until the next repricing rewrites it.")
 
 
 def _same(a, b, tol):
@@ -608,6 +635,59 @@ def iprd_unresolved(n):
     return blk.get("treatment") in (IPRD_AWAITING, IPRD_UNCONVERTED)
 
 
+def live_score_problem(lv, score, numbers):
+    """[Codex review r29 of PR #47] Why live.json was not computed against THIS score.json (None when it was). reprice
+    reads only these from score.json — whether there is one (score_json_fresh), tier_final, tier_override_reason
+    (recorded only while the override is active: tier_final differs from the run's tier_by_numbers) — plus, recorded
+    since this round, the score's run identity (scored.dcf_content_hash: the score.json's, null when it carries
+    none). Any difference means the live tier and override were computed against another score: a repricing written
+    before make_score scored the run (score_json_fresh null — reprice_folder writes none since this round), one
+    computed before make_score re-scored the same run (an override added, removed or reworded), or one beside a
+    same-day score of another run. Before, live_shown compared only dates, so the numbers tier at the last close was
+    published beside a new tier_override. [Codex review r29 of PR #47, review note] A live.json that records no
+    scored.dcf_content_hash (written before this round) was not computed against a score.json that carries one: it
+    had been exempt from the identity check, so beside a same-day score of another run it was shown as current. It
+    is withheld until the next reprice rewrites it. A score.json with no dcf_content_hash (a run from before release
+    5.6.0; score_from_run judges it on the headline figures) has no identity to bind: a live.json beside it matches
+    when it records none either (null or no key). [Codex review r29 of PR #47, polish review] That missing identity
+    is no longer reported here: nothing it records shows such a live.json was computed against another score (the
+    reprice before round 29 usually computed it against this very one), so live_score_identity_missing names it and
+    live_shown gives it its own reason, live_without_score_identity. A recorded identity that differs (a null one
+    beside a hashed score included) is still this function's."""
+    lv, s, n = _d(lv), _d(score), _d(numbers)
+    if lv.get("score_json_fresh") is not True:
+        return "computed with no score.json of this run on file"
+    sc = _d(lv.get("scored"))
+    if sc.get("tier_final") != s.get("tier_final"):
+        return f"computed against tier_final {sc.get('tier_final')!r}, the score on file has {s.get('tier_final')!r}"
+    tier_run, final = n.get("tier_by_numbers"), s.get("tier_final")
+    want = s.get("tier_override_reason") if (final and tier_run and final != tier_run) else None
+    if sc.get("tier_override_reason") != want:
+        return "computed against another tier_override_reason than the score on file's"
+    if "dcf_content_hash" in sc and sc.get("dcf_content_hash") != s.get("dcf_content_hash"):
+        return (f"computed against the score of run {sc.get('dcf_content_hash')!r}, the score on file is run "
+                f"{s.get('dcf_content_hash')!r}")
+    return None
+
+
+def live_score_identity_missing(lv, score):
+    """[Codex review r29 of PR #47, polish review] Why live.json cannot be bound to THIS score.json (None when it can):
+    it records no score identity (no scored.dcf_content_hash key: written by the reprice before round 29) beside a
+    score.json that carries one. live_shown withholds it, reason live_without_score_identity, right after
+    live_not_from_this_score (live_score_problem: what it did record disagrees, so it WAS computed against another
+    score). Nothing such a live.json records shows it was computed against another score — right after the merge it
+    is every published name's, usually computed against this very score — so its note says only that it records no
+    identity and that the next repricing rewrites it; it had been withheld as live_not_from_this_score, whose note says
+    it was computed before the current score and that make_score has scored the run since. A recorded null identity
+    is a score with no hash, so beside a hashed score it is another score's (live_score_problem); beside a score.json
+    with no dcf_content_hash there is no identity to bind (None)."""
+    sc, s = _d(_d(lv).get("scored")), _d(score)
+    if "dcf_content_hash" in sc or s.get("dcf_content_hash") is None:
+        return None
+    return (f"records no score identity (scored.dcf_content_hash: written before live.json recorded it), the score on "
+            f"file is run {s.get('dcf_content_hash')!r}")
+
+
 def live_shown(c):
     """(live, withheld): the live.json the page shows as current, else None,
     and why it was withheld (None when it was not). A live.json whose close
@@ -635,13 +715,23 @@ def live_shown(c):
     (run_published: [Codex review r19 of PR #47] a Tier F or untiered run included — round 13's run_repriceable limit
     left a new Tier F run's page showing the earlier run's verdict with no notice; score_from_run now matches a Tier F
     score to its own run) beside a score.json on file.
-    [merge of main #83 into PR #47] Precedence: the PR #47 reasons above
-    (iprd_unresolved / iprd_share_count_unverified, then score_not_from_this_run)
-    are checked first and win over main's two date reasons (live_from_earlier_run,
-    live_older_than_score) — only those two carry the "scored figures are the
-    latest available" wording. The prices staleness guard (row.prices_stale,
-    build() step 5) is not a withheld reason: it is derived independently on every
-    row, whatever live_withheld says, and never changes the reason or its note."""
+    [Codex review r29 of PR #47] After live_from_earlier_run, reason live_not_from_this_score for a live.json beside
+    a run record that was not computed against the score.json on file (live_score_problem: no score when it was
+    written, an earlier score of the same run, another run's same-day score) — the scored figures are the latest
+    available (never "pending", Andrew 2026-10-20); it wins over live_older_than_score (a newer close would not make
+    it this score's). [Codex review r29 of PR #47, polish review] Right after it, reason live_without_score_identity
+    for a live.json from before round 29 that records no score identity beside a score.json that carries one
+    (live_score_identity_missing): it had read live_not_from_this_score, whose note says it was computed before the
+    current score, which nothing it records shows; its own note says it records no score identity and that the
+    next repricing rewrites it.
+    [merge of main #83 into PR #47] Precedence: (as corrected in Codex review r29 of PR #47) in the order the code
+    checks them — iprd_unresolved / iprd_share_count_unverified, then score_not_from_this_run (the PR #47 reasons:
+    the run is never repriced, or the score on file is not its verdict; the app words them "Live figures withheld —
+    …"), then live_from_earlier_run, live_not_from_this_score, live_without_score_identity and live_older_than_score
+    (the score on file is the run's; the app words all four "Scored figures are the latest — …"). The prices
+    staleness guard
+    (row.prices_stale, build() step 5) is not a withheld reason: it is derived independently on every row, whatever
+    live_withheld says, and never changes the reason or its note."""
     lv = c.get("live")
     unresolved = iprd_unresolved(c.get("numbers"))
     if unresolved or _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
@@ -669,6 +759,16 @@ def live_shown(c):
                       "method": None,
                       "note": (f"The live repricing on file is from the {ls} run, before the current score ({sa}); "
                                "the scored figures are the latest available.")}
+    if _d(c.get("numbers")) and live_score_problem(lv, c.get("score"), c.get("numbers")):
+        # [Codex review r29 of PR #47] computed against another score.json than the one on file
+        return None, {"reason": "live_not_from_this_score", "price": num(lv.get("price")), "price_date": pd,
+                      "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
+                      "note": LIVE_NOT_FROM_SCORE_NOTE}
+    if _d(c.get("numbers")) and live_score_identity_missing(lv, c.get("score")):
+        # [Codex review r29 of PR #47, polish review] a live.json from before round 29: no score identity to bind
+        return None, {"reason": "live_without_score_identity", "price": num(lv.get("price")), "price_date": pd,
+                      "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
+                      "note": LIVE_NO_SCORE_IDENTITY_NOTE}
     scored = [d for d in (sa, ls) if d]
     sd = max(scored) if scored else None
     if pd is None or sd is None or pd >= sd:
@@ -1709,7 +1809,9 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
              f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
     if withheld:
         notes.append(f"{len(withheld)} live repricing(s) withheld — a live.json close older than the scored analysis, a score.json "
-                     "not built from the latest engine run, or a record reprice.py never reprices (acquired-IPR&D charge "
+                     "not built from the latest engine run, a live.json computed before the current score or recording no "
+                     "score identity, or a record "
+                     "reprice.py never reprices (acquired-IPR&D charge "
                      "deducted by hand or unresolved; record.live_withheld.reason) — "
                      "scored figures shown, row.live_withheld: " + ", ".join(withheld))
     if stale_prices:

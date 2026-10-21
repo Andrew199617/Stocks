@@ -411,7 +411,14 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    filing does not show the deal expensed, and so is a declared period missing from `total` (the deferred
    payment is still deducted); a partly deferred period still counts toward recurrence; say "cannot verify
    from the diff" when the PR does not show the filing. (The engine already refuses one deal with two first
-   charges, a first charge whose whole charge is itself declared deferred, a pre-window first charge
+   charges, a first charge whose whole charge is itself declared deferred, an in-window first charge whose
+   record carries no acquired-IPR&D expense of its own (round 29: a cash settlement, a reversal, a $0 expense), a
+   declaration on a year whose whole charge has no USD figure (round 29: its own expense or cash, or a tag also
+   filed in a unit with no FX rate beside the USD figure used), a declaration past the year's whole charge
+   (round-29 polish reviews, `dcf_engine.iprd_own_charge_usd`: the largest of its own expense — the largest
+   positive figure on any acquired-IPR&D expense tag, the parallel one too, in every unit filed — and its cash in
+   every unit; EUR 100M at 1.08 filed beside the USD 40M used, or the parallel tag at $108M, makes $108M the whole
+   and $40M a part), a pre-window first charge
    companyfacts covers with no expense fact there, a source accession outside the original filing's years,
    a current-YTD entry, a missing or inconsistent `contingent_total`, one deal's declared amounts summing
    past its `contingent_total`, and — round 8 — an impossible date; make_score refuses a deal whose
@@ -467,7 +474,18 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    rounded headline figures alone are identity only for a run from before release 5.6.0 (round 13: a
    current-release score.json without the hash is another run's), and the notice stands with or without a
    live.json on file (round 13: reprice.py removes it), so a page mixing an old verdict with a new run's
-   forecast and no `live_withheld` notice is P1.
+   forecast and no `live_withheld` notice is P1. [Codex review round 29 of PR #47, the main agent's shape] No
+   live figures without the run's current score: reprice.py writes none for a folder with no score.json (an old
+   one is removed), and live.json records the score it was computed against (`score_json_fresh`,
+   `scored.tier_final` / `tier_override_reason` / `dcf_content_hash`), so a live.json not computed against the
+   score.json on file — written before make_score scored the run, before it re-scored it (an override added or
+   removed), or beside another run's same-day score — is withheld (`live_withheld` reason
+   `live_not_from_this_score`, `build_site.live_score_problem`), and one from before round 29 that records no
+   `dcf_content_hash` beside a score.json that carries one cannot be bound to it and is withheld too, with its own
+   reason (`live_without_score_identity`, `build_site.live_score_identity_missing`; round-29 polish review: its
+   note says it records no score identity and the next repricing rewrites it, never that it was computed before
+   the score); a page showing a live tier beside a score it was not computed against (the numbers tier at the last
+   close beside a new `tier_override`) is P1.
    [Codex review round 11 of PR #47, the main agent's shape] A period whose expense or cash figure carries
    `context_basis` `aggregated_quarters` was summed from the three-month / year-to-date facts in
    `aggregated_contexts` (no fact covered the period exactly; since round 18 the unit the figure was read from, other
@@ -721,7 +739,7 @@ misfit`. For them:
   denominator, base and 5% threshold — never the cash the window deducted ($1 paid on
   each of two $100M deals read $2, not material) — recorded as
   `recurrence_expense_total` / `recurrence_materiality` only when 2 or more FY charge
-  years are counted; a counted period with no USD figure reads as material.
+  years are counted; a counted period whose acquired-IPR&D expense has no USD figure reads as material.
   `ACQUIRED_IPRD_CHARGE` keeps the deduction's materiality, and a cash settlement
   (a pre-window deal's declared installment) never makes tiny in-window charges
   material. Round 28 re-verification: a charge year's whole charge, for Andrew's
@@ -729,7 +747,26 @@ misfit`. For them:
   expense ($1 paid on a $100M deal is a part, so declaring the $1 no longer takes
   the year out of the count), and a declared part comes first from the cash beyond
   the period's expense, so a new deal expensed beside an earlier deal's settlement
-  still counts in full. An `iprd_amortized` base carries only the deducted FY
+  still counts in full. [Codex review round 29 of PR #47] A declaration is whole only
+  when that whole charge is known in USD: a year whose own expense (or cash) has no
+  FX rate, even fetched, cannot be declared at all — its cash had stood in for the
+  whole charge ($40M paid on a EUR 100M expense read "whole" at $40M) — refused like a
+  year with no usable cash, so it stays in the recurrence count; so is a year whose
+  expense or cash tag is also filed in a unit with no FX rate beside the USD fact
+  used (`unit_conflict`, round-29 review notes). One rule (round-29 polish reviews,
+  `iprd_own_charge_usd`): a year's own expense is the largest positive figure on any
+  of its acquired-IPR&D expense tags (the parallel one too) in every unit filed, and
+  its whole charge the largest of that, every positive cash-tag figure in every unit
+  and the cash deducted — EUR 100M at 1.08 on either tag, or the parallel tag at
+  $108M, beside the USD 40M expensed and paid makes $40M a part and $108M the whole.
+  The whole test and its cap read the whole charge; the recurrence figure reads the
+  expense side (the own expense, less only a declared part beyond the whole charge
+  less that expense) and the whole charge adds the cash side, so the recurrence
+  figure is unknown (read as material) only when the own expense has no USD figure —
+  a USD expense beside cash with no FX rate reads that expense. The deduction is
+  unchanged. And a deal's first
+  charge inside the window is a period with its own acquired-IPR&D expense (USD or
+  native, however paid), never the cash that settles an earlier charge. An `iprd_amortized` base carries only the deducted FY
   figures: with nothing deducted in the last 3 FY there is nothing to amortize
   (`BAD_BASE_OVERRIDE`), and the RECURRENT flag then asks only for the recurrence
   assessment. [Codex review round 8 of PR #47]
