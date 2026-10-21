@@ -619,7 +619,10 @@ def test_key_numbers_is_exactly_the_built_text():
         with no_writes():
             built = M.build_key_numbers(r.folder, _stamp(n), _judgment(n), r.score(), {})
         assert built == on_disk, (built, on_disk)
-        assert built.startswith(f"# {T} — key numbers\n") and built.endswith("- THIN_HISTORY: only 3 fiscal years of data\n")
+        # (lane L3: the "## Moat scorecard" section — _kn_moat, the tail's L3 hook — now follows the engine sections)
+        kn_moat = M._kn_moat(r.score())
+        assert built.startswith(f"# {T} — key numbers\n") and built.endswith(
+            "- THIN_HISTORY: only 3 fiscal years of data\n" + ("\n".join(kn_moat) + "\n" if kn_moat else ""))
     finally:
         r.close()
 
@@ -671,10 +674,17 @@ def test_rulings57_helpers_are_the_identity_and_never_modify_inputs():
         for name, obj in (("dcf_numbers.json", n), ("judgment.json", j)):
             with open(os.path.join(d, T, name), "w", encoding="utf-8") as f:
                 json.dump(obj, f, indent=1)
+        # (lane L3 filled add_minimal_scorecard: a 5.7 record gains the minimal moat scorecard and its facts.json the
+        # first time; make_current is idempotent — a second call rewrites nothing)
+        rulings57.make_current(d, T)
+        jm = json.load(open(os.path.join(d, T, "judgment.json"), encoding="utf-8"))
+        assert {k: v for k, v in jm.items() if k != "moat_scorecard"} == j
+        assert jm.get("moat_scorecard") == (rulings57.minimal_scorecard() if M.is_57_run(n) else None)
         before = {x: open(os.path.join(d, T, x), "rb").read() for x in os.listdir(os.path.join(d, T))}
         rulings57.make_current(d, T)
         after = {x: open(os.path.join(d, T, x), "rb").read() for x in os.listdir(os.path.join(d, T))}
         assert before == after
+        os.remove(os.path.join(d, T, "facts.json")) if os.path.exists(os.path.join(d, T, "facts.json")) else None
         folder = os.path.join(d, T)
         rulings57.merge_facts(folder, [{"id": "F90", "value": 7.25}])
         doc = rulings57.merge_facts(folder, [{"id": "F91", "value": 1.0}, {"id": "F90", "value": 7.5}])

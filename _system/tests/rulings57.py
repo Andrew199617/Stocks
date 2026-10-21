@@ -37,9 +37,61 @@ def cite_facts_for_reasons(j, n, folder=None):
     return None
 
 
+MINIMAL_SCORECARD_FACTS = (   # L3: a kind-filing, type-metric series (instant periods: no fiscal calendar needed)
+    [{"id": f"F9{i}", "label": "seat renewal rate (fixture)", "value": v, "unit": "pct", "scale": "", "precision": 2,
+      "period": p, "kind": "filing", "type": "metric", "metric": "seat_renewal_rate",
+      "source": {"form": "10-K", "accession": "0000000000-26-000090", "section": "Item 7 (fixture)", "filed": "2026-02-20"},
+      "snippet": f"seat renewal rate was {v * 100:.2f}%",
+      "used_for": ["moat:sources", "moat:switching_costs", "moat:retention", "moat:pricing_power", "moat:concentration",
+                   "moat:reach_and_growth", "moat:erosion_risks"]}
+     for i, (p, v) in enumerate((("2023-12-31", 0.9137), ("2024-12-31", 0.9241), ("2025-12-31", 0.9358)), start=1)]
+    + [{"id": "F90", "label": "moat backstop figure (fixture)", "value": 7.25, "unit": "x", "scale": "", "precision": 2,
+        "period": "2025-12-31", "kind": "filing", "type": "actual", "metric": "moat_backstop",
+        "source": {"form": "10-K", "accession": "0000000000-26-000090", "section": "Item 7 (fixture)", "filed": "2026-02-20"},
+        "snippet": "the backstop figure was 7.25x", "used_for": ["moat_divergence", "low_roic"]}])
+
+
+def minimal_scorecard():
+    """03b §17 (f): one narrow source (switching_costs/workflow_training on the F91-F93 series), the seven core declared
+    pillars at core weight 9.0 (retention +1, pricing_power +1, switching_costs +1, concentration 0, reach_and_growth 0,
+    erosion_risks 0 — each with the series — customer_regard N/A), every supporting factor N/A (adjustment 0.00), and
+    the 07 G16 backstop reasons citing [F90] (value 7.25). With no mechanical pillar measured the evidence is 6.53
+    (5.88-6.88 when a CSV measures capital_intensity): within +-2 of the fixtures' moats 5 and 6; one narrow source
+    caps the moat at 6."""
+    fs = ["F91", "F92", "F93"]
+    na = {"applicable": False, "not_applicable_reason": "fixture"}
+    pill = lambda s: {"score": s, "rationale": "fixture", "facts": list(fs)}  # noqa: E731
+    return {"version": 1, "business_type": "industrial",
+            "business_type_reason": "fixture: 100% of revenue is one manufactured product line",
+            "sources": [{"type": "switching_costs", "subtype": "workflow_training", "strength": "narrow", "facts": list(fs),
+                         "metrics": [], "rationale": "fixture"}],
+            "pillars": {"retention": pill(1), "pricing_power": pill(1), "switching_costs": pill(1), "concentration": pill(0),
+                        "reach_and_growth": pill(0), "erosion_risks": pill(0), "customer_regard": dict(na)},
+            "supporting": {k: dict(na) for k in ("product_quality", "market_share", "execution", "management")},
+            "volume_price": None,
+            "moat_divergence_reason": "fixture backstop: 7.25 [F90]", "low_roic_reason": "fixture backstop: 7.25 [F90]",
+            "high_return_low_moat_reason": None, "erosion_rebuttal": None}
+
+
 def add_minimal_scorecard(j, n=None, folder=None):
-    """L3 (R4): the minimal moat_scorecard (and its facts, merge_facts) a 5.7 run needs. No-op in L0."""
+    """L3 (R4 revised): on a 5.7 run (engine release >= 5.7.0) whose judgment declares no moat_scorecard, the minimal
+    scorecard above, and its facts written into <folder>/facts.json (merge_facts, so the other lanes' facts stay).
+    Without a folder nothing is added (a scorecard whose facts cannot be written would refuse). Idempotent."""
+    if not isinstance(j, dict) or folder is None or "moat_scorecard" in j or not _is_57(n):
+        return None
+    j["moat_scorecard"] = minimal_scorecard()
+    merge_facts(folder, copy.deepcopy(MINIMAL_SCORECARD_FACTS), ticker=(n or {}).get("ticker"))
     return None
+
+
+def _is_57(n):
+    """facts.is_rulings_run without importing _system (the helper stays import-light): engine_release >= 5.7.0."""
+    rel = (n or {}).get("engine_release") if isinstance(n, dict) else None
+    try:
+        parts = tuple(int(x) for x in str(rel).split(".")[:3])
+    except (TypeError, ValueError):
+        return False
+    return len(parts) >= 2 and (parts + (0,) * (3 - len(parts))) >= (5, 7, 0)
 
 
 def add_interim_declined(n, j):

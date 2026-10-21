@@ -456,8 +456,42 @@ rebuilt as before, both alert gates closed ("engine output predates release
 - (L2, R3) facts.json, the quote gate's key_numbers lines, saved method
   runs, the declared_facts event: [L2 writes this item]
 - (L3, R4 revised: sources + 11-pillar evidence + supporting factors,
-  M1b / M1c) moat_scorecard / moat_evidence and the moat events: [L3
-  writes this item]
+  M1b / M1c — Andrew 2026-10-19; the main agent's decisions 03c and the
+  lane defaults of 2026-10-21) The moat is a COMBINATION of Dorsey's
+  framework and the evidence scorecard, checked by moat_scorecard.evaluate
+  (main() step 6, before registry_transaction; every refusal writes
+  nothing). judgment.json moat_scorecard {version, business_type,
+  business_type_reason, sources, pillars, supporting, volume_price,
+  moat_divergence_reason, low_roic_reason, high_return_low_moat_reason,
+  erosion_rebuttal} is REQUIRED on a 5.7 run and shape-checked whenever
+  present; score.json moat_evidence is written on every rebuild (status
+  report_only on pre-5.7 output: mechanical pillars, flags and lint, nothing
+  refused). Sources (the closed enum of eight types and their subtypes, S1-S9
+  / W1-W8) cap the moat: none -> 3, one narrow -> 6, 7+ a wide source or two
+  fact-backed sources, 9+ two wide and returns_on_capital +2 sustained.
+  Evidence = clamp(core + supporting adjustment, 0, 10): 11 core pillars
+  (weight 16; mechanical returns_on_capital on the governing measure — ROIC,
+  tangible ROIC when goodwill + intangibles exceed 30% of invested capital,
+  ROE at a balance-sheet financial incl. a SIC-6798 mortgage REIT —,
+  industry_structure from _system/industry_returns.json same-ladder peers,
+  capital_intensity, scale_economics; seven declared pillars on facts.json
+  series) and four supporting factors whose sum / 4 (capped +-1) is added.
+  Gates G1-G6 (divergence beyond +-2, the weight floor 8, the caps, 7+ on a
+  governing return below 10% / ROE 15%, 4 or below on 20%+ sustained,
+  MOAT_EROSION with erosion_risks +1) refuse a 5.7 run unless the reason
+  field carries a number; each reason goes through check_influence with the
+  moat evidence's numeric leaves (step 7, authoring runs). A rebuild (same
+  engine run, declaration and facts.json) records a newly failing data-driven
+  gate in moat_evidence.gate_drift instead (GATE_DRIFT_ON_REBUILD). The
+  acquired-IPR&D charge engine 5.6 deducts once from value is added back to
+  EBIT in returns_on_capital and scale_economics (moat_scorecard.ADDBACK_IPRD,
+  lane default Q3 (b)). Registry events moat_divergence, moat_low_roic,
+  moat_high_return_low_moat, moat_erosion_rebuttal (identity moat_score as a
+  float + reason; never a deferred-payment field name) when a gate applies on
+  a checked run and its reason is declared. key_numbers.md "## Moat
+  scorecard" (_kn_moat) prints only generated numbers, never worker text.
+  fundamentals.py's capital_returns_from_row is the one returns function the
+  pillar reads (fundamentals.json, statements.json and the scorecard agree).
 - (L3b, M6 moat direction, Andrew 2026-10-20) the trend sync and
   moat_widening_declined: [L3b writes this item]
 - (L4, R2) the declared 6-K interim bridge and the annual-instance check:
@@ -481,6 +515,7 @@ from _stable import _replace  # [Codex review r21 of PR #47] os.replace, retried
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
 import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
+import moat_scorecard as _moat  # v5.7 (L3, R4 revised): the moat scorecard make_score checks (pure, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -511,6 +546,7 @@ REPLAY_PURPOSE_ENV = "DCF_REPLAY_PURPOSE"             # "base_alternatives" on R
 SCORE_DECISION_KEYS = ("tier_final", "tier_by_numbers", "implied_irr", "iv_at_15", "base_oe_per_share", "model_fit",
                        "confidence", "alert_eligible", "exit_alert_eligible", "dcf_content_hash", "iprd_adjustment",
                        "fragility_flags")
+SCORE_DECISION_KEYS += ("moat_evidence",)                                              # L3 (R4)
 
 
 def fail(msg):
@@ -2966,8 +3002,80 @@ def _notch_events(ticker, today, notch, n):
 
 
 def _moat_events(ticker, today, moat_ev):
-    """v5.7 placeholder (L3 / L3b, R4 / M6): the moat_* events. [] in L0."""
-    return []
+    """v5.7 (L3, R4 revised; 03b §9.4): one registry event per moat gate that applies on a CHECKED (5.7) run, did not
+    drift on this rebuild and whose reason is declared — moat_divergence, moat_low_roic, moat_high_return_low_moat,
+    moat_erosion_rebuttal. The identity (_EVENT_DECLARATION) is (moat_score, reason); moat_score is a float in every
+    event so keep_first_dates never re-dates 6 vs 6.0. No event uses an iprd_deferred_payment field name. Pure (runs
+    under the registry lock): [] for legacy output or no moat evidence."""
+    me = moat_ev if isinstance(moat_ev, dict) else None
+    if not me or me.get("status") != "checked":
+        return []
+    g = me.get("gates") or {}
+    base = {"ticker": ticker, "date": today, "moat_score": float(me.get("moat_score"))}
+    out = []
+
+    def due(name):
+        rec = g.get(name) or {}
+        return bool(rec.get("applies")) and not rec.get("drifted") and isinstance(rec.get("reason"), str) and rec["reason"].strip()
+    if due("divergence"):
+        out.append(dict(base, event="moat_divergence", evidence_score=me.get("evidence_score"),
+                        core_evidence_score=me.get("core_evidence_score"),
+                        supporting_adjustment=me.get("supporting_adjustment"), divergence=me.get("divergence"),
+                        reason=g["divergence"]["reason"]))
+    if due("low_return"):
+        lr = g["low_return"]
+        out.append(dict(base, event="moat_low_roic", measure=lr.get("measure"), median=lr.get("median"),
+                        median_note=lr.get("median_note"), reason=lr["reason"]))
+    if due("reverse"):
+        rv = g["reverse"]
+        out.append(dict(base, event="moat_high_return_low_moat", measure=(me.get("governing") or {}).get("measure"),
+                        median=rv.get("median"), median_note=rv.get("median_note"), min=rv.get("min"), reason=rv["reason"]))
+    if due("erosion"):
+        er = me.get("erosion_test") or {}
+        out.append(dict(base, event="moat_erosion_rebuttal", governing_change_pp=er.get("governing_change_pp"),
+                        margin_change_pp=er.get("margin_change_pp"), margin_basis=er.get("margin_basis"),
+                        reason=g["erosion"]["reason"]))
+    return out
+
+
+def moat_facts_by_id(fc, folder):
+    """{id: fact} the moat scorecard reads: the facts check's by_id when the facts lane (L2) provides one, else
+    facts.json read directly (facts.by_id) — {} when absent or unreadable (a cited id then refuses in the scorecard)."""
+    bi = getattr(fc, "by_id", None) if fc is not None else None
+    if callable(bi):
+        bi = bi()
+    if isinstance(bi, dict):
+        return bi
+    try:
+        with open(f"{folder}/facts.json", encoding="utf-8") as f:
+            return _facts.by_id(json.load(f))
+    except (OSError, ValueError):
+        return {}
+
+
+def moat_reason_checks(moat_ev, j, fc, folder, n):
+    """v5.7 step 7 (L3): the moat reasons that are influence fields (03b §5, §17 (b)) — each of moat_divergence_reason /
+    low_roic_reason / high_return_low_moat_reason / erosion_rebuttal whose gate applies, and business_type_reason when a
+    REIT declares real_assets — goes through check_influence on an authoring 5.7 run, with the moat evidence's numeric
+    leaves as engine sources (a low-ROIC reason quoting the tangible ROIC traces). Returns the (field, text) pairs
+    checked."""
+    me = moat_ev if isinstance(moat_ev, dict) else None
+    if not me or me.get("status") != "checked" or me.get("run_kind") != "authoring":
+        return []
+    sc = j.get("moat_scorecard") if isinstance(j.get("moat_scorecard"), dict) else {}
+    leaves = _moat.numeric_leaves(me)
+    done = []
+    for field in _moat.REASON_FIELDS:
+        text = sc.get(field)
+        gate = (me.get("gates") or {}).get(_moat.REASON_GATE[field]) or {}
+        if gate.get("applies") and isinstance(text, str) and text.strip():
+            check_influence(f"moat_scorecard.{field}", text, _facts.parse_refs(text), fc, folder, n, extra=leaves)
+            done.append((field, text))
+    if (me.get("type_lock") or {}).get("reason_required"):
+        text = sc.get("business_type_reason")
+        check_influence("moat_scorecard.business_type_reason", text, _facts.parse_refs(text), fc, folder, n, extra=leaves)
+        done.append(("business_type_reason", text))
+    return done
 
 
 def _interim_events(ticker, interim, declined, today):
@@ -3428,8 +3536,9 @@ def _kn_method_runs(method_runs, previous):
 
 
 def _kn_moat(score):
-    """v5.7 placeholder (L3 / L3b, R4): the "Moat scorecard" section. [] in L0."""
-    return []
+    """v5.7 (L3, R4 revised): the "## Moat scorecard" section from score.json moat_evidence (moat_scorecard.
+    key_numbers_lines: every number generated, no worker free text); [] when the score carries none."""
+    return _moat.key_numbers_lines((score or {}).get("moat_evidence"))
 
 
 def _kn_interim(score, interim):
@@ -3997,11 +4106,21 @@ def main():
     # (and rewrites the model_fit line above, the second tier_final below and the tier_override_reason copy)
     notch, override_in_force = None, None
     # v5.7 step 6 (lane L3 / L3b, R4 / M6): moat_ev = _moat.evaluate(folder, n, j, facts=..., is_57=is_57_run(n), ...)
-    moat_ev = None
+    # (L3, R4 revised: the moat scorecard; a refusal here writes nothing — the registry is the first write)
+    moat_sic = (n.get("sector_model") or {}).get("sic") if isinstance(n.get("sector_model"), dict) else None
+    moat_sic = moat_sic or _engine.folder_sic(BASE, ticker)[0]
+    try:
+        moat_ev = _moat.evaluate(folder, n, j, facts=moat_facts_by_id(fc, folder), is_57=is_57_run(n), sic=moat_sic,
+                                 industry=_moat.load_industry(SYS_DIR),
+                                 prior=(prior_score if isinstance(prior_score, dict) else None))
+    except _moat.MoatRefusal as e:
+        fail(str(e))
+    print(f"make_score.py: {_moat.industry_file_line(moat_ev)}")   # non-blocking: a stale file is information
     # v5.7 step 7: every influence check together, on 5.7 runs only and before the first write — each lane calls
     # check_influence (L2) for its own reason fields here (tier_override_reason, base_override, misfit_notch_reason,
     # the moat reasons, the share-class reasons, ttm_rejection_reason)
     if is_57_run(n):
+        moat_reason_checks(moat_ev, j, fc, folder, n)                # L3: the four moat reasons (+ a REIT's type reason)
         if plan and plan.get("reason"):
             pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
     score.update({
