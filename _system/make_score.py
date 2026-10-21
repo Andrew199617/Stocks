@@ -360,6 +360,16 @@ value adjustment):
   ttm_shares_diluted equals its shares_denominator and ytd_current_period
   its window.ttm_current_ytd — "ttm.json changed after the engine run —
   rerun dcf_engine.py". Older records keep the 0.1% base check alone.
+- [Codex review round 24 of PR #47] A --base-oe-ps pin its judgment.json
+  base_override declares built on FY figures (declared_fy_built_pin:
+  iprd_amortized on the median native base, or basis_window {"window":
+  "fy"}) is never ttm.json's pin, even when it equals ttm_oe_per_share
+  within 0.1%: base pin provenance checks it as the declared base
+  (check_base_basis_window included), its override impact is measured on
+  the declared-pin branch, and ttm_leg_overrides does not hold it to
+  ttm.json's overrides_used. check_iprd_unconverted also refuses a period
+  the engine gated for a positive detector tag it cannot compare with the
+  other (expense_tag_unconverted).
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -1648,13 +1658,33 @@ def check_iprd_unconverted(n):
     the UNADJUSTED one. Refused like a period awaiting its cash-flow check: the worker blocks
     NEEDS_MAIN_AGENT: currency; no judgment.json field publishes it (a hand deduction is the share-count
     case's escape only). [Codex review r6 of PR #47] The same for a positive cash_native beside a positive expense
-    (the period's preferred amount, its cash outflow, could not be converted)."""
+    (the period's preferred amount, its cash outflow, could not be converted). [Codex review r24 of PR #47] And for
+    a positive detector tag the engine cannot convert beside the other tag's (expense_tag_unconverted)."""
     blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
     periods = [p for p in (blk or {}).get("periods") or [] if isinstance(p, dict)]
     lbl = lambda p: (f"FY{p['period'][:4]}" if p.get("window") == "fy" else f"YTD to {p.get('period')}")
-    uc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("expense_native")) or 0) > 0]
+    # [Codex review r24 of PR #47] a period gated because one positive detector tag cannot be converted beside the
+    # other's (the two cannot be compared): its own message; the lists below exclude it
+    uct = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED
+           and (_num(_engine._iprd_tag_unconverted_native(p)) or 0) > 0]
+    uc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and p not in uct
+          and (_num(p.get("expense_native")) or 0) > 0]
     # [Codex review r4 of PR #47] a cash-only payment with no FX rate that could settle a charge: gated the same way
-    ucc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and (_num(p.get("cash_native")) or 0) > 0]
+    ucc = [p for p in periods if p.get("excluded") == _engine.IPRD_UNCONVERTED and p not in uct
+           and (_num(p.get("cash_native")) or 0) > 0]
+    if uct:
+        fail("NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: both acquired-IPR&D expense tags are filed "
+             "positive and one has no FX rate the engine holds, in "
+             + "; ".join(f"{lbl(p)} (" + ", ".join(
+                 f"{t} {_num(v.get('native')):,.0f} {v.get('unit')}"
+                 + ("" if v.get("unit") == "USD" else " (no FX rate)" if _num(v.get("usd")) is None
+                    else f" = {_usd_exact(v.get('usd'))}")
+                 for t, v in sorted((p.get("expense_tags_conflict") or {}).items()) if isinstance(v, dict)) + ")"
+                         for p in uct)
+             + " — the two cannot be compared, so the period's charge is unknown in USD and the engine deducted nothing "
+             "for it (no iprd_cash_flow_check applies there): the record's IVs, IRRs and tier may be the UNADJUSTED "
+             "ones. Block the folder NEEDS_MAIN_AGENT: currency (WORKER_SPEC step 3); it is scored once the engine "
+             "can convert the tag")
     # [Codex review r6 of PR #47] the same for an unconvertible cash outflow beside a positive expense: the cash is the
     # preferred amount, so the expense never stands in for it
     ucx = [p for p in ucc if (_num(p.get("expense")) or 0) > 0]
@@ -2035,6 +2065,8 @@ def ttm_leg_overrides(folder, n, j_over, applied):
         b = _num(am.get("native_base_per_share"))
     if not (pinned and tv and b is not None and abs(b - tv) <= 0.001 * abs(tv)):
         return {}
+    if am is None and declared_fy_built_pin(_judgment_base_override(folder), inp.get("base_oe_ps_arg")):
+        return {}       # [Codex review r24 of PR #47] a pin declared built on FY figures rests on no TTM leg
     out = {}
     for u in tt.get("overrides_used") or []:
         f = u.get("field") if isinstance(u, dict) else None
@@ -2185,6 +2217,32 @@ def iprd_amortized_not_measured(n, note):
     return out
 
 
+def declared_fy_built_pin(bo, pin):
+    """[Codex review r24 of PR #47] True when judgment.json base_override `bo` declares the pin `pin` (its value within
+    0.1%) and says the pin was built on FY figures: basis iprd_amortized on native_base
+    median_of_last_3_fy_oe_per_share, or no basis with basis_window {"window": "fy"}. Such a pin is never ttm.json's
+    pin, even when it equals ttm_oe_per_share within 0.1% — the engine reads the IPR&D window and share denominator
+    from the declaration (the FY window, the latest FY count), and so do the base-pin provenance check, the
+    override-impact branch and the TTM-leg override rules here."""
+    if (not isinstance(bo, dict) or not isinstance(pin, (int, float)) or isinstance(pin, bool) or not pin
+            or not isinstance(bo.get("value"), (int, float)) or isinstance(bo.get("value"), bool)
+            or abs(float(bo["value"]) - float(pin)) > 0.001 * abs(float(pin))):
+        return False
+    if bo.get("basis") == IPRD_AMORTIZED_BASIS:
+        return bo.get("native_base") == "median_of_last_3_fy_oe_per_share"
+    bw = bo.get("basis_window")
+    return bo.get("basis") is None and isinstance(bw, dict) and bw.get("window") == "fy"
+
+
+def _judgment_base_override(folder):
+    try:
+        with open(f"{folder}/judgment.json", encoding="utf-8") as f:
+            bo = (json.load(f) or {}).get("base_override")
+    except Exception:
+        return None
+    return bo if isinstance(bo, dict) else None
+
+
 def _declared_pin_not_ttm(ticker, n):
     """[v5.5] True when the final run's --base-oe-ps pin equals a declared
     base_override without `basis`, or (v5.6) of basis iprd_amortized on the
@@ -2192,7 +2250,9 @@ def _declared_pin_not_ttm(ticker, n):
     ttm_oe_per_share (within 0.1%): a pin built from engine outputs (NTNX /
     TEM / VIV), whose override impact is measured with the pin held constant,
     not by re-running ttm.py. An iprd_amortized pin on native_base ttm_json is
-    measured on the TTM branch instead (False)."""
+    measured on the TTM branch instead (False). [Codex review r24 of PR #47] A
+    pin its declaration says was built on FY figures (declared_fy_built_pin)
+    is a declared pin even when it equals ttm.json's figure (True)."""
     inp = n.get("inputs") or {}
     pin = inp.get("base_oe_ps_arg")
     if inp.get("base_pin_source") != "base_oe_ps_arg" or not isinstance(pin, (int, float)) or isinstance(pin, bool) or pin == 0:
@@ -2207,6 +2267,8 @@ def _declared_pin_not_ttm(ticker, n):
         return False
     if bo.get("basis") == IPRD_AMORTIZED_BASIS and _iprd_amortized_ttm(n) is not None:
         return False    # [v5.6 review] ttm.json's TTM base less the amortization: measured on the TTM branch
+    if declared_fy_built_pin(bo, pin):
+        return True     # [Codex review r24 of PR #47] built on FY figures: never the TTM branch, whatever ttm.json holds
     try:
         with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as f:
             tv = json.load(f).get("ttm_oe_per_share")
@@ -3132,6 +3194,10 @@ def main():
             ttm_val = None
         via_ttm = (isinstance(ttm_val, (int, float)) and isinstance(score_base, (int, float))
                    and ttm_val != 0 and abs(score_base - ttm_val) <= 0.001 * abs(ttm_val))
+        # [Codex review r24 of PR #47] a --base-oe-ps pin its declaration says was built on FY figures is checked as
+        # the declared base (check_base_basis_window included) even when it equals ttm.json's figure
+        if via_ttm and inp.get("base_oe_ps_arg") is not None and declared_fy_built_pin(j_base_override, score_base):
+            via_ttm = False
         if not via_ttm:
             pb = n.get("payable_base") or {}
             if pb:

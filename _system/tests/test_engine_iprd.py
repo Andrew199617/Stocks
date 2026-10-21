@@ -3195,6 +3195,197 @@ def test_the_run_records_the_ttm_json_inputs_it_read():
     assert E.ttm_inputs_record(dict(ttm, ttm_shares_diluted=200e6))["ttm_shares_diluted"] == 200e6
 
 
+# --- Codex review round 24 of PR #47 ------------------------------------------------------------------------------
+R24_TODAY = "2026-07-15"   # FY2025 end + 6.5 months: STALE_FY does not fire, so a median native base is the run's own
+
+
+def _r24_run(facts, extra=(), judgment=None, ttm=None):
+    """_run on a fresh latest FY (ET_TODAY 2026-07-15)."""
+    import datetime
+
+    def patch(M):
+        M.ET_TODAY = datetime.date.fromisoformat(R24_TODAY)
+    return run("SYN", args_for(5, extra=list(extra)), judgment=with_checks(facts, judgment, True), ttm=ttm,
+               fixture=_syn_fixture(facts, 30.0), patch=patch)
+
+
+def _r24_median_decl(native, figs):
+    return {"basis": "iprd_amortized", "kind": "filing", "native_base": "median_of_last_3_fy_oe_per_share",
+            "figures": figs, "shares": SHARES, "value": native - sum(figs) / 3 / SHARES,
+            "source": "test: this run's dcf_numbers.json iprd_adjustment and the median base",
+            "reason": "test: acquisition-led R&D recurs"}
+
+
+def test_an_amortized_declaration_takes_its_window_and_denominator_from_its_native_base_only():
+    """[Codex review r24, #4333432465] An iprd_amortized declaration on native_base median_of_last_3_fy_oe_per_share
+    whose pin happens to sit within 0.1% of ttm.json's ttm_oe_per_share was read as a TTM base by the generic numeric
+    match: the run added the current-YTD leg and divided by ttm_shares_diluted while the amortization arithmetic used
+    the median and the latest FY count. FY2023 / FY2025 $3M each and $6M in the 2026 H1 10-Q on 100M shares is 3.1% of
+    the median base (not material, so not recurrent); read on the TTM window ($12M on ttm.json's 50M shares, 12.3%) it
+    looked recurrent and the declaration was accepted. The window and denominator now come only from native_base: the
+    declaration is refused whatever ttm.json's figure is, and a recurrent one is judged on the FY window and the latest
+    FY count. The same holds for a plain base_override declaring basis_window {"window": "fy"}."""
+    f = _facts(expense={2023: 3e6, 2025: 3e6})
+    _ytd(f, EXPENSE, "2026-01-01", "2026-06-30", 6e6, "2026-08-05")
+    n0 = _ok(_r24_run(f))
+    assert n0["iprd_adjustment"]["recurrent"] is False and n0["iprd_adjustment"]["total"] == 6e6, n0["iprd_adjustment"]
+    d = _r24_median_decl(n0["base_oe_normalized_per_share"], [3e6, 0.0, 3e6])
+    for tv in (d["value"], d["value"] * 1.01, None):
+        out = _r24_run(f, extra=["--base-oe-ps", repr(d["value"])], judgment={"base_override": d},
+                       ttm=_ttm_doc(tv, 50e6) if tv is not None else None)
+        assert out["exit"] == 3 and "BAD_BASE_OVERRIDE" in out["stdout"] and "only for recurrent" in out["stdout"], \
+            (tv, out["exit"], out["stdout"][-800:])
+    # a recurrent declaration whose pin equals ttm.json's figure: the FY window and the latest FY count
+    f2 = _facts(expense={2023: 15e6, 2025: 20e6})
+    _ytd(f2, EXPENSE, "2026-01-01", "2026-06-30", 30e6, "2026-08-05")
+    n1 = _ok(_r24_run(f2))
+    d2 = _r24_median_decl(n1["base_oe_normalized_per_share"], [15e6, 0.0, 20e6])
+    n = _ok(_r24_run(f2, extra=["--base-oe-ps", repr(d2["value"])], judgment={"base_override": d2},
+                     ttm=_ttm_doc(d2["value"], 50e6)))
+    blk = n["iprd_adjustment"]
+    assert blk["treatment"] == "amortized_in_base" and blk["total"] == 35e6, blk
+    assert blk["shares_denominator"] == SHARES and blk["window"]["ttm_current_ytd"] is None, blk
+    # a plain pin declaring basis_window fy keeps the FY window and count though ttm.json's figure equals it
+    facts, ttm = _ttm_ytd_facts(), _ttm_doc(2.1, 98e6)
+    n = _ok(_run(facts, extra=["--base-oe-ps", "2.1"], ttm=ttm, judgment={"base_override": ttm_window_decl(2.1, "fy")}))
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 20e6 and blk["shares_denominator"] == SHARES and blk["window"]["ttm_current_ytd"] is None, blk
+    assert n["inputs"]["base_basis_window"] == {"window": "fy"}, n["inputs"]
+    # undeclared (or declared without basis_window): the numeric match still makes it a TTM base
+    bare = {k: v for k, v in ttm_window_decl(2.1).items() if k != "basis_window"}
+    n = _ok(_run(facts, extra=["--base-oe-ps", "2.1"], ttm=ttm, judgment={"base_override": bare}))
+    blk = n["iprd_adjustment"]
+    assert blk["total"] == 50e6 and blk["shares_denominator"] == 98e6, blk
+
+
+def _r24_unknown_rest(later_unit="EUR", later=60e6):
+    """FY2024 EUR 100M expensed (no FX rate) beside $40M USD cash: a cash-basis period whose remainder is unknown in
+    USD; FY2025 a cash-only payment of `later` in later_unit."""
+    f = _syn_facts()
+    _syn_put(f, EXPENSE, "EUR", _ctx("2024-01-01", "2024-12-31", 100e6, filed="2025-02-20"))
+    _fy(f, CASH, 2024, 40e6)
+    if later is not None:
+        _syn_put(f, CASH, later_unit, _ctx("2025-01-01", "2025-12-31", later, filed="2026-02-20"))
+    return f
+
+
+def test_an_unconvertible_cash_only_payment_after_an_unknown_remainder_is_gated():
+    """[Codex review r24, #4333432474] The no-FX-rate cash-only branch gated a payment only when the window's unpaid
+    remainder was positive or a charge sat before the window. A charge whose USD remainder is unknown (FY2024 EUR 100M
+    expensed, no rate, beside $40M USD cash) accrues nothing into the unpaid remainder, so a later EUR 60M cash-only
+    payment with no rate went to ignored_cash_only ("nothing in the window it could settle") and the run published
+    after deducting $40M. It is now gated like the same payment in USD: excluded non_usd_no_rate, cash_native kept,
+    unconverted_remainder_of naming FY2024, ACQUIRED_IPRD_UNCONVERTED — on the FY window, the current-YTD leg, and
+    beside a $0 or negative expense alike."""
+    nofx = lambda c, d: None
+    for unit in ("EUR", "USD"):
+        out = E.iprd_detect(_r24_unknown_rest(unit), FY3, fx_rates={}, fx_fetch=nofx)
+        r = [p for p in out["periods"] if p["period"] == "2025-12-31"]
+        assert len(r) == 1 and r[0]["excluded"] == "non_usd_no_rate" and r[0]["deducted"] == 0.0, (unit, out["periods"])
+        assert r[0]["cash_native"] == 60e6 and r[0]["unconverted_remainder_of"] == ["2024-12-31"], r[0]
+        assert out["ignored_cash_only"] == [], (unit, out["ignored_cash_only"])
+        assert E.iprd_unresolved({"iprd_adjustment": out}), unit
+        fl = [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_UNCONVERTED")]
+        assert len(fl) == 1 and f"60,000,000 {unit} (after FY2024)" in fl[0], fl
+    r = [p for p in E.iprd_detect(_r24_unknown_rest(), FY3, fx_rates={}, fx_fetch=nofx)["periods"]
+         if p["period"] == "2025-12-31"][0]
+    assert "unknown in USD" in r["cash_fx_note"], r["cash_fx_note"]
+    # the current-YTD leg
+    f = _r24_unknown_rest(later=None)
+    _eur_cash_ytd(f, 60e6, "0000999001-26-000020")
+    out = E.iprd_detect(f, FY3, ytd=("2026-01-01", "2026-03-31"), fx_rates={}, fx_fetch=nofx)
+    r = [p for p in out["periods"] if p["window"] == "ttm_current_ytd"]
+    assert len(r) == 1 and r[0]["excluded"] == "non_usd_no_rate" and r[0]["unconverted_remainder_of"] == ["2024-12-31"], out
+    assert out["ignored_cash_only"] == [] and E.iprd_unresolved({"iprd_adjustment": out}), out
+    # beside a $0 or a negative (reversal) USD expense
+    for v in (0.0, -5e6):
+        f = _r24_unknown_rest()
+        _fy(f, EXPENSE, 2025, v)
+        out = E.iprd_detect(f, FY3, fx_rates={}, fx_fetch=nofx)
+        r = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+        assert r["excluded"] == "non_usd_no_rate" and r["unconverted_remainder_of"] == ["2024-12-31"], (v, r)
+        assert out["ignored_cash_only"] == [] and E.iprd_unresolved({"iprd_adjustment": out}), (v, out)
+    # end to end: the run is unresolved (make_score refuses it), not a $40M deduction
+    m = _run_fx(_r24_unknown_rest(), {}, judgment={})
+    assert m["exit"] == 0 and E.iprd_unresolved(m["numbers"]), m["numbers"].get("iprd_adjustment")
+    # nothing it could settle: still listed, not gated
+    f = _syn_facts()
+    _syn_put(f, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", 60e6, filed="2026-02-20"))
+    out = E.iprd_detect(f, FY3, fx_rates={}, fx_fetch=nofx)
+    assert out is None or (not out["periods"] and len(out["ignored_cash_only"]) == 1), out
+
+
+def _r24_two_tags(cur, cur_unit, old, old_unit, cash=None, cash_unit="USD"):
+    f = _syn_facts()
+    _syn_put(f, EXPENSE, cur_unit, _ctx("2025-01-01", "2025-12-31", cur, filed="2026-02-20"))
+    _syn_put(f, EXPENSE_OLD, old_unit, _ctx("2025-01-01", "2025-12-31", old, filed="2026-02-20"))
+    if cash is not None:
+        _syn_put(f, CASH, cash_unit, _ctx("2025-01-01", "2025-12-31", cash, filed="2026-02-20"))
+    return f
+
+
+R24_CHK = [{"period": "2025-12-31", "window": "fy", "amount": 100e6, "presentation": "added_back_paid_in_investing",
+            "source": "test"}]
+
+
+def test_an_unconvertible_parallel_detector_tag_is_a_conflict_that_gates_the_period():
+    """[Codex review r24, #4333432477] With both detector tags positive and one of them unconvertible (no FX rate,
+    even fetched), the cross-tag conflict test compared the converted tag's USD figure with the other's native one:
+    current tag USD 100M beside ResearchAndDevelopmentInProcess EUR 100M recorded no expense_tags_conflict, a USD 100M
+    check applied and the run scored though the ignored legacy fact could be a different USD charge (and EUR 50M was
+    recorded as if it were USD 50M). A positive unconvertible parallel fact is never equated with a converted one: the
+    conflict is recorded with each tag's native figure, unit and USD value (None when unconvertible), no check is
+    applied (the entry is listed unused), and the period is gated non_usd_no_rate (ACQUIRED_IPRD_UNCONVERTED, make_score
+    refuses it) — expense or cash basis, either tag order. Converted tags compare in USD as before; two unconvertible
+    tags in one unit compare their native figures (the unit is recorded)."""
+    nofx = lambda c, d: None
+    cases = [("expense basis", _r24_two_tags(100e6, "USD", 100e6, "EUR"), R24_CHK),
+             ("cash basis", _r24_two_tags(100e6, "USD", 100e6, "EUR", cash=100e6), None),
+             ("reverse order", _r24_two_tags(100e6, "EUR", 100e6, "USD", cash=100e6), None),
+             ("smaller native", _r24_two_tags(100e6, "USD", 50e6, "EUR"), R24_CHK),
+             ("two unconvertible units", _r24_two_tags(100e6, "EUR", 100e6, "GBP", cash=100e6), None)]
+    for label, f, checks in cases:
+        out = E.iprd_detect(f, FY3, fx_rates={}, fx_fetch=nofx, checks=checks)
+        r = [p for p in out["periods"] if p["period"] == "2025-12-31"][0]
+        assert r["excluded"] == "non_usd_no_rate" and r["deducted"] == 0.0, (label, r)
+        c = r.get("expense_tags_conflict") or {}
+        assert set(c) == {EXPENSE, EXPENSE_OLD} and all(isinstance(v, dict) and set(v) == {"native", "unit", "usd"}
+                                                        for v in c.values()), (label, c)
+        assert any(v["usd"] is None for v in c.values()), (label, c)
+        u = r["expense_tag_unconverted"]
+        assert u["native"] > 0 and u["unit"] in ("EUR", "GBP") and u["tag"] in (EXPENSE, EXPENSE_OLD), (label, u)
+        assert "cash_flow_check" not in r and "cannot be compared" in r["expense_tags_note"], (label, r)
+        if checks:
+            assert out["cash_flow_checks_unused"] == checks and r["cash_flow_check_not_applied"]["amount"] == 100e6, (label, r)
+        assert E.iprd_unresolved({"iprd_adjustment": out}), label
+        fl = [x for x in E.iprd_flags(out) if x.startswith("ACQUIRED_IPRD_UNCONVERTED")]
+        assert len(fl) == 1 and "cannot be compared" in fl[0], (label, fl)
+    c = E.iprd_detect(cases[0][1], FY3, fx_rates={}, fx_fetch=nofx, checks=R24_CHK)["periods"][0]["expense_tags_conflict"]
+    assert c == {EXPENSE: {"native": 100e6, "unit": "USD", "usd": 100e6},
+                 EXPENSE_OLD: {"native": 100e6, "unit": "EUR", "usd": None}}, c
+    # converted: compared in USD as before (no gate)
+    out = E.iprd_detect(_r24_two_tags(100e6, "USD", 100e6, "EUR"), FY3, fx_rates={"EUR": {"2025-12-31": 1.3}},
+                        checks=R24_CHK)
+    r = out["periods"][0]
+    assert r["excluded"] is None and r["deducted"] == 100e6, r
+    assert r["expense_tags_conflict"] == {EXPENSE: 100e6, EXPENSE_OLD: 130e6}, r
+    out = E.iprd_detect(_r24_two_tags(100e6, "USD", 80e6, "EUR"), FY3, fx_rates={"EUR": {"2025-12-31": 1.25}},
+                        checks=R24_CHK)
+    assert out["periods"][0]["deducted"] == 100e6 and "expense_tags_conflict" not in out["periods"][0], out["periods"][0]
+    # two unconvertible facts in one unit: native figures compared; agreeing ones are no conflict
+    out = E.iprd_detect(_r24_two_tags(100e6, "EUR", 100e6, "EUR", cash=40e6), FY3, fx_rates={}, fx_fetch=nofx)
+    r = out["periods"][0]
+    assert r["excluded"] is None and r["deducted"] == 40e6 and "expense_tags_conflict" not in r, r
+    out = E.iprd_detect(_r24_two_tags(100e6, "EUR", 120e6, "EUR", cash=40e6), FY3, fx_rates={}, fx_fetch=nofx)
+    r = out["periods"][0]
+    assert r["excluded"] is None and r["deducted"] == 40e6, r
+    assert r["expense_tags_conflict"] == {EXPENSE: {"native": 100e6, "unit": "EUR", "usd": None},
+                                          EXPENSE_OLD: {"native": 120e6, "unit": "EUR", "usd": None}}, r
+    # end to end: unresolved, so make_score refuses it
+    m = _run_fx(_r24_two_tags(100e6, "USD", 100e6, "EUR"), {}, judgment={"iprd_cash_flow_check": R24_CHK})
+    assert m["exit"] == 0 and E.iprd_unresolved(m["numbers"]), m["numbers"].get("iprd_adjustment")
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

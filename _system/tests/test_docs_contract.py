@@ -381,6 +381,10 @@ PAIRS = [
     ("_system/dcf_engine.py", "def ttm_input_legs(", "ttm_input_legs", [SYS_README]),
     ("_system/dcf_engine.py", "def ttm_inputs_record(", "ttm_inputs_record", [SYS_README, CONTRACT]),
     ("_system/make_score.py", "def check_ttm_inputs_current(", "check_ttm_inputs_current", [SYS_README]),
+    # Codex review round 24 of PR #47: a declared FY-built pin is never a TTM pin; an unconvertible parallel tag gates
+    ("_system/make_score.py", "def declared_fy_built_pin(", "declared_fy_built_pin", [SYS_README]),
+    ("_system/dcf_engine.py", "expense_tag_unconverted=tags_unconv", "expense_tag_unconverted", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "rec[\"cash_flow_check_not_applied\"]", "cash_flow_check_not_applied", [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

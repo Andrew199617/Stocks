@@ -179,7 +179,11 @@ review round 21 of PR #47: `unit` too when the judgment.json entry names one} on
 expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved (Codex review round 8 of PR #47:
 presentation `paid_in_intangible_capex` is the only way to `excluded` `already_in_capex`; an intangible capex leg at
 least 98% of the charge otherwise only adds the string `capex_overlap_note`), `expense_tags_conflict` {tag: value} +
-`expense_tags_note` when both detector tags carry different positive values (round 8; the current tag is used),
+`expense_tags_note` when both detector tags carry different positive values (round 8; the current tag is used;
+Codex review round 24 of PR #47: {tag: {native, unit, usd}} when a tag has no FX rate — the period is then excluded
+`non_usd_no_rate` with `expense_tag_unconverted` {tag, native, unit} and, when judgment.json names a check for it,
+`cash_flow_check_not_applied` {presentation, amount, source, note}, and dcf_engine.iprd_unresolved / build_site's
+`iprd_unresolved` treat a positive `expense_tag_unconverted.native` like a positive `expense_native`),
 `unconverted_remainder_of` (period ends) on a cash payment gated `non_usd_no_rate` after a charge expensed in a
 currency with no FX rate (round 8; its `cash_native` is that payment), (Codex review round 11 of PR #47)
 `context_basis` `"aggregated_quarters"` with `aggregated_contexts` {tag: {unit, contexts: [[start, end], …]}} (round 18:

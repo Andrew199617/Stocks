@@ -1702,7 +1702,9 @@ test('fixtures/assemble.js mirrors build_site: a live.json older than the later 
     const unres = [
       { treatment: 'awaiting_cash_flow_check', total: 0, periods: [{ period: '2025-12-31', window: 'fy', excluded: 'awaiting_cash_flow_check', awaiting: 2e7 }] },
       { treatment: 'non_usd_no_rate', total: 0, periods: [{ period: '2025-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense: 2e7, cash_native: 1e7, cash_unit: 'EUR' }] },
-      { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2025-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2026-03-31', window: 'ttm_current_ytd', excluded: 'non_usd_no_rate', expense_native: 5e6 }] }];
+      { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2025-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2026-03-31', window: 'ttm_current_ytd', excluded: 'non_usd_no_rate', expense_native: 5e6 }] },
+      // [Codex review r24 of PR #47] a period gated for a parallel detector tag it cannot convert (no expense_native / cash_native)
+      { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2024-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2025-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense: 1e8, deducted: 0, expense_tag_unconverted: { tag: 'ResearchAndDevelopmentInProcess', native: 1e8, unit: 'EUR' } }] }];
     for (const blk of unres) {
       for (const lv of [live, null]) {
         const sh = liveShown(score, lv, Object.assign(clone(numbers), { iprd_adjustment: blk }));

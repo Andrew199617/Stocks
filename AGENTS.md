@@ -343,7 +343,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47) or a positive
    `cash_native` (a cash-only payment with no FX rate that could settle a charge — round 4 — or the period's
    cash outflow beside a positive expense, the preferred amount, with no FX rate: never replaced by the
-   expense — round 6). A
+   expense — round 6), or (round 24) a positive `expense_tag_unconverted` — one of two positive detector tags with
+   no FX rate, which the engine never compares with the other (`expense_tags_conflict` then records each tag's
+   {native, unit, usd}, no check is applied — `cash_flow_check_not_applied` — and the period deducts nothing). A
+   no-rate cash-only payment after a charge whose USD remainder is unknown carries `unconverted_remainder_of`
+   and is refused the same way (round 24: that gate reads the unknown remainder as well as the unpaid one). A
    `deferred_payment` period counts cash the window's earlier cash-basis charge left unpaid (BIIB), never more
    than that remainder — or, declared in `iprd_deferred_payment` against a `first_charged_period` before the
    window that companyfacts shows expensed (`first_charge_evidence` `companyfacts_expense_fact`), a cash-tag-only
@@ -386,7 +390,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    denominator rule above is unchanged), `{window: "fy"}` when it was built from FY figures (NTNX, VIV). A window
    that is not the pin's construction is P1 (say "cannot verify from the diff" when analysis.md does not show the
    construction); make_score refuses a 5.6 run whose declaration lacks it or differs from the run's record, and a
-   `ttm` window whose period ttm.json no longer names.
+   `ttm` window whose period ttm.json no longer names. [Codex review round 24 of PR #47] The declaration, not the
+   number, places a pin: one declaring `{window: "fy"}`, or an `iprd_amortized` one on native_base the median,
+   keeps the FY window and the latest FY count even when it equals ttm.json's `ttm_oe_per_share` within 0.1%
+   (make_score checks it as a declared pin, measures its override impact on the declared branch and holds it to no
+   TTM-leg override); an `iprd_amortized` one on native_base `ttm_json` reads the TTM window and ttm.json's count.
    `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
    the payment is (declared, or why it is not the earlier deal's) is P2. A period with `recurrence_excluded` `deferred_payment_of`
    (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred
@@ -414,7 +422,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    it).)
    [Codex review round 8 of PR #47] A period carrying `expense_tags_conflict` (both expense tags filed with
    different positive values; the current tag is used) must be reconciled in analysis.md against the filing
-   (P2 otherwise).
+   (P2 otherwise). [Codex review round 24 of PR #47] When one of them has no FX rate the two are never compared:
+   each tag's entry is {native, unit, usd} and the period is gated `non_usd_no_rate` (`expense_tag_unconverted`,
+   refused by make_score); two unconvertible tags in one unit compare their native figures (entries in that form).
    `ACQUIRED_IPRD_CHARGE` / `ACQUIRED_IPRD_RECURRENT` resolved without
    the deal, the cash vs stock consideration or the recurrence assessment is P2. An `iprd_amortized`
    `base_override` must reproduce native base − mean(figures) ÷ shares × ads_ratio to the cent (P1

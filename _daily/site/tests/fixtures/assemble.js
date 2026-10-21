@@ -52,7 +52,8 @@ const IPRD_WITHHELD_NOTE = 'The acquired-IPR&D charge was not deducted by the en
   + "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
   + 'figures are the current ones and no live repricing is shown.';
 /* [Codex review r6 of PR #47] build_site.iprd_unresolved: a run make_score refused for an unresolved acquired-IPR&D charge
-   (a period awaiting its cash-flow check, or excluded non_usd_no_rate with a positive native expense or cash outflow) —
+   (a period awaiting its cash-flow check, or excluded non_usd_no_rate with a positive native expense or cash outflow, or —
+   Codex review r24 — a positive detector tag it cannot convert beside the other, expense_tag_unconverted) —
    withheld the same way, reason iprd_unresolved. */
 const IPRD_UNRESOLVED_NOTE = "The latest engine run left an acquired-IPR&D charge unresolved (awaiting the worker's cash-flow check, "
   + 'or in a currency the engine cannot convert), so make_score refused it: the score on file is an earlier '
@@ -63,7 +64,8 @@ function iprdUnresolved(blk) {
   for (const p of Array.isArray(blk.periods) ? blk.periods : []) {
     if (!isObj(p)) continue;
     if (p.excluded === 'awaiting_cash_flow_check') return true;
-    if (p.excluded === 'non_usd_no_rate' && (pos(p.expense_native) || pos(p.cash_native))) return true;
+    if (p.excluded === 'non_usd_no_rate' && (pos(p.expense_native) || pos(p.cash_native)
+      || pos(isObj(p.expense_tag_unconverted) ? p.expense_tag_unconverted.native : null))) return true;
   }
   return blk.treatment === 'awaiting_cash_flow_check' || blk.treatment === 'non_usd_no_rate';
 }

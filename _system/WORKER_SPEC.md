@@ -186,7 +186,13 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    deducted for the period — block the folder the same way. So does (Codex review round 8 of PR #47) a later cash
    payment, with no expense in its period, after a charge expensed in a currency with no rate (the engine first
    fetches the expense period's rate; with none it deducts that period's USD cash but cannot know what is still
-   unpaid): the period carries `unconverted_remainder_of` — block it the same way. While the folder is blocked, reprice.py and the site
+   unpaid): the period carries `unconverted_remainder_of` — block it the same way, whether the later payment is
+   filed in USD or (Codex review round 24 of PR #47) in a currency with no rate either. So does (round 24) a
+   period where both acquired-IPR&D expense tags are filed positive and one has no FX rate: the two cannot be
+   compared, so the engine records `expense_tags_conflict` with each tag's native figure, unit and USD value and
+   `expense_tag_unconverted`, applies no `iprd_cash_flow_check` there (`cash_flow_check_not_applied`) and deducts
+   nothing for the period — block it `NEEDS_MAIN_AGENT: currency — ACQUIRED_IPRD_UNCONVERTED: <period> <tags,
+   native amounts and currencies>`. While the folder is blocked, reprice.py and the site
    never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`; since Codex review
    round 11, any run make_score refused or has not yet scored: reason `score_not_from_this_run`). A non-USD
    fact of exactly 0 needs no rate (Codex review round 13 of PR #47): it reads as $0, never `non_usd_no_rate`.
@@ -474,7 +480,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    window then reads the current-YTD leg whose cash flows are in the base —, `{"window":
    "fy"}` when it was built from FY figures (NTNX, VIV). The engine refuses a `ttm` window
    whose period is not this ttm.json's (BAD_BASE_OVERRIDE, exit 3): after ttm.py reruns,
-   copy the new period. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
+   copy the new period. The declared window holds even when the pin happens to equal ttm.json's
+   `ttm_oe_per_share` (Codex review round 24 of PR #47): `{"window": "fy"}` keeps the FY window
+   and the latest FY share count. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
    Anything outside: block with a reason starting `NEEDS_MAIN_AGENT: <field> — <detail>` and
    finish. If judgment.json already carries overrides when you start (a main-agent
    decision), the tools apply them — carry the fields through unchanged and quote the
@@ -490,8 +498,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (× ads_ratio)>, source, reason}`, final run `--base-oe-ps <value>`. The native base is the base the
    one-time run scored, not a free choice: `ttm_json` when that run was `--ttm` (always under `STALE_FY` with a
    ttm.json TTM base — step 4; the engine refuses the median there), else the median. The amortized run reads
-   the native base's own window and share count (a `ttm_json` native base keeps the current-YTD leg) and
-   judges recurrence against the native base, so a filer the one-time run flagged RECURRENT stays recurrent.
+   the native base's own window and share count (a `ttm_json` native base keeps the current-YTD leg; Codex
+   review round 24 of PR #47: a median native base the FY window and the latest FY count, even when the pin
+   happens to equal ttm.json's figure) and judges recurrence against the native base, so a filer the one-time run flagged RECURRENT stays recurrent.
    The engine recomputes it to the cent and refuses the run (BAD_BASE_OVERRIDE, exit 3)
    otherwise, or when the charges are not recurrent; with it in force no one-time deduction is applied
    (`iprd_adjustment.treatment` `amortized_in_base`). make_score checks the declaration against the engine's

@@ -1965,6 +1965,88 @@ def test_halo_committed_record_still_scores_beside_its_ttm_json():
     assert _refusal(M.check_ttm_inputs_current, dict(fresh, ttm_inputs=None), None) is None
 
 
+# --- Codex review round 24 of PR #47 ------------------------------------------------------------------------------
+def _r24_folder(tmp, judgment, ttm):
+    folder = os.path.join(tmp, "TST")
+    os.makedirs(folder, exist_ok=True)
+    for name, doc in (("judgment.json", judgment), ("ttm.json", ttm)):
+        with open(os.path.join(folder, name), "w", encoding="utf-8") as f:
+            json.dump(doc, f)
+    return folder
+
+
+def test_a_declared_fy_built_pin_equal_to_ttm_json_is_never_measured_as_a_ttm_pin():
+    """[Codex review r24, #4333432465 siblings] A --base-oe-ps pin whose judgment.json base_override declares it built
+    on FY figures — iprd_amortized on native_base median_of_last_3_fy_oe_per_share, or a plain one with basis_window
+    {"window": "fy"} — was treated as ttm.json's pin whenever it sat within 0.1% of ttm_oe_per_share: the
+    override-impact counterfactual took the TTM branch (re-running the no-override TTM base, no amortization), the
+    TTM-leg override rules held it to ttm.json's overrides_used, and base pin provenance skipped the declared-base
+    branch, so check_base_basis_window never compared the declaration with the window the run recorded. The
+    declaration's own basis decides now; an undeclared pin (or one declared without a basis) still follows the
+    numeric match."""
+    import tempfile
+    import make_score as M
+    pin = 1.95
+    amort = {"basis": "iprd_amortized", "kind": "filing", "native_base": "median_of_last_3_fy_oe_per_share",
+             "figures": [15e6, 0.0, 20e6], "shares": 100e6, "value": pin, "source": "test", "reason": "test"}
+    fy = TI.ttm_window_decl(pin, "fy")
+    ttmw = TI.ttm_window_decl(pin)
+    bare = {k: v for k, v in fy.items() if k != "basis_window"}
+    n = {"inputs": {"base_pin_source": "base_oe_ps_arg", "base_oe_ps_arg": pin}, "base_oe_per_share": pin}
+    ttm = _ttm_with_sbc_legs(pin, 100e6)
+    old_base = M.BASE
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            M.BASE = tmp
+            for decl, not_ttm in ((amort, True), (fy, True), (bare, False), (ttmw, False)):
+                folder = _r24_folder(tmp, {"base_override": decl}, ttm)
+                assert M._declared_pin_not_ttm("TST", n) is not_ttm, decl
+                legs = M.ttm_leg_overrides(folder, n, {"sbc": SBC_OVERRIDE}, {})
+                assert (legs == {}) is not_ttm, (decl, legs)
+            # an amortized base on native_base ttm_json is still measured on the TTM branch
+            am = dict(amort, native_base="ttm_json")
+            n_am = dict(n, iprd_adjustment={"treatment": "amortized_in_base", "amortized": {
+                "native_base": "ttm_json", "native_base_per_share": pin + 0.1, "pinned_per_share": pin}})
+            _r24_folder(tmp, {"base_override": am}, TI._ttm_doc(pin + 0.1, 100e6))
+            assert M._declared_pin_not_ttm("TST", n_am) is False
+        finally:
+            M.BASE = old_base
+    # provenance: a run that read ttm.json's window (pin == ttm.json's figure, no basis_window) is refused under a
+    # declaration saying the pin was built on FY figures (a record predating iprd_judgment_hash: nothing else sees it)
+    facts, t = TI._ttm_ytd_facts(), TI._ttm_doc(2.1, 98e6)
+    plain = {k: v for k, v in TI.ttm_window_decl(2.1).items() if k != "basis_window"}
+    run = TI._cached("r24_plain_ttm_pin", lambda: TI._ok(TI._run(facts, extra=["--base-oe-ps", "2.1"], ttm=t,
+                                                                 judgment={"base_override": plain})))
+    assert run["iprd_adjustment"]["window"]["ttm_current_ytd"] is not None and "base_basis_window" not in run["inputs"]
+    legacy = copy.deepcopy(run)
+    legacy.pop("iprd_judgment_hash", None)
+    r = _score(legacy, _j(base_override=TI.ttm_window_decl(2.1, "fy")), ttm=t)
+    assert r.rc != 0 and "basis_window" in r.err and "not the one the engine run recorded" in r.err, r.err[-800:]
+    # the run on that declaration reads the FY window and scores
+    fyrun = TI._cached("r24_fy_ttm_pin", lambda: TI._ok(TI._run(facts, extra=["--base-oe-ps", "2.1"], ttm=t,
+                                                                judgment={"base_override": TI.ttm_window_decl(2.1, "fy")})))
+    assert fyrun["iprd_adjustment"]["total"] == 20e6, fyrun["iprd_adjustment"]
+    r = _score(fyrun, _j(base_override=TI.ttm_window_decl(2.1, "fy")), ttm=t)
+    assert r.rc == 0, r.err[-800:]
+
+
+def test_an_unconvertible_parallel_tag_or_payment_after_an_unknown_remainder_is_refused():
+    """[Codex review r24, #4333432474 / #4333432477] make_score refuses (NEEDS_MAIN_AGENT: currency) a run whose
+    period the engine gated for a positive detector fact it cannot compare with the other tag's (one tag unconvertible),
+    and one whose no-FX-rate cash-only payment follows a charge whose USD remainder is unknown; build_site withholds
+    the live figures of both (iprd_unresolved)."""
+    import build_site as B
+    m = TI._ok(TI._run_fx(TI._r24_two_tags(100e6, "USD", 100e6, "EUR"), {}, judgment={"iprd_cash_flow_check": TI.R24_CHK}))
+    r = _score(m, _j(iprd_cash_flow_check=TI.R24_CHK))
+    assert r.rc == 1 and "ACQUIRED_IPRD_UNCONVERTED" in r.err and "NEEDS_MAIN_AGENT: currency" in r.err, r.err[-800:]
+    assert "cannot be compared" in r.err and "100,000,000 EUR" in r.err, r.err[-800:]
+    assert B.iprd_unresolved(m), m["iprd_adjustment"]
+    u = TI._ok(TI._run_fx(TI._r24_unknown_rest(), {}, judgment={}))
+    r = _score(u, _j())
+    assert r.rc == 1 and "ACQUIRED_IPRD_UNCONVERTED" in r.err and "60,000,000 EUR (after FY2024)" in r.err, r.err[-800:]
+    assert B.iprd_unresolved(u), u["iprd_adjustment"]
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

@@ -594,14 +594,16 @@ def run_published(n):
 def iprd_unresolved(n):
     """[Codex review r6 of PR #47] True when the run's acquired-IPR&D record is one make_score refuses
     (dcf_engine.iprd_unresolved, mirrored here so the site needs no engine import): a period awaiting its cash-flow
-    check, or excluded non_usd_no_rate with a positive native expense or cash outflow, or such a treatment."""
+    check, or excluded non_usd_no_rate with a positive native expense or cash outflow (or, Codex review r24, a positive
+    detector tag it cannot convert beside the other: expense_tag_unconverted), or such a treatment."""
     blk = _d(_d(n).get("iprd_adjustment"))
     pos = lambda v: num(v) is not None and num(v) > 0
     for p in _l(blk.get("periods")):
         p = _d(p)
         if p.get("excluded") == IPRD_AWAITING:
             return True
-        if p.get("excluded") == IPRD_UNCONVERTED and (pos(p.get("expense_native")) or pos(p.get("cash_native"))):
+        if p.get("excluded") == IPRD_UNCONVERTED and (pos(p.get("expense_native")) or pos(p.get("cash_native"))
+                                                      or pos(_d(p.get("expense_tag_unconverted")).get("native"))):
             return True
     return blk.get("treatment") in (IPRD_AWAITING, IPRD_UNCONVERTED)
 
