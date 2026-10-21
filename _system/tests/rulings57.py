@@ -42,8 +42,28 @@ def add_minimal_scorecard(j, n=None, folder=None):
     return None
 
 
+INTERIM_DECLINED_FIXTURE = {"reason": "test fixture: the latest 6-K interim report (181 days to 2026-06-30) prints no "
+                                      "condensed cash-flow statement, so no leg can be declared",
+                            "report": None}
+
+
 def add_interim_declined(n, j):
-    """L4 (R2a): interim_bridge_declined with a numeric reason on a 5.7 STALE_FY 20-F / 40-F record. No-op in L0."""
+    """L4 (R2a): interim_bridge_declined with a numeric reason on a 5.7 STALE_FY 20-F / 40-F record that declares
+    neither interim_bridge nor interim_bridge_declined and is not on the payable base — the obligation make_score's
+    check_interim_obligation enforces (default Q7: a --base-oe-ps pin owes it too). Mutates j (apply() passes a copy);
+    no record any pre-existing test builds carries STALE_FY, so this changes none of them."""
+    if not isinstance(n, dict) or not isinstance(j, dict):
+        return None
+    import facts as _f
+    if not _f.is_rulings_run(n) or n.get("filer_annual_form") not in ("20-F", "40-F"):
+        return None
+    if not any(str(fl).startswith("STALE_FY") for fl in n.get("fragility_flags") or []):
+        return None
+    if j.get("interim_bridge") is not None or j.get("interim_bridge_declined") is not None:
+        return None
+    if (n.get("inputs") or {}).get("base_pin_source") == "judgment_base_override":
+        return None
+    j["interim_bridge_declined"] = dict(INTERIM_DECLINED_FIXTURE)
     return None
 
 
