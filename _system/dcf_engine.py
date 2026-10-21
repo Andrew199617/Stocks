@@ -1920,7 +1920,6 @@ IPRD_RECURRENCE_EXCLUDED = "deferred_payment_of"
 IPRD_DEFERRED_WINDOWS = ("fy",)
 IPRD_ACCESSION_RE = re.compile(r"\b\d{10}-(\d{2})-\d{6}\b")
 IPRD_ACCESSION_FIRST_YY = 93  # EDGAR accession numbers start in 1993: a two-digit year 93..99 is 19YY, else 20YY
-IPRD_WINDOW_DAYS = 357   # a first charge less than this before the oldest window FY end lies inside that FY
 IPRD_FY_SPAN_DAYS = 380  # the longest fiscal year read (a 53-week year included): first charged period - 380 days
                          # is on or before the start of the fiscal year it closes when no annual context is filed
 
@@ -2052,13 +2051,43 @@ def iprd_companyfacts_charge(facts, date):
     return "not_charged" if (earliest is not None and earliest <= date) else "not_covered"
 
 
+def iprd_window_start(facts, fy_periods):
+    """[Codex review r19 of PR #47] The day the engine's window begins: the start of its oldest FY (fy_periods[0]),
+    read from the filer's fiscal periods — the start of the annual context companyfacts files for that FY
+    (iprd_fy_starts); else the day after the filer's latest fiscal-year end before it (iprd_fy_period_ends), when 330
+    to IPRD_FY_SPAN_DAYS days before it (the prior FY); else its end less IPRD_FY_SPAN_DAYS (380, the longest fiscal
+    year read: on or before any real start). None without a window. A first charge ending BEFORE this day lies before
+    the window (iprd_before_window)."""
+    if not fy_periods or not iprd_date_ok(fy_periods[0]):
+        return None
+    oldest = fy_periods[0]
+    st = iprd_fy_starts(facts, [oldest]).get(oldest) if facts else None
+    if st:
+        return datetime.date.fromisoformat(st)
+    end = datetime.date.fromisoformat(oldest)
+    floor = end - datetime.timedelta(days=IPRD_FY_SPAN_DAYS)
+    prior = [datetime.date.fromisoformat(x) for x in (iprd_fy_period_ends(facts) if facts else []) if x < oldest]
+    prior = [d for d in prior if d >= floor and (end - d).days >= 330]   # a fiscal year spans 330-380 days
+    return max(prior) + datetime.timedelta(days=1) if prior else floor
+
+
+def iprd_before_window(date, window_start):
+    """[Codex review r19 of PR #47] Whether a first charge ending on `date` (ISO) lies before the engine's window: it
+    ends before the window's oldest FY starts (window_start: iprd_window_start). Before, it had to end at least 357
+    days before the oldest window FY END, but the engine reads any 330-380-day annual context as a fiscal year: a
+    333-day transition year (2023-02-01..2023-12-31) put the filer's prior FY end (2023-01-31) 334 days before it,
+    read as inside the window, so the cash-only payment of that FY's charge was dropped and its declaration refused."""
+    return window_start is not None and datetime.date.fromisoformat(date) < window_start
+
+
 def iprd_pre_window_charges(facts, oldest_fy_end):
     """[Codex review r3 of PR #47] The period ends of the positive acquired-IPR&D expense facts (IPRD_EXPENSE_TAGS, any
-    unit / form) that end BEFORE the engine's window — at least IPRD_WINDOW_DAYS before its oldest FY end, the rule
-    iprd_apply_deferred reads a pre-window first charge by. [] when there are none (MAA: never expensed)."""
+    unit / form) that end BEFORE the engine's window — before its oldest FY (oldest_fy_end) starts ([Codex review r19
+    of PR #47]: iprd_window_start / iprd_before_window, the rule iprd_apply_deferred reads a pre-window first charge
+    by; it was a fixed 357 days before that FY's end). [] when there are none (MAA: never expensed)."""
     if not oldest_fy_end:
         return []
-    oldest = datetime.date.fromisoformat(oldest_fy_end)
+    start = iprd_window_start(facts, [oldest_fy_end])
     gaap = ((facts or {}).get("facts") or {}).get("us-gaap") or {}
     out = set()
     for t in IPRD_EXPENSE_TAGS:
@@ -2069,21 +2098,21 @@ def iprd_pre_window_charges(facts, oldest_fy_end):
                         and isinstance(end, str)):
                     continue
                 try:
-                    if (oldest - datetime.date.fromisoformat(end)).days >= IPRD_WINDOW_DAYS:
+                    if iprd_before_window(end, start):
                         out.add(end)
                 except ValueError:
                     continue
     return sorted(out)
 
 
-def _iprd_deferred_semantic_problem(e, oldest, facts):
+def _iprd_deferred_semantic_problem(e, start, facts):
     """[Codex review r7 of PR #47] The checks of one well-formed iprd_deferred_payment entry that do not need the
     window's record of its period, so a rolled-out entry (its period older than the window) passes them exactly as an
     in-window one does before it is kept and counted toward its deal's lifetime cap: first_charged_period before the
     period and a real date; the source citing the original acquisition filing (iprd_original_filing_years); and, for a
-    first charge before the window (oldest: the oldest window FY end as a date, or None), an acquired-IPR&D expense
-    fact ending there whenever companyfacts covers that date. Returns (reason or None, cf: iprd_companyfacts_charge's
-    answer for a pre-window first charge, else None)."""
+    first charge before the window (start: iprd_window_start, the day the window's oldest FY starts, or None — Codex
+    review r19 of PR #47), an acquired-IPR&D expense fact ending there whenever companyfacts covers that date.
+    Returns (reason or None, cf: iprd_companyfacts_charge's answer for a pre-window first charge, else None)."""
     d = e["deferred_payment_of"]
     f = d["first_charged_period"]
     if not f < e["period"]:
@@ -2095,7 +2124,7 @@ def _iprd_deferred_semantic_problem(e, oldest, facts):
     if not any(iprd_accession_year(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
         return (f"source must cite the original acquisition filing of the charge first made in the period ending "
                 f"{f}: an accession filed in {years[0]}..{years[-1]}"), None
-    if oldest is not None and (oldest - datetime.date.fromisoformat(f)).days < IPRD_WINDOW_DAYS:
+    if start is not None and not iprd_before_window(f, start):
         return None, None
     cf = iprd_companyfacts_charge(facts, f)
     if cf == "not_charged":
@@ -2217,6 +2246,7 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
         return [{"entry": entries, "reason": f"judgment.json {IPRD_DEFERRED_KEY} must be a non-empty list"}], []
     rec_of = {p.get("period"): p for p in ((iprd or {}).get("periods") or []) if p.get("window") == "fy"}
     oldest = datetime.date.fromisoformat(fy_periods[0]) if fy_periods else None
+    start = iprd_window_start(facts, fy_periods)   # [Codex review r19 of PR #47] a first charge before it is pre-window
     refused, rolled_out, ok, seen, first_of = [], [], [], set(), {}
     for e in entries:
         if not iprd_deferred_entry_ok(e):
@@ -2245,7 +2275,7 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                 fy_ends = iprd_fy_period_ends(facts, fy_periods)
             why = iprd_fy_end_problem(e["period"], fy_ends)
             if why is None:
-                why, _ = _iprd_deferred_semantic_problem(e, oldest, facts)
+                why, _ = _iprd_deferred_semantic_problem(e, start, facts)
             if why is not None:
                 pre_bad[id(e)] = why
     cap_problems = iprd_deferred_cap_problems([e for e in ok if id(e) not in pre_bad])
@@ -2286,18 +2316,17 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                                 f"window ({', '.join(fy_periods)})"})
                 continue
             charge = co["cash"]
-        elif (rec.get("deferred_payment") and oldest is not None
-              and (oldest - datetime.date.fromisoformat(f)).days >= IPRD_WINDOW_DAYS):
+        elif rec.get("deferred_payment") and iprd_before_window(f, start):
             # [Codex review r17 of PR #47] the record is the automatic settlement of the window's unpaid remainder;
             # a pre-window deal's declaration claims the rest of the payment listed beside it, never that settlement
             co = _residual()
             if co is not None:
                 charge = co["cash"]
-        why, cf = _iprd_deferred_semantic_problem(e, oldest, facts)
+        why, cf = _iprd_deferred_semantic_problem(e, start, facts)
         if why is not None:
             refused.append({"entry": e, "reason": why})
             continue
-        if oldest is not None and (oldest - datetime.date.fromisoformat(f)).days < IPRD_WINDOW_DAYS:
+        if start is not None and not iprd_before_window(f, start):
             if co is not None:
                 refused.append({"entry": e, "reason": f"FY {e['period']} carries only a cash-tag payment (no acquired-"
                                 f"IPR&D expense): it is deductible as the deferred payment of a charge first expensed "

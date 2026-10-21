@@ -1807,7 +1807,8 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   log_residual, filed_splits_after_scoring}`), `score_json_fresh` and `score_mismatch` (null). `scored_price` and the IVs are
   in today's share units. An agent tier override is read only from a score.json built from THIS engine run
   (`score_matches_run`: `analysis_date` = the run's `as_of`, `tier_by_numbers` — itself the tier of the run's weighted IRR —,
-  `implied_irr` to 4 dp, `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`;
+  `implied_irr` to 4 dp ([Codex review round 19 of PR #47] a run with no weighted IRR, Tier F or untiered: no
+  `implied_irr` on the score either and the same `f_subtype`), `price`, `base_oe_per_share`, `iv_at_15` to 2 dp, `engine_version`, `engine_release`, `ticker`;
   [Codex review round 12 of PR #47] and, when score.json carries `dcf_content_hash` — make_score writes the run's verified
   `content_hash` there since round 12 — that hash must equal dcf_numbers.json's `content_hash`, itself valid over the
   record (`reprice.run_hash_problem`): another run with the same rounded headline figures, or a run edited after the
@@ -1859,9 +1860,12 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   is never published, so it is not checked. The app says "Live figures withheld — the latest engine run is not scored yet".
   [Codex review round 13 of PR #47] It is set with or without a live.json on file (`price` / `price_date` null without
   one): reprice.py removes the live.json beside a score from another run, and the record still says why it has no live
-  figures. Without a live.json it applies only to a run reprice.py would otherwise reprice (`build_site.run_repriceable`,
-  mirroring `reprice.check_eligible`; a test holds them equal over the committed folders) beside a score.json: a
-  Tier F, untiered or gapped run has no live figures to withhold.
+  figures. [Codex review round 19 of PR #47] Without a live.json it applies to every run the site publishes
+  (`build_site.run_published`: engine v5+, no uncovered data gap — a Tier F or untiered run included) beside a
+  score.json: round 13 limited it to a run reprice.py would reprice (`run_repriceable`, removed), because
+  `score_from_run` never matched a Tier F run, so a new run that turned Tier F published the earlier run's verdict
+  beside its own flags with no notice. A Tier F / untiered score now matches its own run (the content hash, else tier,
+  `f_subtype`, base, release and `as_of`): no committed folder shows the notice.
 - **Split restatement** (`build_site.restate_split`). When the shown live.json carries `split_factor` ≠ 1 (else
   `basis_check.factor`), every per-share figure of the scored run in the record (`SPLIT_DIVIDE`: score / numbers price, base
   OE/share and IV@10…25, the scenarios' IVs, `numbers.hurdle_prices`, the override-impact bases,

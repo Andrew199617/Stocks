@@ -570,7 +570,10 @@ def score_matches_run(scored, numbers):
     this run's content_hash, itself valid (run_hash_problem); one without it
     is judged on the headline figures as before only for a run from before
     release 5.6.0 ([Codex review r13 of PR #47]: a current-release score.json
-    with no hash is another run's)."""
+    with no hash is another run's). [Codex review r19 of PR #47] A run with no
+    weighted IRR (Tier F or untiered) is matched by the same identity: its
+    score.json carries no implied_irr either and the same f_subtype (before, it
+    never matched: tier_for_irr(None) is None, not 'F'). build_site mirrors it."""
     if not isinstance(scored, dict):
         return False, ["score.json is not an object"]
     mm = []
@@ -580,12 +583,19 @@ def score_matches_run(scored, numbers):
     if not scored.get("analysis_date") or scored.get("analysis_date") != numbers.get("as_of"):
         mm.append(f"analysis_date {scored.get('analysis_date')!r} vs run as_of {numbers.get('as_of')!r}")
     tier_run = numbers.get("tier_by_numbers")
+    # [Codex review r19 of PR #47] a run with no weighted IRR (Tier F / untiered): none on the score either, same f_subtype
+    no_irr = _f(numbers.get("implied_irr_weighted")) is None and tier_run in ("F", None)
     tier_irr = E.tier_for_irr(_f(numbers.get("implied_irr_weighted")))
-    if tier_run != tier_irr:
+    if not no_irr and tier_run != tier_irr:
         mm.append(f"run tier_by_numbers {tier_run!r} is not the tier of its weighted IRR ({tier_irr!r})")
     if scored.get("tier_by_numbers") != tier_run:
         mm.append(f"tier_by_numbers {scored.get('tier_by_numbers')!r} vs run {tier_run!r}")
-    if not _same(scored.get("implied_irr"), numbers.get("implied_irr_weighted"), 0.5e-4 + 1e-9):
+    if no_irr:
+        if scored.get("implied_irr") is not None:
+            mm.append(f"implied_irr {scored.get('implied_irr')!r} vs run None (a run with no weighted IRR)")
+        if scored.get("f_subtype") != numbers.get("f_subtype"):
+            mm.append(f"f_subtype {scored.get('f_subtype')!r} vs run {numbers.get('f_subtype')!r}")
+    elif not _same(scored.get("implied_irr"), numbers.get("implied_irr_weighted"), 0.5e-4 + 1e-9):
         mm.append(f"implied_irr {scored.get('implied_irr')!r} vs run {numbers.get('implied_irr_weighted')!r}")
     # copied verbatim (price, base) or rounded to 2 dp (iv_at_15); absent on both sides is no evidence either way
     for key, tol in (("price", 1e-9), ("base_oe_per_share", 1e-9), ("iv_at_15", 0.005 + 1e-9)):

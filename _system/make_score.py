@@ -343,7 +343,7 @@ value adjustment):
   "ttm", still ttm.json's ytd_current_period; output from an earlier release
   is not held to it (VNOM's 5.4.0 record rebuilds unchanged).
 """
-import json, sys, os, re, datetime, subprocess, hashlib, csv
+import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
 # UTF-8 text; Windows Python otherwise defaults to cp1252 and mangles it).
 from zoneinfo import ZoneInfo
@@ -1169,6 +1169,31 @@ def check_iprd_deferred_payment(n, entries):
 
 
 IPRD_DEFERRED_EVENT = "iprd_deferred_payment"   # [Codex review r8 of PR #47] the registry event (one per deal)
+
+
+REGISTRY_LOCK_WAIT = "make_score.py: waiting for the registry lock (another make_score run holds it)"
+
+
+@contextlib.contextmanager
+def registry_transaction():
+    """[Codex review r19 of PR #47] ONE acquisition of the registry lock (_lock.locked on REGISTRY + ".lock") around
+    main()'s whole write phase: the prior-registry read (registry_prior_entries), the lifetime validation and merge of
+    the deal's deferred payments (iprd_deferred_lifetime), the score.json write, the registry replacement
+    (update_registry, lock_held=True) and key_numbers.md. Overlapping scorers serialize: before, the prior read and
+    the cap check ran unlocked long before update_registry took the lock, so two runs of one ticker each saw $0 paid,
+    each passed with a different $60M period against a $100M contingent_total, and the last writer left only its own
+    $60M ($120M accepted, the cap open again). It says when it waits (REGISTRY_LOCK_WAIT, stderr) and refuses when
+    the lock cannot be taken (its file cannot be opened)."""
+    stack = contextlib.ExitStack()
+    try:
+        stack.enter_context(locked(REGISTRY + ".lock",
+                                   on_wait=lambda: print(REGISTRY_LOCK_WAIT, file=sys.stderr, flush=True)))
+    except OSError as ex:
+        fail(f"cannot take the registry lock {REGISTRY}.lock ({type(ex).__name__}: {ex}) — the deferred-payment "
+             f"lifetime record ({IPRD_DEFERRED_EVENT} events) is read, checked and replaced only under it, so nothing "
+             "was written; fix the path or its permissions and rerun")
+    with stack:
+        yield
 
 
 def registry_prior_entries(ticker):
@@ -2259,7 +2284,7 @@ def keep_first_dates(new_entries, prior_entries):
 
 
 def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None, amortized_impact=None,
-                    deferred_events=None):
+                    deferred_events=None, lock_held=False):
     """Replace this ticker's registry entries wholesale on every score
     (round-2: the old upsert only replaced fields still applied, so a
     removed override's entry went stale and stayed forever). Records the
@@ -2286,9 +2311,12 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     paid_to_date, so deleting a judgment.json entry never erases a paid
     milestone (and, Codex review r10, a recorded period's amount is never
     rewritten). make_score.py is the single writer; the write is atomic under
-    an fcntl lock."""
+    an fcntl lock. [Codex review r19 of PR #47] lock_held: main() already holds
+    it (registry_transaction, where deferred_events were validated against the
+    registry read under that same lock); the lock is not re-entrant, so it is
+    not taken again."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
-    with locked(REGISTRY + ".lock"):
+    with (contextlib.nullcontext() if lock_held else locked(REGISTRY + ".lock")):
         try:
             reg = json.load(open(REGISTRY, encoding="utf-8"))
         except Exception:
@@ -2892,8 +2920,10 @@ def main():
     check_iprd_cash_flow(n, validate_iprd_cash_flow_check(j))   # [fixer review round]
     _deferred = validate_iprd_deferred_payment(j)   # Andrew's 2026-10-20 ruling (delegated)
     check_iprd_deferred_payment(n, _deferred)
-    # [Codex review r8 of PR #47] the lifetime cap against the registry's carried record, before any write
-    deferred_events = iprd_deferred_lifetime(ticker, _deferred, registry_prior_entries(ticker))
+    # [Codex review r8 of PR #47] the lifetime cap against the registry's carried record, before any measurement: a
+    # fast pre-check only — [Codex review r19 of PR #47] the binding check re-reads the registry under its lock in
+    # registry_transaction below, with the writes
+    iprd_deferred_lifetime(ticker, _deferred, registry_prior_entries(ticker))
     check_iprd_share_count_unverified(n, j)   # [Codex review r1 of PR #47]
     check_iprd_unconverted(n)   # [Codex review r3 of PR #47]
     j_ads = validate_ads_ratio(j)
@@ -3110,22 +3140,28 @@ def main():
     if nd_ads is not None:
         score["net_debt_to_normalized_oe_ads_basis"] = round(nd_ads["ads_basis"], 4)
     # Every refusal and every measurement (override and payable impact) is
-    # behind us: the scope rewrite is the first write.
-    if scope_rewrite is not None:
-        rewrite_judgment_scope(jpath, scope_rewrite)
-        print(f"make_score.py: {ticker} judgment.json in_scope_under_40b {j['in_scope_under_40b']} -> {scope_rewrite} "
-              f"(ADS-corrected market cap {_usd(mktcap)} = price × shares ÷ {ads_corr['ratio']:g}; "
-              f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
-        j["in_scope_under_40b"] = scope_rewrite
-    with open(spath, "w", encoding="utf-8") as f:
-        json.dump(score, f, indent=1)
-    # Every run: the ticker's registry entries are replaced wholesale and
-    # re-derived from THIS run (applied overrides + judgment-call events).
-    scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
-                   if scope_corrected else None)
-    update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact,
-                    amortized_impact=amortized_impact, deferred_events=deferred_events)
-    write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
+    # behind us. [Codex review r19 of PR #47] The write phase is ONE registry
+    # transaction: under the registry lock the prior registry is re-read, the
+    # deals' deferred-payment lifetime re-validated and merged against it (a
+    # scorer that overlapped this one may have recorded a period since the
+    # pre-check), and only then come the writes — the scope rewrite first.
+    with registry_transaction():
+        deferred_events = iprd_deferred_lifetime(ticker, _deferred, registry_prior_entries(ticker))
+        if scope_rewrite is not None:
+            rewrite_judgment_scope(jpath, scope_rewrite)
+            print(f"make_score.py: {ticker} judgment.json in_scope_under_40b {j['in_scope_under_40b']} -> {scope_rewrite} "
+                  f"(ADS-corrected market cap {_usd(mktcap)} = price × shares ÷ {ads_corr['ratio']:g}; "
+                  f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
+            j["in_scope_under_40b"] = scope_rewrite
+        with open(spath, "w", encoding="utf-8") as f:
+            json.dump(score, f, indent=1)
+        # Every run: the ticker's registry entries are replaced wholesale and
+        # re-derived from THIS run (applied overrides + judgment-call events).
+        scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
+                       if scope_corrected else None)
+        update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact,
+                        amortized_impact=amortized_impact, deferred_events=deferred_events, lock_held=True)
+        write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 
 

@@ -1300,8 +1300,6 @@ def test_every_committed_current_release_score_carries_its_runs_content_hash():
             ok = True
         except R.Skip:
             ok = False
-        # build_site.run_repriceable mirrors reprice.check_eligible (round 13: the no-live.json notice uses it)
-        assert B.run_repriceable(nm) == ok, (t, ok)
         elig += ok
         if not (R.requires_content_hash(sc) or R.requires_content_hash(nm)):
             continue
@@ -1329,13 +1327,15 @@ def test_a_foreign_score_is_reported_after_reprice_removed_live_json():
         assert w["scored_date"] == s["analysis_date"], w
     assert B.live_shown({"numbers": own, "score": s, "live": None}) == (None, None), "its own run: nothing withheld"
     assert B.live_shown({"numbers": other, "score": None, "live": None}) == (None, None), "no score.json: nothing to withhold"
-    # a run reprice.py never reprices (Tier F, no tier, a gap) has no live figures to withhold: no notice without a
-    # live.json (score_from_run never matches a Tier F run: it has no weighted IRR)
-    for change in ({"tier_by_numbers": "F", "implied_irr_weighted": None}, {"tier_by_numbers": None},
-                   {"data_gap_uncovered": ["DATA_GAP:shares"]}, {"scenarios": {}}):
-        ineligible = _stamp(dict(copy.deepcopy(other), **change))
-        assert not B.run_repriceable(ineligible) and not B.score_from_run(s, ineligible)[0], change
-        assert B.live_shown({"numbers": ineligible, "score": s, "live": None}) == (None, None), change
+    # [Codex review r19 of PR #47] a published run reprice.py never reprices (Tier F, no tier, no scenarios) beside
+    # another run's score gets the notice too (round 13 exempted it, score_from_run never matching a Tier F run); a
+    # run the site does not publish (an uncovered gap) gets none without a live.json
+    for change, notice in (({"tier_by_numbers": "F", "implied_irr_weighted": None}, True), ({"tier_by_numbers": None}, True),
+                           ({"data_gap_uncovered": ["DATA_GAP:shares"]}, False), ({"scenarios": {}}, True)):
+        unrepriced = _stamp(dict(copy.deepcopy(other), **change))
+        assert not B.score_from_run(s, unrepriced)[0] and B.run_published(unrepriced) == notice, change
+        shown, w = B.live_shown({"numbers": unrepriced, "score": s, "live": None})
+        assert shown is None and (w is not None and w["reason"] == "score_not_from_this_run") == notice, (change, w)
     # end to end: reprice_folder removes the stale live.json, and the folder's record still says why
     day = own["as_of"]
     live = R.reprice(own, 25.0, day, s, today=day)
@@ -1492,6 +1492,193 @@ def test_vnoms_committed_record_still_rebuilds():
     r = _score(n, j, ttm=tt)
     assert r.rc == 0, r.err[-800:]
 
+
+
+# --- Codex review round 19 of PR #47 ------------------------------------------------------------------------------
+def test_two_interleaved_scorings_of_one_deal_cannot_both_pass():
+    """[Codex review r19, #4332459841] make_score read the registry's lifetime record of a deal's deferred payments and
+    checked the cap OUTSIDE the registry lock, long before update_registry took it for the write: two overlapping
+    runs of one ticker (a stale-lease worker beside its re-claim, a manual rerun) each saw $0 paid, each declared a
+    different $60M Old Bio period against the $100M contingent_total, both passed and both wrote — the last writer
+    left only its own $60M, though $120M had been accepted, so the cap was open again. Now the prior read, the
+    lifetime validation (iprd_deferred_lifetime), the merge and the registry replacement — with the score.json and
+    key_numbers.md writes — happen inside ONE acquisition of the registry lock (registry_transaction): the scorers
+    serialize, the second re-reads the first one's record and is refused before it writes anything. Here both runs
+    pass the early unlocked pre-check, then wait while the test holds the lock; once it is released exactly one
+    scores and the registry keeps its period."""
+    import subprocess
+    import threading
+    import time
+    from test_make_score_55 import MAKE_SCORE, T
+    from _lock import locked
+    cap, old, new, n = _r8_cases()
+    runs = []
+    for key, decl in (("old", old), ("new", new)):
+        m = copy.deepcopy(n[key])
+        m["ticker"] = "TST"
+        runs.append(Run(m, _with_applied(n[key], _j(iprd_deferred_payment=[decl]))))
+    reg = runs[0].registry
+    procs, logs = [], []
+    try:
+        with locked(reg + ".lock"):
+            for r in runs:
+                env = dict(os.environ, STOCKS_BASE=r.base, PYTHONIOENCODING="utf-8", MAKE_SCORE_REGISTRY=reg)
+                p = subprocess.Popen([sys.executable, MAKE_SCORE, T], stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                                     text=True, encoding="utf-8", env=env)
+                log = {"out": [], "err": []}
+                for stream, k in ((p.stdout, "out"), (p.stderr, "err")):
+                    threading.Thread(target=lambda s=stream, b=log[k]: b.extend(iter(s.readline, "")), daemon=True).start()
+                procs.append(p)
+                logs.append(log)
+            # each run is past its unlocked pre-check: waiting on the lock (it says so), or — before this round —
+            # already past its score.json write and blocked in update_registry, or exited
+            deadline = time.time() + 240
+            while time.time() < deadline and not all(
+                    p.poll() is not None or any("waiting for the registry lock" in x for x in lg["err"])
+                    or os.path.exists(os.path.join(r.folder, "score.json")) for p, lg, r in zip(procs, logs, runs)):
+                time.sleep(0.2)
+            assert all(p.poll() is None for p in procs), [("".join(lg["err"]))[-600:] for lg in logs]
+        rcs = [p.wait(timeout=240) for p in procs]
+        time.sleep(0.5)   # the reader threads drain the pipes
+        errs = ["".join(lg["err"]) for lg in logs]
+        assert sorted(rcs) == [0, 1], (rcs, [e[-800:] for e in errs])
+        win, lose = (0, 1) if rcs[0] == 0 else (1, 0)
+        assert "REFUSED" in errs[lose] and "Old Bio" in errs[lose] and "registry" in errs[lose], errs[lose][-800:]
+        assert not os.path.exists(os.path.join(runs[lose].folder, "score.json")), "the refused run wrote score.json"
+        assert not os.path.exists(os.path.join(runs[lose].folder, "key_numbers.md")), "the refused run wrote key_numbers.md"
+        with open(reg, encoding="utf-8") as f:
+            ev = [e for e in json.load(f)["entries"] if e.get("event") == "iprd_deferred_payment"]
+        want = (old, new)[win]
+        assert len(ev) == 1 and ev[0]["paid_to_date"] == 60e6 and ev[0]["periods"] == [
+            {"period": want["period"], "amount": 60e6}], ev
+    finally:
+        for p in procs:
+            if p.poll() is None:
+                p.kill()
+        for r in runs:
+            r.close()
+
+
+def test_registry_lock_that_cannot_be_taken_is_refused():
+    """[Codex review r19, #4332459841] A registry lock that cannot be taken (its file cannot be opened) is refused with
+    a message naming it: make_score never validates the lifetime record or writes without it."""
+    import make_score as M
+    saved = M.REGISTRY
+    try:
+        M.REGISTRY = os.path.join(os.path.dirname(SYS), "no-such-dir-r19", "overrides_registry.json")
+        msg = _refusal(lambda: M.registry_transaction().__enter__())
+        assert msg and "registry lock" in msg and "no-such-dir-r19" in msg, msg
+    finally:
+        M.REGISTRY = saved
+
+def _r19_tier_f(run, base=-0.85):
+    """A new Tier F engine run made from `run`: no positive owner's earnings (a negative base, NEGATIVE_OE_BASE), so no
+    weighted IRR, no scenarios to reprice — re-stamped."""
+    f = copy.deepcopy(run)
+    f.update(tier_by_numbers="F", f_subtype="no_cash_generation", implied_irr_weighted=None, base_oe_per_share=base,
+             iv_at_15=None, fragility_flags=list(f.get("fragility_flags") or []) + ["NEGATIVE_OE_BASE"])
+    return _stamp(f)
+
+
+def _r19_f_score(s, frun):
+    """The score.json make_score writes for Tier F run `frun` (its figures copied; its content hash)."""
+    return dict(copy.deepcopy(s), tier_by_numbers="F", tier_final="F", f_subtype=frun["f_subtype"], implied_irr=None,
+                iv_at_15=None, base_oe_per_share=frun["base_oe_per_share"], analysis_date=frun["as_of"],
+                dcf_content_hash=frun["content_hash"])
+
+
+def test_a_score_beside_a_new_tier_f_run_is_reported_and_a_tier_f_score_matches_its_own_run():
+    """[Codex review r19, #4332459846, the main agent's shape] Round 13 gave the no-live.json score_not_from_this_run
+    notice only to a run reprice.py would reprice (run_repriceable), because score_from_run never matched a Tier F
+    run (no weighted IRR: tier_for_irr(None) is None, not 'F', and implied_irr None never equalled None): a new engine
+    run that turned Tier F lost its live.json to reprice's cleanup and the page published the earlier run's Tier A
+    verdict beside the new run's flags and history with no notice. Now score_from_run (and reprice.score_matches_run,
+    kept in mirror) matches a Tier F or untiered run with no weighted IRR to its own score — the content hash when the
+    score carries it, else tier, f_subtype, base, engine_release and as_of — so the notice is given for every run the
+    site publishes (current engine, no uncovered gap) beside a score.json from another run, with or without a
+    live.json; every committed Tier F / untiered folder still matches its run (no false notice)."""
+    import reprice as R
+    import build_site as B
+    import shutil
+    import tempfile
+    s, own, other = _r13_runs()
+    frun = _r19_tier_f(own)
+    for sc in (s, dict(copy.deepcopy(s), tier_by_numbers="A", tier_final="A")):   # the earlier run's verdict
+        ok, mm = R.score_matches_run(sc, frun)
+        assert not ok and B.score_from_run(sc, frun) == (ok, mm), (mm, B.score_from_run(sc, frun))
+        for lv in (None, {"price": None}):
+            shown, w = B.live_shown({"numbers": frun, "score": sc, "live": lv})
+            assert shown is None and w is not None and w["reason"] == "score_not_from_this_run", (sc["tier_by_numbers"], w)
+    # a Tier F score matches its own Tier F run (by the hash) and no other
+    fs = _r19_f_score(s, frun)
+    assert R.score_matches_run(fs, frun) == B.score_from_run(fs, frun) == (True, []), R.score_matches_run(fs, frun)
+    assert B.live_shown({"numbers": frun, "score": fs, "live": None}) == (None, None)
+    frun2 = _r19_tier_f(own, base=-0.90)
+    ok, mm = R.score_matches_run(fs, frun2)
+    assert not ok and any("dcf_content_hash" in x for x in mm) and B.score_from_run(fs, frun2) == (ok, mm), mm
+    # before release 5.6.0 (no hash): tier, f_subtype, base, release and as_of identify the run
+    for rel in ("5.5.0", "5.4.0", None):
+        lo = {k: v for k, v in _legacy_release(fs, rel).items() if k != "dcf_content_hash"}
+        lrun = _stamp(_legacy_release(frun, rel))
+        assert R.score_matches_run(lo, lrun) == B.score_from_run(lo, lrun) == (True, []), (rel, R.score_matches_run(lo, lrun))
+        for change in ({"f_subtype": "negative_owner_earnings"}, {"base_oe_per_share": -0.9}, {"as_of": "2099-01-01"},
+                       {"tier_by_numbers": None}, {"implied_irr_weighted": 0.12, "tier_by_numbers": "C"}):
+            moved = _stamp(dict(lrun, **change))
+            ok, mm = R.score_matches_run(lo, moved)
+            assert not ok and B.score_from_run(lo, moved) == (ok, mm), (rel, change, mm)
+    # a run the site does not publish (an uncovered gap) still gets no notice without a live.json
+    gap = _stamp(dict(copy.deepcopy(frun), data_gap_uncovered=["DATA_GAP:shares"]))
+    assert B.live_shown({"numbers": gap, "score": s, "live": None}) == (None, None)
+    # end to end: reprice_folder skips the Tier F run and removes the stale live.json; the record says why
+    day = own["as_of"]
+    live = R.reprice(own, 25.0, day, s, today=day)
+    tmp = tempfile.mkdtemp(prefix="reprice_r19_")
+    saved = R.BASE
+    try:
+        d = os.path.join(tmp, "TST")
+        os.makedirs(d)
+        for fn, obj in (("dcf_numbers.json", frun), ("score.json", s), ("live.json", live)):
+            with open(os.path.join(d, fn), "w", encoding="utf-8") as f:
+                json.dump(obj, f)
+        R.BASE = tmp
+        try:
+            R.reprice_folder("TST")
+            raise AssertionError("reprice_folder wrote live.json for a Tier F run")
+        except R.Skip:
+            pass
+        assert not os.path.exists(os.path.join(d, "live.json")), "the stale live.json stayed"
+        c = B.load_company(d)
+        assert B.qualifies(c), "the Tier F run is published"
+        shown, w = B.live_shown(c)
+        assert shown is None and w["reason"] == "score_not_from_this_run" and w["price"] is None, w
+        rec = B.build_record(c, {}, "2026-10-20T00:00:00Z", 0, ())
+        assert rec["row"]["live_withheld"] is True and rec["live_withheld"]["reason"] == "score_not_from_this_run", rec["row"]
+    finally:
+        R.BASE = saved
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_no_committed_scored_folder_shows_a_score_not_from_this_run_notice():
+    """[Codex review r19, #4332459846] Notice coverage over the committed data: with the notice given for every
+    published run, no committed scored folder shows score_not_from_this_run (each score.json is its run's — the Tier F
+    and untiered ones included), and every committed Tier F score matches its run in reprice and build_site alike."""
+    import reprice as R
+    import build_site as B
+    root = os.path.dirname(SYS)
+    shown_notice, tier_f = [], 0
+    for t in sorted(os.listdir(root)):
+        d = os.path.join(root, t)
+        if not (os.path.isfile(os.path.join(d, "score.json")) and os.path.isfile(os.path.join(d, "dcf_numbers.json"))):
+            continue
+        c = B.load_company(d)
+        _, w = B.live_shown(c)
+        if w is not None and w.get("reason") == "score_not_from_this_run":
+            shown_notice.append(t)
+        if c["numbers"].get("tier_by_numbers") == "F":
+            tier_f += 1
+            assert R.score_matches_run(c["score"], c["numbers"]) == B.score_from_run(c["score"], c["numbers"]) == (True, []), (
+                t, R.score_matches_run(c["score"], c["numbers"]))
+    assert shown_notice == [] and tier_f > 60, (shown_notice, tier_f)
 
 if __name__ == "__main__":
     fails = 0

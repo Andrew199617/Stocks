@@ -527,7 +527,11 @@ def score_from_run(score, numbers):
     numbers tier must be the tier of its own weighted IRR. [Codex review r12 of PR #47] A score.json carrying
     dcf_content_hash must name this run's content_hash, itself valid over the record (reprice.run_hash_problem); one
     without it is judged on the headline figures alone only for a run from before release 5.6.0 ([Codex review r13
-    of PR #47]: a current-release score.json with no hash is another run's)."""
+    of PR #47]: a current-release score.json with no hash is another run's). [Codex review r19 of PR #47] A run with
+    no weighted IRR — Tier F (no positive owner's earnings) or untiered — is matched by the same identity (the hash
+    when present, as_of, tier, base, price, release): its score.json carries no implied_irr either and the same
+    f_subtype; before, it never matched (tier_for_irr(None) is None, not 'F'; implied_irr None never equalled None),
+    which is why live_shown limited its no-live.json notice to repriceable runs."""
     if not isinstance(score, dict):
         return False, ["score.json is not an object"]
     n = _d(numbers)
@@ -550,12 +554,19 @@ def score_from_run(score, numbers):
     if not score.get("analysis_date") or score.get("analysis_date") != n.get("as_of"):
         mm.append(f"analysis_date {score.get('analysis_date')!r} vs run as_of {n.get('as_of')!r}")
     tier_run = n.get("tier_by_numbers")
+    # [Codex review r19 of PR #47] a run with no weighted IRR (Tier F / untiered): none on the score either, same f_subtype
+    no_irr = num(n.get("implied_irr_weighted")) is None and tier_run in ("F", None)
     tier_irr = tier_for_irr(num(n.get("implied_irr_weighted")))
-    if tier_run != tier_irr:
+    if not no_irr and tier_run != tier_irr:
         mm.append(f"run tier_by_numbers {tier_run!r} is not the tier of its weighted IRR ({tier_irr!r})")
     if score.get("tier_by_numbers") != tier_run:
         mm.append(f"tier_by_numbers {score.get('tier_by_numbers')!r} vs run {tier_run!r}")
-    if not _same(score.get("implied_irr"), n.get("implied_irr_weighted"), 0.5e-4 + 1e-9):
+    if no_irr:
+        if score.get("implied_irr") is not None:
+            mm.append(f"implied_irr {score.get('implied_irr')!r} vs run None (a run with no weighted IRR)")
+        if score.get("f_subtype") != n.get("f_subtype"):
+            mm.append(f"f_subtype {score.get('f_subtype')!r} vs run {n.get('f_subtype')!r}")
+    elif not _same(score.get("implied_irr"), n.get("implied_irr_weighted"), 0.5e-4 + 1e-9):
         mm.append(f"implied_irr {score.get('implied_irr')!r} vs run {n.get('implied_irr_weighted')!r}")
     for key, tol in (("price", 1e-9), ("base_oe_per_share", 1e-9), ("iv_at_15", 0.005 + 1e-9)):
         a, b = score.get(key), n.get(key)
@@ -571,20 +582,13 @@ def score_from_run(score, numbers):
     return not mm, mm
 
 
-def run_repriceable(n):
-    """[Codex review r13 of PR #47] reprice.check_eligible's structural tests mirrored (a test holds the two equal
-    over the committed folders; its acquired-IPR&D skips are live_shown's own reasons): engine v5+, no uncovered data
-    gap, a numbers tier other than F, scenarios and inputs recorded, a positive base and a price."""
+def run_published(n):
+    """[Codex review r19 of PR #47] Whether the site publishes a scored folder with this run (qualifies, its run half):
+    engine v5+ and no uncovered data gap. live_shown gives the score_not_from_this_run notice without a live.json to
+    every such run — round 13 limited it to runs reprice.py reprices (run_repriceable), so a new run that turned
+    Tier F published the earlier run's verdict beside its own flags with no notice."""
     n = _d(n)
-    ev = n.get("engine_version")
-    if not isinstance(ev, (int, float)) or ev < 5:
-        return False
-    if n.get("data_gap_uncovered") or n.get("tier_by_numbers") is None or n.get("tier_by_numbers") == "F":
-        return False
-    if not n.get("scenarios") or not n.get("inputs"):
-        return False
-    base = num(n.get("base_oe_per_share"))
-    return base is not None and base > 0 and num(n.get("price")) is not None
+    return is_current(n) and not n.get("data_gap_uncovered")
 
 
 def iprd_unresolved(n):
@@ -624,9 +628,10 @@ def live_shown(c):
     scored (reprice.py writes none either). A record with no run record has no run to compare (never published).
     [Codex review r13 of PR #47] That check runs with or without a live.json on file (as the IPR&D reasons do; price
     and price_date null without one): reprice.py removes the live.json beside a score from another run, and the
-    record must still say why it has no live figures. Without a live.json it applies only to a run reprice.py would
-    otherwise reprice (run_repriceable: a Tier F, untiered or gapped run has no live figures to withhold) beside a
-    score.json on file."""
+    record must still say why it has no live figures. Without a live.json it applies to every run the site publishes
+    (run_published: [Codex review r19 of PR #47] a Tier F or untiered run included — round 13's run_repriceable limit
+    left a new Tier F run's page showing the earlier run's verdict with no notice; score_from_run now matches a Tier F
+    score to its own run) beside a score.json on file."""
     lv = c.get("live")
     unresolved = iprd_unresolved(c.get("numbers"))
     if unresolved or _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
@@ -637,7 +642,7 @@ def live_shown(c):
                       "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
                       "method": None, "note": IPRD_UNRESOLVED_NOTE if unresolved else IPRD_WITHHELD_NOTE}
     ok = live_ok(lv)
-    if (_d(c.get("numbers")) and (ok or (c.get("score") is not None and run_repriceable(c.get("numbers"))))
+    if (_d(c.get("numbers")) and (ok or (c.get("score") is not None and run_published(c.get("numbers"))))
             and not score_from_run(c.get("score"), c.get("numbers"))[0]):
         return None, {"reason": "score_not_from_this_run", "price": num(lv.get("price")) if ok else None,
                       "price_date": _date10(lv.get("price_date")) if ok else None,

@@ -340,7 +340,11 @@ PAIRS = [
     # Codex review round 13 of PR #47: the hash required for current-release scores; the notice without live.json
     ("_system/reprice.py", 'HASH_REQUIRED_FROM_RELEASE = "5.6.0"', "HASH_REQUIRED_FROM_RELEASE", [SYS_README, CONTRACT]),
     ("_system/reprice.py", "def requires_content_hash(", "requires_content_hash", [SYS_README, CONTRACT]),
-    ("_system/build_site.py", "def run_repriceable(", "run_repriceable", [SYS_README, CONTRACT]),
+    # Codex review round 19 of PR #47: the window's start; the registry transaction; the notice for every published run
+    ("_system/build_site.py", "def run_published(", "run_published", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_window_start(", "iprd_window_start", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_before_window(", "iprd_before_window", [SYS_README]),
+    ("_system/make_score.py", "def registry_transaction(", "registry_transaction", [SYS_README]),
     ("_system/dcf_engine.py", "def _iprd_is_zero(", "_iprd_pick", [SYS_README]),
     # Codex review round 14 of PR #47: a mismatched check refused on any basis; a negative detector fact is no charge
     ("_system/make_score.py", 'mm = [p for p in periods if p.get("cash_flow_check_mismatch")', "cash_flow_check_mismatch",

@@ -2844,6 +2844,70 @@ def test_original_filing_years_reach_a_53_week_years_start():
     assert list(E.iprd_original_filing_years("2024-12-31", facts)) == [2024, 2025]
 
 
+
+# --- Codex review round 19 of PR #47 ------------------------------------------------------------------------------
+def _r19_facts(prior_start, prior_end, window):
+    """A filer that expensed $40M of acquired IPR&D in the fiscal year (prior_start, prior_end) before the window and
+    paid $10M of it then; the window's FYs (window: [(start, end)], oldest first) carry a $30M payment of the rest in
+    the second FY on the cash tag alone ($0 cash in the other FYs) and annual revenue contexts (the filer's FY
+    periods)."""
+    def c(s, e, v, filed):
+        return {"start": s, "end": e, "val": v, "form": "10-K", "fp": "FY", "fy": int(e[:4]), "filed": filed,
+                "accn": "0000999001-" + filed[2:4] + "-000005"}
+    filed = lambda e: f"{int(e[:4]) + 1}-02-20"
+    return {"facts": {"us-gaap": {
+        EXPENSE: {"units": {"USD": [c(prior_start, prior_end, 40e6, "2023-03-20")]}},
+        CASH: {"units": {"USD": [c(prior_start, prior_end, 10e6, "2023-03-20")]
+                         + [c(s, e, 30e6 if i == 1 else 0.0, filed(e)) for i, (s, e) in enumerate(window)]}},
+        "Revenues": {"units": {"USD": [c(prior_start, prior_end, 1e9, "2023-03-20")]
+                               + [c(s, e, 1e9, filed(e)) for s, e in window]}}}}}
+
+
+def test_a_charge_in_the_fiscal_year_before_a_short_transition_year_is_before_the_window():
+    """[Codex review r19, #4332459839] A first charge counted as before the window only when it ended at least 357 days
+    before the oldest window FY end, but the engine reads any 330-380-day annual context as a fiscal year: a filer
+    moving its year end from January 31 to December 31 files a 333-day transition year (2023-02-01..2023-12-31),
+    so its prior FY end (2023-01-31) lies 334 days before the oldest window FY end and was read as inside the window.
+    The $40M FY-Jan-2023 charge was then no pre-window charge: the $30M FY2024 cash-only payment of its rest was
+    dropped with no trace (no ignored_cash_only entry, no ACQUIRED_IPRD_UNMATCHED_PAYMENT) and its declaration was
+    refused (BAD_IPRD_DEFERRED_PAYMENT, "names no acquired-IPR&D charge in this run's window"). A first charge is now
+    before the window when it ends before the oldest window FY STARTS (iprd_window_start: the start of its filed
+    annual context, iprd_fy_starts, else the day after the filer's prior fiscal-year end, else its end less 380
+    days): the payment is listed and flagged undeclared, and
+    deducted once, cash basis, outside the recurrence count, when declared — exactly as for a calendar filer."""
+    src = "SYN 10-K (0000999001-23-000005) Note 4 'Asset acquisition', p. 64: Old Bio IPR&D $40.0 million expensed"
+    ct = {"value": 30e6, "source": "SYN 10-K (0000999001-23-000005) Note 4, p. 64: $30.0 million deferred consideration"}
+    cases = (("2022-01-01", "2022-12-31", [("2023-01-01", "2023-12-31"), ("2024-01-01", "2024-12-31"),
+                                           ("2025-01-01", "2025-12-31")]),    # the calendar control
+             ("2022-02-01", "2023-01-31", [("2023-02-01", "2023-12-31"), ("2024-01-01", "2024-12-31"),
+                                           ("2025-01-01", "2025-12-31")]))    # a 333-day transition year
+    for prior_start, prior_end, window in cases:
+        facts = _r19_facts(prior_start, prior_end, window)
+        fyp = [e for _, e in window]
+        assert prior_end in E.iprd_fy_period_ends(facts, fyp), prior_end   # the filer's own prior FY end
+        assert E.iprd_pre_window_charges(facts, fyp[0]) == [prior_end], (prior_end, E.iprd_pre_window_charges(facts, fyp[0]))
+        iprd = E.iprd_detect(facts, fyp, checks=[])
+        co = [x for x in (iprd or {}).get("ignored_cash_only") or [] if x["period"] == "2024-12-31"]
+        assert co and co[0]["cash"] == 30e6 and co[0]["pre_window_charges"] == [prior_end], (prior_end, iprd)
+        decl = {"period": "2024-12-31", "window": "fy", "amount": 30e6,
+                "deferred_payment_of": {"deal": "Old Bio", "first_charged_period": prior_end, "source": src,
+                                        "contingent_total": ct}}
+        refused, rolled = E.iprd_apply_deferred(iprd, [decl], fyp, facts)
+        assert refused == [] and rolled == [], (prior_end, refused)
+        rec = [p for p in iprd["periods"] if p["period"] == "2024-12-31"]
+        assert (len(rec) == 1 and rec[0]["amount"] == 30e6 and rec[0]["amount_basis"] == "cash_outflow"
+                and rec[0]["recurrence_excluded"] == "deferred_payment_of"), (prior_end, rec)
+    # a charge inside the transition year itself is still inside the window, and with no fiscal period known around
+    # the oldest FY the start falls back to its end less 380 days (the longest fiscal year read)
+    assert E.iprd_window_start(_r19_facts(*cases[1]), ["2023-12-31"]) == E.datetime.date(2023, 2, 1)
+    assert E.iprd_window_start({"facts": {}}, ["2023-12-31"]) == E.datetime.date(2022, 12, 16)
+    # with no annual context for the oldest FY, the day after the filer's prior fiscal-year end (a filed annual one)
+    prior_only = {"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [_fy_fact("2021-01-31", "2022-01-29", 5e6)]}}}}}
+    assert E.iprd_window_start(prior_only, ["2023-01-28"]) == E.datetime.date(2022, 1, 30)
+    assert E.iprd_pre_window_charges(prior_only, "2023-01-28") == ["2022-01-29"]
+    assert E.iprd_pre_window_charges({"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [
+        _fy_fact("2023-02-01", "2023-06-30", 5e6)]}}}}}, "2023-12-31") == []
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
