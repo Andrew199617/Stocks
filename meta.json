@@ -1,0 +1,223 @@
+{
+ "built_at": "2026-10-20T20:54:37-04:00",
+ "date": "2026-10-20",
+ "data_version": 1,
+ "engine_release_latest": "5.5.0",
+ "sweep": {
+  "done": 547,
+  "total": 2617,
+  "pending": 2030,
+  "blocked_data_gap": 11,
+  "blocked_no_data": 29,
+  "in_progress": 0
+ },
+ "counts": {
+  "current": 548,
+  "stale": 0,
+  "misfits": 133,
+  "tiers": {
+   "S": 0,
+   "A": 5,
+   "B": 23,
+   "C": 123,
+   "D": 319,
+   "F": 78
+  },
+  "with_live": 15,
+  "live_withheld": 249,
+  "split_restated": 0,
+  "watchlist": 10,
+  "failed": 0,
+  "statements": 405,
+  "profiles": 406
+ },
+ "site_url": null,
+ "hurdles": {
+  "S": 0.25,
+  "A": 0.2,
+  "B": 0.15,
+  "C": 0.1
+ },
+ "tabs": [
+  "overview",
+  "financials",
+  "dividends",
+  "segments",
+  "forecast",
+  "analysis",
+  "data"
+ ],
+ "watchlist": [
+  "U",
+  "META",
+  "NFLX",
+  "RDDT",
+  "CMPS",
+  "ADBE",
+  "MSFT",
+  "AMZN",
+  "APP",
+  "LFTO",
+  "NTDOY",
+  "SONY",
+  "SNAP",
+  "GOOGL",
+  "DUOL",
+  "SE",
+  "NVO",
+  "TTWO",
+  "OTLY",
+  "STZ",
+  "INTC",
+  "DFTX",
+  "XIACY",
+  "FIG"
+ ],
+ "watchlist_outside": [
+  "META",
+  "NFLX",
+  "ADBE",
+  "MSFT",
+  "AMZN",
+  "APP",
+  "NTDOY",
+  "SONY",
+  "GOOGL",
+  "SE",
+  "NVO",
+  "OTLY",
+  "INTC",
+  "XIACY"
+ ],
+ "watchlist_entries": [
+  {
+   "ticker": "U",
+   "in_universe": true,
+   "name": "Unity Software Inc."
+  },
+  {
+   "ticker": "META",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "NFLX",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "RDDT",
+   "in_universe": true,
+   "name": "Reddit Inc. Class A"
+  },
+  {
+   "ticker": "CMPS",
+   "in_universe": true,
+   "name": "COMPASS Pathways Plc American Depository Shares"
+  },
+  {
+   "ticker": "ADBE",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "MSFT",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "AMZN",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "APP",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "LFTO",
+   "in_universe": true,
+   "name": "Liftoff Mobile Inc."
+  },
+  {
+   "ticker": "NTDOY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "SONY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "SNAP",
+   "in_universe": true,
+   "name": "Snap Inc. Class A"
+  },
+  {
+   "ticker": "GOOGL",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "DUOL",
+   "in_universe": true,
+   "name": "Duolingo Inc. Class A"
+  },
+  {
+   "ticker": "SE",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "NVO",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "TTWO",
+   "in_universe": true,
+   "name": "Take-Two Interactive Software Inc."
+  },
+  {
+   "ticker": "OTLY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "STZ",
+   "in_universe": true,
+   "name": "Constellation Brands Inc."
+  },
+  {
+   "ticker": "INTC",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "DFTX",
+   "in_universe": true,
+   "name": "Definium Therapeutics Inc. Common Shares"
+  },
+  {
+   "ticker": "XIACY",
+   "in_universe": false,
+   "name": null
+  },
+  {
+   "ticker": "FIG",
+   "in_universe": true,
+   "name": "Figma Inc. Class A"
+  }
+ ],
+ "stale": [],
+ "failed": [],
+ "notes": [
+  "ranked by the live IRR (live.json, scored paths repriced at the last close) when present and not older than the scored analysis, else the scored IRR; nulls last",
+  "this run: 1 record(s) written, 547 skipped unchanged, 0 removed",
+  "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
+  "statements: 1 data/<T>.statements.json cop(ies) written, 0 removed; served next to the record, loaded by the Financials tab on demand, never embedded",
+  "249 live.json close(s) older than the scored analysis withheld (scored figures shown, row.live_withheld): AA, AEG, AEIS, AFG, AGI, AGNC, AHR, AIT, AIZ, ALB, ALGN, ALLE, ALLY, AMG, AMH, AMKR, APA, APG, APTV, ARCC, ARMK, ARW, AVTR, AVY, BAX, BCE, BEN, BIO, BJ, BMRN, BSY, BTSG, BURL, BWA, BWXT, BXP, CACI, CART, CCK, CF, CFR, CGNX, CHKP, CHRW, CHTR, CHYM, CLH, CLX, CNA, CNH, COKE, COO, CORT, CR, CRL, CSGP, CSL, DAR, DCI, DECK, DKS, DOC, DOCN, DOCU, DPZ, DRS, DTM, DVA, EFX, EG, EGP, EHC, ELAN, EMBJ, EQH, ERIE, ESTC, EVR, EWBC, EXEL, FCFS, FDS, FHN, FICO, FIS, FIVE, FLS, FLUT, FMS, FN, FNF, FORM, FRHC, FROG, FRT, FTV, FUTU, GDDY, GEN, GGB, GGG, GIB, GIS, GL, GLPI, GME, GMED, GNRC, GPC, GSAT, GWRE, HALO, HAS, HBM, HII, HL, HLI, HMY, HRL, HSIC, HTHT, HUBS, ICLR, IEX, INVH, IP, IT, IVZ, J, JAZZ, JBS, JHX, JKHY, KIM, KRYS, LAMR, LECO, LFUS, LI, LII, LOGI, LTM, MAA, MANH, MAS, MEDP, MGA, MICC, MKC, MLI, MOD, MOH, MSGS, MTCH, MTZ, MUSA, NBIX, NLY, NVMI, NVR, NWS, NWSA, NXT, NYT, OGE, OHI, ONB, ONTO, ORI, OSCR, OWL, PAC, PAG, PAYC, PEN, PFGC, PINS, PNFP, PODD, PSO, PTGX, QGEN, QXO, RBC, RCI, RDY, REG, RGA, RMBS, RNR, RPM, RRC, RRX, RTO, RVTY, RYAN, SANM, SCI, SEIC, SF, SGI, SJM, SKM, SMTC, SNN, SOLS, SOLV, SSB, SSL, SUI, SUZ, SWK, SWKS, TECH, TFII, TIGO, TLK, TME, TOL, TPG, TRMB, TRU, TTMI, TU, TX, TXG, TXRH, TXT, TYL, UDR, UHS, ULS, UNM, VIAV, VICR, W, WIT, WMG, WMS, WPC, WSE, WSO, WTFC, WTS, WY, XP, YUMC, ZBH, ZION"
+ ]
+}

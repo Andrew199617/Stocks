@@ -1,0 +1,174 @@
+/* Owner's-Earnings DCF Ranking — static app styles (v6). IBM Plex dark system, ported from
+   _system/build_daily_html.py v2 (tokens on :root, color-scheme: dark). 16px gutters, cards under
+   760px, tables scroll inside .twrap, tabular numerals, visible focus, reduced motion respected. */
+:root{color-scheme:dark;--bg:#0C0E12;--card:#14171D;--card2:#1B1F27;--line:#272C36;--line2:#2C323D;--txt:#ECEEF2;--txt2:#D9DDE4;--mut:#A0A8B6;--acc:#C9D4FF;--pos:#5BD69C;--neg:#FF8A8A;--warn:#fbbf24;--cardstrong:#191C22;--gutter:16px;
+ --sans:'IBM Plex Sans',system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;--mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding:var(--gutter) var(--gutter) 72px;max-width:100vw} /* no overflow on body: it would break position:sticky */
+a{color:var(--acc)} a:hover{color:#fff}
+button,input,select{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums} .small{font-size:12px} .pos{color:var(--pos)} .neg{color:var(--neg)} .muted{color:var(--mut);font-weight:400}
+.note{font-size:13.5px;color:var(--mut);line-height:1.5;margin:6px 0;overflow-wrap:anywhere} .note b{color:var(--txt);font-weight:500}
+.k{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0;min-width:0;max-width:100%}
+.card.err{border-color:#7f1d1d;background:#1d1113} .card.err b{color:var(--neg)} .card.loading{color:var(--mut)} .card.notice h2{margin:0 0 8px;font-size:22px} .card.notice .hco{font-family:var(--sans);font-weight:500;font-size:16px;color:var(--txt2)}
+.notice{display:none;background:#3a2b0b;color:var(--warn);border:1px solid #8a6d1f;border-radius:10px;padding:8px 12px;margin:10px 0;font-size:13.5px}
+.sec{margin:26px 0} .sec>h2{font-size:19px;font-weight:600;margin:0 0 4px} .sec>h2:empty{display:none}
+h1{font-size:22px;margin:0 0 4px}
+.twrap{overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%;min-width:0} /* every wide table (min-width 640 / 1240) lives inside a .twrap; the tab pane below clips anything that escapes, so the page itself never scrolls sideways */
+table{border-collapse:collapse;width:100%;font-size:13.5px;font-variant-numeric:tabular-nums} th,td{padding:8px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top} td.num,th.num{text-align:right;white-space:nowrap}
+table.mini{font-size:13px} table.mini th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:500}
+table.fin{font-size:13px;min-width:640px} table.fin td{text-align:right;white-space:nowrap;font-family:var(--mono)} table.fin th{font-weight:500;color:var(--txt2);white-space:nowrap} table.fin tbody th,table.fin thead th:first-child{position:sticky;left:0;background:var(--card);z-index:1} /* only the row-label column sticks (was every th, so period headers piled up at the left edge on scroll) */ table.fin thead th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)} table.fin thead th.num{text-align:right} table.fin thead tr.sub th,table.fin thead tr.sub td{font-size:11px;color:var(--mut);text-transform:none;letter-spacing:0;padding-top:0;font-family:var(--mono)}
+table.fin tr.sub th{color:var(--mut);font-size:12.5px;padding-left:22px} table.fin tr.sub td{font-size:12.5px}
+table.fin tr.strong td{color:#fff;font-weight:600;background:rgba(255,255,255,.02)} table.fin tr.strong th{color:#fff;font-weight:600;background:var(--cardstrong)} /* the sticky label cell of a total row stays OPAQUE (--card blended with the 2% white): a translucent background let the numbers scrolled under it print through on a phone */ table.fin tr.strong th .sub{font-weight:400}
+table.fin td .scored{display:block;font-size:11px;color:var(--mut);font-weight:400}
+table.kv th{width:190px;color:var(--mut);font-weight:500;font-size:12.5px} table.kv td{word-break:break-word}
+table.mdt th{font-weight:600} .md h2{font-size:17px;margin:18px 0 6px} .md h3{font-size:15px;margin:16px 0 4px} .md h4{font-size:14px;margin:14px 0 4px} .md p{line-height:1.6;margin:8px 0;color:var(--txt2)} .md ul,.md ol{padding-left:20px;line-height:1.55;color:var(--txt2)} .md li{margin:4px 0} .md code{font-family:var(--mono);font-size:12.5px;background:var(--card2);padding:1px 5px;border-radius:4px} .md hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+pre.json{font-family:var(--mono);font-size:12px;white-space:pre-wrap;word-break:break-word;color:var(--txt2);margin:0}
+sup{font-size:9px;color:var(--mut)} sup.floor{font-size:9px;letter-spacing:.06em;text-transform:uppercase;color:var(--warn);margin-left:3px;cursor:help;white-space:nowrap} td.atfloor{color:var(--warn)}
+.wchip{border-color:#3b4a66;color:#7AA2FF} .wchip .sub{margin-left:4px;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mut)}
+/* ---- statements viewer (Financials tab) ---- */
+.stmbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px} .stmbar .seg{flex-wrap:wrap;max-width:100%;min-width:0} .stmbar .seg button{flex:1 1 auto} /* the four-statement segment is wider than a 375px card: it wraps (the pane clips, it never scrolls) */ .tgl{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mut);cursor:pointer;min-height:38px;user-select:none} .tgl input{accent-color:#7AA2FF;min-height:0;margin:0;width:16px;height:16px}
+table.stm th:first-child,table.stm tbody th{white-space:normal;min-width:150px;max-width:220px;font-weight:500;line-height:1.35} table.stm thead th{vertical-align:bottom} table.stm thead th .pl{display:block;font-size:11.5px;letter-spacing:.04em} table.stm thead th .sub{display:block;font-size:10.5px;text-transform:none;letter-spacing:0;font-family:var(--mono);margin-top:2px}
+table.stm tr.l1 th{padding-left:24px} table.stm tr.l2 th{padding-left:40px} table.stm tr.strong th,table.stm tr.strong td{color:#fff;font-weight:600} table.stm tr.growth th{padding-left:24px} table.stm td.negv{color:var(--txt2)} table.stm tr.loading th{position:static;white-space:normal}
+.stl{background:none;border:0;padding:0;margin:0;font:inherit;color:inherit;text-align:left;cursor:pointer;border-bottom:1px dotted transparent;min-height:0;line-height:inherit} .stl:hover{color:var(--acc);border-bottom-color:var(--acc)} table.stm tr.open th .stl{color:var(--acc);border-bottom-color:var(--acc)} .stl:focus-visible{outline-offset:1px}
+.spark{margin:12px 0 4px;padding:14px 12px 10px} .sparkh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;min-width:0} .sparkh>span{min-width:0;overflow-wrap:anywhere} .stm-close{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);border-radius:8px;width:34px;height:34px;font-size:20px;line-height:1;cursor:pointer;flex:0 0 auto}
+details.stmwarn{margin-top:8px} details.stmwarn summary{color:var(--mut);font-size:13px;cursor:pointer}
+/* ---- watchlist: repo star (blue, fixed) vs per-device star (gold toggle); copy action ---- */
+.star.repo{color:#7AA2FF;font-size:17px} .hstar{font-size:22px;min-width:34px;min-height:34px;align-self:center}
+.wbtn.sm{padding:5px 10px;font-size:12.5px;min-height:32px} .copyout{font-size:12.5px;color:var(--mut);display:inline-flex;align-items:center;gap:6px;min-width:0} .copyout:empty{display:none} .copyout input{min-height:32px;padding:4px 8px;font-family:var(--mono);font-size:12px;max-width:220px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:10px 0}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
+.tile .v{font-family:var(--mono);font-size:20px;font-weight:500;font-variant-numeric:tabular-nums;overflow-wrap:anywhere} .tsub{font-size:12px;color:var(--mut)}
+.chip{display:inline-flex;align-items:center;padding:6px 10px;border-radius:999px;background:var(--card2);border:1px solid var(--line2);font-size:13px;color:#D4D8E0} .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.lvchip{font-size:12px;padding:3px 9px;border-color:var(--acc);color:var(--acc)} .lvchip.muted{border-color:var(--line2);color:var(--mut)}
+.prob{font-family:var(--mono);font-size:12px;padding:2px 7px;border-radius:999px;background:var(--card2);border:1px solid var(--line2);color:#C3C9D4;font-weight:400;margin-left:8px}
+/* ---- list ---- */
+.lhead{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 24px;align-items:flex-start}
+.prog{height:6px;border-radius:3px;background:var(--line);margin-top:10px;max-width:520px} .prog div{height:6px;border-radius:3px;background:var(--acc);transition:width .4s ease}
+.tchips{display:flex;flex-wrap:wrap;gap:8px} .tchip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:13px;padding:5px 10px 5px 5px;border-radius:999px;background:var(--card2);border:1px solid var(--line2)} .tchip i{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;background:var(--c);color:#0C0E12;font-style:normal;font-weight:600;font-size:12px}
+details.howto{margin:14px 0 6px} details.howto summary{color:var(--mut);font-size:13px;cursor:pointer} details.howto p{color:var(--mut);font-size:13px;line-height:1.55;margin:6px 0 0}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0;align-items:center}
+@media (min-width:761px){.controls{position:sticky;top:env(safe-area-inset-top,0px);z-index:4;background:var(--bg);padding:8px 0;margin:8px 0;box-shadow:0 8px 16px -12px rgba(0,0,0,.8)}} /* the tab-like filter row stays at the top while the long table scrolls (desktop only: on a phone it wraps to three lines) */
+.wbtn{background:var(--card2);border:1px solid var(--line2);border-radius:10px;color:var(--txt2);padding:8px 12px;font-size:13.5px;cursor:pointer;min-height:38px;display:inline-flex;align-items:center;gap:6px} .wbtn .mono{color:var(--mut);font-size:12.5px} .wbtn.on{background:#3a2b0b;border-color:#8a6d1f;color:var(--warn)} .wbtn.on .mono{color:var(--warn)}
+.star{background:transparent;border:0;color:var(--mut);font-size:17px;line-height:1;padding:0 2px;cursor:pointer;min-width:24px;min-height:24px;border-radius:6px;flex:0 0 auto} button.star:hover{color:var(--warn)} .star.on{color:var(--warn)} .star.fixed{cursor:default;display:inline-flex;align-items:center;justify-content:center}
+.seg{display:inline-flex;border:1px solid var(--line2);border-radius:10px;overflow:hidden;background:var(--card2)} .seg button{background:transparent;border:0;color:var(--txt2);padding:8px 12px;font-size:13.5px;cursor:pointer;min-height:38px} .seg button.on{background:#2C3648;color:#fff} .seg button:focus-visible{outline-offset:-2px}
+select,input{background:var(--card2);color:var(--txt);border:1px solid var(--line2);border-radius:10px;padding:8px 10px;font-size:14px;min-height:38px;max-width:100%}
+#t{min-width:1240px;table-layout:fixed} /* column widths: the <colgroup> app.js emits (COLS[i][3] %) — fixed layout would otherwise split 13 columns evenly */ #t th{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:500;user-select:none} #t th.sortable{cursor:pointer} #t th.sortable:hover{color:var(--txt)} #t th.sorted{color:#fff} #t th.sorted::after{content:" ▾"}
+#t td.co .corow{display:flex;align-items:flex-start;gap:6px;min-width:0} #t td.co a{color:var(--txt);text-decoration:none;display:flex;flex-direction:column;gap:2px;min-width:0} #t td.co a b{font-size:15px} #t td.co .nm{font-size:13px;color:var(--txt2)} #t td.co .sub{display:block;font-size:11.5px;color:var(--mut);margin-top:3px}
+#t td.take{line-height:1.45;font-size:13px} #t td.take .sub{display:block;font-size:11.5px;color:var(--mut);margin-top:4px} #t td.take>span{display:block}
+#t td.strong{font-weight:600;color:#fff}
+.sub{color:var(--mut);font-size:12px}
+.tbadge{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;color:#0C0E12;font-family:var(--mono);font-size:15px;font-weight:600} .tbadge.stale{background:#4b5563;opacity:.75;color:#fff}
+.was{display:block;font-family:var(--mono);font-size:10.5px;color:var(--mut);margin-top:3px;white-space:nowrap}
+.band{display:inline-flex;align-items:center;gap:3px;font-family:var(--mono);font-size:11px;color:var(--mut)} .band i{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;color:#0C0E12;font-style:normal;font-weight:600}
+.bdg{display:inline-block;border-radius:6px;padding:1px 7px;font-size:12px;margin:0 4px 4px 0;border:1px solid} .bdg.p2{background:#0b3b52;color:#7dd3fc;border-color:#155e75} .bdg.ov{background:#3a2b0b;color:#fbbf24;border-color:#8a6d1f} .bdg.to{background:#2e1065;color:#c4b5fd;border-color:#6d28d9} .bdg.mf{background:#2a2f3a;color:#c3c9d4;border-color:#3a4252}
+.more{color:var(--acc);text-decoration:none}
+details.stalebox{margin:18px 0 6px;border:1px dashed #4b5563;border-radius:10px;padding:10px 12px;background:var(--card)} details.stalebox summary{color:var(--warn);font-size:14px;font-weight:600;cursor:pointer}
+/* ---- company page ---- */
+.page{display:none;max-width:860px;margin:0 auto;min-width:0} .page.open{display:block}
+.dnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px} .back{color:var(--acc);text-decoration:none;font-size:14px;font-weight:500;min-height:44px;display:inline-flex;align-items:center} .navr{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.hero{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 20px;display:flex;flex-direction:column;gap:18px}
+.hrow{display:flex;align-items:center;gap:14px} .ttile{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:13px;color:#0C0E12;font-family:var(--mono);font-size:24px;font-weight:600;flex:0 0 auto}
+.hname{min-width:0} .hline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .htick{font-family:var(--mono);font-size:28px;font-weight:600;line-height:1.1} .hco{font-size:18px;font-weight:500}
+.hstats{display:grid;grid-template-columns:2fr 1.2fr 1fr;gap:14px 22px} .hstat{display:flex;flex-direction:column;gap:5px;min-width:0} .hstat .v{font-size:24px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums} .hstat.big .v{font-size:50px;line-height:1;letter-spacing:-.02em} .hstat .v small{font-size:14px;font-weight:500} .hstat .tsub{white-space:normal}
+@media (max-width:900px){.hstats{grid-template-columns:1fr 1fr}.hstat.big{grid-column:1/-1}}
+.take{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:16px;line-height:1.6;color:var(--txt2)}
+.about .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 18px;margin-top:14px} .about .fact{display:flex;flex-direction:column;gap:3px;font-size:14px;color:var(--txt2);min-width:0;overflow-wrap:anywhere} .about .fact .quote{display:block;font-style:italic;margin-top:2px}
+.about .dimp{margin:0 0 6px} table.filings td{vertical-align:middle} .street .tiles{margin-top:0}
+.about .fact[title]{cursor:help} .about .fact[title] .k::after{content:" ⓘ";font-size:10px;letter-spacing:0} /* a fact with evidence behind it (the employees sentence, the full address) */
+.about .more[hidden],.about .ell[hidden]{display:none} .readmore{background:none;border:0;padding:0 2px;margin:0;font:inherit;font-size:14px;font-weight:500;color:var(--acc);cursor:pointer;border-bottom:1px dotted var(--acc);min-height:0;line-height:inherit} .readmore:hover{color:#fff}
+/* Street summary: the label, the mean-target tile with its % badge, the small ratings chart */
+.streetlbl{display:block;margin-bottom:8px} .stgt{display:flex;flex-direction:column;gap:5px;margin:14px 0 4px;min-width:0} .stgt .v{font-size:30px;font-weight:500;line-height:1.1;letter-spacing:-.01em;display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px} .stgt .badge{font-family:var(--mono);font-size:13px;font-weight:500;padding:2px 8px;border-radius:999px;background:var(--card2);border:1px solid var(--line2)} .stgt .badge.pos{color:var(--pos);border-color:rgba(91,214,156,.4)} .stgt .badge.neg{color:var(--neg);border-color:rgba(255,138,138,.4)}
+.chart.small{min-height:100px;margin-bottom:0} .street .sub3{margin-top:14px}
+/* Filings: form filter chips; a filtered-out row is hidden */
+.fchips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px} .fchips button{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);padding:6px 12px;border-radius:999px;font-size:13px;cursor:pointer;min-height:34px;display:inline-flex;align-items:center;gap:6px} .fchips button .mono{font-size:12px;color:var(--mut)} .fchips button.on{background:#2C3648;color:#fff;border-color:#3b4a66} .fchips button.on .mono{color:#C3C9D4} .fchips button:disabled{opacity:.45;cursor:default}
+table.filings tr[hidden]{display:none}
+/* partial yields (fundamentals.py yields_display): the ≥ / ≤ / ≈ label is printed, the bound named under it, the note in the tooltip */
+.tile[title]{cursor:help} .tile[title] .k::after{content:" ⓘ";font-size:10px;letter-spacing:0} .tile .v.bounded{color:var(--txt2)} .tile .v .vsfx{display:block;font-size:12px;font-family:var(--sans);color:var(--warn);font-weight:500;margin-top:2px} .tsub .bword{color:var(--warn);font-weight:500}
+#t td.take .syld{display:inline} #t td.take .syld b{color:var(--txt2);font-weight:500} #t td.take .syld.bounded b{color:var(--warn)} #t td.take .syld[title]{cursor:help}
+.copyout{flex-wrap:wrap} .copynote{display:block;flex-basis:100%;margin:2px 0 0;font-size:12px} .seg.dim{opacity:.5}
+.bhsl .bhst{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);margin-right:4px}
+.chart .leg .offleg{color:var(--warn)} .stm-retry{margin:0 4px}
+/* statements viewer: a quarter flagged basis_break_quarterly is greyed (its fiscal year's quarters do not sum to the restated FY figure) */
+table.stm td.bbrk{color:var(--mut);text-decoration:underline dotted rgba(160,168,182,.6);text-underline-offset:3px;cursor:help}
+/* restricted cash (statements.py incl_restricted_*): ‡ after a cell that counts restricted cash as cash; the title says how */
+table.stm sup.rcash{color:var(--warn);margin-left:1px;cursor:help}
+/* live.json withheld for predating the analysis (record.live_withheld / row.live_withheld): the "live pending" marker */
+.lvpend{color:var(--warn);cursor:help} td .lvpend{font-size:11px;white-space:nowrap}
+/* a split since scoring (record.split_restated): the header chip, the per-tab note and the ranking badge */
+.splitchip{border-color:#8a6d1f;color:var(--warn)} .splitnote{border-left:3px solid #8a6d1f;padding:2px 0 2px 10px;margin:10px 0}
+.bdg.sp{background:#14302a;color:#5eead4;border-color:#115e59}
+.pcsec{margin:14px 0} .pc{padding:14px 12px 12px}
+.pcbar{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px} .pcbar>*{min-width:0;max-width:100%} .ranges{display:flex;flex-wrap:wrap;gap:4px} /* nine buttons are ~407px: wrap on a phone (the pane clips overflow, so an unwrapped strip lost 5Y and Max) */ .ranges .rb:not(:empty){display:block;font-size:10px;line-height:1.1;margin-top:2px;font-weight:500} .ranges button{background:transparent;border:1px solid transparent;color:var(--mut);padding:6px 9px;border-radius:8px;font-family:var(--mono);font-size:12.5px;cursor:pointer;min-height:34px} .ranges button.on{background:var(--card2);border-color:var(--line2);color:#fff}
+.toggles{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--mut)} .toggles label{display:inline-flex;align-items:center;gap:5px;cursor:pointer} .toggles input{accent-color:#7AA2FF;min-height:0}
+.pchart{position:relative;width:100%;height:280px;touch-action:pan-y;cursor:crosshair;-webkit-user-select:none;user-select:none} /* touch-action:pan-y — a horizontal drag scrubs the crosshair, a vertical flick still scrolls the page (the browser takes the pan and fires pointercancel) */ .pchart svg{width:100%;height:100%;display:block} .pchart .xh text{font-variant-numeric:tabular-nums} .pchart .xtt,.pchart .xlt{font-size:11.5px} .pcnote{margin:4px 0 0}
+.ranges .rb:not(:empty).pos{color:var(--pos);background:rgba(91,214,156,.14)} .ranges .rb:not(:empty).neg{color:var(--neg);background:rgba(255,138,138,.14)} .ranges .rb:not(:empty){padding:1px 6px;border-radius:999px;font-variant-numeric:tabular-nums} /* the period-return pill under the active range */
+.pcfoot{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--mut);margin-top:8px;align-items:center} .legend{display:inline-flex;align-items:center;gap:6px} .legend i{display:inline-block;width:12px;height:12px;border-radius:3px} .legend i.dash{width:14px;height:0;border-top:2px dashed;border-radius:0} .pcret{margin-left:auto;font-family:var(--mono)}
+.chart{position:relative;width:100%;min-height:160px;margin:4px 0 8px;min-width:0} .chart svg{width:100%;display:block;height:auto} .chart .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--mut);margin-top:6px;min-width:0} .chart .leg span{display:inline-flex;align-items:center;gap:6px;min-width:0;overflow-wrap:anywhere} .chart .leg i{display:inline-block;width:11px;height:11px;border-radius:3px;flex:0 0 auto}
+.chart svg,.pchart svg,.fanchart svg{max-width:100%}
+.chart text{font-family:var(--mono);font-size:11px;fill:var(--mut)} .chart .grid{stroke:#232832} .chart .zero{stroke:#3A4252} .pchart text{font-family:var(--mono);font-size:11px;fill:var(--mut)} .pchart .grid{stroke:#232832}
+/* sticky tab bar: condenses to ticker · last close · change · expected return once the header scrolls away */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin:18px calc(-1 * var(--gutter)) 6px;padding:0 var(--gutter)} /* top: the notch inset on phones, 0 elsewhere */
+/* The condensed line OVERLAYS the space above the tabs (position:absolute, bottom:100%) instead of joining the bar's flow, and the
+   condensed bar sticks --tabsum-h lower: the bar's own height never changes, so nothing below it moves when it condenses
+   (it used to grow 45 → 81 px and push the pane down 36 px under the finger). app.js condenses once the bar's natural top is
+   within --tabsum-h of the viewport top, so the stuck position and the natural one meet and the tabs do not jump either. */
+:root{--tabsum-h:36px}
+.tabsum{display:flex;visibility:hidden;position:absolute;left:0;right:0;bottom:100%;height:var(--tabsum-h);box-sizing:border-box;align-items:center;gap:12px;padding:0 var(--gutter);background:var(--bg);font-size:14px;color:var(--txt2);white-space:nowrap;overflow:hidden} .tabsum b{font-size:16px;color:var(--txt)} .tabsum .ttile.sm{width:26px;height:26px;border-radius:7px;font-size:13px}
+.tabbar.condensed{top:calc(env(safe-area-inset-top,0px) + var(--tabsum-h));box-shadow:0 8px 16px -10px rgba(0,0,0,.8)} .tabbar.condensed .tabsum{visibility:visible}
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin:0;overflow-x:auto} .tab{background:transparent;border:0;color:#7FA3FF;font-size:16px;font-weight:500;padding:12px 16px;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;min-height:44px} .tab.on{color:#fff;background:var(--card2);border-radius:10px 10px 0 0;border-bottom-color:#fff} .tab:focus-visible{outline-offset:-2px}
+.pane{display:none;min-width:0;max-width:100%;overflow-x:hidden;overflow-x:clip} .pane.on{display:block} /* a pane can never widen the page: clip (no scroll container, sticky cells keep working inside .twrap), hidden as the fallback */
+/* Forecast sub-tabs: DCF · Street · Analysts */
+.subtabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 4px} .subtab{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);padding:7px 14px;border-radius:999px;font-size:13.5px;cursor:pointer;min-height:36px;display:inline-flex;align-items:center;gap:6px} .subtab .sub{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase} .subtab.on{background:#2C3648;color:#fff;border-color:#3b4a66} .subtab.on .sub{color:#C3C9D4}
+.subpane{display:none} .subpane.on{display:block}
+.sub3{font-size:14px;font-weight:600;margin:16px 0 4px;color:var(--txt2)}
+table.hal td{font-family:var(--mono)} table.hal th .sub{font-weight:400;margin-left:4px}
+.bhs{display:flex;height:10px;border-radius:5px;overflow:hidden;background:var(--line);margin-top:12px} .bhs i{display:block;height:100%} .bhs i.buy,.bhsl i.buy{background:var(--pos)} .bhs i.hold,.bhsl i.hold{background:var(--warn)} .bhs i.sell,.bhsl i.sell{background:var(--neg)} .bhsl{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12.5px;color:var(--mut);margin-top:6px} .bhsl span{display:inline-flex;align-items:center;gap:6px} .bhsl i{display:inline-block;width:10px;height:10px;border-radius:3px}
+.seefc{font-weight:500}
+.sgrow{display:grid;grid-template-columns:minmax(200px,260px) 1fr;gap:16px 28px;align-items:start;margin-top:12px} .sgauge{width:100%;max-width:260px;height:auto;display:block;margin:0 auto} .sgauge text{font-family:var(--mono);font-size:10px;fill:var(--mut)} .sgfan{min-width:0}
+.fanchart{position:relative;width:100%;height:260px} .fanchart svg{width:100%;height:100%;display:block} .fanchart text{font-family:var(--mono);font-size:11px;fill:var(--mut)} .fanchart .grid{stroke:#232832}
+.ffbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px} .ffpane{display:none} .ffpane.on{display:block} table.fft td{text-align:right}
+.srcbox{border:1px dashed var(--line2);border-radius:12px;padding:12px 14px;background:var(--card2);font-size:13px;color:var(--mut);line-height:1.5;margin:12px 0} .srcbox b{color:var(--txt);font-weight:500}
+.chart .leg i.ldash{width:14px;height:0;border-top:2px dashed;border-radius:0;background:transparent} .chart .leg i.lerr{width:0;height:12px;border-left:2px solid;border-radius:0;background:transparent}
+.verdict{border-radius:20px;padding:20px} .vmain{display:flex;flex-wrap:wrap;align-items:flex-end;gap:18px 36px} .vgauge{flex:1 1 240px;display:flex;flex-direction:column;gap:8px} .vgl{font-size:14px;font-weight:500}
+.gauge{position:relative;height:10px;border-radius:5px;background:var(--line)} .gfill{position:absolute;left:0;top:0;bottom:0;border-radius:5px;transition:width .4s ease} .gtick{position:absolute;top:-5px;width:2px;height:20px;margin-left:-1px;border-radius:1px;background:var(--txt)}
+.gscale{position:relative;height:16px;font-family:var(--mono);font-size:12px;color:var(--mut)} .gscale span{position:absolute;top:0} .gmid{transform:translateX(-50%);color:var(--txt);white-space:nowrap}
+.p2box{background:#0E1B2E;border:1px solid #274b73;border-radius:16px;padding:14px 18px;margin:14px 0} .p2box p{margin:6px 0 0;line-height:1.55;font-size:14px;color:var(--txt2)}
+.baseoe{display:flex;flex-direction:column;gap:8px} .bv{font-size:26px;font-weight:500;line-height:1.1} .bu{font-size:15px;color:var(--mut)}
+.nodiv{gap:6px} .nodiv .bv{color:var(--mut)}
+.scncard{padding:6px 0 0;overflow:hidden} .scn{padding:14px 16px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px} .scnh{display:flex;justify-content:space-between;align-items:center;gap:12px} .scnn{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600} .scnn i{width:10px;height:10px;border-radius:3px;display:inline-block} .scni{font-size:18px;font-weight:500}
+.scnbar{position:relative;height:6px;border-radius:3px;background:var(--line)} .scnfill{position:absolute;left:0;top:0;bottom:0;border-radius:3px;transition:width .4s ease} .scntick{position:absolute;top:-4px;width:2px;height:14px;margin-left:-1px;border-radius:1px;background:var(--txt)}
+.scnsub{display:flex;flex-wrap:wrap;gap:4px 18px;font-size:13px;color:var(--mut)} .scnsub b{font-family:var(--mono);color:var(--txt);font-weight:500}
+.scnfoot{padding:14px 16px;background:var(--card2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px;font-size:14px;font-weight:600} .scnfoot .mono{font-weight:500;color:#D4D8E0} .scnfoot .scored{color:var(--mut);font-weight:400;font-size:12.5px}
+.moathead{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px 16px} .moattitle{display:flex;align-items:center;gap:12px} .moattitle h2{margin:0;font-size:19px} .moatscore{font-size:17px;font-weight:500}
+.mdots{display:inline-flex;gap:3px} .mdots i{width:7px;height:7px;border-radius:50%;background:#333A46;display:inline-block} .mdots i.on{background:var(--txt)}
+.mcols{display:flex;flex-wrap:wrap;gap:16px 28px;margin-top:16px} .mcol{flex:1 1 260px;display:flex;flex-direction:column;gap:10px} .mk{font-size:11px;letter-spacing:.08em;text-transform:uppercase} .mk.pos{color:var(--pos)} .mk.neg{color:var(--neg)}
+.mcol ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px;font-size:14px;line-height:1.5;color:var(--txt2)} .mcol li{display:flex;gap:10px} .sign{font-family:var(--mono)} .sign.pos{color:var(--pos)} .sign.neg{color:var(--neg)}
+.dimp{color:var(--txt2);font-size:14.5px;line-height:1.6;margin:14px 0 0}
+ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:13.5px;line-height:1.5;color:var(--txt2)} ul.flags li{display:flex;gap:10px;align-items:flex-start} ul.flags code{font-family:var(--mono);font-size:12px;padding:3px 7px;border-radius:6px;background:var(--card2);border:1px solid var(--line2);color:#D4D8E0;white-space:nowrap;flex:0 0 auto}
+.fcount{font-size:15px;font-weight:500;color:var(--mut)} ul.warnlist{margin:6px 0 0;padding-left:18px;color:var(--warn)}
+.pnav{display:flex;justify-content:space-between;align-items:center;margin:18px 0;gap:10px} .pn{font-family:var(--mono);text-decoration:none;font-size:14px;color:var(--acc);min-height:44px;display:inline-flex;align-items:center}
+.dfoot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 16px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--mut);margin-top:8px}
+.pvplot{position:relative;height:128px} .pv-range-lbl{position:absolute;top:0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);white-space:nowrap} .pv-range-val{position:absolute;top:17px;font-family:var(--mono);font-size:13px;color:var(--acc);white-space:nowrap}
+.pv-track{position:absolute;left:0;right:0;top:58px;height:4px;border-radius:2px;background:var(--line)} .pv-band{position:absolute;top:50px;height:20px;border-radius:5px;background:rgba(122,162,255,.18);border:1px solid rgba(122,162,255,.6)} .pv-ivmark{position:absolute;top:44px;width:2px;height:32px;margin-left:-1px;border-radius:1px;background:var(--txt)} .pv-pricedot{position:absolute;top:53px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:#FF8A8A;box-shadow:0 0 0 4px rgba(255,138,138,.18)}
+.pv-ivlbl{position:absolute;top:86px;margin-left:-1px;display:flex;flex-direction:column;gap:2px;white-space:nowrap} .pv-ivlbl span,.pv-pricelbl span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)} .pv-ivlbl b{font-family:var(--mono);font-size:15px;font-weight:500} .pv-pricelbl{position:absolute;right:0;top:86px;display:flex;flex-direction:column;align-items:flex-end;gap:2px;white-space:nowrap} .pv-pricelbl b{font-family:var(--mono);font-size:15px;font-weight:500;color:#FF8A8A} .pv-axis{display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid var(--line);font-family:var(--mono);font-size:11px;color:var(--mut)}
+@media (max-width:760px){
+ #t{min-width:0;table-layout:auto} #t thead{display:none} #t,#t tbody{display:block}
+ #t tr{display:grid;grid-template-columns:1fr 1fr 1fr;column-gap:10px;align-items:start;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:10px;background:var(--card)}
+ #t td{display:block;border-bottom:none;padding:3px 0;text-align:left!important;white-space:normal!important}
+ #t td.co,#t td.take{grid-column:1/-1}
+ #t td::before{display:block;font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px}
+ #t td:nth-child(2)::before{content:"Tier"} #t td:nth-child(3)::before{content:"Band"} #t td:nth-child(4)::before{content:"Live IRR"} #t td:nth-child(5)::before{content:"Scored IRR"} #t td:nth-child(6)::before{content:"Price"} #t td:nth-child(7)::before{content:"IV @15%"} #t td:nth-child(8)::before{content:"Upside"} #t td:nth-child(9)::before{content:"Moat"} #t td:nth-child(10)::before{content:"Conf."} #t td:nth-child(11)::before{content:"Mkt cap"} #t td:nth-child(12)::before{content:"1y price"}
+ .was{display:inline;margin-left:6px}
+ .hstat.big .v{font-size:40px} .htick{font-size:24px} .tab{font-size:15px;padding:12px 12px}
+ .hstat .v{white-space:normal;overflow-wrap:anywhere} .hero{min-width:0}
+ .pchart{height:240px} .hero{padding:18px 16px} .card{padding:14px}
+ .controls input{flex:1 1 160px}
+ .sgrow{grid-template-columns:1fr} .fanchart{height:220px}
+ table.stm th:first-child,table.stm tbody th{min-width:118px;max-width:150px;font-size:12.5px} table.stm tr.l1 th{padding-left:18px} table.stm tr.l2 th{padding-left:30px} .spark{padding:12px 8px 8px}
+}
+@media (max-width:480px){.hstats{grid-template-columns:1fr} .hstat.big{grid-column:auto} .tabsum{gap:8px;font-size:13px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
