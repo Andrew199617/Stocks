@@ -38,6 +38,11 @@ Review fixes of 2026-10-21 (each fails on d9618aa, the lane's first commit, as w
       through_whitespace: a legacy reason with surrounding whitespace keeps its first date (d9618aa: re-dated).
       test_d_not_applied_reason_beside_a_d_to_f_override: the D block never says there is no tier below D (d9618aa:
       it did, under a published F).
+Integration with lane L2 (R3 strict quoting), when L2 merged into rulings-5.7:
+ test_57_notch_reason_is_traced: a 5.7 run's misfit_notch_reason goes through L2's real influence trace (fails on
+      d3eccc5, the branch before the L2 merge: check_influence was L0's no-op). The tests above that echo a reason
+      compare against judgment.json as rulings57 wrote it (L2's obligation cites [F#] for figures no engine file
+      holds), and T-8's number-less reason is written as judgment_text so the obligation leaves it as written.
 """
 import copy
 import json
@@ -317,6 +322,16 @@ def _events(r, event):
     return [e for e in r.result["entries"] if e.get("event") == event]
 
 
+def _written(r, field, starts):
+    """[Integrate L2] judgment.json `field` as the test folder holds it. On a 5.7 run Run applies rulings57, whose L2
+    obligation (cite_facts_for_reasons, R3) declares a filing fact for each figure of a reason that traces to no engine
+    source and appends its [F#] citation — so make_score echoes the cited text. It still begins with the test's
+    own words (`starts`)."""
+    got = json.loads(r.result["judgment"])[field]
+    assert isinstance(got, str) and got.startswith(starts), (field, got)
+    return got
+
+
 def test_notch_matrix():
     """T-7 (01 §3.3, §3.7, §3.8): a 5.7 misfit at B publishes C with the worker's reason and one misfit_notch event;
     D and F are not notched (the block says why, no event); a further downgrade below the notch is in force (its
@@ -326,8 +341,9 @@ def test_notch_matrix():
     assert r.rc == 0, r.err
     s = r.result["score"]
     mn = s["misfit_notch"]
+    why57 = _written(r, "misfit_notch_reason", WHY57)   # [Integrate L2] with rulings57's [F#] citations
     assert s["tier_final"] == "C" and s["tier_by_numbers"] == "B" and s["model_fit"] == "misfit", s
-    assert mn["applies"] is True and mn["tier_after_notch"] == "C" and mn["reason"] == WHY57, mn
+    assert mn["applies"] is True and mn["tier_after_notch"] == "C" and mn["reason"] == why57, mn
     assert mn["reason_source"] == "judgment" and mn["not_applied"] is None, mn
     assert mn["basis"] == {"source": "engine_flag", "sector": "Finance", "sic": None, "sic_description": None,
                            "sic_class": None, "sic_source": None}, mn["basis"]
@@ -336,10 +352,10 @@ def test_notch_matrix():
     assert len(ev) == 1 and not _events(r, "tier_override"), r.result["entries"]
     assert {k: ev[0][k] for k in ("ticker", "tier_by_numbers", "tier_final", "weighted_irr", "reason", "reason_source",
                                   "basis")} == {"ticker": T, "tier_by_numbers": "B", "tier_final": "C",
-                                                "weighted_irr": 0.17, "reason": WHY57, "reason_source": "judgment",
+                                                "weighted_irr": 0.17, "reason": why57, "reason_source": "judgment",
                                                 "basis": "engine_flag"}, ev[0]
     assert "- Tier: C (sector-misfit notch: numbers tier B → C) · confidence medium" in r.result["key"], r.result["key"]
-    assert f"- Misfit notch (judgment): “{WHY57}”" in r.result["key"]
+    assert f"- Misfit notch (judgment): “{why57}”" in r.result["key"]
     # D: the lowest graded tier
     r = _with(_misfit(tier="D", irr=0.061), _judgment(None))
     assert r.rc == 0, r.err
@@ -359,6 +375,7 @@ def test_notch_matrix():
     r = _with(_misfit(), _judgment(None, misfit_notch_reason=WHY57, tier_override="D", tier_override_reason=down))
     assert r.rc == 0, r.err
     s = r.result["score"]
+    down = _written(r, "tier_override_reason", down)   # [Integrate L2] with rulings57's [F#] citation
     assert s["tier_final"] == "D" and s["tier_override_reason"] == down and s["misfit_notch"]["tier_after_notch"] == "C", s
     assert (f"- Tier: D (sector-misfit notch: numbers tier B → C; agent override below the notch: “{down}”)"
             in r.result["key"]), r.result["key"]
@@ -382,7 +399,10 @@ def test_57_requires_a_numeric_reason():
     with no reason at all make_score writes the auto one with the weighted IRR."""
     _with(_misfit(), _judgment(None, misfit_notch_reason=None)).refused(
         "misfit_notch_reason is required on a 5.7 run of a sector misfit", "the reason must carry a number")
-    _with(_misfit(), _judgment(None, misfit_notch_reason="screens materially lower")).refused(
+    # [Integrate L2] written as judgment_text, so rulings57's R3 obligation (which gives a number-less reason a cited
+    # figure) leaves the reason exactly as the worker wrote it: R-4 refuses it before the influence trace runs
+    no_number = _judgment(None, misfit_notch_reason="screens materially lower")
+    _with(_misfit(), judgment_text=json.dumps(no_number, indent=1) + "\n").refused(
         "misfit_notch_reason must carry a number", "got 'screens materially lower'")
     _with(_misfit(), _judgment(None, misfit_notch_reason=WHY57, tier_override="C",
                                tier_override_reason="one notch, 13%")).refused(
@@ -615,8 +635,11 @@ def test_iprd_hand_override_on_a_misfit():
     tb = n["tier_by_numbers"]
     assert tb in ("S", "A", "B", "C") and M.iprd_override_required(n), tb
     n["fragility_flags"] = list(n["fragility_flags"]) + [FIN_FLAG]
+    # [Integrate L2] the same citation L2 added to test_make_score_iprd's reason (rebase A14, the Q2 default): on a 5.7
+    # run the share count is a cited filing fact [F1], the charge a cited calc fact [F2] and the adjusted IRR a saved
+    # method run (rulings57 declares them), so the reason traces and is echoed exactly as written
     why = ("main agent: $40,000,000 / 100,000,000 verified diluted shares (FY2025 10-K cover) = $0.40/share deducted "
-           "by hand; adjusted weighted IRR 9.6%, same band")
+           "by hand; adjusted weighted IRR 9.6%, same band [F1, F2]")
     r = TMI._score(n, TMI._j(base_override=bo, tier_override=E.notch_tier(tb), tier_override_reason=why,
                              misfit_notch_reason=WHY57))
     assert r.rc == 0, r.err[-800:]
@@ -660,7 +683,7 @@ def _with_switch_off(n, j):
     r = _SwitchOffRun(n, j).run()
     try:
         r.result = dict(r.state(), score=r.score() if r.rc == 0 else None, key=r.key() if r.rc == 0 else None,
-                        entries=r.entries())
+                        judgment=r.judgment_text(), entries=r.entries())
     finally:
         r.close()
     return r
@@ -708,7 +731,8 @@ def test_switch_reaches_a_57_record():
     s = r.result["score"]
     assert s["model_fit"] == "misfit" and s["tier_final"] == "D" and "misfit_sector_set_aside" not in s, s
     mn = s["misfit_notch"]
-    assert mn["applies"] and mn["tier_after_notch"] == "D" and mn["reason"] == WHY57, mn
+    why57 = _written(r, "misfit_notch_reason", WHY57)   # [Integrate L2] with rulings57's [F#] citations
+    assert mn["applies"] and mn["tier_after_notch"] == "D" and mn["reason"] == why57, mn
     assert mn["basis"]["sector"] == "Real Estate" and mn["basis"]["source"] == "engine_sector_model", mn["basis"]
     assert "- Tier: D (sector-misfit notch: numbers tier C → D)" in r.result["key"], r.result["key"]
     assert "Sector misfit set aside" not in r.result["key"], r.result["key"]
@@ -789,7 +813,71 @@ def test_d_not_applied_reason_beside_a_d_to_f_override():
         assert s["tier_final"] == tier and mn["not_applied"] == "tier_floor_D" and mn["reason"] == D_NOT_APPLIED, s
         assert f"- Misfit notch: not applied — “{D_NOT_APPLIED}”" in r.result["key"], r.result["key"]
         assert "no tier below" not in r.result["key"], r.result["key"]
+    why_f = _written(r, "tier_override_reason", why_f)   # [Integrate L2] rulings57 gives it a cited figure (R3)
     assert f"- Tier: F (agent override of D: “{why_f}”)" in r.result["key"], r.result["key"]
+
+
+# ===========================================================================
+# Integration with lane L2 (R3 strict quoting): misfit_notch_reason goes through L2's influence trace
+# ===========================================================================
+NOTCH_FILING = {"form": "10-K", "accession": "0000999001-26-000111", "section": "Item 7 MD&A — payable earnings",
+                "filed": "2026-02-20"}
+
+
+def _notch_fact(fid="F1", used_for=("misfit_notch",), **kw):
+    """A filing fact declaring the payable EPS the notch reason quotes (the shape of _system/examples/facts/)."""
+    f = {"id": fid, "label": "FY2025 payable EPS", "value": 4.1, "unit": "USD/share", "precision": 2,
+         "period": "FY2025", "kind": "filing", "type": "actual", "source": dict(NOTCH_FILING),
+         "snippet": "payable earnings per share of $4.10", "used_for": list(used_for)}
+    f.update(kw)
+    return f
+
+
+def _as_written(n, j, facts=None):
+    """make_score on judgment j exactly as written (judgment_text, so rulings57's obligations leave it alone), with
+    an optional facts.json."""
+    files = {f"{T}/facts.json": {"schema": 1, "ticker": T, "facts": list(facts)}} if facts else None
+    return _with(n, judgment_text=json.dumps(j, indent=1, ensure_ascii=False) + "\n", files=files)
+
+
+def test_57_notch_reason_is_traced():
+    """[Integrate L2] (R1 x R3, Andrew 2026-10-19; 07 §1.12 step 7, §1.13): on a 5.7 run L1's misfit_notch_reason goes
+    through L2's check_influence after R-3 / R-4 — every figure traces to an engine source or to a cited fact tagged
+    misfit_notch, never to third-party facts alone, and a refusal writes nothing. Output from before 5.7 rebuilds with
+    its reason untraced (D1). Fails on the integration branch before the L2 merge (d3eccc5: check_influence was L0's
+    no-op, so cases a, c and d scored)."""
+    n = _misfit()
+    why = "payable EPS of $4.10 on the 10-K is well below the base"
+    # (a) a figure in no generated file, nothing cited
+    r = _as_written(n, _judgment(None, misfit_notch_reason=why))
+    r.refused("judgment.json misfit_notch_reason quotes $4.10 that is neither an engine figure nor a fact it cites")
+    assert not r.result["entries"], r.result["entries"]
+    # (b) the figure as a cited filing fact tagged misfit_notch: scores, and the citation is recorded
+    r = _as_written(n, _judgment(None, misfit_notch_reason=why + " [F1]"), facts=[_notch_fact()])
+    assert r.rc == 0, r.err
+    s = r.result["score"]
+    assert s["tier_final"] == "C" and s["misfit_notch"]["reason"] == why + " [F1]", s["misfit_notch"]
+    assert s["declared_facts"]["influence"]["misfit_notch_reason"]["facts"] == ["F1"], s["declared_facts"]
+    assert [e["influencing"] for e in _events(r, "declared_facts")] == [["F1"]], r.result["entries"]
+    assert [e["reason"] for e in _events(r, "misfit_notch")] == [why + " [F1]"], r.result["entries"]
+    # (c) the cited fact does not list the misfit_notch tag
+    r = _as_written(n, _judgment(None, misfit_notch_reason=why + " [F1]"), facts=[_notch_fact(used_for=["context"])])
+    r.refused("judgment.json misfit_notch_reason cites F1, but F1 does not list used_for misfit_notch")
+    # (d) a third-party figure alone (R3: never the sole support for the misfit notch reason)
+    tp = _notch_fact(kind="third_party", type="estimate", used_for=["context"], label="consensus payable EPS",
+                     source={"url": "https://example.com/c", "publisher": "Example Wire", "published": "2026-09-28"},
+                     snippet="consensus payable EPS of $4.10")
+    r = _as_written(n, _judgment(None, misfit_notch_reason=why + " [F1]"), facts=[tp])
+    r.refused("judgment.json misfit_notch_reason rests only on third-party facts (F1)")
+    # (e) an engine figure traces with no facts declared
+    r = _as_written(n, _judgment(None, misfit_notch_reason="payable earnings run below the base OE/share of $3.00"))
+    assert r.rc == 0, r.err
+    assert r.result["score"]["misfit_notch"]["reason_source"] == "judgment", r.result["score"]["misfit_notch"]
+    assert "declared_facts" not in r.result["score"], r.result["score"]
+    # (f) output from before 5.7: the same untraced reason rebuilds (legacy reasons are never re-graded)
+    r = _as_written(_misfit(release=OLD), _judgment(None, misfit_notch_reason=why))
+    assert r.rc == 0, r.err
+    assert r.result["score"]["misfit_notch"]["reason"] == why, r.result["score"]["misfit_notch"]
 
 
 # ===========================================================================
