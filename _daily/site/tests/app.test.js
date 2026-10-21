@@ -18,6 +18,7 @@ const BASE = process.env.APP_TEST_BASE ? path.resolve(process.env.APP_TEST_BASE)
 const BUILT = process.env.APP_TEST_BUILT ? path.resolve(process.env.APP_TEST_BUILT) : SITE; // where data/, index.json, meta.json are read
 const HAVE_BUILT = fs.existsSync(path.join(BUILT, 'data')) && fs.existsSync(path.join(BUILT, 'index.json')) && fs.existsSync(path.join(BUILT, 'meta.json'));
 const App = require(path.join(SITE, 'app.js'));
+const REPO_STAR = '<span class="star fixed repo hstar" role="img" aria-label="On the repo watchlist"'; // the hero's repo watchlist mark (compact header, 2026-10-21)
 const { assemble } = require('./fixtures/assemble.js');
 
 const results = [], pending = [], skipped = [];
@@ -157,7 +158,7 @@ Object.keys(loaded).forEach((t) => {
       assert.ok(head.includes('>' + App.fmtPct(lv.irr_weighted) + '</span>'), 'big number is the live IRR ' + App.fmtPct(lv.irr_weighted));
       assert.ok(head.includes('Scored <b>' + App.fmtPct(s.implied_irr) + '</b>'), 'scored figure beside the live one');
       assert.ok(head.includes('lvchip'), 'tier chip (live vs scored)');
-      assert.ok(head.includes('>Last close</span>') && head.includes('scored ' + App.fmtMoney(lv.scored_price !== undefined ? lv.scored_price : s.price)), 'last close tile with the scored price');
+      assert.ok(head.includes('>Last close</span>') && head.includes('</b> at ' + App.fmtMoney(lv.scored_price !== undefined ? lv.scored_price : s.price)), 'last close cell, the scored price beside the scored figure');
     } else {
       assert.ok(!head.includes('· live'), 'no live label');
       assert.ok(head.includes(App.fmtPct(s.implied_irr)), 'big number is the scored IRR');
@@ -387,8 +388,8 @@ test('watchlist: state, filter, toggle button, canonical star vs per-device star
   const plain = App.renderRowHTML(synthetic.row); assert.ok(plain.includes('class="star" data-star="SYN" aria-pressed="false"') && plain.includes('☆') && !plain.includes('data-watch'), 'unstarred row has the toggle');
   if (canon.length) { const c = App.renderRowHTML(canon[0]); assert.ok(c.includes('class="star fixed repo"') && !c.includes('data-star='), 'canonical watchlist row: fixed repo star, no toggle'); }
   assert.ok(App.renderListRowsHTML(rows, { fit: 'all', watch: true, q: 'zzzz' }).includes('Nothing on the watchlist'));
-  if (loaded.APP && loaded.APP.record.row.watchlist) assert.ok(App.renderHeader(loaded.APP.record).includes('★ Watchlist'), 'company hero shows the watchlist chip');
-  assert.ok(!App.renderHeader(synthetic).includes('★ Watchlist'));
+  if (loaded.APP && loaded.APP.record.row.watchlist) assert.ok(App.renderHeader(loaded.APP.record).includes(REPO_STAR), 'company hero shows the fixed repo star');
+  assert.ok(!App.renderHeader(synthetic).includes(REPO_STAR));
 });
 test('floor-clamped IRRs are marked (ZS: live super-bear / bear at the floor), header band too', () => {
   const rec = builtOr('ZS', 'ZS live floor flags in the Forecast table and header');
@@ -640,8 +641,8 @@ test('watchlist merge: repo (meta.watchlist ∪ row flags) + local stars, dedupe
   assert.ok(list.includes('class="star fixed repo"') && list.includes('class="star on" data-star="BBB"') && list.includes('class="star" data-star="DDD"'), 'rows: repo star, local star, plain toggle');
   const hero = App.renderHeader({ score: { ticker: 'BBB', name: 'B' }, row: rows[1] }, ['BBB'], repo); assert.ok(hero.includes('class="star on hstar" data-star="BBB" aria-pressed="true"'), 'company header star (local)');
   assert.ok(App.renderHeader({ score: { ticker: 'BBB', name: 'B' }, row: rows[1] }, [], repo).includes('class="star hstar" data-star="BBB" aria-pressed="false"'));
-  const heroRepo = App.renderHeader({ score: { ticker: 'CCC', name: 'C' }, row: rows[2] }, [], repo); assert.ok(heroRepo.includes('★ Watchlist <span class="sub">repo</span>') && !heroRepo.includes('data-star='), 'repo name: chip, no toggle');
-  assert.ok(App.renderHeader({ score: { ticker: 'CCC', name: 'C' } }, [], repo).includes('★ Watchlist'), 'repo chip from meta.watchlist alone (no row)');
+  const heroRepo = App.renderHeader({ score: { ticker: 'CCC', name: 'C' }, row: rows[2] }, [], repo); assert.ok(heroRepo.includes(REPO_STAR) && !heroRepo.includes('data-star='), 'repo name: the fixed repo star, no toggle');
+  assert.ok(App.renderHeader({ score: { ticker: 'CCC', name: 'C' } }, [], repo).includes(REPO_STAR), 'repo star from meta.watchlist alone (no row)');
   assert.ok(App.renderCompanyHTML(synthetic, 'overview', null, null, { stars: ['SYN'] }).includes('class="star on hstar" data-star="SYN"'));
 });
 test('dividends: payer decided from frequency + paid / DPS history (CCL, TKO shapes), filed DPS precision, share-basis meta line', () => {
@@ -1302,9 +1303,9 @@ test('Statements minors: the chart card closes with its line on a period switch;
 });
 test('Hero watchlist chip reads the index (authoritative) when a repo list is given; record.row only without one', () => {
   const lag = { score: { ticker: 'KR', name: 'Kroger' }, row: { ticker: 'KR', watchlist: true } };
-  assert.ok(!App.renderHeader(lag, [], []).includes('★ Watchlist <span class="sub">repo</span>') && App.renderHeader(lag, [], []).includes('data-star="KR"'), 'a stale record.row.watchlist does not win over the index-derived repo list');
-  assert.ok(App.renderHeader(lag, [], ['KR']).includes('★ Watchlist <span class="sub">repo</span>'));
-  assert.ok(App.renderHeader(lag).includes('★ Watchlist <span class="sub">repo</span>'), 'no repo list (a lone record) → record.row is all there is');
+  assert.ok(!App.renderHeader(lag, [], []).includes(REPO_STAR) && App.renderHeader(lag, [], []).includes('data-star="KR"'), 'a stale record.row.watchlist does not win over the index-derived repo list');
+  assert.ok(App.renderHeader(lag, [], ['KR']).includes(REPO_STAR));
+  assert.ok(App.renderHeader(lag).includes(REPO_STAR), 'no repo list (a lone record) → record.row is all there is');
   const src = fs.readFileSync(path.join(SITE, 'app.js'), 'utf8'); assert.ok(/renderCompanyHTML\(record, tab, navFor\(ticker\), sub, \{ stm: stm, stars: D\.stars, repo: repoNow\(\) \}\)/.test(src), 'mountCompany passes the meta ∪ index repo list');
 });
 
@@ -1590,8 +1591,12 @@ test('Live older than the score: the header and the condensed bar show the score
   assert.equal(App.currentClose(withheldRec), null, 'the 2026-10-13 close predates the 2026-10-14 analysis');
   const head = App.renderHeader(withheldRec);
   assert.ok(head.includes('<span class="k">Scored price</span><span class="v mono">$50.00</span>'), 'scored price as the current price: ' + head);
-  assert.ok(head.includes('title="' + App.esc(withheldNote) + '">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis</span>'), 'the reason beside it, the note in the tooltip');
-  assert.ok(!head.includes('$44.00') && !head.includes('-1.50%') && head.includes('52-wk $38.40–$55.20'), 'not the older close nor its 1-day change; the 52-week range stays');
+  // compact header (2026-10-21, option A): a short "Live pending" marker under the price, the sentence and note in its title;
+  // the sentence (note in its title) and the 52-week range moved to the price chart card, readable on a phone
+  assert.ok(head.includes('<span class="lvpend" title="' + App.esc('Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis — ' + withheldNote) + '">Live pending</span>'), 'the marker beside the price, the reason in its tooltip: ' + head);
+  assert.ok(!head.includes('$44.00') && !head.includes('-1.50%') && !head.includes('52-wk'), 'not the older close nor its 1-day change; the 52-week range left the header');
+  const pc = App.renderPriceChart(withheldRec);
+  assert.ok(pc.includes('<span class="lvpend" title="' + App.esc(withheldNote) + '">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis</span>') && pc.includes('52-wk $38.40–$55.20'), 'price chart card: the reason and the 52-week range: ' + pc);
   assert.ok(head.includes('Probability-weighted IRR at $50.00') && !head.includes('· live'), 'the scored IRR');
   const sum = App.renderTabSummary(withheldRec);
   assert.ok(sum.includes('title="Scored price — live figures pending">$50.00') && !sum.includes('$44.00') && !sum.includes('-1.50%'), 'condensed bar: ' + sum);
@@ -1608,6 +1613,36 @@ test('Live older than the score: the header and the condensed bar show the score
   assert.ok(fc.includes('<span class="k">Scored price</span><span class="v ">$50.00</span><span class="tsub">Live figures pending — the 2026-10-13 close predates the 2026-10-14 analysis') && fc.includes('Green = at or above the scored price') && !fc.includes("Today's price"), 'Forecast hurdle tiles');
   App.TAB_KEYS.forEach((t) => { const h = App.renderCompanyHTML(withheldRec, t); assert.ok(!h.includes('could not be rendered'), t); });
   assert.ok(!App.TAB_KEYS.map((t) => App.renderCompanyHTML(inject(withheldRec), t)).join('').includes('<x-inj>'), 'escaped');
+});
+/* ---- compact header, option A "stat strip" (owner decision, Andrew 2026-10-21): identity · return + band · one status
+   line when needed · price | value @15% | upside. The fine print moved to titles and to the cards that already show it. */
+test('compact header: one strip for price, value @15% and upside; override and live status on one line; fine print in titles and the cards below', () => {
+  const head = App.renderHeader(synthetic), strip = head.slice(head.indexOf('<div class="hstrip">'));
+  const iP = strip.indexOf('<span class="k">Last close</span>'), iV = strip.indexOf('<span class="k">Value @15%</span>'), iU = strip.indexOf('<span class="k">Upside</span>');
+  assert.ok(iP > 0 && iP < iV && iV < iU, 'price | value @15% | upside, in that order: ' + strip);
+  assert.ok(strip.includes('>' + App.fmtPts(App.liveView(synthetic).upside, 0) + '</span><span class="tsub">vs last close</span>'), 'upside with its basis');
+  assert.ok(head.includes('<span class="hband" title="bear → bull tier at the last close"><span>Bear</span><i style="background:'), 'bear → bull band with the ranking rows\' tier chips');
+  assert.ok(/<div class="hstatus"><span title="Scored on [^"]*">Scored <b>14\.2%<\/b> at \$50\.00<\/span><span class="chip lvchip">/.test(head), 'live: the scored figure and the tier chip share one status line');
+  // meta = sector · cap; exchange and filer category in its title only (the About card lists both)
+  const face = head.match(/<span class="note hmeta"[^>]*>([^<]*)<\/span>/)[1];
+  assert.ok(!/NYSE|accelerated filer/.test(face) && head.includes('title="Market cap at the last close · NYSE · Large accelerated filer"'), 'meta face: ' + face);
+  assert.ok(App.renderAbout(synthetic).includes('Large accelerated filer'), 'filer category still in About');
+  assert.ok(!App.renderHeader(synthetic).includes('class="hov"'), 'no override marker when the final tier is the numbers tier');
+  // not live, a current close: the return and upside stay at the scored price, and the header says so
+  const ov = clone(synthetic); delete ov.live; ov.score.tier_by_numbers = 'S'; ov.score.tier_final = 'D';
+  const oh = App.renderHeader(ov);
+  assert.ok(oh.includes('<span class="hov" title="Tier overridden S→D by agent judgment">Override · numbers <i style="background:#B79CFF">S</i> → final <i style="background:#F08A4B">D</i></span>'), 'override marker beside the return: ' + oh);
+  assert.ok(oh.includes('<span class="k">Price used</span>') && oh.includes('<span class="tsub">vs price</span>') && !oh.includes('Return at the scored price'), 'no close: the price used is the basis');
+  const cc = clone(withheldRec); delete cc.live_withheld; cc.row.live_withheld = false; const ch = App.renderHeader(cc);
+  assert.ok(ch.includes('<span class="k">Last close</span><span class="v mono">$44.00</span><span class="tsub"><span class="neg">-1.50%</span> · ') && ch.includes('Return at the scored price $50.00') && ch.includes('<span class="tsub">vs scored price</span>'), 'a current close: its 1-day change under it, the scored basis named: ' + ch);
+  // no close at all: the price used, its source in the cell's title (the Data tab lists it too), never on the face
+  const pu = clone(ov); delete pu.prices; const ph = App.renderHeader(pu), src = pu.numbers.price_source;
+  assert.ok(ph.includes('<span class="k">Price used</span>') && ph.includes('<div class="hs" title="' + App.esc(src) + ' · ') && ph.split(App.esc(src)).length === 2 && App.renderData(pu).includes(App.esc(src)), 'price source: title + Data tab');
+  // the 52-week range and 1y return moved to the price chart card
+  assert.ok(!ch.includes('52-wk') && App.renderPriceChart(cc).includes('52-wk $38.40–$55.20'), '52-week range in the chart card');
+  const css = fs.readFileSync(path.join(SITE, 'app.css'), 'utf8');
+  assert.ok(css.includes('.hstrip{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(0,.9fr)') && !css.includes('.hstats') && !css.includes('.hstat '), 'one three-cell strip at every width; the stacked .hstats grid is gone');
+  assert.ok(/\.hstar\{position:absolute;[^}]*min-width:44px;min-height:44px/.test(css), 'star: a 44px target in the corner');
 });
 test('Live older than the score: the ranking marks the row "live pending" and ranks it on its scored IRR; the header counts the pending rows', () => {
   const row = withheldRec.row, html = App.renderRowHTML(row);

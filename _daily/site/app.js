@@ -384,57 +384,70 @@ function gaugeScale(irr) {
 }
 
 function renderHeader(record, stars, repo) {
-  var s = obj(record.score), n = obj(record.numbers), pr = obj(record.prices), row = obj(record.row);
+  var s = obj(record.score), n = obj(record.numbers), row = obj(record.row);
   var v = liveView(record), tier = v.tier, acc = TIER_ACCENT[tier] || '#9AA3B2', price = v.price;
-  var st = obj(pr.stats), chg = num(st.change_1d_pct), last = num(st.last);
-  var ret1y = num(st.ret_1y_pct) !== null ? num(st.ret_1y_pct) : num(row.ret_1y_pct);
+  var chg = num(obj(obj(record.prices).stats).change_1d_pct);
   var irr = v.irr, irrS = irr !== null ? fmtPct(irr) : '—';
   var ff = floorFlags(record, v.is_live), floor = v.irr_at_floor || ff.weighted || (!v.is_live && !!obj(n.diagnostics).irr_at_floor);
-  var band = '', fbear = ff.bear ? ' ' + floorSup() : '', fbull = ff.bull ? ' ' + floorSup() : '';
-  if (v.tier_bear && v.tier_bull) band = '<span class="tsub">Bear ' + fmtPct(v.irr_bear) + ' (' + esc(v.tier_bear) + ')' + fbear + ' → Bull ' + fmtPct(v.irr_bull) + ' (' + esc(v.tier_bull) + ')' + fbull + (v.is_live ? ' at last close' : '') + '</span>';
+  // bear → bull band: the ranking rows' tier chips beside the return; a floored end keeps its "at floor" mark
+  var bb = null, band = '';
+  if (v.tier_bear && v.tier_bull) bb = [v.irr_bear, v.tier_bear, v.irr_bull, v.tier_bull];
   else if (obj(v.scenarios.bear).irr !== null && obj(v.scenarios.bear).irr !== undefined && obj(v.scenarios.bull).irr !== null && obj(v.scenarios.bull).irr !== undefined) {
     var sb = v.scenarios.bear.irr, su = v.scenarios.bull.irr;
-    band = '<span class="tsub">Bear ' + fmtPct(sb) + ' (' + esc(tierForIrr(sb)) + ')' + fbear + ' → Bull ' + fmtPct(su) + ' (' + esc(tierForIrr(su)) + ')' + fbull + (v.is_live ? ' at last close' : '') + '</span>';
+    bb = [sb, tierForIrr(sb), su, tierForIrr(su)];
   }
-  var up = v.upside, prof = obj(obj(record.fundamentals).profile);
-  var meta = joinNonEmpty([esc(s.sector || record.sector || row.sector), fmtCap(v.cap_b) + (v.is_live ? ' at last close' : ''),
-    first(prof.exchanges) ? esc(first(prof.exchanges)) : '', prof.filer_category ? esc(prof.filer_category) : ''], ' · ');
+  var bandRow = function (lbl, x, t, fl) { return '<span>' + lbl + '</span><i style="background:' + (TIER_ACCENT[t] || '#333') + '">' + esc(t) + '</i><span class="mono">' + fmtPct(x) + (fl ? ' ' + floorSup() : '') + '</span>'; };
+  if (bb) band = '<span class="hband" title="' + (v.is_live ? 'bear → bull tier at the last close' : 'bear → bull tier as scored') + '">' + bandRow('Bear', bb[0], bb[1], ff.bear) + bandRow('Bull', bb[2], bb[3], ff.bull) + '</span>';
   var fsub = '';
   if (tier === 'F') {
     var fs = s.f_subtype || n.f_subtype || row.f_subtype;
     fsub = { sbc_exceeds_cash: 'F · SBC exceeds cash generation', no_cash_generation: 'F · no cash generation', payable_earnings_nonpositive: 'F · payable earnings non-positive' }[fs] || "F · no positive owner's earnings";
   }
-  // compact header (owner decision, 2026-10-14): tier tile · ticker · name · sector line; the live expected
-  // return with the scored figure beside it; the last close with its 1-day change; value @15% with upside.
-  var sub, priceTile, ttile, chgS = chg !== null ? ' <small class="' + ((chg || 0) >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</small>' : '';
-  var rangeSub = joinNonEmpty([st.last_date && last !== null ? '52-wk ' + fmtMoney(st.low_52w) + '–' + fmtMoney(st.high_52w) : '', ret1y !== null ? '1y ' + fmtPts(ret1y, 0) : ''], ' · ');
-  if (v.is_live) {
-    sub = 'Scored <b>' + fmtPct(v.scored_irr) + '</b> at ' + fmtMoney(v.scored_price) + ' on ' + esc(v.scored_date) + (v.irr_pp !== null ? ' · ' + fmtPts(v.irr_pp, 1).replace('%', '') + ' pp at the last close' : '');
-    priceTile = '<div class="hstat"><span class="k">Last close</span><span class="v mono">' + fmtMoney(price) + chgS + '</span><span class="tsub">' + joinNonEmpty([esc(v.price_date), v.price_change_pct !== null ? fmtPts(v.price_change_pct, 1) + ' vs scored ' + fmtMoney(v.scored_price) : 'scored at ' + fmtMoney(v.scored_price), rangeSub], ' · ') + '</span></div>';
-    ttile = '<span class="ttile" style="background:' + acc + '" title="Live tier at the last close">' + esc(tier) + '</span>';
-  } else {
-    // a live.json withheld for predating the analysis (record.live_withheld): its close is not the current price either —
-    // the scored price is, with the reason beside it (the note in the tooltip); a close that IS current still shows
-    var cc = currentClose(record), wh = liveWithheld(record);
-    var pend = wh ? '<span class="lvpend"' + (wh.note ? ' title="' + esc(wh.note) + '"' : '') + '>' + esc(pendingText(wh)) + '</span>' : '';
-    sub = 'Probability-weighted IRR at ' + fmtMoney(price);
-    priceTile = '<div class="hstat"><span class="k">' + (cc ? 'Last close' : wh ? 'Scored price' : 'Price used') + '</span><span class="v mono">' + fmtMoney(cc ? cc.last : price) + (cc ? chgS : '') + '</span><span class="tsub">'
-      + joinNonEmpty([cc ? esc(cc.date) + ' · scored at ' + fmtMoney(price) + ' (' + esc(s.analysis_date || '') + ')' : (wh ? '' : esc(n.price_source || '') + ' · ' + esc(s.analysis_date || '')), pend, rangeSub], ' · ') + '</span></div>';
-    ttile = '<span class="ttile" style="background:' + acc + '">' + esc(tier) + '</span>';
-  }
-  var chip = tierShiftChip(v), schip = splitChip(splitInfo(record));
-  var scoredChip = v.is_live ? '<span class="chip lvchip muted" title="Scored on ' + esc(v.scored_date) + '">Scored ' + esc(v.scored_tier) + ' · live ' + esc(tier) + '</span>' : '';
-  // watchlist: a repo name carries the fixed repo star chip; any other name gets the per-device star button (local, not synced)
-  // the index row is authoritative for the repo flag (a skipped record's embedded row.watchlist can lag — SITE_CONTRACT
-  // "Watchlist is in the data"): with a repo list in hand the flag comes from it alone; record.row only without one
+  // header meta is sector · market cap; exchange and filer category sit in its title (and the About card), the price
+  // source in the price cell's title (and the Data tab), the 52-week range, 1y return and pending sentence in the price chart card
+  var prof = obj(obj(record.fundamentals).profile);
+  var meta = joinNonEmpty([esc(s.sector || record.sector || row.sector), fmtCap(v.cap_b)], ' · ');
+  var metaT = joinNonEmpty([v.is_live ? 'Market cap at the last close' : '', first(prof.exchanges) ? esc(first(prof.exchanges)) : '', prof.filer_category ? esc(prof.filer_category) : ''], ' · ');
+  // compact header (owner decision, 2026-10-21, option A "stat strip"): identity row; the expected return with the
+  // bear → bull band beside it; one status line only when there is something to say; then price | value @15% | upside
+  var cc = v.is_live ? null : currentClose(record), wh = v.is_live ? null : liveWithheld(record);
+  var chgS = chg !== null && (v.is_live || cc) ? '<span class="' + (chg >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</span>' : '';
+  var pend = wh ? '<span class="lvpend" title="' + esc(joinNonEmpty([pendingText(wh), wh.note], ' — ')) + '">Live pending</span>' : '';
+  var pk, pv, psub, pT = '';
+  if (v.is_live) { pk = 'Last close'; pv = price; psub = joinNonEmpty([chgS, v.price_date ? '<span>' + esc(v.price_date) + '</span>' : ''], ' · '); pT = v.price_change_pct !== null ? fmtPts(v.price_change_pct, 1) + ' vs scored ' + fmtMoney(v.scored_price) : ''; }
+  else if (cc) { pk = 'Last close'; pv = cc.last; psub = joinNonEmpty([chgS, '<span>' + esc(cc.date) + '</span>', pend], ' · '); }
+  else { pk = wh ? 'Scored price' : 'Price used'; pv = price; psub = wh ? pend : esc(s.analysis_date || ''); pT = wh ? '' : joinNonEmpty([esc(n.price_source || ''), esc(s.analysis_date || '')], ' · '); }
+  var up = v.upside, iv15 = s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15;
+  var status = [];
+  if (v.is_live) status.push('<span title="Scored on ' + esc(v.scored_date) + (v.irr_pp !== null ? ' · ' + fmtPts(v.irr_pp, 1).replace('%', '') + ' pp at the last close' : '') + '">Scored <b>' + fmtPct(v.scored_irr) + '</b> at ' + fmtMoney(v.scored_price) + '</span>');
+  else if (cc) status.push('<span>Return at the scored price ' + fmtMoney(price) + (s.analysis_date ? ' (' + esc(s.analysis_date) + ')' : '') + '</span>');
+  var chip = tierShiftChip(v);
+  if (chip) status.push(chip);
+  else if (v.is_live) status.push('<span class="chip lvchip muted" title="Scored on ' + esc(v.scored_date) + '">Scored ' + esc(v.scored_tier) + ' · live ' + esc(tier) + '</span>');
+  if (s.tier_by_numbers && v.scored_tier !== s.tier_by_numbers) status.push('<span class="hov" title="Tier overridden ' + esc(s.tier_by_numbers) + '→' + esc(v.scored_tier) + ' by agent judgment">Override · numbers <i style="background:' + (TIER_ACCENT[s.tier_by_numbers] || '#333') + '">' + esc(s.tier_by_numbers) + '</i> → final <i style="background:' + (TIER_ACCENT[v.scored_tier] || '#333') + '">' + esc(v.scored_tier) + '</i></span>');
+  if (floor) status.push('<span class="hfloor" title="the IRR solver stopped at its floor: the return is a bound, not a solved figure">IRR at the model floor</span>');
+  var schip = splitChip(splitInfo(record));
+  if (schip) status.push(schip);
+  // watchlist, in the top-right corner: a repo name carries the fixed blue repo star (as its ranking row does); any other
+  // name gets the per-device star button (local, not synced). The index row is authoritative for the repo flag (a skipped
+  // record's embedded row.watchlist can lag — SITE_CONTRACT "Watchlist is in the data"): with a repo list in hand the
+  // flag comes from it alone; record.row only without one
   var hticker = String(s.ticker || record.ticker || row.ticker || ''), hrow = Array.isArray(repo) ? { ticker: hticker || row.ticker } : (Object.keys(row).length ? row : { ticker: hticker });
-  var wchip = isRepo(hrow, repo) ? '<span class="chip lvchip wchip" title="On the repo watchlist (_system/watchlist.json)">★ Watchlist <span class="sub">repo</span></span>'
-    : (hticker ? starButtonHTML(hticker, isStarred(hrow, stars), 'hstar') : '');
+  var star = '';
+  if (isRepo(hrow, repo)) star = '<span class="star fixed repo hstar" role="img" aria-label="On the repo watchlist" title="On the repo watchlist (_system/watchlist.json)">★</span>';
+  else if (hticker) star = starButtonHTML(hticker, isStarred(hrow, stars), 'hstar');
+  var ttile = '<span class="ttile" style="background:' + acc + '"' + (v.is_live ? ' title="Live tier at the last close"' : '') + '>' + esc(tier) + '</span>';
+  var cell = function (k, val, cls, sub, title) { // a 9+ character figure ($1,234.56) gets the smaller phone size (.long)
+    cls = joinNonEmpty([cls, val.length > 8 ? 'long' : ''], ' ');
+    return '<div class="hs"' + (title ? ' title="' + title + '"' : '') + '><span class="k">' + k + '</span><span class="v mono' + (cls ? ' ' + cls : '') + '">' + val + '</span>' + (sub ? '<span class="tsub">' + sub + '</span>' : '') + '</div>'; };
   return '<header class="hero" style="--acc:' + acc + '"><div class="hrow">' + ttile
-    + '<div class="hname"><div class="hline"><span class="htick">' + esc(s.ticker || record.ticker) + '</span><span class="hco">' + esc(s.name || record.name) + '</span>' + (chip || scoredChip) + schip + wchip + '</div><span class="note">' + meta + '</span></div></div>'
-    + '<div class="hstats"><div class="hstat big"><span class="k">Expected return / yr' + (v.is_live ? ' · live' : '') + '</span><span class="v mono" style="color:' + acc + '">' + irrS + '</span><span class="tsub">' + sub + (floor ? ' · at the model floor' : '') + (fsub ? ' · ' + esc(fsub) : '') + '</span>' + band + '</div>'
-    + priceTile
-    + '<div class="hstat"><span class="k">Value @15%</span><span class="v mono">' + fmtMoney(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15) + '</span><span class="tsub ' + signCls(up) + '">' + (up !== null ? fmtPts(up, 0) + ' vs ' + (v.is_live ? 'last close' : 'price') : '—') + '</span></div>'
+    + '<div class="hname"><div class="hline"><span class="htick">' + esc(s.ticker || record.ticker) + '</span><span class="hco">' + esc(s.name || record.name) + '</span></div><span class="note hmeta"' + (metaT ? ' title="' + metaT + '"' : '') + '>' + meta + '</span></div>' + star + '</div>'
+    + '<div class="hret"><span class="k">Expected return / yr' + (v.is_live ? ' · live' : '') + '</span><span class="hbig mono" style="color:' + acc + '" title="Probability-weighted IRR at ' + (v.is_live ? 'the last close ' : '') + fmtMoney(price) + '">' + irrS + '</span>'
+    + (fsub ? '<span class="hfnote">' + esc(fsub) + '</span>' : band) + '</div>'
+    + (status.length ? '<div class="hstatus">' + status.join('') + '</div>' : '')
+    + '<div class="hstrip">' + cell(pk, fmtMoney(pv), '', psub, pT)
+    + cell('Value @15%', fmtMoney(iv15), '', '')
+    + cell('Upside', up !== null ? fmtPts(up, 0) : '—', signCls(up), up !== null ? (v.is_live ? 'vs last close' : cc ? 'vs scored price' : 'vs price') : '')
     + '</div></header>';
 }
 /* The condensed line the sticky tab bar shows once the header has scrolled away: ticker · last close ·
@@ -471,6 +484,15 @@ function priceVsValueLine(record) {
    "not captured yet"; the active one carries the period-return badge), the chart (crosshair on hover / drag,
    arrow keys when focused), the legend and the sources note. drawPriceCard() redraws it; the default range is
    1Y when the record has daily closes, else 5Y. */
+/* The price facts the header carried before the 2026-10-21 compact header (option A): why live figures are pending (the
+   note in the title), the 52-week range and the 1-year return. One line in the price chart card; '' when there are none. */
+function priceFactsNote(record) {
+  var st = obj(obj(record.prices).stats), row = obj(record.row), v = liveView(record), wh = v.is_live ? null : liveWithheld(record);
+  var ret1y = num(st.ret_1y_pct) !== null ? num(st.ret_1y_pct) : num(row.ret_1y_pct);
+  var t = joinNonEmpty([wh ? '<span class="lvpend"' + (wh.note ? ' title="' + esc(wh.note) + '"' : '') + '>' + esc(pendingText(wh)) + '</span>' : '',
+    st.last_date && num(st.last) !== null ? '52-wk ' + fmtMoney(st.low_52w) + '–' + fmtMoney(st.high_52w) : '', ret1y !== null ? '1y ' + fmtPts(ret1y, 0) : ''], ' · ');
+  return t ? '<p class="note pcfacts">' + t + '</p>' : '';
+}
 function renderPriceChart(record) {
   var pr = obj(record.prices), spec = priceSpec(record), avail = priceRanges(spec), def = defaultRange(spec), body;
   if (def) {
@@ -487,9 +509,9 @@ function renderPriceChart(record) {
       + '<div class="pchart" data-cid="price" tabindex="0" aria-label="Price chart — hover, drag or use the arrow keys to read a point"></div>'
       + '<p class="note pcnote"' + (intraDef ? '' : ' hidden') + '>Value lines hidden on intraday ranges — the axis is tight to the session.</p>'
       + '<div class="pcfoot"><span class="legend"><i style="background:' + C_PRICE + '"></i>Price</span><span class="legend"><i class="dash" style="border-color:' + C_IV + '"></i>Weighted IV @15%</span><span class="legend"><i style="background:' + C_BAND + ';border:1px solid rgba(122,162,255,.6)"></i>Scenario range (super bear → super bull)</span><span class="pcret"></span></div>'
-      + '<p class="note">' + srcNote + '</p>';
+      + priceFactsNote(record) + '<p class="note">' + srcNote + '</p>';
   } else {
-    body = priceVsValueLine(record) + "<p class=\"note\">No price history pulled for this name yet (prices.py) — the number line shows today's price against every scenario's value.</p>";
+    body = priceVsValueLine(record) + priceFactsNote(record) + "<p class=\"note\">No price history pulled for this name yet (prices.py) — the number line shows today's price against every scenario's value.</p>";
   }
   return '<section class="sec pcsec"><div class="card pc" data-range="' + esc(def || '') + '">' + body + '</div></section>';
 }

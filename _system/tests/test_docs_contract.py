@@ -385,6 +385,11 @@ STALE = [
     ("_daily/site/app.js", "(typeof fund.currency === 'string' && fund.currency) || 'USD'"),
     ("_daily/site/app.js", "Filed owner\\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share"),
     (CONTRACT, "The block is priced in the file's own `currency`"),
+    # compact header, option A "stat strip" (Andrew, 2026-10-21): exchange / filer category, the 52-week range and the
+    # repo chip left the header for the About card, the price chart card and the corner star
+    (CONTRACT, "sector · cap ·\n  exchange · filer category"),
+    (CONTRACT, "tier chip, sector · cap · exchange · filer line"),
+    (CONTRACT, 'repo names show the "★ Watchlist repo" chip in the hero instead'),
 ]
 
 

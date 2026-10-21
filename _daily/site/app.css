@@ -37,7 +37,7 @@ table.stm tr.l1 th{padding-left:24px} table.stm tr.l2 th{padding-left:40px} tabl
 .spark{margin:12px 0 4px;padding:14px 12px 10px} .sparkh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;min-width:0} .sparkh>span{min-width:0;overflow-wrap:anywhere} .stm-close{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);border-radius:8px;width:34px;height:34px;font-size:20px;line-height:1;cursor:pointer;flex:0 0 auto}
 details.stmwarn{margin-top:8px} details.stmwarn summary{color:var(--mut);font-size:13px;cursor:pointer}
 /* ---- watchlist: repo star (blue, fixed) vs per-device star (gold toggle); copy action ---- */
-.star.repo{color:#7AA2FF;font-size:17px} .hstar{font-size:22px;min-width:34px;min-height:34px;align-self:center}
+.star.repo{color:#7AA2FF;font-size:17px} .hstar{position:absolute;top:8px;right:8px;font-size:22px;min-width:44px;min-height:44px} /* the hero's top-right corner */
 .wbtn.sm{padding:5px 10px;font-size:12.5px;min-height:32px} .copyout{font-size:12.5px;color:var(--mut);display:inline-flex;align-items:center;gap:6px;min-width:0} .copyout:empty{display:none} .copyout input{min-height:32px;padding:4px 8px;font-family:var(--mono);font-size:12px;max-width:220px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:10px 0}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
@@ -70,11 +70,23 @@ details.stalebox{margin:18px 0 6px;border:1px dashed #4b5563;border-radius:10px;
 /* ---- company page ---- */
 .page{display:none;max-width:860px;margin:0 auto;min-width:0} .page.open{display:block}
 .dnav{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px} .back{color:var(--acc);text-decoration:none;font-size:14px;font-weight:500;min-height:44px;display:inline-flex;align-items:center} .navr{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
-.hero{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px 20px;display:flex;flex-direction:column;gap:18px}
-.hrow{display:flex;align-items:center;gap:14px} .ttile{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:13px;color:#0C0E12;font-family:var(--mono);font-size:24px;font-weight:600;flex:0 0 auto}
-.hname{min-width:0} .hline{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap} .htick{font-family:var(--mono);font-size:28px;font-weight:600;line-height:1.1} .hco{font-size:18px;font-weight:500}
-.hstats{display:grid;grid-template-columns:2fr 1.2fr 1fr;gap:14px 22px} .hstat{display:flex;flex-direction:column;gap:5px;min-width:0} .hstat .v{font-size:24px;font-weight:500;white-space:nowrap;font-variant-numeric:tabular-nums} .hstat.big .v{font-size:50px;line-height:1;letter-spacing:-.02em} .hstat .v small{font-size:14px;font-weight:500} .hstat .tsub{white-space:normal}
-@media (max-width:900px){.hstats{grid-template-columns:1fr 1fr}.hstat.big{grid-column:1/-1}}
+.hero{position:relative;--hpad:20px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:var(--hpad);display:flex;flex-direction:column;gap:14px;min-width:0}
+.hrow{display:flex;align-items:center;gap:14px;min-width:0;padding-right:40px} .ttile{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:13px;color:#0C0E12;font-family:var(--mono);font-size:24px;font-weight:600;flex:0 0 auto}
+.hname{min-width:0;display:flex;flex-direction:column;gap:2px} .hline{display:flex;align-items:baseline;gap:2px 10px;flex-wrap:wrap} .htick{font-family:var(--mono);font-size:28px;font-weight:600;line-height:1.1} .hco{font-size:18px;font-weight:500;color:var(--txt2)} .hmeta{margin:0}
+/* compact hero (owner decision 2026-10-21, option A "stat strip"): the expected return with the bear → bull band beside it,
+   one status line only when there is something to say (live / override / floor / split / repo watchlist), then one strip
+   price | value @15% | upside — never a stacked column on a phone */
+.hero .k{font-size:12px;letter-spacing:.06em}
+.hret{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:24px;row-gap:4px;align-items:center} .hret>.k{grid-column:1/-1}
+.hbig{font-size:48px;font-weight:500;line-height:1;letter-spacing:-.02em;white-space:nowrap}
+.hband{justify-self:start;display:grid;grid-template-columns:auto 18px auto;gap:4px 7px;align-items:center;font-size:12px;color:var(--mut)} .hband .mono{font-size:13px;color:var(--txt2);white-space:nowrap}
+.hband i,.hov i{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;color:#0C0E12;font-family:var(--mono);font-size:12px;font-style:normal;font-weight:600}
+.hfnote{font-size:13px;line-height:1.4;color:var(--mut)}
+.hstatus{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:-4px;font-size:12.5px;color:var(--mut)} .hstatus b{color:var(--txt);font-weight:500;font-family:var(--mono)} .hstatus [title]{cursor:help}
+.hov{display:inline-flex;align-items:center;gap:5px;padding:2px 9px;border-radius:999px;background:#3a2b0b;border:1px solid #8a6d1f;color:var(--warn);font-size:12px} .hfloor{color:var(--warn)}
+.hstrip{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(0,.9fr);border-top:1px solid var(--line);margin:0 calc(-1 * var(--hpad)) calc(-1 * var(--hpad));padding:12px var(--hpad) 14px}
+.hs{display:flex;flex-direction:column;gap:2px;min-width:0;padding-left:12px;border-left:1px solid var(--line)} .hs:first-child{padding-left:0;border-left:0} .hs[title]{cursor:help}
+.hs .k{white-space:nowrap;overflow:hidden;text-overflow:ellipsis} .hs .v{font-size:22px;font-weight:500;line-height:1.2;white-space:nowrap} .hs .tsub{line-height:1.35} .hs .tsub>span{white-space:nowrap}
 .take{margin:16px 0 0;padding-top:16px;border-top:1px solid var(--line);font-size:16px;line-height:1.6;color:var(--txt2)}
 .about .facts{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px 18px;margin-top:14px} .about .fact{display:flex;flex-direction:column;gap:3px;font-size:14px;color:var(--txt2);min-width:0;overflow-wrap:anywhere} .about .fact .quote{display:block;font-style:italic;margin-top:2px}
 .about .dimp{margin:0 0 6px} table.filings td{vertical-align:middle} .street .tiles{margin-top:0}
@@ -163,12 +175,13 @@ ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
  #t td::before{display:block;font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px}
  #t td:nth-child(2)::before{content:"Tier"} #t td:nth-child(3)::before{content:"Band"} #t td:nth-child(4)::before{content:"Live IRR"} #t td:nth-child(5)::before{content:"Scored IRR"} #t td:nth-child(6)::before{content:"Price"} #t td:nth-child(7)::before{content:"IV @15%"} #t td:nth-child(8)::before{content:"Upside"} #t td:nth-child(9)::before{content:"Moat"} #t td:nth-child(10)::before{content:"Conf."} #t td:nth-child(11)::before{content:"Mkt cap"} #t td:nth-child(12)::before{content:"1y price"}
  .was{display:inline;margin-left:6px}
- .hstat.big .v{font-size:40px} .htick{font-size:24px} .tab{font-size:15px;padding:12px 12px}
- .hstat .v{white-space:normal;overflow-wrap:anywhere} .hero{min-width:0}
- .pchart{height:240px} .hero{padding:18px 16px} .card{padding:14px}
+ .hbig{font-size:40px} .htick{font-size:24px} .hco{font-size:15px} .ttile{width:44px;height:44px;border-radius:12px;font-size:22px} .hrow{gap:12px;padding-right:36px} .hband{justify-self:end} .hret{column-gap:16px} .hstar{top:6px;right:6px} .tab{font-size:15px;padding:12px 12px}
+ .hs .v{font-size:20px;white-space:normal;overflow-wrap:anywhere} .hero{--hpad:16px}
+ .pchart{height:240px} .card{padding:14px}
  .controls input{flex:1 1 160px}
  .sgrow{grid-template-columns:1fr} .fanchart{height:220px}
  table.stm th:first-child,table.stm tbody th{min-width:118px;max-width:150px;font-size:12.5px} table.stm tr.l1 th{padding-left:18px} table.stm tr.l2 th{padding-left:30px} .spark{padding:12px 8px 8px}
 }
-@media (max-width:480px){.hstats{grid-template-columns:1fr} .hstat.big{grid-column:auto} .tabsum{gap:8px;font-size:13px}}
+@media (max-width:480px){.tabsum{gap:8px;font-size:13px} .hs .v.long{font-size:16px}}
+@media (max-width:400px){.hs .v{font-size:18px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
