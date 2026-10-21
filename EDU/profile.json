@@ -1,0 +1,244 @@
+{
+ "ticker": "EDU",
+ "cik": 1372920,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T21:30:49-04:00",
+ "newest_filing_date": "2026-10-13",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001372920.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526397192/d157159d20f.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EDU/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EDU/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "New Oriental Education & Technology Group Inc.",
+  "cik": 1372920,
+  "description": {
+   "text": "We provide a wide variety of educational programs, services and products. In addition, we conduct the sale of private label products and livestreaming e-commerce business through East Buy. We deliver our comprehensive educational programs, services and products to students across China through our nationwide physical network of schools, learning centers and bookstores, as well as our pure-play online learning platforms. As of May 31, 2026, we had a physical network of 75 schools and 1,459 learning centers in 69 cities and approximately 44,200 teachers. We deliver online courses through our online learning platforms, including Koolearn.com, our comprehensive online education platform. Powered by our OMO system, we have combined our offline network with online technologies and adopted different business models tailored to students in different locations to facilitate our operational efficiency. For example, for students in most cities, we primarily deliver courses in offline classroom settings, supported with interactive online learning components. For students in lower-tier cities, we broadcast courses delivered by well-known teachers from top-tier cities through our OMO system, and the local assistant lecturers monitor and provide in-person guidance and interactions with students onsite.",
+   "source": "20-F Item 4.B Business Overview",
+   "form": "20-F",
+   "filed": "2026-09-22",
+   "period": "2026-05-31",
+   "accession": "0001193125-26-397192",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526397192/d157159d20f.htm"
+  },
+  "description_short": "New Oriental is a provider of private educational services in China offering a wide range of educational programs, services and products to a varied student population throughout China. New Oriental's program, service and product offerings mainly consist of educational services and test preparation courses, private label products and livestreaming e-commerce, overseas study consulting services, and educational materials and distribution. New Oriental is listed on NYSE (NYSE: EDU) and SEHK (9901.SEHK), respectively.",
+  "industry": "Other Consumer Services",
+  "sector": "Real Estate",
+  "region": "Asia",
+  "sic": "8200",
+  "sic_description": "Services-Educational Services",
+  "state_of_incorporation": "E9",
+  "fiscal_year_end_mmdd": "0531",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE",
+   "OTC"
+  ],
+  "website": "https://www.neworiental.org",
+  "headquarters": "Beijing, People’s Republic of China",
+  "address": {
+   "street": "No. 6 Hai Dian Zhong Street",
+   "city": "Beijing",
+   "state": null,
+   "zip": "100080",
+   "country": "People’s Republic of China",
+   "source": "annual filing cover",
+   "form": "20-F",
+   "filed": "2026-09-22"
+  },
+  "phone": "(86-10) 6260-5566",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "2006-08-22",
+  "first_sec_filing_form": "F-1",
+  "former_names": [],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001372920&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "6-K",
+   "filed": "2026-10-13",
+   "period": "2026-10-13",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-419608",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526419608/d171976d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-417473",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526417473/d175502d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-10-08",
+   "period": "2026-10-08",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-417472",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526417472/d176521d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-397313",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526397313/d214865d6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2026-09-22",
+   "period": "2026-05-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-26-397192",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526397192/d157159d20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-322173",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526322173/d148153d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-07-07",
+   "period": "2026-07-07",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-296943",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526296943/d43965d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-22",
+   "period": "2026-04-22",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-168990",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526168990/d90814d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-04-10",
+   "period": "2026-04-10",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-150267",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526150267/d123775d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-28",
+   "period": "2026-01-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-027374",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526027374/d49784d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2026-01-06",
+   "period": "2026-01-06",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-26-003413",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526003413/d64982d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-11-21",
+   "period": "2025-11-21",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-290574",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525290574/d77806d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-28",
+   "period": "2025-10-28",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-252528",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525252528/d71238d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-17",
+   "period": "2025-10-17",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-241869",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525241869/d93736d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-10-14",
+   "period": "2025-10-14",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-237844",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525237844/d89980d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-26",
+   "period": "2025-09-26",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-218497",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525218497/d937815d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-09-25",
+   "period": "2025-09-25",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-216438",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525216438/d35269d6k.htm"
+  },
+  {
+   "form": "20-F",
+   "filed": "2025-09-25",
+   "period": "2025-05-31",
+   "items": [],
+   "description": "Annual report (foreign private issuer)",
+   "accession": "0001193125-25-216394",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525216394/d138902d20f.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-168777",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525168777/d45025d6k.htm"
+  },
+  {
+   "form": "6-K",
+   "filed": "2025-07-11",
+   "period": "2025-07-11",
+   "items": [],
+   "description": "Report of a foreign private issuer",
+   "accession": "0001193125-25-157813",
+   "url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312525157813/d33812d6k.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 20-F filed 2026-09-22"
+ ]
+}

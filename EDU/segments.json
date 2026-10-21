@@ -1,0 +1,495 @@
+{
+ "ticker": "EDU",
+ "cik": 1372920,
+ "as_of": "2026-10-20",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "20-F",
+   "accession": "0001193125-26-397192",
+   "filed": "2026-09-22",
+   "period": "2026-05-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1372920/000119312526397192/d157159d20f_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-31",
+    "2025-05-31",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "edu:EducationalServicesAndTestPreparationCoursesMember",
+     "label": "Educational Services and Test Preparation Courses",
+     "values": [
+      2716174000,
+      3456189000,
+      4006764000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.6297,
+      0.7053,
+      0.7077
+     ],
+     "growth_yoy": [
+      null,
+      0.2724,
+      0.1593
+     ]
+    },
+    {
+     "member": "edu:PrivateLabelProductsAndLivestreamingEcommerceAndOtherServicesMember",
+     "label": "Private label products and livestreaming Ecommerce and other services",
+     "values": [
+      900614000,
+      600281000,
+      806912000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2088,
+      0.1225,
+      0.1425
+     ],
+     "growth_yoy": [
+      null,
+      -0.3335,
+      0.3442
+     ]
+    },
+    {
+     "member": "edu:OverseasStudyConsultingServicesMember",
+     "label": "Overseas Study Consulting Services",
+     "values": [
+      439744000,
+      516367000,
+      511346000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1019,
+      0.1054,
+      0.0903
+     ],
+     "growth_yoy": [
+      null,
+      0.1742,
+      -0.0097
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Segments",
+     "values": [
+      257054000,
+      327425000,
+      336272000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0596,
+      0.0668,
+      0.0594
+     ],
+     "growth_yoy": [
+      null,
+      0.2738,
+      0.027
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4313586000,
+     4900262000,
+     5661294000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "OperatingIncomeLoss",
+   "tag": "us-gaap:OperatingIncomeLoss",
+   "label": "Operating income by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-31",
+    "2025-05-31",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "edu:EducationalServicesAndTestPreparationCoursesMember",
+     "label": "Educational Services and Test Preparation Courses",
+     "values": [
+      585090000,
+      808430000,
+      937741000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      1.6697,
+      1.8878,
+      1.4578
+     ],
+     "growth_yoy": [
+      null,
+      0.3817,
+      0.16
+     ]
+    },
+    {
+     "member": "edu:PrivateLabelProductsAndLivestreamingEcommerceAndOtherServicesMember",
+     "label": "Private label products and livestreaming Ecommerce and other services",
+     "values": [
+      20743000,
+      -10295000,
+      87593000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0592,
+      -0.024,
+      0.1362
+     ],
+     "growth_yoy": [
+      null,
+      -1.4963,
+      null
+     ]
+    },
+    {
+     "member": "edu:OverseasStudyConsultingServicesMember",
+     "label": "Overseas Study Consulting Services",
+     "values": [
+      75073000,
+      82499000,
+      65434000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2142,
+      0.1926,
+      0.1017
+     ],
+     "growth_yoy": [
+      null,
+      0.0989,
+      -0.2069
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Segments",
+     "values": [
+      -27587000,
+      -88666000,
+      -98604000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      -0.0787,
+      -0.207,
+      -0.1533
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     350425000,
+     428250000,
+     643251000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": false
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-31",
+    "2025-05-31",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end",
+    "FY2026 end"
+   ],
+   "rows": [
+    {
+     "member": "edu:EducationalServicesAndTestPreparationCoursesMember",
+     "label": "Educational Services and Test Preparation Courses",
+     "values": [
+      2217342000,
+      2682938000,
+      2979430000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.2944,
+      0.3437,
+      0.3389
+     ],
+     "growth_yoy": [
+      null,
+      0.21,
+      0.1105
+     ]
+    },
+    {
+     "member": "edu:PrivateLabelProductsAndLivestreamingEcommerceAndOtherServicesMember",
+     "label": "Private label products and livestreaming Ecommerce and other services",
+     "values": [
+      831620000,
+      846535000,
+      1028683000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1104,
+      0.1085,
+      0.117
+     ],
+     "growth_yoy": [
+      null,
+      0.0179,
+      0.2152
+     ]
+    },
+    {
+     "member": "edu:OverseasStudyConsultingServicesMember",
+     "label": "Overseas Study Consulting Services",
+     "values": [
+      119725000,
+      125030000,
+      140666000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0159,
+      0.016,
+      0.016
+     ],
+     "growth_yoy": [
+      null,
+      0.0443,
+      0.1251
+     ]
+    },
+    {
+     "member": "us-gaap:CorporateNonSegmentMember",
+     "label": "Corporate, Non-Segment",
+     "values": [
+      3876681000,
+      3703498000,
+      4249788000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.5147,
+      0.4745,
+      0.4834
+     ],
+     "growth_yoy": [
+      null,
+      -0.0447,
+      0.1475
+     ]
+    },
+    {
+     "member": "us-gaap:AllOtherSegmentsMember",
+     "label": "Other Segments",
+     "values": [
+      486305000,
+      447498000,
+      393453000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0646,
+      0.0573,
+      0.0448
+     ],
+     "growth_yoy": [
+      null,
+      -0.0798,
+      -0.1208
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     7531673000,
+     7805499000,
+     8792020000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "product",
+   "concept": "Revenues",
+   "tag": "us-gaap:Revenues",
+   "label": "Revenue by product / service",
+   "periodicity": "annual",
+   "periods": [
+    "2024-05-31",
+    "2025-05-31",
+    "2026-05-31"
+   ],
+   "period_labels": [
+    "FY2024",
+    "FY2025",
+    "FY2026"
+   ],
+   "rows": [
+    {
+     "member": "us-gaap:ServiceMember",
+     "label": "Service",
+     "values": [
+      3500998000,
+      4334071000,
+      4893000000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8116,
+      0.8845,
+      0.8643
+     ],
+     "growth_yoy": [
+      null,
+      0.238,
+      0.129
+     ]
+    },
+    {
+     "member": "us-gaap:ProductMember",
+     "label": "Product",
+     "values": [
+      812588000,
+      566191000,
+      768294000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1884,
+      0.1155,
+      0.1357
+     ],
+     "growth_yoy": [
+      null,
+      -0.3032,
+      0.357
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4313586000,
+     4900262000,
+     5661294000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [
+  "business_segments/OperatingIncomeLoss/annual: rows sum to 154.2% of the consolidated total for 2026-05-31 (ties_to_total: false)",
+  "20-F filer: no 10-Qs, so quarterly tables are not available"
+ ],
+ "complete": true
+}
