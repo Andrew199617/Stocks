@@ -2992,6 +2992,79 @@ def test_an_unconvertible_negative_detector_fact_is_a_reversal_not_an_unconverte
     assert n["iprd_adjustment"]["total"] == 100e6 and E.iprd_unresolved(n) is None, n["iprd_adjustment"]
 
 
+# --- Codex review round 21 of PR #47 ------------------------------------------------------------------------------
+def _r21_facts():
+    """FY2024: a EUR 100M acquired-IPR&D expense with no FX rate (even fetched) beside a $40M USD cash outflow (the
+    cash-basis path: the cash is the amount); FY2025: a $25M cash-only fact."""
+    f = _facts(cash={2024: 40e6, 2025: 25e6})
+    _syn_put(f, EXPENSE, "EUR", _ctx("2024-01-01", "2024-12-31", 100e6, form="10-K", filed="2025-02-20"))
+    return f
+
+
+def _r21_check(amount=100e6, unit="EUR", presentation="paid_in_shares"):
+    c = {"period": "2024-12-31", "window": "fy", "amount": amount, "presentation": presentation,
+         "source": "SYN 10-K FY2024 (0000999001-25-000003) R7: 'Acquired IPR&D paid in shares' non-cash add-back"}
+    if unit is not None:
+        c["unit"] = unit
+    return c
+
+
+def test_a_native_paid_in_shares_check_matches_an_unconvertible_expense():
+    """[Codex review r21, #4332782414] A cash-basis period whose expense has no FX rate (EUR 100M beside a $40M USD
+    cash outflow) matched its iprd_cash_flow_check against the USD expense, which is None there, so every check —
+    the correctly declared EUR 100M paid_in_shares one included — was recorded cash_flow_check_mismatch (make_score
+    refuses it), the residual stayed unknown in USD and the FY2025 $25M cash-only fact was gated non_usd_no_rate
+    against it: no declaration could ever close the period. Now, when the USD expense is None, the check is compared
+    with the native detector figure AND its unit (the entry names `unit`, here "EUR"): a matching paid_in_shares check
+    is applied (cash_flow_check, with its unit), the residual is recorded paid in shares (unknown in USD:
+    residual_paid_in_shares_unknown_usd) and never enters the unknown remainder, so the later cash is listed in
+    ignored_cash_only and nothing is unresolved. The $40M cash is still deducted. An amount without the unit, the USD
+    cash, or another native figure stays a mismatch whose note names the native figure and unit."""
+    nofx = lambda c, d: None
+
+    def detect(checks):
+        return E.iprd_detect(_r21_facts(), FY3, fx_rates={}, checks=checks, fx_fetch=nofx)
+    out = detect([_r21_check()])
+    r24, r25 = _leg(out, "fy", "2024-12-31"), _leg(out, "fy", "2025-12-31")
+    assert r24["expense"] is None and r24["expense_native"] == 100e6 and r24["expense_unit"] == "EUR", r24
+    assert r24["amount_basis"] == "cash_outflow" and r24["deducted"] == 40e6 and r24["excluded"] is None, r24
+    assert "cash_flow_check_mismatch" not in r24, r24
+    assert r24["cash_flow_check"] == {"presentation": "paid_in_shares", "amount": 100e6, "unit": "EUR",
+                                      "source": _r21_check()["source"]}, r24
+    assert r24.get("residual_paid_in_shares_unknown_usd") is True and "EUR" in r24.get("residual_note", ""), r24
+    assert r25 is None, r25
+    assert [(c["period"], c["cash"]) for c in out["ignored_cash_only"]] == [("2025-12-31", 25e6)], out["ignored_cash_only"]
+    assert out["cash_flow_checks_unused"] == [], out["cash_flow_checks_unused"]
+    assert E.iprd_unresolved({"iprd_adjustment": {"periods": out["periods"]}}) is None, out["periods"]
+    assert sum(p["deducted"] for p in out["periods"]) == 40e6, out["periods"]
+    # not matched: the native amount with no unit, the USD cash, another native figure, the wrong unit
+    for bad in (_r21_check(unit=None), _r21_check(amount=40e6, unit=None), _r21_check(amount=90e6),
+                _r21_check(unit="GBP"), _r21_check(amount=40e6, unit="USD")):
+        o = detect([bad])
+        p24, p25 = _leg(o, "fy", "2024-12-31"), _leg(o, "fy", "2025-12-31")
+        mm = p24.get("cash_flow_check_mismatch")
+        assert mm and mm["declared_amount"] == bad["amount"] and p24.get("cash_flow_check") is None, (bad, p24)
+        assert "100,000,000 EUR" in mm["note"] and "unit" in mm["note"], (bad, mm)
+        assert p25["excluded"] == "non_usd_no_rate" and p25.get("unconverted_remainder_of") == ["2024-12-31"], p25
+    # an added_back_paid_in_investing check matched natively says nothing of the residual: still unknown, still gated
+    o = detect([_r21_check(presentation="added_back_paid_in_investing")])
+    assert "cash_flow_check_mismatch" not in _leg(o, "fy", "2024-12-31"), o["periods"]
+    assert _leg(o, "fy", "2025-12-31")["excluded"] == "non_usd_no_rate", o["periods"]
+    # a converted expense still matches the USD figure only (a unit, when named, must be USD)
+    conv = E.iprd_detect(_r21_facts(), FY3, fx_rates={"EUR": {"2024-12-31": 1.1}}, fx_fetch=nofx,
+                         checks=[_r21_check(amount=110e6, unit=None)])
+    c24 = _leg(conv, "fy", "2024-12-31")
+    assert abs(c24["expense"] - 110e6) < 1 and c24["cash_flow_check"]["presentation"] == "paid_in_shares", c24
+    assert abs(c24["residual_paid_in_shares"] - 70e6) < 1, c24
+    conv = E.iprd_detect(_r21_facts(), FY3, fx_rates={"EUR": {"2024-12-31": 1.1}}, fx_fetch=nofx,
+                         checks=[_r21_check(amount=110e6, unit="EUR")])
+    assert _leg(conv, "fy", "2024-12-31").get("cash_flow_check_mismatch"), conv["periods"]
+    # the entry's unit, when present, is a non-empty string
+    assert E.iprd_cash_flow_check_entry_ok(_r21_check())
+    assert not E.iprd_cash_flow_check_entry_ok(_r21_check(unit=""))
+    assert not E.iprd_cash_flow_check_entry_ok(dict(_r21_check(), unit=7))
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

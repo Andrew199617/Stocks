@@ -143,7 +143,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    that residual was settled (cash later: the deduction stands; shares: declare `paid_in_shares` and rerun).
    A check's amount is the filed expense, within $1 (Codex review round 14 of PR #47): one that is not is never
    applied (`cash_flow_check_mismatch` on the period) and make_score refuses the run whatever the period's basis —
-   correct the amount, or remove the entry if the period needs no check. A check whose period has left the
+   correct the amount, or remove the entry if the period needs no check. (Codex review round 21 of PR #47) An
+   expense filed only in a currency with no FX rate, beside a usable cash outflow (the period's `expense_fx_note`
+   and make_score's refusal show the native figure, e.g. `100,000,000 EUR`), is declared in its own unit: `amount` the native figure and `unit` its
+   unit (`"EUR"`); a matching `paid_in_shares` check then records the residual settled in shares
+   (`residual_paid_in_shares_unknown_usd`). A `unit` is optional elsewhere and, when named, is `"USD"`.
+   A check whose period has left the
    window has no record and still carries over (step 2). On a cash-basis period (Codex review round 15 of PR
    #47) a matching check declaring `inside_operating_cash_flow` or `paid_in_intangible_capex` contradicts the
    investing cash tag the engine deducts: it is recorded `cash_flow_check_inapplicable` and make_score refuses

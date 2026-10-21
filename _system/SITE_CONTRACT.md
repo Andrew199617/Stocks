@@ -168,7 +168,8 @@ in reprice.py / build_site.py / the app, and (Codex review round 15 of PR #47; b
 and the score disagreed) is copied to score.json as a minimal block — `treatment` "none", `total` and `charge_per_share` 0,
 `deferred_payments_only` true, empty `periods`, `deferred_payments_rolled_out` [{period, window, amount, deal,
 first_charged_period}] — that the app reads as no charge too; else `periods` — `period`, `window`, `amount`, `amount_basis`,
-`tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source} on an
+`tag_used`, `deducted`, `excluded`, and (fixer review round) `cash_flow_check` {presentation, amount, source; Codex
+review round 21 of PR #47: `unit` too when the judgment.json entry names one} on an
 expense-basis period the worker's judgment.json `iprd_cash_flow_check` resolved (Codex review round 8 of PR #47:
 presentation `paid_in_intangible_capex` is the only way to `excluded` `already_in_capex`; an intangible capex leg at
 least 98% of the charge otherwise only adds the string `capex_overlap_note`), `expense_tags_conflict` {tag: value} +
@@ -182,7 +183,7 @@ tiling the period because no fact covers it exactly (absent otherwise), `deferre
 that settles an earlier window charge (Codex review round 12 of PR #47: with `deferred_payment_assumption`, a note
 naming the periods whose residual it assumed payable in cash), (round 12) `cash_flow_check` with presentation `paid_in_shares` also
 on a cash-basis period, with `residual_paid_in_shares` (the expense less cash it declares settled in shares, never accrued as unpaid) and
-`residual_note`, (Codex review round 15 of PR #47) `unit_conflict` {tag: {units: {unit: {native, usd, fx_rate}}, used}}
+`residual_note` (Codex review round 21 of PR #47: `residual_paid_in_shares_unknown_usd` true in its place when the expense has no FX rate, the residual unknown in USD), (Codex review round 15 of PR #47) `unit_conflict` {tag: {units: {unit: {native, usd, fx_rate}}, used}}
 with `unit_conflict_note` when one tag's facts for the period in two units disagree after conversion (a positive fact
 outranks a zero one; the USD one is used between positive ones; Codex review round 16 of PR #47: a unit with no
 exact-context fact is tiled beside one that has it, and the conflict rides on a cash-only period's deferred-payment

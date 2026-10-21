@@ -349,6 +349,7 @@ import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib
 from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
+from _stable import _replace  # [Codex review r21 of PR #47] os.replace, retried on a Windows PermissionError
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
 
@@ -992,7 +993,9 @@ def validate_iprd_cash_flow_check(j):
     if v is None:
         return None
     shape = ("{period: 'YYYY-MM-DD', window: 'fy' | 'ttm_current_ytd', amount: the period's filed expense (> 0), "
-             f"presentation: one of {sorted(_engine.IPRD_CF_PRESENTATIONS)}, source: the filing and the cash-flow line}}")
+             f"presentation: one of {sorted(_engine.IPRD_CF_PRESENTATIONS)}, source: the filing and the cash-flow line, "
+             "optional unit: the amount's unit (required, as the expense's own unit, for an expense filed with no FX "
+             "rate)}")
     if not isinstance(v, list) or not v:
         fail(f"judgment.json: {IPRD_CF_CHECK_KEY} must be a non-empty list of {shape}")
     seen = set()
@@ -1004,6 +1007,16 @@ def validate_iprd_cash_flow_check(j):
             fail(f"judgment.json: {IPRD_CF_CHECK_KEY} names {k[1]} {k[0]} twice")
         seen.add(k)
     return v
+
+
+def _filed_expense_txt(p):
+    """[Codex review r21 of PR #47] A period's filed expense for a refusal: the USD figure, else (no FX rate) the
+    native figure with its unit and the `unit` a matching check names — before, a dash the worker could not match."""
+    nat = p.get("expense_native")
+    if p.get("expense") is None and isinstance(nat, (int, float)) and not isinstance(nat, bool):
+        return (f"{nat:,.0f} {p.get('expense_unit')} (no FX rate: declare amount {nat:,.0f} with unit "
+                f"\"{p.get('expense_unit')}\")")
+    return _usd_exact(p.get("expense"))
 
 
 def check_iprd_cash_flow(n, entries):
@@ -1037,9 +1050,12 @@ def check_iprd_cash_flow(n, entries):
         fail(f"judgment.json {IPRD_CF_CHECK_KEY} names a period of this run's window with an amount that is not the "
              "filed acquired-IPR&D expense, so the run did not apply it: "
              + ", ".join(f"{lbl(p)} declared {_usd_exact((p.get('cash_flow_check_mismatch') or {}).get('declared_amount'))}"
-                         f", filed expense {_usd_exact(p.get('expense'))}" for p in mm)
-             + " — declare the amount as the filed expense (within $1) and rerun the engine, or remove the entry if "
-             "the period needs no check (WORKER_SPEC step 3)")
+                         + (f" {(p.get('cash_flow_check_mismatch') or {}).get('declared_unit')}"
+                            if (p.get('cash_flow_check_mismatch') or {}).get('declared_unit') else "")
+                         + f", filed expense {_filed_expense_txt(p)}" for p in mm)
+             + " — declare the amount as the filed expense (within $1; [Codex review r21 of PR #47] an expense filed "
+             "with no FX rate is declared in its own unit, with that `unit`) and rerun the engine, or remove the "
+             "entry if the period needs no check (WORKER_SPEC step 3)")
     # [Codex review r15 of PR #47] a cash-basis period deducts its cash outflow; a matching check whose presentation
     # says OE already carried the payment (inside OCF, inside the capex intangible leg) contradicts the deduction and
     # was consumed with no trace — refused, naming the presentation
@@ -1062,7 +1078,8 @@ def check_iprd_cash_flow(n, entries):
         if applied is not None:
             if (d is None or d.get("presentation") != applied.get("presentation")
                     or not isinstance(applied.get("amount"), (int, float)) or abs(float(d["amount"]) - float(applied["amount"])) > 1.0
-                    or str(d.get("source")) != str(applied.get("source"))):
+                    or str(d.get("source")) != str(applied.get("source"))
+                    or d.get("unit") != applied.get("unit")):   # [Codex review r21 of PR #47]
                 fail(f"dcf_numbers.json applied an {IPRD_CF_CHECK_KEY} for {lbl(p)} ({applied.get('presentation')}, "
                      f"{_usd_exact(applied.get('amount'))}) that judgment.json "
                      + ("no longer declares" if d is None else "now declares differently")
@@ -1178,8 +1195,13 @@ REGISTRY_LOCK_WAIT = "make_score.py: waiting for the registry lock (another make
 def registry_transaction():
     """[Codex review r19 of PR #47] ONE acquisition of the registry lock (_lock.locked on REGISTRY + ".lock") around
     main()'s whole write phase: the prior-registry read (registry_prior_entries), the lifetime validation and merge of
-    the deal's deferred payments (iprd_deferred_lifetime), the score.json write, the registry replacement
-    (update_registry, lock_held=True) and key_numbers.md. Overlapping scorers serialize: before, the prior read and
+    the deal's deferred payments (iprd_deferred_lifetime), then — [Codex review r21 of PR #47] in this order — the
+    registry replacement (update_registry, lock_held=True), the judgment.json scope rewrite, score.json
+    (write_score_json) and key_numbers.md, each a tmp file plus _stable._replace. The registry goes first: a crash
+    after it leaves the deal's periods recorded beside the previous score.json (not this run's, so no live figures),
+    a crash before it leaves nothing changed; before, score.json came first, so a crash or a failed registry replace
+    in between published a score whose deferred periods the registry never recorded, and deleting the declaration
+    reopened the lifetime cap. Overlapping scorers serialize: before, the prior read and
     the cap check ran unlocked long before update_registry took the lock, so two runs of one ticker each saw $0 paid,
     each passed with a different $60M period against a $100M contingent_total, and the last writer left only its own
     $60M ($120M accepted, the cap open again). It says when it waits (REGISTRY_LOCK_WAIT, stderr) and refuses when
@@ -1194,6 +1216,30 @@ def registry_transaction():
              "was written; fix the path or its permissions and rerun")
     with stack:
         yield
+
+
+def _atomic_write(path, text):
+    """[Codex review r21 of PR #47] Write text to path through a tmp file beside it and _stable._replace (retried on a
+    Windows PermissionError): a crash mid-write leaves the previous file whole, never a truncated one. The tmp file
+    is removed when the write or the replace fails."""
+    tmp = path + ".tmp"
+    try:
+        with open(tmp, "w", encoding="utf-8") as f:   # text mode, as the plain writes it replaces
+            f.write(text)
+        _replace(tmp, path)
+    except BaseException:
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+        raise
+
+
+def write_score_json(spath, score):
+    """[Codex review r21 of PR #47] score.json, atomically (_atomic_write), written by main() AFTER the registry: it is
+    the run's commit marker — a score.json whose dcf_content_hash matches the run exists only once the registry
+    already records the run's judgment events (the deals' deferred-payment periods among them)."""
+    _atomic_write(spath, json.dumps(score, indent=1))
 
 
 def registry_prior_entries(ticker):
@@ -1640,6 +1686,9 @@ def iprd_lines(n):
                  # [Codex review r12 of PR #47] a share-paid residual accrues nothing; an assumed-cash one is named
                  + (f"; residual {_usd_exact(p.get('residual_paid_in_shares'))} paid in shares (not accrued as unpaid)"
                     if p.get("residual_paid_in_shares") else "")
+                 # [Codex review r21 of PR #47] an expense with no FX rate: the residual is unknown in USD
+                 + (f"; residual of the {p.get('expense_native'):,.0f} {p.get('expense_unit')} expense (unknown in USD) "
+                    "paid in shares (not accrued as unpaid)" if p.get("residual_paid_in_shares_unknown_usd") else "")
                  + ("; assumes the earlier remainder was payable in cash (no paid_in_shares check declares it settled "
                     "in shares)" if p.get("deferred_payment_assumption") else "")
                  + dpo_txt
@@ -2311,7 +2360,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     paid_to_date, so deleting a judgment.json entry never erases a paid
     milestone (and, Codex review r10, a recorded period's amount is never
     rewritten). make_score.py is the single writer; the write is atomic under
-    an fcntl lock. [Codex review r19 of PR #47] lock_held: main() already holds
+    an fcntl lock ([Codex review r21 of PR #47] tmp + _stable._replace; a
+    failed replace is refused). [Codex review r19 of PR #47] lock_held: main() already holds
     it (registry_transaction, where deferred_events were validated against the
     registry read under that same lock); the lock is not re-entrant, so it is
     not taken again."""
@@ -2411,10 +2461,13 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
             entries.append(dict(ev, date=today))
         keep_first_dates(entries[n_kept:], prior)
         reg["entries"] = entries
-        tmp = REGISTRY + ".tmp"
-        with open(tmp, "w", encoding="utf-8") as f:
-            json.dump(reg, f, indent=1)
-        os.replace(tmp, REGISTRY)
+        try:
+            # [Codex review r21 of PR #47] tmp + _stable._replace (retried on a Windows PermissionError); a failure is
+            # a clean refusal — main() writes the registry first, so nothing else has been written yet
+            _atomic_write(REGISTRY, json.dumps(reg, indent=1))
+        except OSError as ex:
+            fail(f"cannot replace the registry {REGISTRY} ({type(ex).__name__}: {ex}) — it is written before "
+                 "score.json and key_numbers.md, so nothing was written; close whatever holds the file and rerun")
 
 
 def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor, stale_release=None):
@@ -2766,8 +2819,7 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
                 else:
                     L.append("- Unblocks tier: YES — this override is the only reason this company has a tier; "
                              "without it the filing gap blocks scoring entirely.")
-    with open(f"{folder}/key_numbers.md", "w", encoding="utf-8") as f:
-        f.write("\n".join(L) + "\n")
+    _atomic_write(f"{folder}/key_numbers.md", "\n".join(L) + "\n")   # [Codex review r21 of PR #47] tmp + replace
 
 
 def main():
@@ -3144,23 +3196,28 @@ def main():
     # transaction: under the registry lock the prior registry is re-read, the
     # deals' deferred-payment lifetime re-validated and merged against it (a
     # scorer that overlapped this one may have recorded a period since the
-    # pre-check), and only then come the writes — the scope rewrite first.
+    # pre-check), and only then come the writes. [Codex review r21 of PR #47]
+    # The registry FIRST, then the scope rewrite, score.json and key_numbers.md
+    # (each tmp + replace): a crash after the registry leaves the deals'
+    # periods recorded beside the previous, stale score.json (no live figures
+    # for it, and a rerun deleting a declaration is refused); a crash before
+    # it leaves nothing changed. score.json had come first, so a crash between
+    # the two published a score whose deferred periods were never recorded.
     with registry_transaction():
         deferred_events = iprd_deferred_lifetime(ticker, _deferred, registry_prior_entries(ticker))
-        if scope_rewrite is not None:
-            rewrite_judgment_scope(jpath, scope_rewrite)
-            print(f"make_score.py: {ticker} judgment.json in_scope_under_40b {j['in_scope_under_40b']} -> {scope_rewrite} "
-                  f"(ADS-corrected market cap {_usd(mktcap)} = price × shares ÷ {ads_corr['ratio']:g}; "
-                  f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
-            j["in_scope_under_40b"] = scope_rewrite
-        with open(spath, "w", encoding="utf-8") as f:
-            json.dump(score, f, indent=1)
         # Every run: the ticker's registry entries are replaced wholesale and
         # re-derived from THIS run (applied overrides + judgment-call events).
         scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
                        if scope_corrected else None)
         update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact,
                         amortized_impact=amortized_impact, deferred_events=deferred_events, lock_held=True)
+        if scope_rewrite is not None:
+            rewrite_judgment_scope(jpath, scope_rewrite)
+            print(f"make_score.py: {ticker} judgment.json in_scope_under_40b {j['in_scope_under_40b']} -> {scope_rewrite} "
+                  f"(ADS-corrected market cap {_usd(mktcap)} = price × shares ÷ {ads_corr['ratio']:g}; "
+                  f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
+            j["in_scope_under_40b"] = scope_rewrite
+        write_score_json(spath, score)
         write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 

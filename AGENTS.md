@@ -335,7 +335,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    source must cite the intangible-purchase line the engine sums into capex that holds the payment — declared where
    the payment sits on its own investing line (HALO's custom line) it is P1 (a real charge deducted as $0); a
    `capex_overlap_note` (the period's intangible capex is at least 98% of the charge) is a hint to read the
-   cash-flow statement, never an exclusion; say "cannot verify from the diff"
+   cash-flow statement, never an exclusion (round 21: no docstring or doc may state the size rule as the
+   exclusion); a check on an expense with no FX rate names its `unit` and the native amount (round 21) — one
+   whose unit is not the expense's filed unit is never applied; say "cannot verify from the diff"
    when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
    (make_score refuses it), nor one with a period excluded `non_usd_no_rate` beside a positive `expense_native`
    (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47) or a positive

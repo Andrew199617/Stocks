@@ -369,11 +369,14 @@ ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff
 ResearchAndDevelopmentInProcess) for the last 3 FY and, on a ttm.json pin, the current-YTD 10-Q leg (each fiscal
 period counted once); the amount is the cash tag PaymentsToAcquireInProcessResearchAndDevelopment for the same
 period when filed, else the expense; a cash-tag-only period never qualifies (MAA's development-spend mistag);
-intangible impairments are never read; an expense-basis amount the period's capex intangible leg already covers
-(>= 98%) is not deducted (already_in_capex). Treatment: ONE per-share charge on the base's share basis (window
-total / the base's denominator x ads_ratio), entered as a year-0 outflow in every scenario — IV_adj(r) =
-present_value - charge (adjusted_value), IRR = solve_irr(flows, price + charge) (adjusted_irr); tiers, the band,
-hurdle prices and upside follow the adjusted figures; the unadjusted ones are kept in iprd_adjustment.before.
+intangible impairments are never read; an expense-basis amount is excluded already_in_capex only when its
+iprd_cash_flow_check declares presentation paid_in_intangible_capex and the period's capex intangible leg is >= 98%
+of it (under 98% the check is not applied and the period stays awaiting_cash_flow_check); the leg's size alone only
+adds a capex_overlap_note (Codex review round 8 of PR #47; this summary corrected in round 21). Treatment: ONE
+per-share charge on the base's share basis (window total / the base's denominator x ads_ratio), entered as a
+year-0 outflow in every scenario — IV_adj(r) = present_value - charge (adjusted_value), IRR = solve_irr(flows,
+price + charge) (adjusted_irr); tiers, the band, hurdle prices and upside follow the adjusted figures; the
+unadjusted ones are kept in iprd_adjustment.before.
 Never a base deduction. The deduction has no cliff; ACQUIRED_IPRD_CHARGE fires at >= 5% of the base OE total
 (any charge beside a base with no value to adjust) and ACQUIRED_IPRD_RECURRENT when 2 or more of the last 3 FY
 carry a charge (material). No auto-amortization: a --base-oe-ps pin that judgment.json declares as a
@@ -477,6 +480,14 @@ the unpaid remainder (deferred_payment, expense_reversal_note), is listed in ign
 beside a converted negative fact (round 14) — and only a positive one gates as non_usd_no_rate
 (ACQUIRED_IPRD_UNCONVERTED). Before, a negative one read non_usd_no_rate, which neither the no-charge paths nor any
 gate matched, so the payment was dropped with no trace.
+[Codex review round 21 of PR #47] A cash-basis period whose expense has no FX rate (its USD figure None, the cash
+outflow the amount) matches its iprd_cash_flow_check against the native detector figure and its unit: the entry
+names `unit` (the expense's filed unit) and an amount within 1 of the native figure. A matching paid_in_shares check
+is applied (cash_flow_check, with the unit) and the residual — unknown in USD — is recorded settled in shares
+(residual_paid_in_shares_unknown_usd, residual_note) and never enters the unknown remainder, so a later cash-only
+payment is no longer gated against it. Before, every check was compared with the USD expense (None) and recorded
+cash_flow_check_mismatch, so a correct declaration could never close the period. A unit, when named, is the unit of
+the amount everywhere (USD for a USD or converted expense).
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -1894,11 +1905,14 @@ def base_basis_window_problem(bw):
 def iprd_cash_flow_check_entry_ok(e):
     """True for a well-formed judgment.json iprd_cash_flow_check entry {period: "YYYY-MM-DD", window: "fy" |
     "ttm_current_ytd", amount: > 0 (the period's expense figure), presentation: one of IPRD_CF_PRESENTATIONS,
-    source: non-empty (the filing and the cash-flow line)}; the period a real date (iprd_date_ok)."""
+    source: non-empty (the filing and the cash-flow line)[, unit: non-empty — Codex review r21 of PR #47: the unit of
+    the amount, required to match the native figure of an expense with no FX rate]}; the period a real date
+    (iprd_date_ok)."""
     if not isinstance(e, dict):
         return False
-    p, a = e.get("period"), e.get("amount")
+    p, a, u = e.get("period"), e.get("amount"), e.get("unit")
     return bool(iprd_date_ok(p) and e.get("window") in IPRD_CHECK_WINDOWS
+                and (u is None or (isinstance(u, str) and u.strip()))
                 and isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a) and a > 0
                 and e.get("presentation") in IPRD_CF_PRESENTATIONS
                 and isinstance(e.get("source"), str) and e["source"].strip())
@@ -2774,7 +2788,7 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
             rec["excluded"] = IPRD_AWAITING
             rec["awaiting"] = float(amt)
             return rec
-        rec["cash_flow_check"] = {k: check.get(k) for k in ("presentation", "amount", "source")}
+        rec["cash_flow_check"] = _iprd_check_record(check)
         why = IPRD_CF_PRESENTATIONS[check["presentation"]]
         if why:
             rec["excluded"] = why
@@ -2783,6 +2797,36 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
             return rec
     rec["deducted"] = float(amt)
     return rec
+
+
+def _iprd_finite(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+
+
+def _iprd_check_matches(chk, expense, cash):
+    """[Codex review r21 of PR #47] Whether a judgment.json iprd_cash_flow_check entry matches its period's detector
+    figure. expense: _resolve_period's (tag, value_usd | None, unit, rate, filed, value_native | None); cash: its
+    (value_usd | None, unit, rate, filed, value_native | None) or None. A USD (or converted) expense: the amount is
+    within $1 of the USD figure and a declared `unit`, if any, is "USD" (round 14). An expense with no FX rate whose
+    period takes the cash-basis path (a usable positive cash outflow is the amount): the declared `unit` is the
+    expense's filed unit and the amount within 1 of its native figure — before, it was compared with the USD figure
+    (None), so no check could ever apply there. No other period matches."""
+    if expense is None:
+        return False
+    a, unit = float(chk["amount"]), chk.get("unit")
+    if expense[1] is not None:
+        return unit in (None, "USD") and abs(a - expense[1]) <= 1.0
+    native = expense[5] if len(expense) > 5 else None
+    return bool(_iprd_finite(native) and native > 0 and cash is not None and _iprd_finite(cash[0]) and cash[0] > 0
+                and unit == expense[2] and abs(a - float(native)) <= 1.0)
+
+
+def _iprd_check_record(chk):
+    """The applied check as a period records it: presentation, amount, source, and (Codex review r21 of PR #47) the
+    declared unit when the entry names one (an entry without one records exactly what it did before)."""
+    if chk.get("unit") is None:
+        return {k: chk.get(k) for k in ("presentation", "amount", "source")}
+    return {k: chk.get(k) for k in ("presentation", "amount", "unit", "source")}
 
 
 def _iprd_detector_value(rec):
@@ -3011,7 +3055,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         cash = (c[0], c[1], c[2], c[3], cash_map[c[1]][0] if c[0] is None else None) if c is not None else None
         chk, mismatch = by_key.get((p, window)), None
         if chk is not None:
-            if expense is not None and expense[1] is not None and abs(float(chk["amount"]) - expense[1]) <= 1.0:
+            if _iprd_check_matches(chk, expense, cash):
                 used.add((p, window))
             else:
                 chk, mismatch = None, chk
@@ -3025,7 +3069,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
                 and chk.get("presentation") == "paid_in_shares"):
             # [Codex review r12 of PR #47] a cash-basis period deducts its cash outflow whatever a check says; a
             # paid_in_shares check says how the rest of the expense was settled — in shares, so nothing stays payable
-            rec["cash_flow_check"] = {k: chk.get(k) for k in ("presentation", "amount", "source")}
+            rec["cash_flow_check"] = _iprd_check_record(chk)
         elif (rec is not None and chk is not None and rec["amount_basis"] == "cash_outflow"
               and chk.get("presentation") in IPRD_CF_CASH_INAPPLICABLE):
             # [Codex review r15 of PR #47] the check says the payment sat inside operating cash flow or inside the
@@ -3041,6 +3085,15 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             rec["cash_flow_check_mismatch"] = {"declared_amount": mismatch.get("amount"),
                                                "note": "judgment.json iprd_cash_flow_check names this period with "
                                                        "another amount than the filed expense: not applied"}
+            if mismatch.get("unit") is not None:
+                rec["cash_flow_check_mismatch"]["declared_unit"] = mismatch.get("unit")
+            if expense is not None and expense[1] is None and _iprd_finite(expense[5]):
+                # [Codex review r21 of PR #47] the USD figure is unknown: say what a matching check declares
+                rec["cash_flow_check_mismatch"]["note"] += (
+                    f" — the expense is filed as {float(expense[5]):,.0f} {expense[2]} with no FX rate, so a check "
+                    f"matches it with that amount and unit \"{expense[2]}\""
+                    + ("" if (cash is not None and _iprd_finite(cash[0]) and cash[0] > 0) else
+                       " only beside a usable cash outflow (none here: the period is gated non_usd_no_rate)"))
         cv = cash[0] if cash is not None else None
         cnative = cash_map[cash[1]][0] if (cash is not None and cv is None) else None
         if (isinstance(cnative, (int, float)) and not isinstance(cnative, bool) and math.isfinite(cnative)
@@ -3067,7 +3120,16 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
                 and rec["expense"] is None and isinstance(rec.get("expense_native"), (int, float))
                 and rec["expense_native"] > 0):
-            unknown_rest.append(p)
+            if (rec.get("cash_flow_check") or {}).get("presentation") == "paid_in_shares":
+                # [Codex review r21 of PR #47] the residual (native expense less the USD cash) is unknown in USD but
+                # declared settled in shares: no unpaid remainder, so a later cash-only payment is not gated on it
+                rec["residual_paid_in_shares_unknown_usd"] = True
+                rec["residual_note"] = (f"expense {rec['expense_native']:,.0f} {rec.get('expense_unit')} (no FX "
+                                        f"rate) less cash {rec['amount']:,.0f}: the residual, unknown in USD, is "
+                                        f"declared paid in shares ({IPRD_CF_CHECK_KEY} paid_in_shares, unit "
+                                        f"{rec.get('expense_unit')}) — not an unpaid remainder")
+            else:
+                unknown_rest.append(p)
         if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
                 and isinstance(rec["expense"], (int, float)) and rec["expense"] > 0):
             gap = rec["expense"] - rec["amount"]

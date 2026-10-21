@@ -527,6 +527,13 @@ STALE = [
     ("_daily/site/app.js", "(typeof fund.currency === 'string' && fund.currency) || 'USD'"),
     ("_daily/site/app.js", "Filed owner\\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share"),
     (CONTRACT, "The block is priced in the file's own `currency`"),
+    # engine 5.6 Codex review round 21 of PR #47: the overlap guard is the declared paid_in_intangible_capex
+    # presentation (round 8) — the intangible leg's size alone is only a capex_overlap_note; and the registry is
+    # written before score.json inside the registry transaction
+    ("_system/dcf_engine.py", "an expense-basis amount the period's capex intangible leg already covers"),
+    (SYS_README, "the deduction with no cliff, the ≥ 98% overlap guard,"),
+    (SYS_README, "the score.json write, the registry replacement and key_numbers.md now run inside"),
+    ("_system/make_score.py", "the score.json write, the registry replacement\n    (update_registry, lock_held=True) and key_numbers.md"),
 ]
 
 

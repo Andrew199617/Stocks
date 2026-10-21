@@ -1680,6 +1680,110 @@ def test_no_committed_scored_folder_shows_a_score_not_from_this_run_notice():
                 t, R.score_matches_run(c["score"], c["numbers"]))
     assert shown_notice == [] and tier_f > 60, (shown_notice, tier_f)
 
+
+# --- Codex review round 21 of PR #47 ------------------------------------------------------------------------------
+_R21_CRASH = r'''
+import sys
+sys.path.insert(0, sys.argv[1])
+import builtins
+import make_score as M
+AT, EXC = sys.argv[3], getattr(builtins, sys.argv[4])
+def _crash(*a, **k):
+    raise EXC("simulated crash: " + AT)
+setattr(M, AT, _crash)
+sys.argv = [M.__file__, sys.argv[2]]
+M.main()
+'''
+
+
+def _r21_run_crashing(n, j, at, prior, registry_entries, exc="RuntimeError"):
+    """make_score on a fresh folder (a prior score.json on file, the registry seeded) in a subprocess whose
+    make_score.<at> raises: the write phase dies at that step."""
+    import subprocess
+    from test_make_score_55 import MAKE_SCORE, T
+    m = copy.deepcopy(n)
+    m["ticker"] = "TST"
+    r = Run(m, _with_applied(n, j), prior_score=prior)
+    with open(r.registry, "w", encoding="utf-8") as f:
+        json.dump({"entries": registry_entries}, f)
+    env = dict(os.environ, STOCKS_BASE=r.base, PYTHONIOENCODING="utf-8", MAKE_SCORE_REGISTRY=r.registry)
+    p = subprocess.run([sys.executable, "-c", _R21_CRASH, os.path.dirname(MAKE_SCORE), T, at, exc], capture_output=True,
+                       text=True, encoding="utf-8", env=env, timeout=120)
+    r.rc, r.out, r.err = p.returncode, p.stdout, p.stderr
+    return r
+
+
+def test_a_crash_after_the_registry_write_keeps_the_periods_and_the_old_score():
+    """[Codex review r21, #4332782417] Inside the registry transaction make_score wrote score.json (a plain truncating
+    write) BEFORE the registry: a crash or a failed registry replace (a Windows reader holding the file) in between
+    left a new score.json valid for the run's content hash — publishable — while the newly accepted deferred-payment
+    periods never reached the durable registry, so deleting the declaration before the next scoring reopened the
+    lifetime cap ($60M FY2022 + $60M FY2025 against $100M). Now the registry is written FIRST (tmp + _stable._replace,
+    a failed replace refused cleanly), then score.json (tmp + replace), then key_numbers.md. A crash between the
+    registry write and score.json (make_score.write_score_json raising) leaves the registry holding the period and
+    the prior score.json byte-for-byte — still not from this run, so no live figures — and the next run that deletes
+    the declaration is refused; a failed registry replace leaves nothing changed."""
+    import reprice as R
+    cap, old, new, n = _r8_cases()
+    prior = {"ticker": "TST", "engine_release": "5.6.0", "tier_final": "B", "implied_irr": 0.1,
+             "dcf_content_hash": "0" * 64}
+    r = _r21_run_crashing(n["old"], _j(iprd_deferred_payment=[old]), "write_score_json", prior, [])
+    try:
+        assert r.rc != 0 and "simulated crash: write_score_json" in r.err, (r.rc, r.err[-800:])
+        ev = r.entries("iprd_deferred_payment")
+        assert len(ev) == 1 and ev[0]["paid_to_date"] == 60e6 and ev[0]["periods"] == [
+            {"period": "2022-12-31", "amount": 60e6}], r.entries()
+        with open(os.path.join(r.folder, "score.json"), encoding="utf-8") as f:
+            on_file = json.load(f)
+        assert on_file == prior, on_file
+        with open(os.path.join(r.folder, "dcf_numbers.json"), encoding="utf-8") as f:
+            numbers = json.load(f)
+        assert R.run_hash_problem(on_file, numbers), "the stale score reads as this run's"
+        assert not os.path.exists(os.path.join(r.folder, "key_numbers.md")), "key_numbers.md written before score.json"
+        assert not [x for x in os.listdir(r.folder) if x.endswith(".tmp")], os.listdir(r.folder)
+        reg = r.entries()
+    finally:
+        r.close()
+    # the next run deletes the FY2022 declaration and declares $60M FY2025: refused, the cap holds
+    r2 = _score_reg(n["new"], _j(iprd_deferred_payment=[new]), reg)
+    assert r2.rc == 1 and "Old Bio" in r2.err and "2022-12-31" in r2.err, r2.err[-800:]
+    # an unchanged rerun completes: the recorded period merges, then score.json and key_numbers.md are written
+    r3 = _score_reg(n["old"], _j(iprd_deferred_payment=[old]), reg)
+    assert r3.rc == 0 and r3.result["score_exists"] and r3.result["key_exists"], r3.err[-800:]
+    # a failed registry replace is refused before anything else is written
+    r4 = _r21_run_crashing(n["old"], _j(iprd_deferred_payment=[old]), "_replace", prior, [], exc="PermissionError")
+    try:
+        assert r4.rc == 1 and "REFUSED" in r4.err and "registry" in r4.err, (r4.rc, r4.err[-800:])
+        assert r4.entries() == [], r4.entries()
+        with open(os.path.join(r4.folder, "score.json"), encoding="utf-8") as f:
+            assert json.load(f) == prior
+        assert not os.path.exists(os.path.join(r4.folder, "key_numbers.md"))
+        assert not os.path.exists(r4.registry + ".tmp"), "the registry tmp file was left behind"
+    finally:
+        r4.close()
+
+
+def test_a_native_check_mismatch_names_the_native_expense_and_unit():
+    """[Codex review r21, #4332782414] make_score's cash_flow_check_mismatch refusal printed the filed expense as a
+    dash for a period whose expense has no FX rate (its USD figure is None), so the worker could not tell what to
+    declare. It now names the native figure and unit and asks for both (amount and unit); an applied check whose
+    unit judgment.json no longer declares is out of sync."""
+    import make_score as M
+    src = "SYN 10-K FY2024 R7: non-cash stock consideration"
+    per = {"period": "2024-12-31", "window": "fy", "expense": None, "expense_native": 100e6, "expense_unit": "EUR",
+           "amount": 40e6, "amount_basis": "cash_outflow", "excluded": None, "deducted": 40e6,
+           "cash_flow_check_mismatch": {"declared_amount": 40e6, "note": "not applied"}}
+    msg = _refusal(M.check_iprd_cash_flow, {"iprd_adjustment": {"periods": [per]}}, [])
+    assert msg and "100,000,000 EUR" in msg and "unit" in msg, msg
+    applied = dict(per, cash_flow_check={"presentation": "paid_in_shares", "amount": 100e6, "unit": "EUR",
+                                         "source": src})
+    del applied["cash_flow_check_mismatch"]
+    decl = {"period": "2024-12-31", "window": "fy", "amount": 100e6, "presentation": "paid_in_shares", "source": src}
+    msg = _refusal(M.check_iprd_cash_flow, {"iprd_adjustment": {"periods": [applied]}}, [decl])
+    assert msg and "out of sync" in msg, msg
+    assert _refusal(M.check_iprd_cash_flow, {"iprd_adjustment": {"periods": [applied]}}, [dict(decl, unit="EUR")]) is None
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):
