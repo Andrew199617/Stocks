@@ -1,0 +1,128 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Cancel superseded runs. This cannot undo an already completed deployment.
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Record source revision
+        run: echo "BUILD_SOURCE_SHA=$(git rev-parse HEAD)" >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Refresh prices, recalculate returns and build
+        env:
+          STOCKS_SITE_URL: https://andrew199617.github.io/Stocks/
+        run: python _system/refresh.py --quick
+
+      - name: Write ranking history from this build
+        shell: python
+        run: |
+          import datetime
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          sys.path.insert(0, "_system")
+          import build_site
+
+          with open("_daily/site/index.json", encoding="utf-8") as f:
+              index = json.load(f)
+
+          date = datetime.datetime.now(build_site.NY).date().isoformat()
+          path, rows = build_site.write_history_csv("_daily", index, date)
+
+          csv_path = Path("_daily/history") / f"ranking-{date}.csv"
+          if not csv_path.is_file():
+              raise RuntimeError(f"History file missing: {csv_path}")
+
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as f:
+              f.write(f"HISTORY_DATE={date}\n")
+              f.write(f"HISTORY_CSV={csv_path.as_posix()}\n")
+
+          print(f"history: {rows} rows -> {path}")
+
+      - name: Stage site
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s _daily/site/index.html
+          test -s _daily/site/index.json
+          rm -rf _pages_artifact
+          mkdir -p _pages_artifact
+          rsync -a --exclude 'tests/' _daily/site/ _pages_artifact/
+          touch _pages_artifact/.nojekyll
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _pages_artifact
+          include-hidden-files: true
+
+      - name: Save history before publishing
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git fetch origin main
+          if [ "$(git rev-parse origin/main)" != "$BUILD_SOURCE_SHA" ]; then
+            echo "::error::main changed during the build. Rerun against the latest main; refusing to save or deploy an outdated build."
+            exit 1
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- "$HISTORY_CSV"
+
+          if git diff --cached --quiet; then
+            echo "History unchanged."
+          else
+            git commit -m "Ranking history snapshot $HISTORY_DATE [skip ci]"
+            # A concurrent push rejects this safely. Never force-push or
+            # rebase an old build's history onto newer analysis.
+            git push origin HEAD:main
+          fi
+
+      - name: Check source is still current before deployment
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          if [ "$(git rev-parse origin/main)" != "$(git rev-parse HEAD)" ]; then
+            echo "::error::main changed before deployment. Rerun against the latest main."
+            exit 1
+          fi
+
+      - name: Deploy Pages artifact
+        id: deployment
+        uses: actions/deploy-pages@v4
