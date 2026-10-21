@@ -164,7 +164,7 @@ METHOD_CONSTANTS = (
     ("mult", (3.0,), r"spans|OE_VOLATILE|move by"),
     ("mult", (0.5, 2.0), r"0\.5\s?[x×]\s?[–-]\s?2\s?[x×]"),
     ("plain", (1.3,), r"CAP|clamp|2 \+ 1\.3"),
-    ("plain", (0.75, 0.9, 1.0, 1.1, 1.25), r"default|mult"),
+    ("plain", (0.75, 0.9, 1.0, 1.1, 1.25), r"default|mult|OE\s?[×x]"),     # the default OE multiples ("OE ×1.25")
     ("pp", (12.0, 5.0, 0.0), r"default|offset"),
     ("pct", (10.0, 25.0, 30.0), r"default|probs?\b|probabilit"),   # the default probabilities 10/25/30/25/10
 )

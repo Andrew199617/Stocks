@@ -85,6 +85,9 @@ DATE_RX = (re.compile(r"\b\d{4}-\d{2}-\d{2}\b"),
            re.compile(r"(?i)\b(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+\d{1,2}(?:,\s*\d{4})?\b"))
 
 
+tokenize = _qt.tokenize   # 02 §6.7's API name (the tokenizer lives in quote_tokens, 07 §1.8)
+
+
 def gated(n):
     """A 5.7 run (facts.is_rulings_run): its analysis.md must pass."""
     return _facts.is_rulings_run(n)

@@ -86,7 +86,7 @@ IGNORED = ["FY2025", "FY2024–25", "FY23–25", "2023/24", "2026-10-19", "2026-
            "Q2 FY2026", "9M FY2026", "FY 2025", "FY26", "3-yr", "15-year", "90 days", "4 quarters",
            "5 of the last 5", "moat 6/10", "top 10", "CFM56-7B", "MV-75", "COVID-19", "200mm", "S&P 500",
            "Russell 2000", "Nasdaq-100", "Phillips 66", "ASC 805-50", "ASC 805-10", "ASU 2016-13", "IFRS 15", "IAS 36",
-           "Topic 842", "R4.htm", "p. F-8", "IV@15", "@12%", "21st", "latest FY OE/share / 1000",
+           "Topic 842", "R4.htm", "p. F-8", "pp. 51–52", "IV@15", "@12%", "21st", "latest FY OE/share / 1000",
            "sha256 1a2b3c4d5e6f", "<!-- 99.9% -->", "https://example.com/a/12345/7.5%"]
 
 
@@ -96,7 +96,8 @@ def test_ignore_rules():
     for s in IGNORED:
         assert Q.numbers(s) == [], (s, Q.numbers(s))
     for s in ("clears 15%", "2.5% terminal growth", "in scope (under $40B)", "the 0.1x band", "the 1.3 CAP slope",
-              "default multiples 0.75 / 0.90 / 1.00 / 1.10 / 1.25", "a >60% revenue jump", "below the 5% flag threshold"):
+              "default multiples 0.75 / 0.90 / 1.00 / 1.10 / 1.25", "a >60% revenue jump", "below the 5% flag threshold",
+              "the super-bull case (OE ×1.25)", "probs 10/25/30/25/10"):
         toks = Q.numbers(s)
         assert toks and all(Q.is_method_constant(k, s) for k in toks), s
         assert not Q.carries_number(s), s
