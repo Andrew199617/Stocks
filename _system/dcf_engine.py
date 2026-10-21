@@ -569,7 +569,33 @@ closed, as for every release change). The items below are written by the lane th
   recorded hash is unchanged), and the ttm.json read (ttm_doc, same file and guard) moved up to just before the
   latest-FY row (`latest = hist[-1]`), where the share-class lane needs it; the IPR&D block reads the same variable.
 - (L1, R1) Sector misfits by universe sector OR EDGAR SIC (sector_model), the delta_nwc fix, the SIC read through
-  edgar_submissions: [L1 writes this item]
+  edgar_submissions (Andrew, 2026-10-19; the valuation math is untouched):
+  (1) Detection. main() reads the filer's SIC with filer_sic right after filer_annual_form — the same cached
+  submissions document (edgar_submissions), so a run still makes ONE submissions fetch — and, when EDGAR gives none
+  (offline, a failed fetch), the folder's own EDGAR-derived copy (folder_sic: fundamentals.json, then profile.json).
+  The --base-judgment payable scope reuses the EDGAR answer and never the folder copy, exactly as before. A name is a
+  sector misfit when its universe sector is Finance / Real Estate / Utilities (the v5 rule, kept) OR its SIC falls in
+  MISFIT_SIC_RANGES (utilities, banks, credit lenders incl. BDCs, broker-dealers, insurance carriers incl. managed
+  care 6324, real-estate lessors, REITs) — OSCR / MOH / CNC (6324, universe sector Health Care) and AES (4991,
+  Industrials) were missed. One exception, the main agent's default Q1 (b) of 2026-10-21 pending Andrew: a present
+  SIC outside 6000-6799 and outside every misfit range sets the universe sector aside (sic_sets_aside_sector — EDU
+  8200 education filed under Real Estate, WCN 4953 waste under Utilities, EFX / TRU 7320 credit bureaus under
+  Finance are not misfits); finance fee businesses (6200 exchanges, 6282 asset managers, 6411 brokers) keep the
+  sector rule. The switch is the one constant SIC_SETS_ASIDE_SECTOR (False = the universe-sector rule alone).
+  (2) Record. dcf_numbers.json `sector_model` {sector, sic, sic_description, sic_source (edgar_submissions |
+  fundamentals.json | profile.json | null), sic_class, misfit, basis (["sector"] / ["sic"] / both / []),
+  sector_set_aside_by_sic} on every exit path (data gap, Tier F, normal); it is engine output, so content_hash covers
+  it. The SECTOR_MODEL_MISMATCH flag keeps its v5 text byte for byte when the sector rule fires; a SIC-only misfit gets
+  "SECTOR_MODEL_MISMATCH: SIC 6324 (Hospital & Medical Service Plans) — OE/capex DCF fits insurance carriers poorly
+  (universe sector Health Care; EDGAR SIC rule, 2026-10-19); grade confidence low". misfit_status(numbers, base,
+  ticker) is the one reading of a record (engine sector_model, else the pre-5.7 flag checked against the folder SIC,
+  else the folder SIC alone) shared by make_score's notch, reprice and the rebuild tool. With no SIC anywhere only the
+  sector rule applies; nothing raises and nothing is printed.
+  (3) delta_nwc (HII #29, AVTR). Net working capital subtracts the ASSEMBLED current debt (the aggregate DebtCurrent
+  tag, else current long-term debt + short-term borrowings — the same d_cur as the debt basis), not only the
+  aggregate tag: a filer of components only had its current debt counted as an operating liability. Only the CSV
+  columns delta_nwc / oe_maintenance move (no base, IRR, tier, flag or dcf_numbers.json field is derived from them);
+  a declaration that quotes oe_maintenance (TTMI's base_override) must be re-derived on its next run (EB-017).
 - (L4, R2b) Annual facts from the filing's own XBRL instance (load_annual_instance, annual_from_instance) and the tag
   hoist: [L4 writes this item]
 - (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT: [L8 writes this item]
@@ -905,6 +931,102 @@ def folder_sic(base, ticker):
         if isinstance(blk, dict) and str(blk.get("sic") or "").strip():
             return str(blk["sic"]).strip(), blk.get("sic_description"), name
     return None, None, None
+
+
+# v5.7 (L1, R1 — Andrew, 2026-10-19: "notch every misfit"; the set-aside is the main agent's default Q1 (b) of
+# 2026-10-21, pending Andrew's ratification): a present SIC that names a business outside finance, insurance and real
+# estate (SIC division H, 6000-6799) and outside every misfit range contradicts a misfit universe sector — Nasdaq files
+# New Oriental Education (EDU, SIC 8200) under Real Estate, Waste Connections (WCN, 4953) under Utilities, Equifax /
+# TransUnion (7320 credit bureaus) under Finance. The filer's own industry code wins: the sector rule does not make such
+# a name a misfit. A finance fee business (6200 exchanges, 6282 asset managers, 6411 brokers, 6531 agents) sits inside
+# 6000-6799 and keeps the sector rule. THE SWITCH: SIC_SETS_ASIDE_SECTOR = False restores option (a), the universe
+# sector rule applied literally (EDU C -> D; WCN, FN, CSGP, EFX, TRU misfits again, all D, no other tier change).
+SIC_SETS_ASIDE_SECTOR = True
+SIC_FINANCE_SPAN = (6000, 6799)
+# the v5 sector-rule flag text ("SECTOR_MODEL_MISMATCH: Finance sector — ..."); a SIC-rule flag reads "...: SIC 6324 (...)"
+SECTOR_FLAG_RE = re.compile(r"^SECTOR_MODEL_MISMATCH: ([A-Z][A-Za-z ]*?) sector — ")
+
+
+def sic_sets_aside_sector(sic):
+    """v5.7 (L1, R1, Q1 (b)): True when `sic` is a present SIC code outside 6000-6799 and outside every
+    MISFIT_SIC_RANGES range — it then contradicts a misfit universe sector, which does not make the name a misfit.
+    False for a missing or unparsable code, and always False when SIC_SETS_ASIDE_SECTOR is off. Pure."""
+    if not SIC_SETS_ASIDE_SECTOR:
+        return False
+    try:
+        v = int(str(sic).strip())
+    except (TypeError, ValueError):
+        return False
+    return not (SIC_FINANCE_SPAN[0] <= v <= SIC_FINANCE_SPAN[1]) and sic_misfit_class(v) is None
+
+
+def sector_model_record(sector, sic, sic_description, sic_source):
+    """v5.7 (L1, R1): dcf_numbers.json `sector_model` — why the run is (or is not) a sector misfit:
+    {sector, sic, sic_description, sic_source, sic_class, misfit, basis, sector_set_aside_by_sic}. basis lists the rules
+    that fired: "sector" (universe sector in MISFIT_SECTORS, unless a present SIC sets it aside —
+    sic_sets_aside_sector) and "sic" (the SIC in MISFIT_SIC_RANGES); misfit is basis being non-empty. sic_source names
+    where the code came from (edgar_submissions, or the folder's fundamentals.json / profile.json copy); every SIC field
+    is null without a code. Pure."""
+    sector = str(sector or "").strip() or None
+    sic = str(sic).strip() if sic is not None and str(sic).strip() else None
+    cls = sic_misfit_class(sic) if sic else None
+    sector_hit = sector in MISFIT_SECTORS
+    set_aside = bool(sector_hit and sic and sic_sets_aside_sector(sic))
+    basis = (["sector"] if sector_hit and not set_aside else []) + (["sic"] if cls else [])
+    return {"sector": sector, "sic": sic, "sic_description": (sic_description or None) if sic else None,
+            "sic_source": (sic_source or None) if sic else None, "sic_class": cls, "misfit": bool(basis),
+            "basis": basis, "sector_set_aside_by_sic": set_aside}
+
+
+def _misfit_basis(source, sector, sic, sic_description, sic_source):
+    sic = str(sic).strip() if sic is not None and str(sic).strip() else None
+    return {"source": source, "sector": sector or None, "sic": sic,
+            "sic_description": (sic_description or None) if sic else None,
+            "sic_class": sic_misfit_class(sic) if sic else None, "sic_source": (sic_source or None) if sic else None}
+
+
+def misfit_status(numbers, base=None, ticker=None, sic=None):
+    """v5.7 (L1, R1): (model_fit, basis) for an engine record — "misfit" or "modeled" — read the same way by
+    make_score's mechanical notch, reprice's pure path and the rebuild tool, offline (the folder's own SIC files
+    under base/ticker are the only thing read; a caller that must not read passes sic=(code, description, source)
+    instead, or nothing). Rules, in order:
+      1. a 5.7 record's sector_model says misfit -> misfit (basis.source "engine_sector_model");
+      2. a 5.7 sector_model that read a SIC and says not misfit -> modeled: the engine's answer is final (the basis is
+         returned, with sector_set_aside_by_sic, only when that SIC set a misfit universe sector aside);
+      3. a SECTOR_MODEL_MISMATCH flag (output from before 5.7, which flagged the universe sector only) -> misfit
+         (basis.source "engine_flag", the sector parsed from the sector-rule text, the folder SIC attached for the
+         reason text) — unless the folder SIC sets that sector aside (Q1 (b)): modeled, basis.source "folder_sic",
+         sector_set_aside_by_sic true;
+      4. the folder SIC in MISFIT_SIC_RANGES -> misfit (basis.source "folder_sic"): the SIC rule applied on a rebuild
+         without an engine re-run (OSCR, MOH, CNC, AES);
+      5. otherwise modeled (basis None).
+    basis: {source, sector, sic, sic_description, sic_class, sic_source}."""
+    n = numbers if isinstance(numbers, dict) else {}
+    sm = n.get("sector_model") if isinstance(n.get("sector_model"), dict) else None
+    if sm is not None:
+        b = _misfit_basis("engine_sector_model", sm.get("sector"), sm.get("sic"), sm.get("sic_description"),
+                          sm.get("sic_source"))
+        if sm.get("misfit"):
+            return "misfit", b
+        if b["sic"]:
+            return "modeled", (dict(b, sector_set_aside_by_sic=True) if sm.get("sector_set_aside_by_sic") else None)
+    if sic is not None:
+        fsic, fdesc, fsrc = (tuple(sic) + (None, None, None))[:3]
+    elif base is not None and ticker is not None:
+        fsic, fdesc, fsrc = folder_sic(base, ticker)
+    else:
+        fsic, fdesc, fsrc = None, None, None
+    hit = next((str(f) for f in (n.get("fragility_flags") or []) if str(f).startswith("SECTOR_MODEL_MISMATCH")), None)
+    if hit is not None:
+        m = SECTOR_FLAG_RE.match(hit)
+        sector = m.group(1) if m else None
+        if sector and fsic and sic_sets_aside_sector(fsic):
+            return "modeled", dict(_misfit_basis("folder_sic", sector, fsic, fdesc, fsrc), sector_set_aside_by_sic=True)
+        return "misfit", _misfit_basis("engine_flag", sector, fsic, fdesc, fsrc)
+    if fsic and sic_misfit_class(fsic):
+        return "misfit", _misfit_basis("folder_sic", None, fsic, fdesc, fsrc)
+    return "modeled", None
+
 
 def payable_base_per_share(figures, shares, ads_ratio=None):
     """Insurer payable-earnings base (Andrew, 2026-10-19): the average of the
@@ -4599,6 +4721,14 @@ def main():
                         "reconciled": reconciled, "note": note}
 
     annual_form = filer_annual_form(cik)
+    # v5.7 (L1, R1): the filer's EDGAR SIC for the misfit rule, from the same cached submissions document (one fetch
+    # per run); offline or on a failed fetch, the folder's own EDGAR-derived copy. The payable scope below uses the
+    # EDGAR answer only.
+    edgar_sic, edgar_sic_desc = filer_sic(cik)
+    if edgar_sic:
+        sic_m, sic_m_desc, sic_m_source = edgar_sic, edgar_sic_desc, "edgar_submissions"
+    else:
+        sic_m, sic_m_desc, sic_m_source = folder_sic(BASE, ticker)
     ads_ratio = load_ads_ratio(ticker)
     share_class = load_share_class_mismatch(ticker)
     # Currency handling is v5.3 (see the FX conversion pass below and the gate):
@@ -4965,7 +5095,10 @@ def main():
         oe_cons = (fcf - sbc) if (fcf is not None and sbc is not None) else fcf
         nwc = None
         if g("assets_current") is not None and g("liab_current") is not None:
-            nwc = (g("assets_current") - (g("cash") or 0)) - (g("liab_current") - (g("debt_current") or 0))
+            # v5.7 (L1; Andrew, 2026-10-19 — HII #29, AVTR): current debt is the ASSEMBLED d_cur above (the aggregate
+            # tag, else current LTD + short-term borrowings), not the aggregate tag alone — a filer of components only
+            # had its current debt counted as an operating liability. cash stays the raw tag (EB-016).
+            nwc = (g("assets_current") - (g("cash") or 0)) - (g("liab_current") - (d_cur or 0))
         d_nwc = (nwc - prev_nwc) if (nwc is not None and prev_nwc is not None) else None
         if nwc is not None: prev_nwc = nwc
         oe_maint = None
@@ -5177,7 +5310,7 @@ def main():
             pb = load_payable_base(ticker)
             if not shares or abs(float(pb["shares"]) - float(shares)) >= 1.0:  # exact: the denominator IS the latest count
                 raise ValueError(f"base_override.shares {pb['shares']:,.0f} is not this run's latest diluted count {shares if shares else 'n/a'}")
-            sic, sic_desc = filer_sic(cik)
+            sic, sic_desc = edgar_sic, edgar_sic_desc   # v5.7 (L1): read once above; EDGAR only, never the folder copy
             if sic not in PAYABLE_SIC:
                 raise ValueError(f"the payable-earnings rule is scoped to P&C insurers/reinsurers (SIC {sorted(PAYABLE_SIC)}); "
                                  f"EDGAR lists SIC {sic or 'unknown'} ({sic_desc or 'n/a'}) — keep the OCF base and the 2026-10-15 notch")
@@ -5781,6 +5914,11 @@ def main():
         # v5.5 (decision 7): overrides used verbatim as USD figures, and which rule fired
         # ({} when every override was converted, or none is declared).
         fx_info["overrides_usd_verbatim"] = dict(sorted(ov_usd_verbatim.items()))
+    # v5.7 (L1, R1): why the run is (or is not) a sector misfit — universe sector OR EDGAR SIC (sector_model_record);
+    # set here so every exit path (data gap, Tier F, normal) carries it, and hashed with the rest of the record
+    sector_u = (uni.get(ticker) or {}).get("sector", "")
+    sector_model = sector_model_record(sector_u, sic_m, sic_m_desc, sic_m_source)
+    result["sector_model"] = sector_model
 
     # ---- v3 scenario / moat inputs ----
     def arglist(flag, default):
@@ -5845,9 +5983,16 @@ def main():
     flags_pre.extend(_v55_flags(share_scale, share_basis, base_override, market_cap_basis, sbc_recon, periods,
                                 hist, facts, overrides, capex_assembly, raw_missing, last3_periods, override_checks))
     flags_pre.extend(iprd_flags(iprd))
-    sector_u = (uni.get(ticker) or {}).get("sector", "")
-    if sector_u in ("Finance", "Real Estate", "Utilities"):  # v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged
+    # v5.7 (L1, R1): the misfit flag follows sector_model (set above). The universe-sector text is v5's, byte for byte
+    # (v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged); a SIC-only misfit
+    # (OSCR / MOH / CNC 6324 under Health Care) gets its own text; a sector the SIC sets aside gets no flag.
+    if "sector" in sector_model["basis"]:
         flags_pre.append(f"SECTOR_MODEL_MISMATCH: {sector_u} sector — OE/capex DCF fits {sector_u.lower()} names poorly; grade confidence low")
+    elif sector_model["misfit"]:
+        _lbl = MISFIT_SIC_LABEL[sector_model["sic_class"]]
+        flags_pre.append(f"SECTOR_MODEL_MISMATCH: SIC {sector_model['sic']} ({sector_model['sic_description'] or _lbl}) — "
+                         f"OE/capex DCF fits {_lbl} poorly (universe sector {sector_u or 'none'}; EDGAR SIC rule, "
+                         "2026-10-19); grade confidence low")
 
     # ---- v5 DATA GATE: missing data must never silently become zero again. ----
     # Gaps are judged on the FILED values (raw_missing), before any override fill.

@@ -25,10 +25,31 @@ import os
 # ---------------------------------------------------------------------------
 # One function per 5.7 obligation (each lane fills its own; no-ops in L0)
 # ---------------------------------------------------------------------------
+NOTCH_REASON = "test: payable-earnings measure implies 9.25%"   # one number, colliding with no synthetic leaf
+
+
 def add_notch_reason(n, j):
     """L1 (R1): a current-release sector misfit (S-C, not on the payable base) gets a misfit_notch_reason carrying a
-    number. No-op in L0."""
+    number (make_score's R-3 / R-4 on a 5.7 run); tier_override is left alone. A judgment that already sets the field
+    (a test of the reason itself) is untouched, and so is everything else."""
+    if not (isinstance(n, dict) and isinstance(j, dict)) or "misfit_notch_reason" in j:
+        return None
+    rel = n.get("engine_release")
+    if not (isinstance(rel, str) and _release_at_least_57(rel)):
+        return None
+    sm = n.get("sector_model") if isinstance(n.get("sector_model"), dict) else {}
+    misfit = bool(sm.get("misfit")) or any(str(f).startswith("SECTOR_MODEL_MISMATCH")
+                                           for f in n.get("fragility_flags") or [])
+    if misfit and n.get("tier_by_numbers") in ("S", "A", "B", "C") and not n.get("payable_base"):
+        j["misfit_notch_reason"] = NOTCH_REASON
     return None
+
+
+def _release_at_least_57(rel):
+    try:
+        return tuple(int(x) for x in rel.split(".")[:3]) >= (5, 7, 0)
+    except ValueError:
+        return False
 
 
 def cite_facts_for_reasons(j, n, folder=None):

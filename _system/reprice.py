@@ -115,6 +115,11 @@ tier itself moved does the live numbers tier take over, flagged
 `override_superseded` so the page can say so. `delta.tier_changed` is the
 numbers tier vs the scored numbers tier; `delta.tier_changed_vs_final` is the
 displayed tier vs the scored final tier (what a reader sees move).
+Since engine 5.7 (v5.7 below) a sector misfit's live tier is one notch below
+its live numbers tier (D/F and a payable-earnings base not notched), as
+recorded in score.json misfit_notch, and an "override" is a final tier other
+than the scored NOTCHED tier; a superseded override gives way to the notched
+live tier.
 An override is only read from a score.json built from THIS dcf_numbers.json
 (score_matches_run — Codex review of PR #2: a same-day score from an earlier
 engine run used to pass on its date alone, and its stale tier_final was kept
@@ -213,6 +218,30 @@ wrote before round 29 records no scored.dcf_content_hash: beside a
 score.json that carries one, build_site.live_score_identity_missing
 withholds it (reason live_without_score_identity) until the next run here
 rewrites it.
+
+v5.7 (2026-10-19, engine release 5.7.0 — Andrew's ruling R1, the mechanical
+sector-misfit notch; lane L1): make_score publishes every sector misfit one
+tier below its numbers tier (score.json misfit_notch), and the live tier
+follows the same rule at the last close. live_misfit decides it from the
+score's own block: a score.json with misfit_notch (not on the payable-earnings
+base) is notched live — `tier` is notch_tier(live numbers tier), so a misfit
+scored B -> C reads C at the scored price, B when the live numbers tier is A,
+D when it is C or D (D / F are never notched: a numbers tier of D stays D).
+An override is now a final tier other than the scored notched tier
+(override_active): a legacy one-notch override is the notch and follows the
+live numbers tier; a judgment downgrade below the notch is kept while the
+numbers tier holds and then gives way to the NOTCHED live tier (it used to be
+the raw one). A score.json with no block (a misfit scored before 5.7, whose
+final tier is the legacy tier_override) reprices exactly as before until
+make_score rebuilds it, so build_site.live_score_problem's check of
+scored.tier_override_reason holds in every state with no build_site change.
+live.json adds `misfit_notch` {tier_by_numbers, tier_after_notch, applies,
+basis} (null on a modeled name) and `scored.tier_after_notch`; the BASIS text
+and one_line say so ("numbers B, misfit notch"). Pure use without a score.json
+(tests) reads dcf_engine.misfit_status on the record and the folder_sic given;
+reprice_folder passes none. A rebuild that changes tier_final makes the
+existing live.json mismatch scored.tier_final, so it is withheld until
+`reprice.py --all` rewrites it — run it after every rebuild apply.
 """
 import json, math, os, re, sys, datetime, hashlib
 from zoneinfo import ZoneInfo
@@ -227,7 +256,9 @@ PRICE_SOURCE = "prices.json (Nasdaq last close)"
 BASIS = ("same base OE/share, scenario paths and probabilities as the scored run (and the same one-time acquired-IPR&D "
          "charge per share, iprd_charge_per_share, when the run deducted one); only the price moved; "
          "per-share values are restated in today's share units when a split since the scored run is detected (split_factor); "
-         "an agent tier override (score.json tier_final, from this same engine run) is preserved in `tier` unless the numbers tier itself moved")
+         "an agent tier override (score.json tier_final, from this same engine run) is preserved in `tier` unless the numbers tier itself moved; "
+         "a sector misfit's live tier is one notch below its live numbers tier (D/F and a payable-earnings base not notched), "
+         "as recorded in score.json misfit_notch")
 IPRD_SHARE_COUNT_UNVERIFIED = "not_applied_share_count_unverified"  # dcf_engine's treatment name; never repriced
 STALE_DAYS = 4  # a prices.json without fetched_at: last_date may trail as_of by a weekend + holiday, never more
 
@@ -663,9 +694,35 @@ def check_score(scored, numbers):
                    "scores this run")
 
 
-def reprice(numbers, price, price_date=None, scored=None, today=None, prices=None, fund=None):
+def live_misfit(numbers, scored, folder_sic=None):
+    """v5.7 (L1, R1): (eligible, basis) — whether the live tier is one notch below the live numbers tier.
+    With a score.json (every folder reprice_folder writes): exactly when it carries make_score's misfit_notch block
+    and the base is not the payable-earnings pin (basis "score_json"; a D / F misfit is eligible too — a live numbers
+    tier of C publishes D). A score with no block — a modeled name, or a misfit scored before engine 5.7 whose final
+    tier is a legacy one-notch tier_override — is not eligible, so such a folder reprices exactly as before the notch
+    (its override kept or superseded by the raw numbers tier) and build_site.live_score_problem's mirror of the
+    recorded override reason still holds; the next make_score rebuild adds the block. Without a score (pure use only):
+    never on a payable_base run, else dcf_engine.misfit_status on the record and the given folder SIC (basis
+    "engine" / "folder_sic"). Pure."""
+    if isinstance(scored, dict):
+        mn = scored.get("misfit_notch")
+        if isinstance(mn, dict):
+            return mn.get("not_applied") != "payable_base", "score_json"
+        return False, None
+    if not isinstance(numbers, dict) or numbers.get("payable_base"):
+        return False, None
+    fit, b = E.misfit_status(numbers, sic=(folder_sic, None, "folder_sic") if folder_sic else None)
+    if fit != "misfit":
+        return False, None
+    return True, ("folder_sic" if (b or {}).get("source") == "folder_sic" else "engine")
+
+
+def reprice(numbers, price, price_date=None, scored=None, today=None, prices=None, fund=None, folder_sic=None):
     """Pure function: the live.json payload for a recorded run at `price`.
     `scored` is the folder's score.json (for tier_final) when available.
+    `folder_sic` (v5.7, pure use without a score only): the folder's SIC code
+    for the misfit rule (live_misfit); reprice_folder never passes it — every
+    folder it reprices has a score.json, whose misfit_notch block decides.
     `prices` is the folder's prices.json: when given, the run's per-share
     basis is checked against it (check_basis) and a split since scoring is
     divided out of every per-share value; `fund` (fundamentals.json) only
@@ -731,12 +788,22 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
     # [Codex review r11 of PR #47] check_score has already refused one from another run
     scored_fresh = isinstance(scored, dict)
     scored_final = scored.get("tier_final") if scored_fresh else None
-    override_active = bool(scored_fresh and scored_final and scored_tier and scored_final != scored_tier)
+    # v5.7 (L1, R1): a sector misfit's tier is one notch below its numbers tier, live as when scored — the live tier
+    # is the notch of the LIVE numbers tier, and only a final tier other than the scored notch is an override
+    notch_ok, notch_basis = live_misfit(numbers, scored if scored_fresh else None, folder_sic)
+    scored_notched = E.notch_tier(scored_tier) if notch_ok else scored_tier
+    live_notched = E.notch_tier(tier_numbers) if notch_ok else tier_numbers
+    _mn = scored.get("misfit_notch") if scored_fresh and isinstance(scored.get("misfit_notch"), dict) else {}
+    override_active = bool(scored_fresh and scored_final and scored_notched
+                           and (scored_final != scored_notched
+                                # an override in force AT the notched tier (the acquired-IPR&D hand deduction —
+                                # never repriced, check_eligible) keeps its reason, as build_site's mirror expects
+                                or (_mn.get("applies") and scored.get("tier_override_reason"))))
     numbers_moved = tier_numbers != scored_tier
     if override_active and not numbers_moved:
         tier, override_superseded = scored_final, False
     else:
-        tier, override_superseded = tier_numbers, override_active
+        tier, override_superseded = live_notched, override_active
     tz_today = today or datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     # The close comes from a file refreshed on or after the scored day
     # (live_price enforces that; until Nasdaq posts the scored session's row it
@@ -767,6 +834,9 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         "tier_by_numbers": tier_numbers,
         "override_active": override_active,
         "override_superseded": override_superseded,
+        # v5.7 (L1, R1): the live notch — null on a modeled name (and on a misfit whose score.json predates the notch)
+        "misfit_notch": ({"tier_by_numbers": tier_numbers, "tier_after_notch": live_notched,
+                          "applies": tier_numbers in E.NOTCH_BELOW, "basis": notch_basis} if notch_ok else None),
         "irr_base": scenarios["base"]["irr"],
         "irr_bear": scenarios["bear"]["irr"],
         "irr_bull": scenarios["bull"]["irr"],
@@ -788,6 +858,7 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         "scored": {
             "irr_weighted": scored_irr,
             "tier_by_numbers": scored_tier,
+            "tier_after_notch": scored_notched if notch_ok else None,   # v5.7 (L1): the scored notched tier
             "tier_final": scored_final,
             "tier_override_reason": (scored or {}).get("tier_override_reason") if (override_active and isinstance(scored, dict)) else None,
             # [Codex review r29 of PR #47] the score's run identity: with score_json_fresh, tier_final and the
@@ -798,7 +869,7 @@ def reprice(numbers, price, price_date=None, scored=None, today=None, prices=Non
         "delta": {
             "irr_pp": (irr_w - scored_irr) * 100 if scored_irr is not None else None,
             "tier_changed": numbers_moved,
-            "tier_changed_vs_final": tier != (scored_final or scored_tier),
+            "tier_changed_vs_final": tier != (scored_final or scored_notched),
         },
         "engine_release_of_run": numbers.get("engine_release") or f"pre-5.4 (engine_version {numbers.get('engine_version')})",
         "basis": BASIS,
@@ -879,9 +950,13 @@ def _pct(x):
 def one_line(live):
     s = live["scored"]
     d = live["delta"]
-    scored_shown = s["tier_by_numbers"] + (f" (final {s['tier_final']})" if live["override_active"] else "")
+    mn = live.get("misfit_notch") or {}   # v5.7 (L1): the live misfit notch
+    scored_shown = s["tier_by_numbers"] + (f" (final {s['tier_final']})" if (live["override_active"] or (
+        s.get("tier_after_notch") and s.get("tier_final") and s["tier_final"] != s["tier_by_numbers"])) else "")
     live_shown = live["tier"] + (f" (numbers {live['tier_by_numbers']}, override kept)" if (live["override_active"] and not live["override_superseded"])
-                                 else f" (numbers moved from {s['tier_by_numbers']}, override {s['tier_final']} superseded)" if live["override_superseded"] else "")
+                                 else f" (numbers moved from {s['tier_by_numbers']}, override {s['tier_final']} superseded"
+                                      + (", misfit notch)" if mn.get("applies") else ")") if live["override_superseded"]
+                                 else f" (numbers {live['tier_by_numbers']}, misfit notch)" if mn.get("applies") else "")
     return (f"{live['ticker']}: scored ${live['scored_price']:.2f} ({live['scored_date']}) "
             f"{scored_shown} {_pct(s['irr_weighted'])} -> live ${live['price']:.2f} ({live['price_date']}) "
             f"{live_shown} {_pct(live['irr_weighted'])} ({d['irr_pp']:+.2f}pp"

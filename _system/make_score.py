@@ -452,7 +452,56 @@ rebuilt as before, both alert gates closed ("engine output predates release
   registry holding any 5.7 event, so every tree on the VM runs 5.7 code
   before the first 5.7 write (the drift guard, lane L5).
 - (L1, R1) The mechanical sector-misfit notch (misfit_notch,
-  misfit_notch_reason, the misfit_notch event): [L1 writes this item]
+  misfit_notch_reason, the misfit_notch event). Andrew, 2026-10-19: every
+  sector misfit publishes ONE tier below its numbers tier, with a written
+  reason that carries a number, mechanically — no reviewer grades it again.
+  Detection (misfit_detection = dcf_engine.misfit_status): the 5.7 engine's
+  sector_model (universe sector Finance / Real Estate / Utilities OR EDGAR
+  SIC in MISFIT_SIC_RANGES), else an older run's SECTOR_MODEL_MISMATCH flag,
+  else the folder's own SIC (fundamentals.json / profile.json) — so a rebuild
+  catches OSCR / MOH / CNC (6324) and AES (4991) with no engine re-run. A
+  present SIC outside 6000-6799 and every misfit range sets a misfit universe
+  sector aside (default Q1 (b), main agent 2026-10-21, pending Andrew; the
+  switch is dcf_engine.SIC_SETS_ASIDE_SECTOR): such a name is modeled and
+  score.json misfit_sector_set_aside says why (EDU 8200, WCN 4953, FN 3661,
+  CSGP 7389, EFX / TRU 7320 on file). model_fit keeps its meaning.
+  misfit_notch(...) (after check_no_double_softening, whose refusal keeps
+  priority) sets tier_final and score.json misfit_notch {applies,
+  tier_by_numbers, tier_after_notch, reason, reason_source judgment |
+  tier_override | auto, not_applied null | payable_base | tier_floor_D |
+  tier_F, basis}, present on every misfit. Not notched: a payable-earnings
+  pin (payable_base, --base-judgment: it already measures what common
+  shareholders earn) and a numbers tier of D (the lowest graded tier) or F
+  (no positive owner's earnings) — the block records why. A hand pin such as
+  SF's --base-oe-ps net-income base IS notched. The notch acts on the
+  numbers tier as recorded (the IPR&D-adjusted one when a deduction applies;
+  the auto reason then says so). A tier_override above the notched tier is
+  refused on every rebuild (R-1); one below it is a further judgment
+  downgrade in force (tier_override_reason kept, tier_override event); one
+  equal to it is the legacy notch on output from before 5.7 (its reason
+  moves to misfit_notch.reason, reason_source tier_override, no
+  tier_override event) and refused on a 5.7 run (R-2: the notch is
+  mechanical), except where check_iprd_share_count_unverified requires the
+  main agent's hand-deduction override (iprd_override_required): it is then
+  in force at the notched tier. On a 5.7 run of a notched misfit judgment.json
+  must carry misfit_notch_reason with a number (R-3 / R-4; the facts lane
+  traces it through check_influence); before 5.7 an auto reason with the
+  weighted IRR is written when there is none. misfit_notch_reason must be a
+  string or null (R-5). Every refusal precedes registry_transaction. The
+  registry records a misfit_notch event {tier_by_numbers, tier_final (the
+  notched tier), weighted_irr, reason, reason_source, basis} when the notch
+  applies (not-applied blocks record none); a prior tier_override event is
+  also matched as a misfit_notch declaration (keep_first_dates), so a legacy
+  notch keeps the date it was first taken. Since the declaration includes
+  the reason, an auto reason quoting the weighted IRR is re-dated when an
+  engine re-run moves the IRR inside the same tier (the text changed); a
+  make_score-only rebuild keeps the date — deliberate, do not "fix" it.
+  key_numbers.md's tier line names the notch (numbers tier B → C), followed
+  by "- Misfit notch (<source>): “reason”" or "- Misfit notch: not applied —
+  “reason”"; every echoed reason is quoted() (07 §1.10). The alert gates are
+  unchanged (alert_reasons sees the override only while it is in force; a
+  misfit closes both gates as before). seed_judgment never seeds the notch as
+  a tier_override.
 - (L2, R3) facts.json, the quote gate's key_numbers lines, saved method
   runs, the declared_facts event: [L2 writes this item]
 - (L3, R4 revised: sources + 11-pillar evidence + supporting factors,
@@ -510,7 +559,8 @@ REPLAY_PURPOSE_ENV = "DCF_REPLAY_PURPOSE"             # "base_alternatives" on R
 # base_alternatives R7). Pure data.
 SCORE_DECISION_KEYS = ("tier_final", "tier_by_numbers", "implied_irr", "iv_at_15", "base_oe_per_share", "model_fit",
                        "confidence", "alert_eligible", "exit_alert_eligible", "dcf_content_hash", "iprd_adjustment",
-                       "fragility_flags")
+                       "fragility_flags",
+                       "misfit_notch", "misfit_sector_set_aside")                       # L1 (R1)
 
 
 def fail(msg):
@@ -528,7 +578,13 @@ def seed_judgment(folder, score):
         probs.append(p)
     override = None
     reason = None
-    if score.get("tier_final") and score.get("tier_by_numbers") and score["tier_final"] != score["tier_by_numbers"]:
+    # v5.7 (L1, R1): a final tier that is the mechanical misfit notch is make_score's own, not a judgment to seed
+    # (unless an override was in force at that tier: score.json then still carries its tier_override_reason)
+    mn = score.get("misfit_notch") if isinstance(score.get("misfit_notch"), dict) else {}
+    notched = bool(mn.get("applies") and score.get("tier_final") == mn.get("tier_after_notch")
+                   and not score.get("tier_override_reason"))
+    if (score.get("tier_final") and score.get("tier_by_numbers") and score["tier_final"] != score["tier_by_numbers"]
+            and not notched):
         override = score["tier_final"]
         reason = "Seeded from the pre-v5 score.json — the original override reason is in analysis.md"
     j = {"name": score.get("name"), "sector": score.get("sector"),
@@ -2228,6 +2284,156 @@ def check_no_double_softening(n, j, model_fit):
     return None
 
 
+# ---------------------------------------------------------------------------
+# v5.7 lane L1 — R1 the mechanical sector-misfit notch (Andrew, 2026-10-19)
+# ---------------------------------------------------------------------------
+NOTCH_RULING = "the mechanical sector-misfit notch (Andrew, 2026-10-19)"
+
+
+def misfit_detection(n, folder):
+    """v5.7 (L1, R1): (model_fit, basis) — dcf_engine.misfit_status on this folder (the engine's sector_model on a
+    5.7 run, else an older run's SECTOR_MODEL_MISMATCH flag checked against the folder's SIC, else the folder's SIC
+    alone). basis is None on a modeled name unless a present SIC set a misfit universe sector aside (Q1 (b))."""
+    folder = os.path.normpath(folder)
+    return _engine.misfit_status(n, os.path.dirname(folder), os.path.basename(folder))
+
+
+def _basis_text(basis):
+    """'universe sector Finance; EDGAR SIC 6211 Security Brokers, Dealers & Flotation Companies (broker-dealers)' —
+    the rules behind a misfit, for its reason and refusal texts."""
+    b = basis or {}
+    parts = []
+    if b.get("sector"):
+        parts.append(f"universe sector {b['sector']}")
+    if b.get("sic") and b.get("sic_class"):
+        desc = f" {b['sic_description']}" if b.get("sic_description") else ""
+        parts.append(f"EDGAR SIC {b['sic']}{desc} ({_engine.MISFIT_SIC_LABEL.get(b['sic_class'], b['sic_class'])})")
+    return "; ".join(parts) or "SECTOR_MODEL_MISMATCH flag"
+
+
+def _misfit_label(basis):
+    """What the owner's-earnings DCF fits poorly: the SIC class's label, else '<sector> names'."""
+    b = basis or {}
+    if b.get("sic_class"):
+        return _engine.MISFIT_SIC_LABEL.get(b["sic_class"], b["sic_class"])
+    return f"{b['sector'].lower()} names" if b.get("sector") else "this business model"
+
+
+def _irr_s(n):
+    """The weighted IRR as the notch texts print it ('11.70%', with the acquired-IPR&D note when the run deducted a
+    one-time charge — the notch acts on that adjusted tier, 07 G2)."""
+    irr = _num(n.get("implied_irr_weighted"))
+    s = f"{irr * 100:.2f}%" if irr is not None else "n/a"
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else {}
+    if (_num(blk.get("charge_per_share")) or 0) > 0:
+        s += " (after the one-time acquired-IPR&D deduction)"
+    return s
+
+
+def _tier_below(t):
+    """The next tier down (S..D -> A..F); F stays F."""
+    i = TIERS.index(t) if t in TIERS else len(TIERS) - 1
+    return TIERS[min(i + 1, len(TIERS) - 1)]
+
+
+def misfit_notch(n, j, model_fit, basis, override, run57):
+    """v5.7 (L1, R1; Andrew, 2026-10-19): (tier_final, block | None, override_in_force) for one score. Every sector
+    misfit publishes ONE tier below its numbers tier (S->A, A->B, B->C, C->D) with a reason that carries a number;
+    block is score.json misfit_notch (None on a modeled name):
+    {applies, tier_by_numbers, tier_after_notch, reason, reason_source, not_applied, basis}.
+    - payable_base (a --base-judgment payable-earnings pin): not notched, not_applied "payable_base" — the base
+      already measures what common shareholders earn (check_no_double_softening still refuses an override below it).
+    - numbers tier D / F: not notched, not_applied "tier_floor_D" / "tier_F" (D is the lowest graded tier; F has no
+      positive owner's earnings). A tier_override there keeps its pre-5.7 meaning.
+    - S-C: notched. tier_override above the notched tier -> refused (R-1, every rebuild). Equal to it -> the legacy
+      one-notch override before 5.7 (its reason becomes the notch reason, reason_source "tier_override", not in
+      force), refused on a 5.7 run (R-2) — unless iprd_override_required(n): the main agent's hand-deduction override
+      is then in force at the notched tier. Below it -> a further judgment downgrade, in force. On a 5.7 run
+      misfit_notch_reason is required (R-3) and must carry a number (R-4); before 5.7 the reason is
+      misfit_notch_reason, else the legacy override's reason, else an auto text with the weighted IRR.
+    misfit_notch_reason must be a string or null on every run (R-5). Refusals call fail() — main() calls this before
+    registry_transaction, so nothing is written."""
+    rj = j.get("misfit_notch_reason")
+    if rj is not None and not isinstance(rj, str):
+        fail("judgment.json: misfit_notch_reason must be a string or null")
+    rj = (rj or "").strip() or None
+    tb = n.get("tier_by_numbers")
+    if model_fit != "misfit":
+        return (override or tb), None, bool(override)
+    irr_s = _irr_s(n)
+    blk = {"applies": False, "tier_by_numbers": tb, "tier_after_notch": tb, "reason": None, "reason_source": "auto",
+           "not_applied": None, "basis": basis}
+    pb = n.get("payable_base") if isinstance(n.get("payable_base"), dict) else None
+    if pb:
+        blk.update(not_applied="payable_base",
+                   reason=(f"not notched: the base is the payable-earnings pin ({pb.get('basis') or 'payable_earnings_5y'}, "
+                           f"{_money(_num(pb.get('pinned_per_share')))}/share via --base-judgment; weighted IRR {irr_s}), "
+                           "which already measures what common shareholders earn — a notch on top would double-count"))
+        return (override or tb), blk, bool(override)
+    if tb == "D":
+        blk.update(not_applied="tier_floor_D",
+                   reason=(f"cannot notch: numbers tier D (weighted IRR {irr_s}) is the lowest graded tier, so there is "
+                           f"no tier below it to publish — {NOTCH_RULING} is not applied"))
+        return (override or tb), blk, bool(override)
+    if tb not in TIERS[:4]:   # F (or no tier: make_score refused that earlier)
+        sub = n.get("f_subtype") or "no positive owner's earnings"
+        base = _num(n.get("base_oe_per_share"))
+        blk.update(not_applied="tier_F",
+                   reason=(f"cannot notch: numbers tier F ({sub}" + (f"; base OE/share {_money(base)}" if base is not None else "")
+                           + f") — no positive owner's earnings, so there is no IRR to soften — {NOTCH_RULING} is not applied"))
+        return (override or tb), blk, bool(override)
+    notched = _engine.notch_tier(tb)
+    head = (f"sector misfit ({_basis_text(basis)}): numbers tier {tb} at a weighted IRR of {irr_s} publishes one notch "
+            f"lower as {notched}")
+    hand = iprd_override_required(n)   # the main agent's hand-deduction override (check_iprd_share_count_unverified)
+    if override:
+        if TIER_ORDER.get(override, -1) > TIER_ORDER[notched]:
+            fail(f"judgment.json tier_override {override} is above the misfit-notched tier {notched} — {head} (Andrew, "
+                 "2026-10-19: every sector misfit publishes one tier below its numbers tier); an override may only go "
+                 f"further down. Set tier_override to null (or {_tier_below(notched) if (run57 and not hand) else notched} "
+                 "or lower with a reason)")
+        if override == notched and run57 and not hand:
+            fail(f"judgment.json tier_override {override} only restates the mechanical misfit notch ({head}) — since "
+                 "engine 5.7 make_score applies the notch itself: set tier_override to null and put the reason in "
+                 "misfit_notch_reason")
+    if run57:
+        if not rj:
+            fail(f"judgment.json: misfit_notch_reason is required on a 5.7 run of a sector misfit ({head}) — write the "
+                 "payable-earnings measure the analysis relied on (operating EPS, dividends from subsidiaries, capital "
+                 "returned) or the IRR it implies; the reason must carry a number")
+        if not re.search(r"\d", rj):
+            fail(f"judgment.json: misfit_notch_reason must carry a number ({head}) — 'screens materially lower' with no "
+                 f"figure is not a reason (got {rj!r})")
+    if rj:
+        reason, src = rj, "judgment"
+    elif override == notched and not hand and str(j.get("tier_override_reason") or "").strip():
+        reason, src = str(j["tier_override_reason"]).strip(), "tier_override"   # the legacy one-notch override
+    else:
+        reason, src = (f"Sector misfit ({_basis_text(basis)}): numbers tier {tb} at a weighted IRR of {irr_s} publishes "
+                       f"one notch lower as {notched} — {NOTCH_RULING}: the owner's-earnings DCF fits "
+                       f"{_misfit_label(basis)} poorly. No worker reason on record."), "auto"
+    blk.update(applies=True, tier_after_notch=notched, reason=reason, reason_source=src)
+    if override and (TIER_ORDER.get(override, -1) < TIER_ORDER[notched] or (override == notched and hand)):
+        return override, blk, True
+    return notched, blk, False
+
+
+def misfit_set_aside_record(model_fit, basis):
+    """v5.7 (L1, R1, Q1 (b)): score.json misfit_sector_set_aside — why a name whose universe sector is a misfit
+    sector (an older run's SECTOR_MODEL_MISMATCH flag, or the 5.7 engine's sector_model) is scored as modeled: its
+    present SIC lies outside 6000-6799 and every misfit range. None otherwise."""
+    if model_fit == "misfit" or not (basis or {}).get("sector_set_aside_by_sic"):
+        return None
+    b = basis
+    desc = f" {b['sic_description']}" if b.get("sic_description") else ""
+    return {"sector": b.get("sector"), "sic": b.get("sic"), "sic_description": b.get("sic_description"),
+            "sic_source": b.get("sic_source"), "source": b.get("source"),
+            "reason": (f"EDGAR SIC {b.get('sic')}{desc} lies outside finance / insurance / real estate (6000-6799) and "
+                       f"outside every misfit SIC range: the filer's own industry code contradicts the universe sector "
+                       f"{b.get('sector')}, so the sector rule does not make it a misfit (rule Q1 (b) of 2026-10-21; "
+                       "dcf_engine.SIC_SETS_ASIDE_SECTOR)")}
+
+
 def validate_ads_ratio(j):
     """judgment.json ads_ratio {ratio, source, reason} for 20-F/40-F filers.
     None if absent; shape-checked if present."""
@@ -2947,6 +3153,11 @@ def keep_first_dates(new_entries, prior_entries):
             if e.get("event") == "base_override" and ig:
                 lk = (ig, _declaration(e, ignore=ig))
                 legacy[lk] = min(legacy.get(lk, d), d)
+            if e.get("event") == "tier_override":
+                # v5.7 (L1, R1): a legacy one-notch tier_override is the same judgment as the misfit_notch event that
+                # replaces it (same tiers, same reason) — that event keeps the date the notch was first taken
+                nk = _declaration(dict(e, event="misfit_notch"))
+                first[nk] = min(first.get(nk, d), d)
     for e in new_entries:
         d = first.get(_declaration(e))
         if d is None and e.get("event") == "base_override":
@@ -2961,8 +3172,18 @@ def keep_first_dates(new_entries, prior_entries):
 # deferred-payment events and before keep_first_dates. Pure — they run under the registry lock (lock_held), so no
 # file read, no lock, no fail(). [] (or nothing) until the lane fills them.
 def _notch_events(ticker, today, notch, n):
-    """v5.7 placeholder (L1, R1): the misfit_notch event when the notch applies. [] in L0."""
-    return []
+    """v5.7 (L1, R1): the misfit_notch event when the notch applies — {ticker, event, date, tier_by_numbers,
+    tier_final (the notched tier), weighted_irr (4 dp), reason, reason_source, basis (the detection source)}; its
+    declaration (_EVENT_DECLARATION) is tier_by_numbers / tier_final / reason. A block the notch could not be applied
+    to (D / F / payable_base) records no event: score.json and key_numbers.md carry its reason. Pure."""
+    if not isinstance(notch, dict) or not notch.get("applies"):
+        return []
+    irr = _num((n or {}).get("implied_irr_weighted"))
+    return [{"ticker": ticker, "event": "misfit_notch", "date": today,
+             "tier_by_numbers": notch.get("tier_by_numbers"), "tier_final": notch.get("tier_after_notch"),
+             "weighted_irr": round(irr, 4) if irr is not None else None,
+             "reason": notch.get("reason"), "reason_source": notch.get("reason_source"),
+             "basis": (notch.get("basis") or {}).get("source")}]
 
 
 def _moat_events(ticker, today, moat_ev):
@@ -3074,7 +3295,9 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                                 "weighted_irr_with_override": impact["weighted_irr_with_override"],
                                 "weighted_irr_impact_pp": impact["weighted_irr_impact_pp"],
                                 "unblocks_tier": impact["unblocks_tier"]}))
-        if j.get("tier_override"):
+        # v5.7 (L1, R1): only an override in force (override_in_force None = every pre-5.7 caller: as before); a
+        # legacy one-notch override is recorded as the misfit_notch event (_notch_events) instead
+        if j.get("tier_override") and (override_in_force is None or override_in_force):
             entries.append({"ticker": ticker, "event": "tier_override", "date": today,
                             "tier_by_numbers": n.get("tier_by_numbers"),
                             "tier_final": j["tier_override"],
@@ -3467,14 +3690,30 @@ def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, 
          "## Headline"]
     if n.get("price") is not None:
         L.append(f"- Price: ${n['price']:,.2f} (source: {n.get('price_source')})")
-    # ---- the Headline tier block (lane L1 replaces these lines whole with the misfit-notch tier block) ----
+    # ---- the Headline tier block (v5.7, L1: the mechanical misfit notch, R1; every echoed reason through quoted(),
+    # 07 §1.10 — the notch reason whatever its source, the judgment override's, the set-aside's) ----
+    mn = score.get("misfit_notch") if isinstance(score.get("misfit_notch"), dict) else None
     tier_note = score["tier_final"]
-    if score.get("tier_override_reason"):
-        tier_note += f" (agent override of {n['tier_by_numbers']}: {score['tier_override_reason']})"
+    why = score.get("tier_override_reason")
+    if mn and mn.get("applies"):
+        tier_note += f" (sector-misfit notch: numbers tier {mn.get('tier_by_numbers')} → {mn.get('tier_after_notch')}"
+        if why:
+            where = ("below the notch" if score["tier_final"] != mn.get("tier_after_notch")
+                     else "at the notched tier (acquired-IPR&D hand deduction)")
+            tier_note += f"; agent override {where}: {quoted(why)}"
+        tier_note += ")"
+    elif why:
+        tier_note += f" (agent override of {n['tier_by_numbers']}: {quoted(why)})"
     conf_note = score["confidence"]
     if score.get("confidence_capped"):
         conf_note += " (capped from high by make_score: WIDE_SCENARIO_SPREAD present)"
     L.append(f"- Tier: {tier_note} · confidence {conf_note}")
+    if mn and mn.get("applies"):
+        L.append(f"- Misfit notch ({mn.get('reason_source')}): {quoted(mn.get('reason'))}")
+    elif mn:
+        L.append(f"- Misfit notch: not applied — {quoted(mn.get('reason'))}")
+    if isinstance(score.get("misfit_sector_set_aside"), dict):
+        L.append(f"- Sector misfit set aside: {quoted(score['misfit_sector_set_aside'].get('reason'))}")
     # ---- end of the Headline tier block ----
     if n.get("implied_irr_weighted") is not None:
         w = n.get("weighted") or {}
@@ -3982,26 +4221,30 @@ def main():
              "implied_irr_base_case": round(n["implied_irr_base"], 4) if n.get("implied_irr_base") is not None else None,
              "upside_at_15_pct": round(n["upside_at_15"] * 100, 1) if n.get("upside_at_15") is not None else None,
              "tier_by_numbers": n["tier_by_numbers"],
-             "tier_final": override or n["tier_by_numbers"],
+             "tier_final": None,   # v5.7 (L1): set below by misfit_notch (the notched tier, or an override in force)
              "confidence": conf, "one_liner": j["one_liner"],
              "analysis_date": n.get("as_of"), "in_scope_under_40b": scope_val}
     # v5.4 additions — every one copied from the engine or derived by rule here.
     flags_all = n.get("fragility_flags") or []
     diag = n.get("diagnostics") or {}
-    model_fit = "misfit" if any(str(f).startswith("SECTOR_MODEL_MISMATCH") for f in flags_all) else "modeled"
+    # v5.7 (L1, R1): universe sector OR EDGAR SIC (dcf_engine.misfit_status), no longer the flag alone
+    model_fit, fit_basis = misfit_detection(n, folder)
     _dbl = check_no_double_softening(n, j, model_fit)
     if _dbl:
         fail(_dbl)
-    # v5.7 step 5 (07 §1.12; lane L1, R1): misfit_notch, before registry_transaction — L1 sets
-    # `tier_final, notch, override_in_force = misfit_notch(n, j, model_fit, fit_basis, override, is_57_run(n))` here
-    # (and rewrites the model_fit line above, the second tier_final below and the tier_override_reason copy)
-    notch, override_in_force = None, None
+    # v5.7 step 5 (07 §1.12; lane L1, R1): the mechanical misfit notch, before registry_transaction (its refusals
+    # R-1 .. R-5 write nothing); the payable double-count refusal above keeps priority
+    tier_final, notch, override_in_force = misfit_notch(n, j, model_fit, fit_basis, override, is_57_run(n))
+    score["tier_final"] = tier_final
+    set_aside = misfit_set_aside_record(model_fit, fit_basis)
     # v5.7 step 6 (lane L3 / L3b, R4 / M6): moat_ev = _moat.evaluate(folder, n, j, facts=..., is_57=is_57_run(n), ...)
     moat_ev = None
     # v5.7 step 7: every influence check together, on 5.7 runs only and before the first write — each lane calls
     # check_influence (L2) for its own reason fields here (tier_override_reason, base_override, misfit_notch_reason,
     # the moat reasons, the share-class reasons, ttm_rejection_reason)
     if is_57_run(n):
+        if notch and notch.get("reason_source") == "judgment":   # L1 (R1): misfit_notch_reason (R-3 / R-4 ran above)
+            check_influence("misfit_notch_reason", notch["reason"], _facts.parse_refs(notch["reason"]), fc, folder, n)
         if plan and plan.get("reason"):
             pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
     score.update({
@@ -4023,9 +4266,10 @@ def main():
     # Alert eligibility (audit round-1: "alert only at medium+ confidence with
     # no data-gap flags" — S/A alerts had been firing on misfits and gaps).
     # Entries and exits get separate gates (see the module docstring).
-    tier_final = override or n["tier_by_numbers"]
+    # v5.7 (L1): tier_final is misfit_notch's; the gates see a tier_override only while it is in force (a legacy
+    # one-notch override is the notch, not a judgment lift)
     reasons, exit_reasons = alert_reasons(
-        tier_final, n.get("tier_by_numbers"), override, conf, model_fit,
+        tier_final, n.get("tier_by_numbers"), override if override_in_force else None, conf, model_fit,
         bool(reported and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
         stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None,
         share_classes_raise=share_classes_raise_reason(sc_impact))   # v5.7 (L8): None in L0
@@ -4039,7 +4283,11 @@ def main():
         score["second_pass"] = j_second_pass
     if conf_capped:
         score["confidence_capped"] = True
-    if override:
+    if notch:   # v5.7 (L1, R1): on every sector misfit, applied or not
+        score["misfit_notch"] = notch
+    if set_aside:   # v5.7 (L1, R1, Q1 (b)): a misfit universe sector the filer's SIC sets aside
+        score["misfit_sector_set_aside"] = set_aside
+    if override and override_in_force:   # v5.7 (L1): a legacy one-notch override's text is misfit_notch.reason
         score["tier_override_reason"] = j["tier_override_reason"]
     if j.get("moat_for"):
         score["moat_for"] = j["moat_for"]
