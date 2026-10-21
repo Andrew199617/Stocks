@@ -562,12 +562,16 @@ def test_placeholders_are_inert_and_pure():
                       (M.check_interim_obligation, (n, j, None)),
                       (M.interim_bridge_measurement, ("TST", n, None, False)),
                       (M.score_interim_fields, ({}, n, j, None, None)),
-                      (M.ttm_rejection_state, ("/nowhere", n, j)),
                       (M.build_base_alternatives, ("TST", "/nowhere", n, j, None)),
                       (M.refuse_capex_override_software, (n, {})), (M.refuse_unlisted_capex_component, (n, j)),
                       (M.refuse_pre57_ttm_json, (n, None)), (M._attach_fact_citations, ([], None))):
             assert fn(*a) is None, fn.__name__
         assert M._alt_ttm_ok({}, None) is True
+        # (lane R7 filled ttm_rejection_state: a 5.7 record now gets its plan — here nothing is required and nothing
+        # read but the absent ttm.json; a pre-5.7 record still gets None)
+        plan = M.ttm_rejection_state("/nowhere", n, j)
+        assert plan["required"] is False and plan["ttm"] is None and plan["reason"] is None, plan
+        assert M.ttm_rejection_state("/nowhere", dict(n, engine_release="5.6.0"), j) is None
         for fn, a in ((M._notch_events, ("TST", "2026-10-21", None, n)), (M._moat_events, ("TST", "2026-10-21", None)),
                       (M._interim_events, ("TST", None, None, "2026-10-21")), (M._facts_events, ("TST", "2026-10-21", None)),
                       (M._share_classes_events, ("TST", None, None, n, j)),

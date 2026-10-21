@@ -109,7 +109,8 @@ USED_FOR = ("context", "scenarios", "guidance_check", "flag_resolution",
             "business_type_reason",     # L3 / L3b (03b, 10): moat_scorecard.business_type_reason
             "interim_bridge",           # L4 (R2a)
             "share_classes",            # L8 (R6): share_classes reasons and up_c_suspect_reason
-            "ttm_rejection")            # R7: ttm_rejection_reason
+            "ttm_rejection",            # R7: ttm_rejection_reason
+            "capex_unlisted_ack")       # R7 lane (main agent, 2026-10-21): L9's capex_unlisted_ack reasons (R8)
 MOAT_TAG_PREFIX = "moat:"
 # 03b §10.1: the 11 core pillars, the 4 supporting factors and the sources block
 MOAT_CORE_PILLARS = ("returns_on_capital", "industry_structure", "capital_intensity", "scale_economics",
@@ -123,7 +124,8 @@ RETIRED_MOAT_TAGS = {"market_position": "supporting.market_share",
                      "capital_allocation": "supporting.management",
                      "durability_risks": "pillars.erosion_risks"}
 # a third-party fact never supports these alone (R3); L2 enforces it
-THIRD_PARTY_NOT_SOLE_SUPPORT = ("tier_override", "misfit_notch", "base_override", "ttm_rejection")
+THIRD_PARTY_NOT_SOLE_SUPPORT = ("tier_override", "misfit_notch", "base_override", "ttm_rejection",
+                                "capex_unlisted_ack")   # R7 lane: an ack decides what capex (the base) is
 
 # Influence fields (judgment.json path -> the used_for tag a fact it cites must list). One table for every lane's
 # reason fields so L2's rule "a cited fact lists the field's tag" has one source; each lane checks its own fields
@@ -144,7 +146,18 @@ INFLUENCE_TAGS = {
     "share_classes.diluted_gap_reason": "share_classes",
     "up_c_suspect_reason": "share_classes",
     "ttm_rejection_reason": "ttm_rejection",                                    # R7
+    "capex_unlisted_ack": "capex_unlisted_ack",   # R7 lane: capex_unlisted_ack.<tag> (influence_tag reads the prefix)
 }
+
+
+def influence_tag(field):
+    """The used_for tag a fact cited by influence field `field` must list: INFLUENCE_TAGS[field], else the entry of
+    the field's object ("capex_unlisted_ack.<tag>" -> capex_unlisted_ack, one judgment.json map of reasons), else the
+    field itself."""
+    if field in INFLUENCE_TAGS:
+        return INFLUENCE_TAGS[field]
+    head = str(field).split(".", 1)[0]
+    return INFLUENCE_TAGS.get(head) or field
 
 
 def used_for_problem(tag):

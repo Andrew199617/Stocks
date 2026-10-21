@@ -20,6 +20,7 @@ import copy
 import hashlib
 import json
 import os
+import re
 
 
 # ---------------------------------------------------------------------------
@@ -322,10 +323,126 @@ def add_up_c_reason(j, n):
     return None
 
 
+def _stale_fy(n):
+    return any(str(f).startswith("STALE_FY") for f in (n or {}).get("fragility_flags") or [])
+
+
+def _r7_published_not_ttm(n, j, ttm):
+    """make_score.published_base_kind's answer, approximated for the fixtures (R7): True when the record's base is the
+    annual median or a declared base_override pin not built on the TTM (the bases ttm_rejection_reason /
+    ttm_unavailable_reason bind); False for the payable pin, a --ttm / via-TTM pin, a basis_window "ttm" pin and an
+    iprd_amortized pin on the ttm_json native base."""
+    inp = n.get("inputs") if isinstance(n.get("inputs"), dict) else {}
+    src = inp.get("base_pin_source")
+    if n.get("payable_base") or src == "judgment_base_override":
+        return False
+    if src is None and inp.get("base_oe_ps_arg") is None and "ttm" not in str(n.get("base_source") or "").lower():
+        return True
+    bo = (j or {}).get("base_override") if isinstance(j, dict) else None
+    if src != "base_oe_ps_arg" or not isinstance(bo, dict):
+        return False
+    if bo.get("basis") == "iprd_amortized":
+        return bo.get("native_base") != "ttm_json"
+    if bo.get("basis") is not None:
+        return False
+    bw = inp.get("base_basis_window") if isinstance(inp.get("base_basis_window"), dict) else {}
+    if bw.get("window") == "ttm":
+        return False
+    tv, pin = (ttm or {}).get("ttm_oe_per_share") if isinstance(ttm, dict) else None, inp.get("base_oe_ps_arg")
+    near = (isinstance(tv, (int, float)) and isinstance(pin, (int, float)) and not isinstance(tv, bool)
+            and abs(pin - tv) <= 1e-3 * abs(tv))
+    return bw.get("window") == "fy" or not near
+
+
+def _dollars(x):
+    return f"{'-' if x < 0 else ''}${abs(x):,.2f}"
+
+
+def _ttm_for_latest_fy(n, ttm):
+    v = ttm.get("ttm_oe_per_share") if isinstance(ttm, dict) else None
+    return (isinstance(v, (int, float)) and not isinstance(v, bool)
+            and ttm.get("fy_end") == (n or {}).get("latest_period_end"))
+
+
+R7_REASON_MARK = "test (R7 G16):"   # the fixture reason add_ttm_rejection writes (r7_current re-derives it)
+R7_UNAVAILABLE_RE = re.compile(r"ttm\.py: cannot compute TTM for \S+ \(CIK \d+\): sbc: no post-FY YTD fact \(no 10-Q "
+                               r"since the [0-9-]+ fiscal year end\)$")   # the one add_ttm_unavailable writes
+
+
 def add_ttm_rejection(j, n, ttm=None):
-    """R7: a qualifying ttm_rejection_reason (a cash-flow line and a traced figure) on a 5.7 STALE_FY record whose
-    published base is not ttm.json's TTM. No-op in L0."""
+    """R7 (Andrew, 2026-10-19): on a 5.7 STALE_FY record whose published base is the annual median or a declared pin
+    (not the TTM) beside a 10-Q ttm.json `ttm` for its latest FY, a qualifying ttm_rejection_reason — a cash-flow line
+    and the record's and ttm.json's own figures (so every number traces). Untouched: a judgment that already carries
+    the field (a test of it), an older record, a declared 6-K bridge ttm.json (L4's binding refusal is that test's
+    subject), no ttm. Mutates j (apply() passes a copy)."""
+    if not (isinstance(j, dict) and isinstance(n, dict) and isinstance(ttm, dict)) or "ttm_rejection_reason" in j:
+        return None
+    if not _is_57(n) or not _stale_fy(n) or ttm.get("basis") == "declared_interim" or not _ttm_for_latest_fy(n, ttm):
+        return None
+    b = n.get("base_oe_per_share")
+    if not isinstance(b, (int, float)) or not _r7_published_not_ttm(n, j, ttm):
+        return None
+    j["ttm_rejection_reason"] = (f"{R7_REASON_MARK} the TTM base {_dollars(ttm['ttm_oe_per_share'])}/share against the "
+                                 f"published {_dollars(b)}/share rests on a half-year working-capital swing")
     return None
+
+
+def add_ttm_unavailable(j, n, ttm=None, ticker=None):
+    """R7 default Q14: on a 5.7 STALE_FY 10-K record whose published base is the annual median or a declared pin and
+    which has no TTM for its latest FY (`ttm` None, or a ttm.json on another FY), ttm.py's exit-3 message for it in
+    ttm_unavailable_reason (what ttm.py prints when the 10-Q YTD facts are missing). Untouched otherwise, and when the
+    judgment already carries the field. Mutates j."""
+    if not (isinstance(j, dict) and isinstance(n, dict)) or "ttm_unavailable_reason" in j:
+        return None
+    if not _is_57(n) or not _stale_fy(n) or n.get("filer_annual_form") in ("20-F", "40-F"):
+        return None
+    if isinstance(ttm, dict) and (ttm.get("fy_end") == n.get("latest_period_end")
+                                  and isinstance(ttm.get("ttm_oe_per_share"), (int, float))):
+        return None
+    if not _r7_published_not_ttm(n, j, ttm):
+        return None
+    try:
+        cik = int(n.get("cik") or 0)
+    except (TypeError, ValueError):
+        cik = 0
+    t = str(ticker or n.get("ticker") or "TST").upper()
+    j["ttm_unavailable_reason"] = (f"ttm.py: cannot compute TTM for {t} (CIK {cik}): sbc: no post-FY YTD fact (no 10-Q "
+                                   f"since the {n.get('latest_period_end')} fiscal year end)")
+    return None
+
+
+def r7_current(folder, sysdir=None, replies=None):
+    """R7's obligations for a Run folder already written, called by a pre-existing test right before make_score runs
+    (after it wrote ttm.json and installed its engine stand-in): judgment.json gains add_ttm_rejection /
+    add_ttm_unavailable from the folder's own dcf_numbers.json / ttm.json (rewritten only when changed: JSON indent 1,
+    UTF-8, one trailing newline — the tests' own format), and, given sysdir, the R7 base replays are answered beside
+    the test's stand-in (answer_base_replays), so no pre-existing assertion about spawns changes. Returns folder."""
+    def rd(name):
+        p = os.path.join(folder, name)
+        if not os.path.exists(p):
+            return None
+        try:
+            with open(p, encoding="utf-8") as f:
+                return json.load(f)
+        except ValueError:
+            return None
+    n, j, tt = rd("dcf_numbers.json"), rd("judgment.json"), rd("ttm.json")
+    if isinstance(n, dict) and isinstance(j, dict):
+        j2 = copy.deepcopy(j)
+        # the fields an earlier call added are re-derived from the folder as it is now (a test that writes ttm.json
+        # after building the folder turns "no TTM" into a TTM to reject); a field the test wrote itself is kept
+        if str(j2.get("ttm_rejection_reason") or "").startswith(R7_REASON_MARK):
+            del j2["ttm_rejection_reason"]
+        if R7_UNAVAILABLE_RE.match(str(j2.get("ttm_unavailable_reason") or "")):
+            del j2["ttm_unavailable_reason"]
+        add_ttm_rejection(j2, n, ttm=tt)
+        add_ttm_unavailable(j2, n, ttm=tt, ticker=os.path.basename(os.path.normpath(folder)))
+        if j2 != j:
+            with open(os.path.join(folder, "judgment.json"), "w", encoding="utf-8", newline="") as f:
+                f.write(json.dumps(j2, indent=1, ensure_ascii=False) + "\n")
+    if sysdir is not None and isinstance(n, dict):
+        answer_base_replays(sysdir, n, ttm_doc=tt, replies=replies)
+    return folder
 
 
 def _dcf_engine():
@@ -364,9 +481,61 @@ def add_ttm_engine_release(tt, n=None):
     return tt
 
 
+R7_WRAPPER_MARK = "# rulings57.answer_base_replays (R7)"
+R7_INNER = "dcf_engine_standin_before_r7.py"
+R7_WRAPPER = R7_WRAPPER_MARK + r'''
+import json, os, sys
+here = os.path.dirname(os.path.abspath(__file__))
+if os.environ.get("DCF_REPLAY_PURPOSE") == "base_alternatives":
+    cfg = json.load(open(os.path.join(here, "base_replays.json"), encoding="utf-8"))
+    with open(os.path.join(here, "BASE_REPLAY_" + os.path.basename(__file__) + ".txt"), "a", encoding="utf-8") as f:
+        f.write(json.dumps({"argv": sys.argv[1:], "no_overrides": os.environ.get("DCF_NO_OVERRIDES"),
+                            "hold": os.environ.get("DCF_IPRD_HOLD")}) + "\n")
+    rep = cfg.get("ttm" if "--ttm" in sys.argv else "median")
+    if not isinstance(rep, dict):
+        sys.exit(97)
+    if "exit" in rep:
+        sys.stdout.write(str(rep.get("stdout") or "") + "\n")
+        sys.exit(int(rep["exit"]))
+    sys.stdout.write(json.dumps(rep))
+    sys.exit(0)
+src = open(os.path.join(here, "''' + R7_INNER + r'''"), encoding="utf-8").read()
+exec(compile(src, __file__, "exec"), {"__file__": __file__, "__name__": "__main__"})
+'''
+
+
 def answer_base_replays(sysdir, n, ttm_doc=None, replies=None):
-    """R7: answer the DCF_REPLAY_PURPOSE=base_alternatives engine spawns beside the test's own stand-in in sysdir.
-    No-op in L0."""
+    """R7 (07 G16): answer the DCF_REPLAY_PURPOSE=base_alternatives engine spawns beside whatever stand-in the test
+    installed as <sysdir>/dcf_engine.py — the stand-in moves to R7_INNER and a wrapper answers R7's replays from
+    `replies` ({"median": reply, "ttm": reply}; a reply is the engine's JSON or {"exit": 3, "stdout": "..."}), else
+    from the record itself (the median reply: n's base_oe_normalized_per_share with n's IRR and tier; the TTM reply:
+    ttm_doc's ttm_oe_per_share with dcf_engine.ttm_inputs_record(ttm_doc)), logging them to
+    BASE_REPLAY_dcf_engine.py.txt; every other spawn runs the test's own stand-in unchanged (its SPAWNED_* log, its
+    __file__). Idempotent; nothing when sysdir does not exist. Returns None."""
+    if not os.path.isdir(sysdir):
+        return None
+    eng = os.path.join(sysdir, "dcf_engine.py")
+    src = None
+    if os.path.exists(eng):
+        with open(eng, encoding="utf-8") as f:
+            src = f.read()
+    if src is None or R7_WRAPPER_MARK not in src:
+        with open(os.path.join(sysdir, R7_INNER), "w", encoding="utf-8") as f:
+            f.write(src if src is not None else "import sys\nsys.exit(97)\n")
+        with open(eng, "w", encoding="utf-8") as f:
+            f.write(R7_WRAPPER)
+    rep = dict(replies or {})
+    if "median" not in rep and isinstance(n, dict):
+        b = n.get("base_oe_normalized_per_share", n.get("base_oe_per_share"))
+        rep["median"] = {"base_oe_per_share": b, "implied_irr_weighted": n.get("implied_irr_weighted"),
+                         "tier_by_numbers": n.get("tier_by_numbers"), "f_subtype": n.get("f_subtype"), "data_gap": []}
+    if "ttm" not in rep and isinstance(n, dict) and isinstance(ttm_doc, dict):
+        rep["ttm"] = {"base_oe_per_share": ttm_doc.get("ttm_oe_per_share"),
+                      "implied_irr_weighted": n.get("implied_irr_weighted"), "tier_by_numbers": n.get("tier_by_numbers"),
+                      "f_subtype": n.get("f_subtype"), "data_gap": [],
+                      "ttm_inputs": _dcf_engine().ttm_inputs_record(ttm_doc)}
+    with open(os.path.join(sysdir, "base_replays.json"), "w", encoding="utf-8") as f:
+        json.dump(rep, f, indent=1)
     return None
 
 
@@ -383,10 +552,15 @@ def content_hash(n):
     return hashlib.sha256(_canon(n).encode()).hexdigest()
 
 
-def apply(n, j, folder=None, ttm=None):
+_NO_TTM_GIVEN = object()   # R7: "the caller did not say whether a ttm.json exists" (Run.__init__ writes it later)
+
+
+def apply(n, j, folder=None, ttm=_NO_TTM_GIVEN):
     """Every judgment-side obligation above, in lane merge order, on COPIES of engine record n and judgment j (either
     may be None); returns (n, j). The inputs are never modified. A record that carried a content_hash is re-stamped
-    when an obligation changed it. The identity in L0."""
+    when an obligation changed it. The identity in L0. R7's two obligations read ttm.json, so they run only when the
+    caller passes `ttm` (the folder's ttm.json object, or None for "no ttm.json" — make_current does); a caller that
+    writes ttm.json later (test_make_score_55.Run) applies them right before the run with r7_current."""
     n2 = copy.deepcopy(n) if n is not None else None
     j2 = copy.deepcopy(j) if j is not None else None
     before = _canon(n2) if isinstance(n2, dict) else None
@@ -395,7 +569,9 @@ def apply(n, j, folder=None, ttm=None):
     add_minimal_scorecard(j2, n=n2, folder=folder)        # L3
     add_interim_declined(n2, j2)                          # L4
     add_up_c_reason(j2, n2)                               # L8
-    add_ttm_rejection(j2, n2, ttm=ttm)                    # R7
+    if ttm is not _NO_TTM_GIVEN:                          # R7
+        add_ttm_rejection(j2, n2, ttm=ttm)
+        add_ttm_unavailable(j2, n2, ttm=ttm, ticker=os.path.basename(os.path.normpath(folder)) if folder else None)
     if isinstance(n2, dict) and "content_hash" in n2 and _canon(n2) != before:
         n2["content_hash"] = content_hash(n2)
     return n2, j2
