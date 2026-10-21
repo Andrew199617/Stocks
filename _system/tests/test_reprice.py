@@ -48,6 +48,13 @@ used as STOCKS_BASE for the file-level (reprice_folder) cases.
    record); otherwise market_cap_basis.shares_used (a scale- or
    split-corrected count, or the dei_latest cover-page count) is the count
    used, and the module docstring says so (FIX_DECISIONS_R1 M6).
+11. Sweep staleness guard (2026-10-20): sweep_price_staleness measures each
+   scored name's last close on file against the session set the sweep
+   itself holds — a name more than one session behind the newest close is
+   reported (a refresh that never ran leaves every name behind together;
+   HALO sat two sessions behind for two days, silent, in October 2026);
+   one session behind is the normal posting lag and is not flagged, and
+   names with no readable prices.json are skipped, never fatal.
 prices.json is a gitignored cache (a fresh clone has none), so every case
 builds its own synthetic prices.json; only the committed APP / EXPE judgment
 records are read from the repo.
@@ -832,6 +839,45 @@ def test_live_market_cap_share_count_rule_m6():
     assert ("for a run whose market_cap_basis.shares_source is diluted_latest, or with no basis record; otherwise the "
             "count is market_cap_basis.shares_used") in doc, doc[-900:]
     assert "a non-ADS run is bit-identical)" not in " ".join(R.live_market_cap.__doc__.split())
+
+
+def test_sweep_price_staleness_flags_more_than_one_session_behind():
+    tmp = tempfile.mkdtemp(prefix="reprice_test_")
+    old_base = R.BASE
+    try:
+        R.BASE = tmp
+
+        def folder(name, last_date):
+            d = os.path.join(tmp, name); os.makedirs(d)
+            _write(os.path.join(d, "dcf_numbers.json"), {})
+            if last_date == "garbage":
+                _write(os.path.join(d, "prices.json"), "{not json")
+            elif last_date is not None:
+                _write(os.path.join(d, "prices.json"),
+                       {"ticker": name, "as_of": last_date, "stats": {"last": 10.0, "last_date": last_date}})
+
+        folder("AAA", "2026-10-20")   # the sweep's newest close
+        folder("BBB", "2026-10-19")   # one session behind: the normal posting lag, not flagged
+        folder("CCC", "2026-10-16")   # two sessions behind: the refresh missed it (the HALO case)
+        folder("DDD", None)           # no prices.json at all: skipped, never fatal
+        folder("EEE", "garbage")      # unreadable prices.json: skipped, never fatal
+        stale, latest = R.sweep_price_staleness()
+        assert latest == "2026-10-20", latest
+        assert stale == {"CCC": {"last_date": "2026-10-16", "sessions_behind": 2}}, stale
+        lines = R.staleness_warning_lines(stale, latest)
+        assert len(lines) == 2 and "WARNING" in lines[0] and "2026-10-20" in lines[0], lines
+        assert "CCC" in lines[1] and "2026-10-16" in lines[1] and "2 sessions behind" in lines[1], lines
+        assert R.staleness_warning_lines({}, "2026-10-20") == []
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
+    empty = tempfile.mkdtemp(prefix="reprice_test_")
+    try:
+        R.BASE = empty
+        assert R.sweep_price_staleness() == ({}, None)
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(empty, ignore_errors=True)
 
 
 if __name__ == "__main__":
