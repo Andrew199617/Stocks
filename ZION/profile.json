@@ -1,0 +1,283 @@
+{
+ "ticker": "ZION",
+ "cik": 109380,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T20:12:42-04:00",
+ "newest_filing_date": "2026-10-19",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0000109380.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000046/zions-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/ZION/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/ZION/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "ZIONS BANCORPORATION, NATIONAL ASSOCIATION /UT/",
+  "cik": 109380,
+  "description": {
+   "text": "Zions Bancorporation, National Association (“Zions Bancorporation, N.A.,” “the Bank,” “we,” “our,” “us”) is a bank headquartered in Salt Lake City, Utah, with annual net revenue (net interest income and noninterest income) of $3.4 billion in 2025, and total assets of approximately $89 billion at December 31, 2025. We provide a wide range of banking products and related services, primarily in 11 Western states: Arizona, California, Colorado, Idaho, Nevada, New Mexico, Oregon, Texas, Utah, Washington, and Wyoming. At December 31, 2025, we had more than one million customers, served through 407 branches and various online, mobile, and digital channels, and we had 9,195 full-time equivalent employees. Our operations are organized principally through seven separately managed, geographically defined bank divisions, which we refer to as “affiliates,” or “affiliate banks,” each operating under its own local brand and management team: Zions Bank; California Bank & Trust (“CB&T”); Amegy Bank (“Amegy”); National Bank of Arizona (“NBAZ”); Nevada State Bank (“NSB”); Vectra Bank Colorado (“Vectra”); and The Commerce Bank of ZIONS BANCORPORATION, NATIONAL ASSOCIATION AND SUBSIDIARIES Washington (“TCBW”), which also operates as The Commerce Bank of Oregon in Oregon. These affiliate banks constitute our primary operating segments.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "accession": "0000109380-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000046/zions-20251231.htm"
+  },
+  "description_short": "Zions Bancorporation, N.A. is one of the nation's premier financial services companies with approximately $89 billion of total assets at December 31, 2025, and annual net revenue of $3.4 billion in 2025. Zions operates under local management teams and distinct brands in 11 western states: Arizona, California, Colorado, Idaho, Nevada, New Mexico, Oregon, Texas, Utah, Washington, and Wyoming. The Bank is a consistent recipient of national and state-wide customer survey awards in small- and middle-market banking, as well as a leader in public finance advisory services and Small Business Administration lending. In addition, Zions is included in the S&P MidCap 400 and NASDAQ Financial 100 indices. Investor information and links to local banking brands can be accessed at www.zionsbancorporation.com.",
+  "industry": "Major Banks",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6021",
+  "sic_description": "National Commercial Banks",
+  "state_of_incorporation": "UT",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NASDAQ-GS",
+  "exchanges": [
+   "Nasdaq",
+   "Nasdaq"
+  ],
+  "website": "https://www.zionsbancorporation.com",
+  "headquarters": "Salt Lake City, Utah",
+  "address": {
+   "street": "One South Main",
+   "city": "Salt Lake City",
+   "state": "Utah",
+   "zip": "84133-1109",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-24"
+  },
+  "phone": "8018447637",
+  "employees": null,
+  "employees_unresolved": null,
+  "first_sec_filing": "1994-01-25",
+  "first_sec_filing_form": "8-K",
+  "former_names": [
+   "ZIONS BANCORPORATION /UT/"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000109380&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-19",
+   "period": "2026-10-19",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109380-26-000125",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000125/zion-20261019.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-09",
+   "period": "2026-09-07",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000109380-26-000117",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000117/zion-20260907.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-08-06",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109380-26-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000111/zions-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-20",
+   "period": "2026-07-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109380-26-000103",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000103/zion-20260720.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-02",
+   "period": "2026-06-02",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000109380-26-000088",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000088/zion-20260602.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-07",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109380-26-000083",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000083/zions-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000109380-26-000078",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000078/zion-20260504.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-04",
+   "period": "2026-05-01",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000109380-26-000077",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000077/zions-20260501.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-20",
+   "period": "2026-04-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109380-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000063/zion-20260420.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-19",
+   "period": "2026-03-19",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0000109380-26-000052",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000052/zions-20260318.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-24",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0000109380-26-000046",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000046/zions-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-20",
+   "period": "2026-01-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109380-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938026000009/zion-20260120.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-22",
+   "period": "2025-12-22",
+   "items": [
+    "5.02",
+    "9.01"
+   ],
+   "description": "Officer/director change",
+   "accession": "0000109380-25-000137",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000137/zion-20251222.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-06",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109380-25-000129",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000129/zions-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-20",
+   "period": "2025-10-20",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109380-25-000124",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000124/zion-20251020.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-15",
+   "period": "2025-10-15",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000109380-25-000118",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000118/zion-20251015.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109380-25-000102",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000102/zions-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-21",
+   "period": "2025-07-21",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0000109380-25-000094",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000094/zion-20250721.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0000109380-25-000084",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000084/zions-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-05-05",
+   "period": "2025-05-02",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0000109380-25-000062",
+   "url": "https://www.sec.gov/Archives/edgar/data/109380/000010938025000062/zions-20250502.htm"
+  }
+ ],
+ "warnings": [
+  "employees: no headcount sentence found in the 10-K filed 2026-02-24"
+ ]
+}
