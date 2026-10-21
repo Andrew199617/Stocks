@@ -28,10 +28,14 @@ import os
 NOTCH_REASON = "test: payable-earnings measure implies 9.25%"   # one number, colliding with no synthetic leaf
 
 
-def add_notch_reason(n, j):
+def add_notch_reason(n, j, folder=None):
     """L1 (R1): a current-release sector misfit (S-C, not on the payable base) gets a misfit_notch_reason carrying a
     number (make_score's R-3 / R-4 on a 5.7 run); tier_override is left alone. A judgment that already sets the field
-    (a test of the reason itself) is untouched, and so is everything else."""
+    (a test of the reason itself) is untouched, and so is everything else. [Integrate L3] Given the test's folder, a
+    misfit is also what make_score's misfit_detection reads there (dcf_engine.misfit_status: the re-read sector_model,
+    the folder's own SIC files) — so a 5.7 test record at a bank / insurer / utility folder (L3's minimal-scorecard
+    SIC-lock test) is notched with a reason, not refused before the test's own assertion. A reason on a modeled name
+    is harmless (make_score reads it only on a misfit), so the two readings are OR-ed."""
     if not (isinstance(n, dict) and isinstance(j, dict)) or "misfit_notch_reason" in j:
         return None
     rel = n.get("engine_release")
@@ -40,9 +44,23 @@ def add_notch_reason(n, j):
     sm = n.get("sector_model") if isinstance(n.get("sector_model"), dict) else {}
     misfit = bool(sm.get("misfit")) or any(str(f).startswith("SECTOR_MODEL_MISMATCH")
                                            for f in n.get("fragility_flags") or [])
+    if not misfit and folder is not None:
+        misfit = _folder_misfit(n, folder)
     if misfit and n.get("tier_by_numbers") in ("S", "A", "B", "C") and not n.get("payable_base"):
         j["misfit_notch_reason"] = NOTCH_REASON
     return None
+
+
+def _folder_misfit(n, folder):
+    """make_score.misfit_detection's answer for record n in the test's folder (dcf_engine imported lazily, as
+    minimal_business_type does): True when dcf_engine.misfit_status says misfit."""
+    import sys
+    sysdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if sysdir not in sys.path:
+        sys.path.insert(0, sysdir)
+    import dcf_engine
+    fold = os.path.normpath(folder)
+    return dcf_engine.misfit_status(n, os.path.dirname(fold), os.path.basename(fold))[0] == "misfit"
 
 
 def _release_at_least_57(rel):
@@ -228,6 +246,52 @@ def add_minimal_scorecard(j, n=None, folder=None):
     return None
 
 
+def add_minimal_scorecard_as_written(folder):
+    """[Integrate L3] L3's obligation ALONE, for a test that writes its judgment verbatim (Run(judgment_text=...)) so
+    that the reason obligations (L1's notch reason, L2's citations) leave the worker text exactly as written — L2's
+    test_facts.S, L1's _as_written. On a 5.7 record (<folder>/dcf_numbers.json) whose judgment.json declares no
+    moat_scorecard, add_minimal_scorecard's scorecard is added (judgment.json rewritten as JSON, indent 1, UTF-8,
+    one trailing newline: the tests' own judgment_text format) and its facts merged into facts.json; when the judgment
+    already carries the minimal scorecard (a test rewrote facts.json since), its facts are merged back. Every other
+    key of the judgment, and every fact the test declared, is kept. A facts.json that is not a well-formed facts
+    document (a schema-refusal test's) is left exactly as written and nothing is added: make_score refuses it at step
+    2, before the moat scorecard is read. Returns True when the folder carries the minimal scorecard."""
+    bad = object()
+
+    def rd(name):
+        p = os.path.join(folder, name)
+        if not os.path.exists(p):
+            return None
+        try:
+            with open(p, encoding="utf-8") as f:
+                return json.load(f)
+        except ValueError:
+            return bad
+    n, j, fdoc = rd("dcf_numbers.json"), rd("judgment.json"), rd("facts.json")
+    if not isinstance(j, dict) or not isinstance(n, dict) or not _is_57(n):
+        return False
+    if fdoc is not None:
+        import sys
+        sysdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        if sysdir not in sys.path:
+            sys.path.insert(0, sysdir)
+        import facts as F
+        if fdoc is bad or F.validate(fdoc, os.path.basename(os.path.normpath(folder))) is not None:
+            return False
+    if "moat_scorecard" not in j:
+        add_minimal_scorecard(j, n=n, folder=folder)
+        with open(os.path.join(folder, "judgment.json"), "w", encoding="utf-8", newline="") as f:
+            f.write(json.dumps(j, indent=1, ensure_ascii=False) + "\n")
+        return True
+    if j["moat_scorecard"] != minimal_scorecard(*minimal_business_type(n, folder)):
+        return False                       # the test's own scorecard: its facts are the test's business
+    have = {f.get("id") for f in (fdoc or {}).get("facts") or [] if isinstance(f, dict)}
+    missing = [copy.deepcopy(f) for f in MINIMAL_SCORECARD_FACTS if f["id"] not in have]
+    if missing:
+        merge_facts(folder, missing, ticker=(n or {}).get("ticker"))
+    return True
+
+
 def add_interim_declined(n, j):
     """L4 (R2a): interim_bridge_declined with a numeric reason on a 5.7 STALE_FY 20-F / 40-F record. No-op in L0."""
     return None
@@ -276,7 +340,7 @@ def apply(n, j, folder=None, ttm=None):
     n2 = copy.deepcopy(n) if n is not None else None
     j2 = copy.deepcopy(j) if j is not None else None
     before = _canon(n2) if isinstance(n2, dict) else None
-    add_notch_reason(n2, j2)                              # L1
+    add_notch_reason(n2, j2, folder=folder)               # L1
     cite_facts_for_reasons(j2, n2, folder=folder)         # L2
     add_minimal_scorecard(j2, n=n2, folder=folder)        # L3
     add_interim_declined(n2, j2)                          # L4

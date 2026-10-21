@@ -4,7 +4,9 @@
 Run: python _system/tests/test_facts.py (or python -m pytest _system/tests). Offline: make_score.py runs as a
 subprocess on synthetic folders in a temp STOCKS_BASE (test_make_score_55's Run harness, fail-loud engine / ttm
 stand-ins, the registry redirected); the folder files come from the trimmed APP copies in fixtures/facts/APP/.
-The judgments are written verbatim (Run(judgment_text=...)) so the G16 helper (rulings57) never touches them.
+The judgments are written verbatim (Run(judgment_text=...)) so the G16 reason helpers (rulings57) never touch them;
+[Integrate L3] only L3's obligation is added on a 5.7 run (rulings57.add_minimal_scorecard_as_written: the minimal moat
+scorecard, its four filing facts merged after the test's own — counts and hashes below include them).
 
 Each test fails on the code before the lane (e22e814 ignores facts.json, renders none of the new key_numbers lines,
 traces no reason and has no facts.check / resolve):
@@ -59,6 +61,7 @@ import make_score as M  # noqa: E402
 import facts as F  # noqa: E402
 import check_quotes as CQ  # noqa: E402
 from test_make_score_55 import Run, _numbers, _judgment, _stamp, T, CUR  # noqa: E402
+import rulings57  # noqa: E402
 
 FIX = os.path.join(HERE, "fixtures", "facts", "APP")
 EXAMPLES = os.path.join(SYS, "examples", "facts")
@@ -120,6 +123,19 @@ def _doc(*facts, **extra):
     return d
 
 
+# [Integrate L3] a 5.7 run needs judgment.json moat_scorecard (R4 revised), so S adds L3's minimal scorecard and
+# merges its four filing facts (F91-F93, F90) after the test's own — the counts and hashes of a 5.7 folder's facts.json
+# include them
+MOAT_FACT_IDS = tuple(f["id"] for f in rulings57.MINIMAL_SCORECARD_FACTS)
+
+
+def _scored_doc(doc):
+    """facts.json as a 5.7 test folder holds it: the test's facts, then the minimal scorecard's (merge order)."""
+    d = copy.deepcopy(doc)
+    d["facts"] = list(d["facts"]) + copy.deepcopy(list(rulings57.MINIMAL_SCORECARD_FACTS))
+    return d
+
+
 def _fixture_files():
     out = {}
     for name in sorted(os.listdir(FIX)):
@@ -140,6 +156,9 @@ class S:
         j = j if j is not None else _judgment(n)
         self.r = Run(n, judgment_text=json.dumps(j, indent=1, ensure_ascii=False) + "\n", files=fl,
                      prior_score=prior_score)
+        # [Integrate L3] a 5.7 run also needs the moat scorecard (R4 revised): L3's obligation alone is added (the
+        # minimal scorecard and its facts F90-F93 merged into facts.json), so the reasons stay exactly as written
+        self.moat = rulings57.add_minimal_scorecard_as_written(self.r.folder)
         if registry is not None:
             with open(self.r.registry, "w", encoding="utf-8") as f:
                 json.dump({"entries": registry}, f, indent=1)
@@ -170,6 +189,8 @@ class S:
     def write(self, name, obj):
         with open(os.path.join(self.r.folder, name), "w", encoding="utf-8", newline="" if isinstance(obj, str) else None) as f:
             f.write(obj if isinstance(obj, str) else json.dumps(obj, indent=1, ensure_ascii=False))
+        if name in ("facts.json", "judgment.json"):    # [Integrate L3] the rewrite keeps L3's obligation in force
+            self.moat = rulings57.add_minimal_scorecard_as_written(self.r.folder)
 
     def close(self):
         self.r.close()
@@ -339,7 +360,7 @@ def test_drift_on_rebuild_is_recorded_not_refused():
         assert dfs["drift"] == [{"id": "F2", "status": "mismatch", "path": "fundamentals.json:annual[FY2025].buybacks",
                                  "declared": 2191944000, "file_value": 2200000000.0}], dfs["drift"]
         assert "— DRIFTED: fundamentals.json:annual[FY2025].buybacks now reads $2,200,000,000" in s.key()
-        assert [f["status"] for f in dfs["facts"]] == ["drifted"]
+        assert [f["status"] for f in dfs["facts"] if f["id"] not in MOAT_FACT_IDS] == ["drifted"]
         s.write("facts.json", _doc(F2(label="FY2025 buybacks")))
         s.run()
         _refuses(s, "facts.json F2 (folder): value $2,191,944,000 does not equal")
@@ -449,7 +470,8 @@ def test_influence_rules_on_57_runs():
         assert s.score()["declared_facts"]["influence"] == {
             "tier_override_reason": {"facts": ["F1"], "engine_numbers": 1, "third_party_only": False}}
         dfe = [e for e in s.r.entries() if e.get("event") == "declared_facts"]
-        assert dfe and dfe[0]["influencing"] == ["F1"] and dfe[0]["by_kind"] == {"release": 1, "filing": 1, "third_party": 1}
+        assert dfe and dfe[0]["influencing"] == ["F1"] and dfe[0]["by_kind"] == {
+            "release": 1, "filing": 1 + len(MOAT_FACT_IDS), "third_party": 1}
     # a plain base_override pin (rebase I13): its numbers trace, but it needs none
     n = _numbers(base_oe_per_share=3.25, base_source="agent_supplied_ttm_override")
     n["inputs"] = dict(n["inputs"], base_oe_ps_arg=3.25, base_pin_source="base_oe_ps_arg", base_basis_window={"window": "fy"})
@@ -602,7 +624,8 @@ def test_declared_section_is_last_and_formatted():
         heads = [line for line in key.split("\n") if line.startswith("## ")]
         assert heads[-1] == "## Declared facts (not engine output)", heads
         sec = key[key.index("## Declared facts (not engine output)"):]
-        assert "Declared by the worker in facts.json (8 facts: 3 folder · 2 filing · 2 release · 1 third-party; sha256 " in sec
+        # (+ the minimal moat scorecard's 4 filing facts, [Integrate L3])
+        assert "Declared by the worker in facts.json (12 facts: 3 folder · 6 filing · 2 release · 1 third-party; sha256 " in sec
         for frag in ("- F1 · $1.95B — “Q2 2026 adjusted revenue” · Q2 FY2026 · actual (series revenue) · release 8-K "
                      "0000999001-26-000057 Ex. 99.1, filed 2026-08-05 · used for: context, tier_override",
                      "  - source words: “Adjusted revenue of $1.95 billion, up 55% year over year”",
@@ -628,9 +651,9 @@ def test_score_hashes():
         n = json.load(open(os.path.join(s.r.folder, "dcf_numbers.json"), encoding="utf-8"))
         assert sc["dcf_content_hash"] == n["content_hash"]
         sha = sc["declared_facts"]["facts_sha256"]
-        assert sha == F.canonical_sha256(_doc(F1(), F2()))
+        assert sha == F.canonical_sha256(_scored_doc(_doc(F1(), F2())))
         with open(os.path.join(s.r.folder, "facts.json"), "w", encoding="utf-8") as f:
-            f.write(json.dumps(_doc(F1(), F2()), indent=4, sort_keys=True))
+            f.write(json.dumps(_scored_doc(_doc(F1(), F2())), indent=4, sort_keys=True))
         s.run()
         assert s.rc == 0 and s.score()["declared_facts"]["facts_sha256"] == sha, s.err[-800:]
     finally:
@@ -645,9 +668,10 @@ def test_registry_declared_facts_event_keeps_first_date():
     reason = "trimmed: weighted IRR 17.00% sits at the bear end"
     n = _numbers()
     j = _judgment(n, tier_override="C", tier_override_reason=reason)
-    sha = F.canonical_sha256(_doc(F1(), F2()))
-    prior = [{"ticker": T, "event": "declared_facts", "date": "2026-10-01", "facts_sha256": sha, "count": 2,
-              "by_kind": {"release": 1, "folder": 1}, "influencing": []},
+    sha = F.canonical_sha256(_scored_doc(_doc(F1(), F2())))
+    prior = [{"ticker": T, "event": "declared_facts", "date": "2026-10-01", "facts_sha256": sha,
+              "count": 2 + len(MOAT_FACT_IDS), "by_kind": {"release": 1, "folder": 1, "filing": len(MOAT_FACT_IDS)},
+              "influencing": []},
              {"ticker": T, "event": "tier_override", "date": "2026-10-02", "tier_by_numbers": "B", "tier_final": "C",
               "reason": reason}]
     s = S(n=n, j=j, facts=_doc(F1(), F2()), registry=prior).run()
@@ -802,7 +826,7 @@ def test_a_citation_added_after_the_run_needs_no_engine_rerun():
         assert second["dcf_content_hash"] == first["dcf_content_hash"] == rec["content_hash"]
         assert reprice.score_matches_run(second, rec)[0], reprice.score_matches_run(second, rec)
         assert build_site.score_from_run(second, rec)[0], build_site.score_from_run(second, rec)
-        assert second["declared_facts"]["facts_sha256"] == F.canonical_sha256(_doc(fact))
+        assert second["declared_facts"]["facts_sha256"] == F.canonical_sha256(_scored_doc(_doc(fact)))
         ev = [e for e in s.r.entries() if e.get("event") == "tier_override"][0]
         assert ev["date"] > "2026-10-01" and [x["id"] for x in ev["facts"]] == ["F1"], ev
     finally:

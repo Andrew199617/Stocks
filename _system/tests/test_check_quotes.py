@@ -365,10 +365,18 @@ def test_integrity_checks_on_gated_runs():
         json.dump(dict(s, dcf_content_hash="0" * 64), open(sp, "w", encoding="utf-8"))
         assert any(m.startswith("I1:") for m in CQ.check_folder(r.folder)["integrity"])
         json.dump(s, open(sp, "w", encoding="utf-8"))
-        with open(os.path.join(r.folder, "facts.json"), "w", encoding="utf-8") as f:
+        # [Integrate L3] the run's facts.json (the minimal moat scorecard's facts, rulings57) is put back afterwards,
+        # not deleted: the scorecard make_score re-reads below cites them
+        fp = os.path.join(r.folder, "facts.json")
+        facts_before = open(fp, "rb").read() if os.path.exists(fp) else None
+        with open(fp, "w", encoding="utf-8") as f:
             json.dump({"schema": 1, "ticker": T, "facts": []}, f)
         assert any(m.startswith("I3:") for m in CQ.check_folder(r.folder)["integrity"])
-        os.remove(os.path.join(r.folder, "facts.json"))
+        if facts_before is None:
+            os.remove(fp)
+        else:
+            with open(fp, "wb") as f:
+                f.write(facts_before)
         n = json.load(open(os.path.join(r.folder, "dcf_numbers.json"), encoding="utf-8"))
         with open(os.path.join(r.folder, "dcf_numbers_prelim.json"), "w", encoding="utf-8") as f:
             json.dump(dict(n, price=99.0), f)

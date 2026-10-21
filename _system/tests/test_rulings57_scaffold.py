@@ -618,13 +618,19 @@ def test_key_numbers_is_exactly_the_built_text():
         assert r.rc == 0, r.err[-800:]
         with open(os.path.join(r.folder, "key_numbers.md"), encoding="utf-8") as f:
             on_disk = f.read()
+        # [Integrate L3] the run's facts.json holds the minimal moat scorecard's facts (rulings57), so the builder is
+        # handed the facts check make_score made from it (main step 2, load_declared_facts: reads only)
+        with open(r.jpath, encoding="utf-8") as f:
+            j_disk = json.load(f)
         with no_writes():
-            built = M.build_key_numbers(r.folder, _stamp(n), _judgment(n), r.score(), {})
+            fc = M.load_declared_facts(r.folder, _stamp(n), j_disk)
+            built = M.build_key_numbers(r.folder, _stamp(n), _judgment(n), r.score(), {}, facts_check=fc)
         assert built == on_disk, (built, on_disk)
-        # (lane L3: the "## Moat scorecard" section — _kn_moat, the tail's L3 hook — now follows the engine sections)
-        kn_moat = M._kn_moat(r.score())
+        # (lane L3: the "## Moat scorecard" section — _kn_moat, the tail's L3 hook — now follows the engine sections;
+        # [Integrate L3] then L2's "## Declared facts (not engine output)", last — 07 §1.9)
+        tail = M._kn_moat(r.score()) + M._kn_declared_facts(fc)
         assert built.startswith(f"# {T} — key numbers\n") and built.endswith(
-            "- THIN_HISTORY: only 3 fiscal years of data\n" + ("\n".join(kn_moat) + "\n" if kn_moat else ""))
+            "- THIN_HISTORY: only 3 fiscal years of data\n" + ("\n".join(tail) + "\n" if tail else ""))
     finally:
         r.close()
 

@@ -27,6 +27,7 @@ for _p in (HERE, SYS):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 from test_make_score_55 import Run, _numbers, T  # noqa: E402
+import rulings57  # noqa: E402
 
 QUEUE = os.path.join(SYS, "queue.py")
 C1 = "2026-10-14T10:00:00-04:00"
@@ -89,7 +90,9 @@ def test_done_passes_once_the_fact_is_declared():
     """02 test 24: declare the figure (facts.json F1), re-run make_score.py: done succeeds."""
     q = Q()
     try:
-        q.write("facts.json", {"schema": 1, "ticker": T, "facts": [FACT]})
+        # [Integrate L3] added to the run's facts.json (which holds the minimal moat scorecard's facts, rulings57), not
+        # written over it: the scorecard make_score re-reads cites them
+        rulings57.merge_facts(q.r.folder, [FACT], ticker=T)
         assert q.queue("done", T).returncode == 1, "facts.json not yet rendered by make_score: I3 still fails"
         q.r.run()
         assert q.r.rc == 0, q.r.err[-800:]

@@ -834,10 +834,19 @@ def _notch_fact(fid="F1", used_for=("misfit_notch",), **kw):
 
 
 def _as_written(n, j, facts=None):
-    """make_score on judgment j exactly as written (judgment_text, so rulings57's obligations leave it alone), with
-    an optional facts.json."""
+    """make_score on judgment j exactly as written (judgment_text, so rulings57's reason obligations leave it alone),
+    with an optional facts.json. [Integrate L3] On a 5.7 run L3's obligation alone is added before the run
+    (rulings57.add_minimal_scorecard_as_written: the minimal moat scorecard, its facts merged after the test's)."""
     files = {f"{T}/facts.json": {"schema": 1, "ticker": T, "facts": list(facts)}} if facts else None
-    return _with(n, judgment_text=json.dumps(j, indent=1, ensure_ascii=False) + "\n", files=files)
+    r = Run(n, judgment_text=json.dumps(j, indent=1, ensure_ascii=False) + "\n", files=files)
+    rulings57.add_minimal_scorecard_as_written(r.folder)
+    r.run()
+    try:
+        r.result = dict(r.state(), score=r.score() if r.rc == 0 else None, key=r.key() if r.rc == 0 else None,
+                        judgment=r.judgment_text(), entries=r.entries(), spawned=r.spawned())
+    finally:
+        r.close()
+    return r
 
 
 def test_57_notch_reason_is_traced():
@@ -873,7 +882,10 @@ def test_57_notch_reason_is_traced():
     r = _as_written(n, _judgment(None, misfit_notch_reason="payable earnings run below the base OE/share of $3.00"))
     assert r.rc == 0, r.err
     assert r.result["score"]["misfit_notch"]["reason_source"] == "judgment", r.result["score"]["misfit_notch"]
-    assert "declared_facts" not in r.result["score"], r.result["score"]
+    # [Integrate L3] a 5.7 run's facts.json now always holds the moat scorecard's facts, so score.json carries
+    # declared_facts; the reason itself cites none and traces to the engine alone
+    inf = r.result["score"]["declared_facts"]["influence"]["misfit_notch_reason"]
+    assert inf["facts"] == [] and inf["engine_numbers"] >= 1 and not inf["third_party_only"], inf
     # (f) output from before 5.7: the same untraced reason rebuilds (legacy reasons are never re-graded)
     r = _as_written(_misfit(release=OLD), _judgment(None, misfit_notch_reason=why))
     assert r.rc == 0, r.err

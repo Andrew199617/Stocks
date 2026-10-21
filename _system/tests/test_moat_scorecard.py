@@ -27,6 +27,9 @@ L3 review round 1 (2026-10-21; each fails on the lane's first build b0ba6fa, r57
  identical make_score rerun is byte-identical (no persisted run kind) · R3 the dry run is an authoring check · R4 the
  IPR&D add-back in the rows' money unit · R5 the weight floor and the row-revenue volume x price bounds drift on a
  rebuild · R6 rulings57.add_minimal_scorecard follows the SIC lock.
+Integration with L2 (R3 strict quoting, the L3 merge): the fixture facts carry snippets and ids facts.json accepts
+ (snippet_for; SRC_FACTS' ids F201-F222), the reasons' cited facts their used_for tags, and 27c the moat reasons go
+ through L2's real influence trace end to end.
 """
 import copy
 import csv
@@ -77,9 +80,26 @@ def fact(fid, metric, period, value, unit="pct", used=(), kind="filing", type="m
         f["source"] = {"url": "https://example.com/x", "publisher": "Example", "published": "2026-01-05"}
     else:
         f["source"] = {"form": "10-K", "accession": "0000000001-26-000001", "section": "Item 7", "filed": "2026-02-20"}
-    f["snippet"] = f"{metric} was {value}"
+    f["snippet"] = snippet_for(metric, value, unit)
     f.update(kw)
     return f
+
+
+def snippet_for(metric, value, unit):
+    """[Integrate L2] a snippet facts.json accepts (R3, quote_tokens.snippet_shows_value): the value as a filing
+    prints it — 0.045 pct as "4.5%", a count as "1,200", USD as "$1,000,000,000" — so a fixture fact passes L2's
+    validation when make_score reads facts.json (the end-to-end cases); a [low, high] range prints both ends."""
+    def one(x):
+        v = float(x)
+        if unit in ("pct", "pp"):
+            return f"{v * 100:g}%"
+        if unit == "x":
+            return f"{v:g}x"
+        if unit == "count":
+            return f"{v:,.0f}" if v.is_integer() else f"{v:g}"
+        return (f"${v:,.0f}" if unit == "USD" else f"{v:,.0f} {unit}") if v.is_integer() else f"{v:g} {unit}"
+    shown = " to ".join(one(x) for x in value) if isinstance(value, (list, tuple)) else one(value)
+    return f"{metric.replace('_', ' ')} was {shown}"
 
 
 def series(ids, metric, values, unit="pct", used=(), **kw):
@@ -87,8 +107,13 @@ def series(ids, metric, values, unit="pct", used=(), **kw):
 
 
 def base_facts():
-    return (series(("F1", "F2", "F3"), "price_realization", (0.04, 0.05, 0.045), used=("moat:pricing_power",))
-            + series(("F4", "F5", "F6"), "retention_rate", (0.95, 0.96, 0.96), used=("moat:retention", "moat:sources"))
+    # [Integrate L2] F3 and F6 also carry the reason tags (facts.INFLUENCE_TAGS) of the moat reasons that cite them in
+    # the end-to-end cases: L2's check_influence refuses a cited fact that does not list the field's used_for tag
+    f1_3 = series(("F1", "F2", "F3"), "price_realization", (0.04, 0.05, 0.045), used=("moat:pricing_power",))
+    f1_3[2]["used_for"] += ["moat_divergence", "low_roic", "erosion_rebuttal"]
+    f4_6 = series(("F4", "F5", "F6"), "retention_rate", (0.95, 0.96, 0.96), used=("moat:retention", "moat:sources"))
+    f4_6[2]["used_for"] += ["moat_divergence", "high_return_low_moat"]
+    return (f1_3 + f4_6
             + series(("F7", "F8", "F9"), "customers", (1000, 1100, 1200), unit="count", used=("moat:reach_and_growth",))
             + [fact("F10", "spec_in_cycle_years", "FY2025", 7, unit="count", type="event", unit_label="years",
                     used=("moat:switching_costs", "moat:sources"))]
@@ -515,18 +540,21 @@ def test_evidence_core_and_supporting():
 
 
 # ---------------------------------------------------------------- 9-10b. sources and caps
-SRC_FACTS = ([fact("G1", "license_grant", "FY2025", 1, unit="count", type="event", used=("moat:sources",))]
-             + series(("G2", "G3", "G4"), "aftermarket_revenue_share", (0.40, 0.42, 0.44), used=("moat:sources",))
-             + [fact("G5", "competitor_count", "FY2025", 3, unit="count", type="actual", used=("moat:sources",)),
-                fact("G6", "patent_years_left", "FY2025", 8, unit="count", type="event", unit_label="years", used=("moat:sources",)),
-                fact("G7", "patent_years_left", "FY2025", 3.5, unit="count", type="event", unit_label="years", used=("moat:sources",)),
-                fact("G8", "analyst_brand_rank", "FY2025", 1, unit="count", type="event", kind="third_party", used=("moat:sources",)),
-                fact("G9", "user_count", "FY2025", 1e6, unit="count", type="event", used=("moat:sources",))]
-             + [fact(f"G1{i}", "unit_cost_lead", f"FY{y}", 0.05, used=("moat:sources",)) for i, y in enumerate(YEARS)]
-             + series(("G20", "G21", "G22"), "revenue", (1e9, 1.1e9, 1.2e9), unit="USD", used=("moat:sources",)))
+SRC_FACTS = ([fact("F201", "license_grant", "FY2025", 1, unit="count", type="event", used=("moat:sources",))]
+             # ([Integrate L2] precision 1: at 40.00% the FY2023 share would equal the synthetic rows' gross margin 0.40 at
+             # 4 significant digits, which L2's duplicate rule refuses as an undeclared folder figure, 02 §4.5)
+             + series(("F202", "F203", "F204"), "aftermarket_revenue_share", (0.40, 0.42, 0.44), used=("moat:sources",),
+                      precision=1)
+             + [fact("F205", "competitor_count", "FY2025", 3, unit="count", type="actual", used=("moat:sources",)),
+                fact("F206", "patent_years_left", "FY2025", 8, unit="count", type="event", unit_label="years", used=("moat:sources",)),
+                fact("F207", "patent_years_left", "FY2025", 3.5, unit="count", type="event", unit_label="years", used=("moat:sources",)),
+                fact("F208", "analyst_brand_rank", "FY2025", 1, unit="count", type="event", kind="third_party", used=("moat:sources",)),
+                fact("F209", "user_count", "FY2025", 1e6, unit="count", type="event", used=("moat:sources",))]
+             + [fact(f"F21{i}", "unit_cost_lead", f"FY{y}", 0.05, used=("moat:sources",)) for i, y in enumerate(YEARS)]
+             + series(("F220", "F221", "F222"), "revenue", (1e9, 1.1e9, 1.2e9), unit="USD", used=("moat:sources",)))
 
 
-def src(typ, sub, strength="narrow", facts=("G1",), metrics=(), **kw):
+def src(typ, sub, strength="narrow", facts=("F201",), metrics=(), **kw):
     s = {"type": typ, "subtype": sub, "strength": strength, "facts": list(facts), "metrics": list(metrics), "rationale": "fixture"}
     s.update(kw)
     return s
@@ -554,10 +582,10 @@ def bad_source(needle, *sources, **kw):
                    **{k: v for k, v in kw.items() if k not in ("moat", "pillars", "reason")})
 
 
-EXTRA_FOR = {("intangible_assets", "patent"): {"expiry_years": {"fact": "G6"}, "facts": ("G6",)},
-             ("switching_costs", "installed_base_aftermarket"): {"facts": ("G2", "G3", "G4")},
-             ("efficient_scale", "niche"): {"facts": ("G5",), "competitors": ["Rival One", "Rival Two", "Rival Three"]},
-             ("efficient_scale", "infrastructure"): {"facts": ("G5",), "competitors": ["Rival One", "Rival Two", "Rival Three"]},
+EXTRA_FOR = {("intangible_assets", "patent"): {"expiry_years": {"fact": "F206"}, "facts": ("F206",)},
+             ("switching_costs", "installed_base_aftermarket"): {"facts": ("F202", "F203", "F204")},
+             ("efficient_scale", "niche"): {"facts": ("F205",), "competitors": ["Rival One", "Rival Two", "Rival Three"]},
+             ("efficient_scale", "infrastructure"): {"facts": ("F205",), "competitors": ["Rival One", "Rival Two", "Rival Three"]},
              ("counter_positioning", "business_model"): {"incumbents": ["agent-network carriers"]}}
 
 
@@ -566,7 +594,7 @@ def test_sources_rules():
     for typ, subs in M.SOURCE_TYPES.items():
         for sub in subs:
             kw = dict(EXTRA_FOR.get((typ, sub), {}))
-            facts = kw.pop("facts", ("G1",))
+            facts = kw.pop("facts", ("F201",))
             ev = ok_source(src(typ, sub, facts=facts, **kw))
             assert ev["sources"]["items"][0]["type"] == typ and ev["sources"]["count"] == 1, (typ, sub)
     # S1: a bad subtype, a duplicate, an unknown key (no `supports` anywhere), a non-source type
@@ -577,7 +605,7 @@ def test_sources_rules():
     bad_source("unknown key(s) ['supports']", src("switching_costs", "embedded_component", facts=("F10",), supports="x"))
     bad_source("type 'market_share' is not a moat source", src("market_share", "x"))
     bad_source("unknown key(s) ['competitors']", src("switching_costs", "embedded_component", facts=("F10",), competitors=["A1"]))
-    bad_source("unknown key(s) ['expiry_years']", src("intangible_assets", "brand", expiry_years={"fact": "G6"}))
+    bad_source("unknown key(s) ['expiry_years']", src("intangible_assets", "brand", expiry_years={"fact": "F206"}))
     # S1a: every retired alias refuses with its replacement
     for (t0, s0), (t1, s1) in M.SUBTYPE_ALIASES.items():
         bad_source(f"{t0}/{s0} is a retired name — use {t1}/{s1}", src(t0, s0))
@@ -606,15 +634,15 @@ def test_sources_rules():
                src("size_advantage", "distribution_density"), rows=falling)
     # S8 installed-base aftermarket needs an aftermarket / recurring revenue share series
     bad_source("needs an aftermarket or recurring revenue share series", src("switching_costs", "installed_base_aftermarket"))
-    ok_source(src("switching_costs", "installed_base_aftermarket", facts=("G2", "G3", "G4")))
+    ok_source(src("switching_costs", "installed_base_aftermarket", facts=("F202", "F203", "F204")))
     # S9 efficient scale: competitor_count (<= 5, named, not third-party), returns above the cost of capital, no price war
-    es = lambda **kw: src("efficient_scale", "niche", facts=("G5",), competitors=["Rival One", "Rival Two", "Rival Three"], **kw)  # noqa: E731
+    es = lambda **kw: src("efficient_scale", "niche", facts=("F205",), competitors=["Rival One", "Rival Two", "Rival Three"], **kw)  # noqa: E731
     bad_source("needs a competitor_count fact", src("efficient_scale", "infrastructure", competitors=["A1"]))
-    seven = [fact("G5", "competitor_count", "FY2025", 7, unit="count", type="actual", used=("moat:sources",))]
-    refuses("needs a competitor_count fact of 5 or fewer", facts=with_facts([f for f in SRC_FACTS if f["id"] != "G5"] + seven),
+    seven = [fact("F205", "competitor_count", "FY2025", 7, unit="count", type="actual", used=("moat:sources",))]
+    refuses("needs a competitor_count fact of 5 or fewer", facts=with_facts([f for f in SRC_FACTS if f["id"] != "F205"] + seven),
             mut=with_sources(es()))
-    bad_source("names 2 competitors but its competitor_count fact (G5) says 3",
-               src("efficient_scale", "niche", facts=("G5",), competitors=["Rival One", "Rival Two"]))
+    bad_source("names 2 competitors but its competitor_count fact (F205) says 3",
+               src("efficient_scale", "niche", facts=("F205",), competitors=["Rival One", "Rival Two"]))
     bad_source("with governing roic median 7.40% (< 10%)", es(), rows=rows_of([0.074] * 5))
     ok_source(es(), rows=rows_of([0.12] * 5))
     # real assets: 4.5% refuses on the 6% line, 6.5% passes (a utility SIC locks real_assets)
@@ -636,7 +664,7 @@ def test_sources_rules():
     sub_threat = {"score": -1, "rationale": "r", "facts": ["F14"], "threats": [{"type": "subsidized_competitor", "facts": ["F14"]}]}
     bad_source("and a subsidized_competitor threat", es(), pillars={"erosion_risks": sub_threat})
     # W1 third-party-only wide; W8 (b) metric-only wide; a metric-only narrow source passes
-    bad_source("is wide on third-party facts only (G8)", src("intangible_assets", "brand", strength="wide", facts=("G8",)))
+    bad_source("is wide on third-party facts only (F208)", src("intangible_assets", "brand", strength="wide", facts=("F208",)))
     capex_csv = [{"period_end": f"{y}-12-31", "fy_label": str(y), "revenue": 2000, "ocf": 400, "capex": 40,
                   "capex_assumed_zero": "False"} for y in YEARS]
     ok_source(src("cost_advantage", "location", facts=(), metrics=("capital_intensity",)), csv_rows=capex_csv)
@@ -644,11 +672,11 @@ def test_sources_rules():
                src("cost_advantage", "location", strength="wide", facts=(), metrics=("capital_intensity",)), csv_rows=capex_csv)
     # W2 process: wide only on a 5-FY lead series (03c decision 14: no extra pillar condition)
     bad_source("covers 5 fiscal years with a lead every year (3 FY cited)",
-               src("cost_advantage", "process", strength="wide", facts=("G12", "G13", "G14")))
-    ok_source(src("cost_advantage", "process", strength="wide", facts=("G10", "G11", "G12", "G13", "G14")))
-    lag = [dict(f, value=-0.01) if f["id"] == "G12" else f for f in SRC_FACTS]
+               src("cost_advantage", "process", strength="wide", facts=("F212", "F213", "F214")))
+    ok_source(src("cost_advantage", "process", strength="wide", facts=("F210", "F211", "F212", "F213", "F214")))
+    lag = [dict(f, value=-0.01) if f["id"] == "F212" else f for f in SRC_FACTS]
     refuses("with a lead every year", facts=with_facts(lag),
-            mut=with_sources(src("cost_advantage", "process", strength="wide", facts=("G10", "G11", "G12", "G13", "G14"))))
+            mut=with_sources(src("cost_advantage", "process", strength="wide", facts=("F210", "F211", "F212", "F213", "F214"))))
     # W3 consumer retail switching costs are narrow; elsewhere wide needs pricing_power +1
     def retail(c):
         c.sc["business_type"] = "consumer_brands_retail"
@@ -661,11 +689,11 @@ def test_sources_rules():
     bad_source("size_advantage/manufacturing_scale is wide with scale_economics +0",
                src("size_advantage", "manufacturing_scale", strength="wide"))
     # W5 patents carry their expiry; under 5 years is narrow
-    bad_source("intangible_assets/patent needs expiry_years", src("intangible_assets", "patent", facts=("G6",)))
-    bad_source("is wide with 3.5 years of protection left (G7)",
-               src("intangible_assets", "patent", strength="wide", facts=("G7",), expiry_years={"fact": "G7"}))
-    ok_source(src("intangible_assets", "patent", facts=("G7",), expiry_years={"fact": "G7"}))
-    ok_source(src("intangible_assets", "patent", strength="wide", facts=("G6",), expiry_years={"fact": "G6"}), moat=7)
+    bad_source("intangible_assets/patent needs expiry_years", src("intangible_assets", "patent", facts=("F206",)))
+    bad_source("is wide with 3.5 years of protection left (F207)",
+               src("intangible_assets", "patent", strength="wide", facts=("F207",), expiry_years={"fact": "F207"}))
+    ok_source(src("intangible_assets", "patent", facts=("F207",), expiry_years={"fact": "F207"}))
+    ok_source(src("intangible_assets", "patent", strength="wide", facts=("F206",), expiry_years={"fact": "F206"}), moat=7)
     # W6 counter-positioning: narrow only, incumbents named, at least one fact
     bad_source("counter-positioning is narrow and time-limited",
                src("counter_positioning", "business_model", strength="wide", incumbents=["agent-network carriers"]))
@@ -675,9 +703,9 @@ def test_sources_rules():
     bad_source("counter_positioning needs incumbents", src("counter_positioning", "business_model"))
     # W7 customer captivity wide needs retention +1 AND a retention / repeat-purchase series (a revenue series is not one)
     bad_source("is wide without retention at +1 or better and a retention or repeat-purchase series",
-               src("customer_captivity", "habit", strength="wide", facts=("G9",)))
+               src("customer_captivity", "habit", strength="wide", facts=("F209",)))
     bad_source("is wide without retention at +1 or better and a retention or repeat-purchase series",
-               src("customer_captivity", "habit", strength="wide", facts=("G20", "G21", "G22")))
+               src("customer_captivity", "habit", strength="wide", facts=("F220", "F221", "F222")))
     ok_source(src("customer_captivity", "habit", strength="wide", facts=("F4", "F5", "F6")), moat=7)
     bad_source("is wide without retention", src("customer_captivity", "habit", strength="wide", facts=("F4", "F5", "F6")),
                pillars={"retention": zero, "pricing_power": {"score": 1, "rationale": "r", "facts": ["F1", "F2", "F3"]}})
@@ -1262,7 +1290,11 @@ def test_pre57_record_reports_only():
         assert me["industry_file"]["built"] == "2026-10-21" and len(me["industry_file"]["sha256"]) == 64
         json.dumps(me, allow_nan=False)
         kn = r.key()
-        assert kn.rstrip("\n").split("\n## ")[-1].startswith("Moat scorecard\n"), "the Moat scorecard section is last"
+        # [Integrate L2] 07 §1.9: the Moat scorecard is the last engine-side section; the folder's facts.json makes
+        # L2's "Declared facts (not engine output)" follow it, last of all
+        tail = kn.rstrip("\n").split("\n## ")
+        assert tail[-2].startswith("Moat scorecard\n") and tail[-1].startswith("Declared facts (not engine output)\n"), \
+            "the Moat scorecard section comes last before Declared facts"
         assert "- Scorecard: none declared (engine output predates release 5.7.0)" in kn
         assert f"- industry_returns.json built 2026-10-21 (sha256 {me['industry_file']['sha256'][:8]}…)" in kn
         assert "make_score.py: industry_returns.json built 2026-10-21" in r.out
@@ -1482,6 +1514,63 @@ def test_moat_reasons_reach_check_influence():
     assert MS._moat_events("TST", "2026-10-21", dict(me, status="report_only")) == [] and MS._moat_events("TST", "d", None) == []
     for e in ev:
         assert MS.registry_entry_problem(e) is None, MS.registry_entry_problem(e)
+
+
+def test_57_moat_reasons_through_the_real_influence_trace():
+    """[Integrate L3] (R4 revised x R3, Andrew 2026-10-19; 07 §1.6, §1.12 step 7): end to end, a moat reason whose gate
+    applies goes through L2's REAL check_influence, not a stand-in — a cited fact must list the field's used_for tag
+    (moat_divergence, low_roic), every figure must trace to an engine source, the moat evidence's own numbers or a cited
+    fact, and third-party facts never carry it alone; each refusal writes nothing. Fails on the L3 lane alone
+    (48d3737: L0's no-op check_influence scores case a; r57/merge_L3/l3tree). At the L3 merge commit 269c624 the
+    end-to-end moat cases never reached the trace: L2's facts.json validation refused their fixtures first."""
+    div = base_scorecard()
+    div["sources"] = []                                 # moat 3 vs evidence 6.63: the divergence gate applies
+    # (a) the cited fact lacks the reason's tag (F1 lists moat:pricing_power only)
+    div["moat_divergence_reason"] = "price realization 4% is cyclical [F1]"
+    r = _e2e(sc=div, moat=3)
+    try:
+        r.refused("judgment.json moat_scorecard.moat_divergence_reason cites F1, but F1 does not list used_for "
+                  "moat_divergence")
+        assert not os.path.exists(r.registry)
+    finally:
+        r.close()
+    # (b) a figure in no generated file and no cited fact
+    div["moat_divergence_reason"] = "price realization 7.7% is cyclical [F3]"
+    r = _e2e(sc=div, moat=3)
+    try:
+        r.refused("judgment.json moat_scorecard.moat_divergence_reason quotes 7.7% that is neither an engine figure nor "
+                  "a fact it cites")
+    finally:
+        r.close()
+    # (c) the moat evidence's own number (a numeric leaf, 07 §1.12 step 7) traces with no fact cited
+    div["moat_divergence_reason"] = "the evidence score 6.63 overstates a commodity business"
+    r = _e2e(sc=div, moat=3)
+    try:
+        r.ok()
+        inf = r.score()["declared_facts"]["influence"]["moat_scorecard.moat_divergence_reason"]
+        assert inf["facts"] == [] and inf["engine_numbers"] == 1 and not inf["third_party_only"], inf
+        assert [e["reason"] for e in r.entries("moat_divergence")] == [div["moat_divergence_reason"]]
+    finally:
+        r.close()
+    # (d) low_roic_reason: the cited fact must list low_roic (F6 lists moat_divergence / high_return_low_moat)
+    wide = src("switching_costs", "embedded_component", strength="wide", facts=("F10",))
+    low = base_scorecard()
+    low["sources"] = [wide]
+    low["low_roic_reason"] = "early-scale years: retention 96% [F6]"
+    r = _e2e(sc=low, moat=7, rows=rows_of([0.08] * 5))
+    try:
+        r.refused("judgment.json moat_scorecard.low_roic_reason cites F6, but F6 does not list used_for low_roic")
+    finally:
+        r.close()
+    # (e) third-party facts alone never carry a moat reason (R3)
+    tp = fact("F15", "analyst_price_realization", "FY2025", 0.0837, kind="third_party", type="actual",
+              used=("moat_divergence",))
+    div["moat_divergence_reason"] = "analysts see price realization of 8.37% [F15]"   # (a figure no leaf holds)
+    r = _e2e(sc=div, moat=3, facts=with_facts([tp]))
+    try:
+        r.refused("judgment.json moat_scorecard.moat_divergence_reason rests only on third-party facts (F15)")
+    finally:
+        r.close()
 
 
 # ---------------------------------------------------------------- review fixes (L3 review round 1, 2026-10-21)
