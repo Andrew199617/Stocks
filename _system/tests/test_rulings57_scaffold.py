@@ -377,12 +377,18 @@ def test_edgar_submissions_one_fetch_and_the_readers_degrade_as_before():
 
 
 def test_engine_stubs_are_the_identity():
-    """The L4 / L8 stubs change nothing: load_annual_instance returns the same companyfacts object and no record,
-    fetch_instance (None, None); TTM_INPUT_OPTIONAL_FIELDS is empty and ttm_input_legs / ttm_inputs_record equal the
-    5.6 definition on every committed ttm.json (so every recorded ttm_input_hash still matches)."""
+    """The L4 / L8 stubs change nothing: load_annual_instance returns the same companyfacts object and no record
+    (since L4: whenever EDGAR submissions list no annual report newer than companyfacts — the L4 tests,
+    test_engine_57_instance / test_xbrl_instance, pin fetch_instance and the fallback itself);
+    TTM_INPUT_OPTIONAL_FIELDS is empty and ttm_input_legs / ttm_inputs_record equal the 5.6 definition on every
+    committed ttm.json (so every recorded ttm_input_hash still matches)."""
     facts = {"facts": {"us-gaap": {}}}
-    assert E.load_annual_instance("TST", 1, facts) == (facts, None) and E.load_annual_instance("TST", 1, facts)[0] is facts
-    assert E.fetch_instance(1, {"accession": "x"}) == (None, None)
+    saved = E.edgar_submissions
+    E.edgar_submissions = lambda _cik: {"filings": {"recent": {}}}   # L4: no candidate, never the network
+    try:
+        assert E.load_annual_instance("TST", 1, facts) == (facts, None) and E.load_annual_instance("TST", 1, facts)[0] is facts
+    finally:
+        E.edgar_submissions = saved
     assert E.TTM_INPUT_OPTIONAL_FIELDS == ()
 
     def legs_56(tt):   # dcf_engine.ttm_input_legs at ba2bfc0, verbatim

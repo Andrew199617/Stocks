@@ -592,8 +592,52 @@ rebuilt as before, both alert gates closed ("engine output predates release
   pillar reads (fundamentals.json, statements.json and the scorecard agree).
 - (L3b, M6 moat direction, Andrew 2026-10-20) the trend sync and
   moat_widening_declined: [L3b writes this item]
-- (L4, R2) the declared 6-K interim bridge and the annual-instance check:
-  [L4 writes this item]
+- (L4, R2) the declared 6-K interim bridge and the annual-instance check
+  (Andrew, 2026-10-19: "do what we gotta to get good foreign companies
+  working"). (a) A 20-F / 40-F filer's TTM bridged from its 6-K interim —
+  latest FY − prior interim + current interim, per leg — is a scored base
+  only when DECLARED in judgment.json interim_bridge and built by
+  ttm.py --interim (ttm.json basis "declared_interim"), pinned through
+  --ttm. interim_pin_state re-verifies the record (refusals, in order):
+  judgment.json still declares a valid interim_bridge, its canonical hash
+  is ttm.json's declaration_hash, the pin is base_pin_source ttm_json (a
+  --base-oe-ps copy is refused), ttm.json's arithmetic reproduces from its
+  own legs and rates (interim_bridge.recompute_from_record) and its legs are
+  the declaration's, the FY leg is this run's (release, latest FY end, the
+  CSV's last row), the ADS ratio is the engine's, and the declaration passes
+  interim_bridge.py's rules again (declaration_rule_problems, the bundle
+  ttm.py runs, on ttm.json's FY leg, report period and filing date; and the
+  declared report is the 6-K ttm.py verified — review fix 2026-10-21: a
+  rule-breaking edit with a patched declaration_hash no longer scores on
+  ttm.json's word). A declared bridge the
+  final run is not pinned to is refused (check_interim_obligation; R7's
+  rejection is the only way to keep it declared and unpinned), so are a
+  declaration beside interim_bridge_declined, an iprd_amortized or a
+  basis_window "ttm" base_override beside a bridge (named refusals). The
+  5.7 obligation (5.7 runs only): a STALE_FY 20-F / 40-F run declares
+  interim_bridge or interim_bridge_declined {reason with a number, report};
+  default Q7 (main agent, 2026-10-21; switch INTERIM_OBLIGATION_RULE):
+  a plain or amortized --base-oe-ps pin (TFII / FUTU / VIV's hand-built 6-K
+  pins) needs one too — only the payable base is exempt. The bridged base
+  is measured against the annual median (interim_bridge_measurement: one
+  --measure replay of the final configuration with no pin, field overrides
+  on and no DCF_IPRD_HOLD — the median takes its own acquired-IPR&D window;
+  carried or "not measured" under a release mismatch) and both bases are
+  recorded in score.json base_alternatives (the declared_interim published
+  entry and the annual_median alternative, R7's one record), the
+  declaration's descriptors in score.json interim_bridge, the flag
+  TTM_DECLARED_INTERIM in score.json fragility_flags (never in the hashed
+  engine output), the registry events interim_bridge (identity: the
+  declaration hash) and interim_bridge_declined, and key_numbers.md's
+  "Interim bridge" section (leg table, rates, shares, verification,
+  like-for-like, sources; worker text in curly quotes). The override impact
+  on a bridged base holds the pin (base_used "declared_interim"; FY
+  override fields zero-filled from ttm.json override_counterfactual) and
+  never runs ttm.py. (b) When the engine read a fiscal year from the
+  filing's own XBRL instance (dcf_numbers.json annual_from_instance
+  applied), <T>/annual_instance.json must be that instance's file with the
+  same accession, instance_sha256 and facts_sha256 (annual_instance_check),
+  and key_numbers.md says so in "Base owner's earnings".
 - (L8, R6) declared share classes (Up-C / multi-class) and UP_C_SUSPECT:
   [L8 writes this item]
 - (L9, R8 / R9) capex components, capitalized software and the ttm.json
@@ -616,6 +660,7 @@ from dcf_engine import ENGINE_RELEASE
 import check_quotes as _quotes  # v5.7 (L2, R3): the quote gate's sources, saved runs and filed-history rows
 import quote_tokens as _qt  # v5.7 (L2, R3): the one tokenizer (reasons carry / trace numbers through it)
 import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
+import interim_bridge as _ib  # v5.7 (L4, R2a): the declared 6-K interim bridge's rules (pure, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1023,12 +1068,14 @@ def rewrite_judgment_scope(jpath, value):
     os.replace(tmp, jpath)
 
 
-def _impact_from_run(n):
+def _impact_from_run(n, ticker=None):
     """The with-override side and the basis label, read from the run itself —
     the same label compute_override_impact gives: "payable_5y" for a run pinned
     to the insurer payable-earnings base (payable_base recorded, or
-    base_pin_source judgment_base_override — M3: it read "ttm"), "ttm" for any
-    other pin, else "median_3y"."""
+    base_pin_source judgment_base_override — M3: it read "ttm"),
+    "declared_interim" (v5.7, L4) for a --ttm pin on a declared 6-K interim
+    bridge (ttm.json basis declared_interim; the ticker defaults to the
+    record's), "ttm" for any other pin, else "median_3y"."""
     base_with = n.get("base_oe_per_share")
     irr_with = n.get("implied_irr_weighted")
     base_src = (n.get("base_source") or "").lower()
@@ -1037,6 +1084,7 @@ def _impact_from_run(n):
     gaps = list(n.get("data_gap") or [])
     unblocks = bool(gaps) and not (n.get("data_gap_uncovered") or [])
     base_used = "payable_5y" if (n.get("payable_base") or inp.get("base_pin_source") == "judgment_base_override") \
+        else "declared_interim" if _interim_pinned(ticker or n.get("ticker"), n) \
         else "ttm" if pinned else "median_3y"
     return base_with, irr_with, base_used, unblocks
 
@@ -3115,35 +3163,469 @@ def _declared_pin_not_ttm(ticker, n):
 
 
 # ---------------------------------------------------------------------------
-# v5.7 lane L4 (R2 foreign filers, Andrew 2026-10-19) — L0 placeholders, no-ops until L4 fills them
+# v5.7 lane L4 (R2 foreign filers, Andrew 2026-10-19): the annual-instance check (R2b) and the declared 6-K interim
+# bridge (R2a) — interim_bridge.py holds the rules, ttm.py --interim builds the record, this re-verifies, measures
+# and reports it
 # ---------------------------------------------------------------------------
+INTERIM_KEY, INTERIM_DECLINED_KEY = "interim_bridge", "interim_bridge_declined"
+INTERIM_FLAG = "TTM_DECLARED_INTERIM"
+# Default Q7 (main agent, 2026-10-21, pending Andrew): "re_declare" — on a 5.7 STALE_FY 20-F / 40-F run, any base but
+# the payable pin and a declared bridge (a median, a plain or an iprd_amortized --base-oe-ps pin, a 10-Q ttm.json)
+# needs interim_bridge or interim_bridge_declined, so TFII / FUTU / VIV's hand-built 6-K pins are re-declared on their
+# next engine run. "median_only" restores design 04's predicate (a median base only). The one switch.
+INTERIM_OBLIGATION_RULE = "re_declare"
+INTERIM_REL_TOL = 1e-9
+SCORE_DECISION_KEYS = SCORE_DECISION_KEYS + (INTERIM_KEY, INTERIM_DECLINED_KEY)   # L4's decision fields (L5's P2)
+
+
 def annual_instance_check(folder, n):
-    """v5.7 placeholder (L4, R2b; 07 §1.12 step 1, after the content-hash check): when the run read annual facts
-    from the filing's own XBRL instance, <T>/annual_instance.json must be that instance's. None in L0."""
-    return None
+    """v5.7 (L4, R2b; 07 §1.12 step 1, after the content-hash check): when the run read annual facts from the
+    filing's own XBRL instance (dcf_numbers.json annual_from_instance applied), <T>/annual_instance.json must be that
+    instance's — the same accession and instance_sha256 — and its facts must still hash to the run's facts_sha256 (it
+    is the run's input, bound like ttm.json: rebase amendment 6). Returns the record (for key_numbers.md), else None."""
+    rec = n.get("annual_from_instance")
+    if not isinstance(rec, dict) or not rec.get("applied"):
+        return None
+    import xbrl_instance as _xi
+    try:
+        with open(f"{folder}/annual_instance.json", encoding="utf-8") as f:
+            doc = json.load(f)
+    except (OSError, ValueError):
+        doc = None
+    if (not isinstance(doc, dict) or doc.get("accession") != rec.get("accession")
+            or doc.get("instance_sha256") != rec.get("instance_sha256")):
+        fail(f"dcf_numbers.json says annual facts were read from the XBRL instance of {rec.get('accession')} but "
+             f"{n.get('ticker')}/annual_instance.json is missing or differs — commit the file the engine wrote, or rerun "
+             "the engine")
+    if _xi.facts_sha256(doc.get("facts"), doc.get("conflicts")) != rec.get("facts_sha256"):
+        fail("annual_instance.json changed after the engine run (its facts no longer hash to dcf_numbers.json "
+             "annual_from_instance.facts_sha256) — rerun dcf_engine.py; it is the run's input")
+    return rec
+
+
+def _ttm_record(folder):
+    """ttm.json as an object, or None."""
+    try:
+        with open(f"{folder}/ttm.json", encoding="utf-8") as f:
+            tt = json.load(f)
+    except (OSError, ValueError):
+        return None
+    return tt if isinstance(tt, dict) else None
+
+
+def _is_declared_interim(tt):
+    return isinstance(tt, dict) and tt.get("basis") == _ib.RECORD_BASIS
+
+
+def _interim_pinned(ticker, n):
+    """True when the run is pinned through --ttm to a declared-interim ttm.json (its figure)."""
+    if not ticker:
+        return False
+    tt = _ttm_record(f"{BASE}/{ticker}")
+    return (_is_declared_interim(tt) and (n.get("inputs") or {}).get("base_pin_source") == "ttm_json"
+            and _engine.figure_matches(n.get("base_oe_per_share"), tt.get("ttm_oe_per_share")))
+
+
+def _rel_eq(a, b, tol=INTERIM_REL_TOL):
+    return (_num(a) is not None and _num(b) is not None
+            and abs(float(a) - float(b)) <= tol * max(1.0, abs(float(a)), abs(float(b))))
+
+
+def _interim_rule_problems(n, decl, tt):
+    """Step 7 of _interim_problems (review fix 2026-10-21): interim_bridge.py's pure rules re-run on the declaration —
+    the one bundle ttm.py --interim runs (declaration_rule_problems: periods, sources, snippets, estimates, definitions,
+    like-for-like, the share band) on the FY leg, report period and filing date ttm.json recorded, as of the run's
+    as_of — and the declared report is the 6-K ttm.py verified. Without it a judgment edit that breaks a rule, with
+    ttm.json's declaration_hash patched to it (declaration_hash is outside TTM_INPUT_TOP_FIELDS, so
+    check_ttm_inputs_current passes), scored on the generated file's word."""
+    legs = tt.get("legs") if isinstance(tt.get("legs"), dict) else {}
+
+    def fy_val(f, k):
+        lg = legs.get(f) if isinstance(legs.get(f), dict) else {}
+        return _num((lg.get("fy") if isinstance(lg.get("fy"), dict) else {}).get(k))
+    per = tt.get("periods") if isinstance(tt.get("periods"), dict) else {}
+    fy = per.get("fy")
+    fy = list(fy) if isinstance(fy, list) and len(fy) == 2 and all(_ib._is_date(x) for x in fy) else None
+    rep = tt.get("report") if isinstance(tt.get("report"), dict) else {}
+    shares = tt.get("shares") if isinstance(tt.get("shares"), dict) else {}
+    probs = _ib.declaration_rule_problems(
+        decl, fy, {f: fy_val(f, "local") for f in _ib.FLOW_FIELDS}, {f: fy_val(f, "usd") for f in _ib.FLOW_FIELDS},
+        _num(shares.get("fy_diluted")), today=str(n.get("as_of") or _engine.ET_TODAY.isoformat()),
+        report_date=rep.get("period_end"), filed=rep.get("filed"), report_source=rep.get("period_end_source"))
+    acc = (decl.get("report") or {}).get("accession")
+    if acc != rep.get("accession"):
+        probs.append(f"[IB-SRC1] judgment.json interim_bridge.report.accession {acc} is not the 6-K ttm.py --interim "
+                     f"verified ({rep.get('accession')})")
+    return probs
+
+
+def _interim_problems(n, j, tt, folder=None):
+    """[(step, message)]: design 04 A.5 interim_pin_state checks 1, 2, 4, 5, 6 on a declared-interim ttm.json —
+    (1) judgment.json declares a valid interim_bridge, (2) its hash is ttm.json's, (4) ttm.json's arithmetic
+    reproduces from its own legs and those legs are the declaration's, (5) the FY leg is this run's, (6) the ADS ratio
+    is the engine's — and (7, review fix 2026-10-21) the declaration passes interim_bridge.py's pure rules again
+    (_interim_rule_problems), so make_score re-verifies what ttm.py enforced instead of trusting ttm.json. Steps 1-2
+    stop the list (nothing else can be compared)."""
+    t = n.get("ticker")
+    decl = (j or {}).get(INTERIM_KEY)
+    if decl is None or _ib.validate_shape(decl):
+        return [(1, f"ttm.json is a declared interim bridge but judgment.json declares no (valid) interim_bridge — rerun "
+                    f"ttm.py {t} --interim")]
+    h = _ib.declaration_hash(decl)
+    if h != tt.get("declaration_hash"):
+        return [(2, f"judgment.json interim_bridge changed after ttm.py --interim ran (declaration hash {h[:12]}… vs "
+                    f"ttm.json {str(tt.get('declaration_hash'))[:12]}…) — rerun ttm.py {t} --interim and the engine "
+                    "with --ttm")]
+    out = []
+    rc = _ib.recompute_from_record(tt)
+    edited = rc is None
+    if not edited:
+        for k in ("ttm_ocf", "ttm_capex", "ttm_sbc", "ttm_shares_diluted", "ttm_oe_total", "ttm_oe_per_share"):
+            edited = edited or not _rel_eq(rc[k], tt.get(k))
+        ins = tt.get("inputs") if isinstance(tt.get("inputs"), dict) else {}
+        for k, v in (("ocf", tt.get("ttm_ocf")), ("capex", tt.get("ttm_capex")), ("sbc", tt.get("ttm_sbc"))):
+            edited = edited or not _rel_eq((ins.get(k) or {}).get("ttm") if isinstance(ins.get(k), dict) else None, v)
+        for f in _ib.FLOW_FIELDS:
+            for name in _ib.LEG_NAMES:
+                x = _ib.leg(decl, f, name) or {}
+                edited = edited or not _rel_eq(((tt.get("legs") or {}).get(f) or {}).get(name, {}).get("local"),
+                                               x.get("value"))
+        sx = _ib.leg(decl, _ib.SHARES_FIELD, "current_interim") or {}
+        edited = edited or not _rel_eq(((tt.get("shares") or {}).get("current_interim") or {}).get("value"), sx.get("value"))
+        ru = ((tt.get("fx") or {}).get("rates_used") or {}) if isinstance(tt.get("fx"), dict) else {}
+        dfx = decl.get("fx") or {}
+        for name in _ib.LEG_NAMES:
+            want = (dfx.get(name) or {}).get("rate") if dfx.get("basis") == "ecb_period_end" else 1.0
+            got = ru.get(name)
+            edited = edited or _num(got) is None or _num(want) is None or abs(float(got) - float(want)) > \
+                _ib.FX_TOLERANCE * float(want) + 1e-12
+        if not edited and dfx.get("basis") == "ecb_period_end":
+            r_fy = (((n.get("fx_conversion") or {}).get("rates_by_currency") or {}).get(decl.get("currency")) or {}).get(
+                n.get("latest_period_end"))
+            edited = not _rel_eq(ru.get("fy"), r_fy)
+    if edited:
+        out.append((4, f"ttm.json's interim arithmetic does not reproduce from its own legs (or its legs and rates are "
+                       f"not the declaration's) — it was edited; rerun ttm.py {t} --interim"))
+    er = tt.get("engine_record") if isinstance(tt.get("engine_record"), dict) else {}
+    rows = _csv_rows(folder) if folder else []
+    last = rows[-1] if rows else {}
+    fy_bad = None
+    if er.get("engine_release") != n.get("engine_release"):
+        fy_bad = f"engine_release: ttm.json {er.get('engine_release')}, the run {n.get('engine_release')}"
+    elif ((tt.get("periods") or {}).get("fy") or [None, None])[1] != n.get("latest_period_end"):
+        fy_bad = (f"latest FY end: ttm.json {((tt.get('periods') or {}).get('fy') or [None, None])[1]}, the run "
+                  f"{n.get('latest_period_end')}")
+    elif last:
+        assumed_zero = str(last.get("capex_assumed_zero")) == "True"
+        csv_fy = {"ocf": _f(last.get("ocf")), "capex_ppe": _f(last.get("capex_ppe")),
+                  "capex_intangibles": 0.0 if assumed_zero else (_f(last.get("capex_intangibles")) or 0.0),
+                  "sbc": _f(last.get("sbc"))}
+        for f in _ib.FLOW_FIELDS:
+            got = (((tt.get("legs") or {}).get(f) or {}).get("fy") or {}).get("usd")
+            if not _rel_eq(got, csv_fy[f], 1e-6):
+                fy_bad = f"{f}: ttm.json {got}, financials_history.csv {csv_fy[f]}"
+                break
+        else:
+            got = (tt.get("shares") or {}).get("fy_diluted")
+            if not _rel_eq(got, _f(last.get("shares_diluted")), 1e-6):
+                fy_bad = f"shares_diluted: ttm.json {got}, financials_history.csv {last.get('shares_diluted')}"
+    else:
+        fy_bad = "financials_history.csv is missing"
+    if fy_bad:
+        out.append((5, f"the bridge's FY leg is not this run's latest FY ({fy_bad}) — rerun ttm.py {t} --interim after the "
+                       "engine"))
+    n_ads = (n.get("ads_ratio") or {}).get("ratio") if isinstance(n.get("ads_ratio"), dict) else None
+    if not _rel_eq(tt.get("ads_ratio"), n_ads, 1e-12):
+        out.append((6, f"ttm.json applied ADS ratio {tt.get('ads_ratio')}, the engine {n_ads} — rerun ttm.py {t} --interim"))
+    rules = _interim_rule_problems(n, decl, tt)
+    if rules:
+        out.append((7, "judgment.json interim_bridge breaks the rules ttm.py --interim enforces (" + "; ".join(rules)
+                    + f") — ttm.py would refuse this declaration, so ttm.json was not built from it; fix the declaration "
+                    f"and rerun ttm.py {t} --interim and the engine with --ttm"))
+    return out
+
+
+def _interim_record_problems(n, j, tt, folder=None):
+    """The messages of _interim_problems (R7's ttm_for_run reads a non-empty list as status "fixable")."""
+    return [m for _, m in _interim_problems(n, j, tt, folder)]
 
 
 def interim_pin_state(folder, n, j, tt):
-    """v5.7 placeholder (L4, R2a; step 3, after check_ttm_inputs_current): the declared 6-K interim bridge's state
-    against ttm.json (tt) and the run's pin. None in L0."""
-    return None
+    """v5.7 (L4, R2a; 07 §1.12 step 3, after check_ttm_inputs_current, which already refused a ttm.json regenerated
+    after the run): None unless ttm.json is a declared interim bridge (basis "declared_interim") and the run's base is
+    its figure; then design 04 A.5's checks in order, each a refusal — (1) a valid interim_bridge declaration, (2) its
+    hash is ttm.json's, (3) the pin is base_pin_source ttm_json (a --base-oe-ps copy of the figure is not accepted),
+    (4) the arithmetic reproduces and the legs are the declaration's, (5) the FY leg is this run's, (6) the ADS ratio
+    is the engine's. Returns {"ttm", "decl", "hash", "estimate_legs", "unverified_legs", "xbrl_verified_legs"}; the
+    measurement attaches itself as "measurement" (interim_bridge_measurement)."""
+    if not _is_declared_interim(tt):
+        return None
+    inp = n.get("inputs") or {}
+    pinned = inp.get("base_oe_ps_arg") is not None or "ttm" in (n.get("base_source") or "").lower()
+    if not pinned or not _engine.figure_matches(n.get("base_oe_per_share"), tt.get("ttm_oe_per_share")):
+        return None
+    probs = _interim_problems(n, j, tt, folder)
+    if probs and probs[0][0] in (1, 2):
+        fail(probs[0][1])
+    if inp.get("base_pin_source") != "ttm_json":
+        fail(f"a declared interim bridge pins the base only through --ttm (base_pin_source {inp.get('base_pin_source')!r}) "
+             "— a --base-oe-ps copy of the figure is not accepted; rerun the final pass with --ttm")
+    if probs:
+        fail("; ".join(m for _, m in probs))
+    return {"ttm": tt, "decl": j[INTERIM_KEY], "hash": tt["declaration_hash"],
+            "estimate_legs": list(tt.get("estimate_legs") or []), "unverified_legs": list(tt.get("unverified_legs") or []),
+            "xbrl_verified_legs": list(tt.get("xbrl_verified_legs") or [])}
+
+
+def validate_interim_declined(j):
+    """judgment.json interim_bridge_declined {reason, report} — "no bridge could be built": the 6-K checked and why it
+    cannot bridge (no cash-flow statement, a comparative that is not like-for-like, ...). A malformed one (not an
+    object, an empty reason, a report that is neither null nor {form, accession, document}) is refused on any release;
+    the reason's number is required by the 5.7 obligation (check_interim_obligation). None when absent."""
+    d = (j or {}).get(INTERIM_DECLINED_KEY)
+    if d is None:
+        return None
+    if not isinstance(d, dict) or not str(d.get("reason") or "").strip():
+        fail("judgment.json interim_bridge_declined must be {reason, report}: reason a non-empty string naming the 6-K "
+             "checked and why it cannot bridge, with a number; report {form, accession, document} or null")
+    rep = d.get("report")
+    if rep is not None and not (isinstance(rep, dict) and str(rep.get("accession") or "").strip()):
+        fail("judgment.json interim_bridge_declined.report must be null or {form, accession, document} (the interim "
+             "report that was checked)")
+    return {"reason": str(d["reason"]).strip(), "report": rep}
+
+
+def _interim_obligation_applies(n):
+    """Whether a 5.7 STALE_FY 20-F / 40-F run without a pinned bridge owes interim_bridge or interim_bridge_declined
+    (INTERIM_OBLIGATION_RULE, default Q7)."""
+    src = (n.get("inputs") or {}).get("base_pin_source")
+    if INTERIM_OBLIGATION_RULE == "median_only":
+        return src is None
+    return src != "judgment_base_override"
 
 
 def check_interim_obligation(n, j, interim, plan=None):
-    """v5.7 placeholder (L4, R2a): a 5.7 STALE_FY 20-F / 40-F run declares interim_bridge or interim_bridge_declined
-    (plan: R7's ttm_rejection_state, a declared bridge may be rejected). No-op in L0."""
-    return None
+    """v5.7 (L4, R2a; 07 §1.12 step 3, after R7's plan). Refusals, in order:
+    - interim_bridge and interim_bridge_declined together (a bridge that was built is not declined);
+    - the binding: judgment.json declares interim_bridge but the final run is not pinned through --ttm to its
+      ttm.json — unless R7's plan rejects the bridge with a qualifying ttm_rejection_reason (plan["bridge_rejected"],
+      rebase amendment 16); an iprd_amortized pin or a basis_window "ttm" base_override beside the bridge gets its own
+      message (amendment 12);
+    - the 5.7 obligation (5.7 runs only, D1): a 20-F / 40-F run with a STALE_FY flag and no pinned or rejected bridge
+      declares interim_bridge_declined with a reason that carries a number (which bases owe it: INTERIM_OBLIGATION_RULE).
+    Returns the validated interim_bridge_declined (or None)."""
+    declined = validate_interim_declined(j)
+    has_bridge = isinstance(j, dict) and j.get(INTERIM_KEY) is not None
+    t = n.get("ticker")
+    if has_bridge and declined is not None:
+        fail("judgment.json declares both interim_bridge and interim_bridge_declined — a bridge that was built is not "
+             "declined: keep one")
+    bridge_rejected = bool(plan and plan.get("bridge_rejected"))
+    if has_bridge and interim is None and not bridge_rejected:
+        bo = j.get("base_override") if isinstance(j.get("base_override"), dict) else {}
+        if bo.get("basis") == IPRD_AMORTIZED_BASIS:
+            fail("an acquired-IPR&D amortized pin cannot sit on a declared interim bridge — pin through --ttm (the "
+                 "one-time deduction applies) or remove interim_bridge")
+        if isinstance(bo.get("basis_window"), dict) and bo["basis_window"].get("window") == "ttm":
+            fail("a declared interim bridge pins only through --ttm; a per-unit pin on its figures needs share_classes "
+                 "(R6) — remove the base_override and pin with --ttm")
+        fail(f"judgment.json declares interim_bridge but the final run is not pinned through --ttm to a declared-interim "
+             f"ttm.json (base_source {n.get('base_source')}) — run ttm.py {t} --interim and the final engine pass with "
+             "--ttm, or remove interim_bridge and record why in interim_bridge_declined — or keep it declared and "
+             "reject it with ttm_rejection_reason (the bridge is then measured beside the published base)")
+    if not is_57_run(n) or n.get("filer_annual_form") not in ("20-F", "40-F"):
+        return declined
+    if not any(str(f).startswith("STALE_FY") for f in n.get("fragility_flags") or []):
+        return declined
+    if interim is not None or (has_bridge and bridge_rejected) or not _interim_obligation_applies(n):
+        return declined
+    pin_note = ("" if (n.get("inputs") or {}).get("base_pin_source") is None else
+                " — the run is pinned (base_pin_source "
+                f"{(n.get('inputs') or {}).get('base_pin_source')!r}): a hand-built 6-K pin is re-declared as "
+                "interim_bridge (default Q7)")
+    if declined is None:
+        fail(f"STALE_FY at a 20-F / 40-F filer on a 5.7 run: declare interim_bridge (python3 _system/ttm.py {t} "
+             "--interim-draft <6-K accession>, then --interim and --ttm) or interim_bridge_declined {reason, report} "
+             "naming the interim report checked and why it cannot bridge, with a number (no cash-flow statement, "
+             f"comparative not like-for-like, ...){pin_note}")
+    if not re.search(r"\d", declined["reason"]):
+        fail("judgment.json interim_bridge_declined.reason carries no number — say what the interim report checked "
+             "shows (or lacks) with a figure (R2: the 6-K's period, the missing line, the size of the perimeter change)")
+    return declined
+
+
+def _r4(v):
+    return round(float(v), 4) if _num(v) is not None else None
+
+
+def _measured_entry(m):
+    """The annual-median figures of a --measure replay (base, weighted IRR, tier, the replay's own IPR&D charge)."""
+    blk = m.get("iprd_adjustment") if isinstance(m.get("iprd_adjustment"), dict) else {}
+    return {"base_oe_per_share": _r4(m.get("base_oe_per_share")), "weighted_irr": _r4(m.get("implied_irr_weighted")),
+            "tier_by_numbers": m.get("tier_by_numbers"), "f_subtype": m.get("f_subtype"),
+            "iprd_charge_per_share": round(_engine.iprd_charge_per_share(m), 4), "iprd_treatment": blk.get("treatment"),
+            "data_gap": list(m.get("data_gap") or [])}
 
 
 def interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score=None):
-    """v5.7 placeholder (L4; step 4, after the override impact): the bridged vs annual-median measurement (R7 folds
-    its figures into build_base_alternatives). None in L0."""
-    return None
+    """v5.7 (L4, R2a; 07 §1.12 step 4, after the override impact, before the first write): the bridged base beside
+    the annual-median base (R2: "report BOTH"). Current release: one --measure replay of the final configuration
+    with no pin (_final_run_args), field overrides on and NO DCF_IPRD_HOLD — the median takes its own acquired-IPR&D
+    window and share count (rebase amendment 14, I5); labelled DCF_REPLAY_PURPOSE=base_alternatives (R7 folds this
+    replay into build_base_alternatives). A failed replay refuses. Release mismatch: no replay — the prior score's
+    annual-median entry is carried when it was measured on this declaration and this bridged base (4 dp), else the
+    fields are null with the not-measured note. Attaches itself to `interim` as "measurement"; None without a bridge."""
+    if interim is None:
+        return None
+    bridged = {"base_oe_per_share": _r4(n.get("base_oe_per_share")), "weighted_irr": _r4(n.get("implied_irr_weighted")),
+               "tier_by_numbers": n.get("tier_by_numbers"), "f_subtype": n.get("f_subtype"),
+               "iprd_charge_per_share": round(_engine.iprd_charge_per_share(n), 4),
+               "iprd_treatment": (n.get("iprd_adjustment") or {}).get("treatment")
+               if isinstance(n.get("iprd_adjustment"), dict) else None}
+    meas = {"bridged": bridged, "annual_median": None, "measured": False, "note": None, "replays": 0,
+            "impact_carried_from_prior_score": False, "counterfactual_engine_release": None}
+    if release_mismatch:
+        alts = (prior_score or {}).get("base_alternatives") if isinstance(prior_score, dict) else None
+        pib = (prior_score or {}).get(INTERIM_KEY) if isinstance(prior_score, dict) else None
+        prior_bases = {b.get("kind"): b for b in (alts or {}).get("bases") or [] if isinstance(b, dict)} \
+            if isinstance(alts, dict) else {}
+        pub, med = prior_bases.get("declared_interim"), prior_bases.get("annual_median")
+        if (isinstance(pib, dict) and pib.get("declaration_hash") == interim["hash"] and isinstance(pub, dict)
+                and isinstance(med, dict) and pub.get("base_oe_per_share") == bridged["base_oe_per_share"]
+                and med.get("measured") and not (alts or {}).get("note")):
+            meas.update(annual_median={k: med.get(k) for k in ("base_oe_per_share", "weighted_irr", "tier_by_numbers",
+                                                               "f_subtype", "iprd_charge_per_share", "iprd_treatment",
+                                                               "data_gap")},
+                        measured=True, impact_carried_from_prior_score=True,
+                        counterfactual_engine_release=n.get("engine_release"))
+        else:
+            meas.update(annual_median={"base_oe_per_share": _r4(n.get("base_oe_normalized_per_share")),
+                                       "weighted_irr": None, "tier_by_numbers": None, "f_subtype": None,
+                                       "iprd_charge_per_share": None, "iprd_treatment": None, "data_gap": []},
+                        note=_not_measured_note(n.get("engine_release")),
+                        counterfactual_engine_release=n.get("engine_release"))
+    else:
+        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + _final_run_args(n),
+                      {REPLAY_PURPOSE_ENV: "base_alternatives"})
+        if m is None:
+            fail("annual-median replay failed — cannot measure the interim bridge against the median base; retry "
+                 "make_score")
+        med = _measured_entry(m)
+        if med["base_oe_per_share"] is None and not med["data_gap"]:
+            fail("the annual-median replay produced no base and no data gap — cannot measure the interim bridge against "
+                 "the median base; re-run the engine")
+        meas.update(annual_median=med, measured=True, replays=1,
+                    note=(f"the annual-median replay gaps: {', '.join(med['data_gap'])}" if med["data_gap"] else None))
+    interim["measurement"] = meas
+    return meas
+
+
+def _chg(alt, pub):
+    """(base_change_pct, weighted_irr_change_pp, tier_changed) of an alternative against the published entry."""
+    b, pb = alt.get("base_oe_per_share"), pub.get("base_oe_per_share")
+    i, pi = alt.get("weighted_irr"), pub.get("weighted_irr")
+    pct = round((b - pb) / abs(pb) * 100, 2) if (_num(b) is not None and _num(pb) is not None and pb) else None
+    pp = round((i - pi) * 100, 2) if (_num(i) is not None and _num(pi) is not None) else None
+    tiers = alt.get("tier_by_numbers"), pub.get("tier_by_numbers")
+    return pct, pp, (tiers[0] != tiers[1]) if all(tiers) else None
+
+
+def interim_base_alternatives(n, interim, meas):
+    """The base_alternatives record of a published declared 6-K bridge (R7's schema, 11 §3.9; rebase amendment 15):
+    the declared_interim entry (published, the run's own figures) and the annual_median alternative (the measurement).
+    Built inside R7's one builder (build_base_alternatives), never a second shape."""
+    tt = interim["ttm"]
+    pub = dict(meas["bridged"], kind="declared_interim", role="published", computed=True, measured=True,
+               fy_end=tt.get("fy_end"), ytd_end=tt.get("ytd_end"),
+               ttm_input_hash=_engine.ttm_inputs_record(tt)["ttm_input_hash"],
+               ttm_engine_release=tt.get("engine_release"), share_basis=None,
+               source="ttm.json (ttm.py --interim: FY − prior interim + current interim, declared 6-K)",
+               why="declared_interim",
+               why_text="published — the declared 6-K interim bridge (judgment.json interim_bridge; R2)", note=None)
+    pub = {k: pub[k] for k in ("kind", "role", "computed", "measured", "base_oe_per_share", "weighted_irr",
+                               "tier_by_numbers", "f_subtype", "iprd_charge_per_share", "iprd_treatment", "fy_end",
+                               "ytd_end", "ttm_input_hash", "ttm_engine_release", "share_basis", "source", "why",
+                               "why_text", "note")}
+    med = meas["annual_median"] or {}
+    computed = med.get("base_oe_per_share") is not None
+    alt = {"kind": "annual_median", "role": "alternative", "computed": computed,
+           "measured": bool(meas["measured"] and computed),
+           "base_oe_per_share": med.get("base_oe_per_share"), "weighted_irr": med.get("weighted_irr"),
+           "tier_by_numbers": med.get("tier_by_numbers"), "f_subtype": med.get("f_subtype"),
+           "iprd_charge_per_share": med.get("iprd_charge_per_share"), "iprd_treatment": med.get("iprd_treatment"),
+           "data_gap": med.get("data_gap") or [],
+           "source": "median_of_last_3_fy_oe_per_share",
+           "replay": "--measure (final configuration, field overrides on, no pin)"}
+    alt["base_change_pct"], alt["weighted_irr_change_pp"], alt["tier_changed"] = _chg(alt, pub)
+    alt.update(why="not_chosen", why_text="not chosen: the declared 6-K interim bridge is the published base (R2)",
+               note=meas.get("note"))
+    return {"schema": 1, "published": "declared_interim",
+            "stale_fy": any(str(f).startswith("STALE_FY") for f in n.get("fragility_flags") or []),
+            "ttm_rejection_reason": None, "bases": [pub, alt], "replays": meas.get("replays", 0),
+            "measured": bool(meas["measured"]), "note": meas["note"] if not meas["measured"] else None,
+            "impact_carried_from_prior_score": bool(meas["impact_carried_from_prior_score"]),
+            "counterfactual_engine_release": meas["counterfactual_engine_release"]}
+
+
+def _interim_fx_text(tt):
+    fx = tt.get("fx") or {}
+    ru = fx.get("rates_used") or {}
+    if fx.get("basis") == "ecb_period_end":
+        return (f"each converted at its own period-end ECB rate: FY {float(ru.get('fy')):.4f} (engine) · prior "
+                f"{float(ru.get('prior_interim')):.4f} · current {float(ru.get('current_interim')):.4f}")
+    if fx.get("basis") == "issuer_convenience_translation":
+        return ("the report's own US-dollar convenience translation (rates "
+                f"{(fx.get('prior_interim') or {}).get('rate')} / {(fx.get('current_interim') or {}).get('rate')})")
+    return "in US dollars as filed (no conversion)"
+
+
+def interim_flag(interim, meas):
+    """score.json's TTM_DECLARED_INTERIM flag text (R2: "flagged in fragility_flags"; make_score's own flag, never in
+    the hashed engine output)."""
+    tt = interim["ttm"]
+    per = tt.get("periods") or {}
+    k = len(interim.get("estimate_legs") or [])
+    b, med = (meas or {}).get("bridged") or {}, (meas or {}).get("annual_median") or {}
+    fx = (tt.get("fx") or {}).get("basis")
+    how = {"ecb_period_end": "at per-period ECB rates", "issuer_convenience_translation": "as the issuer's USD translation"
+           }.get(fx, "in USD")
+    return (f"{INTERIM_FLAG}: base is the declared 6-K interim bridge (FY {tt.get('fy_end')} − prior interim to "
+            f"{(per.get('prior_interim') or [None, None])[1]} + current interim to {tt.get('ytd_end')}, "
+            f"{tt.get('currency')} {how}; {k} estimate leg{'s' if k != 1 else ''}) — bridged "
+            f"{_money(b.get('base_oe_per_share'))}/share, weighted IRR {_pct(b.get('weighted_irr'))}, tier "
+            f"{b.get('tier_by_numbers')} vs annual median {_money(med.get('base_oe_per_share'))}/share, "
+            f"{_pct(med.get('weighted_irr'))}, tier {med.get('tier_by_numbers') or '—'}"
+            + (f" ({meas['note']})" if (meas or {}).get("note") else "")
+            + '; see key_numbers.md "Interim bridge"')
 
 
 def score_interim_fields(score, n, j, interim, interim_meas):
-    """v5.7 placeholder (L4): score.json interim_bridge / interim_bridge_declined and the TTM_DECLARED_INTERIM flag.
-    No-op in L0."""
+    """v5.7 (L4, R2a; 07 §1.12 step 8): score.json interim_bridge (the declaration's descriptors — its figures are
+    base_alternatives', R7's one record), interim_bridge_declined (copied) and the TTM_DECLARED_INTERIM flag
+    appended to a NEW fragility_flags list (flags_all and the confidence cap keep reading the engine's list)."""
+    declined = validate_interim_declined(j)
+    if declined is not None:
+        score[INTERIM_DECLINED_KEY] = declined
+    if interim is None:
+        return None
+    tt, decl = interim["ttm"], interim["decl"]
+    per = tt.get("periods") or {}
+    ru = (tt.get("fx") or {}).get("rates_used") or {}
+    score[INTERIM_KEY] = {
+        "basis": _ib.RECORD_BASIS, "currency": tt.get("currency"), "declaration_hash": interim["hash"],
+        "fy_period": per.get("fy"), "prior_interim_period": per.get("prior_interim"),
+        "current_interim_period": per.get("current_interim"),
+        "report_form": (tt.get("report") or {}).get("form"), "report_accession": (tt.get("report") or {}).get("accession"),
+        "fx": {"basis": (tt.get("fx") or {}).get("basis"), "fy": ru.get("fy"), "prior_interim": ru.get("prior_interim"),
+               "current_interim": ru.get("current_interim")},
+        "estimate_legs": interim["estimate_legs"], "unverified_legs": interim["unverified_legs"],
+        "xbrl_verified_legs": interim["xbrl_verified_legs"],
+        "comparative_restated": (decl.get("like_for_like") or {}).get("comparative_restated"),
+        "perimeter_changes": [{k: pc.get(k) for k in ("kind", "effective_date", "material", "resolution")}
+                              for pc in (decl.get("like_for_like") or {}).get("perimeter_changes") or []],
+        "iprd_interim_scan": tt.get("iprd_interim_scan"),
+        "measured_in": "base_alternatives"}
+    score["fragility_flags"] = list(n.get("fragility_flags") or []) + [interim_flag(interim, interim_meas)]
     return None
 
 
@@ -3168,7 +3650,13 @@ def build_base_alternatives(ticker, folder, n, j, plan, impact=None, payable_imp
     """v5.7 placeholder (R7; step 4, after the amortized impact): score.json base_alternatives — the published base
     beside every other base computed for the run (annual median, TTM, declared-interim TTM: base OE/share, weighted
     IRR, tier, role, why), one record shared with L4's bridge measurement (interim_meas) and gated per ttm.json
-    alternative by _alt_ttm_ok(ttm, j_sc). None on pre-5.7 output and in L0 (no key written)."""
+    alternative by _alt_ttm_ok(ttm, j_sc). None on pre-5.7 output and in L0 (no key written).
+    v5.7 (L4, R2a): a published declared 6-K bridge (interim_meas, measured or carried by
+    interim_bridge_measurement) is recorded here — its declared_interim entry beside the annual-median one
+    (interim_base_alternatives); R7 adds its own kinds to this one builder."""
+    _tt = _ttm_record(folder) if interim_meas is not None else None
+    if interim_meas is not None and _alt_ttm_ok(_tt, j_sc):
+        return interim_base_alternatives(n, {"ttm": _tt}, interim_meas)
     return None
 
 
@@ -3188,10 +3676,37 @@ def compute_override_impact(ticker, n, ttm_only=None):
     pin_src = (n.get("inputs") or {}).get("base_pin_source")
     pinned = (n.get("inputs") or {}).get("base_oe_ps_arg") is not None or "ttm" in base_src
     base_used = "payable_5y" if (pin_src == "judgment_base_override" or n.get("payable_base")) \
+        else "declared_interim" if _interim_pinned(ticker, n) \
         else "declared_pin" if _declared_pin_not_ttm(ticker, n) \
         else "ttm" if pinned else "median_3y"
     args = _final_run_args(n)
-    if base_used in ("payable_5y", "declared_pin"):
+    if base_used == "declared_interim":
+        # v5.7 (L4, R2a; rebase amendment 13): a --ttm pin on the declared 6-K interim bridge. ttm.py is never
+        # spawned — its 10-Q path would refuse an IFRS filer, and the bridge's legs are declared, not overrides. The
+        # pin is held in both worlds: the FY override fields ttm.py --interim zero-filled (ttm.json
+        # override_counterfactual: without the override the engine has no FY figure for that field) give the
+        # no-override pin; with none, the pin is held constant and field overrides only move the growth blend.
+        # The replay holds the final run's IPR&D treatment and charge (DCF_IPRD_HOLD), as every override replay does.
+        cf = (_ttm_record(f"{BASE}/{ticker}") or {}).get("override_counterfactual")
+        zf = _num(cf.get("base_oe_per_share_zero_fill")) if isinstance(cf, dict) else None
+        base_without = zf if zf is not None else base_with
+        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + args
+                      + ["--base-oe-ps", repr(float(base_without))],
+                      {"DCF_NO_OVERRIDES": "1", "DCF_IPRD_HOLD": _iprd_hold(n)})
+        if m is None:
+            fail("counterfactual engine --measure run failed — cannot measure override impact on the declared interim "
+                 "bridge base")
+        if m.get("implied_irr_weighted") is None:
+            if unblocks and (m.get("data_gap") or []):
+                base_without, irr_without = None, None   # gate fired: honestly no counterfactual
+            elif irr_with is None and not (m.get("data_gap") or []):
+                irr_without = None                       # Tier F on the pin in both worlds
+            else:
+                fail("counterfactual run produced no IRR and no data gap — cannot measure override impact on the "
+                     "declared interim bridge base")
+        else:
+            irr_without = m.get("implied_irr_weighted")
+    elif base_used in ("payable_5y", "declared_pin"):
         # The base is pinned to a declared figure in both worlds (field
         # overrides fill OCF/capex/SBC/share history, never the pin), so the
         # base impact is zero by construction; the IRR counterfactual replays
@@ -3537,8 +4052,30 @@ SCORE_DECISION_KEYS += ("moat_evidence",)   # L3 (R4 revised): moat_evidence car
 
 
 def _interim_events(ticker, interim, declined, today):
-    """v5.7 placeholder (L4, R2a): interim_bridge / interim_bridge_declined. [] in L0."""
-    return []
+    """v5.7 (L4, R2a): the interim_bridge event (identity: the declaration hash, so an unchanged declaration keeps
+    its first date; both bases from the measurement) and the interim_bridge_declined event (identity: the reason).
+    No field carries an iprd_deferred_payment name (IPRD_DEFERRED_EVENT_KEYS)."""
+    out = []
+    if interim is not None:
+        decl, tt = interim["decl"], interim["ttm"]
+        m = interim.get("measurement") or {}
+        br, am = m.get("bridged") or {}, m.get("annual_median") or {}
+        per = tt.get("periods") or {}
+        out.append({"ticker": ticker, "event": INTERIM_KEY, "date": today, "declaration_hash": interim["hash"],
+                    "currency": decl.get("currency"), "fy_period": per.get("fy"),
+                    "prior_interim_period": per.get("prior_interim"), "current_interim_period": per.get("current_interim"),
+                    "report_accession": (decl.get("report") or {}).get("accession"),
+                    "estimate_legs": interim.get("estimate_legs") or [],
+                    "perimeter_changes": [{k: pc.get(k) for k in ("kind", "effective_date", "resolution")}
+                                          for pc in (decl.get("like_for_like") or {}).get("perimeter_changes") or []],
+                    "base_oe_annual_median": am.get("base_oe_per_share"), "base_oe_bridged": br.get("base_oe_per_share"),
+                    "weighted_irr_annual_median": am.get("weighted_irr"), "weighted_irr_bridged": br.get("weighted_irr"),
+                    "tier_annual_median": am.get("tier_by_numbers"), "tier_bridged": br.get("tier_by_numbers"),
+                    "measured": bool(m.get("measured")), "note": m.get("note")})
+    if declined is not None:
+        out.append({"ticker": ticker, "event": INTERIM_DECLINED_KEY, "date": today, "reason": declined["reason"],
+                    "report_accession": (declined.get("report") or {}).get("accession")})
+    return out
 
 
 def _facts_events(ticker, today, facts_check):
@@ -3996,9 +4533,22 @@ def _kn_share_classes(n, score):
 
 
 def _kn_base_interim(n, score, interim, instance):
-    """v5.7 placeholder (L4, R2): the ANNUAL_FROM_INSTANCE line, the "Interim bridge declined" line and a bridge's
-    base-source text, before the payable block. [] in L0."""
-    return []
+    """v5.7 (L4, R2): in "Base owner's earnings", before the payable block — the annual-facts-from-instance line
+    (R2b), a bridge's base-source line and the "Interim bridge declined" line (the worker's reason in curly quotes)."""
+    out = []
+    if isinstance(instance, dict) and instance.get("applied"):
+        out.append(f"- Annual facts for FY {', '.join(instance.get('periods_added') or [])}: read from the "
+                   f"{instance.get('form')}'s own XBRL instance (accession {instance.get('accession')}, filed "
+                   f"{instance.get('filed')}) — EDGAR companyfacts had not ingested them (its latest annual period ended "
+                   f"{instance.get('companyfacts_latest_annual_end')}); {instance.get('facts_merged')} facts merged "
+                   f"({n.get('ticker')}/annual_instance.json)")
+    if interim is not None:
+        out.append('- Base source: ttm_json — the declared 6-K interim bridge (see "Interim bridge")')
+    d = score.get(INTERIM_DECLINED_KEY)
+    if isinstance(d, dict):
+        out.append(f"- Interim bridge declined: {quoted(d.get('reason'))} (report "
+                   f"{(d.get('report') or {}).get('accession') or 'none'})")
+    return out
 
 
 def _kn_base_alternatives(score):
@@ -4103,8 +4653,89 @@ def _kn_moat(score):
 
 
 def _kn_interim(score, interim):
-    """v5.7 placeholder (L4, R2a): the "Interim bridge" section. [] in L0."""
-    return []
+    """v5.7 (L4, R2a): the "Interim bridge" section (07 §1.9: after the Moat scorecard, before Declared facts) — the
+    basis and rates, the leg table (local currency and the TTM in USD), the shares line, the bases compared (from
+    score.json base_alternatives; R7 replaces this line with a pointer to its "Base alternatives" section), what was
+    verified and estimated, the like-for-like declaration and one source line per filing leg. Worker text is echoed
+    in curly quotes (07 §1.10)."""
+    if interim is None:
+        return []
+    tt, decl = interim["ttm"], interim["decl"]
+    per = tt.get("periods") or {}
+    rep = tt.get("report") or {}
+    ccy = tt.get("currency")
+    legs = tt.get("legs") or {}
+
+    def amt(v):
+        return f"{v:,.0f}" if _num(v) is not None else "—"
+    out = ["", "## Interim bridge (declared 6-K TTM — the scored base)",
+           f"- Basis: FY {per.get('fy', ['?', '?'])[0]}..{per.get('fy', ['?', '?'])[1]} − prior interim "
+           f"{per.get('prior_interim', ['?', '?'])[0]}..{per.get('prior_interim', ['?', '?'])[1]} + current interim "
+           f"{per.get('current_interim', ['?', '?'])[0]}..{per.get('current_interim', ['?', '?'])[1]} "
+           f"({rep.get('form')} {rep.get('accession')}, filed {rep.get('filed')}); legs in {ccy}, {_interim_fx_text(tt)}",
+           f"| Leg | FY ({ccy}) | − prior interim | + current interim | = TTM ({ccy}) | TTM (USD) |",
+           "|---|---|---|---|---|---|"]
+    for f in _ib.FLOW_FIELDS:
+        lg = legs.get(f) or {}
+        est = lambda name: " (est.)" if (lg.get(name) or {}).get("kind") == "estimate" else ""  # noqa: E731
+        out.append(f"| {_ib.FIELD_LABELS[f]} | {amt((lg.get('fy') or {}).get('local'))} | "
+                   f"{amt((lg.get('prior_interim') or {}).get('local'))}{est('prior_interim')} | "
+                   f"{amt((lg.get('current_interim') or {}).get('local'))}{est('current_interim')} | "
+                   f"{amt(lg.get('ttm_local'))} | {_usd_exact(lg.get('ttm_usd'))} |")
+    out.append(f"| Owner's earnings | | | | {amt(tt.get('ttm_oe_total_local'))} | {_usd_exact(tt.get('ttm_oe_total'))} |")
+    sh = (tt.get("shares") or {}).get("current_interim") or {}
+    out.append(f"- Shares (current-interim weighted average diluted): {amt(sh.get('value'))} × ADS ratio "
+               f"{tt.get('ads_ratio')} → bridged base OE/share "
+               + (f"${tt['ttm_oe_per_share']:,.4f}" if _num(tt.get("ttm_oe_per_share")) is not None else "—")
+               + " (scored)")
+    alts = score.get("base_alternatives") if isinstance(score.get("base_alternatives"), dict) else {}
+    bases = {b.get("kind"): b for b in alts.get("bases") or [] if isinstance(b, dict)}
+    pub, med = bases.get("declared_interim") or {}, bases.get("annual_median") or {}
+    if med:
+        tail = ("" if med.get("measured") else f" — {med.get('note') or alts.get('note') or 'not measured'}")
+        if alts.get("impact_carried_from_prior_score"):
+            tail = (f" — carried from the prior score.json, not re-measured (engine output release "
+                    f"{alts.get('counterfactual_engine_release')} vs current {ENGINE_RELEASE})")
+        out.append(f"- Annual-median base (same configuration, measured): {_money(med.get('base_oe_per_share'))} · weighted "
+                   f"IRR bridged {_pct(pub.get('weighted_irr'))} (Tier {pub.get('tier_by_numbers')}) vs annual median "
+                   f"{_pct(med.get('weighted_irr'))} (Tier {med.get('tier_by_numbers') or '—'})"
+                   + (" — tier unchanged" if med.get("tier_changed") is False else
+                      " — tier changes" if med.get("tier_changed") else "") + tail)
+    ver = [f"{a} {b.split('_')[0]}" for a, b in (x.split(".", 1) for x in interim.get("xbrl_verified_legs") or [])]
+    est_txt = []
+    for x in interim.get("estimate_legs") or []:
+        f, name = x.split(".")
+        lx = _ib.leg(decl, f, name) or {}
+        m = lx.get("method")
+        detail = ""
+        if m == "fy_prorated":
+            fyl = ((legs.get(f) or {}).get("fy") or {}).get("local")
+            p = per.get(name) or ["?", "?"]
+            try:
+                detail = f": FY {amt(fyl)} × {_ib.days(*p)}/{_ib.days(*per['fy'])}"
+            except (TypeError, ValueError, KeyError):
+                detail = ""
+        est_txt.append(f"{f} {name.split('_')[0]} ({m}{detail})")
+    out.append("- Verified against the 6-K's XBRL instance: " + (", ".join(ver) or "none")
+               + " · estimates: " + ("; ".join(est_txt) or "none")
+               + (f" · unverified (method other): {', '.join(interim.get('unverified_legs'))}"
+                  if interim.get("unverified_legs") else ""))
+    lfl = decl.get("like_for_like") or {}
+    parts = [f"comparative restated: {'yes' if lfl.get('comparative_restated') else 'no'}"
+             + (f" ({quoted(lfl.get('comparative_note'))})" if lfl.get("comparative_note") else "")]
+    for pc in lfl.get("perimeter_changes") or []:
+        how = (f"immaterial; {pc.get('revenue_share') * 100:.1f}% of revenue" if pc.get("resolution") == "immaterial"
+               and _num(pc.get("revenue_share")) is not None
+               else f"{'material' if pc.get('material') else 'not material'}; {pc.get('resolution')}: "
+                    f"{quoted(pc.get('reason'))}")
+        parts.append(f"{pc.get('kind')} {pc.get('effective_date')} ({how})")
+    out.append("- Like-for-like: " + " · ".join(parts))
+    out.append(f"- Acquired IPR&D in the current interim: {tt.get('iprd_interim_scan')}")
+    for p in tt.get("provenance") or []:
+        out.append(f"- Source — {p.get('field')} {str(p.get('leg')).split('_')[0]}: {rep.get('form')} {p.get('accession')} "
+                   f"{p.get('document')}, {p.get('section') or ('page ' + str(p.get('page')))} — {quoted(p.get('snippet'))} "
+                   f"(verified: {p.get('verified')})")
+    return out
 
 
 def _kn_declared_facts(facts_check):
@@ -4254,7 +4885,7 @@ def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, 
               f"- Scenario spread (IV@15 super-bull / super-bear): {d['scenario_spread_iv15']:.2f}x" if d.get("scenario_spread_iv15") is not None else "- Scenario spread: —",
               nd_line,
               f"- Months since FY end: {d.get('months_since_fy_end'):.1f}" if d.get("months_since_fy_end") is not None else "- Months since FY end: —"]
-    flags = n.get("fragility_flags") or []
+    flags = score.get("fragility_flags") or []   # v5.7 (L4): score.json's list (the engine's + TTM_DECLARED_INTERIM)
     L += ["", "## Fragility flags"]
     L += [f"- {f}" for f in flags] or ["- (none)"]
     if applied:
@@ -4276,7 +4907,9 @@ def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, 
                 L.append(f"- {field} reason: {quoted(applied[field]['reason'])}")
         if impact:
             basis_lbl = {"ttm": "TTM base", "payable_5y": "payable-earnings base (5-yr avg operating income to common)",
-                         "declared_pin": "declared base_override pin (held constant in both worlds)"}.get(
+                         "declared_pin": "declared base_override pin (held constant in both worlds)",
+                         "declared_interim": "declared 6-K interim bridge (field overrides toggled off; FY override "
+                                             "fields zero-filled)"}.get(
                 impact.get("base_used"), "3-yr median base")
             pct = impact.get("base_oe_impact_pct")
             pp = impact.get("weighted_irr_impact_pp")
@@ -4569,7 +5202,7 @@ def main():
     # v5.7 step 3 (07 §1.12): the declared 6-K interim bridge (L4), then R7's plan, then L4's obligation (a declared
     # bridge may be rejected through ttm_rejection_reason) — all None / no-ops in L0
     interim = interim_pin_state(folder, n, j, _tt_now)         # L4 (R2a)
-    declined = None                                            # L4: judgment.json interim_bridge_declined, once read
+    declined = validate_interim_declined(j)                    # L4: judgment.json interim_bridge_declined
     plan = ttm_rejection_state(folder, n, j, j_sc=j_sc, interim=interim, j_over=j_over)   # R7
     check_interim_obligation(n, j, interim, plan=plan)         # L4 (R2a)
 
