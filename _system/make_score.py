@@ -9,6 +9,13 @@ company folder. Judgment fields (written by the analyzing agent):
   (optional lists of short pillar strings), probs_used (5 numbers, the
   probabilities passed to the engine), one_liner, confidence,
   tier_override + tier_override_reason, in_scope_under_40b.
+  Engine 5.7 (the 2026-10-19 rulings) adds, each read by the lane that
+  builds it (v5.7 block below; until then they are not read):
+  misfit_notch_reason (R1), moat_scorecard (R4), interim_bridge /
+  interim_bridge_declined (R2), share_classes / up_c_suspect_reason (R6),
+  capex_unlisted_ack and capex_override.software_included (R8 / R9),
+  ttm_rejection_reason (R7); and facts.json beside judgment.json declares
+  the facts their reasons cite as [F#] (R3).
 Every numeric field in score.json is copied from dcf_numbers.json.
 
 Refuses (exit 1, nothing written) when: dcf_numbers.json has a data gap NOT
@@ -406,6 +413,63 @@ value adjustment):
   and the record erased), a deferred-payment event's ticker must be
   upper-case (make_score's own), and an entry that is neither a field
   override nor an event make_score writes is refused too.
+
+v5.7 (2026-10-19, engine release 5.7.0 — Andrew's rulings R1-R9). "A 5.7
+run" is engine output from release 5.7.0 or later (is_57_run =
+facts.is_rulings_run; RELEASE_57 = facts.RULINGS_RELEASE, fixed at 5.7.0).
+The new worker obligations bind 5.7 runs only; output from an older release
+(every folder on file until its next engine run, HALO's 5.6.0 record too) is
+rebuilt as before, both alert gates closed ("engine output predates release
+5.7.0"). Each lane writes its own item below:
+- (L0, the scaffold, 2026-10-21) The release bump, and the places the lanes
+  fill, behaviour unchanged: key_numbers.md is built as one text
+  (build_key_numbers) before the write phase and written last inside it
+  (write_key_numbers_text, the same atomic write), with one empty hook per
+  lane (_kn_*) in the 07 §1.9 section order; update_registry takes one
+  keyword per lane and appends each lane's events (_*_events, none yet)
+  after the deferred-payment events, before keep_first_dates; main() calls
+  a no-op placeholder at each 07 §1.12 step, every one before
+  registry_transaction (every refusal precedes the first write, the
+  registry); quoted() is the echo convention for worker text (07 §1.10);
+  check_influence is the one influence-trace entry point (L2 fills it);
+  iprd_override_required is check_iprd_share_count_unverified's condition,
+  factored out for L1; SCORE_DECISION_KEYS is the score.json decision list
+  pr_worktree reads (each lane appends its block). The registry whitelist
+  (_EVENT_DECLARATION) declares every event type the 5.7 lanes write
+  (misfit_notch, declared_facts, moat_divergence, moat_low_roic,
+  moat_high_return_low_moat, moat_erosion_rebuttal, moat_widening_declined,
+  interim_bridge, interim_bridge_declined, share_classes, up_c_suspect,
+  capex_unlisted_ack, base_alternatives), `facts` on the tier_override and
+  base_override identities, `share_basis` / `share_period` on
+  base_override's and `software_included` on a field override's (keys no
+  recorded entry carries: json null on both sides, so no entry is
+  re-dated). A new registry event must be a key of _EVENT_DECLARATION
+  before any run writes it — load_registry refuses the whole registry on an
+  unknown event — and must not use an iprd_deferred_payment field name
+  (IPRD_DEFERRED_EVENT_KEYS: deal, first_charged_period, contingent_total,
+  paid_to_date, periods), or registry_entry_problem reads it as a malformed
+  deferred-payment event. Deploy order: a pre-5.7 make_score refuses a
+  registry holding any 5.7 event, so every tree on the VM runs 5.7 code
+  before the first 5.7 write (the drift guard, lane L5).
+- (L1, R1) The mechanical sector-misfit notch (misfit_notch,
+  misfit_notch_reason, the misfit_notch event): [L1 writes this item]
+- (L2, R3) facts.json, the quote gate's key_numbers lines, saved method
+  runs, the declared_facts event: [L2 writes this item]
+- (L3, R4 revised: sources + 11-pillar evidence + supporting factors,
+  M1b / M1c) moat_scorecard / moat_evidence and the moat events: [L3
+  writes this item]
+- (L3b, M6 moat direction, Andrew 2026-10-20) the trend sync and
+  moat_widening_declined: [L3b writes this item]
+- (L4, R2) the declared 6-K interim bridge and the annual-instance check:
+  [L4 writes this item]
+- (L8, R6) declared share classes (Up-C / multi-class) and UP_C_SUSPECT:
+  [L8 writes this item]
+- (L9, R8 / R9) capex components, capitalized software and the ttm.json
+  release stamp: [L9 writes this item]
+- (R7) STALE_FY discretion made checkable: ttm_rejection_reason and the
+  one base_alternatives record: [R7 writes this item]
+- (L5 ops, L6 site) no scoring change: pr_worktree prepare compares
+  SCORE_DECISION_KEYS; the site renders the blocks above.
 """
 import json, sys, os, re, datetime, subprocess, hashlib, csv, contextlib, math
 # Every file is read and written as UTF-8 (most judgment.json files carry raw
@@ -416,6 +480,7 @@ from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / ms
 from _stable import _replace  # [Codex review r21 of PR #47] os.replace, retried on a Windows PermissionError
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
+import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -434,6 +499,18 @@ TIER_ORDER = {t: i for i, t in enumerate(reversed(TIERS))}  # F=0 … S=5: highe
 CONFIDENCE = ("low", "medium", "high")
 OVERRIDE_KEYS = {"capex": "capex_override", "sbc": "sbc_override", "shares": "shares_override"}
 REGISTRY = os.environ.get("MAKE_SCORE_REGISTRY") or f"{SYS_DIR}/overrides_registry.json"
+# v5.7 — R7 STALE_FY discretion made checkable (Andrew, 2026-10-19; L0 placeholders, the R7 lane fills them)
+TTM_REJECTION_KEY = "ttm_rejection_reason"            # judgment.json: the reason a STALE_FY TTM base is rejected
+BASE_KINDS = ("annual_median", "ttm", "declared_interim", "payable_5y", "declared_pin")
+BASE_ROLES = ("published", "rejected", "alternative")
+REPLAY_PURPOSE_ENV = "DCF_REPLAY_PURPOSE"             # "base_alternatives" on R7 replays (the engine ignores it)
+# v5.7 (lane L5's P2): the score.json fields that carry a decision — pr_worktree prepare compares them between the
+# sweep tree's score and the worktree's rebuild. Each lane appends its own block when it starts writing it
+# (misfit_notch L1, moat_evidence L3, interim_bridge / interim_bridge_declined L4, share_classes L8,
+# base_alternatives R7). Pure data.
+SCORE_DECISION_KEYS = ("tier_final", "tier_by_numbers", "implied_irr", "iv_at_15", "base_oe_per_share", "model_fit",
+                       "confidence", "alert_eligible", "exit_alert_eligible", "dcf_content_hash", "iprd_adjustment",
+                       "fragility_flags")
 
 
 def fail(msg):
@@ -574,6 +651,46 @@ def refuse_share_class_mismatch(j):
 
 
 # ---------------------------------------------------------------------------
+# v5.7 lane L8 (R6 declared share classes, Andrew 2026-10-19/20) — L0 placeholders, no-ops until L8 fills them
+# ---------------------------------------------------------------------------
+def validate_share_classes(j):
+    """v5.7 placeholder (L8, 08 §8.1 step 2): judgment.json share_classes shape + snippets (R-1). None in L0."""
+    return None
+
+
+def check_share_classes_sync(n, j_sc, folder):
+    """v5.7 placeholder (L8): the declaration against the engine run's record (R-2 … R-5). No-op in L0."""
+    return None
+
+
+def check_up_c_obligation(n, j):
+    """v5.7 placeholder (L8, R-8): an unresolved UP_C_SUSPECT on a 5.7 run. No-op in L0."""
+    return None
+
+
+def check_ttm_on_declaration(n, j_sc, tt):
+    """v5.7 placeholder (L8, R-6, after check_ttm_inputs_current): a TTM-pinned score's ttm.json must be on the
+    share_classes declaration. No-op in L0."""
+    return None
+
+
+def share_classes_impact(ticker, n, j_sc, prior_score=None):
+    """v5.7 placeholder (L8, 08 §8.4): the filed-class vs total-unit replay, before the first write. None in L0."""
+    return None
+
+
+def share_classes_raise_reason(sc_impact):
+    """v5.7 placeholder (L8, 08 §8.8): the alert_reasons share_classes_raise text when the declaration RAISES the
+    tier (an entry alert is then suppressed). None in L0 (alert_reasons unchanged)."""
+    return None
+
+
+def score_share_classes_fields(score, n, j_sc, sc_impact):
+    """v5.7 placeholder (L8, 08 §8.5): score.json share_classes / up_c_check blocks. No-op in L0."""
+    return None
+
+
+# ---------------------------------------------------------------------------
 # v5.5: engine release, ADS market cap, scope (DESIGN §1 / §8)
 # ---------------------------------------------------------------------------
 def release_tuple(rel):
@@ -600,6 +717,11 @@ def release_mismatch_reason(rel):
     if t is None or (cur is not None and t < cur):
         return f"engine output predates release {ENGINE_RELEASE}"
     return f"engine output is from release {rel}, not the current release {ENGINE_RELEASE}"
+
+
+# v5.7 (07 §1.1): the rulings release — one predicate, defined in facts.py and shared by every 5.7 module
+RELEASE_57 = _facts.RULINGS_RELEASE
+is_57_run = _facts.is_rulings_run
 
 
 def _num(v):
@@ -950,6 +1072,27 @@ def refuse_last_filed_unit_usd_override(n, j_over, applied):
              "US dollars, declare currency: \"USD\" on the override (kind filing) and re-run the engine; if it is in "
              f"{ccy}, it cannot be used as is — restate it (the filing's own US-dollar figure, declared currency "
              f"\"USD\") or block NEEDS_MAIN_AGENT: {field} via queue.py")
+
+
+# ---------------------------------------------------------------------------
+# v5.7 lane L9 (R8 / R9 capex, Andrew 2026-10-19) — L0 placeholders, no-ops until L9 fills them
+# ---------------------------------------------------------------------------
+def refuse_capex_override_software(n, j_over, tt=None):
+    """v5.7 placeholder (L9, R9): a capex_override beside capitalized software the 5.7 engine now adds (its
+    software_included declaration and value test; tt is the current ttm.json for the TTM legs). No-op in L0."""
+    return None
+
+
+def refuse_unlisted_capex_component(n, j):
+    """v5.7 placeholder (L9, R8): a CAPEX_UNLISTED_COMPONENT flag not released by judgment.json capex_unlisted_ack.
+    No-op in L0."""
+    return None
+
+
+def refuse_pre57_ttm_json(n, tt):
+    """v5.7 placeholder (L9, R8 / R9 TTM provenance): a 5.7 run whose basis read a ttm.json built before engine 5.7
+    (ttm_inputs.ttm_engine_release). No-op in L0."""
+    return None
 
 
 def validate_base_override(j):
@@ -1787,6 +1930,18 @@ def check_iprd_amortized(n, j_base_override):
              f"{am.get('native_base')!r}) — rebuild the declaration from this run's dcf_numbers.json and rerun")
 
 
+def iprd_override_required(n):
+    """[Codex review r1 of PR #47; factored out in v5.7 (L0) for the misfit notch's R-2 exemption, L1] True when the
+    engine recorded treatment not_applied_share_count_unverified with a positive acquired-IPR&D total: only a
+    main-agent tier_override that quantifies the hand deduction publishes such a run
+    (check_iprd_share_count_unverified)."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
+    if not blk or blk.get("treatment") != "not_applied_share_count_unverified":
+        return False
+    total = _num(blk.get("total"))
+    return not (not total or total <= 0)
+
+
 def check_iprd_share_count_unverified(n, j):
     """[Codex review r1 of PR #47] Treatment not_applied_share_count_unverified (a share-scale defect rescued by a
     pin with no power-of-ten factor): the engine found a positive acquired-IPR&D total but no verified share count to
@@ -1794,13 +1949,10 @@ def check_iprd_share_count_unverified(n, j):
     worker blocks NEEDS_MAIN_AGENT: shares, and only a main-agent tier_override whose reason quantifies the hand
     deduction publishes it. make_score refuses the score unless judgment.json sets tier_override with a reason that
     names a dollar figure and a percentage (the charge per share on the verified count and the adjusted weighted
-    IRR); whether the figures are right is the review's to check."""
-    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else None
-    if not blk or blk.get("treatment") != "not_applied_share_count_unverified":
+    IRR); whether the figures are right is the review's to check. (v5.7: the condition is iprd_override_required.)"""
+    if not iprd_override_required(n):
         return
-    total = _num(blk.get("total"))
-    if not total or total <= 0:
-        return
+    total = _num(n["iprd_adjustment"].get("total"))
     why = str(j.get("tier_override_reason") or "")
     if j.get("tier_override") and re.search(r"\$\s?\d", why) and re.search(r"\d\s?%", why):
         return
@@ -2118,6 +2270,35 @@ def validate_second_pass(j):
             if v is not None and (not isinstance(v, (int, float)) or isinstance(v, bool)):
                 fail(f"judgment.json: second_pass.{k} must be a number or null")
     return {k: sp.get(k) for k in ("date", "verdict", "prior_tier", "prior_weighted_irr", "prior_iv_at_15", "summary")}
+
+
+# ---------------------------------------------------------------------------
+# v5.7 lane L2 (R3 strict quoting, Andrew 2026-10-19) — L0 placeholders, no-ops until L2 fills them
+# ---------------------------------------------------------------------------
+def load_declared_facts(folder, n, j, prior_score=None):
+    """v5.7 placeholder (L2, 07 §1.12 step 2): facts.json read, validated and verified against the folder files
+    (no influence yet) — the facts check every later step reads (by_id for the cited facts). None in L0."""
+    return None
+
+
+def load_method_runs(folder, n):
+    """v5.7 placeholder (L2): the saved method runs (dcf_numbers_<label>.json, hash-verified). None in L0."""
+    return None
+
+
+def previous_score_summary(prior_score, n):
+    """v5.7 placeholder (L2): the score this run replaces, when it was another engine run's (the "Previous score"
+    line). None in L0."""
+    return None
+
+
+def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only=None, require_anchor=False):
+    """v5.7 placeholder (L2, R3 — the one influence-trace entry point every lane's reason fields call, 07 §1.12 step
+    7; signature per 10 §(l)): on a 5.7 run, every number in `text` (judgment.json `field`) must trace to an engine
+    source (dcf_numbers.json, ttm.json, the CSV, saved runs, and the numeric leaves in `extra`) or to a cited fact
+    (`fact_ids`, facts check `fc`) whose used_for lists the field's tag (facts.INFLUENCE_TAGS), and never rest on
+    third-party facts alone; refusals call fail() before the first write. Returns None (L0: nothing checked)."""
+    return None
 
 
 def _run_json(cmd, env_extra=None, timeout=600):
@@ -2461,6 +2642,64 @@ def _declared_pin_not_ttm(ticker, n):
     return True
 
 
+# ---------------------------------------------------------------------------
+# v5.7 lane L4 (R2 foreign filers, Andrew 2026-10-19) — L0 placeholders, no-ops until L4 fills them
+# ---------------------------------------------------------------------------
+def annual_instance_check(folder, n):
+    """v5.7 placeholder (L4, R2b; 07 §1.12 step 1, after the content-hash check): when the run read annual facts
+    from the filing's own XBRL instance, <T>/annual_instance.json must be that instance's. None in L0."""
+    return None
+
+
+def interim_pin_state(folder, n, j, tt):
+    """v5.7 placeholder (L4, R2a; step 3, after check_ttm_inputs_current): the declared 6-K interim bridge's state
+    against ttm.json (tt) and the run's pin. None in L0."""
+    return None
+
+
+def check_interim_obligation(n, j, interim, plan=None):
+    """v5.7 placeholder (L4, R2a): a 5.7 STALE_FY 20-F / 40-F run declares interim_bridge or interim_bridge_declined
+    (plan: R7's ttm_rejection_state, a declared bridge may be rejected). No-op in L0."""
+    return None
+
+
+def interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score=None):
+    """v5.7 placeholder (L4; step 4, after the override impact): the bridged vs annual-median measurement (R7 folds
+    its figures into build_base_alternatives). None in L0."""
+    return None
+
+
+def score_interim_fields(score, n, j, interim, interim_meas):
+    """v5.7 placeholder (L4): score.json interim_bridge / interim_bridge_declined and the TTM_DECLARED_INTERIM flag.
+    No-op in L0."""
+    return None
+
+
+# ---------------------------------------------------------------------------
+# v5.7 lane R7 (STALE_FY discretion made checkable, Andrew 2026-10-19) — L0 placeholders, no-ops until R7 fills them
+# ---------------------------------------------------------------------------
+def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
+    """v5.7 placeholder (R7; step 3, after interim_pin_state): the plan — whether the run must carry a qualifying
+    judgment.json ttm_rejection_reason (STALE_FY, a published base that is not the TTM, a TTM for this run), and
+    the refusals when it does not. None on pre-5.7 output and in L0."""
+    return None
+
+
+def _alt_ttm_ok(ttm, j_sc):
+    """v5.7 gate hook (L8 / R7, 08 §8.9): a ttm.json alternative is priced only when it is on the share_classes
+    declaration (_sc.ttm_on_declaration). True in L0."""
+    return True
+
+
+def build_base_alternatives(ticker, folder, n, j, plan, impact=None, payable_impact=None, amortized_impact=None,
+                            release_mismatch=False, prior_score=None, j_sc=None, interim_meas=None):
+    """v5.7 placeholder (R7; step 4, after the amortized impact): score.json base_alternatives — the published base
+    beside every other base computed for the run (annual median, TTM, declared-interim TTM: base OE/share, weighted
+    IRR, tier, role, why), one record shared with L4's bridge measurement (interim_meas) and gated per ttm.json
+    alternative by _alt_ttm_ok(ttm, j_sc). None on pre-5.7 output and in L0 (no key written)."""
+    return None
+
+
 def compute_override_impact(ticker, n, ttm_only=None):
     """The impact block, on Andrew's basis: the base the final run actually
     used, the final run's exact configuration, toggling only the overrides.
@@ -2643,15 +2882,39 @@ def pin_rescue_impact(n):
 # window its pin was built on, which sets the acquired-IPR&D window) is part of
 # the identity too, with the same legacy allowance: an event recorded before
 # round 15 carries no `basis_window` key and is compared on the other fields.
-_FIELD_DECLARATION = ("value", "kind", "source", "reason", "currency", "scope")
-_EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason"),
+# v5.7 (L0, 07 §1.11 — every key at once): the event types the 5.7 lanes write are declared before any run writes
+# one, since _EVENT_DECLARATION is also the whitelist load_registry / registry_entry_problem apply to every entry
+# (an unknown event refuses the WHOLE registry). The keys added to existing identities (tier_override / base_override
+# `facts`, base_override `share_basis` / `share_period`, a field override's `software_included`) are carried by no
+# recorded entry: json null on both sides of keep_first_dates, so nothing is re-dated. None of these events may use
+# an IPRD_DEFERRED_EVENT_KEYS name.
+_FIELD_DECLARATION = ("value", "kind", "source", "reason", "currency", "scope",
+                      "software_included")                                          # L9 (R9)
+_EVENT_DECLARATION = {"tier_override": ("tier_by_numbers", "tier_final", "reason",
+                                        "facts"),                                   # L2 (R3): cited facts
                       "manual_price": ("value",),
                       "base_override": ("value", "kind", "source", "reason", "basis", "figures", "shares", "native_base",
-                                        "basis_window"),
+                                        "basis_window",
+                                        "share_basis", "share_period",              # L8 (R6)
+                                        "facts"),                                   # L2 (R3): cited facts
                       "gterm": ("value",), "cik": ("value",), "ads_ratio": ("ratio", "source", "reason"),
                       "scope_correction": ("old_cap", "new_cap", "in_scope"),
                       "iprd_deferred_payment": ("deal", "first_charged_period", "contingent_total", "paid_to_date",
-                                                "periods")}
+                                                "periods"),
+                      # ---- v5.7 (2026-10-19 rulings): written by the lanes, declared here first ----
+                      "misfit_notch": ("tier_by_numbers", "tier_final", "reason"),          # L1 (R1)
+                      "declared_facts": ("facts_sha256",),                                  # L2 (R3)
+                      "moat_divergence": ("moat_score", "reason"),                          # L3 (R4)
+                      "moat_low_roic": ("moat_score", "reason"),                            # L3
+                      "moat_high_return_low_moat": ("moat_score", "reason"),                # L3
+                      "moat_erosion_rebuttal": ("moat_score", "reason"),                    # L3 / L3b
+                      "moat_widening_declined": ("moat_score", "reason"),                   # L3b (M6)
+                      "interim_bridge": ("declaration_hash",),                              # L4 (R2a)
+                      "interim_bridge_declined": ("reason",),                               # L4
+                      "share_classes": ("basis", "declaration_sha256"),                     # L8 (R6)
+                      "up_c_suspect": ("reason",),                                          # L8
+                      "capex_unlisted_ack": ("tag", "reason"),                              # L9 (R8)
+                      "base_alternatives": ("chosen", "reason", "ttm_kind", "ttm_fy_end", "ttm_ytd_end")}   # R7
 
 
 def _declaration(e, ignore=()):
@@ -2694,8 +2957,57 @@ def keep_first_dates(new_entries, prior_entries):
             e["date"] = d
 
 
+# v5.7 (L0, 07 §1.11): each lane's registry events, appended by update_registry in this fixed order after the
+# deferred-payment events and before keep_first_dates. Pure — they run under the registry lock (lock_held), so no
+# file read, no lock, no fail(). [] (or nothing) until the lane fills them.
+def _notch_events(ticker, today, notch, n):
+    """v5.7 placeholder (L1, R1): the misfit_notch event when the notch applies. [] in L0."""
+    return []
+
+
+def _moat_events(ticker, today, moat_ev):
+    """v5.7 placeholder (L3 / L3b, R4 / M6): the moat_* events. [] in L0."""
+    return []
+
+
+def _interim_events(ticker, interim, declined, today):
+    """v5.7 placeholder (L4, R2a): interim_bridge / interim_bridge_declined. [] in L0."""
+    return []
+
+
+def _facts_events(ticker, today, facts_check):
+    """v5.7 placeholder (L2, R3): the declared_facts event. [] in L0."""
+    return []
+
+
+def _share_classes_events(ticker, share_classes, up_c, n, j):
+    """v5.7 placeholder (L8, R6): share_classes / up_c_suspect (the per-period map is `units_by_period`, never
+    `periods`). [] in L0."""
+    return []
+
+
+def _base_alternatives_events(ticker, base_alts, today):
+    """v5.7 placeholder (R7): the base_alternatives event (a rejected STALE_FY TTM, or a published 6-K bridge). []
+    in L0."""
+    return []
+
+
+def _capex_events(ticker, today, unlisted_acks, n):
+    """v5.7 placeholder (L9, R8): one capex_unlisted_ack event per acknowledged CAPEX_UNLISTED_COMPONENT tag. [] in
+    L0."""
+    return []
+
+
+def _attach_fact_citations(entries, facts_check):
+    """v5.7 placeholder (L2, R3): a post-pass over this run's new entries — `facts` on a tier_override /
+    base_override event whose reason cites facts (only then: an empty list would re-date legacy events). No-op in L0."""
+    return None
+
+
 def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, payable_impact=None, amortized_impact=None,
-                    deferred_events=None, lock_held=False):
+                    deferred_events=None, lock_held=False, notch=None, override_in_force=None, facts_check=None,
+                    moat_ev=None, interim=None, declined=None, share_classes=None, up_c=None, unlisted_acks=None,
+                    base_alts=None):
     """Replace this ticker's registry entries wholesale on every score
     (round-2: the old upsert only replaced fields still applied, so a
     removed override's entry went stale and stayed forever). Records the
@@ -2726,7 +3038,13 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     failed replace is refused). [Codex review r19 of PR #47] lock_held: main() already holds
     it (registry_transaction, where deferred_events were validated against the
     registry read under that same lock); the lock is not re-entrant, so it is
-    not taken again."""
+    not taken again. v5.7 (L0): one keyword per lane after lock_held (notch,
+    override_in_force: L1; facts_check: L2; moat_ev: L3 / L3b; interim,
+    declined: L4; share_classes (the measured block, main()'s sc_impact),
+    up_c: L8; unlisted_acks: L9; base_alts: R7), each lane's events
+    appended in a fixed order (_notch_events …
+    _capex_events, then _attach_fact_citations) before keep_first_dates —
+    none yet."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     with (contextlib.nullcontext() if lock_held else locked(REGISTRY + ".lock")):
         # [Codex review r26 of PR #47] a fresh registry only when the file does not exist: an unreadable or malformed
@@ -2822,6 +3140,15 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
         for ev in deferred_events or []:
             # [Codex review r8 of PR #47] carried across runs: the merged record of every period ever declared
             entries.append(dict(ev, date=today))
+        # v5.7 (07 §1.11): the lanes' events, in this fixed order ([] until each lane fills its function)
+        entries += _notch_events(ticker, today, notch, n)                       # L1 (R1)
+        entries += _moat_events(ticker, today, moat_ev)                         # L3 / L3b (R4, M6)
+        entries += _interim_events(ticker, interim, declined, today)            # L4 (R2)
+        entries += _facts_events(ticker, today, facts_check)                    # L2 (R3)
+        entries += _share_classes_events(ticker, share_classes, up_c, n, j)     # L8 (R6)
+        entries += _base_alternatives_events(ticker, base_alts, today)          # R7
+        entries += _capex_events(ticker, today, unlisted_acks, n)               # L9 (R8)
+        _attach_fact_citations(entries[n_kept:], facts_check)                   # L2: a post-pass, never a new entry
         keep_first_dates(entries[n_kept:], prior)
         reg["entries"] = entries
         try:
@@ -2833,14 +3160,18 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                  "score.json and key_numbers.md, so nothing was written; close whatever holds the file and rerun")
 
 
-def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor, stale_release=None):
+def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unblocks, irr_at_floor, stale_release=None,
+                  share_classes_raise=None):
     """(entry_reasons, exit_reasons): why an alert for this score is
     suppressed. Entry reasons apply only to a final S/A tier (alert_eligible),
     exit reasons only to a final tier below A (exit_alert_eligible); both are
     empty when the score clears its gate. stale_release (v5.5): the
     release_mismatch_reason() text when the engine output is not from the
     current ENGINE_RELEASE — it closes BOTH gates ("... — re-run the engine
-    before an entry / exit alert"); None leaves every gate as in 5.4."""
+    before an entry / exit alert"); None leaves every gate as in 5.4.
+    share_classes_raise (v5.7 keyword placed by L0 for lane L8, R6: the
+    reason when a share-class declaration RAISES the tier) is not read yet;
+    None, the default, leaves every gate exactly as before."""
     sa = ("S", "A")
     entry, exit_ = [], []
     if stale_release:
@@ -3032,11 +3363,103 @@ def sbc_reconciled_lines(n):
     return out
 
 
-def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
+def quoted(text):
+    """v5.7 (07 §1.10, the echo convention): worker-authored text make_score prints in key_numbers.md, wrapped in
+    curly quotes — check_quotes never reads a number inside “…”. Curly quotes inside the text become straight ones,
+    so the span closes where the text ends. Not used for any line yet (each lane wraps its own echoes)."""
+    s = "" if text is None else str(text)
+    return "“" + s.replace("“", '"').replace("”", '"') + "”"
+
+
+# v5.7 (L0, 07 §1.9): one hook per lane in key_numbers.md's section order — each returns its lines ([] in L0, so
+# the text is byte-identical); a lane fills only its own function.
+def _kn_price_vs_iv(n):
+    """v5.7 placeholder (L2): Headline, after "Upside vs price" — the price vs weighted IV@15% line. [] in L0."""
+    return []
+
+
+def _kn_base_extras(n):
+    """v5.7 placeholder (L2): Base owner's earnings, after "Base OE/share" — the price ÷ base OE line. [] in L0."""
+    return []
+
+
+def _kn_shares_suffix(n):
+    """v5.7 placeholder (L8, R6): appended to the "Shares diluted (latest)" line on a declared run (total economic
+    units). "" in L0."""
+    return ""
+
+
+def _kn_share_classes(n, score):
+    """v5.7 placeholder (L8, R6): the per-period share-class block, right after the capex / share / SBC basis lines.
+    [] in L0."""
+    return []
+
+
+def _kn_base_interim(n, score, interim, instance):
+    """v5.7 placeholder (L4, R2): the ANNUAL_FROM_INSTANCE line, the "Interim bridge declined" line and a bridge's
+    base-source text, before the payable block. [] in L0."""
+    return []
+
+
+def _kn_base_alternatives(score):
+    """v5.7 placeholder (R7): the "Base alternatives" section, right after the IPR&D section. [] in L0."""
+    return []
+
+
+def _kn_growth_extras(folder, n):
+    """v5.7 placeholder (L2): the Growth & moat block's return / margin series lines. [] in L0."""
+    return []
+
+
+def _kn_filed_history(folder, n):
+    """v5.7 placeholder (L2, rebase A1): the "Filed history" table, after the Growth & moat block (before Scenarios).
+    [] in L0."""
+    return []
+
+
+def _kn_scenario_extras(n):
+    """v5.7 placeholder (L2): after the scenario table — the probability-weight line. [] in L0."""
+    return []
+
+
+def _kn_method_runs(method_runs, previous):
+    """v5.7 placeholder (L2): "Method runs" (saved engine runs) and the "Previous score" line. [] in L0."""
+    return []
+
+
+def _kn_moat(score):
+    """v5.7 placeholder (L3 / L3b, R4): the "Moat scorecard" section. [] in L0."""
+    return []
+
+
+def _kn_interim(score, interim):
+    """v5.7 placeholder (L4, R2a): the "Interim bridge" section. [] in L0."""
+    return []
+
+
+def _kn_declared_facts(facts_check):
+    """v5.7 placeholder (L2, R3): "Declared facts (not engine output)", always last. [] in L0."""
+    return []
+
+
+def write_key_numbers_text(folder, text):
+    """key_numbers.md, atomically ([Codex review r21 of PR #47] tmp + replace) — v5.7 (L0): the text
+    build_key_numbers made before the write phase; main() writes it last inside registry_transaction."""
+    _atomic_write(f"{folder}/key_numbers.md", text)
+
+
+def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, facts_check=None, method_runs=None,
+                      previous=None, interim=None, instance=None):
     """key_numbers.md — every headline figure from the final dcf_numbers.json.
     The single source workers quote in analysis.md. ads_corr (v5.5): the
     pre-5.5 ADS market-cap correction, printed with its label instead of the
-    engine's uncorrected cap (the net-debt line follows its own rule, M1)."""
+    engine's uncorrected cap (the net-debt line follows its own rule, M1).
+    v5.7 (L0): returns the text (write_key_numbers_text writes it); the
+    lanes' sections come from the _kn_* hooks in the 07 §1.9 order —
+    Headline, base OE (+ share classes, interim / instance lines, payable,
+    IPR&D, base alternatives), Growth & moat, Filed history, Scenarios,
+    Diagnostics, Fragility flags, Overrides applied, then Method runs, Moat
+    scorecard, Interim bridge and Declared facts last."""
     L = [f"# {n['ticker']} — key numbers",
          f"Generated by make_score.py from dcf_numbers.json (engine v{n.get('engine_version')}, as of {n.get('as_of')}).",
          "Quote these figures verbatim in analysis.md — never recompute or retype a derived figure.",
@@ -3044,6 +3467,7 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
          "## Headline"]
     if n.get("price") is not None:
         L.append(f"- Price: ${n['price']:,.2f} (source: {n.get('price_source')})")
+    # ---- the Headline tier block (lane L1 replaces these lines whole with the misfit-notch tier block) ----
     tier_note = score["tier_final"]
     if score.get("tier_override_reason"):
         tier_note += f" (agent override of {n['tier_by_numbers']}: {score['tier_override_reason']})"
@@ -3051,11 +3475,13 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
     if score.get("confidence_capped"):
         conf_note += " (capped from high by make_score: WIDE_SCENARIO_SPREAD present)"
     L.append(f"- Tier: {tier_note} · confidence {conf_note}")
+    # ---- end of the Headline tier block ----
     if n.get("implied_irr_weighted") is not None:
         w = n.get("weighted") or {}
         L.append(f"- Weighted IRR: {_pct(n['implied_irr_weighted'])} · base-case IRR: {_pct(n.get('implied_irr_base'))}")
         L.append(f"- Weighted IV: @15% {_money(w.get('iv_at_15'))} · @12% {_money(w.get('iv_at_12'))} · @10% {_money(w.get('iv_at_10'))}")
         L.append(f"- Upside vs price: @15% {_pct(n.get('upside_at_15'), 1)} · @12% {_pct(n.get('upside_at_12'), 1)}")
+        L += _kn_price_vs_iv(n)                                     # v5.7 hook (L2)
         if n.get("irr_bear") is not None:
             L.append(f"- IRR band: bear {_pct(n.get('irr_bear'))} (tier {n.get('tier_bear')}) → bull {_pct(n.get('irr_bull'))} (tier {n.get('tier_bull')}); scenario range {_pct(n.get('irr_low'))} – {_pct(n.get('irr_high'))}")
         if n.get("hurdle_prices"):
@@ -3083,15 +3509,19 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
                      f"{'in' if not scope else 'out of'} scope)" if score.get("in_scope_corrected_by_make_score") else "")
                   ) if isinstance(scope, bool) else None
     L += ["", "## Base owner's earnings",
-          f"- Base OE/share: {_money(n.get('base_oe_per_share'))} (source: {n.get('base_source')})",
-          f"- Latest FY OE/share: {_money(n.get('base_oe_latest_per_share'))} · normalized (3-yr median) OE/share: {_money(n.get('base_oe_normalized_per_share'))}",
+          f"- Base OE/share: {_money(n.get('base_oe_per_share'))} (source: {n.get('base_source')})"]
+    L += _kn_base_extras(n)                                         # v5.7 hook (L2)
+    L += [f"- Latest FY OE/share: {_money(n.get('base_oe_latest_per_share'))} · normalized (3-yr median) OE/share: {_money(n.get('base_oe_normalized_per_share'))}",
           f"- Latest FY OE total: {_usd(n.get('base_oe_total_latest_fy'))}",
-          f"- Shares diluted (latest): {n.get('shares_diluted_latest'):,.0f}" if n.get("shares_diluted_latest") else "- Shares diluted (latest): —",
+          (f"- Shares diluted (latest): {n.get('shares_diluted_latest'):,.0f}" if n.get("shares_diluted_latest")
+           else "- Shares diluted (latest): —") + _kn_shares_suffix(n),          # v5.7 hook (L8)
           f"{cap_line} · net debt (latest): {_usd(n.get('net_debt_latest'))}"]
     if scope_line:
         L.append(scope_line)
     L.append(f"- OE-positive years (last 5): {n.get('oe_positive_years_of_last_5')}")
     L += capex_basis_lines(folder, n) + share_basis_lines(n) + sbc_reconciled_lines(n)
+    L += _kn_share_classes(n, score)                                # v5.7 hook (L8)
+    L += _kn_base_interim(n, score, interim, instance)              # v5.7 hook (L4)
     pb = n.get("payable_base")
     if pb:
         figs = pb.get("figures") or []
@@ -3101,12 +3531,15 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
               f"- Per ordinary share: {_money(pb.get('per_ordinary_share'))} × ADS ratio {pb.get('ads_ratio')} = pinned base {_money(pb.get('pinned_per_share'))}",
               f"- Source: {(j.get('base_override') or {}).get('source')}"]
     L += iprd_lines(n)   # v5.6: acquired IPR&D (nothing for a record without the block)
+    L += _kn_base_alternatives(score)                               # v5.7 hook (R7)
     gc = n.get("growth_components") or {}
     L += ["", "## Growth & moat",
           f"- Growth blend: {_pct(n.get('g_blend'))}" + (f" → g_base {_pct(n.get('g_base'))}" if n.get("g_base") is not None else ""),
           f"- Components: rev CAGR 5y {_pct(gc.get('rev_cagr_5y'))} · rev CAGR 3y {_pct(gc.get('rev_cagr_3y'))} · latest rev YoY {_pct(gc.get('rev_yoy_latest'))} · OE/share CAGR 2y {_pct(gc.get('oe_ps_cagr_2y'))}",
           f"- Share count CAGR: {_pct(n.get('share_cagr'))} (growth adj {_pct(n.get('share_count_adj'))})",
           f"- Moat: {j['moat_score']}/10 · CAP {n.get('cap_years')} yrs · terminal growth {_pct(n.get('g_terminal'))}"]
+    L += _kn_growth_extras(folder, n)                               # v5.7 hook (L2)
+    L += _kn_filed_history(folder, n)                               # v5.7 hook (L2)
     scn = n.get("scenarios") or {}
     if scn:
         L += ["", "## Scenarios",
@@ -3117,6 +3550,7 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
             r = scn.get(lbl) or {}
             L.append(f"| {names[lbl]} | {_pct(r.get('prob'), 0)} | {_pct(r.get('g_start'), 1)} | {r.get('oe_mult')} | "
                      f"{_money(r.get('iv_at_15'))} | {_money(r.get('iv_at_12'))} | {_pct(r.get('irr'))} |")
+        L += _kn_scenario_extras(n)                                 # v5.7 hook (L2)
     d = n.get("diagnostics") or {}
     if d:
         # Round-2 fix: the old line was ONE conditional expression over a
@@ -3182,7 +3616,12 @@ def write_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None):
                 else:
                     L.append("- Unblocks tier: YES — this override is the only reason this company has a tier; "
                              "without it the filing gap blocks scoring entirely.")
-    _atomic_write(f"{folder}/key_numbers.md", "\n".join(L) + "\n")   # [Codex review r21 of PR #47] tmp + replace
+    # v5.7 (07 §1.9): the fixed tail — engine runs first, then the judgment-backed sections, declared facts last
+    L += _kn_method_runs(method_runs, previous)                     # L2
+    L += _kn_moat(score)                                            # L3 / L3b
+    L += _kn_interim(score, interim)                                # L4
+    L += _kn_declared_facts(facts_check)                            # L2
+    return "\n".join(L) + "\n"
 
 
 def main():
@@ -3215,6 +3654,9 @@ def main():
     if hashlib.sha256(canon.encode()).hexdigest() != ch:
         fail("dcf_numbers.json content_hash MISMATCH — the engine output was modified after the run "
              "(hand-edited numbers); re-run dcf_engine.py and score only what the engine produces")
+    # v5.7 step 1 (07 §1.12; lane L4, R2b): the filing's own XBRL instance the run read annual facts from must be the
+    # committed <T>/annual_instance.json (None in L0)
+    instance = annual_instance_check(folder, n)
     # v5.5 (DESIGN §2c): a share_class_mismatch declaration never scores. It is
     # checked ahead of the gap check so the refusal names the declaration (a
     # 5.5 run also carries it as the uncovered gap "share_class").
@@ -3296,7 +3738,16 @@ def main():
             fail(f"dcf_numbers.json overrides_applied includes {field} but judgment.json declares no {field}_override")
     check_override_currency_sync(j_over, applied, n)
     refuse_last_filed_unit_usd_override(n, j_over, applied)   # [ADDITION — HTHT]
+    # [Codex review r23 of PR #47] the current ttm.json, as check_ttm_inputs_current (below) compares it with what the
+    # run read — v5.7 (L0): read here, before the capex refusals that need its TTM legs (lane L9); unchanged otherwise
+    try:
+        with open(f"{folder}/ttm.json", encoding="utf-8") as f:
+            _tt_now = json.load(f)
+    except Exception:
+        _tt_now = None
     refuse_superseded_capex_override(n, j_over)               # [ADDITION — WY]
+    refuse_capex_override_software(n, j_over, tt=_tt_now)     # v5.7 placeholder (L9, R9)
+    refuse_unlisted_capex_component(n, j)                     # v5.7 placeholder (L9, R8)
 
     # Override sanity band (round-2): the engine measured each declared
     # override against the company's last FILED value for that field. A value
@@ -3345,6 +3796,14 @@ def main():
     check_iprd_judgment_current(n, j)
     j_ads = validate_ads_ratio(j)
     j_second_pass = validate_second_pass(j)
+    # v5.7 step 2 (07 §1.12, after the IPR&D checks so their refusals keep precedence): the declared share classes
+    # (L8, R6) and the declared facts + saved method runs (L2, R3) — validation and folder verification only, no
+    # influence yet. None / no-ops in L0.
+    j_sc = validate_share_classes(j)                          # L8 (R-1)
+    check_share_classes_sync(n, j_sc, folder)                 # L8 (R-2 … R-5)
+    check_up_c_obligation(n, j)                               # L8 (R-8)
+    fc = load_declared_facts(folder, n, j, prior_score)       # L2
+    runs = load_method_runs(folder, n)                        # L2
 
     # ADS gate (round-2): a 20-F/40-F filer's per-share figures are per
     # ordinary share; the traded price is per ADS. Without an applied
@@ -3414,13 +3873,17 @@ def main():
                      f"ttm_oe_per_share {ttm_val} by >0.1% (a zero only exactly; or ttm.json is missing) and judgment.json declares no "
                      "matching base_override {value, source, reason} — a pinned base must come from ttm.py "
                      "(ttm.json, via --ttm) or be declared as a base_override; an arbitrary pin is not scoreable")
-    # [Codex review r23 of PR #47] ...and the rest of what the run read from ttm.json must still be ttm.json's
-    try:
-        with open(f"{folder}/ttm.json", encoding="utf-8") as f:
-            _tt_now = json.load(f)
-    except Exception:
-        _tt_now = None
+    # [Codex review r23 of PR #47] ...and the rest of what the run read from ttm.json must still be ttm.json's (the
+    # document read above, before the capex refusals)
     check_ttm_inputs_current(n, _tt_now)
+    refuse_pre57_ttm_json(n, _tt_now)                          # v5.7 placeholder (L9, R8 / R9 TTM provenance)
+    check_ttm_on_declaration(n, j_sc, _tt_now)                 # v5.7 placeholder (L8, R-6)
+    # v5.7 step 3 (07 §1.12): the declared 6-K interim bridge (L4), then R7's plan, then L4's obligation (a declared
+    # bridge may be rejected through ttm_rejection_reason) — all None / no-ops in L0
+    interim = interim_pin_state(folder, n, j, _tt_now)         # L4 (R2a)
+    declined = None                                            # L4: judgment.json interim_bridge_declined, once read
+    plan = ttm_rejection_state(folder, n, j, j_sc=j_sc, interim=interim, j_over=j_over)   # R7
+    check_interim_obligation(n, j, interim, plan=plan)         # L4 (R2a)
 
     # [v5.5 — Codex, PR #31] Overrides ttm.py used to fill the legs of the
     # TTM base this score is pinned to, where the annual engine applied none
@@ -3449,6 +3912,10 @@ def main():
                 impact["unblocks_tier"] = True
     else:
         impact = compute_override_impact(ticker, n, ttm_only=ttm_only)
+    # v5.7 step 4 (07 §1.12): the lanes' measurements, every one before the first write — L4's bridged vs
+    # annual-median measurement, L8's filed-class vs total-unit replay (None in L0)
+    interim_meas = interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score)   # L4 (R2a)
+    sc_impact = share_classes_impact(ticker, n, j_sc, prior_score)                                # L8 (R6)
     # [ADDITION — M3] The payable-earnings pin's own impact (registry
     # base_override event): measured through the current engine only on
     # current-release output, carried / not measured otherwise — and, like
@@ -3464,6 +3931,11 @@ def main():
             and _iprd_amortized_record(n) is not None):
         amortized_impact = (iprd_amortized_not_measured(n, _not_measured_note(n.get("engine_release"))) if release_mismatch
                             else iprd_amortized_impact(ticker, n))
+    # v5.7 step 4 (R7): the one base_alternatives record — the published base beside every other base computed for
+    # the run (absorbs L4's interim_meas; each ttm.json alternative gated on L8's declaration). None in L0.
+    base_alts = build_base_alternatives(ticker, folder, n, j, plan, impact=impact, payable_impact=payable_impact,
+                                        amortized_impact=amortized_impact, release_mismatch=release_mismatch,
+                                        prior_score=prior_score, j_sc=j_sc, interim_meas=interim_meas)
 
     scenarios = {}
     for lbl in LABELS:
@@ -3520,6 +3992,18 @@ def main():
     _dbl = check_no_double_softening(n, j, model_fit)
     if _dbl:
         fail(_dbl)
+    # v5.7 step 5 (07 §1.12; lane L1, R1): misfit_notch, before registry_transaction — L1 sets
+    # `tier_final, notch, override_in_force = misfit_notch(n, j, model_fit, fit_basis, override, is_57_run(n))` here
+    # (and rewrites the model_fit line above, the second tier_final below and the tier_override_reason copy)
+    notch, override_in_force = None, None
+    # v5.7 step 6 (lane L3 / L3b, R4 / M6): moat_ev = _moat.evaluate(folder, n, j, facts=..., is_57=is_57_run(n), ...)
+    moat_ev = None
+    # v5.7 step 7: every influence check together, on 5.7 runs only and before the first write — each lane calls
+    # check_influence (L2) for its own reason fields here (tier_override_reason, base_override, misfit_notch_reason,
+    # the moat reasons, the share-class reasons, ttm_rejection_reason)
+    if is_57_run(n):
+        if plan and plan.get("reason"):
+            pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
     score.update({
         "engine_release": n.get("engine_release"),
         # [Codex review r12 of PR #47] the run this score was built from (its verified content_hash): reprice.py and
@@ -3543,7 +4027,8 @@ def main():
     reasons, exit_reasons = alert_reasons(
         tier_final, n.get("tier_by_numbers"), override, conf, model_fit,
         bool(reported and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
-        stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None)
+        stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None,
+        share_classes_raise=share_classes_raise_reason(sc_impact))   # v5.7 (L8): None in L0
     score["alert_eligible"] = tier_final in ("S", "A") and not reasons
     if reasons:
         score["alert_suppressed_reason"] = "; ".join(reasons)
@@ -3560,6 +4045,8 @@ def main():
         score["moat_for"] = j["moat_for"]
     if j.get("moat_against"):
         score["moat_against"] = j["moat_against"]
+    if moat_ev is not None:   # v5.7 (L3): score.json moat_evidence — never written in L0
+        score["moat_evidence"] = moat_ev
     if reported:
         score["overrides"] = [dict({"field": f, "value": reported[f]["value"], "kind": reported[f]["kind"],
                                     "source": reported[f]["source"]},
@@ -3571,9 +4058,20 @@ def main():
     _iprd = iprd_score_block(n)   # v5.6: only when the engine recorded the block
     if _iprd is not None:
         score["iprd_adjustment"] = _iprd
+    # v5.7 step 8 (07 §1.12): the lanes' score.json blocks — none written in L0
+    score_interim_fields(score, n, j, interim, interim_meas)        # L4 (R2)
+    score_share_classes_fields(score, n, j_sc, sc_impact)           # L8 (R6)
+    if base_alts is not None:                                        # R7
+        score["base_alternatives"] = base_alts
     nd_ads = ads_net_debt_basis(n)  # [ADDITION — M1] pre-5.5 ADS record: the ratio on the ADS basis
     if nd_ads is not None:
         score["net_debt_to_normalized_oe_ads_basis"] = round(nd_ads["ads_basis"], 4)
+    # v5.7 step 8 (L2): the stamps that describe this score (declared_facts, method_runs, previous_score,
+    # key_numbers_sha256) go here, then key_numbers.md is built as one text — before the write phase, so nothing
+    # below can fail between the registry and the last write. (L0: the same text the old in-place writer produced.)
+    previous = previous_score_summary(prior_score, n)               # L2
+    kn_text = build_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr, facts_check=fc,
+                                method_runs=runs, previous=previous, interim=interim, instance=instance)
     # Every refusal and every measurement (override and payable impact) is
     # behind us. [Codex review r19 of PR #47] The write phase is ONE registry
     # transaction: under the registry lock the prior registry is re-read, the
@@ -3593,7 +4091,11 @@ def main():
         scope_event = ({"old_cap": ads_corr["old_cap"], "new_cap": ads_corr["cap"], "in_scope": bool(scope_val)}
                        if scope_corrected else None)
         update_registry(ticker, reported, j_over, impact, j, n, scope_event=scope_event, payable_impact=payable_impact,
-                        amortized_impact=amortized_impact, deferred_events=deferred_events, lock_held=True)
+                        amortized_impact=amortized_impact, deferred_events=deferred_events, lock_held=True,
+                        # v5.7: the lanes' registry inputs (each None in L0: no event)
+                        notch=notch, override_in_force=override_in_force, facts_check=fc, moat_ev=moat_ev,
+                        interim=interim, declined=declined, share_classes=sc_impact, up_c=None, unlisted_acks=None,
+                        base_alts=base_alts)
         if scope_rewrite is not None:
             rewrite_judgment_scope(jpath, scope_rewrite)
             print(f"make_score.py: {ticker} judgment.json in_scope_under_40b {j['in_scope_under_40b']} -> {scope_rewrite} "
@@ -3601,7 +4103,7 @@ def main():
                   f"the pre-5.5 engine printed {_usd(ads_corr['old_cap'])})")
             j["in_scope_under_40b"] = scope_rewrite
         write_score_json(spath, score)
-        write_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr)
+        write_key_numbers_text(folder, kn_text)   # v5.7 (L0): built above, written last
     print(f"make_score.py: wrote {spath} — tier {score['tier_final']}, weighted IRR {score['implied_irr']}, IV@15 {score['iv_at_15']}")
 
 

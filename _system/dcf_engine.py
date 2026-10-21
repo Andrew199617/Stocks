@@ -552,6 +552,37 @@ silently put the charge on the FY count. A TTM run whose window carries an acqui
 an unconfirmed charge, or charges in 2 or more of the last 3 FY: the recurrence figure) without it is refused
 BAD_TTM_SHARES (exit 3; make_score's override-impact replay is not refused and has no denominator); one with no such
 figure runs, its block recording no denominator.
+v5.7 (2026-10-19, Andrew's rulings R1-R9 — engine_release "5.7.0"; engine_version stays 5). One release bump for the
+whole rulings PR: "a 5.7 run" is a dcf_numbers.json with engine_release >= 5.7.0 (facts.RULINGS_RELEASE /
+facts.is_rulings_run, fixed at 5.7.0 for good — the obligations start there and do not move with later bumps). The
+new worker obligations bind 5.7 runs only; make_score keeps rebuilding output from older releases (both alert gates
+closed, as for every release change). The items below are written by the lane that builds each one; the scaffold
+(L0) placed the headings, the shared helpers and the call sites, and changed nothing else:
+- (L0, the scaffold, 2026-10-21) ENGINE_RELEASE 5.7.0. edgar_submissions(cik) is the run's one EDGAR submissions
+  fetch per CIK (memoised on success, raises on failure; tests patch it): filer_annual_form and filer_sic read
+  through it — the same document each of them fetched on its own before — and keep their failure results (None /
+  (None, None)). Pure helpers with no caller yet: MISFIT_SECTORS, MISFIT_SIC_RANGES (SIC 6726 BDCs as credit),
+  MISFIT_SIC_LABEL, NOTCH_BELOW, sic_misfit_class, notch_tier, folder_sic (the folder's own fundamentals.json
+  profile.sic, else profile.json about.sic; no network). Stubs placed for their lanes, behaviour-neutral:
+  fetch_instance and load_annual_instance (returns the companyfacts unchanged; called right after the CIK fallback),
+  TTM_INPUT_OPTIONAL_FIELDS = () (ttm.json keys hashed into ttm_input_hash only when present — none yet, so every
+  recorded hash is unchanged), and the ttm.json read (ttm_doc, same file and guard) moved up to just before the
+  latest-FY row (`latest = hist[-1]`), where the share-class lane needs it; the IPR&D block reads the same variable.
+- (L1, R1) Sector misfits by universe sector OR EDGAR SIC (sector_model), the delta_nwc fix, the SIC read through
+  edgar_submissions: [L1 writes this item]
+- (L4, R2b) Annual facts from the filing's own XBRL instance (load_annual_instance, annual_from_instance) and the tag
+  hoist: [L4 writes this item]
+- (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT: [L8 writes this item]
+- (L9, R8) Capex components summed (KNX): [L9 writes this item]
+- (L9, R9) Capitalized software / development is capex (JKHY): [L9 writes this item]
+- (L9, R8/R9 TTM provenance) ttm.json engine_release in ttm_inputs: [L9 writes this item]
+- (L3b, M6 moat direction, Andrew 2026-10-20) --moat-trend and the growth hold: [L3b writes this item]
+- (R7) STALE_FY discretion made checkable: no engine logic change; the amortized-median refusal text names
+  ttm_rejection_reason: [R7 writes this item]
+- (L2 R3 facts and quotes, L3 R4 moat scorecard) no engine change: facts.json and the moat scorecard are
+  make_score's.
+- (L5 ops, L6 site) no engine change: preflight compares this ENGINE_RELEASE with origin/main's (the drift guard);
+  the site reads sector_model / annual_from_instance from dcf_numbers.json.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -561,7 +592,8 @@ from zoneinfo import ZoneInfo
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYS = f"{BASE}/_system"
-ENGINE_RELEASE = "5.6.0"
+# v5.7: the 2026-10-19 rulings release (R1-R9); 5.6.0 was the acquired-IPR&D release before it
+ENGINE_RELEASE = "5.7.0"
 ET_TODAY = datetime.datetime.now(ZoneInfo("America/New_York")).date()
 MEASURE = "--measure" in sys.argv   # compute + print JSON only: no file writes, no gate exit
 HOLD_YEARS = 2          # v4: growth holds at g0 for 2 years before the fade starts
@@ -819,6 +851,61 @@ PAYABLE_BASIS = "payable_earnings_5y"
 # accident & health (6321), banks and REITs keep the OCF base + notch rule.
 PAYABLE_SIC = frozenset({"6331", "6351"})
 
+# v5.7 (Andrew, 2026-10-19 — ruling R1; L0 places the helpers, L1 wires them): sector-misfit detection keys on the
+# universe sector OR the filer's EDGAR SIC code. The sector rule is v5's (Finance, Real Estate, Utilities); the SIC
+# ranges (inclusive) catch the misfits the universe files elsewhere (managed-care insurers OSCR / MOH / CNC, SIC 6324,
+# universe sector Health Care). Pure: no caller yet in L0.
+MISFIT_SECTORS = ("Finance", "Real Estate", "Utilities")
+MISFIT_SIC_RANGES = (
+    (4900, 4949, "utility"),            # electric, gas transmission / distribution, combination, water
+    (4960, 4999, "utility"),            # steam, irrigation, cogeneration; NOT 4950-4959 sanitary / waste services
+    (6020, 6099, "bank"),               # depository institutions
+    (6111, 6199, "credit"),             # non-depository credit
+    (6211, 6211, "broker_dealer"),      # security brokers, dealers & flotation companies
+    (6311, 6399, "insurance_carrier"),  # life, A&H, hospital & medical service plans (6324), P&C, surety, title, NEC
+    (6510, 6519, "real_estate_lessor"), # real-estate operators / lessors (REITs filing outside 6798)
+    (6726, 6726, "credit"),             # business development companies: lenders (07 §1.5)
+    (6798, 6798, "reit"),               # real estate investment trusts
+)
+MISFIT_SIC_LABEL = {"utility": "utilities", "bank": "banks", "credit": "credit lenders",
+                    "broker_dealer": "broker-dealers", "insurance_carrier": "insurance carriers",
+                    "real_estate_lessor": "real-estate lessors", "reit": "REITs"}
+NOTCH_BELOW = {"S": "A", "A": "B", "B": "C", "C": "D"}
+
+
+def sic_misfit_class(sic):
+    """v5.7 (R1): the MISFIT_SIC_RANGES class of a 4-digit SIC code (str or int), else None (bad input included)."""
+    try:
+        v = int(str(sic).strip())
+    except (TypeError, ValueError):
+        return None
+    for lo, hi, cls in MISFIT_SIC_RANGES:
+        if lo <= v <= hi:
+            return cls
+    return None
+
+
+def notch_tier(tier):
+    """v5.7 (R1): one tier below for S / A / B / C; D, F and anything else (None) are returned unchanged — the caller
+    records why the notch could not be applied."""
+    return NOTCH_BELOW.get(tier, tier)
+
+
+def folder_sic(base, ticker):
+    """v5.7 (R1): (sic, description, source) from the folder's own EDGAR-derived files, no network: fundamentals.json
+    profile.sic, then profile.json about.sic; (None, None, None) when neither has one. Reads only; never raises on an
+    absent or unreadable file."""
+    for name, key in (("fundamentals.json", "profile"), ("profile.json", "about")):
+        try:
+            with open(f"{base}/{ticker}/{name}", encoding="utf-8") as f:
+                doc = json.load(f)
+        except (OSError, ValueError):
+            continue
+        blk = doc.get(key) if isinstance(doc, dict) else None
+        if isinstance(blk, dict) and str(blk.get("sic") or "").strip():
+            return str(blk["sic"]).strip(), blk.get("sic_description"), name
+    return None, None, None
+
 def payable_base_per_share(figures, shares, ads_ratio=None):
     """Insurer payable-earnings base (Andrew, 2026-10-19): the average of the
     last five fiscal years' operating income available to common shareholders
@@ -1001,26 +1088,56 @@ def _override_impact(ticker, price, headline_base, headline_irr):
             "weighted_irr_zero_fill": zi, "weighted_irr_final": fi,
             "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides — its override effect shows in ttm.py output / make_score's payable_5y impact"}
 
+_submissions_cache = {}   # v5.7 (L0): cik -> the EDGAR submissions JSON this process fetched (successes only)
+
+
+def edgar_submissions(cik):
+    """v5.7 (L0, 07 §1.2): the filer's EDGAR submissions JSON, fetched once per process per CIK — memoised on
+    success only — and shared by filer_annual_form, filer_sic and (L4) the annual-instance check, so a run makes one
+    submissions fetch, not one per reader. Raises on a failed fetch (get_json's own retries spent): each caller
+    degrades exactly as when it fetched the document itself (filer_annual_form -> None, filer_sic -> (None, None)).
+    Tests patch it (engine55_harness.run_engine)."""
+    if cik not in _submissions_cache:
+        _submissions_cache[cik] = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+    return _submissions_cache[cik]
+
+
 def filer_sic(cik):
     """(sic, sicDescription) from EDGAR submissions — the authoritative industry
-    code the payable-earnings rule is gated on (PAYABLE_SIC)."""
+    code the payable-earnings rule is gated on (PAYABLE_SIC). v5.7: read through
+    edgar_submissions (one fetch per run); (None, None) when it fails, as before."""
     try:
-        sub = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+        sub = edgar_submissions(cik)
         return (str(sub.get("sic") or "") or None), (sub.get("sicDescription") or None)
     except Exception:
         return None, None
 
 def filer_annual_form(cik):
     """The filer's most recent annual form (10-K / 20-F / 40-F) from EDGAR
-    submissions — foreign-form filers need ADS-ratio handling (see ads_ratio)."""
+    submissions — foreign-form filers need ADS-ratio handling (see ads_ratio).
+    v5.7: read through edgar_submissions; None when it fails, as before."""
     try:
-        sub = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+        sub = edgar_submissions(cik)
         for f in sub.get("filings", {}).get("recent", {}).get("form", []):
             if f in ("10-K", "10-K/A", "20-F", "40-F"):
                 return f.replace("/A", "")
     except Exception:
         pass
     return None
+
+
+def fetch_instance(cik, filing):
+    """v5.7 stub (L0; lane L4, R2b): the annual filing's own XBRL instance, (instance bytes, instance URL) — (None,
+    None) until L4 builds it on xbrl_instance (lazy import). Tests patch it (engine55_harness.run_engine). No caller
+    yet."""
+    return None, None
+
+
+def load_annual_instance(ticker, cik, facts):
+    """v5.7 stub (L0; lane L4, R2b): (facts, annual_from_instance record | None). L4 merges the annual facts EDGAR
+    companyfacts has not ingested yet from the filing's own XBRL instance; until then the companyfacts come back
+    unchanged (the same object) and no record — main() calls it right after the CIK fallback."""
+    return facts, None
 
 def get_json(url, headers=UA, timeout=90):
     last = None
@@ -2185,16 +2302,22 @@ def load_iprd_judgment_hash(ticker):
 TTM_INPUT_TOP_FIELDS = ("fy_end", "ytd_end", "inputs", "ttm_ocf", "ttm_capex", "ttm_sbc", "ttm_shares_diluted",
                         "ttm_oe_total", "ttm_oe_per_share", "capex_components", "split_adjustment")
 TTM_INPUT_OVERRIDE_FIELDS = ("field", "value", "kind", "legs_filled")   # overrides_used (never the source text)
+# v5.7 (L0 placeholder; the share-class lane L8 fills it): ttm.json keys that are input legs only when the file
+# carries them — hashed when present, never as a null when absent, so every ttm.json without them (all of today's)
+# keeps its recorded ttm_input_hash. Empty in L0.
+TTM_INPUT_OPTIONAL_FIELDS = ()
 
 
 def ttm_input_legs(tt):
     """The canonical input legs of ttm.json object tt (None when absent or unreadable): TTM_INPUT_TOP_FIELDS (numbers
-    as floats, null members dropped) and overrides_used's TTM_INPUT_OVERRIDE_FIELDS (entry order ignored). Identity
-    (ticker, cik, entity), warnings and provenance-only notes are not inputs."""
+    as floats, null members dropped), overrides_used's TTM_INPUT_OVERRIDE_FIELDS (entry order ignored) and (v5.7)
+    each TTM_INPUT_OPTIONAL_FIELDS key the file carries. Identity (ticker, cik, entity), warnings and provenance-only
+    notes are not inputs."""
     if not isinstance(tt, dict):
         return None
     out = {k: _iprd_canon(tt.get(k)) for k in TTM_INPUT_TOP_FIELDS}
     out["overrides_used"] = _iprd_entries(tt.get("overrides_used"), TTM_INPUT_OVERRIDE_FIELDS)
+    out.update({k: _iprd_canon(tt[k]) for k in TTM_INPUT_OPTIONAL_FIELDS if k in tt})
     return out
 
 
@@ -4309,6 +4432,9 @@ def main():
                     name = facts.get("entityName", name)
         except Exception:
             pass
+    # v5.7 (L0 call site; lane L4, R2b): the annual facts companyfacts has not ingested yet, from the filing's own XBRL
+    # instance — the stub returns the companyfacts unchanged and no record
+    facts, annual_instance = load_annual_instance(ticker, cik, facts)
 
     # v5.3: each field's candidates are us-gaap tags first, then ("ifrs-full", tag)
     # pairs — period_series merges across both in this priority order. IFRS picks
@@ -4974,6 +5100,18 @@ def main():
                                 "periods_override_not_rescaled": [h["period_end"] for h in hist
                                                                   if h["shares_tag"] == "OVERRIDE" and h["shares_diluted"]]}
 
+    # v5.6 IPR&D's ttm.json read, hoisted here unchanged in v5.7 (L0): the same file, the same guard, read once — the
+    # share-class lane (L8) reads it before the latest-FY row; the IPR&D block below reads this same ttm_doc.
+    ttm_doc = None
+    try:
+        with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as _f:
+            ttm_doc = json.load(_f)
+        if not isinstance(ttm_doc, dict):
+            ttm_doc = None
+    except Exception:
+        ttm_doc = None
+    # v5.7 share classes (L8)
+
     latest = hist[-1] if hist else {}
     shares = latest.get("shares_diluted")
     net_debt = latest.get("net_debt")  # v5.4: per-period basis (see debt_tag); None = unknown, never zero
@@ -5258,15 +5396,8 @@ def main():
     # YTD leg when the base is ttm.json's TTM), then ONE per-share charge on the
     # base's own share basis. The base is never touched: the charge is a
     # year-0 outflow deducted from every IV and added to the IRR price in the
-    # scenario block below (adjusted_value / adjusted_irr).
-    ttm_doc = None
-    try:
-        with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as _f:
-            ttm_doc = json.load(_f)
-        if not isinstance(ttm_doc, dict):
-            ttm_doc = None
-    except Exception:
-        ttm_doc = None
+    # scenario block below (adjusted_value / adjusted_irr). ttm.json (ttm_doc) was read before the latest-FY row
+    # (v5.7: the read is hoisted there, unchanged).
     # [v5.6 review] The IPR&D window and share denominator follow the BASE's own basis, not the CLI flag that pinned
     # it: a --base-oe-ps pin equal to ttm.json's ttm_oe_per_share (within 0.1% — make_score's via_ttm rule) is a TTM
     # base unless its declaration says otherwise, and an iprd_amortized pin is judged on its declared native base's

@@ -43,6 +43,8 @@ engine-5.5 bundle and PR #47's engine-5.6 HALO re-score) may ride with its
 engine change — the PR body must say the owner directed it; do not ask for
 it to be split out. Policy-bearing files are `make_score.py` (tiers,
 alert gates), `dcf_engine.py` (the formula), `queue.py` (claims and pass 2),
+`facts.py` and `quote_tokens.py` (engine 5.7: which runs carry the 5.7
+obligations, the declared-facts and snippet rules make_score applies),
 `WORKER_SPEC.md` and `SECOND_PASS.md` (what workers must do). A change to
 any of them needs (a) a test in `_system/tests/` that fails on the old code,
 (b) the matching sentence in the specs and `README.md` updated, and (c) a
@@ -296,7 +298,7 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `engine_version` 5 and no `engine_release` is a pre-5.4 run and must
    not claim the band or alert fields. Since 5.5, make_score rebuilding a
    score on output from another engine release sets `alert_eligible` and
-   `exit_alert_eligible` false ("engine output predates release <the current release> (5.6.0 since 2026-10-19) —
+   `exit_alert_eligible` false ("engine output predates release <the current release> (5.7.0 since Andrew's 2026-10-19 rulings; 5.6.0 the acquired-IPR&D release before it) —
    re-run the engine before an entry / exit alert") and carries
    `override_impact` from the prior score.json
    (`impact_carried_from_prior_score: true`) or records it as not

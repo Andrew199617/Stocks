@@ -96,8 +96,11 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYS = os.path.dirname(HERE)
 sys.path.insert(0, SYS)
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
 import make_score as M  # noqa: E402
 import dcf_engine as E  # noqa: E402
+import rulings57  # noqa: E402  (v5.7 G16: the current-release obligations, applied by Run)
 
 MAKE_SCORE = os.path.join(SYS, "make_score.py")
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
@@ -167,7 +170,7 @@ def _stamp(n):
 class Run:
     """One synthetic folder in a temp STOCKS_BASE; make_score.py runs as a subprocess."""
 
-    def __init__(self, n, j=None, judgment_text=None, prior_score=None, csv_rows=None):
+    def __init__(self, n, j=None, judgment_text=None, prior_score=None, csv_rows=None, files=None):
         self.base = tempfile.mkdtemp(prefix="make_score_55_")
         self.folder = os.path.join(self.base, T)
         self.sysdir = os.path.join(self.base, "_system")
@@ -177,10 +180,23 @@ class Run:
             with open(os.path.join(self.sysdir, name), "w", encoding="utf-8") as f:
                 f.write(FAIL_LOUD)
         self.registry = os.path.join(self.sysdir, "overrides_registry.json")
+        # v5.7 (L0): extra files a test needs, {path relative to the temp base: a JSON object, or text} — e.g.
+        # "TST/facts.json", "TST/fundamentals.json", "_system/industry_returns.json"
+        for rel, obj in (files or {}).items():
+            path = os.path.join(self.base, *rel.split("/"))
+            os.makedirs(os.path.dirname(path), exist_ok=True)
+            with open(path, "w", encoding="utf-8", newline="" if isinstance(obj, str) else None) as f:
+                f.write(obj if isinstance(obj, str) else json.dumps(obj, indent=1, ensure_ascii=False))
+        # v5.7 (07 G16): a current-release record is a 5.7 run — the lanes' obligations (rulings57; the identity until
+        # each lane fills its own) apply here, so no pre-existing assertion changes
+        if judgment_text is None:
+            n, j = rulings57.apply(n, j if j is not None else _judgment(n), folder=self.folder)
+        else:
+            n, _ = rulings57.apply(n, None, folder=self.folder)
         with open(os.path.join(self.folder, "dcf_numbers.json"), "w", encoding="utf-8") as f:
             json.dump(_stamp(n), f, indent=1, ensure_ascii=False)
         if judgment_text is None:
-            judgment_text = json.dumps(j if j is not None else _judgment(n), indent=1, ensure_ascii=False) + "\n"
+            judgment_text = json.dumps(j, indent=1, ensure_ascii=False) + "\n"
         with open(self.jpath, "w", encoding="utf-8", newline="") as f:
             f.write(judgment_text)
         self.had_prior = prior_score is not None

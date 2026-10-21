@@ -693,7 +693,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
     output from another release (engine 5.5: `engine_release` ≠ the current release)
     never alerts — `alert_eligible` and `exit_alert_eligible` are false with "engine output
     predates release <the current release> — re-run the engine before an entry / exit alert"
-    (5.6.0 since the acquired-IPR&D release); re-run the engine first.
+    (5.7.0 since Andrew's 2026-10-19 rulings release; 5.6.0, the acquired-IPR&D release, before it — every
+    folder scored on 5.6.0 or earlier is stale until its next engine run); re-run the engine first.
 
 Parallel workers: `queue.py claim` is atomic under a lock — two workers can never claim
 the same company. Never coordinate by editing the queue.

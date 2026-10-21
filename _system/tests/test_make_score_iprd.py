@@ -10,8 +10,8 @@ dcf_engine.py / ttm.py stand-ins, the registry redirected). Each test fails on t
    and the score's own tier / IRR / IV fields are the engine's adjusted ones; key_numbers.md prints one line per
    period, the total and per-share charge, the IVs before → after at 15/20/25% and the weighted IRR before → after.
 2. A record without the block — 5.6 output for a filer with no IPR&D expense, or 5.5.0 output rebuilt under the
-   5.6.0 code — prints nothing new and gets no key; the 5.5.0 one closes both alert gates ("engine output predates
-   release 5.6.0").
+   current code (5.6.0 when written, 5.7.0 since the 2026-10-19 rulings) — prints nothing new and gets no key; the
+   5.5.0 one closes both alert gates ("engine output predates release <current>").
 3. base_override basis "iprd_amortized": accepted when the engine carried it (treatment amortized_in_base, the
    one-time deduction suppressed), recorded in the registry's base_override event (basis, figures, shares,
    native_base); refused when malformed, when the run did not carry it, when it disagrees with the engine's
@@ -156,23 +156,24 @@ def test_record_without_the_block_prints_nothing_new():
 
 
 def test_55_output_rebuilt_under_56_closes_the_gates_and_prints_nothing_new():
-    """Release handling (main-agent addition): 5.5.0 output (no block) rebuilt by the 5.6.0 make_score is another release — both
-    alert gates closed with "engine output predates release 5.6.0", predates_55 stays False (no ADS correction), no
-    iprd key or section."""
+    """Release handling (main-agent addition): 5.5.0 output (no block) rebuilt by the current make_score (5.6.0 when
+    written; 5.7.0 since the 2026-10-19 rulings) is another release — both alert gates closed with "engine output
+    predates release <current>", predates_55 stays False (no ADS correction), no iprd key or section."""
     import make_score as M
     n = copy.deepcopy(TI._plain())
     n.pop("iprd_adjustment")
     n["engine_release"] = "5.5.0"
     assert not M.predates_55(n) and not M.predates_55({"engine_release": "5.6.0", "market_cap_basis": {}})
     assert M.release_tuple("5.6.0") == (5, 6, 0) > M.release_tuple("5.5.0")
-    assert M.release_mismatch_reason("5.5.0") == "engine output predates release 5.6.0"
+    assert M.release_tuple(E.ENGINE_RELEASE) >= (5, 6, 0)
+    assert M.release_mismatch_reason("5.5.0") == f"engine output predates release {E.ENGINE_RELEASE}"
     r = _score(n)
     assert r.rc == 0, r.err
     s = r.result["score"]
     assert "iprd_adjustment" not in s and "Acquired IPR&D" not in r.result["key"]
     gate = s.get("alert_suppressed_reason") or s.get("exit_alert_suppressed_reason") or ""
     assert s["alert_eligible"] is False and s["exit_alert_eligible"] is False, s
-    assert "engine output predates release 5.6.0" in gate, gate
+    assert f"engine output predates release {E.ENGINE_RELEASE}" in gate, gate
 
 
 def test_iprd_amortized_declaration_is_accepted_and_registered():
@@ -1284,10 +1285,13 @@ def test_a_current_release_score_must_carry_the_runs_content_hash():
     import build_site as B
     s, own, other = _r13_runs()
     hashless = {k: v for k, v in s.items() if k != "dcf_content_hash"}
-    assert hashless["engine_release"] == own["engine_release"] == E.ENGINE_RELEASE == "5.6.0"
+    # the current release (5.6.0 when written, 5.7.0 since the rulings) is at or after HASH_REQUIRED_FROM_RELEASE
+    assert hashless["engine_release"] == own["engine_release"] == E.ENGINE_RELEASE
+    assert R.requires_content_hash({"engine_release": E.ENGINE_RELEASE})
     for run in (own, other):   # even its own run: a current-release score names its run by the hash, nothing else
         ok, mm = R.score_matches_run(hashless, run)
-        assert not ok and any("dcf_content_hash" in x and "5.6.0" in x for x in mm), mm
+        assert not ok and any("dcf_content_hash" in x and E.ENGINE_RELEASE in x and R.HASH_REQUIRED_FROM_RELEASE in x
+                              for x in mm), mm
         assert B.score_from_run(hashless, run) == (ok, mm), (B.score_from_run(hashless, run), mm)
     day = own["as_of"]
     try:

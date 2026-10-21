@@ -61,6 +61,7 @@ for _p in (HERE, SYS):
     if _p not in sys.path:
         sys.path.insert(0, _p)
 import engine55_harness as H  # noqa: E402
+import rulings57  # noqa: E402  (v5.7 G16: the current-release obligations, applied by _ms_run)
 
 E = H._engine()  # a private dcf_engine copy (neutral argv, MEASURE False) for the unit tests; each run_engine executes its own fresh copy and never touches sys.modules["dcf_engine"]
 MAKE_SCORE = os.path.join(SYS, "make_score.py")
@@ -3025,6 +3026,9 @@ def _ms_run(n, j, prior_score=None):
     try:
         os.makedirs(os.path.join(base, "TST"))
         os.makedirs(os.path.join(base, "_system"))
+        # v5.7 (07 G16): the 5.7 run's obligations (rulings57; the identity until the lanes fill them, a changed
+        # record re-stamped)
+        n, j = rulings57.apply(n, j, folder=os.path.join(base, "TST"))
         for name, obj in (("dcf_numbers.json", n), ("judgment.json", j), ("score.json", prior_score)):
             if obj is not None:
                 with open(os.path.join(base, "TST", name), "w", encoding="utf-8") as fh:

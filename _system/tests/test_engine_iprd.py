@@ -30,6 +30,7 @@ import copy
 import json
 import math
 import os
+import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -198,8 +199,10 @@ def _assert_base_untouched(n, plain):
 # 1. Release and the shared helpers
 # ===========================================================================
 def test_release_is_5_6_0():
-    """Release: ENGINE_RELEASE 5.6.0 (engine_version stays 5)."""
-    assert E.ENGINE_RELEASE == "5.6.0", E.ENGINE_RELEASE
+    """Release: the acquired-IPR&D rules ship from ENGINE_RELEASE 5.6.0 (engine_version stays 5); a later release
+    (5.7.0, the 2026-10-19 rulings — test_rulings57_scaffold pins it) keeps them, so this checks >= 5.6.0."""
+    m = re.match(r"(\d+)\.(\d+)\.(\d+)$", E.ENGINE_RELEASE)
+    assert m and tuple(int(x) for x in m.groups()) >= (5, 6, 0), E.ENGINE_RELEASE
 
 
 def test_helpers_are_the_identity_at_zero_and_shift_exactly():
@@ -727,7 +730,7 @@ def test_app_bit_for_bit_with_no_iprd_facts():
     for lbl in LABELS:
         assert n["scenarios"][lbl]["iv_at_20"] == E.present_value(E.replay_paths(n)[0][lbl], 0.20, n["g_terminal"])
     assert n["iprd_adjustment"] is None and not flags(n, "ACQUIRED_IPRD")
-    assert n["engine_release"] == "5.6.0"
+    assert n["engine_release"] == E.ENGINE_RELEASE   # the current release (5.6.0 when written, 5.7.0 since the rulings)
 
 
 # ===========================================================================
@@ -1191,6 +1194,9 @@ def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
     assert "ttm_inputs" not in rec and n["ttm_inputs"] == E.ttm_inputs_record(tt), n.get("ttm_inputs")
     assert n["ttm_inputs"]["ttm_shares_diluted"] == rec["iprd_adjustment"]["shares_denominator"] == 122092000
     dated = {"as_of", "price_source", "content_hash", "diagnostics", "iprd_judgment_hash", "ttm_inputs"}
+    # the committed record is release 5.6.0; a fresh run carries the current release (5.7.0 since the rulings)
+    assert rec["engine_release"] == "5.6.0" and n["engine_release"] == E.ENGINE_RELEASE, n["engine_release"]
+    dated.add("engine_release")
     assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
     assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
             == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})
