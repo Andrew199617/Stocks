@@ -30,7 +30,7 @@ Files here:
 - `value` in base units (dollars, not millions; a share count, not millions of shares); `pct` / `pp` / `bps` are
   fractions (`0.126` = 12.6%, `0.0042` = 42 bps); a range is `[low, high]` (never a folder fact).
 - `unit`: an ISO currency (`USD`, `EUR`, …), `<CCY>/share` or `<CCY>/ADS`, `pct`, `pp`, `bps`, `x`, `count`
-  (`unit_label` names a count: `stores`, `employees`). `scale` (`""`, `K`, `M`, `B`, `T`) and `precision` (0–6
+  (`unit_label` names a count: `stores`, `employees` — a noun with no digits). `scale` (`""`, `K`, `M`, `B`, `T`) and `precision` (0–6
   decimals at that scale) are how the figure is quoted — they set the verification tolerance.
 - `period`: `FY2025`, `Q2 FY2026`, `H1 FY2026`, `9M FY2026`, `TTM 2026-06-30`, `CY2026` or a `YYYY-MM-DD`
   instant. FY labels are the calendar year of the fiscal year's END (the folder files' convention). Guidance and

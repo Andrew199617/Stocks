@@ -12,6 +12,9 @@ Each test fails on the code before the lane (e22e814: queue.py done / pass2-done
 25 done refuses a key_numbers.md edited by hand (integrity check I2);
 26 controls: a pre-5.7 run with an untraced number and a queue entry with no folder are done as before;
 27 pass2-done (done_no_change / done_changed) is gated the same way, before its lock; pass2-reset is not.
+Review fixes (2026-10-21), each failing on the lane's first build (cc121e2):
+r01 judgment.json edited after make_score (probs_used / moat_score holding an analysis figure) never opens the gate;
+r07 a saved method run replaced after make_score keeps done refused until make_score re-runs.
 """
 import json
 import os
@@ -119,6 +122,58 @@ def test_done_skips_pre57_and_folderless_entries():
         assert p.returncode == 0 and q.status() == "done", (p.stdout, p.stderr)
         p = q.queue("done", "NOFOLDER")
         assert p.returncode == 0 and q.status("NOFOLDER") == "done", (p.stdout, p.stderr)
+    finally:
+        q.close()
+
+
+def test_judgment_edited_after_make_score_never_opens_the_gate():
+    """Review r01 (2026-10-21): no integrity check binds judgment.json to the score, so judgment.json is never a
+    source — five numbers typed into probs_used (or a moat_score) after make_score leave an untraced analysis figure
+    untraced, and done stays refused. The scenario probabilities still trace: the engine records them in
+    dcf_numbers.json (make_score refuses a probs_used that differs from them)."""
+    q = Q(analysis=GOOD + "\nOperating margin reached 13.7% last year; the base case carries 30%.\n")
+    try:
+        p = q.queue("done", T)
+        assert p.returncode == 1 and 'analysis.md:3 "13.7%"' in p.stderr and '"30%"' not in p.stderr, p.stderr
+        assert "1 number traces to no generated file" in p.stderr, p.stderr      # review: the verb agrees
+        jp = os.path.join(q.r.folder, "judgment.json")
+        with open(jp, encoding="utf-8") as f:
+            j = json.load(f)
+        j["probs_used"] = [0.137] + list(j["probs_used"])[1:]
+        j["moat_score"] = 13.7
+        with open(jp, "w", encoding="utf-8") as f:
+            json.dump(j, f, indent=1)
+        p = q.queue("done", T)
+        assert p.returncode == 1 and 'analysis.md:3 "13.7%"' in p.stderr, (p.returncode, p.stdout, p.stderr)
+        assert q.status() == "in_progress"
+    finally:
+        q.close()
+
+
+def test_saved_run_replaced_after_make_score_keeps_done_refused():
+    """Review r07 (2026-10-21): a dcf_numbers_<label>.json replaced after make_score (--save-run ... --replace, or
+    another hash-valid record copied over it) is not the run key_numbers.md rendered — done refuses (I4 names it)
+    until make_score re-runs; then the new run's figures trace."""
+    import check_quotes as CQ
+    from test_make_score_55 import _stamp
+    q = Q(analysis=GOOD + "\nThe preliminary run gave a weighted IRR of 14.37%.\n")
+    try:
+        assert CQ.save_run(q.r.folder, "prelim")[0] == 0
+        q.r.run()
+        assert q.r.rc == 0, q.r.err[-800:]
+        assert q.queue("done", T).returncode == 1
+        with open(os.path.join(q.r.folder, "dcf_numbers.json"), encoding="utf-8") as f:
+            n = json.load(f)
+        with open(os.path.join(q.r.folder, "dcf_numbers_prelim.json"), "w", encoding="utf-8") as f:
+            json.dump(_stamp(dict(n, implied_irr_weighted=0.1437)), f, indent=1)
+        p = q.queue("done", T)
+        assert p.returncode == 1 and ("I4: dcf_numbers_prelim.json changed after make_score.py — re-run "
+                                      "make_score.py") in p.stderr, (p.returncode, p.stdout, p.stderr)
+        assert q.status() == "in_progress"
+        q.r.run()
+        assert q.r.rc == 0, q.r.err[-800:]
+        p = q.queue("done", T)
+        assert p.returncode == 0 and q.status() == "done", (p.stdout, p.stderr)
     finally:
         q.close()
 

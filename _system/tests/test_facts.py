@@ -30,6 +30,12 @@ A17 a citation added after the engine run needs no engine re-run (IPR&D record: 
 A18 a registry holding declared_facts / cited tier_override events and another ticker's deferred-payment event loads
     and survives; a declared_facts event with a stray `periods` key is refused (the name collision rule);
 plus check_influence's trace_only / require_anchor (10 §(l)) and misfit_notch_reason, and the engine lines.
+Review fixes (2026-10-21), each failing on the lane's first build (cc121e2):
+r02 worker text the engine echoes into its flag strings (ads_ratio.source, an override's or a share-class source)
+    never traces a reason, long or short;
+r05 a hand base_override pin's own figure never anchors its reason (R3: never a third-party figure alone), not even
+    through a saved copy of the pinned run;
+r06 a unit_label with a digit is refused (it prints unquoted on the Declared facts line).
 """
 import contextlib
 import copy
@@ -99,6 +105,13 @@ def F6(**kw):   # calc: the synthetic record's price $20 against IV@15 $25
                  "precision": 1, "period": "2026-10-18", "kind": "folder", "type": "actual",
                  "calc": {"op": "growth", "of": ["dcf_numbers.json:price", "dcf_numbers.json:iv_at_15"]},
                  "used_for": ["context"]}, **kw)
+
+
+def SITES(**kw):   # filing count with a display noun
+    return dict({"id": "F9", "label": "operating sites at year end", "value": 1200, "unit": "count",
+                 "unit_label": "sites", "scale": "", "precision": 0, "period": "FY2025", "kind": "filing",
+                 "type": "metric", "metric": "sites", "source": dict(FIL, section="Item 2 — Properties"),
+                 "snippet": "we operated 1,200 sites", "used_for": ["context"]}, **kw)
 
 
 def _doc(*facts, **extra):
@@ -214,13 +227,18 @@ def test_schema_refusals():
         (_doc(F4(used_for=["moat:market_position"])), "market_position is not a moat pillar since the M1b amendment"),
         (_doc(F1(), not_quantities=[{"text": "rounded to $0.1M", "reason": "a rounding note"}]), "facts.json: not_quantities entry 'rounded to $0.1M' is a quantity (money) — declare it as a fact or reword it"),
         (_doc(F2(value=[1.0, 2.0])), "facts.json F2 (folder): a [low, high] range cannot be a folder fact"),
+        # review r06 (2026-10-21): unit_label prints unquoted after the value, so a digit in it would put a number into
+        # key_numbers.md — it is a display noun only
+        (_doc(SITES(unit_label="sites (13.7% share)")),
+         "facts.json F9: unit_label must be a short noun with no digits (stores, MW) — display only"),
     ]
     for doc, want in cases:
         fc, why = _check(doc)
         assert fc is None and why is not None and want in why, (want, why)
     assert _check(_doc(F1(), not_quantities=[{"text": "Paragon 28", "reason": "a company name"}]))[0] is not None
+    assert _check(_doc(SITES()))[0] is not None and _check(_doc(SITES(unit_label="Au eq. oz")))[0] is not None
     # end to end: a malformed declaration refuses before any write (and the old make_score scored it)
-    for doc, want in (cases[0], cases[6], cases[18]):
+    for doc, want in (cases[0], cases[6], cases[18], cases[-1]):
         with scored(facts=doc) as s:
             _refuses(s, want)
     with scored(facts="{not json") as s:
@@ -444,6 +462,33 @@ def test_influence_rules_on_57_runs():
                 assert s.rc == 0, s.err[-1500:]
             else:
                 _refuses(s, "judgment.json base_override quotes $7.31B that is neither an engine figure nor a fact it cites")
+    # review r05 (2026-10-21; R3: a third-party figure is never a base override's sole support): the pin's own figures
+    # (inputs.base_oe_ps_arg, base_oe_per_share, the declared value) are accepted in its reason but never anchor it —
+    # a pin resting only on itself (a consensus $3.25, no fact) refuses; an engine figure outside the pin (the
+    # 1,000,000,000 diluted shares) or a cited filing fact tagged base_override anchors it
+    pin_fact = {"id": "F10", "label": "FY2025 owner earnings per share", "value": 3.25, "unit": "USD/share",
+                "precision": 2, "period": "FY2025", "kind": "filing", "type": "actual", "source": dict(FIL),
+                "snippet": "owner earnings of $3.25 per share", "used_for": ["base_override"]}
+    third = "analyst consensus calls for $3.25 a share of owner earnings"
+    for reason, src, needle in (
+            (third, "Example Wire consensus, 2026-09-28", "judgment.json base_override traces only to the pinned base "
+             "itself — the pin must rest on an engine figure other than the pin, or on a cited filing / release / "
+             "folder fact tagged base_override (R3: a third-party figure is never a base override's sole support)"),
+            (third + " [F5]", "Example Wire consensus, 2026-09-28", "judgment.json base_override cites F5, but F5 does "
+             "not list used_for base_override"),
+            ("owner earnings $3.25 a share over 1,000,000,000 diluted shares", "the FY2025 10-K", None),
+            ("owner earnings of $3.25 per share [F10]", "the FY2025 10-K", None)):
+        bo = {"value": 3.25, "kind": "estimate", "source": src, "reason": reason, "basis_window": {"window": "fy"}}
+        with scored(n=n, j=_judgment(n, base_override=bo), facts=_doc(F1(), F4(), F5(), pin_fact)) as s:
+            if needle:
+                _refuses(s, needle)
+            else:
+                assert s.rc == 0, (reason, s.err[-1500:])
+    # a saved run that repeats the pin (the pinned run itself, saved) is no anchor either
+    with scored(n=n, j=_judgment(n, base_override={"value": 3.25, "kind": "estimate", "source": "x", "reason": third,
+                                                   "basis_window": {"window": "fy"}}),
+                facts=_doc(F5()), extra={f"{T}/dcf_numbers_pinned.json": _stamp(n)}) as s:
+        _refuses(s, "judgment.json base_override traces only to the pinned base itself")
 
 
 def _influence(field, text, fc, n=None, folder=FIX, **kw):
@@ -484,6 +529,35 @@ def test_trace_only_require_anchor_and_the_notch_reason():
     why = _influence("misfit_notch_reason", "adjusted revenue $1.95B [F1]", fc)
     assert why and "cites F1, but F1 does not list used_for misfit_notch" in why, why
     assert _influence("misfit_notch_reason", "x 99.9%", fc, n=_stamp(_numbers(release="5.6.0"))) is None
+
+
+def test_worker_text_the_engine_echoes_never_traces_a_reason():
+    """Review r02 (2026-10-21): the engine echoes worker text into its flag strings — ADS_RATIO_APPLIED repeats
+    ads_ratio.source, OVERRIDE_APPLIED an override's source (past its first ')'), the share-class DATA_GAP its source
+    — so a number in that text is the worker's own, never an engine figure: a reason quoting it is refused, long or
+    short, end to end and in-process; the same figure as a real engine number traces."""
+    from test_make_score_55 import _ads
+    for src in ("20-F cover page; NRR 131% per investor deck", "NRR 131%"):
+        n = _ads(2.0, 20.0, release=CUR)
+        n["ads_ratio"] = dict(n["ads_ratio"], source=src)
+        n["fragility_flags"] = [f"ADS_RATIO_APPLIED: 20-F filer — per-share figures scaled x2.0 ordinary shares per "
+                                f"ADS ({src}) so they are comparable to the ADS price; TTM pins are taken as per-ADS "
+                                "already"]
+        j = _judgment(n, tier_override="A", tier_override_reason="net revenue retention 131% supports A")
+        with scored(n=n, j=j) as s:
+            _refuses(s, "judgment.json tier_override_reason quotes 131% that is neither an engine figure nor a fact it "
+                        "cites")
+    ov_src = "deck (p. 4) shows 131% NRR"
+    n = _stamp(_numbers(
+        overrides_applied={"capex": {"value": 1e6, "kind": "estimate", "source": ov_src, "reason": "a filing gap"}},
+        share_class_mismatch={"declared": True, "source": "class B 131% of votes", "reason": "two classes"},
+        fragility_flags=[f"OVERRIDE_APPLIED:capex — filing gap in the last 3 FY filled by a judgment override "
+                         f"(estimate: {ov_src}); an override never replaces a filed value — see overrides_applied",
+                         "DATA_GAP:shares — SHARE_CLASS_MISMATCH: judgment.json declares that the filed share count is "
+                         "a different class from the traded security (class B 131% of votes); no per-share base"]))
+    why = _influence("tier_override_reason", "NRR 131% supports it", None, n=n)
+    assert why and "quotes 131% that is neither an engine figure" in why, why
+    assert _influence("tier_override_reason", "weighted IRR 17.00% supports it", None, n=n) is None
 
 
 # ---------------------------------------------------------------- 16. staleness

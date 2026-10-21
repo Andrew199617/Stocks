@@ -29,13 +29,17 @@ What a token is (tokenize):
 Ignore rules (02 §6.4, amended by the L2 rebase A12 and A19):
 - Blanked before tokenizing: accession numbers, ISO dates / timestamps, YYYY-MM, year ranges (FY2024–25, 2023/24,
   FY23–25), release references ("5.4 final run", "new in 5.5", "pre-5.5"), SEC form names, statement pages (F-8),
-  dates with month names, references (Item 7, Note 34, step 8 (c), § 8.6, PR #31, rule 3, tier 1-3 ...), versions
-  (v5.1, 5.5.0, "release 5.7", "python 3.13"), SIC / CIK / CUSIP codes, IV@15 / @12%, period labels (Q2 2026, H1
-  2026, FY 2025, FY26, 9M, YTD), times, "top / first / last / next / past N", ordinals, integer durations (3-yr,
-  15-year, 90 days, 4 quarters — integers only, so "21.6 months" stays a number), share-scale constants (1/100,
+  dates with month names, references (Item 7, Item 1A, Note 34, step 8 (c), § 8.6, PR #31, rule 3, Tier 1 / Level
+  3 alone ...), versions (v5.1, 5.5.0, "release 5.7", "python 3.13"), SIC / CIK / CUSIP codes, IV@15 / @12%, period
+  labels (Q2 2026, H1 2026, FY 2025, FY26, 9M, YTD), times, "top / first / last / next / past N" (N a whole number of
+  up to three digits), ordinals, integer durations (3-yr, 15-year, 90 days, 4 quarters — integers only, so "21.6
+  months" stays a number), share-scale constants (1/100,
   100×, and a power-of-ten divisor or multiplier: "/ 1000", "÷ 1,000", "× 1,000,000"), "x10.0", accounting-standard
   references (ASC 805-50, ASU 2016-13, IFRS 15, IAS 36, Topic 842), XBRL viewer pages (R4.htm), index and proper
   names (S&P 500, Russell 2000, Nasdaq-100, FTSE 100, Phillips 66 ...) and a folder's facts.json not_quantities.
+  A reference or convention word blanks only a whole number that is not itself a quantity: never the leading digits
+  of "first 100,000 subscribers", "past 2.5 billion", "notes 1,250 million", "senior notes 5.25%" or the 13.2% in
+  "Tier 1 13.2%" (review r03, 2026-10-21: those spans used to vanish — neither checked nor counted as ignored).
 - Classified as ignored after tokenizing: a bare integer 1900-2100 (a year), a bare integer ≤ 20 with no currency,
   unit, decimals or comma (a small count: "5 of the last 5", "moat 6/10"), a zero.
 - Ignored only when UNMATCHED (fallbacks, so an engine figure equal to one still matches; the caller decides):
@@ -113,9 +117,13 @@ _REFERENCE_STRIP = [re.compile(p) for p in (
     r"\bF-\d+\b",                                                        # financial-statement pages (p. F-8)
     r"(?i)\b(?:" + _MONTHS + r")\.?\s+\d{1,2}(?:st|nd|rd|th)?(?:,\s*\d{4})?\b",
     r"(?i)\b\d{1,2}(?:st|nd|rd|th)?\s+(?:" + _MONTHS + r")\b\.?(?:\s+\d{4})?",
+    # [review r03, 2026-10-21] the reference number is a whole number: never the leading digits of "notes 1,250
+    # million" or "notes 5.25%" (the rest was then no token at all); a letter suffix (Item 1A) only on an integer
     r"(?i)\b(?:items?|steps?|sections?|§|rulings?|decisions?|rounds?|phase|clauses?|rules?|notes?|part|schedule|"
-    r"exhibits?|ex\.|pages?|pp\.|p\.|chapter|article|art\.|tier\s+[1-3]|level\s+[1-3]|stage)\s*#?\d+(?:\.\d+)*[a-z]?"
-    r"(?:\s*\([a-z]\))?(?:\s?[–-]\s?\d+)?",                             # "pp. 51–52", "Notes 4-5"
+    r"exhibits?|ex\.|pages?|pp\.|p\.|chapter|article|art\.|stage)\s*#?\d+(?:(?:\.\d+)+|[a-z])?(?![\d.,]?\d)"
+    r"(?:\s*\([a-z]\))?(?:\s?[–-]\s?\d+(?![\d.,]?\d))?" + r"(?!\s?(?:%|percent|pps?\b|bps?\b|x(?![A-Za-z0-9])|×|"
+    r"(?:trillion|billion|million|thousand|tn|bn|mn|mm)\b))",           # "pp. 51–52", "Notes 4-5"
+    r"(?i)\b(?:tier|level)\s+[1-3]\b(?![.,]\d)",                         # Tier 1 capital, Level 3 assets (alone)
     r"§\s?\d+(?:\.\d+)*",
     r"#\d+",                                                             # PR numbers, rankings (#2 spine)
     r"\bv\d+(?:\.\d+)*\b",                                               # v5, v5.1
@@ -134,7 +142,10 @@ _REFERENCE_STRIP = [re.compile(p) for p in (
 # (a snippet "a 3-year agreement" shows the number 3)
 _CONVENTION_STRIP = [re.compile(p) for p in (
     r"@\s?\d+(?:\.\d+)?%?",                                              # IV@15, @12%
-    r"(?i)\b(?:top|first|last|next|past)\s+\d+\b",                       # top 10, last 3
+    # top 10, last 3 — [review r03, 2026-10-21] a complete small integer only: never "first 100,000", "past 2.5
+    # billion", "first 250 million", "last 12.5%" (their leading digits were blanked and the rest produced no token)
+    r"(?i)\b(?:top|first|last|next|past)\s+\d{1,3}(?![\d.,]?\d)(?!\s?(?:%|percent|pps?\b|bps?\b|x(?![A-Za-z0-9])|×|"
+    r"(?:trillion|billion|million|thousand|tn|bn|mn|mm|[BMKkmbT])(?![A-Za-z0-9])))",
     r"\b\d+(?:st|nd|rd|th)\b",                                           # ordinals
     r"(?i)(?<![\d.,])\b\d+\s*(?:-|–)?\s*(?:yr|year|month|day|week|quarter)s?\b(?!\s+(?:revenue|cagr))",  # 3-yr, 90 days
     r"\b1/100\b|\b100×|\b100x\b",                                        # share-scale constants

@@ -20,21 +20,30 @@ quoted in analysis.md (a method range) must be saved this way, never retyped. Ex
 
 What traces (02 §6.6): key_numbers.md, every section, with worker text removed (every judgment.json string of 12+
 characters and every facts.json label / snippet / section / publisher where it occurs, the acquired-IPR&D deal names,
-everything inside “…” — make_score's echo of worker text — and the pre-5.7 echo patterns); dcf_numbers.json's
-numeric leaves and the numbers inside its engine strings (never under content_hash, cik, paths, growth_paths,
-source, reason, ack_reason, deal, iprd_judgment_hash, ttm_input_hash, accession, url, at any depth); ttm.json the
-same way; judgment.json probs_used and moat_score; the saved method runs dcf_numbers_<label>.json (hash-verified);
-the exact values behind key_numbers.md's filed history and return / margin series; and the declared facts' exact
-values — only after integrity check I3 holds, so they are exactly what key_numbers.md rendered. Tokens are read by
-quote_tokens (the tokenizer, ignore rules and tolerance at the quoted precision); a method constant or release
-number in its context is ignored only when it matches nothing.
+the worker text the engine record itself carries — below), everything inside “…” — make_score's echo of worker text
+— and the pre-5.7 echo patterns); dcf_numbers.json's numeric leaves and the numbers inside its engine strings (never
+under content_hash, cik, paths, growth_paths, source, reason, ack_reason, deal, iprd_judgment_hash, ttm_input_hash,
+accession, url, at any depth); ttm.json the same way; the saved method runs dcf_numbers_<label>.json (hash-verified
+and, on a gated run, the very runs score.json method_runs recorded — I4); the exact values behind key_numbers.md's
+filed history and return / margin series; and the declared facts' exact values — only after integrity check I3
+holds, so they are exactly what key_numbers.md rendered. Worker text the engine copies into its record (any
+string under source / reason / ack_reason / deal — ads_ratio.source, an override's source, a share-class source)
+and echoes into its flag strings (ADS_RATIO_APPLIED, OVERRIDE_APPLIED, the share-class DATA_GAP) is blanked
+wherever the record's strings or key_numbers.md repeat it, at any length — through the record's own copy, which I1
+binds. judgment.json is never a source (review r01, 2026-10-21: nothing binds it to the score, so a number typed
+into probs_used or moat_score after make_score would pass; the engine's own scenario probabilities and moat are in
+dcf_numbers.json, and make_score refuses a judgment that differs from them). Tokens are read by quote_tokens (the
+tokenizer, ignore rules and tolerance at the quoted precision); a method constant or release number in its context
+is ignored only when it matches nothing.
 
 Integrity (gated runs; each failure fails the run): I1 score.json was built from this dcf_numbers.json (its
 dcf_content_hash is the run's content_hash, valid over the record — reprice.run_hash_problem's rule); I2
 key_numbers.md is what make_score.py wrote (sha256, CRLF normalized to LF, equals score.json key_numbers_sha256: a
 number added to key_numbers.md by hand never passes, and a make_score run that stopped between score.json and
 key_numbers.md fails safe); I3 facts.json is the declaration make_score rendered (facts_sha256); I4 every saved run
-verifies, names this ticker and is listed in score.json method_runs; I5 analysis.md is not empty.
+verifies, names this ticker and is the run score.json method_runs recorded under its label (same content_hash: a
+saved run replaced after make_score — --save-run ... --replace — fails until make_score re-runs and renders it);
+I5 analysis.md is not empty.
 
 Imports facts and quote_tokens only (never make_score: make_score imports this module); no network; writes nothing
 except --save-run.
@@ -60,6 +69,9 @@ SAVED_RUN_GLOB = "dcf_numbers_*.json"
 WORKER_TEXT_MIN = 12          # 02 §6.6: a judgment.json string this long is blanked wherever key_numbers.md echoes it
 SKIP_KEYS = frozenset({"content_hash", "cik", "paths", "growth_paths", "source", "reason", "ack_reason", "deal",
                        "iprd_judgment_hash", "ttm_input_hash", "accession", "instance_url", "url"})   # rebase A11
+# [review r02, 2026-10-21] the keys under which an engine record carries worker text it copied from judgment.json
+# (and may echo into a flag string): every string below them is blanked from the record's other strings
+WORKER_TEXT_KEYS = frozenset({"source", "reason", "ack_reason", "deal"})
 FILED_HISTORY_YEARS = 10
 RETURN_SERIES_YEARS = 6
 # 07 §1.9 item 4: the return / margin series key_numbers.md prints — the set 02 §1.1 measured (OCF margin and revenue
@@ -236,6 +248,40 @@ def _leaves_into(vs, obj, blank=(), skip_paths=(), path=""):
         vs.add_tokens(_qt.numbers(s))
 
 
+def record_worker_strings(rec):
+    """[review r02, 2026-10-21] The worker text an engine record (dcf_numbers.json, a saved run, ttm.json) carries:
+    every string with a digit at any depth under a WORKER_TEXT_KEYS key — ads_ratio.source, an override's source and
+    reason, a share-class source, an acquired-IPR&D deal name — at any length. The engine echoes some of it into its
+    flag strings (ADS_RATIO_APPLIED "(<source>)", OVERRIDE_APPLIED "(<kind>: <source>)", the share-class DATA_GAP),
+    so a number inside it would otherwise read as an engine figure; the record's own copy is what the echo repeats,
+    whatever judgment.json says now (the record is hash-bound, judgment.json is not)."""
+    out = []
+
+    def strings(o):
+        if isinstance(o, str):
+            if re.search(r"\d", o) and o.strip():
+                out.append(o)
+        elif isinstance(o, dict):
+            for v in o.values():
+                strings(v)
+        elif isinstance(o, list):
+            for v in o:
+                strings(v)
+
+    def walk(o):
+        if isinstance(o, dict):
+            for k, v in o.items():
+                if k in WORKER_TEXT_KEYS:
+                    strings(v)
+                else:
+                    walk(v)
+        elif isinstance(o, list):
+            for v in o:
+                walk(v)
+    walk(rec)
+    return out
+
+
 def judgment_strings(j):
     """The worker text judgment.json carries: every string leaf of 12+ characters, and the acquired-IPR&D deal
     names of any length (rebase A11)."""
@@ -312,20 +358,53 @@ def saved_run_problem(label, rec, ticker):
     return None
 
 
-def engine_sources(folder, n, judgment=None, ttm=None, exclude_paths=(), blank=()):
+def path_value(obj, path):
+    """The value at dotted path `path` of a JSON object, or None."""
+    cur = obj
+    for k in str(path).split("."):
+        if not isinstance(cur, dict) or k not in cur:
+            return None
+        cur = cur[k]
+    return cur
+
+
+def bound_saved_run(label, rec, ticker, runs=None):
+    """True when saved run `label` counts as a source: verbatim engine output for this ticker and, when `runs`
+    ({label: content_hash}, score.json method_runs) is given, the very run make_score recorded under that label
+    (review r07, 2026-10-21: I4 binds by content_hash, not by label alone)."""
+    if saved_run_problem(label, rec, ticker) is not None:
+        return False
+    return runs is None or (label in runs and runs[label] == rec.get("content_hash"))
+
+
+def method_runs_bound(score):
+    """{label: content_hash} of score.json method_runs (the saved runs make_score rendered), or {} without any."""
+    return {r.get("label"): r.get("content_hash") for r in (score or {}).get("method_runs") or [] if isinstance(r, dict)}
+
+
+def engine_sources(folder, n, ttm=None, exclude_paths=(), blank=(), runs=None):
     """The engine sources a reason (make_score.check_influence) or analysis.md traces to, as a ValueSet:
-    dcf_numbers.json (n) leaves and engine-string numbers, ttm.json, the verified saved runs, the filed history /
-    return series / derived values key_numbers.md prints, judgment.json probs_used and moat_score. exclude_paths:
-    dotted dcf_numbers.json paths kept out (10 §(l) trace_only)."""
+    dcf_numbers.json (n) leaves and engine-string numbers, ttm.json, the verified saved runs (only those in `runs`,
+    {label: content_hash}, when given — I4's binding), and the filed history / return series / derived values
+    key_numbers.md prints. Strings lose the worker text in `blank` and, record by record, the worker text the record
+    itself carries (record_worker_strings: an echo of ads_ratio.source in ADS_RATIO_APPLIED is the worker's, not an
+    engine figure). exclude_paths: dotted dcf_numbers.json paths kept out (10 §(l) trace_only). judgment.json is
+    never read (review r01, 2026-10-21: it is not bound to the score; its probs_used and moat_score must equal the
+    engine's, which are here already)."""
     vs = _qt.ValueSet()
     ticker = (n or {}).get("ticker") or os.path.basename(os.path.normpath(folder))
-    _leaves_into(vs, n or {}, blank, set(exclude_paths or ()))
+    blank = list(blank or ())
+    paths = set(exclude_paths or ())
+    _leaves_into(vs, n or {}, blank + record_worker_strings(n or {}), paths)
     tt = ttm if ttm is not None else _try_load(os.path.join(folder, "ttm.json"))
     if isinstance(tt, dict):
-        _leaves_into(vs, tt, blank)
+        _leaves_into(vs, tt, blank + record_worker_strings(tt))
     for label, _, rec in saved_runs(folder):
-        if saved_run_problem(label, rec, ticker) is None:
-            _leaves_into(vs, rec, blank)
+        if bound_saved_run(label, rec, ticker, runs):
+            # an excluded path stays out of a saved run too wherever the saved run repeats the scored run's figure
+            # there — a saved copy of a pinned run repeats the pin (review r05, 2026-10-21)
+            same = {p for p in paths if path_value(rec, p) is not None and path_value(rec, p) == path_value(n, p)}
+            _leaves_into(vs, rec, blank + record_worker_strings(rec), same)
     fh = filed_history(folder, n or {})
     for rec in fh["rows"]:
         for col, _ in FILED_COLUMNS:
@@ -339,12 +418,28 @@ def engine_sources(folder, n, judgment=None, ttm=None, exclude_paths=(), blank=(
             vs.add(v)
     for v in derived_values(n or {}):
         vs.add(v)
-    j = judgment if judgment is not None else _try_load(os.path.join(folder, "judgment.json"))
-    if isinstance(j, dict):
-        for p in j.get("probs_used") or []:
-            vs.add(p)
-        vs.add(j.get("moat_score"))
     return vs
+
+
+def worker_blank(j=None, facts_doc=None, n=None):
+    """The worker text blanked wherever key_numbers.md or an engine string repeats it (02 §6.6 item 1): judgment.json's
+    strings (12+ characters, and the deal names), the declaration's labels / snippets / sections / publishers /
+    not_quantities reasons, and the worker text engine record n carries (record_worker_strings, any length). One
+    list for check_folder and make_score.check_influence."""
+    return (judgment_strings(j if isinstance(j, dict) else {}) + facts_strings(facts_doc)
+            + (record_worker_strings(n) if isinstance(n, dict) else []))
+
+
+def influence_sources(folder, n, judgment=None, facts_doc=None, exclude_paths=()):
+    """The engine set a 5.7 reason traces to (make_score.check_influence; 02 §5): engine_sources with check_folder's
+    worker text blanked — the judgment's (judgment.json read from the folder when not given) and the declaration's
+    (facts.json likewise) — so a number the worker typed into ads_ratio.source, an override's source or another
+    echoed string never supports the worker's own reason (review r02, 2026-10-21). Every saved run that verifies
+    counts (make_score's load_method_runs already refused a tampered one)."""
+    j = judgment if isinstance(judgment, dict) else (_try_load(os.path.join(folder, "judgment.json")) or {})
+    doc = facts_doc if isinstance(facts_doc, dict) else _facts.load(folder)[0]
+    return engine_sources(folder, n, exclude_paths=exclude_paths, blank=worker_blank(j, doc if isinstance(doc, dict)
+                                                                                    else None))
 
 
 class Sources:
@@ -357,11 +452,14 @@ class Sources:
         return self.values.match(tok)
 
     @classmethod
-    def for_folder(cls, folder, n=None, facts_doc=None, include_key_numbers=True, include_facts=True, judgment=None):
+    def for_folder(cls, folder, n=None, facts_doc=None, include_key_numbers=True, include_facts=True, judgment=None,
+                   runs=None):
+        """runs: {label: content_hash} — only those saved runs count (a gated run's I4 binding); None: every saved
+        run that verifies. judgment.json supplies worker text to blank, never a number."""
         n = n if n is not None else _try_load(os.path.join(folder, "dcf_numbers.json")) or {}
         j = judgment if judgment is not None else _try_load(os.path.join(folder, "judgment.json")) or {}
-        blank = judgment_strings(j) + facts_strings(facts_doc)
-        vs = engine_sources(folder, n, judgment=j, blank=blank)
+        blank = worker_blank(j, facts_doc, n)
+        vs = engine_sources(folder, n, blank=blank, runs=runs)
         if include_key_numbers:
             try:
                 with open(os.path.join(folder, "key_numbers.md"), encoding="utf-8") as f:
@@ -468,8 +566,9 @@ def check_folder(folder, strict=False):
         if not ferr and rep["facts_sha256"] != (declared or {}).get("facts_sha256"):
             rep["integrity"].append("I3: facts.json changed after make_score.py — re-run make_score.py so "
                                     "key_numbers.md renders it")
-        # I4 — every saved run verifies and is listed
-        listed = {r.get("label") for r in (score or {}).get("method_runs") or [] if isinstance(r, dict)}
+        # I4 — every saved run verifies and is the run score.json method_runs recorded under its label (review r07,
+        # 2026-10-21: by content_hash — a run replaced after make_score is not the one key_numbers.md rendered)
+        listed = method_runs_bound(score)
         for label, _, rec in saved_runs(folder):
             why = saved_run_problem(label, rec, ticker)
             if why:
@@ -477,18 +576,25 @@ def check_folder(folder, strict=False):
             elif label not in listed:
                 rep["integrity"].append(f"I4: dcf_numbers_{label}.json is not listed in score.json method_runs — "
                                         "re-run make_score.py")
+            elif listed[label] != rec.get("content_hash"):
+                rep["integrity"].append(f"I4: dcf_numbers_{label}.json changed after make_score.py — re-run "
+                                        "make_score.py")
         # I5
         if not text.strip():
             rep["integrity"].append("I5: analysis.md is empty")
     facts_ok = doc is not None and not ferr and rep["facts_sha256"] == (declared or {}).get("facts_sha256")
     rep["sources"]["facts"] = len(doc.get("facts") or []) if facts_ok and isinstance(doc, dict) else 0
+    # a gated run's saved runs trace only once I4 holds for them (the same rule as the declared values and I3); a
+    # legacy report keeps every saved run that verifies (pre-5.7 scores record no method_runs)
+    runs = method_runs_bound(score) if gate else None
     rep["sources"]["method_runs"] = [label for label, _, rec in saved_runs(folder)
-                                     if saved_run_problem(label, rec, ticker) is None]
+                                     if bound_saved_run(label, rec, ticker, runs)]
     nq = [e.get("text") for e in (doc.get("not_quantities") or []) if isinstance(e, dict)
           and isinstance(e.get("text"), str)] if isinstance(doc, dict) and not ferr else []
     # the declared values trace only once I3 holds (they are then exactly what key_numbers.md rendered); the labels
     # and snippets are worker text either way, never a source
-    src = Sources.for_folder(folder, n=n, facts_doc=doc if isinstance(doc, dict) else None, include_facts=facts_ok)
+    src = Sources.for_folder(folder, n=n, facts_doc=doc if isinstance(doc, dict) else None, include_facts=facts_ok,
+                             runs=runs)
     untraced, ignored, checked, matched = trace_text(text, src, nq)
     rep["checked"], rep["matched"], rep["ignored"] = checked, matched, ignored
     for t in untraced:
@@ -517,8 +623,9 @@ def refusal_text(rep, limit=10):
                 + "; ".join(rep["integrity"]) + f". Run python3 _system/check_quotes.py {rep['ticker']} for the report")
     un = rep.get("untraced") or []
     shown = ", ".join(f"analysis.md:{u['line']} \"{u['raw']}\"" for u in un[:limit]) + (" …" if len(un) > limit else "")
-    return (f"analysis.md fails the quote check (engine release {rep.get('engine_release')}): {len(un)} number"
-            f"{'s' if len(un) != 1 else ''} trace to no generated file — {shown}. Run python3 _system/check_quotes.py "
+    verb = "numbers trace" if len(un) != 1 else "number traces"     # review r08: "1 number traces"
+    return (f"analysis.md fails the quote check (engine release {rep.get('engine_release')}): {len(un)} {verb} to no "
+            f"generated file — {shown}. Run python3 _system/check_quotes.py "
             f"{rep['ticker']} for the report; quote key_numbers.md, declare research figures in facts.json and re-run "
             "make_score.py, save preliminary runs with --save-run")
 

@@ -16,6 +16,13 @@ tokenizer):
 6. the CLI's exit codes (gated pass / fail, legacy, --strict, unreadable folder, I2 hand-edited key_numbers.md);
 7. --all gates only 5.7 runs;
 8. --save-run copies verified engine output only.
+Review fixes (2026-10-21), each failing on the lane's first build (cc121e2):
+r01 judgment.json probs_used / moat_score are never a source (judgment.json is not bound to the score);
+r01 / r02 worker text the engine copies into its record and echoes into flag strings (ads_ratio.source) is blanked
+   by the record's own copy, at any length, whatever judgment.json says after make_score;
+r03 a convention or reference word ("first", "next", "past", "notes", "Tier 1") never swallows a research number;
+r07 I4 binds a saved run to score.json method_runs by content_hash, not by label alone;
+r08 the refusal says "1 number traces".
 """
 import contextlib
 import hashlib
@@ -35,7 +42,7 @@ for _p in (HERE, SYS):
         sys.path.insert(0, _p)
 import quote_tokens as Q  # noqa: E402
 import check_quotes as CQ  # noqa: E402
-from test_make_score_55 import Run, _numbers, _judgment, T  # noqa: E402
+from test_make_score_55 import Run, _numbers, _judgment, _stamp, T  # noqa: E402
 
 CHECK = os.path.join(SYS, "check_quotes.py")
 
@@ -119,6 +126,22 @@ def test_ignore_rules():
     assert rep["status"] == "legacy" and not any(u["raw"].strip("$") == "805" for u in rep["untraced"]), rep["untraced"]
     # not_quantities texts are blanked
     assert Q.numbers("Paragon 28 beat", not_quantities=["Paragon 28"]) == []
+    # review r03 (2026-10-21): a convention word (top / first / last / next / past) or a reference word (note, tier,
+    # level ...) blanks only a complete small integer — never the leading digits of a research number, which then
+    # produced no token at all (neither checked nor ignored)
+    for s, raw in (("The company signed its first 100,000 subscribers in Brazil.", "100,000"),
+                   ("Management plans the next 1,250 store openings.", "1,250"),
+                   ("Over the past 2.5 billion in buybacks the share count fell.", "2.5 billion"),
+                   ("It repaid its notes 1,250 million early.", "1,250 million"),
+                   ("The bank's Tier 1 13.2% ratio cleared the floor.", "13.2%"),
+                   ("Its senior notes 5.25% due 2030 were refinanced.", "5.25%"),
+                   ("It reached its first 250 million users.", "250 million"),
+                   ("The last 12.5% of the float is locked up.", "12.5%")):
+        un, ig, checked, _ = CQ.trace_text(s, CQ.Sources(Q.ValueSet()))
+        assert [u.raw for u in un] == [raw] and checked == 1, (s, [u.raw for u in un], ig)
+    for s in ("its top 10 customers", "the last 3 years", "the first 100 days", "Tier 1 capital", "Level 3 assets",
+              "Item 1A", "Item 7A", "Notes 4-5", "Note 12.3", "tier 2 suppliers", "past 52 weeks"):
+        assert Q.numbers(s) == [], (s, Q.numbers(s))
 
 
 # ---------------------------------------------------------------- 3. tolerance
@@ -164,19 +187,53 @@ def test_worker_text_is_never_a_source():
     try:
         n = {"ticker": T, "engine_version": 5, "engine_release": "5.5.0", "price": 20.0, "iv_at_15": 25.0,
              "fragility_flags": ["OVERRIDE_APPLIED: capex filled (estimate: about 7.75% of revenue per the deck)"]}
-        j = {"tier_override_reason": "we trim it: 7.25% haircut on the base", "moat_score": 6,
+        j = {"tier_override_reason": "we trim it: 7.25% haircut on the base", "moat_score": 6.5,
              "probs_used": [0.1, 0.25, 0.3, 0.25, 0.1]}
         kn = ("# TST — key numbers\n- Tier: C (agent override of B: we trim it: 7.25% haircut on the base) · confidence medium\n"
               "- Misfit notch: “a typed 6.25% figure”\n| capex | $1.0M | estimate | 8.25% of sales (the deck) | FY2025 |\n"
               "- capex reason: 9.25% of revenue is the run rate\n- Weighted IRR: 17.00%\n")
         facts = {"schema": 1, "ticker": T, "facts": [{"id": "F1", "label": "share of 5.75% users", "snippet": "a 4.75% move"}]}
-        d = _folder(base, T, n, j, kn, "7.25% 6.25% 8.25% 9.25% 7.75% 5.75% 4.75% but 17.00% and 25%\n", facts=facts)
+        # review r01: judgment.json probs_used / moat_score are judgment text, not a source (25%, 6.5)
+        d = _folder(base, T, n, j, kn, "7.25% 6.25% 8.25% 9.25% 7.75% 5.75% 4.75% but 17.00% and 25%, moat 6.5\n",
+                    facts=facts)
         rep = CQ.check_folder(d)
         assert rep["status"] == "legacy"
-        assert sorted(u["raw"] for u in rep["untraced"]) == ["4.75%", "5.75%", "6.25%", "7.25%", "7.75%", "8.25%",
-                                                              "9.25%"], rep["untraced"]
+        assert sorted(u["raw"] for u in rep["untraced"]) == ["25%", "4.75%", "5.75%", "6.25%", "6.5", "7.25%", "7.75%",
+                                                              "8.25%", "9.25%"], rep["untraced"]
     finally:
         shutil.rmtree(base, ignore_errors=True)
+
+
+def test_worker_text_the_engine_echoes_is_never_a_source():
+    """Review r01 / r02 (2026-10-21): the engine copies worker text into its own record (ads_ratio.source here; an
+    override's source, a share-class source) and echoes it into flag strings — in dcf_numbers.json and in
+    key_numbers.md's Fragility flags. That text is blanked through the record's own copy (hash-bound by I1), at any
+    length, so a number inside it never traces analysis.md — and editing judgment.json after make_score (the 12+
+    character judgment strings are blanked too) changes nothing."""
+    from test_make_score_55 import _ads, CUR
+    for src in ("NRR 131%", "20-F cover page; NRR 131% per investor deck"):
+        n = _ads(2.0, 20.0, release=CUR)
+        n["ads_ratio"] = dict(n["ads_ratio"], source=src)
+        n["fragility_flags"] = [f"ADS_RATIO_APPLIED: 20-F filer — per-share figures scaled x2.0 ordinary shares per "
+                                f"ADS ({src}) so they are comparable to the ADS price; TTM pins are taken as per-ADS "
+                                "already"]
+        r = Run(n, _judgment(n)).run()
+        try:
+            assert r.rc == 0, r.err[-800:]
+            assert f"({src})" in r.key()
+            with open(os.path.join(r.folder, "analysis.md"), "w", encoding="utf-8") as f:
+                f.write(GOOD + "Net revenue retention reached 131%.\n")
+            rep = CQ.check_folder(r.folder)
+            assert rep["status"] == "fail" and [u["raw"] for u in rep["untraced"]] == ["131%"], (src, rep)
+            with open(r.jpath, encoding="utf-8") as f:
+                j = json.load(f)
+            j["ads_ratio"]["source"] = "Form 20-F cover page"
+            with open(r.jpath, "w", encoding="utf-8") as f:
+                json.dump(j, f, indent=1)
+            rep = CQ.check_folder(r.folder)
+            assert rep["status"] == "fail" and [u["raw"] for u in rep["untraced"]] == ["131%"], (src, rep)
+        finally:
+            r.close()
 
 
 # ---------------------------------------------------------------- 5. committed figures re-quoted
@@ -210,8 +267,9 @@ def test_committed_engine_figures_requoted_match():
         with open(os.path.join(d, "key_numbers.md"), encoding="utf-8", newline="") as f:
             raw = f.read()      # CRLF on a Windows checkout (core.autocrlf), LF in git and on the VM
         j = CQ._try_load(os.path.join(d, "judgment.json")) or {}
+        n = CQ._try_load(os.path.join(d, "dcf_numbers.json")) or {}
         src = CQ.Sources.for_folder(d)
-        text = CQ.key_numbers_source_text(raw.replace("\r\n", "\n"), CQ.judgment_strings(j))
+        text = CQ.key_numbers_source_text(raw.replace("\r\n", "\n"), CQ.worker_blank(j, None, n))
         for k in Q.numbers(text):
             if (k.val if k.kind in ("money", "plain", "mult") else k.v) == 0:
                 continue
@@ -256,6 +314,8 @@ def test_cli_exit_codes():
         assert "--save-run TST prelim" in out, out
         rep = CQ.check_folder(r.folder)
         assert "2 numbers trace to no generated file" in CQ.refusal_text(rep), CQ.refusal_text(rep)
+        rep1 = dict(rep, untraced=rep["untraced"][:1])
+        assert "1 number traces to no generated file" in CQ.refusal_text(rep1), CQ.refusal_text(rep1)   # review r08
         # I2: a number added to key_numbers.md by hand
         with open(os.path.join(r.folder, "analysis.md"), "w", encoding="utf-8") as f:
             f.write(GOOD)
@@ -318,6 +378,25 @@ def test_integrity_checks_on_gated_runs():
             json.dump(n, f)
         integ = CQ.check_folder(r.folder)["integrity"]
         assert any("not listed in score.json method_runs" in m for m in integ), integ
+        # review r07: I4 binds a saved run by content_hash, not by label — one replaced after make_score fails, and
+        # its figures are no source until make_score re-runs and renders it
+        with open(p, "w", encoding="utf-8") as f:
+            f.write(GOOD + "The preliminary run gave a weighted IRR of 14.37%.\n")
+        r.run()
+        assert r.rc == 0, r.err[-800:]
+        rep = CQ.check_folder(r.folder)
+        assert not rep["integrity"] and [u["raw"] for u in rep["untraced"]] == ["14.37%"], rep
+        with open(os.path.join(r.folder, "dcf_numbers_prelim.json"), "w", encoding="utf-8") as f:
+            json.dump(_stamp(dict(n, implied_irr_weighted=0.1437)), f)
+        rep = CQ.check_folder(r.folder)
+        assert rep["integrity"] == ["I4: dcf_numbers_prelim.json changed after make_score.py — re-run make_score.py"], rep
+        assert [u["raw"] for u in rep["untraced"]] == ["14.37%"] and rep["sources"]["method_runs"] == [], rep
+        r.run()
+        assert r.rc == 0, r.err[-800:]
+        rep = CQ.check_folder(r.folder)
+        assert rep["status"] == "pass" and rep["sources"]["method_runs"] == ["prelim"], rep
+        with open(p, "w", encoding="utf-8") as f:
+            f.write(GOOD)
         os.remove(os.path.join(r.folder, "dcf_numbers_prelim.json"))
         open(p, "w").close()
         assert any(m.startswith("I5:") for m in CQ.check_folder(r.folder)["integrity"])

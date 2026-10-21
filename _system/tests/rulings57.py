@@ -31,28 +31,6 @@ def add_notch_reason(n, j):
     return None
 
 
-REASON_FIELDS = (("tier_override_reason", "tier_override"), ("misfit_notch_reason", "misfit_notch"))
-TEST_FILING = {"form": "10-K", "accession": "0000999001-26-000090", "section": "test fixture (07 G16)",
-               "filed": "2026-02-20"}
-TEST_FIGURE = (0.0875, "8.75%")          # the figure a reason with no number gains (collides with no synthetic leaf)
-NO_NUMBER_FACT_ID = {"tier_override_reason": "F89", "misfit_notch_reason": "F88"}
-SAVED_RUN_LABEL = "test_reasons"         # the saved method run that carries a reason's quoted IRR (rebase A14)
-_SCALE_LETTER = {"trillion": "T", "tn": "T", "T": "T", "billion": "B", "bn": "B", "B": "B", "b": "B",
-                 "million": "M", "mn": "M", "mm": "M", "M": "M", "m": "M", "thousand": "K", "K": "K", "k": "K"}
-
-
-def _reason_fact(fid, tok, tag, text, period):
-    """A filing fact declaring exactly the figure token tok shows (its snippet is the token itself)."""
-    after = text[tok.end:tok.end + 6]
-    unit = {"pct": "pct", "pp": "pp", "bps": "bps", "mult": "x", "plain": "count"}.get(tok.kind) or (
-        "USD/share" if after.startswith("/share") else "USD")
-    value = tok.v / 100.0 if tok.kind in ("pct", "pp") else tok.v / 1e4 if tok.kind == "bps" else tok.val
-    return {"id": fid, "label": f"test reason figure {tok.raw}"[:80], "value": value, "unit": unit,
-            "scale": _SCALE_LETTER.get(tok.scale, "") if tok.kind == "money" else "", "precision": tok.dec,
-            "period": period, "kind": "filing", "type": "actual", "source": dict(TEST_FILING),
-            "snippet": f"{tok.raw} per the test filing", "used_for": [tag]}
-
-
 def cite_facts_for_reasons(j, n, folder=None):
     """L2 (R3, Andrew 2026-10-19; 07 G16, rebase A14): on a 5.7 record, the reasons make_score now traces
     (tier_override_reason when a tier_override is set, misfit_notch_reason) are given what R3 asks for, so every
@@ -73,7 +51,7 @@ def cite_facts_for_reasons(j, n, folder=None):
     import quote_tokens as Q
     if not F.is_rulings_run(n):
         return None
-    engine = CQ.engine_sources(folder, n, judgment=j)
+    engine = CQ.influence_sources(folder, n, judgment=j)   # check_influence's own engine set
     period = f"FY{str(n.get('latest_period_end') or '2025')[:4]}"
     new_facts, run_values, next_id = [], [], 80
     for field, tag in REASON_FIELDS:
@@ -242,3 +220,29 @@ def merge_facts(folder, facts, ticker=None):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(doc, f, indent=1, ensure_ascii=False)
     return doc
+
+
+# ---------------------------------------------------------------------------
+# L2's fixtures for cite_facts_for_reasons (at the end of the file, which no lane edits, so each lane's hunk
+# stays apart in the sequential merge)
+# ---------------------------------------------------------------------------
+REASON_FIELDS = (("tier_override_reason", "tier_override"), ("misfit_notch_reason", "misfit_notch"))
+TEST_FILING = {"form": "10-K", "accession": "0000999001-26-000090", "section": "test fixture (07 G16)",
+               "filed": "2026-02-20"}
+TEST_FIGURE = (0.0875, "8.75%")          # the figure a reason with no number gains (collides with no synthetic leaf)
+NO_NUMBER_FACT_ID = {"tier_override_reason": "F89", "misfit_notch_reason": "F88"}
+SAVED_RUN_LABEL = "test_reasons"         # the saved method run that carries a reason's quoted IRR (rebase A14)
+_SCALE_LETTER = {"trillion": "T", "tn": "T", "T": "T", "billion": "B", "bn": "B", "B": "B", "b": "B",
+                 "million": "M", "mn": "M", "mm": "M", "M": "M", "m": "M", "thousand": "K", "K": "K", "k": "K"}
+
+
+def _reason_fact(fid, tok, tag, text, period):
+    """A filing fact declaring exactly the figure token tok shows (its snippet is the token itself)."""
+    after = text[tok.end:tok.end + 6]
+    unit = {"pct": "pct", "pp": "pp", "bps": "bps", "mult": "x", "plain": "count"}.get(tok.kind) or (
+        "USD/share" if after.startswith("/share") else "USD")
+    value = tok.v / 100.0 if tok.kind in ("pct", "pp") else tok.v / 1e4 if tok.kind == "bps" else tok.val
+    return {"id": fid, "label": f"test reason figure {tok.raw}"[:80], "value": value, "unit": unit,
+            "scale": _SCALE_LETTER.get(tok.scale, "") if tok.kind == "money" else "", "precision": tok.dec,
+            "period": period, "kind": "filing", "type": "actual", "source": dict(TEST_FILING),
+            "snippet": f"{tok.raw} per the test filing", "used_for": [tag]}

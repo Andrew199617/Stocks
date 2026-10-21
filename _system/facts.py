@@ -543,8 +543,11 @@ def fact_problem(f):
     unit = f.get("unit")
     if not (isinstance(unit, str) and UNIT_RE.match(unit)):
         return f"{p}: unit must be an ISO currency code, '<CCY>/share', 'pct', 'pp', 'bps', 'x' or 'count' (got {unit!r})"
-    if "unit_label" in f and not (isinstance(f["unit_label"], str) and 0 < len(f["unit_label"]) <= 30):
-        return f"{p}: unit_label must be a short noun (stores, MW) — display only"
+    # [review r06, 2026-10-21] unit_label prints unquoted after the value on the Declared facts line, so a digit in it
+    # would put a number into key_numbers.md that no check verified (02 §3: a display noun — stores, MW)
+    if "unit_label" in f and not (isinstance(f["unit_label"], str) and 0 < len(f["unit_label"]) <= 30
+                                  and not re.search(r"\d", f["unit_label"])):
+        return f"{p}: unit_label must be a short noun with no digits (stores, MW) — display only"
     if f.get("scale", "") not in SCALES:
         return f'{p}: scale must be one of "", K, M, B, T'
     prec = f.get("precision")

@@ -453,8 +453,8 @@ rebuilt as before, both alert gates closed ("engine output predates release
   before the first 5.7 write (the drift guard, lane L5).
 - (L1, R1) The mechanical sector-misfit notch (misfit_notch,
   misfit_notch_reason, the misfit_notch event): [L1 writes this item]
-- (L2, R3 strict quoting — Andrew, 2026-10-19) facts.json, the quote
-  gate's key_numbers lines, saved method runs, the declared_facts event.
+- (L2, R3) facts.json, the quote gate's key_numbers lines, saved method
+  runs, the declared_facts event (strict quoting — Andrew, 2026-10-19).
   Every number in a 5.7 run's analysis.md must trace to a generated file
   (check_quotes.py; queue.py done / pass2-done refuse a run that fails).
   load_declared_facts validates <T>/facts.json (facts.py: ids F1.., kinds
@@ -472,11 +472,16 @@ rebuilt as before, both alert gates closed ("engine output predates release
   reads the saved runs dcf_numbers_<label>.json (check_quotes.py
   --save-run): a tampered or foreign one refuses a 5.7 run and is skipped
   with a warning on an older one. check_influence (5.7 runs only): the
-  tier_override_reason, a plain base_override's reason + source and the
-  worker's misfit_notch_reason (and every other lane's reason fields) cite
-  facts as [F#]; every number in them traces to an engine source or a
-  cited fact, a reason (but not a pin) carries a number, rests never on
-  third-party facts alone, and a cited fact lists the field's used_for tag
+  tier_override_reason and a plain base_override's reason + source (L1
+  calls it for misfit_notch_reason, every other lane for its own reason
+  fields) cite facts as [F#]; every number in them traces to an engine
+  source or a cited fact — never judgment.json, never worker text the
+  engine echoes into its flag strings (ads_ratio.source in
+  ADS_RATIO_APPLIED, an override's source) — a reason (but not a pin)
+  carries a number, rests never on third-party facts alone, a hand pin's
+  own figure never anchors its reason (an engine figure other than the pin
+  or a cited filing / release / folder fact tagged base_override must),
+  and a cited fact lists the field's used_for tag
   (facts.INFLUENCE_TAGS) — an unverified-share-count IPR&D override is held
   to the same rule (its share count a filing fact, the charge a calc fact,
   the adjusted IRR from a saved run; Q2 default, rebase A14). key_numbers.md
@@ -517,9 +522,9 @@ from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / ms
 from _stable import _replace  # [Codex review r21 of PR #47] os.replace, retried on a Windows PermissionError
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
-import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
 import check_quotes as _quotes  # v5.7 (L2, R3): the quote gate's sources, saved runs and filed-history rows
 import quote_tokens as _qt  # v5.7 (L2, R3): the one tokenizer (reasons carry / trace numbers through it)
+import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -2435,13 +2440,24 @@ def _trace_only_split(trace_only):
     return _numeric_values(vals), tuple(str(p) for p in paths)
 
 
-def _value_at(n, path):
-    cur = n
-    for k in str(path).split("."):
-        if not isinstance(cur, dict) or k not in cur:
-            return None
-        cur = cur[k]
-    return cur
+def base_pin_trace_only(n, bo):
+    """[review r05, 2026-10-21] check_influence's trace_only for a plain base_override (R3: a third-party figure is
+    never a base override's sole support): a HAND pin (--base-oe-ps: inputs.base_oe_ps_arg) is the worker's own
+    number, recorded in dcf_numbers.json, so it may be quoted in its reason but never anchors it — the paths
+    inputs.base_oe_ps_arg and base_oe_per_share (and base_oe_latest_per_share / base_oe_normalized_per_share where
+    they equal the pin) leave the engine set, in the scored run and in a saved copy of it, and the declared value
+    joins the accepted values. None for a run without a hand pin (a ttm.json base is ttm.py's figure, a real engine
+    source)."""
+    pin = _num((n.get("inputs") or {}).get("base_oe_ps_arg"))
+    if pin is None:
+        return None
+    vals = [pin] + [v for v in (_num((bo or {}).get("value")),) if v is not None]
+    paths = ["inputs.base_oe_ps_arg", "base_oe_per_share"]
+    for k in ("base_oe_latest_per_share", "base_oe_normalized_per_share"):
+        v = _num(n.get(k))
+        if v is not None and abs(v - pin) <= 1e-9 * max(1.0, abs(pin)):
+            paths.append(k)
+    return {"values": vals, "paths": paths}
 
 
 def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only=None, require_anchor=False):
@@ -2450,14 +2466,18 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
     the rule, D1). In order, judgment.json `field`'s `text` is refused when: (1) it cites [F#] ids facts.json does
     not declare; (2) it carries no number (every field except a plain base_override's reason / source); (3) a
     number traces to neither an engine source — dcf_numbers.json, ttm.json, the saved method runs, the filed history
-    / return series / derived figures key_numbers.md prints, judgment.json probs_used / moat_score, and `extra`'s
-    numeric leaves — nor a CITED fact's value (`trace_only` values, and the values at its dcf_numbers.json paths,
-    which are removed from the engine set, are accepted but never count as an engine match); (4) every number rests
+    / return series / derived figures key_numbers.md prints, and `extra`'s numeric leaves; never judgment.json, and
+    never the worker text the engine echoes into its flag strings (check_quotes.influence_sources blanks
+    check_folder's worker text and the record's own copies of it, review r02) — nor a CITED fact's value
+    (`trace_only` values, and the values at its dcf_numbers.json paths, which are removed from the engine set — from
+    a saved run too where it repeats them — are accepted but never count as an engine match); (4) every number rests
     only on third-party facts (R3: they calibrate scenarios and give context only); (5) a cited fact does not list the
-    field's used_for tag (facts.INFLUENCE_TAGS); (6) require_anchor and no number matched an engine source outside
-    trace_only, `extra`, or a cited non-third-party fact tagged for the field. Returns None; the influence record
-    {facts, engine_numbers, third_party_only} is kept on fc (fc.influence[field]) for score.json declared_facts and
-    the registry's `facts` citations. Pure apart from fail(): it reads folder files only."""
+    field's used_for tag (facts.INFLUENCE_TAGS); (6) require_anchor, the text has a number, and no number matched an
+    engine source outside trace_only, `extra`, or a cited non-third-party fact tagged for the field (a plain
+    base_override pin uses it with base_pin_trace_only: a pin never traces to itself alone, review r05). Returns
+    None; the influence record {facts, engine_numbers, third_party_only} is kept on fc (fc.influence[field]) for
+    score.json declared_facts and the registry's `facts` citations. Pure apart from fail(): it reads folder files
+    only."""
     if not is_57_run(n):
         return None
     s = "" if text is None else str(text)
@@ -2473,8 +2493,8 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
     if paths:
         vals = vals or _qt.ValueSet()
         for p in paths:
-            vals.merge(_numeric_values(_value_at(n, p)))
-    engine = _quotes.engine_sources(folder, n, exclude_paths=paths)
+            vals.merge(_numeric_values(_quotes.path_value(n, p)))
+    engine = _quotes.influence_sources(folder, n, facts_doc=fc.doc if fc is not None else None, exclude_paths=paths)
     res = _facts.influence_support(s, ids, fc, engine, tag, extra=_numeric_values(extra) if extra is not None else None,
                                    trace_only=vals, not_quantities=nq)
     if res.unknown:
@@ -2491,7 +2511,11 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
     if res.missing_tag:
         fid = res.missing_tag[0]
         fail(f"judgment.json {field} cites {fid}, but {fid} does not list used_for {tag}")
-    if require_anchor and not res.anchored:
+    if require_anchor and res.numbers and not res.anchored:
+        if field == "base_override":
+            fail("judgment.json base_override traces only to the pinned base itself — the pin must rest on an engine "
+                 "figure other than the pin, or on a cited filing / release / folder fact tagged base_override (R3: a "
+                 "third-party figure is never a base override's sole support)")
         fail(f"judgment.json {field} traces only through figures that restate the measurement it answers — cite a "
              f"non-third-party fact tagged {tag} or an engine figure outside it")
     if fc is not None:
@@ -4303,21 +4327,20 @@ def main():
     # check_influence (L2) for its own reason fields here (tier_override_reason, base_override, misfit_notch_reason,
     # the moat reasons, the share-class reasons, ttm_rejection_reason)
     if is_57_run(n):
-        # L2 (R3, Andrew 2026-10-19; 02 §5): the tier override's reason, a plain base_override pin's reason + source
-        # (the payable and iprd_amortized shapes are checked figure for figure elsewhere; rebase I13) and, once L1
-        # computes the notch, the worker's misfit_notch_reason (an auto reason is the engine's own)
+        if plan and plan.get("reason"):
+            pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
+        # L2 (R3, Andrew 2026-10-19; 02 §5): the tier override's reason and a plain base_override pin's reason +
+        # source (the payable and iprd_amortized shapes are checked figure for figure elsewhere; rebase I13) — a hand
+        # pin never traces to itself alone (base_pin_trace_only, review r05). misfit_notch_reason is L1's call (its
+        # field, INFLUENCE_TAGS), made above.
         if override and (IPRD_HAND_OVERRIDE_TRACED or not iprd_override_required(n)):   # Q2 switch
             check_influence("tier_override_reason", j.get("tier_override_reason"),
                             _facts.parse_refs(j.get("tier_override_reason")), fc, folder, n)
         if (base_override_event_applies(j, n) and j_base_override
                 and j_base_override.get("basis") not in (PAYABLE_BASIS, IPRD_AMORTIZED_BASIS)):
             _bo_text = " ".join(str(j_base_override.get(k) or "") for k in ("reason", "source"))
-            check_influence("base_override", _bo_text, _facts.parse_refs(_bo_text), fc, folder, n)
-        if isinstance(notch, dict) and notch.get("applies") and notch.get("reason_source") == "judgment":
-            check_influence("misfit_notch_reason", j.get("misfit_notch_reason"),
-                            _facts.parse_refs(j.get("misfit_notch_reason")), fc, folder, n)
-        if plan and plan.get("reason"):
-            pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
+            check_influence("base_override", _bo_text, _facts.parse_refs(_bo_text), fc, folder, n,
+                            trace_only=base_pin_trace_only(n, j_base_override), require_anchor=True)
     score.update({
         "engine_release": n.get("engine_release"),
         # [Codex review r12 of PR #47] the run this score was built from (its verified content_hash): reprice.py and
