@@ -1,0 +1,7886 @@
+{
+ "schema": 1,
+ "built": "2026-10-21",
+ "builder": "industry_returns.py",
+ "rule": {
+  "levels": [
+   4,
+   3,
+   2
+  ],
+  "min_peers": 5,
+  "self_excluded": true,
+  "same_ladder": true,
+  "dedupe": "one member per CIK (the alphabetically first ticker)",
+  "drop": "peers whose governing median is -inf (losses on non-positive capital) are dropped and counted",
+  "ladders": {
+   "roe": [
+    "financial_balance_sheet"
+   ],
+   "real_assets": [
+    "real_assets"
+   ],
+   "default": "every other type"
+  },
+  "measure": "governing 5-FY median (moat_scorecard.governing_return)"
+ },
+ "members": {
+  "AA": {
+   "sic": "3334",
+   "sic_description": "Primary Production of  Aluminum",
+   "cik": 1675149,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1156,
+   "median_note": null
+  },
+  "ACGL": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 947484,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1817,
+   "median_note": null
+  },
+  "ADM": {
+   "sic": "2070",
+   "sic_description": "Fats & Oils",
+   "cik": 7084,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.095,
+   "median_note": null
+  },
+  "AEE": {
+   "sic": "4931",
+   "sic_description": "Electric & Other Services Combined",
+   "cik": 1002910,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0494,
+   "median_note": null
+  },
+  "AEG": {
+   "sic": "6311",
+   "sic_description": "Life Insurance",
+   "cik": 769218,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0726,
+   "median_note": null
+  },
+  "AEIS": {
+   "sic": "3679",
+   "sic_description": "Electronic Components, NEC",
+   "cik": 927003,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1305,
+   "median_note": null
+  },
+  "AES": {
+   "sic": "4991",
+   "sic_description": "Cogeneration Services & Small Power Producers",
+   "cik": 874761,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "AFG": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 1042046,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.2001,
+   "median_note": null
+  },
+  "AFRM": {
+   "sic": "6141",
+   "sic_description": "Personal Credit Institutions",
+   "cik": 1820953,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": -0.1895,
+   "median_note": null
+  },
+  "AGI": {
+   "sic": "1040",
+   "sic_description": "Gold and Silver Ores",
+   "cik": 1178819,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0843,
+   "median_note": null
+  },
+  "AGNC": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1423689,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0728,
+   "median_note": null
+  },
+  "AHR": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1632970,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.1315,
+   "median_note": null
+  },
+  "AIT": {
+   "sic": "5080",
+   "sic_description": "Wholesale-Machinery, Equipment & Supplies",
+   "cik": 109563,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3989,
+   "median_note": null
+  },
+  "AIZ": {
+   "sic": "6399",
+   "sic_description": "Insurance Carriers, NEC",
+   "cik": 1267238,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1486,
+   "median_note": null
+  },
+  "AKAM": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 1086222,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.8918,
+   "median_note": null
+  },
+  "ALB": {
+   "sic": "2821",
+   "sic_description": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+   "cik": 915913,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0157,
+   "median_note": null
+  },
+  "ALLE": {
+   "sic": "7381",
+   "sic_description": "Services-Detective, Guard & Armored Car Services",
+   "cik": 1579241,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.7306,
+   "median_note": null
+  },
+  "ALLY": {
+   "sic": "6022",
+   "sic_description": "State Commercial Banks",
+   "cik": 40729,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0698,
+   "median_note": null
+  },
+  "ALNY": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1178670,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "AMKR": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 1047127,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0948,
+   "median_note": null
+  },
+  "APA": {
+   "sic": "1311",
+   "sic_description": "Crude Petroleum & Natural Gas",
+   "cik": 1841666,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3538,
+   "median_note": null
+  },
+  "APG": {
+   "sic": "7340",
+   "sic_description": "Services-To Dwellings & Other Buildings",
+   "cik": 1796209,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.8038,
+   "median_note": null
+  },
+  "APP": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1751008,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2719,
+   "median_note": null
+  },
+  "APTV": {
+   "sic": "3714",
+   "sic_description": "Motor Vehicle Parts & Accessories",
+   "cik": 1521332,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1815,
+   "median_note": null
+  },
+  "AR": {
+   "sic": "1311",
+   "sic_description": "Crude Petroleum & Natural Gas",
+   "cik": 1433270,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0387,
+   "median_note": null
+  },
+  "ARES": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 1176948,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 2.5062,
+   "median_note": null
+  },
+  "ARMK": {
+   "sic": "5812",
+   "sic_description": "Retail-Eating  Places",
+   "cik": 1584509,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2471,
+   "median_note": null
+  },
+  "ARW": {
+   "sic": "5065",
+   "sic_description": "Wholesale-Electronic Parts & Equipment, NEC",
+   "cik": 7536,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1223,
+   "median_note": null
+  },
+  "AS": {
+   "sic": "2300",
+   "sic_description": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+   "cik": 1988894,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4263,
+   "median_note": null
+  },
+  "ASND": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1612042,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -2.0381,
+   "median_note": null
+  },
+  "ATO": {
+   "sic": "4924",
+   "sic_description": "Natural Gas Distribution",
+   "cik": 731802,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0536,
+   "median_note": null
+  },
+  "AUR": {
+   "sic": "7373",
+   "sic_description": "Services-Computer Integrated Systems Design",
+   "cik": 1828108,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.7608,
+   "median_note": null
+  },
+  "AVTR": {
+   "sic": "3826",
+   "sic_description": "Laboratory Analytical Instruments",
+   "cik": 1722482,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1326,
+   "median_note": null
+  },
+  "AVY": {
+   "sic": "2670",
+   "sic_description": "Converted Paper & Paperboard Prods (No Contaners/Boxes)",
+   "cik": 8818,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3292,
+   "median_note": null
+  },
+  "AXON": {
+   "sic": "3480",
+   "sic_description": "Ordnance & Accessories, (No Vehicles/Guided Missiles)",
+   "cik": 1069183,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0179,
+   "median_note": null
+  },
+  "BALL": {
+   "sic": "3411",
+   "sic_description": "Metal Cans",
+   "cik": 9389,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1579,
+   "median_note": null
+  },
+  "BAX": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 10456,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0014,
+   "median_note": null
+  },
+  "BBIO": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1743881,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "BCE": {
+   "sic": "4813",
+   "sic_description": "Telephone Communications (No Radiotelephone)",
+   "cik": 718940,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1151,
+   "median_note": null
+  },
+  "BEN": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 38777,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "BIDU": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1329099,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.053,
+   "median_note": null
+  },
+  "BIIB": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 875045,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2989,
+   "median_note": null
+  },
+  "BIO": {
+   "sic": "3826",
+   "sic_description": "Laboratory Analytical Instruments",
+   "cik": 12208,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0292,
+   "median_note": null
+  },
+  "BJ": {
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "cik": 1531152,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5563,
+   "median_note": null
+  },
+  "BMNR": {
+   "sic": "6199",
+   "sic_description": "Finance Services",
+   "cik": 1829311,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": -0.3939,
+   "median_note": null
+  },
+  "BMRN": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1048477,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0394,
+   "median_note": null
+  },
+  "BTSG": {
+   "sic": "8082",
+   "sic_description": "Services-Home Health Care Services",
+   "cik": 1865782,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1286,
+   "median_note": null
+  },
+  "BURL": {
+   "sic": "5311",
+   "sic_description": "Retail-Department Stores",
+   "cik": 1579298,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2662,
+   "median_note": null
+  },
+  "BWA": {
+   "sic": "3714",
+   "sic_description": "Motor Vehicle Parts & Accessories",
+   "cik": 908255,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1222,
+   "median_note": null
+  },
+  "BWXT": {
+   "sic": "3510",
+   "sic_description": "Engines & Turbines",
+   "cik": 1486957,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.142,
+   "median_note": null
+  },
+  "CACI": {
+   "sic": "7373",
+   "sic_description": "Services-Computer Integrated Systems Design",
+   "cik": 16058,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.6269,
+   "median_note": null
+  },
+  "CART": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 1579091,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2128,
+   "median_note": null
+  },
+  "CBOE": {
+   "sic": "6200",
+   "sic_description": "Security & Commodity Brokers, Dealers, Exchanges & Services",
+   "cik": 1374310,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "CBRE": {
+   "sic": "6500",
+   "sic_description": "Real Estate",
+   "cik": 1138118,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3371,
+   "median_note": null
+  },
+  "CCI": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1051470,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic_tangible",
+   "median": 0.1116,
+   "median_note": null
+  },
+  "CCK": {
+   "sic": "3411",
+   "sic_description": "Metal Cans",
+   "cik": 1219601,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2645,
+   "median_note": null
+  },
+  "CCL": {
+   "sic": "4400",
+   "sic_description": "Water Transportation",
+   "cik": 815097,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0441,
+   "median_note": null
+  },
+  "CF": {
+   "sic": "2870",
+   "sic_description": "Agricultural Chemicals",
+   "cik": 1324404,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5037,
+   "median_note": null
+  },
+  "CFG": {
+   "sic": "6022",
+   "sic_description": "State Commercial Banks",
+   "cik": 759944,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0696,
+   "median_note": null
+  },
+  "CG": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 1527166,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2334,
+   "median_note": null
+  },
+  "CGNX": {
+   "sic": "3823",
+   "sic_description": "Industrial Instruments For Measurement, Display, and Control",
+   "cik": 851205,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1374,
+   "median_note": null
+  },
+  "CHKP": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1015922,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.0624,
+   "median_note": null
+  },
+  "CHRW": {
+   "sic": "4731",
+   "sic_description": "Arrangement of  Transportation of  Freight & Cargo",
+   "cik": 1043277,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4238,
+   "median_note": null
+  },
+  "CHTR": {
+   "sic": "4841",
+   "sic_description": "Cable & Other Pay Television Services",
+   "cik": 1091667,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0891,
+   "median_note": null
+  },
+  "CLH": {
+   "sic": "4955",
+   "sic_description": "Hazardous Waste Management",
+   "cik": 822818,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2027,
+   "median_note": null
+  },
+  "CMG": {
+   "sic": "5812",
+   "sic_description": "Retail-Eating  Places",
+   "cik": 1058090,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.4722,
+   "median_note": null
+  },
+  "CMPS": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1816590,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -5.8863,
+   "median_note": null
+  },
+  "CNA": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 21175,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1066,
+   "median_note": null
+  },
+  "CNC": {
+   "sic": "6324",
+   "sic_description": "Hospital & Medical Service Plans",
+   "cik": 1071739,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0503,
+   "median_note": null
+  },
+  "CNH": {
+   "sic": "3531",
+   "sic_description": "Construction Machinery & Equip",
+   "cik": 1567094,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "COKE": {
+   "sic": "2086",
+   "sic_description": "Bottled & Canned Soft Drinks & Carbonated Waters",
+   "cik": 317540,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3289,
+   "median_note": null
+  },
+  "COO": {
+   "sic": "3851",
+   "sic_description": "Ophthalmic Goods",
+   "cik": 711404,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0892,
+   "median_note": null
+  },
+  "CORT": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1088856,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2257,
+   "median_note": null
+  },
+  "CPNG": {
+   "sic": "5961",
+   "sic_description": "Retail-Catalog & Mail-Order Houses",
+   "cik": 1834584,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "CR": {
+   "sic": "3490",
+   "sic_description": "Miscellaneous Fabricated Metal Products",
+   "cik": 1944013,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2852,
+   "median_note": null
+  },
+  "CRL": {
+   "sic": "8731",
+   "sic_description": "Services-Commercial Physical & Biological Research",
+   "cik": 1100682,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1773,
+   "median_note": null
+  },
+  "CSGP": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 1057352,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4906,
+   "median_note": null
+  },
+  "CSL": {
+   "sic": "3060",
+   "sic_description": "Fabricated Rubber Products, NEC",
+   "cik": 790051,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.364,
+   "median_note": null
+  },
+  "CTSH": {
+   "sic": "7371",
+   "sic_description": "Services-Computer Programming Services",
+   "cik": 1058290,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5097,
+   "median_note": null
+  },
+  "CX": {
+   "sic": "3241",
+   "sic_description": "Cement, Hydraulic",
+   "cik": 1076378,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1686,
+   "median_note": null
+  },
+  "DAR": {
+   "sic": "2070",
+   "sic_description": "Fats & Oils",
+   "cik": 916540,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.163,
+   "median_note": null
+  },
+  "DD": {
+   "sic": "2821",
+   "sic_description": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+   "cik": 1666700,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0731,
+   "median_note": null
+  },
+  "DECK": {
+   "sic": "3021",
+   "sic_description": "Rubber & Plastics Footwear",
+   "cik": 910521,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 1.2103,
+   "median_note": null
+  },
+  "DFTX": {
+   "sic": "2833",
+   "sic_description": "Medicinal Chemicals & Botanical Products",
+   "cik": 1813814,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "DG": {
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "cik": 29534,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2644,
+   "median_note": null
+  },
+  "DHI": {
+   "sic": "1531",
+   "sic_description": "Operative Builders",
+   "cik": 882184,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2548,
+   "median_note": null
+  },
+  "DKS": {
+   "sic": "5940",
+   "sic_description": "Retail-Miscellaneous Shopping Goods Stores",
+   "cik": 1089063,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "DOC": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 765880,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0321,
+   "median_note": null
+  },
+  "DOCN": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1582961,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0241,
+   "median_note": null
+  },
+  "DOCU": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1261333,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1756,
+   "median_note": null
+  },
+  "DTM": {
+   "sic": "4922",
+   "sic_description": "Natural Gas Transmission",
+   "cik": 1842022,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic_tangible",
+   "median": 0.0766,
+   "median_note": null
+  },
+  "DUOL": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1562088,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "DVA": {
+   "sic": "8090",
+   "sic_description": "Services-Misc Health & Allied Services, NEC",
+   "cik": 927066,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.7438,
+   "median_note": null
+  },
+  "DXCM": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 1093557,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3033,
+   "median_note": null
+  },
+  "ECHO": {
+   "sic": "4899",
+   "sic_description": "Communications Services, NEC",
+   "cik": 1415404,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.0054,
+   "median_note": null
+  },
+  "ED": {
+   "sic": "4931",
+   "sic_description": "Electric & Other Services Combined",
+   "cik": 1047862,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0478,
+   "median_note": null
+  },
+  "EDU": {
+   "sic": "8200",
+   "sic_description": "Services-Educational Services",
+   "cik": 1372920,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1142,
+   "median_note": null
+  },
+  "EFX": {
+   "sic": "7320",
+   "sic_description": "Services-Consumer Credit Reporting, Collection Agencies",
+   "cik": 33185,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2587,
+   "median_note": null
+  },
+  "EG": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 1095073,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1029,
+   "median_note": null
+  },
+  "EGO": {
+   "sic": "1040",
+   "sic_description": "Gold and Silver Ores",
+   "cik": 918608,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0472,
+   "median_note": null
+  },
+  "EHC": {
+   "sic": "8060",
+   "sic_description": "Services-Hospitals",
+   "cik": 785161,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.215,
+   "median_note": null
+  },
+  "EL": {
+   "sic": "2844",
+   "sic_description": "Perfumes, Cosmetics & Other Toilet Preparations",
+   "cik": 1001250,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3196,
+   "median_note": null
+  },
+  "ELAN": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1739104,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.0966,
+   "median_note": null
+  },
+  "ELS": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 895417,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0607,
+   "median_note": null
+  },
+  "EMA": {
+   "sic": "4911",
+   "sic_description": "Electric Services",
+   "cik": 1127248,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0452,
+   "median_note": null
+  },
+  "EMBJ": {
+   "sic": "3721",
+   "sic_description": "Aircraft",
+   "cik": 1355444,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1762,
+   "median_note": null
+  },
+  "EME": {
+   "sic": "1731",
+   "sic_description": "Electrical Work",
+   "cik": 105634,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "ENSG": {
+   "sic": "8051",
+   "sic_description": "Services-Skilled Nursing Care Facilities",
+   "cik": 1125376,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1824,
+   "median_note": null
+  },
+  "EQH": {
+   "sic": "6411",
+   "sic_description": "Insurance Agents, Brokers & Service",
+   "cik": 1333986,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 2.1272,
+   "median_note": null
+  },
+  "EQT": {
+   "sic": "1311",
+   "sic_description": "Crude Petroleum & Natural Gas",
+   "cik": 33213,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0807,
+   "median_note": null
+  },
+  "EQX": {
+   "sic": "1040",
+   "sic_description": "Gold and Silver Ores",
+   "cik": 1756607,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0266,
+   "median_note": null
+  },
+  "ERIE": {
+   "sic": "6411",
+   "sic_description": "Insurance Agents, Brokers & Service",
+   "cik": 922621,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2697,
+   "median_note": null
+  },
+  "ESLT": {
+   "sic": "3728",
+   "sic_description": "Aircraft Parts & Auxiliary Equipment, NEC",
+   "cik": 1027664,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.328,
+   "median_note": null
+  },
+  "ESTC": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1707753,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.2296,
+   "median_note": null
+  },
+  "EVR": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 1360901,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.437,
+   "median_note": null
+  },
+  "EWBC": {
+   "sic": "6022",
+   "sic_description": "State Commercial Banks",
+   "cik": 1069157,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1509,
+   "median_note": null
+  },
+  "EXEL": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 939767,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1449,
+   "median_note": null
+  },
+  "EXPE": {
+   "sic": "4700",
+   "sic_description": "Transportation Services",
+   "cik": 1324424,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "EXR": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1289490,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.1016,
+   "median_note": null
+  },
+  "FCFS": {
+   "sic": "5900",
+   "sic_description": "Retail-Miscellaneous Retail",
+   "cik": 840489,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1625,
+   "median_note": null
+  },
+  "FDXF": {
+   "sic": "4513",
+   "sic_description": "Air Courier Services",
+   "cik": 2082247,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.4253,
+   "median_note": null
+  },
+  "FFIV": {
+   "sic": "3576",
+   "sic_description": "Computer Communications Equipment",
+   "cik": 1048695,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "FHN": {
+   "sic": "6021",
+   "sic_description": "National Commercial Banks",
+   "cik": 36966,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1091,
+   "median_note": null
+  },
+  "FICO": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 814547,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.9144,
+   "median_note": null
+  },
+  "FIG": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1579878,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.9208,
+   "median_note": null
+  },
+  "FIS": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 1136893,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0584,
+   "median_note": null
+  },
+  "FIVE": {
+   "sic": "5331",
+   "sic_description": "Retail-Variety Stores",
+   "cik": 1177609,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2324,
+   "median_note": null
+  },
+  "FLUT": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1635327,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "FMS": {
+   "sic": "8090",
+   "sic_description": "Services-Misc Health & Allied Services, NEC",
+   "cik": 1333141,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2061,
+   "median_note": null
+  },
+  "FN": {
+   "sic": "3661",
+   "sic_description": "Telephone & Telegraph Apparatus",
+   "cik": 1408710,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1872,
+   "median_note": null
+  },
+  "FNF": {
+   "sic": "6361",
+   "sic_description": "Title Insurance",
+   "cik": 1331875,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1638,
+   "median_note": null
+  },
+  "FORM": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 1039399,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0737,
+   "median_note": null
+  },
+  "FRHC": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 924805,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 1.2004,
+   "median_note": null
+  },
+  "FRO": {
+   "sic": "4412",
+   "sic_description": "Deep Sea Foreign Transportation of  Freight",
+   "cik": 913290,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1106,
+   "median_note": null
+  },
+  "FROG": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1800667,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.1967,
+   "median_note": null
+  },
+  "FRT": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 34903,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0495,
+   "median_note": null
+  },
+  "FTAI": {
+   "sic": "7350",
+   "sic_description": "Services-Miscellaneous Equipment Rental & Leasing",
+   "cik": 1590364,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0424,
+   "median_note": null
+  },
+  "FTI": {
+   "sic": "3533",
+   "sic_description": "Oil & Gas Field Machinery & Equipment",
+   "cik": 1681459,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1599,
+   "median_note": null
+  },
+  "FTV": {
+   "sic": "3823",
+   "sic_description": "Industrial Instruments For Measurement, Display, and Control",
+   "cik": 1659166,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "FUTU": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 1754581,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3947,
+   "median_note": null
+  },
+  "GDDY": {
+   "sic": "7373",
+   "sic_description": "Services-Computer Integrated Systems Design",
+   "cik": 1609711,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "GEHC": {
+   "sic": "3844",
+   "sic_description": "X-Ray Apparatus & Tubes & Related Irradiation Apparatus",
+   "cik": 1932393,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.1525,
+   "median_note": null
+  },
+  "GEN": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 849399,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "GFI": {
+   "sic": "1040",
+   "sic_description": "Gold and Silver Ores",
+   "cik": 1172724,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1848,
+   "median_note": null
+  },
+  "GGB": {
+   "sic": "3310",
+   "sic_description": "Steel Works, Blast Furnaces & Rolling & Finishing Mills",
+   "cik": 1073404,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1823,
+   "median_note": null
+  },
+  "GGG": {
+   "sic": "3561",
+   "sic_description": "Pumps & Pumping Equipment",
+   "cik": 42888,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4451,
+   "median_note": null
+  },
+  "GIB": {
+   "sic": "8742",
+   "sic_description": "Services-Management Consulting Services",
+   "cik": 1061574,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "GIS": {
+   "sic": "2040",
+   "sic_description": "Grain Mill Products",
+   "cik": 40704,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "GKOS": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 1192448,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.442,
+   "median_note": null
+  },
+  "GL": {
+   "sic": "6311",
+   "sic_description": "Life Insurance",
+   "cik": 320335,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.2164,
+   "median_note": null
+  },
+  "GLPI": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1575965,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.1005,
+   "median_note": null
+  },
+  "GME": {
+   "sic": "5734",
+   "sic_description": "Retail-Computer & Computer Software Stores",
+   "cik": 1326380,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.7749,
+   "median_note": null
+  },
+  "GMED": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 1237831,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1215,
+   "median_note": null
+  },
+  "GNRC": {
+   "sic": "3621",
+   "sic_description": "Motors & Generators",
+   "cik": 1474735,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3071,
+   "median_note": null
+  },
+  "GPC": {
+   "sic": "5013",
+   "sic_description": "Wholesale-Motor Vehicle Supplies & New Parts",
+   "cik": 40987,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2891,
+   "median_note": null
+  },
+  "GRAB": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 1855612,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.0994,
+   "median_note": null
+  },
+  "GSAT": {
+   "sic": "4899",
+   "sic_description": "Communications Services, NEC",
+   "cik": 1366868,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.0016,
+   "median_note": null
+  },
+  "GWRE": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1528396,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.0511,
+   "median_note": null
+  },
+  "H": {
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "cik": 1468174,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3737,
+   "median_note": null
+  },
+  "HAL": {
+   "sic": "1389",
+   "sic_description": "Oil & Gas Field Services, NEC",
+   "cik": 45012,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1512,
+   "median_note": null
+  },
+  "HALO": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 1159036,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4701,
+   "median_note": null
+  },
+  "HAS": {
+   "sic": "3944",
+   "sic_description": "Games, Toys & Children's Vehicles (No Dolls & Bicycles)",
+   "cik": 46080,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1547,
+   "median_note": null
+  },
+  "HBAN": {
+   "sic": "6021",
+   "sic_description": "National Commercial Banks",
+   "cik": 49196,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0983,
+   "median_note": null
+  },
+  "HBM": {
+   "sic": "1000",
+   "sic_description": "Metal Mining",
+   "cik": 1322422,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0723,
+   "median_note": null
+  },
+  "HIG": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 874766,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1634,
+   "median_note": null
+  },
+  "HII": {
+   "sic": "3730",
+   "sic_description": "Ship & Boat Building & Repairing",
+   "cik": 1501585,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1375,
+   "median_note": null
+  },
+  "HL": {
+   "sic": "1400",
+   "sic_description": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+   "cik": 719413,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0225,
+   "median_note": null
+  },
+  "HLI": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 1302215,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "HMY": {
+   "sic": "1040",
+   "sic_description": "Gold and Silver Ores",
+   "cik": 1023514,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1631,
+   "median_note": null
+  },
+  "HPQ": {
+   "sic": "3570",
+   "sic_description": "Computer & office Equipment",
+   "cik": 47217,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "HRL": {
+   "sic": "2011",
+   "sic_description": "Meat Packing Plants",
+   "cik": 48465,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2403,
+   "median_note": null
+  },
+  "HSIC": {
+   "sic": "5047",
+   "sic_description": "Wholesale-Medical, Dental & Hospital Equipment & Supplies",
+   "cik": 1000228,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5196,
+   "median_note": null
+  },
+  "HST": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1070750,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.1148,
+   "median_note": null
+  },
+  "HSY": {
+   "sic": "2060",
+   "sic_description": "Sugar & Confectionery Products",
+   "cik": 47111,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5774,
+   "median_note": null
+  },
+  "HTHT": {
+   "sic": "7011",
+   "sic_description": "Hotels & Motels",
+   "cik": 1483994,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1483,
+   "median_note": null
+  },
+  "HUBS": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1404655,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.0877,
+   "median_note": null
+  },
+  "HUT": {
+   "sic": "6199",
+   "sic_description": "Finance Services",
+   "cik": 1964789,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": -0.159,
+   "median_note": null
+  },
+  "IAG": {
+   "sic": "1040",
+   "sic_description": "Gold and Silver Ores",
+   "cik": 1203464,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.012,
+   "median_note": null
+  },
+  "IBKR": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 1381197,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "IBRX": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 1326110,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "ICLR": {
+   "sic": "8731",
+   "sic_description": "Services-Commercial Physical & Biological Research",
+   "cik": 1060955,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1842,
+   "median_note": null
+  },
+  "IEX": {
+   "sic": "3561",
+   "sic_description": "Pumps & Pumping Equipment",
+   "cik": 832101,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.1888,
+   "median_note": null
+  },
+  "IONQ": {
+   "sic": "7373",
+   "sic_description": "Services-Computer Integrated Systems Design",
+   "cik": 1824920,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.1808,
+   "median_note": null
+  },
+  "IP": {
+   "sic": "2621",
+   "sic_description": "Paper Mills",
+   "cik": 51434,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0531,
+   "median_note": null
+  },
+  "IR": {
+   "sic": "3560",
+   "sic_description": "General Industrial Machinery & Equipment",
+   "cik": 1699150,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.0199,
+   "median_note": null
+  },
+  "IREN": {
+   "sic": "6199",
+   "sic_description": "Finance Services",
+   "cik": 1878848,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": -0.1679,
+   "median_note": null
+  },
+  "IRM": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1020569,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic_tangible",
+   "median": 0.1351,
+   "median_note": null
+  },
+  "IT": {
+   "sic": "8741",
+   "sic_description": "Services-Management Services",
+   "cik": 749251,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "IVZ": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 914208,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.5703,
+   "median_note": null
+  },
+  "J": {
+   "sic": "1600",
+   "sic_description": "Heavy Construction Other Than Bldg Const - Contractors",
+   "cik": 52988,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "JAZZ": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1232524,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3031,
+   "median_note": null
+  },
+  "JBL": {
+   "sic": "3672",
+   "sic_description": "Printed Circuit Boards",
+   "cik": 898293,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2929,
+   "median_note": null
+  },
+  "JBS": {
+   "sic": "2011",
+   "sic_description": "Meat Packing Plants",
+   "cik": 1791942,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2172,
+   "median_note": null
+  },
+  "JD": {
+   "sic": "5990",
+   "sic_description": "Retail-Retail Stores, NEC",
+   "cik": 1549802,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0803,
+   "median_note": null
+  },
+  "JHX": {
+   "sic": "3272",
+   "sic_description": "Concrete Products, Except Block & Brick",
+   "cik": 1159152,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1982,
+   "median_note": null
+  },
+  "JKHY": {
+   "sic": "7373",
+   "sic_description": "Services-Computer Integrated Systems Design",
+   "cik": 779152,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3613,
+   "median_note": null
+  },
+  "JLL": {
+   "sic": "6531",
+   "sic_description": "Real Estate Agents & Managers (For Others)",
+   "cik": 1037976,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3662,
+   "median_note": null
+  },
+  "KEP": {
+   "sic": "4911",
+   "sic_description": "Electric Services",
+   "cik": 887225,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": -0.0636,
+   "median_note": null
+  },
+  "KIM": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 879101,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0325,
+   "median_note": null
+  },
+  "KLAR": {
+   "sic": "6199",
+   "sic_description": "Finance Services",
+   "cik": 2003292,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": -0.1017,
+   "median_note": null
+  },
+  "KMB": {
+   "sic": "2670",
+   "sic_description": "Converted Paper & Paperboard Prods (No Contaners/Boxes)",
+   "cik": 55785,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2279,
+   "median_note": null
+  },
+  "KR": {
+   "sic": "5411",
+   "sic_description": "Retail-Grocery Stores",
+   "cik": 56873,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1458,
+   "median_note": null
+  },
+  "KRYS": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 1711279,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.2138,
+   "median_note": null
+  },
+  "KVUE": {
+   "sic": "2844",
+   "sic_description": "Perfumes, Cosmetics & Other Toilet Preparations",
+   "cik": 1944048,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "LAMR": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1090425,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic_tangible",
+   "median": 0.2417,
+   "median_note": null
+  },
+  "LDOS": {
+   "sic": "7373",
+   "sic_description": "Services-Computer Integrated Systems Design",
+   "cik": 1336920,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.8545,
+   "median_note": null
+  },
+  "LECO": {
+   "sic": "3540",
+   "sic_description": "Metalworkg Machinery & Equipment",
+   "cik": 59527,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4212,
+   "median_note": null
+  },
+  "LFUS": {
+   "sic": "3613",
+   "sic_description": "Switchgear & Switchboard Apparatus",
+   "cik": 889331,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3237,
+   "median_note": null
+  },
+  "LI": {
+   "sic": "3711",
+   "sic_description": "Motor Vehicles & Passenger Car Bodies",
+   "cik": 1791706,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.018,
+   "median_note": null
+  },
+  "LII": {
+   "sic": "3585",
+   "sic_description": "Air-Cond & Warm Air Heatg Equip & Comm & Indl Refrig Equip",
+   "cik": 1069202,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.4174,
+   "median_note": null
+  },
+  "LNT": {
+   "sic": "4931",
+   "sic_description": "Electric & Other Services Combined",
+   "cik": 352541,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0454,
+   "median_note": null
+  },
+  "LOGI": {
+   "sic": "3577",
+   "sic_description": "Computer Peripheral Equipment, NEC",
+   "cik": 1032975,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "LTM": {
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "cik": 1047716,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2151,
+   "median_note": null
+  },
+  "LULU": {
+   "sic": "2300",
+   "sic_description": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+   "cik": 1397187,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.6587,
+   "median_note": null
+  },
+  "MAA": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 912595,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.118,
+   "median_note": null
+  },
+  "MANH": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1056696,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "MAS": {
+   "sic": "3430",
+   "sic_description": "Heating Equip, Except Elec & Warm Air; & Plumbing Fixtures",
+   "cik": 62996,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.8424,
+   "median_note": null
+  },
+  "MDB": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1441816,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.6941,
+   "median_note": null
+  },
+  "MDGL": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1157601,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.7142,
+   "median_note": null
+  },
+  "MEDP": {
+   "sic": "8731",
+   "sic_description": "Services-Commercial Physical & Biological Research",
+   "cik": 1668397,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "MGA": {
+   "sic": "3714",
+   "sic_description": "Motor Vehicle Parts & Accessories",
+   "cik": 749098,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0855,
+   "median_note": null
+  },
+  "MICC": {
+   "sic": "2024",
+   "sic_description": "Ice Cream & Frozen Desserts",
+   "cik": 2071668,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4498,
+   "median_note": null
+  },
+  "MKC": {
+   "sic": "2090",
+   "sic_description": "Miscellaneous Food Preparations & Kindred Products",
+   "cik": 63754,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.9364,
+   "median_note": null
+  },
+  "MLI": {
+   "sic": "3350",
+   "sic_description": "Rolling Drawing & Extruding of  Nonferrous Metals",
+   "cik": 89439,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.428,
+   "median_note": null
+  },
+  "MLM": {
+   "sic": "1400",
+   "sic_description": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+   "cik": 916076,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1154,
+   "median_note": null
+  },
+  "MOH": {
+   "sic": "6324",
+   "sic_description": "Hospital & Medical Service Plans",
+   "cik": 1179929,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.2588,
+   "median_note": null
+  },
+  "MTB": {
+   "sic": "6022",
+   "sic_description": "State Commercial Banks",
+   "cik": 36270,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0977,
+   "median_note": null
+  },
+  "MTCH": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 891103,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 2.5035,
+   "median_note": null
+  },
+  "MTD": {
+   "sic": "3826",
+   "sic_description": "Laboratory Analytical Instruments",
+   "cik": 1037646,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.9402,
+   "median_note": null
+  },
+  "MTZ": {
+   "sic": "1623",
+   "sic_description": "Water, Sewer, Pipeline, Comm & Power Line Construction",
+   "cik": 15615,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1104,
+   "median_note": null
+  },
+  "NBIX": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 914475,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1245,
+   "median_note": null
+  },
+  "NLY": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1043219,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.126,
+   "median_note": null
+  },
+  "NTNX": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1618732,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "NTRS": {
+   "sic": "6022",
+   "sic_description": "State Commercial Banks",
+   "cik": 73124,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1286,
+   "median_note": null
+  },
+  "NVMI": {
+   "sic": "3827",
+   "sic_description": "Optical Instruments & Lenses",
+   "cik": 1109345,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2069,
+   "median_note": null
+  },
+  "NVT": {
+   "sic": "3550",
+   "sic_description": "Special Industry Machinery (No Metalworking Machinery)",
+   "cik": 1720635,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2734,
+   "median_note": null
+  },
+  "NWS": {
+   "sic": "2711",
+   "sic_description": "Newspapers: Publishing or  Publishing & Printing",
+   "cik": 1564708,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3192,
+   "median_note": null
+  },
+  "NXT": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 1852131,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.201,
+   "median_note": null
+  },
+  "NYT": {
+   "sic": "2711",
+   "sic_description": "Newspapers: Publishing or  Publishing & Printing",
+   "cik": 71691,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2544,
+   "median_note": null
+  },
+  "ODFL": {
+   "sic": "4213",
+   "sic_description": "Trucking (No Local)",
+   "cik": 878927,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3125,
+   "median_note": null
+  },
+  "OGE": {
+   "sic": "4911",
+   "sic_description": "Electric Services",
+   "cik": 1021635,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0617,
+   "median_note": null
+  },
+  "OHI": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 888491,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0716,
+   "median_note": null
+  },
+  "ON": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 1097864,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1783,
+   "median_note": null
+  },
+  "ONTO": {
+   "sic": "3829",
+   "sic_description": "Measuring & Controlling Devices, NEC",
+   "cik": 704532,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1363,
+   "median_note": null
+  },
+  "ORI": {
+   "sic": "6351",
+   "sic_description": "Surety Insurance",
+   "cik": 74260,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1518,
+   "median_note": null
+  },
+  "OSCR": {
+   "sic": "6324",
+   "sic_description": "Hospital & Medical Service Plans",
+   "cik": 1568651,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": -0.4128,
+   "median_note": null
+  },
+  "OWL": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 1823945,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "PAC": {
+   "sic": "4581",
+   "sic_description": "Airports, Flying Fields & Airport Terminal Services",
+   "cik": 1347557,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.4206,
+   "median_note": null
+  },
+  "PAG": {
+   "sic": "5500",
+   "sic_description": "Retail-Auto Dealers & Gasoline Stations",
+   "cik": 1019849,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2649,
+   "median_note": null
+  },
+  "PAYC": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1590955,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3227,
+   "median_note": null
+  },
+  "PAYX": {
+   "sic": "8700",
+   "sic_description": "Services-Engineering, Accounting, Research, Management",
+   "cik": 723531,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.5454,
+   "median_note": null
+  },
+  "PCG": {
+   "sic": "4931",
+   "sic_description": "Electric & Other Services Combined",
+   "cik": 1004980,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0261,
+   "median_note": null
+  },
+  "PCVX": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 1649094,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.3809,
+   "median_note": null
+  },
+  "PEG": {
+   "sic": "4931",
+   "sic_description": "Electric & Other Services Combined",
+   "cik": 788784,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.059,
+   "median_note": null
+  },
+  "PEN": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 1321732,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0075,
+   "median_note": null
+  },
+  "PFGC": {
+   "sic": "5141",
+   "sic_description": "Wholesale-Groceries, General Line",
+   "cik": 1618673,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1368,
+   "median_note": null
+  },
+  "PINS": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1506293,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0393,
+   "median_note": null
+  },
+  "PNFP": {
+   "sic": "6021",
+   "sic_description": "National Commercial Banks",
+   "cik": 2082866,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0911,
+   "median_note": null
+  },
+  "PNW": {
+   "sic": "4911",
+   "sic_description": "Electric Services",
+   "cik": 764622,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0486,
+   "median_note": null
+  },
+  "PRU": {
+   "sic": "6311",
+   "sic_description": "Life Insurance",
+   "cik": 1137774,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0978,
+   "median_note": null
+  },
+  "PSO": {
+   "sic": "2731",
+   "sic_description": "Books: Publishing or  Publishing & Printing",
+   "cik": 938323,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1562,
+   "median_note": null
+  },
+  "Q": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 2058873,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3993,
+   "median_note": null
+  },
+  "QGEN": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 1015820,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2581,
+   "median_note": null
+  },
+  "QSR": {
+   "sic": "5812",
+   "sic_description": "Retail-Eating  Places",
+   "cik": 1618756,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "QXO": {
+   "sic": "5030",
+   "sic_description": "Wholesale-Lumber & Other Construction Materials",
+   "cik": 1236275,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "R": {
+   "sic": "7510",
+   "sic_description": "Services-Auto Rental & Leasing (No Drivers)",
+   "cik": 85961,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0747,
+   "median_note": null
+  },
+  "RBA": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 1046102,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 2.6578,
+   "median_note": null
+  },
+  "RBC": {
+   "sic": "3562",
+   "sic_description": "Ball & Roller Bearings",
+   "cik": 1324948,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4201,
+   "median_note": null
+  },
+  "RBLX": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1315098,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "RCI": {
+   "sic": "4841",
+   "sic_description": "Cable & Other Pay Television Services",
+   "cik": 733099,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2995,
+   "median_note": null
+  },
+  "RDDT": {
+   "sic": "7374",
+   "sic_description": "Services-Computer Processing & Data Preparation",
+   "cik": 1713445,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "RDY": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1135951,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1452,
+   "median_note": null
+  },
+  "REG": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 910606,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0769,
+   "median_note": null
+  },
+  "RGA": {
+   "sic": "6311",
+   "sic_description": "Life Insurance",
+   "cik": 898174,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0878,
+   "median_note": null
+  },
+  "RJF": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 720005,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "RKT": {
+   "sic": "6162",
+   "sic_description": "Mortgage Bankers & Loan Correspondents",
+   "cik": 1805284,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.0032,
+   "median_note": null
+  },
+  "RMBS": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 917273,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1954,
+   "median_note": null
+  },
+  "RMD": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 943819,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4277,
+   "median_note": null
+  },
+  "RNR": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 913144,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1769,
+   "median_note": null
+  },
+  "ROL": {
+   "sic": "7340",
+   "sic_description": "Services-To Dwellings & Other Buildings",
+   "cik": 84839,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.1211,
+   "median_note": null
+  },
+  "ROP": {
+   "sic": "3823",
+   "sic_description": "Industrial Instruments For Measurement, Display, and Control",
+   "cik": 882835,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "RPM": {
+   "sic": "2851",
+   "sic_description": "Paints, Varnishes, Lacquers, Enamels & Allied Prods",
+   "cik": 110621,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2477,
+   "median_note": null
+  },
+  "RRX": {
+   "sic": "3569",
+   "sic_description": "General Industrial Machinery & Equipment, NEC",
+   "cik": 82811,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3775,
+   "median_note": null
+  },
+  "RTO": {
+   "sic": "8741",
+   "sic_description": "Services-Management Services",
+   "cik": 930157,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2012,
+   "median_note": null
+  },
+  "RVTY": {
+   "sic": "3826",
+   "sic_description": "Laboratory Analytical Instruments",
+   "cik": 31791,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5404,
+   "median_note": null
+  },
+  "RYAN": {
+   "sic": "6411",
+   "sic_description": "Insurance Agents, Brokers & Service",
+   "cik": 1849253,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 2.1293,
+   "median_note": null
+  },
+  "SAIL": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 2030781,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "SANM": {
+   "sic": "3672",
+   "sic_description": "Printed Circuit Boards",
+   "cik": 897723,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1479,
+   "median_note": null
+  },
+  "SEIC": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 350894,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3041,
+   "median_note": null
+  },
+  "SF": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 720672,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3408,
+   "median_note": null
+  },
+  "SGI": {
+   "sic": "2510",
+   "sic_description": "Household Furniture",
+   "cik": 1206264,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5743,
+   "median_note": null
+  },
+  "SJM": {
+   "sic": "2033",
+   "sic_description": "Canned, Fruits, Veg, Preserves, Jams & Jellies",
+   "cik": 91419,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1824,
+   "median_note": null
+  },
+  "SKM": {
+   "sic": "4812",
+   "sic_description": "Radiotelephone Communications",
+   "cik": 1015650,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2316,
+   "median_note": null
+  },
+  "SMCI": {
+   "sic": "3571",
+   "sic_description": "Electronic Computers",
+   "cik": 1375365,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2717,
+   "median_note": null
+  },
+  "SMMT": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1599298,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -1.967,
+   "median_note": null
+  },
+  "SMTC": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 88941,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1049,
+   "median_note": null
+  },
+  "SNA": {
+   "sic": "3420",
+   "sic_description": "Cutlery, Handtools & General Hardware",
+   "cik": 91440,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1903,
+   "median_note": null
+  },
+  "SNAP": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1564408,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.2254,
+   "median_note": null
+  },
+  "SNN": {
+   "sic": "3842",
+   "sic_description": "Orthopedic, Prosthetic & Surgical Appliances & Supplies",
+   "cik": 845982,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1464,
+   "median_note": null
+  },
+  "SOLS": {
+   "sic": "2800",
+   "sic_description": "Chemicals & Allied Products",
+   "cik": 2064953,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3458,
+   "median_note": null
+  },
+  "SOLV": {
+   "sic": "3841",
+   "sic_description": "Surgical & Medical Instruments & Apparatus",
+   "cik": 1964738,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.6539,
+   "median_note": null
+  },
+  "SSL": {
+   "sic": "1311",
+   "sic_description": "Crude Petroleum & Natural Gas",
+   "cik": 314590,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0538,
+   "median_note": null
+  },
+  "STLA": {
+   "sic": "3711",
+   "sic_description": "Motor Vehicles & Passenger Car Bodies",
+   "cik": 1605484,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2737,
+   "median_note": null
+  },
+  "STLD": {
+   "sic": "3312",
+   "sic_description": "Steel Works, Blast Furnaces & Rolling Mills (Coke Ovens)",
+   "cik": 1022671,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2292,
+   "median_note": null
+  },
+  "STRL": {
+   "sic": "1600",
+   "sic_description": "Heavy Construction Other Than Bldg Const - Contractors",
+   "cik": 874238,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "STZ": {
+   "sic": "2080",
+   "sic_description": "Beverages",
+   "cik": 16918,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1865,
+   "median_note": null
+  },
+  "SUI": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 912593,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0134,
+   "median_note": null
+  },
+  "SUZ": {
+   "sic": "2621",
+   "sic_description": "Paper Mills",
+   "cik": 909327,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0993,
+   "median_note": null
+  },
+  "SWK": {
+   "sic": "3420",
+   "sic_description": "Cutlery, Handtools & General Hardware",
+   "cik": 93556,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0882,
+   "median_note": null
+  },
+  "SWKS": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 4127,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.3465,
+   "median_note": null
+  },
+  "SYY": {
+   "sic": "5140",
+   "sic_description": "Wholesale-Groceries & Related Products",
+   "cik": 96021,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.322,
+   "median_note": null
+  },
+  "TDY": {
+   "sic": "3812",
+   "sic_description": "Search, Detection, Navigation, Guidance, Aeronautical Sys",
+   "cik": 1094285,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.6223,
+   "median_note": null
+  },
+  "TECH": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 842023,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2489,
+   "median_note": null
+  },
+  "TEM": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1717115,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "TFII": {
+   "sic": "4210",
+   "sic_description": "Trucking & Courier Services (No Air)",
+   "cik": 1588823,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1365,
+   "median_note": null
+  },
+  "TIGO": {
+   "sic": "4812",
+   "sic_description": "Radiotelephone Communications",
+   "cik": 912958,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "TKO": {
+   "sic": "7900",
+   "sic_description": "Services-Amusement & Recreation Services",
+   "cik": 1973266,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "TLK": {
+   "sic": "4813",
+   "sic_description": "Telephone Communications (No Radiotelephone)",
+   "cik": 1001807,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1981,
+   "median_note": null
+  },
+  "TME": {
+   "sic": "4832",
+   "sic_description": "Radio Broadcasting Stations",
+   "cik": 1744676,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1678,
+   "median_note": null
+  },
+  "TOL": {
+   "sic": "1531",
+   "sic_description": "Operative Builders",
+   "cik": 794170,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2479,
+   "median_note": null
+  },
+  "TPG": {
+   "sic": "6282",
+   "sic_description": "Investment Advice",
+   "cik": 1880661,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0251,
+   "median_note": null
+  },
+  "TRMB": {
+   "sic": "3829",
+   "sic_description": "Measuring & Controlling Devices, NEC",
+   "cik": 864749,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2763,
+   "median_note": null
+  },
+  "TRU": {
+   "sic": "7320",
+   "sic_description": "Services-Consumer Credit Reporting, Collection Agencies",
+   "cik": 1552033,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "TTMI": {
+   "sic": "3672",
+   "sic_description": "Printed Circuit Boards",
+   "cik": 1116942,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.081,
+   "median_note": null
+  },
+  "TTWO": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 946581,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": -0.2033,
+   "median_note": null
+  },
+  "TU": {
+   "sic": "4812",
+   "sic_description": "Radiotelephone Communications",
+   "cik": 868675,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1472,
+   "median_note": null
+  },
+  "TWST": {
+   "sic": "2836",
+   "sic_description": "Biological Products, (No Diagnostic Substances)",
+   "cik": 1581280,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.5091,
+   "median_note": null
+  },
+  "TX": {
+   "sic": "3312",
+   "sic_description": "Steel Works, Blast Furnaces & Rolling Mills (Coke Ovens)",
+   "cik": 1342874,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0959,
+   "median_note": null
+  },
+  "TXG": {
+   "sic": "3826",
+   "sic_description": "Laboratory Analytical Instruments",
+   "cik": 1770787,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.2264,
+   "median_note": null
+  },
+  "TXRH": {
+   "sic": "5812",
+   "sic_description": "Retail-Eating  Places",
+   "cik": 1289460,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.3113,
+   "median_note": null
+  },
+  "TXT": {
+   "sic": "3720",
+   "sic_description": "Aircraft & Parts",
+   "cik": 217346,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1698,
+   "median_note": null
+  },
+  "TYL": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 860731,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "U": {
+   "sic": "7372",
+   "sic_description": "Services-Prepackaged Software",
+   "cik": 1810806,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "UAL": {
+   "sic": "4512",
+   "sic_description": "Air Transportation, Scheduled",
+   "cik": 100517,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0999,
+   "median_note": null
+  },
+  "UDR": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 74208,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0304,
+   "median_note": null
+  },
+  "UHAL": {
+   "sic": "7510",
+   "sic_description": "Services-Auto Rental & Leasing (No Drivers)",
+   "cik": 4457,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0613,
+   "median_note": null
+  },
+  "UHS": {
+   "sic": "8062",
+   "sic_description": "Services-General Medical & Surgical Hospitals, NEC",
+   "cik": 352915,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1678,
+   "median_note": null
+  },
+  "UI": {
+   "sic": "3663",
+   "sic_description": "Radio & Tv Broadcasting & Communications Equipment",
+   "cik": 1511737,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.9621,
+   "median_note": null
+  },
+  "ULS": {
+   "sic": "8734",
+   "sic_description": "Services-Testing Laboratories",
+   "cik": 1901440,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5075,
+   "median_note": null
+  },
+  "UMBF": {
+   "sic": "6021",
+   "sic_description": "National Commercial Banks",
+   "cik": 101382,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1129,
+   "median_note": null
+  },
+  "UNM": {
+   "sic": "6321",
+   "sic_description": "Accident & Health Insurance",
+   "cik": 5513,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1611,
+   "median_note": null
+  },
+  "VIAV": {
+   "sic": "3674",
+   "sic_description": "Semiconductors & Related Devices",
+   "cik": 912093,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "VICR": {
+   "sic": "3679",
+   "sic_description": "Electronic Components, NEC",
+   "cik": 751978,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.153,
+   "median_note": null
+  },
+  "VIV": {
+   "sic": "4813",
+   "sic_description": "Telephone Communications (No Radiotelephone)",
+   "cik": 1066119,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.085,
+   "median_note": null
+  },
+  "VMC": {
+   "sic": "1400",
+   "sic_description": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+   "cik": 1396009,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1643,
+   "median_note": null
+  },
+  "VNOM": {
+   "sic": "1311",
+   "sic_description": "Crude Petroleum & Natural Gas",
+   "cik": 2074176,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1633,
+   "median_note": null
+  },
+  "VOD": {
+   "sic": "4812",
+   "sic_description": "Radiotelephone Communications",
+   "cik": 839923,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.0534,
+   "median_note": null
+  },
+  "VRSN": {
+   "sic": "7371",
+   "sic_description": "Services-Computer Programming Services",
+   "cik": 1014473,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "W": {
+   "sic": "5961",
+   "sic_description": "Retail-Catalog & Mail-Order Houses",
+   "cik": 1616707,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "loss_on_nonpositive_capital"
+  },
+  "WCN": {
+   "sic": "4953",
+   "sic_description": "Refuse Systems",
+   "cik": 1318220,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.185,
+   "median_note": null
+  },
+  "WEC": {
+   "sic": "4931",
+   "sic_description": "Electric & Other Services Combined",
+   "cik": 783325,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0558,
+   "median_note": null
+  },
+  "WIT": {
+   "sic": "7371",
+   "sic_description": "Services-Computer Programming Services",
+   "cik": 1123799,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2298,
+   "median_note": null
+  },
+  "WMG": {
+   "sic": "7900",
+   "sic_description": "Services-Amusement & Recreation Services",
+   "cik": 1319161,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "WMS": {
+   "sic": "3086",
+   "sic_description": "Plastics Foam Products",
+   "cik": 1604028,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4329,
+   "median_note": null
+  },
+  "WPC": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 1025378,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0455,
+   "median_note": null
+  },
+  "WRB": {
+   "sic": "6331",
+   "sic_description": "Fire, Marine & Casualty Insurance",
+   "cik": 11544,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.1853,
+   "median_note": null
+  },
+  "WSE": {
+   "sic": "7389",
+   "sic_description": "Services-Business Services, NEC",
+   "cik": 2099039,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": null,
+   "median_note": "unbounded_high"
+  },
+  "WSM": {
+   "sic": "5700",
+   "sic_description": "Retail-Home Furniture, Furnishings & Equipment Stores",
+   "cik": 719955,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 1.0718,
+   "median_note": null
+  },
+  "WSO": {
+   "sic": "5070",
+   "sic_description": "Wholesale-Hardware & Plumbing & Heating Equipment & Supplies",
+   "cik": 105016,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2607,
+   "median_note": null
+  },
+  "WTRG": {
+   "sic": "4941",
+   "sic_description": "Water Supply",
+   "cik": 78128,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0437,
+   "median_note": null
+  },
+  "WTS": {
+   "sic": "3490",
+   "sic_description": "Miscellaneous Fabricated Metal Products",
+   "cik": 795403,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.5141,
+   "median_note": null
+  },
+  "WTW": {
+   "sic": "6411",
+   "sic_description": "Insurance Agents, Brokers & Service",
+   "cik": 1140536,
+   "business_type": "financial_fee",
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.0299,
+   "median_note": null
+  },
+  "WY": {
+   "sic": "6798",
+   "sic_description": "Real Estate Investment Trusts",
+   "cik": 106535,
+   "business_type": "real_assets",
+   "type_basis": "hint",
+   "ladder": "real_assets",
+   "measure": "roic",
+   "median": 0.0751,
+   "median_note": null
+  },
+  "XP": {
+   "sic": "6211",
+   "sic_description": "Security Brokers, Dealers & Flotation Companies",
+   "cik": 1787425,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.2852,
+   "median_note": null
+  },
+  "XPEV": {
+   "sic": "3711",
+   "sic_description": "Motor Vehicles & Passenger Car Bodies",
+   "cik": 1810997,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.2119,
+   "median_note": null
+  },
+  "YUM": {
+   "sic": "5812",
+   "sic_description": "Retail-Eating  Places",
+   "cik": 1041061,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 1.0789,
+   "median_note": null
+  },
+  "YUMC": {
+   "sic": "5812",
+   "sic_description": "Retail-Eating  Places",
+   "cik": 1673358,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.2739,
+   "median_note": null
+  },
+  "ZBH": {
+   "sic": "3842",
+   "sic_description": "Orthopedic, Prosthetic & Surgical Appliances & Supplies",
+   "cik": 1136869,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.1879,
+   "median_note": null
+  },
+  "ZION": {
+   "sic": "6021",
+   "sic_description": "National Commercial Banks",
+   "cik": 109380,
+   "business_type": "financial_balance_sheet",
+   "type_basis": "hint",
+   "ladder": "roe",
+   "measure": "roe",
+   "median": 0.128,
+   "median_note": null
+  },
+  "ZM": {
+   "sic": "7370",
+   "sic_description": "Services-Computer Programming, Data Processing, Etc.",
+   "cik": 1585521,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.0823,
+   "median_note": null
+  },
+  "ZS": {
+   "sic": "7371",
+   "sic_description": "Services-Computer Programming Services",
+   "cik": 1713683,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": -0.3104,
+   "median_note": null
+  },
+  "ZTO": {
+   "sic": "4210",
+   "sic_description": "Trucking & Courier Services (No Air)",
+   "cik": 1677250,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic",
+   "median": 0.1301,
+   "median_note": null
+  },
+  "ZTS": {
+   "sic": "2834",
+   "sic_description": "Pharmaceutical Preparations",
+   "cik": 1555280,
+   "business_type": null,
+   "type_basis": "hint",
+   "ladder": "default",
+   "measure": "roic_tangible",
+   "median": 0.4861,
+   "median_note": null
+  }
+ },
+ "groups": {
+  "default|2:10": {
+   "ladder": "default",
+   "level": 2,
+   "code": "10",
+   "label": "SIC 10 · Metal Mining",
+   "members": [
+    "AGI",
+    "EGO",
+    "EQX",
+    "GFI",
+    "HBM",
+    "HMY",
+    "IAG"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.0723,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 7
+   }
+  },
+  "default|2:13": {
+   "ladder": "default",
+   "level": 2,
+   "code": "13",
+   "label": "SIC 13 · Oil and Gas Extraction",
+   "members": [
+    "APA",
+    "AR",
+    "EQT",
+    "HAL",
+    "SSL",
+    "VNOM"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.1159,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6
+   }
+  },
+  "default|2:14": {
+   "ladder": "default",
+   "level": 2,
+   "code": "14",
+   "label": "SIC 14 · Mining and Quarrying of Nonmetallic Minerals",
+   "members": [
+    "HL",
+    "MLM",
+    "VMC"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1154,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|2:15": {
+   "ladder": "default",
+   "level": 2,
+   "code": "15",
+   "label": "SIC 15 · Building Construction - General Contractors",
+   "members": [
+    "DHI",
+    "TOL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2514,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|2:16": {
+   "ladder": "default",
+   "level": 2,
+   "code": "16",
+   "label": "SIC 16 · Heavy Construction other than Building",
+   "members": [
+    "J",
+    "MTZ",
+    "STRL"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 3
+   }
+  },
+  "default|2:20": {
+   "ladder": "default",
+   "level": 2,
+   "code": "20",
+   "label": "SIC 20 · Food and Kindred Products",
+   "members": [
+    "ADM",
+    "COKE",
+    "DAR",
+    "GIS",
+    "HRL",
+    "HSY",
+    "JBS",
+    "MICC",
+    "MKC",
+    "SJM",
+    "STZ"
+   ],
+   "n": 11,
+   "n_dropped": 0,
+   "median": 0.2403,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 9
+   }
+  },
+  "default|2:23": {
+   "ladder": "default",
+   "level": 2,
+   "code": "23",
+   "label": "SIC 23 · Apparel and Other Finished Products",
+   "members": [
+    "AS",
+    "LULU"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.5425,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|2:26": {
+   "ladder": "default",
+   "level": 2,
+   "code": "26",
+   "label": "SIC 26 · Paper and Allied Products",
+   "members": [
+    "AVY",
+    "IP",
+    "KMB",
+    "SUZ"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.1636,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 1
+   }
+  },
+  "default|2:27": {
+   "ladder": "default",
+   "level": 2,
+   "code": "27",
+   "label": "SIC 27 · Printing, Publishing and Allied Industries",
+   "members": [
+    "NWS",
+    "NYT",
+    "PSO"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.2544,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 3
+   }
+  },
+  "default|2:28": {
+   "ladder": "default",
+   "level": 2,
+   "code": "28",
+   "label": "SIC 28 · Chemicals and Allied Products",
+   "members": [
+    "ALB",
+    "ALNY",
+    "ASND",
+    "BBIO",
+    "BIIB",
+    "BMRN",
+    "CF",
+    "CMPS",
+    "CORT",
+    "DD",
+    "DFTX",
+    "EL",
+    "ELAN",
+    "EXEL",
+    "HALO",
+    "IBRX",
+    "JAZZ",
+    "KRYS",
+    "KVUE",
+    "MDGL",
+    "NBIX",
+    "PCVX",
+    "QGEN",
+    "RDY",
+    "RPM",
+    "SMMT",
+    "SOLS",
+    "TECH",
+    "TWST",
+    "ZTS"
+   ],
+   "n": 26,
+   "n_dropped": 4,
+   "median": 0.1451,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 16,
+    "roic_tangible": 14
+   }
+  },
+  "default|2:30": {
+   "ladder": "default",
+   "level": 2,
+   "code": "30",
+   "label": "SIC 30 · Rubber and Miscellaneous Plastics Products",
+   "members": [
+    "CSL",
+    "DECK",
+    "WMS"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.4329,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|2:32": {
+   "ladder": "default",
+   "level": 2,
+   "code": "32",
+   "label": "SIC 32 · Stone, Clay, Glass and Concrete Products",
+   "members": [
+    "CX",
+    "JHX"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1834,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|2:33": {
+   "ladder": "default",
+   "level": 2,
+   "code": "33",
+   "label": "SIC 33 · Primary Metal Industries",
+   "members": [
+    "AA",
+    "GGB",
+    "MLI",
+    "STLD",
+    "TX"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.1823,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5
+   }
+  },
+  "default|2:34": {
+   "ladder": "default",
+   "level": 2,
+   "code": "34",
+   "label": "SIC 34 · Fabricated Metal Products",
+   "members": [
+    "AXON",
+    "BALL",
+    "CCK",
+    "CR",
+    "MAS",
+    "SNA",
+    "SWK",
+    "WTS"
+   ],
+   "n": 8,
+   "n_dropped": 0,
+   "median": 0.2274,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 6
+   }
+  },
+  "default|2:35": {
+   "ladder": "default",
+   "level": 2,
+   "code": "35",
+   "label": "SIC 35 · Industrial and Commercial Machinery and Computer Equipment",
+   "members": [
+    "BWXT",
+    "CNH",
+    "FFIV",
+    "FTI",
+    "GGG",
+    "HPQ",
+    "IEX",
+    "IR",
+    "LECO",
+    "LII",
+    "LOGI",
+    "NVT",
+    "RBC",
+    "RRX",
+    "SMCI"
+   ],
+   "n": 15,
+   "n_dropped": 0,
+   "median": 0.4212,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 4,
+    "roic_tangible": 11
+   }
+  },
+  "default|2:36": {
+   "ladder": "default",
+   "level": 2,
+   "code": "36",
+   "label": "SIC 36 · Electronic and Other Electrical Equipment and Components",
+   "members": [
+    "AEIS",
+    "AMKR",
+    "FN",
+    "FORM",
+    "GNRC",
+    "JBL",
+    "LFUS",
+    "NXT",
+    "ON",
+    "Q",
+    "RMBS",
+    "SANM",
+    "SMTC",
+    "SWKS",
+    "TTMI",
+    "UI",
+    "VIAV",
+    "VICR"
+   ],
+   "n": 18,
+   "n_dropped": 0,
+   "median": 0.1913,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 9,
+    "roic_tangible": 9
+   }
+  },
+  "default|2:37": {
+   "ladder": "default",
+   "level": 2,
+   "code": "37",
+   "label": "SIC 37 · Transportation Equipment",
+   "members": [
+    "APTV",
+    "BWA",
+    "EMBJ",
+    "ESLT",
+    "HII",
+    "LI",
+    "MGA",
+    "STLA",
+    "TXT",
+    "XPEV"
+   ],
+   "n": 10,
+   "n_dropped": 0,
+   "median": 0.1537,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6,
+    "roic_tangible": 4
+   }
+  },
+  "default|2:38": {
+   "ladder": "default",
+   "level": 2,
+   "code": "38",
+   "label": "SIC 38 · Measuring, Analyzing and Controlling Instruments",
+   "members": [
+    "AVTR",
+    "BAX",
+    "BIO",
+    "CGNX",
+    "COO",
+    "DXCM",
+    "FTV",
+    "GEHC",
+    "GKOS",
+    "GMED",
+    "MTD",
+    "NVMI",
+    "ONTO",
+    "PEN",
+    "RMD",
+    "ROP",
+    "RVTY",
+    "SNN",
+    "SOLV",
+    "TDY",
+    "TRMB",
+    "TXG",
+    "ZBH"
+   ],
+   "n": 23,
+   "n_dropped": 0,
+   "median": 0.1879,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5,
+    "roic_tangible": 18
+   }
+  },
+  "default|2:42": {
+   "ladder": "default",
+   "level": 2,
+   "code": "42",
+   "label": "SIC 42 · Motor Freight Transportation",
+   "members": [
+    "ODFL",
+    "TFII",
+    "ZTO"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1365,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3
+   }
+  },
+  "default|2:44": {
+   "ladder": "default",
+   "level": 2,
+   "code": "44",
+   "label": "SIC 44 · Water Transportation",
+   "members": [
+    "CCL",
+    "FRO"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0774,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|2:45": {
+   "ladder": "default",
+   "level": 2,
+   "code": "45",
+   "label": "SIC 45 · Transportation by Air",
+   "members": [
+    "FDXF",
+    "LTM",
+    "PAC",
+    "UAL"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.3178,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 4
+   }
+  },
+  "default|2:47": {
+   "ladder": "default",
+   "level": 2,
+   "code": "47",
+   "label": "SIC 47 · Transportation Services",
+   "members": [
+    "CHRW",
+    "EXPE"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|2:48": {
+   "ladder": "default",
+   "level": 2,
+   "code": "48",
+   "label": "SIC 48 · Communications",
+   "members": [
+    "BCE",
+    "CHTR",
+    "ECHO",
+    "GSAT",
+    "RCI",
+    "SKM",
+    "TIGO",
+    "TLK",
+    "TME",
+    "TU",
+    "VIV",
+    "VOD"
+   ],
+   "n": 12,
+   "n_dropped": 0,
+   "median": 0.1311,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5,
+    "roic_tangible": 7
+   }
+  },
+  "default|2:49": {
+   "ladder": "default",
+   "level": 2,
+   "code": "49",
+   "label": "SIC 49 · Electric, Gas and Sanitary Services",
+   "members": [
+    "CLH",
+    "WCN"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1938,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|2:50": {
+   "ladder": "default",
+   "level": 2,
+   "code": "50",
+   "label": "SIC 50 · Wholesale Trade - Durable Goods",
+   "members": [
+    "AIT",
+    "ARW",
+    "GPC",
+    "HSIC",
+    "QXO",
+    "WSO"
+   ],
+   "n": 5,
+   "n_dropped": 1,
+   "median": 0.2891,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 4
+   }
+  },
+  "default|2:51": {
+   "ladder": "default",
+   "level": 2,
+   "code": "51",
+   "label": "SIC 51 · Wholesale Trade - Nondurable Goods",
+   "members": [
+    "PFGC",
+    "SYY"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2294,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|2:53": {
+   "ladder": "default",
+   "level": 2,
+   "code": "53",
+   "label": "SIC 53 · General Merchandise Stores",
+   "members": [
+    "BJ",
+    "BURL",
+    "DG",
+    "FIVE"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.2653,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 2
+   }
+  },
+  "default|2:57": {
+   "ladder": "default",
+   "level": 2,
+   "code": "57",
+   "label": "SIC 57 · Home Furniture, Furnishings and Equipment Stores",
+   "members": [
+    "GME",
+    "WSM"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1485,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|2:58": {
+   "ladder": "default",
+   "level": 2,
+   "code": "58",
+   "label": "SIC 58 · Eating and Drinking Places",
+   "members": [
+    "ARMK",
+    "CMG",
+    "QSR",
+    "TXRH",
+    "YUM",
+    "YUMC"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.3918,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 4
+   }
+  },
+  "default|2:59": {
+   "ladder": "default",
+   "level": 2,
+   "code": "59",
+   "label": "SIC 59 · Miscellaneous Retail",
+   "members": [
+    "CPNG",
+    "DKS",
+    "FCFS",
+    "JD",
+    "W"
+   ],
+   "n": 4,
+   "n_dropped": 1,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 2
+   }
+  },
+  "default|2:62": {
+   "ladder": "default",
+   "level": 2,
+   "code": "62",
+   "label": "SIC 62 · Security and Commodity Brokers, Dealers, Exchanges and Services",
+   "members": [
+    "ARES",
+    "BEN",
+    "CBOE",
+    "CG",
+    "EVR",
+    "FRHC",
+    "FUTU",
+    "HLI",
+    "IBKR",
+    "IVZ",
+    "OWL",
+    "RJF",
+    "SEIC",
+    "SF",
+    "TPG",
+    "XP"
+   ],
+   "n": 16,
+   "n_dropped": 0,
+   "median": 1.3853,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 8,
+    "roic_tangible": 8
+   }
+  },
+  "default|2:64": {
+   "ladder": "default",
+   "level": 2,
+   "code": "64",
+   "label": "SIC 64 · Insurance Agents, Brokers and Service",
+   "members": [
+    "EQH",
+    "ERIE",
+    "RYAN",
+    "WTW"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 1.5786,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 2
+   }
+  },
+  "default|2:65": {
+   "ladder": "default",
+   "level": 2,
+   "code": "65",
+   "label": "SIC 65 · Real Estate",
+   "members": [
+    "CBRE",
+    "JLL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.3517,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|2:70": {
+   "ladder": "default",
+   "level": 2,
+   "code": "70",
+   "label": "SIC 70 · Hotels, Rooming Houses, Camps, and Other Lodging Places",
+   "members": [
+    "H",
+    "HTHT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.261,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|2:73": {
+   "ladder": "default",
+   "level": 2,
+   "code": "73",
+   "label": "SIC 73 · Business Services",
+   "members": [
+    "AKAM",
+    "ALLE",
+    "APG",
+    "APP",
+    "AUR",
+    "BIDU",
+    "CACI",
+    "CART",
+    "CHKP",
+    "CSGP",
+    "CTSH",
+    "DOCN",
+    "DOCU",
+    "DUOL",
+    "EFX",
+    "ESTC",
+    "FICO",
+    "FIG",
+    "FIS",
+    "FLUT",
+    "FROG",
+    "FTAI",
+    "GDDY",
+    "GEN",
+    "GRAB",
+    "GWRE",
+    "HUBS",
+    "IONQ",
+    "JKHY",
+    "LDOS",
+    "MANH",
+    "MDB",
+    "MTCH",
+    "NTNX",
+    "PAYC",
+    "PINS",
+    "RBA",
+    "RBLX",
+    "RDDT",
+    "ROL",
+    "SAIL",
+    "SNAP",
+    "TEM",
+    "TRU",
+    "TTWO",
+    "TYL",
+    "U",
+    "VRSN",
+    "WIT",
+    "WSE",
+    "ZM",
+    "ZS"
+   ],
+   "n": 46,
+   "n_dropped": 6,
+   "median": 0.2973,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 17,
+    "roic_tangible": 35
+   }
+  },
+  "default|2:75": {
+   "ladder": "default",
+   "level": 2,
+   "code": "75",
+   "label": "SIC 75 · Automotive Repair, Services and Parking",
+   "members": [
+    "R",
+    "UHAL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.068,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|2:79": {
+   "ladder": "default",
+   "level": 2,
+   "code": "79",
+   "label": "SIC 79 · Amusement and Recreation Services",
+   "members": [
+    "TKO",
+    "WMG"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|2:80": {
+   "ladder": "default",
+   "level": 2,
+   "code": "80",
+   "label": "SIC 80 · Health Services",
+   "members": [
+    "BTSG",
+    "DVA",
+    "EHC",
+    "ENSG",
+    "FMS",
+    "UHS"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.1943,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 5
+   }
+  },
+  "default|2:87": {
+   "ladder": "default",
+   "level": 2,
+   "code": "87",
+   "label": "SIC 87 · Engineering, Accounting, Research, Management and Related Services",
+   "members": [
+    "CRL",
+    "GIB",
+    "ICLR",
+    "IT",
+    "MEDP",
+    "PAYX",
+    "RTO",
+    "ULS"
+   ],
+   "n": 8,
+   "n_dropped": 0,
+   "median": 1.0265,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 8
+   }
+  },
+  "default|3:104": {
+   "ladder": "default",
+   "level": 3,
+   "code": "104",
+   "label": "SIC 104x · Metal Mining",
+   "members": [
+    "AGI",
+    "EGO",
+    "EQX",
+    "GFI",
+    "HMY",
+    "IAG"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.0658,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6
+   }
+  },
+  "default|3:131": {
+   "ladder": "default",
+   "level": 3,
+   "code": "131",
+   "label": "SIC 131x · Oil and Gas Extraction",
+   "members": [
+    "APA",
+    "AR",
+    "EQT",
+    "SSL",
+    "VNOM"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.0807,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5
+   }
+  },
+  "default|3:140": {
+   "ladder": "default",
+   "level": 3,
+   "code": "140",
+   "label": "SIC 140x · Mining and Quarrying of Nonmetallic Minerals",
+   "members": [
+    "HL",
+    "MLM",
+    "VMC"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1154,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|3:153": {
+   "ladder": "default",
+   "level": 3,
+   "code": "153",
+   "label": "SIC 153x · Building Construction - General Contractors",
+   "members": [
+    "DHI",
+    "TOL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2514,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|3:160": {
+   "ladder": "default",
+   "level": 3,
+   "code": "160",
+   "label": "SIC 160x · Heavy Construction other than Building",
+   "members": [
+    "J",
+    "STRL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:201": {
+   "ladder": "default",
+   "level": 3,
+   "code": "201",
+   "label": "SIC 201x · Food and Kindred Products",
+   "members": [
+    "HRL",
+    "JBS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2288,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:207": {
+   "ladder": "default",
+   "level": 3,
+   "code": "207",
+   "label": "SIC 207x · Food and Kindred Products",
+   "members": [
+    "ADM",
+    "DAR"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.129,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:208": {
+   "ladder": "default",
+   "level": 3,
+   "code": "208",
+   "label": "SIC 208x · Food and Kindred Products",
+   "members": [
+    "COKE",
+    "STZ"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2577,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:230": {
+   "ladder": "default",
+   "level": 3,
+   "code": "230",
+   "label": "SIC 230x · Apparel and Other Finished Products",
+   "members": [
+    "AS",
+    "LULU"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.5425,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:262": {
+   "ladder": "default",
+   "level": 3,
+   "code": "262",
+   "label": "SIC 262x · Paper and Allied Products",
+   "members": [
+    "IP",
+    "SUZ"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0762,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|3:267": {
+   "ladder": "default",
+   "level": 3,
+   "code": "267",
+   "label": "SIC 267x · Paper and Allied Products",
+   "members": [
+    "AVY",
+    "KMB"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2785,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:271": {
+   "ladder": "default",
+   "level": 3,
+   "code": "271",
+   "label": "SIC 271x · Printing, Publishing and Allied Industries",
+   "members": [
+    "NWS",
+    "NYT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2868,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:282": {
+   "ladder": "default",
+   "level": 3,
+   "code": "282",
+   "label": "SIC 282x · Chemicals and Allied Products",
+   "members": [
+    "ALB",
+    "DD"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0444,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:283": {
+   "ladder": "default",
+   "level": 3,
+   "code": "283",
+   "label": "SIC 283x · Chemicals and Allied Products",
+   "members": [
+    "ALNY",
+    "ASND",
+    "BBIO",
+    "BIIB",
+    "BMRN",
+    "CMPS",
+    "CORT",
+    "DFTX",
+    "ELAN",
+    "EXEL",
+    "HALO",
+    "IBRX",
+    "JAZZ",
+    "KRYS",
+    "MDGL",
+    "NBIX",
+    "PCVX",
+    "QGEN",
+    "RDY",
+    "SMMT",
+    "TECH",
+    "TWST",
+    "ZTS"
+   ],
+   "n": 19,
+   "n_dropped": 4,
+   "median": 0.1245,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 15,
+    "roic_tangible": 8
+   }
+  },
+  "default|3:284": {
+   "ladder": "default",
+   "level": 3,
+   "code": "284",
+   "label": "SIC 284x · Chemicals and Allied Products",
+   "members": [
+    "EL",
+    "KVUE"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:331": {
+   "ladder": "default",
+   "level": 3,
+   "code": "331",
+   "label": "SIC 331x · Primary Metal Industries",
+   "members": [
+    "GGB",
+    "STLD",
+    "TX"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1823,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3
+   }
+  },
+  "default|3:341": {
+   "ladder": "default",
+   "level": 3,
+   "code": "341",
+   "label": "SIC 341x · Fabricated Metal Products",
+   "members": [
+    "BALL",
+    "CCK"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2112,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:342": {
+   "ladder": "default",
+   "level": 3,
+   "code": "342",
+   "label": "SIC 342x · Fabricated Metal Products",
+   "members": [
+    "SNA",
+    "SWK"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1392,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:349": {
+   "ladder": "default",
+   "level": 3,
+   "code": "349",
+   "label": "SIC 349x · Fabricated Metal Products",
+   "members": [
+    "CR",
+    "WTS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.3997,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:353": {
+   "ladder": "default",
+   "level": 3,
+   "code": "353",
+   "label": "SIC 353x · Industrial and Commercial Machinery and Computer Equipment",
+   "members": [
+    "CNH",
+    "FTI"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:356": {
+   "ladder": "default",
+   "level": 3,
+   "code": "356",
+   "label": "SIC 356x · Industrial and Commercial Machinery and Computer Equipment",
+   "members": [
+    "GGG",
+    "IEX",
+    "IR",
+    "RBC",
+    "RRX"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.4451,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 5
+   }
+  },
+  "default|3:357": {
+   "ladder": "default",
+   "level": 3,
+   "code": "357",
+   "label": "SIC 357x · Industrial and Commercial Machinery and Computer Equipment",
+   "members": [
+    "FFIV",
+    "HPQ",
+    "LOGI",
+    "SMCI"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 3
+   }
+  },
+  "default|3:366": {
+   "ladder": "default",
+   "level": 3,
+   "code": "366",
+   "label": "SIC 366x · Electronic and Other Electrical Equipment and Components",
+   "members": [
+    "FN",
+    "UI"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.5746,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|3:367": {
+   "ladder": "default",
+   "level": 3,
+   "code": "367",
+   "label": "SIC 367x · Electronic and Other Electrical Equipment and Components",
+   "members": [
+    "AEIS",
+    "AMKR",
+    "FORM",
+    "JBL",
+    "NXT",
+    "ON",
+    "Q",
+    "RMBS",
+    "SANM",
+    "SMTC",
+    "SWKS",
+    "TTMI",
+    "VIAV",
+    "VICR"
+   ],
+   "n": 14,
+   "n_dropped": 0,
+   "median": 0.1656,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 7,
+    "roic_tangible": 7
+   }
+  },
+  "default|3:371": {
+   "ladder": "default",
+   "level": 3,
+   "code": "371",
+   "label": "SIC 371x · Transportation Equipment",
+   "members": [
+    "APTV",
+    "BWA",
+    "LI",
+    "MGA",
+    "STLA",
+    "XPEV"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.1038,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 4,
+    "roic_tangible": 2
+   }
+  },
+  "default|3:372": {
+   "ladder": "default",
+   "level": 3,
+   "code": "372",
+   "label": "SIC 372x · Transportation Equipment",
+   "members": [
+    "EMBJ",
+    "ESLT",
+    "TXT"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1762,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:382": {
+   "ladder": "default",
+   "level": 3,
+   "code": "382",
+   "label": "SIC 382x · Measuring, Analyzing and Controlling Instruments",
+   "members": [
+    "AVTR",
+    "BIO",
+    "CGNX",
+    "FTV",
+    "MTD",
+    "NVMI",
+    "ONTO",
+    "ROP",
+    "RVTY",
+    "TRMB",
+    "TXG"
+   ],
+   "n": 11,
+   "n_dropped": 0,
+   "median": 0.2069,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 8
+   }
+  },
+  "default|3:384": {
+   "ladder": "default",
+   "level": 3,
+   "code": "384",
+   "label": "SIC 384x · Measuring, Analyzing and Controlling Instruments",
+   "members": [
+    "BAX",
+    "DXCM",
+    "GEHC",
+    "GKOS",
+    "GMED",
+    "PEN",
+    "RMD",
+    "SNN",
+    "SOLV",
+    "ZBH"
+   ],
+   "n": 10,
+   "n_dropped": 0,
+   "median": 0.1672,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 8
+   }
+  },
+  "default|3:421": {
+   "ladder": "default",
+   "level": 3,
+   "code": "421",
+   "label": "SIC 421x · Motor Freight Transportation",
+   "members": [
+    "ODFL",
+    "TFII",
+    "ZTO"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1365,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3
+   }
+  },
+  "default|3:451": {
+   "ladder": "default",
+   "level": 3,
+   "code": "451",
+   "label": "SIC 451x · Transportation by Air",
+   "members": [
+    "FDXF",
+    "LTM",
+    "UAL"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.2151,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3
+   }
+  },
+  "default|3:481": {
+   "ladder": "default",
+   "level": 3,
+   "code": "481",
+   "label": "SIC 481x · Communications",
+   "members": [
+    "BCE",
+    "SKM",
+    "TIGO",
+    "TLK",
+    "TU",
+    "VIV",
+    "VOD"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.1472,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 5
+   }
+  },
+  "default|3:484": {
+   "ladder": "default",
+   "level": 3,
+   "code": "484",
+   "label": "SIC 484x · Communications",
+   "members": [
+    "CHTR",
+    "RCI"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1943,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|3:489": {
+   "ladder": "default",
+   "level": 3,
+   "code": "489",
+   "label": "SIC 489x · Communications",
+   "members": [
+    "ECHO",
+    "GSAT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": -0.0035,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|3:495": {
+   "ladder": "default",
+   "level": 3,
+   "code": "495",
+   "label": "SIC 495x · Electric, Gas and Sanitary Services",
+   "members": [
+    "CLH",
+    "WCN"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1938,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:514": {
+   "ladder": "default",
+   "level": 3,
+   "code": "514",
+   "label": "SIC 514x · Wholesale Trade - Nondurable Goods",
+   "members": [
+    "PFGC",
+    "SYY"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2294,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:533": {
+   "ladder": "default",
+   "level": 3,
+   "code": "533",
+   "label": "SIC 533x · General Merchandise Stores",
+   "members": [
+    "BJ",
+    "DG",
+    "FIVE"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.2644,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|3:581": {
+   "ladder": "default",
+   "level": 3,
+   "code": "581",
+   "label": "SIC 581x · Eating and Drinking Places",
+   "members": [
+    "ARMK",
+    "CMG",
+    "QSR",
+    "TXRH",
+    "YUM",
+    "YUMC"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.3918,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 4
+   }
+  },
+  "default|3:596": {
+   "ladder": "default",
+   "level": 3,
+   "code": "596",
+   "label": "SIC 596x · Miscellaneous Retail",
+   "members": [
+    "CPNG",
+    "W"
+   ],
+   "n": 1,
+   "n_dropped": 1,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|3:621": {
+   "ladder": "default",
+   "level": 3,
+   "code": "621",
+   "label": "SIC 621x · Security and Commodity Brokers, Dealers, Exchanges and Services",
+   "members": [
+    "FRHC",
+    "FUTU",
+    "IBKR",
+    "RJF",
+    "SEIC",
+    "SF",
+    "XP"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.3947,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5,
+    "roic_tangible": 2
+   }
+  },
+  "default|3:628": {
+   "ladder": "default",
+   "level": 3,
+   "code": "628",
+   "label": "SIC 628x · Security and Commodity Brokers, Dealers, Exchanges and Services",
+   "members": [
+    "ARES",
+    "BEN",
+    "CG",
+    "EVR",
+    "HLI",
+    "IVZ",
+    "OWL",
+    "TPG"
+   ],
+   "n": 8,
+   "n_dropped": 0,
+   "median": 2.0383,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 5
+   }
+  },
+  "default|3:641": {
+   "ladder": "default",
+   "level": 3,
+   "code": "641",
+   "label": "SIC 641x · Insurance Agents, Brokers and Service",
+   "members": [
+    "EQH",
+    "ERIE",
+    "RYAN",
+    "WTW"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 1.5786,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 2
+   }
+  },
+  "default|3:701": {
+   "ladder": "default",
+   "level": 3,
+   "code": "701",
+   "label": "SIC 701x · Hotels, Rooming Houses, Camps, and Other Lodging Places",
+   "members": [
+    "H",
+    "HTHT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.261,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:732": {
+   "ladder": "default",
+   "level": 3,
+   "code": "732",
+   "label": "SIC 732x · Business Services",
+   "members": [
+    "EFX",
+    "TRU"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:734": {
+   "ladder": "default",
+   "level": 3,
+   "code": "734",
+   "label": "SIC 734x · Business Services",
+   "members": [
+    "APG",
+    "ROL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.9625,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:737": {
+   "ladder": "default",
+   "level": 3,
+   "code": "737",
+   "label": "SIC 737x · Business Services",
+   "members": [
+    "APP",
+    "AUR",
+    "BIDU",
+    "CACI",
+    "CHKP",
+    "CTSH",
+    "DOCN",
+    "DOCU",
+    "DUOL",
+    "ESTC",
+    "FIG",
+    "FLUT",
+    "FROG",
+    "GDDY",
+    "GEN",
+    "GWRE",
+    "HUBS",
+    "IONQ",
+    "JKHY",
+    "LDOS",
+    "MANH",
+    "MDB",
+    "MTCH",
+    "NTNX",
+    "PAYC",
+    "PINS",
+    "RBLX",
+    "RDDT",
+    "SAIL",
+    "SNAP",
+    "TEM",
+    "TTWO",
+    "TYL",
+    "U",
+    "VRSN",
+    "WIT",
+    "ZM",
+    "ZS"
+   ],
+   "n": 32,
+   "n_dropped": 6,
+   "median": 0.2027,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 13,
+    "roic_tangible": 25
+   }
+  },
+  "default|3:738": {
+   "ladder": "default",
+   "level": 3,
+   "code": "738",
+   "label": "SIC 738x · Business Services",
+   "members": [
+    "AKAM",
+    "ALLE",
+    "CART",
+    "CSGP",
+    "FICO",
+    "FIS",
+    "GRAB",
+    "RBA",
+    "WSE"
+   ],
+   "n": 9,
+   "n_dropped": 0,
+   "median": 0.7306,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 6
+   }
+  },
+  "default|3:751": {
+   "ladder": "default",
+   "level": 3,
+   "code": "751",
+   "label": "SIC 751x · Automotive Repair, Services and Parking",
+   "members": [
+    "R",
+    "UHAL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.068,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|3:790": {
+   "ladder": "default",
+   "level": 3,
+   "code": "790",
+   "label": "SIC 790x · Amusement and Recreation Services",
+   "members": [
+    "TKO",
+    "WMG"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:806": {
+   "ladder": "default",
+   "level": 3,
+   "code": "806",
+   "label": "SIC 806x · Health Services",
+   "members": [
+    "EHC",
+    "UHS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1914,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:809": {
+   "ladder": "default",
+   "level": 3,
+   "code": "809",
+   "label": "SIC 809x · Health Services",
+   "members": [
+    "DVA",
+    "FMS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.4749,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|3:873": {
+   "ladder": "default",
+   "level": 3,
+   "code": "873",
+   "label": "SIC 873x · Engineering, Accounting, Research, Management and Related Services",
+   "members": [
+    "CRL",
+    "ICLR",
+    "MEDP",
+    "ULS"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.3458,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 4
+   }
+  },
+  "default|3:874": {
+   "ladder": "default",
+   "level": 3,
+   "code": "874",
+   "label": "SIC 874x · Engineering, Accounting, Research, Management and Related Services",
+   "members": [
+    "GIB",
+    "IT",
+    "RTO"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 3
+   }
+  },
+  "default|4:1040": {
+   "ladder": "default",
+   "level": 4,
+   "code": "1040",
+   "label": "Gold and Silver Ores",
+   "members": [
+    "AGI",
+    "EGO",
+    "EQX",
+    "GFI",
+    "HMY",
+    "IAG"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.0658,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6
+   }
+  },
+  "default|4:1311": {
+   "ladder": "default",
+   "level": 4,
+   "code": "1311",
+   "label": "Crude Petroleum & Natural Gas",
+   "members": [
+    "APA",
+    "AR",
+    "EQT",
+    "SSL",
+    "VNOM"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.0807,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5
+   }
+  },
+  "default|4:1400": {
+   "ladder": "default",
+   "level": 4,
+   "code": "1400",
+   "label": "Mining & Quarrying of  Nonmetallic Minerals (No Fuels)",
+   "members": [
+    "HL",
+    "MLM",
+    "VMC"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1154,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|4:1531": {
+   "ladder": "default",
+   "level": 4,
+   "code": "1531",
+   "label": "Operative Builders",
+   "members": [
+    "DHI",
+    "TOL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2514,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:1600": {
+   "ladder": "default",
+   "level": 4,
+   "code": "1600",
+   "label": "Heavy Construction Other Than Bldg Const - Contractors",
+   "members": [
+    "J",
+    "STRL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:2011": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2011",
+   "label": "Meat Packing Plants",
+   "members": [
+    "HRL",
+    "JBS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2288,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:2070": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2070",
+   "label": "Fats & Oils",
+   "members": [
+    "ADM",
+    "DAR"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.129,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:2300": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2300",
+   "label": "Apparel & Other Finishd Prods of  Fabrics & Similar Matl",
+   "members": [
+    "AS",
+    "LULU"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.5425,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:2621": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2621",
+   "label": "Paper Mills",
+   "members": [
+    "IP",
+    "SUZ"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0762,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:2670": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2670",
+   "label": "Converted Paper & Paperboard Prods (No Contaners/Boxes)",
+   "members": [
+    "AVY",
+    "KMB"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2785,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:2711": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2711",
+   "label": "Newspapers: Publishing or  Publishing & Printing",
+   "members": [
+    "NWS",
+    "NYT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2868,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:2821": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2821",
+   "label": "Plastic Materials, Synth Resins & Nonvulcan Elastomers",
+   "members": [
+    "ALB",
+    "DD"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0444,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:2834": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2834",
+   "label": "Pharmaceutical Preparations",
+   "members": [
+    "ALNY",
+    "ASND",
+    "BBIO",
+    "BMRN",
+    "CMPS",
+    "CORT",
+    "ELAN",
+    "JAZZ",
+    "MDGL",
+    "RDY",
+    "SMMT",
+    "ZTS"
+   ],
+   "n": 10,
+   "n_dropped": 2,
+   "median": -0.0286,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 9,
+    "roic_tangible": 3
+   }
+  },
+  "default|4:2836": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2836",
+   "label": "Biological Products, (No Diagnostic Substances)",
+   "members": [
+    "BIIB",
+    "EXEL",
+    "HALO",
+    "IBRX",
+    "KRYS",
+    "NBIX",
+    "PCVX",
+    "QGEN",
+    "TECH",
+    "TWST"
+   ],
+   "n": 9,
+   "n_dropped": 1,
+   "median": 0.1449,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6,
+    "roic_tangible": 4
+   }
+  },
+  "default|4:2844": {
+   "ladder": "default",
+   "level": 4,
+   "code": "2844",
+   "label": "Perfumes, Cosmetics & Other Toilet Preparations",
+   "members": [
+    "EL",
+    "KVUE"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:3312": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3312",
+   "label": "Steel Works, Blast Furnaces & Rolling Mills (Coke Ovens)",
+   "members": [
+    "STLD",
+    "TX"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1626,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:3411": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3411",
+   "label": "Metal Cans",
+   "members": [
+    "BALL",
+    "CCK"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2112,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:3420": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3420",
+   "label": "Cutlery, Handtools & General Hardware",
+   "members": [
+    "SNA",
+    "SWK"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1392,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:3490": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3490",
+   "label": "Miscellaneous Fabricated Metal Products",
+   "members": [
+    "CR",
+    "WTS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.3997,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:3561": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3561",
+   "label": "Pumps & Pumping Equipment",
+   "members": [
+    "GGG",
+    "IEX"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.817,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:3672": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3672",
+   "label": "Printed Circuit Boards",
+   "members": [
+    "JBL",
+    "SANM",
+    "TTMI"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1479,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:3674": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3674",
+   "label": "Semiconductors & Related Devices",
+   "members": [
+    "AMKR",
+    "FORM",
+    "NXT",
+    "ON",
+    "Q",
+    "RMBS",
+    "SMTC",
+    "SWKS",
+    "VIAV"
+   ],
+   "n": 9,
+   "n_dropped": 0,
+   "median": 0.1954,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 6
+   }
+  },
+  "default|4:3679": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3679",
+   "label": "Electronic Components, NEC",
+   "members": [
+    "AEIS",
+    "VICR"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1417,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:3711": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3711",
+   "label": "Motor Vehicles & Passenger Car Bodies",
+   "members": [
+    "LI",
+    "STLA",
+    "XPEV"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": -0.018,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3
+   }
+  },
+  "default|4:3714": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3714",
+   "label": "Motor Vehicle Parts & Accessories",
+   "members": [
+    "APTV",
+    "BWA",
+    "MGA"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1222,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|4:3823": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3823",
+   "label": "Industrial Instruments For Measurement, Display, and Control",
+   "members": [
+    "CGNX",
+    "FTV",
+    "ROP"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 3
+   }
+  },
+  "default|4:3826": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3826",
+   "label": "Laboratory Analytical Instruments",
+   "members": [
+    "AVTR",
+    "BIO",
+    "MTD",
+    "RVTY",
+    "TXG"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.1326,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 3
+   }
+  },
+  "default|4:3829": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3829",
+   "label": "Measuring & Controlling Devices, NEC",
+   "members": [
+    "ONTO",
+    "TRMB"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.2063,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:3841": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3841",
+   "label": "Surgical & Medical Instruments & Apparatus",
+   "members": [
+    "BAX",
+    "DXCM",
+    "GKOS",
+    "GMED",
+    "PEN",
+    "RMD",
+    "SOLV"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.1215,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 5
+   }
+  },
+  "default|4:3842": {
+   "ladder": "default",
+   "level": 4,
+   "code": "3842",
+   "label": "Orthopedic, Prosthetic & Surgical Appliances & Supplies",
+   "members": [
+    "SNN",
+    "ZBH"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1672,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:4210": {
+   "ladder": "default",
+   "level": 4,
+   "code": "4210",
+   "label": "Trucking & Courier Services (No Air)",
+   "members": [
+    "TFII",
+    "ZTO"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1333,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:4512": {
+   "ladder": "default",
+   "level": 4,
+   "code": "4512",
+   "label": "Air Transportation, Scheduled",
+   "members": [
+    "LTM",
+    "UAL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1575,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:4812": {
+   "ladder": "default",
+   "level": 4,
+   "code": "4812",
+   "label": "Radiotelephone Communications",
+   "members": [
+    "SKM",
+    "TIGO",
+    "TU",
+    "VOD"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.1894,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 4
+   }
+  },
+  "default|4:4813": {
+   "ladder": "default",
+   "level": 4,
+   "code": "4813",
+   "label": "Telephone Communications (No Radiotelephone)",
+   "members": [
+    "BCE",
+    "TLK",
+    "VIV"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1151,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:4841": {
+   "ladder": "default",
+   "level": 4,
+   "code": "4841",
+   "label": "Cable & Other Pay Television Services",
+   "members": [
+    "CHTR",
+    "RCI"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.1943,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "default|4:4899": {
+   "ladder": "default",
+   "level": 4,
+   "code": "4899",
+   "label": "Communications Services, NEC",
+   "members": [
+    "ECHO",
+    "GSAT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": -0.0035,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:5331": {
+   "ladder": "default",
+   "level": 4,
+   "code": "5331",
+   "label": "Retail-Variety Stores",
+   "members": [
+    "BJ",
+    "DG",
+    "FIVE"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.2644,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 2
+   }
+  },
+  "default|4:5812": {
+   "ladder": "default",
+   "level": 4,
+   "code": "5812",
+   "label": "Retail-Eating  Places",
+   "members": [
+    "ARMK",
+    "CMG",
+    "QSR",
+    "TXRH",
+    "YUM",
+    "YUMC"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.3918,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 4
+   }
+  },
+  "default|4:5961": {
+   "ladder": "default",
+   "level": 4,
+   "code": "5961",
+   "label": "Retail-Catalog & Mail-Order Houses",
+   "members": [
+    "CPNG",
+    "W"
+   ],
+   "n": 1,
+   "n_dropped": 1,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:6211": {
+   "ladder": "default",
+   "level": 4,
+   "code": "6211",
+   "label": "Security Brokers, Dealers & Flotation Companies",
+   "members": [
+    "FRHC",
+    "FUTU",
+    "IBKR",
+    "RJF",
+    "SEIC",
+    "SF",
+    "XP"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.3947,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5,
+    "roic_tangible": 2
+   }
+  },
+  "default|4:6282": {
+   "ladder": "default",
+   "level": 4,
+   "code": "6282",
+   "label": "Investment Advice",
+   "members": [
+    "ARES",
+    "BEN",
+    "CG",
+    "EVR",
+    "HLI",
+    "IVZ",
+    "OWL",
+    "TPG"
+   ],
+   "n": 8,
+   "n_dropped": 0,
+   "median": 2.0383,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 5
+   }
+  },
+  "default|4:6411": {
+   "ladder": "default",
+   "level": 4,
+   "code": "6411",
+   "label": "Insurance Agents, Brokers & Service",
+   "members": [
+    "EQH",
+    "ERIE",
+    "RYAN",
+    "WTW"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 1.5786,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 2
+   }
+  },
+  "default|4:7011": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7011",
+   "label": "Hotels & Motels",
+   "members": [
+    "H",
+    "HTHT"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.261,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:7320": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7320",
+   "label": "Services-Consumer Credit Reporting, Collection Agencies",
+   "members": [
+    "EFX",
+    "TRU"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:7340": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7340",
+   "label": "Services-To Dwellings & Other Buildings",
+   "members": [
+    "APG",
+    "ROL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.9625,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:7370": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7370",
+   "label": "Services-Computer Programming, Data Processing, Etc.",
+   "members": [
+    "APP",
+    "BIDU",
+    "DOCN",
+    "FLUT",
+    "MTCH",
+    "PINS",
+    "SNAP",
+    "TEM",
+    "ZM"
+   ],
+   "n": 8,
+   "n_dropped": 1,
+   "median": 0.0677,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 4,
+    "roic_tangible": 5
+   }
+  },
+  "default|4:7371": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7371",
+   "label": "Services-Computer Programming Services",
+   "members": [
+    "CTSH",
+    "VRSN",
+    "WIT",
+    "ZS"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.3698,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2,
+    "roic_tangible": 2
+   }
+  },
+  "default|4:7372": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7372",
+   "label": "Services-Prepackaged Software",
+   "members": [
+    "CHKP",
+    "DOCU",
+    "DUOL",
+    "ESTC",
+    "FIG",
+    "FROG",
+    "GEN",
+    "GWRE",
+    "HUBS",
+    "MANH",
+    "MDB",
+    "NTNX",
+    "PAYC",
+    "RBLX",
+    "SAIL",
+    "TTWO",
+    "TYL",
+    "U"
+   ],
+   "n": 14,
+   "n_dropped": 4,
+   "median": 0.0622,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 5,
+    "roic_tangible": 13
+   }
+  },
+  "default|4:7373": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7373",
+   "label": "Services-Computer Integrated Systems Design",
+   "members": [
+    "AUR",
+    "CACI",
+    "GDDY",
+    "IONQ",
+    "JKHY",
+    "LDOS"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.4941,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 5
+   }
+  },
+  "default|4:7389": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7389",
+   "label": "Services-Business Services, NEC",
+   "members": [
+    "AKAM",
+    "CART",
+    "CSGP",
+    "FICO",
+    "FIS",
+    "GRAB",
+    "RBA",
+    "WSE"
+   ],
+   "n": 8,
+   "n_dropped": 0,
+   "median": 0.6912,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 3,
+    "roic_tangible": 5
+   }
+  },
+  "default|4:7510": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7510",
+   "label": "Services-Auto Rental & Leasing (No Drivers)",
+   "members": [
+    "R",
+    "UHAL"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.068,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 2
+   }
+  },
+  "default|4:7900": {
+   "ladder": "default",
+   "level": 4,
+   "code": "7900",
+   "label": "Services-Amusement & Recreation Services",
+   "members": [
+    "TKO",
+    "WMG"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:8090": {
+   "ladder": "default",
+   "level": 4,
+   "code": "8090",
+   "label": "Services-Misc Health & Allied Services, NEC",
+   "members": [
+    "DVA",
+    "FMS"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.4749,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "default|4:8731": {
+   "ladder": "default",
+   "level": 4,
+   "code": "8731",
+   "label": "Services-Commercial Physical & Biological Research",
+   "members": [
+    "CRL",
+    "ICLR",
+    "MEDP"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.1842,
+   "median_note": null,
+   "metric_mix": {
+    "roic_tangible": 3
+   }
+  },
+  "default|4:8741": {
+   "ladder": "default",
+   "level": 4,
+   "code": "8741",
+   "label": "Services-Management Services",
+   "members": [
+    "IT",
+    "RTO"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": null,
+   "median_note": "unbounded_high",
+   "metric_mix": {
+    "roic_tangible": 2
+   }
+  },
+  "real_assets|2:49": {
+   "ladder": "real_assets",
+   "level": 2,
+   "code": "49",
+   "label": "SIC 49 · Electric, Gas and Sanitary Services",
+   "members": [
+    "AEE",
+    "AES",
+    "ATO",
+    "DTM",
+    "ED",
+    "EMA",
+    "KEP",
+    "LNT",
+    "OGE",
+    "PCG",
+    "PEG",
+    "PNW",
+    "WEC",
+    "WTRG"
+   ],
+   "n": 14,
+   "n_dropped": 0,
+   "median": 0.049,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 12,
+    "roic_tangible": 2
+   }
+  },
+  "real_assets|2:67": {
+   "ladder": "real_assets",
+   "level": 2,
+   "code": "67",
+   "label": "SIC 67 · Holding and Other Investment Offices",
+   "members": [
+    "AHR",
+    "CCI",
+    "DOC",
+    "ELS",
+    "EXR",
+    "FRT",
+    "GLPI",
+    "HST",
+    "IRM",
+    "KIM",
+    "LAMR",
+    "MAA",
+    "OHI",
+    "REG",
+    "SUI",
+    "UDR",
+    "WPC",
+    "WY"
+   ],
+   "n": 18,
+   "n_dropped": 0,
+   "median": 0.076,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 15,
+    "roic_tangible": 3
+   }
+  },
+  "real_assets|3:491": {
+   "ladder": "real_assets",
+   "level": 3,
+   "code": "491",
+   "label": "SIC 491x · Electric, Gas and Sanitary Services",
+   "members": [
+    "EMA",
+    "KEP",
+    "OGE",
+    "PNW"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.0469,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 4
+   }
+  },
+  "real_assets|3:492": {
+   "ladder": "real_assets",
+   "level": 3,
+   "code": "492",
+   "label": "SIC 492x · Electric, Gas and Sanitary Services",
+   "members": [
+    "ATO",
+    "DTM"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0651,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 1,
+    "roic_tangible": 1
+   }
+  },
+  "real_assets|3:493": {
+   "ladder": "real_assets",
+   "level": 3,
+   "code": "493",
+   "label": "SIC 493x · Electric, Gas and Sanitary Services",
+   "members": [
+    "AEE",
+    "ED",
+    "LNT",
+    "PCG",
+    "PEG",
+    "WEC"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.0486,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6
+   }
+  },
+  "real_assets|3:679": {
+   "ladder": "real_assets",
+   "level": 3,
+   "code": "679",
+   "label": "SIC 679x · Holding and Other Investment Offices",
+   "members": [
+    "AHR",
+    "CCI",
+    "DOC",
+    "ELS",
+    "EXR",
+    "FRT",
+    "GLPI",
+    "HST",
+    "IRM",
+    "KIM",
+    "LAMR",
+    "MAA",
+    "OHI",
+    "REG",
+    "SUI",
+    "UDR",
+    "WPC",
+    "WY"
+   ],
+   "n": 18,
+   "n_dropped": 0,
+   "median": 0.076,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 15,
+    "roic_tangible": 3
+   }
+  },
+  "real_assets|4:4911": {
+   "ladder": "real_assets",
+   "level": 4,
+   "code": "4911",
+   "label": "Electric Services",
+   "members": [
+    "EMA",
+    "KEP",
+    "OGE",
+    "PNW"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.0469,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 4
+   }
+  },
+  "real_assets|4:4931": {
+   "ladder": "real_assets",
+   "level": 4,
+   "code": "4931",
+   "label": "Electric & Other Services Combined",
+   "members": [
+    "AEE",
+    "ED",
+    "LNT",
+    "PCG",
+    "PEG",
+    "WEC"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": 0.0486,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 6
+   }
+  },
+  "real_assets|4:6798": {
+   "ladder": "real_assets",
+   "level": 4,
+   "code": "6798",
+   "label": "Real Estate Investment Trusts",
+   "members": [
+    "AHR",
+    "CCI",
+    "DOC",
+    "ELS",
+    "EXR",
+    "FRT",
+    "GLPI",
+    "HST",
+    "IRM",
+    "KIM",
+    "LAMR",
+    "MAA",
+    "OHI",
+    "REG",
+    "SUI",
+    "UDR",
+    "WPC",
+    "WY"
+   ],
+   "n": 18,
+   "n_dropped": 0,
+   "median": 0.076,
+   "median_note": null,
+   "metric_mix": {
+    "roic": 15,
+    "roic_tangible": 3
+   }
+  },
+  "roe|2:60": {
+   "ladder": "roe",
+   "level": 2,
+   "code": "60",
+   "label": "SIC 60 · Depository Institutions",
+   "members": [
+    "ALLY",
+    "CFG",
+    "EWBC",
+    "FHN",
+    "HBAN",
+    "MTB",
+    "NTRS",
+    "PNFP",
+    "UMBF",
+    "ZION"
+   ],
+   "n": 10,
+   "n_dropped": 0,
+   "median": 0.1037,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 10
+   }
+  },
+  "roe|2:61": {
+   "ladder": "roe",
+   "level": 2,
+   "code": "61",
+   "label": "SIC 61 · Non-depository Credit Institutions",
+   "members": [
+    "AFRM",
+    "BMNR",
+    "HUT",
+    "IREN",
+    "KLAR",
+    "RKT"
+   ],
+   "n": 6,
+   "n_dropped": 0,
+   "median": -0.1634,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 6
+   }
+  },
+  "roe|2:63": {
+   "ladder": "roe",
+   "level": 2,
+   "code": "63",
+   "label": "SIC 63 · Insurance Carriers",
+   "members": [
+    "ACGL",
+    "AEG",
+    "AFG",
+    "AIZ",
+    "CNA",
+    "CNC",
+    "EG",
+    "FNF",
+    "GL",
+    "HIG",
+    "MOH",
+    "ORI",
+    "OSCR",
+    "PRU",
+    "RGA",
+    "RNR",
+    "UNM",
+    "WRB"
+   ],
+   "n": 18,
+   "n_dropped": 0,
+   "median": 0.1564,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 18
+   }
+  },
+  "roe|2:67": {
+   "ladder": "roe",
+   "level": 2,
+   "code": "67",
+   "label": "SIC 67 · Holding and Other Investment Offices",
+   "members": [
+    "AGNC",
+    "NLY"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0994,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 2
+   }
+  },
+  "roe|3:602": {
+   "ladder": "roe",
+   "level": 3,
+   "code": "602",
+   "label": "SIC 602x · Depository Institutions",
+   "members": [
+    "ALLY",
+    "CFG",
+    "EWBC",
+    "FHN",
+    "HBAN",
+    "MTB",
+    "NTRS",
+    "PNFP",
+    "UMBF",
+    "ZION"
+   ],
+   "n": 10,
+   "n_dropped": 0,
+   "median": 0.1037,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 10
+   }
+  },
+  "roe|3:619": {
+   "ladder": "roe",
+   "level": 3,
+   "code": "619",
+   "label": "SIC 619x · Non-depository Credit Institutions",
+   "members": [
+    "BMNR",
+    "HUT",
+    "IREN",
+    "KLAR"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": -0.1634,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 4
+   }
+  },
+  "roe|3:631": {
+   "ladder": "roe",
+   "level": 3,
+   "code": "631",
+   "label": "SIC 631x · Insurance Carriers",
+   "members": [
+    "AEG",
+    "GL",
+    "PRU",
+    "RGA"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.0928,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 4
+   }
+  },
+  "roe|3:632": {
+   "ladder": "roe",
+   "level": 3,
+   "code": "632",
+   "label": "SIC 632x · Insurance Carriers",
+   "members": [
+    "CNC",
+    "MOH",
+    "OSCR",
+    "UNM"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.1057,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 4
+   }
+  },
+  "roe|3:633": {
+   "ladder": "roe",
+   "level": 3,
+   "code": "633",
+   "label": "SIC 633x · Insurance Carriers",
+   "members": [
+    "ACGL",
+    "AFG",
+    "CNA",
+    "EG",
+    "HIG",
+    "RNR",
+    "WRB"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.1769,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 7
+   }
+  },
+  "roe|3:679": {
+   "ladder": "roe",
+   "level": 3,
+   "code": "679",
+   "label": "SIC 679x · Holding and Other Investment Offices",
+   "members": [
+    "AGNC",
+    "NLY"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0994,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 2
+   }
+  },
+  "roe|4:6021": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6021",
+   "label": "National Commercial Banks",
+   "members": [
+    "FHN",
+    "HBAN",
+    "PNFP",
+    "UMBF",
+    "ZION"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.1091,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 5
+   }
+  },
+  "roe|4:6022": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6022",
+   "label": "State Commercial Banks",
+   "members": [
+    "ALLY",
+    "CFG",
+    "EWBC",
+    "MTB",
+    "NTRS"
+   ],
+   "n": 5,
+   "n_dropped": 0,
+   "median": 0.0977,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 5
+   }
+  },
+  "roe|4:6199": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6199",
+   "label": "Finance Services",
+   "members": [
+    "BMNR",
+    "HUT",
+    "IREN",
+    "KLAR"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": -0.1634,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 4
+   }
+  },
+  "roe|4:6311": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6311",
+   "label": "Life Insurance",
+   "members": [
+    "AEG",
+    "GL",
+    "PRU",
+    "RGA"
+   ],
+   "n": 4,
+   "n_dropped": 0,
+   "median": 0.0928,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 4
+   }
+  },
+  "roe|4:6324": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6324",
+   "label": "Hospital & Medical Service Plans",
+   "members": [
+    "CNC",
+    "MOH",
+    "OSCR"
+   ],
+   "n": 3,
+   "n_dropped": 0,
+   "median": 0.0503,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 3
+   }
+  },
+  "roe|4:6331": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6331",
+   "label": "Fire, Marine & Casualty Insurance",
+   "members": [
+    "ACGL",
+    "AFG",
+    "CNA",
+    "EG",
+    "HIG",
+    "RNR",
+    "WRB"
+   ],
+   "n": 7,
+   "n_dropped": 0,
+   "median": 0.1769,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 7
+   }
+  },
+  "roe|4:6798": {
+   "ladder": "roe",
+   "level": 4,
+   "code": "6798",
+   "label": "Real Estate Investment Trusts",
+   "members": [
+    "AGNC",
+    "NLY"
+   ],
+   "n": 2,
+   "n_dropped": 0,
+   "median": 0.0994,
+   "median_note": null,
+   "metric_mix": {
+    "roe": 2
+   }
+  }
+ },
+ "excluded": {
+  "ALC": "no SIC",
+  "AMCR": "no SIC",
+  "AMH": "governing return unmeasured",
+  "AMRZ": "no SIC",
+  "ARCC": "no SIC",
+  "ASTS": "no SIC",
+  "ATI": "no SIC",
+  "AWK": "no SIC",
+  "BBY": "no SIC",
+  "BEKE": "no SIC",
+  "BG": "no SIC",
+  "BNTX": "no SIC",
+  "BR": "no SIC",
+  "BRO": "no SIC",
+  "BXP": "governing return unmeasured",
+  "CASY": "no SIC",
+  "CCJ": "no SIC",
+  "CDE": "no SIC",
+  "CDW": "no SIC",
+  "CHD": "no SIC",
+  "CHT": "no SIC",
+  "CHYM": "governing return unmeasured",
+  "CINF": "no SIC",
+  "CMS": "no SIC",
+  "CNP": "no SIC",
+  "CPAY": "no SIC",
+  "CPRT": "no SIC",
+  "CRCL": "no SIC",
+  "CRS": "no SIC",
+  "CW": "no SIC",
+  "DGX": "no SIC",
+  "DINO": "no SIC",
+  "DLTR": "no SIC",
+  "DOV": "no SIC",
+  "DOW": "no SIC",
+  "DRI": "no SIC",
+  "DT": "no SIC",
+  "DTE": "no SIC",
+  "EGP": "governing return unmeasured",
+  "EIX": "no SIC",
+  "ENTG": "no SIC",
+  "ERIC": "no SIC",
+  "ES": "no SIC",
+  "EVRG": "no SIC",
+  "EXE": "no SIC",
+  "EXPD": "no SIC",
+  "FCNCA": "no SIC",
+  "FE": "no SIC",
+  "FER": "no SIC",
+  "FISV": "no SIC",
+  "FOX": "no SIC",
+  "FOXA": "no SIC",
+  "FPS": "governing return unmeasured",
+  "FSLR": "no SIC",
+  "FTS": "no SIC",
+  "FWONA": "no SIC",
+  "FWONK": "no SIC",
+  "GFL": "no SIC",
+  "GFS": "no SIC",
+  "GH": "no SIC",
+  "GMAB": "no SIC",
+  "GPN": "no SIC",
+  "HUBB": "no SIC",
+  "IFF": "no SIC",
+  "IHG": "no SIC",
+  "INCY": "no SIC",
+  "INSM": "no SIC",
+  "INVH": "governing return unmeasured",
+  "IOT": "no SIC",
+  "ITT": "no SIC",
+  "JBHT": "no SIC",
+  "KEY": "no SIC",
+  "KGC": "no SIC",
+  "KHC": "no SIC",
+  "L": "no SIC",
+  "LEN": "no SIC",
+  "LH": "no SIC",
+  "LPLA": "no SIC",
+  "LSCC": "no SIC",
+  "LVS": "no SIC",
+  "LYB": "no SIC",
+  "MKL": "no SIC",
+  "MKSI": "no SIC",
+  "MTSI": "no SIC",
+  "NDSN": "no SIC",
+  "NI": "no SIC",
+  "NRG": "no SIC",
+  "NTR": "no SIC",
+  "NVR": "governing return unmeasured",
+  "NWSA": "same CIK as NWS (one member per CIK)",
+  "OMC": "no SIC",
+  "ONON": "no SIC",
+  "OTIS": "no SIC",
+  "OVV": "no SIC",
+  "PAAS": "no SIC",
+  "PBA": "no SIC",
+  "PFG": "no SIC",
+  "PHG": "no SIC",
+  "PHM": "no SIC",
+  "PKG": "no SIC",
+  "PPG": "no SIC",
+  "PPL": "no SIC",
+  "PTC": "no SIC",
+  "RBRK": "no SIC",
+  "RF": "no SIC",
+  "RGLD": "no SIC",
+  "RIVN": "no SIC",
+  "RL": "no SIC",
+  "ROIV": "no SIC",
+  "ROKU": "no SIC",
+  "RRC": "governing return unmeasured",
+  "RS": "no SIC",
+  "RYAAY": "no SIC",
+  "SBAC": "no SIC",
+  "SHG": "no SIC",
+  "SITM": "no SIC",
+  "SN": "no SIC",
+  "SNX": "no SIC",
+  "SOFI": "no SIC",
+  "SQM": "no SIC",
+  "SSNC": "no SIC",
+  "STE": "no SIC",
+  "SW": "no SIC",
+  "SYM": "no SIC",
+  "TCOM": "no SIC",
+  "TECK": "no SIC",
+  "THC": "no SIC",
+  "TOST": "no SIC",
+  "TPL": "no SIC",
+  "TPR": "no SIC",
+  "TROW": "no SIC",
+  "TS": "no SIC",
+  "TSCO": "no SIC",
+  "TSEM": "no SIC",
+  "TSN": "no SIC",
+  "TW": "no SIC",
+  "ULTA": "no SIC",
+  "USFD": "no SIC",
+  "UTHR": "no SIC",
+  "VG": "governing return unmeasured",
+  "VICI": "no SIC",
+  "VIK": "no SIC",
+  "VLTO": "no SIC",
+  "VRSK": "no SIC",
+  "VTRS": "no SIC",
+  "WCC": "no SIC",
+  "WF": "no SIC",
+  "WST": "no SIC",
+  "WWD": "no SIC",
+  "XPO": "no SIC",
+  "XYL": "no SIC",
+  "YPF": "no SIC",
+  "ZBRA": "no SIC"
+ }
+}

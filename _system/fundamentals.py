@@ -23,7 +23,17 @@ growth, margins, quarter = YTD minus prior YTD; nothing is estimated):
   interest, pretax, tax, net income, EPS, shares, OCF, capex, SBC, D&A,
   dividends, buybacks, acquisitions, cash, debt, leases, assets, equity,
   goodwill, prepaids, deferred revenue) with margins, growth rates, per-share
-  figures, ROE and an ROIC proxy, and the tag that supplied each core line.
+  figures, ROE (with roe_note), ROA, ROIC and tangible ROIC
+  (capital_returns_from_row: a non-positive or unstable invested capital gives
+  a note, not a ratio), the financial-assets share (loans + debt securities
+  over assets), and the superseded roic_proxy (kept for compatibility; Andrew
+  2026-10-19), and the tag that supplied each core line. Engine 5.7 (R4
+  revised, M2 "fix the measure at the source"): capital_returns_from_row is
+  the ONE returns function — fundamentals.json, statements.json's Metrics
+  lines and the moat scorecard (moat_scorecard.py) all read it; the thirteen
+  keys are new, so every committed fundamentals.json rewrites once on its next
+  run. `roic` keeps roic_proxy's rule that a never-filed debt figure counts as
+  zero (flag DEBT_NOT_TAGGED), as #53 kept it for the proxy.
 - quarterly: the last 12 fiscal quarters. Income-statement lines come from the
   filed 3-month facts where present; cash-flow lines (filed year-to-date
   only) are derived as YTD minus the prior YTD in the same fiscal year, and
@@ -299,6 +309,13 @@ INST = {
     "equity": ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", (IF, "Equity")],
     "retained_earnings": ["RetainedEarningsAccumulatedDeficit", (IF, "RetainedEarnings")],
     "shares_outstanding": ["CommonStockSharesOutstanding", (IF, "NumberOfSharesOutstanding")],
+    # engine 5.7 (R4 revised, 03b §4.1): the financial-assets share the moat scorecard's SIC-6798 mortgage-REIT lock
+    # reads — two ADDITIVE groups (alternatives within each); neither raw group is written to a row, only
+    # financial_assets / financial_assets_pct_assets (financial_assets_from_row)
+    "loans_receivable": ["LoansAndLeasesReceivableNetReportedAmount", "FinancingReceivableExcludingAccruedInterestAfterAllowanceForCreditLoss",
+                         "MortgageLoansOnRealEstateCommercialAndConsumerNet", (IF, "LoansAndAdvancesToCustomers")],
+    "debt_securities": ["AvailableForSaleSecuritiesDebtSecurities", "DebtSecuritiesAvailableForSaleExcludingAccruedInterest",
+                        "TradingSecuritiesDebt", "HeldToMaturitySecurities"],
 }
 # Period-end / cover-page share counts for the market cap (latest instant wins;
 # the cover-page dei count first, then the balance-sheet count).
@@ -686,6 +703,135 @@ def _ratio(a, b):
     return (a / b) if (a is not None and b not in (None, 0)) else None
 
 
+# ---------------------------------------------------------------------------
+# Returns on capital — ONE row function (engine 5.7, Andrew 2026-10-19, R4 revised M2: "fix the measure at the source").
+# build_annual (fundamentals.json), moat_scorecard.py (fundamentals.json and financials_history.csv rows) and
+# statements.py (the Financials tab's Metrics lines) all call capital_returns_from_row, so the site, the statements
+# viewer and the moat scorecard print one number per fiscal year. roic_proxy (below, in build_annual) is kept unchanged
+# for compatibility and documented as superseded by `roic`.
+# ---------------------------------------------------------------------------
+ROIC_UNSTABLE_REVENUE_SHARE = 0.05   # Andrew 2026-10-19 (R4 revised, M2): a positive invested capital below 5% of
+                                     # revenue is not a stable denominator; treated like a non-positive one.
+CAPITAL_RETURNS_KEYS = ("nopat", "invested_capital", "invested_capital_tangible", "intangibles_share_ic", "roic",
+                        "roic_note", "roic_tangible", "roic_tangible_note", "roic_basis", "roic_flags", "roe_note")
+FINANCIAL_ASSETS_KEYS = ("financial_assets", "financial_assets_pct_assets")
+
+
+def row_tax_rate(pretax, tax):
+    """tax / pretax when pretax > 0 and the rate is within 0-50%, else 0.21 (build_annual's rule since 5.x, moved
+    here unchanged; build_annual's own `tax_rate` local and its roic_proxy call it, so roic_proxy stays bit-identical)."""
+    return _ratio(tax, pretax) if (pretax and pretax > 0 and tax is not None and 0 <= tax / pretax <= 0.5) else 0.21
+
+
+def _rv(row, key):
+    """A raw numeric field of a row (missing key, None or a non-number == None)."""
+    v = row.get(key) if isinstance(row, dict) else None
+    return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) else None
+
+
+def row_ebit(row, csv=False):
+    """-> (ebit, basis, flags). operating_income -> 'operating_income'; else pretax_income + (interest_expense or 0)
+    -> 'pretax_income_plus_interest' + EBIT_FALLBACK; csv=True only: else net_income + tax -> 'net_income_plus_tax' +
+    EBIT_FALLBACK (financials_history.csv has no pretax line); else (None, None, [])."""
+    oi, pretax = _rv(row, "operating_income"), _rv(row, "pretax_income")
+    if oi is not None:
+        return oi, "operating_income", []
+    if pretax is not None:
+        return pretax + (_rv(row, "interest_expense") or 0.0), "pretax_income_plus_interest", ["EBIT_FALLBACK"]
+    ni, tax = _rv(row, "net_income"), _rv(row, "tax")
+    if csv and ni is not None and tax is not None:
+        return ni + tax, "net_income_plus_tax", ["EBIT_FALLBACK"]
+    return None, None, []
+
+
+def capital_returns_from_row(row, csv=False, ebit_addback=None):
+    """Returns-on-capital fields for one fiscal year from the row's RAW fields: revenue, operating_income,
+    pretax_income, interest_expense, tax, net_income, equity, total_debt, cash, goodwill, intangibles (missing key ==
+    None). Called by build_annual (fundamentals.json), by moat_scorecard for fundamentals.json rows and for CSV rows
+    (moat_scorecard.csv_row maps the CSV columns; csv=True), and by statements.py. Pure. Ratios are fractions; a
+    ratio that is not computed is None with a note. Keys (CAPITAL_RETURNS_KEYS, in this order):
+    - nopat = EBIT x (1 - t), t = row_tax_rate(pretax, tax) (a CSV row's pretax is net income + tax);
+    - invested_capital = equity + (total_debt or 0) - (cash or 0) (None without equity); total_debt None counts as 0
+      and flags DEBT_NOT_TAGGED; invested_capital_tangible = invested_capital - goodwill - intangibles;
+    - intangibles_share_ic = (goodwill + intangibles) / invested_capital when invested_capital > 0;
+    - roic / roic_tangible under the stable-denominator rule: a denominator <= 0, or positive but below
+      ROIC_UNSTABLE_REVENUE_SHARE of revenue, gives no ratio — note `unbounded_high` (NOPAT > 0), else
+      `loss_on_nonpositive_capital` / `loss_on_unstable_capital`; `no_ebit` / `no_equity` when an input is missing;
+      roic_tangible = roic when neither goodwill nor intangibles is filed (note `goodwill_intangibles_not_filed` when
+      roic itself has a value) or both are 0;
+    - roic_basis: operating_income | pretax_income_plus_interest | net_income_plus_tax (CSV rows only) | None;
+    - roic_flags: EBIT_FALLBACK, DEBT_NOT_TAGGED, NONPOSITIVE_INVESTED_CAPITAL, ROIC_DENOMINATOR_UNSTABLE,
+      NONPOSITIVE_TANGIBLE_CAPITAL, TANGIBLE_DENOMINATOR_UNSTABLE, NEGATIVE_EQUITY;
+    - roe_note: `negative_equity` when equity <= 0 and net income is filed (the row's `roe` is then sign-meaningless:
+      HPQ's -300%), `no_equity` when equity is not filed, else None (`roe` itself is unchanged, for compatibility).
+    ebit_addback (moat_scorecard only; Andrew's Q3 default (b), main agent 2026-10-21): a one-time charge inside EBIT
+    the caller adds back — the acquired-IPR&D charge engine 5.6 already deducts once from value — the tax rate stays
+    the filed row's. build_annual and statements.py never pass it (fundamentals.json stays as filed)."""
+    rev, eq = _rv(row, "revenue"), _rv(row, "equity")
+    debt, cash = _rv(row, "total_debt"), _rv(row, "cash")
+    gw, intang = _rv(row, "goodwill"), _rv(row, "intangibles")
+    ni, tax, pretax = _rv(row, "net_income"), _rv(row, "tax"), _rv(row, "pretax_income")
+    out = {"nopat": None, "invested_capital": None, "invested_capital_tangible": None, "intangibles_share_ic": None,
+           "roic": None, "roic_note": None, "roic_tangible": None, "roic_tangible_note": None, "roic_basis": None,
+           "roic_flags": [], "roe_note": None}
+    if eq is None:
+        out["roe_note"] = "no_equity"
+    elif eq <= 0 and ni is not None:
+        out["roe_note"] = "negative_equity"
+        out["roic_flags"].append("NEGATIVE_EQUITY")
+    ebit, basis, eflags = row_ebit(row, csv=csv)
+    out["roic_basis"] = basis
+    out["roic_flags"] = eflags + out["roic_flags"]
+    if eq is not None:
+        if debt is None:
+            out["roic_flags"].append("DEBT_NOT_TAGGED")
+        ic = eq + (debt or 0.0) - (cash or 0.0)
+        gi = (gw or 0.0) + (intang or 0.0)
+        out["invested_capital"], out["invested_capital_tangible"] = ic, ic - gi
+        out["intangibles_share_ic"] = (gi / ic) if ic > 0 else None
+    if ebit is None:
+        out["roic_note"] = out["roic_tangible_note"] = "no_ebit"
+        return out
+    if ebit_addback:
+        ebit = ebit + float(ebit_addback)
+    if csv and pretax is None and ni is not None and tax is not None:
+        pretax = ni + tax
+    nopat = ebit * (1 - row_tax_rate(pretax, tax))
+    out["nopat"] = nopat
+    if eq is None:
+        out["roic_note"] = out["roic_tangible_note"] = "no_equity"
+        return out
+    floor = ROIC_UNSTABLE_REVENUE_SHARE * rev if (rev is not None and rev > 0) else 0.0
+
+    def one(den, key, flag_nonpositive, flag_unstable):
+        if den <= 0 or den < floor:
+            out[key] = None
+            out[key + "_note"] = ("unbounded_high" if nopat > 0 else
+                                  "loss_on_nonpositive_capital" if den <= 0 else "loss_on_unstable_capital")
+            out["roic_flags"].append(flag_nonpositive if den <= 0 else flag_unstable)
+        else:
+            out[key] = nopat / den
+    one(out["invested_capital"], "roic", "NONPOSITIVE_INVESTED_CAPITAL", "ROIC_DENOMINATOR_UNSTABLE")
+    if gw is None and intang is None:
+        out["roic_tangible"] = out["roic"]
+        out["roic_tangible_note"] = out["roic_note"] if out["roic_note"] is not None else "goodwill_intangibles_not_filed"
+    elif (gw or 0.0) + (intang or 0.0) == 0:
+        out["roic_tangible"], out["roic_tangible_note"] = out["roic"], out["roic_note"]
+    else:
+        one(out["invested_capital_tangible"], "roic_tangible", "NONPOSITIVE_TANGIBLE_CAPITAL", "TANGIBLE_DENOMINATOR_UNSTABLE")
+    return out
+
+
+def financial_assets_from_row(loans, debt_securities, assets):
+    """(financial_assets, financial_assets_pct_assets): loans receivable + debt securities (each group's first filed
+    tag, INST loans_receivable / debt_securities), None when neither group is filed; the share of total assets, else
+    None. Read only by the moat scorecard's SIC-6798 mortgage-REIT lock (R4 revised; 03b §3.1 rule (a))."""
+    if loans is None and debt_securities is None:
+        return None, None
+    fa = (loans or 0.0) + (debt_securities or 0.0)
+    return fa, (_ratio(fa, assets) if (assets is not None and assets > 0) else None)
+
+
 # Codex review of PR #2 (HBAN FY2025: 17.221B here vs 18.482B in statements.json):
 # the debt_total tags are of two kinds. A LONG-TERM total (LongTermDebt,
 # LongTermDebtAndCapitalLeaseObligationsIncludingCurrentMaturities) carries the
@@ -1066,7 +1212,7 @@ def build_annual(facts, money=None):
             sh, sh_src = g("shares_basic"), f"BASIC:{tags['shares_basic'].get(p)}"
         eq = g("equity")
         pretax, tax = g("pretax_income"), g("tax")
-        tax_rate = _ratio(tax, pretax) if (pretax and pretax > 0 and tax is not None and 0 <= tax / pretax <= 0.5) else 0.21
+        tax_rate = row_tax_rate(pretax, tax)   # v5.7: the shared rule (byte-identical to the inline expression it replaced)
         invested = (eq + (total_debt or 0) - (cash or 0)) if eq is not None else None
         rows.append({
             "period_end": p, "fy": p[:4],
@@ -1102,6 +1248,12 @@ def build_annual(facts, money=None):
             "dps_declared": g("dps_declared"), "dps_paid": g("dps_paid"), "share_issuance": g("share_issuance"),
             "share_issuance_tags": tags["share_issuance"].get(p),
         })
+        # engine 5.7 (Andrew 2026-10-19, R4 revised M2 — the returns measure fixed at the source): the eleven
+        # capital_returns_from_row keys and the two financial-assets keys, between share_issuance_tags and the
+        # *_growth keys the loop below appends (every pre-existing key keeps its relative order)
+        rows[-1].update(capital_returns_from_row(rows[-1]))
+        fa, fa_pct = financial_assets_from_row(g("loans_receivable"), g("debt_securities"), g("assets"))
+        rows[-1].update({"financial_assets": fa, "financial_assets_pct_assets": fa_pct})
     # growth columns (vs prior fiscal year in the table)
     for i, r in enumerate(rows):
         prev = rows[i - 1] if i else None
