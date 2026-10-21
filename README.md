@@ -74,7 +74,9 @@ python -m http.server 8791 --directory _daily # then open http://localhost:8791/
 `python _system/refresh.py --quick` refreshes prices and live returns only;
 `--sec` also re-checks every name's SEC files; `--tickers APP,KR` limits the
 per-company refreshes to those names (the site build still scans every scored
-folder). Tests: one Python suite by name, e.g.
+folder). `--attachment` also writes the dated ranking file
+(`_daily/ranking-<date>.html`, plus `latest.html`) and the
+`_daily/history/ranking-<date>.csv` — only the CSV is tracked. Tests: one Python suite by name, e.g.
 `python _system/tests/test_engine_math.py`, and
 `node _daily/site/tests/app.test.js`.
 
