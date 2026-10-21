@@ -251,13 +251,17 @@ def repo_judgment(ticker, drop=(), **updates):
 
 
 def recorded_args(n):
-    """CLI args replaying a recorded run's inputs (moat / probs / offsets / mults / gterm and the base pin)."""
+    """CLI args replaying a recorded run's inputs (moat / probs / offsets / mults / gterm / moat_trend and the base
+    pin). v5.7 M6 (L3b): a record's inputs.moat_trend is replayed as --moat-trend, so a 5.7 hold-0 record replays at
+    its own hold (a legacy record carries none: the engine default, stable / 2)."""
     inp = n.get("inputs") or {}
     args = ["--moat", repr(float(inp["moat"])),
             "--probs", ",".join(repr(float(p)) for p in inp["probs"]),
             "--offsets", ",".join(repr(float(o)) for o in inp["offsets"]),
             "--mults", ",".join(repr(float(m)) for m in inp["mults"]),
             "--gterm", repr(float(inp.get("g_terminal", 0.025)))]
+    if inp.get("moat_trend") is not None:
+        args += ["--moat-trend", str(inp["moat_trend"])]
     if inp.get("base_pin_source") == "ttm_json":
         args.append("--ttm")
     elif inp.get("base_oe_ps_arg") is not None:

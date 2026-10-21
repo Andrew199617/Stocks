@@ -1207,6 +1207,13 @@ def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
     assert "sector_model" not in rec and n["sector_model"] == E.sector_model_record("Health Care", None, None, None), \
         n.get("sector_model")
     dated.add("sector_model")
+    # v5.7 (L3b, M6): a fresh run also records the growth hold it ran — the default stable / 2, top level, in inputs
+    # (with hold_rule) and per scenario — which the 5.6.0 record predates; without those keys nothing moves
+    assert (n["moat_trend"], n["hold_years"]) == ("stable", 2) and "hold_years" not in rec
+    assert [n["scenarios"][s]["hold_years"] for s in LABELS] == [2] * 5
+    dated |= {"moat_trend", "hold_years"}
+    n = dict(n, inputs={k: v for k, v in n["inputs"].items() if k not in ("moat_trend", "hold_years", "hold_rule")},
+             scenarios={s: {k: v for k, v in x.items() if k != "hold_years"} for s, x in n["scenarios"].items()})
     assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
     assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
             == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})

@@ -45,6 +45,22 @@ years (never when the engine judged it recurrent), in the rows' own money unit (
 financials_history.csv), so the moat — and through it the fade — does not take it twice; the IPRD_CHARGE_IN_WINDOW
 flag and the per-year add-back stay on record. ADDBACK_IPRD is the one switch.
 
+M6, the moat's DIRECTION sets the growth hold (L3b; Andrew 2026-10-20: "eroding moat should fade faster and vice
+versa"; design 10_moat_fade, decisions 10b, lane defaults Q4-Q6). trend_test runs MOAT_EROSION and its exact mirror
+MOAT_WIDENING (governing return AND margin both up by 3pp and 20% of the start, margin 2pp; gross margin, operating
+margin where gross margin is not filed; fundamentals.json rows only — TREND_ROW_SOURCES). fade_trend gives the hold
+a 5.7 run must run (dcf_engine.HOLD_BY_TREND, via --moat-trend): eroding 0 unless erosion_rebuttal is declared;
+widening 3 only when every guard passes — a fact-backed source, returns_on_capital >= +1, plain ROIC up too when
+tangible ROIC governs (acquisition goodwill shrinks the tangible base), ROA up too when ROE governs (buybacks shrink
+equity), and not a commodity producer on the committed SIC (COMMODITY_SIC, the SIC-6199 contract-revenue lock; an
+unknown SIC fails closed) unless business_type_reason quotes a cited cost-position fact (COST_POSITION_METRICS, 10b
+OQ10) — and widening_declined is not declared; else 2. WIDENING_FROM_TROUGH (non-blocking) marks a widening from a
+first-two-year return below the cost-of-capital line. moat_evidence.fade records it all with the counterfactual at
+the holds that matter; on a 5.7 record with scenarios fade_sync checks the engine ran it (authoring: refused;
+rebuild: gate drift, FADE_DRIFT_ON_REBUILD). An erosion_rebuttal restoring hold 2 must be anchored outside the trend
+test (fade_trace_leaves trace, never anchor; fade_anchor_leaves are the plain-ROIC / ROA figures of the tangible-only
+/ ROE-only erosion case).
+
 Output from an engine release before 5.7.0 (every folder on file until its next engine run) is evaluated
 report_only: mechanical pillars, flags and lint, nothing refused. A scorecard that is present is shape-checked on
 any release.
@@ -66,6 +82,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 if HERE not in sys.path:
     sys.path.insert(0, HERE)
 import facts as _facts  # noqa: E402  (the rulings-release predicate, period helpers; stdlib only)
+import quote_tokens as _qt  # noqa: E402  (L3b: the one tokenizer — a cost-position reason quotes its fact's value)
 from fundamentals import capital_returns_from_row, row_ebit  # noqa: E402  (the ONE returns function)
 import dcf_engine as _engine  # noqa: E402  (sic_misfit_class, IPRD_TREATMENT_ONE_TIME; no I/O at import)
 
@@ -174,7 +191,39 @@ EROSION_THREATS = ("technology_substitution", "reinvestment_away_from_moat", "su
 # the top-level keys a moat_scorecard may carry — one constant so the fade lane (L3b) adds widening_declined here
 SCORECARD_KEYS = ("version", "business_type", "business_type_reason", "sources", "pillars", "supporting",
                   "volume_price", "moat_divergence_reason", "low_roic_reason", "high_return_low_moat_reason",
-                  "erosion_rebuttal")
+                  "erosion_rebuttal",
+                  "widening_declined")                                   # L3b (M6): declining a measured widening
+# ---- M6, the moat's direction sets the growth hold (L3b; Andrew 2026-10-20; design 10_moat_fade, decisions 10b) ----
+FADE_VERSION = 1
+TREND_FLAGS = {"eroding": "MOAT_EROSION", "widening": "MOAT_WIDENING"}
+TROUGH_FLAG = "WIDENING_FROM_TROUGH"
+TREND_EPS = 1e-12            # the trend thresholds are inclusive (a change of exactly 3.00pp passes) despite float sums
+# lane default Q4 (main agent, 2026-10-21): the trend (gross margin, else operating margin) is measured on these rows
+# only — fundamentals.json, the SEC enrichment; a CSV-only folder is never measured. Reading B adds
+# "financials_history.csv" here (the one switch).
+TREND_ROW_SOURCES = ("fundamentals.json",)
+# lane default Q5 (main agent, 2026-10-21): a fade mismatch on a 5.7 REBUILD records gate drift (03c decision 6) and
+# never refuses; False refuses it on rebuilds too (M6's letter), leaving the other gates on GATE_DRIFT_ON_REBUILD
+FADE_DRIFT_ON_REBUILD = True
+# guard 4 (10 §1.3): the committed-SIC commodity proxy (inclusive ranges) and the SIC-6199 operating lock
+COMMODITY_SIC = ((1000, 1499), (2040, 2079), (2400, 2499), (2611, 2631), (2810, 2829), (2860, 2879), (2911, 2911),
+                 (3310, 3369), (4412, 4424))
+CRYPTO_LOCK_SIC = 6199
+CONTRACT_REVENUE_PREFIX = "RevenueFromContractWithCustomer"
+# 10b OQ10 (main agent, 2026-10-20): a numeric business_type_reason lifts the commodity guard only when its anchor is a
+# COST-POSITION fact (a cited, non-third-party facts.json fact tagged business_type_reason whose metric is one of these
+# and whose value the reason quotes); a commodity price move never counts as widening
+COST_POSITION_METRICS = ("cost_curve_position", "cost_curve_percentile", "cash_cost_per_unit", "cash_cost_vs_peers",
+                         "all_in_sustaining_cost", "unit_cost_lead")
+# make_score's anchor rule (10 §1.4): the dcf_numbers.json paths whose figures the hold moves (the hold keys and the
+# valuation outputs) leave the engine-source set of an erosion_rebuttal / commodity-exemption reason — they trace, never
+# anchor
+FADE_TRACE_PATHS = (("hold_years", "inputs.hold_years", "implied_irr_weighted", "implied_irr_base", "irr_bear",
+                     "irr_bull", "irr_low", "irr_high", "iv_at_12", "iv_at_15", "iv_at_20", "iv_at_25", "upside_at_15",
+                     "upside_at_12", "weighted", "hurdle_prices", "paths", "growth_paths", "iprd_adjustment.before",
+                     "iprd_adjustment.after", "diagnostics.tv_share_at_15", "diagnostics.scenario_spread_iv15")
+                    + tuple(f"scenarios.{k}.{f}" for k in ("super_bear", "bear", "base", "bull", "super_bull")
+                            for f in ("iv_at_10", "iv_at_12", "iv_at_15", "iv_at_20", "iv_at_25", "irr", "hold_years")))
 REASON_FIELDS = ("moat_divergence_reason", "low_roic_reason", "high_return_low_moat_reason", "erosion_rebuttal")
 REASON_GATE = {"moat_divergence_reason": "divergence", "low_roic_reason": "low_return",
                "high_return_low_moat_reason": "reverse", "erosion_rebuttal": "erosion"}
@@ -811,22 +860,59 @@ def pillar_industry_structure(btype, ticker, sic, roc, industry, cik=None):
                 reason=f"fewer than {INDUSTRY_MIN_PEERS} same-ladder peers ({lad}) at SIC 2-digit {sic_s[:2]}")
 
 
-def erosion_test(roc, rows, src=None):
-    """MOAT_EROSION (03b §3.5; 03c decision 3): the governing measure's finite yearly values (>= 4, both of the last two
-    finite) and a margin series (>= 4): gross margin, else operating margin (EBIT / revenue, the IPR&D add-back
-    included) — the operating fallback on fundamentals.json rows only (10b COVERAGE, lane default Q4: a CSV-only folder
-    is never measured). Returns down: OLS slope < 0 AND the last-2 minus first-2 average <= -3pp AND <= -20% of the
-    first-2 average; margin down: slope < 0 AND change <= -2pp. Fired = both. The return shape is kept stable for the
-    fade lane (L3b) to wrap."""
-    out = {"status": "not_measured", "fired": False, "governing_change_pp": None, "margin_change_pp": None,
-           "margin_basis": None, "slope_governing": None, "slope_margin": None, "reason": None}
-    if src != "fundamentals.json":
-        return dict(out, reason="no fundamentals.json annual rows (a CSV-only folder has no gross-margin line)")
+def _trend_leg(pairs):
+    """One returns leg of the trend test over [(fy, value)] in row order (03b §3.5; 03c decision 3): None when it is
+    not measurable (fewer than 4 finite years, or one of the last two not finite); else the finite years' first-2 and
+    last-2 averages, the change, the OLS slope over the year index and both directions at EROSION_T — down: slope < 0
+    AND change <= -3pp AND <= -20% of the first-2 average; up: the exact mirror (slope > 0, >= +3pp, >= +20%). The
+    bounds are inclusive (TREND_EPS)."""
+    g = [v for _, v in pairs]
+    fin = [(fy, v) for fy, v in pairs if v is not None and math.isfinite(v)]
+    if len(fin) < 4 or any(v is None or not math.isfinite(v) for v in g[-2:]):
+        return None
+    gf = [v for _, v in fin]
+    d = (gf[-1] + gf[-2]) / 2 - (gf[0] + gf[1]) / 2
+    start = abs((gf[0] + gf[1]) / 2)
+    s = _slope(gf)
+    return {"values": gf, "years": [str(fy) for fy, _ in fin], "first2": (gf[0] + gf[1]) / 2,
+            "last2": (gf[-1] + gf[-2]) / 2, "change": d, "slope": s,
+            "down": bool(s < 0 and d <= -EROSION_T[0] + TREND_EPS and d <= -EROSION_T[1] * start + TREND_EPS),
+            "up": bool(s > 0 and d >= EROSION_T[0] - TREND_EPS and d >= EROSION_T[1] * start - TREND_EPS)}
+
+
+def _leg_record(leg):
+    """A cross-check leg (plain ROIC, ROA) for moat_evidence.fade: {status, first2, last2, change_pp, slope, up, down,
+    years} (fractions 4 dp, pp 2 dp, slope 6 dp)."""
+    if leg is None:
+        return {"status": "not_measured", "first2": None, "last2": None, "change_pp": None, "slope": None, "up": False,
+                "down": False, "years": None}
+    return {"status": "measured", "first2": _r(leg["first2"]), "last2": _r(leg["last2"]),
+            "change_pp": round(leg["change"] * 100, 2), "slope": _r(leg["slope"], 6), "up": leg["up"], "down": leg["down"],
+            "years": leg["years"]}
+
+
+def trend_test(roc, rows, src=None):
+    """The moat's DIRECTION (10 §1.1; replaces 03b's erosion test, which erosion_test() still returns): the governing
+    measure's leg (_trend_leg) and a margin series (>= 4 years) — gross margin, else the filed operating margin
+    (operating income / revenue, the IPR&D add-back included; 10b COVERAGE) — on fundamentals.json rows only
+    (TREND_ROW_SOURCES, lane default Q4). Margin down: slope < 0 AND change <= -2pp; up: the mirror. direction =
+    eroding (returns AND margin down: MOAT_EROSION), widening (both up: MOAT_WIDENING), contradicting (one up, the other
+    down), flat (otherwise); None when not measured (reason csv_only | governing_not_finite | no_margin). When tangible
+    ROIC governs the returns leg is also run on plain ROIC (plain_roic), when ROE governs on ROA (roa): recorded, they
+    never change the direction (widening reads them as guards 3 / 3b)."""
     measure = roc.get("metric")
-    g = [year_value(r, measure) for r in rows]
-    gf = [v for v in g if v is not None and math.isfinite(v)]
-    if len(gf) < 4 or any(v is None or not math.isfinite(v) for v in g[-2:]):
-        return dict(out, reason="fewer than 4 finite years of the governing return, or one of the last two not finite")
+    out = {"status": "not_measured", "reason": None, "reason_text": None, "direction": None, "measure": measure,
+           "years": None, "governing_first2": None, "governing_last2": None, "governing_change_pp": None,
+           "slope_governing": None, "margin_change_pp": None, "slope_margin": None, "margin_basis": None,
+           "returns_up": False, "returns_down": False, "margin_up": False, "margin_down": False,
+           "plain_roic": None, "roa": None}
+    if src not in TREND_ROW_SOURCES:
+        return dict(out, reason="csv_only",
+                    reason_text="no fundamentals.json annual rows (a CSV-only folder has no gross-margin line)")
+    leg = _trend_leg([(r.get("fy"), year_value(r, measure)) for r in rows])
+    if leg is None:
+        return dict(out, reason="governing_not_finite",
+                    reason_text="fewer than 4 finite years of the governing return, or one of the last two not finite")
     gm = [r.get("gross_margin") for r in rows if r.get("gross_margin") is not None]
     basis = "gross"
     if len(gm) < 4:
@@ -836,16 +922,435 @@ def erosion_test(roc, rows, src=None):
               and r.get("revenue") and r["revenue"] > 0]
         basis = "operating"
     if len(gm) < 4:
-        return dict(out, reason="fewer than 4 years of gross or operating margin")
-    dg = (gf[-1] + gf[-2]) / 2 - (gf[0] + gf[1]) / 2
+        return dict(out, reason="no_margin", reason_text="fewer than 4 years of gross or operating margin")
     dm = (gm[-1] + gm[-2]) / 2 - (gm[0] + gm[1]) / 2
-    start = abs((gf[0] + gf[1]) / 2)
-    sg, sm = _slope(gf), _slope(gm)
-    ret_down = sg < 0 and dg <= -EROSION_T[0] and dg <= -EROSION_T[1] * start
-    mar_down = sm < 0 and dm <= -EROSION_T[2]
-    return dict(out, status="measured", fired=bool(ret_down and mar_down), governing_change_pp=round(dg * 100, 2),
-                margin_change_pp=round(dm * 100, 2), margin_basis=basis, slope_governing=_r(sg, 6), slope_margin=_r(sm, 6),
-                governing_first2=_r((gf[0] + gf[1]) / 2), governing_last2=_r((gf[-1] + gf[-2]) / 2))
+    sm = _slope(gm)
+    m_down = bool(sm < 0 and dm <= -EROSION_T[2] + TREND_EPS)
+    m_up = bool(sm > 0 and dm >= EROSION_T[2] - TREND_EPS)
+    r_down, r_up = leg["down"], leg["up"]
+    direction = ("eroding" if r_down and m_down else "widening" if r_up and m_up else
+                 "contradicting" if (r_down and m_up) or (r_up and m_down) else "flat")
+    plain = roa = None
+    if measure == "roic_tangible":
+        plain = _leg_record(_trend_leg([(r.get("fy"), year_value(r, "roic")) for r in rows]))
+    if measure == "roe":
+        roa = _leg_record(_trend_leg([(r.get("fy"), r.get("roa")) for r in rows]))
+    return dict(out, status="measured", direction=direction, years=leg["years"],
+                governing_first2=_r(leg["first2"]), governing_last2=_r(leg["last2"]),
+                governing_change_pp=round(leg["change"] * 100, 2), slope_governing=_r(leg["slope"], 6),
+                margin_change_pp=round(dm * 100, 2), slope_margin=_r(sm, 6), margin_basis=basis,
+                returns_up=r_up, returns_down=r_down, margin_up=m_up, margin_down=m_down, plain_roic=plain, roa=roa)
+
+
+def erosion_view(tt):
+    """moat_evidence.erosion_test — 03b's shape (unchanged since L3, the fields G6 and its tests read) plus the trend's
+    `direction`; fired = direction eroding."""
+    out = {"status": "not_measured", "fired": False, "governing_change_pp": None, "margin_change_pp": None,
+           "margin_basis": None, "slope_governing": None, "slope_margin": None, "reason": None}
+    if tt["status"] != "measured":
+        return dict(out, reason=tt["reason_text"], direction=None)
+    return dict(out, status="measured", fired=tt["direction"] == "eroding", governing_change_pp=tt["governing_change_pp"],
+                margin_change_pp=tt["margin_change_pp"], margin_basis=tt["margin_basis"],
+                slope_governing=tt["slope_governing"], slope_margin=tt["slope_margin"],
+                governing_first2=tt["governing_first2"], governing_last2=tt["governing_last2"], direction=tt["direction"])
+
+
+def erosion_test(roc, rows, src=None):
+    """MOAT_EROSION (03b §3.5; 03c decision 3): the governing measure's finite yearly values (>= 4, both of the last two
+    finite) and a margin series (>= 4): gross margin, else operating margin (EBIT / revenue, the IPR&D add-back
+    included) — the operating fallback on fundamentals.json rows only (10b COVERAGE, lane default Q4: a CSV-only folder
+    is never measured). Returns down: OLS slope < 0 AND the last-2 minus first-2 average <= -3pp AND <= -20% of the
+    first-2 average; margin down: slope < 0 AND change <= -2pp. Fired = both. Since L3b the wrapper of trend_test:
+    03b's shape plus `direction`."""
+    return erosion_view(trend_test(roc, rows, src))
+
+
+# ---------------------------------------------------------------------------
+# M6: the moat's direction sets the growth hold (L3b; Andrew 2026-10-20 "eroding moat should fade faster and vice
+# versa"; design 10_moat_fade, decisions 10b; lane defaults Q4-Q6). The engine owns the trend -> hold map
+# (dcf_engine.HOLD_BY_TREND); this module owns the trend (fade_trend), make_score checks the engine ran it.
+# ---------------------------------------------------------------------------
+def _sic_int(sic):
+    try:
+        return int(str(sic).strip())
+    except (TypeError, ValueError):
+        return None
+
+
+def _span(years, a, b):
+    """'FY2021-22' for two fiscal-year labels."""
+    return f"FY{years[a]}-{str(years[b])[-2:]}" if years and len(years) >= 2 else "FY?"
+
+
+def _leg_text(name, rec, why_governs, gov_pp, tail):
+    if not rec or rec.get("status") != "measured":
+        return (f"{name} not measured (fewer than 4 finite years, or one of the last two not finite) while {why_governs} "
+                f"governs — {tail}")
+    y = rec.get("years") or []
+    return (f"{name} {rec['change_pp']:+.2f}pp ({_span(y, 0, 1)} avg {_pct(rec['first2'])} -> {_span(y, -2, -1)} avg "
+            f"{_pct(rec['last2'])}) does not pass the widening thresholds while {why_governs} governs ({gov_pp:+.2f}pp) — "
+            f"{tail}")
+
+
+def cost_position_anchor(reason, facts):
+    """10b OQ10: the id of the cited cost-position fact that anchors a commodity-guard exemption — kind not
+    third_party (a calc fact carries its weakest operand's kind), used_for lists business_type_reason, metric in
+    COST_POSITION_METRICS, and a number in the reason equals its value at the quoted precision — else None."""
+    if not isinstance(reason, str) or not DIGIT.search(reason) or not facts:
+        return None
+    toks = _qt.numbers(reason)
+    for fid in _facts.parse_refs(reason):
+        f = facts.get(fid)
+        if (not isinstance(f, dict) or f.get("kind") == "third_party" or f.get("metric") not in COST_POSITION_METRICS
+                or "business_type_reason" not in (f.get("used_for") or [])):
+            continue
+        vs = _qt.ValueSet()
+        for v in (f.get("value") if isinstance(f.get("value"), list) else [f.get("value")]):
+            if _fnum(v) is not None:
+                vs.add(_fnum(v))
+        if any(vs.match(t) for t in toks):
+            return fid
+    return None
+
+
+def commodity_guard(btype, sic, last_row, reason, facts=None):
+    """Guard 4 (10 §1.3, mechanical on committed SEC data; no universe.csv): fails when (a) the declared business type
+    is commodity_producer, (b) the filer's SIC is in COMMODITY_SIC, (c) the SIC-6199 operating lock fires (SIC 6199 and
+    the latest fundamentals.json annual row's revenue_basis an ASC 606 contract-revenue tag), or (d) no SIC is known
+    (fails closed). (b)-(d) are lifted only by a business_type_reason anchored on a cited cost-position fact
+    (cost_position_anchor; 10b OQ10). Returns the guards.commodity_sic block (detail: the failure text, else None)."""
+    s = _sic_int(sic)
+    rb = last_row.get("revenue_basis") if isinstance(last_row, dict) else None
+    out = {"sic": str(s) if s is not None else None, "basis": None, "revenue_basis": None, "exempted_by_reason": False,
+           "exempt_fact": None, "passes": True, "detail": None}
+    lift = ("business_type_reason must carry a cost-position number (cost-curve position or cash cost per unit vs peers) "
+            "from a cited non-third-party fact tagged business_type_reason to lift this guard")
+    if btype == "commodity_producer":
+        return dict(out, basis="declared", passes=False,
+                    detail="business type commodity_producer declared — a commodity price upcycle is not a widening moat")
+    if s is None:
+        basis, why = "sic_unknown", ("SIC unknown (no sector_model.sic and no profile SIC): the commodity guard fails "
+                                     f"closed; {lift.replace('this guard', 'it')}")
+    elif any(lo <= s <= hi for lo, hi in COMMODITY_SIC):
+        basis, why = "sic", (f"commodity SIC {s}, declared {btype or 'no business type'} — a commodity price upcycle is not "
+                             f"a widening moat; {lift}")
+    elif s == CRYPTO_LOCK_SIC and isinstance(rb, str) and rb.startswith(CONTRACT_REVENUE_PREFIX):
+        fy = str((last_row or {}).get("fy") or str((last_row or {}).get("period_end") or "")[:4])
+        out["revenue_basis"] = rb
+        basis, why = "sic_6199_operating", (f"SIC 6199 with contract revenue ({rb}, FY{fy}): an operating business filed "
+                                            "under finance services whose revenue is priced off a token or commodity — a "
+                                            f"price upcycle is not a widening moat; {lift}")
+    else:
+        return out
+    fid = cost_position_anchor(reason, facts)
+    if fid:
+        return dict(out, basis=basis, exempted_by_reason=True, exempt_fact=fid)
+    return dict(out, basis=basis, passes=False, detail=why)
+
+
+def _widening_guards(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, strict):
+    """The ruled widening guards (10 §1.3), each mechanical: 1 a fact-backed source (facts / facts_and_metrics, not
+    third-party only; None — unknown — on output older than 5.7, which declares no sources), 2 returns_on_capital >= +1
+    measured, 3 plain ROIC up when tangible ROIC governs, 3b ROA up when ROE governs, 4 the commodity guard. `failed`
+    names each failing guard."""
+    failed = []
+    fbs = src_name = None
+    if strict:
+        fb = [s for s in sources or [] if s.get("support") in ("facts", "facts_and_metrics") and not s.get("third_party_only")]
+        fbs = bool(fb)
+        src_name = f"{fb[0]['type']}/{fb[0]['subtype']}" if fb else None
+        if not fbs:
+            failed.append("no fact-backed source (a moat source citing facts.json ids that are not third-party only; a "
+                          "metric-only source does not count)")
+    rs = roc.get("score") if roc.get("status") == "measured" else None
+    if rs is None or rs < 1:
+        failed.append(f"returns_on_capital {_sgn(rs) if rs is not None else 'not measured'} < +1")
+    pra = roa_ok = None
+    if tt["measure"] == "roic_tangible":
+        p = tt.get("plain_roic")
+        pra = bool(p and p.get("status") == "measured" and p.get("up"))
+        if not pra:
+            failed.append(_leg_text("plain roic", p, "tangible roic", tt["governing_change_pp"],
+                                    "widening on tangible returns alone can be acquisition goodwill shrinking the "
+                                    "tangible base (03c decision 2)"))
+    if tt["measure"] == "roe":
+        p = tt.get("roa")
+        roa_ok = bool(p and p.get("status") == "measured" and p.get("up"))
+        if not roa_ok:
+            failed.append(_leg_text("roa", p, "roe", tt["governing_change_pp"],
+                                    "ROE rising on a shrinking equity base can be buybacks, not a widening moat"))
+    cg = commodity_guard(btype, sic, last_row, (sc or {}).get("business_type_reason"), facts)
+    if not cg["passes"]:
+        failed.append(cg["detail"])
+    return {"applies": True, "fact_backed_source": fbs, "source": src_name, "returns_on_capital": rs,
+            "plain_roic_agrees": pra, "roa_agrees": roa_ok, "commodity_sic": cg, "business_type": btype,
+            "business_type_basis": tbasis, "failed": failed}
+
+
+def _record_g0s(n):
+    """The five scenario start rates of record n (the engine's clamp of g_base + offset; else the recorded g_start),
+    or None."""
+    inp = n.get("inputs") if isinstance(n.get("inputs"), dict) else {}
+    try:
+        gb = float(n["g_base"])
+        return [max(_engine.GROWTH_FLOOR_START, min(_engine.GROWTH_CAP_START, gb + float(inp["offsets"][i])))
+                for i in range(len(_engine.SCENARIO_LABELS))]
+    except (KeyError, TypeError, ValueError, IndexError):
+        pass
+    scn = n.get("scenarios") if isinstance(n.get("scenarios"), dict) else {}
+    try:
+        return [float(scn[k]["g_start"]) for k in _engine.SCENARIO_LABELS]
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def engine_trend(n):
+    """moat_evidence.fade.engine: the trend and hold the engine RECORDED — {moat_trend (None when the record names none,
+    i.e. every pre-5.7 record: the default stable), hold_years (dcf_engine.recorded_hold_years: 2 absent, None
+    malformed), source inputs | default}."""
+    inp = n.get("inputs") if isinstance(n.get("inputs"), dict) else {}
+    if "moat_trend" in inp:
+        return {"moat_trend": inp["moat_trend"], "hold_years": _engine.recorded_hold_years(n), "source": "inputs"}
+    return {"moat_trend": n.get("moat_trend"), "hold_years": _engine.recorded_hold_years(n),
+            "source": "record" if n.get("moat_trend") is not None else "default"}
+
+
+def fade_counterfactual(n, holds, report_only=False):
+    """moat_evidence.fade.counterfactual (10 §5.5, no engine spawn): the record replayed at each hold in `holds` with the
+    engine's own functions — dcf_engine.replay_paths(n, hold=h) (the record's hold_rule), adjusted_irr / adjusted_value
+    with its acquired-IPR&D charge, tier_for_irr — [{hold_years, irr_weighted (4 dp), iv_at_15 (2 dp),
+    tier_by_numbers, report_only}]; a record that cannot replay gets nulls and a note. Never feeds a tier, a gate or an
+    alert."""
+    out = []
+    for h in holds:
+        e = {"hold_years": h, "irr_weighted": None, "iv_at_15": None, "tier_by_numbers": None, "report_only": bool(report_only)}
+        try:
+            paths, _ = _engine.replay_paths(n, hold=h)
+            price = float(n.get("price"))
+            inp = n.get("inputs") if isinstance(n.get("inputs"), dict) else {}
+            gterm = inp.get("g_terminal", n.get("g_terminal", _engine.DEFAULT_GTERM))
+            if paths and paths.get("weighted"):
+                c = _engine.iprd_charge_per_share(n)
+                irr = _engine.adjusted_irr(paths["weighted"], price, gterm, c)[0]
+                iv = _engine.adjusted_value(paths["weighted"], 0.15, gterm, c)
+                e.update(irr_weighted=_r(irr), iv_at_15=round(iv, 2) if math.isfinite(iv) else None,
+                         tier_by_numbers=_engine.tier_for_irr(irr))
+            else:
+                e["note"] = "not replayable from the record's inputs"
+        except (TypeError, ValueError):
+            e["note"] = "not replayable from the record's inputs"
+        out.append(e)
+    return out
+
+
+def fade_trend(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, n, is_57, assume_projection=False):
+    """moat_evidence.fade (10 §6.3): the direction, the guards and the hold a 5.7 run must run, computed from the trend
+    test (tt), the governing pillar, the counted sources, the business type, the committed SIC and latest annual row,
+    the two declarations (erosion_rebuttal, widening_declined) and the engine record n. Pure, never refuses (the sync
+    is fade_sync's). Rules (10 §1.2): eroding -> hold 0 unless erosion_rebuttal is declared (stable, 2); widening -> 3
+    only when every guard passes and widening_declined is not declared; contradicting / flat / not measured -> 2. On
+    output older than 5.7 the direction and the would-be hold are reported (rule report_only); on a record without
+    scenarios (Tier F) the hold changes nothing (rule no_projection). assume_projection: the dry run, before the final
+    engine run, always names the trend the final run must pass."""
+    n = n if isinstance(n, dict) else {}
+    sc = sc if isinstance(sc, dict) else {}
+    has_proj = bool(n.get("scenarios")) or bool(assume_projection)
+    reb, dec = sc.get("erosion_rebuttal"), sc.get("widening_declined")
+    reb_on = isinstance(reb, str) and bool(reb.strip())
+    dec_on = isinstance(dec, str) and bool(dec.strip())
+    d = tt.get("direction")
+    if d == "widening":
+        guards = _widening_guards(tt, roc, sources, btype, tbasis, sic, last_row, sc, facts, is_57)
+    else:
+        guards = {"applies": False, "fact_backed_source": None, "source": None, "returns_on_capital": None,
+                  "plain_roic_agrees": None, "roa_agrees": None, "commodity_sic": None, "business_type": btype,
+                  "business_type_basis": tbasis, "failed": []}
+    if not is_57:
+        rule = "report_only"
+    elif not has_proj:
+        rule = "no_projection"
+    elif tt.get("status") != "measured":
+        rule = "not_measured"
+    elif d == "eroding":
+        rule = "eroding_rebutted" if reb_on else "eroding_not_rebutted"
+    elif d == "widening":
+        rule = "widening_guard_failed" if guards["failed"] else "widening_declined" if dec_on else "widening_confirmed"
+    elif d == "contradicting":
+        rule = "contradicting"
+    else:
+        rule = "no_trend"
+    if rule in ("report_only", "no_projection"):
+        trend = hold = None
+    else:
+        trend = {"eroding_not_rebutted": "eroding", "widening_confirmed": "widening"}.get(rule, "stable")
+        hold = _engine.HOLD_BY_TREND[trend]
+    eng = engine_trend(n)
+    flags, trough = [], None
+    line = COST_OF_CAPITAL_LINE.get(roc.get("ladder") or "default", COST_OF_CAPITAL_LINE["default"])
+    if d == "widening" and tt.get("governing_first2") is not None and tt["governing_first2"] < line:
+        flags.append(TROUGH_FLAG)
+        trough = {"governing_first2": tt["governing_first2"], "line": line}
+    holds = set()
+    if has_proj:
+        if rule == "report_only":
+            holds |= {0} if d == "eroding" else {3} if d == "widening" else set()
+        elif rule != "no_projection":
+            if eng["hold_years"] != _engine.HOLD_YEARS:
+                holds.add(_engine.HOLD_YEARS)
+            if rule == "eroding_rebutted":
+                holds.add(_engine.HOLD_BY_TREND["eroding"])
+            if rule in ("widening_declined", "widening_guard_failed"):
+                holds.add(_engine.HOLD_BY_TREND["widening"])
+            if hold is not None:
+                holds.add(hold)
+        holds.discard(eng["hold_years"])
+    cf = fade_counterfactual(n, sorted(holds), report_only=rule == "report_only") if holds else []
+    return {"version": FADE_VERSION, "status": tt.get("status"), "reason": tt.get("reason"), "direction": d,
+            "measure": tt.get("measure"), "years": tt.get("years"),
+            "governing_first2": tt.get("governing_first2"), "governing_last2": tt.get("governing_last2"),
+            "governing_change_pp": tt.get("governing_change_pp"), "slope_governing": tt.get("slope_governing"),
+            "margin_change_pp": tt.get("margin_change_pp"), "slope_margin": tt.get("slope_margin"),
+            "margin_basis": tt.get("margin_basis"),
+            "trend": trend, "hold_years": hold, "rule": rule,
+            "plain_roic": tt.get("plain_roic"), "roa": tt.get("roa"), "guards": guards,
+            "rebuttal_declared": reb_on, "rebuttal_unused": bool(reb_on and d != "eroding"),
+            "decline_declared": dec_on, "decline_unused": bool(dec_on and d != "widening"),
+            "flags": flags, "trough": trough, "engine": eng, "in_sync": None, "counterfactual": cf}
+
+
+RULE_TEXT = {"eroding_not_rebutted": "eroding, erosion_rebuttal not declared",
+             "eroding_rebutted": "eroding, erosion_rebuttal declared",
+             "widening_confirmed": "widening, all guards pass",
+             "widening_declined": "widening, widening declined in judgment.json",
+             "contradicting": "contradicting: returns and margin move in opposite directions",
+             "no_trend": "no trend", "not_measured": "not measured"}
+
+
+def _measured_clause(f):
+    """'governing roic -6.40pp FY2021-22 -> FY2024-25, gross margin -3.10pp' (generated numbers only)."""
+    if f.get("status") != "measured":
+        return f"not measured: {f.get('reason')}"
+    y = f.get("years") or []
+    return (f"governing {f.get('measure')} {f['governing_change_pp']:+.2f}pp {_span(y, 0, 1)} -> {_span(y, -2, -1)}, "
+            f"{f.get('margin_basis')} margin {f['margin_change_pp']:+.2f}pp")
+
+
+def fade_sync(fade, n):
+    """(in_sync, detail, malformed) — make_score's check that the engine ran the trend the trend test gives, called only
+    on a record WITH scenarios (10 §5.2). The record's own consistency first (malformed: refused on every run): its
+    moat_trend (absent = stable) is a trend, inputs.hold_years a valid hold paired with it (HOLD_BY_TREND), every
+    per-scenario hold the run's hold or 2 (dcf_engine.recorded_scenario_holds). It never re-derives the per-scenario
+    holds from today's fade_hold: the record is the source of truth. Then the recorded trend / hold against fade.trend
+    / fade.hold_years (detail: the authoring refusal text)."""
+    eng = engine_trend(n)
+    et = eng["moat_trend"] if eng["moat_trend"] is not None else "stable"
+    if et not in _engine.MOAT_TRENDS:
+        return False, (f"dcf_numbers.json records moat_trend {et!r}, not one of {', '.join(_engine.MOAT_TRENDS)} — rerun "
+                       "the engine"), True
+    h = eng["hold_years"]
+    if h is None:
+        return False, (f"dcf_numbers.json inputs.hold_years {(n.get('inputs') or {}).get('hold_years')!r} is not a whole "
+                       f"number of years 0-{_engine.PROJECTION_YEARS} — rerun the engine"), True
+    if h != _engine.HOLD_BY_TREND[et]:
+        return False, (f"dcf_numbers.json records moat_trend {et} with hold_years {h} — the engine pairs {et} with "
+                       f"{_engine.HOLD_BY_TREND[et]}; rerun the engine"), True
+    inp = n.get("inputs") if isinstance(n.get("inputs"), dict) else {}
+    gterm = inp.get("g_terminal", n.get("g_terminal", _engine.DEFAULT_GTERM))
+    if _engine.recorded_scenario_holds(n, _record_g0s(n) or [], gterm) is None:
+        scn = n.get("scenarios") or {}
+        for k in _engine.SCENARIO_LABELS:
+            v = (scn.get(k) if isinstance(scn.get(k), dict) else {}).get("hold_years", _engine._MISSING)
+            if v is _engine._MISSING:
+                return False, (f"dcf_numbers.json scenarios.{k} records no hold_years while other scenarios do — rerun "
+                               "the engine"), True
+            if not _engine._valid_hold(v) or v not in (h, _engine.HOLD_YEARS):
+                return False, (f"dcf_numbers.json scenarios.{k}.hold_years {v!r} is neither the run's hold {h} nor the "
+                               f"default {_engine.HOLD_YEARS} — rerun the engine"), True
+        return False, "dcf_numbers.json per-scenario holds do not replay — rerun the engine", True
+    if et == fade.get("trend") and h == fade.get("hold_years"):
+        return True, None, False
+    want, rule = fade.get("trend"), fade.get("rule")
+    head = f"moat fade: make_score's trend test says {want} ("
+    if rule == "eroding_not_rebutted":
+        head += f"{_measured_clause(fade)}; no erosion_rebuttal"
+        tail = (" — rerun the final pass with --moat-trend eroding, or declare moat_scorecard.erosion_rebuttal carrying a "
+                "traced number")
+    elif rule == "widening_confirmed":
+        head += f"{_measured_clause(fade)}; all guards pass"
+        tail = " — rerun the final pass with --moat-trend widening, or declare moat_scorecard.widening_declined"
+    else:
+        why = RULE_TEXT.get(rule, rule)
+        if rule == "widening_guard_failed":
+            why = "widening guard failed: " + "; ".join((fade.get("guards") or {}).get("failed") or [])
+        elif rule in ("no_trend", "not_measured", "contradicting"):
+            why = f"{why}: {_measured_clause(fade)}" if rule != "not_measured" else _measured_clause(fade)
+        head += why
+        tail = f" — rerun the final pass with --moat-trend {want}"
+    return False, (f"{head}) -> --moat-trend {want} (growth hold {fade.get('hold_years')} years), but the engine ran "
+                   f"--moat-trend {et} (hold {h}){tail}"), False
+
+
+def fade_drift_detail(fade, n):
+    """The gate_drift entry's text when a REBUILD finds the engine's trend out of date (data moved since the run)."""
+    eng = engine_trend(n)
+    et = eng["moat_trend"] if eng["moat_trend"] is not None else "stable"
+    return (f"engine ran {et} (hold {eng['hold_years']}); the trend computed now is {fade.get('trend')} "
+            f"({fade.get('rule')}: {_measured_clause(fade)}) — data moved since the engine run; the next engine run "
+            f"passes --moat-trend {fade.get('trend')}")
+
+
+def _pp_forms(x):
+    """A pp figure as a reason may quote it: the number and the fraction (a '-6.40pp' / '6.40%' token matches 100 x v)."""
+    return [] if x is None else [x, x / 100.0]
+
+
+def fade_anchor_leaves(ev):
+    """10 §1.4 anchor (c): the plain-ROIC figures (first2, last2, change) in the TANGIBLE-ONLY erosion case (tangible
+    ROIC governs, the direction is eroding, plain ROIC measured and not down — DD / HSY) and the ROA figures in the
+    matching ROE-only case; [] otherwise."""
+    f = (ev or {}).get("fade") or {}
+    if f.get("direction") != "eroding":
+        return []
+    leg = f.get("plain_roic") if f.get("measure") == "roic_tangible" else f.get("roa") if f.get("measure") == "roe" else None
+    if not leg or leg.get("status") != "measured" or leg.get("down"):
+        return []
+    return [v for v in [leg.get("first2"), leg.get("last2")] + _pp_forms(leg.get("change_pp")) if v is not None]
+
+
+def fade_trace_leaves(ev):
+    """make_score.check_influence's trace_only for an erosion_rebuttal / commodity-exemption reason (10 §1.4, §(l)):
+    {"values": the trend block's own figures (the governing first-2 / last-2 averages and change, the margin change,
+    both slopes, in moat_evidence.fade and .erosion_test), the EROSION_T thresholds, the three holds, the plain-ROIC /
+    ROA figures outside the anchor case and every counterfactual figure; "paths": FADE_TRACE_PATHS — the record's hold
+    keys and valuation outputs}. A number matching them traces (quoting the measurement beside the evidence is not
+    refused as untraced) but never anchors."""
+    ev = ev or {}
+    f, e = ev.get("fade") or {}, ev.get("erosion_test") or {}
+    vals = []
+    for blk in (f, e):
+        vals += [blk.get(k) for k in ("governing_first2", "governing_last2", "slope_governing", "slope_margin")]
+        vals += _pp_forms(blk.get("governing_change_pp")) + _pp_forms(blk.get("margin_change_pp"))
+    vals += list(EROSION_T) + [x * 100 for x in EROSION_T] + sorted(set(_engine.HOLD_BY_TREND.values()))
+    anchors = fade_anchor_leaves(ev)
+    for k in ("plain_roic", "roa"):
+        leg = f.get(k) or {}
+        if leg.get("status") == "measured" and not anchors:
+            vals += [leg.get("first2"), leg.get("last2"), leg.get("slope")] + _pp_forms(leg.get("change_pp"))
+    for c in f.get("counterfactual") or []:
+        vals += [c.get("irr_weighted"), c.get("iv_at_15"), c.get("hold_years")]
+    vals = [float(v) for v in vals if isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)]
+    return {"values": vals, "paths": list(FADE_TRACE_PATHS)}
+
+
+def fade_extra_leaves(ev):
+    """check_influence's `extra` (the anchors moat_evidence supplies) for an erosion_rebuttal / commodity-exemption
+    reason: every number of moat_evidence OUTSIDE the trend block (numeric_leaves without fade and erosion_test), minus
+    any value equal to a trace-only figure (a value the trend block shares never anchors), plus fade_anchor_leaves."""
+    trace = [abs(w) for w in fade_trace_leaves(ev)["values"]]
+    # signs are ignored the way quote matching ignores them (quote_tokens.ValueSet)
+    out = [v for v in numeric_leaves(ev, exclude=("fade", "erosion_test"))
+           if not any(abs(abs(v) - w) <= 1e-9 * max(1.0, w) for w in trace)]
+    return out + fade_anchor_leaves(ev)
 
 
 # ---------------------------------------------------------------------------
@@ -1493,11 +1998,14 @@ def lint_bad_moats(j, is_57):
     return out
 
 
-def numeric_leaves(ev):
+def numeric_leaves(ev, exclude=("fade",)):
     """Every number in moat_evidence (bools excluded) — the engine-source set a moat reason's numbers may trace to
     (make_score.check_influence extra=...): a low-ROIC reason quoting the tangible ROIC, the industry median or the
-    supporting adjustment traces."""
+    supporting adjustment traces. L3b (10 §1.4): never the `fade` block (its trend figures and counterfactual IRRs are
+    trace-only, fade_trace_leaves); `exclude` names the top-level keys left out."""
     out = []
+    if isinstance(ev, dict) and exclude:
+        ev = {k: v for k, v in ev.items() if k not in exclude}
 
     def walk(x):
         if isinstance(x, bool) or x is None:
@@ -1569,14 +2077,20 @@ def _mechanical_weight_possible(btype):
     return round(sum(WEIGHTS[k] for k in MECHANICAL if (btype, k) not in MECH_NA), 2)
 
 
-def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, prior=None):
+def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, prior=None, sync=True, dry_run=False):
     """score.json moat_evidence for one folder, or MoatRefusal (03b §5 order: core pillars -> core evidence ->
     supporting factors -> adjustment -> evidence -> G2 -> G1 -> sources -> G3 caps -> G4, G5, G6). facts: {id: fact}
     from facts.json; is_57: an engine-5.7 run (the gates refuse); sic: the filer's SIC; industry: load_industry();
     prior: the score.json being replaced (authoring vs rebuild: run_kind). The result depends only on the inputs (the
     declaration, facts.json, the folder's rows, the engine record, the industry file) and, through gate_drift, on
     whether a newly failing data-driven gate drifted on a rebuild (an authoring run refuses it instead) — so an
-    identical rerun writes an identical moat_evidence (L3 review R1)."""
+    identical rerun writes an identical moat_evidence (L3 review R1).
+    L3b (M6): after the gates, `fade` (fade_trend) — and on a 5.7 run of a record WITH scenarios the fade sync
+    (fade_sync): a record inconsistent with itself refuses everywhere; a recorded trend / hold other than the trend
+    test's refuses an authoring run and records gate drift on a rebuild (GATE_DRIFT_ON_REBUILD and
+    FADE_DRIFT_ON_REBUILD). sync=False computes the fade and skips the sync; dry_run=True (the CLI, which runs BEFORE
+    the final engine run) also skips it and names the trend the final run must pass even on a record without
+    scenarios."""
     n = n or {}
     ticker = str(n.get("ticker") or os.path.basename(os.path.normpath(folder))).upper()
     sc = j.get("moat_scorecard")
@@ -1593,6 +2107,10 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
         for k in REASON_FIELDS:
             if sc.get(k) is not None and not isinstance(sc.get(k), str):
                 raise MoatRefusal(f"moat_scorecard.{k} must be a string or null")
+        wd = sc.get("widening_declined")   # L3b (M6, 10 §6.2): not an influence field, shape-checked on any release
+        if wd is not None and not (isinstance(wd, str) and wd.strip()):
+            raise MoatRefusal("moat_scorecard.widening_declined must be a non-empty string (why the measured widening is a "
+                              "cycle or a recovery, not a moat widening) or null")
     strict = bool(is_57)
     # the fiscal calendar (CSV + statements.json) is read only when a declared scorecard cites facts
     ctx = _ctx(folder, n, facts) if sc is not None else {"facts": {}, "calendar": {}, "lpe": n.get("latest_period_end")}
@@ -1694,9 +2212,12 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
         flags.append("ROIC_DENOMINATOR_UNSTABLE")
     if iprd:
         flags.append("IPRD_CHARGE_IN_WINDOW")
-    ero = erosion_test(gm, rows, src)
+    tt = trend_test(gm, rows, src)                 # L3b (M6): the direction; erosion_test is its 03b view
+    ero = erosion_view(tt)
     if ero["fired"]:
         flags.insert(0, "MOAT_EROSION")
+    if tt["direction"] == "widening":
+        flags.insert(0, TREND_FLAGS["widening"])
     # ---- gates (computed on every run; refused on a 5.7 run) ----
     gmed = gm.get("_median_value") if gm.get("status") == "measured" else None
     low_line = LOW_RETURN[2] if gm["metric"] == "roe" else LOW_RETURN[1]
@@ -1752,6 +2273,21 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
                  f"{ero['margin_basis']} margin {ero['margin_change_pp']:+.2f}pp over the last 5 FY — erosion_risks +1 needs "
                  "moat_scorecard.erosion_rebuttal carrying a number (why this is a cycle, not a moat eroding), or score "
                  "erosion_risks <= 0", True)
+    # ---- L3b (M6): the moat's direction -> the growth hold, and the check that the engine ran it ----
+    fade = fade_trend(tt, gm, sources_rec.get("items") or [], bt, tbasis, sic, last_raw, sc, ctx["facts"], n, strict,
+                      assume_projection=dry_run)
+    if TROUGH_FLAG in fade["flags"]:
+        flags.insert(flags.index(TREND_FLAGS["widening"]) + 1 if TREND_FLAGS["widening"] in flags else 0, TROUGH_FLAG)
+    if strict and sync and not dry_run and n.get("scenarios"):
+        in_sync, detail, malformed = fade_sync(fade, n)
+        fade["in_sync"] = in_sync
+        if not in_sync:
+            if malformed:
+                raise MoatRefusal(detail)
+            if rebuild and GATE_DRIFT_ON_REBUILD and FADE_DRIFT_ON_REBUILD:
+                drift.append({"gate": "fade_sync", "detail": fade_drift_detail(fade, n)})
+            else:
+                raise MoatRefusal(detail)
     drifted = {d["gate"] for d in drift}
     for g, rec in gates.items():
         rec["drifted"] = g in drifted
@@ -1770,7 +2306,7 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
            "sources": sources_rec,
            "pillars": {k: pillars[k] for k in CORE if k in pillars},
            "supporting": sup if sup is not None else None,
-           "erosion_test": ero, "flags": flags, "gates": gates,
+           "erosion_test": ero, "fade": fade, "flags": flags, "gates": gates,
            "moat_divergence_reason": reasons["moat_divergence_reason"],
            "moat_lint": lint_bad_moats(j, strict),
            "industry_file": ({"built": industry.get("built"), "sha256": industry.get("_sha256")} if industry else None),
@@ -1804,6 +2340,93 @@ def _med_s(v, note):
     if note == "negative_equity":
         return "n/m (negative equity)"
     return f"n/m ({note})" if note else "n/m"
+
+
+TREND_REASON_TEXT = {"csv_only": "no fundamentals.json annual rows: a CSV-only folder is not measured",
+                     "governing_not_finite": "fewer than 4 finite years of the governing return, or one of the last two "
+                                             "not finite",
+                     "no_margin": "no gross-margin or operating-margin line in 4 of the last 5 FY"}
+
+
+def _cf_text(c):
+    if c.get("irr_weighted") is None:
+        return f"at hold {c.get('hold_years')} the record does not replay"
+    iv = f", IV@15 ${c['iv_at_15']:,.2f}" if c.get("iv_at_15") is not None else ""
+    return f"at hold {c['hold_years']} the weighted IRR would be {_pct(c['irr_weighted'])} (tier {c.get('tier_by_numbers')}){iv}"
+
+
+def _guard_summary(f):
+    g = f.get("guards") or {}
+    cg = g.get("commodity_sic") or {}
+    rs = g.get("returns_on_capital")
+    parts = []
+    if g.get("fact_backed_source") is not None:
+        parts.append("fact-backed source " + (f"yes ({g.get('source')})" if g.get("fact_backed_source") else "no"))
+    parts.append(f"returns_on_capital {_sgn(rs) if rs is not None else 'not measured'}")
+    for key, name, gov in (("plain_roic", "plain roic", "tangible roic"), ("roa", "roa", "roe")):
+        leg = f.get(key)
+        if leg is not None:
+            ok = g.get("plain_roic_agrees" if key == "plain_roic" else "roa_agrees")
+            parts.append((f"{name} {leg['change_pp']:+.2f}pp" if leg.get("status") == "measured" else f"{name} not measured")
+                         + f" {'agrees' if ok else 'does not agree'} ({gov} governs)")
+    if cg:
+        parts.append(f"commodity SIC {'no' if cg.get('passes') and not cg.get('exempted_by_reason') else 'yes'}"
+                     + (f" (SIC {cg.get('sic')})" if cg.get("sic") else " (SIC unknown)")
+                     + (f", lifted by the cost-position fact {cg.get('exempt_fact')}" if cg.get("exempted_by_reason") else ""))
+    if g.get("business_type"):
+        parts.append(f"business type {g.get('business_type')}")
+    return " · ".join(parts)
+
+
+def fade_lines(f):
+    """key_numbers.md's two M6 lines (10 §5.7): '- Trend test …' (it replaces 03b's '- Erosion test' line) and
+    '- Fade direction …'. Every number is generated (quotable); no worker free text (the rebuttal and decline texts
+    stay out, 07 §1.10)."""
+    L = []
+    d, y = f.get("direction"), f.get("years") or []
+    if f.get("status") == "measured":
+        res = {"eroding": "eroding (MOAT_EROSION)", "widening": "widening (MOAT_WIDENING)", "flat": "no trend"}.get(d, d)
+        if d == "contradicting":
+            up = (f.get("governing_change_pp") or 0) > 0
+            res = (f"contradicting (returns {'up' if up else 'down'}, {f.get('margin_basis')} margin "
+                   f"{'down' if up else 'up'}): stable")
+        L.append(f"- Trend test (last 5 FY, governing {f.get('measure')}): {_span(y, 0, 1)} avg {_pct(f['governing_first2'])} "
+                 f"-> {_span(y, -2, -1)} avg {_pct(f['governing_last2'])} ({f['governing_change_pp']:+.2f}pp, slope "
+                 f"{f['slope_governing']:+.4f}/yr) · {f.get('margin_basis')} margin {f['margin_change_pp']:+.2f}pp (slope "
+                 f"{f['slope_margin']:+.4f}/yr) -> {res}")
+    else:
+        L.append(f"- Trend test: not measured ({TREND_REASON_TEXT.get(f.get('reason'), f.get('reason'))})")
+    rule = f.get("rule")
+    eng = f.get("engine") or {}
+    et = eng.get("moat_trend") or "stable"
+    cf = "; ".join(_cf_text(c) for c in f.get("counterfactual") or [])
+    if rule == "report_only":
+        if d == "eroding":
+            body = "eroding -> a 5.7 run holds growth 0 yrs unless rebutted; this record ran the 2-year hold"
+        elif d == "widening":
+            body = ("widening -> a 5.7 run holds 3 yrs only with a fact-backed source, returns_on_capital >= +1, plain roic "
+                    "agreeing when tangible roic governs, roa agreeing when roe governs and no commodity SIC ("
+                    + _guard_summary(f) + " today)")
+        else:
+            body = {"contradicting": "contradicting", "flat": "no trend"}.get(d, "not measured") + " -> a 5.7 run holds growth 2 yrs"
+        L.append(f"- Fade direction (report only, pre-5.7 record): {body}" + (f" ({cf})" if cf else ""))
+    elif rule == "no_projection":
+        L.append(f"- Fade direction: {d or 'not measured'} (no projection: Tier F record, the hold changes nothing) · engine "
+                 f"recorded --moat-trend {et}")
+    else:
+        head = {"widening_confirmed": "widening, guards: " + _guard_summary(f),
+                "widening_guard_failed": "widening, guard failed: " + "; ".join((f.get("guards") or {}).get("failed") or []),
+                "contradicting": "contradicting (stable)"}.get(rule, RULE_TEXT.get(rule, rule))
+        if f.get("rebuttal_unused"):
+            head += " · erosion_rebuttal declared but unused (no measured erosion)"
+        if f.get("decline_unused"):
+            head += " · widening_declined declared but unused (no measured widening)"
+        s = f.get("in_sync")
+        sync = ("in sync" if s is True else
+                "OUT OF SYNC — gate drift on this rebuild (resolved at the next engine run)" if s is False else "not checked")
+        L.append(f"- Fade direction: {head} -> growth hold {f.get('hold_years')} yrs · engine ran --moat-trend {et} "
+                 f"(hold {eng.get('hold_years')}): {sync}" + (f" · {cf}" if cf else ""))
+    return L
 
 
 def key_numbers_lines(me):
@@ -1967,14 +2590,21 @@ def key_numbers_lines(me):
                      f"revenue per unit CAGR {_pct(vp['price_cagr'])} vs inflation hurdle {_pct(vp['inflation_hurdle'])} → "
                      f"{vp['class']}; bounds pricing_power [{b['pricing_power'][0]:+d}, {b['pricing_power'][1]:+d}], "
                      f"reach_and_growth ≤ {b['reach_and_growth'][1]:+d}" + (f", pair ≤ {b['pair_max']:+d}" if b.get("pair_max") is not None else ""))
-    e = me.get("erosion_test") or {}
-    if e.get("status") == "measured":
-        L.append(f"- Erosion test: {'FIRED' if e.get('fired') else 'not fired'} (governing {e.get('governing_change_pp'):+.2f}pp, "
-                 f"{e.get('margin_basis')} margin {e.get('margin_change_pp'):+.2f}pp over the last 5 FY)")
+    f = me.get("fade")
+    if isinstance(f, dict):   # L3b (M6): the trend test (both directions) and what the hold must be
+        L += fade_lines(f)
     else:
-        L.append(f"- Erosion test: not measured ({e.get('reason')})")
+        e = me.get("erosion_test") or {}
+        if e.get("status") == "measured":
+            L.append(f"- Erosion test: {'FIRED' if e.get('fired') else 'not fired'} (governing {e.get('governing_change_pp'):+.2f}pp, "
+                     f"{e.get('margin_basis')} margin {e.get('margin_change_pp'):+.2f}pp over the last 5 FY)")
+        else:
+            L.append(f"- Erosion test: not measured ({e.get('reason')})")
     if me.get("flags"):
-        L.append(f"- Flags: {', '.join(me['flags'])}")
+        tr = (f or {}).get("trough") if isinstance(f, dict) else None
+        L.append("- Flags: " + ", ".join(
+            (f"{x} (first-two-year governing average {_pct(tr['governing_first2'])} < {_pct(tr['line'])})"
+             if x == TROUGH_FLAG and tr else x) for x in me["flags"]))
     g = me.get("gates") or {}
     checked = me.get("status") == "checked"
     lr, rv, er, dv = g.get("low_return") or {}, g.get("reverse") or {}, g.get("erosion") or {}, g.get("divergence") or {}
@@ -2030,13 +2660,22 @@ def main(argv=None):
         # run, which is an authoring run, so every gate that would refuse it refuses here. Passing the folder's
         # score.json had made an unchanged folder a rebuild — a failing data-driven gate was recorded as drift and the
         # dry run printed "passes the 5.7 rules"
+        # [L3b, M6] sync=False: this runs BEFORE the final engine run, so the preliminary record's trend is not checked —
+        # the dry run prints the --moat-trend value the final run must pass instead
         ev = evaluate(folder, n, j, facts=_facts.by_id(fdoc) if fdoc else {}, is_57=True, sic=sic,
-                      industry=load_industry(os.path.join(base, "_system")), prior=None)
+                      industry=load_industry(os.path.join(base, "_system")), prior=None, dry_run=True)
     except MoatRefusal as e:
         print(f"moat_scorecard.py: REFUSED — {e}")
         return 1
     for line in key_numbers_lines(ev):
         print(line)
+    f = ev.get("fade") or {}
+    print(f"fade: {f.get('direction') or 'not measured'} ({f.get('rule')}) -> pass --moat-trend {f.get('trend')} "
+          f"(growth hold {f.get('hold_years')} years)")
+    cf = "; ".join(_cf_text(c) for c in f.get("counterfactual") or [])
+    if cf:
+        print(f"fade, on the preliminary run in dcf_numbers.json as it stands (engine --moat-trend "
+              f"{(f.get('engine') or {}).get('moat_trend') or 'stable'}): {cf}")
     print(f"moat_scorecard.py: {t} evidence {ev.get('evidence_score')} (core {ev.get('core_evidence_score')}, supporting "
           f"{ev.get('supporting_adjustment'):+.2f}) vs moat {ev.get('moat_score'):g} — passes the 5.7 rules")
     return 0

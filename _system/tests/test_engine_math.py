@@ -104,18 +104,23 @@ def replay_record(n, who, floor_hits=None):
     """Recompute one recorded run's scenario paths, IV@10/12/15 and IRRs from its recorded inputs and require
     bit-level agreement. v5.6: a record carrying an acquired-IPR&D one-time deduction (iprd_adjustment, treatment
     one_time_value_deduction) is replayed through the same helpers the engine used — IV = present_value - charge,
-    IRR = solve_irr at price + charge; for every other record the charge is 0.0, the identity."""
+    IRR = solve_irr at price + charge; for every other record the charge is 0.0, the identity. v5.7 M6 (L3b): each
+    scenario's growth hold is the RECORD's (dcf_engine.recorded_scenario_holds: scenarios[k].hold_years on a 5.7
+    record, 2 on every older one) — never re-derived from today's fade_hold."""
     scn, inp = n["scenarios"], n["inputs"]
     base, price, gterm = n["base_oe_per_share"], n["price"], inp.get("g_terminal", 0.025)
     c = E.iprd_charge_per_share(n)
     cap = E.cap_years_for_moat(inp["moat"])
     g_base = n["g_base"]
+    g0s = [max(E.GROWTH_FLOOR_START, min(E.GROWTH_CAP_START, g_base + inp["offsets"][i])) for i in range(len(LABELS))]
+    hs = E.recorded_scenario_holds(n, g0s, gterm)
+    assert hs is not None, f"{who}: the record's per-scenario holds do not replay"
     flows_all = []
     for i, lbl in enumerate(LABELS):
         r = scn[lbl]
-        g0 = max(E.GROWTH_FLOOR_START, min(E.GROWTH_CAP_START, g_base + inp["offsets"][i]))
+        g0 = g0s[i]
         assert close(round(g0, 4), r["g_start"], 1e-12, 1e-12), f"{who}: g_start {lbl}"
-        flows = E.project_path(base * inp["mults"][i], g0, cap, gterm)
+        flows = E.project_path(base * inp["mults"][i], g0, cap, gterm, hold=hs[i])
         flows_all.append(flows)
         for rate, key in ((0.10, "iv_at_10"), (0.12, "iv_at_12"), (0.15, "iv_at_15")):
             assert close(E.adjusted_value(flows, rate, gterm, c), r[key]), f"{who}: {lbl} {key}"
@@ -158,6 +163,19 @@ def test_regression_recorded_folders():
     print(f"regression: {checked} folders reproduced bit-for-bit; skipped (no scenarios): {', '.join(skipped) or 'none'}")
     print(f"at-floor cases (pre-5.4 solver reported an IRR below terminal growth): {', '.join(floor_hits) or 'none'}")
     assert checked >= 1
+
+
+def test_regression_replays_a_57_hold_record():
+    """T7 (L3b, M6 — Andrew 2026-10-20): replay_record reads each scenario's growth hold from the record, so an engine
+    5.7 record run at hold 0 (APP's inputs, every scenario above terminal at hold 0) and one at hold 3 replay bit for
+    bit — and a below-terminal scenario written at hold 0 by a 'literal' engine replays at the 0 it records."""
+    if HERE not in sys.path:
+        sys.path.insert(0, HERE)
+    from test_moat_fade import hold_record
+    n = json.load(open(os.path.join(BASE, "APP", "dcf_numbers.json"), encoding="utf-8"))
+    for trend in ("eroding", "widening"):
+        replay_record(hold_record(n, trend), f"APP@{trend}")
+    replay_record(hold_record(n, "eroding", rule="literal", offsets=[-0.40, -0.13, -0.05, 0.03, 0.10]), "APP@literal0")
 
 
 if __name__ == "__main__":
