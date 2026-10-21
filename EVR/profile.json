@@ -1,0 +1,284 @@
+{
+ "ticker": "EVR",
+ "cik": 1360901,
+ "as_of": "2026-10-19",
+ "fetched_at": "2026-10-19T07:38:52-04:00",
+ "newest_filing_date": "2026-08-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001360901.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026010273/evr-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/EVR/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/EVR/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Evercore Inc.",
+  "cik": 1360901,
+  "description": {
+   "text": "Evercore is the leading independent investment banking firm in the world based on the dollar volume of announced worldwide merger and acquisition (\"M&A\") transactions on which we have advised in the last five years(1). When we use the term \"independent investment banking firm,\" we mean an investment banking firm that directly, or through its affiliates, does not engage in commercial banking or significant proprietary trading activities. We were founded on the belief that there is an opportunity within the investment banking industry for a firm free of the potential conflicts of interest created within large, multi-product, capital intensive financial institutions. We believe that maintaining standards of excellence and integrity in our core businesses demands a spirit of cooperation and hands-on participation more commonly found in smaller organizations. Since our inception, we have set out to build—in the employees we choose and in the projects we undertake—an organization dedicated to the highest caliber of professionalism and integrity. We operate globally through our two business segments: (i) Investment Banking & Equities and (ii) Investment Management.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "accession": "0001628280-26-010273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026010273/evr-20251231.htm"
+  },
+  "description_short": "Evercore (NYSE: EVR) is a premier global independent investment banking advisory firm. We are dedicated to helping our clients achieve superior results through trusted independent and innovative advice on matters of strategic and financial significance to boards of directors, management teams and shareholders, including mergers and acquisitions, strategic shareholder advisory, restructurings, and capital structure. Evercore also assists clients in raising public and private capital and delivers equity research and equity sales and agency trading execution, in addition to providing wealth and investment management services to high net worth and institutional investors. Founded in 1995, the Firm is headquartered in New York and maintains offices and affiliate offices in major financial centers in the Americas, Europe, the Middle East and Asia.",
+  "industry": "Investment Managers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6282",
+  "sic_description": "Investment Advice",
+  "state_of_incorporation": "DE",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.evercore.com",
+  "headquarters": "New York, New York",
+  "address": {
+   "street": "55 East 52nd Street",
+   "city": "New York",
+   "state": "New York",
+   "zip": "10055",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-20"
+  },
+  "phone": "212-857-3100",
+  "employees": {
+   "count": 2570,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we employed approximately 2,570 people (of which approximately 2,100 were employed in Investment Banking & Equities), working in 33 cities around the world.",
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026010273/evr-20251231.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2006-05-12",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Evercore Partners Inc."
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001360901&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-053320",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026053320/evr-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-29",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-050373",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026050373/evr-20260729.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-06-12",
+   "period": "2026-06-10",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-26-269645",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312526269645/d124099d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001628280-26-031242",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026031242/evr-20260331.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-04-29",
+   "period": "2026-06-10",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-191911",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312526191911/d30614ddef14a.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-29",
+   "period": "2026-04-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-028098",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026028098/evr-20260429.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001628280-26-010273",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026010273/evr-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-037798",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312526037798/d104542d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-04",
+   "period": "2026-02-04",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001628280-26-005263",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026005263/evr-20260204.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001360901-25-000025",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000025/evr-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-29",
+   "period": "2025-10-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001360901-25-000021",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000021/evr-20251029.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-07",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001360901-25-000018",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000018/evr-20250630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001360901-25-000013",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000013/evr-20250730.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-30",
+   "period": "2025-07-29",
+   "items": [
+    "3.02",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Unregistered sale of equity; Reg FD",
+   "accession": "0001193125-25-168550",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312525168550/d65831d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-07-11",
+   "period": "2025-07-10",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-158241",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312525158241/d28394d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-06-13",
+   "period": "2025-06-11",
+   "items": [
+    "5.07",
+    "9.01"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-140837",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312525140837/d916760d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-08",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001360901-25-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000010/evr-20250331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-04-30",
+   "period": "2025-04-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001360901-25-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000007/evr-20250430.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2025-04-29",
+   "period": "2025-06-11",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-25-103976",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000119312525103976/d872176ddef14a.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2025-02-21",
+   "period": "2024-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001360901-25-000005",
+   "url": "https://www.sec.gov/Archives/edgar/data/1360901/000136090125000005/evr-20241231.htm"
+  }
+ ],
+ "warnings": []
+}
