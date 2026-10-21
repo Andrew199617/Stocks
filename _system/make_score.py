@@ -678,10 +678,16 @@ rebuilt as before, both alert gates closed ("engine output predates release
   [TTM-REJ0..2]; a fixable TTM refuses (it cannot be priced); the field
   anywhere else is refused (beside a TTM pin; with nothing to reject). A
   declared 6-K bridge kept declared and unpinned is rejected the same way
-  (L4's binding reads plan["bridge_rejected"]). Q14 (R7_TTM_UNAVAILABLE_RULE):
-  a STALE_FY 10-K run of that kind with no TTM for its FY quotes ttm.py's
-  exit-3 message in ttm_unavailable_reason (ttm_unavailable_problem: its
-  head, a problem in ttm.py's words, this ticker / CIK / FY). Step 4
+  (L4's binding reads plan["bridge_rejected"]). Q14 (R7_TTM_UNAVAILABLE_RULE;
+  keyed on STALE_FY itself, never on Q13's scope): a STALE_FY 10-K run of
+  that kind with no TTM for its FY quotes ttm.py's exit-3 line in
+  ttm_unavailable_reason — verbatim, nothing else (parse_ttm_py_exit3: the
+  head, whole problems in ttm.py's words joined by "; "), for this ticker /
+  CIK / FY (ttm_unavailable_problem: dated problems name this FY; an undated
+  one the CSV's latest-FY row or judgment.json contradicts is refused); the
+  same quote stands for a fixable ttm.json for the FY that ttm.py can no
+  longer rebuild (it exits 3 and writes nothing — ttm_unbuildable: recorded,
+  never priced or refused). Step 4
   (build_base_alternatives, at most ONE engine --measure replay a run, field
   overrides on, no DCF_IPRD_HOLD, DCF_REPLAY_PURPOSE=base_alternatives): the
   rejected TTM replayed with --ttm (its own acquired-IPR&D window and share
@@ -3766,9 +3772,11 @@ def interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score
     the annual-median base (R2: "report BOTH"). Current release: one --measure replay of the final configuration
     with no pin (_final_run_args), field overrides on and NO DCF_IPRD_HOLD — the median takes its own acquired-IPR&D
     window and share count (rebase amendment 14, I5); labelled DCF_REPLAY_PURPOSE=base_alternatives (R7 folds this
-    replay into build_base_alternatives). A failed replay refuses. Release mismatch: no replay — the prior score's
-    annual-median entry is carried when it was measured on this declaration and this bridged base (4 dp), else the
-    fields are null with the not-measured note. Attaches itself to `interim` as "measurement"; None without a bridge."""
+    replay into build_base_alternatives). A failed replay refuses. Release mismatch: no replay — R7's one carry rule
+    (carried_base_alternatives, design 11 §3.7 / §7.2; review fix 4): the prior score's annual-median entry is carried,
+    its note too, when the prior record declared this bridge (its interim_bridge declaration_hash) and published it as
+    declared_interim at this bridged base and weighted IRR (4 dp), else the fields are null with the not-measured note.
+    Attaches itself to `interim` as "measurement"; None without a bridge."""
     if interim is None:
         return None
     bridged = {"base_oe_per_share": _r4(n.get("base_oe_per_share")), "weighted_irr": _r4(n.get("implied_irr_weighted")),
@@ -3779,25 +3787,16 @@ def interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score
     meas = {"bridged": bridged, "annual_median": None, "measured": False, "note": None, "replays": 0,
             "impact_carried_from_prior_score": False, "counterfactual_engine_release": None}
     if release_mismatch:
-        alts = (prior_score or {}).get("base_alternatives") if isinstance(prior_score, dict) else None
         pib = (prior_score or {}).get(INTERIM_KEY) if isinstance(prior_score, dict) else None
-        prior_bases = {b.get("kind"): b for b in (alts or {}).get("bases") or [] if isinstance(b, dict)} \
-            if isinstance(alts, dict) else {}
-        pub, med = prior_bases.get("declared_interim"), prior_bases.get("annual_median")
-        if (isinstance(pib, dict) and pib.get("declaration_hash") == interim["hash"] and isinstance(pub, dict)
-                and isinstance(med, dict) and pub.get("base_oe_per_share") == bridged["base_oe_per_share"]
-                and med.get("measured") and not (alts or {}).get("note")):
-            meas.update(annual_median={k: med.get(k) for k in ("base_oe_per_share", "weighted_irr", "tier_by_numbers",
-                                                               "f_subtype", "iprd_charge_per_share", "iprd_treatment",
-                                                               "data_gap")},
-                        measured=True, impact_carried_from_prior_score=True,
-                        counterfactual_engine_release=n.get("engine_release"))
-        else:
-            meas.update(annual_median={"base_oe_per_share": _r4(n.get("base_oe_normalized_per_share")),
-                                       "weighted_irr": None, "tier_by_numbers": None, "f_subtype": None,
-                                       "iprd_charge_per_share": None, "iprd_treatment": None, "data_gap": []},
-                        note=_not_measured_note(n.get("engine_release")),
-                        counterfactual_engine_release=n.get("engine_release"))
+        same_decl = isinstance(pib, dict) and pib.get("declaration_hash") == interim["hash"]
+        e = _alt_entry("annual_median", "alternative", bridged, True, False,
+                       vals=_unmeasured(n.get("base_oe_normalized_per_share")))
+        carried, cer, note = carried_base_alternatives(n, prior_score if same_decl else None,
+                                                       {"kind": "declared_interim"}, bridged, [e],
+                                                       [(0, "annual_median", False)])
+        meas.update(annual_median={k: e.get(k) for k in _VAL_KEYS}, measured=bool(e["measured"]),
+                    note=e.get("note") if carried else note, impact_carried_from_prior_score=carried,
+                    counterfactual_engine_release=cer)
     else:
         # v5.7 (R7, 11 §7.2): R7's one replay routine (_replay_alternative: the same command and label, field overrides
         # on, no DCF_IPRD_HOLD) with its outcome rules — a gap or an engine refusal of the median is recorded
@@ -3950,22 +3949,41 @@ CASH_FLOW_LINE_RE = re.compile(r"""(?ix)(?<![A-Za-z])(?:
 )(?![A-Za-z])""")
 
 # Default Q14: ttm.py's exit-3 message (ttm.py main(): "ttm.py: cannot compute TTM for <T> (CIK <n>): " + the
-# problems joined by "; "), one pattern per problem ttm.py prints; test_make_score_57_r7 runs ttm.py's real exit-3
+# problems joined by "; "), one pattern per problem ttm.py prints, each the WHOLE problem in ttm.py's words
+# (parse_ttm_py_exit3 matches the line end to end — review fix 3); test_make_score_57_r7 runs ttm.py's real exit-3
 # paths offline and holds every message it prints to these patterns.
 TTM_PY_EXIT3_HEAD_RE = re.compile(r"ttm\.py: cannot compute TTM for (\S+) \(CIK (\d+)\): ")
+_X3_DATE = r"(\d{4}-\d{2}-\d{2})"
+_X3_LEG = r"(ocf|capex|sbc|shares_diluted)"
+_X3_UNITS = r"([^\s,;]+(?:, [^\s,;]+)*)"
+_X3_Q, _X3_APOS = "[\"“”]", "['’]"
 TTM_PY_EXIT3_RES = (
-    ("no_fy", re.compile(r"\b(ocf|capex|sbc|shares_diluted): no annual \(FY\) fact")),
-    ("no_current_ytd", re.compile(r"\b(ocf|capex|sbc|shares_diluted): no post-FY YTD fact \(no 10-Q since the "
-                                  r"(\d{4}-\d{2}-\d{2}) fiscal year end\)")),
-    ("no_prior_ytd", re.compile(r"\b(ocf|capex|sbc|shares_diluted): no prior-year YTD fact matching "
-                                r"(\d{4}-\d{2}-\d{2}) \(FY start (\d{4}-\d{2}-\d{2})\)")),
-    ("no_capex", re.compile(r"\bcapex: no capex facts in companyfacts under any candidate tag and no capex_override in "
-                            r"judgment\.json")),
-    ("override_currency", re.compile(r"\b(capex|sbc): the (?:capex|sbc)_override is not declared currency "
-                                     r"[\"“”]USD[\"“”] at a filer whose core facts are filed in [A-Z]{3}")),
-    ("intangibles_currency", re.compile(r"\bcapex (fy|ytd_prior|ytd_current): intangible purchases for "
-                                        r"(\d{4}-\d{2}-\d{2})\.\.(\d{4}-\d{2}-\d{2}) are filed only in [A-Z]{3}")),
+    ("no_fy", re.compile(_X3_LEG + r": no annual \(FY\) fact")),
+    ("no_current_ytd", re.compile(_X3_LEG + r": no post-FY YTD fact \(no 10-Q since the " + _X3_DATE
+                                  + r" fiscal year end\)")),
+    ("no_prior_ytd", re.compile(_X3_LEG + r": no prior-year YTD fact matching " + _X3_DATE + r" \(FY start " + _X3_DATE
+                                + r"\)")),
+    ("no_capex", re.compile(r"capex: no capex facts in companyfacts under any candidate tag and no capex_override in "
+                            r"judgment\.json — refusing to zero-fill \(same DATA_GAP standard as the engine\)")),
+    ("override_currency", re.compile(r"(capex|sbc): the \1_override is not declared currency " + _X3_Q + "USD" + _X3_Q
+                                     + r" at a filer whose core facts are filed in " + _X3_UNITS + r" — ttm\.py"
+                                     + _X3_APOS + r"s legs are USD only and it cannot convert the override to fill a "
+                                     r"missing leg; declare the filing" + _X3_APOS + r"s US-dollar figure with currency "
+                                     + _X3_Q + "USD" + _X3_Q + r", or leave the TTM unbuilt")),
+    ("intangibles_currency", re.compile(r"capex (fy|ytd_prior|ytd_current): intangible purchases for " + _X3_DATE
+                                        + r"\.\." + _X3_DATE + r" are filed only in " + _X3_UNITS + r"; ttm\.py reads "
+                                        r"USD facts only and holds no FX rates, so it cannot include them \(the annual "
+                                        r"engine converts and adds them\) — no TTM base; use the median base")),
 )
+# The us-gaap tags ttm.py reads per leg (its OCF_TAGS / CAPEX_TAGS / SBC_TAGS / SHARE_TAGS — the engine's own lists'
+# us-gaap entries; test_make_score_57_r7 holds them equal): a latest-FY CSV row read from one of them in USD is
+# evidence ttm.py found that leg's annual fact.
+TTM_PY_LEG_TAGS = {
+    "ocf": tuple(t for t in _engine.ENGINE_OCF_TAGS if isinstance(t, str)),
+    "capex": tuple(t for t in _engine.CAPEX_ROLLUP_TAGS + _engine.CAPEX_COMPONENT_TAGS if isinstance(t, str)),
+    "sbc": (_engine.SBC_SHARE_TAG, _engine.SBC_ALLOCATED_TAG),
+    "shares_diluted": tuple(t for t in _engine.ENGINE_SHARES_DILUTED_TAGS if isinstance(t, str)),
+}
 TTM_TTM_SOURCE = "ttm.json (ttm.py: FY − prior YTD + current YTD, 10-Q)"
 TTM_INTERIM_SOURCE = "ttm.json (ttm.py --interim: FY − prior interim + current interim, declared 6-K)"
 MEDIAN_SOURCE = "median_of_last_3_fy_oe_per_share"
@@ -4017,20 +4035,103 @@ def _fy_start_matches(start, latest):
         return False
 
 
-def ttm_unavailable_problem(text, n, ticker):
-    """Default Q14: judgment.json ttm_unavailable_reason must QUOTE ttm.py's exit-3 message for this run — its head
-    ("ttm.py: cannot compute TTM for <T> (CIK <n>): ") and at least one problem in ttm.py's own words
-    (TTM_PY_EXIT3_RES), for this ticker and CIK, and a dated problem about this run's latest FY. The refusal sentence,
-    or None (pure)."""
+def parse_ttm_py_exit3(text):
+    """ttm.py's exit-3 line, verbatim (default Q14; review fix 3): (head match, [(problem name, match), ...]) when
+    `text`, stripped, is the head "ttm.py: cannot compute TTM for <T> (CIK <n>): " followed by one or more problems in
+    ttm.py's own words — each matched whole (TTM_PY_EXIT3_RES) — joined by "; " and NOTHING else (no prose around
+    the line, no fragment of a problem); None otherwise. Pure."""
+    if not isinstance(text, str):
+        return None
+    s = text.strip()
+    head = TTM_PY_EXIT3_HEAD_RE.match(s)
+    if head is None:
+        return None
+    pos, hits = head.end(), []
+    while True:
+        hit = None
+        for name, rx in TTM_PY_EXIT3_RES:
+            m = rx.match(s, pos)
+            if m is not None and (m.end() == len(s) or s.startswith("; ", m.end())):
+                hit = (name, m)
+                break
+        if hit is None:
+            return None
+        hits.append(hit)
+        if hit[1].end() == len(s):
+            return head, hits
+        pos = hit[1].end() + 2
+
+
+def _csv_float(v):
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return f if math.isfinite(f) else None
+
+
+def _ttm_py_filed_leg(n, rows, leg):
+    """The us-gaap tag this run's latest-FY `leg` was read from, when ttm.py reads that fact too — financials_history.csv's
+    row for n["latest_period_end"] holds the leg from a filed fact (not an override, an assumed-zero capex or a share
+    fallback outside ttm.py's tags) under one of TTM_PY_LEG_TAGS, in USD (no fx_conversion) and from EDGAR companyfacts
+    (not the filing's own instance, annual_from_instance) — else None. Evidence that ttm.py's "<leg>: no annual (FY)
+    fact" / "capex: no capex facts in companyfacts …" is not this run's message (ttm.py reads the same companyfacts,
+    us-gaap, USD, 330-380-day periods). Pure."""
+    if (n or {}).get("fx_conversion"):
+        return None
+    latest = (n or {}).get("latest_period_end")
+    afi = n.get("annual_from_instance") if isinstance(n.get("annual_from_instance"), dict) else {}
+    if afi.get("applied") and latest in (afi.get("periods_added") or []):
+        return None
+    row = next((r for r in reversed(rows or []) if isinstance(r, dict) and r.get("period_end") == latest), None)
+    if row is None:
+        return None
+    tags = TTM_PY_LEG_TAGS[leg]
+    if leg == "capex":
+        tag = str(row.get("capex_tag") or "").split("+")[0]
+        ok = (str(row.get("capex_source") or "").startswith(("rollup", "components"))
+              and _csv_float(row.get("capex_ppe") if row.get("capex_ppe") not in (None, "") else row.get("capex"))
+              is not None)
+    elif leg == "shares_diluted":
+        tag = str(row.get("shares_tag") or "")
+        tag = tag[len("FALLBACK:"):] if tag.startswith("FALLBACK:") else tag
+        ok = _csv_float(row.get("shares_diluted")) is not None
+    else:
+        tag = str(row.get(f"{leg}_tag") or "")
+        ok = _csv_float(row.get(leg)) is not None
+    return tag if (ok and tag in tags) else None
+
+
+def _ttm_py_override_declared(j, field):
+    """Whether ttm.py would read judgment.json's <field>_override as an override NOT declared in USD (ttm.py
+    load_overrides: a numeric value, kind filing / estimate, a source and a reason; currency upper-cased) — the only
+    case ttm.py prints its override-currency problem. Pure."""
+    o = (j or {}).get(f"{field}_override") if isinstance(j, dict) else None
+    return bool(isinstance(o, dict) and isinstance(o.get("value"), (int, float)) and not isinstance(o.get("value"), bool)
+                and o.get("kind") in ("filing", "estimate") and str(o.get("source") or "").strip()
+                and str(o.get("reason") or "").strip()
+                and str(o.get("currency") or "").strip().upper() != "USD")
+
+
+def ttm_unavailable_problem(text, n, ticker, rows=None, j=None):
+    """Default Q14: judgment.json ttm_unavailable_reason must BE ttm.py's exit-3 line for this run, verbatim
+    (parse_ttm_py_exit3: the head, then whole problems in ttm.py's words joined by "; ", nothing else) — for this
+    ticker and CIK; every dated problem about this run's latest FY (no post-FY YTD fact: that FY's end; no prior-year
+    YTD fact: that FY's start; an intangible-currency leg: its period inside that FY or the YTD after it); and no
+    undated problem the record contradicts (review fix 3): "<leg>: no annual (FY) fact" / "capex: no capex facts …"
+    while financials_history.csv's latest-FY row (`rows`) holds the leg from a fact ttm.py reads (_ttm_py_filed_leg),
+    an override-currency problem while judgment.json (`j`) declares no such override or declares it in USD. Without
+    rows / j those two checks have no evidence and pass. The refusal sentence, or None (pure)."""
     if not isinstance(text, str) or not text.strip():
         return ("[TTM-UNAV0] judgment.json ttm_unavailable_reason must be a non-empty string — ttm.py's exit-3 message, "
                 f"quoted (got {repr(text)[:60]})")
-    head = TTM_PY_EXIT3_HEAD_RE.search(text)
-    hits = [(name, m) for name, rx in TTM_PY_EXIT3_RES for m in rx.finditer(text)]
-    if head is None or not hits:
+    parsed = parse_ttm_py_exit3(text)
+    if parsed is None:
         return ("[TTM-UNAV1] judgment.json ttm_unavailable_reason does not quote ttm.py's exit-3 message — run python3 "
-                f"_system/ttm.py {ticker} and copy the line it prints (\"ttm.py: cannot compute TTM for {ticker} (CIK …): "
-                "<leg>: …\"); without it skipping ttm.py is not checkable (default Q14)")
+                f"_system/ttm.py {ticker} and copy the line it prints, verbatim and nothing else (\"ttm.py: cannot compute "
+                f"TTM for {ticker} (CIK …): <leg>: …\", every problem whole, joined by \"; \"); without it skipping ttm.py "
+                "is not checkable (default Q14)")
+    head, hits = parsed
     bad = []
     if head.group(1).upper() != str(ticker).upper():
         bad.append(f"it names {head.group(1)}, not {ticker}")
@@ -4048,6 +4149,28 @@ def ttm_unavailable_problem(text, n, ticker):
         if name == "no_prior_ytd" and not _fy_start_matches(m.group(3), latest):
             bad.append(f"'{m.group(1)}: no prior-year YTD fact' is about the fiscal year starting {m.group(3)}, not this "
                        f"run's latest FY (ending {latest})")
+        if name == "intangibles_currency":
+            leg, start = m.group(1), m.group(2)
+            if leg == "ytd_current":
+                try:
+                    after = (datetime.date.fromisoformat(start) - datetime.date.fromisoformat(latest)).days
+                except (TypeError, ValueError):
+                    after = None
+                inside = after is not None and 0 <= after <= 10
+            else:
+                inside = _fy_start_matches(start, latest)
+            if not inside:
+                bad.append(f"'capex {leg}: intangible purchases for {start}..{m.group(3)}' is not a {leg} leg of this "
+                           f"run's latest FY (ending {latest})")
+        if name in ("no_fy", "no_capex"):
+            leg = m.group(1) if name == "no_fy" else "capex"
+            tag = _ttm_py_filed_leg(n, rows, leg)
+            if tag:
+                bad.append(f"'{m.group(0)}' cannot be this run's: financials_history.csv's FY {latest} row reads {leg} "
+                           f"from {tag}, a USD us-gaap fact ttm.py reads")
+        if name == "override_currency" and j is not None and not _ttm_py_override_declared(j, m.group(1)):
+            bad.append(f"'{m.group(1)}: the {m.group(1)}_override is not declared currency \"USD\"' but judgment.json "
+                       f"declares no {m.group(1)}_override ttm.py reads outside USD")
     if bad:
         return ("[TTM-UNAV2] judgment.json ttm_unavailable_reason quotes another run's ttm.py message (" + "; ".join(bad)
                 + ") — rerun ttm.py and quote what it prints now")
@@ -4153,17 +4276,26 @@ def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
     """v5.7 (R7; main() step 3, after interim_pin_state, before L4's check_interim_obligation, every refusal before the
     first write). None on output from before 5.7 (nothing read, nothing checked — D1: older output rebuilds
     unchanged). Else the plan {kind, ttm_published, detail, stale_fy, scope, ttm (ttm_for_run), required, reason,
-    bridge_rejected, unavailable_required, unavailable_reason} after these refusals, in order:
+    bridge_rejected, unavailable_required, unavailable_reason, ttm_unbuildable} after these refusals, in order:
+    - ttm_unbuildable (review fix 1; design 11 §3.3 / §14 item 6 — a TTM the worker can rebuild refuses, one the
+      worker cannot is recorded): the run sits beside a 'fixable' 10-Q ttm.json for its FY (a withdrawn override, a
+      pre-5.7 stamp) that ttm.py can no longer rebuild — ttm.py exits 3 and writes nothing, so the stale file stays —
+      and ttm_unavailable_reason quotes the exit-3 line (checked first: ttm_unavailable_problem); the run then has no
+      priceable TTM, so nothing is required;
     - required = STALE_FY (R7_OBLIGATION_SCOPE, Q13) ∧ the published base is the annual median or a declared pin (Q18,
-      R7_DECLARED_PIN_RULE; the payable pin is exempt) ∧ not TTM-published ∧ a TTM for this run (eligible / fixable);
+      R7_DECLARED_PIN_RULE; the payable pin is exempt) ∧ not TTM-published ∧ a TTM for this run (eligible / fixable)
+      ∧ not ttm_unbuildable;
     - ttm_rejection_reason present but not required: R7-5 (the published base is the TTM) or R7-6 (nothing to reject);
-    - ttm_unavailable_reason (default Q14) where it may not stand — beside a TTM for this run, a TTM pin, a payable or
-      exempt pin, without STALE_FY, at a 20-F / 40-F filer (interim_bridge_declined is R2's record) — or a quote that is
-      not ttm.py's exit-3 message for this run (ttm_unavailable_problem);
-    - required, absent: R7-1 — except a declared 6-K bridge, which L4's binding refuses (R7-11);
-    - required, present: ttm_rejection_problem (R7-2 .. R7-4), then a fixable TTM (R7-7: it cannot be priced);
+    - ttm_unavailable_reason (default Q14) where it may not stand — beside an eligible TTM for this run, a TTM pin, a
+      payable or exempt pin, without STALE_FY, at a 20-F / 40-F filer (interim_bridge_declined is R2's record) — or a
+      quote that is not ttm.py's exit-3 line for this run (ttm_unavailable_problem, over the record's CSV and judgment);
+    - required, absent: R7-1 — except a declared 6-K bridge, which L4's binding refuses (R7-11); beside a fixable
+      ttm.json it names the exit-3 way out;
+    - required, present: ttm_rejection_problem (R7-2 .. R7-4), then a fixable TTM (R7-7: it cannot be priced — rerun
+      ttm.py, or quote its exit-3 line instead);
     - default Q14 (R7_TTM_UNAVAILABLE_RULE "require"): a STALE_FY 10-K run of that kind with no TTM for its latest FY
       (no ttm.json, or one on another FY) without ttm_unavailable_reason [TTM-UNAV0] — skipping ttm.py is checkable.
+      Q14 is keyed on STALE_FY itself, never on Q13's scope (review fix 2: each default flips alone).
     bridge_rejected (a declared 6-K bridge kept declared and rejected) is what L4's binding and obligation read."""
     if not is_57_run(n):
         return None
@@ -4175,9 +4307,21 @@ def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
     ttm = ttm_for_run(folder, n, j, j_sc=j_sc, j_over=j_over)
     in_kind = kind == "annual_median" or (kind == "declared_pin" and R7_DECLARED_PIN_RULE == "require")
     for_run = bool(ttm and ttm["status"] in ("eligible", "fixable"))
-    required = bool(scope and in_kind and not ttm_pub and for_run)
     reason = j.get(TTM_REJECTION_KEY)
     present = reason is not None
+    unavail = j.get(TTM_UNAVAILABLE_KEY)
+    foreign = n.get("filer_annual_form") in ("20-F", "40-F")
+    no_ttm = ttm is None or ttm["status"] == "other_fy"
+    rows = _csv_rows(folder) if unavail is not None else []
+    # review fix 1: a fixable 10-Q TTM the rejection obligation would bind (Q13's scope), which ttm.py cannot rebuild
+    # — its exit-3 line, quoted and checked, stands for the stale file
+    unbuildable = bool(unavail is not None and scope and in_kind and not ttm_pub and not foreign and ttm is not None
+                       and ttm["status"] == "fixable" and ttm["kind"] == "ttm")
+    if unbuildable:
+        prob = ttm_unavailable_problem(unavail, n, t, rows=rows, j=j)
+        if prob:
+            fail(prob)
+    required = bool(scope and in_kind and not ttm_pub and for_run and not unbuildable)
     if present and not required:
         if ttm_pub:
             fail(f"judgment.json ttm_rejection_reason rejects the TTM but the final run's base is ttm.json's (base_source "
@@ -4186,56 +4330,65 @@ def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
                  else "declared base_override pins are exempt (default Q18, R7_DECLARED_PIN_RULE)"
                  if kind == "declared_pin" and not in_kind
                  else "STALE_FY does not fire (the median is the default base)" if not scope
+                 else "ttm.py cannot rebuild ttm.json's TTM (judgment.json ttm_unavailable_reason quotes its exit-3 "
+                      "message) — nothing priceable to reject" if unbuildable
                  else "ttm.json holds no TTM for this run (no ttm.json)" if ttm is None
                  else f"ttm.json holds no TTM for this run ({ttm['note']})")
         fail(f"judgment.json ttm_rejection_reason is declared but {cause} — remove it")                       # R7-6
     # default Q14: a STALE_FY 10-K run of that kind with no TTM for its latest FY (no ttm.json, or one on another FY)
-    # quotes ttm.py's exit-3 message; the field is allowed only there (and beside a ttm.json off the share-class
-    # declaration, which ttm.py cannot rebuild — L8), and a quote is always checked; a misplaced field is
-    # refused before the rejection rules (it says no TTM exists where one does)
-    unavail = j.get(TTM_UNAVAILABLE_KEY)
-    foreign = n.get("filer_annual_form") in ("20-F", "40-F")
-    no_ttm = ttm is None or ttm["status"] == "other_fy"
-    possible = bool(scope and in_kind and not ttm_pub and not foreign)
-    unavail_required = bool(R7_TTM_UNAVAILABLE_RULE == "require" and possible and no_ttm)
-    if unavail is not None:
-        if not (possible and (no_ttm or ttm["status"] == "off_basis")):
+    # quotes ttm.py's exit-3 message — keyed on STALE_FY, Q14's own population, never on Q13's scope (review fix 2);
+    # the field is allowed only there, beside a ttm.json off the share-class declaration (L8: ttm.py cannot rebuild
+    # it) and beside an unbuildable fixable one (above), and a quote is always checked; a misplaced field is refused
+    # before the rejection rules (it says no TTM exists where one does)
+    q14 = bool(stale and in_kind and not ttm_pub and not foreign)
+    unavail_required = bool(R7_TTM_UNAVAILABLE_RULE == "require" and q14 and no_ttm)
+    if unavail is not None and not unbuildable:
+        if not (q14 and (no_ttm or ttm["status"] == "off_basis")):
             cause = ("the final run's base is the TTM" if ttm_pub
                      else "the payable-earnings base replaces the OCF base" if kind == "payable_5y"
                      else "declared base_override pins are exempt (default Q18, R7_DECLARED_PIN_RULE)" if not in_kind
-                     else "STALE_FY does not fire (the median is the default base)" if not scope
+                     else f"ttm.json holds a TTM for this run (to {ttm['ytd_end']}) — pin it with --ttm or reject it with "
+                          "ttm_rejection_reason" if (scope and ttm is not None and ttm["status"] == "eligible")
+                     else "STALE_FY does not fire (the median is the default base)" if not stale
                      else f"{n.get('filer_annual_form')} filers record why no TTM exists in interim_bridge_declined (R2)"
                      if foreign
                      else f"ttm.json holds a TTM for this run (to {ttm['ytd_end']}) — pin it with --ttm or reject it with "
                           "ttm_rejection_reason")
             fail(f"[TTM-UNAV] judgment.json ttm_unavailable_reason is declared but {cause} — remove it")
-        prob = (ttm_unavailable_problem(unavail, n, t) if no_ttm or not isinstance(unavail, str) or not unavail.strip()
-                else None)
+        prob = (ttm_unavailable_problem(unavail, n, t, rows=rows, j=j)
+                if no_ttm or not isinstance(unavail, str) or not unavail.strip() else None)
         if prob:
             fail(prob)
+    exit3_way = ("when ttm.py exits 3 instead (it cannot rebuild this TTM), " if ttm is not None
+                 and ttm["status"] == "fixable" and ttm["kind"] == "ttm" and not foreign else None)
     if required and not present and ttm["kind"] == "ttm":
         fail(f"[TTM-REJ0] {'STALE_FY fires and ' if stale else ''}ttm.json holds a TTM for this run (to "
              f"{ttm['ytd_end']}: {_money(ttm['base_oe_per_share'])}/share) but the published base is the "
              f"{_KIND_TEXT[kind]} ({_money(n.get('base_oe_per_share'))}/share) — pass --ttm in the final run, or reject "
              "the TTM in judgment.json ttm_rejection_reason: name the distorting cash-flow line with a number "
-             "(WORKER_SPEC step 4; Andrew's ruling R7)")                                                     # R7-1
+             "(WORKER_SPEC step 4; Andrew's ruling R7)"
+             + (f" — ttm.json cannot be priced as it stands: {ttm['note']}; {exit3_way}quote the line it prints in "
+                "judgment.json ttm_unavailable_reason" if exit3_way else ""))                              # R7-1
     if required and present:
         prob = ttm_rejection_problem(reason)
         if prob:
             fail(prob)                                                                                      # R7-2..4
         if ttm["status"] == "fixable":
             fail(f"the TTM this run rejects cannot be priced: {ttm['note']} — R7 records the rejected TTM's base, "
-                 "weighted IRR and tier beside the published base")                                         # R7-7
+                 "weighted IRR and tier beside the published base"
+                 + (f" — {exit3_way}drop ttm_rejection_reason and quote the line it prints in judgment.json "
+                    "ttm_unavailable_reason" if exit3_way else ""))                                        # R7-7
     if unavail is None and unavail_required:
-        fail(f"[TTM-UNAV0] {'STALE_FY fires at' if stale else 'At'} a 10-K filer and ttm.json holds no TTM for this "
-             f"run's latest FY ({'no ttm.json' if ttm is None else ttm['note']}) — run python3 _system/ttm.py {t} and "
-             "pass --ttm in the final run (or reject the TTM with ttm_rejection_reason); when ttm.py exits 3, quote "
-             "the message it prints in judgment.json ttm_unavailable_reason (default Q14)")
+        fail(f"[TTM-UNAV0] STALE_FY fires at a 10-K filer and ttm.json holds no TTM for this run's latest FY "
+             f"({'no ttm.json' if ttm is None else ttm['note']}) — run python3 _system/ttm.py {t} and pass --ttm in "
+             "the final run (or reject the TTM with ttm_rejection_reason); when ttm.py exits 3, quote the message it "
+             "prints in judgment.json ttm_unavailable_reason (default Q14)")
     return {"kind": kind, "ttm_published": ttm_pub, "detail": detail, "stale_fy": stale, "scope": scope, "ttm": ttm,
             "required": required, "reason": reason.strip() if (required and present) else None,
             "bridge_rejected": bool(required and present and ttm["kind"] == "declared_interim"),
             "unavailable_required": unavail_required,
-            "unavailable_reason": unavail.strip() if isinstance(unavail, str) and unavail.strip() else None}
+            "unavailable_reason": unavail.strip() if isinstance(unavail, str) and unavail.strip() else None,
+            "ttm_unbuildable": unbuildable}
 
 
 def _alt_ttm_ok(ttm, j_sc):
@@ -4373,8 +4526,10 @@ def build_base_alternatives(ticker, folder, n, j, plan, impact=None, payable_imp
     - annual_median / a declared FY-built pin (Q18) under STALE_FY beside an eligible TTM: the TTM `rejected`, replayed
       with --ttm (1 replay); a declared pin's annual median from the record ("not replayed": its own impact is in the
       base_override event) or, for an iprd_amortized median pin, from amortized_impact;
-    - STALE_FY with no TTM for the run (no ttm.json; another FY; off the share-class declaration; an orphan bridge): the
-      TTM entry `computed: false` with why (ttm_unavailable_reason recorded on the block, Q14);
+    - STALE_FY with no TTM for the run (no ttm.json; another FY; off the share-class declaration; an orphan bridge; a
+      fixable ttm.json ttm.py cannot rebuild — plan["ttm_unbuildable"]): the TTM entry `computed: false` with why
+      (ttm_unavailable_reason recorded on the block, Q14; at a 20-F / 40-F filer the note quotes judgment.json
+      interim_bridge_declined, §3.6 row 2);
     - no STALE_FY beside a TTM: the TTM an `alternative` from ttm.json, not replayed;
     - a TTM-published run (--ttm, a basis_window "ttm" pin): under STALE_FY the annual median replayed with no pin (Q15,
       R7_MEDIAN_BESIDE_TTM; 1 replay), else its base from the record, not replayed;
@@ -4449,24 +4604,37 @@ def build_base_alternatives(ticker, folder, n, j, plan, impact=None, payable_imp
                                    "base_override)")
         elif stale:
             pub = _published_entry(n, plan, "no_ttm_for_run", "published — STALE_FY fires but no TTM exists for this "
-                                   "run's latest FY")
+                                   "run's latest FY" + (" that ttm.py can build (judgment.json ttm_unavailable_reason)"
+                                                        if plan.get("ttm_unbuildable") else ""))
         else:
             pub = _published_entry(n, plan, "default_median", "published — the median of the last 3 FY is the default "
                                    "base (STALE_FY does not fire)")
+        # design 11 §3.6 row 2 (review fix 5): at a 20-F / 40-F filer the not-computed entry quotes judgment.json
+        # interim_bridge_declined — worker text, so in curly quotes (07 §1.10; check_quotes never reads inside them)
+        declined = validate_interim_declined(j) if foreign else None
+        declined_q = quoted(declined["reason"]) if declined else None
         if tt is None:
             if stale:   # (no STALE_FY and no ttm.json: no alternative exists)
                 note = "no ttm.json for this run"
                 if plan.get("unavailable_reason"):
                     note += " — ttm.py cannot build one (judgment.json ttm_unavailable_reason quotes its exit-3 message)"
-                elif foreign and isinstance((j or {}).get(INTERIM_DECLINED_KEY), dict):
-                    note += " — no declared 6-K interim bridge (judgment.json interim_bridge_declined, R2)"
+                elif declined_q:
+                    note += (" — no declared 6-K interim bridge (judgment.json interim_bridge_declined, R2): "
+                             + declined_q)
                 entries.append(_alt_entry(ttm_kind, "alternative", pub, False, False, why="no_ttm_for_run",
                                           note=note))
         elif tt["status"] in ("other_fy", "off_basis", "orphan_bridge"):
             note = tt["note"] + (" — ttm.py cannot build this run's (judgment.json ttm_unavailable_reason quotes its "
                                  "exit-3 message)" if plan.get("unavailable_reason") else "")
+            if declined_q:
+                note += "; judgment.json interim_bridge_declined (R2): " + declined_q
             entries.append(_alt_entry(tt["kind"], "alternative", pub, False, False, ttm=tt, why="no_ttm_for_run",
                                       note=note))
+        elif plan.get("ttm_unbuildable"):
+            # review fix 1: a fixable ttm.json ttm.py can no longer rebuild — recorded, never priced, never refused
+            entries.append(_alt_entry(tt["kind"], "alternative", pub, False, False, ttm=tt, why="no_ttm_for_run",
+                                      note=tt["note"] + " — ttm.py cannot rebuild it (judgment.json ttm_unavailable_reason "
+                                                        "quotes its exit-3 message)"))
         elif rejected:
             queue(_alt_entry(tt["kind"], "rejected", pub, True, False, vals=_unmeasured(tt["base_oe_per_share"]),
                              ttm=tt, replay=REPLAY_TTM, why="rejection_reason"), tt["kind"], required=True)
@@ -4535,10 +4703,12 @@ def carried_base_alternatives(n, prior_score, plan, pub, entries, jobs):
     """§3.7 — release mismatch: no replay (another release's capex / SBC basis, the M3 rule). The prior score.json
     base_alternatives entry is carried into the job's entry when the prior record's published kind, base and weighted
     IRR equal this run's (4 dp), it carries no note, and its entry of the same kind and role is the same base — for a
-    TTM the same ttm_input_hash as the current ttm.json, for the median the same base at 4 dp — and was measured;
-    otherwise the entry keeps its base from the record, IRR / tier null, measured false, and the block carries the
-    not-measured note. Returns (carried, counterfactual_engine_release, note); edits the entry in place. The
-    obligation and the validator still applied (ttm_rejection_state runs on every 5.7 record)."""
+    TTM the same ttm_input_hash as the current ttm.json, for the median the same base at 4 dp, or a median replay
+    that scored no base (computed false) — and was measured; the carried entry keeps its note. Otherwise the entry
+    keeps its base from the record, IRR / tier null, measured false, and the block carries the not-measured note.
+    Returns (carried, counterfactual_engine_release, note); edits the entry in place. The one carry rule: L4's bridge
+    measurement (interim_bridge_measurement) carries through it too. The obligation and the validator still applied
+    (ttm_rejection_state runs on every 5.7 record)."""
     rel = n.get("engine_release")
     i, base_kind, _req = jobs[0]
     e = entries[i]
@@ -4552,7 +4722,11 @@ def carried_base_alternatives(n, prior_score, plan, pub, entries, jobs):
     if same and base_kind in _TTM_KINDS:
         same = pe.get("ttm_input_hash") == e.get("ttm_input_hash")
     elif same:
-        same = pe.get("base_oe_per_share") == e.get("base_oe_per_share")
+        # the median's identity is its base at 4 dp — or, for a prior replay of this same published configuration that
+        # scored no base (computed false: the engine refused or gapped the median), the published identity alone: its
+        # answer ("not computed — <the engine's line>") is carried with its note (review fix 4)
+        same = (pe.get("base_oe_per_share") == e.get("base_oe_per_share")
+                or (pe.get("computed") is False and pe.get("base_oe_per_share") is None))
     if same:
         e["computed"], e["measured"] = bool(pe.get("computed")), True
         for k in _VAL_KEYS:
