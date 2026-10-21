@@ -2908,6 +2908,90 @@ def test_a_charge_in_the_fiscal_year_before_a_short_transition_year_is_before_th
     assert E.iprd_pre_window_charges({"facts": {"us-gaap": {EXPENSE: {"units": {"USD": [
         _fy_fact("2023-02-01", "2023-06-30", 5e6)]}}}}}, "2023-12-31") == []
 
+
+
+# --- Codex review round 20 of PR #47 ------------------------------------------------------------------------------
+def _r20_facts(exp24=100e6, exp24_unit="USD", cash24=40e6, cash25=60e6, cash25_unit="USD", neg25=-5e6, prior=None):
+    """FY2024 charge (exp24 in exp24_unit, cash24 USD paid); FY2025 a negative detector fact in EUR (no FX rate) beside
+    cash25 in cash25_unit; prior: a FY2021 USD expense (a charge before the window)."""
+    f = _facts(expense={2021: prior} if prior is not None else None, cash={2024: cash24})
+    _syn_put(f, EXPENSE, exp24_unit, _ctx("2024-01-01", "2024-12-31", exp24, form="10-K", filed="2025-02-20"))
+    _syn_put(f, EXPENSE, "EUR", _ctx("2025-01-01", "2025-12-31", neg25, form="10-K", filed="2026-02-20"))
+    if cash25 is not None:
+        _syn_put(f, CASH, cash25_unit, _ctx("2025-01-01", "2025-12-31", cash25, form="10-K", filed="2026-02-20"))
+    return f
+
+
+def test_an_unconvertible_negative_detector_fact_is_a_reversal_not_an_unconverted_charge():
+    """[Codex review r20, #4332651259] A detector fact the run cannot convert (no FX rate, even fetched) is classified
+    by its native sign before the unconverted gate: exactly 0 converts to 0 (round 13), a positive one gates as
+    ACQUIRED_IPRD_UNCONVERTED, and a NEGATIVE one is a reversal — no current-period charge, as a converted negative fact
+    is (round 14). Before, a -EUR 5M FY2025 fact read excluded non_usd_no_rate with expense None, which round 14's
+    no-charge test (it read only the USD expense) never matched and no gate caught (they key on a POSITIVE native
+    figure): a $100M FY2024 charge paid $40M left the FY2025 $60M payment unmatched, unlisted and ungated, and the run
+    published a $40M deduction. Now the record reads excluded "negative" (amount 0, its expense_native kept), so the
+    cash settles the remainder (deferred_payment, expense_reversal_note naming the native figure: $100M in all), an
+    unconvertible payment beside it is gated (cash_native), cash beside it with no remainder is listed (with the
+    pre-window charge it may settle), and cash after a charge whose remainder is unknown is gated
+    (unconverted_remainder_of) — each exactly as for a USD -5M fact."""
+    nofx = lambda c, d: None
+
+    def detect(f, rates=None):
+        return E.iprd_detect(f, FY3, fx_rates=rates or {}, checks=[], fx_fetch=nofx)
+    # A: the finding — the $60M settles the $60M remainder, as with a USD -5M or a converted EUR -5M fact
+    out = detect(_r20_facts())
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["expense"] is None and r25["expense_native"] == -5e6 and r25["expense_unit"] == "EUR", r25
+    assert r25["excluded"] is None and r25["deducted"] == 60e6 and r25.get("deferred_payment"), r25
+    assert "reversal" in r25.get("expense_reversal_note", "") and "EUR" in r25["expense_reversal_note"], r25
+    assert sum(p["deducted"] for p in out["periods"]) == 100e6 and not out["ignored_cash_only"], out
+    assert E.iprd_unresolved({"iprd_adjustment": {"periods": out["periods"]}}) is None
+    conv = detect(_r20_facts(), {"EUR": {"2025-12-31": 1.1}})
+    assert sum(p["deducted"] for p in conv["periods"]) == 100e6, conv["periods"]
+    # with no remainder the record stays excluded "negative" (nothing deducted)
+    out = detect(_r20_facts(cash24=100e6, cash25=30e6))
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["excluded"] == "negative" and r25["deducted"] == 0.0 and r25["amount"] == 0.0, r25
+    assert [(c["period"], c["cash"]) for c in out["ignored_cash_only"]] == [("2025-12-31", 30e6)], out
+    assert "negative (reversal)" in out["ignored_cash_only"][0]["note"], out["ignored_cash_only"]
+    # B: an unconvertible payment beside it, after the $60M remainder: gated with its native amount
+    out = detect(_r20_facts(cash25_unit="EUR"))
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["excluded"] == "non_usd_no_rate" and r25.get("cash_native") == 60e6, r25
+    assert "non_usd_no_rate" in (E.iprd_unresolved({"iprd_adjustment": {"periods": out["periods"]}}) or ""), out
+    # C: no remainder, a FY2021 charge before the window: the payment is listed with it (UNMATCHED_PAYMENT) ...
+    f = _r20_facts(cash24=100e6, cash25=30e6, prior=50e6)
+    out = detect(f)
+    co = [c for c in out["ignored_cash_only"] if c["period"] == "2025-12-31"]
+    assert co and co[0]["cash"] == 30e6 and co[0].get("pre_window_charges") == ["2021-12-31"], out["ignored_cash_only"]
+    assert any(x.startswith("ACQUIRED_IPRD_UNMATCHED_PAYMENT") for x in E.iprd_flags(dict(out, total=None))), out
+    # ... and a declaration claims it (the record reads the reversal, deducted once)
+    decl = {"period": "2025-12-31", "window": "fy", "amount": 30e6,
+            "deferred_payment_of": {"deal": "Old Bio", "first_charged_period": "2021-12-31",
+                                    "source": "SYN 10-K (0000999001-22-000005) Note 4, p. 64: Old Bio IPR&D expensed",
+                                    "contingent_total": {"value": 30e6, "source": "SYN 10-K (0000999001-22-000005) "
+                                                         "Note 4, p. 64: $30.0 million deferred consideration"}}}
+    refused, rolled = E.iprd_apply_deferred(out, [decl], FY3, f)
+    assert refused == [] and rolled == [], refused
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["deducted"] == 30e6 and r25["excluded"] is None and "reversal" in r25.get("expense_reversal_note", ""), r25
+    # D: after a GBP charge the run cannot convert (its remainder unknown): the USD payment is gated
+    out = detect(_r20_facts(exp24_unit="GBP"))
+    r25 = _leg(out, "fy", "2025-12-31")
+    assert r25["excluded"] == "non_usd_no_rate" and r25.get("unconverted_remainder_of") == ["2024-12-31"], r25
+    assert E.iprd_unresolved({"iprd_adjustment": {"periods": out["periods"]}}), out["periods"]
+    # a positive unconvertible fact still gates; a negative unconvertible CASH fact beside a USD expense is noted
+    out = detect(_r20_facts(neg25=5e6, cash25=None))
+    assert _leg(out, "fy", "2025-12-31")["excluded"] == "non_usd_no_rate", out["periods"]
+    ff = _facts(expense={2025: 100e6})
+    _syn_put(ff, CASH, "EUR", _ctx("2025-01-01", "2025-12-31", -90e6, form="10-K", filed="2026-02-20"))
+    r25 = _leg(detect(ff), "fy", "2025-12-31")
+    assert r25["amount_basis"] == "expense" and "negative" in r25.get("cash_sign_note", ""), r25
+    # end to end: the engine deducts the full $100M
+    n = _ok(_run_fx(_r20_facts(), {"EUR": {"1999-12-31": 1.0}}))
+    assert n["iprd_adjustment"]["total"] == 100e6 and E.iprd_unresolved(n) is None, n["iprd_adjustment"]
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

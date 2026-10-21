@@ -167,6 +167,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    never show live figures for the refused run (`live_withheld` reason `iprd_unresolved`; since Codex review
    round 11, any run make_score refused or has not yet scored: reason `score_not_from_this_run`). A non-USD
    fact of exactly 0 needs no rate (Codex review round 13 of PR #47): it reads as $0, never `non_usd_no_rate`.
+   A negative one needs none either (Codex review round 20 of PR #47): it is a reversal, excluded `negative` with
+   its `expense_native` kept, and its period's cash is matched, listed or gated as beside a USD negative fact (a
+   `deferred_payment` with `expense_reversal_note` follows the round-14 rule in AGENTS.md); only a positive fact
+   with no rate is `non_usd_no_rate`.
    When one tag is filed for one period in more than one unit (Codex review round 15 of PR #47), a positive fact
    in any unit outranks a zero one — converted at the FX pass's rate or one fetched for its date, else the period
    is excluded `non_usd_no_rate` and the flag above applies — and two positive facts that disagree after

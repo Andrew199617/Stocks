@@ -354,7 +354,9 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    again, is P1. [Codex review round 14 of PR #47] A score with a period carrying `cash_flow_check_mismatch` (a
    declared check whose amount is not the filed expense, never applied) cannot exist on any basis (make_score
    refuses it); a `deferred_payment` period with `expense_reversal_note` (a negative detector fact, a reversal,
-   beside cash matched like cash beside a $0 expense) follows the same `deferred_payment_assumption` rule above.
+   beside cash matched like cash beside a $0 expense) follows the same `deferred_payment_assumption` rule above —
+   [Codex review round 20 of PR #47] also when that negative fact is filed in a currency with no FX rate (the
+   period keeps its `expense_native`; it is a reversal, never `non_usd_no_rate`).
    [Codex review round 15 of PR #47] A score with a cash-basis period carrying `cash_flow_check_inapplicable` (a
    matching check declaring `inside_operating_cash_flow` or `paid_in_intangible_capex` where the investing cash tag
    is filed and its outflow deducted) cannot exist (make_score refuses it, naming the presentation;

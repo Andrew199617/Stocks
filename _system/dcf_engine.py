@@ -470,6 +470,13 @@ cash-tag-only payment split between the window's unpaid remainder (settled autom
 ignored_cash_only with pre_window_charges: a declaration first charged BEFORE the window claims that rest (only it,
 capped by the rest and the deal's contingent_total) on top of the automatic settlement, which keeps its own note
 (automatic_settlement, declared_residual, declared_residual_note on the record).
+[Codex review round 20 of PR #47] A detector fact the run cannot convert (no FX rate, even fetched) is classified by
+its native sign before the unconverted gate: exactly 0 converts to 0 (round 13), a negative one is a reversal — no
+current-period charge, excluded "negative" with amount 0 and its expense_native kept, so its period's cash settles
+the unpaid remainder (deferred_payment, expense_reversal_note), is listed in ignored_cash_only or is gated exactly as
+beside a converted negative fact (round 14) — and only a positive one gates as non_usd_no_rate
+(ACQUIRED_IPRD_UNCONVERTED). Before, a negative one read non_usd_no_rate, which neither the no-charge paths nor any
+gate matched, so the payment was dropped with no trace.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -2661,7 +2668,11 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     period is excluded `non_usd_no_rate`. [Codex review r6 of PR #47] The cash outflow is the preferred amount, so a
     positive cash fact the run cannot convert beside a USD (or converted) positive expense never falls back to the
     expense: the period is excluded `non_usd_no_rate` with its cash_native kept (ACQUIRED_IPRD_UNCONVERTED, make_score
-    refuses it) — before, the expense was deducted in its place (over- or under-stating the charge) with no flag."""
+    refuses it) — before, the expense was deducted in its place (over- or under-stating the charge) with no flag.
+    [Codex review r20 of PR #47] An unconvertible expense is classified by its native sign before that gate: a
+    negative one is a reversal, excluded `negative` with amount 0 and its expense_native kept (as a converted negative
+    fact is), never `non_usd_no_rate`; only a positive one gates. A negative unconvertible cash fact beside a positive
+    expense is the same sign error (cash_sign_note)."""
     if expense is None:
         return None
     etag, ev, eunit, erate, efiled = expense[:5]
@@ -2681,6 +2692,19 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
                        tag_used=IPRD_CASH_TAG, fx_rate=cash[2], filed=cash[3], deducted=float(cash[0]),
                        expense_fx_note=(f"expense filed in {eunit} only, with no FX rate for {period}: it detects the "
                                         f"charge ({float(enative):,.0f} {eunit}); the cash outflow is the amount"))
+            return rec
+        if (isinstance(enative, (int, float)) and not isinstance(enative, bool) and math.isfinite(enative)
+                and enative < 0):
+            # [Codex review r20 of PR #47] the native sign classifies the fact BEFORE the unconverted gate: a negative
+            # one is a reversal (no current-period charge) at every rate, exactly like a converted negative fact —
+            # excluded "negative", amount 0, the native figure kept. It had read non_usd_no_rate, which neither the
+            # no-charge paths (round 14 read only the USD figure) nor any gate (a POSITIVE native figure) matched, so
+            # the period's cash was neither settled, listed nor gated
+            rec.update(expense_native=float(enative), amount=0.0, amount_basis="expense", tag_used=etag,
+                       fx_rate=erate, filed=efiled, excluded="negative",
+                       expense_fx_note=(f"expense filed in {eunit} only, with no FX rate for {period}: negative "
+                                        f"({float(enative):,.0f} {eunit}, a reversal), so no current-period charge "
+                                        "at any rate"))
             return rec
         rec["excluded"] = IPRD_UNCONVERTED
         if isinstance(enative, (int, float)) and not isinstance(enative, bool) and math.isfinite(enative):
@@ -2704,6 +2728,13 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
         rec["cash_sign_note"] = (f"{IPRD_CASH_TAG} is filed negative ({cash[0]:,.0f}) beside a positive expense — a "
                                  "sign error on a payments element; the expense is used (the cash-flow check decides)")
         use_cash = False
+    elif (ev > 0 and isinstance(cnat, (int, float)) and not isinstance(cnat, bool) and math.isfinite(cnat)
+          and cnat < 0):
+        # [Codex review r20 of PR #47] the same sign error on a cash fact the run cannot convert: its native sign is
+        # read, so the fallback to the expense carries the note too
+        rec["cash_sign_note"] = (f"{IPRD_CASH_TAG} is filed negative ({float(cnat):,.0f} {cash[1]}, no FX rate) beside "
+                                 "a positive expense — a sign error on a payments element; the expense is used (the "
+                                 "cash-flow check decides)")
     if use_cash:
         amt, basis, tag, rate, filed = cash[0], "cash_outflow", IPRD_CASH_TAG, cash[2], cash[3]
     else:
@@ -2754,12 +2785,27 @@ def iprd_period_record(period, window, expense, cash, capex_intang=None, check=N
     return rec
 
 
+def _iprd_detector_value(rec):
+    """[Codex review r20 of PR #47] A record's detector figure: its USD expense, else (no FX rate) its native one —
+    the sign decides whether the period carries a charge in either case. None when neither is a finite number."""
+    if not isinstance(rec, dict):
+        return None
+    for k in ("expense", "expense_native"):
+        v = rec.get(k)
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            return float(v) if math.isfinite(v) else None
+    return None
+
+
 def _iprd_reversal_settles(rec):
     """[Codex review r14 of PR #47] A period whose detector fact is negative (a reversal: no current-period charge)
-    and whose cash is deducted as a deferred payment no longer reads excluded "negative": the note keeps why."""
-    if rec.get("excluded") == "negative" and isinstance(rec.get("expense"), (int, float)) and rec["expense"] < 0:
+    and whose cash is deducted as a deferred payment no longer reads excluded "negative": the note keeps why.
+    [Codex review r20 of PR #47] a negative fact the run cannot convert reads its native figure (and unit)."""
+    v = _iprd_detector_value(rec)
+    if rec.get("excluded") == "negative" and v is not None and v < 0:
         rec["excluded"] = None
-        rec["expense_reversal_note"] = (f"the period's acquired-IPR&D expense is negative ({rec['expense']:,.0f}, a "
+        fig = f"{v:,.0f}" if rec.get("expense") is not None else f"{v:,.0f} {rec.get('expense_unit')}, no FX rate"
+        rec["expense_reversal_note"] = (f"the period's acquired-IPR&D expense is negative ({fig}, a "
                                         "reversal): no current-period charge, so its cash is matched as a deferred "
                                         "payment like cash beside a $0 expense")
 
@@ -2797,7 +2843,9 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     positive partial-period fact on the other (partial_coverage).
     [Codex review r14 of PR #47] A negative detector fact (a reversal) is no current-period charge, like a $0 one: the
     period's cash settles the unpaid remainder (deferred_payment, expense_reversal_note, no longer excluded) or is
-    listed in ignored_cash_only — before, the payment was dropped with no trace."""
+    listed in ignored_cash_only — before, the payment was dropped with no trace.
+    [Codex review r20 of PR #47] The same for a negative detector fact the run cannot convert: its native sign makes
+    it a reversal (iprd_period_record), and the no-charge test reads the native figure (_iprd_detector_value)."""
     exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
     cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
     periods, cash_only, notes = [], [], []
@@ -2900,9 +2948,12 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
     def _no_charge(rec):
         """No current-period charge: no record, or a $0 or negative (a reversal) detector fact. [Codex review r14 of
         PR #47] a negative fact had kept the period's cash from settling the unpaid remainder and from
-        ignored_cash_only alike (only an exact $0 counted), so the payment was dropped with no trace."""
-        return rec is None or (isinstance(rec.get("expense"), (int, float)) and not isinstance(rec["expense"], bool)
-                               and rec["expense"] <= 0 and rec["excluded"] in (None, "negative"))
+        ignored_cash_only alike (only an exact $0 counted), so the payment was dropped with no trace. [Codex review r20
+        of PR #47] the detector figure is the native one when the run cannot convert it (_iprd_detector_value)."""
+        if rec is None:
+            return True
+        v = _iprd_detector_value(rec)
+        return v is not None and v <= 0 and rec["excluded"] in (None, "negative")
 
     def _resolve(p, window, exp_maps, cash_map, intang):
         """The period's record (None when it has none); the tags' unit conflicts ride on whatever record the period
@@ -3079,7 +3130,7 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
             # [Codex review r3 of PR #47] cash beside a $0 expense was dropped without a trace: list it like cash-only
             # ([Codex review r14 of PR #47] beside a negative one too)
             cash_only.append(_co(p, window, cv, cash, "cash tag beside a "
-                                 + ("negative (reversal)" if rec["expense"] < 0 else "$0")
+                                 + ("negative (reversal)" if _iprd_detector_value(rec) < 0 else "$0")
                                  + " acquired-IPR&D expense, beyond the window's unpaid remainder: never a qualifying "
                                  "charge"))
         return rec
