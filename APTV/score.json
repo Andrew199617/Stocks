@@ -1,0 +1,88 @@
+{
+ "ticker": "APTV",
+ "name": "APTIV PLC",
+ "sector": "Automotive parts / electrical architecture & intelligent systems (SIC 3714)",
+ "price": 45.11,
+ "market_cap_b": 9.96,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 2.6302169105538042,
+ "base_year": "2025",
+ "base_source": "ttm_json",
+ "moat_score": 4,
+ "moat_justification": "Design-in switching costs and embedded OEM engineering are real, but returns do not confirm a durable moat: fundamentals.json roic_proxy fell from 11.4% (FY2021) to 8.0%, 7.6%, 10.3% and 6.2% (FY2025), at/below cost of capital, and gross margin is only 15.1-19.1% over the last five fiscal years (19.1% in FY2025). OEM pricing pressure, concentrated customers and larger rivals (Bosch, Valeo, ZF) cap pricing power; the $648M Wind River goodwill impairment shows a key software bet was overpaid.",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "BUYBACK_TAILWIND: share count shrinking 6.6%/yr \u2014 already credited via the growth adjustment",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in 2023, 2025 \u2014 find the one-off (tax deposits, impairments, WC swings) before trusting the OE base",
+  "HIGH_NET_DEBT: net debt is 10.0x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier D (7.3%) vs bull-case tier C (10.1%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 13.07,
+   "irr": 0.0597
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 17.63,
+   "irr": 0.0731
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 21.99,
+   "irr": 0.0861
+  },
+  "bull": {
+   "prob": 0.17,
+   "iv_at_15": 27.13,
+   "irr": 0.1011
+  },
+  "super_bull": {
+   "prob": 0.08,
+   "iv_at_15": 35.87,
+   "irr": 0.1256
+  }
+ },
+ "iv_at_15": 21.32,
+ "iv_at_12": 28.1,
+ "implied_irr": 0.0843,
+ "implied_irr_base_case": 0.0861,
+ "upside_at_15_pct": -52.7,
+ "tier_by_numbers": "D",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Cyclical auto-tech supplier, moat 4/10 \u2014 does not clear 15% on the post-spin TTM base (weighted IRR 8.4%, IV@15 $21.32 vs $45.11 price); it would clear 15% only below $21.32, and the pre-spin median base that printed Tier A is not the business the price now buys.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.0731,
+ "irr_bull": 0.1011,
+ "tier_bear": "D",
+ "tier_bull": "C",
+ "iv_at_20": 15.2,
+ "iv_at_25": 11.8,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 5781000000,
+ "shares_diluted_latest": 220750000,
+ "model_fit": "modeled",
+ "alert_eligible": false,
+ "exit_alert_eligible": true,
+ "moat_for": [
+  "OEM design integration: engineers embedded years before production, architecture baked into vehicle platforms \u2014 high switching costs once specified",
+  "Global scale in electrical architecture / interconnect and leading ADAS / domain-controller positions",
+  "Smart Vehicle Architecture + Wind River software position for software-defined vehicles",
+  "Non-automotive diversification growing double digits (12% in Q2 2026) in industrials and aerospace/defense"
+ ],
+ "moat_against": [
+  "ROIC proxy falling and below cost of capital: 11.4% FY2021 to 6.2% FY2025 (fundamentals.json)",
+  "Low gross margin (19.1% FY2025) and OEM price-down pressure; top-10 OEM customers are a majority of sales",
+  "Larger diversified rivals (Bosch ~16% smart-architecture share vs Aptiv ~7.4%) and OEM vertical integration of compute platforms",
+  "$648M non-cash goodwill impairment on Wind River (FY2025) \u2014 software-defined-vehicle adoption slower than the price paid assumed",
+  "Cyclical global vehicle production and Motional autonomous-driving equity losses"
+ ]
+}

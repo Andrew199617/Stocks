@@ -1,0 +1,292 @@
+{
+ "ticker": "APTV",
+ "cik": 1521332,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T20:53:42-04:00",
+ "newest_filing_date": "2026-08-04",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001521332.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000009/aptv-20251231.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/APTV/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/APTV/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "Aptiv PLC",
+  "cik": 1521332,
+  "description": {
+   "text": "In December 2024, Old Aptiv (as defined below), a public limited company formed under the laws of Jersey on May 19, 2011, completed its previously announced reorganization transaction (the “Transaction,” or the “reorganization transaction”), in which Old Aptiv established a new publicly-listed Jersey parent company, Aptiv Holdings Limited (“New Aptiv”), which is resident for tax purposes in Switzerland. As a result of the Transaction, all issued and outstanding ordinary shares of Old Aptiv were exchanged on a one-for-one basis for newly issued ordinary shares of New Aptiv. Following consummation of the Transaction, holders of Old Aptiv shares became ordinary shareholders of New Aptiv, Old Aptiv became a wholly-owned subsidiary of New Aptiv and New Aptiv was renamed “Aptiv PLC.” The previous publicly-listed Jersey parent company, which was an Irish tax resident, is referred to as “Old Aptiv” throughout this Annual Report on Form 10-K. New Aptiv’s ordinary shares are publicly traded on the New York Stock Exchange (“NYSE”) under the symbol “APTV,” the same symbol under which the Old Aptiv shares were previously listed. Aptiv PLC remains a public limited company incorporated under the laws of Jersey, and continues to be subject to U.S. Securities and Exchange Commission reporting requirements.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "accession": "0001521332-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000009/aptv-20251231.htm"
+  },
+  "description_short": "Aptiv PLC (NYSE: APTV) is a global industrial technology leader delivering advanced solutions people trust when it matters most across automotive, commercial vehicle, aerospace and defense, telecom and datacom, and other diversified industrial end markets. Our differentiated portfolio enables devices and systems to sense, think, act, and continuously optimize performance. Building on decades of innovation, Aptiv brings global scale and a resilient, localized value chain to customers across the globe.",
+  "industry": "Auto Parts:O.E.M.",
+  "sector": "Consumer Discretionary",
+  "region": "Europe",
+  "sic": "3714",
+  "sic_description": "Motor Vehicle Parts & Accessories",
+  "state_of_incorporation": "Y9",
+  "fiscal_year_end_mmdd": "1231",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.aptiv.com",
+  "headquarters": "Schaffhausen, Switzerland",
+  "address": {
+   "street": "Spitalstrasse 5",
+   "city": "Schaffhausen",
+   "state": null,
+   "zip": "8200",
+   "country": "Switzerland",
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-02-06"
+  },
+  "phone": "41-52-580-96-00",
+  "employees": null,
+  "employees_unresolved": {
+   "count": null,
+   "reason": "a per-type / per-location breakdown with no filed total",
+   "evidence": "As of December 31, 2025, we employed approximately 140,000 people; 30,000 salaried employees and 110,000 hourly employees.",
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000009/aptv-20251231.htm"
+  },
+  "first_sec_filing": "2011-05-25",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "Delphi Automotive PLC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001521332&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-04",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001521332-26-000061",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000061/aptv-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-04",
+   "period": "2026-08-04",
+   "items": [
+    "2.02"
+   ],
+   "description": "Results of operations",
+   "accession": "0001521332-26-000057",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000057/aptv-20260804.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-05",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001521332-26-000048",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000048/aptv-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-05",
+   "period": "2026-05-05",
+   "items": [
+    "2.02",
+    "8.01",
+    "9.01"
+   ],
+   "description": "Results of operations; Other events",
+   "accession": "0001521332-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000044/aptv-20260505.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-30",
+   "period": "2026-04-29",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001521332-26-000039",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000039/aptv-20260429.htm"
+  },
+  {
+   "form": "8-K/A",
+   "filed": "2026-04-06",
+   "period": "2026-04-01",
+   "items": [
+    "9.01"
+   ],
+   "description": "Amendment: Financial statements and exhibits",
+   "accession": "0001521332-26-000037",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000037/aptv-20260401.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-06",
+   "period": "2026-04-06",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950103-26-005345",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000095010326005345/dp244900_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-04-01",
+   "period": "2026-03-30",
+   "items": [
+    "1.01",
+    "2.01",
+    "9.01"
+   ],
+   "description": "Material agreement; Acquisition/disposition",
+   "accession": "0001193125-26-138225",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000119312526138225/d110967d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-20",
+   "period": "2026-03-20",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950103-26-004474",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000095010326004474/dp243887_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-16",
+   "period": "2026-03-13",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001521332-26-000032",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000032/aptv-20260313.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-03-16",
+   "period": "2026-04-29",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001193125-26-108328",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000119312526108328/aptv-20260311.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-06",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001521332-26-000024",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000024/aptv-20260306.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-06",
+   "period": "2026-03-06",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950103-26-003376",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000095010326003376/dp242855_8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-05",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001521332-26-000022",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000022/aptv-20260305.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-05",
+   "period": "2026-03-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950103-26-003254",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000095010326003254/dp242413_8k-pricing.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-03-04",
+   "period": "2026-03-04",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950103-26-003193",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000095010326003193/dp242309_8k-launch.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-24",
+   "period": "2026-02-24",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001521332-26-000017",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000017/aptv-20260224.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-17",
+   "period": "2026-02-17",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0001521332-26-000011",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000011/aptv-20260217.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-11",
+   "period": "2026-02-11",
+   "items": [
+    "8.01"
+   ],
+   "description": "Other events",
+   "accession": "0000950103-26-001970",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000095010326001970/dp241429_8k.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-06",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001521332-26-000009",
+   "url": "https://www.sec.gov/Archives/edgar/data/1521332/000152133226000009/aptv-20251231.htm"
+  }
+ ],
+ "warnings": [
+  "employees: null - a per-type / per-location breakdown with no filed total in the 10-K filed 2026-02-06: \"As of December 31, 2025, we employed approximately 140,000 people; 30,000 salaried employees and 110,000 hourly employees.\""
+ ]
+}
