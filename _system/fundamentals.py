@@ -140,7 +140,7 @@ components summed; Codex review round 2 on PR #53).
 Moat rubric 2 (Andrew's request, 2026-10-20 "Tighten moat scoring"; enrichment
 and make_score only, no engine release): `roic_proxy` was NOPAT / (equity +
 debt − cash), which flipped sign on negative capital (VRSN −35% to −46% on
-buyback-driven negative equity), exploded where cash ≈ equity (MANH +2301% /
+buyback-driven negative equity), exploded where cash ≈ equity (MANH +9315% /
 −1540%), read a loss over negative capital as a gain (IBRX +43%), left a filer
 with no operating-income line blank (MTD, ZTS) and tripled one with an unread
 debt tag (DKS 75%). It is now moat_evidence.roic_row on each annual row:
@@ -148,10 +148,13 @@ after-tax operating income (the pretax + interest fallback only at a known
 non-financial SIC) over operating invested capital (assets − cash − short-term
 investments − non-debt current liabilities, goodwill included), shown only when
 that capital is at least 10% of revenue; `roic_class` says why a row has no
-figure (capital_light / customer_funded / loss / financial — SIC 6000-6799, whose
-evidence is ROE), `roic_basis` names the capital basis and `roic_tangible` is the
-ex-goodwill context figure. build_annual computes the rows without a SIC; main()
-re-applies them with the submissions profile's SIC (apply_roic).
+figure (capital_light / customer_funded / loss / financial — SIC 6000-6799 less
+the real-estate operators outside the 6510-6519 lessors, whose evidence is ROE),
+`roic_basis` names the capital basis and `roic_tangible` is the ex-goodwill
+context figure. A row missing cash or current liabilities the file carries in
+other years has no figure (the same-period rule). build_annual computes the
+rows without a SIC; main() re-applies them with the submissions profile's SIC
+(apply_roic).
 """
 import json, sys, os, csv, datetime, time, math, statistics, urllib.request
 
@@ -294,8 +297,14 @@ ISSUANCE_SUPERSETS = {
     "ProceedsFromSaleOfTreasuryStock": {"ProceedsFromStockOptionsExercised"},
 }
 INST = {
-    "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", (IF, "CashAndCashEquivalents")],
-    "short_term_investments": ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent"],
+    # cash and short-term investments: the statements.py lines read these same lists (one list since moat rubric 2 — the
+    # anchor deducts both, and a cell missing where the file carries the line elsewhere has no ROIC). The last two cash tags
+    # and the last three STI tags were statements-only before (PFGC files Cash; WIT's IFRS CurrentInvestments were 32% of
+    # assets); each fills only a period the earlier tags leave empty.
+    "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", (IF, "CashAndCashEquivalents"),
+             "CashAndDueFromBanks", "Cash"],
+    "short_term_investments": ["ShortTermInvestments", "MarketableSecuritiesCurrent", "AvailableForSaleSecuritiesDebtSecuritiesCurrent",
+                               "DebtSecuritiesAvailableForSaleExcludingAccruedInterestCurrent", "AvailableForSaleSecuritiesCurrent", (IF, "CurrentInvestments")],
     "receivables": ["AccountsReceivableNetCurrent", (IF, "TradeAndOtherCurrentReceivables")],
     "inventory": ["InventoryNet", (IF, "Inventories")],
     "prepaids": ["PrepaidExpenseAndOtherAssetsCurrent", "PrepaidExpenseCurrent"],

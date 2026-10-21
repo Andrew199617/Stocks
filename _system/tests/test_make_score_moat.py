@@ -24,6 +24,10 @@ moat_evidence block, no key_numbers lines, no entry-gate reason):
    the gates are as before.
 6. A malformed moat_evidence_reason or moat_sources refuses with nothing
    written; well-formed moat_sources are copied to score.json.
+7. Review round: a moat_score that is not a finite number 0-10 refuses (a
+   NaN compared false with both band ends and passed the entry gate), and a
+   non-USD fundamentals.json written before the one-money-unit rule is not
+   measured (HTHT's stale file had closed its entry gate).
 """
 import json
 import os
@@ -128,6 +132,37 @@ def test_malformed_reason_or_sources_refuse_and_sources_are_recorded():
     assert s["moat_sources"] == src and s["moat_evidence"]["sources_declared"] is True
     s = _run("HALO", 7, moat_sources=[]).ok().result["score"]
     assert s["moat_evidence"]["band"] == [4, 4] and s["alert_eligible"] is False, "an explicitly empty list caps at 4"
+
+
+def test_moat_score_outside_0_10_or_not_a_number_refuses():
+    for bad in (float("nan"), 11, "7"):
+        n = H._numbers(tier_by_numbers="A", implied_irr_weighted=0.22, moat_score=7)
+        n["inputs"] = dict(n["inputs"], moat=7)
+        r = H.Run(n, H._judgment(n, moat_score=bad))
+        try:
+            with open(os.path.join(r.folder, "fundamentals.json"), "w", encoding="utf-8") as f:
+                json.dump(FX["ROP"], f)
+            r.run()
+            r.refused("moat_score must be a number 0-10")
+        finally:
+            r.close()
+
+
+def test_stale_non_usd_fundamentals_is_not_measured():
+    stale = dict(FX["ROP"], currency="CNY", dividends={"dps_ttm": 1.0})
+    n = H._numbers(tier_by_numbers="A", implied_irr_weighted=0.22, moat_score=7)
+    n["inputs"] = dict(n["inputs"], moat=7)
+    r = H.Run(n, H._judgment(n, moat_score=7))
+    try:
+        with open(os.path.join(r.folder, "fundamentals.json"), "w", encoding="utf-8") as f:
+            json.dump(stale, f)
+        r.run()
+        r.ok()
+        s = r.score()
+        assert s["alert_eligible"] is True and s["moat_evidence"]["status"] == "not_measured", s
+        assert "one-money-unit rule" in s["moat_evidence"]["why"]
+    finally:
+        r.close()
 
 
 def test_alert_reasons_moat_gate_unit():

@@ -10,11 +10,11 @@ prints key_numbers_lines() under key_numbers.md "## Growth & moat"; WORKER_SPEC
 step 5 runs this file's CLI, which prints the same lines, before the moat is set.
 
 Why (Andrew's request in the "Tighten moat scoring" thread, 2026-10-20): moats
-across the 521 scored folders sat 82% at 4-6 (mean 5.07, sd 1.13; the engine
+across the 521 scored folders sat 82% at 4-6 (mean 5.17, sd 1.13; the engine
 default is 5) and tracked measured returns only at Spearman 0.30, partly
 because the old `roic_proxy` = NOPAT / (equity + debt − cash) was wrong exactly
 where moats are widest: buyback-driven negative equity turned VRSN's 70%-margin
-business into −46%, cash ≈ equity swung MANH between +2301% and −1540%, a
+business into −46%, cash ≈ equity swung MANH between +9315% and −1540%, a
 loss over negative capital read positive (IBRX +43%), unfiled operating
 income left MTD and ZTS with no ROIC at all, and an unread debt tag tripled
 DKS. Pat Dorsey's order — a history of returns above the cost of capital,
@@ -24,43 +24,53 @@ wide / narrow lines (excess returns for 20 / 10 years) set the knots.
 ROIC (one formula; every caller imports roic_row):
   t      = tax / pretax when pretax > 0 and 0 <= tax/pretax <= 0.5, else 0.21
   NOPAT  = operating_income × (1 − t). Operating income unfiled AND the SIC known
-           and outside 6000-6799: (pretax + |interest|) × (1 − t); pretax × (1 − t)
+           and not financial: (pretax + |interest|) × (1 − t); pretax × (1 − t)
            when interest is unfiled; net income + |interest| × (1 − t) when pretax
            is unfiled. A blank or financial SIC gets no fallback (NLY would add
-           back $4.8B of repo interest; ARCC files no SIC).
+           back $4.8B of repo interest; ARCC files no SIC). Financial = SIC
+           6000-6799 less the real-estate operators 6500-6599 outside the
+           6510-6519 lessors (CBRE, JLL are services firms, measured on ROIC).
   IC     = operating basis: assets − cash − short-term investments − (current
-           liabilities − current debt); current debt = debt_current, else
-           max(0, total_debt − debt_lt), else 0. Goodwill and acquired
-           intangibles stay IN: owner's earnings never deduct acquisitions, so
+           liabilities − current debt, never below 0); current debt =
+           debt_current, else max(0, total_debt − debt_lt), else 0. Goodwill
+           and acquired intangibles stay IN: owner's earnings never deduct acquisitions, so
            the goodwill-inclusive return is the return on the growth the CAP
            credits. Current liabilities unfiled (an unclassified balance sheet):
            financing basis equity + total_debt − cash when total_debt is filed
            and covers the balance sheet (liabilities − total_debt <= 50% of
            assets), else assets basis assets − cash − STI (ROIC a lower bound).
+           Same-period rule: cash or current liabilities filed in another
+           period but missing in this one → no figure; a missing short-term
+           investment cell counts as 0 (most filers file it in some years only).
   shown  `roic_proxy` = NOPAT / IC only when IC >= 10% of revenue (IC > 0 when
            revenue is unknown); otherwise null and `roic_class` says why
-           (`capital_light`, `customer_funded`, `loss`; `financial` for SIC
-           6000-6799, where ROIC is not the measure). `roic_basis` names the IC
+           (`capital_light`, `customer_funded`, `loss`; `financial` at a
+           financial SIC, where ROIC is not the measure). `roic_basis` names the IC
            basis; `roic_tangible` = NOPAT / (IC − goodwill − intangibles), context.
   evidence = NOPAT / max(IC, 10% × revenue), clipped to ±100%: equal to the shown
            figure wherever one is shown; capital <= 0 never flips a profit's sign
            (VRSN > +100%, customer-funded), a loss stays negative, and a thin
            margin on negative capital stays thin (NTNX FY2024 2.8%, not +100%).
 
-Anchor (0-9; a 10 is never mechanical). Paths: `roic` (hurdle 10%); `roe_fin`
-for SIC 6000-6799 — banks 6020-6099 on tangible equity — mortgage REITs and a
-blank SIC with no operating income (ROE on average equity, hurdle 12%);
-`roe_util` for regulated utilities (ROE, hurdle 9%, anchor <= 6); `reit_prior`
-for equity REITs (fixed 4, book returns not scored). Level = the 5-year median
-interpolated on the path's knots (roic: −20%→0, 0→2, 5%→3, 8%→4, 11%→5, 15%→6,
-20%→7, 30%→8; the 11% and 20% knots are where, out of sample, an earlier median
-went on to clear 10% in half / 85% of later years). Terms, only at a median at
-or above the hurdle: persistence −0.5 below 80% of the last 10 years at the
-hurdle (Dorsey's four years in five), −1 below 60%; trough −0.5 for any year
-below 0; record +1 (roic, the only route to 9) for >= 8 usable years all at
-15%+, a median >= 20% and a 5-year EBIT margin >= 10%; leverage −1 (roe_fin)
-above 1.5× the sector's assets/equity norm. Caps: EBIT margin < 10% → 7
-(turnover or supplier float: HPQ, EME); 3+ of 5 years off the operating basis
+Anchor (0-9; a 10 is never mechanical). Paths: `roic` (hurdle 10%; real-estate
+operators included); `roe_fin` for the other financial SICs — banks 6020-6099
+on tangible equity — mortgage REITs and a blank SIC with no operating income
+(ROE on average equity, hurdle 12%); `roe_util` for regulated utilities (ROE,
+hurdle 9%, anchor <= 6); `reit_prior` for equity REITs and lessors (SIC 6798 /
+6510-6519 with operating income filed, or D&A >= 10% of revenue — 2% of assets
+when revenue is unread: AMH): fixed 4, book returns not scored. Level = the
+5-year median interpolated on the path's knots (roic: −20%→0, 0→2, 5%→3, 8%→4,
+11%→5, 15%→6, 20%→7, 30%→8; the 11% and 20% knots are where, out of sample, an
+earlier median went on to clear 10% in half / 85% of later years). Terms only
+at a median at or above the hurdle: persistence −0.5 below 80% of the last 10
+years at the hurdle (Dorsey's four years in five), −1 below 60%; trough −0.5
+for any year below 0 — and level + these never below the level at the hurdle
+itself (`hurdle_floor`: a median just under the hurdle takes no terms, so a
+better record never scores lower). At any median: record +1 (roic, the only
+route to 9) for >= 8 usable years all at 15%+, a median >= 20% and a 5-year
+EBIT margin >= 10%; leverage −1 (roe_fin) above 1.5× the sector's
+assets/equity norm. Caps: EBIT margin < 10% → 7 (turnover or supplier
+float: HPQ, EME); 3+ of 5 years off the operating basis
 → 7 (NVR); financial net margin < 5% → 4 (float ROE: MOH); financial median
 ROE > 40% → 6 with `data_check` (IBKR's NCI-inclusive income); fewer than 5
 usable years → 6. Fewer than 3 usable years in the last 5: no anchor, band 0-5.
@@ -69,12 +79,18 @@ Judgment (assess): band = anchor_r ± 2 (audit-round-1's "let judgment adjust by
 ±2"), 9-10 only on anchor_r >= 8. `moat_sources` names Dorsey's five sources;
 an explicitly empty list caps the band at 4. Outside the band a
 `moat_evidence_reason` {code, text, ...} from REASONS widens it; the four
-mechanical codes are tested here, the text-only ones are accepted but never
-reopen the entry alert. An unexplained moat above the band closes the entry
-alert gate in make_score (MOAT_ABOVE_EVIDENCE); a moat below it is recorded
+mechanical codes are tested here (BUSINESS_CHANGED by the main rules on the
+years since a change inside the 5-year window), the text-only ones are accepted
+but never reopen the entry alert; no reach passes 8 below anchor 8. An
+unexplained moat above the band closes the entry alert gate in make_score
+(MOAT_ABOVE_EVIDENCE); a moat below it is recorded
 (MOAT_BELOW_EVIDENCE) and touches no gate. Nothing here refuses except a
-malformed reason or source (ValueError).
+malformed reason or source, or a moat that is not a finite number (ValueError).
+A non-USD fundamentals.json whose dividends block records no currency (the
+marker of a file written before the one-money-unit rule, 2026-10-19, whatever
+its as_of) is not measured.
 """
+import argparse
 import json
 import math
 import os
@@ -109,6 +125,7 @@ PATHS = {
                  "knots": ((-0.20, 0), (0.0, 2), (0.06, 3), (0.08, 4), (0.10, 5), (0.12, 6))},
 }
 REIT_PRIOR = 4
+REIT_DA = (0.10, 0.02)          # SIC 6798 / 6510-6519: D&A >= 10% of revenue (or 2% of assets, revenue unread) → equity REIT
 LOW_MARGIN = (0.10, 7.0)        # roic path: 5y median EBIT margin < 10% → anchor <= 7
 NON_OP_CAP = 7.0                # roic path: >= 3 of 5 usable years on the financing / assets basis → anchor <= 7
 THIN_NET_MARGIN = (0.05, 4.0)   # roe_fin: 5y median net margin < 5% → anchor <= 4
@@ -136,6 +153,7 @@ DEFECT_FIELDS = ("operating_income", "pretax_income", "tax", "interest_expense",
                  "total_debt", "equity", "goodwill", "intangibles")
 MIN_TEXT = 40
 ROIC_KEYS = ("roic_proxy", "roic_class", "roic_basis", "roic_tangible")
+GAP_KEYS = ("cash", "liab_current")   # filed in other periods but missing in this one → no figure (same-period rule)
 
 
 # ------------------------------------------------------------------ helpers
@@ -157,7 +175,11 @@ def sic_int(fu_or_sic):
 
 
 def is_financial(sic):
-    return sic is not None and 6000 <= sic <= 6799
+    """SIC 6000-6799, less the real-estate operators 6500-6599 outside the 6510-6519 lessors (CBRE, JLL: services
+    firms, measured on ROIC like any operating business)."""
+    if sic is None or not 6000 <= sic <= 6799:
+        return False
+    return not (6500 <= sic <= 6599 and not 6510 <= sic <= 6519)
 
 
 def _clip(v):
@@ -217,7 +239,8 @@ def invested_capital(r):
     a, lc = r.get("assets"), r.get("liab_current")
     cash, sti = _z(r.get("cash")), _z(r.get("short_term_investments"))
     if num(a) and num(lc):
-        return a - cash - sti - (lc - current_debt(r)), "operating"
+        # current debt above current liabilities is an inconsistent row (a stale mixed-currency file): no add-back
+        return a - cash - sti - max(0.0, lc - current_debt(r)), "operating"
     eq, td, li = r.get("equity"), r.get("total_debt"), r.get("liabilities")
     partial = num(td) and num(li) and num(a) and a > 0 and (li - td) > PARTIAL_DEBT * a
     if num(eq) and num(td) and not partial:
@@ -227,12 +250,26 @@ def invested_capital(r):
     return None, None
 
 
-def roic_row(r, sic, t=None):
+def filed_keys(rows):
+    """The GAP_KEYS filed in any of `rows` (the same-period rule's 'filed in other periods')."""
+    return {k for k in GAP_KEYS if any(num(x.get(k)) for x in rows or [])}
+
+
+def gap(r, filed):
+    """True when a GAP_KEYS line filed in another period is missing from this one: no figure (same-period rule)."""
+    return any(k in filed and not num(r.get(k)) for k in GAP_KEYS)
+
+
+def roic_row(r, sic, t=None, filed=()):
     """The displayed ROIC fields for one period (ROIC_KEYS): fundamentals.json annual rows and statements.py
-    cells. Year-end capital; no other period is read. t: see nopat()."""
+    cells. Year-end capital; no other period is read. t: see nopat(). filed: the GAP_KEYS the file carries in
+    any period — one of them missing from this row gives no figure (a short-term-investment cell missing in
+    one period counts as 0: most filers file it in some years only)."""
     out = dict.fromkeys(ROIC_KEYS)
     if is_financial(sic):
         out["roic_class"] = "financial"
+        return out
+    if gap(r, filed):
         return out
     n, _ = nopat(r, sic, t)
     ic, basis = invested_capital(r)
@@ -257,19 +294,24 @@ def roic_row(r, sic, t=None):
 def apply_roic(annual, sic):
     """Rewrite the ROIC_KEYS of every fundamentals.json annual row in place (fundamentals.py, after the
     submissions profile gives the SIC)."""
+    filed = filed_keys(annual)
     for r in annual or []:
-        r.update(roic_row(r, sic))
+        r.update(roic_row(r, sic, filed=filed))
     return annual
 
 
 # ------------------------------------------------------------------ evidence series
-def roic_series(ann, sic):
+def roic_series(ann, sic, filed=None):
     """Per row: v = NOPAT / max(IC, 10% × revenue) clipped to ±100% (equal to roic_row's figure before clipping
-    where that is shown), v_tan on IC − goodwill − intangibles, the label and the EBIT margin."""
+    where that is shown), v_tan on IC − goodwill − intangibles, the label and the EBIT margin. filed: see
+    roic_row (default: the GAP_KEYS filed in `ann`)."""
+    filed = filed_keys(ann) if filed is None else filed
     out = []
     for r in ann:
         n, nb = nopat(r, sic)
         ic, basis = invested_capital(r)
+        if gap(r, filed):
+            n = nb = ic = basis = None
         gwi = _z(r.get("goodwill")) + _z(r.get("intangibles"))
         d = {"fy": r.get("fy"), "nopat": n, "nopat_basis": nb, "ic": ic, "basis": basis,
              "v": None, "v_tan": None, "label": None, "ebit_margin": None}
@@ -340,14 +382,15 @@ def path_for(fu):
     if sic == 6798 or 6510 <= sic <= 6519:
         da = _median([r["da"] / r["revenue"] for r in last5
                       if num(r.get("da")) and num(r.get("revenue")) and r["revenue"] > 0])
-        if oi_years >= 3 or (da is not None and da >= 0.10):
+        # revenue unread (AMH files no revenue tag the reader takes): depreciation against assets instead
+        da_a = _median([r["da"] / r["assets"] for r in last5
+                        if num(r.get("da")) and num(r.get("assets")) and r["assets"] > 0]) if da is None else None
+        if oi_years >= 3 or (da is not None and da >= REIT_DA[0]) or (da_a is not None and da_a >= REIT_DA[1]):
             return "reit_prior"                              # equity REIT / lessor: efficient-scale prior
         return "roe_fin"                                     # mortgage REIT (NLY, AGNC): a spread lender
-    if 6500 <= sic <= 6599:
-        return "roic" if oi_years >= 3 else "roe_fin"       # CBRE, JLL: operators
     if is_financial(sic):
         return "roe_fin"
-    return "roic"
+    return "roic"                                            # real-estate operators (CBRE, JLL) included
 
 
 def _interp(knots, x):
@@ -413,7 +456,13 @@ def _anchor(ser, path, sic, level_window=WINDOW, min_usable=MIN_USABLE):
     if len(u10) < PROVEN_YEARS:
         caps["short_history"] = SHORT_CAP
     cap = min([P["cap"]] + list(caps.values()))
-    a = max(0.0, min(cap, level + sum(terms.values())))
+    base = level + terms.get("persistence", 0.0) + terms.get("trough", 0.0)
+    if m5 >= h and base < _interp(P["knots"], h):
+        # continuity at the hurdle: a median at or above it never scores below the untermed level at the hurdle,
+        # where a median just under it (no terms) would land
+        base = _interp(P["knots"], h)
+        res["hurdle_floor"] = round(base, 2)
+    a = max(0.0, min(cap, base + terms.get("record", 0.0) + terms.get("leverage", 0.0)))
     res.update(status="measured", median_5y=m5, level=round(level, 2), terms=terms, caps=caps,
                hits=hits, hits_of=len(u10), trough=min(u10), anchor=round(a, 2), anchor_r=int(math.floor(a + 0.5)))
     return res
@@ -450,7 +499,8 @@ def _context(fu, ser):
             "tangible_years_ge_20": sum(1 for v in tan if v >= 0.20),
             "goodwill_share_of_ic": gw_share,
             "acquisition_intensity_5y": intensity,
-            "serial_acquirer": intensity is None or intensity >= SERIAL_ACQUIRER,
+            # OCF <= 0 or unfiled: any acquisition spend or goodwill growth counts (ALNY: none → not one)
+            "serial_acquirer": (intensity >= SERIAL_ACQUIRER) if intensity is not None else max(acq, d_gwi) > 0,
             "rev_cagr_3y": cagr,
             "gross_margin_5y": _median([r.get("gross_margin") for r in last5 if num(r.get("gross_margin"))]),
             "rnd_pct_rev": rnd, "sbc_pct_rev": sbc}
@@ -460,6 +510,14 @@ def evidence(fu):
     """The measured half of the moat for one fundamentals.json dict (None → not measured)."""
     if not isinstance(fu, dict) or not (fu.get("annual") or []):
         return {"version": VERSION, "status": "not_measured", "why": "no fundamentals.json", "anchor": None, "band": None}
+    dv = fu.get("dividends")
+    if fu.get("currency") not in (None, "USD") and not (isinstance(dv, dict) and dv.get("currency")):
+        # a non-USD file written before the one-money-unit rule records no currency on its dividends block (the
+        # marker fundamentals.price_dividends reads): its lines may mix currencies (HTHT: USD assets, CNY revenue)
+        return {"version": VERSION, "status": "not_measured", "anchor": None, "band": None, "fundamentals_as_of": fu.get("as_of"),
+                "why": ("non-USD fundamentals.json with no currency on its dividends block, written by a fundamentals.py "
+                        "from before the one-money-unit rule (2026-10-19) whatever its as_of — re-run fundamentals.py")}
+    filed = filed_keys(fu["annual"])
     ann = fu["annual"][-HIST:]
     fu = dict(fu, annual=ann)
     sic = sic_int(fu)
@@ -469,7 +527,7 @@ def evidence(fu):
         ev.update(status="prior", anchor=float(REIT_PRIOR), anchor_r=REIT_PRIOR, band=band_for(REIT_PRIOR),
                   why="equity REIT: efficient-scale prior, book returns not scored")
         return ev
-    ser = roic_series(ann, sic) if path == "roic" else roe_series(ann, sic)
+    ser = roic_series(ann, sic, filed) if path == "roic" else roe_series(ann, sic)
     ev["series"] = ser
     ev.update(_anchor(ser, path, sic))
     if ev["status"] == "insufficient_history":
@@ -505,7 +563,7 @@ def check_reason_shape(reason):
     if not isinstance(reason, dict):
         raise ValueError("moat_evidence_reason must be an object {code, text, ...}")
     code = reason.get("code")
-    if code not in REASONS:
+    if not isinstance(code, str) or code not in REASONS:
         raise ValueError(f"moat_evidence_reason.code {code!r} must be one of {', '.join(REASONS)}")
     if len(str(reason.get("text") or "").strip()) < MIN_TEXT:
         raise ValueError(f"moat_evidence_reason.text must state the evidence (>= {MIN_TEXT} characters)")
@@ -518,18 +576,26 @@ def check_reason_shape(reason):
 
 
 def check_reason(ev, reason):
-    """(accepted, reach_lo, reach_hi, mechanical, why) for a well-formed reason against measured evidence."""
+    """(accepted, reach_lo, reach_hi, mechanical, why) for a well-formed reason against measured evidence. No
+    reach passes 8 unless anchor_r >= 8 (WIDE_MIN_ANCHOR)."""
     check_reason_shape(reason)
-    code = reason["code"]
-    lo, hi = ev["band"]
     ar = ev.get("anchor_r")
     top = 10 if ar is not None and ar >= WIDE_MIN_ANCHOR else 8
+    ok, rlo, rhi, mech, why = _check_reason(ev, reason, ar, top)
+    return ok, rlo, min(rhi, top), mech, why
+
+
+def _check_reason(ev, reason, ar, top):
+    code = reason["code"]
+    lo, hi = ev["band"]
     mech = REASONS[code][1]
     if code == "NO_DURABLE_SOURCE":
         return True, (max(0, ar - 5) if ar is not None else 0), hi, False, "accepted (text: pass 2 checks the erosion force)"
     if code == "MEASUREMENT_DEFECT":
         return True, 0, top, False, "accepted (text: pass 2 confirms the figure in the filing)"
     if code == "SHORT_HISTORY":
+        if ev.get("status") == "prior":
+            return False, lo, hi, False, "SHORT_HISTORY does not apply to the equity-REIT prior (no history is scored)"
         if ev.get("usable_10", 0) >= PROVEN_YEARS:
             return False, lo, hi, False, f"SHORT_HISTORY needs fewer than {PROVEN_YEARS} usable years"
         return True, lo, max(hi, 7), False, "accepted (text: the predecessor's or parent's history)"
@@ -541,7 +607,7 @@ def check_reason(ev, reason):
             miss = ([f"tangible ROIC >= 20% in {ty}/5 years (needs 3)"] if ty < 3 else []) + \
                    ([f"goodwill + intangibles {gs:.0%} of capital (needs 30%)"] if gs < 0.30 else [])
             return False, lo, hi, True, "; ".join(miss)
-        return True, lo, min(top, hi + (1 if ev.get("serial_acquirer") else 2)), True, "accepted"
+        return True, lo, hi + (1 if ev.get("serial_acquirer") else 2), True, "accepted"
     if code == "EXPENSED_INVESTMENT":
         if not ((ev.get("rev_cagr_3y") or 0) >= 0.15 and (ev.get("gross_margin_5y") or 0) >= 0.50
                 and ((ev.get("rnd_pct_rev") or 0) >= 0.15 or (ev.get("sbc_pct_rev") or 0) >= 0.10)):
@@ -561,12 +627,16 @@ def check_reason(ev, reason):
         up = hi if ev.get("serial_acquirer") else b10[1]   # acquisitions, not the cycle, explain a serial acquirer
         return True, min(lo, b10[0]), max(hi, up), True, f"10-year anchor {a10}"
     if code == "BUSINESS_CHANGED":
-        sub = [x for x in (ev.get("series") or []) if str(x.get("fy")) >= str(reason["since_fy"]).strip()]
-        if not sub:
-            return False, lo, hi, True, "since_fy is after every fiscal year on file"
-        a2 = _anchor(sub, ev["path"], ev.get("sic"), min_usable=2) if len(sub) >= 2 else {}
-        if a2.get("anchor_r") is None:
-            return True, max(0, lo - 1), min(top, hi + 1), True, "one usable post-change year: ±1"
+        # the changed business is measured by the main rules: MIN_USABLE usable years since the change, and a
+        # change inside the level window (an earlier since_fy would only drop old years from persistence)
+        ser = ev.get("series") or []
+        since = str(reason["since_fy"]).strip()
+        first = str(ser[-WINDOW:][0].get("fy")) if ser else ""
+        if since < first:
+            return False, lo, hi, True, f"since_fy {since} is before the {WINDOW}-year window (FY{first} on)"
+        a2 = _anchor([x for x in ser if str(x.get("fy")) >= since], ev["path"], ev.get("sic"))
+        if a2.get("status") != "measured":
+            return False, lo, hi, True, f"{a2['usable_5']} usable years since FY{since} (needs {MIN_USABLE})"
         b2 = band_for(a2["anchor_r"])
         return True, min(lo, b2[0]), max(hi, b2[1]), True, f"post-change anchor {a2['anchor_r']}"
     return False, lo, hi, mech, "unknown code"
@@ -577,6 +647,8 @@ def assess(ev, moat, reason=None, sources=None):
     ValueError on a malformed reason or source."""
     check_sources(sources)
     check_reason_shape(reason)
+    if not num(moat):
+        raise ValueError(f"moat_score must be a finite number, got {moat!r}")
     out = {"moat": float(moat), "sources_declared": sources is not None, "entry_gate_closed": False}
     if ev.get("band") is None:
         out["status"] = "not_measured"
@@ -618,7 +690,7 @@ def _r4(v):
 def record(ev, a):
     """The score.json `moat_evidence` block: evidence (compact) + the assessment."""
     keep = ("version", "status", "path", "sic", "as_of_fy", "fundamentals_as_of", "why", "hurdle", "median_5y", "hits", "hits_of",
-            "level", "terms", "caps", "anchor", "anchor_r", "band", "anchor_10y_r", "tangible_median_5y",
+            "level", "terms", "hurdle_floor", "caps", "anchor", "anchor_r", "band", "anchor_10y_r", "tangible_median_5y",
             "goodwill_share_of_ic", "acquisition_intensity_5y", "serial_acquirer")
     out = {"rubric": RUBRIC}
     out.update({k: _r4(ev[k]) for k in keep if k in ev})
@@ -646,22 +718,25 @@ PATH_NAMES = {"roic": "ROIC (after-tax operating income ÷ operating capital inc
 
 def key_numbers_lines(ev, a=None):
     """The key_numbers.md lines (and this file's CLI printout)."""
+    dated = f" · fundamentals.json as of {ev['fundamentals_as_of']}" if ev.get("fundamentals_as_of") else ""
     if ev.get("band") is None:
         L = [f"- Moat evidence: not measured ({ev.get('why')}) — run fundamentals.py, then judge from the rubric"]
     elif ev.get("status") == "prior":
-        L = [f"- Moat evidence: equity REIT, efficient-scale prior {REIT_PRIOR} · band {ev['band'][0]}–{ev['band'][1]}"]
+        L = [f"- Moat evidence: equity REIT, efficient-scale prior {REIT_PRIOR} · band {ev['band'][0]}–{ev['band'][1]}{dated}"]
     else:
         ser = " / ".join(f"FY{x['fy']} {_fmt(x['v'])}" + ("" if x.get("label") in ("ok", "roe", "rote") else f" ({x['label']})")
                          for x in ev["series"][-WINDOW:])
         head = f"- Moat evidence ({ev['path']}, hurdle {ev['hurdle']:.0%}): {PATH_NAMES[ev['path']]}: {ser}"
         if ev.get("anchor") is None:
-            L = [f"{head} · insufficient history ({ev.get('why')}) · band {ev['band'][0]}–{ev['band'][1]}"]
+            L = [f"{head} · insufficient history ({ev.get('why')}) · band {ev['band'][0]}–{ev['band'][1]}{dated}"]
         else:
             t = ", ".join(f"{k} {v:+g}" for k, v in ev["terms"].items())
             c = ", ".join(f"{k} ≤{v:g}" for k, v in ev["caps"].items())
             L = [f"{head} · 5y median {_fmt(ev['median_5y'])} · years ≥ {ev['hurdle']:.0%}: {ev['hits']}/{ev['hits_of']}"
-                 f" · level {ev['level']:g}" + (f" · {t}" if t else "") + (f" · caps {c}" if c else "")
-                 + f" → anchor {ev['anchor']:g} ({ev['anchor_r']}) · band {ev['band'][0]}–{ev['band'][1]}"]
+                 f" · level {ev['level']:g}" + (f" · {t}" if t else "")
+                 + (f" · hurdle floor {ev['hurdle_floor']:g}" if ev.get("hurdle_floor") is not None else "")
+                 + (f" · caps {c}" if c else "")
+                 + f" → anchor {ev['anchor']:g} ({ev['anchor_r']}) · band {ev['band'][0]}–{ev['band'][1]}{dated}"]
         if ev.get("path") == "roic" and ev.get("anchor") is not None:
             ai = ev.get("acquisition_intensity_5y")
             gs = ev.get("goodwill_share_of_ic")
@@ -701,12 +776,19 @@ def load_fundamentals(folder):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith("--")]
-    if not args:
-        print(__doc__)
-        sys.exit(2)
-    ticker = args[0].upper()
-    folder = os.path.join(BASE, ticker)
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(errors="backslashreplace")   # a cp1252 console never crashes on '≥' / '→'
+        except (AttributeError, ValueError, OSError):
+            pass
+    ap = argparse.ArgumentParser(prog="moat_evidence.py", description="Moat evidence for one folder (moat rubric 2).")
+    ap.add_argument("ticker")
+    ap.add_argument("--moat", type=float, help="the moat to assess (default: judgment.json moat_score)")
+    ap.add_argument("--json", action="store_true", help="print the score.json moat_evidence block")
+    opt = ap.parse_args()
+    if opt.moat is not None and not (num(opt.moat) and 0 <= opt.moat <= 10):
+        ap.error("--moat must be a number 0-10")
+    folder = os.path.join(BASE, opt.ticker.upper())
     ev = evidence(load_fundamentals(folder))
     j = {}
     try:
@@ -714,10 +796,9 @@ def main():
             j = json.load(f)
     except (OSError, ValueError):
         j = {}
-    moat = None
-    if "--moat" in sys.argv:
-        moat = float(sys.argv[sys.argv.index("--moat") + 1])
-    elif isinstance(j, dict) and num(j.get("moat_score")):
+    j = j if isinstance(j, dict) else {}
+    moat = opt.moat
+    if moat is None and num(j.get("moat_score")):
         moat = float(j["moat_score"])
     a = None
     if moat is not None:
@@ -726,7 +807,7 @@ def main():
         except ValueError as e:
             print(f"moat_evidence.py: judgment.json is malformed — {e}", file=sys.stderr)
             sys.exit(1)
-    if "--json" in sys.argv:
+    if opt.json:
         print(json.dumps(record(ev, a or {"moat": None}), indent=1, default=str))
     else:
         print("\n".join(key_numbers_lines(ev, a)))

@@ -48,9 +48,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      parent exists, block with a reason starting `NO_DATA:` and finish.
    - **2b — fundamentals before the moat (moat rubric 2, 2026-10-21).** Right after a
      preliminary run that did not block, `python3 _system/fundamentals.py <T>` (filing-direct
-     statements → `fundamentals.json`; it needs nothing but EDGAR). Step 5 measures the moat
-     evidence from that file. A failure never blocks: the evidence is then "not measured" and
-     step 5 says how to judge without it.
+     statements → `fundamentals.json`; it reads EDGAR and the preliminary run's CIK and ADS
+     ratio). Step 5 measures the moat evidence from that file. A failure never blocks: a new
+     folder's evidence is then "not measured" and step 5 says how to judge without it; on a
+     re-score the previous fundamentals.json is still measured — the printout's
+     "fundamentals.json as of" date shows it predates the new filing — so say so in MOAT.
 3. **Research** (1–3 web searches): the business, latest quarter and TTM, competitive
    position, red flags (dilution/SBC, concentration, litigation, going concern, one-offs,
    divestiture/restated basis breaks).
@@ -217,47 +219,58 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
 5. **Moat 0–10: evidence, then source, then durability (moat rubric 2 — Andrew's request in
    the "Tighten moat scoring" thread, 2026-10-20; Pat Dorsey's order).** Run
    `python3 _system/moat_evidence.py <T>` (it reads the step-2b `fundamentals.json`;
-   `--moat <m>` assesses a candidate score) and paste its lines into MOAT: they are the lines
-   make_score prints under key_numbers.md "## Growth & moat". The evidence: **ROIC** =
+   `--moat <m>` assesses a candidate score) and paste its lines into MOAT: they are the
+   lines make_score prints under key_numbers.md "## Growth & moat". The evidence: **ROIC** =
    after-tax operating income ÷ operating invested capital (total assets − cash − short-term
    investments − non-debt current liabilities; goodwill and acquired intangibles stay in;
-   the ratio is floored at 10% of revenue, so capital ≤ 0 never turns a profit negative),
-   hurdle 10%. Financials (SIC 6000–6799, a mortgage REIT, a blank SIC with no operating
-   income): ROE on average equity — tangible equity at banks — hurdle 12%. Regulated
-   utilities: ROE, hurdle 9%, anchor ≤ 6. Equity REITs: a fixed prior of 4. The printout
-   gives the five-year series, the years at or above the hurdle in the last ten, the
-   **anchor** (0–9: the five-year median on fixed knots; −0.5 / −1 when fewer than four years
-   in five / three in five cleared the hurdle; −0.5 for a year below zero; +1 on ROIC for 8+
-   years all at 15%+ with a median of 20%+; caps for an EBIT margin under 10% (7), no current
+   the ratio is floored at 10% of revenue, so capital ≤ 0 never turns a profit negative; a
+   year missing cash or current liabilities the file carries in other years is unusable),
+   hurdle 10% — real-estate operators (CBRE, JLL: SIC 6500–6599 outside the 6510–6519
+   lessors) included. Financials (the rest of SIC 6000–6799, a mortgage REIT, a blank SIC
+   with no operating income): ROE on average equity — tangible equity at banks — hurdle 12%.
+   Regulated utilities: ROE, hurdle 9%, anchor ≤ 6. Equity REITs and lessors (operating
+   income filed, or D&A ≥ 10% of revenue — 2% of assets when no revenue is read): a fixed
+   prior of 4. The printout gives the five-year series, the years at or above the hurdle in
+   the last ten, the **anchor** (0–9: the five-year median on fixed knots; at a median at or
+   above the hurdle only, −0.5 / −1 when fewer than four years in five / three in five
+   cleared it and −0.5 for a year below zero, never below the anchor at the hurdle itself
+   (the `hurdle floor`: a better record never anchors lower); at any median, +1 on ROIC for
+   8+ years all at 15%+ with a median of 20%+ and −1 for a financial levered above 1.5× its
+   sector's assets-to-equity norm; caps for an EBIT margin under 10% (7), no current
    liabilities filed in 3 of the 5 years (7), a financial's net margin under 5% (4) or ROE
-   over 40% (6, a probable data defect), fewer than five usable years (6)) and the
-   **band** = anchor ± 2, with 9–10 only on an anchor of 8 or more (fewer than three usable
-   years in the last five: no anchor, band 0–5). **Start at the anchor.** A point above it needs a source in `moat_sources` —
-   Dorsey's five: `intangible_assets`, `switching_costs`, `network_effect`,
-   `cost_advantage`, `efficient_scale` — each with company-specific evidence (pricing power,
-   retention, a fixed market); a point below it needs an erosion force in `moat_against`.
-   Great products, market share, execution, management, size without a cost edge and a brand
-   that does not raise customers' willingness to pay are not moats; `moat_sources: []` (no
-   source) caps the moat at 4. 9–10 wide (excess returns very likely for 20 years); 7–8
-   strong; 5–6 narrow (excess returns more likely than not for 10 years); 3–4 weak; 0–2 none.
-   Outside the band, declare `moat_evidence_reason` `{code, text, since_fy | field + fy}`
-   (text: 40+ characters naming the evidence). make_score tests four codes against the
-   numbers: `ACQUIRED_GOODWILL` (tangible ROIC ≥ 20% in 3 of the last 5 years and goodwill +
-   intangibles ≥ 30% of capital: band top +2, +1 for a serial acquirer), `EXPENSED_INVESTMENT`
-   (3-year revenue CAGR ≥ 15%, 5-year gross margin ≥ 50%, latest R&D ≥ 15% or SBC ≥ 10% of
-   revenue: up to max(anchor + 3, 5), at most 8), `BUSINESS_CHANGED` (`since_fy`: the band of
-   the years since) and `CYCLE_ADJUSTED` (8+ usable years that crossed the hurdle at least
-   twice: the ten-year anchor's band, never upward for a serial acquirer). Three are
-   text-only: `SHORT_HISTORY` (fewer than five usable years; the predecessor's or parent's
-   history; top 7), `MEASUREMENT_DEFECT` (`field` + `fy`; pass 2 confirms the figure) and
-   `NO_DURABLE_SOURCE` (a moat below the band only: float, leverage, a cycle peak, a product
-   hit). The owner's earnings never deduct acquisitions, so a serial acquirer is judged on
-   the goodwill-inclusive return. A moat above the band that no tested reason explains
-   closes the entry alert (`MOAT_ABOVE_EVIDENCE`, step 11); a text-only reason is recorded
-   but never reopens it; a moat below the band is recorded (`MOAT_BELOW_EVIDENCE`) for the
-   second pass. "Not measured" (no fundamentals.json): judge from the rubric and say so. The
-   moat sets the fade: growth holds 2 years, then converges to 2.5% over
-   CAP = clamp(2 + 1.3 × moat, 2, 15) years. `--gterm` only with a written reason.
+   over 40% (6, a probable data defect), fewer than five usable years (6)) and the **band**
+   = anchor ± 2, with 9–10 only on an anchor of 8 or more (fewer than three usable years in
+   the last five: no anchor, band 0–5). **Start at the anchor.** A point above it needs a
+   source in `moat_sources` — Dorsey's five: `intangible_assets`, `switching_costs`,
+   `network_effect`, `cost_advantage`, `efficient_scale` — each with company-specific
+   evidence (pricing power, retention, a fixed market); a point below it needs an erosion
+   force in `moat_against`. Great products, market share, execution, management, size
+   without a cost edge and a brand that does not raise customers' willingness to pay are not
+   moats; `moat_sources: []` (no source) caps the moat at 4. 9–10 wide (excess returns very
+   likely for 20 years); 7–8 strong; 5–6 narrow (excess returns more likely than not for 10
+   years); 3–4 weak; 0–2 none. Outside the band, declare `moat_evidence_reason`
+   `{code, text, since_fy | field + fy}` (text: 40+ characters naming the evidence).
+   make_score tests four codes against the numbers: `ACQUIRED_GOODWILL` (tangible ROIC ≥ 20%
+   in 3 of the last 5 years and goodwill + intangibles ≥ 30% of capital: band top +2, +1 for
+   a serial acquirer), `EXPENSED_INVESTMENT` (3-year revenue CAGR ≥ 15%, 5-year gross margin
+   ≥ 50%, latest R&D ≥ 15% or SBC ≥ 10% of revenue: up to max(anchor + 3, 5)),
+   `BUSINESS_CHANGED` (`since_fy` inside the last five fiscal years: the band of the years
+   since, measured by the same rules — at least three usable years) and `CYCLE_ADJUSTED` (8+
+   usable years that crossed the hurdle at least twice: the ten-year anchor's band, never
+   upward for a serial acquirer); no reason reaches past 8 unless the anchor is 8 or more.
+   Three are text-only: `SHORT_HISTORY` (fewer than five usable years; the predecessor's or
+   parent's history; top 7; not on the REIT prior), `MEASUREMENT_DEFECT` (`field` + `fy`;
+   pass 2 confirms the figure) and `NO_DURABLE_SOURCE` (a moat below the band only: float,
+   leverage, a cycle peak, a product hit). The owner's earnings never deduct acquisitions,
+   so a serial acquirer is judged on the goodwill-inclusive return. A moat above the band
+   that no tested reason explains closes the entry alert (`MOAT_ABOVE_EVIDENCE`, step 11); a
+   text-only reason is recorded but never reopens it; a moat below the band is recorded
+   (`MOAT_BELOW_EVIDENCE`) for the second pass. "Not measured" (no fundamentals.json, or a
+   non-USD one whose dividends block records no `currency` — written before the
+   one-money-unit rule of 2026-10-19, whatever its `as_of`; re-run fundamentals.py): judge
+   from the rubric and say so. The moat sets the fade: growth holds 2 years, then converges
+   to 2.5% over CAP = clamp(2 + 1.3 × moat, 2, 15) years. `--gterm` only with a written
+   reason.
 6. **Five scenarios** summing to 100%. Defaults 10/25/30/25/10; growth-start offsets
    −12/−5/0/+5/+12pp vs the engine's blended start; OE multipliers 0.75/0.90/1.00/1.10/1.25.
    Adjust to THIS company's evidence with written reasons. **Sanity check:** compare every
@@ -284,8 +297,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    tier_override_reason, in_scope_under_40b, and (moat rubric 2) `moat_sources` — a list of
    `{source, evidence}` from step 5, `[]` when there is none; a judgment without the key is
    recorded as sources not declared — plus `moat_evidence_reason` only when the moat sits
-   outside its band. make_score refuses either when malformed. Optional overrides `capex_override` /
-   `sbc_override` / `shares_override` `{value, source, reason, kind}`.
+   outside its band. make_score refuses either when malformed, and a moat_score that is not
+   a number 0–10. Optional overrides `capex_override` / `sbc_override` / `shares_override`
+   `{value, source, reason, kind}`.
    **Bounded override authority (Andrew, 2026-10-14):** (a) kind "filing" — a figure from
    the company's own filings for the missing period(s); source cites form, period and
    location. (b) kind "estimate" — ONLY within 0.1×–10× of the last engine-filed value for
@@ -386,8 +400,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    disagrees.
 9. **Enrich (5.4, non-blocking).** Run, in this order: `python3 _system/fundamentals.py <T>`
    (filing-direct annual + quarterly statements, TTM, dividends → `fundamentals.json`;
-   already written at step 2b, so this run rewrites nothing unless 2b failed or a filing
-   landed since),
+   already written at step 2b, so this run rewrites it only when 2b failed, a filing landed
+   since, or the final run applied an ADS ratio the preliminary run did not — a new 20-F /
+   40-F filer),
    `python3 _system/prices.py <T>` (ten years of closes → `prices.json`),
    `python3 _system/segments.py <T>` (segment / product / geography breakdowns from the
    filing's XBRL instance → `segments.json`), `python3 _system/statements.py <T>` (the full
@@ -407,8 +422,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
     self-contained ranking file.
 11. **Report** to chat ONLY when `score.json` has `alert_eligible: true` (Tier S/A at
     medium+ confidence, not a sector misfit, tier not resting on an override, IRR not at
-    the floor, moat not above its evidence band without a tested reason): one line — ticker, tier, weighted IRR, bear→bull band, moat, price, IV@15%,
-    one-liner. Otherwise silent (Andrew gets the daily HTML). Report plainly if the sweep
+    the floor, moat not above its evidence band without a tested reason): one line —
+    ticker, tier, weighted IRR, bear→bull band, moat, price, IV@15%, one-liner. Otherwise silent (Andrew gets the daily HTML). Report plainly if the sweep
     itself is blocked. Never invent a number. A score rebuilt by make_score.py on engine
     output from another release (engine 5.5: `engine_release` ≠ the current release)
     never alerts — `alert_eligible` and `exit_alert_eligible` are false with "engine output

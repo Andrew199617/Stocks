@@ -552,10 +552,16 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   roe / roa (quarterly columns use the trailing-four-quarter numerator, null when those four are not all present); roic_proxy =
   `moat_evidence.roic_row` since schema 5 (moat rubric 2, 2026-10-21 — the formula fundamentals.json's annual rows use):
   operating income × (1 − tax rate) ÷ operating invested capital (total assets − cash − short-term investments − (current
-  liabilities − current debt); goodwill in), shown only when that capital is at least 10% of revenue, tax rate = income tax ÷
+  liabilities − current debt, never below 0); goodwill in), shown only when that capital is at least 10% of revenue; an
+  unclassified balance sheet (no current liabilities in any period) uses equity + total debt − cash when the total-debt figure
+  covers the balance sheet, else total assets − cash − short-term investments; tax rate = income tax ÷
   pretax within 0–50% else 21% (quarterly columns: trailing four quarters of operating income, tax, pretax and revenue over the
-  quarter-end balance sheet, blank without four quarters of operating income); on an annual cell with operating income
-  unfiled, pretax + interest at a known SIC outside 6000–6799, never at a financial or blank SIC; null at SIC 6000–6799;
+  quarter-end balance sheet, blank without four quarters of operating income or, on a filer that files revenue, without four
+  quarters of it); on an annual cell with operating income unfiled, pretax + interest at a known non-financial SIC, never at a
+  financial or blank SIC; null at a financial SIC (6000–6799 less the real-estate operators 6500–6599 outside the 6510–6519
+  lessors: CBRE, JLL have a figure); null when cash or current liabilities are filed in other periods but not this one, while a
+  missing short-term-investment or current-debt cell counts as zero (most filers file those lines in some years only; a
+  missing current-debt cell only adds nothing back);
   debt_to_equity;
   current_ratio) are computed per period only from lines present in the SAME period. A component the filer has NEVER filed in any
   period (no short-term investments, no goodwill, no intangibles) counts as zero where the definition allows it; one filed in
@@ -564,7 +570,11 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   unknown, not the cash balance (MICC FY2025 printed +€441M, GGB FY2025 +R$5.929B against R$14.182B of gross debt) — and a
   `net_cash:` warning names the periods and the debt rule ("no total-debt figure the statements' debt rule reads …"), and lists any
   debt-like line the filer files that the rule does not read as gross debt (`DEBT_LIKE_TAGS`: GGB's partial
-  `ifrs-full:NotesAndDebenturesIssued`, MICC's `ifrs-full:NetDebt`); a filed debt of 0 still nets to cash. (`roic_proxy` reads no debt tag since schema 5 — the debt sits inside total assets; MICC FY2025 223.6% → 10.4%.) `total_debt` = long_term_debt + (DebtCurrent aggregate, else short_term_debt +
+  `ifrs-full:NotesAndDebenturesIssued`, MICC's `ifrs-full:NetDebt`); a filed debt of 0 still nets to cash. (Since schema 5 `roic_proxy` needs no total-debt figure on a classified balance sheet — its capital is total assets less
+  cash, short-term investments and the non-debt current liabilities, the debt lines deciding how much of the current
+  liabilities is debt; MICC FY2025 223.6% → 10.4%. On an unclassified one the total-debt figure decides between the financing
+  and assets bases, and fundamentals.json reads fewer debt captions than this line: TOL's `SeniorNotes` give statements.json
+  the financing basis and fundamentals.json the assets basis.) `total_debt` = long_term_debt + (DebtCurrent aggregate, else short_term_debt +
   current_lt_debt); without a noncurrent line, the filer's combined `LongTermDebt` / `DebtLongtermAndShorttermCombinedAmount` total
   (+ short-term borrowings unless the short-term tag was itself `DebtCurrent`); the current-only sum otherwise. Totals are never
   synthesised: a missing GrossProfit, OperatingExpenses, Liabilities or LiabilitiesAndStockholdersEquity stays absent even when the

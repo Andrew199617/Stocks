@@ -410,6 +410,12 @@ STALE = [
     (SYS_README, "Rubric: 9-10 wide/durable, 7-8 strong, 5-6 moderate/narrow"),
     (SYS_README, "Display and forensic evidence only — nothing here feeds the valuation."),
     ("_system/fundamentals.py", "invested = (eq + (total_debt or 0) - (cash or 0))"),
+    # moat rubric 2 review rounds (2026-10-21): MANH's old proxy peaked at +9315% (FY2022), a below-band moat never closes
+    # the gate it was rated P1 for leaving open, and make_score's docstring named one refusal
+    (SYS_README, "between +2301% and −1540%"),
+    ("_system/moat_evidence.py", "between +2301% and −1540%"),
+    (AGENTS_MD, "P1 when it left the entry gate open"),
+    ("_system/make_score.py", "a malformed one refuses. Nothing else"),
 ]
 
 
@@ -452,6 +458,14 @@ def test_moat_rubric_2_clause_present():
         assert phrase in second, f"SECOND_PASS.md lost the rubric-2 phrase: {phrase!r}"
     assert "Moat rubric 2 and the operating-basis ROIC (Andrew's request" in readme
     assert "MOAT_ABOVE_EVIDENCE" in agents and "moat_evidence.entry_gate_closed" in agents
+    # review round: the hurdle floor, the terms' scope, BUSINESS_CHANGED's window, real-estate operators on ROIC and the
+    # 0-10 moat refusal are stated where the code applies them
+    flat = " ".join(spec.split())   # the phrases may wrap
+    for phrase in ("`hurdle floor`", "at a median at or above the hurdle only", "`since_fy` inside the last five fiscal years",
+                   "real-estate operators", "no reason reaches past 8", "a moat_score that is not a number 0–10"):
+        assert phrase in flat, f"WORKER_SPEC.md lost the review-round phrase: {phrase!r}"
+    for phrase in ("`hurdle_floor`", "real-estate operators included", "a `moat_score` that is not a number 0–10"):
+        assert phrase in readme, f"README lost the review-round phrase: {phrase!r}"
 
 
 def test_corrected_passages_stay_corrected():

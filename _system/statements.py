@@ -363,14 +363,13 @@ INCOME = [
     L("dps", "Dividends per share", list(DUR["dps_declared"]) + list(DUR["dps_paid"]), 0, False, "per_share", "direct"),
 ]
 BALANCE = [
-    L("cash", "Cash & equivalents", list(INST["cash"]) + ["CashAndDueFromBanks", "Cash"], 1, kind="instant"),
+    L("cash", "Cash & equivalents", list(INST["cash"]), 1, kind="instant"),
     # the restricted part of a cash cell filed only as the combined cash + restricted cash total (NTRS FY2025: 531.2M of
     # the 5,873.1M); filled ONLY in those cells by restricted_cash_split (from CASH_ONLY_TAG / RESTRICTED_TOTAL_TAGS /
     # RESTRICTED_PART_TAGS, so no tags here) — a separate restricted-cash caption next to a cash-only line is not part of
     # the line above and is not shown
     L("restricted_cash", "Restricted cash (included in cash above)", [], 2, kind="instant"),
-    L("short_term_investments", "Short-term investments", list(INST["short_term_investments"]) + ["DebtSecuritiesAvailableForSaleExcludingAccruedInterestCurrent", "AvailableForSaleSecuritiesCurrent",
-                                                                                                  (IF, "CurrentInvestments")], 1, kind="instant"),
+    L("short_term_investments", "Short-term investments", list(INST["short_term_investments"]), 1, kind="instant"),
     # banks: AFS and HTM are separate captions on the face; a total only when the filer tags one
     L("investment_securities", "Investment securities", ["MarketableSecurities", "AvailableForSaleSecuritiesAndHeldToMaturitySecurities", "InvestmentsDebtAndEquitySecurities"], 1, kind="instant", bank=True),
     L("securities_afs", "Securities available for sale", ["DebtSecuritiesAvailableForSaleExcludingAccruedInterest", "AvailableForSaleSecuritiesDebtSecurities", "AvailableForSaleSecurities"], 2, kind="instant", bank=True),
@@ -2730,8 +2729,9 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
         # moat rubric 2 (2026-10-21): moat_evidence.roic_row on this cell's lines — after-tax operating income (the
         # pretax + interest fallback only at a known non-financial SIC) over operating invested capital (total assets −
         # available cash − short-term investments − non-debt current liabilities), shown only on capital >= 10% of
-        # revenue (TTM revenue on a quarterly / TTM cell); blank at SIC 6000-6799. The old equity + debt − cash
-        # denominator flipped sign on negative capital (VRSN) and exploded where cash ≈ equity (MANH).
+        # revenue (TTM revenue on a quarterly / TTM cell); blank at a financial SIC (6000-6799 less the real-estate
+        # operators outside the 6510-6519 lessors). The old equity + debt − cash denominator flipped sign on negative
+        # capital (VRSN) and exploded where cash ≈ equity (MANH).
         ie = get("interest_expense")
         if _num(ie) and tag_of is not None and tag_of("interest_expense") in NET_INTEREST_TAGS:
             ie = max(0.0, ie)  # a net figure (negated on the expense line): net interest income adds nothing back
@@ -2744,7 +2744,9 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
                "debt_lt": None if (tag_of and tag_of("long_term_debt") in DEBT_TOTAL_TAGS) else get("long_term_debt"),
                "total_debt": get("total_debt"), "equity": get("total_common_equity"), "liabilities": get("total_liabilities"),
                "goodwill": get("goodwill"), "intangibles": get("intangibles")}
-        return moat_evidence.roic_row(row, sic, tax_ttm)["roic_proxy"]
+        # same-period rule: cash or current liabilities filed in another period but not this one → null
+        filed = {k for k, line in (("cash", "cash"), ("liab_current", "total_current_liabilities")) if present(line)}
+        return moat_evidence.roic_row(row, sic, tax_ttm, filed)["roic_proxy"]
     if name == "debt_to_equity":
         eq = get("total_common_equity")
         return _ratio(get("total_debt"), eq) if (_num(eq) and eq > 0) else None
@@ -2827,11 +2829,13 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None, sic=Non
                     if name == "roic_proxy":
                         # moat rubric 2: trailing-four-quarter operating income over the quarter-end capital (floor
                         # on TTM revenue); a TTM tax rate outside 0-50% is 21%, as on the annual rows
-                        if kw["oi_ttm"] is None:
+                        kw["rev_ttm"] = _trailing4(rev, q_ends, i)
+                        # no TTM operating income, or TTM revenue incomplete on a filer that files revenue (a
+                        # single quarter's revenue would set the floor 4× too low)
+                        if kw["oi_ttm"] is None or (kw["rev_ttm"] is None and present("revenue")):
                             quarterly.append(None)
                             continue
-                        kw.update(tax_ttm=kw["tax_ttm"] if kw["tax_ttm"] is not None else 0.21,
-                                  rev_ttm=_trailing4(rev, q_ends, i), sic=sic)
+                        kw.update(tax_ttm=kw["tax_ttm"] if kw["tax_ttm"] is not None else 0.21, sic=sic)
                 quarterly.append(derive_value(name, get, present, tag_of, **kw))
             get = lambda k: (lines[k]["ttm"] if k in lines else None)  # noqa: E731
             tag_of = lambda k: (lines[k].get("_qtags", {}).get(q_ends[-1]) if (k in lines and q_ends) else None)  # noqa: E731
@@ -2840,7 +2844,9 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None, sic=Non
                 kw = {"ni_ttm": get("net_income"), "oi_ttm": get("operating_income"), "tax_ttm": rate(get("income_tax"), get("pretax_income"))}
                 if name == "roic_proxy":
                     kw.update(tax_ttm=kw["tax_ttm"] if kw["tax_ttm"] is not None else 0.21, rev_ttm=get("revenue"), sic=sic)
-                ttm = None if ((name != "roic_proxy" and kw["ni_ttm"] is None) or (name == "roic_proxy" and kw["oi_ttm"] is None)) else derive_value(name, get, present, tag_of, **kw)
+                ttm = None if ((name != "roic_proxy" and kw["ni_ttm"] is None)
+                               or (name == "roic_proxy" and (kw["oi_ttm"] is None or (kw["rev_ttm"] is None and present("revenue"))))) \
+                    else derive_value(name, get, present, tag_of, **kw)
             else:
                 ttm = derive_value(name, get, present, tag_of)
             inputs = [lines[k] for k in DERIVED_INPUTS.get(name, ()) if k in lines]

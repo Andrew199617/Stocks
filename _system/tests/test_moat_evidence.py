@@ -33,6 +33,17 @@ moat_evidence module, and fundamentals.build_annual wrote the old figure).
    with 5+ usable years; malformed reasons and sources raise ValueError; an
    explicitly empty moat_sources caps the band at 4.
 6. record() / key_numbers_lines() / the CLI.
+7. Review round (each fails on the first version of this module): real-estate
+   operators (SIC 6531) are not financial; the same-period rule for cash and
+   current liabilities; current debt above current liabilities adds nothing
+   back (HTHT's stale mixed-currency file); a non-USD file written before the
+   one-money-unit rule is not measured; a median at or above the hurdle never
+   anchors below one just under it (hurdle_floor); OCF <= 0 with no
+   acquisitions is not a serial acquirer (ALNY); an equity REIT with no revenue
+   tag keeps the prior (AMH); BUSINESS_CHANGED needs 3 usable years since a
+   change inside the 5-year window; no reason reaches past 8 below anchor 8;
+   SHORT_HISTORY does not apply to the REIT prior; a NaN moat or an
+   unhashable code raises ValueError; the CLI parses `--moat 7 ROP`.
 """
 import json
 import os
@@ -201,6 +212,15 @@ def test_fundamentals_build_annual_writes_the_operating_basis_roic():
     assert r["roic_proxy"] is None, "no SIC (build_annual before the submissions profile): no fallback"
     r = next(x for x in F.build_annual(facts, sic=3826)[0] if x["period_end"] == end)
     assert abs(r["roic_proxy"] - (1.1e9 * 0.8) / (4e9 - 0.1e9 - 1.5e9)) < 1e-9, r
+    # PFGC shape (review round 2): cash filed as us-gaap:Cash after FY2024's CashAndCashEquivalentsAtCarryingValue. The
+    # first version's reader skipped Cash, so the same-period rule left FY2025 with no figure
+    e24, e25 = "2024-12-31", end
+    facts = _facts([_dur("Revenues", y, 4e9) for y in (e24, e25)] + [_dur("OperatingIncomeLoss", y, 0.4e9) for y in (e24, e25)]
+                   + [_inst("Assets", y, 3e9) for y in (e24, e25)] + [_inst("LiabilitiesCurrent", y, 1e9) for y in (e24, e25)]
+                   + [_inst("CashAndCashEquivalentsAtCarryingValue", e24, 0.1e9), _inst("Cash", e25, 0.2e9)])
+    rows = {x["period_end"]: x for x in F.build_annual(facts, sic=5141)[0]}
+    assert rows[e25]["cash"] == 0.2e9 and rows[e25]["cash_basis"] == "Cash", rows[e25]
+    assert abs(rows[e25]["roic_proxy"] - 0.4e9 * 0.79 / (3e9 - 0.2e9 - 1e9)) < 1e-9, rows[e25]
     # fundamentals.main() re-applies the keys with the profile's SIC once the submissions are read
     src = open(os.path.join(SYS, "fundamentals.py"), encoding="utf-8").read()
     assert 'moat_evidence.apply_roic(annual, moat_evidence.sic_int(profile.get("sic")))' in src
@@ -300,9 +320,17 @@ def test_text_only_reasons_and_direction():
 
 def test_business_changed():
     a = M.assess(ev("HBAN"), 8, reason("BUSINESS_CHANGED", since_fy="2023"))
-    assert a["status"] == "outside_band_explained" and a["reach"][1] == 8
-    ok, *_, why = M.check_reason(ev("HBAN"), reason("BUSINESS_CHANGED", since_fy="2099"))
-    assert not ok and "after every fiscal year" in why
+    assert a["status"] == "outside_band_explained" and a["reach"] == [3, 8], a
+    for since, needle in (("2099", "0 usable years since FY2099 (needs 3)"), ("2024", "2 usable years since FY2024 (needs 3)"),
+                          ("2015", "since_fy 2015 is before the 5-year window (FY2021 on)")):
+        ok, *_, why = M.check_reason(ev("HBAN"), reason("BUSINESS_CHANGED", since_fy=since))
+        assert not ok and why == needle, (since, why)
+    # ALNY (anchor 0, band 0-2; FY2024 −38%, FY2025 +82%): two post-change years no longer reach a judged 7
+    a = M.assess(ev("ALNY"), 7, reason("BUSINESS_CHANGED", since_fy="2024"))
+    assert a["status"] == "outside_band_unexplained" and a["entry_gate_closed"], a
+    # STLA-shaped: since_fy = the latest year (one row, whatever its value) is not a test
+    ok, *_, why = M.check_reason(ev("ROP"), reason("BUSINESS_CHANGED", since_fy="2025"))
+    assert not ok and why.startswith("1 usable years"), why
 
 
 def test_malformed_judgment_fields_raise():
@@ -327,6 +355,128 @@ def test_explicitly_empty_sources_cap_the_band_at_4():
     assert a["status"] == "outside_band_unexplained", "no reason reaches past the no-source cap"
 
 
+def _roic_rows(vals, start=2016, **kw):
+    """roic-path rows whose evidence is exactly `vals` (capital = revenue = 1,000, t = 21%, EBIT margin v / 0.79)."""
+    out = []
+    for i, v in enumerate(vals):
+        oi = v * 1000 / 0.79
+        out.append(dict({"fy": str(start + i), "period_end": f"{start + i}-12-31", "operating_income": oi, "pretax_income": oi,
+                         "tax": 0.21 * oi, "revenue": 1000.0, "assets": 1000.0, "liab_current": 0.0, "cash": 0.0}, **kw))
+    return out
+
+
+def test_no_anchor_falls_at_the_hurdle():
+    """A history at least as good every year never anchors lower: persistence and trough apply only at a median at or
+    above the hurdle, so level + those terms is floored at the level at the hurdle (the review's A / B and C / D pairs:
+    B and C anchored 2 points under A and D on the first version)."""
+    lo, hi = 0.0999, 0.1001
+    pairs = (([lo] * 10, [lo, lo, lo, hi, hi, lo, lo, hi, hi, hi]),
+             ([-0.01] + [lo] * 9, [-0.01] + [lo] * 6 + [hi] * 3))
+    for worse, better in pairs:
+        assert all(b >= w for w, b in zip(worse, better))
+        ew, eb = (M.evidence({"profile": {"sic": "7372"}, "annual": _roic_rows(v)}) for v in (worse, better))
+        assert eb["median_5y"] >= M.PATHS["roic"]["hurdle"] > ew["median_5y"]
+        assert eb["anchor"] >= ew["anchor"] and eb["anchor_r"] == ew["anchor_r"] == 5, (ew["anchor"], eb["anchor"])
+        assert eb["terms"].get("persistence") == -1.0 and eb["hurdle_floor"] == 4.67, eb
+        assert "· hurdle floor 4.67" in M.key_numbers_lines(eb)[0]
+        assert "hurdle_floor" in M.record(eb, {"moat": 5.0}) and "hurdle_floor" not in ew
+
+
+def test_leverage_applies_at_any_median():
+    """roe_fin's leverage term is not a persistence-style term: an insurer below its hurdle levered 20× (norm 12×) still
+    takes −1 (AEG's shape), as the docstring and WORKER_SPEC step 5 now say."""
+    rows = [{"fy": str(y), "period_end": f"{y}-12-31", "net_income": 50.0, "equity": 1000.0, "assets": 20000.0, "revenue": 500.0}
+            for y in range(2019, 2026)]
+    e = M.evidence({"profile": {"sic": "6311"}, "annual": rows})
+    assert e["path"] == "roe_fin" and e["median_5y"] < e["hurdle"] and e["terms"] == {"leverage": -1.0}, e
+    assert e["anchor"] == round(M._interp(M.PATHS["roe_fin"]["knots"], 0.05) - 1, 2)
+
+
+def test_real_estate_operators_are_not_financial():
+    """CBRE / JLL (SIC 6531) are services firms: the shown ROIC, the EBIT fallback and the roic path all apply. The
+    6510-6519 lessors, REITs (6798), banks and insurers stay financial."""
+    assert all(M.is_financial(s) for s in (6021, 6311, 6512, 6798)) and not any(M.is_financial(s) for s in (6531, 6552, 7372, None))
+    r = {"fy": "2025", "operating_income": None, "pretax_income": 100.0, "interest_expense": 20.0, "tax": 21.0,
+         "revenue": 1000.0, "assets": 900.0, "liab_current": 300.0, "cash": 100.0}
+    x = M.roic_row(r, 6531)
+    assert x["roic_class"] == "ok" and abs(x["roic_proxy"] - 120 * 0.79 / 500) < 1e-12, x
+    assert M.roic_row(r, 6512)["roic_class"] == "financial"
+    assert M.path_for({"profile": {"sic": "6531"}, "annual": [r] * 5}) == "roic", "no operating-income line: still ROIC"
+
+
+def test_same_period_rule_for_cash_and_current_liabilities():
+    a, b = _roic_rows([0.2, 0.2], start=2024)
+    b["cash"] = None
+    assert M.roic_row(b, 7372)["roic_class"] == "ok", "cash the file never carries counts as 0"
+    rows = M.apply_roic([a, b], 7372)
+    assert rows[0]["roic_class"] == "ok" and all(rows[1][k] is None for k in M.ROIC_KEYS), rows[1]
+    assert [x["label"] for x in M.roic_series(rows, 7372)] == ["ok", "no_data"]
+    c = dict(a, fy="2025", period_end="2025-12-31", liab_current=None, equity=500.0, total_debt=100.0)
+    assert M.roic_row(c, 7372, filed=M.filed_keys([a, c]))["roic_basis"] is None, "no silent switch to the financing basis"
+    d = dict(a, fy="2025", period_end="2025-12-31")
+    assert M.roic_row(d, 7372, filed=M.filed_keys([dict(a, short_term_investments=50.0), d]))["roic_class"] == "ok", \
+        "a missing short-term-investment cell counts as 0"
+
+
+def test_current_debt_above_current_liabilities_adds_nothing_back():
+    # HTHT's pre-rule file: CNY 5,337M of current debt against USD 2,735M of current liabilities read capital above
+    # assets − cash − STI (9,680 vs 7,078) and closed its entry gate
+    r = {"assets": 9263.0, "cash": 1485.0, "short_term_investments": 700.0, "liab_current": 2735.0, "debt_current": 5337.0}
+    assert M.invested_capital(r) == (9263.0 - 1485.0 - 700.0, "operating")
+
+
+def test_a_non_usd_file_from_before_the_one_money_unit_rule_is_not_measured():
+    stale = dict(fu("ROP"), currency="CNY", dividends={"dps_ttm": 1.0})
+    e = M.evidence(stale)
+    assert e["status"] == "not_measured" and e["band"] is None and "one-money-unit rule (2026-10-19)" in e["why"], e
+    assert "no currency on its dividends block" in e["why"] and "whatever its as_of" in e["why"], "the marker, not a date"
+    assert M.assess(e, 9)["status"] == "not_measured" and not M.assess(e, 9)["entry_gate_closed"]
+    assert M.evidence(dict(stale, dividends={"currency": "CNY"}))["status"] == "measured"
+    assert M.evidence(dict(fu("ROP"), currency="USD"))["status"] == "measured"
+
+
+def test_serial_acquirer_needs_acquisitions():
+    e = ev("ALNY")
+    assert e["acquisition_intensity_5y"] is None and e["serial_acquirer"] is False, "OCF <= 0 and nothing acquired"
+    assert "serial acquirer" not in M.key_numbers_lines(e)[1]
+    assert ev("ROP")["serial_acquirer"] is True
+
+
+def test_equity_reit_without_a_revenue_tag_keeps_the_prior():
+    assert all(r.get("revenue") is None and r.get("operating_income") is None for r in fu("AMH")["annual"][-5:])
+    assert M.path_for(fu("AMH")) == "reit_prior" and ev("AMH")["band"] == [2, 6]
+    assert M.path_for(fu("NLY")) == "roe_fin", "a mortgage REIT files no material D&A"
+
+
+def test_no_reason_reaches_past_8_below_anchor_8():
+    # a 10-year anchor of 8 over a 5-year anchor of 6 (CYCLE_ADJUSTED reached 10 on the first version)
+    e = M.evidence({"profile": {"sic": "7372"}, "annual": _roic_rows([0.5] * 6 + [0.05, 0.15, 0.05, 0.15], ocf=300.0, acquisitions=0.0)})
+    assert e["anchor_r"] == 6 and e["anchor_10y_r"] == 8 and e["serial_acquirer"] is False, e
+    ok, lo, hi, mech, why = M.check_reason(e, reason("CYCLE_ADJUSTED"))
+    assert ok and mech and (lo, hi) == (4, 8), (lo, hi, why)
+    for t in (k for k in FX if k != "_note"):
+        e = ev(t)
+        if e.get("band") is None or (e.get("anchor_r") or 0) >= M.WIDE_MIN_ANCHOR:
+            continue
+        tries = [reason(c) for c in ("ACQUIRED_GOODWILL", "EXPENSED_INVESTMENT", "CYCLE_ADJUSTED", "SHORT_HISTORY", "NO_DURABLE_SOURCE")]
+        tries += [reason("MEASUREMENT_DEFECT", field="cash", fy="2024")]
+        tries += [reason("BUSINESS_CHANGED", since_fy=str(x["fy"])) for x in e.get("series") or []]
+        for rsn in tries:
+            assert M.check_reason(e, rsn)[2] <= 8, (t, rsn)
+
+
+def test_short_history_does_not_apply_to_the_reit_prior():
+    a = M.assess(ev("BXP"), 7, reason("SHORT_HISTORY"))
+    assert a["status"] == "outside_band_unexplained" and "equity-REIT prior" in a["reason_rejected"], a
+
+
+def test_non_finite_moat_and_unhashable_code_raise_value_error():
+    raises(lambda: M.assess(ev("ROP"), float("nan")), "finite number")
+    raises(lambda: M.assess(ev("ROP"), None), "finite number")
+    raises(lambda: M.check_reason_shape({"code": ["ACQUIRED_GOODWILL"], "text": TEXT}), "moat_evidence_reason.code")
+    raises(lambda: M.check_reason_shape({"code": {"x": 1}, "text": TEXT}), "moat_evidence_reason.code")
+
+
 # ---------------------------------------------------------------- 6. record / key_numbers lines / CLI
 def test_record_and_key_numbers_lines():
     e = ev("ROP")
@@ -338,6 +488,7 @@ def test_record_and_key_numbers_lines():
     json.dumps(rec)
     L = M.key_numbers_lines(e, a)
     assert L[0].startswith("- Moat evidence (roic, hurdle 10%)") and "→ anchor 3.12 (3) · band 1–5" in L[0], L[0]
+    assert L[0].endswith("· band 1–5 · fundamentals.json as of 2026-10-15"), "the file date shows a stale re-score's evidence"
     assert L[1].startswith("- ROIC ex-goodwill (context only)") and "serial acquirer" in L[1]
     assert "- Moat vs evidence: 7 → above band 1–5, unexplained (MOAT_ABOVE_EVIDENCE — entry alert closed)" in L
     assert "- Moat sources: not declared (judgment.json moat_sources, rubric 2)" in L
@@ -359,6 +510,14 @@ def test_cli():
         assert r.returncode == 0 and "→ anchor 3.12 (3) · band 1–5" in r.stdout and "MOAT_ABOVE_EVIDENCE" in r.stdout, r
         r = subprocess.run(cli + ["--json"], capture_output=True, text=True, encoding="utf-8", env=env, timeout=60)
         assert r.returncode == 0 and json.loads(r.stdout)["anchor_r"] == 3, r
+        # flags before the ticker (the first version read "7" as the ticker); a moat outside 0-10 is a usage error
+        r = subprocess.run(cli[:2] + ["--moat", "7", "ROP"], capture_output=True, text=True, encoding="utf-8", env=env, timeout=60)
+        assert r.returncode == 0 and "MOAT_ABOVE_EVIDENCE" in r.stdout, r
+        r = subprocess.run(cli + ["--moat", "nan"], capture_output=True, text=True, encoding="utf-8", env=env, timeout=60)
+        assert r.returncode == 2 and "--moat must be a number 0-10" in r.stderr, r
+        # a cp1252 console (Windows) prints the '≥' / '→' lines instead of crashing
+        r = subprocess.run(cli + ["--moat", "7"], capture_output=True, env=dict(env, PYTHONIOENCODING="cp1252"), timeout=60)
+        assert r.returncode == 0 and b"MOAT_ABOVE_EVIDENCE" in r.stdout, r
         with open(os.path.join(base, "ROP", "judgment.json"), "w", encoding="utf-8") as f:
             json.dump({"moat_score": 6, "moat_evidence_reason": reason("ACQUIRED_GOODWILL")}, f)
         r = subprocess.run(cli, capture_output=True, text=True, encoding="utf-8", env=env, timeout=60)

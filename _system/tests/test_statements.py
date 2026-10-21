@@ -1447,8 +1447,9 @@ def test_restricted_cash_deducted_from_net_cash():
     assert S.derive_value("net_cash", vals.get, no_sti) == 2_521_600_000
     assert S.derive_value("net_cash", vals.get, no_sti, lambda k: "CashAndCashEquivalentsAtCarryingValue" if k == "cash" else None) == 2_521_600_000
     roic = {"operating_income": 100, "income_tax": 21, "pretax_income": 100, "total_common_equity": 500, "total_debt": 300, "cash": 200, "restricted_cash": 50}
-    assert approx(S.derive_value("roic_proxy", roic.get, lambda k: True, lambda k: COMB if k == "cash" else None), 79 / (500 + 300 - 150))
-    assert approx(S.derive_value("roic_proxy", roic.get, lambda k: True), 79 / (500 + 300 - 200))
+    no_cl = lambda k: k != "total_current_liabilities"  # noqa: E731  (an unclassified balance sheet: the financing basis)
+    assert approx(S.derive_value("roic_proxy", roic.get, no_cl, lambda k: COMB if k == "cash" else None), 79 / (500 + 300 - 150))
+    assert approx(S.derive_value("roic_proxy", roic.get, no_cl), 79 / (500 + 300 - 200))
 
 
 def test_restricted_cash_only_where_the_cash_line_is_the_combined_total():
@@ -1828,6 +1829,50 @@ def test_roic_proxy_quarterly_cells_use_the_trailing_four_quarters():
     assert all(v is not None for v in roic["annual"]), roic["annual"]
     assert roic["ttm"] is not None and approx(roic["ttm"], roic["quarterly"][-1]), (roic["ttm"], roic["quarterly"])
     assert all(v is None for v in roic["quarterly"][:3]), "fewer than four quarters: no TTM numerator"
+
+
+def test_roic_proxy_same_period_rule_and_incomplete_ttm_revenue():
+    """Moat rubric 2, review round: (1) cash or current liabilities filed in other periods but missing in this one give
+    no ROIC (SITE_CONTRACT's same-period rule; CSL FY2009 read 10.1% on a capital that deducted no cash); a cell the
+    filer never files counts as 0. (2) A quarterly / TTM cell with trailing-four-quarter operating income but incomplete
+    TTM revenue has no figure: the cell's own quarter of revenue set the 10% floor 4× too low (263% on capital the
+    annual cell calls capital-light). Both fail on the code before the fix."""
+    v = {"operating_income": 100.0, "income_tax": 21.0, "pretax_income": 100.0, "revenue": 500.0, "total_assets": 1000.0,
+         "total_current_liabilities": 200.0, "cash": None}
+    assert S.derive_value("roic_proxy", v.get, lambda k: True, sic=7372) is None, "cash filed in another period"
+    assert approx(S.derive_value("roic_proxy", v.get, lambda k: k != "cash", sic=7372), 79 / 800), "cash never filed: 0"
+    v = dict(v, cash=100.0, total_current_liabilities=None, total_common_equity=500.0, total_debt=100.0)
+    assert S.derive_value("roic_proxy", v.get, lambda k: True, sic=7372) is None, "no silent switch to the financing basis"
+
+    def ln(a, q, t):
+        return {"annual": a, "quarterly": q, "ttm": t}
+    lines = {"revenue": ln([1000.0], [None, 250.0, 250.0, 250.0], None), "operating_income": ln([200.0], [50.0] * 4, 200.0),
+             "total_assets": ln([300.0], [300.0] * 4, 300.0), "total_current_liabilities": ln([240.0], [240.0] * 4, 240.0),
+             "cash": ln([0.0], [0.0] * 4, 0.0)}
+    S.add_derived(lines, ["2025-12-31"], ["2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31"], 4, [], sic=7372)
+    roic = lines["roic_proxy"]
+    assert roic["annual"] == [None] and roic["quarterly"] == [None] * 4 and roic["ttm"] is None, roic
+    # all four quarters of revenue and capital of 300: the quarter-end and TTM cells are 158 / 300 (floor 10% of 1,000)
+    lines = {k: dict(v) for k, v in lines.items() if k != "roic_proxy"}
+    lines["revenue"] = ln([1000.0], [250.0] * 4, 1000.0)
+    lines["total_current_liabilities"] = ln([0.0], [0.0] * 4, 0.0)
+    S.add_derived(lines, ["2025-12-31"], ["2025-03-31", "2025-06-30", "2025-09-30", "2025-12-31"], 4, [], sic=7372)
+    assert approx(lines["roic_proxy"]["quarterly"][-1], 158 / 300) and approx(lines["roic_proxy"]["ttm"], 158 / 300), lines["roic_proxy"]
+
+
+def test_cash_and_short_term_investment_lines_read_the_fundamentals_tags():
+    """Moat rubric 2, review rounds: fundamentals.json's cash and short-term investments read the statements lines' tags
+    (cash: CashAndDueFromBanks and Cash — PFGC files Cash, and the same-period rule blanked its years; STI: IFRS
+    CurrentInvestments — WIT's were 32% of assets — and the newer AFS-current tags), so the moat anchor and the shown ROIC
+    deduct the same balances."""
+    from fundamentals import INST
+    for key, extra in (("cash", ("CashAndDueFromBanks", "Cash")),
+                       ("short_term_investments", ("DebtSecuritiesAvailableForSaleExcludingAccruedInterestCurrent",
+                                                   "AvailableForSaleSecuritiesCurrent", (S.IF, "CurrentInvestments")))):
+        spec = next(sp for sp in S.BALANCE if sp["key"] == key)
+        assert spec["tags"] == list(INST[key]), key
+        for t in extra:
+            assert t in INST[key], (key, t)
 
 
 def test_schema_5_rebuilds_files_written_before_moat_rubric_2():

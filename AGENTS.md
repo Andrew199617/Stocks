@@ -420,7 +420,9 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
   `moat_evidence.py` lines `WORKER_SPEC` step 5 requires (moat rubric 2,
   2026-10-21: the same lines key_numbers.md prints under "Growth & moat").
   score.json `moat_evidence` is the check: `outside_band_unexplained` is
-  P2 (P1 when it left the entry gate open — see Tier and band); a
+  P2 (P1 when `entry_gate_closed` is true and the S/A score is still
+  `alert_eligible` — see Tier and band; a moat below the band closes no
+  gate by design, so it stays P2); a
   `moat_evidence_reason` whose text the filing does not bear out (the
   deals, the spend, the `since_fy` event, the cycle) is P2; a moat of 5+
   with no `moat_sources`, or a source that restates a mistaken moat (a

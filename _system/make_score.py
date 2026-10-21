@@ -103,8 +103,11 @@ ROIC, or ROE on the financial / utility paths; anchor ± 2, 9-10 only on an
 anchor of 8+) and the result is written to score.json `moat_evidence` and
 key_numbers.md. judgment.json may carry moat_sources [{source, evidence}]
 (Dorsey's five sources; an explicitly empty list caps the band at 4) and
-moat_evidence_reason {code, text, ...}; a malformed one refuses. Nothing else
-about the band refuses — a missing fundamentals.json is "not_measured". A moat
+moat_evidence_reason {code, text, ...}; a malformed one refuses, as does a
+moat_score that is not a finite number 0-10 (a NaN compares false with both
+band ends). Nothing else about the band refuses — a missing fundamentals.json,
+or a non-USD one whose dividends block records no currency (written before the
+one-money-unit rule), is "not_measured". A moat
 ABOVE the band that no mechanically tested reason explains closes the entry
 alert gate ("... — MOAT_ABOVE_EVIDENCE"); a moat below it is recorded
 (MOAT_BELOW_EVIDENCE) and touches no gate. The moat still reaches the engine
@@ -1865,7 +1868,10 @@ def main():
             fail(f"judgment.json: missing required field '{field}'")
     check_str_list(j, "moat_for")
     check_str_list(j, "moat_against")
-    # Moat rubric 2: the optional source / reason fields refuse only when malformed.
+    # Moat rubric 2: a moat the band cannot be read against (NaN compares false with both ends: never above, so a
+    # NaN would pass the entry gate) refuses, as do the optional source / reason fields when malformed.
+    if not (_moat.num(j["moat_score"]) and 0 <= j["moat_score"] <= 10):
+        fail(f"judgment.json: moat_score must be a number 0-10, got {j['moat_score']!r}")
     try:
         _moat.check_sources(j.get("moat_sources"))
         _moat.check_reason_shape(j.get("moat_evidence_reason"))

@@ -57,9 +57,14 @@ three things only: moat evidence, base-OE reconstruction, and confidence.
   a moat of 5+ without `moat_sources`, or a source that restates a mistaken moat (a great
   product, share, execution, management, size without a cost edge); a 7+ whose
   `moat_against` names no erosion force. A moat below its band (`MOAT_BELOW_EVIDENCE`)
-  needs `NO_DURABLE_SOURCE` naming the force (float, leverage, a cycle peak, a patent
-  cliff) or a re-rate upward; otherwise it is a finding. `not_measured`: run
-  fundamentals.py when the file is missing, else judge from the rubric.
+  needs a reason that passes in that direction — `NO_DURABLE_SOURCE` naming the force
+  (float, leverage, a cycle peak, a patent cliff), a tested `BUSINESS_CHANGED` or
+  `CYCLE_ADJUSTED`, or a confirmed `MEASUREMENT_DEFECT` — or a re-rate upward; otherwise
+  it is a finding. `not_measured`: judge from the rubric; a missing fundamentals.json, or
+  a non-USD one whose dividends block records no `currency` (written before the
+  one-money-unit rule, whatever its `as_of`), is re-run with fundamentals.py only after
+  `pass2-check` passes (worker step 5: steps 2–4 write nothing), else left to the next
+  pass 1.
 - **Margin structure** — gross margin level + trend (≥40% is the durable-advantage rule
   of thumb, judged sector-relative: a grocer and a software firm are not the same test);
   COGS % of revenue stability (swings in non-compounders = weak cost control = moat
