@@ -10,6 +10,12 @@ so a rebuild now keeps them — the existing fixtures were NOT rebuilt (they sta
 list, they carry none of these tags). `KNX=<path>` builds an unscored ticker (no <BASE>/<T>/dcf_numbers.json) from
 universe.csv: cik from the facts file, price = universe.csv's price, filer_annual_form "10-K", fx_rates {},
 recorded_engine_release null (the engine 5.7 KNX fixture; JKHY=<path> is a scored folder, built as usual).
+v5.7 (R6, Andrew 2026-10-19/20): the kept tags include the noncontrolling-interest lines the UP_C_SUSPECT detector
+reads (NetIncomeLossAttributableToNoncontrollingInterest, MinorityInterest, NonredeemableNoncontrollingInterest, the
+BasicAndDiluted count; ifrs-full ProfitLossAttributableToNoncontrollingInterests, NoncontrollingInterests,
+EquityAttributableToOwnersOfParent, ProfitLossAttributableToOwnersOfParent). Existing fixtures were NOT rebuilt (their
+detector inputs come from the ProfitLoss - NetIncomeLoss and equity fallbacks). VNOM=<path> (CIK 2074176's
+companyfacts) builds the share-class acceptance fixture from VNOM's recorded run (price 45.02, 10-K).
 
 For each ticker it writes <TICKER>.json.gz beside this file:
   {"ticker", "cik", "entityName", "price", "price_source", "filer_annual_form",
@@ -51,7 +57,10 @@ US = ["RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", 
       "PaymentsToAcquireInProcessResearchAndDevelopment", "ImpairmentOfIntangibleAssetsExcludingGoodwill",
       # engine 5.7 (R8 / R9, Andrew 2026-10-19): the PP&E components and capitalized-software tags the engine reads
       "PaymentsToAcquireMachineryAndEquipment", "PaymentsToAcquireMiningAssets", "PaymentsToAcquireFurnitureAndFixtures",
-      "PaymentsToDevelopSoftware", "PaymentsToAcquireSoftware", "PaymentsForSoftware"]
+      "PaymentsToDevelopSoftware", "PaymentsToAcquireSoftware", "PaymentsForSoftware",
+      # engine 5.7 (R6, Andrew 2026-10-19/20): the noncontrolling-interest lines the UP_C_SUSPECT detector reads
+      "NetIncomeLossAttributableToNoncontrollingInterest", "MinorityInterest", "NonredeemableNoncontrollingInterest",
+      "WeightedAverageNumberOfShareOutstandingBasicAndDiluted"]
 IFRS = ["Revenue", "RevenueFromContractsWithCustomers", "ProfitLoss", "ProfitLossFromOperatingActivities",
         "CashFlowsFromUsedInOperatingActivities", "CashFlowsFromUsedInOperatingActivitiesContinuingOperations",
         "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment",
@@ -64,7 +73,10 @@ IFRS = ["Revenue", "RevenueFromContractsWithCustomers", "ProfitLoss", "ProfitLos
         "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "CurrentPortionOfLongtermBorrowings", "ShorttermBorrowings",
         "LongtermBorrowings", "NoncurrentPortionOfNoncurrentBorrowings", "Borrowings", "CurrentLeaseLiabilities", "NoncurrentLeaseLiabilities",
         "Assets", "Liabilities", "PropertyPlantAndEquipment", "Equity", "NumberOfSharesOutstanding",
-        "PaymentsForDevelopmentProjectExpenditure"]   # engine 5.7 (R9): capitalized development
+        "PaymentsForDevelopmentProjectExpenditure",   # engine 5.7 (R9): capitalized development
+        # engine 5.7 (R6): the noncontrolling-interest lines the UP_C_SUSPECT detector reads
+        "ProfitLossAttributableToNoncontrollingInterests", "NoncontrollingInterests",
+        "EquityAttributableToOwnersOfParent", "ProfitLossAttributableToOwnersOfParent"]
 DEI = ["EntityCommonStockSharesOutstanding"]
 KEEP = {"us-gaap": set(US), "ifrs-full": set(IFRS), "dei": set(DEI)}
 
@@ -139,7 +151,8 @@ def build(ticker, facts_path=None):
 
 
 DEFAULT = ["AR", "APA", "ELS", "JLL", "DD", "NTNX", "TEM", "VIV", "TLK", "PUK", "CX", "CCJ", "STZ", "APP",
-           "BNT", "IESC", "WF", "VOD", "ATO", "RBC", "FER", "PR"]
+           "BNT", "IESC", "WF", "VOD", "ATO", "RBC", "FER", "PR",
+           "VNOM"]   # engine 5.7 (R6): the share-class acceptance fixture (VNOM=<companyfacts path> builds it offline)
 
 if __name__ == "__main__":
     for t in sys.argv[1:] or DEFAULT:

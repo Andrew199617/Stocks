@@ -640,8 +640,31 @@ rebuilt as before, both alert gates closed ("engine output predates release
   applied), <T>/annual_instance.json must be that instance's file with the
   same accession, instance_sha256 and facts_sha256 (annual_instance_check),
   and key_numbers.md says so in "Base owner's earnings".
-- (L8, R6) declared share classes (Up-C / multi-class) and UP_C_SUSPECT:
-  [L8 writes this item]
+- (L8, R6) declared share classes (Up-C / multi-class) and UP_C_SUSPECT
+  (Andrew, 2026-10-19/20; design 08 rev. 3, 08b, rebase map L8). judgment.json
+  share_classes is validated (R-1: share_classes.validate, every snippet at
+  most 24 words and showing its count) and checked against the engine run
+  (R-2: declaration_sha256 and the applied units; "rerun the engine (and
+  ttm.py)"), refused beside share_class_mismatch (R-3), beside a plain
+  base_override that does not state share_basis "total_units" (R-4: VNOM's
+  2026-10-16 per-unit pin is retired — --ttm on the declared ttm.json
+  reproduces it; an attested pin keeps a share_period consistent with its
+  basis_window) and beside the payable base (R-5); a TTM-pinned score whose
+  ttm.json is not on the declaration is refused (R-6); nci_check / cap_check
+  disagreements need nci_gap_reason / cap_gap_reason (R-7 / R-7b); on a 5.7
+  run UP_C_SUSPECT needs up_c_suspect_reason with a number (R-8); the reasons
+  are influence fields (R-9); shares_override.share_basis is traded_class |
+  all_classes and an OVERRIDE period with units must be attested (R-10).
+  share_classes_impact measures the declaration both ways (one engine
+  --measure replay with DCF_NO_SHARE_CLASSES: a TTM base at ttm.json's
+  ttm_oe_per_share_filed_basis, a declared pin at pin × total ÷ filed with
+  DCF_SC_PIN_SCALE, an amortized pin likewise or by a two-step median
+  replay; a replay the engine refuses is "not measured", one that cannot
+  complete refuses), recorded in score.json share_classes (plus up_c_check),
+  the share_classes registry event (units_by_period, never `periods`) and
+  the up_c_suspect event, and key_numbers.md's share-class lines (the
+  "Shares diluted (latest)" line names total economic units); an entry
+  alert is suppressed when the declaration RAISES the tier.
 - (L9, R8 / R9) capex components, capitalized software and the ttm.json
   release stamp (Andrew, 2026-10-19, R8 / R9; assigned to Claude). On a
   5.7 run: (R8) every CAPEX_UNLISTED_COMPONENT:<tag> flag needs judgment.json
@@ -680,6 +703,7 @@ import check_quotes as _quotes  # v5.7 (L2, R3): the quote gate's sources, saved
 import quote_tokens as _qt  # v5.7 (L2, R3): the one tokenizer (reasons carry / trace numbers through it)
 import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
 import interim_bridge as _ib  # v5.7 (L4, R2a): the declared 6-K interim bridge's rules (pure, no I/O at import)
+import share_classes as _sc  # v5.7 (L8, R6): the declared share classes' rules (pure, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -798,6 +822,14 @@ def validate_overrides(j):
             if not isinstance(o["software_included"], bool):
                 fail("judgment.json: capex_override.software_included must be true or false — true when the override "
                      "figure is the cash-flow total including capitalized software")
+        # v5.7 R6 (L8, rule 10 / R-10): shares_override.share_basis states which classes the override counts — the
+        # traded class only (units are added on top at a declaring filer) or every class (never beside a declaration)
+        if "share_basis" in o:
+            if field != "shares":
+                fail(f"judgment.json: {key}.share_basis is not allowed — only shares_override carries it")
+            if o["share_basis"] not in SHARE_BASIS_VALUES:
+                fail(f"judgment.json: shares_override.share_basis {o['share_basis']!r} is not one of "
+                     f"{', '.join(SHARE_BASIS_VALUES)} (R-10)")
         out[field] = o
     # v5.7 R8 (Andrew, 2026-10-19): capex_unlisted_ack {tag: reason} releases a CAPEX_UNLISTED_COMPONENT flag the
     # worker shows is not capex; every reason carries the figure (R7's checkable-reason standard: a digit)
@@ -876,43 +908,460 @@ def refuse_share_class_mismatch(j):
 
 
 # ---------------------------------------------------------------------------
-# v5.7 lane L8 (R6 declared share classes, Andrew 2026-10-19/20) — L0 placeholders, no-ops until L8 fills them
+# v5.7 lane L8 (R6 declared share classes, Andrew 2026-10-19/20; designs 08 + 08b, rebase map L8.md)
 # ---------------------------------------------------------------------------
+UP_C_FLAG = "UP_C_SUSPECT"
+UP_C_REASON_KEY = "up_c_suspect_reason"
+SHARE_BASIS_VALUES = ("traded_class", "all_classes")   # shares_override / the interim share leg (rule 10, R-10)
+SC_TOTAL_UNITS = "total_units"                         # base_override.share_basis on a total-unit pin (R-4)
+SC_NOT_ON_DECLARATION = "ttm.json is not on this share_classes declaration"   # R-6 / 08 §8.9 (R7's gate text)
+SC_SCOPE_CAP = 40e9                                     # in_scope_under_40b
+
+
+def _read_judgment(folder):
+    try:
+        with open(f"{folder}/judgment.json", encoding="utf-8") as f:
+            j = json.load(f)
+        return j if isinstance(j, dict) else {}
+    except (OSError, ValueError):
+        return {}
+
+
+def _sc_record(n):
+    rec = n.get("share_classes") if isinstance(n, dict) else None
+    return rec if isinstance(rec, dict) and rec.get("declared") else None
+
+
 def validate_share_classes(j):
-    """v5.7 placeholder (L8, 08 §8.1 step 2): judgment.json share_classes shape + snippets (R-1). None in L0."""
+    """R-1 (08 §8.2): judgment.json share_classes — every share_classes.validate rule, then every snippet at most
+    SNIPPET_MAX_WORDS words and showing its count (quote_tokens.snippet_shows_value at presentation scale: "164,811" in
+    a table in thousands proves 164,810,547); a kind calc entry's two counts likewise. Returns the raw declaration
+    (what declaration_sha256 hashes) or None when absent."""
+    v = j.get("share_classes")
+    if v is None:
+        return None
+    norm, errs = _sc.validate(v)
+    if errs:
+        fail("judgment.json: share_classes " + "; ".join(errs))
+    probs = []
+    for c in norm["classes"]:
+        for p in c["periods"]:
+            w = f"{c['name']} {p['period_end']}"
+            snips = ([(p["snippet"], None)] if p["kind"] == "calc" or p["value"] == 0
+                     else [(p["snippet"], p["value"])])
+            if p["kind"] == "calc":
+                snips += [(x.get("snippet"), x.get("value")) for x in (p.get("calc") or {}).get("counts") or []]
+            for s, val in snips:
+                if len(str(s).split()) > _qt.SNIPPET_MAX_WORDS:
+                    probs.append(f"{w}: a snippet is over {_qt.SNIPPET_MAX_WORDS} words")
+                elif val is not None and not _qt.snippet_shows_value(str(s), val, presentation_scale=True):
+                    probs.append(f"{w}: the snippet does not show the count {float(val):,.0f}")
+    if probs:
+        fail("judgment.json: share_classes " + "; ".join(probs) + " (R-1: a verbatim snippet of at most "
+             f"{_qt.SNIPPET_MAX_WORDS} words that shows the count)")
+    return v
+
+
+def _sc_period_totals(n, tt, period):
+    """(filed traded, total units) of a declared period: the record's applied row, its zero / in_filed_count period
+    (total = filed), or ttm.json's share_classes block for the current-YTD period. None when the run has neither."""
+    rec = _sc_record(n) or {}
+    for a in rec.get("applied") or []:
+        if a.get("period_end") == period:
+            return float(a["filed_traded"]), float(a["total_units"])
+    blk = (tt or {}).get("share_classes") if isinstance(tt, dict) else None
+    if isinstance(blk, dict) and blk.get("period_end") == period and _num(blk.get("filed_traded")):
+        return float(blk["filed_traded"]), float(blk["total_units"])
     return None
 
 
+def sc_share_period(n, bo, tt):
+    """A-8: the declared period whose total a share_basis "total_units" pin divides by — explicit share_period, else
+    from #47's basis_window (ttm: ttm.json's ytd_end; fy: the run's latest FY), else the run's latest FY. Returns
+    (period, refusal | None)."""
+    bw = bo.get("basis_window") if isinstance(bo.get("basis_window"), dict) else None
+    win = bw.get("window") if bw else None
+    ytd = (tt or {}).get("ytd_end") if isinstance(tt, dict) else None
+    sp = bo.get("share_period")
+    latest = n.get("latest_period_end")
+    if sp is None:
+        return (ytd if win == "ttm" else latest), None
+    if win == "ttm" and sp != ytd:
+        return sp, (f"base_override.share_period {sp} contradicts its basis_window \"ttm\" (ttm.json's current YTD ends "
+                    f"{ytd}) — a TTM-window pin divides by the TTM's units")
+    if win == "fy" and sp != latest:
+        return sp, (f"base_override.share_period {sp} contradicts its basis_window \"fy\" (the run's latest FY ends "
+                    f"{latest})")
+    return sp, None
+
+
 def check_share_classes_sync(n, j_sc, folder):
-    """v5.7 placeholder (L8): the declaration against the engine run's record (R-2 … R-5). No-op in L0."""
+    """R-2 … R-5, R-7, R-7b, R-10 and A-26 (08 §8.2): the declaration against the engine run's record. R-2: the
+    record absent while declared (a run before declaring, or pre-5.7 output) or present while nothing is declared,
+    another declaration_sha256, or applied units that are not the declaration's -> "rerun the engine (and ttm.py)".
+    R-3: share_classes beside share_class_mismatch. R-4: a plain base_override beside a declaration must state
+    share_basis "total_units" (its share_period consistent with its basis_window, A-8); an iprd_amortized one stays
+    allowed. R-5: the payable base beside a declaration is not supported yet (08b decision 4). R-7 / R-7b:
+    nci_check.agrees false / cap_check.gap true need nci_gap_reason / cap_gap_reason. R-10 / A-26: share_basis values
+    (shares_override, the interim share leg), an applied OVERRIDE period not attested traded_class in the record or in
+    judgment.json now, a ttm.json block on an OVERRIDE YTD leg whose override is not traded_class. R-1's record half:
+    an out-of-band period without ack_reason; a calc entry the record's re-derivation does not reproduce."""
+    j = _read_judgment(folder)
+    rec = _sc_record(n)
+    ib = j.get("interim_bridge") if isinstance(j.get("interim_bridge"), dict) else {}
+    leg = (((ib.get("legs") or {}).get("shares_diluted") or {}).get("current_interim")
+           if isinstance(ib.get("legs"), dict) else None)
+    if isinstance(leg, dict) and leg.get("share_basis") is not None and leg["share_basis"] not in SHARE_BASIS_VALUES:
+        fail(f"interim_bridge.legs.shares_diluted.current_interim.share_basis {leg['share_basis']!r} is not one of "
+             f"{', '.join(SHARE_BASIS_VALUES)} (R-10)")
+    bo = j.get("base_override") if isinstance(j.get("base_override"), dict) else None
+    if bo is not None and (bo.get("share_basis") is not None or bo.get("share_period") is not None):
+        if bo.get("basis") is not None:
+            fail("judgment.json: base_override.share_basis / share_period apply to a plain base_override only (R-4)")
+        if bo.get("share_basis") != SC_TOTAL_UNITS:
+            fail(f"judgment.json: base_override.share_basis must be \"{SC_TOTAL_UNITS}\" when present (R-4: the pin is "
+                 "per economic unit of a share_classes declaration)")
+        if bo.get("share_period") is not None and not _engine.iprd_date_ok(bo["share_period"]):
+            fail("judgment.json: base_override.share_period must be a YYYY-MM-DD period end (R-4)")
+    if j_sc is None:
+        if rec is not None:
+            fail("judgment.json share_classes and dcf_numbers.json share_classes are out of sync — the engine run applied "
+                 f"a declaration (declaration_sha256 {str(rec.get('declaration_sha256'))[:12]}…) but judgment.json declares "
+                 "none; rerun the engine (and ttm.py)")
+        if bo is not None and bo.get("share_basis") is not None:
+            fail(f"judgment.json: base_override.share_basis \"{SC_TOTAL_UNITS}\" needs a share_classes declaration (R-4)")
+        return None
+    if share_class_declared(j)[0]:
+        fail("share_classes and share_class_mismatch are exclusive — declare the units, or the mismatch, not both (R-3)")
+    if rec is None:
+        fail("judgment.json share_classes and dcf_numbers.json share_classes are out of sync — judgment.json declares "
+             "share_classes but the engine run recorded none (a run before the declaration, or engine output from "
+             "before 5.7); rerun the engine (and ttm.py)")
+    norm, _ = _sc.validate(j_sc)
+    sha = _sc.declaration_sha256(j_sc)
+    if rec.get("declaration_sha256") != sha:
+        fail("judgment.json share_classes and dcf_numbers.json share_classes are out of sync — the declaration's "
+             f"declaration_sha256 is {sha[:12]}…, the run's {str(rec.get('declaration_sha256'))[:12]}… (the declaration "
+             "changed after the run); rerun the engine (and ttm.py)")
+    units = _sc.units_by_period(norm)
+    for a in rec.get("applied") or []:
+        if a.get("period_end") not in units or abs(units[a["period_end"]] - float(a.get("declared_units") or 0)) > 0.5:
+            fail("judgment.json share_classes and dcf_numbers.json share_classes are out of sync — the run applied "
+                 f"{a.get('declared_units')} units for {a.get('period_end')}, the declaration gives "
+                 f"{units.get(a.get('period_end'))}; rerun the engine (and ttm.py)")
+    so = j.get("shares_override") if isinstance(j.get("shares_override"), dict) else {}
+    for a in rec.get("applied") or []:
+        if a.get("filed_traded_tag") == "OVERRIDE":
+            if a.get("share_basis_attested") != "traded_class":
+                fail(f"shares_override.share_basis: the run added units to the OVERRIDE row {a['period_end']} without a "
+                     "traded_class attestation (output of an engine without check (a)) — rerun the engine (and ttm.py) "
+                     "(R-10)")
+            if so.get("share_basis") != "traded_class":
+                fail(f"shares_override.share_basis is now {so.get('share_basis')!r}, but the run added units to the "
+                     f"OVERRIDE row {a['period_end']} as the traded-class count — rerun the engine (A-26)")
+    oob = [a["period_end"] for a in rec.get("applied") or [] if a.get("out_of_band")]
+    if oob and not norm.get("ack_reason"):
+        fail(f"judgment.json: share_classes units are more than {_sc.UNITS_MAX_MULT}x the traded count for "
+             f"{', '.join(oob)} (out of band) and share_classes carries no ack_reason (R-1)")
+    for c in rec.get("calc_entries") or []:
+        r = _num(c.get("rederived"))
+        if r is None or abs(r - float(c.get("value") or 0)) > _sc.CALC_TOLERANCE:
+            fail(f"judgment.json: share_classes {c.get('name')} {c.get('period_end')}: the kind calc value "
+                 f"{c.get('value')} does not reproduce from its counts ({r}) (A-21)")
+    nc = rec.get("nci_check") or {}
+    if nc.get("agrees") is False and not norm.get("nci_gap_reason"):
+        fail(f"SHARE_CLASSES_NCI_GAP: the declared units are {_pct(nc.get('declared_share_of_total'))} of total units, "
+             f"noncontrolling interests hold {_pct(nc.get('nci_share_of_equity'))} of equity and "
+             f"{_pct(nc.get('nci_share_of_net_income_3fy'))} of consolidated net income (3 FY) — more than "
+             f"{nc.get('tolerance_pp')}pp apart; check the units, or explain the gap in share_classes.nci_gap_reason "
+             "(with the figure) (R-7)")
+    cc = rec.get("cap_check") or {}
+    if cc.get("gap") is True and not norm.get("cap_gap_reason"):
+        fail(f"SHARE_CLASSES_CAP_GAP: the screener's market cap is {cc.get('cap_ratio')}x its price × the filed traded "
+             f"count while the declared units add {_pct(cc.get('declared_uplift'), 1)} — say whether the screener counts "
+             "one class only in share_classes.cap_gap_reason (with the figure), or remove classes the filed count "
+             "already includes (R-7b)")
+    tt = _ttm_record(folder)
+    blk = (tt or {}).get("share_classes") if isinstance(tt, dict) else None
+    if (isinstance(blk, dict) and (((tt.get("inputs") or {}).get("shares_diluted") or {}).get("ytd_current_tag")
+                                   == "OVERRIDE") and blk.get("units_equivalent") and so.get("share_basis") != "traded_class"):
+        fail("shares_override.share_basis: ttm.json added declared units to an OVERRIDE YTD share leg whose "
+             "shares_override is not attested traded_class — rerun ttm.py (and the engine) (R-10)")
+    if bo is not None:
+        if bo.get("basis") == PAYABLE_BASIS:
+            fail("share_classes beside a payable_earnings_5y base is not supported yet (R-5; 08b decision 4)")
+        if bo.get("basis") is None:
+            if bo.get("share_basis") != SC_TOTAL_UNITS:
+                fail("share_classes replaces a share-basis base pin: judgment.json declares a base_override that does not "
+                     f"state share_basis \"{SC_TOTAL_UNITS}\" — retire the pin (--ttm on the declared ttm.json reproduces "
+                     "a per-unit TTM base) or attest a pin built from total-unit engine outputs (R-4)")
+            sp, why = sc_share_period(n, bo, tt)
+            if why:
+                fail(f"judgment.json: {why} (R-4)")
+            if sp not in units:
+                fail(f"judgment.json: base_override.share_period {sp} is not a declared share_classes period (R-4)")
     return None
 
 
 def check_up_c_obligation(n, j):
-    """v5.7 placeholder (L8, R-8): an unresolved UP_C_SUSPECT on a 5.7 run. No-op in L0."""
+    """R-8 (5.7 runs): an UP_C_SUSPECT flag in fragility_flags needs judgment.json share_classes (impossible beside
+    the flag: the engine suppresses it — "rerun the engine with the declaration") or up_c_suspect_reason, a non-empty
+    string carrying a number. The reason's shape is checked whenever it is present."""
+    r = j.get(UP_C_REASON_KEY)
+    if r is not None and not (isinstance(r, str) and r.strip() and re.search(r"\d", r)):
+        fail(f"judgment.json: {UP_C_REASON_KEY} must be a non-empty string carrying the number that shows the minority "
+             "is an ordinary subsidiary interest or that the count already covers every class (R-8)")
+    if not is_57_run(n):
+        return None
+    if any(str(f).startswith(UP_C_FLAG) for f in n.get("fragility_flags") or []):
+        if j.get("share_classes") is not None:
+            fail(f"{UP_C_FLAG} is unresolved — the engine run did not apply judgment.json share_classes (the flag would "
+                 "be suppressed); rerun ttm.py and the engine with the declaration (R-8)")
+        if r is None:
+            fail(f"{UP_C_FLAG} is unresolved — noncontrolling interests are large and the filed diluted count may cover "
+                 "only the traded class: declare share_classes (the equity note's ownership table; rerun ttm.py and the "
+                 f"engine) or write judgment.json {UP_C_REASON_KEY} with the number that shows the minority is ordinary "
+                 "or the count already covers every class (R-8)")
     return None
 
 
-def check_ttm_on_declaration(n, j_sc, tt):
-    """v5.7 placeholder (L8, R-6, after check_ttm_inputs_current): a TTM-pinned score's ttm.json must be on the
-    share_classes declaration. No-op in L0."""
+def _ttm_pinned(n, tt, folder=None):
+    """True when the score's base is ttm.json's TTM: a --ttm pin, or a --base-oe-ps pin equal to ttm.json's figure
+    (figure_matches) that no declaration says was built on FY figures."""
+    inp = n.get("inputs") or {}
+    if inp.get("base_pin_source") == "ttm_json" or n.get("base_source") == "ttm_json":
+        return True
+    pin = inp.get("base_oe_ps_arg")
+    if inp.get("base_pin_source") != "base_oe_ps_arg" or _num(pin) is None or not isinstance(tt, dict):
+        return False
+    if not _engine.figure_matches(n.get("base_oe_per_share"), tt.get("ttm_oe_per_share")):
+        return False
+    return not (folder and declared_fy_built_pin(_judgment_base_override(folder), pin))
+
+
+def check_ttm_on_declaration(n, j_sc, tt, folder=None):
+    """R-6 (08 §8.2, after check_ttm_inputs_current): a TTM-pinned score (--ttm, or a via-TTM --base-oe-ps) whose
+    ttm.json is not on this share_classes declaration — share_classes.ttm_on_declaration: the block missing while
+    declared, another declaration_sha256, or a block while nothing is declared — is refused. A median-base score is
+    never refused by a stale ttm.json (its TTM alternatives are R7's, recorded computed: false)."""
+    if not _ttm_pinned(n, tt, folder or f"{BASE}/{n.get('ticker')}"):
+        return None
+    ok, why = _sc.ttm_on_declaration(tt, j_sc)
+    if not ok:
+        fail(f"{SC_NOT_ON_DECLARATION} — {why} (R-6); the score is pinned to ttm.json's TTM")
     return None
+
+
+def _sc_replay(cmd, env_extra):
+    """(exit code | None, parsed JSON | None, first stdout line): one engine --measure replay; the exit code is None
+    when the run could not complete (timeout, OS error)."""
+    env = dict(os.environ)
+    env.update(env_extra or {})
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True, timeout=600, env=env)
+    except Exception:
+        return None, None, ""
+    txt = out.stdout or ""
+    first = next((ln.strip() for ln in txt.splitlines() if ln.strip()), "")
+    data = None
+    i = txt.find("{")
+    if out.returncode == 0 and i >= 0:
+        try:
+            data = json.loads(txt[i:])
+        except Exception:
+            data = None
+    return out.returncode, data, first
+
+
+def _r4(v):
+    return round(v, 4) if _num(v) is not None else None
+
+
+def _sc_not_measured(blk, note):
+    blk.update(measured=False, note=note)
+    return blk
 
 
 def share_classes_impact(ticker, n, j_sc, prior_score=None):
-    """v5.7 placeholder (L8, 08 §8.4): the filed-class vs total-unit replay, before the first write. None in L0."""
-    return None
+    """08 §8.4 (rebase A-4 / A-16 / A-17): the declaration measured both ways — one engine --measure replay of the
+    final configuration (_final_run_args) with DCF_NO_SHARE_CLASSES=1 (no DCF_NO_OVERRIDES, no DCF_IPRD_HOLD: the
+    acquired-IPR&D charge per share is recomputed on the filed basis). The pin is re-derived on the filed basis,
+    never copied: a TTM base (--ttm or a via-TTM --base-oe-ps) replays at ttm.json's ttm_oe_per_share_filed_basis;
+    the median at no pin; a declared total-unit pin at pin × total(p) ÷ filed(p), p its share_period; an
+    iprd_amortized pin at pin × TTM total ÷ TTM filed (native ttm_json) or, native median, by a two-step replay
+    (iprd_amortized_value on the filed median and count) — both pinned replays pass DCF_SC_PIN_SCALE = replay pin ÷
+    declared value so the engine still recognises the declaration. A replay that cannot complete refuses; one the
+    engine refuses (exit 3) or that gaps is recorded measured: false / null with the reason. Release mismatch: the
+    prior registry share_classes event is carried when its declaration_sha256, total-unit base and weighted IRR (4 dp)
+    equal this run's, else "not measured". None when nothing is declared."""
+    rec = _sc_record(n)
+    if j_sc is None or rec is None:
+        return None
+    folder = f"{BASE}/{ticker}"
+    j = _read_judgment(folder)
+    tt = _ttm_record(folder)
+    lt = rec.get("latest") or {}
+    blk = {"basis": rec.get("basis"), "declaration_sha256": rec.get("declaration_sha256"), "base_used": None,
+           "replay_pin": None, "replay_pin_source": None, "replay_pin_scale": None,
+           "base_oe_filed_basis": None, "base_oe_total_units": _r4(n.get("base_oe_per_share")), "base_oe_impact_pct": None,
+           "weighted_irr_filed_basis": None, "weighted_irr_total_units": _r4(n.get("implied_irr_weighted")),
+           "weighted_irr_impact_pp": None, "tier_filed_basis": None, "tier_total_units": n.get("tier_by_numbers"),
+           "market_cap_filed_basis": None, "market_cap_total_units": _num(n.get("market_cap_est")),
+           "in_scope_filed_basis": None,
+           "in_scope_total_units": (n["market_cap_est"] < SC_SCOPE_CAP) if _num(n.get("market_cap_est")) else None,
+           "raises_tier": False, "measured": True, "note": None,
+           "units_latest": lt.get("units_equivalent"), "filed_latest": lt.get("filed_traded")}
+    if n.get("engine_release") != ENGINE_RELEASE:
+        prior = [e for e in registry_prior_entries(ticker) if e.get("event") == "share_classes"]
+        for e in prior:
+            if (e.get("declaration_sha256") == blk["declaration_sha256"]
+                    and e.get("base_oe_total_units") == blk["base_oe_total_units"]
+                    and e.get("weighted_irr_total_units") == blk["weighted_irr_total_units"]):
+                carried = {k: e.get(k) for k in blk if k in e}
+                blk.update(carried, note="carried from the prior registry share_classes event (engine output from another "
+                                         "release is never replayed)")
+                return blk
+        return _sc_not_measured(blk, _not_measured_note(n.get("engine_release")))
+    bo = j.get("base_override") if isinstance(j.get("base_override"), dict) else None
+    inp = n.get("inputs") or {}
+    pin = _num(inp.get("base_oe_ps_arg"))
+    am = _iprd_amortized_record(n)
+    args = _final_run_args(n)
+    env = {_sc.ENV_OFF: "1"}
+    scale = None
+    if bo is not None and bo.get("basis") == IPRD_AMORTIZED_BASIS and am is not None and pin is not None:
+        blk["base_used"] = "iprd_amortized_pin"
+        if am.get("native_base") == "ttm_json":
+            tot, fil = _num((tt or {}).get("ttm_shares_diluted")), _num((tt or {}).get("ttm_shares_diluted_filed"))
+            if not (tot and fil):
+                return _sc_not_measured(blk, "ttm.json carries no filed-basis TTM share count (ttm_shares_diluted_filed)")
+            rp = pin * tot / fil
+            blk["replay_pin_source"] = f"pin × TTM total ÷ TTM filed ({(tt or {}).get('ytd_end')})"
+        else:
+            rc, m1, first = _sc_replay([sys.executable, ENGINE, ticker, "--measure"] + args, env)
+            if rc is None:
+                fail("the share-class replay (filed-basis median, step 1 of the amortized pin) did not complete — cannot "
+                     "measure the share_classes declaration; retry make_score")
+            if rc != 0 or not m1 or _num(m1.get("base_oe_normalized_per_share")) is None \
+                    or not _num(m1.get("shares_diluted_latest")):
+                return _sc_not_measured(blk, f"the filed-class run does not score ({first or f'exit {rc}'})")
+            rp = _engine.iprd_amortized_value(m1["base_oe_normalized_per_share"], am.get("figures") or [],
+                                              m1["shares_diluted_latest"], n.get("ads_ratio"))
+            blk["replay_pin_source"] = "iprd_amortized_value(filed median, figures, filed latest)"
+        scale = rp / float(bo["value"]) if _num(bo.get("value")) else None
+    elif (bo is not None and bo.get("basis") is None and bo.get("share_basis") == SC_TOTAL_UNITS and pin is not None
+          and _engine.declared_value_matches(bo, pin)):
+        blk["base_used"] = "declared_pin"
+        sp, _ = sc_share_period(n, bo, tt)
+        tf = _sc_period_totals(n, tt, sp)
+        if tf is None:
+            return _sc_not_measured(blk, f"the pin's share_period {sp} has no recorded filed / total count")
+        rp = pin * tf[1] / tf[0]
+        blk["replay_pin_source"] = f"pin × total/filed ({sp})"
+        scale = rp / float(bo["value"])
+    elif _ttm_pinned(n, tt, folder):
+        blk["base_used"] = "ttm"
+        rp = _num((tt or {}).get("ttm_oe_per_share_filed_basis"))
+        if rp is None:
+            return _sc_not_measured(blk, "ttm.json carries no filed-basis TTM (ttm_oe_per_share_filed_basis)")
+        blk["replay_pin_source"] = "ttm.json ttm_oe_per_share_filed_basis"
+    elif pin is None and inp.get("base_pin_source") is None:
+        blk["base_used"] = "median_3y"
+        rp = None
+    else:
+        return _sc_not_measured(blk, "the run's pin is neither ttm.json's TTM nor a declared total-unit or amortized pin")
+    if rp is not None:
+        args = args + ["--base-oe-ps", repr(float(rp))]
+        blk["replay_pin"] = rp
+    if scale is not None:
+        env[_sc.PIN_SCALE_ENV] = repr(float(scale))
+        blk["replay_pin_scale"] = round(scale, 6)
+    rc, m, first = _sc_replay([sys.executable, ENGINE, ticker, "--measure"] + args, env)
+    if rc is None:
+        fail("the share-class replay (filed traded class, DCF_NO_SHARE_CLASSES) did not complete — cannot measure the "
+             "share_classes declaration; retry make_score")
+    if rc != 0 or not isinstance(m, dict):
+        return _sc_not_measured(blk, f"the filed-class run does not score ({first or f'exit {rc}'})")
+    if m.get("data_gap_uncovered"):
+        return _sc_not_measured(blk, f"the filed-class run does not score (data gap: {', '.join(m['data_gap_uncovered'])})")
+    if blk["base_used"] == "iprd_amortized_pin" and ((m.get("iprd_adjustment") or {}).get("treatment")
+                                                     != "amortized_in_base"):
+        return _sc_not_measured(blk, "the filed-class replay did not recognise the amortized declaration (treatment "
+                                     f"{(m.get('iprd_adjustment') or {}).get('treatment')!r})")
+    am_note = ((m.get("iprd_adjustment") or {}).get("amortized") or {}).get("counterfactual_replay") \
+        if isinstance((m.get("iprd_adjustment") or {}).get("amortized"), dict) else None
+    bf, bt = _num(m.get("base_oe_per_share")), _num(n.get("base_oe_per_share"))
+    irf, irt = _num(m.get("implied_irr_weighted")), _num(n.get("implied_irr_weighted"))
+    capf = _num(m.get("market_cap_est"))
+    tf_, tt_ = m.get("tier_by_numbers"), n.get("tier_by_numbers")
+    blk.update(base_oe_filed_basis=_r4(bf),
+               base_oe_impact_pct=round((bt / bf - 1) * 100, 2) if (bf and bt is not None) else None,
+               weighted_irr_filed_basis=_r4(irf),
+               weighted_irr_impact_pp=round((irt - irf) * 100, 2) if (irf is not None and irt is not None) else None,
+               tier_filed_basis=tf_, market_cap_filed_basis=capf,
+               in_scope_filed_basis=(capf < SC_SCOPE_CAP) if capf else None,
+               raises_tier=bool(tf_ in TIER_ORDER and tt_ in TIER_ORDER and TIER_ORDER[tt_] > TIER_ORDER[tf_]),
+               note=am_note)
+    return blk
 
 
 def share_classes_raise_reason(sc_impact):
-    """v5.7 placeholder (L8, 08 §8.8): the alert_reasons share_classes_raise text when the declaration RAISES the
-    tier (an entry alert is then suppressed). None in L0 (alert_reasons unchanged)."""
-    return None
+    """08 §8.8: the alert_reasons share_classes_raise text when a measured declaration RAISES the numbers tier (an
+    entry alert is then suppressed; exits are never suppressed — 08b decision 3). None otherwise."""
+    if not isinstance(sc_impact, dict) or not sc_impact.get("measured") or not sc_impact.get("raises_tier"):
+        return None
+    return (f"share-class declaration raises the tier ({sc_impact.get('tier_filed_basis')} on the filed class → "
+            f"{sc_impact.get('tier_total_units')} on total units)")
 
 
 def score_share_classes_fields(score, n, j_sc, sc_impact):
-    """v5.7 placeholder (L8, 08 §8.5): score.json share_classes / up_c_check blocks. No-op in L0."""
+    """08 §8.5: score.json share_classes (the measured block plus the record's traded_class, latest, ttm, nci_check,
+    cap_check, zero_periods, unused_periods) when the engine record carries a declaration; up_c_check {suspect, s,
+    suppressed_by, waived_reason} when the record carries the detector (5.7 output). No key on older output."""
+    rec = _sc_record(n)
+    if rec is not None:
+        out = dict(sc_impact or {})
+        lt = rec.get("latest") or {}
+        out.update(traded_class=rec.get("traded_class"),
+                   latest={"period_end": lt.get("period_end"),
+                           "filed_traded": int(round(lt["filed_traded"])) if _num(lt.get("filed_traded")) else None,
+                           "units_equivalent": int(round(lt["units_equivalent"])) if _num(lt.get("units_equivalent")) is not None else None,
+                           "total_units": int(round(lt["total_units"])) if _num(lt.get("total_units")) else None,
+                           "declared_share_of_total": _r4(lt.get("declared_share_of_total"))},
+                   ttm=({k: (int(round(v)) if k in ("filed_traded", "units_equivalent", "total_units") and _num(v) is not None
+                             else v) for k, v in rec["ttm"].items()
+                         if k in ("period_end", "filed_traded", "units_equivalent", "total_units")}
+                        if isinstance(rec.get("ttm"), dict) else None),
+                   nci_check=rec.get("nci_check"), cap_check=rec.get("cap_check"),
+                   zero_periods=rec.get("zero_periods") or [], unused_periods=rec.get("unused_periods") or [])
+        score["share_classes"] = out
+    uc = n.get("up_c_check")
+    if isinstance(uc, dict):
+        flagged = any(str(f).startswith(UP_C_FLAG) for f in n.get("fragility_flags") or [])
+        j = _read_judgment(f"{BASE}/{n.get('ticker')}") if flagged else {}
+        score["up_c_check"] = {"suspect": bool(uc.get("suspect")), "s": _r4(uc.get("s")),
+                               "suppressed_by": uc.get("suppressed_by"),
+                               "waived_reason": j.get(UP_C_REASON_KEY) if flagged else None}
     return None
+
+
+def share_classes_reason_checks(j, fc, folder, n, extra=None):
+    """R-9 (08 §8.1 step 7; 5.7 runs): the share-class reasons are influence fields (facts.INFLUENCE_TAGS) —
+    share_classes.reason / ack_reason / nci_gap_reason / cap_gap_reason / diluted_gap_reason and
+    up_c_suspect_reason — each traced through check_influence (numbers to engine figures or cited facts, never only
+    third-party). Returns the fields checked."""
+    done = []
+    sc = j.get("share_classes") if isinstance(j.get("share_classes"), dict) else {}
+    for k in ("reason",) + _sc.OPTIONAL_REASONS:
+        t = sc.get(k)
+        if isinstance(t, str) and t.strip():
+            check_influence(f"share_classes.{k}", t, _facts.parse_refs(t), fc, folder, n, extra=extra)
+            done.append(f"share_classes.{k}")
+    r = j.get(UP_C_REASON_KEY)
+    if isinstance(r, str) and r.strip():
+        check_influence(UP_C_REASON_KEY, r, _facts.parse_refs(r), fc, folder, n, extra=extra)
+        done.append(UP_C_REASON_KEY)
+    return done
 
 
 # ---------------------------------------------------------------------------
@@ -2284,8 +2733,9 @@ def check_iprd_amortized_ttm_current(folder, n):
 def check_base_basis_window(folder, n, o):
     """[Codex review r15 of PR #47] A plain base_override pinned through --base-oe-ps that is not ttm.json's figure
     (base_source agent_supplied_ttm_override) names the window its pin was built on, so the engine's IPR&D window is
-    the base's own: a pin built from ttm.json's TTM figures on another denominator (VNOM's per-unit base) has the
-    current YTD's cash flows in it, and without the declaration a charge there counted as $0. On a 5.6 run the
+    the base's own: a pin built from ttm.json's TTM figures on another denominator has the current YTD's cash flows
+    in it, and without the declaration a charge there counted as $0 (v5.7, L8: at a declaring filer the per-unit TTM
+    base is --ttm itself, share_classes; a total-unit pin also states share_basis "total_units"). On a 5.6 run the
     declaration must carry basis_window, the run must have recorded the same one (inputs.base_basis_window), and a
     "ttm" window's ytd_current_period must still be ttm.json's. Output from an earlier release (VNOM's committed 5.4.0
     record) is not held to it; an iprd_amortized declaration names its native_base instead."""
@@ -3562,7 +4012,9 @@ def _interim_problems(n, j, tt, folder=None):
                 fy_bad = f"{f}: ttm.json {got}, financials_history.csv {csv_fy[f]}"
                 break
         else:
-            got = (tt.get("shares") or {}).get("fy_diluted")
+            # v5.7 (L8, 08 §5.4): on a declared run the CSV's count is total units, ttm.json's fy_diluted the filed traded
+            # count with fy_total_units beside it
+            got = (tt.get("shares") or {}).get("fy_total_units", (tt.get("shares") or {}).get("fy_diluted"))
             if not _rel_eq(got, _f(last.get("shares_diluted")), 1e-6):
                 fy_bad = f"shares_diluted: ttm.json {got}, financials_history.csv {last.get('shares_diluted')}"
     else:
@@ -3909,6 +4361,7 @@ def compute_override_impact(ticker, n, ttm_only=None):
     gaps = list(n.get("data_gap") or [])
     unblocks = bool(gaps) and not (n.get("data_gap_uncovered") or [])
     base_src = (n.get("base_source") or "").lower()
+    m = None   # v5.7 (L8): the replay record, read for its share_classes.checks_relaxed below
     pin_src = (n.get("inputs") or {}).get("base_pin_source")
     pinned = (n.get("inputs") or {}).get("base_oe_ps_arg") is not None or "ttm" in base_src
     base_used = "payable_5y" if (pin_src == "judgment_base_override" or n.get("payable_base")) \
@@ -4023,14 +4476,21 @@ def compute_override_impact(ticker, n, ttm_only=None):
         if isinstance(base_with, (int, float)) and base_without else None
     irr_pp = round((irr_with - irr_without) * 100, 3) \
         if isinstance(irr_with, (int, float)) and isinstance(irr_without, (int, float)) else None
-    return {"base_used": base_used,
-            "base_oe_without_override": round(base_without, 4) if isinstance(base_without, (int, float)) else None,
-            "base_oe_with_override": round(base_with, 4) if isinstance(base_with, (int, float)) else None,
-            "base_oe_impact_pct": base_pct,
-            "weighted_irr_without_override": round(irr_without, 4) if isinstance(irr_without, (int, float)) else None,
-            "weighted_irr_with_override": round(irr_with, 4) if isinstance(irr_with, (int, float)) else None,
-            "weighted_irr_impact_pp": irr_pp,
-            "unblocks_tier": unblocks}
+    out = {"base_used": base_used,
+           "base_oe_without_override": round(base_without, 4) if isinstance(base_without, (int, float)) else None,
+           "base_oe_with_override": round(base_with, 4) if isinstance(base_with, (int, float)) else None,
+           "base_oe_impact_pct": base_pct,
+           "weighted_irr_without_override": round(irr_without, 4) if isinstance(irr_without, (int, float)) else None,
+           "weighted_irr_with_override": round(irr_with, 4) if isinstance(irr_with, (int, float)) else None,
+           "weighted_irr_impact_pp": irr_pp,
+           "unblocks_tier": unblocks}
+    # v5.7 (L8, 08 §8.3): at a declaring filer the no-override replay leaves a fallback row without units — named
+    # beside the no-override base (key absent otherwise, so every undeclared block is unchanged)
+    _rel = (((m.get("share_classes") or {}).get("checks_relaxed")) if isinstance(m, dict)
+            and isinstance(m.get("share_classes"), dict) else None)
+    if isinstance(_rel, dict) and _rel.get("periods_left_on_fallback"):
+        out["share_classes_checks_relaxed"] = _rel
+    return out
 
 
 def _default_cik(ticker):
@@ -4299,6 +4759,7 @@ def moat_reason_checks(moat_ev, j, fc, folder, n, run_kind="authoring", interim_
 
 
 SCORE_DECISION_KEYS += ("moat_evidence",)   # L3 (R4 revised): moat_evidence carries a decision (L5's prepare compares it)
+SCORE_DECISION_KEYS += ("share_classes", "up_c_check")   # L8 (R6): the declaration's measured block and the waiver
 
 
 def _interim_events(ticker, interim, declined, today):
@@ -4345,9 +4806,33 @@ def _facts_events(ticker, today, facts_check):
 
 
 def _share_classes_events(ticker, share_classes, up_c, n, j):
-    """v5.7 placeholder (L8, R6): share_classes / up_c_suspect (the per-period map is `units_by_period`, never
-    `periods`). [] in L0."""
-    return []
+    """v5.7 (L8, R6; 08 §8.6, rebase A-14): the share_classes event — {ticker, event, date, basis, declaration_sha256,
+    traded_class, classes [{name, holder, exchange_ratio}], units_by_period {period_end: units} (NEVER `periods`, an
+    iprd_deferred_payment field name: registry_entry_problem would read it as one and refuse the whole registry),
+    reason, and the measured block of share_classes_impact (both bases: base, weighted IRR, tier, cap, scope)} — and
+    the up_c_suspect event {ticker, event, date, reason, s} when the engine flagged UP_C_SUSPECT and judgment.json
+    waives it (up_c: that waiver, else derived from n / j). Identities (_EVENT_DECLARATION): (basis,
+    declaration_sha256) and (reason): an unchanged declaration keeps its first date, any edit re-dates. Pure."""
+    today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
+    out = []
+    rec = _sc_record(n)
+    jsc = j.get("share_classes") if isinstance(j, dict) and isinstance(j.get("share_classes"), dict) else None
+    if isinstance(share_classes, dict) and rec is not None and jsc is not None:
+        norm, _ = _sc.validate(jsc)
+        units = _sc.units_by_period(norm) if norm else {}
+        ev = {"ticker": ticker, "event": "share_classes", "date": today, "basis": rec.get("basis"),
+              "declaration_sha256": rec.get("declaration_sha256"), "traded_class": rec.get("traded_class"),
+              "classes": [{k: c.get(k) for k in ("name", "holder", "exchange_ratio")} for c in rec.get("classes") or []],
+              "units_by_period": {p: units[p] for p in sorted(units)}, "reason": jsc.get("reason")}
+        ev.update({k: v for k, v in share_classes.items()
+                   if k not in ev and k not in IPRD_DEFERRED_EVENT_KEYS and k not in ("basis", "declaration_sha256")})
+        out.append(ev)
+    if up_c is None and isinstance(j, dict) and isinstance(j.get(UP_C_REASON_KEY), str) and j[UP_C_REASON_KEY].strip() \
+            and any(str(f).startswith(UP_C_FLAG) for f in (n or {}).get("fragility_flags") or []):
+        up_c = {"reason": j[UP_C_REASON_KEY], "s": _r4(((n or {}).get("up_c_check") or {}).get("s"))}
+    if isinstance(up_c, dict) and up_c.get("reason"):
+        out.append({"ticker": ticker, "event": "up_c_suspect", "date": today, "reason": up_c["reason"], "s": up_c.get("s")})
+    return out
 
 
 def _base_alternatives_events(ticker, base_alts, today):
@@ -4472,6 +4957,9 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                 ev["kind"] = bo["kind"]
             if bo.get("basis_window") is not None:
                 ev["basis_window"] = bo["basis_window"]   # [Codex review r15 of PR #47]
+            for _k in ("share_basis", "share_period"):     # v5.7 (L8, R6; A-8): a total-unit pin's attestation
+                if bo.get(_k) is not None:
+                    ev[_k] = bo[_k]
             if pin_rescued(n) and not n.get("payable_base"):
                 ev.update(pin_rescue_impact(n))
             _am = (n.get("iprd_adjustment") or {}).get("amortized") if isinstance(n.get("iprd_adjustment"), dict) else None
@@ -4552,11 +5040,16 @@ def alert_reasons(tier_final, tier_by_numbers, override, conf, model_fit, unbloc
     release_mismatch_reason() text when the engine output is not from the
     current ENGINE_RELEASE — it closes BOTH gates ("... — re-run the engine
     before an entry / exit alert"); None leaves every gate as in 5.4.
-    share_classes_raise (v5.7 keyword placed by L0 for lane L8, R6: the
-    reason when a share-class declaration RAISES the tier) is not read yet;
-    None, the default, leaves every gate exactly as before."""
+    share_classes_raise (v5.7, lane L8, R6 — Andrew 2026-10-19/20: "an entry
+    alert is suppressed if the declaration RAISES the tier"): the
+    share_classes_raise_reason text when the measured filed-class tier is
+    below the total-unit tier; appended to the ENTRY reasons of a final S/A
+    tier (exits are never suppressed for it — 08b decision 3). None, the
+    default, leaves every gate exactly as before."""
     sa = ("S", "A")
     entry, exit_ = [], []
+    if share_classes_raise and tier_final in sa:
+        entry.append(share_classes_raise)
     if stale_release:
         # DESIGN §8.3 [ADDITION, policy-bearing]: a score rebuilt on engine
         # output from another release never alerts, either way.
@@ -4798,15 +5291,127 @@ def _kn_base_extras(n):
 
 
 def _kn_shares_suffix(n):
-    """v5.7 placeholder (L8, R6): appended to the "Shares diluted (latest)" line on a declared run (total economic
-    units). "" in L0."""
-    return ""
+    """v5.7 (L8, R6; A-25): appended to the "Shares diluted (latest)" line on a declared run whose latest FY carries
+    units — the count is total economic units (filed traded-class diluted + declared). "" otherwise (undeclared
+    records print the line byte for byte as before)."""
+    lt = (_sc_record(n) or {}).get("latest") or {}
+    if not _num(lt.get("units_equivalent")):
+        return ""
+    return (f" total economic units (filed traded-class diluted {lt['filed_traded']:,.0f} + declared "
+            f"{lt['units_equivalent']:,.0f})")
+
+
+def _sc_count_word(bases):
+    return {"period_end": "period-end counts", "weighted_average": "weighted-average counts"}.get(
+        bases[0], "counts") if len(bases) == 1 else "period-end and weighted-average counts"
 
 
 def _kn_share_classes(n, score):
-    """v5.7 placeholder (L8, R6): the per-period share-class block, right after the capex / share / SBC basis lines.
-    [] in L0."""
-    return []
+    """v5.7 (L8, R6; 08 §8.7, A-25): the share-class block in "Base owner's earnings", right after the capex / share /
+    SBC basis lines — the declaration (worker text in curly quotes), one line per declared period (filed + declared =
+    total, the classes' counts), the TTM's units, the measured impact both ways, the NCI / cap cross-checks, and when
+    present the excluded history, zero periods, in_filed_count periods, the field-override replay's fallback rows,
+    unused periods, the split rescale and the Up-C check (fired or waived). [] for an undeclared run with no Up-C
+    flag. These lines are the sanctioned quote source for the unit counts (never re-declared as facts)."""
+    rec = _sc_record(n)
+    uc = n.get("up_c_check") if isinstance(n.get("up_c_check"), dict) else None
+    flagged = any(str(f).startswith(UP_C_FLAG) for f in n.get("fragility_flags") or [])
+    L = []
+    if rec is not None:
+        L.append(f"- Share classes (declared, {rec.get('basis')}; traded class {quoted(rec.get('traded_class'))}): per-share "
+                 "figures divide by the filed traded-class diluted count plus the declared class-equivalent units")
+        for a in rec.get("applied") or []:
+            cls = " · ".join(f"{quoted(c.get('name'))} {float(c.get('value') or 0):,.0f}"
+                             + (f" × {c['exchange_ratio']:g}" if c.get("exchange_ratio") not in (1, 1.0) else "")
+                             for c in a.get("classes") or [])
+            L.append(f"  - FY{a['period_end'][:4]}: {a['filed_traded']:,.0f} + {a['units_equivalent']:,.0f} = "
+                     f"{a['total_units']:,.0f} ({_sc_count_word(a.get('count_bases') or [])}: {cls})")
+        t = rec.get("ttm") if isinstance(rec.get("ttm"), dict) else None
+        if t and _num(t.get("total_units")):
+            L.append(f"  - TTM to {t.get('period_end')}: {t['filed_traded']:,.0f} + {float(t.get('units_equivalent') or 0):,.0f}"
+                     f" = {t['total_units']:,.0f} → TTM OE/unit {_money4(t.get('ttm_oe_per_share'))} (filed-class basis "
+                     f"{_money4(t.get('ttm_oe_per_share_filed_basis'))})")
+        sc = score.get("share_classes") if isinstance(score.get("share_classes"), dict) else {}
+        if sc.get("measured") and sc.get("base_oe_filed_basis") is not None:
+            def _cap(v):
+                return f"${v / 1e9:,.3f}B" if _num(v) else "—"
+            sin = {True: "in", False: "out", None: "—"}
+
+            def _sg(v, unit):
+                return f" ({v:+.2f}{unit})" if _num(v) is not None else ""
+            L.append(f"- Share classes measured impact (filed traded class → total units, same final configuration): base "
+                     f"OE/share {_money4(sc.get('base_oe_filed_basis'))} → {_money4(sc.get('base_oe_total_units'))}"
+                     f"{_sg(sc.get('base_oe_impact_pct'), '%')} · weighted IRR {_pct(sc.get('weighted_irr_filed_basis'))} → "
+                     f"{_pct(sc.get('weighted_irr_total_units'))}{_sg(sc.get('weighted_irr_impact_pp'), 'pp')} · tier "
+                     f"{sc.get('tier_filed_basis')} → {sc.get('tier_total_units')} · market cap "
+                     f"{_cap(sc.get('market_cap_filed_basis'))} → {_cap(sc.get('market_cap_total_units'))} (scope "
+                     f"{sin.get(sc.get('in_scope_filed_basis'))} → {sin.get(sc.get('in_scope_total_units'))})")
+        elif sc:
+            L.append(f"- Share classes measured impact: not measured — {quoted(sc.get('note'))}")
+        nc = rec.get("nci_check") or {}
+        lt = rec.get("latest") or {}
+        if nc.get("agrees") is not None:
+            bits = [x for x in (f"{_pct(nc.get('nci_share_of_equity'))} of equity" if nc.get("nci_share_of_equity") is not None else None,
+                                f"{_pct(nc.get('nci_share_of_net_income_3fy'))} of consolidated net income (3 FY)"
+                                if nc.get("nci_share_of_net_income_3fy") is not None else None) if x]
+            L.append(f"- Share classes cross-check: declared units are {_pct(lt.get('declared_share_of_total'))} of total "
+                     f"units at FY{str(lt.get('period_end'))[:4]}; noncontrolling interests hold {' and '.join(bits)} — "
+                     + (f"within {nc.get('tolerance_pp')}pp" if nc["agrees"] else
+                        f"more than {nc.get('tolerance_pp')}pp apart, explained: "
+                        f"{quoted((n.get('share_classes') or {}).get('nci_gap_reason') or _sc_judgment_reason(n, 'nci_gap_reason'))}"))
+        if rec.get("series_excluded_periods"):
+            shc = (rec.get("growth_inputs_shortened") or {}).get("share_cagr")
+            L.append("- History without a declaration (excluded from per-share inputs): "
+                     + ", ".join("FY" + p[:4] for p in rec["series_excluded_periods"])
+                     + (f" — share CAGR over FY{shc['declared_from'][:4]}–FY{str(lt.get('period_end'))[:4]}" if shc else ""))
+        for z in rec.get("zero_periods") or []:
+            L.append(f"- Declared 0 (on the filed count): FY{z['period_end'][:4]} — {quoted(z.get('source'))}")
+        for i in rec.get("included_periods") or []:
+            g = (i.get("exchange_test") or {}).get("gap")
+            L.append(f"- Units already in the filed diluted count (in_filed_count, nothing added): FY{i['period_end'][:4]}"
+                     + (f" — diluted − basic {g:,.0f} ≥ half of the {i['included_units']:,.0f} units marked"
+                        if _num(g) is not None else ""))
+        for x in ((rec.get("checks_relaxed") or {}).get("periods_left_on_fallback") or []):
+            L.append(f"- Field-override replay: FY{x['period_end'][:4]} left on its fallback count ({x.get('tag')}), no units")
+        if rec.get("unused_periods"):
+            L.append(f"- Declared but unused this run: {', '.join(rec['unused_periods'])}")
+        cc = rec.get("cap_check") or {}
+        if cc.get("gap") is True:
+            L.append(f"- Share classes cap check: screener cap {cc.get('cap_ratio'):.2f}× the filed-count cap, declared units "
+                     f"+{cc.get('declared_uplift') * 100:.0f}% → SHARE_CLASSES_CAP_GAP, explained: "
+                     f"{quoted(_sc_judgment_reason(n, 'cap_gap_reason'))}")
+        resc = [a for a in rec.get("applied") or [] if a.get("units_split_basis") in ("pre_split_rescaled", "mixed")]
+        if resc:
+            split = ((n.get("share_basis") or {}).get("split") or {}) if isinstance(n.get("share_basis"), dict) else {}
+            L.append(f"- Units rescaled for the split (ratio {split.get('ratio_used')}, event {split.get('event_date')}): "
+                     + ", ".join("FY" + a["period_end"][:4] for a in resc))
+    oi = score.get("override_impact") if isinstance(score.get("override_impact"), dict) else {}
+    for x in ((oi.get("share_classes_checks_relaxed") or {}).get("periods_left_on_fallback") or []):
+        L.append(f"- Field-override replay: FY{x['period_end'][:4]} left on its fallback count ({x.get('tag')}), no units")
+    if uc and flagged:
+        bits = [x for x in (f"NCI share of equity {_pct(uc.get('nci_share_of_equity'))}" if uc.get("nci_share_of_equity") is not None else None,
+                            f"of net income (3 FY) {_pct(uc.get('nci_share_of_net_income_3fy'))}"
+                            if uc.get("nci_share_of_net_income_3fy") is not None else None) if x]
+        ev = ["cover page by class"] if uc.get("cover_by_class") else []
+        d2b = uc.get("diluted_to_basic")
+        L.append(f"- Up-C check: {' · '.join(bits + ev)} · diluted ÷ basic "
+                 f"{f'{d2b:.3f}' if _num(d2b) is not None else '—'} → {UP_C_FLAG} (threshold "
+                 f"{_pct(uc.get('threshold'), 0)})"
+                 + (f" · waived: {quoted(_sc_judgment_reason(n, UP_C_REASON_KEY, top=True))}"
+                    if _sc_judgment_reason(n, UP_C_REASON_KEY, top=True) else ""))
+    return L
+
+
+def _money4(v):
+    return "—" if _num(v) is None else f"${v:,.4f}"
+
+
+def _sc_judgment_reason(n, key, top=False):
+    """judgment.json's share_classes.<key> (top: judgment.json's own <key>) for the key_numbers echo."""
+    j = _read_judgment(f"{BASE}/{n.get('ticker')}")
+    src = j if top else (j.get("share_classes") if isinstance(j.get("share_classes"), dict) else {})
+    v = src.get(key)
+    return v if isinstance(v, str) and v.strip() else None
 
 
 def _kn_base_interim(n, score, interim, instance):
@@ -5634,6 +6239,7 @@ def main():
             _bo_text = " ".join(str(j_base_override.get(k) or "") for k in ("reason", "source"))
             check_influence("base_override", _bo_text, _facts.parse_refs(_bo_text), fc, folder, n, extra=trace_extra,
                             trace_only=base_pin_trace_only(n, j_base_override), require_anchor=True)
+        share_classes_reason_checks(j, fc, folder, n, extra=trace_extra)   # L8 (R6, R-9): the share-class reasons
     score.update({
         "engine_release": n.get("engine_release"),
         # [Codex review r12 of PR #47] the run this score was built from (its verified content_hash): reprice.py and

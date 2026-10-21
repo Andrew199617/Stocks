@@ -1207,6 +1207,11 @@ def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
     assert "sector_model" not in rec and n["sector_model"] == E.sector_model_record("Health Care", None, None, None), \
         n.get("sector_model")
     dated.add("sector_model")
+    # v5.7 (L8, R6): a fresh run also records share_classes (null: HALO declares none, so nothing about the run moves)
+    # and up_c_check (the UP_C_SUSPECT detector's record, silent: HALO files no noncontrolling interest)
+    assert "up_c_check" not in rec and n["share_classes"] is None and n["up_c_check"]["suspect"] is False, \
+        n.get("up_c_check")
+    dated.add("up_c_check")
     assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
     assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
             == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})
