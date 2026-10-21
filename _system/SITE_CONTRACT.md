@@ -23,7 +23,10 @@ now split in two, built around Muse's loop (claim a company → scripts write fi
    The same app renders it; it just never fetches. The served site (`_daily/site/` on a machine
    where `build_site.py` has run — its data is a gitignored cache, so a static host pointed at the
    repo alone has none; `meta.site_url` names the host when `STOCKS_SITE_URL` is set) is the
-   complete one. The same run writes the compact committed snapshot
+   complete one. Since 2026-10-20 the served site is published at
+   https://andrew199617.github.io/Stocks/: `.github/workflows/jekyll-gh-pages.yml` rebuilds it from every
+   push to `main` (`refresh.py --quick` with `STOCKS_SITE_URL` set to that address and the day's
+   history CSV committed back) and deploys it via GitHub Actions (Pages source: "GitHub Actions"). The same run writes the compact committed snapshot
    `_daily/history/ranking-YYYY-MM-DD.csv` (see "Data policy, 2026-10-16" at the end — it also
    lists which files are committed and which are gitignored caches).
 
