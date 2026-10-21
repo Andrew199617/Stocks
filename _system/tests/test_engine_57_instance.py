@@ -362,8 +362,9 @@ FIXTURES = sorted(f[:-len(".json.gz")] for f in os.listdir(H.FIXTURES) if f.ends
 
 def test_existing_fixtures_unchanged():
     # the 23 pre-5.7 engine fixtures plus lane L9's KNX and JKHY (07 section 5.2: L9 adds them to the sweep; both
-    # are 10-K filers with their FY in companyfacts, so the instance read must leave them alone too)
-    assert len(FIXTURES) == 25 and {"KNX", "JKHY"} <= set(FIXTURES), FIXTURES
+    # are 10-K filers with their FY in companyfacts, so the instance read must leave them alone too) and lane L8's
+    # VNOM (the R6 share-class acceptance fixture; a 10-K filer, its FY in companyfacts)
+    assert len(FIXTURES) == 26 and {"KNX", "JKHY", "VNOM"} <= set(FIXTURES), FIXTURES
     for t in FIXTURES:
         out = run(t, args_for(5))
         n = out["numbers"]

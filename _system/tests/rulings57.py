@@ -317,8 +317,25 @@ def add_interim_declined(n, j):
     return None
 
 
+UP_C_REASON_FIXTURE = ("test fixture: the noncontrolling interest is an ordinary subsidiary minority — the filed "
+                       "diluted count covers every class (diluted ÷ basic 1.000)")
+
+
 def add_up_c_reason(j, n):
-    """L8 (R6): up_c_suspect_reason (carrying a number) on a 5.7 record flagged UP_C_SUSPECT. No-op in L0."""
+    """L8 (R6): up_c_suspect_reason (carrying a number) on a 5.7 record flagged UP_C_SUSPECT that declares no
+    share_classes and no reason of its own — the obligation make_score's check_up_c_obligation (R-8) enforces. No
+    synthetic record a pre-existing test builds carries the flag, so this changes none of them; it exists so a later
+    fixture cannot trip R-8 silently. Mutates j (apply() passes a copy)."""
+    if not isinstance(n, dict) or not isinstance(j, dict):
+        return None
+    import facts as _f
+    if not _f.is_rulings_run(n):
+        return None
+    if not any(str(fl).startswith("UP_C_SUSPECT") for fl in n.get("fragility_flags") or []):
+        return None
+    if j.get("share_classes") is not None or j.get("up_c_suspect_reason") is not None:
+        return None
+    j["up_c_suspect_reason"] = UP_C_REASON_FIXTURE
     return None
 
 

@@ -627,7 +627,47 @@ closed, as for every release change). The items below are written by the lane th
   same list objects in main()):
   ENGINE_OCF_TAGS, ENGINE_SBC_TAGS, ENGINE_SHARES_DILUTED_TAGS, DILUTED_SHARE_TAGS, BASIC_SHARE_TAGS and the derived
   DILUTED_ONLY_TAGS, which ttm.py --interim reads.
-- (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT: [L8 writes this item]
+- (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT (Andrew, 2026-10-19/20: "Fix the engine so
+  it can use the real total share count for two-class companies like VNOM"; design 08 rev. 3, the main agent's 08b
+  decisions, rebase map L8). An Up-C filer consolidates 100% of its operating company's cash flows while its tagged
+  diluted count is the traded class only, so every per-share figure was overstated (VNOM: $7.9338 TTM per Class A
+  share, a fake Tier S at 25.05%). judgment.json share_classes {basis up_c_exchangeable_units | multi_class_common,
+  traded_class, reason, classes [{name, holder, exchange_ratio (filed-count shares per unit, never per ADS),
+  periods [{period_end, value, count_basis, kind filing | calc, accession, source, snippet, ...}]}]} is read on every
+  run (share_classes.load / validate; no CLI flag) and the engine adds the declared class-equivalent units to the
+  filed traded-class diluted count of every declared history row (share_class_pass, after the v5.5 split pass and
+  before any per-share figure): CSV shares_diluted is the total, shares_tag ends +SHARE_CLASSES, so the median, the
+  OE/share and share-count CAGRs, OE_VOLATILE, the IPR&D charge per share (iprd.shares_basis "total_units"), the
+  market cap (shares_source ...+share_classes; the scope test is about the company's real size) and the leverage
+  diagnostic are on total economic units. Refused (exit 3, nothing written): BAD_SHARE_CLASSES — a malformed
+  declaration, one beside share_class_mismatch, a base-window FY undeclared, a stray period that is no filed
+  share-fact period end (a 20-F / 40-F filer's declared 6-K bridge current-interim end is accepted: companyfacts
+  carries no 6-K share fact), a 0 entry not dated outside its period (a class that existed for part of a period
+  declares its weighted-average units; kind calc is the straddle year's day-weighted average, re-derived), a
+  shares_override row without share_basis "traded_class" (an all-class override already counts the units), a dei /
+  outstanding fallback row without ack_reason or with in_filed_count units (no basic count can verify them), a
+  diluted count that already carries the exchange (diluted - basic >= half the units) unless in_filed_count
+  (verified, nothing added) or diluted_gap_reason, units whose split basis cannot be read (each entry on the basis of
+  the filing that printed it), a share-scale defect beside the units (fix the traded count first);
+  BAD_TTM_SHARE_BASIS — a pin that reads ttm.json as its TTM basis (--ttm, a via-TTM --base-oe-ps, an iprd_amortized
+  pin on native base ttm_json, a basis_window "ttm" pin) on a ttm.json not built on this declaration
+  (share_classes.ttm_on_declaration). share_classes.ttm records the TTM leg's out_of_band (rule 6, as the FY rows'
+  applied[].out_of_band; make_score refuses either without ack_reason). A history year without a declaration keeps
+  its filed count and leaves the per-share series (series_excluded_periods, growth_inputs_shortened / _dropped). The
+  share-scale guard, the cover-page divergence (a cover page summing every class is recorded compared_to total_units,
+  no switch; a switched cap is topped up with the units nearest the cover-page date) and the detector test the FILED
+  traded count. Records: share_classes (null when nothing is declared; applied periods with the exchange test and split
+  basis, zero / in_filed_count / unused periods, latest, ttm, market_cap, nci_check, cap_check) and up_c_check (every
+  run: the detector — noncontrolling interests' share of 3-FY consolidated net income or of equity s >= 0.20, the
+  units not in the diluted count, count-gap evidence from the cover page or universe.csv's own price and cap, a
+  domestic form — never breaking a run: an exception is recorded). Flags SHARE_CLASSES_DECLARED, SHARE_CLASSES_NCI_GAP,
+  SHARE_CLASSES_CAP_GAP and UP_C_SUSPECT (suppressed by a declaration or share_class_mismatch). make_score's filed-
+  basis replay: DCF_NO_SHARE_CLASSES with --measure loads no declaration and reads a declared ttm.json through its
+  filed-basis view (the --ttm pin, the via-TTM test, the IPR&D window and denominators); DCF_SC_PIN_SCALE scales an
+  iprd_amortized / basis_window declaration's value so a pin × total ÷ filed is still recognised; the amortized
+  re-validation, "nothing to amortize" and BAD_IPRD_DEFERRED_PAYMENT are recorded, not exited, in that replay only.
+  ttm.json's share_classes block and filed-basis twins are optional hashed input legs (TTM_INPUT_OPTIONAL_FIELDS).
+  Undeclared runs: every figure, CSV and flag as before (the records share_classes: null and up_c_check are new).
 - (L9, R8) Capex components summed (KNX; Andrew, 2026-10-19, assigned to Claude): the component group sums every
   filed PP&E component. PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets and
   PaymentsToAcquireFurnitureAndFixtures are appended to CAPEX_COMPONENT_TAGS (after the 5.5 seven), so a year with no
@@ -1048,6 +1088,10 @@ def load_overrides(ticker):
             # through upper-cased; make_score validates it ("USD", kind filing).
             if isinstance(o.get("currency"), str) and o["currency"].strip():
                 out[field]["currency"] = o["currency"].strip().upper()
+            # v5.7 (L8, R6 rule 10): a shares_override's attested basis ("traded_class" / "all_classes") — at a filer
+            # declaring share_classes an OVERRIDE row takes units only when it is the traded-class count
+            if field == "shares" and isinstance(o.get("share_basis"), str) and o["share_basis"].strip():
+                out[field]["share_basis"] = o["share_basis"].strip()
     return out
 
 PAYABLE_BASIS = "payable_earnings_5y"
@@ -1351,6 +1395,296 @@ def market_cap_est(price, shares, ads_ratio=None, fallback=None):
         return price * shares / ratio
     return fallback
 
+
+# ---------------------------------------------------------------------------
+# v5.7 (lane L8 — Andrew's ruling R6, 2026-10-19/20): declared share classes (Up-C / multi-class share basis)
+# ---------------------------------------------------------------------------
+SHARE_CLASSES_TAG = "+SHARE_CLASSES"   # appended to a CSV row's shares_tag when declared units were added to it
+
+
+def check_ttm_share_basis(ttm_doc, decl):
+    """08 §5.3 (the --ttm read): None when ttm.json is on this share_classes declaration (decl: judgment.json's raw
+    object, None when undeclared), else why not — share_classes.ttm_on_declaration, the one rule the engine,
+    make_score R-6 and R7's base_alternatives apply."""
+    ok, why = _sc.ttm_on_declaration(ttm_doc, decl)
+    return None if ok else why
+
+
+def share_class_pass(hist, norm, decl, facts, ttm_ytd_end, split_conf, share_filed_used, overrides, no_ov_replay,
+                     latest_fy_end, today, interim_end=None):
+    """v5.7 (L8, R6; 08 §4.2-§4.4): add the declared class-equivalent units to the filed traded-class diluted count of
+    every declared history row, in place (after the v5.5 split pass, before any per-share figure is formed). Returns
+    (record, excluded period ends, refusal text | None). Refusals (exit 3 BAD_SHARE_CLASSES in main): a base-window
+    FY undeclared; a stray declared period that is no filed share-fact period end (or later than the latest one /
+    today) — except interim_end, a 20-F / 40-F filer's declared 6-K bridge's current-interim end after the latest FY
+    (no 6-K share fact is in companyfacts; review 2026-10-21 finding 1: the preliminary run of the bridge workflow had
+    refused every declaring filer's bridge period), recorded unused like any other stray period; a 0 entry dated
+    inside its period, a calc entry that does not reproduce (rule 5, A-21); an OVERRIDE row without share_basis
+    "traded_class" or with in_filed_count units (rule 10); a non-basic fallback row with in_filed_count units (rule
+    5b: no basic count can verify them — review 2026-10-21 finding 6) or without ack_reason (in make_score's
+    field-override replay, DCF_NO_OVERRIDES + --measure, such a row keeps its count and is listed in checks_relaxed
+    instead); units whose split basis cannot be read (rule 11); a filed diluted count that already carries the
+    exchange or does not carry in_filed_count units (exchange_test). An undeclared history row keeps its filed count
+    and leaves the per-share series (oe_per_share / fcf_per_share blanked; main() drops it from oe_ps_hist and the
+    share series). A zero period (every class 0) applies nothing."""
+    units = _sc.units_by_period(norm)
+    run_periods = [h["period_end"] for h in hist]
+    missing = [p for p in run_periods[-3:] if p not in units]
+    if missing:
+        return None, set(), (f"share_classes does not cover {', '.join('FY' + p[:4] + ' (' + p + ')' for p in missing)} "
+                             "of the base window (last 3 FY); declare every base-window period (a class gone for the "
+                             "whole period is declared 0 with its dated event)")
+    filed_ends = _sc.share_period_ends(facts)
+    latest_filed_end = max(filed_ends) if filed_ends else latest_fy_end
+    stray = [p for p in sorted(units) if p not in run_periods and p != ttm_ytd_end]
+    bad = [p for p in stray if p > today or (not (interim_end is not None and p == interim_end and p > latest_fy_end)
+                                             and (p not in filed_ends or p > latest_filed_end))]
+    if bad:
+        return None, set(), (f"share_classes declares {', '.join(bad)}, which is no period end of the filer's filed share "
+                             f"facts (a typo?) or lies after the latest one ({latest_filed_end})")
+    unused = sorted(set(stray) - set(bad))
+    accn_filed = _sc.filed_dates_by_accession(facts)
+    ev_date, ratio_used = (split_conf[0], split_conf[1]) if split_conf else (None, None)
+    basic = _sc.basic_by_period(facts, run_periods, prefer_filed=share_filed_used)
+    applied, zero, included_p, left_on_fallback, excluded, calcs = [], [], [], [], set(), []
+    for h in hist:
+        p, filed, tag = h["period_end"], h["shares_diluted"], (h["shares_tag"] or "")
+        if p not in units:
+            if filed:                     # §4.4: keeps its filed count, leaves the per-share series
+                excluded.add(p)
+                h["oe_per_share"] = h["fcf_per_share"] = None
+            continue
+        start, _ = _sc.period_bounds(facts, p)
+        errs = _sc.check_zero_entries(norm, p, start)
+        if errs:
+            return None, set(), "; ".join(errs)
+        calcs += _sc.calc_records(norm, p, start)
+        inc = _sc.included_units(norm, p)
+        if units[p] == 0 and inc == 0:   # a zero period: declared, nothing added (rule 5)
+            zero.append({"period_end": p, "period_start": start, "source": _sc.zero_source(norm, p)})
+            continue
+        if not filed:
+            continue                      # DATA_GAP:shares stands (units need a filed count to sit beside)
+        fy = h["fy_label"]
+        if tag == "OVERRIDE" and inc:
+            return None, set(), (f"FY{fy} is a shares_override (the traded-class count), so no declared units can be "
+                                 "already in it — remove in_filed_count for that period")
+        if tag == "OVERRIDE" and units[p] and (overrides.get("shares") or {}).get("share_basis") != "traded_class":
+            return None, set(), (f"shares_override fills FY{fy} at a declaring filer; state that it is the traded-class "
+                                 "count (shares_override.share_basis: \"traded_class\") — an all-class override "
+                                 "already counts the units")
+        nonbasic_fb = tag.startswith("FALLBACK:") and not any(tag == f"FALLBACK:{t}" for t in BASIC_SHARE_TAGS)
+        if nonbasic_fb and no_ov_replay:
+            # §8.3: in the field-override replay a period the final run's shares_override filled falls back to a dei /
+            # outstanding count that may already sum every class — no units on it (left on the fallback count)
+            left_on_fallback.append({"period_end": p, "tag": tag, "count": filed, "units_not_added": units[p]})
+            continue
+        if nonbasic_fb and inc:
+            # rule 5b: in_filed_count units are verified by the diluted - basic gap; a cover-page / outstanding count
+            # has no basic count beside it (and ack_reason attests it is the traded class only — the opposite claim)
+            return None, set(), (f"FY{fy}'s count is a cover-page / outstanding fallback ({tag}): no basic count can "
+                                 "verify units marked in_filed_count — remove in_filed_count (the units are then "
+                                 "added), or declare a traded-class shares_override")
+        if nonbasic_fb and not norm.get("ack_reason"):
+            return None, set(), (f"FY{fy}'s count is a fallback ({tag}) that may already count every class; confirm it "
+                                 "is the traded class only in share_classes.ack_reason (with the figure), or declare a "
+                                 "shares_override")
+        try:
+            f, ubasis = _sc.units_split_scale(norm, p, accn_filed, ev_date, ratio_used)
+            fi, _ = _sc.units_split_scale(norm, p, accn_filed, ev_date, ratio_used, included=True)
+        except ValueError as e:
+            return None, set(), str(e)
+        row_post = (ev_date is None or bool(h.get("shares_split_factor")) or tag == "OVERRIDE"
+                    or (share_filed_used.get(p) or "") >= ev_date)
+        if ev_date is not None and not row_post:
+            return None, set(), (f"FY{fy}: the traded count has no filing date to place it on either side of the "
+                                 f"{ev_date} split, so the units cannot be put on its basis — declare a post-split "
+                                 "shares_override with share_basis traded_class")
+        u, ui = units[p] * f, inc * fi
+        if tag == "OVERRIDE":
+            xrec = {"test": "skipped_override"}   # the attestation replaces the test (rule 10)
+        elif nonbasic_fb:
+            # a cover-page / outstanding count is no diluted count: ack_reason (checked above) attests it is the traded
+            # class only, which replaces the diluted - basic test exactly as the override attestation does
+            xrec = {"test": "skipped_fallback_ack"}
+        else:
+            b = basic.get(p)
+            b = b * (h.get("shares_split_factor") or 1.0) if b else None
+            why, xrec = _sc.exchange_test(filed, b, u, ui, norm)
+            if why:
+                return None, set(), f"{p}: {why}"
+        if ui:
+            included_p.append({"period_end": p, "included_units": ui, "filed_traded": filed, "exchange_test": xrec})
+        if u == 0:
+            continue                      # only in_filed_count units: verified, nothing applied
+        h["shares_diluted"] = filed + u
+        h["shares_tag"] = f"{tag}{SHARE_CLASSES_TAG}"
+        h["oe_per_share"] = h["oe_conservative"] / h["shares_diluted"] if h["oe_conservative"] is not None else None
+        h["fcf_per_share"] = h["fcf"] / h["shares_diluted"] if h["fcf"] is not None else None
+        applied.append({"period_end": p, "period_start": start, "filed_traded": filed, "filed_traded_tag": tag,
+                        "declared_units": units[p], "units_split_factor": f, "units_split_basis": ubasis,
+                        "units_equivalent": u, "total_units": h["shares_diluted"], "included_units": ui,
+                        "diluted_minus_basic": xrec.get("gap"), "exchange_test": xrec,
+                        "count_bases": _sc.count_bases(norm, p), "out_of_band": _sc.out_of_band(u, filed),
+                        "share_basis_attested": "traded_class" if tag == "OVERRIDE" else None,
+                        "classes": _sc.period_detail(norm, p)})
+    last = hist[-1] if hist else {}
+    la = next((a for a in applied if a["period_end"] == last.get("period_end")), None)
+    if la:
+        latest = {"period_end": la["period_end"], "filed_traded": la["filed_traded"],
+                  "units_equivalent": la["units_equivalent"], "total_units": la["total_units"],
+                  "declared_share_of_total": la["units_equivalent"] / la["total_units"]}
+    else:
+        latest = {"period_end": last.get("period_end"), "filed_traded": last.get("shares_diluted"),
+                  "units_equivalent": 0.0, "total_units": last.get("shares_diluted"), "declared_share_of_total": 0.0}
+    rec = {"declared": True, "basis": norm["basis"], "declaration_sha256": _sc.declaration_sha256(decl),
+           "traded_class": norm["traded_class"],
+           "classes": [{"name": c["name"], "holder": c["holder"], "exchange_ratio": c["exchange_ratio"]}
+                       for c in norm["classes"]],
+           "applied": applied, "ttm": None, "base_window_complete": True,
+           "zero_periods": zero, "included_periods": included_p, "calc_entries": calcs,
+           "checks_relaxed": ({"reason": "no_overrides_counterfactual", "periods_left_on_fallback": left_on_fallback}
+                              if no_ov_replay else None),
+           "counterfactual_notes": [], "unused_periods": unused, "ttm_ytd_end_seen": ttm_ytd_end,
+           "series_excluded_periods": sorted(excluded), "growth_inputs_shortened": {}, "growth_inputs_dropped": [],
+           "growth_inputs_dropped_values": {}, "latest": latest, "market_cap": None, "nci_check": None,
+           "cap_check": None, "ack_reason_present": bool(norm.get("ack_reason")), "counterfactual": False}
+    return rec, excluded, None
+
+
+def units_near(norm, date):
+    """(period_end, units) of the declared period nearest `date` (ties: the earlier) — the units a cover-page (dei)
+    count is topped up with when SHARE_BASIS_DIVERGENCE moves the market cap to it (08 §4.5). (None, 0.0) when none."""
+    units = _sc.units_by_period(norm)
+    try:
+        d = datetime.date.fromisoformat(str(date))
+    except ValueError:
+        return None, 0.0
+    best = None
+    for p in sorted(units):
+        try:
+            gap = abs((d - datetime.date.fromisoformat(p)).days)
+        except ValueError:
+            continue
+        if best is None or gap < best[0]:
+            best = (gap, p)
+    return (best[1], units[best[1]]) if best else (None, 0.0)
+
+
+def _fy_list(periods):
+    return ", ".join("FY" + str(p)[:4] for p in periods)
+
+
+def share_classes_flags(rec, up_c, market_cap, shares_filed_latest):
+    """v5.7 (L8, R6; 08 §4.7): SHARE_CLASSES_DECLARED (a declaration in force), SHARE_CLASSES_NCI_GAP (nci_check
+    disagrees), SHARE_CLASSES_CAP_GAP (cap_check gap) and UP_C_SUSPECT (the detector fired and nothing suppresses
+    it). Engine output (hashed); each is resolved by name in analysis.md."""
+    flags = []
+    if isinstance(rec, dict) and rec.get("declared"):
+        ap = rec.get("applied") or []
+        ratios = sorted({c["exchange_ratio"] for c in rec.get("classes") or []})
+        rtxt = ("exchange ratio " if len(ratios) == 1 else "exchange ratios ") + ", ".join(f"{r:g}" for r in ratios)
+        when = _fy_list([a["period_end"] for a in ap])
+        t = rec.get("ttm") or {}
+        if t.get("period_end") and (t.get("units_equivalent") or 0) > 0:
+            when = (when + " and " if when else "") + f"the TTM to {t['period_end']}"
+        lt = rec.get("latest") or {}
+        txt = (f"SHARE_CLASSES_DECLARED: {rec.get('basis')} — per-share figures divide by total economic units: the filed "
+               f"traded-class diluted count plus {len(rec.get('classes') or [])} declared class"
+               f"{'es' if len(rec.get('classes') or []) != 1 else ''} ({rtxt}) for {when or 'no period (no units added)'}")
+        if (lt.get("units_equivalent") or 0) > 0:
+            txt += (f"; latest FY {lt['filed_traded']:,.0f} + {lt['units_equivalent']:,.0f} = {lt['total_units']:,.0f} "
+                    f"units (declared {lt['declared_share_of_total'] * 100:.1f}% of the total")
+            nc = rec.get("nci_check") or {}
+            if rec.get("basis") == "up_c_exchangeable_units" and (nc.get("nci_share_of_equity") is not None
+                                                                  or nc.get("nci_share_of_net_income_3fy") is not None):
+                bits = []
+                if nc.get("nci_share_of_equity") is not None:
+                    bits.append(f"{nc['nci_share_of_equity'] * 100:.1f}% of equity")
+                if nc.get("nci_share_of_net_income_3fy") is not None:
+                    bits.append(f"{nc['nci_share_of_net_income_3fy'] * 100:.1f}% of consolidated net income over 3 FY")
+                txt += f"; noncontrolling interests hold {' and '.join(bits)}"
+            txt += ")"
+        cbs = {cb for a in ap for cb in a.get("count_bases") or []}
+        if "period_end" in cbs:
+            txt += ("; counts are period-end counts beside weighted-average traded counts — a year of unit issuance "
+                    "understates that year's per-unit OE")
+        elif cbs:
+            txt += "; counts are weighted-average counts"
+        if isinstance(market_cap, (int, float)) and (lt.get("units_equivalent") or 0) > 0:
+            txt += f"; market cap on total units (${market_cap / 1e9:,.3f}B)"
+        if rec.get("series_excluded_periods"):
+            sh = rec.get("growth_inputs_shortened") or {}
+            dr = rec.get("growth_inputs_dropped") or []
+            txt += (f"; history {_fy_list(rec['series_excluded_periods'])} excluded from per-share inputs (no "
+                    "declaration)" + (f": share CAGR from {sh['share_cagr']['declared_from']} instead of "
+                                      f"{sh['share_cagr']['mixed_basis_from']}" if sh.get("share_cagr") else "")
+                    + (f"; dropped {', '.join(dr)}" if dr else ""))
+        for z in rec.get("zero_periods") or []:
+            txt += f"; FY{z['period_end'][:4]} declared 0 ({z['source']}): on the filed count"
+        for i in rec.get("included_periods") or []:
+            g = (i.get("exchange_test") or {}).get("gap")
+            txt += (f"; FY{i['period_end'][:4]} units already in the filed diluted count (in_filed_count, diluted − basic "
+                    f"{g:,.0f}): nothing added" if isinstance(g, (int, float)) else
+                    f"; FY{i['period_end'][:4]} units already in the filed diluted count (in_filed_count): nothing added")
+        if rec.get("unused_periods"):
+            txt += f"; declared but unused: {', '.join(rec['unused_periods'])}"
+        cr = rec.get("checks_relaxed") or {}
+        for x in cr.get("periods_left_on_fallback") or []:
+            txt += f"; field-override replay: FY{x['period_end'][:4]} left on its fallback count, no units"
+        for a in ap:
+            if a.get("out_of_band"):
+                txt += (f"; FY{a['period_end'][:4]} units are {a['units_equivalent'] / a['filed_traded']:.1f}x the traded "
+                        f"count (out of band — share_classes.ack_reason "
+                        f"{'given' if rec.get('ack_reason_present') else 'required'})")
+        resc = [a for a in ap if a.get("units_split_basis") in ("pre_split_rescaled", "mixed")]
+        if resc:
+            txt += (f"; units rescaled for the split: {_fy_list([a['period_end'] for a in resc])}")
+        dv = rec.get("divergence_units") or {}
+        if isinstance(dv.get("units_period_gap_days"), int) and dv["units_period_gap_days"] > 0:
+            txt += (f"; cover-page count topped up with the units at {dv['units_period']}, "
+                    f"{dv['units_period_gap_days']} days before the cover-page count: exchanges in between are counted "
+                    "twice")
+        flags.append(txt)
+        nc = rec.get("nci_check") or {}
+        if nc.get("agrees") is False:
+            flags.append(f"SHARE_CLASSES_NCI_GAP: the declared units are {nc['declared_share_of_total'] * 100:.1f}% of total "
+                         f"units at the latest FY, but noncontrolling interests hold "
+                         + " and ".join(x for x in (
+                             f"{nc['nci_share_of_equity'] * 100:.1f}% of equity" if nc.get("nci_share_of_equity") is not None else None,
+                             f"{nc['nci_share_of_net_income_3fy'] * 100:.1f}% of consolidated net income (3 FY)"
+                             if nc.get("nci_share_of_net_income_3fy") is not None else None) if x)
+                         + f" — more than {nc['tolerance_pp']}pp from both; check the units against the equity note's "
+                         "ownership table, or state why in share_classes.nci_gap_reason (with the figure)")
+        cc = rec.get("cap_check") or {}
+        if cc.get("gap") is True:
+            flags.append(f"SHARE_CLASSES_CAP_GAP: the screener's market cap is {cc['cap_ratio']:.2f}x universe.csv's price × "
+                         f"the filed traded-class count, but the declared units add {cc['declared_uplift'] * 100:.0f}% to "
+                         "it — either the screener counts one class only (state it: share_classes.cap_gap_reason with the "
+                         "figure) or the filed count already includes the declared classes (remove them)")
+    if isinstance(up_c, dict) and up_c.get("suspect") and not up_c.get("suppressed_by") and not up_c.get("error"):
+        eq, ni = up_c.get("nci_share_of_equity"), up_c.get("nci_share_of_net_income_3fy")
+        bits = [x for x in (f"{eq * 100:.1f}% of equity" if eq is not None else None,
+                            f"{ni * 100:.1f}% of consolidated net income (3 FY)" if ni is not None else None) if x]
+        ev = []
+        if up_c.get("cover_by_class"):
+            ev.append("the cover page reports its share count by class (no undimensioned cover-page count)")
+        if isinstance(up_c.get("dei_to_diluted"), (int, float)) and up_c["dei_to_diluted"] >= _sc.UP_C_COUNT_GAP_MIN:
+            ev.append(f"the cover-page count is {up_c['dei_to_diluted']:.2f}x the filed diluted count")
+        if (isinstance(up_c.get("universe_cap_to_filed_cap"), (int, float))
+                and up_c["universe_cap_to_filed_cap"] >= _sc.UP_C_COUNT_GAP_MIN):
+            ev.append(f"the screener's cap is {up_c['universe_cap_to_filed_cap']:.2f}x its price × the filed count")
+        d2b = up_c.get("diluted_to_basic")
+        flags.append(f"UP_C_SUSPECT: noncontrolling interests hold {' and '.join(bits) or 'a large share'}, "
+                     + "; ".join(ev) + " and the filed diluted count does not carry an exchange of their units "
+                     f"(diluted ÷ basic {f'{d2b:.3f}' if isinstance(d2b, (int, float)) else 'n/a'}) — per-share figures "
+                     "may cover only the traded class (filed latest diluted "
+                     f"{f'{shares_filed_latest:,.0f}' if isinstance(shares_filed_latest, (int, float)) else 'n/a'}); "
+                     "declare share_classes from the equity note's ownership table, or state with a number why the "
+                     "minority is an ordinary subsidiary interest or the count already covers every class "
+                     "(judgment.json up_c_suspect_reason)")
+    return flags
+
 def _content_hash(payload):
     """sha256 over the canonical dcf_numbers payload (everything except the
     hash itself). make_score.py recomputes it and refuses on mismatch or
@@ -1462,6 +1796,10 @@ def _own_module(name):
     if here not in sys.path:
         sys.path.append(here)
     return __import__(name)
+
+
+# v5.7 (L8, R6): the declared share classes' rules (pure, stdlib only; dcf_engine, ttm.py and make_score share them)
+_sc = _own_module("share_classes")
 
 
 def fetch_instance(cik, filing):
@@ -2859,9 +3197,10 @@ def iprd_date_ok(s):
 
 # [Codex review r15 of PR #47] judgment.json base_override.basis_window: the window a plain base_override's pin was
 # built on, so the IPR&D window is the base's own — {"window": "ttm", "ytd_current_period": [start, end]} (ttm.json's
-# inputs.ocf.ytd_current_period: a pin built from ttm.json's TTM figures on another denominator, VNOM's per-unit
-# base) or {"window": "fy"} (a pin built from FY figures). make_score requires it on a 5.6 run whose base is an
-# agent-supplied pin that is not ttm.json's figure.
+# inputs.ocf.ytd_current_period: a pin built from ttm.json's TTM figures on another denominator) or {"window": "fy"}
+# (a pin built from FY figures). make_score requires it on a 5.6 run whose base is an agent-supplied pin that is not
+# ttm.json's figure. v5.7 (L8, R6): at a declaring filer the per-unit TTM base is --ttm itself (share_classes); a
+# total-unit pin also states share_basis "total_units".
 BASE_BASIS_WINDOWS = ("ttm", "fy")
 
 
@@ -3086,10 +3425,13 @@ def load_iprd_judgment_hash(ticker):
 TTM_INPUT_TOP_FIELDS = ("fy_end", "ytd_end", "inputs", "ttm_ocf", "ttm_capex", "ttm_sbc", "ttm_shares_diluted",
                         "ttm_oe_total", "ttm_oe_per_share", "capex_components", "split_adjustment")
 TTM_INPUT_OVERRIDE_FIELDS = ("field", "value", "kind", "legs_filled")   # overrides_used (never the source text)
-# v5.7 (L0 placeholder; the share-class lane L8 fills it): ttm.json keys that are input legs only when the file
-# carries them — hashed when present, never as a null when absent, so every ttm.json without them (all of today's)
-# keeps its recorded ttm_input_hash. Empty in L0.
-TTM_INPUT_OPTIONAL_FIELDS = ()
+# v5.7 (L8, R6; rebase A-6): ttm.json keys that are input legs only when the file carries them — hashed when present,
+# never as a null when absent, so every ttm.json without them (all of today's, HALO's committed one included) keeps its
+# recorded ttm_input_hash. ttm.py writes them on a share_classes declaration: the declaration block (its
+# declaration_sha256) and the filed-basis twins the share-class replay reads — a ttm.json rewritten on another
+# declaration after a --ttm run is then TTM_CHANGED, even with equal totals.
+TTM_INPUT_OPTIONAL_FIELDS = ("share_classes", "ttm_shares_diluted_filed", "ttm_oe_per_share_filed_basis",
+                             "ttm_oe_per_ordinary_share_filed_basis")
 
 
 def ttm_input_legs(tt):
@@ -5408,6 +5750,29 @@ def main():
         sic_m, sic_m_desc, sic_m_source = folder_sic(BASE, ticker)
     ads_ratio = load_ads_ratio(ticker)
     share_class = load_share_class_mismatch(ticker)
+    # v5.7 (L8, R6; 08 §4.1): judgment.json share_classes, read on every run like ads_ratio (no CLI flag: a forgotten
+    # flag would ship the filed-class tier). Off only in make_score's filed-basis replay: DCF_NO_SHARE_CLASSES WITH
+    # --measure (sc_counterfactual); DCF_SC_PIN_SCALE is that replay's pin factor (read only there).
+    sc_counterfactual = bool(MEASURE and os.environ.get(_sc.ENV_OFF))
+    sc_decl = None if sc_counterfactual else _sc.load(BASE, ticker)
+    sc_norm, sc_errs = _sc.validate(sc_decl) if sc_decl is not None else (None, [])
+    if sc_decl is not None and sc_errs:
+        print(f"BAD_SHARE_CLASSES for {ticker}: judgment.json share_classes is malformed — {'; '.join(sc_errs)}")
+        sys.exit(3)
+    if sc_norm and share_class and share_class.get("declared"):
+        print(f"BAD_SHARE_CLASSES for {ticker}: share_classes and share_class_mismatch are both declared — they are "
+              "exclusive (declare the units, or the mismatch, not both)")
+        sys.exit(3)
+    _sc_pin_scale = 1.0
+    if sc_counterfactual and os.environ.get(_sc.PIN_SCALE_ENV) is not None:
+        try:
+            _sc_pin_scale = float(os.environ[_sc.PIN_SCALE_ENV])
+        except ValueError:
+            _sc_pin_scale = float("nan")
+        if not (math.isfinite(_sc_pin_scale) and _sc_pin_scale > 0):
+            print(f"BAD_SHARE_CLASSES for {ticker}: {_sc.PIN_SCALE_ENV} must be a positive number "
+                  f"(got {os.environ[_sc.PIN_SCALE_ENV]!r})")
+            sys.exit(3)
     # Currency handling is v5.3 (see the FX conversion pass below and the gate):
     # filed units are tracked per period in series_units; the issuer's own USD
     # translations are used as filed, and a single foreign reporting currency
@@ -5935,7 +6300,33 @@ def main():
             ttm_doc = None
     except Exception:
         ttm_doc = None
-    # v5.7 share classes (L8)
+    # v5.7 share classes (L8, R6; 08 §4.2 with rebase A-1 / A-3 / A-7): the filed latest count is captured before the
+    # pass adds units (the share-scale guard, the cover-page divergence and the detector test the filed traded count);
+    # in make_score's filed-basis replay a declared ttm.json is read through its filed-basis view, so every reader
+    # below (the --ttm pin, the via-TTM test, the IPR&D window and denominators, ttm_inputs) sees the filed basis.
+    shares_filed_latest = (hist[-1] if hist else {}).get("shares_diluted")
+    ttm_ytd_end = ttm_doc.get("ytd_end") if isinstance(ttm_doc, dict) and isinstance(ttm_doc.get("ytd_end"), str) else None
+    if sc_counterfactual and isinstance(ttm_doc, dict) and isinstance(ttm_doc.get("share_classes"), dict):
+        _fb_oe, _fb_sh = ttm_doc.get("ttm_oe_per_share_filed_basis"), ttm_doc.get("ttm_shares_diluted_filed")
+        if all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (_fb_oe, _fb_sh)):
+            ttm_doc = dict(ttm_doc, ttm_oe_per_share=_fb_oe, ttm_shares_diluted=_fb_sh)
+        elif "--ttm" in sys.argv or "--base-oe-ps" in sys.argv:
+            print(f"BAD_TTM_SHARE_BASIS for {ticker}: ttm.json is on total units (share_classes) but its filed-basis "
+                  "field is missing (ttm_oe_per_share_filed_basis / ttm_shares_diluted_filed) — re-run ttm.py")
+            sys.exit(3)
+    sc_record, sc_excluded = None, set()
+    if sc_norm:
+        sc_record, sc_excluded, _why = share_class_pass(
+            hist, sc_norm, sc_decl, facts, ttm_ytd_end, split_conf, share_filed_used, overrides,
+            bool(MEASURE and os.environ.get("DCF_NO_OVERRIDES")), latest_fy_end, ET_TODAY.isoformat(),
+            interim_end=(_sc.load_interim_end(BASE, ticker) if annual_form in ("20-F", "40-F") else None))
+        if _why:
+            print(f"BAD_SHARE_CLASSES for {ticker}: {_why}")
+            sys.exit(3)
+    elif sc_counterfactual:
+        sc_record = {"declared": False, "counterfactual": True, "counterfactual_notes": [],
+                     "note": "share-class counterfactual (DCF_NO_SHARE_CLASSES with --measure): no declaration applied"}
+    _sc_latest_units = ((sc_record or {}).get("latest") or {}).get("units_equivalent") or 0.0
 
     latest = hist[-1] if hist else {}
     shares = latest.get("shares_diluted")
@@ -5965,8 +6356,10 @@ def main():
     # v3 used the single latest fiscal year as the DCF base — the most fragile choice in the
     # model: one cyclical peak/trough, one-off, or SBC/WC spike year became the foundation.
     # (statistics is imported at module level — v5.4)
+    # v5.7 (L8, 08 §4.4): a history year with no share_classes declaration (sc_excluded) leaves the per-share series
     oe_ps_hist = [(h["period_end"], h["oe_conservative"] / h["shares_diluted"])
-                  for h in hist if h.get("oe_conservative") is not None and h.get("shares_diluted")]
+                  for h in hist if h.get("oe_conservative") is not None and h.get("shares_diluted")
+                  and h["period_end"] not in sc_excluded]
     if ads_ratio:
         # Per-share figures become per-ADS (x ordinary shares per ADS) so they
         # are comparable to the ADS price. Ratio is a constant scale: growth
@@ -5986,11 +6379,30 @@ def main():
     elif "--ttm" in sys.argv:
         try:
             with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as _f:
-                base_override = float(json.load(_f)["ttm_oe_per_share"])
+                _tj = json.load(_f)
+            # v5.7 (L8, A-3): make_score's filed-basis replay pins the filed-basis TTM (the view built above)
+            base_override = float((ttm_doc if (sc_counterfactual and isinstance(_tj, dict)
+                                               and isinstance(_tj.get("share_classes"), dict)) else _tj)["ttm_oe_per_share"])
             pin_source = "ttm_json"
         except Exception as e:
             print(f"NO_TTM for {ticker}: --ttm given but {BASE}/{ticker}/ttm.json is missing or unreadable ({e}) — run ttm.py {ticker} first so the pin has provenance")
             sys.exit(3)
+        # v5.7 (L8, R6; 08 §5.3): a --ttm pin is per total unit exactly when ttm.py built it on this declaration
+        _why = None if sc_counterfactual else check_ttm_share_basis(_tj, sc_decl)
+        if _why:
+            print(f"BAD_TTM_SHARE_BASIS for {ticker}: {_why}")
+            sys.exit(3)
+        if sc_record and sc_record.get("declared") and isinstance(_tj.get("share_classes"), dict):
+            _tb = _tj["share_classes"]
+            sc_record["ttm"] = {"period_end": _tb.get("period_end"), "period_start": _tb.get("period_start"),
+                                "filed_traded": _tb.get("filed_traded"), "units_equivalent": _tb.get("units_equivalent"),
+                                "total_units": _tb.get("total_units"), "units_split_basis": _tb.get("units_split_basis"),
+                                "diluted_minus_basic": _tb.get("diluted_minus_basic"), "leg": _tb.get("leg"),
+                                "ttm_oe_per_share": _tj.get("ttm_oe_per_share"),
+                                "ttm_oe_per_share_filed_basis": _tj.get("ttm_oe_per_share_filed_basis"),
+                                # rule 6 on the TTM leg (review 2026-10-21 finding 5): make_score refuses it without
+                                # ack_reason, as for an FY row
+                                "out_of_band": _sc.out_of_band(_tb.get("units_equivalent"), _tb.get("filed_traded"))}
     elif "--base-judgment" in sys.argv:
         # Insurer payable-earnings base (2026-10-19): the pin is the declared
         # 5-yr average operating income to common / latest diluted shares, in
@@ -6040,11 +6452,26 @@ def main():
         yrs = (datetime.date.fromisoformat(oe_ps_hist[-1][0]) - datetime.date.fromisoformat(oe_ps_hist[-3][0])).days / 365.25
         if yrs > 0.5: oe_ps_cagr = (oe_ps_hist[-1][1] / oe_ps_hist[-3][1]) ** (1 / yrs) - 1
     share_cagr = None
-    sh = [(h["period_end"], h["shares_diluted"]) for h in hist if h.get("shares_diluted")]
+    sh = [(h["period_end"], h["shares_diluted"]) for h in hist if h.get("shares_diluted")
+          and h["period_end"] not in sc_excluded]   # v5.7 (L8, 08 §4.4): declared periods only on a declared run
     if len(sh) >= 2:
         (d0, s0), (d1, s1) = sh[-min(4, len(sh))], sh[-1]
         yrs = (datetime.date.fromisoformat(d1) - datetime.date.fromisoformat(d0)).days / 365.25
         if s0 and s0 > 0 and s1 > 0 and yrs > 0.5: share_cagr = (s1 / s0) ** (1 / yrs) - 1
+    if sc_excluded and sc_record:
+        # v5.7 (L8, 08 §4.4): what the excluded years did to the share-count CAGR (mirrors share_scale's records): its
+        # 4-count window shortened to the declared counts, or dropped when fewer than 2 remain (share adjustment 0)
+        _sh_all = [(h["period_end"], h["shares_diluted"]) for h in hist if h.get("shares_diluted")]
+        _w_all, _w_dec = _sh_all[-min(4, len(_sh_all)):], sh[-min(4, len(sh)):] if sh else []
+        if _w_all and _w_dec and _w_all[0][0] != _w_dec[0][0]:
+            sc_record["growth_inputs_shortened"]["share_cagr"] = {"mixed_basis_from": _w_all[0][0],
+                                                                 "declared_from": _w_dec[0][0]}
+        if len(sh) < 2 and len(_sh_all) >= 2:
+            (_a0, _s0), (_a1, _s1) = _w_all[0], _w_all[-1]
+            _y = (datetime.date.fromisoformat(_a1) - datetime.date.fromisoformat(_a0)).days / 365.25
+            sc_record["growth_inputs_dropped"].append("share_cagr")
+            sc_record["growth_inputs_dropped_values"]["share_cagr"] = (
+                (_s1 / _s0) ** (1 / _y) - 1 if (_s0 and _s0 > 0 and _s1 > 0 and _y > 0.5) else None)
     growth_components = {"rev_cagr_5y": rev_cagr5, "rev_cagr_3y": rev_cagr3,
                          "rev_yoy_latest": rev_yoy_latest, "oe_ps_cagr_2y": oe_ps_cagr}  # v5: was mislabelled oe_ps_cagr_3y — the span from t-3 to t-1 endpoints is 2 years
     share_adj = max(-0.05, min(0.05, -(share_cagr or 0.0)))  # buybacks lift OE/share growth; dilution drags it
@@ -6078,6 +6505,8 @@ def main():
     ads_r = ads_ratio["ratio"] if ads_ratio else None
     shares_for_cap = shares
     shares_source = "diluted_latest_split_adjusted" if (split_adjusted and latest.get("period_end") in split_adjusted) else "diluted_latest"
+    if _sc_latest_units:
+        shares_source += "+share_classes"   # v5.7 (L8): price × (traded-class count + declared units)
     share_scale = {"defect": False, "tests": {"a": False, "b": False, "cap": False}, "reasons": [], "dei_count": dei_count,
                    "dei_date": dei_date, "dei_ratio": None, "scale_factor": None, "factor_basis": None,
                    "rescued_by_pin": False, "skipped": "currency_gap" if currency_gap else None,
@@ -6100,11 +6529,20 @@ def main():
             _ucap = None
         if annual_form in ("20-F", "40-F") and not ads_r:
             _ucap = None
-        _chk = share_scale_check(oe_ps_norm, price, shares, dei_count,
+        # v5.7 (L8, A-1): the guard tests the FILED traded count (a units-of-filing test); undeclared runs: the same count
+        _chk = share_scale_check(oe_ps_norm, price, shares_filed_latest, dei_count,
                                  pin=base_override if pin_source else None, pin_source=pin_source,
                                  universe_cap=_ucap, ads_ratio=ads_r)
         share_scale.update(defect=_chk["defect"], tests=_chk["tests"], reasons=_chk["reasons"], dei_ratio=_chk["dei_ratio"],
                            pin_over_price=_chk["pin_over_price"], cap_ratio=_chk["cap_ratio"])
+        if _chk["defect"] and sc_record and sc_record.get("applied"):
+            # v5.7 (L8, R6; 08 §4.5, 08b decision 9): a mis-scaled traded count beside real unit counts would mix a count
+            # in thousands with units in every history row, the median and the CAGRs — refused, fixed first
+            print(f"BAD_SHARE_CLASSES for {ticker}: the filed traded count is mis-scaled (SHARE_SCALE: "
+                  f"{'; '.join(_chk['reasons'])}) and share_classes adds real unit counts to it — the per-share history, "
+                  "median and CAGRs would divide by a count in thousands plus units; fix the traded count first: "
+                  "shares_override with share_basis traded_class")
+            sys.exit(3)
         if _chk["defect"]:
             # [ADDITION — ruling E1] only a --base-oe-ps pin that judgment.json declares as a (non-payable)
             # base_override, and that is not itself mis-scaled, carries a share-scale defect.
@@ -6117,8 +6555,8 @@ def main():
             # on one scale (scale_factor_for_cap's window test); a power-of-ten pin ratio withheld by a scale break is
             # recorded in share_scale.pin_factor_withheld and named in SHARE_SCALE_SUSPECT
             _win = median_window_counts(oe_ps_hist, sh, latest.get("period_end"))
-            _factor, _basis = scale_factor_for_cap(shares, dei_count, oe_ps_norm, base_override if _rescue else None,
-                                                   window_counts=_win)
+            _factor, _basis = scale_factor_for_cap(shares_filed_latest, dei_count, oe_ps_norm,   # v5.7 (L8, A-1)
+                                                   base_override if _rescue else None, window_counts=_win)
             _pin_pow = pin_power_of_ten(oe_ps_norm, base_override) if _rescue else None
             # [ADDITION — verifier round 4, R4-CAP] the median year's count vs the latest count (the window's
             # endpoints), not every adjacent pair of the window
@@ -6194,15 +6632,33 @@ def main():
     # 10-K filer's dei count is in the traded share's units — at 20-F / 40-F /
     # ADS filers it may count CPOs, ADSs or one class (CX: 3x), so there it is
     # recorded with no switch and no flag.
-    if (not split_conf and not share_scale["defect"] and dei_count and shares and dei_date
-            and dei_date > latest_fy_end and not (DIVERGENCE_BAND[0] <= dei_count / shares <= DIVERGENCE_BAND[1])):
+    # v5.7 (L8, A-1 / 08 §4.5): tested on the FILED traded count (shares_filed_latest; the same count when undeclared);
+    # on a declared run a cover page that sums every class (within the band of the total) is recorded, not switched to,
+    # and a switched cap is topped up with the units of the declared period nearest the cover-page date
+    if (not split_conf and not share_scale["defect"] and dei_count and shares_filed_latest and dei_date
+            and dei_date > latest_fy_end
+            and not (DIVERGENCE_BAND[0] <= dei_count / shares_filed_latest <= DIVERGENCE_BAND[1])):
         _foreign = annual_form in ("20-F", "40-F") or bool(ads_r and ads_r != 1)
-        share_basis["divergence"] = {"dei_count": dei_count, "dei_date": dei_date, "shares_latest": shares,
-                                     "dei_to_shares": dei_count / shares, "applied": not _foreign,
-                                     "note": ("foreign-form / ADS filer: the cover-page count may be in other units — recorded, not applied"
-                                              if _foreign else "market cap uses the cover-page count")}
-        if not _foreign:
-            shares_for_cap, shares_source = dei_count, "dei_latest"
+        if _sc_latest_units and shares and DIVERGENCE_BAND[0] <= dei_count / shares <= DIVERGENCE_BAND[1]:
+            share_basis["divergence"] = {"dei_count": dei_count, "dei_date": dei_date, "shares_latest": shares_filed_latest,
+                                         "dei_to_shares": dei_count / shares_filed_latest, "applied": False,
+                                         "compared_to": "total_units", "total_units": shares,
+                                         "note": "cover page counts every class"}
+        else:
+            share_basis["divergence"] = {"dei_count": dei_count, "dei_date": dei_date, "shares_latest": shares_filed_latest,
+                                         "dei_to_shares": dei_count / shares_filed_latest, "applied": not _foreign,
+                                         "note": ("foreign-form / ADS filer: the cover-page count may be in other units — recorded, not applied"
+                                                  if _foreign else "market cap uses the cover-page count")}
+            if not _foreign:
+                shares_for_cap, shares_source = dei_count, "dei_latest"
+                if sc_norm:
+                    _up, _uu = units_near(sc_norm, dei_date)
+                    if _uu:
+                        _gap = (datetime.date.fromisoformat(dei_date) - datetime.date.fromisoformat(_up)).days
+                        shares_for_cap, shares_source = dei_count + _uu, "dei_latest+share_classes"
+                        share_basis["divergence"].update(units_period=_up, units_added=_uu, units_period_gap_days=_gap)
+                        sc_record["divergence_units"] = {"units_period": _up, "units_added": _uu,
+                                                         "units_period_gap_days": _gap}
     mktcap = market_cap_est(price, shares_for_cap, ads_r)
     if mktcap is None:
         # The 5.4 fallback (no price or no share count): universe.csv's cap, or none. The
@@ -6215,6 +6671,43 @@ def main():
     else:
         market_cap_basis = {"shares_used": shares_for_cap, "shares_source": shares_source, "ads_ratio": ads_r,
                             "formula": "price × shares ÷ ads_ratio" if ads_r else "price × shares"}
+        if shares_source.endswith("+share_classes"):
+            # v5.7 (L8, 08 §4.5): the cap on total economic units (the scope test is about the company's real size)
+            _dv = (sc_record or {}).get("divergence_units") if shares_source.startswith("dei_latest") else None
+            market_cap_basis.update(
+                formula="price × (traded-class shares + declared class-equivalent units)" + (" ÷ ads_ratio" if ads_r else ""),
+                traded_shares=(dei_count if _dv else shares_filed_latest),
+                declared_units=(_dv["units_added"] if _dv else _sc_latest_units),
+                units_period=(_dv["units_period"] if _dv else latest.get("period_end")))
+    if sc_record and sc_record.get("declared"):
+        sc_record["market_cap"] = {"filed_basis": market_cap_est(price, shares_filed_latest, ads_r),
+                                   "total_units": mktcap,
+                                   "units_period": market_cap_basis.get("units_period")}
+    # v5.7 (L8, R6; 08 §6, A-12): the UP_C_SUSPECT detector, on every run (fired or not), on the filed traded count and
+    # universe.csv's OWN price and cap (never the run price; never the share-scale block's nulled _ucap); a diagnostic
+    # never breaks a run — an exception is recorded, with no flag and no make_score obligation
+    try:
+        _urow = uni.get(ticker) or {}
+        try:
+            _uprice = float(_urow.get("price") or 0) or None
+        except (TypeError, ValueError):
+            _uprice = None
+        try:
+            _ucap_u = float(_urow.get("market_cap") or 0) or None
+        except (TypeError, ValueError):
+            _ucap_u = None
+        up_c = _sc.up_c_signals(facts, last3_periods, latest_fy_end, shares_filed_latest, dei_count, _uprice, _ucap_u,
+                                ads_r, annual_form)
+    except Exception as e:   # never a broken re-score over a diagnostic (08 §6.4)
+        up_c = {"error": repr(e)[:300], "suspect": False, "threshold": _sc.UP_C_NCI_SHARE_MIN, "suppressed_by": None}
+    up_c["suppressed_by"] = ("share_classes" if sc_norm else
+                             "share_class_mismatch" if (share_class and share_class.get("declared")) else None)
+    if sc_record and sc_record.get("declared"):
+        _lt = sc_record["latest"]
+        sc_record["nci_check"] = (_sc.nci_check(up_c, _lt["declared_share_of_total"])
+                                  if sc_norm["basis"] == "up_c_exchangeable_units" else
+                                  {"agrees": None, "note": "multi_class_common: no noncontrolling interest by construction"})
+        sc_record["cap_check"] = _sc.cap_check(up_c, _lt["total_units"], _lt["filed_traded"])
 
     # ---- v5.6 acquired IPR&D one-time value adjustment (Andrew, 2026-10-19) ----
     # Detection over the periods feeding the base (last 3 FY, plus the current
@@ -6231,9 +6724,10 @@ def main():
     # [Codex review r22 of PR #47] the hash of every judgment.json input this run reads for IPR&D (recorded beside
     # iprd_adjustment; make_score refuses a judgment.json whose inputs no longer hash to it)
     iprd_judgment = load_iprd_judgment_hash(ticker)
+    # v5.7 (L8, A-4): in make_score's share-class replay the pin is the declared value × DCF_SC_PIN_SCALE (1.0 otherwise)
     amort_decl = bool(pin_source == "base_oe_ps_arg" and isinstance(decl, dict) and decl.get("basis") == IPRD_AMORTIZED_BASIS
                       and isinstance(decl.get("value"), (int, float)) and not isinstance(decl.get("value"), bool)
-                      and pin_matches(decl["value"], base_override))
+                      and pin_matches(float(decl["value"]) * _sc_pin_scale, base_override))
     # [Codex review r25 of PR #47] a ttm.json figure of exactly 0 is a TTM base ([Codex review r26] matched by
     # figure_matches: an exact zero pin only)
     _ttm_v = (ttm_doc or {}).get("ttm_oe_per_share")
@@ -6258,8 +6752,9 @@ def main():
             print("BAD_IPRD_HOLD: DCF_IPRD_HOLD must be a JSON object {treatment, charge_per_share >= 0}")
             sys.exit(3)
     # [Codex review r15 of PR #47] a plain base_override pinned through --base-oe-ps declares the window its pin was
-    # built on (basis_window): "ttm" — a pin built from ttm.json's TTM figures on another denominator (VNOM's
-    # per-unit base), which the 0.1% ttm_oe_per_share match above cannot see — reads ttm.json's current-YTD leg like
+    # built on (basis_window): "ttm" — a pin built from ttm.json's TTM figures on another denominator (v5.7: at a
+    # declaring filer the per-unit TTM base is --ttm itself, share_classes), which the 0.1% ttm_oe_per_share match
+    # above cannot see — reads ttm.json's current-YTD leg like
     # a TTM base, so a charge in the YTD whose cash flows are in the base is counted (the share-denominator rule is
     # unchanged); "fy" keeps the FY window. A malformed one, or a ttm window whose period is not ttm.json's, is
     # refused outside make_score's override-impact replay (which holds the final run's charge).
@@ -6268,7 +6763,8 @@ def main():
     _dv = decl.get("value") if isinstance(decl, dict) else None
     if (_bw is not None and pin_source == "base_oe_ps_arg" and decl.get("basis") is None
             and isinstance(_dv, (int, float)) and not isinstance(_dv, bool) and base_override is not None
-            and figure_matches(_dv, base_override)):     # [Codex review r26 of PR #47] a plain value: no band
+            and figure_matches(float(_dv) * _sc_pin_scale, base_override)):   # [Codex r26] a plain value: no band;
+        # v5.7 (L8, A-4): × DCF_SC_PIN_SCALE in make_score's share-class replay of a declared total-unit pin
         _why = base_basis_window_problem(_bw)
         if _why is None and _bw["window"] == "ttm":
             _ocf = ((ttm_doc or {}).get("inputs") or {}).get("ocf") if isinstance((ttm_doc or {}).get("inputs"), dict) else None
@@ -6302,6 +6798,25 @@ def main():
         iprd_ttm_basis = False
     else:
         iprd_ttm_basis = _num_ttm
+    # v5.7 (L8, R6; 08 §5.3 — "the same table runs for an IPR&D ttm_json basis"): every --base-oe-ps pin that reads
+    # ttm.json as its TTM basis is per total unit exactly when ttm.py built ttm.json on this share_classes declaration
+    # (the same table as the --ttm read): an iprd_amortized pin on native base ttm_json (its native base, window and
+    # share count are ttm.json's), a plain pin declaring basis_window "ttm" (its current-YTD leg), and a pin equal to
+    # ttm.json's figure. [review 2026-10-21 finding 2] only the last was checked: an amortized pin on a filed-basis
+    # ttm.json left from before the declaration shipped per filed share beside a declaration that says per unit.
+    _ttm_basis_pin = None
+    if pin_source == "base_oe_ps_arg" and not sc_counterfactual:
+        if amort_decl and decl.get("native_base") == "ttm_json":
+            _ttm_basis_pin = f"the {IPRD_AMORTIZED_BASIS} pin's native base is ttm.json's TTM"
+        elif base_basis_window is not None and base_basis_window["window"] == "ttm":
+            _ttm_basis_pin = "the base_override pin declares basis_window \"ttm\" (it reads ttm.json's current-YTD leg)"
+        elif _num_ttm:
+            _ttm_basis_pin = "the --base-oe-ps pin is ttm.json's TTM figure"
+    if _ttm_basis_pin:
+        _why = check_ttm_share_basis(ttm_doc, sc_decl)
+        if _why:
+            print(f"BAD_TTM_SHARE_BASIS for {ticker}: {_ttm_basis_pin}, but {_why}")
+            sys.exit(3)
     _stale_fy = bool(latest.get("period_end")
                      and (ET_TODAY - datetime.date.fromisoformat(latest["period_end"])).days / 30.44 > 7)
     # [Codex review r23 of PR #47] what the run read from ttm.json, recorded as ttm_inputs; [Codex review r25] only
@@ -6350,7 +6865,9 @@ def main():
     # [Codex review r9 of PR #47] the filer's fiscal-year ends (a rolled-out period must be one), recorded for make_score
     _fy_ends = iprd_fy_period_ends(facts, last3_periods) if _deferred is not None else None
     _deferred_refused, _deferred_rolled_out = iprd_apply_deferred(iprd, _deferred, last3_periods, facts, _fy_ends)
-    if _deferred_refused and not iprd_counterfactual:
+    # v5.7 (L8, A-5): make_score's share-class replay records the refusal (iprd.deferred_payments_refused) instead —
+    # the deferred payments were checked on the final run, the run that ships
+    if _deferred_refused and not (iprd_counterfactual or sc_counterfactual):
         print(f"BAD_IPRD_DEFERRED_PAYMENT for {ticker}: judgment.json {IPRD_DEFERRED_KEY} "
               + "; ".join(f"{r['entry'].get('period') if isinstance(r['entry'], dict) else r['entry']!r}: {r['reason']}"
                           for r in _deferred_refused))
@@ -6372,7 +6889,9 @@ def main():
             if share_scale.get("scale_factor") and shares:
                 denom, denom_src = float(shares) * share_scale["scale_factor"], "diluted_latest_scale_corrected"
         elif shares and shares > 0:
-            denom, denom_src = float(shares), shares_source if shares_source.startswith("diluted_latest") else "diluted_latest"
+            # v5.7 (L8, A-9): the market-cap source's "+share_classes" suffix never reaches this string (iprd.shares_basis)
+            _ssrc = shares_source.split("+")[0]
+            denom, denom_src = float(shares), _ssrc if _ssrc.startswith("diluted_latest") else "diluted_latest"
         _r = _ratio_value(ads_ratio)
         ratio = _r if (_r is not None and _r > 0) else 1.0
         charge_ps = (total / denom * ratio) if (denom and total) else 0.0
@@ -6478,7 +6997,7 @@ def main():
                 elif (base_override > 0) != (expected > IPRD_AMORTIZED_ZERO_EPS):
                     why.append(f"the pin {base_override:.6g} and the value its figures reproduce ({expected:.6f}) sit on "
                                "opposite sides of zero (a base <= 0 is Tier F) — pin --base-oe-ps at the reproduced value")
-            if why and not iprd_counterfactual:
+            if why and not (iprd_counterfactual or sc_counterfactual):   # v5.7 (L8, A-5)
                 iprd_refusal = "; ".join(why)
             amortized = {"basis": IPRD_AMORTIZED_BASIS, "native_base": _nb, "native_base_per_share": _native,
                          "figures": _fy_amts, "mean_annual_charge": sum(_fy_amts) / len(_fy_amts),
@@ -6487,6 +7006,12 @@ def main():
             if iprd_counterfactual:
                 amortized["counterfactual_replay"] = ("not re-validated: the declaration was checked on the final run; "
                                                       "this replay holds the pin with the field overrides off")
+            elif sc_counterfactual:   # v5.7 (L8, 08 §4.6 item 4)
+                amortized["counterfactual_replay"] = (f"share-class counterfactual: pin = declared value × {_sc_pin_scale:.6g} "
+                                                      "on the filed basis; value / shares not re-validated (checked on "
+                                                      "the final run)")
+                if why:
+                    amortized["counterfactual_not_revalidated"] = list(why)
         unconverted = any(p.get("excluded") == IPRD_UNCONVERTED
                           and any(isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0
                                   for v in (p.get("expense_native"), p.get("cash_native"), _iprd_tag_unconverted_native(p)))
@@ -6522,6 +7047,13 @@ def main():
                      "unconfirmed_materiality": unconfirmed_mat})
         if amort_decl:
             iprd["materiality_base"] = "native_base_per_share"
+        _ttm_units = (((ttm_doc or {}).get("share_classes") or {}).get("units_equivalent")
+                      if isinstance(ttm_doc, dict) and isinstance(ttm_doc.get("share_classes"), dict) else None)
+        if denom and not sc_counterfactual and ((iprd_ttm_basis and isinstance(_ttm_units, (int, float)) and _ttm_units > 0)
+                                                or (not iprd_ttm_basis and _sc_latest_units)):
+            # v5.7 (L8, A-9): the charge per share is per economic unit (the denominator carries the declared units);
+            # absent otherwise, so an undeclared record is byte-identical
+            iprd["shares_basis"] = "total_units"
         if len(fy_with) >= 2:
             # [Codex review r28 of PR #47] recorded only where the figure decides the flag (2 or more FY charge years):
             # a run with one charge year (HALO's committed block) gains no key
@@ -6546,8 +7078,12 @@ def main():
         if held is not None:
             iprd["held_from_final_run"] = held
     else:
-        if amort_decl and not iprd_counterfactual:
+        if amort_decl and not (iprd_counterfactual or sc_counterfactual):   # v5.7 (L8, A-5)
             iprd_refusal = "this run finds no acquired-IPR&D expense in the last 3 FY / TTM window, so there is nothing to amortize"
+        elif amort_decl and sc_counterfactual and sc_record is not None:
+            sc_record["counterfactual_notes"].append("iprd_amortized: this replay's window finds no acquired-IPR&D "
+                                                     "expense (nothing to amortize); not refused in the share-class "
+                                                     "replay (checked on the final run)")
         if iprd_hold is not None and iprd_hold["treatment"] == IPRD_TREATMENT_ONE_TIME and iprd_hold["charge_per_share"] > 0:
             # the counterfactual's window holds no charge the final run deducted (another basis): hold it anyway
             iprd_charge_used = iprd_hold["charge_per_share"]
@@ -6622,6 +7158,10 @@ def main():
         # v5.7 (L4, R2b): the annual-facts-from-instance record, only when a candidate filing was checked (or the
         # submissions fetch failed) — inside the content-hashed payload of both the gapped and the scored run
         result["annual_from_instance"] = annual_instance
+    # v5.7 (L8, R6; A-11): the share-class record (null when nothing is declared) and the UP_C_SUSPECT detector's record,
+    # on every 5.7 run and every exit path, inside both content_hash stamps
+    result["share_classes"] = sc_record
+    result["up_c_check"] = up_c
 
     # ---- v3 scenario / moat inputs ----
     def arglist(flag, default):
@@ -6695,6 +7235,7 @@ def main():
     flags_pre.extend(_v55_flags(share_scale, share_basis, base_override, market_cap_basis, sbc_recon, periods,
                                 hist, facts, overrides, capex_assembly, raw_missing, last3_periods, override_checks))
     flags_pre.extend(iprd_flags(iprd))
+    flags_pre.extend(share_classes_flags(sc_record, up_c, mktcap, shares_filed_latest))   # v5.7 (L8, R6; A-10)
     # v5.7 (L1, R1): the misfit flag follows sector_model (set above). The universe-sector text is v5's, byte for byte
     # (v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged); a SIC-only misfit
     # (OSCR / MOH / CNC 6324 under Health Care) gets its own text; a sector the SIC sets aside gets no flag.

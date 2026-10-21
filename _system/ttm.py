@@ -141,11 +141,27 @@ key is hashed into ttm_input_hash. Exit 3 on any rule
 (the message lists every [IB-*] code), 4 on a fetch failure (EDGAR, the 6-K instance, an ECB rate). --interim-draft
 <accession> prints a draft declaration from that 6-K's XBRL (TODO markers for snippets, like-for-like and missing
 legs) and writes nothing. Without --interim / --interim-draft nothing changes.
+
+v5.7 (engine release 5.7.0 — Andrew's ruling R6, 2026-10-19/20: the real total share count for two-class companies
+like VNOM): when judgment.json declares share_classes, both builders put the TTM on total economic units before the
+write (apply_share_classes, policy-bearing: it changes the --ttm base): the current-YTD (interim) period must be
+declared — refused with exit 3 BAD_SHARE_CLASSES otherwise, nothing written — its 0 entries dated outside it, a
+shares_override YTD leg (and the declared interim share leg) attested share_basis "traded_class" (load_overrides
+passes share_basis through), the units split-scaled by their own filing (an OVERRIDE leg confirms the split for the
+units on their own, else the engine record's), and the exchange test run on the YTD basic count (the 6-K instance's
+on the interim path). Every per-share figure (ttm_oe_per_share, ttm_oe_per_ordinary_share, the override zero-fill)
+is multiplied by filed ÷ (filed + units), each original kept as <field>_filed_basis; ttm_shares_diluted is the
+total and ttm_shares_diluted_filed the traded-class leg; ttm.json share_classes carries the declaration_sha256 the
+engine and make_score check. VNOM: 187,553,000 + 171,536,228 units, $1,488,000,000 / 359,089,228 = $4.1438 (filed
+basis $7.9338). DCF_NO_SHARE_CLASSES with DCF_TTM_NO_WRITE builds the filed-basis TTM (never written). On the interim
+path IB-SH1 / the fy_diluted_count estimate compare with the engine record's FILED traded FY count (shares.fy_diluted;
+fy_total_units beside it); --interim-draft drafts the share leg with share_basis "traded_class" at a declaring filer.
 """
 import json, sys, os, csv, time, urllib.request, urllib.error, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import dcf_engine as _engine  # v5.5: shared capex / SBC / split rules (no I/O at import)
 import interim_bridge as _ib  # v5.7 (L4, R2a): the declared 6-K bridge's rules (pure, no I/O at import)
+import share_classes as _sc  # v5.7 (L8, R6): the declared share classes' rules (pure, no I/O at import)
 
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # v5.4: runs anywhere
@@ -456,6 +472,187 @@ def share_scale_warnings(facts, shares):
     return out
 
 
+# ---------------------------------------------------------------------------
+# v5.7 (lane L8 — Andrew's ruling R6, 2026-10-19/20): the TTM on total economic units (08 §5)
+# ---------------------------------------------------------------------------
+# every per-share figure either TTM builder writes; absent fields are skipped. Each is multiplied by
+# k = filed / (filed + units) — whatever ADS factor or zero-fill it already carries — and kept as <field>_filed_basis
+SC_PER_SHARE_FIELDS = (("ttm_oe_per_share",), ("ttm_oe_per_ordinary_share",),
+                       ("override_counterfactual", "base_oe_per_share_zero_fill"))
+
+
+def ytd_basic(facts, sh_leg):
+    """The basic weighted count (share_classes.BASIC_TAGS, us-gaap, unit shares) whose (start, end) equals the YTD share
+    leg's ytd_current_period, the latest filed winning; None when none is filed."""
+    per = (sh_leg or {}).get("ytd_current_period")
+    if not (isinstance(per, list) and len(per) == 2):
+        return None
+    best = None
+    for tax, tag in _sc.BASIC_TAGS:
+        if tax != "us-gaap":
+            continue
+        for e in (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units", {}).get("shares", []):
+            if (e.get("start"), e.get("end")) != (per[0], per[1]) or e.get("form", "") not in FORMS:
+                continue
+            v = _sc._num(e.get("val"))
+            if v is not None and (best is None or e.get("filed", "") > best[1]):
+                best = (v, e.get("filed", ""))
+        if best is not None:
+            return best[0]
+    return None
+
+
+def fy_diluted_fact(facts, fy_end):
+    """The FY diluted count (SHARE_TAGS, 330-380 days) ending fy_end — the leg extract_ttm would take — or None."""
+    for (s, e), (v, _t) in merged_facts(facts, SHARE_TAGS, "shares").items():
+        if e == fy_end and 330 <= days(s, e) <= 380:
+            return v
+    return None
+
+
+def _engine_record_split(base, ticker):
+    """dcf_numbers.json share_basis.split when its content hash verifies: the split dict, {} when the record confirmed
+    no split, None when there is no verified record."""
+    try:
+        with open(f"{base}/{ticker}/dcf_numbers.json", encoding="utf-8") as f:
+            n = json.load(f)
+    except Exception:
+        return None
+    if not isinstance(n, dict) or not n.get("content_hash") or _engine._content_hash(n) != n.get("content_hash"):
+        return None
+    s = (n.get("share_basis") or {}).get("split") if isinstance(n.get("share_basis"), dict) else None
+    return s if isinstance(s, dict) and s.get("event_date") and s.get("ratio_used") else {}
+
+
+def _units_split_event(out, facts, leg, engine_record, base, ticker):
+    """((event_date, ratio_used, source) | None, error | None): the split the declared YTD units are placed against —
+    never "no split" merely because split_adjustment did not run (rule 11). The interim leg: the engine record's
+    share_basis.split. The 10-Q leg: split_adjustment's confirmed event; on an OVERRIDE YTD leg (split_adjustment is
+    skipped: an override is post-split) the split is confirmed for the units on their own (confirm_split on the FY
+    diluted fact vs dei, as split_adjustment does), else the engine record's; neither, with a post-FY split fact
+    filed -> refused."""
+    if leg == "interim":
+        s = ((engine_record or {}).get("share_basis") or {}).get("split") if isinstance(engine_record, dict) else None
+        return ((s["event_date"], s["ratio_used"], "engine_record") if isinstance(s, dict) and s.get("event_date")
+                else None), None
+    sa = out.get("split_adjustment")
+    if sa:
+        return (sa["event_date"], sa["ratio_used"], "split_adjustment"), None
+    if out["inputs"]["shares_diluted"].get("ytd_current_tag") != "OVERRIDE":
+        return None, None
+    fy_end = out.get("fy_end")
+    dei = (facts.get("facts", {}).get("dei", {}).get("EntityCommonStockSharesOutstanding") or {}).get("units", {})
+    us = facts.get("facts", {}).get("us-gaap", {})
+    split_entries = [e for t in _engine.SPLIT_RATIO_TAGS for e in ((us.get(t) or {}).get("units", {}).get("pure") or [])]
+    events = _engine.split_events_post_fy(split_entries, fy_end)
+    fy_count = fy_diluted_fact(facts, fy_end)
+    if fy_count:
+        dei_count, dei_date = _engine.latest_dei_count([e for es in dei.values() for e in es], fy_end)
+        conf = _engine.confirm_split(events, fy_count, dei_count, dei_date)
+        return ((conf[0], conf[1], "confirmed_for_units") if conf else None), None
+    s = _engine_record_split(base, ticker)
+    if s is not None:
+        return ((s["event_date"], s["ratio_used"], "engine_record") if s else None), None
+    if events:
+        return None, ("a split ratio is filed after the FY end, the YTD share leg is a shares_override and no FY diluted "
+                      "fact or engine record can confirm the split — the declared units cannot be put on a split basis; "
+                      "run the engine first")
+    return None, None
+
+
+def apply_share_classes(out, ticker, base, facts, overrides, leg="ytd_10q", engine_record=None, interim=None):
+    """v5.7 (L8, R6; 08 §5.1 / §5.4): put the TTM on total economic units when judgment.json declares share_classes —
+    mutates `out` (the ttm.json dict) and returns an error string (refused: exit 3, nothing written) or None. leg
+    "ytd_10q" (the 10-Q path) or "interim" (the declared 6-K bridge: interim = {"period", "shares_leg", "basic"}).
+    The current-YTD (interim) period must be declared; its 0 entries dated outside it (rule 5); a shares_override
+    leg, and the declared interim share leg, attest share_basis "traded_class" (rule 10); the units are split-scaled
+    by their own filing (rule 11); the exchange test runs on the YTD basic count (the 6-K instance's on the interim
+    path; none -> diluted_gap_reason), never on an OVERRIDE leg. Then every per-share field (SC_PER_SHARE_FIELDS) x
+    k = filed / (filed + units), each original kept as <field>_filed_basis; ttm_shares_diluted = filed + units,
+    ttm_shares_diluted_filed = filed; out["share_classes"] records the declaration's sha256 (the engine's and
+    make_score's sync rule, share_classes.ttm_on_declaration) and the leg's out_of_band (rule 6: units over
+    UNITS_MAX_MULT x the traded count; make_score refuses it without ack_reason). A zero YTD period writes the block
+    with k = 1. Off only in make_score's replay: DCF_NO_SHARE_CLASSES with DCF_TTM_NO_WRITE (a filed-basis ttm.json
+    is never written)."""
+    decl = None if (os.environ.get(_sc.ENV_OFF) and os.environ.get("DCF_TTM_NO_WRITE")) else _sc.load(base, ticker)
+    if decl is None:
+        return None
+    norm, errs = _sc.validate(decl)
+    if errs:
+        return "share_classes is malformed — " + "; ".join(errs)
+    sh_leg = out["inputs"]["shares_diluted"]
+    end = out["ytd_end"]
+    start = (interim["period"][0] if leg == "interim" else (sh_leg.get("ytd_current_period") or [None])[0])
+    units = _sc.units_by_period(norm).get(end)
+    if units is None:
+        return (f"share_classes is declared but has no units for the current-YTD period ending {end} — declare that "
+                "period from the 10-Q's (6-K's) equity note (ownership table); 0 only for a class that did not exist "
+                "during the period (rule 5), or the TTM cannot be priced on total units")
+    errs = _sc.check_zero_entries(norm, end, start)
+    if errs:
+        return "; ".join(errs)
+    inc = _sc.included_units(norm, end)
+    filed = out["ttm_shares_diluted"]
+    is_override = leg == "ytd_10q" and sh_leg.get("ytd_current_tag") == "OVERRIDE"
+    if is_override and inc:
+        return ("the YTD share leg is a shares_override (the traded-class count): no declared units can be in it — "
+                "remove in_filed_count")
+    if is_override and units and (overrides.get("shares") or {}).get("share_basis") != "traded_class":
+        return ("shares_override fills the current-YTD share leg at a declaring filer; state that it is the traded-class "
+                "count (shares_override.share_basis: \"traded_class\") — an all-class override already counts the units")
+    if leg == "interim" and (units or inc) and ((interim or {}).get("shares_leg") or {}).get("share_basis") != "traded_class":
+        return ("interim_bridge.legs.shares_diluted.current_interim must state share_basis \"traded_class\" at a "
+                "declaring filer (the 6-K's traded-class weighted diluted count) — units are added on top of it")
+    ev, why = _units_split_event(out, facts, leg, engine_record, base, ticker)
+    if why:
+        return why
+    try:
+        accn_filed = _sc.filed_dates_by_accession(facts)
+        f, ubasis = _sc.units_split_scale(norm, end, accn_filed, ev and ev[0], ev and ev[1])
+        fi, _ = _sc.units_split_scale(norm, end, accn_filed, ev and ev[0], ev and ev[1], included=True)
+    except ValueError as e:
+        return str(e)
+    u, ui = units * f, inc * fi
+    if is_override:
+        xrec = {"test": "skipped_override"}
+    elif not u and not ui:
+        xrec = {"test": "zero_period"}
+    else:
+        if leg == "interim":
+            b = (interim or {}).get("basic")
+        else:
+            b = ytd_basic(facts, sh_leg)
+            if b and (out.get("split_adjustment") or {}).get("applied"):
+                b *= out["split_adjustment"]["ratio_used"]
+        why, xrec = _sc.exchange_test(filed, b, u, ui, norm)
+        if why:
+            return f"current YTD to {end}: {why}"
+    k = filed / (filed + u)
+    out["ttm_shares_diluted_filed"] = filed
+    out["ttm_shares_diluted"] = filed + u
+    rescaled = []
+    for path in SC_PER_SHARE_FIELDS:
+        parent = out
+        for key in path[:-1]:
+            parent = parent.get(key) if isinstance(parent, dict) else None
+        v = parent.get(path[-1]) if isinstance(parent, dict) else None
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            parent[path[-1] + "_filed_basis"] = v
+            parent[path[-1]] = v * k
+            rescaled.append(".".join(path))
+    out["share_classes"] = {"declaration_sha256": _sc.declaration_sha256(decl), "basis": norm["basis"], "leg": leg,
+                            "period_end": end, "period_start": start, "units_equivalent": u, "included_units": ui,
+                            "units_split_factor": f, "units_split_basis": ubasis, "split_source": ev and ev[2],
+                            "exchange_test": xrec, "diluted_minus_basic": xrec.get("gap"), "zero_period": u == 0,
+                            "classes": _sc.period_detail(norm, end), "filed_traded": filed, "total_units": filed + u,
+                            "rescale_factor": k, "rescaled_fields": rescaled,
+                            # rule 6 on the TTM leg (review 2026-10-21 finding 5): make_score refuses it without
+                            # share_classes.ack_reason, as for an engine FY row
+                            "out_of_band": _sc.out_of_band(u, filed)}
+    sh_leg["basis"] = (sh_leg.get("basis") or "") + " + declared share-class units (judgment.json share_classes)"
+    return None
+
+
 CORE_FX_TAGS = (("us-gaap", "NetCashProvidedByUsedInOperatingActivities"), ("us-gaap", "Revenues"),
                 ("us-gaap", "NetIncomeLoss"), ("ifrs-full", "CashFlowsFromUsedInOperatingActivities"),
                 ("ifrs-full", "Revenue"), ("ifrs-full", "ProfitLoss"))
@@ -521,6 +718,10 @@ def load_overrides(ticker):
                           "source": o["source"], "reason": o["reason"]}
             if isinstance(o.get("currency"), str) and o["currency"].strip():
                 out[field]["currency"] = o["currency"].strip().upper()  # v5.5: passed through, validated by make_score
+            # v5.7 (L8, R6 rule 10): the shares_override's attested basis — a YTD leg it fills takes declared units only
+            # when it is the traded-class count (apply_share_classes)
+            if field == "shares" and isinstance(o.get("share_basis"), str) and o["share_basis"].strip():
+                out[field]["share_basis"] = o["share_basis"].strip()
     return out
 
 
@@ -748,6 +949,11 @@ def main():
            # records it as ttm_inputs.ttm_engine_release and make_score refuses a 5.7 run whose basis read a
            # ttm.json without a 5.7 stamp
            "engine_release": _engine.ENGINE_RELEASE}
+    # v5.7 (L8, R6; 08 §5.1): a share_classes declaration puts the TTM on total economic units (refused: nothing written)
+    _sc_err = apply_share_classes(out, ticker, BASE, facts, overrides, leg="ytd_10q")
+    if _sc_err:
+        print(f"BAD_SHARE_CLASSES for {ticker}: {_sc_err}", file=sys.stderr)
+        sys.exit(3)
     if not os.environ.get("DCF_TTM_NO_WRITE"):
         # Machine-readable provenance for the base pin: the engine's --ttm
         # reads this file, and make_score.py refuses a pinned base that
@@ -1011,6 +1217,20 @@ def report_xbrl_values(parsed, periods, currency):
     return out, conflicts
 
 
+def interim_basic_count(parsed, period):
+    """v5.7 (L8, R6; 08 §5.4): the 6-K instance's undimensioned basic weighted count (share_classes.BASIC_TAGS: us-gaap
+    basic, ifrs-full WeightedAverageShares) for the current interim period — the share-class exchange test's basic
+    (companyfacts holds no 6-K count); None when the instance files none."""
+    import xbrl_instance as _xi
+    by_per, _ = _xi.interim_facts(parsed, [tuple(period)])
+    ents = {(e["taxonomy"], e["tag"]): e for e in by_per.get(tuple(period)) or [] if e.get("unit") == "shares"}
+    for t in _sc.BASIC_TAGS:
+        e = ents.get(t)
+        if e is not None and _sc._num(e.get("val")) is not None:
+            return float(e["val"])
+    return None
+
+
 def iprd_interim_scan(parsed, period):
     """[(tag, value)] of acquired-IPR&D figures (dcf_engine.IPRD_EXPENSE_TAGS, IPRD_CASH_TAG; any unit, > 0) the 6-K
     files for the current interim — a charge the engine's one-time deduction cannot read (it reads 10-K / 10-Q facts).
@@ -1123,6 +1343,15 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
     fy_local = {f: fy[f]["local"] for f in _ib.FLOW_FIELDS}
     fy_usd = {f: fy[f]["usd"] for f in _ib.FLOW_FIELDS}
     fy_shares = fy["shares_diluted"]["value"]
+    # v5.7 (L8, 08 §5.4): on a declared engine record the CSV's FY count is total units — IB-SH1, the warning band and
+    # the fy_diluted_count estimate compare with the FILED traded FY count (else the units would be added twice)
+    fy_total_units = fy_shares
+    _sc_fy = next((a for a in ((n.get("share_classes") or {}).get("applied") or [])
+                   if isinstance(a, dict) and a.get("period_end") == (fy_period[1] if fy_period else None)), None) \
+        if isinstance(n.get("share_classes"), dict) else None
+    if _sc_fy and isinstance(_sc_fy.get("filed_traded"), (int, float)):
+        fy_shares = float(_sc_fy["filed_traded"])
+    ib_basic = None   # v5.7 (L8): the 6-K instance's basic weighted count for the current interim (the exchange test)
     # every pure rule, in the one bundle make_score re-runs on the record (review fix 2026-10-21); the report's own
     # period is not known yet (an XBRL 6-K's comes from its instance below), the filing date is
     filed = (filing or {}).get("filed")
@@ -1153,6 +1382,7 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
                                                            filing.get("period"))
             problems += _ib.check_report_period(decl, period_end, period_src)
             vals, conflicts = report_xbrl_values(parsed, {k: per[k] for k in _ib.LEG_NAMES}, ccy)
+            ib_basic = interim_basic_count(parsed, per["current_interim"])   # v5.7 (L8)
             if conflicts:
                 warnings.append("the 6-K's XBRL instance carries conflicting values for "
                                 + ", ".join(f"{c['tag']} {c['start']}..{c['end']}" for c in conflicts) + " (not read)")
@@ -1248,7 +1478,8 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
         prov.append({"field": "shares_diluted", "leg": "current_interim", "accession": src.get("accession"),
                      "document": src.get("document"), "page": src.get("page"), "section": src.get("section"),
                      "snippet": sx.get("snippet"), "verified": srec["verified"], "xbrl_tag": srec.get("xbrl_tag")})
-    # v5.7 share classes (L8, 08 §15 item 3b): apply_share_classes(..., leg="interim", ...) goes here once L8 lands
+    # v5.7 share classes (L8, 08 §15 item 3b): apply_share_classes(..., leg="interim", ...) runs on the finished record
+    # below (it rescales the override zero-fill too)
     filled = {}
     if fy["capex_ppe"]["tag"] == "OVERRIDE":
         filled["capex"] = out["ttm_capex"]
@@ -1316,6 +1547,14 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
            # the 10-Q path's provenance keys, empty here (a declared bridge assembles no capex / SBC / split per leg)
            "capex_components": None, "sbc_reconciled_legs": {}, "split_adjustment": None,
            "capex_override_superseded_legs": {}, "sbc_reconciliation_withdrawn_legs": {}}
+    # v5.7 (L8, R6; 08 §5.4): a share_classes declaration rescales every per-share figure of the bridge (the per-ADS pin,
+    # the per-ordinary figure, the override zero-fill) to total economic units; refused like any other bridge rule
+    if fy_total_units != fy_shares:
+        rec["shares"]["fy_total_units"] = fy_total_units
+    _sc_err = apply_share_classes(rec, ticker, BASE, facts, {}, leg="interim", engine_record=n,
+                                  interim={"period": list(per["current_interim"]), "shares_leg": sx, "basic": ib_basic})
+    if _sc_err:
+        return None, [f"[IB-SC] {_sc_err}"], warnings
     return rec, [], warnings
 
 
@@ -1445,6 +1684,9 @@ def interim_draft_main(ticker, cik, accession):
                              if v else {"value": None, "kind": "TODO: filing (from the report) or estimate with a method "
                                         f"({', '.join(m for m, fs in _ib.ESTIMATE_METHODS.items() if f in fs) or 'none'})",
                                         "reason": "TODO: the 6-K's XBRL files no undimensioned fact for this leg"})
+    if _load_judgment(ticker).get("share_classes") is not None:
+        # v5.7 (L8, R6; 08 §5.4): at a declaring filer the share leg is the traded-class count (units go on top of it)
+        legs[_ib.SHARES_FIELD]["current_interim"]["share_basis"] = "traded_class"
     fx = {"basis": "ecb_period_end" if ccy != "USD" else "none",
           "source": "frankfurter.app ECB reference rates (dcf_engine.fx_rate), closest business day to each period end"}
     if ccy != "USD":

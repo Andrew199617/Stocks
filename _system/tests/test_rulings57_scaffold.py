@@ -380,8 +380,9 @@ def test_engine_stubs_are_the_identity():
     """The L4 / L8 stubs change nothing: load_annual_instance returns the same companyfacts object and no record
     (since L4: whenever EDGAR submissions list no annual report newer than companyfacts — the L4 tests,
     test_engine_57_instance / test_xbrl_instance, pin fetch_instance and the fallback itself);
-    TTM_INPUT_OPTIONAL_FIELDS is empty and ttm_input_legs / ttm_inputs_record equal the 5.6 definition on every
-    committed ttm.json (so every recorded ttm_input_hash still matches)."""
+    TTM_INPUT_OPTIONAL_FIELDS is empty — since L8, the share-class keys ttm.py writes on a declaration, which no
+    committed ttm.json carries — and ttm_input_legs / ttm_inputs_record equal the 5.6 definition on every committed
+    ttm.json (so every recorded ttm_input_hash still matches)."""
     facts = {"facts": {"us-gaap": {}}}
     saved = E.edgar_submissions
     E.edgar_submissions = lambda _cik: {"filings": {"recent": {}}}   # L4: no candidate, never the network
@@ -389,7 +390,9 @@ def test_engine_stubs_are_the_identity():
         assert E.load_annual_instance("TST", 1, facts) == (facts, None) and E.load_annual_instance("TST", 1, facts)[0] is facts
     finally:
         E.edgar_submissions = saved
-    assert E.TTM_INPUT_OPTIONAL_FIELDS == ()
+    # L8 (R6, rebase A-6): the optional legs are the declaration block and its filed-basis twins, hashed only when present
+    assert E.TTM_INPUT_OPTIONAL_FIELDS == ("share_classes", "ttm_shares_diluted_filed", "ttm_oe_per_share_filed_basis",
+                                           "ttm_oe_per_ordinary_share_filed_basis")
 
     def legs_56(tt):   # dcf_engine.ttm_input_legs at ba2bfc0, verbatim
         if not isinstance(tt, dict):
@@ -402,6 +405,7 @@ def test_engine_stubs_are_the_identity():
     for p in paths:
         with open(p, encoding="utf-8") as f:
             tt = json.load(f)
+        assert not any(k in tt for k in E.TTM_INPUT_OPTIONAL_FIELDS), p
         assert E.ttm_input_legs(tt) == legs_56(tt), p
         canon = json.dumps(legs_56(tt), sort_keys=True, separators=(",", ":"), default=str)
         assert E.ttm_inputs_record(tt)["ttm_input_hash"] == hashlib.sha256(canon.encode()).hexdigest(), p
@@ -410,11 +414,13 @@ def test_engine_stubs_are_the_identity():
 
 def test_ttm_read_is_hoisted_to_the_share_class_marker():
     """L8 rebase §4 item 11: main() reads ttm.json once (ttm_doc, the isinstance guard kept) right before the
-    latest-FY row, with the lane's marker between; the IPR&D block no longer re-reads it."""
+    latest-FY row, with the lane's marker between; the IPR&D block no longer re-reads it. (L8 filled the marker with
+    its share-class pass: the marker comment opens that block, which still precedes the latest-FY row.)"""
     src = open(os.path.join(SYS, "dcf_engine.py"), encoding="utf-8").read()
     assert src.count('ttm_doc = json.load(_f)') == 1, "ttm.json must be read into ttm_doc exactly once"
     i_read = src.index('ttm_doc = json.load(_f)')
-    i_marker = src.index("    # v5.7 share classes (L8)\n\n    latest = hist[-1] if hist else {}")
+    i_marker = src.index("    # v5.7 share classes (L8")
+    assert i_marker < src.index("    latest = hist[-1] if hist else {}", i_marker)
     i_iprd = src.index("    # ---- v5.6 acquired IPR&D one-time value adjustment (Andrew, 2026-10-19) ----")
     assert i_read < i_marker < i_iprd, (i_read, i_marker, i_iprd)
     assert "if not isinstance(ttm_doc, dict):" in src[i_read:i_marker]
