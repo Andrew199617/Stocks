@@ -48,6 +48,15 @@ used as STOCKS_BASE for the file-level (reprice_folder) cases.
    record); otherwise market_cap_basis.shares_used (a scale- or
    split-corrected count, or the dei_latest cover-page count) is the count
    used, and the module docstring says so (FIX_DECISIONS_R1 M6).
+11. Sweep staleness guard (2026-10-20): sweep_price_staleness measures each
+   scored name's last close on file against the session set in the names'
+   own daily_1y series — a name more than one session behind the newest
+   close is reported (a refresh that never ran leaves every name behind
+   together; HALO sat two sessions behind for two days, silent, in
+   October 2026); one session behind is the normal posting lag and is
+   not flagged, names with no readable prices.json are skipped, never
+   fatal, and a session no cache happens to END on still counts (the
+   gap case: caches ending only on Fri / Tue are two sessions apart).
 prices.json is a gitignored cache (a fresh clone has none), so every case
 builds its own synthetic prices.json; only the committed APP / EXPE judgment
 records are read from the repo.
@@ -832,6 +841,76 @@ def test_live_market_cap_share_count_rule_m6():
     assert ("for a run whose market_cap_basis.shares_source is diluted_latest, or with no basis record; otherwise the "
             "count is market_cap_basis.shares_used") in doc, doc[-900:]
     assert "a non-ADS run is bit-identical)" not in " ".join(R.live_market_cap.__doc__.split())
+
+
+def test_sweep_price_staleness_flags_more_than_one_session_behind():
+    tmp = tempfile.mkdtemp(prefix="reprice_test_")
+    old_base = R.BASE
+    try:
+        R.BASE = tmp
+
+        def folder(name, last_date, scored=True, daily=None):
+            d = os.path.join(tmp, name); os.makedirs(d)
+            _write(os.path.join(d, "dcf_numbers.json"), {})
+            if scored:
+                _write(os.path.join(d, "score.json"), {})
+            if last_date == "garbage":
+                _write(os.path.join(d, "prices.json"), "{not json")
+            elif last_date is not None:
+                _write(os.path.join(d, "prices.json"),
+                       {"ticker": name, "as_of": last_date, "stats": {"last": 10.0, "last_date": last_date},
+                        "daily_1y": [[x, 10.0] for x in daily or []]})
+
+        folder("AAA", "2026-10-20")   # the sweep's newest close
+        folder("BBB", "2026-10-19")   # one session behind: the normal posting lag, not flagged
+        folder("CCC", "2026-10-16")   # two sessions behind: the refresh missed it (the HALO case)
+        folder("DDD", None)           # no prices.json at all: skipped, never fatal
+        folder("EEE", "garbage")      # unreadable prices.json: skipped, never fatal
+        folder("FFF", "2026-10-15", scored=False)  # an unscored engine leftover: not the refresh's
+        # population (prices.py --all maintains scored folders), never reported, never in the baseline
+        stale, latest = R.sweep_price_staleness()
+        assert latest == "2026-10-20", latest
+        assert stale == {"CCC": {"last_date": "2026-10-16", "sessions_behind": 2}}, stale
+        lines = R.staleness_warning_lines(stale, latest)
+        assert len(lines) == 2 and "WARNING" in lines[0] and "2026-10-20" in lines[0], lines
+        assert "CCC" in lines[1] and "2026-10-16" in lines[1] and "2 sessions behind" in lines[1], lines
+        assert R.staleness_warning_lines({}, "2026-10-20") == []
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
+    empty = tempfile.mkdtemp(prefix="reprice_test_")
+    try:
+        R.BASE = empty
+        assert R.sweep_price_staleness() == ({}, None)
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(empty, ignore_errors=True)
+
+
+def test_sweep_price_staleness_counts_real_sessions_not_cache_dates():
+    """No cache ends on the intervening session (2026-10-19): counting distinct
+    terminal dates would call the 2026-10-16 name one session behind and stay
+    silent, but its daily series shows two sessions (10-19, 10-20) after it.
+    The session set comes from the names' own daily_1y series (Codex, PR #83)."""
+    tmp = tempfile.mkdtemp(prefix="reprice_test_")
+    old_base = R.BASE
+    try:
+        R.BASE = tmp
+        for name, last_date, daily in (
+                ("AAA", "2026-10-20", ["2026-10-15", "2026-10-16", "2026-10-19", "2026-10-20"]),
+                ("CCC", "2026-10-16", ["2026-10-15", "2026-10-16"])):
+            d = os.path.join(tmp, name); os.makedirs(d)
+            _write(os.path.join(d, "dcf_numbers.json"), {})
+            _write(os.path.join(d, "score.json"), {})
+            _write(os.path.join(d, "prices.json"),
+                   {"ticker": name, "as_of": last_date, "stats": {"last": 10.0, "last_date": last_date},
+                    "daily_1y": [[x, 10.0] for x in daily]})
+        stale, latest = R.sweep_price_staleness()
+        assert latest == "2026-10-20", latest
+        assert stale == {"CCC": {"last_date": "2026-10-16", "sessions_behind": 2}}, stale
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":

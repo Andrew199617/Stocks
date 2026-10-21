@@ -67,6 +67,13 @@ file" and "folder no longer qualifies" cases run on the copies.
     reads with JavaScript off, CSS-radio tier filter, JS-on cleanup script),
     SITE_DATA stays inlined, and prerender=False keeps the old JS-only file.
     Skipped when Node or the shell is unavailable.
+19. Prices staleness guard (2026-10-20): a scored name whose last close on
+    file is more than one session behind the newest close the sweep holds
+    is flagged on its row (row.prices_stale {last_date, sessions_behind,
+    latest_close}) and counted / named in meta — one session behind is
+    the normal posting lag. The flag is re-derived on every build, like
+    row.watchlist. (The refresh that never ran left HALO two sessions
+    behind for two days in October 2026, silent.)
 
 The Nasdaq caches (prices.json, live.json, street.json) are gitignored, so
 a fresh clone has none: TempBase removes whatever the copies carried and
@@ -108,7 +115,7 @@ ROW_KEYS = {"ticker": str, "name": str, "sector": (str, type(None)), "fit": str,
             "engine_release": (str, type(None)), "flags": list, "overrides": list, "override_unblocks_tier": bool,
             "second_pass": (dict, type(None)), "alert_eligible": bool, "dividend_yield": (float, type(None)),
             "shareholder_yield": (float, type(None)), "has": dict, "watchlist": bool,
-            "live_withheld": bool, "split_restated": (dict, type(None))}
+            "live_withheld": bool, "split_restated": (dict, type(None)), "prices_stale": (dict, type(None))}
 HAS_KEYS = ("prices", "fundamentals", "dividends", "segments", "live", "analysis", "second_pass", "statements", "profile")
 RECORD_KEYS = ("ticker", "name", "sector", "folder", "built_at", "built_from_mtime", "row", "score", "numbers", "forecast", "live", "profile",
                "history", "fundamentals", "prices", "segments", "ttm", "judgment", "registry", "analysis_md", "second_pass_md", "files",
@@ -1296,7 +1303,7 @@ def test_live_older_than_the_score_is_withheld():
         assert b["live"] is None and b["live_withheld"]["reason"] == "live_older_than_score"
         w = b["live_withheld"]
         assert (w["price_date"], w["scored_date"], w["method"], w["price"]) == ("2026-10-13", "2026-10-14", "no_close_since_scoring", live["price"])
-        assert "older than the scored analysis" in w["note"]
+        assert "predates the scored analysis" in w["note"] and "latest available" in w["note"] and "pending" not in w["note"].lower(), w["note"]
         assert row["live_withheld"] is True and row["has"]["live"] is False
         for k in ("irr_live", "price_live", "tier_live", "upside15_live", "market_cap_b_live", "price_date"):
             assert row[k] is None, k
@@ -1329,9 +1336,66 @@ def test_live_older_than_the_score_is_withheld():
                "live": {"price": 50.0, "irr_weighted": 0.2, "price_date": "2026-10-17", "scored_date": "2026-10-01"}}
     lv, w = B.live_shown(old_run)
     assert lv is None and w["reason"] == "live_from_earlier_run" and w["scored_date"] == "2026-10-16", w
-    assert "2026-10-01 run" in w["note"] and "reprice.py" in w["note"], w["note"]
+    assert "2026-10-01 run" in w["note"] and "latest available" in w["note"] and "pending" not in w["note"].lower(), w["note"]
     old_run["live"]["scored_date"] = "2026-10-16"
     assert B.live_shown(old_run) == (old_run["live"], None), "same run, close after scoring: shown"
+
+
+# ---------------- 19. prices staleness guard
+def test_prices_staleness_guard_flags_rows_and_meta():
+    with TempBase() as tb:
+        # controlled closes: APP two sessions behind the sweep's newest close,
+        # KR one behind (the normal posting lag), AEE / ZS at the newest
+        dates = {"APP": "2026-10-12", "KR": "2026-10-13", "AEE": "2026-10-14", "ZS": "2026-10-14"}
+        for t, d in dates.items():
+            p = B.jload(os.path.join(tb.dir, t, "prices.json"))
+            p["as_of"] = d
+            p["stats"]["last_date"] = d
+            tb.write_json(t, "prices.json", obj=p)
+        res = tb.build()
+        rows = {r["ticker"]: r for r in res["rows"]}
+        assert rows["APP"]["prices_stale"] == {"last_date": "2026-10-12", "sessions_behind": 2, "latest_close": "2026-10-14"}, rows["APP"].get("prices_stale")
+        assert rows["KR"]["prices_stale"] is None, "one session behind is the normal posting lag, not staleness"
+        assert rows["AEE"]["prices_stale"] is None and rows["ZS"]["prices_stale"] is None
+        meta = tb.read("meta.json")
+        assert meta["counts"]["prices_stale"] == 1, meta["counts"]
+        assert any("more than one session behind" in x and "APP" in x for x in meta["notes"]), meta["notes"]
+        # re-derived on every build (like row.watchlist): a second run that skips
+        # every record unchanged keeps the flag and the count
+        res2 = tb.build()
+        rows2 = {r["ticker"]: r for r in res2["rows"]}
+        assert rows2["APP"]["prices_stale"] == rows["APP"]["prices_stale"] and res2["meta"]["counts"]["prices_stale"] == 1
+    # a stale company whose record FAILS to build has no row: it is not a
+    # candidate, so it cannot enter the count / note or shift the baseline
+    with TempBase() as tb:
+        dates = {"APP": "2026-10-12", "KR": "2026-10-13", "AEE": "2026-10-14", "ZS": "2026-10-14"}
+        for t, d in dates.items():
+            p = B.jload(os.path.join(tb.dir, t, "prices.json"))
+            p["as_of"] = d
+            p["stats"]["last_date"] = d
+            tb.write_json(t, "prices.json", obj=p)
+        real = B.build_record
+        B.build_record = lambda c, *a, **kw: (_ for _ in ()).throw(RuntimeError("x")) if c.get("ticker") == "APP" else real(c, *a, **kw)
+        try:
+            res = tb.build()
+        finally:
+            B.build_record = real
+        assert res["failed"] == ["APP"] and not any(r["ticker"] == "APP" for r in res["rows"])
+        assert res["meta"]["counts"]["prices_stale"] == 0, res["meta"]["counts"]
+        assert not any("more than one session behind" in x for x in res["meta"]["notes"])
+        assert all(r["prices_stale"] is None for r in res["rows"])
+    # sessions are counted from the names' daily_1y series, not from the set of
+    # terminal dates: no cache here ends on 2026-10-12 / 2026-10-13, but the
+    # series contain them, so a name last closed 2026-10-09 is three behind
+    with TempBase() as tb:
+        p = B.jload(os.path.join(tb.dir, "APP", "prices.json"))
+        p["as_of"] = "2026-10-09"
+        p["stats"]["last_date"] = "2026-10-09"
+        tb.write_json("APP", "prices.json", obj=p)
+        res = tb.build()
+        rows = {r["ticker"]: r for r in res["rows"]}
+        assert rows["APP"]["prices_stale"] == {"last_date": "2026-10-09", "sessions_behind": 3, "latest_close": "2026-10-14"}, rows["APP"].get("prices_stale")
+        assert res["meta"]["counts"]["prices_stale"] == 1
 
 
 # ---------------- 17. street_fetched_at without street.json
