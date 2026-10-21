@@ -84,6 +84,17 @@ A close that passes that gate but is older than STALE_DAYS against today
 price — but flagged `stale_price` with `price_age_days`, named in the --all
 summary and kept out of its tier-change list.
 
+Sweep staleness guard (2026-10-20): the check above compares a close to
+TODAY; sweep_price_staleness compares it to the sweep itself — every scored
+name whose last close on file is more than one session behind the newest
+close on file across the sweep (the session set is the sweep's own close
+dates; one session behind is the normal posting lag). --all prints a
+WARNING block naming each such name: a refresh that silently never runs —
+October 2026, when the bulk refresh was not executing and HALO sat two
+sessions behind for two days, visible only as a withheld live block — can
+no longer pass unnoticed. build_site.py flags the same names in the site
+data (row.prices_stale, meta.counts.prices_stale).
+
 live.json: price, price_date, the scored price/date and the % move, the live
 weighted IRR + tier, the five scenario IRRs / tiers (with the solver's capped /
 at-floor flags), the band (irr_bear / irr_bull, tier_bear / tier_bull), the
@@ -724,6 +735,54 @@ def company_folders():
     return out
 
 
+def sweep_price_staleness():
+    """({ticker: {"last_date": d, "sessions_behind": n}}, latest_close | None):
+    the scored names whose last close on file (prices.json stats.last_date,
+    else as_of) is more than one trading session behind the newest close the
+    sweep holds. The session set is the distinct close dates across the
+    sweep's own prices.json files, so no market calendar is needed, and a
+    name one session behind — the normal lag while Nasdaq posts the newest
+    session — is not flagged. A name the refresh missed falls further behind
+    every day; in October 2026 the bulk refresh silently never ran and HALO
+    sat two sessions behind for two days, visible only as a withheld live
+    block. Missing / unreadable prices.json files are skipped, never fatal:
+    a guard must not break the run it guards."""
+    last = {}
+    for t in company_folders():
+        try:
+            p = _load(os.path.join(BASE, t, "prices.json"))
+        except Skip:
+            continue
+        if not isinstance(p, dict):
+            continue
+        stats = p.get("stats") if isinstance(p.get("stats"), dict) else {}
+        d = _date(stats.get("last_date")) or _date(p.get("as_of"))
+        if d:
+            last[t] = d
+    sessions = sorted(set(last.values()))
+    if not sessions:
+        return {}, None
+    stale = {}
+    for t, d in last.items():
+        behind = sum(1 for s in sessions if s > d)
+        if behind > 1:
+            stale[t] = {"last_date": d.isoformat(), "sessions_behind": behind}
+    return stale, sessions[-1].isoformat()
+
+
+def staleness_warning_lines(stale, latest):
+    """The loud surface for sweep_price_staleness: a WARNING header plus one
+    line per stale name. Printed by --all after its summary (and for a
+    single-ticker run whose name is stale), never gated on --quiet."""
+    if not stale:
+        return []
+    lines = [f"WARNING: {len(stale)} scored name(s) hold a last close more than one session behind the sweep's latest close ({latest}) — prices.py has not refreshed them:"]
+    for t in sorted(stale):
+        v = stale[t]
+        lines.append(f"  STALE-PRICES {t}: last close {v['last_date']}, {v['sessions_behind']} sessions behind — run prices.py {t}")
+    return lines
+
+
 def main():
     argv = sys.argv[1:]
     quiet = "--quiet" in argv
@@ -757,6 +816,9 @@ def main():
                  f"{', '.join(foreign_score)}" if foreign_score else ""))
         for t, why in skipped:
             print(f"  skipped {t}: {why}")
+        stale_sweep, latest_close = sweep_price_staleness()
+        for line in staleness_warning_lines(stale_sweep, latest_close):
+            print(line)
         sys.exit(0)
     if not args:
         print(__doc__); sys.exit(2)
@@ -767,6 +829,10 @@ def main():
         print(f"reprice.py: {ticker} skipped — {e} (no live.json; any stale one removed)")
         sys.exit(3)
     print(one_line(live))
+    stale_sweep, latest_close = sweep_price_staleness()
+    if ticker in stale_sweep:
+        for line in staleness_warning_lines({ticker: stale_sweep[ticker]}, latest_close):
+            print(line)
     if not quiet:
         print(json.dumps(live, indent=1))
 

@@ -840,6 +840,7 @@ def index_row(c, registry, paths, hp, watchlist=()):
         "irr": irr, "irr_live": None, "irr_bear": irr_bear, "irr_bull": irr_bull,
         "irr_at_floor": irr_at_floor_flag(c, paths), "irr_capped": bool(s.get("irr_capped") or diag.get("irr_capped")),
         "live_withheld": False, "split_restated": None,  # set by build_record (live_shown / restate_split)
+        "prices_stale": None,  # set on the index row in build() step 5 (the sweep session set is only known there)
         "f_subtype": s.get("f_subtype") or n.get("f_subtype"),
         "price": price, "price_live": None, "price_date": None, "ret_1y_pct": num(st.get("ret_1y_pct")),
         "iv15": num(s.get("iv_at_15")) if s.get("iv_at_15") is not None else num(n.get("iv_at_15")),
@@ -1428,6 +1429,28 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     #    current list (it is not part of the record's skip check).
     for r in rows.values():
         r["watchlist"] = r.get("ticker") in wl
+    # Prices staleness guard (2026-10-20, with reprice.sweep_price_staleness):
+    # a scored name whose last close on file is more than one session behind
+    # the newest close the sweep holds was missed by the refresh — flag it on
+    # the row and name it in meta instead of letting it sit silently behind a
+    # withheld live block (HALO sat two sessions behind for two days in
+    # October 2026). The session set is the sweep's own close dates, so no
+    # market calendar is needed; one session behind is the normal posting
+    # lag. Re-derived on every row on every build, like the watchlist flag.
+    last_close = {}
+    for t, c in current.items():
+        ld = _date10(_d(_d(jload(os.path.join(c["path"], "prices.json"))).get("stats")).get("last_date"))
+        if ld:
+            last_close[t] = ld
+    sessions = sorted(set(last_close.values()))
+    stale_prices = {}
+    if sessions:
+        for t, ld in last_close.items():
+            behind = sum(1 for s in sessions if s > ld)
+            if behind > 1:
+                stale_prices[t] = {"last_date": ld, "sessions_behind": behind, "latest_close": sessions[-1]}
+    for r in rows.values():
+        r["prices_stale"] = stale_prices.get(r.get("ticker") or "")
     index = sorted(rows.values(), key=rank_key)
     tiers = {k: 0 for k in "SABCDF"}
     for r in index:
@@ -1444,6 +1467,9 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
              f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
     if withheld:
         notes.append(f"{len(withheld)} live.json close(s) older than the scored analysis withheld (scored figures shown, row.live_withheld): " + ", ".join(withheld))
+    if stale_prices:
+        notes.append(f"{len(stale_prices)} scored name(s) hold a last close on file more than one session behind the sweep's latest close ({sessions[-1]}) — prices.py has not refreshed them (row.prices_stale): "
+                     + ", ".join(f"{t} (last close {stale_prices[t]['last_date']})" for t in sorted(stale_prices)))
     if restated:
         notes.append(f"{len(restated)} record(s) restated for a split since scoring (record.split_restated): " + ", ".join(restated))
     if failed:
@@ -1460,7 +1486,7 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
             "sweep": sweep_counts(base),
             "counts": {"current": len(index), "stale": len(stale), "misfits": sum(1 for r in index if r.get("fit") == "misfit"),
                        "tiers": tiers, "with_live": sum(1 for r in index if _d(r.get("has")).get("live")),
-                       "live_withheld": len(withheld), "split_restated": len(restated),
+                       "live_withheld": len(withheld), "prices_stale": len(stale_prices), "split_restated": len(restated),
                        "watchlist": sum(1 for r in index if r.get("watchlist")), "failed": len(failed),
                        "statements": sum(1 for r in index if _d(r.get("has")).get("statements")),
                        "profiles": sum(1 for r in index if _d(r.get("has")).get("profile"))},
