@@ -36,7 +36,9 @@ the same word does not count.
    the rows of the files that are present are checked.)
 4. The passages this round corrected stay corrected (the stale wording is
    absent) — also engine 5.5's verifier-round corrections in README,
-   SITE_CONTRACT, WORKER_SPEC and AGENTS.md.
+   SITE_CONTRACT, WORKER_SPEC and AGENTS.md, and moat rubric 2's (2026-10-21:
+   the old ROIC proxy and moat rubric; its keys, flags and reason codes are
+   named, and test_moat_rubric_2_clause_present holds the step-5 clause).
 """
 import ast
 import glob
@@ -265,6 +267,17 @@ PAIRS = [
     # Codex review round 2 on PR #53
     ("_system/fundamentals.py", "ENGINE_CAPEX_GROUPS = (_engine.CAPEX_ROLLUP_TAGS", "ENGINE_CAPEX_GROUPS", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def annual_row_periods(", "annual_row_periods", [SYS_README, CONTRACT]),
+    # moat rubric 2 (2026-10-21, Andrew's request in the "Tighten moat scoring" thread)
+    ("_system/make_score.py", 'score["moat_evidence"] = _moat.record(', "moat_evidence", [SYS_README]),
+    ("_system/make_score.py", 'j.get("moat_evidence_reason")', "moat_evidence_reason", [SYS_README]),
+    ("_system/make_score.py", 'score["moat_sources"] = j["moat_sources"]', "moat_sources", [SYS_README]),
+    ("_system/moat_evidence.py", 'ROIC_KEYS = ("roic_proxy", "roic_class", "roic_basis", "roic_tangible")', "roic_class", [SYS_README]),
+    ("_system/moat_evidence.py", 'ROIC_KEYS = ("roic_proxy", "roic_class", "roic_basis", "roic_tangible")', "roic_basis", [SYS_README]),
+    ("_system/moat_evidence.py", 'ROIC_KEYS = ("roic_proxy", "roic_class", "roic_basis", "roic_tangible")', "roic_tangible", [SYS_README]),
+    ("_system/moat_evidence.py", '"MOAT_ABOVE_EVIDENCE" if direction == "above" else "MOAT_BELOW_EVIDENCE"', "MOAT_ABOVE_EVIDENCE", [SYS_README]),
+    ("_system/moat_evidence.py", '"MOAT_ABOVE_EVIDENCE" if direction == "above" else "MOAT_BELOW_EVIDENCE"', "MOAT_BELOW_EVIDENCE", [SYS_README]),
+    ("_system/make_score.py", '— MOAT_ABOVE_EVIDENCE"', "MOAT_ABOVE_EVIDENCE", [SYS_README]),
+    ("_system/fundamentals.py", "moat_evidence.apply_roic(", "moat_evidence.roic_row", [SYS_README, CONTRACT]),
 ]
 
 
@@ -385,6 +398,24 @@ STALE = [
     ("_daily/site/app.js", "(typeof fund.currency === 'string' && fund.currency) || 'USD'"),
     ("_daily/site/app.js", "Filed owner\\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share"),
     (CONTRACT, "The block is priced in the file's own `currency`"),
+    # moat rubric 2 (2026-10-21): the old ROIC proxy and the old moat rubric are gone from every document
+    (WORKER_SPEC, "after-tax operating income over equity + debt − cash"),
+    (WORKER_SPEC, "Rubric: 9–10 wide and durable"),
+    ("_system/SECOND_PASS.md", "a 7+ on ROIC below ~10% without a written reason"),
+    (AGENTS_MD, "its `roic_proxy` series is the\n  evidence"),
+    (CONTRACT, "(`roic_proxy` still counts never-filed debt as zero.)"),
+    (CONTRACT, "÷ (equity + debt − cash), tax rate"),
+    (SYS_README, "not ruled, left as it is"),
+    (SYS_README, "ROE and an ROIC proxy"),
+    (SYS_README, "Rubric: 9-10 wide/durable, 7-8 strong, 5-6 moderate/narrow"),
+    (SYS_README, "Display and forensic evidence only — nothing here feeds the valuation."),
+    ("_system/fundamentals.py", "invested = (eq + (total_debt or 0) - (cash or 0))"),
+    # moat rubric 2 review rounds (2026-10-21): MANH's old proxy peaked at +9315% (FY2022), a below-band moat never closes
+    # the gate it was rated P1 for leaving open, and make_score's docstring named one refusal
+    (SYS_README, "between +2301% and −1540%"),
+    ("_system/moat_evidence.py", "between +2301% and −1540%"),
+    (AGENTS_MD, "P1 when it left the entry gate open"),
+    ("_system/make_score.py", "a malformed one refuses. Nothing else"),
 ]
 
 
@@ -404,6 +435,37 @@ def test_depreciation_anchor_clause_present():
         "README Fixes & lessons lost the depreciation-anchor entry"
     assert "amended 2026-10-18" in readme and "filed depreciation" in readme, \
         "README's bounded-authority summary lost the amendment"
+
+
+def test_moat_rubric_2_clause_present():
+    """Moat rubric 2 (Andrew's request in the "Tighten moat scoring" thread, 2026-10-20): WORKER_SPEC step 5 starts
+    the moat at the measured anchor, names the band, Dorsey's five sources and every reason code moat_evidence.py
+    accepts (read from the module, so a renamed code fails here); fundamentals.py runs before the moat (step 2b);
+    SECOND_PASS and AGENTS.md check the result; README records the decision. Fails on the pre-rubric documents."""
+    sys.path.insert(0, SYS)
+    import moat_evidence as M
+    spec, second = _read(WORKER_SPEC), _read("_system/SECOND_PASS.md")
+    readme, agents = _read(SYS_README), _read(AGENTS_MD)
+    for phrase in ("**Start at the anchor.**", "anchor ± 2", "9–10 only", "`moat_sources: []`", "`moat_evidence_reason`",
+                   "2b — fundamentals before the moat", "python3 _system/moat_evidence.py <T>", "`MOAT_ABOVE_EVIDENCE`"):
+        assert phrase in spec, f"WORKER_SPEC.md lost the rubric-2 phrase: {phrase!r}"
+    for token in M.SOURCES + tuple(M.REASONS):
+        assert f"`{token}`" in spec, f"WORKER_SPEC.md step 5 does not name {token}"
+        assert f"`{token}`" in readme, f"README does not name {token}"
+    assert (M.BAND, M.WIDE_MIN_ANCHOR, M.NO_SOURCE_CAP, M.FLOOR_REV) == (2, 8, 4, 0.10), \
+        "the band / 9-10 / no-source / capital-floor constants changed: update WORKER_SPEC step 5, README and this test"
+    for phrase in ("`outside_band_unexplained`", "`moat_sources`", "`MOAT_BELOW_EVIDENCE`", "`NO_DURABLE_SOURCE`"):
+        assert phrase in second, f"SECOND_PASS.md lost the rubric-2 phrase: {phrase!r}"
+    assert "Moat rubric 2 and the operating-basis ROIC (Andrew's request" in readme
+    assert "MOAT_ABOVE_EVIDENCE" in agents and "moat_evidence.entry_gate_closed" in agents
+    # review round: the hurdle floor, the terms' scope, BUSINESS_CHANGED's window, real-estate operators on ROIC and the
+    # 0-10 moat refusal are stated where the code applies them
+    flat = " ".join(spec.split())   # the phrases may wrap
+    for phrase in ("`hurdle floor`", "at a median at or above the hurdle only", "`since_fy` inside the last five fiscal years",
+                   "real-estate operators", "no reason reaches past 8", "a moat_score that is not a number 0–10"):
+        assert phrase in flat, f"WORKER_SPEC.md lost the review-round phrase: {phrase!r}"
+    for phrase in ("`hurdle_floor`", "real-estate operators included", "a `moat_score` that is not a number 0–10"):
+        assert phrase in readme, f"README lost the review-round phrase: {phrase!r}"
 
 
 def test_corrected_passages_stay_corrected():

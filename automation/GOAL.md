@@ -11,6 +11,9 @@ One company at a time, work out its **true owner's earnings** from the filings t
 - New `dcf-filing-watch` (06:30 daily): `filing_watch.py` re-queues done names after a newer 10-K/10-Q (`queue.py refresh`), the audit's freshness item. New `dcf-live-refresh` (every 30 min in market hours): prices → reprice → build_site, so the site's expected returns follow the latest close. `dcf-daily-ranking` now refreshes prices, live repricing, segments, statements and profiles before building the site and the attachment.
 - Cron bodies are pointers to the specs; `_system/WORKER_SPEC.md` is the single pass-1 source. ROIC is now explicit evidence in the moat step (pass 1) and a lens in pass 2. Caveat: these edits are made from the repo mirror without seeing Muse's scheduler; if a front-matter field behaves differently there, fix the body, not the spec.
 
+## Moat rubric 2, 2026-10-21 (Claude, at Andrew's request in the "Tighten moat scoring" thread, 2026-10-20)
+- The two pass-1 cron bodies now name step 2b: `fundamentals.py` runs right after the preliminary engine run, so the moat step reads the measured anchor and band (`_system/moat_evidence.py`; operating-basis ROIC, ROE at financials and utilities) before the moat is set. Method in `_system/WORKER_SPEC.md` step 5 and `_system/README.md` "Fixes & lessons"; no cadence or front-matter change.
+
 ## Status (2026-10-12, setup day)
 - Universe built: 2,617 companies under $40B (top-3,000 by market cap from Nasdaq screener = reproducible Russell 3000 equivalent; official list is licensed, iShares bot-blocked). System in ~/workspace/stocks/_system/ (build_universe.py, dcf_engine.py v2, build_daily_html.py, README.md with full method).
 - Queue: watchlist-under-$40B first (U, RDDT, CMPS, LFTO, SNAP, DUOL, TTWO, STZ, DFTX, FIG), then descending market cap. Full sweep at 24/day ≈ 109 days.
