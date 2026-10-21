@@ -408,9 +408,11 @@ def _pin_judgment(n):
     bw = (n.get("inputs") or {}).get("base_basis_window")
     if bw is None:
         return _judgment(n)
-    return _judgment(n, base_override={"value": 2.5, "source": "ttm.json TTM OCF less capex and SBC over 1.2B units "
-                                                             "(test)", "reason": "per-unit base (test)",
-                                       "basis_window": bw})
+    # [Integrate L9] the source names no figure: on a 5.7 run L2's strict quoting (R3) refuses a base_override that
+    # quotes a number tracing to no engine figure or cited fact (the earlier "over 1.2B units" did), and a plain
+    # pin's source / reason may carry none — the pin's basis_window is what these cases test
+    return _judgment(n, base_override={"value": 2.5, "source": "ttm.json TTM OCF less capex and SBC per unit (test)",
+                                       "reason": "per-unit base (test)", "basis_window": bw})
 
 
 def _pin_run(kind, tt, release=CUR):

@@ -354,10 +354,14 @@ def test_plain_ttm_unchanged():
         plain = H.run_ttm(t, base=H.make_base(fx, j, None, copy_repo_files=False), fixture=fx, patch=stub)
         assert plain["exit"] == 0, (t, plain["stderr"][-500:])
         assert "basis" not in plain["ttm"] and "declaration_hash" not in plain["ttm"], t
+        # [Integrate L9] the one key the 10-Q path gains since L4 is lane L9's engine_release stamp (R8 / R9 TTM
+        # provenance: the engine records it as ttm_inputs.ttm_engine_release, outside ttm_input_hash)
+        assert plain["ttm"].get("engine_release") == E.ENGINE_RELEASE, (t, plain["ttm"].get("engine_release"))
         assert set(plain["ttm"]) == {"ticker", "cik", "entity", "fy_end", "ytd_end", "inputs", "ttm_ocf", "ttm_capex",
                                      "ttm_sbc", "ttm_shares_diluted", "ttm_oe_total", "ttm_oe_per_share", "warnings",
                                      "overrides_used", "capex_components", "sbc_reconciled_legs", "split_adjustment",
-                                     "capex_override_superseded_legs", "sbc_reconciliation_withdrawn_legs"}, (t, sorted(plain["ttm"]))
+                                     "capex_override_superseded_legs", "sbc_reconciliation_withdrawn_legs",
+                                     "engine_release"}, (t, sorted(plain["ttm"]))
         # --interim never falls back to the 10-Q TTM at a 10-K filer: no declaration, refused
         inter = H.run_ttm(t, base=H.make_base(fx, j, None, copy_repo_files=False), fixture=fx,
                           patch=lambda T: sys.argv.append("--interim"))

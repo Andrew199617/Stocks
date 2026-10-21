@@ -590,11 +590,15 @@ def test_stale_guidance_is_marked_not_blocking():
     import dcf_engine as E
     with open(os.path.join(FIX, "ttm.json"), encoding="utf-8") as f:
         tt = json.load(f)
+    # [Integrate L9] a 5.7 run whose basis read ttm.json needs a ttm.json stamped by a 5.7 ttm.py (L9, R8 / R9 TTM
+    # provenance: make_score refuse_pre57_ttm_json), so the fixture's copy is stamped as the current ttm.py writes it
+    # (rulings57.add_ttm_engine_release; the stamp is outside ttm_input_hash, so no leg moves)
+    rulings57.add_ttm_engine_release(tt)
     n = _numbers(ttm_inputs=E.ttm_inputs_record(tt))   # the run read the fixture's ttm.json (YTD to 2026-06-30)
     assert n["ttm_inputs"]["ytd_current_period"] == ["2026-01-01", "2026-06-30"], n["ttm_inputs"]
     old = F3(source=dict(REL, filed="2026-05-01"))
     past = F3(id="F7", period="FY2025", label="FY2025 revenue guidance", source=dict(REL, filed="2025-11-04"))
-    with scored(n=n, facts=_doc(old, past)) as s:
+    with scored(n=n, facts=_doc(old, past), extra={f"{T}/ttm.json": tt}) as s:
         assert s.rc == 0, s.err[-1500:]
         dfs = s.score()["declared_facts"]
         assert dfs["latest_filing_used"] == {"period_end": "2026-06-30", "filed": "2026-08-05", "form": "10-Q",
