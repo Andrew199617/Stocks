@@ -3217,6 +3217,14 @@
    "weighted_irr_impact_pp": -2.756,
    "tier_by_numbers_without_override": "C",
    "tier_by_numbers_with_override": "C"
+  },
+  {
+   "ticker": "EDU",
+   "event": "ads_ratio",
+   "date": "2026-10-20",
+   "ratio": 10.0,
+   "source": "Form 20-F for the fiscal year ended May 31, 2026 (filed 2026-09-22): the company's ADSs, each representing ten common shares, are listed and traded on the NYSE \u2014 stated in the 20-F's ADS description and restated verbatim in the company's own September 22, 2026 announcement of that filing; the FY2026 results release (July 29, 2026) states the same ratio in its per-share notes and prints diluted net income per share of $0.30 against $2.97 per ADS, a 10x internal consistency check",
+   "reason": "EDGAR diluted share counts are in ordinary (common) shares while the NYSE price is per ADS; per-share figures must be scaled x10 ordinary shares per ADS to be comparable to the ADS price"
   }
  ]
 }
