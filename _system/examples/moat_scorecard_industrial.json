@@ -1447,7 +1447,6 @@
   },
   "declaration_sha256": "2f59471027c45e5ec507d32a3c0ec08e2605e48a8a2d3c5d1f3262eef1ef5306",
   "facts_sha256": "acfe1de0403c262e5706b87a68cec15095ee56f9324b6e082d54aaa288962955",
-  "run_kind": "authoring",
   "gate_drift": [],
   "volume_price": {
    "mode": "growth_rates",

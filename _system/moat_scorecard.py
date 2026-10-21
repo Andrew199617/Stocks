@@ -33,21 +33,25 @@ low_roic_reason; 4 or below on a governing return of 20%+ with every year >= 15%
 AND margin both down over the last 5 FY; operating margin where gross margin is not filed, fundamentals.json rows
 only — 10b COVERAGE, lane default Q4) with erosion_risks +1 needs erosion_rebuttal carrying a number. Every reason is
 an influence field (make_score.check_influence). GATE_DRIFT_ON_REBUILD (03c decision 6, True): on a rebuild — the
-same engine run, the same declaration, the same facts.json — a newly failing DATA-driven gate is recorded in
-`gate_drift`, never refused; caps and rules that depend only on the declaration refuse everywhere.
+same engine run, the same declaration, the same facts.json (run_kind) — a newly failing DATA-driven gate is recorded
+in `gate_drift`, never refused: G1, G4-G6, the measured halves of the source rules and caps, the weight floor G2 when
+the declared pillars plus the measurable mechanical ones could clear it, and the volume x price bounds on the annual
+rows' revenue; caps and rules that depend only on the declaration refuse everywhere. moat_evidence never records the
+run kind itself: an identical rerun writes an identical moat_evidence (it is a SCORE_DECISION_KEYS field).
 
 Acquired IPR&D (engine 5.6's one-time value deduction; lane default Q3 (b), main agent 2026-10-21): the charge the
 engine deducted once from value is added back to EBIT in returns_on_capital and scale_economics for those fiscal
-years (never when the engine judged it recurrent), so the moat — and through it the fade — does not take it twice;
-the IPRD_CHARGE_IN_WINDOW flag and the per-year add-back stay on record. ADDBACK_IPRD is the one switch.
+years (never when the engine judged it recurrent), in the rows' own money unit (fundamentals.json's currency; USD on
+financials_history.csv), so the moat — and through it the fade — does not take it twice; the IPRD_CHARGE_IN_WINDOW
+flag and the per-year add-back stay on record. ADDBACK_IPRD is the one switch.
 
 Output from an engine release before 5.7.0 (every folder on file until its next engine run) is evaluated
 report_only: mechanical pillars, flags and lint, nothing refused. A scorecard that is present is shape-checked on
 any release.
 
-CLI: python3 _system/moat_scorecard.py <T>  — read-only dry run with the 5.7 rules on (prints the evidence, the
-governing measure, sources and caps, every gate, lint; exit 0, or 1 on a refusal). Workers run it before the final
-engine run (WORKER_SPEC step 5).
+CLI: python3 _system/moat_scorecard.py <T>  — read-only dry run with the 5.7 rules on, always as an AUTHORING run
+(prints the evidence, the governing measure, sources and caps, every gate, lint; exit 0, or 1 on a refusal). Workers
+run it before the final engine run (WORKER_SPEC step 5): what it refuses, that run refuses.
 """
 import csv
 import datetime
@@ -426,38 +430,69 @@ def annual_rows(folder, addbacks=None):
 # ---------------------------------------------------------------------------
 # Acquired IPR&D inside the window (engine 5.6's iprd_adjustment; lane default Q3 (b))
 # ---------------------------------------------------------------------------
-def iprd_in_window(n, rows):
-    """[{period, amount, pct_of_operating_income, treatment, addback}] for each fiscal year of the window whose
-    engine-recorded acquired-IPR&D charge is positive (treatment not none), and the {period_end: amount} add-backs
-    (treatment one_time_value_deduction and not recurrent, ADDBACK_IPRD on)."""
+def rows_money_unit(folder, is_csv):
+    """The money unit of the scorecard's rows: USD on financials_history.csv (the engine's rows, converted to USD by its
+    FX pass); fundamentals.json's own `currency` (its one money unit, figures as filed — fundamentals.money_unit),
+    USD when the file names none."""
+    if is_csv:
+        return "USD"
+    doc = _read_json(os.path.join(folder, "fundamentals.json"))
+    cur = doc.get("currency") if isinstance(doc, dict) else None
+    return cur.strip().upper() if isinstance(cur, str) and cur.strip() else "USD"
+
+
+def iprd_in_window(n, rows, unit="USD"):
+    """[{period, amount, unit, amount_usd, filed_unit, fx_rate, pct_of_operating_income, treatment, recurrent,
+    addback}] for each fiscal year of the window whose engine-recorded acquired-IPR&D charge is positive (treatment not
+    none), and the {period_end: amount} add-backs (treatment one_time_value_deduction and not recurrent, ADDBACK_IPRD
+    on). `unit` is the rows' money unit (rows_money_unit).
+    [L3 review R4, 2026-10-21] The engine's period record is USD (dcf_engine._iprd_pick converts a non-USD fact at the
+    period-end rate: expense / amount / deducted = native x fx_rate; expense_unit / cash_unit name the filed unit), but
+    a 20-F filer's fundamentals.json rows are in its own currency, as filed. The add-back is therefore expressed in the
+    rows' unit: the USD figure on USD rows (incl. every financials_history.csv row), the native figure (USD / fx_rate)
+    on rows in the unit the charge was filed in; rows in any other unit get no add-back (amount None, unit_note) —
+    the charge is still listed and flagged. It had added the USD figure to EUR rows."""
     blk = n.get("iprd_adjustment") if isinstance(n, dict) else None
     if not isinstance(blk, dict) or blk.get("treatment") in (None, "none"):
         return [], {}
     one_time = blk.get("treatment") == getattr(_engine, "IPRD_TREATMENT_ONE_TIME", "one_time_value_deduction")
     recurrent = bool(blk.get("recurrent"))
     ends = {r.get("period_end"): r for r in rows}
+    unit = (unit or "USD").upper()
     out, add = [], {}
     for p in blk.get("periods") or []:
         if not isinstance(p, dict) or p.get("window") not in (None, "fy") or p.get("excluded"):
             continue
         end = p.get("period")
-        amt = _fnum(p.get("deducted"))
-        if amt is None:
-            amt = _fnum(p.get("amount"))
-        if amt is None:
-            amt = _fnum(p.get("expense"))
-        if not amt or amt <= 0 or end not in ends:
+        usd = _fnum(p.get("deducted"))
+        if usd is None:
+            usd = _fnum(p.get("amount"))
+        if usd is None:
+            usd = _fnum(p.get("expense"))
+        if not usd or usd <= 0 or end not in ends:
             continue
-        if p.get("fx_rate") is not None:   # the block is in USD; a converted charge does not meet the filed-unit rows
-            amt_native = _fnum(p.get("expense"))
-            if amt_native is None:
-                continue
-            amt = amt_native
+        rate = _fnum(p.get("fx_rate"))
+        if rate is not None and rate > 0:   # converted: the figure is USD, filed in the leg's own unit
+            filed = p.get("cash_unit") if p.get("amount_basis") == "cash_outflow" else p.get("expense_unit")
+            filed = str(filed or "").upper() or None
+        else:
+            rate, filed = None, "USD"
+        if unit == "USD":
+            amt = usd
+        elif filed == unit and rate is not None:
+            amt = usd / rate
+        else:
+            amt = None
         oi = ends[end].get("ebit")
-        do_add = bool(ADDBACK_IPRD and one_time and not recurrent)
-        out.append({"period": end, "amount": round(amt, 2),
-                    "pct_of_operating_income": _r(amt / oi) if (oi and oi > 0) else None,
-                    "treatment": blk.get("treatment"), "recurrent": recurrent, "addback": do_add})
+        do_add = bool(ADDBACK_IPRD and one_time and not recurrent and amt is not None)
+        rec = {"period": end, "amount": round(amt, 2) if amt is not None else None, "unit": unit,
+               "amount_usd": round(usd, 2), "filed_unit": filed, "fx_rate": rate,
+               "pct_of_operating_income": _r(amt / oi) if (amt is not None and oi and oi > 0) else None,
+               "treatment": blk.get("treatment"), "recurrent": recurrent, "addback": do_add}
+        if amt is None:
+            rec["unit_note"] = (f"the charge is recorded in USD (filed in {filed or 'an unnamed unit'}) and the rows are "
+                                f"{unit}: not converted, not added back")
+        out.append(rec)
         if do_add:
             add[end] = amt
     return out, add
@@ -614,7 +649,7 @@ def window_rows(folder, n=None):
     """(source, rows, iprd_in_window list): the scorecard's last-5-FY rows with the acquired-IPR&D add-backs applied."""
     src, raw, is_csv = raw_rows(folder)
     rows = [year_record(r, is_csv) for r in raw]
-    iprd, add = iprd_in_window(n or {}, rows)
+    iprd, add = iprd_in_window(n or {}, rows, rows_money_unit(folder, is_csv)) if raw else ([], {})
     if add:
         rows = [year_record(r, is_csv, add.get(r.get("period_end"))) for r in raw]
     return src, rows, iprd
@@ -1059,7 +1094,14 @@ def bounds(cls, u, a, h=INFLATION_HURDLE):
     return {"pricing_power": [pp_min, pp_max], "reach_and_growth": [-2, rg_max], "pair_max": pair_max}
 
 
-def volume_price(vp, rows, ctx):
+ROW_REVENUE = "total revenue (annual rows)"
+
+
+def volume_price(vp, rows, ctx, gate=None):
+    """The users x revenue-per-user decomposition (03 §3.4). gate(name, msg, data_driven): [L3 review R5] in levels
+    mode on the annual rows' revenue (no revenue_facts) the alignment depends on measured data, so too few aligned
+    periods goes through the gate (drift on a rebuild: returns None, no bounds checked); every other refusal here is
+    the declaration's and refuses everywhere."""
     where = "moat_scorecard.volume_price"
     if not isinstance(vp, dict):
         raise MoatRefusal(f"{where} must be an object")
@@ -1092,7 +1134,7 @@ def volume_price(vp, rows, ctx):
             rsrc = "declared revenue facts"
             aligned = [(p, v, revs.get(p)) for p, v in pts if revs.get(p)]
         else:
-            rsrc = "total revenue (annual rows)"
+            rsrc = ROW_REVENUE
             rv = [(datetime.date.fromisoformat(r["period_end"]), r["revenue"]) for r in rows
                   if r.get("period_end") and r.get("revenue")]
             aligned = []
@@ -1102,8 +1144,12 @@ def volume_price(vp, rows, ctx):
                 if m:
                     aligned.append((p, v, m[0]))
         if len(aligned) < SERIES_MIN_PERIODS or any(v <= 0 or r <= 0 for _, v, r in aligned):
-            raise MoatRefusal(f"{where}: {len(aligned)} volume period(s) align with a fiscal-year revenue (period end within "
-                              f"10 days); at least {SERIES_MIN_PERIODS} positive values needed")
+            msg = (f"{where}: {len(aligned)} volume period(s) align with a fiscal-year revenue (period end within "
+                   f"10 days); at least {SERIES_MIN_PERIODS} positive values needed")
+            if gate is None or rsrc != ROW_REVENUE:
+                raise MoatRefusal(msg)
+            gate("volume_price", msg, True)
+            return None
         p0, pn = aligned[0][0], aligned[-1][0]
         yrs = max(1, round((datetime.date.fromisoformat(pn) - datetime.date.fromisoformat(p0)).days / 365.25))
         u = (aligned[-1][1] / aligned[0][1]) ** (1 / yrs) - 1
@@ -1127,12 +1173,17 @@ def volume_price(vp, rows, ctx):
             "inflation_hurdle": hurdle, "hurdle_basis": hbasis, "class": cls, "bounds": bounds(cls, u, a, hurdle)}
 
 
-def check_bounds(vpres, pillars):
-    b, errs, vals = vpres["bounds"], [], {}
+def check_bounds(vpres, pillars, gate=None):
+    """The decomposition's class bounds pricing_power and reach_and_growth. A declared-N/A pillar beside it refuses
+    everywhere. [L3 review R5] A score outside the bounds refuses through gate(name, msg, data_driven) — data-driven
+    when the revenue is the annual rows' (no revenue_facts: a restated revenue moves the class, so a rebuild records
+    drift), the declaration's own otherwise (declared revenue facts or growth rates: refused everywhere)."""
+    b, errs, vals, decl_errs = vpres["bounds"], [], {}, 0
     for k in ("pricing_power", "reach_and_growth"):
         pe = pillars.get(k) or {}
         if pe.get("status") == "not_applicable":
             errs.append(f"{k} cannot be not applicable when a volume x price decomposition is declared")
+            decl_errs += 1
             continue
         s = pe.get("score")
         vals[k] = s
@@ -1144,10 +1195,12 @@ def check_bounds(vpres, pillars):
             errs.append(f"pricing_power + reach_and_growth = {vals['pricing_power'] + vals['reach_and_growth']:+d} above "
                         f"{b['pair_max']:+d}")
     if errs:
-        raise MoatRefusal(f"moat_scorecard: the volume x price decomposition ({vpres['volume_metric']}: volume CAGR "
-                          f"{vpres['volume_cagr'] * 100:+.2f}%, revenue per unit CAGR {vpres['price_cagr'] * 100:+.2f}% vs "
-                          f"hurdle {vpres['inflation_hurdle'] * 100:.2f}% -> {vpres['class']}) bounds the scores: "
-                          + "; ".join(errs))
+        msg = (f"moat_scorecard: the volume x price decomposition ({vpres['volume_metric']}: volume CAGR "
+               f"{vpres['volume_cagr'] * 100:+.2f}%, revenue per unit CAGR {vpres['price_cagr'] * 100:+.2f}% vs "
+               f"hurdle {vpres['inflation_hurdle'] * 100:.2f}% -> {vpres['class']}) bounds the scores: " + "; ".join(errs))
+        if decl_errs or gate is None:
+            raise MoatRefusal(msg)
+        gate("volume_price", msg, vpres.get("revenue_source") == ROW_REVENUE)
 
 
 # ---------------------------------------------------------------------------
@@ -1491,11 +1544,39 @@ def is_rebuild(prior, n, decl_sha, f_sha):
             and pe.get("facts_sha256") == f_sha)
 
 
+def run_kind(folder, n, j, is_57, prior):
+    """"authoring" | "rebuild" on a 5.7 run (None on older output) — the run's bookkeeping, never part of
+    moat_evidence. [L3 review R1, 2026-10-21] It had been persisted as moat_evidence.run_kind, so an identical rerun
+    (always a rebuild of the run before it) wrote a different moat_evidence, which is a SCORE_DECISION_KEYS field: L5's
+    pr_worktree prepare reruns make_score on the sweep's committed score.json and refuses any mismatch. evaluate()
+    decides drift with it; make_score skips the reasons' influence checks on a rebuild with it."""
+    if not is_57:
+        return None
+    sc = (j or {}).get("moat_scorecard")
+    decl_sha = declaration_sha256(j) if sc is not None else None
+    return "rebuild" if is_rebuild(prior, n, decl_sha, facts_sha256(folder)) else "authoring"
+
+
+def _declared_weight(pillars):
+    """The weight of the DECLARED core pillars that count (scored with support) — the part of G2's weight a rebuild
+    cannot move."""
+    return round(sum(WEIGHTS[k] for k in DECLARED if (pillars.get(k) or {}).get("status") == "scored"
+                     and (pillars.get(k) or {}).get("score") is not None), 2)
+
+
+def _mechanical_weight_possible(btype):
+    """The weight the four mechanical pillars carry when all are measured for this business type (MECH_NA excluded)."""
+    return round(sum(WEIGHTS[k] for k in MECHANICAL if (btype, k) not in MECH_NA), 2)
+
+
 def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, prior=None):
     """score.json moat_evidence for one folder, or MoatRefusal (03b §5 order: core pillars -> core evidence ->
     supporting factors -> adjustment -> evidence -> G2 -> G1 -> sources -> G3 caps -> G4, G5, G6). facts: {id: fact}
     from facts.json; is_57: an engine-5.7 run (the gates refuse); sic: the filer's SIC; industry: load_industry();
-    prior: the score.json being replaced (authoring vs rebuild)."""
+    prior: the score.json being replaced (authoring vs rebuild: run_kind). The result depends only on the inputs (the
+    declaration, facts.json, the folder's rows, the engine record, the industry file) and, through gate_drift, on
+    whether a newly failing data-driven gate drifted on a rebuild (an authoring run refuses it instead) — so an
+    identical rerun writes an identical moat_evidence (L3 review R1)."""
     n = n or {}
     ticker = str(n.get("ticker") or os.path.basename(os.path.normpath(folder))).upper()
     sc = j.get("moat_scorecard")
@@ -1546,7 +1627,7 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
     bt = btype or hint
     decl_sha = declaration_sha256(j) if sc is not None else None
     f_sha = facts_sha256(folder)
-    rebuild = strict and is_rebuild(prior, n, decl_sha, f_sha)
+    rebuild = run_kind(folder, n, j, strict, prior) == "rebuild"
     drift = []
 
     def gate(name, msg, data_driven):
@@ -1589,8 +1670,9 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
         for k in DECLARED:
             pillars[k] = check_declared(k, decl[k], bt, ctx, strict=strict)
         if sc.get("volume_price") is not None:
-            vpres = volume_price(sc["volume_price"], rows, ctx)
-            check_bounds(vpres, pillars)
+            vpres = volume_price(sc["volume_price"], rows, ctx, gate)
+            if vpres:
+                check_bounds(vpres, pillars, gate)
         elif bt == "consumer_users" and strict:
             raise MoatRefusal("moat_scorecard.volume_price (users x revenue per user) is required for business type consumer_users")
         if sc.get("supporting") is not None:
@@ -1637,8 +1719,12 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
                    "cap": None}
     if strict:
         if weight < MIN_EVIDENCE_WEIGHT:   # G2
-            raise MoatRefusal(f"moat evidence weight {weight:g} < {MIN_EVIDENCE_WEIGHT:g}: too little of the scorecard is "
-                              "measured or fact-supported to check the moat (cite facts for more pillars)")
+            # [L3 review R5] the weight counts the MECHANICAL pillars, so the floor is data-driven when the declared
+            # pillars plus every mechanical pillar this type can measure would clear it (the shortfall is unmeasured
+            # data: drift on a rebuild, 03c decision 6); a declaration that cannot reach 8 even then refuses everywhere
+            gate("weight_floor", f"moat evidence weight {weight:g} < {MIN_EVIDENCE_WEIGHT:g}: too little of the scorecard "
+                 "is measured or fact-supported to check the moat (cite facts for more pillars)",
+                 _declared_weight(pillars) + _mechanical_weight_possible(bt) >= MIN_EVIDENCE_WEIGHT)
         if within is False and not _reason_ok(reasons["moat_divergence_reason"]):   # G1
             gate("divergence", f"moat_score {moat:g} is {abs(moat - ev_score):.2f} from the evidence score {ev_score:.2f} "
                  f"(tolerance +/-{TOLERANCE:g}) — add moat_scorecard.moat_divergence_reason carrying a number, or revisit "
@@ -1689,7 +1775,6 @@ def evaluate(folder, n, j, facts=None, is_57=False, sic=None, industry=None, pri
            "moat_lint": lint_bad_moats(j, strict),
            "industry_file": ({"built": industry.get("built"), "sha256": industry.get("_sha256")} if industry else None),
            "declaration_sha256": decl_sha, "facts_sha256": f_sha,
-           "run_kind": ("rebuild" if rebuild else "authoring") if strict else None,
            "gate_drift": drift}
     if vpres:
         out["volume_price"] = vpres
@@ -1810,10 +1895,18 @@ def key_numbers_lines(me):
     else:
         L.append(f"- scale_economics (mechanical): {str(s.get('status')).replace('_', ' ')} — {s.get('reason')}")
     for x in me.get("iprd_in_window") or []:
+        unit = x.get("unit") or "USD"
+        fy = f"FY{str(x['period'])[:4]}"
+        if x.get("amount") is None:   # rows in a unit the charge was not filed in (L3 review R4): listed, not added back
+            L.append(f"- Acquired IPR&D inside the window: {fy} ${x['amount_usd']:,.0f} (USD; the {unit} rows are not "
+                     f"converted) — not added back (filed in {x.get('filed_unit') or 'an unnamed unit'}): returns_on_capital "
+                     "and scale_economics read operating income as filed")
+            continue
         how = ("added back to operating income in returns_on_capital and scale_economics (the engine deducted it once from "
                "value)" if x.get("addback") else
                "read as filed in returns_on_capital and scale_economics" + (" (judged recurrent)" if x.get("recurrent") else ""))
-        L.append(f"- Acquired IPR&D inside the window: FY{str(x['period'])[:4]} ${x['amount']:,.0f}"
+        amt_s = f"${x['amount']:,.0f}" if unit == "USD" else f"{x['amount']:,.0f} {unit}"
+        L.append(f"- Acquired IPR&D inside the window: {fy} {amt_s}"
                  + (f" ({_pct(x['pct_of_operating_income'])} of operating income)" if x.get("pct_of_operating_income") is not None else "")
                  + f" — {how}")
     if declared:
@@ -1933,9 +2026,12 @@ def main(argv=None):
     sic = (n.get("sector_model") or {}).get("sic") if isinstance(n.get("sector_model"), dict) else None
     sic = sic or _engine.folder_sic(base, t)[0]
     try:
+        # [L3 review R3, 2026-10-21] always an AUTHORING check (prior=None): the worker runs this before the final engine
+        # run, which is an authoring run, so every gate that would refuse it refuses here. Passing the folder's
+        # score.json had made an unchanged folder a rebuild — a failing data-driven gate was recorded as drift and the
+        # dry run printed "passes the 5.7 rules"
         ev = evaluate(folder, n, j, facts=_facts.by_id(fdoc) if fdoc else {}, is_57=True, sic=sic,
-                      industry=load_industry(os.path.join(base, "_system")),
-                      prior=_read_json(os.path.join(folder, "score.json")))
+                      industry=load_industry(os.path.join(base, "_system")), prior=None)
     except MoatRefusal as e:
         print(f"moat_scorecard.py: REFUSED — {e}")
         return 1

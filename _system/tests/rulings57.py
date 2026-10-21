@@ -51,18 +51,20 @@ MINIMAL_SCORECARD_FACTS = (   # L3: a kind-filing, type-metric series (instant p
         "snippet": "the backstop figure was 7.25x", "used_for": ["moat_divergence", "low_roic"]}])
 
 
-def minimal_scorecard():
+def minimal_scorecard(business_type="industrial", sic=None):
     """03b §17 (f): one narrow source (switching_costs/workflow_training on the F91-F93 series), the seven core declared
     pillars at core weight 9.0 (retention +1, pricing_power +1, switching_costs +1, concentration 0, reach_and_growth 0,
     erosion_risks 0 — each with the series — customer_regard N/A), every supporting factor N/A (adjustment 0.00), and
     the 07 G16 backstop reasons citing [F90] (value 7.25). With no mechanical pillar measured the evidence is 6.53
     (5.88-6.88 when a CSV measures capital_intensity): within +-2 of the fixtures' moats 5 and 6; one narrow source
-    caps the moat at 6."""
+    caps the moat at 6. business_type: minimal_business_type's choice (the SIC lock, else industrial); the declared
+    weight is 9.0 for every type, so a type whose capital_intensity / scale_economics are N/A still clears the floor."""
     fs = ["F91", "F92", "F93"]
     na = {"applicable": False, "not_applicable_reason": "fixture"}
     pill = lambda s: {"score": s, "rationale": "fixture", "facts": list(fs)}  # noqa: E731
-    return {"version": 1, "business_type": "industrial",
-            "business_type_reason": "fixture: 100% of revenue is one manufactured product line",
+    return {"version": 1, "business_type": business_type,
+            "business_type_reason": ("fixture: 100% of revenue is one manufactured product line"
+                                     if business_type == "industrial" else f"fixture: the SIC lock (SIC {sic})"),
             "sources": [{"type": "switching_costs", "subtype": "workflow_training", "strength": "narrow", "facts": list(fs),
                          "metrics": [], "rationale": "fixture"}],
             "pillars": {"retention": pill(1), "pricing_power": pill(1), "switching_costs": pill(1), "concentration": pill(0),
@@ -73,25 +75,59 @@ def minimal_scorecard():
             "high_return_low_moat_reason": None, "erosion_rebuttal": None}
 
 
-def add_minimal_scorecard(j, n=None, folder=None):
-    """L3 (R4 revised): on a 5.7 run (engine release >= 5.7.0) whose judgment declares no moat_scorecard, the minimal
-    scorecard above, and its facts written into <folder>/facts.json (merge_facts, so the other lanes' facts stay).
-    Without a folder nothing is added (a scorecard whose facts cannot be written would refuse). Idempotent."""
-    if not isinstance(j, dict) or folder is None or "moat_scorecard" in j or not _is_57(n):
-        return None
-    j["moat_scorecard"] = minimal_scorecard()
-    merge_facts(folder, copy.deepcopy(MINIMAL_SCORECARD_FACTS), ticker=(n or {}).get("ticker"))
-    return None
+def minimal_business_type(n, folder):
+    """(business_type, sic) for the minimal scorecard — 03b §17 (f) / rebase L3 §3.10: "from the SIC lock, else
+    industrial". The SIC is resolved the way make_score resolves it (dcf_numbers.json sector_model.sic, else
+    dcf_engine.folder_sic on the folder's files: fundamentals.json profile.sic, then profile.json) and locked by
+    moat_scorecard.type_lock on the folder's latest annual row (the SIC-6798 mortgage-REIT rule included). A single
+    locked type is used; an unlocked REIT (real_assets or financial_balance_sheet) gets financial_balance_sheet, which
+    needs no numeric business_type_reason; no SIC or an unlocked SIC gives industrial. [L3 review R6, 2026-10-21] The
+    helper had always declared industrial, so a 5.7 test record at a bank, insurer or utility folder was refused before
+    the test's own assertion. _system modules are imported lazily (this helper stays import-light)."""
+    import sys
+    sm = (n or {}).get("sector_model") if isinstance(n, dict) else None
+    sic = str(sm.get("sic")).strip() if isinstance(sm, dict) and sm.get("sic") not in (None, "") else None
+    sysdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if sysdir not in sys.path:
+        sys.path.insert(0, sysdir)
+    import dcf_engine
+    import moat_scorecard
+    fold = os.path.normpath(folder)
+    if not sic:
+        sic = dcf_engine.folder_sic(os.path.dirname(fold), os.path.basename(fold))[0]
+    if not sic:
+        return "industrial", None
+    raw = moat_scorecard.raw_rows(fold)[1]
+    allowed, _, _ = moat_scorecard.type_lock(sic, raw[-1] if raw else None)
+    if not allowed:
+        return "industrial", sic
+    if len(allowed) == 1:
+        return next(iter(allowed)), sic
+    return ("financial_balance_sheet" if "financial_balance_sheet" in allowed else sorted(allowed)[0]), sic
 
 
 def _is_57(n):
-    """facts.is_rulings_run without importing _system (the helper stays import-light): engine_release >= 5.7.0."""
+    """facts.is_rulings_run without importing _system (the helper stays import-light): engine_release >= 5.7.0.
+    (Placed above add_minimal_scorecard, inside L3's lines, so lane L4's insertion before add_interim_declined merges
+    cleanly — L3 review R7.)"""
     rel = (n or {}).get("engine_release") if isinstance(n, dict) else None
     try:
         parts = tuple(int(x) for x in str(rel).split(".")[:3])
     except (TypeError, ValueError):
         return False
     return len(parts) >= 2 and (parts + (0,) * (3 - len(parts))) >= (5, 7, 0)
+
+
+def add_minimal_scorecard(j, n=None, folder=None):
+    """L3 (R4 revised): on a 5.7 run (engine release >= 5.7.0) whose judgment declares no moat_scorecard, the minimal
+    scorecard above with minimal_business_type's type, and its facts written into <folder>/facts.json (merge_facts, so
+    the other lanes' facts stay). Without a folder nothing is added (a scorecard whose facts cannot be written would
+    refuse). Idempotent."""
+    if not isinstance(j, dict) or folder is None or "moat_scorecard" in j or not _is_57(n):
+        return None
+    j["moat_scorecard"] = minimal_scorecard(*minimal_business_type(n, folder))
+    merge_facts(folder, copy.deepcopy(MINIMAL_SCORECARD_FACTS), ticker=(n or {}).get("ticker"))
+    return None
 
 
 def add_interim_declined(n, j):

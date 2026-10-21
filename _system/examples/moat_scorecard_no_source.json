@@ -1342,7 +1342,6 @@
   },
   "declaration_sha256": "b529942dc7e588112c47508b8c460b308dca9ea6ef969a4ad9b30cc433db4916",
   "facts_sha256": "532a93ff77a6d65cb5fc1fd9c6c0f37cde20744727c0574a4dc2e0993f5943f3",
-  "run_kind": "authoring",
   "gate_drift": []
  }
 }

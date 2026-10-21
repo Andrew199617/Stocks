@@ -10,6 +10,10 @@ engine 5.7 (e22e814): the script does not exist.
    test_dedupe_drop_stable_write_and_check — on a synthetic base: one member per CIK (FWONA / FWONK), a -inf peer
    dropped and counted (03c decision 13 option (b)), the stable write (only `built` differs on a rebuild with no data
    change), --check exit codes, labels by level.
+   test_committed_file_is_consistent / test_consistency_is_not_currency (L3 review R2, 2026-10-21) — the committed
+   file is checked for internal consistency only, never for currency: between two daily-cron runs it is legitimately
+   one or more re-scores behind (03b §3.3.2 / §3.3.3), so a merged company PR must not turn the suite red; --check
+   (exit 1 when stale) stays the currency tool.
 """
 import contextlib
 import io
@@ -135,15 +139,59 @@ def test_dedupe_drop_stable_write_and_check():
         shutil.rmtree(base, ignore_errors=True)
 
 
-def test_committed_file_is_current():
-    """The committed _system/industry_returns.json is a fresh build of this checkout apart from `built` (the code PR
-    carries the initial build; the daily cron and rebuild_scores.py keep it current)."""
+def test_committed_file_is_consistent():
+    """The committed _system/industry_returns.json is internally consistent (IR.consistency_problems: the schema and
+    rule this code writes, one ladder per group, one member per CIK, every group's members / n / n_dropped / median /
+    metric mix / label recomputable from its members). It is NOT compared with a fresh build of the checkout: 03b
+    §3.3.2 / §3.3.3 — a company PR does not rebuild it, so between two daily-cron runs it is legitimately one or more
+    re-scores behind (--check is the currency tool; the daily cron and rebuild_scores.py --write it)."""
     path = os.path.join(SYS, M.INDUSTRY_FILE)
     if not os.path.exists(path):
         print("   (no committed industry_returns.json in this tree — skipped)")
         return
-    from _stable import same_content
-    assert same_content(path, IR.build(REPO), IR.VOLATILE), "run python3 _system/industry_returns.py --write"
+    doc = json.load(open(path, encoding="utf-8"))
+    assert IR.consistency_problems(doc) == [], IR.consistency_problems(doc)[:5]
+
+
+def test_consistency_is_not_currency():
+    """L3 review R2: a merged company PR that moves a member's governing return leaves the committed file stale
+    (--check exit 1) but consistent — the suite stays green until the next daily cron --write; a corrupted file is
+    caught (a group's n, its median, a member on another ladder, a member also excluded, two members of one CIK)."""
+    base = tempfile.mkdtemp(prefix="industry_returns_c_")
+    saved = IR.BASE
+    try:
+        for i, v in enumerate((0.10, 0.12, 0.14, 0.16, 0.18, 0.20)):
+            _folder(base, f"P{i}", "3561", v, 100 + i)
+        _folder(base, "BANK", "6022", 0.12, 555)
+        _folder(base, "BANK2", "6022", 0.14, 556)
+        IR.BASE = base
+        path = os.path.join(base, "_system", M.INDUSTRY_FILE)
+        with contextlib.redirect_stdout(io.StringIO()):
+            assert IR.main(["--write"]) == 0
+            # the company PR: P3's re-score halves its returns; the file is not rebuilt
+            shutil.rmtree(os.path.join(base, "P3"))
+            _folder(base, "P3", "3561", 0.08, 103)
+            assert IR.main(["--check"]) == 1, "stale"
+        doc = json.load(open(path, encoding="utf-8"))
+        assert IR.consistency_problems(doc) == [], IR.consistency_problems(doc)
+        assert IR.groups_from(doc["members"]) == doc["groups"]
+
+        def bad(mut, needle):
+            d = json.loads(json.dumps(doc))
+            mut(d)
+            probs = IR.consistency_problems(d)
+            assert any(needle in p for p in probs), (needle, probs)
+        bad(lambda d: d["groups"]["default|4:3561"].__setitem__("n", 5), "default|4:3561")
+        bad(lambda d: d["groups"]["default|4:3561"].__setitem__("median", 0.5), "default|4:3561")
+        bad(lambda d: d["members"]["P0"].__setitem__("ladder", "roe"), "member P0: ladder 'roe'")
+        bad(lambda d: d["groups"]["default|4:3561"]["members"].remove("P0"), "default|4:3561")
+        bad(lambda d: d["excluded"].__setitem__("P1", "no SIC"), "P1")
+        bad(lambda d: d["members"]["P2"].__setitem__("cik", 100), "CIK")
+        bad(lambda d: d.__setitem__("schema", 2), "schema")
+        bad(lambda d: d["members"]["P4"].update(median=None, median_note=None), "P4")
+    finally:
+        IR.BASE = saved
+        shutil.rmtree(base, ignore_errors=True)
 
 
 if __name__ == "__main__":

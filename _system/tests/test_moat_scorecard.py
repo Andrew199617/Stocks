@@ -23,6 +23,10 @@ End-to-end (make_score): 21 a pre-5.7 record reports only · 22 a 5.7 run needs 
  check_influence with the moat evidence's numbers.
 Repo-wide: 28 every recorded folder evaluates (report_only, JSON without Infinity) · 30 the worked examples in
  _system/examples/ reproduce exactly.
+L3 review round 1 (2026-10-21; each fails on the lane's first build b0ba6fa, r57/L3/review_fix/ff_moat.log): R1 an
+ identical make_score rerun is byte-identical (no persisted run kind) · R3 the dry run is an authoring check · R4 the
+ IPR&D add-back in the rows' money unit · R5 the weight floor and the row-revenue volume x price bounds drift on a
+ rebuild · R6 rulings57.add_minimal_scorecard follows the SIC lock.
 """
 import copy
 import csv
@@ -1081,12 +1085,13 @@ def test_rebuild_drift():
     try:
         with_sources(wide, moat=8)(c)
         first = c.ev()
-        assert first["run_kind"] == "authoring" and first["within_tolerance"] is True and first["gate_drift"] == []
+        assert "run_kind" not in first and M.run_kind(c.folder, c.n, c.j, True, None) == "authoring"
+        assert first["within_tolerance"] is True and first["gate_drift"] == []
         prior = {"dcf_content_hash": c.n["content_hash"], "moat_evidence": first}
         # the SEC refresh moves the data: ROIC 18% -> 3% (returns_on_capital +1 -> -2), evidence falls outside +-2
         json.dump({"cik": 1, "annual": rows_of([0.03] * 5)}, open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
         ev = c.ev(prior=prior)
-        assert ev["run_kind"] == "rebuild" and ev["within_tolerance"] is False
+        assert M.run_kind(c.folder, c.n, c.j, True, prior) == "rebuild" and ev["within_tolerance"] is False
         assert [d["gate"] for d in ev["gate_drift"]] == ["divergence", "low_return"], ev["gate_drift"]   # 3% at moat 8: G4 too
         assert ev["gates"]["divergence"]["drifted"] is True and ev["gates"]["low_return"]["drifted"] is True
         txt = "\n".join(M.key_numbers_lines(ev))
@@ -1172,7 +1177,8 @@ def test_iprd_addback():
         last = ev["pillars"]["returns_on_capital"]["series"][-1]
         assert last["roic"] == 0.40 and last["iprd_addback"] == 300.0
         assert "IPRD_CHARGE_IN_WINDOW" in ev["flags"]
-        assert ev["iprd_in_window"] == [{"period": "2025-12-31", "amount": 300.0, "pct_of_operating_income": 3.0,
+        assert ev["iprd_in_window"] == [{"period": "2025-12-31", "amount": 300.0, "unit": "USD", "amount_usd": 300.0,
+                                         "filed_unit": "USD", "fx_rate": None, "pct_of_operating_income": 3.0,
                                          "treatment": "one_time_value_deduction", "recurrent": False, "addback": True}]
         assert ev["pillars"]["scale_economics"]["series"][-1]["margin"] == 0.2
         txt = "\n".join(M.key_numbers_lines(ev))
@@ -1293,7 +1299,7 @@ def test_57_requires_scorecard_and_sources():
     try:
         r.ok()
         me = r.score()["moat_evidence"]
-        assert me["status"] == "checked" and me["run_kind"] == "authoring" and me["sources"]["count"] == 1
+        assert me["status"] == "checked" and "run_kind" not in me and me["sources"]["count"] == 1
         assert "## Moat scorecard" in r.key() and "| switching_costs/embedded_component | narrow | F10 | yes |" in r.key()
     finally:
         r.close()
@@ -1447,7 +1453,7 @@ def test_moat_reasons_reach_check_influence():
         assert calls[0][0] == "moat_scorecard.moat_divergence_reason" and calls[0][2] == ["F3"]
         assert 6.63 in calls[0][3] and -3.63 in calls[0][3], "the moat evidence's numbers are engine sources"
         calls.clear()
-        assert MS.moat_reason_checks(dict(me, run_kind="rebuild"), j, None, "/nowhere", {}) == [] and calls == []
+        assert MS.moat_reason_checks(me, j, None, "/nowhere", {}, run_kind="rebuild") == [] and calls == []
         assert MS.moat_reason_checks(dict(me, status="report_only"), j, None, "/nowhere", {}) == []
         assert MS.moat_reason_checks(None, j, None, "/nowhere", {}) == []
         me2 = dict(me, type_lock=dict(me["type_lock"], reason_required=True))
@@ -1476,6 +1482,279 @@ def test_moat_reasons_reach_check_influence():
     assert MS._moat_events("TST", "2026-10-21", dict(me, status="report_only")) == [] and MS._moat_events("TST", "d", None) == []
     for e in ev:
         assert MS.registry_entry_problem(e) is None, MS.registry_entry_problem(e)
+
+
+# ---------------------------------------------------------------- review fixes (L3 review round 1, 2026-10-21)
+def test_identical_rerun_is_byte_identical():
+    """R1: two make_score runs on the same 5.7 folder with nothing changed between them (the second is a REBUILD of
+    the first) write byte-identical score.json and key_numbers.md. moat_evidence is in SCORE_DECISION_KEYS, and L5's
+    pr_worktree prepare reruns make_score on the sweep's committed score.json (always a rebuild) and refuses on any
+    mismatch: moat_evidence must depend only on the inputs (declaration, facts, data, industry file), never on the run
+    kind (authoring vs rebuild is make_score's own bookkeeping, moat_scorecard.run_kind)."""
+    import make_score as MS
+    r = _e2e(industry=_industry_for())
+    try:
+        r.ok()
+        sp, kp = os.path.join(r.folder, "score.json"), os.path.join(r.folder, "key_numbers.md")
+        s1, k1 = open(sp, "rb").read(), open(kp, "rb").read()
+        first = json.loads(s1)
+        assert first["moat_evidence"]["status"] == "checked"
+        r.run().ok()
+        s2 = json.loads(open(sp, "rb").read())
+        diff = sorted(k for k in MS.SCORE_DECISION_KEYS if first.get(k) != s2.get(k))
+        assert diff == [], (diff, sorted(k for k in first["moat_evidence"] if first["moat_evidence"].get(k) != s2["moat_evidence"].get(k)))
+        assert open(sp, "rb").read() == s1, "score.json is byte-identical on an identical rerun"
+        assert open(kp, "rb").read() == k1, "key_numbers.md is byte-identical on an identical rerun"
+        assert "run_kind" not in first["moat_evidence"], "the run kind is never persisted"
+        # ... and the second run WAS a rebuild (the moat reasons' influence checks skip it), the first an authoring run
+        n = json.load(open(os.path.join(r.folder, "dcf_numbers.json"), encoding="utf-8"))
+        j = json.load(open(r.jpath, encoding="utf-8"))
+        assert M.run_kind(r.folder, n, j, True, first) == "rebuild"
+        assert M.run_kind(r.folder, n, j, True, None) == "authoring" and M.run_kind(r.folder, n, j, False, first) is None
+    finally:
+        r.close()
+
+
+def test_dry_run_is_an_authoring_check():
+    """R3: python3 _system/moat_scorecard.py <T> — the dry run WORKER_SPEC step 5 runs before the final engine run —
+    is always an AUTHORING check (prior=None): a gate that would refuse the next engine run refuses here (exit 1), even
+    when the folder's score.json would make this a rebuild that only records drift."""
+    import contextlib
+    import io
+    wide = src("switching_costs", "embedded_component", strength="wide", facts=("F10",))
+    c = Case(rows=rows_of([0.18] * 5), facts=with_facts(SRC_FACTS))
+    saved = os.environ.get("STOCKS_BASE")
+    try:
+        with_sources(wide, moat=8)(c)
+        first = c.ev()
+        assert first["gate_drift"] == []
+        # the folder as make_score left it: dcf_numbers.json, judgment.json, score.json carrying this run's hash
+        json.dump(c.n, open(os.path.join(c.folder, "dcf_numbers.json"), "w", encoding="utf-8"))
+        json.dump(c.j, open(os.path.join(c.folder, "judgment.json"), "w", encoding="utf-8"))
+        json.dump({"dcf_content_hash": c.n["content_hash"], "moat_evidence": first},
+                  open(os.path.join(c.folder, "score.json"), "w", encoding="utf-8"))
+        os.environ["STOCKS_BASE"] = c.tmp
+
+        def dry():
+            buf = io.StringIO()
+            with contextlib.redirect_stdout(buf):
+                rc = M.main(["TST"])
+            return rc, buf.getvalue()
+        rc, out = dry()
+        assert rc == 0 and "passes the 5.7 rules" in out, out
+        # an SEC refresh moves the data (ROIC 18% -> 3%): at moat 8 the divergence and low-return gates now fail
+        json.dump({"cik": 1, "annual": rows_of([0.03] * 5)}, open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
+        rc, out = dry()
+        assert rc == 1 and "REFUSED" in out and "from the evidence score" in out, out
+        assert "passes the 5.7 rules" not in out and "Gate drift" not in out, out
+    finally:
+        if saved is None:
+            os.environ.pop("STOCKS_BASE", None)
+        else:
+            os.environ["STOCKS_BASE"] = saved
+        c.close()
+
+
+def _fx_block(native=100.0, rate=1.10, unit="EUR", basis="expense"):
+    """An engine-5.6 period record for a charge filed in `unit` and converted at `rate` (dcf_engine._iprd_record: the
+    expense / amount / deducted figures are USD, expense_unit / cash_unit the filed unit, fx_rate the rate used)."""
+    usd = native * rate
+    p = {"period": "2025-12-31", "window": "fy", "expense_tag": "ResearchAndDevelopmentInProcess", "expense": usd,
+         "expense_unit": unit, "cash": None, "cash_unit": None, "amount": usd, "amount_basis": basis, "fx_rate": rate,
+         "deducted": usd, "excluded": None}
+    if basis == "cash_outflow":
+        p.update(cash=usd, cash_unit=unit, tag_used="PaymentsToAcquireInProcessResearchAndDevelopment")
+    return {"treatment": "one_time_value_deduction", "recurrent": False, "total": usd, "periods": [p]}
+
+
+def test_iprd_addback_in_the_rows_money_unit():
+    """R4: the acquired-IPR&D add-back is in the money unit of the rows it is added to — fundamentals.json's own
+    `currency` (a 20-F filer's rows are as filed, never converted), USD on financials_history.csv (the engine's
+    converted rows). The engine's period record is USD (expense = native x fx_rate), so a EUR filer's EUR 100 charge
+    recorded as USD 110 at 1.10 adds back EUR 100, not 110; key_numbers.md prints it in that unit."""
+    rs = rows_of([0.18] * 5)                     # FY2025 operating income 180 (EUR) as filed
+    for basis in ("expense", "cash_outflow"):
+        c = Case(rows=rs, sc=None, release="5.6.0", n_extra={"iprd_adjustment": _fx_block(basis=basis)})
+        try:
+            doc = json.load(open(os.path.join(c.folder, "fundamentals.json"), encoding="utf-8"))
+            doc["currency"] = "EUR"
+            json.dump(doc, open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
+            ev = c.ev()
+            w = ev["iprd_in_window"][0]
+            assert w["amount"] == 100.0 and w["unit"] == "EUR" and w["amount_usd"] == 110.0 and w["addback"] is True, (basis, w)
+            assert w["pct_of_operating_income"] == 0.5556, w
+            last = ev["pillars"]["returns_on_capital"]["series"][-1]
+            assert last["iprd_addback"] == 100.0 and last["roic"] == 0.28, last      # (180 + 100) / 1,000
+            txt = "\n".join(M.key_numbers_lines(ev))
+            assert "Acquired IPR&D inside the window: FY2025 100 EUR (55.56% of operating income)" in txt, txt
+        finally:
+            c.close()
+    # the engine's CSV rows are USD: the USD figure is added back
+    csv_rows = [{"period_end": f"{y}-12-31", "fy_label": str(y), "revenue": 2000, "net_income": 180, "operating_income": 180,
+                 "ocf": 300, "capex": 30, "capex_assumed_zero": "False", "equity": 1000, "cash": 0, "debt_total": 0, "tax": 0}
+                for y in YEARS]
+    c = Case(rows=[], csv_rows=csv_rows, sc=None, release="5.6.0", n_extra={"iprd_adjustment": _fx_block()})
+    try:
+        ev = c.ev()
+        w = ev["iprd_in_window"][0]
+        assert w["amount"] == 110.0 and w["unit"] == "USD" and w["addback"] is True, w
+        assert ev["pillars"]["returns_on_capital"]["series"][-1]["iprd_addback"] == 110.0
+        assert "FY2025 $110 (61.11% of operating income)" in "\n".join(M.key_numbers_lines(ev))
+    finally:
+        c.close()
+    # a USD filer's USD rows with a USD charge: unchanged (HALO's shape)
+    c = Case(rows=rs, sc=None, release="5.6.0", n_extra={"iprd_adjustment": iprd_block(amount=100.0)})
+    try:
+        w = c.ev()["iprd_in_window"][0]
+        assert w["amount"] == 100.0 and w["unit"] == "USD" and w["amount_usd"] == 100.0 and w["addback"] is True, w
+    finally:
+        c.close()
+    # rows in a currency the charge was not filed in (GBP rows, a EUR charge): no add-back, listed with the reason
+    c = Case(rows=rs, sc=None, release="5.6.0", n_extra={"iprd_adjustment": _fx_block()})
+    try:
+        doc = json.load(open(os.path.join(c.folder, "fundamentals.json"), encoding="utf-8"))
+        doc["currency"] = "GBP"
+        json.dump(doc, open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
+        ev = c.ev()
+        w = ev["iprd_in_window"][0]
+        assert w["addback"] is False and w["amount"] is None and w["unit"] == "GBP" and w["amount_usd"] == 110.0, w
+        assert "unit_note" in w and ev["pillars"]["returns_on_capital"]["series"][-1].get("iprd_addback") is None
+        assert "FY2025 $110 (USD; the GBP rows are not converted) — not added back" in "\n".join(M.key_numbers_lines(ev))
+        json.dumps(ev, allow_nan=False)
+    finally:
+        c.close()
+
+
+def _thin(sc):
+    """Declared core weight 6.5 (concentration and erosion_risks fact-less zeros): the scorecard needs the mechanical
+    pillars to clear the weight floor of 8."""
+    sc["pillars"]["concentration"] = {"score": 0, "rationale": "no facts", "facts": []}
+    sc["pillars"]["erosion_risks"] = {"score": 0, "rationale": "no facts", "facts": []}
+
+
+def test_rebuild_drift_weight_floor_and_volume_price():
+    """R5 (03c decision 6, lane default Q5): G2's weight floor counts the MECHANICAL pillars, so a rebuild whose data
+    left returns_on_capital insufficient records drift (weight_floor) instead of refusing; an authoring run refuses; a
+    scorecard whose declared weight could not reach the floor even with every mechanical pillar measured is a
+    declaration failure and refuses on a rebuild too. The volume x price bounds read revenue from the annual rows when
+    no revenue facts are declared: a restated revenue that moves the class drifts on a rebuild (volume_price); bounds
+    on declared revenue facts refuse everywhere."""
+    c = Case(rows=rows_of([0.18] * 5))
+    try:
+        _thin(c.sc)
+        first = c.ev()
+        assert first["evidence_weight"] == 10.5 and first["gate_drift"] == []
+        prior = {"dcf_content_hash": c.n["content_hash"], "moat_evidence": first}
+        # an SEC refresh drops the equity tag (no_equity every year): returns_on_capital becomes insufficient_data
+        json.dump({"cik": 1, "annual": [dict(r, equity=None) for r in rows_of([0.18] * 5)]},
+                  open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
+        ev = c.ev(prior=prior)
+        assert ev["evidence_weight"] == 7.5 and [d["gate"] for d in ev["gate_drift"]] == ["weight_floor"], ev["gate_drift"]
+        assert "moat evidence weight 7.5 < 8" in ev["gate_drift"][0]["detail"]
+        assert "Gate drift on this rebuild (recorded, not refused; the next authoring run resolves it): weight_floor" in \
+            "\n".join(M.key_numbers_lines(ev))
+        try:
+            c.ev(prior=None)
+            raise AssertionError("an authoring run refuses the weight floor")
+        except M.MoatRefusal as e:
+            assert "moat evidence weight 7.5 < 8" in str(e)
+    finally:
+        c.close()
+    # declared weight 1.0: even every mechanical pillar measured (6.5) cannot reach 8 -> a declaration failure
+    c = Case(rows=rows_of([0.18] * 5))
+    try:
+        for k in ("pricing_power", "retention", "switching_costs", "concentration", "erosion_risks"):
+            c.sc["pillars"][k] = {"score": 0, "rationale": "no facts", "facts": []}
+        c.sc["sources"] = []
+        c.j["moat_score"] = 3
+        prior = {"dcf_content_hash": c.n["content_hash"],
+                 "moat_evidence": {"status": "checked", "declaration_sha256": M.declaration_sha256(c.j),
+                                   "facts_sha256": M.facts_sha256(c.folder)}}
+        try:
+            c.ev(prior=prior)
+            raise AssertionError("a declaration that cannot reach the floor refuses on a rebuild")
+        except M.MoatRefusal as e:
+            assert "moat evidence weight" in str(e) and "< 8" in str(e)
+    finally:
+        c.close()
+    # volume x price on the rows' revenue: users +6%/yr, revenue per user +5%/yr -> pricing_power (pp +1 allowed)
+    subs = series(("V1", "V2", "V3"), "paid_subscribers", (21.0e6, 22.4e6, 23.6e6), unit="count",
+                  used=("moat:reach_and_growth", "moat:pricing_power"))
+    rs = [row(y, revenue=rv) for y, rv in zip(YEARS, (900e6, 1000e6, 1250e6, 1400e6, 1560e6))]
+
+    def vp(revenue_facts=None):
+        def m(c):
+            c.sc["volume_price"] = {"mode": "levels", "volume_facts": ["V1", "V2", "V3"], "volume_basis": "period_end",
+                                    "revenue": "total"}
+            if revenue_facts:
+                c.sc["volume_price"]["revenue_facts"] = list(revenue_facts)
+            c.sc["pillars"]["pricing_power"] = {"score": 1, "rationale": "r", "facts": ["V1", "V2", "V3"]}
+            c.sc["pillars"]["reach_and_growth"] = {"score": 1, "rationale": "r", "facts": ["V1", "V2", "V3"]}
+            c.j["moat_scorecard"] = c.sc
+        return m
+    c = Case(rows=rs, facts=with_facts(subs))
+    try:
+        vp()(c)
+        first = c.ev()
+        assert first["volume_price"]["class"] == "pricing_power" and first["gate_drift"] == []
+        prior = {"dcf_content_hash": c.n["content_hash"], "moat_evidence": first}
+        # the refresh restates revenue flat while subscribers grow: buying growth bounds pricing_power to <= 0
+        flat = [row(y, revenue=rv) for y, rv in zip(YEARS, (900e6, 1000e6, 1250e6, 1250e6, 1250e6))]
+        json.dump({"cik": 1, "annual": flat}, open(os.path.join(c.folder, "fundamentals.json"), "w", encoding="utf-8"))
+        ev = c.ev(prior=prior)
+        assert [d["gate"] for d in ev["gate_drift"]] == ["volume_price"], ev["gate_drift"]
+        assert "bounds the scores" in ev["gate_drift"][0]["detail"] and ev["volume_price"]["class"] == "buying_growth"
+        try:
+            c.ev(prior=None)
+            raise AssertionError("an authoring run refuses the bounds")
+        except M.MoatRefusal as e:
+            assert "bounds the scores" in str(e)
+    finally:
+        c.close()
+    # the same bounds on DECLARED revenue facts depend on the declaration only: they refuse on a rebuild
+    revf = series(("R1", "R2", "R3"), "revenue", (1250e6, 1250e6, 1250e6), unit="USD", used=("moat:pricing_power",))
+    c = Case(rows=rs, facts=with_facts(subs + revf))
+    try:
+        vp(revenue_facts=("R1", "R2", "R3"))(c)
+        prior = {"dcf_content_hash": c.n["content_hash"],
+                 "moat_evidence": {"status": "checked", "declaration_sha256": M.declaration_sha256(c.j),
+                                   "facts_sha256": M.facts_sha256(c.folder)}}
+        try:
+            c.ev(prior=prior)
+            raise AssertionError("bounds on declared revenue facts never drift")
+        except M.MoatRefusal as e:
+            assert "bounds the scores" in str(e)
+    finally:
+        c.close()
+
+
+def test_minimal_scorecard_follows_the_sic_lock():
+    """R6 (03b §17 (f), rebase L3 §3.10): rulings57.add_minimal_scorecard declares the SIC lock's type — resolved the
+    way make_score resolves the SIC (dcf_numbers.json sector_model.sic, else dcf_engine.folder_sic) — else industrial,
+    so a current-release test record at a bank, an insurer or a utility scores instead of being refused before the
+    test's own assertion. An unlocked REIT (two allowed types) gets financial_balance_sheet, which needs no numeric
+    business_type_reason."""
+    import test_make_score_55 as H
+    cases = (("6022", "financial_balance_sheet"), ("6331", "financial_balance_sheet"), ("4911", "real_assets"),
+             ("6798", "financial_balance_sheet"), ("3561", "industrial"), (None, "industrial"))
+    for sic, want in cases:
+        files = ({"TST/fundamentals.json": {"cik": 1, "currency": "USD", "profile": {"sic": sic}, "annual": []}}
+                 if sic else None)
+        r = H.Run(H._numbers(), files=files).run()
+        try:
+            r.ok()
+            me = r.score()["moat_evidence"]
+            assert me["business_type"] == want and me["status"] == "checked", (sic, me["business_type"])
+        finally:
+            r.close()
+    n = H._numbers()
+    n["sector_model"] = {"sic": "6022"}                    # L1's engine field wins over the folder files
+    r = H.Run(n).run()
+    try:
+        r.ok()
+        assert r.score()["moat_evidence"]["business_type"] == "financial_balance_sheet"
+    finally:
+        r.close()
 
 
 # ---------------------------------------------------------------- repo-wide

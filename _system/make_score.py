@@ -481,11 +481,14 @@ rebuilt as before, both alert gates closed ("engine output predates release
   MOAT_EROSION with erosion_risks +1) refuse a 5.7 run unless the reason
   field carries a number; each reason goes through check_influence with the
   moat evidence's numeric leaves (step 7, authoring runs). A rebuild (same
-  engine run, declaration and facts.json) records a newly failing data-driven
-  gate in moat_evidence.gate_drift instead (GATE_DRIFT_ON_REBUILD). The
+  engine run, declaration and facts.json: moat_scorecard.run_kind, never
+  persisted, so an identical rerun writes an identical moat_evidence)
+  records a newly failing data-driven gate in moat_evidence.gate_drift
+  instead (GATE_DRIFT_ON_REBUILD; the weight floor too when measured pillars
+  could clear it, and the volume x price bounds on the rows' revenue). The
   acquired-IPR&D charge engine 5.6 deducts once from value is added back to
-  EBIT in returns_on_capital and scale_economics (moat_scorecard.ADDBACK_IPRD,
-  lane default Q3 (b)). Registry events moat_divergence, moat_low_roic,
+  EBIT in returns_on_capital and scale_economics, in the rows' money unit
+  (moat_scorecard.ADDBACK_IPRD, lane default Q3 (b)). Registry events moat_divergence, moat_low_roic,
   moat_high_return_low_moat, moat_erosion_rebuttal (identity moat_score as a
   float + reason; never a deferred-payment field name) when a gate applies on
   a checked run and its reason is declared. key_numbers.md "## Moat
@@ -512,10 +515,10 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
 from _stable import _replace  # [Codex review r21 of PR #47] os.replace, retried on a Windows PermissionError
+import moat_scorecard as _moat  # v5.7 (L3, R4 revised): the moat scorecard make_score checks (pure, no I/O at import)
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
 import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
-import moat_scorecard as _moat  # v5.7 (L3, R4 revised): the moat scorecard make_score checks (pure, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -546,7 +549,6 @@ REPLAY_PURPOSE_ENV = "DCF_REPLAY_PURPOSE"             # "base_alternatives" on R
 SCORE_DECISION_KEYS = ("tier_final", "tier_by_numbers", "implied_irr", "iv_at_15", "base_oe_per_share", "model_fit",
                        "confidence", "alert_eligible", "exit_alert_eligible", "dcf_content_hash", "iprd_adjustment",
                        "fragility_flags")
-SCORE_DECISION_KEYS += ("moat_evidence",)                                              # L3 (R4)
 
 
 def fail(msg):
@@ -3053,14 +3055,15 @@ def moat_facts_by_id(fc, folder):
         return {}
 
 
-def moat_reason_checks(moat_ev, j, fc, folder, n):
+def moat_reason_checks(moat_ev, j, fc, folder, n, run_kind="authoring"):
     """v5.7 step 7 (L3): the moat reasons that are influence fields (03b §5, §17 (b)) — each of moat_divergence_reason /
     low_roic_reason / high_return_low_moat_reason / erosion_rebuttal whose gate applies, and business_type_reason when a
     REIT declares real_assets — goes through check_influence on an authoring 5.7 run, with the moat evidence's numeric
-    leaves as engine sources (a low-ROIC reason quoting the tangible ROIC traces). Returns the (field, text) pairs
+    leaves as engine sources (a low-ROIC reason quoting the tangible ROIC traces). run_kind: moat_scorecard.run_kind
+    (make_score's bookkeeping; moat_evidence never carries it — L3 review R1). Returns the (field, text) pairs
     checked."""
     me = moat_ev if isinstance(moat_ev, dict) else None
-    if not me or me.get("status") != "checked" or me.get("run_kind") != "authoring":
+    if not me or me.get("status") != "checked" or run_kind != "authoring":
         return []
     sc = j.get("moat_scorecard") if isinstance(j.get("moat_scorecard"), dict) else {}
     leaves = _moat.numeric_leaves(me)
@@ -3076,6 +3079,9 @@ def moat_reason_checks(moat_ev, j, fc, folder, n):
         check_influence("moat_scorecard.business_type_reason", text, _facts.parse_refs(text), fc, folder, n, extra=leaves)
         done.append(("business_type_reason", text))
     return done
+
+
+SCORE_DECISION_KEYS += ("moat_evidence",)   # L3 (R4 revised): moat_evidence carries a decision (L5's prepare compares it)
 
 
 def _interim_events(ticker, interim, declined, today):
@@ -4109,18 +4115,20 @@ def main():
     # (L3, R4 revised: the moat scorecard; a refusal here writes nothing — the registry is the first write)
     moat_sic = (n.get("sector_model") or {}).get("sic") if isinstance(n.get("sector_model"), dict) else None
     moat_sic = moat_sic or _engine.folder_sic(BASE, ticker)[0]
+    moat_prior = prior_score if isinstance(prior_score, dict) else None
     try:
         moat_ev = _moat.evaluate(folder, n, j, facts=moat_facts_by_id(fc, folder), is_57=is_57_run(n), sic=moat_sic,
-                                 industry=_moat.load_industry(SYS_DIR),
-                                 prior=(prior_score if isinstance(prior_score, dict) else None))
+                                 industry=_moat.load_industry(SYS_DIR), prior=moat_prior)
     except _moat.MoatRefusal as e:
         fail(str(e))
     print(f"make_score.py: {_moat.industry_file_line(moat_ev)}")   # non-blocking: a stale file is information
+    # (L3, step 7's moat half, run here before the first write: the four moat reasons + a REIT's type reason go through
+    # check_influence on an authoring 5.7 run; a rebuild of the same run, declaration and facts skips them)
+    moat_reason_checks(moat_ev, j, fc, folder, n, run_kind=_moat.run_kind(folder, n, j, is_57_run(n), moat_prior))
     # v5.7 step 7: every influence check together, on 5.7 runs only and before the first write — each lane calls
     # check_influence (L2) for its own reason fields here (tier_override_reason, base_override, misfit_notch_reason,
     # the moat reasons, the share-class reasons, ttm_rejection_reason)
     if is_57_run(n):
-        moat_reason_checks(moat_ev, j, fc, folder, n)                # L3: the four moat reasons (+ a REIT's type reason)
         if plan and plan.get("reason"):
             pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
     score.update({

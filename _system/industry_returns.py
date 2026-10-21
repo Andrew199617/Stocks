@@ -28,7 +28,9 @@ and loss-making peers with finite medians stay), the median, the metric mix and 
 leave-one-out median from the members (moat_scorecard.pillar_industry_structure), never from another ladder's group.
 
 Cadence: the daily-ranking cron writes it after profile.py --all; rebuild_scores.py writes it before rebuilding;
-the code PR carries the initial build. make_score only reads it and prints its build date and sha256.
+the code PR carries the initial build. make_score only reads it and prints its build date and sha256. A company PR
+does not rebuild it, so between two cron runs the committed file is legitimately one or more re-scores behind: the
+test suite checks its internal consistency (consistency_problems), never its currency (--check).
 """
 import argparse
 import collections
@@ -129,6 +131,14 @@ def build(base=BASE, built=None):
         if key:
             by_cik[key] = t
         members[t] = m
+    return {"schema": SCHEMA, "built": built or _today(), "builder": "industry_returns.py", "rule": RULE,
+            "members": {t: members[t] for t in sorted(members)}, "groups": groups_from(members),
+            "excluded": {t: excluded[t] for t in sorted(excluded)}}
+
+
+def groups_from(members):
+    """The groups document built from the member records alone: per (ladder family, SIC level, code) with >= 2
+    members, keyed `<ladder>|<level>:<code>`, sorted by key (build() and consistency_problems() share it)."""
     groups = {}
     acc = collections.defaultdict(list)
     for t, m in members.items():
@@ -149,9 +159,59 @@ def build(base=BASE, built=None):
             "median": (M._r(med) if med is not None and math.isfinite(med) else None),
             "median_note": (M.NOTE_INF if med == math.inf else None),
             "metric_mix": {k: mix[k] for k in sorted(mix)}}
-    return {"schema": SCHEMA, "built": built or _today(), "builder": "industry_returns.py", "rule": RULE,
-            "members": {t: members[t] for t in sorted(members)}, "groups": groups,
-            "excluded": {t: excluded[t] for t in sorted(excluded)}}
+    return groups
+
+
+def consistency_problems(doc):
+    """[] when an industry_returns.json document is internally consistent, else one line per problem: the schema,
+    builder and rule this code writes; members sorted, each on a known measure and ladder, its median or its
+    median_note (never both, never neither), its SIC digits; one member per CIK; no member also excluded; the groups
+    exactly what groups_from(members) builds (keys, members, n, n_dropped, median, metric mix, labels).
+    [L3 review R2, 2026-10-21] It says nothing about whether the members' values are CURRENT: a company PR does not
+    rebuild the file, so between two daily-cron runs it is legitimately one or more re-scores behind (03b §3.3.2 /
+    §3.3.3) — --check is the currency tool, and the suite tests consistency only."""
+    if not isinstance(doc, dict):
+        return ["not a JSON object"]
+    probs = []
+    for k, want in (("schema", SCHEMA), ("builder", "industry_returns.py"), ("rule", RULE)):
+        if doc.get(k) != want:
+            probs.append(f"{k} is {doc.get(k)!r}, this code writes {want!r}")
+    mem, exc = doc.get("members"), doc.get("excluded")
+    if not isinstance(mem, dict) or not isinstance(exc, dict) or not isinstance(doc.get("groups"), dict):
+        return probs + ["members, groups and excluded must be objects"]
+    if list(mem) != sorted(mem):
+        probs.append("members are not sorted by ticker")
+    ciks = {}
+    for t, m in mem.items():
+        if not isinstance(m, dict):
+            probs.append(f"member {t} is not an object")
+            continue
+        if m.get("measure") not in ("roic", "roic_tangible", "roe") or m.get("ladder") not in ("default", "real_assets", "roe"):
+            probs.append(f"member {t}: measure {m.get('measure')!r} / ladder {m.get('ladder')!r}")
+        if m.get("ladder") != M.ladder_family(m.get("business_type")):
+            probs.append(f"member {t}: ladder {m.get('ladder')!r} is not business type {m.get('business_type')!r}'s")
+        if (m.get("median") is None) == (m.get("median_note") is None):
+            probs.append(f"member {t}: exactly one of median / median_note must be set")
+        if not str(m.get("sic") or "").isdigit():
+            probs.append(f"member {t}: SIC {m.get('sic')!r}")
+        if t in exc:
+            probs.append(f"member {t} is also listed in excluded")
+        c = m.get("cik")
+        if c not in (None, ""):
+            if str(c) in ciks:
+                probs.append(f"members {ciks[str(c)]} and {t} share CIK {c} (one member per CIK)")
+            ciks.setdefault(str(c), t)
+    if probs:
+        return probs
+    try:
+        want = groups_from(mem)
+    except (KeyError, TypeError, ValueError) as e:
+        return [f"groups cannot be rebuilt from the members: {e!r}"]
+    got = doc["groups"]
+    for k in sorted(set(want) | set(got)):
+        if want.get(k) != got.get(k):
+            probs.append(f"group {k}: {'missing' if k not in got else 'not built from its members' if k in want else 'not a group of these members'}")
+    return probs
 
 
 def write(path, out):

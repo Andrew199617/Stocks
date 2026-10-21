@@ -1603,7 +1603,6 @@
   },
   "declaration_sha256": "bcff661f5442bf53b8238c0d05e2c7aeeb05b525c03691fcd9dd24deecb56a79",
   "facts_sha256": "66425ac4340018c92a8e07401a9ae39f900bb73db4c6c96a703123f8be6d46eb",
-  "run_kind": "authoring",
   "gate_drift": [],
   "volume_price": {
    "mode": "levels",
