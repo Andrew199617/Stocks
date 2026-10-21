@@ -710,8 +710,11 @@ def test_unverified_share_count_charge_needs_a_quantified_tier_override():
     r = _score(n, _j(base_override=bo, tier_override=n["tier_by_numbers"],
                      tier_override_reason="main agent: the charge is small against the base"))
     assert r.rc == 1 and "NEEDS_MAIN_AGENT: shares" in r.err, (r.rc, r.err[-800:])
+    # v5.7 (R3; L2 rebase A14, the Q2 default): on a 5.7 record every figure in the reason traces — the share count a
+    # cited filing fact [F1], the charge a cited calc fact [F2], the adjusted IRR a saved method run (rulings57
+    # declares them; only this citation is new in the test's input)
     why = ("main agent: $40,000,000 / 100,000,000 verified diluted shares (FY2025 10-K cover) = $0.40/share deducted "
-           "by hand; adjusted weighted IRR 9.6%, same band")
+           "by hand; adjusted weighted IRR 9.6%, same band [F1, F2]")
     r = _score(n, _j(base_override=bo, tier_override=n["tier_by_numbers"], tier_override_reason=why))
     assert r.rc == 0, r.err[-800:]
     s = r.result["score"]
