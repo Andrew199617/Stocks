@@ -44,20 +44,20 @@ function profileOf(dir) {
 
 /* build_site.live_shown: the live.json the page shows as current, and why one was withheld. A live.json without a price or
    a weighted IRR is not shown (live_ok); one whose close (price_date) is older than the later of score.json analysis_date
-   and live.scored_date is withheld, and so is one left from an earlier run (live.scored_date before score.analysis_date) — record.live null, record.live_withheld says why, the scored figures are current. */
+   and live.scored_date is withheld, and so is one left from an earlier run (live.scored_date before score.analysis_date) — record.live null, record.live_withheld says why, the scored figures are the latest available. */
 function date10(v) { return typeof v === 'string' && v.length >= 10 ? v.slice(0, 10) : null; }
 function liveShown(score, lv) {
   if (!isObj(lv) || n(lv.price) === null || n(lv.irr_weighted) === null) return { live: null, withheld: null };
   const sa = date10((score || {}).analysis_date), ls = date10(lv.scored_date), pd = date10(lv.price_date);
   if (sa && ls && ls < sa) return { live: null, withheld: { reason: 'live_from_earlier_run', price: n(lv.price), price_date: pd, scored_date: sa, method: null,
-    note: 'The live repricing on file (' + ls + ' run) predates the current score (' + sa + '), so the scored figures are the current ones until reprice.py runs on the new score.' } };
+    note: 'The live repricing on file is from the ' + ls + ' run, before the current score (' + sa + '); the scored figures are the latest available.' } };
   const scored = [sa, ls].filter(Boolean);
   const sd = scored.length ? scored.sort()[scored.length - 1] : null;
   if (pd === null || sd === null || pd >= sd) return { live: lv, withheld: null };
   const method = isObj(lv.basis_check) && typeof lv.basis_check.method === 'string' ? lv.basis_check.method : null;
   return { live: null, withheld: { reason: 'live_older_than_score', price: n(lv.price), price_date: pd, scored_date: sd, method,
-    note: 'The last close on file (' + pd + ') is older than the scored analysis (' + sd + '): Nasdaq had not posted the scored session when prices were last pulled, '
-      + 'so the scored figures are the current ones; the live repricing returns with the first close after scoring.' } };
+    note: 'The last close on file (' + pd + ') predates the scored analysis (' + sd + ') — no close after the analysis is on file, '
+      + 'so the scored figures are the latest available, as of the ' + pd + ' close.' } };
 }
 /* build_site.live_split / restate_split: a split since the scored run (live.split_factor, else basis_check.factor) restates
    every per-share run figure (SPLIT_DIVIDE ÷ factor) and the run's share counts (SPLIT_MULTIPLY × factor) in today's share

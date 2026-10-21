@@ -448,7 +448,8 @@ def live_shown(c):
     had not posted the scored session yet (reprice's basis_check.method
     "no_close_since_scoring"). A live.json whose run (scored_date) predates
     score.json's analysis_date belongs to an earlier run of a re-scored name
-    and is withheld too. The scored figures are then the current ones."""
+    and is withheld too. The scored figures are then the latest available
+    (Andrew's ruling, 2026-10-20: never described as "pending")."""
     lv = c.get("live")
     if not live_ok(lv):
         return None, None
@@ -459,8 +460,8 @@ def live_shown(c):
         # reprice.py has not run since): its paths are not the verdict's
         return None, {"reason": "live_from_earlier_run", "price": num(lv.get("price")), "price_date": pd, "scored_date": sa,
                       "method": None,
-                      "note": (f"The live repricing on file ({ls} run) predates the current score ({sa}), so the scored figures "
-                               "are the current ones until reprice.py runs on the new score.")}
+                      "note": (f"The live repricing on file is from the {ls} run, before the current score ({sa}); "
+                               "the scored figures are the latest available.")}
     scored = [d for d in (sa, ls) if d]
     sd = max(scored) if scored else None
     if pd is None or sd is None or pd >= sd:
@@ -468,9 +469,8 @@ def live_shown(c):
     method = _d(lv.get("basis_check")).get("method")
     return None, {"reason": "live_older_than_score", "price": num(lv.get("price")), "price_date": pd, "scored_date": sd,
                   "method": method if isinstance(method, str) else None,
-                  "note": (f"The last close on file ({pd}) is older than the scored analysis ({sd}): Nasdaq had not posted the "
-                           "scored session when prices were last pulled, so the scored figures are the current ones; the live "
-                           "repricing returns with the first close after scoring.")}
+                  "note": (f"The last close on file ({pd}) predates the scored analysis ({sd}) — no close after the analysis "
+                           "is on file, so the scored figures are the latest available, as of the {pd} close.")}
 
 
 def live_split(lv):

@@ -245,17 +245,18 @@ function tierShiftChip(v) {
 function isoDay(x) { return typeof x === 'string' && /^\d{4}-\d{2}-\d{2}/.test(x) ? x.slice(0, 10) : null; }
 function fmtFactor(f) { return String(Number(Number(f).toPrecision(6))); } // a split factor as Python's {:g}: 2 → "2", 1.5 → "1.5", 0.1 → "0.1"
 /* record.live_withheld (build_site live_shown): a live.json whose close is older than the scored analysis (Nasdaq had not
-   posted the scored session yet), or one left from an earlier run of a re-scored name, is not shown as current — record.live is null, the scored figures are the current ones
-   and this says why. {price, price_date, scored_date, method, note}, or null when nothing was withheld. */
+   posted the scored session yet), or one left from an earlier run of a re-scored name, is not shown as current — record.live is null, and the scored figures are the
+   latest available (Andrew's ruling, 2026-10-20: never "pending" — no newer close exists, so nothing is outstanding).
+   {price, price_date, scored_date, method, note}, or null when nothing was withheld. */
 function liveWithheld(record) {
   var w = obj(obj(record).live_withheld);
   if (!Object.keys(w).length) return null;
   return { price: num(w.price), price_date: isoDay(w.price_date), scored_date: isoDay(w.scored_date), method: typeof w.method === 'string' ? w.method : null, note: typeof w.note === 'string' ? w.note : '' };
 }
-function pendingText(w) { // plain text; escaped where it is printed
+function latestText(w) { // plain text; escaped where it is printed
   w = obj(w);
-  if (w.price_date && w.scored_date && w.price_date >= w.scored_date) return 'Live figures pending — the live repricing on file predates the ' + w.scored_date + ' score';
-  return 'Live figures pending — ' + (w.price_date && w.scored_date ? 'the ' + w.price_date + ' close predates the ' + w.scored_date + ' analysis' : 'the last close on file predates the analysis');
+  if (w.price_date && w.scored_date && w.price_date >= w.scored_date) return 'Scored figures are the latest — the live repricing on file predates the ' + w.scored_date + ' score';
+  return 'Scored figures are the latest — ' + (w.price_date && w.scored_date ? 'the ' + w.price_date + ' close on file predates the ' + w.scored_date + ' analysis' : 'the last close on file predates the analysis');
 }
 /* The close a page that is not live shows as the current price (header, condensed bar): prices.stats.last with its date and
    1-day change — but never a close older than the scored analysis on a record whose live.json was withheld for exactly that
@@ -416,10 +417,10 @@ function renderHeader(record, stars, repo) {
     // a live.json withheld for predating the analysis (record.live_withheld): its close is not the current price either —
     // the scored price is, with the reason beside it (the note in the tooltip); a close that IS current still shows
     var cc = currentClose(record), wh = liveWithheld(record);
-    var pend = wh ? '<span class="lvpend"' + (wh.note ? ' title="' + esc(wh.note) + '"' : '') + '>' + esc(pendingText(wh)) + '</span>' : '';
+    var latest = wh ? '<span class="lvpend"' + (wh.note ? ' title="' + esc(wh.note) + '"' : '') + '>' + esc(latestText(wh)) + '</span>' : '';
     sub = 'Probability-weighted IRR at ' + fmtMoney(price);
     priceTile = '<div class="hstat"><span class="k">' + (cc ? 'Last close' : wh ? 'Scored price' : 'Price used') + '</span><span class="v mono">' + fmtMoney(cc ? cc.last : price) + (cc ? chgS : '') + '</span><span class="tsub">'
-      + joinNonEmpty([cc ? esc(cc.date) + ' · scored at ' + fmtMoney(price) + ' (' + esc(s.analysis_date || '') + ')' : (wh ? '' : esc(n.price_source || '') + ' · ' + esc(s.analysis_date || '')), pend, rangeSub], ' · ') + '</span></div>';
+      + joinNonEmpty([cc ? esc(cc.date) + ' · scored at ' + fmtMoney(price) + ' (' + esc(s.analysis_date || '') + ')' : (wh ? '' : esc(n.price_source || '') + ' · ' + esc(s.analysis_date || '')), latest, rangeSub], ' · ') + '</span></div>';
     ttile = '<span class="ttile" style="background:' + acc + '">' + esc(tier) + '</span>';
   }
   var chip = tierShiftChip(v), schip = splitChip(splitInfo(record));
@@ -446,7 +447,7 @@ function renderTabSummary(record) {
   var cc = currentClose(record), hasLast = !!cc, chg = num(st.change_1d_pct); // a close older than a withheld live.json's analysis is not current (currentClose)
   var price = v.is_live ? v.price : (hasLast ? cc.last : v.price), showChg = chg !== null && (v.is_live || hasLast);
   return '<div class="tabsum" aria-hidden="true"><span class="ttile sm" style="background:' + acc + '">' + esc(v.tier) + '</span><b class="mono">' + esc(s.ticker || record.ticker || row.ticker) + '</b>'
-    + '<span class="mono" title="' + (v.is_live || hasLast ? 'Last close' : liveWithheld(record) ? 'Scored price — live figures pending' : 'Scored price') + '">' + fmtMoney(price) + '</span>' + (showChg ? '<span class="mono ' + ((chg || 0) >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</span>' : '')
+    + '<span class="mono" title="' + (v.is_live || hasLast ? 'Last close' : liveWithheld(record) ? 'Scored price — the latest available' : 'Scored price') + '">' + fmtMoney(price) + '</span>' + (showChg ? '<span class="mono ' + ((chg || 0) >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</span>' : '')
     + '<span class="mono" style="color:' + acc + '">' + (v.irr !== null ? fmtPct(v.irr) : '—') + (v.is_live ? ' live' : '') + '</span></div>';
 }
 
@@ -764,7 +765,7 @@ function renderOverview(record) {
   else if (Object.keys(sp).length) p2 = '<div class="p2box"><b>✓ Pass 2 checked ' + esc(sp.date) + ' — no material change</b><p>' + esc(sp.summary) + '</p></div>';
   var up = v.upside, hp = hurdlePrices(record), px = v.price, iv15 = num(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15), wh = liveWithheld(record);
   var tiles = [
-    tile(v.is_live ? 'Last close' : 'Price', fmtMoney(px), '', v.is_live ? esc(v.price_date) + ' · scored at ' + fmtMoney(v.scored_price) : (wh ? 'scored ' + esc(v.price_date) + ' · live pending' : ''), wh && !v.is_live ? pendingText(wh) : ''),
+    tile(v.is_live ? 'Last close' : 'Price', fmtMoney(px), '', v.is_live ? esc(v.price_date) + ' · scored at ' + fmtMoney(v.scored_price) : (wh ? 'scored ' + esc(v.price_date) + ' · latest available' : ''), wh && !v.is_live ? latestText(wh) : ''),
     tile('IV @15%', fmtMoney(iv15), px && iv15 !== null ? signCls(iv15 - px) : '', 'clears 15%' + (v.is_live ? ' at last close' : '')),
     tile('Price for 20%', fmtMoney(hp[20]), px && hp[20] !== null ? signCls(hp[20] - px) : '', 'Tier A hurdle'),
     tile('Price for 25%', fmtMoney(hp[25]), px && hp[25] !== null ? signCls(hp[25] - px) : '', 'Tier S hurdle'),
@@ -1433,7 +1434,7 @@ function renderForecastDCF(record) {
   var hp = hurdlePrices(record);
   var hpTile = function (k, label) { return tile(label, fmtMoney(hp[k]), hp[k] !== null && price ? signCls(hp[k] - price) : ''); };
   var tiles = hpTile(15, 'Price for 15% (Tier B)') + hpTile(20, 'Price for 20% (Tier A)') + hpTile(25, 'Price for 25% (Tier S)')
-    + tile(lv.is_live ? 'Last close' : wh ? 'Scored price' : "Today's price", fmtMoney(price), '', lv.is_live ? esc(lv.price_date) + ' · scored at ' + fmtMoney(lv.scored_price) : (wh ? esc(pendingText(wh)) : ''), wh ? wh.note : '');
+    + tile(lv.is_live ? 'Last close' : wh ? 'Scored price' : "Today's price", fmtMoney(price), '', lv.is_live ? esc(lv.price_date) + ' · scored at ' + fmtMoney(lv.scored_price) : (wh ? esc(latestText(wh)) : ''), wh ? wh.note : '');
   var band = '', sb = obj(lv.scenarios.bear).irr, su = obj(lv.scenarios.bull).irr, ff = floorFlags(record, lv.is_live);
   if (sb === undefined) sb = lv.irr_bear; if (su === undefined) su = lv.irr_bull;
   if (sb !== null && sb !== undefined && su !== null && su !== undefined) {
@@ -1867,7 +1868,7 @@ function renderRowHTML(row, stars, repo) {
   var srs = obj(row.split_restated), srf = num(srs.factor);
   if (srf !== null && srf > 0 && Math.abs(srf - 1) > 1e-9) badges.push('<span class="bdg sp" title="' + esc('A ' + (srs.split || fmtFactor(srf) + 'x') + ' split since scoring: the price and IV columns are the run restated to today\'s share units (÷ ' + fmtFactor(srf) + '); IRR, tier and upside are unchanged') + '">' + esc(srs.split || fmtFactor(srf) + 'x') + ' split since scoring</span>');
   // row.live_withheld: live.json predates the scored analysis, so the row is ranked on its scored IRR (the live fields are null)
-  var pending = !live && row.live_withheld === true, pendingT = 'Live figures pending: the live repricing on file predates the scored analysis, so this row is ranked on its scored IRR until it is repriced';
+  var withheld = !live && row.live_withheld === true, withheldT = 'The scored figures are the latest available: the live repricing on file predates the scored analysis, so this row is ranked on its scored IRR';
   var tb = (live && row.tier_bear_live) || row.tier_bear, tu = (live && row.tier_bull_live) || row.tier_bull;
   var band = tb && tu ? '<span class="band" title="' + (live ? 'bear → bull tier at the last close' : 'bear → bull tier as scored') + '"><i style="background:' + (TIER_ACCENT[tb] || '#333') + '">' + esc(tb) + '</i>→<i style="background:' + (TIER_ACCENT[tu] || '#333') + '">' + esc(tu) + '</i></span>' : '—';
   var up = live ? num(row.upside15_live) : num(row.upside15), price = live && num(row.price_live) !== null ? row.price_live : row.price;
@@ -1876,9 +1877,9 @@ function renderRowHTML(row, stars, repo) {
   return '<tr data-ticker="' + esc(t) + '" data-tier="' + esc(tier) + '" data-fit="' + esc(row.fit || 'modeled') + '"' + (isWatched(row, stars, repo) ? ' data-watch="1"' : '') + '>'
     + '<td class="co"><div class="corow">' + starHTML(row, stars, repo) + '<a href="#' + esc(t) + '"><b class="mono">' + esc(t) + '</b><span class="nm">' + esc(row.name) + '</span></a></div><span class="sub">' + esc(row.sector) + '</span></td>'
     + '<td>' + tierCell + '</td><td class="num">' + band + '</td>'
-    + '<td class="num mono strong' + (liveFloor ? ' atfloor' : '') + '">' + (live ? fmtPct(row.irr_live) + (liveFloor ? ' ' + floorSup(liveFloorT) : '') : pending ? '<span class="sub lvpend" title="' + esc(pendingT) + '">live pending</span>' : '<span class="sub">—</span>') + '</td>'
+    + '<td class="num mono strong' + (liveFloor ? ' atfloor' : '') + '">' + (live ? fmtPct(row.irr_live) + (liveFloor ? ' ' + floorSup(liveFloorT) : '') : withheld ? '<span class="sub lvpend" title="' + esc(withheldT) + '">scored · latest</span>' : '<span class="sub">—</span>') + '</td>'
     + '<td class="num mono' + (live ? ' muted' : ' strong') + (scoredFloor ? ' atfloor' : '') + '">' + fmtPct(row.irr) + (scoredFloor ? ' ' + floorSup(scoredFloorT) : '') + '</td>'
-    + '<td class="num mono"' + (row.price_date ? ' title="' + esc(row.price_date) + '"' : pending ? ' title="scored price — live figures pending"' : '') + '>' + fmtMoney(price) + '</td>'
+    + '<td class="num mono"' + (row.price_date ? ' title="' + esc(row.price_date) + '"' : withheld ? ' title="scored price — the latest available"' : '') + '>' + fmtMoney(price) + '</td>'
     + '<td class="num mono">' + fmtMoney(row.iv15) + '</td>'
     + '<td class="num mono ' + signCls(up) + '">' + (up !== null ? fmtPts(up, 0) : '—') + '</td>'
     + '<td class="num mono">' + (moat !== null ? moat.toFixed(0) + '/10' : '—') + '</td>'
@@ -1915,7 +1916,7 @@ function renderListHTML(meta, index, state, stars) {
   var done = num(sweep.done) || 0, total = num(sweep.total) || 0, pct = total ? done / total * 100 : 0;
   var misfits = num(counts.misfits) !== null ? num(counts.misfits) : index.filter(function (r) { return obj(r).fit === 'misfit'; }).length;
   var withLive = num(counts.with_live) !== null ? num(counts.with_live) : index.filter(function (r) { return num(obj(r).irr_live) !== null; }).length;
-  var pendingN = num(counts.live_withheld) !== null ? num(counts.live_withheld) : index.filter(function (r) { return obj(r).live_withheld === true; }).length;
+  var withheldN = num(counts.live_withheld) !== null ? num(counts.live_withheld) : index.filter(function (r) { return obj(r).live_withheld === true; }).length;
   var tierChips = 'SABCDF'.split('').map(function (t) { return '<span class="tchip" style="--c:' + TIER_ACCENT[t] + '"><i>' + t + '</i>' + (num(tiers[t]) !== null ? num(tiers[t]) : index.filter(function (r) { return obj(r).tier === t; }).length) + '</span>'; }).join('');
   var notes = arr(meta.notes).map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('');
   var seg = function (id, items, cur, attr, extra, title) { return '<div class="seg' + (extra || '') + '" id="' + id + '" role="group"' + (title ? ' title="' + esc(title) + '"' : '') + '>' + items.map(function (it) { return '<button type="button" data-' + attr + '="' + esc(it[0]) + '" class="' + (it[0] === cur ? 'on' : '') + '" aria-pressed="' + (it[0] === cur) + '">' + it[1] + '</button>'; }).join('') + '</div>'; };
@@ -1923,7 +1924,7 @@ function renderListHTML(meta, index, state, stars) {
   var ths = COLS.map(function (c) { var sortable = SORTS.some(function (s) { return s[0] === c[2]; }); return '<th class="' + c[1] + (sortable ? ' sortable' : '') + (sortable && state.sort === c[2] ? ' sorted' : '') + '"' + (sortable ? ' data-sort="' + c[2] + '" title="Sort by ' + esc(c[0]) + '"' : (c[2] ? ' title="' + esc(c[2]) + '"' : '')) + '>' + c[0] + '</th>'; }).join('');
   var colgroup = '<colgroup>' + COLS.map(function (c, i) { return '<col class="c' + (i + 1) + '" style="width:' + c[3] + '%">'; }).join('') + '</colgroup>';
   return '<div id="listView">'
-    + '<header class="lhead"><div><h1>Owner\'s-Earnings DCF Ranking</h1><div class="note">' + esc(meta.date) + ' · ' + commas(done) + ' of ' + commas(total) + ' companies under $40B analyzed (' + pct.toFixed(1) + '%) · ranked by probability-weighted expected return at the last close (' + withLive + ' of ' + index.length + ' repriced live' + (pendingN ? ', ' + pendingN + ' pending a close after scoring' : '') + '; the rest at their scored price) · tap a company for its page</div>'
+    + '<header class="lhead"><div><h1>Owner\'s-Earnings DCF Ranking</h1><div class="note">' + esc(meta.date) + ' · ' + commas(done) + ' of ' + commas(total) + ' companies under $40B analyzed (' + pct.toFixed(1) + '%) · ranked by probability-weighted expected return at the last close (' + withLive + ' of ' + index.length + ' repriced live' + (withheldN ? ', ' + withheldN + ' at their scored figures (the latest available)' : '') + '; the rest at their scored price) · tap a company for its page</div>'
     + '<div class="prog" role="progressbar" aria-valuenow="' + pct.toFixed(1) + '" aria-valuemin="0" aria-valuemax="100"><div style="width:' + pct.toFixed(2) + '%"></div></div></div>'
     + '<div class="tchips">' + tierChips + '<span class="tchip"><i style="background:#3A4252">MF</i>' + misfits + ' sector misfits</span></div></header>'
     + '<div id="notice" class="notice" role="status" aria-live="polite"></div>'
@@ -2935,7 +2936,7 @@ var API = {
   crosshairLines: crosshairLines, labelWidth: labelWidth, estWidth: estWidth, XL_CH: XL_CH, XL_PAD_X: XL_PAD_X, XL_PAD_Y: XL_PAD_Y, XL_LINE: XL_LINE,
   condenseNow: condenseNow, TABSUM_H: TABSUM_H, sparkLabels: sparkLabels, oeGapNote: oeGapNote, oeYoyNote: oeYoyNote, histYoy: histYoy, overrideWhy: overrideWhy, isOverrideTag: isOverrideTag, runCapText: runCapText, SHARE_BASIS_X: SHARE_BASIS_X, SHARE_JUMP_X: SHARE_JUMP_X, renderStatementsBody: renderStatementsBody,
   parseHash: parseHash, TABS: TABS, TAB_KEYS: TAB_KEYS, SORTS: SORTS, TIER_ACCENT: TIER_ACCENT, tabScrollLeft: tabScrollLeft, TAB_PAD: TAB_PAD,
-  liveWithheld: liveWithheld, pendingText: pendingText, currentClose: currentClose, splitInfo: splitInfo, splitRefs: splitRefs, splitDivisor: splitDivisor, fmtFactor: fmtFactor, splitBrief: splitBrief,
+  liveWithheld: liveWithheld, latestText: latestText, currentClose: currentClose, splitInfo: splitInfo, splitRefs: splitRefs, splitDivisor: splitDivisor, fmtFactor: fmtFactor, splitBrief: splitBrief,
   renderOverrides: renderOverrides, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
   drawChart: drawChart, drawPrice: drawPrice // DOM-touching only through the element they are handed
 };
