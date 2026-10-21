@@ -247,15 +247,18 @@ function fmtFactor(f) { return String(Number(Number(f).toPrecision(6))); } // a 
 /* record.live_withheld (build_site live_shown): a live.json whose close is older than the scored analysis (Nasdaq had not
    posted the scored session yet), or one left from an earlier run of a re-scored name, is not shown as current — record.live is null, and the scored figures are the
    latest available (Andrew's ruling, 2026-10-20: never "pending" — no newer close exists, so nothing is outstanding).
-   {price, price_date, scored_date, method, note}, or null when nothing was withheld. */
+   {reason, price, price_date, scored_date, method, note}, or null when nothing was withheld. */
 function liveWithheld(record) {
   var w = obj(obj(record).live_withheld);
   if (!Object.keys(w).length) return null;
-  return { price: num(w.price), price_date: isoDay(w.price_date), scored_date: isoDay(w.scored_date), method: typeof w.method === 'string' ? w.method : null, note: typeof w.note === 'string' ? w.note : '' };
+  return { reason: typeof w.reason === 'string' ? w.reason : null, price: num(w.price), price_date: isoDay(w.price_date), scored_date: isoDay(w.scored_date), method: typeof w.method === 'string' ? w.method : null, note: typeof w.note === 'string' ? w.note : '' };
 }
 function latestText(w) { // plain text; escaped where it is printed
   w = obj(w);
-  if (w.price_date && w.scored_date && w.price_date >= w.scored_date) return 'Scored figures are the latest — the live repricing on file predates the ' + w.scored_date + ' score';
+  // the recorded reason decides the wording, not the dates: an earlier run's repricing usually ALSO has a close
+  // before the new score, so inferring from the dates alone renders the older-close text for it (Codex review, PR #83)
+  var earlierRun = w.reason === 'live_from_earlier_run' || (!w.reason && w.price_date && w.scored_date && w.price_date >= w.scored_date);
+  if (earlierRun && w.scored_date) return 'Scored figures are the latest — the live repricing on file predates the ' + w.scored_date + ' score';
   return 'Scored figures are the latest — ' + (w.price_date && w.scored_date ? 'the ' + w.price_date + ' close on file predates the ' + w.scored_date + ' analysis' : 'the last close on file predates the analysis');
 }
 /* The close a page that is not live shows as the current price (header, condensed bar): prices.stats.last with its date and

@@ -1584,9 +1584,10 @@ const withheldRec = (() => {
 })();
 test('Live older than the score: the header and the condensed bar show the scored price with the reason, never the older close; Overview / Forecast tiles present the scored figures as the latest available', () => {
   const v = App.liveView(withheldRec); assert.equal(v.is_live, false); assert.equal(v.price, 50); assert.equal(v.irr, 0.142);
-  const w = App.liveWithheld(withheldRec); assert.deepEqual(w, { price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
+  const w = App.liveWithheld(withheldRec); assert.deepEqual(w, { reason: 'live_older_than_score', price: 44, price_date: '2026-10-13', scored_date: '2026-10-14', method: 'no_close_since_scoring', note: withheldNote });
   assert.equal(App.latestText(w), 'Scored figures are the latest — the 2026-10-13 close on file predates the 2026-10-14 analysis');
-  assert.equal(App.latestText({ price_date: '2026-10-17', scored_date: '2026-10-16' }), 'Scored figures are the latest — the live repricing on file predates the 2026-10-16 score', 'an earlier run\'s repricing: the scored figures are still the latest');
+  assert.equal(App.latestText({ reason: 'live_from_earlier_run', price_date: '2026-10-13', scored_date: '2026-10-16' }), 'Scored figures are the latest — the live repricing on file predates the 2026-10-16 score', 'the reason decides, not the dates: an earlier run\'s close predates the new score too');
+  assert.equal(App.latestText({ price_date: '2026-10-17', scored_date: '2026-10-16' }), 'Scored figures are the latest — the live repricing on file predates the 2026-10-16 score', 'no reason recorded: the date inference still applies');
   assert.equal(App.liveWithheld(synthetic), null); assert.equal(App.liveWithheld({ live_withheld: null }), null); assert.equal(App.latestText({}), 'Scored figures are the latest — the last close on file predates the analysis');
   assert.equal(App.currentClose(withheldRec), null, 'the 2026-10-13 close predates the 2026-10-14 analysis');
   const head = App.renderHeader(withheldRec);
