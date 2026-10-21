@@ -1439,6 +1439,9 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     # lag. Re-derived on every row on every build, like the watchlist flag.
     last_close = {}
     for t, c in current.items():
+        if t not in rows:
+            continue  # no surviving row (its record failed to build): not a candidate — it cannot
+            # be flagged or counted, and its dates must not shift the baseline (Codex review of PR #83)
         ld = _date10(_d(_d(jload(os.path.join(c["path"], "prices.json"))).get("stats")).get("last_date"))
         if ld:
             last_close[t] = ld

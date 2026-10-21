@@ -1365,6 +1365,25 @@ def test_prices_staleness_guard_flags_rows_and_meta():
         res2 = tb.build()
         rows2 = {r["ticker"]: r for r in res2["rows"]}
         assert rows2["APP"]["prices_stale"] == rows["APP"]["prices_stale"] and res2["meta"]["counts"]["prices_stale"] == 1
+    # a stale company whose record FAILS to build has no row: it is not a
+    # candidate, so it cannot enter the count / note or shift the baseline
+    with TempBase() as tb:
+        dates = {"APP": "2026-10-12", "KR": "2026-10-13", "AEE": "2026-10-14", "ZS": "2026-10-14"}
+        for t, d in dates.items():
+            p = B.jload(os.path.join(tb.dir, t, "prices.json"))
+            p["as_of"] = d
+            p["stats"]["last_date"] = d
+            tb.write_json(t, "prices.json", obj=p)
+        real = B.build_record
+        B.build_record = lambda c, *a, **kw: (_ for _ in ()).throw(RuntimeError("x")) if c.get("ticker") == "APP" else real(c, *a, **kw)
+        try:
+            res = tb.build()
+        finally:
+            B.build_record = real
+        assert res["failed"] == ["APP"] and not any(r["ticker"] == "APP" for r in res["rows"])
+        assert res["meta"]["counts"]["prices_stale"] == 0, res["meta"]["counts"]
+        assert not any("more than one session behind" in x for x in res["meta"]["notes"])
+        assert all(r["prices_stale"] is None for r in res["rows"])
 
 
 # ---------------- 17. street_fetched_at without street.json
