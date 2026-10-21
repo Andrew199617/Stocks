@@ -1,0 +1,290 @@
+{
+ "ticker": "HLI",
+ "cik": 1302215,
+ "as_of": "2026-10-20",
+ "fetched_at": "2026-10-20T20:40:00-04:00",
+ "newest_filing_date": "2026-10-05",
+ "sources": {
+  "edgar_submissions": "https://data.sec.gov/submissions/CIK0001302215.json",
+  "edgar_annual_document": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000053/hli-20260331.htm",
+  "nasdaq_company_profile": "https://api.nasdaq.com/api/company/HLI/company-profile",
+  "nasdaq_summary": "https://api.nasdaq.com/api/quote/HLI/summary?assetclass=stocks"
+ },
+ "about": {
+  "entity": "HOULIHAN LOKEY, INC.",
+  "cik": 1302215,
+  "description": {
+   "text": "Established in 1972, Houlihan Lokey, Inc. is a leading global independent investment bank with expertise in mergers and acquisitions (“M&A”), capital markets, financial restructurings, liability management, and financial and valuation advisory services. We serve a diverse set of clients worldwide, including corporations, financial sponsors and government agencies. We provide our financial professionals with an integrated platform that enables them to deliver meaningful and differentiated advice to our clients. We advise our clients on critical strategic and financial decisions, employing a rigorous analytical approach coupled with deep product and industry expertise. We market our services through our product areas, our industry groups and our Financial Sponsors group, serving our clients in three business segments: Corporate Finance (“CF”), encompassing M&A and capital solutions; Financial Restructuring (“FR”), including restructurings both out-of-court and in formal bankruptcy or insolvency proceedings; and Financial and Valuation Advisory (“FVA”), including financial opinions and a variety of valuation and financial consulting services. We are committed to a set of principles that serve as the backbone of our success. Independent advice and intellectual rigor, combined with consistent senior-level involvement, are hallmarks of our commitment to client service.",
+   "source": "10-K Item 1 Business",
+   "form": "10-K",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "accession": "0001302215-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000053/hli-20260331.htm"
+  },
+  "description_short": "Houlihan Lokey, Inc. (NYSE:HLI) is a leading global investment bank recognized for delivering independent strategic and financial advice to corporations, financial sponsors, and governments. With uniquely deep industry expertise, broad international reach, and a partnership approach rooted in trust, the firm provides innovative, integrated solutions across mergers and acquisitions, capital solutions, financial restructuring, and financial and valuation advisory. Our unmatched transaction volumes provide differentiated, data-driven perspectives that help our clients achieve their most critical goals.",
+  "industry": "Investment Managers",
+  "sector": "Finance",
+  "region": "North America",
+  "sic": "6282",
+  "sic_description": "Investment Advice",
+  "state_of_incorporation": null,
+  "fiscal_year_end_mmdd": "0331",
+  "filer_category": "Large accelerated filer",
+  "exchange": "NYSE",
+  "exchanges": [
+   "NYSE"
+  ],
+  "website": "https://www.hl.com",
+  "headquarters": "Los Angeles, California",
+  "address": {
+   "street": "10250 Constellation Blvd. 5th",
+   "city": "Los Angeles",
+   "state": "California",
+   "zip": "90067",
+   "country": null,
+   "source": "annual filing cover",
+   "form": "10-K",
+   "filed": "2026-05-22"
+  },
+  "phone": "310.553.8871",
+  "employees": {
+   "count": 2800,
+   "as_of": "2026-03-31",
+   "evidence": "As of March 31, 2026, 2025, and 2024, we employed approximately 2,800, 2,700, and 2,600 people, respectively, worldwide.",
+   "form": "10-K",
+   "filed": "2026-05-22",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000053/hli-20260331.htm"
+  },
+  "employees_unresolved": null,
+  "first_sec_filing": "2015-07-10",
+  "first_sec_filing_form": "S-1",
+  "former_names": [
+   "HOULIHAN LOKEY HOWARD & ZUKIN INC"
+  ],
+  "edgar_url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001302215&type=10-K&dateb=&owner=include&count=40"
+ },
+ "filings": [
+  {
+   "form": "8-K",
+   "filed": "2026-10-05",
+   "period": "2026-10-02",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-414411",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312526414411/d341970d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-22",
+   "period": "2026-09-16",
+   "items": [
+    "5.02",
+    "5.07",
+    "7.01",
+    "9.01"
+   ],
+   "description": "Officer/director change; Shareholder vote; Reg FD",
+   "accession": "0001193125-26-398130",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312526398130/d916717d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-09-08",
+   "period": "2026-09-03",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-385184",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312526385184/d71889d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-08-13",
+   "period": "2026-08-13",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-349634",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312526349634/d133997d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-07-31",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001302215-26-000067",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000067/hli-20260630.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-07-30",
+   "period": "2026-07-29",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001302215-26-000063",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000063/hli-20260729.htm"
+  },
+  {
+   "form": "DEF 14A",
+   "filed": "2026-07-24",
+   "period": "2026-09-16",
+   "items": [],
+   "description": "Proxy statement",
+   "accession": "0001302215-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000059/hli-20260724.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-05-22",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001302215-26-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000053/hli-20260331.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-05-07",
+   "period": "2026-05-06",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001302215-26-000014",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000014/hli-20260506.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-02-25",
+   "period": "2026-02-25",
+   "items": [
+    "8.01",
+    "9.01"
+   ],
+   "description": "Other events",
+   "accession": "0001193125-26-072058",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312526072058/d72411d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-02-03",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001302215-26-000007",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000007/hli-20251231.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-24",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-26-029644",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312526029644/d63878d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2026-01-29",
+   "period": "2026-01-28",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001302215-26-000003",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221526000003/hli-20260128.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-12-30",
+   "period": "2025-12-30",
+   "items": [
+    "1.01",
+    "9.01"
+   ],
+   "description": "Material agreement",
+   "accession": "0001193125-25-337079",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312525337079/d58863d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-04",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001302215-25-000111",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221525000111/hli-20250930.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-31",
+   "period": "2025-10-30",
+   "items": [
+    "2.02",
+    "9.01"
+   ],
+   "description": "Results of operations",
+   "accession": "0001302215-25-000108",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221525000108/hli-20251030.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-10-06",
+   "period": "2025-09-30",
+   "items": [
+    "5.02"
+   ],
+   "description": "Officer/director change",
+   "accession": "0001193125-25-231919",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312525231919/d36866d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-09-19",
+   "period": "2025-09-17",
+   "items": [
+    "5.07"
+   ],
+   "description": "Shareholder vote",
+   "accession": "0001193125-25-209055",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312525209055/d54749d8k.htm"
+  },
+  {
+   "form": "8-K",
+   "filed": "2025-08-21",
+   "period": "2025-08-20",
+   "items": [
+    "1.01",
+    "2.03",
+    "9.01"
+   ],
+   "description": "Material agreement; Debt obligation",
+   "accession": "0001193125-25-184314",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000119312525184314/d75560d8k.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-05",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001302215-25-000092",
+   "url": "https://www.sec.gov/Archives/edgar/data/1302215/000130221525000092/hli-20250630.htm"
+  }
+ ],
+ "warnings": []
+}
