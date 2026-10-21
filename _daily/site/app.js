@@ -761,7 +761,7 @@ function renderFilings(record) {
    score.json's own block, and never when the score on file is an earlier run's (live_withheld reason
    score_not_from_this_run or iprd_unresolved). The engine record's block alone (the score carries none — make_score
    copies it whenever the run has one, so that score is another run's) or beside a foreign score is named as the
-   latest run's adjustment pending its score, never as already in the figures. The charge is per traded unit: per ADS
+   latest run's adjustment as not scored yet (never "pending", Andrew 2026-10-20), never as already in the figures. The charge is per traded unit: per ADS
    when the run's applied ads_ratio (numbers.iprd_adjustment.ads_ratio, else numbers.ads_ratio) is not 1, as
    key_numbers.md prints it. '' for every other record. */
 function iprdUnit(record) {
@@ -787,7 +787,7 @@ function iprdNote(record) {
   b = obj(obj(record.numbers).iprd_adjustment); c = num(b.charge_per_share);
   if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
   where = iprdWhere(b);
-  return 'Acquired IPR&amp;D: the latest engine run deducts −' + fmtMoney(c) + iprdUnit(record) + ' one-time' + (where ? ' (' + where + ')' : '') + ', pending its score — the scored figures shown do not include it.';
+  return 'Acquired IPR&amp;D: the latest engine run deducts −' + fmtMoney(c) + iprdUnit(record) + ' one-time' + (where ? ' (' + where + ')' : '') + ', not scored yet — the scored figures shown do not include it.';
 }
 
 function renderOverview(record) {

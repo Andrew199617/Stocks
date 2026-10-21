@@ -1825,7 +1825,7 @@ test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the
   assert.ok(App.iprdNote(both).includes('(FY2025, expense basis; YTD 2026-06-30, cash basis)'), App.iprdNote(both));
   // [Codex review r16 of PR #47] the engine record's block alone is a run the score on file did not come from: pending, never "deducted"
   const numbersOnly = JSON.parse(JSON.stringify(rec)); numbersOnly.numbers.iprd_adjustment = numbersOnly.score.iprd_adjustment; delete numbersOnly.score.iprd_adjustment;
-  assert.ok(!App.iprdNote(numbersOnly).includes('deducted from every intrinsic value') && App.iprdNote(numbersOnly).includes('pending its score'), App.iprdNote(numbersOnly));
+  assert.ok(!App.iprdNote(numbersOnly).includes('deducted from every intrinsic value') && App.iprdNote(numbersOnly).includes('not scored yet'), App.iprdNote(numbersOnly));
   const am = JSON.parse(JSON.stringify(rec)); am.score.iprd_adjustment.treatment = 'amortized_in_base';
   assert.equal(App.iprdNote(am), 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.');
   const none = JSON.parse(JSON.stringify(rec)); none.score.iprd_adjustment.treatment = 'none';
@@ -1845,7 +1845,7 @@ test('acquired IPR&D note (Codex review r16): only the displayed score\'s own ru
   const blk = { treatment: 'one_time_value_deduction', total: 284887000, charge_per_share: 2.3333797464207318,
     periods: [{ period: '2025-12-31', window: 'fy', amount_basis: 'expense', deducted: 284887000 }] };
   const applied = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value';
-  const pending = 'Acquired IPR&amp;D: the latest engine run deducts −$2.33/sh one-time (FY2025, expense basis), pending its score — the scored figures shown do not include it.';
+  const pending = 'Acquired IPR&amp;D: the latest engine run deducts −$2.33/sh one-time (FY2025, expense basis), not scored yet — the scored figures shown do not include it.';
   // #4331515981: make_score refused the new run, so the score on file is an earlier run's (no block of its own)
   const foreign = JSON.parse(JSON.stringify(synthetic));
   foreign.numbers.iprd_adjustment = Object.assign({ ads_ratio: 1.0 }, blk); delete foreign.score.iprd_adjustment;

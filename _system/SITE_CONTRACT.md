@@ -229,7 +229,7 @@ build_site's replay fallbacks subtract the same charge (`iprd_charge`, through t
 is unchanged." (the engine solves each IRR at price + charge: a higher price, a lower IRR — Codex review round 3 of PR #47) (score.json's own block only, and never beside a score from another run — Codex review round 16 of PR #47: with
 `live_withheld` reason `score_not_from_this_run` or `iprd_unresolved`, or a score.json with no block beside an engine
 record that has one, the engine record's one-time charge is shown as "Acquired IPR&D: the latest engine run deducts
-−$2.33/sh one-time (FY2025, expense basis), pending its score — the scored figures shown do not include it.", never as
+−$2.33/sh one-time (FY2025, expense basis), not scored yet — the scored figures shown do not include it.", never as
 already in the figures; the unit is `/ADS` when the run's `numbers.iprd_adjustment.ads_ratio` (else `numbers.ads_ratio`)
 is not 1, since `charge_per_share` is per traded unit; an amortized-in-base run says so; nothing for any other
 record). A split since scoring divides `charge_per_share`, the `before` / `after` IVs and score.json's `iv_before` /
