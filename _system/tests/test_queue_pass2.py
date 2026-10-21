@@ -513,6 +513,42 @@ def test_file_flag_moves_the_second_pass_queue():
         shutil.rmtree(alt, ignore_errors=True)
 
 
+MALFORMED_PASS2 = ("[]", "{}", '{"entries": []}', '{"entries": null}', '{"entries": {"KR": 1}}')
+
+
+def test_malformed_second_pass_queue_is_refused_not_repaired():
+    """v5.7 (R5; PR #47 Codex round 26's registry rule applied to the pass-2 queue, backlog seed 2026-10-21, EB-028):
+    a second_pass_queue.json that parses but is not {"entries": {<ticker>: {...}}} stops every pass-2 command and
+    refresh with exit 1, naming the file as malformed and saying to restore it from git — the file byte-identical
+    (before, setdefault("entries", {}) repaired it and the save erased every other ticker's record, or the command
+    crashed), and refresh leaves queue.json untouched. A missing file still starts empty."""
+    for text in MALFORMED_PASS2:
+        b = Base([done("KR"), done("AAPL", pos=2)], folders=("KR", "AAPL"))
+        try:
+            with open(b.ppath, "w", encoding="utf-8", newline="") as f:
+                f.write(text)
+            q_before = open(b.qpath, "rb").read()
+            for args in (("pass2-claim",), ("pass2-done", "KR", "done_no_change"), ("pass2-check", "KR"),
+                         ("pass2-reset", "KR"), ("refresh", "KR", "--stdin")):
+                r = b.run(*args, stdin="NEW_FILING: test" if args[0] == "refresh" else None)
+                assert r.returncode == 1, f"{text} {args}: rc {r.returncode} {r.stdout} {r.stderr}"
+                assert "is malformed" in r.stderr and "restore it from git" in r.stderr, f"{text} {args}: {r.stderr}"
+                assert "Traceback" not in r.stderr, r.stderr
+                with open(b.ppath, encoding="utf-8", newline="") as f:
+                    assert f.read() == text, f"{text} {args}: the malformed file was rewritten"
+                assert open(b.qpath, "rb").read() == q_before, f"{text} {args}: queue.json changed"
+        finally:
+            b.close()
+    b = Base([done("KR")], folders=("KR",))
+    try:
+        assert not os.path.exists(b.ppath)
+        r = b.run("pass2-claim")
+        assert r.returncode == 0 and r.stdout.strip() == "KR", r.stderr
+        assert b.entry("KR")["status"] == "in_progress"
+    finally:
+        b.close()
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

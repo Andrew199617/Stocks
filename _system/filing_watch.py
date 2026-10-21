@@ -23,6 +23,9 @@ goes through `queue.py refresh`, which writes the refreshed queue.json entry
 and, when the name's second pass was done, puts that second_pass_queue.json
 entry back to pending (the re-score is a new scoring generation).
 Prints a summary: checked / refreshed (with form + period) / unchanged / errors.
+Exit 3 when every name's fetch failed — every checked name errored and none was refreshed or unchanged: an EDGAR
+outage is a failed run (run_health.py records it; engine 5.7, R5 2026-10-19), not a quiet one; a few name-level
+errors beside successful checks still exit 0.
 An unreadable queue.json is an error (exit 1), not an empty queue; the read is
 retried while queue.py replaces the file (on Windows a read that lands
 mid-replace fails to open).
@@ -134,6 +137,8 @@ def main():
         time.sleep(0.12)
     print(f"filing_watch: checked {len(done)} done names — {len(refreshed)} refreshed, {unchanged} unchanged, {len(errors)} errors"
           + (f"\n  " + "\n  ".join(errors) if errors else ""))
+    # v5.7 (R5, Andrew 2026-10-19): an EDGAR outage (every name errored) is a failed run, exit 3 — run_health counts it
+    sys.exit(3 if errors and not refreshed and unchanged == 0 else 0)
 
 
 if __name__ == "__main__":
