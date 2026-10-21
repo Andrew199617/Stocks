@@ -10,7 +10,7 @@
  "base_year": "2026",
  "base_source": "median_of_last_3_fy_oe_per_share",
  "moat_score": 6,
- "moat_justification": "No. 1 global M&A advisor by deal count and No. 1 global restructuring franchise, with a three-segment mix (Corporate Finance, countercyclical Financial Restructuring, Financial & Valuation Advisory) that kept ROIC at 24-35% in every one of the last five fiscal years including the FY2023-24 deal trough \u2014 but it is a people business: no contracts or switching costs per mandate, managing directors can walk, and a ~61.5% compensation ratio means the bankers capture most of the economics.",
+ "moat_justification": "No. 1 global M&A advisor by deal count and No. 1 global restructuring franchise, with a three-segment mix (Corporate Finance, countercyclical Financial Restructuring, Financial & Valuation Advisory) that kept ROIC at 24% or better in every one of the last five fiscal years including the FY2023-24 deal trough (24.0-34.5% across FY2023-26; FY2022 printed 72.9% on a small net invested-capital base) \u2014 but it is a people business: no contracts or switching costs per mandate, managing directors can walk, and a ~61.5% compensation ratio means the bankers capture most of the economics.",
  "cap_years": 9.8,
  "fragility_flags": [
   "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
