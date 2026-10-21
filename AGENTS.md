@@ -37,7 +37,11 @@ files is a P2 finding on its own: say which code lines changed and ask for
 them in a separate PR. One exception: the catch-up PR that first brings the
 live VM's state onto main after the 2026-10-16 merge may mix the two (it
 carries spec drafts, this file and ~1,500 data files); the separation binds
-from the first per-company PR after it. Policy-bearing files are `make_score.py` (tiers,
+from the first per-company PR after it. A second exception: an
+owner-directed acceptance re-score named in the PR body (the PR #31
+engine-5.5 bundle and PR #47's engine-5.6 HALO re-score) may ride with its
+engine change — the PR body must say the owner directed it; do not ask for
+it to be split out. Policy-bearing files are `make_score.py` (tiers,
 alert gates), `dcf_engine.py` (the formula), `queue.py` (claims and pass 2),
 `WORKER_SPEC.md` and `SECOND_PASS.md` (what workers must do). A change to
 any of them needs (a) a test in `_system/tests/` that fails on the old code,
@@ -68,13 +72,21 @@ the specs for the old rule and list every stale passage with file:line.
   second, `share_scale.pin_over_price` / `growth_inputs_kept`; after the
   third, `share_scale.pin_factor_withheld` and
   `share_basis.split.confirmed_against_period`; after the fourth,
-  ttm.json `sbc_reconciliation_withdrawn_legs`).
+  ttm.json `sbc_reconciliation_withdrawn_legs`); engine 5.6 adds `iprd_adjustment` (the acquired-IPR&D
+  one-time value adjustment: periods, `charge_per_share`, `treatment`, and `before` — the unadjusted IVs and
+  IRRs; null when nothing was detected — except that a run whose window holds no charge but whose
+  judgment.json declares `iprd_deferred_payment` entries records them in a minimal block,
+  `deferred_payments_only`, treatment `none`, no charge: Codex review round 5 of PR #47).
 - `judgment.json` — the worker's decisions: `moat_score`, `moat_for` /
   `moat_against`, `probs_used`, `confidence`, `tier_override` +
   `tier_override_reason`, per-field overrides as top-level keys
   (`capex_override`, `sbc_override`, `shares_override`, `base_override`,
   `ads_ratio`; each `{value, source, reason, kind}`, and since engine 5.5
-  an optional `currency: "USD"` on a kind `filing` override),
+  an optional `currency: "USD"` on a kind `filing` override; since Codex
+  review round 15 of PR #47 a plain `base_override` pinned through
+  `--base-oe-ps` at a value that is not ttm.json's figure carries
+  `basis_window` — `{window: "ttm", ytd_current_period}` or
+  `{window: "fy"}` — on a 5.6 run),
   `share_class_mismatch` (5.5: `true` or `{value: true, source, reason}`;
   any other shape is malformed and make_score refuses it),
   `second_pass` when pass 2 ran.
@@ -85,7 +97,15 @@ the specs for the old rule and list every stale passage with file:line.
   `market_cap_b` carries `market_cap_basis`,
   `in_scope_corrected_by_make_score` marks a scope make_score corrected,
   and `net_debt_to_normalized_oe_ads_basis` is a pre-5.5 ADS record's
-  net-debt ratio on the ADS basis.
+  net-debt ratio on the ADS basis; since 5.6 `iprd_adjustment` whenever the
+  engine recorded the block — any treatment, including `none`,
+  `no_value_to_adjust`, `not_applied_share_count_unverified`,
+  `awaiting_cash_flow_check`, `non_usd_no_rate` and
+  `amortized_in_base` (the charge; the weighted IV@15/20/25 and IRR
+  before → after only when a one-time deduction ran) — and, since Codex
+  review round 15 of PR #47, a `deferred_payments_only` block copied as a
+  minimal one (treatment `none`, `total` / `charge_per_share` 0, no
+  periods, the rolled-out list), which every consumer reads as no charge.
 - `key_numbers.md` — generated quotable figures. `analysis.md` may only
   quote numbers from here.
 - `analysis.md` — the narrative; must resolve every flag.
@@ -95,7 +115,8 @@ the specs for the old rule and list every stale passage with file:line.
   balance-sheet history; use it to cross-check the CSV.
 
 Method in one line: OE = operating cash flow − total capex − stock-based
-compensation. Base OE/share = median of the last 3 fiscal years, or a TTM
+compensation (engine 5.6: acquired in-process R&D expensed at acquisition is
+deducted once from every IV and added to the IRR price, never from the base). Base OE/share = median of the last 3 fiscal years, or a TTM
 figure when the last FY is stale. Five probability-weighted scenarios give
 the headline IRR. Tiers: S ≥ 25%, A 20–25%, B 15–20%, C 10–15%, D < 10%,
 F = no positive normalized OE. Hurdle prices: IV@15 (B), IV@20 (A), IV@25
@@ -275,7 +296,7 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `engine_version` 5 and no `engine_release` is a pre-5.4 run and must
    not claim the band or alert fields. Since 5.5, make_score rebuilding a
    score on output from another engine release sets `alert_eligible` and
-   `exit_alert_eligible` false ("engine output predates release 5.5.0 —
+   `exit_alert_eligible` false ("engine output predates release <the current release> (5.6.0 since 2026-10-19) —
    re-run the engine before an entry / exit alert") and carries
    `override_impact` from the prior score.json
    (`impact_carried_from_prior_score: true`) or records it as not
@@ -294,6 +315,196 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    land-premium payment in operating cash flow). A base year that still
    contains a sold or discontinued business is P1 (VOD).
 
+8. **Acquired IPR&D (engine 5.6 — Andrew 2026-10-19 decided the one-time value deduction, cash preferred,
+   the 5% flag, recurrence and the impairment non-goal; the rest of this check enforces main-agent / review
+   additions awaiting his ratification).** When `dcf_numbers.json` carries
+   `iprd_adjustment` with treatment `one_time_value_deduction`: `charge_per_share` must equal
+   `total ÷ shares_denominator × ads_ratio` (the denominator is ttm.json `ttm_shares_diluted` for a TTM
+   base — a `--ttm` pin, a `--base-oe-ps` pin equal to ttm.json's `ttm_oe_per_share`, or an `iprd_amortized`
+   pin on native base `ttm_json` —, else the CSV's latest `shares_diluted`, × the share-scale factor when
+   `shares_source` is `diluted_latest_scale_corrected`; [Codex review round 30 of PR #47] a TTM base's figures
+   are never the latest-FY count: without a positive `ttm_shares_diluted` the engine refuses a TTM run carrying
+   an acquired-IPR&D figure per share, `BAD_TTM_SHARES` — so a TTM base whose `shares_source` is not
+   `ttm.json ttm_shares_diluted` is P1); `total` is the sum of the periods' `deducted`; every
+   scenario's and the weighted IV must equal the `before` figure minus `charge_per_share`, and the base and
+   the paths are unchanged (a base cut by the charge is P1 — the rule is a value deduction, never a base
+   deduction). `tier_by_numbers` is the band of the ADJUSTED weighted IRR. A period with `amount_basis`
+   `expense` is deducted only beside a `cash_flow_check` of presentation `added_back_paid_in_investing`
+   (judgment.json `iprd_cash_flow_check`, fixer review round): its `source` must cite the 10-K's operating
+   add-back and investing line — a check whose source does not show both is P1 (NBIX pays inside OCF: a
+   deduction there charges OE twice), and one declaring `inside_operating_cash_flow` / `paid_in_shares` where the
+   filing shows the add-back and an investing payment is P1 the other way. [Codex review round 8 of PR #47] An
+   expense-basis period is excluded `already_in_capex` only beside presentation `paid_in_intangible_capex`, whose
+   source must cite the intangible-purchase line the engine sums into capex that holds the payment — declared where
+   the payment sits on its own investing line (HALO's custom line) it is P1 (a real charge deducted as $0); a
+   `capex_overlap_note` (the period's intangible capex is at least 98% of the charge) is a hint to read the
+   cash-flow statement, never an exclusion (round 21: no docstring or doc may state the size rule as the
+   exclusion); a check on an expense with no FX rate names its `unit` and the native amount (round 21) — one
+   whose unit is not the expense's filed unit is never applied; say "cannot verify from the diff"
+   when the PR does not show the filing. A score with a period still `awaiting_cash_flow_check` cannot exist
+   (make_score refuses it), nor one with a period excluded `non_usd_no_rate` beside a positive `expense_native`
+   (`ACQUIRED_IPRD_UNCONVERTED`, `NEEDS_MAIN_AGENT: currency` — Codex review round 3 of PR #47) or a positive
+   `cash_native` (a cash-only payment with no FX rate that could settle a charge — round 4 — or the period's
+   cash outflow beside a positive expense, the preferred amount, with no FX rate: never replaced by the
+   expense — round 6), or (round 24) a positive `expense_tag_unconverted` — one of two positive detector tags with
+   no FX rate, which the engine never compares with the other (`expense_tags_conflict` then records each tag's
+   {native, unit, usd}, no check is applied — `cash_flow_check_not_applied` — and the period deducts nothing). A
+   no-rate cash-only payment after a charge whose USD remainder is unknown carries `unconverted_remainder_of`
+   and is refused the same way (round 24: that gate reads the unknown remainder as well as the unpaid one). A
+   `deferred_payment` period counts cash the window's earlier cash-basis charge left unpaid (BIIB), never more
+   than that remainder — or, declared in `iprd_deferred_payment` against a `first_charged_period` before the
+   window that companyfacts shows expensed (`first_charge_evidence` `companyfacts_expense_fact`), a cash-tag-only
+   payment of that pre-window charge (round 3): its cited filing must show the deferred consideration or
+   milestone paid in that period, P1 otherwise. [Codex review round 12 of PR #47] A cash-basis period carrying
+   a `paid_in_shares` check (`residual_paid_in_shares`: its expense less cash, never accrued as unpaid) needs a
+   source showing that residual paid in shares (a non-cash stock-consideration line), P1 otherwise; a
+   `deferred_payment` carrying `deferred_payment_assumption` (matched against a residual nothing declared) whose
+   analysis.md does not say how that residual was settled is P2 — one the filing shows paid in shares, deducted
+   again, is P1. [Codex review round 14 of PR #47] A score with a period carrying `cash_flow_check_mismatch` (a
+   declared check whose amount is not the filed expense, never applied) cannot exist on any basis (make_score
+   refuses it); a `deferred_payment` period with `expense_reversal_note` (a negative detector fact, a reversal,
+   beside cash matched like cash beside a $0 expense) follows the same `deferred_payment_assumption` rule above —
+   [Codex review round 20 of PR #47] also when that negative fact is filed in a currency with no FX rate (the
+   period keeps its `expense_native`; it is a reversal, never `non_usd_no_rate`).
+   [Codex review round 15 of PR #47] A score with a cash-basis period carrying `cash_flow_check_inapplicable` (a
+   matching check declaring `inside_operating_cash_flow` or `paid_in_intangible_capex` where the investing cash tag
+   is filed and its outflow deducted) cannot exist (make_score refuses it, naming the presentation;
+   `paid_in_shares` is still read there). [Codex review round 22 of PR #47] Nor can a score whose judgment.json
+   IPR&D declarations (`iprd_cash_flow_check`, `iprd_deferred_payment`, `base_override` basis / basis_window /
+   iprd_amortized figures) changed after the engine run: the run records `iprd_judgment_hash` and make_score
+   refuses a mismatch; a record that predates the hash (HALO's) is refused when a declared check names a window
+   period the run shows no trace of reading. A diff that edits those declarations without a fresh
+   dcf_numbers.json is P1. [Codex review round 23 of PR #47] Nor can a score whose ttm.json changed after a
+   pinned engine run: the run records `ttm_inputs` (ttm_oe_per_share, ttm_shares_diluted, ytd_current_period,
+   ttm_input_hash) and make_score refuses any difference (round 25: recorded only when the run's basis reads
+   ttm.json — null for a pin declared built on FY figures, which no ttm.json change refuses); a record that predates it (HALO's) is refused when its
+   positive IPR&D charge is on a ttm.json share count or YTD window the current ttm.json no longer holds. A diff
+   that regenerates ttm.json without a fresh dcf_numbers.json is P1. [Codex review round 26 of PR #47] A pin is
+   ttm.json's (or a plain `base_override`'s) only within 0.1%, and a $0.00 figure only by an exact zero: a
+   `--base-oe-ps` 0.004 beside a zero TTM base or a plain declaration of 0.0 is an arbitrary pin (refused); the
+   half-cent band at zero is the `iprd_amortized` arithmetic's alone, and an amortized pin on the other side of
+   zero from the value its figures reproduce is refused (a base <= 0 is Tier F). A period carrying `unit_conflict` (one tag filed for the period in two
+   units that disagree after conversion beyond the unit-agreement tolerance, `IPRD_UNIT_TOLERANCE`: max($1, 1% of the
+   larger); a positive fact outranks a zero one, the USD one is used between positive
+   ones; [Codex review round 16 of PR #47] a cash-only deferred-payment period and an `ignored_cash_only` entry
+   carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact; round 17: so does a
+   record a declaration builds from an `ignored_cash_only` payment) whose analysis.md does
+   not reconcile the units against the filing is P2. [Codex review round 17 of PR #47] A period carrying
+   `automatic_settlement` / `declared_residual` deducts both the cash that settled the window's unpaid remainder
+   and the declared rest of the same payment (a pre-window deal's `iprd_deferred_payment`): the cited filing must
+   show that rest paid for the named pre-window deal, P1 otherwise. A plain `base_override` pin
+   that is not ttm.json's `ttm_oe_per_share` carries `basis_window`: `{window: "ttm", ytd_current_period:
+   ttm.json's}` when the pin was built from ttm.json's TTM figures on another denominator (VNOM: TTM OE over total
+   units — the IPR&D window then reads the current-YTD leg, recorded as `inputs.base_basis_window`; the share
+   denominator rule above is unchanged), `{window: "fy"}` when it was built from FY figures (NTNX, VIV). A window
+   that is not the pin's construction is P1 (say "cannot verify from the diff" when analysis.md does not show the
+   construction); make_score refuses a 5.6 run whose declaration lacks it or differs from the run's record, and a
+   `ttm` window whose period ttm.json no longer names. [Codex review round 24 of PR #47] The declaration, not the
+   number, places a pin: one declaring `{window: "fy"}`, or an `iprd_amortized` one on native_base the median,
+   keeps the FY window and the latest FY count even when it equals ttm.json's `ttm_oe_per_share` within 0.1%
+   (make_score checks it as a declared pin, measures its override impact on the declared branch and holds it to no
+   TTM-leg override); an `iprd_amortized` one on native_base `ttm_json` reads the TTM window and ttm.json's count.
+   `ACQUIRED_IPRD_UNMATCHED_PAYMENT` resolved without saying what
+   the payment is (declared, or why it is not the earlier deal's) is P2. A period with `recurrence_excluded` `deferred_payment_of`
+   (judgment.json `iprd_deferred_payment`, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided) must be a contingent milestone or deferred
+   consideration of the named deal as the cited filing shows it: a distinct deal (another counterparty or
+   asset) declared as an installment so `ACQUIRED_IPRD_RECURRENT` does not fire is P1, so is a
+   `contingent_total` whose value is not the unrecognized milestones / deferred consideration its cited filing
+   discloses for that deal (HALO FY2025 10-K: $100.0M of Surf Bio milestones; an overstated cap lets a second
+   purchase pass as an installment) and a `first_charge_evidence` `citation_only_before_companyfacts` whose cited
+   filing does not show the deal expensed, and so is a declared period missing from `total` (the deferred
+   payment is still deducted); a partly deferred period still counts toward recurrence; say "cannot verify
+   from the diff" when the PR does not show the filing. (The engine already refuses one deal with two first
+   charges, a first charge whose whole charge is itself declared deferred, an in-window first charge whose
+   record carries no acquired-IPR&D expense of its own (round 29: a cash settlement, a reversal, a $0 expense), a
+   declaration on a year whose whole charge has no USD figure (round 29: its own expense or cash, or a tag also
+   filed in a unit with no FX rate beside the USD figure used), a declaration past the year's whole charge
+   (round-29 polish reviews, `dcf_engine.iprd_own_charge_usd`: the largest of its own expense — the largest
+   positive figure on any acquired-IPR&D expense tag, the parallel one too, in every unit filed — and its cash in
+   every unit; EUR 100M at 1.08 filed beside the USD 40M used, or the parallel tag at $108M, makes $108M the whole
+   and $40M a part; [Codex review round 30 of PR #47] "every unit filed" is every unit that disagrees with the
+   figure used beyond the unit-agreement tolerance — a unit within it is the figure used, so USD 100M beside EUR
+   converting to $100.7M is a $100M charge and a $100M declaration of it is whole; with three or more units filed, the tolerance applies to their spread: once the largest and smallest converted figures differ by more than it, every unit is recorded and the largest counts), a pre-window first charge
+   companyfacts covers with no expense fact there, a source accession outside the original filing's years,
+   a current-YTD entry, a missing or inconsistent `contingent_total`, one deal's declared amounts summing
+   past its `contingent_total`, and — round 8 — an impossible date; make_score refuses a deal whose
+   declarations sum below the `paid_to_date` its registry event recorded, or whose lifetime passes the cap.
+   [Codex review round 26 of PR #47] It refuses an `overrides_registry.json` that is not a JSON object with an
+   `entries` list of objects ("overrides_registry.json is malformed — restore it from git"), never reading or
+   rewriting it as empty: a registry without `entries` read as $0 paid and was rewritten holding one ticker. A
+   diff that changes the registry's shape is P1. [Codex review round 28 of PR #47] The same refusal covers any
+   malformed `iprd_deferred_payment` event, for any ticker (ticker or deal not a non-empty string, an invalid
+   first_charged_period, contingent_total, paid_to_date, periods or date — the message names the entry, its
+   ticker and the field): a missing `deal` had been skipped, reading the deal's recorded payments as none. A
+   diff that hand-edits such an event is P1. Since the round 28 re-verification it also covers an entry
+   carrying such an event's fields under a misspelt, missing or other `event` name (it had passed as another
+   entry and been erased), a lower-case ticker on such an event (no run reads it), and an entry that is neither
+   a field override nor an event make_score writes.
+   [Codex review round 9 of PR #47] The rename gap is mechanical now: make_score refuses a recorded deal declared
+   with another `contingent_total` or `first_charged_period` (both immutable), and a new deal name carrying a
+   recorded (or co-declared) deal's evidence — the same `first_charged_period` and a `contingent_total` source
+   accession — as a renamed copy; the engine refuses a rolled-out `period` that is not one of the filer's
+   fiscal-year ends. [Codex review round 10 of PR #47] Every period a deal's registry event recorded is immutable:
+   make_score refuses a declaration that omits it or declares it more than $1 apart from the recorded amount
+   (shrunk or grown), naming the period, and the event keeps the recorded amounts. Still P1 for review: a
+   renamed deal whose evidence was changed too (a first charge or cap filing the cited filings do not show for
+   it).)
+   [Codex review round 8 of PR #47] A period carrying `expense_tags_conflict` (both expense tags filed with
+   different positive values; the current tag is used) must be reconciled in analysis.md against the filing
+   (P2 otherwise). [Codex review round 24 of PR #47] When one of them has no FX rate the two are never compared:
+   each tag's entry is {native, unit, usd} and the period is gated `non_usd_no_rate` (`expense_tag_unconverted`,
+   refused by make_score); two unconvertible tags in one unit compare their native figures (entries in that form).
+   `ACQUIRED_IPRD_CHARGE` / `ACQUIRED_IPRD_RECURRENT` resolved without
+   the deal, the cash vs stock consideration or the recurrence assessment is P2. An `iprd_amortized`
+   `base_override` must reproduce native base − mean(figures) ÷ shares × ads_ratio to the cent (P1
+   otherwise), its figures must be the run's FY `deducted` amounts (three; two at a filer with only two FY;
+   each within $1) and the treatment `amortized_in_base` (no one-time deduction on top — both is
+   double-counting, P1). Its `native_base` must be the base the one-time run scored — `ttm_json` when that
+   run was `--ttm`, and always when `STALE_FY` fires and ttm.json carries a TTM base (the engine refuses the
+   median there) — else the median; a native base chosen for a better tier is P1. Treatment
+   `not_applied_share_count_unverified` (a share-scale defect rescued by a pin, no power-of-ten factor):
+   nothing was deducted, so the published tier is the UNADJUSTED one; the score must be blocked
+   `NEEDS_MAIN_AGENT` or carry a main-agent `tier_override` whose reason quantifies the hand deduction
+   (total ÷ the verified share count and the adjusted weighted IRR) — resolving the flag with the deal and
+   consideration alone is P1; make_score refuses the score without a `tier_override` whose reason names a
+   dollar figure and a percentage (Codex review round 1 of PR #47) — whether those figures are the right hand
+   deduction is this check's; reprice.py never reprices such a record (no live.json; the site shows the scored
+   figures with `live_withheld` reason `iprd_share_count_unverified` — Codex review round 2 of PR #47); nor
+   a run make_score refused for an unresolved charge (`dcf_engine.iprd_unresolved`; the score.json on disk is
+   an earlier run's: `live_withheld` reason `iprd_unresolved` — round 6); nor, since round 11 (the main agent's
+   general rule), any run its score.json was not built from, whatever make_score refused it for (a deleted
+   deferred payment its registry recorded, any other refusal) or because make_score has not run yet:
+   `live_withheld` reason `score_not_from_this_run` — live figures pause between an engine run and its
+   make_score, so a page showing live figures beside a score from another run is P1. Since round 12 a
+   score.json carrying `dcf_content_hash` is the run's only when that hash is the run's (valid) `content_hash`;
+   rounded headline figures alone are identity only for a run from before release 5.6.0 (round 13: a
+   current-release score.json without the hash is another run's), and the notice stands with or without a
+   live.json on file (round 13: reprice.py removes it), so a page mixing an old verdict with a new run's
+   forecast and no `live_withheld` notice is P1. [Codex review round 29 of PR #47, the main agent's shape] No
+   live figures without the run's current score: reprice.py writes none for a folder with no score.json (an old
+   one is removed), and live.json records the score it was computed against (`score_json_fresh`,
+   `scored.tier_final` / `tier_override_reason` / `dcf_content_hash`), so a live.json not computed against the
+   score.json on file — written before make_score scored the run, before it re-scored it (an override added or
+   removed), or beside another run's same-day score — is withheld (`live_withheld` reason
+   `live_not_from_this_score`, `build_site.live_score_problem`), and one from before round 29 that records no
+   `dcf_content_hash` beside a score.json that carries one cannot be bound to it and is withheld too, with its own
+   reason (`live_without_score_identity`, `build_site.live_score_identity_missing`; round-29 polish review: its
+   note says it records no score identity and the next repricing rewrites it, never that it was computed before
+   the score); a page showing a live tier beside a score it was not computed against (the numbers tier at the last
+   close beside a new `tier_override`) is P1.
+   [Codex review round 11 of PR #47, the main agent's shape] A period whose expense or cash figure carries
+   `context_basis` `aggregated_quarters` was summed from the three-month / year-to-date facts in
+   `aggregated_contexts` (no fact covered the period exactly; since round 18 the unit the figure was read from, other
+   tiled units under `aggregated_contexts_other_units`): those contexts must tile the period with no gap
+   and no overlap, P1 otherwise. `ACQUIRED_IPRD_PARTIAL_PERIOD` (`iprd_adjustment.partial_coverage`: a tag
+   filed for only part of a window period, nothing counted for it) resolved without the period's full figure
+   from the filing and its effect on the IVs / IRR is P2; a material one OE never saw published without
+   `NEEDS_MAIN_AGENT: iprd_partial_period` is P1. Since round 12 a $0 fact on one detector tag never hides a
+   positive partial fact on the other (only a positive full-period detector fact reads the period).
+   With field overrides in force, `override_impact`'s counterfactual holds the
+   final run's IPR&D treatment and charge (`DCF_IPRD_HOLD`) in every branch (declared pin, TTM, median,
+   payable), so the measured impact is the override's alone.
+
 ## Overrides
 
 Every override in `judgment.json` needs `{value, source, reason, kind}`:
@@ -308,6 +519,9 @@ Every override in `judgment.json` needs `{value, source, reason, kind}`:
   `payable_earnings_5y` at a P&C insurer or reinsurer is built from five
   filing figures (operating income available to common, FY by FY) that are
   not in the run outputs; see "Sector misfits" below for what to check.
+  Engine 5.6: a `base_override` with `basis` `iprd_amortized` (beside
+  `ACQUIRED_IPRD_RECURRENT` only) is built from the run's own `iprd_adjustment`
+  figures — check 8 above.
 - `ads_ratio`: only when stated in the filer's own 20-F/40-F, and the
   filing citation must be in `reason`.
 - `currency: "USD"` (engine 5.5): allowed only on a kind `filing`
@@ -379,7 +593,9 @@ with a resolution, not a restatement. The flags: `STALE_FY`,
 `ADS_RATIO_APPLIED`, `CASH_INCLUDES_RESTRICTED`, `DEBT_TAGS_BLANK`,
 `DATA_GAP:<field>`, and engine 5.5's `SHARE_SCALE_SUSPECT`,
 `SHARE_BASIS_ADJUSTED`, `SHARE_BASIS_DIVERGENCE`, `CAPEX_COVERAGE_LOW`,
-`SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`.
+`SBC_TAG_RECONCILED`, `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`, and engine 5.6's
+`ACQUIRED_IPRD_CHARGE`, `ACQUIRED_IPRD_RECURRENT`, `ACQUIRED_IPRD_UNCONFIRMED`,
+`ACQUIRED_IPRD_UNCONVERTED`, `ACQUIRED_IPRD_UNMATCHED_PAYMENT` and `ACQUIRED_IPRD_PARTIAL_PERIOD` (check 8).
 
 - `STALE_FY` resolved with "no TTM available" at a 20-F filer: ask whether
   the interim 6-K prints TTM operating cash flow and capex; the worker
@@ -489,6 +705,126 @@ misfit`. For them:
 - A `tier_override` with a quantified written reason (see Sector misfits).
 - The two cron files under `automation/crons/daily/` showing as deleted in
   a Windows checkout: a filename artifact, not a change.
+- Engine 5.6. Andrew's decision (2026-10-19): an impairment of a previously capitalized
+  intangible (`ImpairmentOfIntangibleAssetsExcludingGoodwill`) is never deducted —
+  that spend went through capex / intangible purchases when it was made; the cash
+  outflow is preferred over the expense even when it is lower (BIIB FY2025: $85.0M
+  expensed, $50.0M paid → $50.0M; the rest is paid later — counted as a
+  `deferred_payment` when that falls in the window — or in shares, which the diluted
+  count already holds). Main-agent / review additions awaiting his ratification: a
+  cash-tag-only `PaymentsToAcquireInProcessResearchAndDevelopment` year (MAA's
+  development-spend mistag) is never a charge unless it settles the window's unpaid
+  remainder of an expensed charge; a below-5% acquired-IPR&D
+  charge is deducted with no flag (the deduction has no cliff; the threshold only
+  decides the flag); an expense-basis charge (no us-gaap cash tag — HALO, NBIX) is
+  deducted only on the worker's `iprd_cash_flow_check` and then at the expense figure
+  (HALO $284.9M, not its $287.8M investing line net of cash acquired); and the
+  `iprd_amortized` mean reads the FY figures only, so a current-YTD charge is in
+  neither the mean nor a deduction until it lands in an FY.
+- Engine 5.6, Andrew's 2026-10-20 ruling, delegated to the main agent, who decided: a contingent milestone or other
+  deferred payment on an acquired-IPR&D deal already charged in an earlier period
+  (inside the window or before it) is the same purchase — it is still deducted
+  once when expensed or paid, but its period does not count toward
+  `ACQUIRED_IPRD_RECURRENT` (that flag catches buying R&D as a habit, distinct
+  deals, not one deal paid in installments). Only a cited per-period
+  `iprd_deferred_payment` declaring the period's WHOLE charge removes it from the
+  count; a partly deferred period still counts. [Codex review round 27 of PR #47]
+  A year counts by its own expense, paid that year or accrued and paid later, never
+  by its cash timing: two deals expensed with $0 cash and paid the next year are two
+  charge years; cash that settles an earlier year's charge (no expense of its own)
+  is not a new one, and an accrued year's whole charge is its expense. [Codex review round 28 of PR #47]
+  REVERSES round 27's carve-out: a year counts by its own expense whatever its cash
+  presentation too — paid in shares, inside operating cash flow, inside intangible
+  capex, awaiting its cash-flow check or with no FX rate is still a charge year (round
+  27 had left those presentations out, so a cash deal beside a separate share-paid
+  deal read one year); the habit is the acquisitions, however paid. Those
+  presentations still deduct nothing (OE or the share count carries them) and the
+  `iprd_amortized` figures stay the deducted FY figures. The recurrence gate's
+  "material" is its own figure: the counted periods' acquired-IPR&D expense (the
+  current-YTD leg's too on a TTM base, less a declared installment part) on the same
+  denominator, base and 5% threshold — never the cash the window deducted ($1 paid on
+  each of two $100M deals read $2, not material) — recorded as
+  `recurrence_expense_total` / `recurrence_materiality` only when 2 or more FY charge
+  years are counted; a counted period whose acquired-IPR&D expense has no USD figure reads as material.
+  `ACQUIRED_IPRD_CHARGE` keeps the deduction's materiality, and a cash settlement
+  (a pre-window deal's declared installment) never makes tiny in-window charges
+  material. Round 28 re-verification: a charge year's whole charge, for Andrew's
+  2026-10-20 declared-installment rule, is the larger of its cash and its own
+  expense ($1 paid on a $100M deal is a part, so declaring the $1 no longer takes
+  the year out of the count), and a declared part comes first from the cash beyond
+  the period's expense, so a new deal expensed beside an earlier deal's settlement
+  still counts in full. [Codex review round 29 of PR #47] A declaration is whole only
+  when that whole charge is known in USD: a year whose own expense (or cash) has no
+  FX rate, even fetched, cannot be declared at all — its cash had stood in for the
+  whole charge ($40M paid on a EUR 100M expense read "whole" at $40M) — refused like a
+  year with no usable cash, so it stays in the recurrence count; so is a year whose
+  expense or cash tag is also filed in a unit with no FX rate beside the USD fact
+  used (`unit_conflict`, round-29 review notes). One rule (round-29 polish reviews,
+  `iprd_own_charge_usd`): a year's own expense is the largest positive figure on any
+  of its acquired-IPR&D expense tags (the parallel one too) in every unit filed, and
+  its whole charge the largest of that, every positive cash-tag figure in every unit
+  and the cash deducted — EUR 100M at 1.08 on either tag, or the parallel tag at
+  $108M, beside the USD 40M expensed and paid makes $40M a part and $108M the whole.
+  [Codex review round 30 of PR #47] "Every unit filed" is every unit that disagrees
+  with the figure used beyond the engine's unit-agreement tolerance
+  (`IPRD_UNIT_TOLERANCE`, 0.01: more than max($1, 1% of the larger) after conversion,
+  the units `unit_conflict` records); a unit within it is the figure used — the same
+  charge translated at another rate — so USD 100M beside EUR converting to $100.7M is
+  a $100M charge (a $100M declaration is whole) and EUR converting to $102M makes
+  $102M the whole. With three or more units filed, the tolerance applies to their spread: once the largest and smallest converted figures differ by more than it, every unit is recorded and the largest counts.
+  The whole test and its cap read the whole charge; the recurrence figure reads the
+  expense side (the own expense, less only a declared part beyond the whole charge
+  less that expense) and the whole charge adds the cash side, so the recurrence
+  figure is unknown (read as material) only when the own expense has no USD figure —
+  a USD expense beside cash with no FX rate reads that expense. The deduction is
+  unchanged. And a deal's first
+  charge inside the window is a period with its own acquired-IPR&D expense (USD or
+  native, however paid), never the cash that settles an earlier charge. An `iprd_amortized` base carries only the deducted FY
+  figures: with nothing deducted in the last 3 FY there is nothing to amortize
+  (`BAD_BASE_OVERRIDE`), and the RECURRENT flag then asks only for the recurrence
+  assessment. [Codex review round 8 of PR #47]
+  Each deal's cumulative declared amount IS a registry event (`iprd_deferred_payment`,
+  below). Choices made in the
+  Codex review round (same ruling, the main agent deciding): FY periods only (the
+  recurrence count reads FY periods, so a current-YTD entry is refused rather than
+  mislabelling a period that never counted); several deals may share one period
+  (their amounts sum to the charge); a first charge before companyfacts begins
+  rests on the citation alone, recorded `citation_only_before_companyfacts`; the
+  accession's CIK is NOT matched to the filer (filer agents file under their own
+  CIK), so that stays a review check (check 8). The per-deal cap (the main agent's
+  decision on the review's open item, delegated by Andrew 2026-10-20):
+  `deferred_payment_of` carries a required `contingent_total` {value (USD), source:
+  accession + section disclosing the deal's unrecognized milestones / deferred
+  consideration}, declared once and identically for a deal; the engine refuses
+  (`BAD_IPRD_DEFERRED_PAYMENT`) a deal whose declared amounts, summed across every
+  entry (a rolled-out one included), exceed it — so the cap is mechanical and the
+  review checks the cap's value against the filing. [Codex review round 4 of PR #47]
+  A rolled-out entry STAYS in judgment.json (`deferred_payments_rolled_out`: never
+  applied, still counted toward the cap); a PR deleting one is P1 — it frees the
+  deal's cap for a later declaration — and make_score refuses the run that counted
+  it once it is gone. [Codex review round 8 of PR #47] Deleting or shrinking one is
+  now refused MECHANICALLY, also after the engine is rerun (which used to leave
+  nothing to compare against): make_score records each deal's cumulative declared
+  deferred amount as a registry event (`iprd_deferred_payment`: deal,
+  contingent_total, paid_to_date, first_charged_period, periods) carried across
+  runs the way first-recorded dates are, refuses declarations for a recorded deal
+  summing to less than its paid_to_date, and caps max(the declarations on recorded
+  periods, paid_to_date) + newly declared periods at the contingent_total. Every
+  `period` and `first_charged_period` must be a real date (an impossible one is
+  malformed, never counted toward the cap). [Codex review round 5] A run whose window holds no charge at
+  all still lists it (a minimal `deferred_payments_only` block, nothing deducted).
+  [Codex review round 7] A rolled-out entry is kept and counted toward the cap only
+  after the checks that need no window record (first charge before its period, the
+  original filing's accession year, companyfacts' expense fact for a pre-window first
+  charge); an invalid one is refused (`BAD_IPRD_DEFERRED_PAYMENT`), not kept.
+  [Codex review round 9] A rolled-out period must be one of the filer's fiscal-year ends
+  (companyfacts' annual period ends where they reach the date, else within 7 days of
+  the nearest FY end's month-day; the run records `fy_period_ends` and make_score
+  re-checks); a recorded deal's `contingent_total` and `first_charged_period` are
+  immutable; a new deal name with a recorded or co-declared deal's first charge and
+  cap filing is refused as a renamed copy. [Codex review round 10] So is every
+  recorded period's amount: one omitted, or declared more than $1 apart from the
+  recorded amount, is refused (naming the period) and the event keeps the record.
 
 ## Comment style
 

@@ -181,7 +181,7 @@ PAIRS = [
     ("_system/reprice.py", '"split_factor"', "split_factor", [CONTRACT, SYS_README]),
     ("_system/reprice.py", '"basis_check"', "basis_check", [CONTRACT, SYS_README]),
     ("_system/reprice.py", '"score_mismatch"', "score_mismatch", [CONTRACT]),
-    ("_system/reprice.py", '"score_note"', "score_note", [CONTRACT]),
+    ("_system/reprice.py", '"score_json_fresh"', "score_json_fresh", [CONTRACT]),
     ("_system/reprice.py", '"no_close_since_scoring"', "no_close_since_scoring", [CONTRACT]),
     ("_system/reprice.py", '"within_scored_day_range"', "within_scored_day_range", [CONTRACT]),
     ("_system/build_site.py", '"live_older_than_score"', "live_older_than_score", [CONTRACT]),
@@ -251,6 +251,167 @@ PAIRS = [
     ("_system/ttm.py", '"sbc_reconciliation_withdrawn_legs": sbc_withdrawn', "sbc_reconciliation_withdrawn_legs",
      [SYS_README, CONTRACT]),
     ("_system/ttm.py", '"remainder_unknown"', "remainder_unknown", [SYS_README, CONTRACT]),
+    # engine 5.6 (2026-10-19, acquired IPR&D one-time value adjustment — Andrew): the records, helpers and the site line
+    ("_system/dcf_engine.py", '"iprd_adjustment": iprd', "iprd_adjustment", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def adjusted_value(", "adjusted_value", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def adjusted_irr(", "adjusted_irr", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_charge_per_share(", "iprd_charge_per_share", [SYS_README]),
+    # [Codex review r8 of PR #47] already_in_capex only through the declared presentation; the size is a note
+    ("_system/dcf_engine.py", '"paid_in_intangible_capex": "already_in_capex"', "paid_in_intangible_capex", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["capex_overlap_note"] = ', "capex_overlap_note", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_date_ok(", "iprd_date_ok", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["expense_tags_conflict"] = conflict', "expense_tags_conflict", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "unconverted_remainder_of=list(unknown_rest)", "unconverted_remainder_of", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", 'IPRD_DEFERRED_EVENT = "iprd_deferred_payment"', "paid_to_date", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", 'score["iprd_adjustment"] = _iprd', "iprd_adjustment", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", '"iprd_charge_per_share": charge', "iprd_charge_per_share", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def iprd_charge(", "iprd_charge", [CONTRACT]),
+    ("_daily/site/app.js", "function iprdNote(", "iprdNote", [CONTRACT, SYS_README]),
+    # engine 5.6 review round: the counterfactual's held IPR&D charge and its record
+    ("_system/make_score.py", '"DCF_IPRD_HOLD": _iprd_hold(n)', "DCF_IPRD_HOLD", [SYS_README]),
+    ("_system/dcf_engine.py", 'iprd["held_from_final_run"] = held', "held_from_final_run", [SYS_README]),
+    # engine 5.6 fixer review round: the cash-flow check for an expense-basis period, deferred payments
+    ("_system/dcf_engine.py", 'IPRD_CF_CHECK_KEY = "iprd_cash_flow_check"', "iprd_cash_flow_check", [SYS_README]),
+    ("_system/dcf_engine.py", 'IPRD_AWAITING = "awaiting_cash_flow_check"', "awaiting_cash_flow_check", [SYS_README]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_UNCONFIRMED: ', "ACQUIRED_IPRD_UNCONFIRMED", [SYS_README]),
+    ("_system/dcf_engine.py", "deferred_payment=(", "deferred_payment", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["cash_flow_check"] = ', "cash_flow_check", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["cash_sign_note"] = ', "cash_sign_note", [SYS_README]),
+    ("_system/make_score.py", '"unconfirmed_total": b.get("unconfirmed_total")', "unconfirmed_total", [SYS_README, CONTRACT]),
+    # deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent)
+    ("_system/dcf_engine.py", 'IPRD_DEFERRED_KEY = "iprd_deferred_payment"', "iprd_deferred_payment", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["deferred_payment_of"] = ', "deferred_payment_of", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["recurrence_excluded"] = ', "recurrence_excluded", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'iprd["deferred_payments_refused"] = ', "deferred_payments_refused", [SYS_README]),
+    ("_system/dcf_engine.py", '"BAD_IPRD_DEFERRED_PAYMENT for ', "BAD_IPRD_DEFERRED_PAYMENT", [SYS_README]),
+    ("_system/make_score.py", 'out["recurrence_excluded"] = ', "recurrence_excluded", [SYS_README, CONTRACT]),
+    # Codex review round of the same ruling
+    ("_system/dcf_engine.py", 'iprd["deferred_payments_rolled_out"] = ', "deferred_payments_rolled_out", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"first_charge_evidence": c[3]', "first_charge_evidence", [SYS_README]),
+    ("_system/dcf_engine.py", 'IPRD_DEFERRED_WINDOWS = ("fy",)', "fy", [SYS_README]),
+    # the per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20)
+    ("_system/dcf_engine.py", '"contingent_total": {"value": float(', "contingent_total", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_deferred_cap_problems(", "iprd_deferred_cap_problems", [SYS_README]),
+    # Codex review round 9 of PR #47: a rolled-out period is a fiscal-year end; a recorded deal's evidence is fixed
+    ("_system/dcf_engine.py", 'iprd["fy_period_ends"] = _fy_ends', "fy_period_ends", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_fy_end_problem(", "iprd_fy_end_problem", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_fy_period_ends(", "iprd_fy_period_ends", [SYS_README]),
+    # engine 5.6 Codex review round 1 of PR #47
+    ("_system/make_score.py", "def check_iprd_share_count_unverified(", "not_applied_share_count_unverified", [SYS_README]),
+    ("_system/dcf_engine.py", "expense_fx_note=(", "expense_fx_note", [SYS_README]),
+    # engine 5.6 Codex review round 2 of PR #47
+    ("_system/dcf_engine.py", "def iprd_accession_year(", "iprd_accession_year", [SYS_README]),
+    # engine 5.6 Codex review round 4 of PR #47
+    ("_system/dcf_engine.py", "cash_native=float(cnative)", "cash_native", [SYS_README]),
+    ("_system/make_score.py", "def _ads_factor(", "ADS ratio", [SYS_README]),
+    ("_system/build_site.py", 'else "iprd_share_count_unverified"', "iprd_share_count_unverified", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", "def iprd_amortized_impact(", "iprd_amortized_impact", [SYS_README]),
+    ("_system/make_score.py", '"iprd_charge_per_share_without_override"', "iprd_charge_per_share_without_override", [SYS_README]),
+    # engine 5.6 Codex review round 3 of PR #47
+    ("_system/dcf_engine.py", 'IPRD_UNCONVERTED = "non_usd_no_rate"', "non_usd_no_rate", [SYS_README]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_UNCONVERTED: ', "ACQUIRED_IPRD_UNCONVERTED", [SYS_README]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_UNMATCHED_PAYMENT: ', "ACQUIRED_IPRD_UNMATCHED_PAYMENT",
+     [SYS_README]),
+    ("_system/dcf_engine.py", 'x["pre_window_charges"] = ', "pre_window_charges", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_pre_window_charges(", "iprd_pre_window_charges", [SYS_README]),
+    ("_system/make_score.py", "def check_iprd_unconverted(", "expense_native", [SYS_README]),
+    # engine 5.6 Codex review round 6 of PR #47
+    ("_system/dcf_engine.py", "cash_native=float(cnat)", "cash_fx_note", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_unresolved(", "iprd_unresolved", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", '"iprd_unresolved" if unresolved', "iprd_unresolved", [SYS_README, CONTRACT]),
+    # Codex review round 11 of PR #47: tiled window legs, partial coverage, and the general live-figure rule
+    ("_system/dcf_engine.py", 'IPRD_AGGREGATED = "aggregated_quarters"', "aggregated_quarters", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'x["aggregated_contexts"] = ', "aggregated_contexts", [SYS_README, CONTRACT]),
+    # Codex review round 18 of PR #47: the tiled unit the figure was read from; the other tiled units beside it
+    ("_system/dcf_engine.py", 'x["aggregated_contexts_other_units"] = ', "aggregated_contexts_other_units",
+     [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'out["partial_coverage"] = partial', "partial_coverage", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '"ACQUIRED_IPRD_PARTIAL_PERIOD: ', "ACQUIRED_IPRD_PARTIAL_PERIOD", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_tile(", "iprd_tile", [SYS_README]),
+    ("_system/reprice.py", "def check_score(", "check_score", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", '"reason": "score_not_from_this_run"', "score_not_from_this_run", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def score_from_run(", "score_from_run", [SYS_README, CONTRACT]),
+    # Codex review round 12 of PR #47: the score bound to its run's content hash; share-paid residuals
+    ("_system/make_score.py", '"dcf_content_hash": ch', "dcf_content_hash", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", "def run_hash_problem(", "run_hash_problem", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["residual_paid_in_shares"] = ', "residual_paid_in_shares", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'rec["deferred_payment_assumption"] = (', "deferred_payment_assumption",
+     [SYS_README, CONTRACT]),
+    # Codex review round 13 of PR #47: the hash required for current-release scores; the notice without live.json
+    ("_system/reprice.py", 'HASH_REQUIRED_FROM_RELEASE = "5.6.0"', "HASH_REQUIRED_FROM_RELEASE", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", "def requires_content_hash(", "requires_content_hash", [SYS_README, CONTRACT]),
+    # Codex review round 19 of PR #47: the window's start; the registry transaction; the notice for every published run
+    ("_system/build_site.py", "def run_published(", "run_published", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_window_start(", "iprd_window_start", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_before_window(", "iprd_before_window", [SYS_README]),
+    ("_system/make_score.py", "def registry_transaction(", "registry_transaction", [SYS_README]),
+    ("_system/dcf_engine.py", "def _iprd_is_zero(", "_iprd_pick", [SYS_README]),
+    # Codex review round 14 of PR #47: a mismatched check refused on any basis; a negative detector fact is no charge
+    ("_system/make_score.py", 'mm = [p for p in periods if p.get("cash_flow_check_mismatch")', "cash_flow_check_mismatch",
+     [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["expense_reversal_note"] = (', "expense_reversal_note", [SYS_README, CONTRACT]),
+    # Codex review round 15 of PR #47: unit conflicts, a cash-basis check the cash path cannot honor, the minimal
+    # deferred_payments_only score block, a plain pin's basis_window
+    ("_system/dcf_engine.py", 'x["unit_conflict"] = units_conflict', "unit_conflict", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", 'IPRD_UNIT_TOLERANCE = 0.01', "IPRD_UNIT_TOLERANCE", [SYS_README]),
+    ("_system/dcf_engine.py", 'rec["cash_flow_check_inapplicable"] = dict(', "cash_flow_check_inapplicable",
+     [SYS_README, CONTRACT]),
+    ("_system/make_score.py", 'ia = [p for p in periods if isinstance(p.get("cash_flow_check_inapplicable"), dict)]',
+     "cash_flow_check_inapplicable", [SYS_README]),
+    ("_system/make_score.py", '"deferred_payments_only": True, "periods": []', "deferred_payments_only",
+     [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", '**({"base_basis_window": base_basis_window}', "base_basis_window", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def base_basis_window_problem(", "base_basis_window_problem", [SYS_README]),
+    ("_system/make_score.py", "def check_base_basis_window(", "basis_window", [SYS_README, CONTRACT]),
+    # Codex review round 16 of PR #47: units tiled beside an exact fact; the site note binds to the score's own run
+    ("_system/dcf_engine.py", "def iprd_tile(facts, tag, start, end, only_units=None):", "only_units", [SYS_README]),
+    ("_daily/site/app.js", "var nb = obj(obj(record.numbers).iprd_adjustment), r = num(nb.ads_ratio);",
+     "numbers.iprd_adjustment.ads_ratio", [SYS_README, CONTRACT]),
+    # Codex review round 17 of PR #47: a declared rest beside an automatic settlement
+    ("_system/dcf_engine.py", "automatic_settlement=auto, declared_residual=amt", "declared_residual",
+     [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "automatic_settlement=auto, declared_residual=amt", "automatic_settlement",
+     [SYS_README, CONTRACT]),
+    # Codex review round 22 of PR #47: the run's hash of its IPR&D judgment inputs, checked by make_score
+    ("_system/dcf_engine.py", '"iprd_judgment_hash": iprd_judgment', "iprd_judgment_hash", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def iprd_judgment_inputs(", "iprd_judgment_inputs", [SYS_README]),
+    ("_system/make_score.py", "def check_iprd_judgment_current(", "check_iprd_judgment_current", [SYS_README]),
+    # Codex review round 23 of PR #47: what a pinned run read from ttm.json, checked by make_score
+    ("_system/dcf_engine.py", '"ttm_inputs": ttm_inputs', "ttm_inputs", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "def ttm_input_legs(", "ttm_input_legs", [SYS_README]),
+    ("_system/dcf_engine.py", "def ttm_inputs_record(", "ttm_inputs_record", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", "def check_ttm_inputs_current(", "check_ttm_inputs_current", [SYS_README]),
+    # Codex review round 24 of PR #47: a declared FY-built pin is never a TTM pin; an unconvertible parallel tag gates
+    ("_system/make_score.py", "def declared_fy_built_pin(", "declared_fy_built_pin", [SYS_README]),
+    ("_system/dcf_engine.py", "expense_tag_unconverted=tags_unconv", "expense_tag_unconverted", [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "rec[\"cash_flow_check_not_applied\"]", "cash_flow_check_not_applied", [SYS_README, CONTRACT]),
+    # Codex review round 25 of PR #47: declared-pin and ttm.json-figure matches at half a cent when either is zero
+    ("_system/dcf_engine.py", "def pin_matches(", "pin_matches", [SYS_README]),
+    ("_system/dcf_engine.py", "PIN_MATCH_ZERO_ABS = 0.005", "PIN_MATCH_ZERO_ABS", [SYS_README]),
+    # Codex review round 26 of PR #47: the half cent is declaration arithmetic only; a malformed registry is refused
+    ("_system/dcf_engine.py", "def figure_matches(", "figure_matches", [SYS_README]),
+    ("_system/dcf_engine.py", "def declared_value_matches(", "declared_value_matches", [SYS_README]),
+    ("_system/dcf_engine.py", "IPRD_AMORTIZED_ZERO_EPS = 1e-9", "IPRD_AMORTIZED_ZERO_EPS", [SYS_README]),
+    ("_system/make_score.py", "def load_registry(", "load_registry", [SYS_README]),
+    # Codex review round 29 of PR #47: a first charge carries its own expense; a whole charge unknown in USD is never
+    # declared whole; live figures need the run's current score and are bound to it
+    ("_system/dcf_engine.py", "def iprd_has_own_expense(", "iprd_has_own_expense", [SYS_README]),
+    ("_system/dcf_engine.py", "def iprd_whole_charge_unknown(", "iprd_whole_charge_unknown", [SYS_README]),
+    ("_system/build_site.py", '"reason": "live_not_from_this_score"', "live_not_from_this_score", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def live_score_problem(", "live_score_problem", [SYS_README, CONTRACT]),
+    ("_system/reprice.py", '"dcf_content_hash": scored.get("dcf_content_hash")', "dcf_content_hash", [CONTRACT]),
+    # the round-29 review notes: ACQUIRED_IPRD_CHARGE names a cash settlement as one
+    ("_system/dcf_engine.py", "def _iprd_settles_earlier_charge(", "_iprd_settles_earlier_charge", [SYS_README]),
+    # the round-29 polish review: one rule for a year's own charge in USD; a live.json with no score identity has its
+    # own reason
+    ("_system/dcf_engine.py", "def iprd_own_charge_usd(", "iprd_own_charge_usd", [SYS_README]),
+    ("_system/build_site.py", '"reason": "live_without_score_identity"', "live_without_score_identity", [SYS_README, CONTRACT]),
+    ("_system/build_site.py", "def live_score_identity_missing(", "live_score_identity_missing", [SYS_README, CONTRACT]),
+    # the round-29 second polish review: a year's own expense reads every expense tag in every unit; unknown only there
+    ("_system/dcf_engine.py", "def iprd_own_expense_unknown(", "iprd_own_expense_unknown", [SYS_README]),
+    # Codex review round 30 of PR #47: a TTM base's IPR&D share count is ttm.json's, validated, or the run is refused
+    ("_system/dcf_engine.py", "def iprd_ttm_share_count(", "iprd_ttm_share_count", [SYS_README]),
+    ("_system/dcf_engine.py", 'print(f"BAD_TTM_SHARES for {ticker}: ', "BAD_TTM_SHARES", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),
@@ -331,6 +492,66 @@ def test_automation_day_table_matches_the_cron_files():
 
 # ---------------------------------------------------------------- 4
 STALE = [
+    # Codex review round 29 of PR #47: a folder with no score.json is no longer repriced; an expense with no USD figure
+    # beside usable cash is not gated, so the claim that its run is was wrong
+    (CONTRACT, "A folder with no score.json yet is\n  repriced"),
+    ("_system/reprice.py", "a folder with no score.json yet is still repriced"),
+    ("_system/reprice.py", "A folder with no score.json yet is repriced as before"),
+    ("_system/dcf_engine.py", "claimed (its run is gated ACQUIRED_IPRD_UNCONVERTED)"),
+    # Codex review round 29 of PR #47, review notes: live_shown checks live_from_earlier_run, live_not_from_this_score
+    # and live_older_than_score after the PR #47 reasons, and all three read "Scored figures are the latest — …"; a
+    # live.json with no scored.dcf_content_hash is not computed against a score.json that carries one
+    (CONTRACT, "Precedence: the three PR #47 reasons are checked first and win over the two date reasons"),
+    (CONTRACT, 'only the date reasons are worded "Scored figures are the latest'),
+    (CONTRACT, "`scored.dcf_content_hash`, when the live.json records it, not the score's"),
+    ("_system/build_site.py", "are checked first and win over main's two date reasons"),
+    ("_system/build_site.py", 'only those two carry the "scored figures are the'),
+    ("_system/build_site.py", "a live.json written before carries no such"),
+    ("_daily/site/app.js", "Those three PR #47 reasons take precedence"),
+    # the round-29 polish review: a live.json with no score identity has its own reason (live_without_score_identity),
+    # never live_not_from_this_score's "computed before the current score"; four reasons read "Scored figures ..."
+    (CONTRACT, "was not computed against it and is withheld the same way"),
+    (CONTRACT, "`live_not_from_this_score` and `live_older_than_score` (the score on file is the run's: all"),
+    ("_system/build_site.py", "or — written before round 29 — with no"),
+    ("_system/build_site.py", "no score identity recorded beside a score.json that carries one)"),
+    ("_system/build_site.py", "the app words all three"),
+    ("_daily/site/app.js", "or one from before round 29 that records no score identity beside a score that has one) is"),
+    ("_daily/site/app.js", "live_not_from_this_score and live_older_than_score, all three worded"),
+    ("AGENTS.md", "is not computed against it either"),
+    # the round-29 second polish review: the recurrence figure reads the expense side (unknown only when the own
+    # expense is), the whole charge adds the cash side, and a parallel expense tag's figure always counts
+    (WORKER_SPEC, "the recurrence figure reads the same way"),
+    (WORKER_SPEC, "a counted period with no USD figure reads as material"),
+    (AGENTS_MD, "a counted period with no USD figure reads as material"),
+    (AGENTS_MD, "and any such figure with no USD value makes the materiality unknown"),
+    (SYS_README, "(`expense_tags_conflict`, no unit conflict: the current tag is used) is not read"),
+    (SYS_README, "now for a USD expense beside cash with no FX rate as well"),
+    ("_system/dcf_engine.py", "(expense_tags_conflict, no unit conflict: the current tag is used) is not read here"),
+    ("_system/dcf_engine.py", "with no USD figure: its share of the base OE total is unknown"),
+    ("_system/make_score.py", "with no USD figure: unknown, read as material"),
+    ("_daily/site/app.js", 'only the two date reasons read "Scored figures are the latest"'),
+    (SYS_README, "has no `dcf_content_hash` key and is compared on the rest"),
+    # engine 5.6 Codex review round 3 of PR #47: the IPR&D charge is ADDED to the price each IRR is solved at
+    (CONTRACT, "and from the price each IRR is solved at"),
+    ("_daily/site/app.js", "and from the price each IRR is solved at"),
+    (SYS_README, "weighted IRR 22.64% → 22.39%, Tier A survives"),
+    (AGENTS_MD, "deducted once from every IV and the IRR price"),
+    ("README.md", "intrinsic value and the IRR price — never from the base"),
+    # engine 5.6 fixer review round: provenance (no scratch-brief labels, no "settled" credit for main-agent fills)
+    # and the iprd_amortized shape / declared_pin definitions
+    (SYS_README, "**No cliff (F4):**"),
+    (SYS_README, "**Treatment (settled):**"),
+    (SYS_README, "`figures` = this run's three FY charges"),
+    (SYS_README, "equal to a declared `base_override` (no `basis`) and not ttm.json's figure"),
+    (SYS_README, "a base_override's `kind` and payable shape (`basis`, `figures`, `shares`)"),
+    ("_system/make_score.py", "base_override without `basis` (within 0.1%)"),
+    (AGENTS_MD, "- Engine 5.6 (Andrew, 2026-10-19): an impairment"),
+    (WORKER_SPEC, "**Acquired IPR&D (engine 5.6, Andrew 2026-10-19).**"),
+    (WORKER_SPEC, "**Amortized acquired IPR&D (engine 5.6, Andrew 2026-10-19).**"),
+    # engine 5.6 (2026-10-19): the stale-release gate text names the current release, not a pinned 5.5.0
+    (SYS_README, '"engine output predates release 5.5.0 — re-run the engine before an entry / exit alert"'),
+    (WORKER_SPEC, "predates release 5.5.0 — re-run the engine"),
+    (AGENTS_MD, "(\"engine output predates release 5.5.0 —"),
     (CONTRACT, "still reads `stats.last` / `stats.last_date` only"),
     (CONTRACT, "GitHub Pages at\n   `_daily/site/`"),
     (CONTRACT, "is still not emitted"),
@@ -385,6 +606,13 @@ STALE = [
     ("_daily/site/app.js", "(typeof fund.currency === 'string' && fund.currency) || 'USD'"),
     ("_daily/site/app.js", "Filed owner\\'s earnings (operating cash flow − capex − stock-based compensation) per diluted share"),
     (CONTRACT, "The block is priced in the file's own `currency`"),
+    # engine 5.6 Codex review round 21 of PR #47: the overlap guard is the declared paid_in_intangible_capex
+    # presentation (round 8) — the intangible leg's size alone is only a capex_overlap_note; and the registry is
+    # written before score.json inside the registry transaction
+    ("_system/dcf_engine.py", "an expense-basis amount the period's capex intangible leg already covers"),
+    (SYS_README, "the deduction with no cliff, the ≥ 98% overlap guard,"),
+    (SYS_README, "the score.json write, the registry replacement and key_numbers.md now run inside"),
+    ("_system/make_score.py", "the score.json write, the registry replacement\n    (update_registry, lock_held=True) and key_numbers.md"),
 ]
 
 
@@ -404,6 +632,174 @@ def test_depreciation_anchor_clause_present():
         "README Fixes & lessons lost the depreciation-anchor entry"
     assert "amended 2026-10-18" in readme and "filed depreciation" in readme, \
         "README's bounded-authority summary lost the amendment"
+
+
+def _flat(rel):
+    return " ".join(_read(rel).split())
+
+
+def test_iprd_amortized_is_rebuilt_on_every_rescore():
+    """[engine 5.6 fixer review round] The re-score and second-pass specs say to carry overrides through unchanged,
+    but an iprd_amortized base_override is recomputed from the run's own native base, window and share count, so a
+    carried one can never reproduce on a new filing: WORKER_SPEC step 2 (re-score after a new filing), step 8 (the
+    bounded authority) and SECOND_PASS step 7 must say to rebuild it (or drop it when no longer recurrent). Fails on
+    the documents before the round."""
+    spec = _flat(WORKER_SPEC)
+    for phrase in ("An `iprd_amortized` `base_override` is not carried either: rebuild it from this re-score's "
+                   "preliminary run", "or drop it when that run no longer raises `ACQUIRED_IPRD_RECURRENT`",
+                   "It is the one override NOT carried through unchanged on a re-score: rebuild it from every "
+                   "re-score's preliminary run", "`iprd_cash_flow_check` entries carry over"):
+        assert phrase in spec, f"WORKER_SPEC.md lost: {phrase!r}"
+    sp = _flat("_system/SECOND_PASS.md")
+    for phrase in ("an `iprd_amortized` `base_override` (engine 5.6) is rebuilt from that rerun's dcf_numbers.json",
+                   "passes `--base-oe-ps <the new value>` instead of `--ttm`"):
+        assert phrase in sp, f"SECOND_PASS.md lost: {phrase!r}"
+
+
+def test_halo_iprd_example_names_the_price_of_each_irr():
+    """[Codex review r3 of PR #47, #4322176055] README's engine 5.6 HALO example quoted the weighted IRR 22.64% →
+    22.39% "at its scored price", but the committed re-score is at $122.50 (HALO/dcf_numbers.json: 22.57% → 22.32%);
+    the 22.64 / 22.39 pair is the 5.5.0 record's $121.84. The example states both pairs with their prices, and the
+    committed pair is read from HALO/dcf_numbers.json so a later re-score that moves it fails here."""
+    import json
+    with open(os.path.join(ROOT, "HALO", "dcf_numbers.json"), encoding="utf-8") as f:
+        n = json.load(f)
+    before = n["iprd_adjustment"]["before"]["weighted"]["irr"] * 100
+    after = n["implied_irr_weighted"] * 100
+    readme = _read(SYS_README)
+    committed = f"weighted IRR {before:.2f}% → {after:.2f}% at the re-score's ${n['price']:.2f}"
+    assert committed in readme, f"README's HALO example lost the committed pair: {committed!r}"
+    assert "weighted IRR 22.64% → 22.39% at the 5.5.0 record's $121.84" in readme, "README lost the $121.84 pair's price"
+
+
+def _live_shown_reasons():
+    """record.live_withheld's reasons in the order build_site.live_shown checks them, read from its code (a dict's
+    "reason" value: a string, or `a if cond else b`)."""
+    src = _read("_system/build_site.py")
+    tree = ast.parse(src)
+    fn = next(n for n in tree.body if isinstance(n, ast.FunctionDef) and n.name == "live_shown")
+    found = []
+    for node in ast.walk(fn):
+        if not isinstance(node, ast.Dict):
+            continue
+        for k, v in zip(node.keys, node.values):
+            if isinstance(k, ast.Constant) and k.value == "reason":
+                vals = [v.body, v.orelse] if isinstance(v, ast.IfExp) else [v]
+                found.extend((x.lineno, x.col_offset, x.value) for x in vals
+                             if isinstance(x, ast.Constant) and isinstance(x.value, str))
+    return [r for _, _, r in sorted(found)], ast.get_docstring(tree) or "", ast.get_docstring(fn) or ""
+
+
+def _names_in_order(text, anchor, names, span=1600):
+    """The first occurrence of each of `names` after `anchor` in `text` (within `span` characters), in that order."""
+    i = text.find(anchor)
+    assert i >= 0, f"anchor {anchor!r} is gone"
+    win = text[i:i + span]
+    pos = [win.find(n) for n in names]
+    return [n for n, p in zip(names, pos) if p < 0], pos == sorted(pos)
+
+
+def test_live_withheld_reasons_are_documented_in_the_order_live_shown_checks_them():
+    """[Codex review r29 of PR #47, review notes] Round 29 checked live_not_from_this_score after
+    live_from_earlier_run and before live_older_than_score, and worded it like the date reasons ("Scored figures are
+    the latest — …"), but SITE_CONTRACT.md, live_shown's docstring and app.js's header comment still said the three
+    PR #47 reasons are checked first and only the two date reasons carry that wording, and build_site's module
+    docstring did not list the new reason. Every reason live_shown sets is named in build_site's module docstring
+    and in live_shown's own, and the three precedence passages name all of them in the order the code checks them —
+    since the round's polish review live_without_score_identity too, right after live_not_from_this_score."""
+    reasons, module_doc, fn_doc = _live_shown_reasons()
+    assert reasons == ["iprd_unresolved", "iprd_share_count_unverified", "score_not_from_this_run",
+                       "live_from_earlier_run", "live_not_from_this_score", "live_without_score_identity",
+                       "live_older_than_score"], reasons
+    for where, doc in (("build_site module docstring", module_doc), ("live_shown docstring", fn_doc)):
+        missing = [r for r in reasons if r not in doc]
+        assert not missing, f"{where} does not name {missing}"
+    for rel, text, anchor in ((CONTRACT, _flat(CONTRACT), "[Merge of main #83 into PR #47] Precedence:"),
+                              ("_system/build_site.py", " ".join(fn_doc.split()), "[merge of main #83 into PR #47] Precedence:"),
+                              ("_daily/site/app.js", _flat("_daily/site/app.js"), "[merge of main #83] Precedence:")):
+        missing, ordered = _names_in_order(text, anchor, reasons)
+        assert not missing and ordered, f"{rel}'s precedence passage: missing {missing}, in order {ordered}"
+        # ...and the two wordings: score_not_from_this_run's last, then the three that read "Scored figures ..."
+        missing, ordered = _names_in_order(text, anchor, ["score_not_from_this_run", "Live figures withheld",
+                                                          "live_from_earlier_run", "Scored figures are the latest"])
+        assert not missing and ordered, f"{rel}'s precedence passage wording: missing {missing}, in order {ordered}"
+
+
+def test_the_recurrence_figure_is_documented_on_the_expense_side():
+    """[Codex review r29 of PR #47, second polish review] WORKER_SPEC said a year's whole charge is the largest of its
+    expense and cash figures in every unit filed and "the recurrence figure reads the same way", but the recurrence
+    figure reads the expense side (EUR 100M at 1.08 on the cash tag beside the USD 40M expensed and paid: $40M, the
+    whole charge $108M) and is unknown only when the own expense is; and a parallel expense tag's figure counts
+    whether or not that tag carries a unit conflict. WORKER_SPEC, AGENTS.md and README's round-29 entry say so."""
+    spec = _flat(WORKER_SPEC)
+    for phrase in ("The recurrence figure reads the expense side only", "the whole charge adds the cash side",
+                   "on any of its acquired-IPR&D expense tags (the detector tag and the parallel one)",
+                   "is unknown (read as material) only when the own expense has no USD figure",
+                   "a USD expense beside cash with no FX rate reads that expense"):
+        assert phrase in spec, f"WORKER_SPEC.md lost: {phrase!r}"
+    agents = _flat(AGENTS_MD)
+    for phrase in ("the recurrence figure reads the expense side", "the whole charge adds the cash side",
+                   "whose acquired-IPR&D expense has no USD figure reads as material"):
+        assert phrase in agents, f"AGENTS.md lost: {phrase!r}"
+    readme = _flat(SYS_README)
+    for phrase in ("**Round-29 second polish review", "the recurrence figure reads the expense side",
+                   "the whole charge adds the cash side", "`expense_tags_conflict` figures too"):
+        assert phrase in readme, f"README.md lost: {phrase!r}"
+
+
+R30_TOLERANCE_PHRASES = ("unit-agreement tolerance", "`IPRD_UNIT_TOLERANCE`", "max($1, 1% of the larger)",
+                         "a unit within it is the figure used")
+
+
+def test_every_unit_filed_reads_the_units_that_disagree_beyond_the_unit_agreement_tolerance():
+    """[Codex review r30 of PR #47, #4336863087 — behaviour unchanged] The round-29 rule says a year's own expense and
+    whole charge are its largest figures "in every unit filed", but a unit that agrees with the figure used within the
+    engine's unit-agreement tolerance (IPRD_UNIT_TOLERANCE, 0.01: units disagree only when, after conversion, they
+    differ by more than max($1, 1% of the larger)) records no unit_conflict and is that same figure — so USD 100M beside
+    EUR converting to $100.7M is a $100M charge. WORKER_SPEC, AGENTS.md, README (its round-29 entry and the round-30
+    entry) and the three helpers' docstrings name the tolerance and its value and say a unit within it is the figure
+    used."""
+    for rel in (WORKER_SPEC, AGENTS_MD, SYS_README):
+        text = _flat(rel)
+        missing = [p for p in R30_TOLERANCE_PHRASES if p not in text]
+        assert not missing, f"{rel} does not say which units 'every unit filed' reads: missing {missing}"
+    readme = _flat(SYS_README)
+    r29 = readme.find("**Round-29 second polish review")
+    r30 = readme.find("**Codex review round 30 of PR #47")
+    assert 0 <= r29 < r30, "README's round-30 entry must follow the round-29 second polish review"
+    assert "a unit within it is the figure used" in readme[r29:r30], "README's round-29 entry does not name the tolerance"
+    assert "a unit within it is the figure used" in readme[r30:], "README's round-30 entry does not name the tolerance"
+    tree = _module("_system/dcf_engine.py")
+    for fn in ("iprd_own_charge_usd", "iprd_own_expense_unknown", "iprd_whole_charge_unknown"):
+        doc = " ".join((ast.get_docstring(_function(tree, fn)) or "").split())
+        missing = [p for p in ("IPRD_UNIT_TOLERANCE", "max($1, 1% of the larger)", "a unit within it is the figure used")
+                   if p not in doc]
+        assert not missing, f"dcf_engine.{fn}'s docstring: missing {missing}"
+
+
+R30_SPREAD_PHRASE = "the tolerance applies to their spread"
+
+
+def test_the_unit_agreement_tolerance_is_documented_as_a_spread_across_every_unit():
+    """[Codex review r30 of PR #47, review of the round's doc fix] The round-30 wording ("a unit within it is the figure
+    used") read pairwise; the engine tests the spread across every unit filed (_iprd_pick). WORKER_SPEC, AGENTS.md,
+    README and the three helpers' docstrings say so."""
+    for rel in (WORKER_SPEC, AGENTS_MD, SYS_README):
+        assert R30_SPREAD_PHRASE in _flat(rel), f"{rel} does not say the tolerance applies to the units' spread"
+    tree = _module("_system/dcf_engine.py")
+    for fn in ("iprd_own_charge_usd", "iprd_own_expense_unknown", "iprd_whole_charge_unknown"):
+        doc = " ".join((ast.get_docstring(_function(tree, fn)) or "").split())
+        assert R30_SPREAD_PHRASE in doc, f"dcf_engine.{fn}'s docstring does not say the tolerance applies to the spread"
+
+
+def test_a_ttm_base_without_ttm_shares_is_documented_as_refused():
+    """[Codex review r30 of PR #47, #4336863102] A TTM base's acquired-IPR&D figures are per share on ttm.json's
+    ttm_shares_diluted; without a positive one the run is refused (BAD_TTM_SHARES), never put on the latest-FY count.
+    WORKER_SPEC, AGENTS.md and README say so."""
+    for rel in (WORKER_SPEC, AGENTS_MD, SYS_README):
+        text = _flat(rel)
+        missing = [p for p in ("`BAD_TTM_SHARES`", "never the latest-FY count") if p not in text]
+        assert not missing, f"{rel}: missing {missing}"
 
 
 def test_corrected_passages_stay_corrected():

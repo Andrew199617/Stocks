@@ -11,6 +11,9 @@ already in the repo.
    offsets, mults, moat, gterm, price) and require bit-level agreement with
    what the pre-refactor engine wrote. This proves the v5.4 refactor of the
    math into module-level functions changed nothing for r > g_terminal.
+   v5.6: a record with an acquired-IPR&D one-time deduction is replayed
+   through the same helpers (adjusted_value / adjusted_irr; charge 0.0 for
+   every other record — the identity).
 """
 import os, sys, glob, json, math
 
@@ -97,6 +100,52 @@ def test_market_cap_ads_ratio():
 
 
 # ---------------- regression over the repo ----------------
+def replay_record(n, who, floor_hits=None):
+    """Recompute one recorded run's scenario paths, IV@10/12/15 and IRRs from its recorded inputs and require
+    bit-level agreement. v5.6: a record carrying an acquired-IPR&D one-time deduction (iprd_adjustment, treatment
+    one_time_value_deduction) is replayed through the same helpers the engine used — IV = present_value - charge,
+    IRR = solve_irr at price + charge; for every other record the charge is 0.0, the identity."""
+    scn, inp = n["scenarios"], n["inputs"]
+    base, price, gterm = n["base_oe_per_share"], n["price"], inp.get("g_terminal", 0.025)
+    c = E.iprd_charge_per_share(n)
+    cap = E.cap_years_for_moat(inp["moat"])
+    g_base = n["g_base"]
+    flows_all = []
+    for i, lbl in enumerate(LABELS):
+        r = scn[lbl]
+        g0 = max(E.GROWTH_FLOOR_START, min(E.GROWTH_CAP_START, g_base + inp["offsets"][i]))
+        assert close(round(g0, 4), r["g_start"], 1e-12, 1e-12), f"{who}: g_start {lbl}"
+        flows = E.project_path(base * inp["mults"][i], g0, cap, gterm)
+        flows_all.append(flows)
+        for rate, key in ((0.10, "iv_at_10"), (0.12, "iv_at_12"), (0.15, "iv_at_15")):
+            assert close(E.adjusted_value(flows, rate, gterm, c), r[key]), f"{who}: {lbl} {key}"
+        irr, capped, floor = E.adjusted_irr(flows, price, gterm, c)
+        if r["irr"] is not None and r["irr"] < gterm + 0.005:
+            # The pre-5.4 solver floored the terminal denominator at 0.5% and
+            # could "solve" an IRR below terminal growth (GFI super-bear:
+            # -3.8%). A perpetuity growing at g has an IRR above g at any
+            # finite price, so v5.4 finds the real root just above g and
+            # flags it. Both agree the name sits at the model's floor.
+            assert irr >= gterm and floor, f"{who}: {lbl} expected at-floor IRR, got {irr}"
+            if floor_hits is not None:
+                floor_hits.append(f"{who}:{lbl}")
+        else:
+            assert close(irr, r["irr"], 1e-9, 1e-9), f"{who}: {lbl} irr {irr} vs {r['irr']}"
+    probs = inp["probs"]
+    w = [sum(probs[i] * flows_all[i][t] for i in range(5)) for t in range(15)]
+    rec = n["weighted"]
+    for rate, key in ((0.10, "iv_at_10"), (0.12, "iv_at_12"), (0.15, "iv_at_15")):
+        assert close(E.adjusted_value(w, rate, gterm, c), rec[key]), f"{who}: weighted {key}"
+    irr, capped, floor = E.adjusted_irr(w, price, gterm, c)
+    if rec["irr"] is not None and rec["irr"] < gterm + 0.005:
+        assert irr >= gterm and floor, f"{who}: weighted expected at-floor IRR, got {irr}"
+        if floor_hits is not None:
+            floor_hits.append(f"{who}:weighted")
+    else:
+        assert close(irr, rec["irr"], 1e-9, 1e-9), f"{who}: weighted irr"
+    assert E.tier_for_irr(irr) == n["tier_by_numbers"], f"{who}: tier"
+
+
 def test_regression_recorded_folders():
     checked, skipped, floor_hits = 0, [], []
     for p in sorted(glob.glob(os.path.join(BASE, "*", "dcf_numbers.json"))):
@@ -104,41 +153,7 @@ def test_regression_recorded_folders():
         scn, inp = n.get("scenarios"), n.get("inputs")
         if not scn or not inp or n.get("base_oe_per_share") is None or n.get("price") is None:
             skipped.append(os.path.basename(os.path.dirname(p))); continue
-        base, price, gterm = n["base_oe_per_share"], n["price"], inp.get("g_terminal", 0.025)
-        cap = E.cap_years_for_moat(inp["moat"])
-        g_base = n["g_base"]
-        flows_all = []
-        for i, lbl in enumerate(LABELS):
-            r = scn[lbl]
-            g0 = max(E.GROWTH_FLOOR_START, min(E.GROWTH_CAP_START, g_base + inp["offsets"][i]))
-            assert close(round(g0, 4), r["g_start"], 1e-12, 1e-12), f"{p}: g_start {lbl}"
-            flows = E.project_path(base * inp["mults"][i], g0, cap, gterm)
-            flows_all.append(flows)
-            for rate, key in ((0.10, "iv_at_10"), (0.12, "iv_at_12"), (0.15, "iv_at_15")):
-                assert close(E.present_value(flows, rate, gterm), r[key]), f"{p}: {lbl} {key}"
-            irr, capped, floor = E.solve_irr(flows, price, gterm)
-            if r["irr"] is not None and r["irr"] < gterm + 0.005:
-                # The pre-5.4 solver floored the terminal denominator at 0.5% and
-                # could "solve" an IRR below terminal growth (GFI super-bear:
-                # -3.8%). A perpetuity growing at g has an IRR above g at any
-                # finite price, so v5.4 finds the real root just above g and
-                # flags it. Both agree the name sits at the model's floor.
-                assert irr >= gterm and floor, f"{p}: {lbl} expected at-floor IRR, got {irr}"
-                floor_hits.append(f"{os.path.basename(os.path.dirname(p))}:{lbl}")
-            else:
-                assert close(irr, r["irr"], 1e-9, 1e-9), f"{p}: {lbl} irr {irr} vs {r['irr']}"
-        probs = inp["probs"]
-        w = [sum(probs[i] * flows_all[i][t] for i in range(5)) for t in range(15)]
-        rec = n["weighted"]
-        for rate, key in ((0.10, "iv_at_10"), (0.12, "iv_at_12"), (0.15, "iv_at_15")):
-            assert close(E.present_value(w, rate, gterm), rec[key]), f"{p}: weighted {key}"
-        irr, capped, floor = E.solve_irr(w, price, gterm)
-        if rec["irr"] is not None and rec["irr"] < gterm + 0.005:
-            assert irr >= gterm and floor, f"{p}: weighted expected at-floor IRR, got {irr}"
-            floor_hits.append(f"{os.path.basename(os.path.dirname(p))}:weighted")
-        else:
-            assert close(irr, rec["irr"], 1e-9, 1e-9), f"{p}: weighted irr"
-        assert E.tier_for_irr(irr) == n["tier_by_numbers"], f"{p}: tier"
+        replay_record(n, os.path.basename(os.path.dirname(p)), floor_hits)
         checked += 1
     print(f"regression: {checked} folders reproduced bit-for-bit; skipped (no scenarios): {', '.join(skipped) or 'none'}")
     print(f"at-floor cases (pre-5.4 solver reported an IRR below terminal growth): {', '.join(floor_hits) or 'none'}")

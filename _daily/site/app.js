@@ -246,7 +246,20 @@ function isoDay(x) { return typeof x === 'string' && /^\d{4}-\d{2}-\d{2}/.test(x
 function fmtFactor(f) { return String(Number(Number(f).toPrecision(6))); } // a split factor as Python's {:g}: 2 → "2", 1.5 → "1.5", 0.1 → "0.1"
 /* record.live_withheld (build_site live_shown): a live.json whose close is older than the scored analysis (Nasdaq had not
    posted the scored session yet), or one left from an earlier run of a re-scored name, is not shown as current — record.live is null, and the scored figures are the
-   latest available (Andrew's ruling, 2026-10-20: never "pending" — no newer close exists, so nothing is outstanding).
+   latest available (Andrew's ruling, 2026-10-20: never "pending" — no newer close exists, so nothing is outstanding); [Codex review r2 of PR #47] so is every live repricing of a record whose acquired-IPR&D charge was
+   deducted by hand (reason iprd_share_count_unverified: reprice.py never reprices it, live.json or not); [Codex review r6]
+   and of a record whose latest engine run make_score refused for an unresolved acquired-IPR&D charge (reason iprd_unresolved);
+   [Codex review r11] and any live.json beside a score.json not built from the latest engine run (reason score_not_from_this_run).
+   [Codex review r29] A live.json not computed against the score on file (written before make_score scored the run, or
+   before it re-scored it, or beside another run's same-day score) is withheld with reason live_not_from_this_score: the
+   score is this run's, so it reads as the date reasons do — "Scored figures are the latest", never "pending".
+   [Codex review r29, polish review] One from before round 29 that records no score identity beside a score that has one
+   is withheld with its own reason, live_without_score_identity — never said to be computed before the score (nothing it
+   records shows that): it records no score identity, and the next repricing refreshes it.
+   [merge of main #83] Precedence: (as corrected in Codex review r29) build_site checks iprd_unresolved /
+   iprd_share_count_unverified, then score_not_from_this_run — the PR #47 reasons, worded "Live figures withheld" — then
+   live_from_earlier_run, live_not_from_this_score, live_without_score_identity and live_older_than_score, all four worded
+   "Scored figures are the latest".
    {reason, price, price_date, scored_date, method, note}, or null when nothing was withheld. */
 function liveWithheld(record) {
   var w = obj(obj(record).live_withheld);
@@ -255,6 +268,16 @@ function liveWithheld(record) {
 }
 function latestText(w) { // plain text; escaped where it is printed
   w = obj(w);
+  // [Codex review r2 of PR #47] reprice.py never reprices a record whose acquired-IPR&D charge was deducted by hand
+  if (w.reason === 'iprd_share_count_unverified') return 'Live figures withheld — the acquired-IPR&D charge was deducted by hand (share count unverified), so the scored figures stand';
+  // [Codex review r6 of PR #47] nor one whose latest run make_score refused for an unresolved acquired-IPR&D charge
+  if (w.reason === 'iprd_unresolved') return 'Live figures withheld — the latest run left an acquired-IPR&D charge unresolved, so the scored figures stand';
+  // [Codex review r11 of PR #47] nor any live repricing beside a score.json from another engine run
+  if (w.reason === 'score_not_from_this_run') return 'Live figures withheld — the latest engine run is not scored yet (make_score refused it or has not run on it), so the scored figures stand';
+  // [Codex review r29 of PR #47] a live repricing computed before the score on file (the score is this run's)
+  if (w.reason === 'live_not_from_this_score') return 'Scored figures are the latest — the live repricing on file was computed before the ' + (w.scored_date ? w.scored_date + ' ' : 'current ') + 'score';
+  // [Codex review r29 of PR #47, polish review] a live repricing from before round 29: no score identity recorded
+  if (w.reason === 'live_without_score_identity') return 'Scored figures are the latest — the live repricing on file records no score identity; the next repricing refreshes it';
   // the recorded reason decides the wording, not the dates: an earlier run's repricing usually ALSO has a close
   // before the new score, so inferring from the dates alone renders the older-close text for it (Codex review, PR #83)
   var earlierRun = w.reason === 'live_from_earlier_run' || (!w.reason && w.price_date && w.scored_date && w.price_date >= w.scored_date);
@@ -742,6 +765,43 @@ function renderFilings(record) {
   return section('Filings', '<div class="card fcard" data-fk="all"><div class="fchips" role="group" aria-label="Filter by form">' + chips + '</div><div class="twrap"><table class="mini filings"><thead><tr><th>Filed</th><th>Form</th><th>What</th><th></th></tr></thead><tbody>' + rows + '</tbody></table></div><p class="note">From EDGAR submissions' + (p.as_of ? ', updated ' + esc(p.as_of) : '') + (fp.eight_k_count_12m !== undefined && fp.eight_k_count_12m !== null ? ' · ' + esc(fp.eight_k_count_12m) + ' 8-Ks in the last 12 months' : '') + '.</p></div>');
 }
 
+/* Engine 5.6 (acquired IPR&D, Andrew 2026-10-19): one disclosure line under the base OE card when the scored run
+   deducted a one-time acquired-IPR&D charge per share from every intrinsic value and added it to the price each
+   IRR is solved at (Codex review r3 of PR #47: added, not deducted — a higher price, a lower IRR). The IVs, IRRs and
+   hurdle prices on the page are already the adjusted ones; the line says where the gap to the paths comes from.
+   [Codex review r16 of PR #47] Only the adjustment of the run the displayed score came from is described as applied:
+   score.json's own block, and never when the score on file is an earlier run's (live_withheld reason
+   score_not_from_this_run or iprd_unresolved). The engine record's block alone (the score carries none — make_score
+   copies it whenever the run has one, so that score is another run's) or beside a foreign score is named as the
+   latest run's adjustment as not scored yet (never "pending", Andrew 2026-10-20), never as already in the figures. The charge is per traded unit: per ADS
+   when the run's applied ads_ratio (numbers.iprd_adjustment.ads_ratio, else numbers.ads_ratio) is not 1, as
+   key_numbers.md prints it. '' for every other record. */
+function iprdUnit(record) {
+  var nb = obj(obj(record.numbers).iprd_adjustment), r = num(nb.ads_ratio);
+  if (r === null) { var a = obj(record.numbers).ads_ratio; r = num(a && typeof a === 'object' ? a.ratio : a); }
+  return r !== null && r > 0 && Math.abs(r - 1) >= 1e-12 ? '/ADS' : '/sh';
+}
+function iprdWhere(b) {
+  return arr(b.periods).filter(function (p) { return p && num(p.deducted) > 0; }).map(function (p) {
+    return (p.window === 'fy' ? 'FY' + esc(String(p.period).slice(0, 4)) : 'YTD ' + esc(p.period)) + ', ' + (p.amount_basis === 'cash_outflow' ? 'cash' : 'expense') + ' basis';
+  }).join('; ');
+}
+function iprdNote(record) {
+  var w = liveWithheld(record), foreign = !!w && (w.reason === 'score_not_from_this_run' || w.reason === 'iprd_unresolved');
+  var b = obj(obj(record.score).iprd_adjustment), c, where;
+  if (!foreign && Object.keys(b).length) {
+    if (b.treatment === 'amortized_in_base') return 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.';
+    c = num(b.charge_per_share);
+    if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
+    where = iprdWhere(b);
+    return 'Acquired IPR&amp;D: −' + fmtMoney(c) + iprdUnit(record) + ' one-time' + (where ? ' (' + where + ')' : '') + ' — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE is unchanged.';
+  }
+  b = obj(obj(record.numbers).iprd_adjustment); c = num(b.charge_per_share);
+  if (b.treatment !== 'one_time_value_deduction' || c === null || c <= 0) return '';
+  where = iprdWhere(b);
+  return 'Acquired IPR&amp;D: the latest engine run deducts −' + fmtMoney(c) + iprdUnit(record) + ' one-time' + (where ? ' (' + where + ')' : '') + ', not scored yet — the scored figures shown do not include it.';
+}
+
 function renderOverview(record) {
   var s = obj(record.score), n = obj(record.numbers), row = obj(record.row), diag = obj(n.diagnostics);
   var v = liveView(record), tier = v.tier, acc = TIER_ACCENT[tier] || '#9AA3B2', irr = v.irr;
@@ -781,7 +841,8 @@ function renderOverview(record) {
   ].join('');
   var baseSrc = { ttm_json: 'TTM from ttm.py (10-Q YTD math)', agent_supplied_ttm_override: 'TTM pin (agent-supplied)', median_of_last_3_fy_oe_per_share: 'median of the last 3 fiscal years' }[s.base_source] || esc(s.base_source);
   var kn = '<div class="tiles">' + tiles + '</div><div class="card baseoe"><span class="k">Base owner\'s earnings</span><span class="bv mono">' + fmtMoney(s.base_oe_per_share) + '<span class="bu"> / share</span></span>'
-    + '<p class="note">Basis: ' + baseSrc + '. Latest FY ' + fmtMoney(n.base_oe_latest_per_share) + '/sh · 3-yr median ' + fmtMoney(n.base_oe_normalized_per_share) + '/sh · growth blend ' + fmtPct(n.g_blend) + ' → start ' + fmtPct(n.g_base) + ' · terminal ' + fmtPct(n.g_terminal) + '.</p></div>';
+    + '<p class="note">Basis: ' + baseSrc + '. Latest FY ' + fmtMoney(n.base_oe_latest_per_share) + '/sh · 3-yr median ' + fmtMoney(n.base_oe_normalized_per_share) + '/sh · growth blend ' + fmtPct(n.g_blend) + ' → start ' + fmtPct(n.g_base) + ' · terminal ' + fmtPct(n.g_terminal) + '.</p>'
+    + (iprdNote(record) ? '<p class="note">' + iprdNote(record) + '</p>' : '') + '</div>';
   // scenarios
   // a scenario IRR the solver clamped at its floor (irr_at_floor / irr_live_at_floor) is a bound, not a solved return:
   // it is marked like the Forecast tab's sensitivity table, never presented as a bare figure
@@ -1870,8 +1931,10 @@ function renderRowHTML(row, stars, repo) {
   // row.split_restated (build_site): the run's price / IV columns are restated for a split since scoring
   var srs = obj(row.split_restated), srf = num(srs.factor);
   if (srf !== null && srf > 0 && Math.abs(srf - 1) > 1e-9) badges.push('<span class="bdg sp" title="' + esc('A ' + (srs.split || fmtFactor(srf) + 'x') + ' split since scoring: the price and IV columns are the run restated to today\'s share units (÷ ' + fmtFactor(srf) + '); IRR, tier and upside are unchanged') + '">' + esc(srs.split || fmtFactor(srf) + 'x') + ' split since scoring</span>');
-  // row.live_withheld: live.json predates the scored analysis, so the row is ranked on its scored IRR (the live fields are null)
-  var withheld = !live && row.live_withheld === true, withheldT = 'The scored figures are the latest available: the live repricing on file predates the scored analysis, so this row is ranked on its scored IRR';
+  // row.live_withheld: live.json predates the scored analysis, or the record is never repriced (an acquired-IPR&D charge
+  // deducted by hand, or left unresolved by the latest run, or a latest run not scored yet — the record's live_withheld.reason says which), so the row is ranked on its scored IRR (the live fields are null).
+  // The row carries no reason, so one label covers every reason: "scored · latest", never "pending" (Andrew's ruling, 2026-10-20; merge of main #83)
+  var withheld = !live && row.live_withheld === true, withheldT = 'The scored figures are the latest available: the live repricing on file predates the scored analysis, was computed before the current score or records no score identity, or the record is not repriced (an acquired-IPR&D charge deducted by hand or left unresolved, or a latest engine run not scored yet; its page says which), so this row is ranked on its scored IRR';
   var tb = (live && row.tier_bear_live) || row.tier_bear, tu = (live && row.tier_bull_live) || row.tier_bull;
   var band = tb && tu ? '<span class="band" title="' + (live ? 'bear → bull tier at the last close' : 'bear → bull tier as scored') + '"><i style="background:' + (TIER_ACCENT[tb] || '#333') + '">' + esc(tb) + '</i>→<i style="background:' + (TIER_ACCENT[tu] || '#333') + '">' + esc(tu) + '</i></span>' : '—';
   var up = live ? num(row.upside15_live) : num(row.upside15), price = live && num(row.price_live) !== null ? row.price_live : row.price;
@@ -2940,7 +3003,7 @@ var API = {
   condenseNow: condenseNow, TABSUM_H: TABSUM_H, sparkLabels: sparkLabels, oeGapNote: oeGapNote, oeYoyNote: oeYoyNote, histYoy: histYoy, overrideWhy: overrideWhy, isOverrideTag: isOverrideTag, runCapText: runCapText, SHARE_BASIS_X: SHARE_BASIS_X, SHARE_JUMP_X: SHARE_JUMP_X, renderStatementsBody: renderStatementsBody,
   parseHash: parseHash, TABS: TABS, TAB_KEYS: TAB_KEYS, SORTS: SORTS, TIER_ACCENT: TIER_ACCENT, tabScrollLeft: tabScrollLeft, TAB_PAD: TAB_PAD,
   liveWithheld: liveWithheld, latestText: latestText, currentClose: currentClose, splitInfo: splitInfo, splitRefs: splitRefs, splitDivisor: splitDivisor, fmtFactor: fmtFactor, splitBrief: splitBrief,
-  renderOverrides: renderOverrides, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
+  renderOverrides: renderOverrides, iprdNote: iprdNote, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
   drawChart: drawChart, drawPrice: drawPrice // DOM-touching only through the element they are handed
 };
 if (typeof module !== 'undefined' && module.exports) module.exports = API;

@@ -46,7 +46,37 @@ function profileOf(dir) {
    a weighted IRR is not shown (live_ok); one whose close (price_date) is older than the later of score.json analysis_date
    and live.scored_date is withheld, and so is one left from an earlier run (live.scored_date before score.analysis_date) — record.live null, record.live_withheld says why, the scored figures are the latest available. */
 function date10(v) { return typeof v === 'string' && v.length >= 10 ? v.slice(0, 10) : null; }
-function liveShown(score, lv) {
+/* [Codex review r2 of PR #47] a numbers.iprd_adjustment treatment not_applied_share_count_unverified is never repriced:
+   any live.json is withheld, and the record says so without one (reason iprd_share_count_unverified). */
+const IPRD_WITHHELD_NOTE = 'The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier '
+  + "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
+  + 'figures are the current ones and no live repricing is shown.';
+/* [Codex review r6 of PR #47] build_site.iprd_unresolved: a run make_score refused for an unresolved acquired-IPR&D charge
+   (a period awaiting its cash-flow check, or excluded non_usd_no_rate with a positive native expense or cash outflow, or —
+   Codex review r24 — a positive detector tag it cannot convert beside the other, expense_tag_unconverted) —
+   withheld the same way, reason iprd_unresolved. */
+const IPRD_UNRESOLVED_NOTE = "The latest engine run left an acquired-IPR&D charge unresolved (awaiting the worker's cash-flow check, "
+  + 'or in a currency the engine cannot convert), so make_score refused it: the score on file is an earlier '
+  + "run's, a live repricing of the new run would carry unadjusted figures, and none is shown until the "
+  + 'folder is scored again.';
+function iprdUnresolved(blk) {
+  const pos = (v) => n(v) !== null && n(v) > 0;
+  for (const p of Array.isArray(blk.periods) ? blk.periods : []) {
+    if (!isObj(p)) continue;
+    if (p.excluded === 'awaiting_cash_flow_check') return true;
+    if (p.excluded === 'non_usd_no_rate' && (pos(p.expense_native) || pos(p.cash_native)
+      || pos(isObj(p.expense_tag_unconverted) ? p.expense_tag_unconverted.native : null))) return true;
+  }
+  return blk.treatment === 'awaiting_cash_flow_check' || blk.treatment === 'non_usd_no_rate';
+}
+function liveShown(score, lv, numbers) {
+  const blk = isObj(numbers) && isObj(numbers.iprd_adjustment) ? numbers.iprd_adjustment : {};
+  const unresolved = iprdUnresolved(blk);
+  if (unresolved || blk.treatment === 'not_applied_share_count_unverified') {
+    const ok = isObj(lv) && n(lv.price) !== null && n(lv.irr_weighted) !== null;
+    return { live: null, withheld: { reason: unresolved ? 'iprd_unresolved' : 'iprd_share_count_unverified', price: ok ? n(lv.price) : null, price_date: ok ? date10(lv.price_date) : null,
+      scored_date: date10((score || {}).analysis_date) || date10((numbers || {}).as_of), method: null, note: unresolved ? IPRD_UNRESOLVED_NOTE : IPRD_WITHHELD_NOTE } };
+  }
   if (!isObj(lv) || n(lv.price) === null || n(lv.irr_weighted) === null) return { live: null, withheld: null };
   const sa = date10((score || {}).analysis_date), ls = date10(lv.scored_date), pd = date10(lv.price_date);
   if (sa && ls && ls < sa) return { live: null, withheld: { reason: 'live_from_earlier_run', price: n(lv.price), price_date: pd, scored_date: sa, method: null,
@@ -112,7 +142,7 @@ function assemble(base, ticker) {
   const score = jload(path.join(dir, 'score.json'));
   const numbers = jload(path.join(dir, 'dcf_numbers.json'));
   if (!score || !numbers) return null;
-  const shown = liveShown(score, jload(path.join(dir, 'live.json'))), live = shown.live, split = liveSplit(live), sf = split.factor || 1;
+  const shown = liveShown(score, jload(path.join(dir, 'live.json')), numbers), live = shown.live, split = liveSplit(live), sf = split.factor || 1;
   const fundamentals = jload(path.join(dir, 'fundamentals.json'));
   const prices = jload(path.join(dir, 'prices.json'));
   const segments = jload(path.join(dir, 'segments.json'));

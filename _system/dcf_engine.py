@@ -361,6 +361,197 @@ v5.5 (2026-10-19, Andrew's rulings on the seven 5.5 spec drafts — engine_relea
         reassurance). The cap itself is still price x the filed count (no factor
         is invented) — a listed follow-up. VIV keeps its diagnostics (endpoint
         break). Put to Andrew beside E3 / R2-E3.
+v5.6 (2026-10-19, Andrew's acquired-IPR&D decision — engine_release "5.6.0"; engine_version stays 5; the base
+and the paths are untouched): OE = OCF - capex - SBC is blind to in-process R&D bought in an asset acquisition
+(ASC 805: expensed at acquisition, added back in OCF, the payment outside every capex tag — HALO's $284.9M Surf
+Bio charge, 38% of a year's OE). Detection (iprd_detect) reads the expense tag
+ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff (and its pre-2022 name
+ResearchAndDevelopmentInProcess) for the last 3 FY and, on a ttm.json pin, the current-YTD 10-Q leg (each fiscal
+period counted once); the amount is the cash tag PaymentsToAcquireInProcessResearchAndDevelopment for the same
+period when filed, else the expense; a cash-tag-only period never qualifies (MAA's development-spend mistag);
+intangible impairments are never read; an expense-basis amount is excluded already_in_capex only when its
+iprd_cash_flow_check declares presentation paid_in_intangible_capex and the period's capex intangible leg is >= 98%
+of it (under 98% the check is not applied and the period stays awaiting_cash_flow_check); the leg's size alone only
+adds a capex_overlap_note (Codex review round 8 of PR #47; this summary corrected in round 21). Treatment: ONE
+per-share charge on the base's share basis (window total / the base's denominator x ads_ratio), entered as a
+year-0 outflow in every scenario — IV_adj(r) = present_value - charge (adjusted_value), IRR = solve_irr(flows,
+price + charge) (adjusted_irr); tiers, the band, hurdle prices and upside follow the adjusted figures; the
+unadjusted ones are kept in iprd_adjustment.before.
+Never a base deduction. The deduction has no cliff; ACQUIRED_IPRD_CHARGE fires at >= 5% of the base OE total
+(any charge beside a base with no value to adjust) and ACQUIRED_IPRD_RECURRENT when 2 or more of the last 3 FY
+carry a charge (material). No auto-amortization: a --base-oe-ps pin that judgment.json declares as a
+base_override of basis "iprd_amortized" (native base - mean annual charge / shares, recomputed here and refused
+as BAD_BASE_OVERRIDE, exit 3, when it does not reproduce) carries the charge in the base instead
+(treatment amortized_in_base, no one-time deduction). reprice.py and build_site.py use the same helpers
+(iprd_charge_per_share / adjusted_value / adjusted_irr); a record without the block behaves exactly as before.
+Review round (2026-10-19): the window and denominator follow the BASE's basis, not the flag that pinned it (a
+--base-oe-ps pin equal to ttm.json's ttm_oe_per_share within 0.1%, or an iprd_amortized pin declaring native_base
+ttm_json, reads the current-YTD leg and ttm_shares_diluted); an amortized run judges materiality / recurrence
+against its native base (the pin is already lowered by the charge); under STALE_FY with a ttm.json base the
+amortized native base must be ttm_json (WORKER_SPEC step 4); make_score's override-impact counterfactual
+(DCF_NO_OVERRIDES=1 --measure) never re-validates an amortized declaration and holds the final run's treatment and
+charge per share when DCF_IPRD_HOLD passes them; HIGH_TV_SHARE / diagnostics.tv_share_at_15 are shares of the
+ADJUSTED IV@15 (the scenario spread alone stays on the unadjusted paths).
+[ADDITION — fixer review round 2026-10-19, awaiting Andrew's ratification] (1) An EXPENSE-basis period (no us-gaap
+cash tag) is no longer deducted automatically: companyfacts cannot tell HALO (the 10-K adds the expense back in
+operating activities and pays it in investing under a custom tag — OE never saw it) from NBIX (no add-back and no
+investing line in FY2023-25: the upfronts were paid inside OCF, so OE already carries them and a deduction charges
+them twice). Such a period stays excluded "awaiting_cash_flow_check" and raises ACQUIRED_IPRD_UNCONFIRMED until
+judgment.json iprd_cash_flow_check declares, per period, what the 10-K's cash-flow statement shows (citing the
+line): "added_back_paid_in_investing" (deducted), "inside_operating_cash_flow" (excluded
+paid_in_operating_cash_flow) or "paid_in_shares" (excluded paid_in_shares: the dilution is in the share count).
+The cash tag is an investing element, so a cash-basis period needs no check. (2) A negative cash fact beside a
+positive expense is a sign error on a payments element: the period falls back to the expense (cash_sign_note)
+instead of being dropped. (3) Cash paid in a window period against an earlier window period's accrued charge
+(BIIB: FY2025 $85.0M expensed, $50.0M paid; the Q1 2026 10-Q files the $35.0M remainder on the cash tag alone)
+counts as a deferred payment, bounded by the window's unpaid remainder (expense - cash of its cash-basis periods);
+a filer that never expenses (MAA) has no remainder, so its cash-only periods still never qualify. A deferred
+payment does not count toward recurrence. [Codex review r27 of PR #47] The recurrence count reads each FY period's
+own positive expense, paid in the year or accrued (iprd_charge_year), never deducted > 0: a charge expensed with $0
+cash and paid in a later year still counts in its own year, and the later settlement does not. [Codex review r28
+of PR #47] ...whatever its cash presentation too (iprd_own_charge: paid in shares, inside operating cash flow,
+inside intangible capex, awaiting the check or with no FX rate — those still deduct nothing), and the recurrence
+gate's materiality is its own figure (iprd_recurrence_materiality): the counted periods' acquisition expense (the
+TTM current-YTD leg's too on a TTM base, less a declared installment part), never the cash the window deducted;
+ACQUIRED_IPRD_CHARGE keeps the deduction's materiality.
+Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided): a
+contingent milestone or other deferred payment on an acquired-IPR&D deal already charged in an earlier period
+(inside the window or before it) is the same purchase — still deducted once when expensed / paid, but its period
+does not count toward ACQUIRED_IPRD_RECURRENT (which catches buying R&D as a habit: distinct deals). The worker
+declares the link per FY period and deal in judgment.json iprd_deferred_payment ({period, window "fy", amount:
+this deal's part of the period's charge, deferred_payment_of: {deal, first_charged_period, source: accession +
+section / page showing the contingent milestone or deferred consideration, contingent_total: {value (USD), source:
+accession + section showing the deal's unrecognized milestones / deferred consideration}}); iprd_apply_deferred
+validates it against this run's window and companyfacts — one first charge per deal; one contingent_total per deal,
+declared consistently, and the deal's declared amounts across every entry summing to no more than it (the per-deal
+cap: the main agent's decision on the review's open item, delegated by Andrew 2026-10-20); first_charged_period before the declared
+period; inside the window, a period whose record shows a charge that is not itself wholly declared deferred;
+before the window, an acquired-IPR&D expense fact ending there when companyfacts covers the date; the source's
+accession from the first charged fiscal year's start year through the year after its end (the original
+acquisition filing); the deals' amounts within the period's charge — and refuses anything else as
+BAD_IPRD_DEFERRED_PAYMENT (exit 3; the override-impact counterfactual records it in deferred_payments_refused
+instead). An entry whose period has rolled out of the window stays in judgment.json and is listed in
+deferred_payments_rolled_out: never applied (no deduction, no recurrence effect), it still counts toward its deal's
+lifetime contingent_total cap ([Codex review r4 of PR #47]: deleting it let a later declaration pass the cap) —
+once it passes every check that needs no window record (first charge before the period and a date, the original
+filing's accession year, companyfacts' expense fact for a pre-window first charge); an invalid one is refused and
+never counted toward the cap ([Codex review r7 of PR #47]).
+A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a partly deferred period
+still counts (a period expensed with $0 cash, paid later: its charge is the expense, Codex review r27 of PR #47).
+[Codex review r28 of PR #47, re-verification] A charge year's whole charge is the larger of its amount (the cash
+outflow) and its own USD expense, whatever its cash: $1 paid on a $100M acquisition is a part, never the whole; the
+declared part comes first from the cash beyond the period's own expense (an earlier deal's settlement) and only
+the rest off that expense (iprd_recurrence_expense).
+[Codex review r29 of PR #47, polish reviews] The final rule (iprd_own_charge_usd). A year's OWN EXPENSE in USD is the
+largest positive figure on ANY of its acquired-IPR&D expense tags (the current detector tag and the parallel one,
+expense_tags_conflict figures too) in every unit filed for the period (USD as filed, other units at the run's rate);
+it is unknown when any positive figure on an expense tag has no USD value (iprd_own_expense_unknown); zero and
+negative figures never raise it. Its WHOLE CHARGE is the largest of that expense, every positive cash-tag figure in
+every unit (converted) and the deducted cash; unknown when the own expense is or any positive cash-tag figure has no
+USD value (iprd_whole_charge_unknown, naming the figure and its unit). The whole-declaration test and its cap read
+the whole charge (unknown: every declaration refused, NEEDS_MAIN_AGENT: currency, the year stays counted); the
+recurrence materiality reads the own expense, less only the part of a declaration beyond (whole charge - own
+expense), and is unknown (read as material) only when the own expense is: a known USD expense beside cash with no FX
+rate reads that expense. EUR 100M (at 1.08) on either tag, or the parallel tag filed at $108M on its own, beside the
+USD 40M expensed and paid: $40M declared is a part, $108M the whole; EUR on the cash tag reads a $40M recurrence
+figure. A year with no unit conflict and no parallel-tag conflict reads exactly as before.
+The deduction is unchanged, and a run with no declaration gains no key.
+[Codex review round 3 of PR #47] Two gaps closed. (1) A positive acquired-IPR&D expense filed only in a currency
+with no FX rate and no usable cash fact is excluded non_usd_no_rate with its expense_native kept, raises
+ACQUIRED_IPRD_UNCONVERTED (treatment non_usd_no_rate when nothing else is deducted) and make_score refuses it
+(NEEDS_MAIN_AGENT: currency) — before, a silent $0 with no flag. (2) Positive cash on the cash tag with no (or a
+$0) expense, beyond the window's remainder, at a filer whose companyfacts shows an acquired-IPR&D expense fact
+ending before the window is listed in ignored_cash_only with pre_window_charges and raises
+ACQUIRED_IPRD_UNMATCHED_PAYMENT; an iprd_deferred_payment of that FY period whose first charge is such a
+pre-window expense fact makes the declared amount (at most the payment, within contingent_total) deductible once,
+cash basis, outside the recurrence count — the one declaration that changes the deduction. A filer that never
+expensed (MAA) is unchanged: no flag, no block, no declaration accepted.
+[Codex review round 4 of PR #47] A cash-tag-only payment filed in a currency the FX pass holds no rate for at its
+date (always the case for the current-YTD 10-Q end) is converted at a rate fetched for that date (fx_rate, as the
+5.5 intangible capex leg does); with none, a payment that could settle the window's unpaid remainder or a pre-window
+charge keeps its native amount (cash_native, excluded non_usd_no_rate) and raises ACQUIRED_IPRD_UNCONVERTED (make_score
+refuses it) — before, it was dropped with no trace and the deduction understated.
+[Codex review round 6 of PR #47] The same gate for a positive cash fact with no rate beside a positive expense: the
+cash outflow is the preferred amount, so the expense never stands in for it (before, the expense was deducted with
+no flag). reprice.py and build_site withhold live figures for any run make_score refuses for an unresolved charge
+(iprd_unresolved).
+[Codex review round 13 of PR #47] A non-USD fact of exactly 0 is 0 at every rate: it converts to 0.0 with no rate
+(_iprd_pick), so a $0 foreign-currency expense never excludes its period non_usd_no_rate and hides a USD cash
+payment of the window's unpaid remainder.
+[Codex review round 15 of PR #47] (1) One period's facts of one tag in several units: a positive fact in any unit
+outranks a zero (or negative) one — converted at the FX pass's rate or the rate fetched for its date, else gated
+non_usd_no_rate (ACQUIRED_IPRD_UNCONVERTED) — and two positive facts that disagree after conversion are recorded
+(unit_conflict, unit_conflict_note) with the USD one used. (2) A cash-basis period's matching iprd_cash_flow_check
+whose presentation contradicts the cash deduction (inside_operating_cash_flow, paid_in_intangible_capex) is recorded
+cash_flow_check_inapplicable (make_score refuses it); paid_in_shares stays honored. (3) A plain base_override may
+declare basis_window {window "ttm", ytd_current_period} (a pin built from ttm.json's TTM figures on another
+denominator): the IPR&D window then reads ttm.json's current-YTD leg (inputs.base_basis_window); a ttm window whose
+period is not ttm.json's is refused BAD_BASE_OVERRIDE (exit 3) outside make_score's override-impact replay.
+[Codex review round 16 of PR #47] (1) An exact-context fact wins for its own unit only: a unit with none is tiled
+(iprd_tile only_units) and merged beside it, so a USD 0 FY fact never hides EUR quarters (tiled and compared, or
+recorded as partial_coverage). (2) A period's unit_conflict rides on whatever record it ends with (a cash-only
+deferred-payment or unconverted record included) and on the ignored_cash_only entries it lists.
+[Codex review round 17 of PR #47] (1) A record iprd_apply_deferred builds from a declared ignored_cash_only payment
+keeps that entry's unit_conflict and note. (2) A unit tiling a leg to $0 no longer drops another unit's positive
+partial facts (iprd_tile keeps them unless some unit tiles to a positive value): they are partial_coverage. (3) A
+cash-tag-only payment split between the window's unpaid remainder (settled automatically) and a rest listed in
+ignored_cash_only with pre_window_charges: a declaration first charged BEFORE the window claims that rest (only it,
+capped by the rest and the deal's contingent_total) on top of the automatic settlement, which keeps its own note
+(automatic_settlement, declared_residual, declared_residual_note on the record).
+[Codex review round 20 of PR #47] A detector fact the run cannot convert (no FX rate, even fetched) is classified by
+its native sign before the unconverted gate: exactly 0 converts to 0 (round 13), a negative one is a reversal — no
+current-period charge, excluded "negative" with amount 0 and its expense_native kept, so its period's cash settles
+the unpaid remainder (deferred_payment, expense_reversal_note), is listed in ignored_cash_only or is gated exactly as
+beside a converted negative fact (round 14) — and only a positive one gates as non_usd_no_rate
+(ACQUIRED_IPRD_UNCONVERTED). Before, a negative one read non_usd_no_rate, which neither the no-charge paths nor any
+gate matched, so the payment was dropped with no trace.
+[Codex review round 21 of PR #47] A cash-basis period whose expense has no FX rate (its USD figure None, the cash
+outflow the amount) matches its iprd_cash_flow_check against the native detector figure and its unit: the entry
+names `unit` (the expense's filed unit) and an amount within 1 of the native figure. A matching paid_in_shares check
+is applied (cash_flow_check, with the unit) and the residual — unknown in USD — is recorded settled in shares
+(residual_paid_in_shares_unknown_usd, residual_note) and never enters the unknown remainder, so a later cash-only
+payment is no longer gated against it. Before, every check was compared with the USD expense (None) and recorded
+cash_flow_check_mismatch, so a correct declaration could never close the period. A unit, when named, is the unit of
+the amount everywhere (USD for a USD or converted expense).
+[Codex review round 22 of PR #47] The record carries iprd_judgment_hash: the sha256 of every judgment.json input the
+run reads for IPR&D (iprd_judgment_inputs — the read fields of the iprd_cash_flow_check and iprd_deferred_payment
+entries, entry order and number spelling ignored, and base_override's basis, basis_window and, for basis
+iprd_amortized, value / native_base / figures / shares), inside the content-hashed payload. make_score recomputes it
+and refuses a judgment.json changed after the run: a check added later can change the deduction while leaving no
+trace on the run's periods (a paid_in_shares check on a cash-basis period stops a later cash-only payment being
+deducted against the residual).
+[Codex review round 23 of PR #47] The record carries ttm_inputs: what this run read from ttm.json (ttm_oe_per_share,
+ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash — the sha256 of ttm.json's input legs,
+ttm_input_legs), inside the content-hashed payload, for every pinned run (--ttm or --base-oe-ps: whether the pin is
+ttm.json's figure decides the IPR&D window and share denominator); null for a median-base run, which never reads
+ttm.json. [Codex review round 25] Only when the selected basis reads ttm.json: null too for a --base-oe-ps pin
+declared built on FY figures (basis_window "fy"; iprd_amortized on the median native base outside STALE_FY). make_score recomputes it from the current ttm.json and refuses any difference: before, it compared only the
+base within 0.1%, so a ttm.json regenerated with twice the shares (and twice the OE) scored the run's charge per share
+on the old denominator, and a new 10-Q's YTD period scored the stale window.
+[Codex review round 25 of PR #47] Declared-pin and ttm.json-figure matches (pin_matches) are 0.1% of the reference,
+or half a cent per share when either side is zero: a $0.00 amortized base and a zero TTM base match their figures.
+[Codex review round 26 of PR #47] The half cent is declaration arithmetic only (an iprd_amortized value reproduced
+from its own figures, declared_value_matches); the numeric TTM match, the basis_window and share-scale-rescue matches
+on a plain value use figure_matches (0.1%, a zero only by an exact zero), and an amortized pin must sit on the same
+side of zero as its reproduced value (IPRD_AMORTIZED_ZERO_EPS): a --base-oe-ps 0.004 beside a $0.00 base is not it.
+[Codex review round 24 of PR #47] (1) A declaration matching a --base-oe-ps pin picks the IPR&D window and share
+denominator alone: iprd_amortized by its native_base (ttm_json: the TTM window and ttm_shares_diluted; the median: the
+FY window and the latest FY count), a plain one with basis_window {"window": "fy"} the FY window and count; the 0.1%
+match with ttm.json's ttm_oe_per_share decides only for an undeclared pin (or basis_window "ttm"). A median-native
+amortized pin that happened to equal the TTM figure had read the current-YTD leg on ttm.json's shares, so a
+non-recurrent charge could look recurrent and the declaration be accepted. (2) The no-FX-rate cash-only gate reads the
+unknown-in-USD remainder (unknown_rest) as well as the unpaid one and the pre-window charges: such a payment after a
+charge expensed with no rate beside USD cash is excluded non_usd_no_rate with unconverted_remainder_of, never left in
+ignored_cash_only. (3) A positive detector tag that cannot be converted is never compared with the other tag's USD
+figure (or another currency's native one): expense_tags_conflict records each tag's {native, unit, usd}, the period
+carries expense_tag_unconverted {tag, native, unit}, no iprd_cash_flow_check is applied (cash_flow_check_not_applied)
+and it is excluded non_usd_no_rate (ACQUIRED_IPRD_UNCONVERTED; iprd_unresolved, make_score refuses it).
+[Codex review round 30 of PR #47] A TTM base's acquired-IPR&D share denominator is ttm.json's ttm_shares_diluted,
+validated (iprd_ttm_share_count: a finite number > 0), and never the latest-FY count: a missing or invalid one had
+silently put the charge on the FY count. A TTM run whose window carries an acquired-IPR&D figure per share (a charge,
+an unconfirmed charge, or charges in 2 or more of the last 3 FY: the recurrence figure) without it is refused
+BAD_TTM_SHARES (exit 3; make_score's override-impact replay is not refused and has no denominator); one with no such
+figure runs, its block recording no denominator.
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -370,7 +561,7 @@ from zoneinfo import ZoneInfo
 UA = {"User-Agent": "Muse research andrewmauro199612@gmail.com"}
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SYS = f"{BASE}/_system"
-ENGINE_RELEASE = "5.5.0"
+ENGINE_RELEASE = "5.6.0"
 ET_TODAY = datetime.datetime.now(ZoneInfo("America/New_York")).date()
 MEASURE = "--measure" in sys.argv   # compute + print JSON only: no file writes, no gate exit
 HOLD_YEARS = 2          # v4: growth holds at g0 for 2 years before the fade starts
@@ -418,9 +609,12 @@ def present_value(flows, r, gterm=DEFAULT_GTERM):
     return v + tv / (1 + r) ** len(flows)
 
 
-def terminal_share(flows, r, gterm=DEFAULT_GTERM):
-    total = present_value(flows, r, gterm)
-    if not total or total == float("inf"):
+def terminal_share(flows, r, gterm=DEFAULT_GTERM, charge_ps=0.0):
+    """The discounted terminal value's share of the IV at rate r. [v5.6 review] The IV is the published one: after
+    the one-time acquired-IPR&D charge (adjusted_value; charge 0.0 — every record without the deduction — is the
+    identity). An adjusted IV at or below zero has no meaningful share (None)."""
+    total = present_value(flows, r, gterm) - charge_ps
+    if not total or total == float("inf") or (charge_ps and total < 0):
         return None
     tv = flows[-1] * (1 + gterm) / (r - gterm) / (1 + r) ** len(flows)
     return tv / total
@@ -455,6 +649,80 @@ def cap_years_for_moat(moat):
     """Competitive advantage period: clamp(2 + 1.3 * moat, 2, 15) years."""
     moat = max(0.0, min(10.0, float(moat)))
     return max(2.0, min(15.0, 2 + 1.3 * moat))
+
+
+# ---------------------------------------------------------------------------
+# v5.6 acquired IPR&D one-time value adjustment (Andrew, 2026-10-19). The
+# three valuation consumers — this engine, reprice.py (live IRR / IVs) and
+# build_site.py (forecast sensitivity, hurdle prices, the at-floor flag) —
+# call these helpers so they agree bit for bit. A charge of 0.0 is the
+# identity (x - 0.0 == x, px + 0.0 == px): a record without the block, every
+# pre-5.6 folder, computes exactly what it did before.
+# ---------------------------------------------------------------------------
+IPRD_TREATMENT_ONE_TIME = "one_time_value_deduction"
+IPRD_TREATMENT_AMORTIZED = "amortized_in_base"
+IPRD_AMORTIZED_BASIS = "iprd_amortized"
+
+
+def iprd_charge_per_share(numbers):
+    """The per-share one-time deduction a recorded run applied: the
+    iprd_adjustment block's charge_per_share when its treatment is the
+    one-time value deduction, else 0.0 (no block, a pre-5.6 record, an
+    amortized-in-base or below-zero-base run, or a malformed figure)."""
+    blk = numbers.get("iprd_adjustment") if isinstance(numbers, dict) else None
+    if not isinstance(blk, dict) or blk.get("treatment") != IPRD_TREATMENT_ONE_TIME:
+        return 0.0
+    c = blk.get("charge_per_share")
+    if isinstance(c, bool) or not isinstance(c, (int, float)) or not math.isfinite(c) or c <= 0:
+        return 0.0
+    return float(c)
+
+
+def iprd_unresolved(numbers):
+    """[Codex review r6 of PR #47] Why make_score refuses this run's acquired-IPR&D record, or None: a period still
+    awaiting its cash-flow check (ACQUIRED_IPRD_UNCONFIRMED) or one excluded non_usd_no_rate with a positive native
+    expense or cash outflow, or (Codex review r24) a positive detector tag it cannot compare with the other
+    (expense_tag_unconverted) (ACQUIRED_IPRD_UNCONVERTED) — whatever the treatment, a partly deducted one-time run
+    included. The engine has written such a run's dcf_numbers.json before make_score refuses it, so the score.json on
+    disk is an earlier run's: reprice.py never reprices it and build_site withholds its live figures (reason
+    iprd_unresolved). The share-count treatment, which make_score publishes through a tier_override, is not this."""
+    blk = numbers.get("iprd_adjustment") if isinstance(numbers, dict) else None
+    if not isinstance(blk, dict):
+        return None
+    pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+    why = []
+    for p in blk.get("periods") or []:
+        if not isinstance(p, dict):
+            continue
+        lbl = f"{p.get('window')} {p.get('period')}"
+        if p.get("excluded") == IPRD_AWAITING:
+            why.append(f"{lbl} {IPRD_AWAITING}")
+        elif p.get("excluded") == IPRD_UNCONVERTED and (pos(p.get("expense_native")) or pos(p.get("cash_native"))
+                                                          or pos(_iprd_tag_unconverted_native(p))):
+            why.append(f"{lbl} {IPRD_UNCONVERTED}")
+    if not why and blk.get("treatment") in (IPRD_AWAITING, IPRD_UNCONVERTED):
+        why.append(f"treatment {blk['treatment']}")
+    return "; ".join(why) or None
+
+
+def _iprd_tag_unconverted_native(p):
+    """[Codex review r24 of PR #47] The native figure of a period's positive detector tag that cannot be converted
+    beside the other tag's (expense_tag_unconverted), else None."""
+    u = p.get("expense_tag_unconverted") if isinstance(p, dict) else None
+    return u.get("native") if isinstance(u, dict) else None
+
+
+def adjusted_value(flows, r, gterm=DEFAULT_GTERM, charge_ps=0.0):
+    """Intrinsic value at rate r after the one-time acquired-IPR&D charge: the
+    charge is a year-0 outflow (sunk and known, the same in every scenario),
+    so IV_adj(r) = present_value(flows, r) - charge_ps. +inf stays +inf."""
+    return present_value(flows, r, gterm) - charge_ps
+
+
+def adjusted_irr(flows, px, gterm=DEFAULT_GTERM, charge_ps=0.0):
+    """solve_irr on the adjusted path: paying px today plus the year-0 charge
+    for the same flows — (irr, capped, at_floor) = solve_irr(flows, px + charge_ps)."""
+    return solve_irr(flows, px + charge_ps, gterm)
 
 
 def replay_paths(numbers):
@@ -1173,7 +1441,7 @@ def share_scale_pin_rescue(pin_source, pin, price, declared):
         return False, ["no --base-oe-ps pin"]
     ok_decl = (isinstance(declared, dict) and not declared.get("basis")
                and isinstance(declared.get("value"), (int, float)) and not isinstance(declared.get("value"), bool)
-               and abs(float(declared["value"]) - pin) <= 0.001 * abs(pin))
+               and figure_matches(declared["value"], pin))   # [Codex review r26 of PR #47] a plain value: no band
     if not ok_decl:
         if not isinstance(declared, dict):
             why.append("judgment.json declares no base_override")
@@ -1182,7 +1450,7 @@ def share_scale_pin_rescue(pin_source, pin, price, declared):
                        "through --base-judgment, never --base-oe-ps)")
         else:
             why.append(f"judgment.json's base_override value {declared.get('value')!r} does not equal the pin {pin:.6g} "
-                       "within 0.1%")
+                       "within 0.1% (a zero only by an exact zero)")
     if price and abs(pin) > SHARE_SCALE_PRICE_MULT * price:
         why.append(f"the pin itself is {abs(pin) / price:,.0f}x the price {price:,.2f} (limit {SHARE_SCALE_PRICE_MULT}x) — "
                    "it inherits the mis-scaled counts")
@@ -1609,6 +1877,2308 @@ def _v55_flags(share_scale, share_basis, pin, market_cap_basis, sbc_recon, perio
                          + "; the filed value is used there (an override never replaces a filed value), so the override fills "
                          "nothing — reconcile it against the cash-flow statement and remove it or justify it in analysis.md")
     return flags
+
+
+# ---------------------------------------------------------------------------
+# v5.6 acquired IPR&D detection (Andrew, 2026-10-19) — pure helpers, no I/O.
+# OE = OCF - capex - SBC never sees in-process R&D bought in an asset
+# acquisition: ASC 805 expenses it at acquisition and the cash-flow statement
+# adds it back in operating cash flow, while the payment sits in investing
+# outside every capex tag. The DETECTOR is the expense tag (the charge was
+# expensed); the AMOUNT is the cash outflow for the same period when filed
+# (cash preferred: a charge paid in shares is already in the share count),
+# else the expense. A period with only the cash tag never qualifies — MAA, an
+# apartment REIT, files PaymentsToAcquireInProcessResearchAndDevelopment at
+# $198M / $314M / $272M for development spending with no expense tag (a
+# mistag). Impairments of previously capitalized intangibles
+# (ImpairmentOfIntangibleAssetsExcludingGoodwill) are never read: that spend
+# already went through capex / intangible purchases when it was made.
+# ResearchAndDevelopmentInProcess is the pre-2022 name of the expense tag
+# (EXEL FY2021-22 files both with equal values; BIIB FY2017-22 the old one
+# only) — read second, one value per period. [Codex review r8 of PR #47] When
+# both are filed for a period the positive one is read (a $0 current tag no
+# longer hides a positive legacy fact); two positive values more than $1 apart
+# are both recorded (expense_tags_conflict) and the current tag is used.
+# ---------------------------------------------------------------------------
+IPRD_EXPENSE_TAGS = ["ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff",
+                     "ResearchAndDevelopmentInProcess"]
+IPRD_CASH_TAG = "PaymentsToAcquireInProcessResearchAndDevelopment"
+IPRD_MATERIALITY = 0.05      # ACQUIRED_IPRD_CHARGE fires at >= 5% of the base OE total (the deduction has no cliff)
+# [Codex review r8 of PR #47] an intangible capex leg >= 98% of an expense-basis charge is a note only (capex_overlap_note),
+# and the floor a declared paid_in_intangible_capex check must meet (the leg must be able to hold the charge)
+IPRD_OVERLAP_RATIO = 0.98
+# [Codex review r15 of PR #47] one tag's facts for one period in two units disagree when, after conversion, they differ
+# by more than max($1, 1% of the larger): both are recorded (unit_conflict) and the USD one is used. Period-end FX
+# rates are not the filer's translation rates, so a 1% band keeps an ordinary translation difference out of it.
+# [Codex review r30 of PR #47] The unit-agreement tolerance: round 29's "largest figure in every unit filed"
+# (iprd_own_charge_usd) reads the units that disagree beyond it; a unit within it is the figure used. With three or
+# more units filed the tolerance applies to their spread (_iprd_pick): once the largest and smallest converted
+# figures differ by more than it, every unit is recorded and the largest counts.
+IPRD_UNIT_TOLERANCE = 0.01
+IPRD_NATIVE_BASES = ("ttm_json", "median_of_last_3_fy_oe_per_share")
+# [ADDITION — fixer review round 2026-10-19, awaiting Andrew's ratification] judgment.json iprd_cash_flow_check:
+# what the 10-K's cash-flow statement shows for an EXPENSE-basis period, presentation -> excluded reason (None =
+# deducted). Without it an expense-basis period is not deducted (awaiting_cash_flow_check).
+IPRD_CF_CHECK_KEY = "iprd_cash_flow_check"
+# [Codex review r8 of PR #47] paid_in_intangible_capex: the payment sits inside an intangible-purchase line the
+# engine sums into capex (PaymentsToAcquireIntangibleAssets & co., the line cited), so OE already charged it — the only
+# way an expense-basis period is excluded already_in_capex (before, a capex intangible leg >= 98% of the charge was
+# taken as overlap by size alone, ahead of the check).
+IPRD_CF_PRESENTATIONS = {"added_back_paid_in_investing": None,
+                         "inside_operating_cash_flow": "paid_in_operating_cash_flow",
+                         "paid_in_shares": "paid_in_shares",
+                         "paid_in_intangible_capex": "already_in_capex"}
+# [Codex review r15 of PR #47] the presentations a CASH-basis period (the us-gaap investing cash tag filed and
+# deducted) cannot honor: each says OE already carried the payment, which the investing cash tag contradicts.
+# A matching check with one of them is recorded cash_flow_check_inapplicable and make_score refuses the run;
+# paid_in_shares (how the expense's residual was settled) is honored and added_back_paid_in_investing agrees.
+IPRD_CF_CASH_INAPPLICABLE = ("inside_operating_cash_flow", "paid_in_intangible_capex")
+IPRD_AWAITING = "awaiting_cash_flow_check"
+IPRD_CHECK_WINDOWS = ("fy", "ttm_current_ytd")
+# [Codex review r3 of PR #47] a positive expense filed only in a currency the FX pass holds no rate for, with no
+# usable cash fact: excluded (and, when nothing else is deducted, the treatment) non_usd_no_rate, and gated —
+# ACQUIRED_IPRD_UNCONVERTED, which make_score refuses (NEEDS_MAIN_AGENT: currency) like an unconfirmed expense.
+# [Codex review r4] the same for a cash-tag-only payment with no rate (cash_native) that could settle a charge.
+# [Codex review r6] and for a period's cash outflow with no rate beside a positive expense (cash_native kept).
+IPRD_UNCONVERTED = "non_usd_no_rate"
+
+
+def iprd_date_ok(s):
+    """[Codex review r8 of PR #47] True for a real calendar date written YYYY-MM-DD: the shape alone let "2020-99-99"
+    through, which sorts before any window and, on a deferred entry, was kept rolled out and counted toward its deal's
+    lifetime cap."""
+    if not (isinstance(s, str) and re.fullmatch(r"\d{4}-\d{2}-\d{2}", s)):
+        return False
+    try:
+        datetime.date.fromisoformat(s)
+    except ValueError:
+        return False
+    return True
+
+
+# [Codex review r15 of PR #47] judgment.json base_override.basis_window: the window a plain base_override's pin was
+# built on, so the IPR&D window is the base's own — {"window": "ttm", "ytd_current_period": [start, end]} (ttm.json's
+# inputs.ocf.ytd_current_period: a pin built from ttm.json's TTM figures on another denominator, VNOM's per-unit
+# base) or {"window": "fy"} (a pin built from FY figures). make_score requires it on a 5.6 run whose base is an
+# agent-supplied pin that is not ttm.json's figure.
+BASE_BASIS_WINDOWS = ("ttm", "fy")
+
+
+def base_basis_window_problem(bw):
+    """Why a declared base_override.basis_window is malformed (None when it is well formed)."""
+    shape = ('basis_window must be {"window": "ttm", "ytd_current_period": ["YYYY-MM-DD", "YYYY-MM-DD"]} (ttm.json\'s '
+             'inputs.ocf.ytd_current_period) or {"window": "fy"}')
+    if not isinstance(bw, dict) or bw.get("window") not in BASE_BASIS_WINDOWS:
+        return shape
+    if bw["window"] == "fy":
+        return None if set(bw) == {"window"} else shape
+    per = bw.get("ytd_current_period")
+    if (set(bw) != {"window", "ytd_current_period"} or not isinstance(per, list) or len(per) != 2
+            or not all(iprd_date_ok(x) for x in per) or per[0] > per[1]):
+        return shape
+    return None
+
+
+def iprd_cash_flow_check_entry_ok(e):
+    """True for a well-formed judgment.json iprd_cash_flow_check entry {period: "YYYY-MM-DD", window: "fy" |
+    "ttm_current_ytd", amount: > 0 (the period's expense figure), presentation: one of IPRD_CF_PRESENTATIONS,
+    source: non-empty (the filing and the cash-flow line)[, unit: non-empty — Codex review r21 of PR #47: the unit of
+    the amount, required to match the native figure of an expense with no FX rate]}; the period a real date
+    (iprd_date_ok)."""
+    if not isinstance(e, dict):
+        return False
+    p, a, u = e.get("period"), e.get("amount"), e.get("unit")
+    return bool(iprd_date_ok(p) and e.get("window") in IPRD_CHECK_WINDOWS
+                and (u is None or (isinstance(u, str) and u.strip()))
+                and isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a) and a > 0
+                and e.get("presentation") in IPRD_CF_PRESENTATIONS
+                and isinstance(e.get("source"), str) and e["source"].strip())
+
+
+def load_iprd_cash_flow_checks(ticker):
+    """judgment.json iprd_cash_flow_check: the well-formed entries (make_score refuses a malformed one; the engine
+    only ignores it). [] when absent or unreadable."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        return []
+    v = j.get(IPRD_CF_CHECK_KEY) if isinstance(j, dict) else None
+    return [e for e in v if iprd_cash_flow_check_entry_ok(e)] if isinstance(v, list) else []
+
+
+# Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided):
+# judgment.json iprd_deferred_payment — a SIBLING of iprd_cash_flow_check, not an extension of it: the cash-flow
+# check answers how the 10-K presents one period's expense (expense-basis periods only, keyed to the filed
+# expense), while this answers which deal a period's charge belongs to — any basis, possibly only part of the
+# charge, possibly several deals in one period — so folding it into the check would force a presentation onto
+# cash-basis periods and a second amount onto one entry. The deduction never changes; only the recurrence count
+# does, and that count reads FY periods only, so an entry names an FY period (window "fy").
+IPRD_DEFERRED_KEY = "iprd_deferred_payment"
+IPRD_RECURRENCE_EXCLUDED = "deferred_payment_of"
+IPRD_DEFERRED_WINDOWS = ("fy",)
+IPRD_ACCESSION_RE = re.compile(r"\b\d{10}-(\d{2})-\d{6}\b")
+IPRD_ACCESSION_FIRST_YY = 93  # EDGAR accession numbers start in 1993: a two-digit year 93..99 is 19YY, else 20YY
+IPRD_FY_SPAN_DAYS = 380  # the longest fiscal year read (a 53-week year included): first charged period - 380 days
+                         # is on or before the start of the fiscal year it closes when no annual context is filed
+
+
+def _deal_key(name):
+    """One deal name, compared without case or extra whitespace ("Test Bio" == " test  bio")."""
+    return " ".join(str(name).split()).casefold()
+
+
+def _cited(src):
+    """A filing citation: an EDGAR accession (0001234567-YY-NNNNNN) plus some text naming the section / page."""
+    return bool(isinstance(src, str) and IPRD_ACCESSION_RE.search(src) and IPRD_ACCESSION_RE.sub("", src).strip(" ,;:()-"))
+
+
+def iprd_contingent_total_ok(c):
+    """True for a well-formed deferred_payment_of contingent_total {value: USD > 0, source: an accession + the
+    section / page showing the deal's unrecognized milestones / deferred consideration (any filing: the latest 10-K
+    that discloses them, e.g. HALO FY2025 10-K 0001159036-26-000024, $100.0M of Surf Bio milestones)}."""
+    if not isinstance(c, dict):
+        return False
+    v = c.get("value")
+    return bool(isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+                and _cited(c.get("source")))
+
+
+def iprd_deferred_entry_ok(e):
+    """True for a well-formed judgment.json iprd_deferred_payment entry {period: "YYYY-MM-DD" (an FY end), window:
+    "fy", amount: > 0 (this deal's deferred part of the period's charge), deferred_payment_of: {deal: non-empty,
+    first_charged_period: "YYYY-MM-DD", source: a filing citation carrying an EDGAR accession
+    (0001234567-YY-NNNNNN) and the section / page showing the contingent milestone or deferred consideration,
+    contingent_total: {value, source} (the deal's cap: iprd_contingent_total_ok)}}.
+    A current-YTD leg is never in the recurrence count (FY periods only), so window "ttm_current_ytd" is refused:
+    declare the charge once it lands in an FY. [Codex review r8 of PR #47] period and first_charged_period must be
+    real dates (iprd_date_ok), so an impossible one is malformed, never kept rolled out or counted toward the cap.
+    [Codex review r9] That the period is an FY end is checked against the window (in it) or iprd_fy_end_problem
+    (rolled out) by iprd_apply_deferred, which knows the filer's fiscal-year ends."""
+    if not isinstance(e, dict):
+        return False
+    p, a, d = e.get("period"), e.get("amount"), e.get("deferred_payment_of")
+    if not (iprd_date_ok(p) and e.get("window") in IPRD_DEFERRED_WINDOWS
+            and isinstance(a, (int, float)) and not isinstance(a, bool) and math.isfinite(a) and a > 0
+            and isinstance(d, dict)):
+        return False
+    f = d.get("first_charged_period")
+    return bool(isinstance(d.get("deal"), str) and d["deal"].strip()
+                and iprd_date_ok(f) and _cited(d.get("source")) and iprd_contingent_total_ok(d.get("contingent_total")))
+
+
+def _contingent_key(c):
+    """One contingent_total declaration, compared by value and by source without extra whitespace."""
+    return (float(c["value"]), " ".join(c["source"].split()))
+
+
+def iprd_deferred_cap_problems(entries):
+    """The per-deal cap (the main agent's decision on the review's open item, delegated by Andrew 2026-10-20), over
+    well-formed entries (every one judgment.json carries, a rolled-out one included: its milestone was paid): {deal
+    key: reason} for each deal whose entries carry different contingent_total declarations (value or source) or
+    whose declared amounts sum past its contingent_total (by more than $1). A deal's contingent_total is declared
+    once, consistently."""
+    by = {}
+    for e in entries:
+        by.setdefault(_deal_key(e["deferred_payment_of"]["deal"]), []).append(e)
+    out = {}
+    for k, es in by.items():
+        caps = {_contingent_key(e["deferred_payment_of"]["contingent_total"]) for e in es}
+        name = es[0]["deferred_payment_of"]["deal"]
+        if len(caps) > 1:
+            out[k] = (f"deal {name!r} is declared with contingent_total "
+                      + " and ".join(f"{v:,.0f} ({src})" for v, src in sorted(caps))
+                      + ": one deal has one contingent_total, declared once consistently")
+            continue
+        cap = next(iter(caps))[0]
+        s = sum(float(e["amount"]) for e in es)
+        if s > cap + 1.0:
+            out[k] = (f"deal {name!r}'s declared deferred amounts sum to {s:,.0f}, more than its contingent_total "
+                      f"{cap:,.0f} (the unrecognized milestones / deferred consideration its source discloses): a "
+                      "payment past it is a second purchase, a second charge")
+    return out
+
+
+def load_iprd_deferred_payments(ticker):
+    """judgment.json iprd_deferred_payment as declared (None when absent or unreadable); iprd_apply_deferred
+    refuses a malformed entry."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        return None
+    return j.get(IPRD_DEFERRED_KEY) if isinstance(j, dict) else None
+
+
+# [Codex review r22 of PR #47] The judgment.json inputs this engine reads for acquired IPR&D, hashed into the record
+# (iprd_judgment_hash, inside the content-hashed payload) so make_score can refuse a judgment.json changed after the
+# run: before, it compared them one way only (every check the run APPLIED must still be declared), so a check added
+# after the run on a cash-basis period — which a run without it leaves no trace of — scored the stale run (a
+# paid_in_shares check: $100M deducted where a rerun deducts $40M). The fields are the ones the engine reads:
+IPRD_JUDGMENT_CHECK_FIELDS = ("period", "window", "amount", "presentation", "source", "unit")
+IPRD_JUDGMENT_DEFERRED_FIELDS = ("period", "window", "amount", "deferred_payment_of")
+IPRD_JUDGMENT_BASE_FIELDS = ("basis", "basis_window")   # any base_override (the basis decides the IPR&D window)
+IPRD_JUDGMENT_AMORTIZED_FIELDS = ("value", "native_base", "figures", "shares")   # basis iprd_amortized only
+
+
+def _iprd_canon(v):
+    """A JSON value with every number as a float (20000000 == 20e6) and null dict members dropped (an absent unit
+    is a null one), so the hash sees what the engine reads, not how it was typed."""
+    if isinstance(v, bool) or v is None or isinstance(v, str):
+        return v
+    if isinstance(v, (int, float)):
+        return float(v)
+    if isinstance(v, dict):
+        return {str(k): _iprd_canon(x) for k, x in v.items() if x is not None}
+    if isinstance(v, (list, tuple)):
+        return [_iprd_canon(x) for x in v]
+    return repr(v)
+
+
+def _iprd_entries(v, fields):
+    """A declared entry list as the engine reads it: the read fields of each entry, in a canonical order (the
+    engine keys entries by period / window / deal, never by position); anything else as declared."""
+    if not isinstance(v, list):
+        return _iprd_canon(v)
+    out = [_iprd_canon({k: e.get(k) for k in fields}) if isinstance(e, dict) else _iprd_canon(e) for e in v]
+    return sorted(out, key=lambda x: json.dumps(x, sort_keys=True, default=str))
+
+
+def iprd_judgment_inputs(j):
+    """The canonical IPR&D inputs of judgment.json object j (None or unreadable: no inputs): iprd_cash_flow_check
+    and iprd_deferred_payment (their read fields, entry order ignored), and base_override's basis and basis_window,
+    plus value / native_base / figures / shares when the basis is iprd_amortized (a plain pin's value reaches the run
+    through --base-oe-ps and is checked against the score's base by make_score; its source / reason are never read)."""
+    j = j if isinstance(j, dict) else {}
+    bo = j.get("base_override")
+    if isinstance(bo, dict):
+        keep = IPRD_JUDGMENT_BASE_FIELDS + (IPRD_JUDGMENT_AMORTIZED_FIELDS if bo.get("basis") == IPRD_AMORTIZED_BASIS
+                                            else ())
+        bo = _iprd_canon({k: bo.get(k) for k in keep})
+    else:
+        bo = _iprd_canon(bo) if bo is not None else {}
+    return {IPRD_CF_CHECK_KEY: _iprd_entries(j.get(IPRD_CF_CHECK_KEY), IPRD_JUDGMENT_CHECK_FIELDS),
+            IPRD_DEFERRED_KEY: _iprd_entries(j.get(IPRD_DEFERRED_KEY), IPRD_JUDGMENT_DEFERRED_FIELDS),
+            "base_override": bo}
+
+
+def iprd_judgment_hash(j):
+    """sha256 of iprd_judgment_inputs(j) (canonical JSON): the engine records it as iprd_judgment_hash and make_score
+    recomputes it from the current judgment.json (check_iprd_judgment_current)."""
+    canon = json.dumps(iprd_judgment_inputs(j), sort_keys=True, separators=(",", ":"), default=str)
+    return hashlib.sha256(canon.encode()).hexdigest()
+
+
+def load_iprd_judgment_hash(ticker):
+    """iprd_judgment_hash of the folder's judgment.json as this run reads it (no inputs when absent or unreadable)."""
+    try:
+        j = json.load(open(f"{BASE}/{ticker}/judgment.json", encoding="utf-8"))
+    except Exception:
+        j = None
+    return iprd_judgment_hash(j)
+
+
+# [Codex review r23 of PR #47] The ttm.json inputs a pinned run reads, recorded as ttm_inputs (inside the
+# content-hashed payload) so make_score can refuse a ttm.json regenerated after the run. Before, it compared only
+# ttm_oe_per_share within 0.1%, but the run also takes from ttm.json the IPR&D share denominator
+# (ttm_shares_diluted), the current-YTD window (inputs.ocf.ytd_current_period) and its intangible-capex leg
+# (capex_components.ytd_current), and the Tier F legs (ttm_ocf / ttm_capex / ttm_sbc): twice the shares at the same
+# per-share base scored the run's $0.50 charge where a rerun deducts $0.25. The hash covers ttm.json's input legs:
+TTM_INPUT_TOP_FIELDS = ("fy_end", "ytd_end", "inputs", "ttm_ocf", "ttm_capex", "ttm_sbc", "ttm_shares_diluted",
+                        "ttm_oe_total", "ttm_oe_per_share", "capex_components", "split_adjustment")
+TTM_INPUT_OVERRIDE_FIELDS = ("field", "value", "kind", "legs_filled")   # overrides_used (never the source text)
+
+
+def ttm_input_legs(tt):
+    """The canonical input legs of ttm.json object tt (None when absent or unreadable): TTM_INPUT_TOP_FIELDS (numbers
+    as floats, null members dropped) and overrides_used's TTM_INPUT_OVERRIDE_FIELDS (entry order ignored). Identity
+    (ticker, cik, entity), warnings and provenance-only notes are not inputs."""
+    if not isinstance(tt, dict):
+        return None
+    out = {k: _iprd_canon(tt.get(k)) for k in TTM_INPUT_TOP_FIELDS}
+    out["overrides_used"] = _iprd_entries(tt.get("overrides_used"), TTM_INPUT_OVERRIDE_FIELDS)
+    return out
+
+
+def _ttm_num(v):
+    return float(v) if isinstance(v, (int, float)) and not isinstance(v, bool) else None
+
+
+def ttm_inputs_record(tt):
+    """What a run reads from ttm.json object tt, as recorded in dcf_numbers.json ttm_inputs: ttm_oe_per_share,
+    ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash (sha256 of ttm_input_legs; every field null
+    when ttm.json is absent or unreadable). make_score recomputes it from the current ttm.json
+    (check_ttm_inputs_current)."""
+    legs = ttm_input_legs(tt)
+    if legs is None:
+        return {"ttm_oe_per_share": None, "ttm_shares_diluted": None, "ytd_current_period": None,
+                "ttm_input_hash": None}
+    ins = tt.get("inputs") if isinstance(tt.get("inputs"), dict) else {}
+    ocf = ins.get("ocf") if isinstance(ins.get("ocf"), dict) else {}
+    per = ocf.get("ytd_current_period")
+    canon = json.dumps(legs, sort_keys=True, separators=(",", ":"), default=str)
+    return {"ttm_oe_per_share": _ttm_num(tt.get("ttm_oe_per_share")),
+            "ttm_shares_diluted": _ttm_num(tt.get("ttm_shares_diluted")),
+            "ytd_current_period": _iprd_canon(per),
+            "ttm_input_hash": hashlib.sha256(canon.encode()).hexdigest()}
+
+
+def iprd_ttm_share_count(tt):
+    """[Codex review r30 of PR #47] ttm.json's ttm_shares_diluted (object tt) as a TTM base's acquired-IPR&D share
+    denominator — the iprd_adjustment shares_denominator of a TTM base and an iprd_amortized declaration's count on
+    native base ttm_json: a finite number > 0 (not a bool), as a float; None when ttm.json is absent or unreadable or
+    the figure is missing, null, zero, negative, non-finite or not a number. A TTM base never falls back to the
+    latest-FY count: a TTM run whose window carries an acquired-IPR&D figure per share without this count is refused
+    (BAD_TTM_SHARES, exit 3 — rerun ttm.py, which always writes the count beside ttm_oe_per_share)."""
+    v = tt.get("ttm_shares_diluted") if isinstance(tt, dict) else None
+    if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v <= 0:
+        return None
+    return float(v)
+
+
+def _ttm_share_count_said(tt):
+    """How BAD_TTM_SHARES names ttm.json's ttm_shares_diluted when iprd_ttm_share_count reads none."""
+    if not isinstance(tt, dict):
+        return "unreadable (no ttm.json object)"
+    return "missing" if "ttm_shares_diluted" not in tt else f"{tt['ttm_shares_diluted']!r}, not a finite number > 0"
+
+
+# [Codex review r25 of PR #47] A per-share pin matches a declared value or ttm.json's figure within 0.1% of the
+# reference, which is zero-width at zero: a valid $0.00 amortized base (the mean annual IPR&D charge exhausting the
+# native base) was "no matching declaration", and a ttm.json ttm_oe_per_share of exactly 0 was never ttm.json's pin.
+# When either side is zero the match is absolute, half a cent per share (the engine's own cent check on an
+# iprd_amortized value); a non-zero mismatch is still no match.
+PIN_MATCH_REL = 0.001
+PIN_MATCH_ZERO_ABS = 0.005
+# [Codex review r26 of PR #47] an iprd_amortized value that reproduces within this of zero is a $0.00 base (float noise
+# in native base - mean charge / shares), so only a pin <= 0 is on its side of zero
+IPRD_AMORTIZED_ZERO_EPS = 1e-9
+
+
+def pin_matches(v, ref):
+    """True when per-share figure v equals reference ref within 0.1% of ref, or within PIN_MATCH_ZERO_ABS (half a cent)
+    when v or ref is zero. Non-numbers (None, bools, strings) and non-finite values never match."""
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (v, ref)):
+        return False
+    v, ref = float(v), float(ref)
+    if not (math.isfinite(v) and math.isfinite(ref)):
+        return False
+    if v == 0 or ref == 0:
+        return abs(v - ref) <= PIN_MATCH_ZERO_ABS
+    return abs(v - ref) <= PIN_MATCH_REL * abs(ref)
+
+
+def figure_matches(v, ref):
+    """[Codex review r26 of PR #47] True when per-share figure v equals reference ref within 0.1% of ref, and a zero
+    reference only by an exact zero (no absolute band). The match for every UNDECLARED numeric comparison — a pin
+    against ttm.json's ttm_oe_per_share (base pin provenance, basis selection, the numeric TTM match, the TTM-leg
+    override rules, the override-impact branch, freshness) and a plain base_override's value (no figures of its own)
+    against the pin: half a cent of pin_matches' band at zero let an undeclared --base-oe-ps 0.004 pass as ttm.json's
+    $0.00 TTM base, so a Tier F base published Tier D. pin_matches' absolute band is for declaration arithmetic only
+    (an iprd_amortized value reproduced from its own figures to the cent). Non-numbers and non-finite values never
+    match."""
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (v, ref)):
+        return False
+    v, ref = float(v), float(ref)
+    if not (math.isfinite(v) and math.isfinite(ref)):
+        return False
+    if ref == 0:
+        return v == 0
+    return abs(v - ref) <= PIN_MATCH_REL * abs(ref)
+
+
+def declared_value_matches(decl, pin):
+    """[Codex review r26 of PR #47] True when judgment.json base_override `decl` declares the per-share pin `pin`: an
+    iprd_amortized value is declaration arithmetic (the native base less the mean charge, reproduced to the cent), so
+    it matches at pin_matches' half cent when either side is zero; any other declaration's value is the worker's own
+    number and matches by figure_matches (0.1%, a zero only by an exact zero)."""
+    if not isinstance(decl, dict):
+        return False
+    if decl.get("basis") == IPRD_AMORTIZED_BASIS:
+        return pin_matches(decl.get("value"), pin)
+    return figure_matches(decl.get("value"), pin)
+
+
+def iprd_accession_year(yy):
+    """The calendar year an EDGAR accession's two-digit year names: 1993..1999 for 93..99 (EDGAR's first filings),
+    else 2000 + yy ([Codex review r2 of PR #47]: a -99- accession read as 2099 refused a valid pre-2000 deal)."""
+    yy = int(yy)
+    return 1900 + yy if yy >= IPRD_ACCESSION_FIRST_YY else 2000 + yy
+
+
+def iprd_original_filing_years(first_charged_period, facts=None):
+    """The calendar years an accession of the original acquisition filing may carry for a deal first charged in the
+    period ending `first_charged_period`: from the calendar year the fiscal year it closes started in (a January FY
+    end's 10-Qs / 8-K were filed the year before; so was a June FY's first-quarter 10-Q) through the year after its
+    end (the 10-K that closes it).
+    [Codex review r18 of PR #47] That start is the start of the annual context companyfacts files for the fiscal year
+    ending there (iprd_fy_starts) when `facts` has one, else the end less IPRD_FY_SPAN_DAYS (380, the longest fiscal
+    year read): the end less 364 days missed a 53-week year's start (2019-12-30..2021-01-03 read as starting in 2020),
+    so a -19- accession of its original filing was refused."""
+    fd = datetime.date.fromisoformat(first_charged_period)
+    st = iprd_fy_starts(facts, [first_charged_period]).get(first_charged_period) if facts else None
+    start = (datetime.date.fromisoformat(st) if st else fd - datetime.timedelta(days=IPRD_FY_SPAN_DAYS)).year
+    return range(start, fd.year + 2)
+
+
+def iprd_companyfacts_charge(facts, date):
+    """What companyfacts shows of an acquired-IPR&D charge for the period ending `date` (a first charge before the
+    engine's window): "charged" when an IPRD_EXPENSE_TAGS fact of any duration / form / unit ends there with a
+    positive value; "not_charged" when the filer's duration facts reach back to that date (companyfacts covers it)
+    and none does; "not_covered" when companyfacts starts after it (a pre-XBRL charge: the citation alone)."""
+    gaap = ((facts or {}).get("facts") or {}).get("us-gaap") or {}
+    for t in IPRD_EXPENSE_TAGS:
+        for entries in ((gaap.get(t) or {}).get("units") or {}).values():
+            for e in entries or []:
+                v = e.get("val")
+                if (e.get("end") == date and isinstance(v, (int, float)) and not isinstance(v, bool)
+                        and math.isfinite(v) and v > 0):
+                    return "charged"
+    earliest = min((e["start"] for tag in gaap.values() if isinstance(tag, dict)
+                    for entries in (tag.get("units") or {}).values() for e in entries or []
+                    if isinstance(e, dict) and isinstance(e.get("start"), str) and e["start"]), default=None)
+    return "not_charged" if (earliest is not None and earliest <= date) else "not_covered"
+
+
+def iprd_window_start(facts, fy_periods):
+    """[Codex review r19 of PR #47] The day the engine's window begins: the start of its oldest FY (fy_periods[0]),
+    read from the filer's fiscal periods — the start of the annual context companyfacts files for that FY
+    (iprd_fy_starts); else the day after the filer's latest fiscal-year end before it (iprd_fy_period_ends), when 330
+    to IPRD_FY_SPAN_DAYS days before it (the prior FY); else its end less IPRD_FY_SPAN_DAYS (380, the longest fiscal
+    year read: on or before any real start). None without a window. A first charge ending BEFORE this day lies before
+    the window (iprd_before_window)."""
+    if not fy_periods or not iprd_date_ok(fy_periods[0]):
+        return None
+    oldest = fy_periods[0]
+    st = iprd_fy_starts(facts, [oldest]).get(oldest) if facts else None
+    if st:
+        return datetime.date.fromisoformat(st)
+    end = datetime.date.fromisoformat(oldest)
+    floor = end - datetime.timedelta(days=IPRD_FY_SPAN_DAYS)
+    prior = [datetime.date.fromisoformat(x) for x in (iprd_fy_period_ends(facts) if facts else []) if x < oldest]
+    prior = [d for d in prior if d >= floor and (end - d).days >= 330]   # a fiscal year spans 330-380 days
+    return max(prior) + datetime.timedelta(days=1) if prior else floor
+
+
+def iprd_before_window(date, window_start):
+    """[Codex review r19 of PR #47] Whether a first charge ending on `date` (ISO) lies before the engine's window: it
+    ends before the window's oldest FY starts (window_start: iprd_window_start). Before, it had to end at least 357
+    days before the oldest window FY END, but the engine reads any 330-380-day annual context as a fiscal year: a
+    333-day transition year (2023-02-01..2023-12-31) put the filer's prior FY end (2023-01-31) 334 days before it,
+    read as inside the window, so the cash-only payment of that FY's charge was dropped and its declaration refused."""
+    return window_start is not None and datetime.date.fromisoformat(date) < window_start
+
+
+def iprd_pre_window_charges(facts, oldest_fy_end):
+    """[Codex review r3 of PR #47] The period ends of the positive acquired-IPR&D expense facts (IPRD_EXPENSE_TAGS, any
+    unit / form) that end BEFORE the engine's window — before its oldest FY (oldest_fy_end) starts ([Codex review r19
+    of PR #47]: iprd_window_start / iprd_before_window, the rule iprd_apply_deferred reads a pre-window first charge
+    by; it was a fixed 357 days before that FY's end). [] when there are none (MAA: never expensed)."""
+    if not oldest_fy_end:
+        return []
+    start = iprd_window_start(facts, [oldest_fy_end])
+    gaap = ((facts or {}).get("facts") or {}).get("us-gaap") or {}
+    out = set()
+    for t in IPRD_EXPENSE_TAGS:
+        for entries in ((gaap.get(t) or {}).get("units") or {}).values():
+            for e in entries or []:
+                v, end = e.get("val"), e.get("end")
+                if not (isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+                        and isinstance(end, str)):
+                    continue
+                try:
+                    if iprd_before_window(end, start):
+                        out.add(end)
+                except ValueError:
+                    continue
+    return sorted(out)
+
+
+def _iprd_deferred_semantic_problem(e, start, facts):
+    """[Codex review r7 of PR #47] The checks of one well-formed iprd_deferred_payment entry that do not need the
+    window's record of its period, so a rolled-out entry (its period older than the window) passes them exactly as an
+    in-window one does before it is kept and counted toward its deal's lifetime cap: first_charged_period before the
+    period and a real date; the source citing the original acquisition filing (iprd_original_filing_years); and, for a
+    first charge before the window (start: iprd_window_start, the day the window's oldest FY starts, or None — Codex
+    review r19 of PR #47), an acquired-IPR&D expense fact ending there whenever companyfacts covers that date.
+    Returns (reason or None, cf: iprd_companyfacts_charge's answer for a pre-window first charge, else None)."""
+    d = e["deferred_payment_of"]
+    f = d["first_charged_period"]
+    if not f < e["period"]:
+        return f"first_charged_period {f} must precede the declared period {e['period']}", None
+    try:
+        years = iprd_original_filing_years(f, facts)
+    except ValueError:
+        return f"first_charged_period {f} is not a date", None
+    if not any(iprd_accession_year(m.group(1)) in years for m in IPRD_ACCESSION_RE.finditer(d["source"])):
+        return (f"source must cite the original acquisition filing of the charge first made in the period ending "
+                f"{f}: an accession filed in {years[0]}..{years[-1]}"), None
+    if start is not None and not iprd_before_window(f, start):
+        return None, None
+    cf = iprd_companyfacts_charge(facts, f)
+    if cf == "not_charged":
+        return (f"first_charged_period {f} is before the engine's window and companyfacts covers it, but no "
+                f"acquired-IPR&D expense fact ({', '.join(IPRD_EXPENSE_TAGS)}) ends there: name the period end of the "
+                "filing that first expensed the deal"), cf
+    return None, cf
+
+
+IPRD_ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
+IPRD_FY_GAP_DAYS = 380   # two annual period ends at most this far apart are consecutive fiscal years
+IPRD_FY_MD_DAYS = 7      # a 52/53-week fiscal year ends within a week of its usual month-day
+
+
+def iprd_fy_period_ends(facts, fy_periods=()):
+    """[Codex review r9 of PR #47] This filer's fiscal-year ends, sorted: the end of every companyfacts duration fact
+    (any taxonomy, tag and unit) filed in an annual report for fp FY that spans a fiscal year (330-380 days: a 52/53-week
+    year included), plus the engine's own FY window (fy_periods). Instants are not read: a 10-K's dei cover facts end
+    after the fiscal year."""
+    out = {p for p in fy_periods or () if iprd_date_ok(p)}
+    for tax in (((facts or {}).get("facts") or {}).values()):
+        if not isinstance(tax, dict):
+            continue
+        for tag in tax.values():
+            for entries in ((tag.get("units") or {}).values() if isinstance(tag, dict) else ()):
+                for e in entries or []:
+                    if not (isinstance(e, dict) and e.get("fp") == "FY" and e.get("form") in IPRD_ANNUAL_FORMS):
+                        continue
+                    st, end = e.get("start"), e.get("end")
+                    if not (iprd_date_ok(st) and iprd_date_ok(end)) or end in out:
+                        continue
+                    if 330 <= (datetime.date.fromisoformat(end) - datetime.date.fromisoformat(st)).days <= 380:
+                        out.add(end)
+    return sorted(out)
+
+
+def iprd_fy_end_problem(period, fy_ends):
+    """[Codex review r9 of PR #47] Why `period` (a deferred entry's period older than the window) is not a fiscal-year
+    end of this filer, or None when it is. fy_ends: iprd_fy_period_ends (the run records it as iprd_adjustment
+    fy_period_ends, so make_score re-checks with this same helper). A period among them is one. Where the filer's
+    annual periods reach the date — an FY end on each side of it, at most IPRD_FY_GAP_DAYS apart (consecutive fiscal
+    years) — any other date is not. Where they do not (before companyfacts begins, or a gap in it), the period's
+    month-day must lie within IPRD_FY_MD_DAYS of the month-day of the nearest known FY end (a 52/53-week year moves it
+    by days, never by a quarter). The check matters only for a rolled-out period: an in-window one must already name
+    a window FY record."""
+    if not iprd_date_ok(period):
+        return f"period {period!r} is not a fiscal-year end of this filer: not a date"
+    ends = sorted({x for x in fy_ends or [] if iprd_date_ok(x)})
+    if period in ends:
+        return None
+    p = datetime.date.fromisoformat(period)
+    ds = [datetime.date.fromisoformat(x) for x in ends]
+    lo = max((d for d in ds if d < p), default=None)
+    hi = min((d for d in ds if d > p), default=None)
+    if lo is not None and hi is not None and (hi - lo).days <= IPRD_FY_GAP_DAYS:
+        return (f"period {period} is not a fiscal-year end of this filer: its annual periods end {lo} and {hi} around "
+                "it — name the fiscal-year end of the 10-K that recorded the payment")
+    near = [d for d in (lo, hi) if d is not None]
+    if not near:
+        return f"period {period} is not a fiscal-year end of this filer: no fiscal-year end of this filer is known"
+
+    def md_gap(d):
+        gaps = []
+        for y in (p.year - 1, p.year, p.year + 1):
+            try:
+                c = d.replace(year=y)
+            except ValueError:   # Feb 29 in a common year
+                c = d.replace(year=y, day=28)
+            gaps.append(abs((p - c).days))
+        return min(gaps)
+
+    if min(md_gap(d) for d in near) <= IPRD_FY_MD_DAYS:
+        return None
+    return (f"period {period} is not a fiscal-year end of this filer: companyfacts' annual periods do not reach it and "
+            f"its month-day is more than {IPRD_FY_MD_DAYS} days from the nearest fiscal-year end "
+            f"({', '.join(d.isoformat() for d in near)}) — name the fiscal-year end of the 10-K that recorded the payment")
+
+
+def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
+    """Validate judgment.json iprd_deferred_payment against this run's acquired-IPR&D records (iprd_detect's dict or
+    None; fy_periods the engine's last-3-FY ends, oldest first; facts the companyfacts the run read) and mark each
+    accepted period: deferred_payment_of [{deal, first_charged_period, source, amount, first_charge_evidence}] (one
+    item per deal; several deals may share a period) and, when the declared amounts sum to the period's whole charge
+    (within $1; [Codex review r28 of PR #47, re-verification] for a charge year the larger of its amount and its own
+    USD expense, whatever its cash; [Codex review r29 of PR #47, polish reviews] the year's WHOLE charge,
+    iprd_own_charge_usd: the largest of its own expense — the largest positive figure on any of its acquired-IPR&D
+    expense tags, the parallel tag's included, in every unit filed — every positive cash-tag figure in every unit and
+    its amount; recurrence materiality reads the own expense side only), recurrence_excluded
+    "deferred_payment_of". The deduction is not touched. Returns (refused
+    [{"entry", "reason"}], rolled_out [entries whose period is older than the window: never applied, they stay in
+    judgment.json and still count toward their deal's lifetime cap — Codex review r4 of PR #47 — once they pass the
+    checks that need no window record (_iprd_deferred_semantic_problem; an invalid one is refused and never counted
+    toward the cap — Codex review r7 of PR #47) and their period is a fiscal-year end of this filer
+    (iprd_fy_end_problem against fy_ends, default iprd_fy_period_ends(facts, fy_periods) — Codex review r9)]).
+    Nothing is applied for a refused entry.
+    Checks: the shape (an FY period, an accession in the source, the deal's contingent_total); one entry per period
+    and deal; one first_charged_period per deal across all entries; one contingent_total per deal (value and
+    source) and the deal's declared amounts across all entries (a rolled-out one included) summing to no more than
+    it (iprd_deferred_cap_problems: every entry of such a deal is refused); the declared period inside the window with a charge, the
+    deals' amounts summing to no more than it; first_charged_period before the period; the source citing the
+    original acquisition filing (an accession filed from the first charged fiscal year's start year through the year
+    after its end — inside the window too, so an accepted entry survives the first charge rolling out); inside the
+    window, the first period's record carries its own acquired-IPR&D expense (iprd_has_own_expense: USD or native,
+    however paid — [Codex review r29 of PR #47] never a cash settlement of an earlier charge, a reversal or a $0
+    expense; an amount > 0 had sufficed) and its WHOLE charge is not itself declared a deferred payment
+    (a deal's first charge cannot be another deal's installment); before the window, companyfacts shows an
+    acquired-IPR&D expense fact ending there (unless companyfacts starts after it). [Codex review r29 of PR #47] A
+    declared period whose whole charge has no USD figure (iprd_whole_charge_unknown: its own expense, or its cash, in
+    a currency with no FX rate, or — the round's review notes — an expense tag (the parallel one too) or the cash tag
+    also filed in such a currency beside the USD fact used, unit_conflict; the reason names that figure and its unit)
+    is refused whatever the amount, so it is never declared whole and a charge year stays in the recurrence count. [Codex review r29 of PR #47, polish reviews] With every figure in USD, a
+    declaration is measured against the whole charge: EUR 100M at 1.08 ($108M) filed on either tag, or a parallel
+    expense tag filed at $108M on its own, beside the USD 40M expensed and paid makes $40M a part (the year stays
+    counted), $108M the whole and more than $108M refused (the cap).
+    [Codex review r3 of PR #47] The one case where a declaration changes the deduction: a declared FY period with no
+    charge but a cash-tag-only payment in ignored_cash_only carrying pre_window_charges (iprd_detect) — the payment is
+    the period's "charge" when first_charged_period lies BEFORE the window and companyfacts shows an acquired-IPR&D
+    expense fact there (a citation alone never makes a cash-only payment a charge: the MAA rule); the declared amounts
+    (at most the payment, within the deal's contingent_total) are then deducted once, cash basis, as a
+    deferred_payment, recurrence_excluded, and any rest of the payment stays in ignored_cash_only; the promoted record
+    keeps the entry's unit_conflict / unit_conflict_note ([Codex review r17 of PR #47]: they were dropped with it).
+    [Codex review r17 of PR #47] A cash-tag-only payment split by iprd_detect — part settling the window's unpaid
+    remainder automatically (the period's record, deferred_payment), the rest in ignored_cash_only carrying
+    pre_window_charges: a declaration whose first_charged_period lies BEFORE the window claims that rest (and only
+    it — the automatic settlement is never relabeled), on the same terms as above; the declared amounts are added
+    to the record's deduction on top of the automatic one (automatic_settlement, declared_residual), the sum per
+    period is capped by the rest, and a declaration first charged inside the window still names the automatic
+    settlement. Before, the automatic settlement was taken as the period's whole charge, so the declaration the
+    UNMATCHED_PAYMENT flag asked for was refused (or relabeled the automatic part, deducting nothing more)."""
+    if entries is None:
+        return [], []
+    if not isinstance(entries, list) or not entries:
+        return [{"entry": entries, "reason": f"judgment.json {IPRD_DEFERRED_KEY} must be a non-empty list"}], []
+    rec_of = {p.get("period"): p for p in ((iprd or {}).get("periods") or []) if p.get("window") == "fy"}
+    oldest = datetime.date.fromisoformat(fy_periods[0]) if fy_periods else None
+    start = iprd_window_start(facts, fy_periods)   # [Codex review r19 of PR #47] a first charge before it is pre-window
+    refused, rolled_out, ok, seen, first_of = [], [], [], set(), {}
+    for e in entries:
+        if not iprd_deferred_entry_ok(e):
+            refused.append({"entry": e, "reason": "malformed: each entry is {period: an FY end, window: \"fy\" (a "
+                            "current-YTD charge never counts toward recurrence: declare it once it lands in an FY), "
+                            "amount > 0, deferred_payment_of: {deal, first_charged_period, source: accession + section "
+                            "/ page, contingent_total: {value (USD) > 0, source: accession + section / page showing the "
+                            "deal's unrecognized milestones / deferred consideration}}}"})
+            continue
+        d = e["deferred_payment_of"]
+        k = (e["period"], _deal_key(d["deal"]))
+        if k in seen:
+            refused.append({"entry": e, "reason": f"names FY {e['period']} a deferred payment of {d['deal']!r} twice"})
+            continue
+        seen.add(k)
+        first_of.setdefault(k[1], set()).add(d["first_charged_period"])
+        ok.append(e)
+    # [Codex review r7 of PR #47] a rolled-out entry is validated (every check that needs no window record) BEFORE it
+    # counts toward its deal's lifetime cap: an invalid one is refused, never kept rolled out, never counted
+    pre_bad = {}
+    for e in ok:
+        if oldest is not None and e["period"] < fy_periods[0]:
+            # [Codex review r9 of PR #47] its period must be one of the filer's fiscal-year ends (an in-window one
+            # already names a window FY record): a quarter end or any other date is refused, never counted
+            if fy_ends is None:
+                fy_ends = iprd_fy_period_ends(facts, fy_periods)
+            why = iprd_fy_end_problem(e["period"], fy_ends)
+            if why is None:
+                why, _ = _iprd_deferred_semantic_problem(e, start, facts)
+            if why is not None:
+                pre_bad[id(e)] = why
+    cap_problems = iprd_deferred_cap_problems([e for e in ok if id(e) not in pre_bad])
+    cand = []
+    for e in ok:
+        d = e["deferred_payment_of"]
+        f = d["first_charged_period"]
+        fs = first_of[_deal_key(d["deal"])]
+        if len(fs) > 1:
+            refused.append({"entry": e, "reason": f"deal {d['deal']!r} is declared first charged on "
+                            f"{' and '.join(sorted(fs))}: one deal has one first charge"})
+            continue
+        if id(e) in pre_bad:
+            refused.append({"entry": e, "reason": pre_bad[id(e)]})
+            continue
+        if _deal_key(d["deal"]) in cap_problems:
+            refused.append({"entry": e, "reason": cap_problems[_deal_key(d["deal"])]})
+            continue
+        if oldest is not None and e["period"] < fy_periods[0]:
+            # its period rolled out of the window: validated above, kept in judgment.json (its payment counts toward
+            # the deal's lifetime contingent_total), never applied to this window's deduction or recurrence count
+            rolled_out.append(e)
+            continue
+        rec = rec_of.get(e["period"])
+        unknown = iprd_whole_charge_unknown(rec)
+        if unknown is not None:
+            # [Codex review r29 of PR #47] a declaration is whole only when the period's whole charge (the largest of
+            # its own expense and its cash, every unit) is known in USD: with an expense (or cash) the run cannot convert, its
+            # cash had stood in for the whole charge, so $40M declared on a EUR 100M expense with $40M paid took the
+            # year out of the recurrence count. Refused, as the existing convention refuses a declaration on an
+            # unconvertible charge with no usable cash ("names no acquired-IPR&D charge": one message for all)
+            refused.append({"entry": e, "reason": (
+                f"FY {e['period']} names no acquired-IPR&D charge in this run's window ({', '.join(fy_periods)}) that "
+                f"a declaration can be measured against: {unknown}, so its whole charge (the largest of its own expense "
+                "and its cash, in every unit filed) is unknown in USD and no declaration on it can be whole — none is applied and "
+                + ("the year stays in the recurrence count" if iprd_has_own_expense(rec)
+                   else "nothing is deducted for it")
+                + " (NEEDS_MAIN_AGENT: currency)")})
+            continue
+        charge = rec.get("amount") if rec is not None else None
+        co = None
+        _residual = lambda: next((c for c in (iprd or {}).get("ignored_cash_only") or []
+                                  if c.get("period") == e["period"] and c.get("window") == "fy"
+                                  and c.get("pre_window_charges") and isinstance(c.get("cash"), (int, float))
+                                  and c["cash"] > 0), None)
+        _own = _iprd_claimable_expense(rec)
+        if _own is not None and not (_iprd_finite(charge) and charge >= _own):
+            # [Codex review r27 of PR #47] a charge expensed with $0 cash (accrued, paid later) counts toward
+            # recurrence by its expense, so its declaration claims that expense — before, its $0 cash-basis amount
+            # left nothing a declaration could claim, and the year could not leave the count. The deduction is not
+            # touched (the later cash is the automatic settlement of the window's unpaid remainder). [Codex review
+            # r28 of PR #47] the same for a $0-cash charge whose residual is declared paid in shares. [Codex review
+            # r28 of PR #47, re-verification] ...and for ANY cash below the expense: a charge year is its own expense
+            # whatever its cash, so its whole charge is the larger of its amount and that expense — $1 paid on a
+            # $100M acquisition had made a $1 declaration "whole", taking the year out of the count (Andrew's
+            # 2026-10-20 rule takes it out only when its whole charge is declared). The cap below reads the same
+            # figure; the deduction is not touched. [Codex review r29 of PR #47, polish reviews] _own is the year's
+            # whole charge (iprd_own_charge_usd): any expense tag (the parallel one too) or the cash tag filed in any
+            # unit at more than the cash and the USD expense raises it (EUR 100M at 1.08 beside the USD 40M used, or the
+            # parallel tag's $108M beside the current tag's $40M: $108M)
+            charge = _own
+        if not (isinstance(charge, (int, float)) and charge > 0):
+            # [Codex review r3 of PR #47] a cash-tag-only payment (no or a $0 expense) the window's remainder did not
+            # absorb, at a filer that expensed acquired IPR&D before the window: the payment is the "charge" a
+            # declaration may claim, provided its first charge is that pre-window expense (checked below)
+            co = _residual()
+            if co is None:
+                refused.append({"entry": e, "reason": f"FY {e['period']} names no acquired-IPR&D charge in this run's "
+                                f"window ({', '.join(fy_periods)})"})
+                continue
+            charge = co["cash"]
+        elif rec.get("deferred_payment") and iprd_before_window(f, start):
+            # [Codex review r17 of PR #47] the record is the automatic settlement of the window's unpaid remainder;
+            # a pre-window deal's declaration claims the rest of the payment listed beside it, never that settlement
+            co = _residual()
+            if co is not None:
+                charge = co["cash"]
+        why, cf = _iprd_deferred_semantic_problem(e, start, facts)
+        if why is not None:
+            refused.append({"entry": e, "reason": why})
+            continue
+        if start is not None and not iprd_before_window(f, start):
+            if co is not None:
+                refused.append({"entry": e, "reason": f"FY {e['period']} carries only a cash-tag payment (no acquired-"
+                                f"IPR&D expense): it is deductible as the deferred payment of a charge first expensed "
+                                f"BEFORE the window only — first_charged_period {f} lies inside the window "
+                                f"({', '.join(fy_periods)}), where the window's unpaid remainder already decides"})
+                continue
+            first = rec_of.get(f)
+            # [Codex review r29 of PR #47] the first charge is a period with its OWN acquired-IPR&D expense
+            # (iprd_has_own_expense: USD or native, however paid) — an amount > 0 had let the automatic cash
+            # settlement of an earlier charge (no expense, a $0 or a negative one) be named a deal's first charge
+            if first is None or not iprd_has_own_expense(first):
+                refused.append({"entry": e, "reason": f"first_charged_period {f} lies inside the engine's window "
+                                f"({', '.join(fy_periods)}) but this run's record shows no acquired-IPR&D charge there"
+                                + ("" if first is None else (
+                                    f": {_iprd_no_own_expense_why(first)} — a deal's first charge is the period that "
+                                    "expensed it, never cash settling an earlier charge"))})
+                continue
+            evidence = "window_record"
+        else:
+            if co is not None and cf != "charged":
+                # the MAA rule: a cash-tag-only payment never qualifies unless companyfacts shows the expense it settles
+                refused.append({"entry": e, "reason": f"FY {e['period']} carries only a cash-tag payment: it is deductible "
+                                f"only against an acquired-IPR&D expense fact companyfacts shows at first_charged_period "
+                                f"{f} (companyfacts starts after it: the citation alone cannot make a cash-only payment "
+                                "a charge)"})
+                continue
+            evidence = "companyfacts_expense_fact" if cf == "charged" else "citation_only_before_companyfacts"
+        cand.append((e, rec, float(charge), evidence, co))
+    # the deals' amounts in one period sum to no more than its charge ([Codex review r17 of PR #47] per amount they
+    # claim: the record's charge, or the cash-tag payment listed beside it — a residual beside an automatic settlement)
+    accepted = []
+    for p, tgt in sorted({(c[0]["period"], c[4] is not None) for c in cand}):
+        cs = [c for c in cand if c[0]["period"] == p and (c[4] is not None) == tgt]
+        s = sum(float(c[0]["amount"]) for c in cs)
+        if s > cs[0][2] + 1.0:
+            r0 = cs[0][1]
+            what = (f"cash-tag payment {cs[0][2]:,.0f} left beside the {float(r0['amount']):,.0f} that settles the "
+                    "window's unpaid remainder automatically"
+                    if tgt and r0 is not None and isinstance(r0.get("amount"), (int, float)) and r0["amount"] > 0
+                    else f"charge {cs[0][2]:,.0f}")
+            refused.extend({"entry": c[0], "reason": f"FY {p}'s declarations sum to {s:,.0f}, more than the period's "
+                            + what} for c in cs)
+            continue
+        accepted.extend(cs)
+
+    def _whole(p, cs):
+        mine = [c for c in cs if c[0]["period"] == p]
+        claimed = {c[4] is not None: c[2] for c in mine}
+        return bool(mine) and sum(float(c[0]["amount"]) for c in mine) >= sum(claimed.values()) - 1.0
+
+    # a deal's first charge inside the window cannot itself be wholly declared another deal's installment
+    clash = {}
+    for c in accepted:
+        f = c[0]["deferred_payment_of"]["first_charged_period"]
+        if c[3] == "window_record" and _whole(f, accepted):
+            installs = [x for x in accepted if x[0]["period"] == f]
+            clash[id(c[0])] = (c[0], f"its first_charged_period {f} is itself declared, whole, a deferred payment of "
+                               + ", ".join(repr(x[0]["deferred_payment_of"]["deal"]) for x in installs)
+                               + ": a deal first charged there would be a second purchase in that period")
+            for x in installs:
+                clash.setdefault(id(x[0]), (x[0], f"FY {f} is declared, whole, a deferred payment, yet "
+                                            f"{c[0]['deferred_payment_of']['deal']!r} names it its first charge"))
+    refused.extend({"entry": e, "reason": r} for e, r in clash.values())
+    accepted = [c for c in accepted if id(c[0]) not in clash]
+    for p in sorted({c[0]["period"] for c in accepted}):
+        cs = [c for c in accepted if c[0]["period"] == p]
+        rec = cs[0][1]
+        res = [c for c in cs if c[4] is not None]
+        if res:
+            # [Codex review r3 of PR #47] the declared part of a cash-tag-only payment of a pre-window charge is
+            # deducted once (cash basis) and never counts toward recurrence; any rest of the payment stays listed
+            co = res[0][4]
+            amt = sum(float(c[0]["amount"]) for c in res)
+            auto = (float(rec["amount"]) if rec is not None and isinstance(rec.get("amount"), (int, float))
+                    and not isinstance(rec["amount"], bool) and rec["amount"] > 0 else None)
+            if rec is None:
+                rec = {"period": p, "window": "fy", "expense_tag": None, "expense": None, "expense_unit": None,
+                       "cash": co["cash"], "cash_unit": co.get("cash_unit"), "excluded": None}
+                iprd["periods"].append(rec)
+                iprd["periods"].sort(key=lambda r: (r.get("window") != "fy", r.get("period") or ""))
+            # [Codex review r17 of PR #47] the period's unit conflict rides on the record it ends with (round 16's
+            # rule): the promoted entry carried it and was removed with it
+            for k in ("unit_conflict", "unit_conflict_note"):
+                if k in co and k not in rec:
+                    rec[k] = co[k]
+            if auto is not None:
+                # [Codex review r17 of PR #47] beside the automatic settlement of the window's unpaid remainder: that
+                # part keeps its own record (deferred_payment, automatic_settlement) and the declared rest is added
+                rec.update(amount=auto + amt, deducted=auto + amt, automatic_settlement=auto, declared_residual=amt,
+                           declared_residual_note=(
+                               f"{amt:,.0f} of the {float(co['cash']):,.0f} cash-tag payment left beyond the window's "
+                               f"unpaid remainder is declared (judgment.json {IPRD_DEFERRED_KEY}) the deferred payment "
+                               "of a charge first expensed before the window — deducted on top of the automatic "
+                               f"{auto:,.0f}, counted once, not counted toward recurrence"))
+            else:
+                _iprd_reversal_settles(rec)
+                rec.update(amount=amt, amount_basis="cash_outflow", tag_used=IPRD_CASH_TAG, fx_rate=co.get("fx_rate"),
+                           filed=co.get("filed"), deducted=amt,
+                           deferred_payment=(f"cash tag {co['cash']:,.0f} with no acquired-IPR&D expense in this period: "
+                                             f"{amt:,.0f} of it is declared (judgment.json {IPRD_DEFERRED_KEY}) the "
+                                             "deferred payment of a charge first expensed before the window — counted "
+                                             "once, not a new charge and not counted toward recurrence"))
+            rest = float(co["cash"]) - amt
+            if rest > 1.0:
+                co["cash"] = rest
+                co["note"] = ("cash tag beyond the declared deferred payment, no acquired-IPR&D expense tag: never a "
+                              "qualifying charge")
+            else:
+                iprd["ignored_cash_only"].remove(co)
+            rec["recurrence_excluded"] = IPRD_RECURRENCE_EXCLUDED
+        rec["deferred_payment_of"] = [
+            {"deal": c[0]["deferred_payment_of"]["deal"],
+             "first_charged_period": c[0]["deferred_payment_of"]["first_charged_period"],
+             "source": c[0]["deferred_payment_of"]["source"],
+             "contingent_total": {"value": float(c[0]["deferred_payment_of"]["contingent_total"]["value"]),
+                                  "source": c[0]["deferred_payment_of"]["contingent_total"]["source"]},
+             "amount": float(c[0]["amount"]),
+             "first_charge_evidence": c[3]} for c in cs]
+        if _whole(p, cs):
+            rec["recurrence_excluded"] = IPRD_RECURRENCE_EXCLUDED
+    return refused, rolled_out
+
+
+def _iprd_pick(by_unit, fx_rates, period, fx_fetch=None, conflict=None):
+    """(value_usd, unit, rate, filed) for one period's facts of one tag ({unit: (value, filed)}): the USD fact when
+    filed, else a non-USD fact converted at the FX pass's own period-end rate for its currency (fx_rates {ccy: {date:
+    rate}}), else at fx_fetch(ccy, period) when given; (None, unit, None, filed) when only a non-USD fact with no rate
+    exists; None when nothing is filed.
+    [Codex review r13 of PR #47] A non-USD fact of exactly 0 is 0 at every rate: (0.0, unit, None, filed) when every
+    unrated unit's fact is zero — before, it was unconvertible (expense None, excluded non_usd_no_rate) and a usable
+    USD cash fact beside it was dropped with no flag; a positive unrated fact still comes back unconvertible (the
+    nonzero unit is the one named).
+    [Codex review r15 of PR #47] A positive fact in ANY unit outranks a zero (or negative) one: a USD 0 beside EUR
+    100M had returned the USD 0 without looking at the EUR fact, so the period read as no charge. The positive fact
+    is the one picked — the USD one when USD is positive, else the first positive unit that converts (else the first
+    positive unit, unconvertible: the caller gates it non_usd_no_rate). When `conflict` (a dict) is given and the
+    units' facts disagree after conversion — by more than max($1, IPRD_UNIT_TOLERANCE of the larger), a zero beside
+    a positive fact, or a positive fact that cannot be converted beside another unit's — it is filled with {"units":
+    {unit: {"native", "usd", "fx_rate"}}, "used": the unit picked}; facts that agree leave it empty."""
+    if not by_unit:
+        return None
+    cache = {}
+
+    def _rate(u):
+        if u not in cache:
+            r = ((fx_rates or {}).get(u) or {}).get(period)
+            if r is None and fx_fetch is not None:
+                r = fx_fetch(u, period)
+            cache[u] = r
+        return cache[u]
+
+    def _usd(u):
+        v = by_unit[u][0]
+        if u == "USD":
+            return float(v), None
+        if _iprd_is_zero(v):
+            return 0.0, None
+        r = _rate(u)
+        return (float(v) * r, r) if r is not None else (None, None)
+
+    pos = [u for u in sorted(by_unit) if _iprd_is_pos(by_unit[u][0])]
+    if pos:
+        if "USD" in pos:
+            u = "USD"
+        else:
+            u = next((x for x in pos if _usd(x)[0] is not None), pos[0])
+        v, r = _usd(u)
+        hit = (v, u, r, by_unit[u][1])
+    elif "USD" in by_unit:
+        v, fd = by_unit["USD"]
+        hit = (float(v), "USD", None, fd)
+    else:
+        hit = None
+        for u in sorted(by_unit):
+            r = ((fx_rates or {}).get(u) or {}).get(period)
+            if r is not None:
+                v, fd = by_unit[u]
+                hit = (float(v) * r, u, r, fd)
+                break
+        if hit is None:
+            nonzero = [u for u in sorted(by_unit) if not _iprd_is_zero(by_unit[u][0])]
+            if not nonzero:
+                u = sorted(by_unit)[0]
+                hit = (0.0, u, None, by_unit[u][1])
+            else:
+                u = nonzero[0]
+                r = fx_fetch(u, period) if fx_fetch is not None else None
+                hit = ((float(by_unit[u][0]) * r, u, r, by_unit[u][1]) if r is not None
+                       else (None, u, None, by_unit[u][1]))
+    if conflict is not None and len(by_unit) > 1 and pos:
+        conv = {u: _usd(u) for u in sorted(by_unit)}
+        vals = [c[0] for c in conv.values()]
+        known = [x for x in vals if x is not None]
+        disagree = (len(known) < len(vals)
+                    or max(known) - min(known) > max(1.0, IPRD_UNIT_TOLERANCE * max(abs(x) for x in known)))
+        if disagree:
+            conflict.update({"units": {u: {"native": float(by_unit[u][0]), "usd": conv[u][0], "fx_rate": conv[u][1]}
+                                       for u in sorted(by_unit)}, "used": hit[1]})
+    return hit
+
+
+def _iprd_is_pos(v):
+    """True for a finite filed figure above 0 (a number, not a bool)."""
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+
+
+def _iprd_is_zero(v):
+    """True for a filed figure of exactly 0 (a number, not a bool)."""
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and v == 0
+
+
+def _iprd_ytd_facts(facts, tag, start, end):
+    """{unit: (value, filed)} for ONE us-gaap tag on exactly the 10-Q year-to-date context [start, end], the latest
+    filing per unit (a comparative column re-filed in a later 10-Q never adds a second value)."""
+    units = (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units", {})
+    out = {}
+    for u, es in units.items():
+        best = None
+        for e in es:
+            if e.get("form", "") not in ("10-Q", "10-Q/A") or e.get("start") != start or e.get("end") != end:
+                continue
+            if best is None or e.get("filed", "") > best.get("filed", ""):
+                best = e
+        if best is not None:
+            out[u] = (best["val"], best.get("filed"))
+    return out
+
+
+# [Codex review r11 of PR #47, the main agent's shape] A window leg (an FY period or the TTM's current-YTD leg) with no
+# fact on its exact context is read from shorter facts of the same tag and unit that TILE it: three-month facts, or a
+# year-to-date fact starting on the leg's first day (H1 + Q3), consecutive, with no gap and no overlap — a 10-Q that
+# files the quarter alone, a 10-K that files no FY figure. Facts that cover only part of the leg are recorded
+# (partial_coverage, ACQUIRED_IPRD_PARTIAL_PERIOD), never read as a silent $0. An exact-context fact always wins.
+IPRD_AGGREGATED = "aggregated_quarters"
+IPRD_LEG_FORMS = IPRD_ANNUAL_FORMS + ("10-Q", "10-Q/A")
+IPRD_QUARTER_DAYS = (80, 100)   # a three-month fact (a 13- or 14-week quarter included), end - start in days
+
+
+def iprd_fy_starts(facts, fy_periods):
+    """{fy_end: fy_start} for the engine's FY window: the start shared by most companyfacts duration facts (any
+    taxonomy, tag and unit) filed in an annual report for fp FY that end on that date and span 330-380 days (ties: the
+    latest start); an FY end with no such fact is left out (its leg is read on its exact context only)."""
+    want = {p for p in fy_periods or () if iprd_date_ok(p)}
+    counts = {}
+    for tax in (((facts or {}).get("facts") or {}).values()):
+        if not isinstance(tax, dict):
+            continue
+        for tag in tax.values():
+            for entries in ((tag.get("units") or {}).values() if isinstance(tag, dict) else ()):
+                for e in entries or []:
+                    if not (isinstance(e, dict) and e.get("end") in want and e.get("fp") == "FY"
+                            and e.get("form") in IPRD_ANNUAL_FORMS and iprd_date_ok(e.get("start"))):
+                        continue
+                    d = (datetime.date.fromisoformat(e["end"]) - datetime.date.fromisoformat(e["start"])).days
+                    if 330 <= d <= 380:
+                        c = counts.setdefault(e["end"], {})
+                        c[e["start"]] = c.get(e["start"], 0) + 1
+    return {end: max(c, key=lambda st: (c[st], st)) for end, c in counts.items()}
+
+
+def iprd_tile(facts, tag, start, end, only_units=None):
+    """[Codex review r11 of PR #47] ONE us-gaap tag on the leg [start, end] from shorter facts, for a leg with no
+    exact-context fact: (by_unit, contexts, partial). only_units: tile just these units ([Codex review r16 of PR #47]
+    the units with no exact-context fact beside one that has it). by_unit {unit: (sum, latest filed)} and contexts {unit: [[start,
+    end], ...]} for each unit whose facts (10-K / 10-Q forms; per context the latest filing — a comparative column
+    re-filed later never adds a second value) tile the leg exactly: three-month facts or a year-to-date fact starting
+    on `start`, each starting the day after the one before ends, the first on `start`, the last on `end` (the fewest
+    facts when several tilings exist). partial: when no unit tiles it to a positive value but a positive fact lies
+    inside the leg in a unit that does not tile it, [{unit, contexts: [{start, end, value, filed}, ...]}] (every such
+    fact), else None. [Codex review r17 of PR #47] a unit tiling the leg to $0 (or less) no longer drops the other
+    units' partial facts: four USD 0 quarters beside one EUR 100M Q4 fact had read as a silent $0."""
+    units = (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units", {})
+    if not units or not (iprd_date_ok(start) and iprd_date_ok(end)):
+        return {}, {}, None
+    s0, e0 = datetime.date.fromisoformat(start), datetime.date.fromisoformat(end)
+    day = datetime.timedelta(days=1)
+    by_unit, ctx, partial = {}, {}, []
+    for u in sorted(units, key=lambda x: (x != "USD", x)):
+        if only_units is not None and u not in only_units:
+            continue
+        best = {}
+        for e in units[u] or []:
+            if not isinstance(e, dict) or e.get("form", "") not in IPRD_LEG_FORMS:
+                continue
+            st, en, v = e.get("start"), e.get("end"), e.get("val")
+            if (not (iprd_date_ok(st) and iprd_date_ok(en)) or isinstance(v, bool) or not isinstance(v, (int, float))
+                    or not math.isfinite(v) or (st, en) == (start, end)):
+                continue
+            ds, de = datetime.date.fromisoformat(st), datetime.date.fromisoformat(en)
+            if ds < s0 or de > e0 or de < ds:
+                continue
+            if not (st == start or IPRD_QUARTER_DAYS[0] <= (de - ds).days <= IPRD_QUARTER_DAYS[1]):
+                continue
+            if (st, en) not in best or e.get("filed", "") > best[(st, en)].get("filed", ""):
+                best[(st, en)] = e
+        if not best:
+            continue
+        keys = sorted(best)
+        reach, frontier, goal = {s0: []}, [s0], e0 + day
+        while frontier and goal not in reach:
+            nxt = []
+            for d in frontier:
+                for k in keys:
+                    if datetime.date.fromisoformat(k[0]) != d:
+                        continue
+                    nd = datetime.date.fromisoformat(k[1]) + day
+                    if nd not in reach:
+                        reach[nd] = reach[d] + [k]
+                        nxt.append(nd)
+            frontier = sorted(nxt)
+        if goal in reach:
+            path = reach[goal]
+            by_unit[u] = (sum(best[k]["val"] for k in path), max((best[k].get("filed") or "") for k in path) or None)
+            ctx[u] = [[k[0], k[1]] for k in path]
+        elif any(best[k]["val"] > 0 for k in keys):
+            partial.append({"unit": u, "contexts": [{"start": k[0], "end": k[1], "value": float(best[k]["val"]),
+                                                     "filed": best[k].get("filed")} for k in keys]})
+    return by_unit, ctx, (partial if (partial and not any(_iprd_is_pos(v[0]) for v in by_unit.values())) else None)
+
+
+def iprd_period_record(period, window, expense, cash, capex_intang=None, check=None):
+    """One period's acquired-IPR&D record. expense: (tag, value_usd | None, unit, rate, filed[, value_native]) from the
+    first expense tag filed for the period, or None (value_native: the filed figure in its own unit, read only when
+    value_usd is None — the sign still detects the charge); cash: (value_usd | None, unit, rate, filed[, value_native])
+    or None (value_native as for the expense); check: the judgment.json
+    iprd_cash_flow_check entry matched to this period (or None). Returns None when no expense tag is filed (a
+    cash-only period is no record here; iprd_detect counts one only as a deferred payment). `deducted` is what the
+    window total counts: the cash outflow when filed, else the expense once the cash-flow check says it was added
+    back and paid in investing — 0 when excluded (`negative`, `non_usd_no_rate`, `already_in_capex`: an
+    expense-basis amount the check declares paid inside an intangible-purchase line the engine sums into capex
+    (paid_in_intangible_capex) — [Codex review r8 of PR #47] never inferred from the leg's size, which is only a
+    capex_overlap_note, and not applied (still awaiting) when the period's capex intangible leg is under 98% of the
+    charge; `awaiting_cash_flow_check`: an expense-basis amount no check confirms; `paid_in_operating_cash_flow` /
+    `paid_in_shares`: what the check says). A negative cash fact beside a positive expense is a sign error: the
+    period falls back to the expense (cash_sign_note). [Codex review r1 of PR #47] An expense with no FX rate still
+    detects the charge by its native sign: a usable cash fact (USD, or converted) is then the amount; with none the
+    period is excluded `non_usd_no_rate`. [Codex review r6 of PR #47] The cash outflow is the preferred amount, so a
+    positive cash fact the run cannot convert beside a USD (or converted) positive expense never falls back to the
+    expense: the period is excluded `non_usd_no_rate` with its cash_native kept (ACQUIRED_IPRD_UNCONVERTED, make_score
+    refuses it) — before, the expense was deducted in its place (over- or under-stating the charge) with no flag.
+    [Codex review r20 of PR #47] An unconvertible expense is classified by its native sign before that gate: a
+    negative one is a reversal, excluded `negative` with amount 0 and its expense_native kept (as a converted negative
+    fact is), never `non_usd_no_rate`; only a positive one gates. A negative unconvertible cash fact beside a positive
+    expense is the same sign error (cash_sign_note)."""
+    if expense is None:
+        return None
+    etag, ev, eunit, erate, efiled = expense[:5]
+    enative = expense[5] if len(expense) > 5 else None
+    rec = {"period": period, "window": window, "expense_tag": etag, "expense": ev, "expense_unit": eunit,
+           "cash": None, "cash_unit": None, "amount": None, "amount_basis": None, "tag_used": None,
+           "fx_rate": None, "filed": efiled, "excluded": None, "deducted": 0.0}
+    if cash is not None:
+        rec["cash"], rec["cash_unit"] = cash[0], cash[1]
+    if ev is None:
+        # [Codex review r1 of PR #47] the expense tag is the detector, the cash outflow the amount: an expense filed
+        # only in a currency the FX pass holds no rate for still detects the charge (its native sign), and a usable
+        # cash fact for the period is the amount — before, the real outflow was deducted as $0 with no flag
+        if (cash is not None and cash[0] is not None and cash[0] > 0 and isinstance(enative, (int, float))
+                and not isinstance(enative, bool) and enative > 0):
+            rec.update(expense_native=float(enative), amount=float(cash[0]), amount_basis="cash_outflow",
+                       tag_used=IPRD_CASH_TAG, fx_rate=cash[2], filed=cash[3], deducted=float(cash[0]),
+                       expense_fx_note=(f"expense filed in {eunit} only, with no FX rate for {period}: it detects the "
+                                        f"charge ({float(enative):,.0f} {eunit}); the cash outflow is the amount"))
+            return rec
+        if (isinstance(enative, (int, float)) and not isinstance(enative, bool) and math.isfinite(enative)
+                and enative < 0):
+            # [Codex review r20 of PR #47] the native sign classifies the fact BEFORE the unconverted gate: a negative
+            # one is a reversal (no current-period charge) at every rate, exactly like a converted negative fact —
+            # excluded "negative", amount 0, the native figure kept. It had read non_usd_no_rate, which neither the
+            # no-charge paths (round 14 read only the USD figure) nor any gate (a POSITIVE native figure) matched, so
+            # the period's cash was neither settled, listed nor gated
+            rec.update(expense_native=float(enative), amount=0.0, amount_basis="expense", tag_used=etag,
+                       fx_rate=erate, filed=efiled, excluded="negative",
+                       expense_fx_note=(f"expense filed in {eunit} only, with no FX rate for {period}: negative "
+                                        f"({float(enative):,.0f} {eunit}, a reversal), so no current-period charge "
+                                        "at any rate"))
+            return rec
+        rec["excluded"] = IPRD_UNCONVERTED
+        if isinstance(enative, (int, float)) and not isinstance(enative, bool) and math.isfinite(enative):
+            # [Codex review r3 of PR #47] the native figure stays on the record: a positive one is a detected charge
+            # the run cannot convert (ACQUIRED_IPRD_UNCONVERTED, make_score refuses it), never a silent $0
+            rec["expense_native"] = float(enative)
+        return rec
+    use_cash = cash is not None and cash[0] is not None
+    cnat = cash[4] if (cash is not None and cash[0] is None and len(cash) > 4) else None
+    if (ev > 0 and isinstance(cnat, (int, float)) and not isinstance(cnat, bool) and math.isfinite(cnat)
+            and cnat > 0):
+        # [Codex review r6 of PR #47] the preferred amount is unknown in USD: gated, never replaced by the expense
+        rec.update(excluded=IPRD_UNCONVERTED, cash_native=float(cnat),
+                   cash_fx_note=(f"cash tag {float(cnat):,.0f} {cash[1]} beside the ${ev:,.0f} acquired-IPR&D expense, "
+                                 f"with no FX rate for {period}: the cash outflow is the preferred amount and its USD "
+                                 "value is unknown — not converted, so not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
+        return rec
+    if use_cash and cash[0] < 0 and ev > 0:
+        # [fixer review round] a payments element is positive by definition: a negative figure beside a positive
+        # expense is a sign error, never a reason to drop the charge the expense confirms
+        rec["cash_sign_note"] = (f"{IPRD_CASH_TAG} is filed negative ({cash[0]:,.0f}) beside a positive expense — a "
+                                 "sign error on a payments element; the expense is used (the cash-flow check decides)")
+        use_cash = False
+    elif (ev > 0 and isinstance(cnat, (int, float)) and not isinstance(cnat, bool) and math.isfinite(cnat)
+          and cnat < 0):
+        # [Codex review r20 of PR #47] the same sign error on a cash fact the run cannot convert: its native sign is
+        # read, so the fallback to the expense carries the note too
+        rec["cash_sign_note"] = (f"{IPRD_CASH_TAG} is filed negative ({float(cnat):,.0f} {cash[1]}, no FX rate) beside "
+                                 "a positive expense — a sign error on a payments element; the expense is used (the "
+                                 "cash-flow check decides)")
+    if use_cash:
+        amt, basis, tag, rate, filed = cash[0], "cash_outflow", IPRD_CASH_TAG, cash[2], cash[3]
+    else:
+        amt, basis, tag, rate, filed = ev, "expense", etag, erate, efiled
+    rec.update(amount=amt, amount_basis=basis, tag_used=tag, fx_rate=rate, filed=filed)
+    if ev <= 0:
+        # nothing was expensed: no blind spot to correct, whatever the cash tag says
+        rec.update(amount=0.0, amount_basis="expense", tag_used=etag, fx_rate=erate, filed=efiled)
+        if ev < 0:
+            rec["excluded"] = "negative"
+        return rec
+    if amt < 0:
+        rec["excluded"] = "negative"
+        return rec
+    if basis == "expense":
+        covers = bool(capex_intang and capex_intang >= IPRD_OVERLAP_RATIO * amt)
+        if covers and (check is None or check.get("presentation") != "paid_in_intangible_capex"):
+            # [Codex review r8 of PR #47] the intangible leg sums general-purpose tags (patents, licences, software):
+            # its size alone never shows it holds this charge — a note for the worker, not an exclusion
+            rec["capex_overlap_note"] = (f"the period's capex intangible leg ({capex_intang:,.0f}) is at least "
+                                         f"{IPRD_OVERLAP_RATIO:.0%} of this charge: if the payment sits inside that "
+                                         f"intangible-purchase line, declare {IPRD_CF_CHECK_KEY} presentation "
+                                         "paid_in_intangible_capex (the line cited) — not inferred from the size")
+        # [fixer review round] companyfacts cannot tell an expense added back in OCF and paid in investing (HALO)
+        # from one paid inside OCF (NBIX): only the worker's reading of the cash-flow statement decides
+        if check is not None and check.get("presentation") == "paid_in_intangible_capex" and not covers:
+            # [Codex review r8 of PR #47] the check says OE already charged the payment through the intangible capex
+            # leg, but the leg the engine summed for this period does not hold it: not applied, still gated
+            rec["cash_flow_check_mismatch"] = {
+                "declared_amount": check.get("amount"),
+                "note": (f"judgment.json {IPRD_CF_CHECK_KEY} declares paid_in_intangible_capex, but the engine's capex "
+                         f"intangible leg for this period is {float(capex_intang or 0):,.0f}, under "
+                         f"{IPRD_OVERLAP_RATIO:.0%} of the charge: the payment is not in the capex OE carries — "
+                         "not applied")}
+            check = None
+        if check is None:
+            rec["excluded"] = IPRD_AWAITING
+            rec["awaiting"] = float(amt)
+            return rec
+        rec["cash_flow_check"] = _iprd_check_record(check)
+        why = IPRD_CF_PRESENTATIONS[check["presentation"]]
+        if why:
+            rec["excluded"] = why
+            if why == "already_in_capex":
+                rec["capex_intangibles"] = capex_intang
+            return rec
+    rec["deducted"] = float(amt)
+    return rec
+
+
+def _iprd_finite(v):
+    return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
+
+
+def _iprd_check_matches(chk, expense, cash):
+    """[Codex review r21 of PR #47] Whether a judgment.json iprd_cash_flow_check entry matches its period's detector
+    figure. expense: _resolve_period's (tag, value_usd | None, unit, rate, filed, value_native | None); cash: its
+    (value_usd | None, unit, rate, filed, value_native | None) or None. A USD (or converted) expense: the amount is
+    within $1 of the USD figure and a declared `unit`, if any, is "USD" (round 14). An expense with no FX rate whose
+    period takes the cash-basis path (a usable positive cash outflow is the amount): the declared `unit` is the
+    expense's filed unit and the amount within 1 of its native figure — before, it was compared with the USD figure
+    (None), so no check could ever apply there. No other period matches."""
+    if expense is None:
+        return False
+    a, unit = float(chk["amount"]), chk.get("unit")
+    if expense[1] is not None:
+        return unit in (None, "USD") and abs(a - expense[1]) <= 1.0
+    native = expense[5] if len(expense) > 5 else None
+    return bool(_iprd_finite(native) and native > 0 and cash is not None and _iprd_finite(cash[0]) and cash[0] > 0
+                and unit == expense[2] and abs(a - float(native)) <= 1.0)
+
+
+def _iprd_check_record(chk):
+    """The applied check as a period records it: presentation, amount, source, and (Codex review r21 of PR #47) the
+    declared unit when the entry names one (an entry without one records exactly what it did before)."""
+    if chk.get("unit") is None:
+        return {k: chk.get(k) for k in ("presentation", "amount", "source")}
+    return {k: chk.get(k) for k in ("presentation", "amount", "unit", "source")}
+
+
+def _iprd_detector_value(rec):
+    """[Codex review r20 of PR #47] A record's detector figure: its USD expense, else (no FX rate) its native one —
+    the sign decides whether the period carries a charge in either case. None when neither is a finite number."""
+    if not isinstance(rec, dict):
+        return None
+    for k in ("expense", "expense_native"):
+        v = rec.get(k)
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            return float(v) if math.isfinite(v) else None
+    return None
+
+
+def _iprd_claimable_expense(rec):
+    """[Codex review r27 of PR #47] What a whole iprd_deferred_payment declaration claims on a charge year whose own
+    amount is not positive (cash basis, the cash tag filed at $0: the expense accrued into the window's unpaid
+    remainder) — its own positive USD expense; else None. [Codex review r28 of PR #47] Every FY charge year
+    (iprd_charge_year) with a USD expense qualifies, so a $0-cash charge whose residual is declared paid in shares
+    (which now counts toward recurrence) can leave the count the same way. An expense with no USD figure is never
+    claimed: [Codex review r29 of PR #47] iprd_apply_deferred refuses every declaration on a period whose whole charge
+    is unknown in USD (iprd_whole_charge_unknown) before it reads this — the docstring had said "its run is gated
+    ACQUIRED_IPRD_UNCONVERTED", which is not so for a foreign-currency expense beside usable USD cash (that cash-basis
+    period is not excluded and nothing gates it), and that period's cash had stood in for its whole charge.
+    [Codex review r29 of PR #47, polish reviews] It returns the year's WHOLE charge (iprd_own_charge_usd's first
+    figure: the largest of its own expense — the largest positive figure on any of its acquired-IPR&D expense tags
+    in every unit filed — every positive cash-tag figure in every unit and its amount), None when that is unknown in
+    USD — it had returned the USD expense alone, so EUR 100M (at 1.08, $108M) filed beside the USD 40M expensed and
+    paid read $40M and a $40M declaration was whole. A year with no unit conflict and no parallel-tag conflict gets
+    the larger of its USD expense and amount, as before. Recurrence materiality reads the own expense instead
+    (iprd_recurrence_expense)."""
+    if not iprd_charge_year(rec):
+        return None
+    oc = iprd_own_charge_usd(rec)
+    return oc[0] if oc is not None else None
+
+
+# [Codex review r28 of PR #47] every `excluded` reason a period record can carry, by whether the period still holds
+# its OWN acquired-IPR&D expense charge (the recurrence count and its materiality read that expense, whatever the
+# cash presentation; the deduction rules are unchanged — these presentations still deduct nothing):
+#   paid_in_shares, paid_in_operating_cash_flow, already_in_capex — the expense was paid in stock, inside OCF or
+#     inside the intangible capex leg: OE or the share count already carries the payment, but it is an acquisition;
+#   awaiting_cash_flow_check — an expense no check has placed yet: an acquisition whatever its presentation;
+#   non_usd_no_rate — when its detector figure (USD, else native) is positive: an expense the run cannot convert
+#     (alone, beside unconvertible cash, or beside an unconvertible parallel tag); a cash-only payment gated
+#     non_usd_no_rate has no expense of its own (detector None, $0 or negative) and is not one;
+#   negative — a reversal (a negative detector figure): no charge of its own, never counted.
+IPRD_OWN_CHARGE_EXCLUSIONS = ("paid_in_shares", "paid_in_operating_cash_flow", "already_in_capex", IPRD_AWAITING,
+                              IPRD_UNCONVERTED)
+
+
+def iprd_has_own_expense(rec):
+    """[Codex review r29 of PR #47] Whether a window record (FY or the TTM current-YTD leg) carries its OWN positive
+    acquired-IPR&D expense as detected: its detector figure (USD, else native) > 0, paid in the year or not, whatever
+    its cash presentation (paid in investing, in shares, inside operating cash flow, inside intangible capex, awaiting
+    the cash-flow check, no FX rate: IPRD_OWN_CHARGE_EXCLUSIONS). Not one: a deferred_payment (cash settling an earlier
+    charge, with no expense of its own: none, $0 or a reversal), a negative, $0 or missing expense, and any other
+    exclusion (`negative`). This is iprd_own_charge without its recurrence_excluded test (what a whole
+    iprd_deferred_payment declaration does to a period): iprd_apply_deferred requires it of the record a declaration
+    names as its deal's first charge inside the window — before, any record with a positive amount passed, so the
+    automatic cash settlement of an earlier charge could be named a deal's first charge and a later, distinct
+    acquisition declared its installment."""
+    if not isinstance(rec, dict) or rec.get("window") not in IPRD_CHECK_WINDOWS:
+        return False
+    if rec.get("deferred_payment"):
+        return False
+    if rec.get("excluded") is not None and rec["excluded"] not in IPRD_OWN_CHARGE_EXCLUSIONS:
+        return False
+    v = _iprd_detector_value(rec)
+    return v is not None and v > 0
+
+
+def _iprd_no_own_expense_why(rec):
+    """[Codex review r29 of PR #47] Why a window record carries no acquired-IPR&D expense of its own
+    (iprd_has_own_expense is False): the words a refused first_charged_period names. [Codex review r29 of PR #47,
+    review note] A figure read from the native fact (no USD figure: expense None) names its unit and the missing FX
+    rate, as _iprd_reversal_settles does — it had printed EUR -5M as "-5,000,000"."""
+    v = _iprd_detector_value(rec)
+    if v is not None and v < 0:
+        fig = f"{v:,.0f}" if rec.get("expense") is not None else f"{v:,.0f} {rec.get('expense_unit')}, no FX rate"
+        return (f"its acquired-IPR&D expense is negative ({fig}, a reversal)"
+                + (" and its cash settles an earlier charge (deferred_payment)" if rec.get("deferred_payment") else ""))
+    if rec.get("deferred_payment"):
+        return ("its record is cash that settles an earlier charge (deferred_payment), with no acquired-IPR&D expense "
+                "of its own")
+    return "its acquired-IPR&D expense is $0 or not filed"
+
+
+def iprd_whole_charge_unknown(rec):
+    """[Codex review r29 of PR #47] Why a window record's WHOLE charge in USD — what iprd_apply_deferred measures an
+    iprd_deferred_payment declaration against, the whole-declaration test and its cap (round 28) — has no USD figure,
+    or None when it has one (or there is no record). [Codex review r29 of PR #47, second polish review] The final
+    rule: a year's whole charge is the largest of its own expense (iprd_own_expense_unknown: the largest positive
+    figure on any of its acquired-IPR&D expense tags in every unit filed), every positive figure on the cash tag in
+    every unit filed (each converted at the run's rate) and the cash deducted (its amount) — iprd_own_charge_usd. It
+    is unknown when the own expense is (its own positive acquired-IPR&D expense filed only in a currency with no FX
+    rate, even fetched: expense None, expense_native > 0 — with no usable cash, beside usable USD cash on the
+    cash-basis path, or with its residual declared paid in shares; a parallel detector tag that cannot be converted,
+    expense_tag_unconverted; an expense tag also filed with a positive fact in a unit with no USD figure beside the
+    one the run used, unit_conflict) or when any positive cash-tag figure has no USD value (_iprd_cash_unknown: a cash
+    outflow with no FX rate, cash_native > 0 and no amount — beside a USD expense, or a cash-only payment gated
+    non_usd_no_rate; cash that may settle a remainder unknown in USD, unconverted_remainder_of; the cash tag also
+    filed with a positive fact in a unit with no USD figure, unit_conflict). The reason names which figure has no USD
+    value — the expense or the cash tag, and its unit. Every declaration on such a year is refused (NEEDS_MAIN_AGENT:
+    currency) and the year stays counted. Before round 29 a foreign-currency expense beside $40M of USD cash read
+    "whole" at $40M, so a $40M declaration took the year out of the recurrence count though its own expense was
+    unknown; the round's review notes added the unit_conflict reasons. Recurrence materiality does not read this: it
+    is unknown only when the own expense is (iprd_recurrence_expense), so a known USD expense beside cash with no FX
+    rate reads that expense. [Codex review r30 of PR #47] "Every unit filed" is every unit that disagrees with the
+    figure used beyond the unit-agreement tolerance (IPRD_UNIT_TOLERANCE: more than max($1, 1% of the larger) after
+    conversion; a unit with no USD figure always disagrees); a unit within it is the figure used. With three or
+    more units filed the tolerance applies to their spread: once the largest and smallest converted figures differ
+    by more than it, every unit is recorded and the largest counts."""
+    if not isinstance(rec, dict):
+        return None
+    return iprd_own_expense_unknown(rec) or _iprd_cash_unknown(rec)
+
+
+def iprd_own_expense_unknown(rec):
+    """[Codex review r29 of PR #47, second polish review] Why a window record's OWN EXPENSE in USD — the largest
+    positive figure on any of its acquired-IPR&D expense tags (the current detector tag and the parallel one,
+    expense_tags_conflict figures too) in every unit filed for the period — is unknown: a positive figure on an
+    expense tag has no USD value (no FX rate, even fetched). The detector figure itself (expense None, expense_native
+    > 0), a parallel detector tag that cannot be converted beside the other (expense_tag_unconverted, or an
+    expense_tags_conflict entry whose usd is null), or an expense tag also filed with a positive fact in a unit with
+    no USD figure beside the one the run used (unit_conflict). None when it is known (or there is no record). Zero and
+    negative figures never make it unknown. The one reason recurrence materiality is unknown (iprd_recurrence_expense
+    None, read as material, listed in recurrence_expense_unknown_usd). [Codex review r30 of PR #47] "Every unit
+    filed" is every unit that disagrees with the figure used beyond the unit-agreement tolerance (IPRD_UNIT_TOLERANCE:
+    more than max($1, 1% of the larger) after conversion); a unit within it is the figure used. With three or more
+    units filed the tolerance applies to their spread: once the largest and smallest converted figures differ by
+    more than it, every unit is recorded and the largest counts. A unit with no USD
+    figure cannot be shown to agree, so it is always one that disagrees (unit_conflict, its usd null)."""
+    if not isinstance(rec, dict):
+        return None
+    tu = rec.get("expense_tag_unconverted")
+    if isinstance(tu, dict) and _iprd_finite(tu.get("native")) and tu["native"] > 0:
+        return (f"its acquired-IPR&D expense tag {tu.get('tag')} ({float(tu['native']):,.0f} {tu.get('unit')}) has no "
+                "USD figure beside the other detector tag (no FX rate, even fetched)")
+    en = rec.get("expense_native")
+    if rec.get("expense") is None and _iprd_finite(en) and en > 0:
+        return (f"its own acquired-IPR&D expense ({float(en):,.0f} {rec.get('expense_unit')}) has no USD figure (no FX "
+                "rate, even fetched)")
+    etc = rec.get("expense_tags_conflict")
+    for tag, x in (sorted(etc.items()) if isinstance(etc, dict) else ()):
+        if isinstance(x, dict) and x.get("usd") is None and _iprd_finite(x.get("native")) and x["native"] > 0:
+            return (f"its acquired-IPR&D expense tag {tag} ({float(x['native']):,.0f} {x.get('unit')}) has no USD "
+                    "figure beside the other detector tag (no FX rate, even fetched)")
+    return _iprd_unit_conflict_unknown(rec, cash=False)
+
+
+def _iprd_cash_unknown(rec):
+    """[Codex review r29 of PR #47, second polish review] Why a positive figure on a window record's cash tag has no
+    USD value — its cash outflow filed in a currency with no FX rate (cash_native > 0 and no amount), cash that may
+    settle a remainder unknown in USD (unconverted_remainder_of), or the cash tag also filed with a positive fact in
+    a unit with no USD figure beside the one the run used (unit_conflict) — or None. The cash side of the whole
+    charge (iprd_whole_charge_unknown); never the own expense, so never the recurrence materiality."""
+    if not _iprd_finite(rec.get("amount")):
+        if rec.get("unconverted_remainder_of"):
+            return ("its cash may settle the remainder, unknown in USD, of the acquired-IPR&D charge in "
+                    + ", ".join(rec["unconverted_remainder_of"]) + " (no FX rate, even fetched)")
+        cn = rec.get("cash_native")
+        if _iprd_finite(cn) and cn > 0:
+            return (f"its cash outflow ({float(cn):,.0f} {rec.get('cash_unit')}) has no USD figure (no FX rate, even "
+                    "fetched)")
+    return _iprd_unit_conflict_unknown(rec, cash=True)
+
+
+def _iprd_unit_conflict_unknown(rec, cash):
+    """[Codex review r29 of PR #47, review note] Why a record's unit_conflict leaves a figure unknown in USD — the cash
+    tag (cash True) or an acquired-IPR&D expense tag (cash False) also filed for the period with a positive fact in a
+    unit that has no USD figure (no FX rate, even fetched) beside the unit the run used — or None. [Codex review r29
+    of PR #47, second polish review] Split by side: an expense tag's makes the own expense unknown
+    (iprd_own_expense_unknown), the cash tag's only the whole charge (_iprd_cash_unknown)."""
+    uc = rec.get("unit_conflict") if isinstance(rec, dict) else None
+    for tag, c in (sorted(uc.items()) if isinstance(uc, dict) else ()):
+        if (tag == IPRD_CASH_TAG) != cash or not isinstance(c, dict) or not isinstance(c.get("units"), dict):
+            continue
+        used = c.get("used")
+        for u, x in sorted(c["units"].items()):
+            if u == used or not isinstance(x, dict) or x.get("usd") is not None:
+                continue
+            if _iprd_finite(x.get("native")) and x["native"] > 0:
+                ux = c["units"].get(used) if isinstance(c["units"].get(used), dict) else {}
+                what = "cash tag" if tag == IPRD_CASH_TAG else "acquired-IPR&D expense tag"
+                beside = (f"the {used} {float(ux['native']):,.0f} the run used" if _iprd_finite(ux.get("native"))
+                          else f"the {used} fact the run used")
+                return (f"its {what} {tag} is also filed at {float(x['native']):,.0f} {u}, which has no USD figure (no "
+                        f"FX rate, even fetched) to compare with {beside} (unit_conflict)")
+    return None
+
+
+def _iprd_unit_conflict_usd(rec, cash):
+    """[Codex review r29 of PR #47, polish review] The positive USD figures a record's unit_conflict holds for the cash
+    tag (cash True) or for its acquired-IPR&D expense tags (cash False): every unit filed for the period that disagreed
+    after conversion, the unit the run used included, each other unit at the run's rate. [] without a conflict (units
+    that agree within IPRD_UNIT_TOLERANCE record none: one figure, translated at another rate — Codex review r30). A
+    unit with no USD figure is not listed: that side is then unknown in USD (_iprd_unit_conflict_unknown)."""
+    uc = rec.get("unit_conflict") if isinstance(rec, dict) else None
+    out = []
+    for tag, c in (sorted(uc.items()) if isinstance(uc, dict) else ()):
+        if (tag == IPRD_CASH_TAG) != cash or not isinstance(c, dict) or not isinstance(c.get("units"), dict):
+            continue
+        for _, x in sorted(c["units"].items()):
+            v = x.get("usd") if isinstance(x, dict) else None
+            if _iprd_finite(v) and v > 0:
+                out.append(float(v))
+    return out
+
+
+def _iprd_expense_tags_usd(rec):
+    """[Codex review r29 of PR #47, second polish review] The positive USD figures a record's expense_tags_conflict
+    holds — both detector tags filed positive at different figures (the current tag used): each tag's USD value (a
+    float, or a dict's usd). [] without a conflict. A tag with no USD figure is not listed: the own expense is then
+    unknown (iprd_own_expense_unknown)."""
+    etc = rec.get("expense_tags_conflict") if isinstance(rec, dict) else None
+    out = []
+    for _, x in (sorted(etc.items()) if isinstance(etc, dict) else ()):
+        v = x.get("usd") if isinstance(x, dict) else x
+        if _iprd_finite(v) and v > 0:
+            out.append(float(v))
+    return out
+
+
+def iprd_own_charge_usd(rec):
+    """[Codex review r29 of PR #47, polish reviews] (whole charge, own expense) in USD for a window record that carries
+    its own acquired-IPR&D expense (iprd_has_own_expense; None for any other record) — the final rule (the second
+    polish review), read by the whole-declaration test and its cap (iprd_apply_deferred, through
+    _iprd_claimable_expense: the whole charge) and by recurrence materiality (iprd_recurrence_expense: the own expense,
+    less only the part of a declaration beyond the whole charge less that expense):
+    1. the OWN EXPENSE is the largest positive figure on ANY of its acquired-IPR&D expense tags — the current detector
+       tag and the parallel one (expense_tags_conflict figures too) — in EVERY unit filed for the period (USD as
+       filed, other units at the run's rate: unit_conflict); None (unknown) when any positive figure on an expense
+       tag has no USD value (iprd_own_expense_unknown). Zero and negative figures never raise it;
+    2. the WHOLE CHARGE is the largest of that own expense, every positive cash-tag figure in every unit filed
+       (converted) and the deducted cash (its amount: round 28's "larger of its cash and its own expense"); None
+       (unknown) when the own expense is, or when any positive cash-tag figure has no USD value (_iprd_cash_unknown).
+    [Codex review r30 of PR #47, behaviour unchanged] "Every unit filed" reads every unit that disagrees with the
+    figure used beyond the engine's unit-agreement tolerance (IPRD_UNIT_TOLERANCE, 0.01: two units of one tag and
+    period disagree only when, after conversion, they differ by more than max($1, 1% of the larger)) — the units
+    unit_conflict records; a unit within it is the figure used, translated at another rate (the run's period-end rate
+    is not the filer's), and records nothing: USD 100M beside EUR converting to $100.7M is a $100M charge, so a $100M
+    declaration is whole and $100.7M more than the charge; EUR converting to $102M makes $102M the whole. With
+    three or more units filed the tolerance applies to their spread: once the largest and smallest converted
+    figures differ by more than it, every unit is recorded and the largest counts.
+    The deduction does not read it (round 15's amount rule stands). A year with no unit conflict and no parallel-tag
+    conflict reads its USD expense and the larger of that and its amount, exactly as before. Before: the round-29
+    polish read the parallel tag only when it carried a unit conflict (the current tag's USD 40M beside the parallel
+    tag's $108M read $40M, so a $40M declaration was whole), and made the recurrence figure unknown whenever the
+    whole charge was (a USD 100M expense beside EUR 40M cash with no FX rate read unknown, not $100M)."""
+    if not iprd_has_own_expense(rec):
+        return None
+    v = rec.get("expense")
+    if iprd_own_expense_unknown(rec) is not None or not (_iprd_finite(v) and v > 0):
+        return None, None
+    expense = max([float(v)] + _iprd_expense_tags_usd(rec) + _iprd_unit_conflict_usd(rec, cash=False))
+    if _iprd_cash_unknown(rec) is not None:
+        return None, expense
+    c, a = rec.get("cash"), rec.get("amount")
+    charge = max([expense] + ([float(c)] if (_iprd_finite(c) and c > 0) else [])
+                 + _iprd_unit_conflict_usd(rec, cash=True) + ([float(a)] if (_iprd_finite(a) and a > 0) else []))
+    return charge, expense
+
+
+def iprd_own_charge(rec):
+    """[Codex review r28 of PR #47] Whether a window record (FY or the TTM current-YTD leg) carries its OWN positive
+    acquired-IPR&D expense charge: its detector figure (USD, else native) > 0, paid in the year or not, whatever its
+    cash presentation (paid in investing, in shares, inside operating cash flow, inside intangible capex, awaiting the
+    cash-flow check, no FX rate: IPRD_OWN_CHARGE_EXCLUSIONS). Not a charge: a deferred_payment (cash settling an
+    earlier charge, with no expense of its own: none, $0 or a reversal), a period declared, whole, an installment of
+    an earlier deal (recurrence_excluded, Andrew's 2026-10-20 ruling), a negative, $0 or missing expense, and any
+    other exclusion (`negative`). [Codex review r29 of PR #47] iprd_has_own_expense less a recurrence_excluded
+    period."""
+    return iprd_has_own_expense(rec) and not rec.get("recurrence_excluded")
+
+
+def iprd_charge_year(rec):
+    """[Codex review r27 of PR #47] Whether an FY record counts as a year with a qualifying charge toward
+    ACQUIRED_IPRD_RECURRENT (charges in 2 or more of the last 3 FY, Andrew 2026-10-19): the period's OWN positive
+    acquired-IPR&D expense (its detector figure: USD, else native), whatever the cash timing — the list had read
+    deducted > 0, so a charge expensed with $0 cash and paid in a later year dropped out of the count (fy_with_charge
+    [] for two deals expensed in FY2023 / FY2024 and paid in FY2025) while $1 of in-year cash put it back.
+    [Codex review r28 of PR #47] ...and whatever its cash presentation (iprd_own_charge): round 27 still dropped every
+    excluded period, so a $100M acquisition paid in cash in FY2023 beside a separate $100M one paid in shares in
+    FY2024 read one charge year. Now a year paid in shares, inside operating cash flow, inside intangible capex,
+    awaiting its cash-flow check or with no FX rate counts too (the deduction rules are unchanged). Not counted: a
+    deferred_payment, a period declared, whole, an installment of an earlier deal (recurrence_excluded), and a
+    negative (a reversal), $0 or missing expense. The current-YTD leg is never an FY charge year."""
+    return bool(isinstance(rec, dict) and rec.get("window") == "fy" and iprd_own_charge(rec))
+
+
+def iprd_recurrence_expense(rec):
+    """[Codex review r28 of PR #47] A charge period's (iprd_own_charge) acquired-IPR&D expense as the recurrence
+    materiality reads it: its USD expense less the part judgment.json iprd_deferred_payment declares an installment
+    of an earlier deal (a partly declared period still counts, for its undeclared rest; a wholly declared one is out
+    of the count), never below 0 — the declared amount taken first from the period's amount (cash) beyond its own
+    expense, so only what the cash beyond the expense cannot hold comes off the expense (re-verification of round
+    28). None when the expense has no USD figure: filed only in a currency the run holds no
+    FX rate for (expense None, its native figure detecting the charge), or beside a parallel detector tag that cannot
+    be converted (expense_tag_unconverted: the period's charge is unknown in USD).
+    [Codex review r29 of PR #47, polish reviews] The final rule: the figure reads the expense side —
+    iprd_own_charge_usd's OWN EXPENSE (the largest positive figure on any of its acquired-IPR&D expense tags, the
+    parallel tag's included, in every unit filed for the period), less only the part of a declaration that exceeds
+    its WHOLE CHARGE less that expense (the whole charge adds the cash side: every positive cash-tag figure in every
+    unit and the deducted cash) — so EUR 100M (at 1.08) filed on an expense tag beside the USD 40M used reads $108M,
+    and EUR 100M on the cash tag reads $40M (charge beyond the expense, from which a declared part comes first). None
+    (the materiality unknown, read as material) ONLY when the own expense is unknown (iprd_own_expense_unknown: a
+    positive figure on an expense tag with no USD value); a known USD expense beside cash with no FX rate reads that
+    expense (no declaration applies to such a year: its whole charge is unknown, iprd_whole_charge_unknown). A period
+    with no unit conflict and no parallel-tag conflict reads exactly as before."""
+    oc = iprd_own_charge_usd(rec)
+    if oc is None or oc[1] is None:
+        return None
+    charge, v = oc
+    declared = sum(float(x["amount"]) for x in (rec.get("deferred_payment_of") or [])
+                   if isinstance(x, dict) and _iprd_finite(x.get("amount")))
+    # [Codex review r28 of PR #47, re-verification] the declared installment comes first from the period's cash
+    # beyond its own expense (cash that settles an earlier charge: a pre-window deal's deferred consideration) and
+    # only the rest off the expense — max(0, expense - declared) had wiped out a new $6M deal expensed beside Old
+    # Bio's $30M settlement ($6M expensed, $36M paid, the $30M declared), silencing RECURRENT once the installment was
+    # declared. Cash at or below the expense leaves no excess: the declared part comes off the expense, as before.
+    # [Codex review r29 of PR #47, polish reviews] the excess is the year's whole charge beyond its own expense (with
+    # no unit or parallel-tag conflict: the amount beyond the USD expense, as before); a whole charge unknown in USD
+    # (cash with no FX rate) holds no excess — no declaration applies to such a year, so the expense is read whole
+    excess = max(0.0, charge - v) if charge is not None else 0.0
+    return max(0.0, v - max(0.0, declared - excess))
+
+
+def iprd_recurrence_materiality(periods, denom, ratio, valued, mat_base):
+    """[Codex review r28 of PR #47] The recurrence gate's own figure — ACQUIRED_IPRD_RECURRENT needs charges in 2 or
+    more of the last 3 FY AND a material window (Andrew 2026-10-19), and since round 27 a charge year is its own
+    expense, so the gate measures those expenses, never the cash the window deducted (two $100M acquisitions with $1
+    paid in each year read $2, not material, though both years counted). periods: the run's records; every one that
+    carries its own charge (iprd_own_charge: each window period once, the TTM current-YTD leg too when the base is
+    TTM) contributes iprd_recurrence_expense; a cash settlement (deferred_payment) contributes nothing, so a
+    pre-window deal's installment never makes tiny in-window charges material. Per share on the run's denominator
+    and ADS ratio, against `mat_base` (the base per share; an iprd_amortized declaration's native base) and the
+    same IPRD_MATERIALITY threshold. Returns (expense_total (the USD-known part), materiality | None, material,
+    unknown [labels of the counted periods whose acquired-IPR&D expense has no USD figure]). [Codex review r29 of PR
+    #47, polish reviews] A period's figure is its own expense (iprd_own_charge_usd: the largest positive figure on any
+    of its expense tags in every unit filed, less a declared part beyond its whole charge less that expense), unknown
+    only when that expense is (iprd_own_expense_unknown) — never because its cash has no USD figure.
+    materiality is None when a counted period's acquired-IPR&D expense has no USD figure, or
+    the run has no valuation, share denominator or base to measure against: read as material when any charge is
+    counted (the `materiality is None` convention; an unconvertible expense also gates the run
+    ACQUIRED_IPRD_UNCONVERTED). ACQUIRED_IPRD_CHARGE keeps the deduction's own materiality."""
+    counted = [p for p in periods or [] if iprd_own_charge(p)]
+    vals = [iprd_recurrence_expense(p) for p in counted]
+    unknown = [_iprd_period_label(p) for p, v in zip(counted, vals) if v is None]
+    total = sum(v for v in vals if v is not None)
+    per_share = (total / denom * ratio) if (denom and total) else 0.0
+    mat = None if unknown else ((per_share / mat_base) if (valued and per_share and mat_base) else None)
+    material = bool(counted and (unknown or total > 0) and (mat is None or mat >= IPRD_MATERIALITY))
+    return total, mat, material, unknown
+
+
+def _iprd_reversal_settles(rec):
+    """[Codex review r14 of PR #47] A period whose detector fact is negative (a reversal: no current-period charge)
+    and whose cash is deducted as a deferred payment no longer reads excluded "negative": the note keeps why.
+    [Codex review r20 of PR #47] a negative fact the run cannot convert reads its native figure (and unit)."""
+    v = _iprd_detector_value(rec)
+    if rec.get("excluded") == "negative" and v is not None and v < 0:
+        rec["excluded"] = None
+        fig = f"{v:,.0f}" if rec.get("expense") is not None else f"{v:,.0f} {rec.get('expense_unit')}, no FX rate"
+        rec["expense_reversal_note"] = (f"the period's acquired-IPR&D expense is negative ({fig}, a "
+                                        "reversal): no current-period charge, so its cash is matched as a deferred "
+                                        "payment like cash beside a $0 expense")
+
+
+def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_intang=None, fx_rates=None, checks=None,
+                fx_fetch=None):
+    """The acquired-IPR&D records for the periods feeding the base: each of `fy_periods` (the engine's last 3 FY ends,
+    oldest first, annual facts under period_series' rules) and, when the base is TTM, the current year-to-date leg
+    `ytd` = (start, end) after the latest FY end (10-Q facts; the FY legs already hold every earlier quarter, so each
+    fiscal period's charge is counted once). fy_capex_intang / ytd_capex_intang: the capex intangible purchases
+    actually added per period (the overlap guard). checks: judgment.json iprd_cash_flow_check entries (matched by
+    period, window and the expense figure within $1). Returns None when no expense tag is filed for any of these
+    periods (the run is untouched), else {"periods", "ignored_cash_only", "notes", "cash_flow_checks_unused"}.
+    [fixer review round] Cash on the cash tag in a period with no (or a $0) expense counts as a deferred payment of
+    the window's unpaid remainder — the expense less the cash of its earlier cash-basis periods (BIIB) — never more;
+    with no remainder (MAA never expenses) it stays in ignored_cash_only.
+    [Codex review r3 of PR #47] Positive cash left in ignored_cash_only (beside no expense or a $0 one) at a filer
+    whose companyfacts shows acquired IPR&D expensed BEFORE the window carries pre_window_charges (those period ends):
+    it may settle that earlier charge, which the window's remainder never saw, so ACQUIRED_IPRD_UNMATCHED_PAYMENT
+    names it and judgment.json iprd_deferred_payment can make it deductible (iprd_apply_deferred). Such an entry
+    keeps the block (periods may be []) so the flag is raised; with no pre-window expense fact (MAA) nothing changes.
+    [Codex review r4 of PR #47] fx_fetch(ccy, date) -> rate | None (the engine passes fx_rate): a cash fact filed only
+    in a currency fx_rates holds no rate for at its date (the current-YTD 10-Q end never is) is converted at the
+    fetched rate, as the 5.5 intangible capex leg is. With none, a cash-only payment (no or a $0 expense) that could
+    settle the window's unpaid remainder or a pre-window charge is recorded excluded non_usd_no_rate with its
+    cash_native (ACQUIRED_IPRD_UNCONVERTED, make_score refuses it); one that could settle nothing is listed in
+    ignored_cash_only with its native amount. [Codex review r6 of PR #47] Beside a positive expense such a cash fact
+    is the period's preferred amount: the period is gated the same way (iprd_period_record), never the expense.
+    [Codex review r12 of PR #47] A cash-basis period's residual (expense - cash) is accrued into the unpaid remainder
+    only when it is not declared settled in shares: a matching iprd_cash_flow_check with presentation paid_in_shares
+    (read for cash-basis periods too; the period still deducts its cash) is recorded on the period (cash_flow_check,
+    residual_paid_in_shares) and accrues nothing. Without one the residual accrues as before, and a deferred payment
+    matched against it records deferred_payment_assumption naming the periods assumed payable in cash (it still
+    deducts). Only a positive full-leg detector fact reads a leg, so a $0 fact on one detector tag never hides a
+    positive partial-period fact on the other (partial_coverage).
+    [Codex review r14 of PR #47] A negative detector fact (a reversal) is no current-period charge, like a $0 one: the
+    period's cash settles the unpaid remainder (deferred_payment, expense_reversal_note, no longer excluded) or is
+    listed in ignored_cash_only — before, the payment was dropped with no trace.
+    [Codex review r20 of PR #47] The same for a negative detector fact the run cannot convert: its native sign makes
+    it a reversal (iprd_period_record), and the no-charge test reads the native figure (_iprd_detector_value)."""
+    exp_fy = [(t, annual_facts_by_unit(facts, t)) for t in IPRD_EXPENSE_TAGS]
+    cash_fy = annual_facts_by_unit(facts, IPRD_CASH_TAG)
+    periods, cash_only, notes = [], [], []
+    # [Codex review r11 of PR #47] legs read from tiling shorter facts, and legs only partly covered
+    aggregated, partial, pending = {}, [], []
+    picked = {}      # [Codex review r18 of PR #47] {(period, window): {tag: the unit _iprd_pick read}}
+    fy_starts = []   # computed once, only when a leg needs it
+
+    def _leg(tag, exact, p, window, start):
+        # [Codex review r16 of PR #47] an exact-context fact wins for ITS unit only: the units with none are tiled and
+        # merged beside it, so a USD 0 FY fact never hides EUR quarters (tiled, or recorded as partial coverage) —
+        # before, any exact fact in any unit returned at once and _iprd_pick never saw the other unit
+        units = (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units") or {}
+        missing = [u for u in units if u not in exact]
+        if not missing:
+            return exact
+        if start is None:
+            if not fy_starts:
+                fy_starts.append(iprd_fy_starts(facts, fy_periods))
+            start = fy_starts[0].get(p)
+            if start is None:
+                return exact
+        by_unit, ctx, part = iprd_tile(facts, tag, start, p, only_units=missing if exact else None)
+        if by_unit:
+            # [Codex review r18 of PR #47] every tiled unit's contexts: _mark records the one the period was read from
+            aggregated.setdefault((p, window), {})[tag] = {u: ctx[u] for u in sorted(ctx)}
+        if part and not any(_iprd_is_pos(vf[0]) for vf in list(exact.values()) + list(by_unit.values())):
+            # a positive exact or tiled fact reads the leg: another unit's partial facts are then no missing charge.
+            # [Codex review r17 of PR #47] beside a $0 tiling they are recorded too (iprd_tile keeps them)
+            pending.append({"period": p, "window": window, "start": start, "tag": tag, "units": part})
+        return dict(exact, **by_unit) if exact else by_unit
+
+    def _legs(p, window, start, exact_exp, exact_cash):
+        """Every tag's facts for one leg; the partly covered tags that matter are recorded: an expense tag when no
+        expense tag reads a positive full-leg value (an exact or tiled $0 fact does not), the cash tag when it could
+        be an amount — beside an expense on this leg (the preferred amount), or where a payment could settle a charge
+        (an earlier window expense, a pre-window one)."""
+        del pending[:]
+        exps = [(t, _leg(t, ex, p, window, start)) for t, ex in exact_exp]
+        cash = _leg(IPRD_CASH_TAG, exact_cash, p, window, start)
+        _pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+        # [Codex review r12 of PR #47] only a POSITIVE full-leg detector fact reads the leg: an exact $0 fact on one
+        # tag never hides a positive partial-period fact on the other (it is recorded, ACQUIRED_IPRD_PARTIAL_PERIOD)
+        read = any(_pos(vf[0]) for _, bu in exps for vf in bu.values())
+        keep = [x for x in pending if x["tag"] != IPRD_CASH_TAG and not read]
+        if any(x["tag"] == IPRD_CASH_TAG for x in pending) and (
+                keep or prior or any(_pos(vf[0]) for _, bu in exps for vf in bu.values())
+                or any(_pos(r.get("expense")) or _pos(r.get("expense_native")) for r in periods)):
+            keep += [x for x in pending if x["tag"] == IPRD_CASH_TAG]
+        partial.extend(keep)
+        return exps, cash
+
+    def _mark(p, window, rec, n_cash_only):
+        """[Codex review r18 of PR #47] aggregated_contexts names, per tag, the tiled unit _iprd_pick read the period
+        from (picked) — it had named the USD tiling whenever one existed, so four USD 0 quarters beside four EUR 25M
+        ones (EUR used) pointed at the zero facts; every other tiled unit is kept under
+        aggregated_contexts_other_units {tag: {unit: contexts}}. A tag read from an exact-context fact in a unit that
+        was not tiled lists its tiled units there only; with no tag read from a tiling the figure is not aggregated
+        (no context_basis)."""
+        a = aggregated.get((p, window))
+        if not a:
+            return
+        sel, used_ctx, other = picked.get((p, window)) or {}, {}, {}
+        for t, units in sorted(a.items()):
+            u = sel.get(t, "USD" if "USD" in units else sorted(units)[0])
+            if u in units:
+                used_ctx[t] = {"unit": u, "contexts": [list(c) for c in units[u]]}
+            rest = {k: [list(c) for c in v] for k, v in units.items() if k != u}
+            if rest:
+                other[t] = rest
+        for x in ([rec] if rec is not None else []) + cash_only[n_cash_only:]:
+            if used_ctx:
+                x["context_basis"] = IPRD_AGGREGATED
+                x["aggregated_contexts"] = used_ctx
+            if other:
+                x["aggregated_contexts_other_units"] = other
+    prior = iprd_pre_window_charges(facts, fy_periods[0] if fy_periods else None)
+
+    def _co(p, window, amount, cash, note):
+        x = {"period": p, "window": window, "cash": amount, "cash_unit": cash[1], "note": note}
+        if prior and isinstance(amount, (int, float)) and amount > 0:
+            x["pre_window_charges"] = list(prior)
+            x["fx_rate"], x["filed"] = cash[2], cash[3]
+        return x
+    by_key = {}
+    for e in checks or []:
+        by_key.setdefault((e.get("period"), e.get("window")), e)
+    used = set()
+    unpaid = [0.0]   # the window's accrued, not yet paid remainder of cash-basis charges
+    # [Codex review r12 of PR #47] the window periods whose residual (expense - cash) was accrued with nothing
+    # declaring how it was settled: a later automatic match against the remainder names them (its assumption)
+    assumed = []
+    # [Codex review r8 of PR #47] window periods whose expense the run could not convert (no rate, even fetched) but
+    # whose USD cash was deducted: their unpaid remainder is unknown, so later cash on them is gated, never ignored
+    unknown_rest = []
+
+    def _by(d, p):
+        return {u: vf for (pp, u), vf in d.items() if pp == p}
+
+    def _no_charge(rec):
+        """No current-period charge: no record, or a $0 or negative (a reversal) detector fact. [Codex review r14 of
+        PR #47] a negative fact had kept the period's cash from settling the unpaid remainder and from
+        ignored_cash_only alike (only an exact $0 counted), so the payment was dropped with no trace. [Codex review r20
+        of PR #47] the detector figure is the native one when the run cannot convert it (_iprd_detector_value)."""
+        if rec is None:
+            return True
+        v = _iprd_detector_value(rec)
+        return v is not None and v <= 0 and rec["excluded"] in (None, "negative")
+
+    def _resolve(p, window, exp_maps, cash_map, intang):
+        """The period's record (None when it has none); the tags' unit conflicts ride on whatever record the period
+        ends with and on the cash-only entries it lists. [Codex review r16 of PR #47] they were attached only to the
+        record iprd_period_record built, so a cash-only period's deferred-payment (or unconverted) record, built
+        later, dropped the cash tag's conflict with no trace."""
+        n0, units_conflict = len(cash_only), {}
+        rec = _resolve_period(p, window, exp_maps, cash_map, intang, units_conflict)
+        if units_conflict:
+            note = (
+                "an acquired-IPR&D tag is filed for this period in more than one unit with values that disagree after "
+                "conversion (" + "; ".join(
+                    f"{t}: " + ", ".join(f"{u} {x['native']:,.0f}" + (f" = ${x['usd']:,.0f}" if u != "USD" and x["usd"] is not None
+                                                                      else " (no FX rate)" if x["usd"] is None else "")
+                                         for u, x in v["units"].items()) + f" — {v['used']} used"
+                    for t, v in sorted(units_conflict.items()))
+                + "): a positive fact outranks a zero one and the USD fact is used between positive ones — reconcile "
+                "the units in analysis.md against the filing")
+            for x in ([rec] if rec is not None else []) + cash_only[n0:]:
+                x["unit_conflict"] = units_conflict
+                x["unit_conflict_note"] = note
+        return rec
+
+    def _resolve_period(p, window, exp_maps, cash_map, intang, units_conflict):
+        hits, natives = [], {}
+        for tag, by_unit in exp_maps:
+            # [Codex review r8 of PR #47] the FX pass holds rates for its own series' dates only: the expense period's
+            # rate is fetched, as for the cash leg (round 4) — an unconverted expense accrues no remainder. [Codex
+            # review r15 of PR #47] a positive fact in any unit outranks a zero one; a unit disagreement is recorded
+            uc = {}
+            hit = _iprd_pick(by_unit, fx_rates, p, fx_fetch=fx_fetch, conflict=uc)
+            if uc:
+                units_conflict[tag] = uc
+            if hit is not None:
+                picked.setdefault((p, window), {})[tag] = hit[1]
+                # [Codex review r1 of PR #47] the native figure rides along for an expense with no FX rate
+                hits.append((tag, hit[0], hit[1], hit[2], hit[3], by_unit[hit[1]][0] if hit[0] is None else None))
+                natives[tag] = by_unit[hit[1]][0]
+        _ev = lambda h: h[1] if h[1] is not None else h[5]
+        _pos = lambda v: isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v) and v > 0
+        # [Codex review r8 of PR #47] both detector tags filed: the positive one (the current tag first), so a $0
+        # current-tag fact never hides a positive legacy one
+        expense = next((h for h in hits if _pos(_ev(h))), hits[0] if hits else None)
+        conflict = None
+        pos_hits = [h for h in hits if _pos(_ev(h))]
+        # [Codex review r24 of PR #47] _ev is the USD figure, or the native one when the tag has no FX rate: two
+        # positive tags compare in USD when both convert, by native figure when neither does and both are in one
+        # unit — and otherwise not at all. A positive parallel fact that cannot be converted beside a converted one
+        # (or beside another currency's) was equated with it (USD 100M beside EUR 100M recorded no conflict and a USD
+        # 100M check applied): it is now a conflict recorded with each tag's native figure, unit and USD value, and
+        # the period is gated non_usd_no_rate below (ACQUIRED_IPRD_UNCONVERTED) with no check applied
+        tags_unconv = None
+        if len(pos_hits) > 1:
+            conv = [h for h in pos_hits if h[1] is not None]
+            if len(conv) == len(pos_hits):
+                if max(h[1] for h in pos_hits) - min(h[1] for h in pos_hits) > 1.0:
+                    conflict = {h[0]: float(h[1]) for h in pos_hits}
+            else:
+                by_tag = {h[0]: {"native": float(natives[h[0]]), "unit": h[2],
+                                 "usd": float(h[1]) if h[1] is not None else None} for h in pos_hits}
+                if conv or len({h[2] for h in pos_hits}) > 1:
+                    conflict = by_tag
+                    u = next(h for h in pos_hits if h[1] is None)
+                    tags_unconv = {"tag": u[0], "native": float(natives[u[0]]), "unit": u[2]}
+                elif max(h[5] for h in pos_hits) - min(h[5] for h in pos_hits) > 1.0:
+                    conflict = by_tag
+        # [Codex review r4 of PR #47] the FX pass holds rates for its own series' dates only: this one is fetched
+        uc = {}
+        c = _iprd_pick(cash_map, fx_rates, p, fx_fetch=fx_fetch, conflict=uc)
+        if uc:
+            units_conflict[IPRD_CASH_TAG] = uc
+        if c is not None:
+            picked.setdefault((p, window), {})[IPRD_CASH_TAG] = c[1]
+        # [Codex review r6 of PR #47] the native figure rides along for a cash fact with no FX rate
+        cash = (c[0], c[1], c[2], c[3], cash_map[c[1]][0] if c[0] is None else None) if c is not None else None
+        chk, mismatch = by_key.get((p, window)), None
+        if tags_unconv is not None:
+            # [Codex review r24 of PR #47] no check applies to a period whose charge is unknown in USD: listed in
+            # cash_flow_checks_unused and recorded on the period (cash_flow_check_not_applied)
+            unapplied, chk = chk, None
+        elif chk is not None:
+            if _iprd_check_matches(chk, expense, cash):
+                used.add((p, window))
+            else:
+                chk, mismatch = None, chk
+        rec = iprd_period_record(p, window, expense, cash, intang, chk)
+        if rec is not None and tags_unconv is not None:
+            rec.update(excluded=IPRD_UNCONVERTED, deducted=0.0, amount=None, amount_basis=None, tag_used=None,
+                       expense_tags_conflict=conflict, expense_tag_unconverted=tags_unconv,
+                       expense_tags_note=("both acquired-IPR&D expense tags are filed positive for this period and "
+                                          f"{tags_unconv['tag']} ({tags_unconv['native']:,.0f} {tags_unconv['unit']}) "
+                                          "has no FX rate (even fetched): the two cannot be compared, so the period's "
+                                          "charge is unknown in USD — not deducted (ACQUIRED_IPRD_UNCONVERTED); "
+                                          "reconcile the two in analysis.md against the filing"))
+            for k in ("awaiting", "cash_flow_check"):
+                rec.pop(k, None)
+            if unapplied is not None:
+                rec["cash_flow_check_not_applied"] = dict(
+                    {k: unapplied.get(k) for k in ("presentation", "amount", "source")},
+                    note=(f"judgment.json {IPRD_CF_CHECK_KEY} names this period, but its charge is unknown in USD "
+                          "(an expense tag that cannot be converted beside the other): not applied"))
+            unknown_rest.append(p)    # a later payment may settle it: gated like one after any unknown remainder
+            return rec
+        if rec is not None and conflict is not None:
+            rec["expense_tags_conflict"] = conflict
+            rec["expense_tags_note"] = ("both acquired-IPR&D expense tags are filed for this period with different "
+                                        "positive values: the current tag " + expense[0] + " is used — reconcile "
+                                        "the two in analysis.md against the filing"
+                                        + (" (neither has an FX rate: their native figures are compared)"
+                                           if isinstance(next(iter(conflict.values())), dict) else ""))
+        if (rec is not None and chk is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
+                and chk.get("presentation") == "paid_in_shares"):
+            # [Codex review r12 of PR #47] a cash-basis period deducts its cash outflow whatever a check says; a
+            # paid_in_shares check says how the rest of the expense was settled — in shares, so nothing stays payable
+            rec["cash_flow_check"] = _iprd_check_record(chk)
+        elif (rec is not None and chk is not None and rec["amount_basis"] == "cash_outflow"
+              and chk.get("presentation") in IPRD_CF_CASH_INAPPLICABLE):
+            # [Codex review r15 of PR #47] the check says the payment sat inside operating cash flow or inside the
+            # capex intangible leg — OE already carried it — while the cash tag says it was paid in investing and the
+            # period deducts it: the two cannot both hold, so the check is recorded (make_score refuses the run),
+            # never consumed with no trace
+            rec["cash_flow_check_inapplicable"] = dict(
+                {k: chk.get(k) for k in ("presentation", "amount", "source")},
+                note=(f"judgment.json {IPRD_CF_CHECK_KEY} declares presentation {chk.get('presentation')} for a "
+                      f"cash-basis period: the us-gaap investing cash tag ({IPRD_CASH_TAG}) is filed and deducted, "
+                      "which contradicts it — remove the entry, or reconcile it with the filing's cash-flow statement"))
+        if rec is not None and mismatch is not None:
+            rec["cash_flow_check_mismatch"] = {"declared_amount": mismatch.get("amount"),
+                                               "note": "judgment.json iprd_cash_flow_check names this period with "
+                                                       "another amount than the filed expense: not applied"}
+            if mismatch.get("unit") is not None:
+                rec["cash_flow_check_mismatch"]["declared_unit"] = mismatch.get("unit")
+            if expense is not None and expense[1] is None and _iprd_finite(expense[5]):
+                # [Codex review r21 of PR #47] the USD figure is unknown: say what a matching check declares
+                rec["cash_flow_check_mismatch"]["note"] += (
+                    f" — the expense is filed as {float(expense[5]):,.0f} {expense[2]} with no FX rate, so a check "
+                    f"matches it with that amount and unit \"{expense[2]}\""
+                    + ("" if (cash is not None and _iprd_finite(cash[0]) and cash[0] > 0) else
+                       " only beside a usable cash outflow (none here: the period is gated non_usd_no_rate)"))
+        cv = cash[0] if cash is not None else None
+        cnative = cash_map[cash[1]][0] if (cash is not None and cv is None) else None
+        if (isinstance(cnative, (int, float)) and not isinstance(cnative, bool) and math.isfinite(cnative)
+                and cnative > 0 and _no_charge(rec)):
+            # [Codex review r4 of PR #47] a cash-only payment with no FX rate, even fetched: never dropped silently
+            # [Codex review r24 of PR #47] ...nor beside a window charge whose USD remainder is unknown (expensed with
+            # no FX rate beside a usable USD cash fact: unknown_rest accrues nothing into unpaid), which the converted
+            # cash branch below already gated — every unconvertible cash gate reads unknown_rest as well as unpaid
+            _ur = [q for q in unknown_rest if q != p]
+            if unpaid[0] > 0 or _ur or prior:
+                # it may settle the window's unpaid remainder, an unknown-in-USD remainder or a pre-window charge:
+                # gated (ACQUIRED_IPRD_UNCONVERTED)
+                if rec is None:
+                    rec = {"period": p, "window": window, "expense_tag": None, "expense": None, "expense_unit": None,
+                           "cash": None, "cash_unit": cash[1], "amount": None, "amount_basis": None, "tag_used": None,
+                           "fx_rate": None, "filed": cash[3], "deducted": 0.0}
+                what = ((["the window's unpaid remainder"] if unpaid[0] > 0 else [])
+                        + ([f"the remainder, unknown in USD, of the acquired-IPR&D charge in {', '.join(_ur)} filed in a "
+                            "currency with no FX rate (even fetched)"] if _ur else [])
+                        + (["a charge expensed before the window"] if prior and not (unpaid[0] > 0 or _ur) else []))
+                rec.update(excluded=IPRD_UNCONVERTED, cash_native=float(cnative), cash_unit=cash[1],
+                           cash_fx_note=(f"cash tag {float(cnative):,.0f} {cash[1]} with no acquired-IPR&D expense in "
+                                         f"this period and no FX rate for {p}: it may settle " + " or ".join(what)
+                                         + " — not converted, so not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
+                if _ur:
+                    rec["unconverted_remainder_of"] = list(_ur)
+                return rec
+            cash_only.append({"period": p, "window": window, "cash": None, "cash_unit": cash[1],
+                              "cash_native": float(cnative),
+                              "note": "cash tag only, no acquired-IPR&D expense tag, no FX rate: never a qualifying "
+                                      "charge and nothing in the window it could settle"})
+            return rec
+        if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
+                and rec["expense"] is None and isinstance(rec.get("expense_native"), (int, float))
+                and rec["expense_native"] > 0):
+            if (rec.get("cash_flow_check") or {}).get("presentation") == "paid_in_shares":
+                # [Codex review r21 of PR #47] the residual (native expense less the USD cash) is unknown in USD but
+                # declared settled in shares: no unpaid remainder, so a later cash-only payment is not gated on it
+                rec["residual_paid_in_shares_unknown_usd"] = True
+                rec["residual_note"] = (f"expense {rec['expense_native']:,.0f} {rec.get('expense_unit')} (no FX "
+                                        f"rate) less cash {rec['amount']:,.0f}: the residual, unknown in USD, is "
+                                        f"declared paid in shares ({IPRD_CF_CHECK_KEY} paid_in_shares, unit "
+                                        f"{rec.get('expense_unit')}) — not an unpaid remainder")
+            else:
+                unknown_rest.append(p)
+        if (rec is not None and rec["amount_basis"] == "cash_outflow" and rec["excluded"] is None
+                and isinstance(rec["expense"], (int, float)) and rec["expense"] > 0):
+            gap = rec["expense"] - rec["amount"]
+            if gap > 0 and (rec.get("cash_flow_check") or {}).get("presentation") == "paid_in_shares":
+                # [Codex review r12 of PR #47] the residual was paid in shares (the dilution is in the share count):
+                # it is no unpaid cash balance, so no later cash-only payment is deducted against it
+                rec["residual_paid_in_shares"] = float(gap)
+                rec["residual_note"] = (f"expense {rec['expense']:,.0f} less cash {rec['amount']:,.0f}: the "
+                                        f"{gap:,.0f} residual is declared paid in shares ({IPRD_CF_CHECK_KEY} "
+                                        "paid_in_shares) — not accrued into the window's unpaid remainder")
+            else:
+                unpaid[0] = max(0.0, unpaid[0] + gap)
+                if gap > 0:
+                    assumed.append(_iprd_period_label(rec))
+        elif (cv is not None and cv > 0 and unknown_rest and p not in unknown_rest
+              and _no_charge(rec)):
+            # [Codex review r8 of PR #47] cash with no expense in its period, after a charge whose USD remainder is
+            # unknown: it may settle that charge, so it is gated (ACQUIRED_IPRD_UNCONVERTED), never left in
+            # ignored_cash_only or taken as a deferred payment of the known remainder alone
+            if rec is None:
+                rec = {"period": p, "window": window, "expense_tag": None, "expense": None, "expense_unit": None,
+                       "amount": None, "amount_basis": None, "tag_used": None, "fx_rate": None, "filed": cash[3]}
+            rec.update(cash=float(cv), cash_unit=cash[1], excluded=IPRD_UNCONVERTED, deducted=0.0,
+                       cash_native=float(cv), unconverted_remainder_of=list(unknown_rest),
+                       cash_fx_note=(f"cash tag {float(cv):,.0f} {cash[1]} with no acquired-IPR&D expense in this "
+                                     "period, after an acquired-IPR&D charge in "
+                                     + ", ".join(unknown_rest) + " filed in a currency with no FX rate (even "
+                                     "fetched): that charge's unpaid remainder is unknown in USD, so this payment "
+                                     "may settle it — not deducted (ACQUIRED_IPRD_UNCONVERTED)"))
+            return rec
+        elif (cv is not None and cv > 0 and unpaid[0] > 0 and _no_charge(rec)):
+            take = min(float(cv), unpaid[0])
+            unpaid[0] -= take
+            if rec is None:
+                rec = {"period": p, "window": window, "expense_tag": None, "expense": None, "expense_unit": None,
+                       "cash": cv, "cash_unit": cash[1], "excluded": None}
+            _iprd_reversal_settles(rec)
+            rec.update(amount=take, amount_basis="cash_outflow", tag_used=IPRD_CASH_TAG, fx_rate=cash[2],
+                       filed=cash[3], deducted=take,
+                       deferred_payment=(f"cash tag {cv:,.0f} with no acquired-IPR&D expense in this period: "
+                                         f"{take:,.0f} of it settles the window's unpaid remainder of earlier "
+                                         "cash-basis charges (expensed, not yet paid) — counted once, not a new "
+                                         "charge and not counted toward recurrence"))
+            # [Codex review r12 of PR #47] the match rests on an assumption: name it (the deduction stands)
+            rec["deferred_payment_assumption"] = (
+                "the unpaid remainder this payment settles (expense less cash of " + ", ".join(assumed) + ") is "
+                f"assumed payable in cash: no judgment.json {IPRD_CF_CHECK_KEY} declares that residual "
+                "paid_in_shares. If the filing shows it was paid in shares (the dilution is already in the share "
+                "count), declare the check for that period (amount: the filed expense) and rerun — this payment is "
+                "then not deducted against it")
+            if cv > take:
+                cash_only.append(_co(p, window, cv - take, cash, "cash tag beyond the window's unpaid remainder, no "
+                                     "acquired-IPR&D expense tag: never a qualifying charge"))
+            return rec
+        if rec is None and cash is not None and cash[0]:
+            cash_only.append(_co(p, window, cash[0], cash, "cash tag only, no acquired-IPR&D expense tag: never a "
+                                 "qualifying charge"))
+        elif (rec is not None and isinstance(cv, (int, float)) and cv > 0 and _no_charge(rec)
+              and not rec["deducted"]):
+            # [Codex review r3 of PR #47] cash beside a $0 expense was dropped without a trace: list it like cash-only
+            # ([Codex review r14 of PR #47] beside a negative one too)
+            cash_only.append(_co(p, window, cv, cash, "cash tag beside a "
+                                 + ("negative (reversal)" if _iprd_detector_value(rec) < 0 else "$0")
+                                 + " acquired-IPR&D expense, beyond the window's unpaid remainder: never a qualifying "
+                                 "charge"))
+        return rec
+
+    for p in fy_periods:
+        n0 = len(cash_only)
+        exps, cash = _legs(p, "fy", None, [(t, _by(m, p)) for t, m in exp_fy], _by(cash_fy, p))
+        rec = _resolve(p, "fy", exps, cash, (fy_capex_intang or {}).get(p))
+        _mark(p, "fy", rec, n0)
+        if rec is not None:
+            periods.append(rec)
+    if ytd:
+        s, e = ytd
+        n0 = len(cash_only)
+        exp_ytd, cash_ytd = _legs(e, "ttm_current_ytd", s, [(t, _iprd_ytd_facts(facts, t, s, e)) for t in IPRD_EXPENSE_TAGS],
+                                  _iprd_ytd_facts(facts, IPRD_CASH_TAG, s, e))
+        rec = _resolve(e, "ttm_current_ytd", exp_ytd, cash_ytd, ytd_capex_intang)
+        _mark(e, "ttm_current_ytd", rec, n0)
+        if rec is not None:
+            rec["start"] = s
+            periods.append(rec)
+        elif periods:
+            if any(x["window"] == "ttm_current_ytd" and x["tag"] in IPRD_EXPENSE_TAGS for x in partial):
+                notes.append(f"current YTD {s}..{e}: acquired-IPR&D expense facts cover only part of it "
+                             "(partial_coverage) — nothing counted for it")
+            else:
+                notes.append(f"current YTD {s}..{e}: no 10-Q acquired-IPR&D expense fact — counted as 0")
+    if not periods and not any(c.get("pre_window_charges") for c in cash_only) and not partial:
+        return None
+    out = {"periods": periods, "ignored_cash_only": cash_only, "notes": notes,
+           "cash_flow_checks_unused": [e for k, e in by_key.items() if k not in used]}
+    if partial:
+        out["partial_coverage"] = partial
+    return out
+
+
+def iprd_amortized_value(native_base, figures, shares, ads_ratio=None):
+    """The iprd_amortized base_override value: the native base less the mean annual charge per share (per traded
+    unit: x the ADS ratio, like every per-share figure of the run)."""
+    figs = [float(x) for x in figures]
+    if not figs or not shares or float(shares) <= 0:
+        raise ValueError("an iprd_amortized base needs the annual charges and a positive share count")
+    r = _ratio_value(ads_ratio)
+    return float(native_base) - sum(figs) / len(figs) / float(shares) * (r if (r is not None and r > 0) else 1.0)
+
+
+def _iprd_period_label(p):
+    if p["window"] == "fy":
+        return f"FY{p['period'][:4]}"
+    return f"YTD {p.get('start', '?')}..{p['period']}"
+
+
+def iprd_flags(iprd):
+    """ACQUIRED_IPRD_CHARGE (a qualifying charge >= 5% of the base OE total, or any charge beside a base with no
+    value to adjust) and ACQUIRED_IPRD_RECURRENT (charges in 2 or more of the last 3 FY, material). The deduction
+    itself has no cliff: a below-threshold charge is still deducted and reported, it only raises no flag. The
+    worker resolves each flag in analysis.md: the amount, the deal, cash vs stock consideration, the recurrence
+    assessment. [Codex review r28 of PR #47] CHARGE reads the deducted total; RECURRENT reads the block's
+    `recurrent` (the acquisitions' own expense: iprd_recurrence_materiality), so it is raised even when nothing was
+    deducted, and names that expense figure when the block records it. [Codex review r28 of PR #47, re-verification]
+    It also names what an iprd_amortized base carries — the FY charges the window deducted (the cash), not that
+    expense — and, when nothing was deducted in the last 3 FY, asks for the recurrence assessment instead of a
+    declaration the engine refuses (nothing to amortize)."""
+    if not iprd:
+        return []
+    out = []
+    aw = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_AWAITING]
+    if aw:
+        # [fixer review round] an expense-basis charge nothing confirms is not deducted: the worker reads the 10-K's
+        # cash-flow statement and declares what it shows (WORKER_SPEC step 3)
+        ut = iprd.get("unconfirmed_total")
+        out.append("ACQUIRED_IPRD_UNCONFIRMED: acquired in-process R&D expensed with no us-gaap investing cash tag in "
+                   + ", ".join(f"{_iprd_period_label(p)} ${p['awaiting']:,.0f} ({p['expense_tag']})" for p in aw)
+                   + (f"; ${ut:,.0f} in all" if isinstance(ut, (int, float)) else "")
+                   + (f" ({iprd['unconfirmed_materiality'] * 100:.1f}% of the base OE total)"
+                      if isinstance(iprd.get("unconfirmed_materiality"), (int, float)) else "")
+                   + ". companyfacts cannot tell whether the 10-K's cash-flow statement adds the charge back in "
+                   "operating activities and pays it in investing (OE never saw it — HALO) or leaves it inside "
+                   "operating cash flow (OE already carries it — NBIX), so NOTHING is deducted for these periods: "
+                   f"declare judgment.json {IPRD_CF_CHECK_KEY} per period (period, window, amount, presentation "
+                   f"{sorted(IPRD_CF_PRESENTATIONS)}, source citing the cash-flow line) and rerun the engine")
+    # [Codex review r24 of PR #47] a period gated because one positive detector tag cannot be converted beside the
+    # other: its own message (the other lists exclude it)
+    uct = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED
+           and _iprd_is_pos(_iprd_tag_unconverted_native(p))]
+    uc = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED and p not in uct
+          and isinstance(p.get("expense_native"), (int, float)) and p["expense_native"] > 0]
+    ucc = [p for p in iprd.get("periods") or [] if p.get("excluded") == IPRD_UNCONVERTED and p not in uct
+           and isinstance(p.get("cash_native"), (int, float)) and p["cash_native"] > 0]
+    if uct:
+        out.append("ACQUIRED_IPRD_UNCONVERTED: both acquired-IPR&D expense tags are filed positive for "
+                   + "; ".join(f"{_iprd_period_label(p)} ("
+                               + ", ".join(f"{t} {v['native']:,.0f} {v['unit']}"
+                                           + (f" = ${v['usd']:,.0f}" if v.get("usd") is not None and v["unit"] != "USD"
+                                              else " (no FX rate)" if v.get("usd") is None else "")
+                                           for t, v in sorted((p.get("expense_tags_conflict") or {}).items())
+                                           if isinstance(v, dict)) + ")" for p in uct)
+                   + " and one of them has no FX rate (none fetched either): the two cannot be compared, so the "
+                   "period's charge is unknown in USD. NOTHING is deducted for it (no iprd_cash_flow_check is applied "
+                   "there), so the run's IVs, IRRs and tier may be UNADJUSTED: make_score refuses the score — "
+                   "NEEDS_MAIN_AGENT: currency (block the folder; it is scored once the run can convert the tag)")
+    ucx = [p for p in ucc if isinstance(p.get("expense"), (int, float)) and p["expense"] > 0]
+    ucr = [p for p in ucc if p not in ucx and p.get("unconverted_remainder_of")]
+    ucc = [p for p in ucc if p not in ucx and p not in ucr]
+    if ucr:
+        # [Codex review r8 of PR #47] cash after a charge whose expense the run could not convert: its remainder is
+        # unknown in USD, so the payment may settle it — gated, never left in ignored_cash_only
+        out.append("ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag (" + IPRD_CASH_TAG + "), with "
+                   "no acquired-IPR&D expense in its period, after a charge expensed in a currency the run holds no FX "
+                   "rate for (none fetched either), so that charge's unpaid remainder is unknown in USD — "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['cash_native']:,.0f} {p.get('cash_unit')} (after "
+                               + ", ".join(f"FY{q[:4]}" for q in p["unconverted_remainder_of"]) + ")" for p in ucr)
+                   + ". NOTHING is deducted for it, so the run's IVs, IRRs and tier may be UNADJUSTED: make_score "
+                   "refuses the score — NEEDS_MAIN_AGENT: currency (block the folder; it is scored once the run can "
+                   "convert the charge)")
+    if ucx:
+        # [Codex review r6 of PR #47] the period's preferred amount (its cash outflow) cannot be converted: gated, the
+        # expense never stands in for it
+        out.append("ACQUIRED_IPRD_UNCONVERTED: the acquired-IPR&D cash outflow (" + IPRD_CASH_TAG + "), the preferred "
+                   "amount, filed in a currency the run holds no FX rate for (none fetched either), beside the expense, in "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['cash_native']:,.0f} {p.get('cash_unit')} (expense "
+                               f"${p['expense']:,.0f})" for p in ucx)
+                   + ". NOTHING is deducted for these periods (the expense is not the amount paid), so the run's IVs, "
+                   "IRRs and tier may be UNADJUSTED: make_score refuses the score — NEEDS_MAIN_AGENT: currency (block "
+                   "the folder; it is scored once the run can convert the payment)")
+    if ucc:
+        # [Codex review r4 of PR #47] a cash-only payment the run cannot convert may settle a charge: gated, not dropped
+        out.append("ACQUIRED_IPRD_UNCONVERTED: a payment on the acquired-IPR&D cash tag "
+                   f"({IPRD_CASH_TAG}), with no acquired-IPR&D expense in its period, filed in a currency the run holds "
+                   "no FX rate for (none fetched either), in "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['cash_native']:,.0f} {p.get('cash_unit')}" for p in ucc)
+                   + ". It may settle the window's unpaid remainder or a charge expensed before the window, but "
+                   "NOTHING is deducted for it, so the run's IVs, IRRs and tier may be UNADJUSTED: make_score refuses "
+                   "the score — NEEDS_MAIN_AGENT: currency (block the folder; it is scored once the run can convert it)")
+    if uc:
+        # [Codex review r3 of PR #47] a detected charge the run cannot convert is gated, never deducted as $0 silently
+        out.append("ACQUIRED_IPRD_UNCONVERTED: acquired in-process R&D expensed in a currency the FX pass holds no rate "
+                   "for, with no usable us-gaap investing cash fact, in "
+                   + ", ".join(f"{_iprd_period_label(p)} {p['expense_native']:,.0f} {p.get('expense_unit')} "
+                               f"({p.get('expense_tag')})" for p in uc)
+                   + ". NOTHING is deducted for these periods, so the run's IVs, IRRs and tier are the UNADJUSTED "
+                   "ones: make_score refuses the score — NEEDS_MAIN_AGENT: currency (block the folder; the charge is "
+                   "deducted only once the run can convert it)")
+    pc = [x for x in iprd.get("partial_coverage") or [] if isinstance(x, dict)]
+    if pc:
+        # [Codex review r11 of PR #47] a leg only partly covered by shorter facts is shown, never read as a silent $0
+        out.append("ACQUIRED_IPRD_PARTIAL_PERIOD: an acquired-IPR&D tag is filed for only PART of a window period, with "
+                   "no fact for the whole period and no three-month / year-to-date facts tiling it — "
+                   + "; ".join((f"FY{x['period'][:4]}" if x.get("window") == "fy" else "current YTD")
+                               + f" ({x['start']}..{x['period']}) {x['tag']}: "
+                               + ", ".join(f"{c['start']}..{c['end']} {c['value']:,.0f} {u['unit']}"
+                                           for u in x.get("units") or [] for c in u.get("contexts") or [])
+                               for x in pc)
+                   + ". NOTHING is counted for that tag in that period, so a charge in the missing months (or the whole "
+                   "period's figure) may be missing from the deduction: read the filing for the period's full figure and "
+                   "state it in analysis.md with its effect on the IVs and IRR; a material one OE never saw is "
+                   "NEEDS_MAIN_AGENT: iprd_partial_period")
+    um = [c for c in iprd.get("ignored_cash_only") or [] if c.get("pre_window_charges")]
+    if um:
+        # [Codex review r3 of PR #47] a payment that may settle a charge expensed before the window is shown, not dropped
+        out.append("ACQUIRED_IPRD_UNMATCHED_PAYMENT: a payment on the acquired-IPR&D cash tag "
+                   f"({IPRD_CASH_TAG}) with no acquired-IPR&D expense in its period, beyond the window's unpaid "
+                   "remainder — "
+                   + ", ".join((f"FY{c['period'][:4]}" if c.get("window") == "fy" else f"YTD to {c['period']}")
+                               + f" ${c['cash']:,.0f}" for c in um)
+                   + " — at a filer whose companyfacts shows acquired IPR&D expensed before the window ("
+                   + ", ".join(sorted({d for c in um for d in c["pre_window_charges"]}))
+                   + "): it may be the deferred payment of that earlier charge, which owner's earnings never saw. "
+                   "NOTHING is deducted for it: if the filing shows it settles that charge, declare judgment.json "
+                   f"{IPRD_DEFERRED_KEY} for the FY period (the deal, first_charged_period, the original acquisition "
+                   "filing, contingent_total) and rerun — the engine then deducts it once, outside the recurrence count; "
+                   "otherwise analysis.md says what the payment is")
+    t = iprd.get("treatment")
+    if iprd.get("total"):
+        out.extend(_iprd_charge_flag(iprd, t))
+    if iprd.get("recurrent"):
+        # [Codex review r28 of PR #47] the recurrence gate reads the acquisitions' expense, so it can fire with
+        # nothing deducted (charges expensed with $0 cash, or paid in shares / inside OCF): never behind the total
+        rt, rm = iprd.get("recurrence_expense_total"), iprd.get("recurrence_materiality")
+        ru = iprd.get("recurrence_expense_unknown_usd")
+        fig = ""
+        if isinstance(rt, (int, float)) and not isinstance(rt, bool):
+            # [Codex review r29 of PR #47, second polish review] recurrence_expense_unknown_usd lists only the years
+            # whose own acquired-IPR&D expense has no USD figure (a USD expense beside cash with no FX rate is read):
+            # the flag says exactly that of them
+            who, whose = ("its", "its") if (isinstance(ru, list) and len(ru) == 1) else ("each year's", "their")
+            fig = (f"; acquired IPR&D expensed in the window's charge periods ${rt:,.0f}"
+                   + (f" (and {', '.join(ru)}: {who} acquired-IPR&D expense has no USD figure, so {whose} share of "
+                      "the base OE total is unknown, read as material)"
+                      if ru else f" = {rm * 100:.1f}% of the base OE total" if isinstance(rm, (int, float))
+                      else " (no valuation to measure it against: read as material)"))
+        # [Codex review r28 of PR #47, re-verification] an iprd_amortized base carries the FY charges the window
+        # DEDUCTED (the cash), not the expense this gate measures: the flag names those figures, and with nothing
+        # deducted in the last 3 FY it no longer asks for a declaration the engine refuses (nothing to amortize)
+        am = iprd.get("amortized") if isinstance(iprd.get("amortized"), dict) else None
+        figs = (am.get("figures") if t == IPRD_TREATMENT_AMORTIZED and am and isinstance(am.get("figures"), list)
+                else [next((p.get("deducted") or 0.0 for p in iprd.get("periods") or []
+                            if p.get("window") == "fy" and p.get("period") == q), 0.0)
+                      for q in (iprd.get("window") or {}).get("fy") or []])
+        figs_txt = " / ".join(f"${float(x):,.0f}" for x in figs)
+        if t == IPRD_TREATMENT_AMORTIZED:
+            how = (f"the declared iprd_amortized base_override carries the FY charges the window deducted in the base "
+                   f"({figs_txt}: the cash deducted, not the expense this gate measured) — show its construction in "
+                   "analysis.md")
+        elif not any(isinstance(x, (int, float)) and x > 0 for x in figs):
+            how = ("nothing was deducted in the last 3 fiscal years (the charges were paid in shares, inside operating "
+                   "cash flow or intangible capex, await their cash-flow check, or were not paid in cash in the "
+                   "window), so there is nothing to amortize (the engine refuses an iprd_amortized base_override): "
+                   "give the recurrence assessment in analysis.md")
+        else:
+            how = (f"declare an iprd_amortized base_override (WORKER_SPEC step 8: its figures are the FY charges the "
+                   f"window deducted, {figs_txt} — the cash, not the expense this gate measured) or justify the "
+                   "one-time treatment in analysis.md")
+        out.append("ACQUIRED_IPRD_RECURRENT: qualifying acquired-IPR&D charges in "
+                   + ", ".join(f"FY{p[:4]}" for p in iprd["fy_with_charge"])
+                   + f" ({len(iprd['fy_with_charge'])} of the last 3 fiscal years){fig} — acquisition-led R&D that "
+                   "recurs is a running cost, not a one-off; the engine does not amortize it: " + how)
+    return out
+
+
+def _iprd_settles_earlier_charge(p):
+    """[Codex review r29 of PR #47, review note] Whether a deducted period is cash settling an earlier charge — a
+    deferred_payment (the automatic settlement of the window's unpaid remainder, or a pre-window deal's declared
+    installment) with no acquired-IPR&D expense of its own (iprd_has_own_expense) — never an acquisition expensed
+    that year."""
+    return bool(isinstance(p, dict) and p.get("deferred_payment") and not iprd_has_own_expense(p))
+
+
+def _iprd_charge_flag(iprd, t):
+    """ACQUIRED_IPRD_CHARGE for a block whose window deducted a total ([] when that total is not material).
+    [Codex review r29 of PR #47, review note] A period that is cash settling an earlier charge
+    (_iprd_settles_earlier_charge) is named so, and the opening no longer calls the window's deductions "expensed at
+    acquisition" when one of them is such a settlement; a window with none (HALO) reads exactly as before."""
+    ded = [p for p in iprd["periods"] if p["deducted"] > 0]
+    settles = [p for p in ded if _iprd_settles_earlier_charge(p)]
+    parts = ", ".join(f"{_iprd_period_label(p)} ${p['deducted']:,.0f} ({p['amount_basis']}, {p['tag_used']}"
+                      + ("; cash settling an earlier charge, not an acquisition expensed that year"
+                         if _iprd_settles_earlier_charge(p) else "")
+                      + (("; deferred payment of " + " and ".join(
+                          f"{x['deal']} (first charged {x['first_charged_period']})" for x in p["deferred_payment_of"])
+                          + (" — not counted toward recurrence" if p.get("recurrence_excluded") else ", in part"))
+                         if isinstance(p.get("deferred_payment_of"), list) and p["deferred_payment_of"] else "") + ")"
+                      for p in ded)
+    if not settles:
+        opening = "acquired in-process R&D expensed at acquisition in the base window — "
+    elif len(settles) == len(ded):
+        opening = "cash settling an earlier acquired in-process R&D charge in the base window — "
+    else:
+        opening = ("acquired in-process R&D in the base window, expensed at acquisition or cash settling an earlier "
+                   "charge — ")
+    added_back = ("the expense is added back in operating cash flow" if not settles else
+                  "the expense is added back in operating cash flow (a settled charge's in the year that expensed it)")
+    if t == IPRD_TREATMENT_ONE_TIME:
+        # [Codex review r30 of PR #47] an override-impact replay holding the final run's charge on a TTM base whose
+        # ttm.json carries no valid count has no denominator of its own (never the latest-FY count)
+        on = (f"on {iprd['shares_denominator']:,.0f} shares, {iprd['shares_source']}"
+              if isinstance(iprd.get("shares_denominator"), (int, float)) else "held from the final run")
+        how = (f"deducted once from every scenario's intrinsic value and added to the price each IRR is solved at "
+               f"(${iprd['charge_per_share']:,.4f}/share {on}); "
+               "the base is unchanged — iprd_adjustment holds the figures before and after")
+    elif t == IPRD_TREATMENT_AMORTIZED:
+        how = "carried in the base by the declared iprd_amortized base_override (no one-time deduction on top)"
+    elif t == "no_value_to_adjust":
+        how = "not deducted — the run has no positive base / no valuation to adjust"
+    else:
+        how = "not deducted — the share count behind the base is unverified (share-scale defect without a factor)"
+    mat = iprd.get("materiality")
+    if not iprd.get("material"):
+        return []
+    return ["ACQUIRED_IPRD_CHARGE: " + opening
+            + f"{parts}; total ${iprd['total']:,.0f}"
+            + (f" = {mat * 100:.1f}% of the base OE total" if mat is not None else "")
+            + ". Owner's earnings (OCF − capex − SBC) never saw this spend: " + added_back
+            + " and the payment is not capex. Treatment: " + how
+            + ". analysis.md must name the amount, the deal, the cash vs stock consideration and the recurrence "
+            "assessment"]
 
 
 def period_series(facts, tags, duration=True, with_filed=False):
@@ -2683,6 +5253,369 @@ def main():
         market_cap_basis = {"shares_used": shares_for_cap, "shares_source": shares_source, "ads_ratio": ads_r,
                             "formula": "price × shares ÷ ads_ratio" if ads_r else "price × shares"}
 
+    # ---- v5.6 acquired IPR&D one-time value adjustment (Andrew, 2026-10-19) ----
+    # Detection over the periods feeding the base (last 3 FY, plus the current
+    # YTD leg when the base is ttm.json's TTM), then ONE per-share charge on the
+    # base's own share basis. The base is never touched: the charge is a
+    # year-0 outflow deducted from every IV and added to the IRR price in the
+    # scenario block below (adjusted_value / adjusted_irr).
+    ttm_doc = None
+    try:
+        with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as _f:
+            ttm_doc = json.load(_f)
+        if not isinstance(ttm_doc, dict):
+            ttm_doc = None
+    except Exception:
+        ttm_doc = None
+    # [v5.6 review] The IPR&D window and share denominator follow the BASE's own basis, not the CLI flag that pinned
+    # it: a --base-oe-ps pin equal to ttm.json's ttm_oe_per_share (within 0.1% — make_score's via_ttm rule) is a TTM
+    # base unless its declaration says otherwise, and an iprd_amortized pin is judged on its declared native base's
+    # own window, denominator and value (iprd_ttm_basis, after basis_window below — Codex review r24).
+    decl = load_declared_base_override(ticker)
+    # [Codex review r22 of PR #47] the hash of every judgment.json input this run reads for IPR&D (recorded beside
+    # iprd_adjustment; make_score refuses a judgment.json whose inputs no longer hash to it)
+    iprd_judgment = load_iprd_judgment_hash(ticker)
+    amort_decl = bool(pin_source == "base_oe_ps_arg" and isinstance(decl, dict) and decl.get("basis") == IPRD_AMORTIZED_BASIS
+                      and isinstance(decl.get("value"), (int, float)) and not isinstance(decl.get("value"), bool)
+                      and pin_matches(decl["value"], base_override))
+    # [Codex review r25 of PR #47] a ttm.json figure of exactly 0 is a TTM base ([Codex review r26] matched by
+    # figure_matches: an exact zero pin only)
+    _ttm_v = (ttm_doc or {}).get("ttm_oe_per_share")
+    _ttm_v = (float(_ttm_v) if (isinstance(_ttm_v, (int, float)) and not isinstance(_ttm_v, bool) and math.isfinite(_ttm_v))
+              else None)
+    # [v5.6 review] make_score's override-impact counterfactual (DCF_NO_OVERRIDES=1 with --measure) toggles only the
+    # field overrides: the IPR&D charge is mechanical, so the replay holds the final run's treatment and charge per
+    # share (DCF_IPRD_HOLD = {"treatment", "charge_per_share"}) instead of re-detecting it on another basis, and an
+    # iprd_amortized declaration is never re-validated against the no-override base (it was checked on the final run).
+    iprd_counterfactual = bool(os.environ.get("DCF_NO_OVERRIDES"))
+    iprd_hold = None
+    if iprd_counterfactual and MEASURE and os.environ.get("DCF_IPRD_HOLD"):
+        try:
+            _h = json.loads(os.environ["DCF_IPRD_HOLD"])
+        except Exception:
+            _h = None
+        _hc = _h.get("charge_per_share") if isinstance(_h, dict) else None
+        if (isinstance(_h, dict) and isinstance(_h.get("treatment"), str) and isinstance(_hc, (int, float))
+                and not isinstance(_hc, bool) and math.isfinite(_hc) and _hc >= 0):
+            iprd_hold = {"treatment": _h["treatment"], "charge_per_share": float(_hc)}
+        else:
+            print("BAD_IPRD_HOLD: DCF_IPRD_HOLD must be a JSON object {treatment, charge_per_share >= 0}")
+            sys.exit(3)
+    # [Codex review r15 of PR #47] a plain base_override pinned through --base-oe-ps declares the window its pin was
+    # built on (basis_window): "ttm" — a pin built from ttm.json's TTM figures on another denominator (VNOM's
+    # per-unit base), which the 0.1% ttm_oe_per_share match above cannot see — reads ttm.json's current-YTD leg like
+    # a TTM base, so a charge in the YTD whose cash flows are in the base is counted (the share-denominator rule is
+    # unchanged); "fy" keeps the FY window. A malformed one, or a ttm window whose period is not ttm.json's, is
+    # refused outside make_score's override-impact replay (which holds the final run's charge).
+    base_basis_window = None
+    _bw = decl.get("basis_window") if isinstance(decl, dict) else None
+    _dv = decl.get("value") if isinstance(decl, dict) else None
+    if (_bw is not None and pin_source == "base_oe_ps_arg" and decl.get("basis") is None
+            and isinstance(_dv, (int, float)) and not isinstance(_dv, bool) and base_override is not None
+            and figure_matches(_dv, base_override)):     # [Codex review r26 of PR #47] a plain value: no band
+        _why = base_basis_window_problem(_bw)
+        if _why is None and _bw["window"] == "ttm":
+            _ocf = ((ttm_doc or {}).get("inputs") or {}).get("ocf") if isinstance((ttm_doc or {}).get("inputs"), dict) else None
+            _per = _ocf.get("ytd_current_period") if isinstance(_ocf, dict) else None
+            if not (isinstance(_per, list) and _per == list(_bw["ytd_current_period"]) and str(_per[0]) > latest_fy_end):
+                _why = (f"basis_window ytd_current_period {_bw['ytd_current_period']} is not ttm.json's "
+                        f"inputs.ocf.ytd_current_period {_per!r} (a current-YTD period after the latest FY end "
+                        f"{latest_fy_end}) — rerun ttm.py and rebuild the declaration from this run's ttm.json")
+        if _why is None:
+            base_basis_window = ({"window": "fy"} if _bw["window"] == "fy"
+                                 else {"window": "ttm", "ytd_current_period": list(_bw["ytd_current_period"])})
+        elif not iprd_counterfactual:
+            print(f"BAD_BASE_OVERRIDE for {ticker}: judgment.json base_override {_why}")
+            sys.exit(3)
+    # [Codex review r24 of PR #47] a declaration matching the pin names the basis its pin was built on, and that
+    # basis alone picks the IPR&D window and share denominator: an iprd_amortized one by its native_base (ttm_json:
+    # the TTM window and ttm_shares_diluted; the median: the FY window and the latest FY count), a plain one declaring
+    # basis_window {"window": "fy"} the FY window and count. The 0.1% match with ttm.json's ttm_oe_per_share decides
+    # only for a pin no declaration places (or a plain one declaring basis_window "ttm", whose share-denominator rule
+    # is round 15's): a median-native amortized pin that happened to equal the TTM figure had read the current-YTD leg
+    # on ttm.json's shares, so a non-recurrent charge could pass as recurrent and the declaration be accepted.
+    # [Codex review r26 of PR #47] an undeclared numeric match: 0.1%, and a zero TTM figure only by an exact zero
+    _num_ttm = bool(_ttm_v is not None and base_override is not None and figure_matches(base_override, _ttm_v))
+    if pin_source == "ttm_json":
+        iprd_ttm_basis = True
+    elif pin_source != "base_oe_ps_arg":
+        iprd_ttm_basis = False
+    elif amort_decl:
+        iprd_ttm_basis = decl.get("native_base") == "ttm_json"
+    elif base_basis_window is not None and base_basis_window["window"] == "fy":
+        iprd_ttm_basis = False
+    else:
+        iprd_ttm_basis = _num_ttm
+    _stale_fy = bool(latest.get("period_end")
+                     and (ET_TODAY - datetime.date.fromisoformat(latest["period_end"])).days / 30.44 > 7)
+    # [Codex review r23 of PR #47] what the run read from ttm.json, recorded as ttm_inputs; [Codex review r25] only
+    # when the selected basis reads it: a --ttm pin; a --base-oe-ps pin no declaration places (whether it is
+    # ttm.json's figure decides its window and denominator); a TTM basis (an amortized native_base ttm_json, a
+    # numeric match); basis_window "ttm" (the current-YTD leg); a median-native amortized pin under STALE_FY (whether
+    # ttm.json carries a TTM base decides whether the median may be its native base). Null for a median run, a plain
+    # pin declaring basis_window "fy" and a median-native amortized pin on a fresh FY: they read nothing from it.
+    _fy_placed = bool(pin_source == "base_oe_ps_arg"
+                      and ((amort_decl and decl.get("native_base") != "ttm_json")
+                           or (base_basis_window is not None and base_basis_window["window"] == "fy")))
+    _reads_ttm = bool(pin_source == "ttm_json" or iprd_ttm_basis
+                      or (base_basis_window is not None and base_basis_window["window"] == "ttm")
+                      or (pin_source == "base_oe_ps_arg" and not _fy_placed)
+                      or (amort_decl and decl.get("native_base") == "median_of_last_3_fy_oe_per_share" and _stale_fy))
+    ttm_inputs = ttm_inputs_record(ttm_doc) if _reads_ttm else None
+    _ytd = None
+    _ytd_note = None
+    if base_basis_window is not None and base_basis_window["window"] == "ttm" and not iprd_ttm_basis:
+        _ytd = tuple(base_basis_window["ytd_current_period"])
+    elif iprd_ttm_basis:
+        _per = (((ttm_doc or {}).get("inputs") or {}).get("ocf") or {}).get("ytd_current_period")
+        if isinstance(_per, list) and len(_per) == 2 and all(isinstance(x, str) for x in _per) and _per[0] > latest_fy_end:
+            _ytd = (_per[0], _per[1])
+        else:
+            _ytd_note = "ttm.json names no current-YTD period after the latest FY end: the TTM's YTD leg was not read"
+    _fy_intang = {h["period_end"]: h["capex_intangibles"] for h in hist
+                  if h.get("capex_intangibles") and h["period_end"] not in intang_no_ppe and h["capex_tag"] != "OVERRIDE"}
+    _ytd_comp = (((ttm_doc or {}).get("capex_components") or {}).get("ytd_current") or {}) if _ytd else {}
+    _ytd_intang = (_ytd_comp.get("intangibles") if isinstance(_ytd_comp, dict) and not _ytd_comp.get("intangibles_not_added")
+                   and _ytd_comp.get("intangible_tags") else None)
+    iprd = iprd_detect(facts, last3_periods, ytd=_ytd, fy_capex_intang=_fy_intang, ytd_capex_intang=_ytd_intang,
+                       fx_rates=rates_by_ccy, checks=load_iprd_cash_flow_checks(ticker), fx_fetch=fx_rate)
+    iprd_charge_used = 0.0
+    iprd_refusal = None
+    # judgment.json iprd_deferred_payment (Andrew's 2026-10-20 ruling, delegated): validated against this run's
+    # window and marked on the records before the recurrence count; refused (exit 3) outside the counterfactual
+    _deferred = load_iprd_deferred_payments(ticker)
+    # [Codex review r9 of PR #47] the filer's fiscal-year ends (a rolled-out period must be one), recorded for make_score
+    _fy_ends = iprd_fy_period_ends(facts, last3_periods) if _deferred is not None else None
+    _deferred_refused, _deferred_rolled_out = iprd_apply_deferred(iprd, _deferred, last3_periods, facts, _fy_ends)
+    if _deferred_refused and not iprd_counterfactual:
+        print(f"BAD_IPRD_DEFERRED_PAYMENT for {ticker}: judgment.json {IPRD_DEFERRED_KEY} "
+              + "; ".join(f"{r['entry'].get('period') if isinstance(r['entry'], dict) else r['entry']!r}: {r['reason']}"
+                          for r in _deferred_refused))
+        sys.exit(3)
+    if iprd is not None:
+        if _ytd_note:
+            iprd["notes"].append(_ytd_note)
+        total = sum(p["deducted"] for p in iprd["periods"])
+        # the base's own share denominator: ttm.json's current-YTD diluted count for a TTM base, else the latest FY
+        # diluted count (split-adjusted; scale-corrected when a rescued share-scale defect found a factor).
+        # [Codex review r30 of PR #47] a TTM base's is ttm.json's count (iprd_ttm_share_count) or none — never the
+        # latest-FY count, which a missing or invalid ttm_shares_diluted had silently put the charge on (refused below)
+        denom, denom_src = None, None
+        if iprd_ttm_basis:
+            _ts = iprd_ttm_share_count(ttm_doc)
+            if _ts is not None:
+                denom, denom_src = _ts, "ttm.json ttm_shares_diluted"
+        elif share_scale["defect"]:
+            if share_scale.get("scale_factor") and shares:
+                denom, denom_src = float(shares) * share_scale["scale_factor"], "diluted_latest_scale_corrected"
+        elif shares and shares > 0:
+            denom, denom_src = float(shares), shares_source if shares_source.startswith("diluted_latest") else "diluted_latest"
+        _r = _ratio_value(ads_ratio)
+        ratio = _r if (_r is not None and _r > 0) else 1.0
+        charge_ps = (total / denom * ratio) if (denom and total) else 0.0
+        valued = bool(oe_ps and oe_ps > 0 and price)
+        # an iprd_amortized declaration's native base (WORKER_SPEC step 8): the pin is that base already lowered by
+        # the mean charge, so materiality (and with it recurrence) is judged against the native base itself
+        _nb = _native = _nshares = None
+        if amort_decl:
+            _nb = decl.get("native_base")
+            _native = (_ttm_v if _nb == "ttm_json"
+                       else oe_ps_norm if _nb == "median_of_last_3_fy_oe_per_share" else None)
+            # [Codex review r30 of PR #47] a ttm_json native base's count is the validated TTM denominator (a string
+            # count had passed the truthiness test and been float()-coerced into the declaration's check)
+            _nshares = (iprd_ttm_share_count(ttm_doc) if _nb == "ttm_json" else shares)
+        _mat_base = _native if (amort_decl and isinstance(_native, (int, float)) and _native > 0) else oe_ps
+        materiality = (charge_ps / _mat_base) if (valued and charge_ps and _mat_base) else None
+        # a deferred payment settles an earlier window period's charge: it is not a new charge in its own year; nor
+        # is a period the worker declared, whole, a deferred payment of an earlier deal (Andrew's 2026-10-20 ruling).
+        # [Codex review r27 of PR #47] the period's own expense decides, never its cash timing (iprd_charge_year);
+        # [Codex review r28 of PR #47] nor its cash presentation (iprd_own_charge)
+        fy_with = [p["period"] for p in iprd["periods"] if iprd_charge_year(p)]
+        unconfirmed = sum((p.get("awaiting") or 0.0 for p in iprd["periods"] if p.get("excluded") == IPRD_AWAITING), 0.0)
+        if iprd_ttm_basis and denom is None:
+            # [Codex review r30 of PR #47] a TTM base without ttm.json's count: the figures this run would put per
+            # share — the charge, the unconfirmed charge, and the recurrence figure (decisive at 2 or more FY charge
+            # years) — refuse the run, like any other defective ttm.json input (NO_TTM; an amortized ttm_json native
+            # base without the count was already refused). The unverified-share-count treatment does not fit: make_score
+            # refuses it only for a deducted charge, and its way through is a hand-deduction tier_override, which would
+            # publish a run built on a defective ttm.json. make_score's override-impact replay holds the final run's
+            # charge and is never refused (the final run, on the same ttm.json, already was).
+            _per_share = ([f"an acquired-IPR&D charge of ${total:,.0f}"] if total > 0 else []) + (
+                [f"an unconfirmed charge of ${unconfirmed:,.0f} awaiting its cash-flow check"] if unconfirmed > 0 else []) + (
+                [f"charges in {len(fy_with)} of the last 3 FY ({', '.join(fy_with)}), whose recurrence figure is per share"]
+                if len(fy_with) >= 2 else [])
+            if _per_share and not iprd_counterfactual:
+                print(f"BAD_TTM_SHARES for {ticker}: the base is ttm.json's TTM base, so its acquired-IPR&D figures are "
+                      "per share on ttm.json's current-YTD diluted count (ttm_shares_diluted), never the latest-FY "
+                      f"count — but ttm.json ttm_shares_diluted is {_ttm_share_count_said(ttm_doc)}, and this run "
+                      f"carries {'; '.join(_per_share)}. Rerun ttm.py {ticker} (it writes the count beside "
+                      "ttm_oe_per_share), then the engine")
+                sys.exit(3)
+            iprd["notes"].append(f"ttm.json ttm_shares_diluted is {_ttm_share_count_said(ttm_doc)}: this TTM base has no "
+                                 "share denominator (never the latest-FY count)"
+                                 + ("; not refused in this override-impact replay (DCF_NO_OVERRIDES)" if _per_share else
+                                    "; the run carries no acquired-IPR&D figure per share"))
+        unconfirmed_mat = ((unconfirmed / denom * ratio) / _mat_base
+                           if (valued and unconfirmed and denom and _mat_base) else None)
+        # the deduction's materiality: ACQUIRED_IPRD_CHARGE (and the key_numbers / score.json `material`)
+        material = bool(total > 0 and (materiality is None or materiality >= IPRD_MATERIALITY))
+        # [Codex review r28 of PR #47] the recurrence gate's own materiality: the counted periods' acquisition expense
+        # on the same denominator, ADS ratio, base and threshold — never the cash the window deducted (two $100M
+        # acquisitions with $1 paid in each year read $2, not material, though both years counted)
+        rec_total, rec_mat, rec_material, rec_unknown = iprd_recurrence_materiality(
+            iprd["periods"], denom, ratio, valued, _mat_base)
+        recurrent = bool(len(fy_with) >= 2 and rec_material)
+        amortized = None
+        if amort_decl:
+            # The worker's amortized maintenance-acquisition base (WORKER_SPEC step 8): recomputed here from this
+            # run's own figures; a declaration that does not reproduce is refused below (BAD_BASE_OVERRIDE).
+            _fy_amts = [next((p["deducted"] for p in iprd["periods"] if p["window"] == "fy" and p["period"] == q), 0.0)
+                        for q in last3_periods]
+            figs = decl.get("figures")
+            why = []
+            if decl.get("kind") != "filing" or not str(decl.get("source") or "").strip() or not str(decl.get("reason") or "").strip():
+                why.append("kind must be 'filing' and source / reason non-empty")
+            if not recurrent:
+                why.append("an iprd_amortized base is only for recurrent charges (ACQUIRED_IPRD_RECURRENT: qualifying charges "
+                           f"in 2 or more of the last 3 FY and material); this run's FY charges: {fy_with or 'none'}")
+            elif not any(a > 0 for a in _fy_amts):
+                # [Codex review r28 of PR #47, re-verification] RECURRENT reads the acquisitions' expense since round
+                # 28, so it fires with nothing deducted (charges paid in shares, inside OCF or not yet in cash); an
+                # amortized base carries only the DEDUCTED FY figures, so [0, 0, 0] is a no-op the run recorded with
+                # treatment "none" and make_score then always refused — refused here, by name
+                why.append(f"nothing to amortize: this run deducted no acquired-IPR&D charge in the last 3 FY (figures "
+                           f"{_fy_amts}) — its recurrent charges were paid in shares, inside operating cash flow or "
+                           "intangible capex, await their cash-flow check, or were not paid in cash in the window, so "
+                           "the base has no deducted charge to carry; resolve ACQUIRED_IPRD_RECURRENT in analysis.md "
+                           "(the recurrence assessment) and drop the declaration")
+            if _nb not in IPRD_NATIVE_BASES or _native is None:
+                why.append(f"native_base must be one of {list(IPRD_NATIVE_BASES)} (and that base must exist in this run)")
+            elif _nb == "median_of_last_3_fy_oe_per_share" and _stale_fy and _ttm_v is not None:
+                # [v5.6 review] the native base is the base this run would otherwise score, not a free choice: under
+                # STALE_FY with a ttm.json TTM base, WORKER_SPEC step 4 scores the TTM base
+                why.append("STALE_FY fires and ttm.json carries a TTM base, so WORKER_SPEC step 4 scores this filer on "
+                           "that TTM base: the amortized base's native_base must be 'ttm_json' (the median is the native "
+                           "base only where the run would otherwise score the median)")
+            if not (isinstance(figs, list) and len(figs) == len(_fy_amts)
+                    and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in figs)
+                    and all(abs(float(a) - b) <= 1.0 for a, b in zip(figs, _fy_amts))):
+                why.append(f"figures must be this run's last-3-FY acquired-IPR&D charges, oldest first: {_fy_amts}")
+            if not (isinstance(decl.get("shares"), (int, float)) and not isinstance(decl.get("shares"), bool)
+                    and _nshares and abs(float(decl["shares"]) - float(_nshares)) < 1.0):
+                why.append(f"shares must be the native base's share count ({_nshares})")
+            expected = None
+            if not why:
+                expected = iprd_amortized_value(_native, _fy_amts, _nshares, ads_ratio)
+                if abs(expected - float(decl["value"])) > 0.005:
+                    why.append(f"value {decl['value']} does not reproduce native base {_native:.6f} - mean charge "
+                               f"{sum(_fy_amts) / len(_fy_amts):,.0f} / {float(_nshares):,.0f} shares = {expected:.6f} to the cent")
+                # [Codex review r26 of PR #47] the half-cent band at zero (pin_matches) is declaration arithmetic, not a
+                # free number: a base <= 0 is Tier F, so a pin must sit on the same side of zero as the value its
+                # figures reproduce — a --base-oe-ps 0.004 on a $0.00 amortized base would publish a non-F tier
+                elif (base_override > 0) != (expected > IPRD_AMORTIZED_ZERO_EPS):
+                    why.append(f"the pin {base_override:.6g} and the value its figures reproduce ({expected:.6f}) sit on "
+                               "opposite sides of zero (a base <= 0 is Tier F) — pin --base-oe-ps at the reproduced value")
+            if why and not iprd_counterfactual:
+                iprd_refusal = "; ".join(why)
+            amortized = {"basis": IPRD_AMORTIZED_BASIS, "native_base": _nb, "native_base_per_share": _native,
+                         "figures": _fy_amts, "mean_annual_charge": sum(_fy_amts) / len(_fy_amts),
+                         "shares": float(_nshares) if _nshares else None, "ads_ratio": ratio,
+                         "expected_value": expected, "declared_value": float(decl["value"]), "pinned_per_share": base_override}
+            if iprd_counterfactual:
+                amortized["counterfactual_replay"] = ("not re-validated: the declaration was checked on the final run; "
+                                                      "this replay holds the pin with the field overrides off")
+        unconverted = any(p.get("excluded") == IPRD_UNCONVERTED
+                          and any(isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0
+                                  for v in (p.get("expense_native"), p.get("cash_native"), _iprd_tag_unconverted_native(p)))
+                          for p in iprd["periods"])
+        if total <= 0:
+            treatment = IPRD_AWAITING if unconfirmed > 0 else (IPRD_UNCONVERTED if unconverted else "none")
+        elif amortized is not None:
+            treatment = IPRD_TREATMENT_AMORTIZED
+        elif not valued:
+            treatment = "no_value_to_adjust"
+        elif not denom:
+            treatment = "not_applied_share_count_unverified"
+        else:
+            treatment = IPRD_TREATMENT_ONE_TIME
+            iprd_charge_used = charge_ps
+        held = None
+        if iprd_hold is not None:
+            held = {"treatment": iprd_hold["treatment"], "charge_per_share": iprd_hold["charge_per_share"],
+                    "computed_treatment": treatment, "computed_charge_per_share": charge_ps,
+                    "note": "override-impact counterfactual: the final run's IPR&D treatment and charge are held"}
+            treatment, charge_ps = iprd_hold["treatment"], iprd_hold["charge_per_share"]
+            iprd_charge_used = charge_ps if treatment == IPRD_TREATMENT_ONE_TIME else 0.0
+        iprd.update({"rule": "acquired IPR&D one-time value adjustment (Andrew, 2026-10-19): a year-0 deduction from every "
+                             "intrinsic value and the IRR price, never a base deduction",
+                     "detector_tags": list(IPRD_EXPENSE_TAGS), "cash_tag": IPRD_CASH_TAG,
+                     "window": {"fy": list(last3_periods), "ttm_current_ytd": list(_ytd) if _ytd else None},
+                     "total": total, "shares_denominator": denom, "shares_source": denom_src, "ads_ratio": ratio,
+                     "charge_per_share": charge_ps, "base_oe_per_share": oe_ps,
+                     "base_oe_total": (oe_ps * denom / ratio) if (oe_ps is not None and denom) else None,
+                     "materiality": materiality, "threshold": IPRD_MATERIALITY, "material": material,
+                     "fy_with_charge": fy_with, "recurrent": recurrent, "treatment": treatment,
+                     "amortized": amortized, "unconfirmed_total": unconfirmed,
+                     "unconfirmed_materiality": unconfirmed_mat})
+        if amort_decl:
+            iprd["materiality_base"] = "native_base_per_share"
+        if len(fy_with) >= 2:
+            # [Codex review r28 of PR #47] recorded only where the figure decides the flag (2 or more FY charge years):
+            # a run with one charge year (HALO's committed block) gains no key
+            iprd["recurrence_expense_total"] = rec_total
+            iprd["recurrence_materiality"] = rec_mat
+            if rec_unknown:
+                iprd["recurrence_expense_unknown_usd"] = rec_unknown
+        if _deferred is not None:
+            # only when judgment.json declares deferred payments: a run without them gains no key
+            iprd["recurrence_excluded"] = [
+                {"period": p["period"], "window": p["window"], "deal": x["deal"],
+                 "first_charged_period": x["first_charged_period"], "amount": x["amount"]}
+                for p in iprd["periods"] if p.get("recurrence_excluded") == IPRD_RECURRENCE_EXCLUDED
+                for x in p["deferred_payment_of"]]
+            if _deferred_refused:
+                iprd["deferred_payments_refused"] = _deferred_refused
+            if _deferred_rolled_out:
+                # [Codex review r4 of PR #47] periods older than the window: neither applied nor refused, kept in
+                # judgment.json for the deal's lifetime contingent_total cap (make_score checks they are still declared)
+                iprd["deferred_payments_rolled_out"] = _deferred_rolled_out
+            iprd["fy_period_ends"] = _fy_ends   # [Codex review r9 of PR #47] make_score re-checks rolled-out periods
+        if held is not None:
+            iprd["held_from_final_run"] = held
+    else:
+        if amort_decl and not iprd_counterfactual:
+            iprd_refusal = "this run finds no acquired-IPR&D expense in the last 3 FY / TTM window, so there is nothing to amortize"
+        if iprd_hold is not None and iprd_hold["treatment"] == IPRD_TREATMENT_ONE_TIME and iprd_hold["charge_per_share"] > 0:
+            # the counterfactual's window holds no charge the final run deducted (another basis): hold it anyway
+            iprd_charge_used = iprd_hold["charge_per_share"]
+            iprd = {"periods": [], "ignored_cash_only": [], "notes": ["override-impact counterfactual: no acquired-IPR&D "
+                                                                      "fact in this replay's window; the final run's charge is held"],
+                    "total": None, "treatment": IPRD_TREATMENT_ONE_TIME, "charge_per_share": iprd_charge_used,
+                    "held_from_final_run": {"treatment": IPRD_TREATMENT_ONE_TIME, "charge_per_share": iprd_charge_used,
+                                            "computed_treatment": None, "computed_charge_per_share": None}}
+        if _deferred is not None and (_deferred_rolled_out or _deferred_refused):
+            # [Codex review r5 of PR #47] the window holds no acquired-IPR&D charge, but judgment.json declares deferred
+            # payments (each one rolled out of the window, or refused in a counterfactual replay): record them in a
+            # minimal block — no charge, treatment none, nothing deducted or flagged — so make_score sees the
+            # rolled-out entries still declared instead of a null block that only deleting them (freeing the deal's
+            # lifetime contingent_total cap) could satisfy. A run without declarations keeps a null block.
+            if iprd is None:
+                iprd = {"periods": [], "ignored_cash_only": [],
+                        "notes": ["no acquired-IPR&D charge in this run's window: the block records only judgment.json "
+                                  f"{IPRD_DEFERRED_KEY} entries (nothing deducted)"],
+                        "window": {"fy": list(last3_periods), "ttm_current_ytd": list(_ytd) if _ytd else None},
+                        "total": 0.0, "treatment": "none", "charge_per_share": 0.0, "deferred_payments_only": True}
+            iprd["recurrence_excluded"] = []
+            if _deferred_refused:
+                iprd["deferred_payments_refused"] = _deferred_refused
+            if _deferred_rolled_out:
+                iprd["deferred_payments_rolled_out"] = _deferred_rolled_out
+            iprd["fy_period_ends"] = _fy_ends   # [Codex review r9 of PR #47]
+    if iprd_refusal:
+        print(f"BAD_BASE_OVERRIDE for {ticker}: --base-oe-ps pins a judgment.json base_override of basis "
+              f"{IPRD_AMORTIZED_BASIS!r} but {iprd_refusal}")
+        sys.exit(3)
+
     result = {"ticker": ticker, "name": name, "cik": cik, "engine_version": 5, "engine_release": ENGINE_RELEASE,
               "as_of": ET_TODAY.isoformat(),
               "price": price, "price_source": price_source, "shares_diluted_latest": shares,
@@ -2706,7 +5639,13 @@ def main():
               # v5.5 records (decisions 1-6): see the module docstring
               "market_cap_basis": market_cap_basis, "share_scale": share_scale, "share_basis": share_basis,
               "share_class_mismatch": share_class, "capex_provenance": capex_provenance,
-              "sbc_provenance": {p: sbc_recon[p] for p in periods if p in sbc_recon}}
+              "sbc_provenance": {p: sbc_recon[p] for p in periods if p in sbc_recon},
+              # v5.6: acquired IPR&D (None when no expense tag is filed for a base period — the run is untouched)
+              "iprd_adjustment": iprd,
+              # [Codex review r22 of PR #47] iprd_judgment_hash(judgment.json) as this run read it
+              "iprd_judgment_hash": iprd_judgment,
+              # [Codex review r23 of PR #47] ttm_inputs_record(ttm.json) as this pinned run read it
+              "ttm_inputs": ttm_inputs}
     if fx_info:
         # v5.5 (decision 7): overrides used verbatim as USD figures, and which rule fired
         # ({} when every override was converted, or none is declared).
@@ -2774,6 +5713,7 @@ def main():
         flags_pre.append("CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it — net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence")
     flags_pre.extend(_v55_flags(share_scale, share_basis, base_override, market_cap_basis, sbc_recon, periods,
                                 hist, facts, overrides, capex_assembly, raw_missing, last3_periods, override_checks))
+    flags_pre.extend(iprd_flags(iprd))
     sector_u = (uni.get(ticker) or {}).get("sector", "")
     if sector_u in ("Finance", "Real Estate", "Utilities"):  # v5: was Finance only — IRM (REIT) and ED/PCG/PEG (utilities) slipped through unflagged
         flags_pre.append(f"SECTOR_MODEL_MISMATCH: {sector_u} sector — OE/capex DCF fits {sector_u.lower()} names poorly; grade confidence low")
@@ -2859,30 +5799,42 @@ def main():
         g_base = max(GROWTH_FLOOR_BASE, min(GROWTH_CAP_BASE, g_blend))
         scenarios, all_flows, capped_labels, floor_labels = {}, [], [], []
         paths, gpaths = {}, {}
+        # v5.6: c_ps is the one-time acquired-IPR&D charge per share (0.0 — the identity — unless the run applies
+        # it): every IV is present_value - c_ps and every IRR is solved at price + c_ps; the paths are unchanged.
+        c_ps = iprd_charge_used
+        _rates = ((0.10, "iv_at_10"), (0.12, "iv_at_12"), (0.15, "iv_at_15"), (0.20, "iv_at_20"), (0.25, "iv_at_25"))
+        before = {}
         for i, label in enumerate(labels):
             g0 = max(GROWTH_FLOOR_START, min(GROWTH_CAP_START, g_base + offsets[i]))
             flows = project_path(oe_ps * mults[i], g0, cap_years, gterm)
             all_flows.append(flows)
             paths[label] = [round(f, 6) for f in flows]
             gpaths[label] = [round(g, 6) for g in growth_path(g0, cap_years, gterm)]
-            _irr, _capped, _floor = solve_irr(flows, price, gterm)
+            _irr, _capped, _floor = adjusted_irr(flows, price, gterm, c_ps)
             if _capped: capped_labels.append(label)
             if _floor: floor_labels.append(label)
             scenarios[label] = {"prob": round(probs[i], 4), "g_start": round(g0, 4), "oe_mult": mults[i],
-                                "iv_at_10": present_value(flows, 0.10, gterm), "iv_at_12": present_value(flows, 0.12, gterm),
-                                "iv_at_15": present_value(flows, 0.15, gterm), "iv_at_20": present_value(flows, 0.20, gterm),
-                                "iv_at_25": present_value(flows, 0.25, gterm), "irr": _irr, "irr_at_floor": _floor}
+                                **{k: adjusted_value(flows, r, gterm, c_ps) for r, k in _rates},
+                                "irr": _irr, "irr_at_floor": _floor}
+            if c_ps:
+                _b = solve_irr(flows, price, gterm)
+                before[label] = {**{k: present_value(flows, r, gterm) for r, k in _rates}, "irr": _b[0], "irr_at_floor": _b[2]}
         wflows = [sum(probs[i] * all_flows[i][t] for i in range(5)) for t in range(PROJECTION_YEARS)]
         paths["weighted"] = [round(f, 6) for f in wflows]
-        _wirr, _wcapped, _wfloor = solve_irr(wflows, price, gterm)
+        _wirr, _wcapped, _wfloor = adjusted_irr(wflows, price, gterm, c_ps)
         if _wcapped: capped_labels.append("weighted")
         if _wfloor: floor_labels.append("weighted")
-        weighted = {"iv_at_10": present_value(wflows, 0.10, gterm), "iv_at_12": present_value(wflows, 0.12, gterm),
-                    "iv_at_15": present_value(wflows, 0.15, gterm), "iv_at_20": present_value(wflows, 0.20, gterm),
-                    "iv_at_25": present_value(wflows, 0.25, gterm), "irr": _wirr, "irr_at_floor": _wfloor}
+        weighted = {**{k: adjusted_value(wflows, r, gterm, c_ps) for r, k in _rates}, "irr": _wirr, "irr_at_floor": _wfloor}
         irr = weighted["irr"]
         tier = tier_for_irr(irr)
         irr_bear, irr_bull = scenarios["bear"]["irr"], scenarios["bull"]["irr"]
+        if c_ps:
+            _wb = solve_irr(wflows, price, gterm)
+            before["weighted"] = {**{k: present_value(wflows, r, gterm) for r, k in _rates}, "irr": _wb[0], "irr_at_floor": _wb[2]}
+            iprd.update({"before": before, "tier_before": tier_for_irr(_wb[0]),
+                         "tier_bear_before": tier_for_irr(before["bear"]["irr"]),
+                         "tier_bull_before": tier_for_irr(before["bull"]["irr"]),
+                         "after": {"weighted": {k: weighted[k] for _, k in _rates}, "irr": irr, "tier": tier}})
 
         # ---- diagnostics & scenario-dependent fragility flags (flags_pre, computed before
         # this branch, carries the rest — the agent MUST address every flag in analysis.md) ----
@@ -2895,9 +5847,12 @@ def main():
             flags.append(f"BASE_DIVERGENCE: latest FY OE/share {oe_ps_latest:.2f} vs 3-yr median {oe_ps_norm:.2f} — one of them is distorted; find out which and why")
         oe_yield = oe_ps / price
         if oe_yield < 0.02: flags.append(f"LOW_OE_YIELD: base OE yield {oe_yield*100:.1f}% — valuation rests almost entirely on growth; tier is fragile")
-        tvs = terminal_share(wflows, 0.15, gterm)
+        # v5.6 review: the share of the PUBLISHED IV@15 (after the one-time IPR&D charge), the figure the flag names
+        tvs = terminal_share(wflows, 0.15, gterm, c_ps)
         if tvs and tvs > 0.70: flags.append(f"HIGH_TV_SHARE: terminal value is {tvs*100:.0f}% of IV@15% — result is mostly a terminal assumption")
-        ivsb, ivsbu = scenarios["super_bear"]["iv_at_15"], scenarios["super_bull"]["iv_at_15"]
+        # v5.6: the spread measures the dispersion of the scenario PATHS, so it reads the unadjusted IVs (a constant
+        # deduction would widen the ratio without any change in the paths' uncertainty)
+        ivsb, ivsbu = present_value(all_flows[0], 0.15, gterm), present_value(all_flows[4], 0.15, gterm)
         spread = (ivsbu / ivsb) if ivsb and ivsb > 0 else None
         if spread and spread > 4: flags.append(f"WIDE_SCENARIO_SPREAD: super-bull IV is {spread:.1f}x super-bear IV — uncertainty is huge; confidence should not be high")
         # v5.5 (decision 1): per-ADS OE × the ADS count (shares ÷ ads_ratio) — the
@@ -2912,7 +5867,8 @@ def main():
             flags.append(f"TIER_BAND: bear-case tier {tier_bear} ({irr_bear*100:.1f}%) vs bull-case tier {tier_bull} ({irr_bull*100:.1f}%) — the verdict spans tiers; size any position to the bear end")
         result.update({"g_base": g_base, "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
-                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source},
+                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source,
+                                  **({"base_basis_window": base_basis_window} if base_basis_window else {})},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "scenarios": scenarios, "weighted": weighted,
@@ -2971,7 +5927,8 @@ def main():
                        "implied_irr_weighted": None, "implied_irr_base": None, "moat_score": moat,
                        "cap_years": round(cap_years, 1), "g_terminal": gterm,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
-                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source},
+                                  "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source,
+                                  **({"base_basis_window": base_basis_window} if base_basis_window else {})},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "fragility_flags": flags_pre,  # v5: F names carry their flags too

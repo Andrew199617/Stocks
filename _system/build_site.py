@@ -113,10 +113,49 @@ BEFORE the scored session (reprice's basis_check.method
 "no_close_since_scoring") — older than the verdict's own price. Such a
 live.json (price_date earlier than score.json analysis_date / the run's
 as_of) is not shown as current: record.live is null, record.live_withheld =
-{reason, note, price, price_date, scored_date, method}, the row's live
-fields stay null with row.live_withheld = true, so the ranking sorts on the
-scored IRR and the page shows the scored figures until a close after the
-scored session arrives.
+{reason, note, price, price_date, scored_date, method} (reason
+live_older_than_score; live_from_earlier_run for one left from an earlier
+run of a re-scored name), the row's live fields stay null with
+row.live_withheld = true, so the ranking sorts on the scored IRR and the
+page shows the scored figures until a close after the scored session
+arrives.
+[Codex review round 2 of PR #47] A run whose acquired-IPR&D treatment is
+not_applied_share_count_unverified is never repriced (reprice.py skips it),
+so record.live_withheld carries reason iprd_share_count_unverified with or
+without a live.json on file, and the scored figures are the current ones.
+[Codex review round 6 of PR #47] The same, reason iprd_unresolved, for a run
+make_score refused for an unresolved acquired-IPR&D charge (a period awaiting
+its cash-flow check or one the engine cannot convert): reprice.py skips it
+too, and the score.json on disk is an earlier run's.
+[Codex review round 11 of PR #47, the main agent's general rule] And, reason
+score_not_from_this_run, for ANY live.json beside a score.json that was not
+built from the current dcf_numbers.json (score_from_run, reprice.py's
+score_matches_run mirrored here): make_score refused the new run (whatever
+its reason — a deleted deferred payment its registry recorded is one the
+engine record alone cannot show) or has not run on it yet, so the verdict on
+file is another run's and live figures pause until the folder is scored
+again; reprice.py writes no live.json for it either. The more specific
+iprd_unresolved / iprd_share_count_unverified reasons keep precedence.
+[Codex review round 12 of PR #47] A score.json carrying dcf_content_hash
+(make_score writes the run's content_hash since round 12) is from the run
+only when that hash is the run's, itself valid over the record; one without
+it is judged on the rounded headline figures as before.
+[Codex review round 29 of PR #47] And, reason live_not_from_this_score, for
+a live.json beside a run record that was not computed against the
+score.json on file (live_score_problem; reprice.py records what it read:
+score_json_fresh, scored.tier_final / tier_override_reason /
+dcf_content_hash): repriced before make_score scored or re-scored the run,
+or beside another run's same-day score. [Codex review round 29 of PR #47,
+polish review] A live.json written before round 29 records no score
+identity: beside a score.json that carries one it is withheld with its own
+reason, live_without_score_identity (live_score_identity_missing; its note
+says it records no score identity and the next repricing rewrites it, never
+that it was computed before the score). The score is the run's, so the
+scored figures are the latest available. Precedence, in the order
+live_shown checks them: iprd_unresolved / iprd_share_count_unverified, then
+score_not_from_this_run, then live_from_earlier_run,
+live_not_from_this_score, live_without_score_identity and
+live_older_than_score.
 
 Splits since scoring (2026-10-16): reprice.py restates live.json in today's
 share units and records split_factor (new shares per scored-run share). The
@@ -130,6 +169,14 @@ like with like against today's close; IRRs, tiers, upside and market caps
 do not change. record.split_restated = {factor, split, scored_date,
 price_date, fields, as_scored, note}, row.split_restated = {factor, split}
 (null otherwise).
+
+Engine 5.6 (acquired IPR&D, Andrew 2026-10-19): a run with a one-time
+acquired-IPR&D deduction (numbers.iprd_adjustment, treatment
+one_time_value_deduction) stores adjusted IVs, hurdle prices and IRRs, which
+are shown as stored; every replay fallback below subtracts the same charge
+(dcf_engine.iprd_charge_per_share / adjusted_value / adjusted_irr), so a
+recomputed sensitivity cell, hurdle price or at-floor flag equals the
+engine's. A record without the block replays exactly as before.
 
 Every number comes from a file; the only computation here is the forecast
 replay through the engine's own functions (dcf_engine.replay_paths,
@@ -146,6 +193,7 @@ import argparse
 import csv
 import datetime
 import glob
+import hashlib
 import json
 import math
 import os
@@ -191,13 +239,29 @@ SPLIT_DIVIDE = (tuple(f"score.{k}" for k in ("price", "base_oe_per_share") + _IV
                    "score.second_pass.prior_iv_at_15")
                 + tuple(f"numbers.{k}" for k in ("price", "base_oe_per_share", "base_oe_latest_per_share", "base_oe_normalized_per_share") + _IV_KEYS)
                 + tuple(f"numbers.scenarios.*.{k}" for k in _IV_KEYS) + tuple(f"numbers.weighted.{k}" for k in _IV_KEYS)
+                # engine 5.6: the one-time acquired-IPR&D charge per share and the IVs kept beside it
+                + ("numbers.iprd_adjustment.charge_per_share", "numbers.iprd_adjustment.base_oe_per_share",
+                   "numbers.iprd_adjustment.before.*.iv_at_10", "numbers.iprd_adjustment.before.*.iv_at_12",
+                   "numbers.iprd_adjustment.before.*.iv_at_15", "numbers.iprd_adjustment.before.*.iv_at_20",
+                   "numbers.iprd_adjustment.before.*.iv_at_25", "numbers.iprd_adjustment.after.weighted.*",
+                   "score.iprd_adjustment.charge_per_share", "score.iprd_adjustment.iv_before.*",
+                   "score.iprd_adjustment.iv_after.*",
+                   # [v5.6 review] an amortized_in_base run's native and pinned bases (and the declared value)
+                   "numbers.iprd_adjustment.amortized.native_base_per_share",
+                   "numbers.iprd_adjustment.amortized.pinned_per_share",
+                   "numbers.iprd_adjustment.amortized.expected_value",
+                   "numbers.iprd_adjustment.amortized.declared_value",
+                   "score.iprd_adjustment.amortized.native_base_per_share",
+                   "score.iprd_adjustment.amortized.pinned_per_share")
                 + ("numbers.hurdle_prices.*", "numbers.inputs.base_oe_ps_arg",
                    "numbers.override_impact.base_oe_per_share_zero_fill", "numbers.override_impact.base_oe_per_share_final")
                 + ("forecast.paths.*.*", "forecast.hurdle_prices.*", "forecast.inputs.base_oe_ps_arg")
                 + tuple(f"forecast.sensitivity.*.{r}" for r in RATES)
                 + tuple(f"row.{k}" for k in ("price", "iv15", "iv12", "iv20", "iv25"))
                 + ("ttm.ttm_oe_per_share",))
-SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "ttm.ttm_shares_diluted")
+SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "ttm.ttm_shares_diluted",
+                  "numbers.iprd_adjustment.shares_denominator", "score.iprd_adjustment.shares_denominator",
+                  "numbers.iprd_adjustment.amortized.shares", "score.iprd_adjustment.amortized.shares")
 _NUM_RX = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INT_RX = re.compile(r"-?\d+")
 
@@ -439,6 +503,191 @@ def _date10(v):
     return v[:10] if isinstance(v, str) and len(v) >= 10 else None
 
 
+IPRD_SHARE_COUNT_UNVERIFIED = "not_applied_share_count_unverified"   # reprice.py never reprices this treatment
+IPRD_WITHHELD_NOTE = ("The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier "
+                      "is the main agent's tier_override with a hand deduction that reprice.py cannot replay, so the scored "
+                      "figures are the current ones and no live repricing is shown.")
+# [Codex review r6 of PR #47] dcf_engine's names for the acquired-IPR&D states make_score refuses (dcf_engine.iprd_unresolved)
+IPRD_AWAITING, IPRD_UNCONVERTED = "awaiting_cash_flow_check", "non_usd_no_rate"
+IPRD_UNRESOLVED_NOTE = ("The latest engine run left an acquired-IPR&D charge unresolved (awaiting the worker's cash-flow check, "
+                        "or in a currency the engine cannot convert), so make_score refused it: the score on file is an earlier "
+                        "run's, a live repricing of the new run would carry unadjusted figures, and none is shown until the "
+                        "folder is scored again.")
+
+
+SCORE_NOT_FROM_RUN_NOTE = ("The score on file was not built from the latest engine run (make_score refused that run or has "
+                           "not scored it yet), so the scored figures are the current ones and no live repricing is shown "
+                           "until the folder is scored again.")
+# [Codex review r29 of PR #47] a live.json not computed against the score on file (live_score_problem)
+LIVE_NOT_FROM_SCORE_NOTE = ("The live repricing on file was computed before the current score of this run (make_score has "
+                            "scored it since), so the scored figures are the latest available until the folder is repriced.")
+# [Codex review r29 of PR #47, polish review] a live.json from before round 29 beside a score.json that carries its run's
+# identity (live_score_identity_missing): it may well have been computed against this very score, so the note never says
+# it was computed before it — only that it records no score identity and that the next repricing rewrites it
+LIVE_NO_SCORE_IDENTITY_NOTE = ("The live repricing on file records no score identity (it was written before live.json "
+                               "recorded the score it was computed against), so it is not shown beside this score: the "
+                               "scored figures are the latest available until the next repricing rewrites it.")
+
+
+def _same(a, b, tol):
+    a, b = num(a), num(b)
+    return a is not None and b is not None and abs(a - b) <= tol
+
+
+# [Codex review r13 of PR #47] reprice.HASH_REQUIRED_FROM_RELEASE mirrored (a test holds the two equal)
+HASH_REQUIRED_FROM_RELEASE = "5.6.0"
+
+
+def _requires_content_hash(d):
+    """reprice.requires_content_hash mirrored: an engine_release at or after HASH_REQUIRED_FROM_RELEASE."""
+    rt = lambda rel: (tuple(int(x or 0) for x in m.groups())
+                      if (m := re.match(r"\s*(\d+)\.(\d+)(?:\.(\d+))?", rel) if isinstance(rel, str) else None)
+                      else None)
+    t = rt(d.get("engine_release")) if isinstance(d, dict) else None
+    return t is not None and t >= rt(HASH_REQUIRED_FROM_RELEASE)
+
+
+def score_from_run(score, numbers):
+    """[Codex review r11 of PR #47] (matches, mismatches): whether score.json was built by make_score.py from THIS
+    dcf_numbers.json — reprice.score_matches_run mirrored here so the site needs no reprice import (a test holds the
+    two equal): make_score copies the run's figures verbatim (implied_irr to 4 dp, iv_at_15 to 2 dp), and the run's
+    numbers tier must be the tier of its own weighted IRR. [Codex review r12 of PR #47] A score.json carrying
+    dcf_content_hash must name this run's content_hash, itself valid over the record (reprice.run_hash_problem); one
+    without it is judged on the headline figures alone only for a run from before release 5.6.0 ([Codex review r13
+    of PR #47]: a current-release score.json with no hash is another run's). [Codex review r19 of PR #47] A run with
+    no weighted IRR — Tier F (no positive owner's earnings) or untiered — is matched by the same identity (the hash
+    when present, as_of, tier, base, price, release): its score.json carries no implied_irr either and the same
+    f_subtype; before, it never matched (tier_for_irr(None) is None, not 'F'; implied_irr None never equalled None),
+    which is why live_shown limited its no-live.json notice to repriceable runs."""
+    if not isinstance(score, dict):
+        return False, ["score.json is not an object"]
+    n = _d(numbers)
+    mm = []
+    if "dcf_content_hash" not in score:
+        if _requires_content_hash(score) or _requires_content_hash(n):
+            rel = score.get("engine_release") if _requires_content_hash(score) else n.get("engine_release")
+            mm.append(f"score.json carries no dcf_content_hash though the run is release {rel} (make_score writes it "
+                      f"for every run since release {HASH_REQUIRED_FROM_RELEASE}: rounded headline figures are not "
+                      "run identity)")
+    else:
+        h, ch = score.get("dcf_content_hash"), n.get("content_hash")
+        if not h or h != ch:
+            mm.append(f"dcf_content_hash {h!r} vs run content_hash {ch!r} (another engine run)")
+        else:
+            canon = json.dumps({k: v for k, v in n.items() if k != "content_hash"},
+                               sort_keys=True, separators=(",", ":"), default=str)
+            if hashlib.sha256(canon.encode()).hexdigest() != ch:
+                mm.append("run content_hash does not match its content (dcf_numbers.json edited after the engine run)")
+    if not score.get("analysis_date") or score.get("analysis_date") != n.get("as_of"):
+        mm.append(f"analysis_date {score.get('analysis_date')!r} vs run as_of {n.get('as_of')!r}")
+    tier_run = n.get("tier_by_numbers")
+    # [Codex review r19 of PR #47] a run with no weighted IRR (Tier F / untiered): none on the score either, same f_subtype
+    no_irr = num(n.get("implied_irr_weighted")) is None and tier_run in ("F", None)
+    tier_irr = tier_for_irr(num(n.get("implied_irr_weighted")))
+    if not no_irr and tier_run != tier_irr:
+        mm.append(f"run tier_by_numbers {tier_run!r} is not the tier of its weighted IRR ({tier_irr!r})")
+    if score.get("tier_by_numbers") != tier_run:
+        mm.append(f"tier_by_numbers {score.get('tier_by_numbers')!r} vs run {tier_run!r}")
+    if no_irr:
+        if score.get("implied_irr") is not None:
+            mm.append(f"implied_irr {score.get('implied_irr')!r} vs run None (a run with no weighted IRR)")
+        if score.get("f_subtype") != n.get("f_subtype"):
+            mm.append(f"f_subtype {score.get('f_subtype')!r} vs run {n.get('f_subtype')!r}")
+    elif not _same(score.get("implied_irr"), n.get("implied_irr_weighted"), 0.5e-4 + 1e-9):
+        mm.append(f"implied_irr {score.get('implied_irr')!r} vs run {n.get('implied_irr_weighted')!r}")
+    for key, tol in (("price", 1e-9), ("base_oe_per_share", 1e-9), ("iv_at_15", 0.005 + 1e-9)):
+        a, b = score.get(key), n.get(key)
+        if a is None and b is None:
+            continue
+        if not _same(a, b, tol if key == "iv_at_15" else tol * max(1.0, abs(num(b) or 0.0))):
+            mm.append(f"{key} {a!r} vs run {b!r}")
+    for key in ("engine_version", "engine_release"):
+        if score.get(key) != n.get(key):
+            mm.append(f"{key} {score.get(key)!r} vs run {n.get(key)!r}")
+    if score.get("ticker") and n.get("ticker") and str(score["ticker"]).upper() != str(n["ticker"]).upper():
+        mm.append(f"ticker {score.get('ticker')!r} vs run {n.get('ticker')!r}")
+    return not mm, mm
+
+
+def run_published(n):
+    """[Codex review r19 of PR #47] Whether the site publishes a scored folder with this run (qualifies, its run half):
+    engine v5+ and no uncovered data gap. live_shown gives the score_not_from_this_run notice without a live.json to
+    every such run — round 13 limited it to runs reprice.py reprices (run_repriceable), so a new run that turned
+    Tier F published the earlier run's verdict beside its own flags with no notice."""
+    n = _d(n)
+    return is_current(n) and not n.get("data_gap_uncovered")
+
+
+def iprd_unresolved(n):
+    """[Codex review r6 of PR #47] True when the run's acquired-IPR&D record is one make_score refuses
+    (dcf_engine.iprd_unresolved, mirrored here so the site needs no engine import): a period awaiting its cash-flow
+    check, or excluded non_usd_no_rate with a positive native expense or cash outflow (or, Codex review r24, a positive
+    detector tag it cannot convert beside the other: expense_tag_unconverted), or such a treatment."""
+    blk = _d(_d(n).get("iprd_adjustment"))
+    pos = lambda v: num(v) is not None and num(v) > 0
+    for p in _l(blk.get("periods")):
+        p = _d(p)
+        if p.get("excluded") == IPRD_AWAITING:
+            return True
+        if p.get("excluded") == IPRD_UNCONVERTED and (pos(p.get("expense_native")) or pos(p.get("cash_native"))
+                                                      or pos(_d(p.get("expense_tag_unconverted")).get("native"))):
+            return True
+    return blk.get("treatment") in (IPRD_AWAITING, IPRD_UNCONVERTED)
+
+
+def live_score_problem(lv, score, numbers):
+    """[Codex review r29 of PR #47] Why live.json was not computed against THIS score.json (None when it was). reprice
+    reads only these from score.json — whether there is one (score_json_fresh), tier_final, tier_override_reason
+    (recorded only while the override is active: tier_final differs from the run's tier_by_numbers) — plus, recorded
+    since this round, the score's run identity (scored.dcf_content_hash: the score.json's, null when it carries
+    none). Any difference means the live tier and override were computed against another score: a repricing written
+    before make_score scored the run (score_json_fresh null — reprice_folder writes none since this round), one
+    computed before make_score re-scored the same run (an override added, removed or reworded), or one beside a
+    same-day score of another run. Before, live_shown compared only dates, so the numbers tier at the last close was
+    published beside a new tier_override. [Codex review r29 of PR #47, review note] A live.json that records no
+    scored.dcf_content_hash (written before this round) was not computed against a score.json that carries one: it
+    had been exempt from the identity check, so beside a same-day score of another run it was shown as current. It
+    is withheld until the next reprice rewrites it. A score.json with no dcf_content_hash (a run from before release
+    5.6.0; score_from_run judges it on the headline figures) has no identity to bind: a live.json beside it matches
+    when it records none either (null or no key). [Codex review r29 of PR #47, polish review] That missing identity
+    is no longer reported here: nothing it records shows such a live.json was computed against another score (the
+    reprice before round 29 usually computed it against this very one), so live_score_identity_missing names it and
+    live_shown gives it its own reason, live_without_score_identity. A recorded identity that differs (a null one
+    beside a hashed score included) is still this function's."""
+    lv, s, n = _d(lv), _d(score), _d(numbers)
+    if lv.get("score_json_fresh") is not True:
+        return "computed with no score.json of this run on file"
+    sc = _d(lv.get("scored"))
+    if sc.get("tier_final") != s.get("tier_final"):
+        return f"computed against tier_final {sc.get('tier_final')!r}, the score on file has {s.get('tier_final')!r}"
+    tier_run, final = n.get("tier_by_numbers"), s.get("tier_final")
+    want = s.get("tier_override_reason") if (final and tier_run and final != tier_run) else None
+    if sc.get("tier_override_reason") != want:
+        return "computed against another tier_override_reason than the score on file's"
+    if "dcf_content_hash" in sc and sc.get("dcf_content_hash") != s.get("dcf_content_hash"):
+        return (f"computed against the score of run {sc.get('dcf_content_hash')!r}, the score on file is run "
+                f"{s.get('dcf_content_hash')!r}")
+    return None
+
+
+def live_score_identity_missing(lv, score):
+    """[Codex review r29 of PR #47, polish review] Why live.json cannot be bound to THIS score.json (None when it can):
+    it records no score identity (no scored.dcf_content_hash key: written by the reprice before round 29) beside a
+    score.json that carries one. live_shown withholds it, reason live_without_score_identity, right after
+    live_not_from_this_score (live_score_problem: what it did record disagrees, so it WAS computed against another
+    score). Nothing such a live.json records shows it was computed against another score — right after the merge it
+    is every published name's, usually computed against this very score — so its note says only that it records no
+    identity and that the next repricing rewrites it; it had been withheld as live_not_from_this_score, whose note says
+    it was computed before the current score and that make_score has scored the run since. A recorded null identity
+    is a score with no hash, so beside a hashed score it is another score's (live_score_problem); beside a score.json
+    with no dcf_content_hash there is no identity to bind (None)."""
+    sc, s = _d(_d(lv).get("scored")), _d(score)
+    if "dcf_content_hash" in sc or s.get("dcf_content_hash") is None:
+        return None
+    return (f"records no score identity (scored.dcf_content_hash: written before live.json recorded it), the score on "
+            f"file is run {s.get('dcf_content_hash')!r}")
+
+
 def live_shown(c):
     """(live, withheld): the live.json the page shows as current, else None,
     and why it was withheld (None when it was not). A live.json whose close
@@ -449,9 +698,57 @@ def live_shown(c):
     "no_close_since_scoring"). A live.json whose run (scored_date) predates
     score.json's analysis_date belongs to an earlier run of a re-scored name
     and is withheld too. The scored figures are then the latest available
-    (Andrew's ruling, 2026-10-20: never described as "pending")."""
+    (Andrew's ruling, 2026-10-20: never described as "pending").
+    [Codex review r2 of PR #47] A run whose acquired-IPR&D treatment is
+    not_applied_share_count_unverified is never repriced (reprice.py skips it:
+    its published tier is the main agent's tier_override with a hand deduction
+    no replay can carry), so any live.json on file is withheld, and the record
+    says why it has none even without one (reason iprd_share_count_unverified).
+    [Codex review r6 of PR #47] The same, reason iprd_unresolved, for a run make_score refused for an unresolved
+    acquired-IPR&D charge (iprd_unresolved): reprice.py skips it too, and the score.json on disk is an earlier run's.
+    [Codex review r11 of PR #47] And, reason score_not_from_this_run, for any live.json beside a score.json not built
+    from this dcf_numbers.json (score_from_run), whatever make_score's reason: live figures pause until the run is
+    scored (reprice.py writes none either). A record with no run record has no run to compare (never published).
+    [Codex review r13 of PR #47] That check runs with or without a live.json on file (as the IPR&D reasons do; price
+    and price_date null without one): reprice.py removes the live.json beside a score from another run, and the
+    record must still say why it has no live figures. Without a live.json it applies to every run the site publishes
+    (run_published: [Codex review r19 of PR #47] a Tier F or untiered run included — round 13's run_repriceable limit
+    left a new Tier F run's page showing the earlier run's verdict with no notice; score_from_run now matches a Tier F
+    score to its own run) beside a score.json on file.
+    [Codex review r29 of PR #47] After live_from_earlier_run, reason live_not_from_this_score for a live.json beside
+    a run record that was not computed against the score.json on file (live_score_problem: no score when it was
+    written, an earlier score of the same run, another run's same-day score) — the scored figures are the latest
+    available (never "pending", Andrew 2026-10-20); it wins over live_older_than_score (a newer close would not make
+    it this score's). [Codex review r29 of PR #47, polish review] Right after it, reason live_without_score_identity
+    for a live.json from before round 29 that records no score identity beside a score.json that carries one
+    (live_score_identity_missing): it had read live_not_from_this_score, whose note says it was computed before the
+    current score, which nothing it records shows; its own note says it records no score identity and that the
+    next repricing rewrites it.
+    [merge of main #83 into PR #47] Precedence: (as corrected in Codex review r29 of PR #47) in the order the code
+    checks them — iprd_unresolved / iprd_share_count_unverified, then score_not_from_this_run (the PR #47 reasons:
+    the run is never repriced, or the score on file is not its verdict; the app words them "Live figures withheld —
+    …"), then live_from_earlier_run, live_not_from_this_score, live_without_score_identity and live_older_than_score
+    (the score on file is the run's; the app words all four "Scored figures are the latest — …"). The prices
+    staleness guard
+    (row.prices_stale, build() step 5) is not a withheld reason: it is derived independently on every row, whatever
+    live_withheld says, and never changes the reason or its note."""
     lv = c.get("live")
-    if not live_ok(lv):
+    unresolved = iprd_unresolved(c.get("numbers"))
+    if unresolved or _d(_d(c.get("numbers")).get("iprd_adjustment")).get("treatment") == IPRD_SHARE_COUNT_UNVERIFIED:
+        ok = live_ok(lv)
+        return None, {"reason": "iprd_unresolved" if unresolved else "iprd_share_count_unverified",
+                      "price": num(lv.get("price")) if ok else None,
+                      "price_date": _date10(lv.get("price_date")) if ok else None,
+                      "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
+                      "method": None, "note": IPRD_UNRESOLVED_NOTE if unresolved else IPRD_WITHHELD_NOTE}
+    ok = live_ok(lv)
+    if (_d(c.get("numbers")) and (ok or (c.get("score") is not None and run_published(c.get("numbers"))))
+            and not score_from_run(c.get("score"), c.get("numbers"))[0]):
+        return None, {"reason": "score_not_from_this_run", "price": num(lv.get("price")) if ok else None,
+                      "price_date": _date10(lv.get("price_date")) if ok else None,
+                      "scored_date": _date10(_d(c.get("score")).get("analysis_date")) or _date10(_d(c.get("numbers")).get("as_of")),
+                      "method": None, "note": SCORE_NOT_FROM_RUN_NOTE}
+    if not ok:
         return None, None
     pd = _date10(lv.get("price_date"))
     sa, ls = _date10(_d(c.get("score")).get("analysis_date")), _date10(lv.get("scored_date"))
@@ -462,6 +759,16 @@ def live_shown(c):
                       "method": None,
                       "note": (f"The live repricing on file is from the {ls} run, before the current score ({sa}); "
                                "the scored figures are the latest available.")}
+    if _d(c.get("numbers")) and live_score_problem(lv, c.get("score"), c.get("numbers")):
+        # [Codex review r29 of PR #47] computed against another score.json than the one on file
+        return None, {"reason": "live_not_from_this_score", "price": num(lv.get("price")), "price_date": pd,
+                      "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
+                      "note": LIVE_NOT_FROM_SCORE_NOTE}
+    if _d(c.get("numbers")) and live_score_identity_missing(lv, c.get("score")):
+        # [Codex review r29 of PR #47, polish review] a live.json from before round 29: no score identity to bind
+        return None, {"reason": "live_without_score_identity", "price": num(lv.get("price")), "price_date": pd,
+                      "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
+                      "note": LIVE_NO_SCORE_IDENTITY_NOTE}
     scored = [d for d in (sa, ls) if d]
     sd = max(scored) if scored else None
     if pd is None or sd is None or pd >= sd:
@@ -470,7 +777,7 @@ def live_shown(c):
     return None, {"reason": "live_older_than_score", "price": num(lv.get("price")), "price_date": pd, "scored_date": sd,
                   "method": method if isinstance(method, str) else None,
                   "note": (f"The last close on file ({pd}) predates the scored analysis ({sd}) — no close after the analysis "
-                           "is on file, so the scored figures are the latest available, as of the {pd} close.")}
+                           f"is on file, so the scored figures are the latest available, as of the {pd} close.")}
 
 
 def live_split(lv):
@@ -703,14 +1010,34 @@ def _scored_price(n, s):
     return num(s.get("price")) or num(n.get("price"))
 
 
-def scored_floor(recorded, flows, px, g):
+def iprd_charge(n):
+    """The run's one-time acquired-IPR&D charge per share (engine 5.6:
+    dcf_engine.iprd_charge_per_share — 0.0 for every record without one, and
+    when the engine module is unavailable)."""
+    if ENGINE is None or not hasattr(ENGINE, "iprd_charge_per_share"):
+        return 0.0
+    try:
+        return float(ENGINE.iprd_charge_per_share(n))
+    except Exception:
+        return 0.0
+
+
+def _value(flows, r, g, charge_ps):
+    """IV at r on the replayed flows less the run's one-time charge (dcf_engine.adjusted_value; the identity at 0)."""
+    if charge_ps and hasattr(ENGINE, "adjusted_value"):
+        return ENGINE.adjusted_value(flows, r, g, charge_ps)
+    return ENGINE.present_value(flows, r, g)
+
+
+def scored_floor(recorded, flows, px, g, charge_ps=0.0):
     """Whether a SCORED IRR sits at the solver's floor. The first boolean in
     `recorded` (the run's own flags — engine 5.4 writes them per scenario and
     for the weighted case) wins. A pre-5.4 run recorded none, so the flag is
     inferred through the engine: solve_irr's at_floor on the replayed flows at
-    the scored price. Only the flag is taken from the replay — the recorded
-    (historical) IRR is never replaced. None when there is neither a flag nor
-    anything to replay."""
+    the scored price (engine 5.6: plus the run's one-time acquired-IPR&D
+    charge, dcf_engine.adjusted_irr — the price the scored IRR was solved at).
+    Only the flag is taken from the replay — the recorded (historical) IRR is
+    never replaced. None when there is neither a flag nor anything to replay."""
     for v in recorded:
         if isinstance(v, bool):
             return v
@@ -718,6 +1045,8 @@ def scored_floor(recorded, flows, px, g):
     if not flows or px is None or px <= 0 or ENGINE is None or not hasattr(ENGINE, "solve_irr"):
         return None
     try:
+        if charge_ps and hasattr(ENGINE, "adjusted_irr"):
+            return bool(ENGINE.adjusted_irr(flows, px, g, charge_ps)[2])
         return bool(ENGINE.solve_irr(flows, px, g)[2])
     except Exception:
         return None
@@ -738,8 +1067,8 @@ def hurdle_prices(n, s, paths):
         return stored
     if not paths or ENGINE is None or not paths.get("weighted"):
         return {"15": num(s.get("iv_at_15")) if s.get("iv_at_15") is not None else num(n.get("iv_at_15")), "20": None, "25": None} if (s.get("iv_at_15") is not None or n.get("iv_at_15") is not None) else None
-    g, w = _gterm(n), paths["weighted"]
-    return {"15": ENGINE.present_value(w, 0.15, g), "20": ENGINE.present_value(w, 0.20, g), "25": ENGINE.present_value(w, 0.25, g)}
+    g, w, c = _gterm(n), paths["weighted"], iprd_charge(n)
+    return {"15": _value(w, 0.15, g, c), "20": _value(w, 0.20, g, c), "25": _value(w, 0.25, g, c)}
 
 
 def scenario_sensitivity(n, s, paths, lv):
@@ -753,6 +1082,7 @@ def scenario_sensitivity(n, s, paths, lv):
         return None
     g = _gterm(n)
     px = _scored_price(n, s)
+    c = iprd_charge(n)
     live = lv if live_ok(lv) else None
     paths = _d(paths)
     out = {}
@@ -765,13 +1095,13 @@ def scenario_sensitivity(n, s, paths, lv):
                 v = s.get(f"iv_at_{rate}")
             if v is None and ENGINE is not None and _l(paths.get(k)):
                 try:
-                    v = ENGINE.present_value(paths[k], rate / 100, g)
+                    v = _value(paths[k], rate / 100, g, c)
                 except Exception:
                     v = None
             row[str(rate)] = num(v)
         row["irr"] = num(r.get("irr")) if k != "weighted" else (num(r.get("irr")) if r.get("irr") is not None else num(n.get("implied_irr_weighted") if n.get("implied_irr_weighted") is not None else s.get("implied_irr")))
         recorded = (r.get("irr_at_floor"),) if k != "weighted" else _weighted_floor_recorded(n, s)
-        row["irr_at_floor"] = scored_floor(recorded, paths.get(k), px, g) if row["irr"] is not None else None
+        row["irr_at_floor"] = scored_floor(recorded, paths.get(k), px, g, c) if row["irr"] is not None else None
         if live:
             lscn = _d(_d(live.get("scenarios")).get(k))
             lr = live.get("irr_weighted") if k == "weighted" else lscn.get("irr")
@@ -800,7 +1130,8 @@ def irr_at_floor_flag(c, paths):
     at the scored price (scored_floor; the same answer as
     forecast.sensitivity.weighted.irr_at_floor). False when undecidable."""
     s, n = c["score"], c["numbers"]
-    return bool(scored_floor(_weighted_floor_recorded(n, s), _d(paths).get("weighted"), _scored_price(n, s), _gterm(n)))
+    return bool(scored_floor(_weighted_floor_recorded(n, s), _d(paths).get("weighted"), _scored_price(n, s), _gterm(n),
+                             iprd_charge(n)))
 
 
 # ---------------------------------------------------------------- index row
@@ -1477,7 +1808,12 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
              "watchlist: _system/watchlist.json tickers in file order (meta.watchlist; meta.watchlist_outside = not in the universe), flagged on every row (row.watchlist)",
              f"statements: {len(statements_written)} data/<T>.statements.json cop(ies) written, {len(statements_removed)} removed; served next to the record, loaded by the Financials tab on demand, never embedded"]
     if withheld:
-        notes.append(f"{len(withheld)} live.json close(s) older than the scored analysis withheld (scored figures shown, row.live_withheld): " + ", ".join(withheld))
+        notes.append(f"{len(withheld)} live repricing(s) withheld — a live.json close older than the scored analysis, a score.json "
+                     "not built from the latest engine run, a live.json computed before the current score or recording no "
+                     "score identity, or a record "
+                     "reprice.py never reprices (acquired-IPR&D charge "
+                     "deducted by hand or unresolved; record.live_withheld.reason) — "
+                     "scored figures shown, row.live_withheld: " + ", ".join(withheld))
     if stale_prices:
         notes.append(f"{len(stale_prices)} scored name(s) hold a last close on file more than one session behind the sweep's latest close ({sessions[-1]}) — prices.py has not refreshed them (row.prices_stale): "
                      + ", ".join(f"{t} (last close {stale_prices[t]['last_date']})" for t in sorted(stale_prices)))

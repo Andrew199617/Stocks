@@ -1628,6 +1628,76 @@ test('Live older than the score: the ranking marks the row "scored · latest" an
   assert.ok(App.renderListHTML(noCount, rows).includes('1 at their scored figures (the latest available)'), 'counted from the rows without meta.counts.live_withheld');
   assert.ok(!App.renderListHTML(noCount, rows.slice(1)).includes('at their scored figures'), 'none withheld: no clause');
 });
+/* [Codex review r2 of PR #47, #4321940598] A not_applied_share_count_unverified record (acquired-IPR&D charge deducted by
+   hand in the main agent's tier_override): build_site withholds its live figures with reason iprd_share_count_unverified. */
+const iprdNote = 'The acquired-IPR&D charge was not deducted by the engine (share count unverified): the published tier is the main agent\'s tier_override with a hand deduction that reprice.py cannot replay, so the scored figures are the current ones and no live repricing is shown.';
+const iprdWithheldRec = (() => {
+  const r = clone(withheldRec);
+  r.live_withheld = { reason: 'iprd_share_count_unverified', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: iprdNote };
+  r.prices.stats.last_date = '2026-10-15';
+  return r;
+})();
+test('Hand-deducted acquired-IPR&D charge: the live figures are withheld with their own reason, never "pending a close"', () => {
+  const w = App.liveWithheld(iprdWithheldRec);
+  assert.equal(w.reason, 'iprd_share_count_unverified'); assert.equal(w.note, iprdNote);
+  assert.equal(App.latestText(w), 'Live figures withheld — the acquired-IPR&D charge was deducted by hand (share count unverified), so the scored figures stand');
+  assert.deepEqual(App.currentClose(iprdWithheldRec), { last: 44, date: '2026-10-15', chg: -1.5 }, 'a close after the analysis is a current price');
+  const head = App.renderHeader(iprdWithheldRec);
+  assert.ok(head.includes('Live figures withheld — the acquired-IPR&amp;D charge was deducted by hand') && !head.includes('predates'), head);
+  assert.equal(App.liveView(iprdWithheldRec).is_live, false);
+  const html = App.renderRowHTML(iprdWithheldRec.row);
+  assert.ok(/title="The scored figures are the latest available: [^"]*not repriced[^"]*">scored · latest</.test(html), 'the row tooltip covers a record that is not repriced: ' + html);
+});
+test('[Codex review r6 of PR #47] A run make_score refused for an unresolved acquired-IPR&D charge: live figures withheld with their own reason', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'iprd_unresolved', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'iprd_unresolved');
+  assert.equal(App.latestText(w), 'Live figures withheld — the latest run left an acquired-IPR&D charge unresolved, so the scored figures stand');
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('acquired-IPR&amp;D charge unresolved') && !head.includes('predates'), head);
+  assert.ok(/title="The scored figures are the latest available: [^"]*left unresolved[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+});
+test('[Codex review r11 of PR #47] A live repricing beside a score.json from another engine run: withheld with its own reason', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'score_not_from_this_run', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'score_not_from_this_run');
+  assert.equal(App.latestText(w), 'Live figures withheld — the latest engine run is not scored yet (make_score refused it or has not run on it), so the scored figures stand');
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('the latest engine run is not scored yet') && !head.includes('predates'), head);
+  assert.ok(/title="The scored figures are the latest available: [^"]*not scored yet[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+});
+test('[Codex review r29 of PR #47] A live repricing not computed against the score on file: the scored figures are the latest, never "pending"', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'live_not_from_this_score', price: 44, price_date: '2026-10-14', scored_date: '2026-10-14', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'live_not_from_this_score');
+  const txt = App.latestText(w);
+  assert.equal(txt, 'Scored figures are the latest — the live repricing on file was computed before the 2026-10-14 score');
+  assert.ok(!/pending/i.test(txt) && !txt.includes('close on file predates'), 'its own wording, not the older-close one: ' + txt);
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('was computed before the 2026-10-14 score'), head);
+  assert.equal(App.liveView(r).is_live, false);
+  assert.ok(/title="The scored figures are the latest available: [^"]*computed before the current score[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+  // the score on file is this run's: its acquired-IPR&D block is described as applied, as for the date reasons
+  assert.equal(App.iprdNote(r), App.iprdNote(Object.assign(clone(r), { live_withheld: Object.assign({}, r.live_withheld, { reason: 'live_from_earlier_run' }) })));
+});
+test('[Codex review r29 of PR #47, polish review] A live repricing that records no score identity: its own wording, never "computed before" nor "pending"', () => {
+  const r = clone(iprdWithheldRec);
+  r.live_withheld = Object.assign({}, r.live_withheld, { reason: 'live_without_score_identity', price: 44, price_date: '2026-10-14', scored_date: '2026-10-14', note: 'x' });
+  const w = App.liveWithheld(r);
+  assert.equal(w.reason, 'live_without_score_identity');
+  const txt = App.latestText(w);
+  assert.equal(txt, 'Scored figures are the latest — the live repricing on file records no score identity; the next repricing refreshes it');
+  assert.ok(!/pending/i.test(txt) && !txt.includes('computed before') && !txt.includes('close on file predates'), 'its own wording: ' + txt);
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('records no score identity; the next repricing refreshes it'), head);
+  assert.equal(App.liveView(r).is_live, false);
+  assert.ok(/title="The scored figures are the latest available: [^"]*records no score identity[^"]*">scored · latest</.test(App.renderRowHTML(r.row)), 'the row tooltip names it');
+  // the score on file is this run's: its acquired-IPR&D block is described as applied, as for the date reasons
+  assert.equal(App.iprdNote(r), App.iprdNote(Object.assign(clone(r), { live_withheld: Object.assign({}, r.live_withheld, { reason: 'live_from_earlier_run' }) })));
+});
 test('fixtures/assemble.js mirrors build_site: a live.json older than the later of analysis_date / live.scored_date is withheld; a split since scoring restates the run once', () => {
   const os = require('node:os'), dir = fs.mkdtempSync(path.join(os.tmpdir(), 'app-test-live-'));
   const { assemble: asm, liveShown, liveSplit, SPLIT_DIVIDE, SPLIT_MULTIPLY } = require('./fixtures/assemble.js');
@@ -1652,6 +1722,28 @@ test('fixtures/assemble.js mirrors build_site: a live.json older than the later 
     put('live.json', Object.assign({}, live, { price: null })); r = asm(dir, 'T');
     assert.ok(r.live === null && r.live_withheld === null && r.row.live_withheld === false, 'a live.json without a price is not shown and not "withheld"');
     assert.deepEqual(liveShown(score, null), { live: null, withheld: null });
+    const unv = Object.assign(clone(numbers), { iprd_adjustment: { treatment: 'not_applied_share_count_unverified', total: 4e7, charge_per_share: 0 } });
+    for (const lv of [live, null]) {
+      const sh = liveShown(score, lv, unv);
+      assert.equal(sh.live, null); assert.equal(sh.withheld.reason, 'iprd_share_count_unverified'); assert.equal(sh.withheld.note, iprdNote);
+      assert.equal(sh.withheld.price, lv ? 45 : null); assert.equal(sh.withheld.scored_date, '2026-10-14');
+    }
+    // [Codex review r6 of PR #47] a run make_score refused for an unresolved acquired-IPR&D charge: withheld, reason iprd_unresolved
+    const unres = [
+      { treatment: 'awaiting_cash_flow_check', total: 0, periods: [{ period: '2025-12-31', window: 'fy', excluded: 'awaiting_cash_flow_check', awaiting: 2e7 }] },
+      { treatment: 'non_usd_no_rate', total: 0, periods: [{ period: '2025-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense: 2e7, cash_native: 1e7, cash_unit: 'EUR' }] },
+      { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2025-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2026-03-31', window: 'ttm_current_ytd', excluded: 'non_usd_no_rate', expense_native: 5e6 }] },
+      // [Codex review r24 of PR #47] a period gated for a parallel detector tag it cannot convert (no expense_native / cash_native)
+      { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2024-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2025-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense: 1e8, deducted: 0, expense_tag_unconverted: { tag: 'ResearchAndDevelopmentInProcess', native: 1e8, unit: 'EUR' } }] }];
+    for (const blk of unres) {
+      for (const lv of [live, null]) {
+        const sh = liveShown(score, lv, Object.assign(clone(numbers), { iprd_adjustment: blk }));
+        assert.equal(sh.live, null); assert.equal(sh.withheld.reason, 'iprd_unresolved'); assert.ok(sh.withheld.note.includes('make_score refused'), sh.withheld.note);
+        assert.equal(sh.withheld.price, lv ? 45 : null);
+      }
+    }
+    const resolved = { treatment: 'one_time_value_deduction', total: 2e7, charge_per_share: 0.2, periods: [{ period: '2025-12-31', window: 'fy', excluded: null, deducted: 2e7 }, { period: '2024-12-31', window: 'fy', excluded: 'non_usd_no_rate', expense_native: -1 }] };
+    assert.equal(liveShown(score, Object.assign({}, live, { price_date: '2026-10-20' }), Object.assign(clone(numbers), { iprd_adjustment: resolved })).withheld, null, 'a resolved run is shown');
     // a split since scoring: live.json in today's units (÷ 2) with split_factor 2
     const half = (o) => Object.assign({}, o, { price: o.price / 2, scored_price: o.scored_price / 2, iv_at_15: o.iv_at_15 / 2, iv_at_12: o.iv_at_12 / 2, iv_at_20: o.iv_at_20 / 2, iv_at_25: o.iv_at_25 / 2 });
     const splitLive = Object.assign(half(live), { price_date: '2026-10-20', split_factor: 2, basis_check: { status: 'split_adjusted', factor: 2, split: '2:1', method: 'ratio' } });
@@ -1750,6 +1842,70 @@ test('Split since scoring: filed OE/share years still on the pre-split basis are
   assert.deepEqual(App.chartSpecsStreet(splitRec)['street-eps'].series[1].values.slice(0, 2), [0.625, 0.75]);
   const plainSt = App.renderForecastStreet(synthetic); assert.ok(plainSt.includes('from $1.50 (FY2024 filed)') && !plainSt.includes('split-adjusted') && !plainSt.includes('split since scoring'), 'no split: as before');
   assert.deepEqual(App.yearAgoQuarterAdj(synthetic, { period: 'Q1 2026' }, synthetic.fundamentals.quarterly), App.yearAgoQuarter({ period: 'Q1 2026' }, synthetic.fundamentals.quarterly));
+});
+
+test('acquired IPR&D (engine 5.6): the one-time deduction is disclosed under the base OE card; no block, no line', () => {
+  const rec = JSON.parse(JSON.stringify(synthetic));
+  rec.score.iprd_adjustment = { treatment: 'one_time_value_deduction', total: 284887000, charge_per_share: 2.3333797464207318,
+    periods: [{ period: '2024-12-31', window: 'fy', amount_basis: 'expense', deducted: 0 },
+      { period: '2025-12-31', window: 'fy', amount_basis: 'expense', deducted: 284887000 }] };
+  const line = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value and added to the price each IRR is solved at; the base OE is unchanged.';
+  assert.equal(App.iprdNote(rec), line);
+  assert.ok(App.renderOverview(rec).includes('<p class="note">' + line + '</p>'), 'under the base OE card');
+  const both = JSON.parse(JSON.stringify(rec));
+  both.score.iprd_adjustment.periods.push({ period: '2026-06-30', start: '2026-01-01', window: 'ttm_current_ytd', amount_basis: 'cash_outflow', deducted: 5e6 });
+  assert.ok(App.iprdNote(both).includes('(FY2025, expense basis; YTD 2026-06-30, cash basis)'), App.iprdNote(both));
+  // [Codex review r16 of PR #47] the engine record's block alone is a run the score on file did not come from: pending, never "deducted"
+  const numbersOnly = JSON.parse(JSON.stringify(rec)); numbersOnly.numbers.iprd_adjustment = numbersOnly.score.iprd_adjustment; delete numbersOnly.score.iprd_adjustment;
+  assert.ok(!App.iprdNote(numbersOnly).includes('deducted from every intrinsic value') && App.iprdNote(numbersOnly).includes('not scored yet'), App.iprdNote(numbersOnly));
+  const am = JSON.parse(JSON.stringify(rec)); am.score.iprd_adjustment.treatment = 'amortized_in_base';
+  assert.equal(App.iprdNote(am), 'Acquired IPR&amp;D: amortized in the base OE (iprd_amortized base override) — no one-time deduction.');
+  const none = JSON.parse(JSON.stringify(rec)); none.score.iprd_adjustment.treatment = 'none';
+  assert.equal(App.iprdNote(none), '');
+  // [Codex review r15 of PR #47] score.json keeps a minimal deferred_payments_only block (no charge): no line
+  const minimal = JSON.parse(JSON.stringify(synthetic));
+  minimal.score.iprd_adjustment = { treatment: 'none', total: 0, charge_per_share: 0, deferred_payments_only: true, periods: [],
+    deferred_payments_rolled_out: [{ period: '2022-12-31', window: 'fy', amount: 60e6, deal: 'Old Bio', first_charged_period: '2021-12-31' }] };
+  minimal.numbers.iprd_adjustment = Object.assign({}, minimal.score.iprd_adjustment, { ignored_cash_only: [], notes: [] });
+  assert.equal(App.iprdNote(minimal), '', 'a deferred_payments_only block is no charge');
+  assert.ok(!App.renderOverview(minimal).includes('Acquired IPR'), 'nothing shown for the minimal block');
+  assert.equal(App.iprdNote(synthetic), '', 'a record without the block');
+  assert.ok(!App.renderOverview(synthetic).includes('Acquired IPR'), 'nothing new on a pre-5.6 record');
+});
+
+test('acquired IPR&D note (Codex review r16): only the displayed score\'s own run is described; per ADS at an ADS filer', () => {
+  const blk = { treatment: 'one_time_value_deduction', total: 284887000, charge_per_share: 2.3333797464207318,
+    periods: [{ period: '2025-12-31', window: 'fy', amount_basis: 'expense', deducted: 284887000 }] };
+  const applied = 'Acquired IPR&amp;D: −$2.33/sh one-time (FY2025, expense basis) — deducted from every intrinsic value';
+  const pending = 'Acquired IPR&amp;D: the latest engine run deducts −$2.33/sh one-time (FY2025, expense basis), not scored yet — the scored figures shown do not include it.';
+  // #4331515981: make_score refused the new run, so the score on file is an earlier run's (no block of its own)
+  const foreign = JSON.parse(JSON.stringify(synthetic));
+  foreign.numbers.iprd_adjustment = Object.assign({ ads_ratio: 1.0 }, blk); delete foreign.score.iprd_adjustment;
+  foreign.live_withheld = { reason: 'score_not_from_this_run', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: '' };
+  assert.equal(App.iprdNote(foreign), pending);
+  assert.ok(!App.renderOverview(foreign).includes('deducted from every intrinsic value'), 'no "already net of" line beside a foreign score');
+  // the same with the earlier score carrying a block of its own: still not this run's figures — the newer run's charge is pending
+  const foreignBlk = JSON.parse(JSON.stringify(foreign)); foreignBlk.score.iprd_adjustment = Object.assign({}, blk, { charge_per_share: 1.5 });
+  assert.equal(App.iprdNote(foreignBlk), pending);
+  const unresolved = JSON.parse(JSON.stringify(foreign)); unresolved.live_withheld.reason = 'iprd_unresolved';
+  assert.equal(App.iprdNote(unresolved), pending, 'iprd_unresolved: the score on file is an earlier run\'s too');
+  const foreignNone = JSON.parse(JSON.stringify(foreign)); delete foreignNone.numbers.iprd_adjustment;
+  foreignNone.score.iprd_adjustment = blk;
+  assert.equal(App.iprdNote(foreignNone), '', 'a foreign score\'s block is never described as this page\'s adjustment');
+  // a score with no block beside a run that has one is not that run's score either (make_score copies the block)
+  const noBlock = JSON.parse(JSON.stringify(foreign)); delete noBlock.live_withheld;
+  assert.equal(App.iprdNote(noBlock), pending);
+  // #4331515990: the engine's charge_per_share is per traded unit (× the applied ADS ratio), as key_numbers.md says
+  const ads = JSON.parse(JSON.stringify(synthetic));
+  ads.score.iprd_adjustment = Object.assign({}, blk, { total: 100e6, charge_per_share: 2.0 });
+  ads.numbers.iprd_adjustment = Object.assign({ ads_ratio: 2.0 }, ads.score.iprd_adjustment);
+  assert.ok(App.iprdNote(ads).startsWith('Acquired IPR&amp;D: −$2.00/ADS one-time (FY2025, expense basis)'), App.iprdNote(ads));
+  ads.numbers.iprd_adjustment.ads_ratio = 1.0;
+  assert.ok(App.iprdNote(ads).startsWith('Acquired IPR&amp;D: −$2.00/sh one-time'), App.iprdNote(ads));
+  const adsPending = JSON.parse(JSON.stringify(ads)); adsPending.numbers.iprd_adjustment.ads_ratio = 2.0; delete adsPending.score.iprd_adjustment;
+  assert.ok(App.iprdNote(adsPending).includes('deducts −$2.00/ADS one-time'), App.iprdNote(adsPending));
+  const own = JSON.parse(JSON.stringify(synthetic)); own.score.iprd_adjustment = blk; own.numbers.iprd_adjustment = Object.assign({ ads_ratio: 1.0 }, blk);
+  assert.ok(App.iprdNote(own).startsWith(applied), 'the score\'s own run: as before');
 });
 
 Promise.all(pending).then(() => {
