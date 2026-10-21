@@ -543,6 +543,11 @@ def evidence(fu):
 
 
 # ------------------------------------------------------------------ judgment checks
+def _sentence(v):
+    """The stripped text of a string field; "" for anything else, so a list or dict never passes a length check."""
+    return v.strip() if isinstance(v, str) else ""
+
+
 def check_sources(sources):
     """None (undeclared, a pre-rubric-2 judgment) or a list of {source, evidence}; ValueError when malformed."""
     if sources is None:
@@ -550,9 +555,9 @@ def check_sources(sources):
     if not isinstance(sources, list):
         raise ValueError(f"moat_sources must be a list of {{source, evidence}} objects (source one of {', '.join(SOURCES)})")
     for s in sources:
-        if not isinstance(s, dict) or s.get("source") not in SOURCES or len(str(s.get("evidence") or "").strip()) < 20:
+        if not isinstance(s, dict) or s.get("source") not in SOURCES or len(_sentence(s.get("evidence"))) < 20:
             raise ValueError(f"moat_sources entry {s!r}: source must be one of {', '.join(SOURCES)} and evidence "
-                             "a company-specific sentence (>= 20 characters)")
+                             "a company-specific sentence (a string >= 20 characters)")
     return sources
 
 
@@ -565,8 +570,8 @@ def check_reason_shape(reason):
     code = reason.get("code")
     if not isinstance(code, str) or code not in REASONS:
         raise ValueError(f"moat_evidence_reason.code {code!r} must be one of {', '.join(REASONS)}")
-    if len(str(reason.get("text") or "").strip()) < MIN_TEXT:
-        raise ValueError(f"moat_evidence_reason.text must state the evidence (>= {MIN_TEXT} characters)")
+    if len(_sentence(reason.get("text"))) < MIN_TEXT:
+        raise ValueError(f"moat_evidence_reason.text must state the evidence (a string >= {MIN_TEXT} characters)")
     if code == "BUSINESS_CHANGED" and not str(reason.get("since_fy") or "").strip().isdigit():
         raise ValueError("moat_evidence_reason BUSINESS_CHANGED needs since_fy (the first fiscal year of the changed business)")
     if code == "MEASUREMENT_DEFECT" and (reason.get("field") not in DEFECT_FIELDS

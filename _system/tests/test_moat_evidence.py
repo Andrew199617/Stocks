@@ -44,6 +44,8 @@ moat_evidence module, and fundamentals.build_annual wrote the old figure).
    change inside the 5-year window; no reason reaches past 8 below anchor 8;
    SHORT_HISTORY does not apply to the REIT prior; a NaN moat or an
    unhashable code raises ValueError; the CLI parses `--moat 7 ROP`.
+8. PR review: evidence and reason text must be strings; a list or dict whose
+   repr is long enough passed the length check.
 """
 import json
 import os
@@ -475,6 +477,15 @@ def test_non_finite_moat_and_unhashable_code_raise_value_error():
     raises(lambda: M.assess(ev("ROP"), None), "finite number")
     raises(lambda: M.check_reason_shape({"code": ["ACQUIRED_GOODWILL"], "text": TEXT}), "moat_evidence_reason.code")
     raises(lambda: M.check_reason_shape({"code": {"x": 1}, "text": TEXT}), "moat_evidence_reason.code")
+
+
+def test_evidence_and_reason_text_must_be_strings():
+    long = ["switching costs on the enterprise software suite"]
+    raises(lambda: M.check_sources([{"source": "switching_costs", "evidence": long}]), "a string >= 20 characters")
+    raises(lambda: M.check_sources([{"source": "switching_costs", "evidence": {"why": long[0]}}]), "a string >= 20")
+    raises(lambda: M.check_reason_shape({"code": "ACQUIRED_GOODWILL", "text": [TEXT]}), "a string >= 40 characters")
+    assert M.check_sources([{"source": "switching_costs", "evidence": long[0]}])
+    assert M.check_reason_shape({"code": "ACQUIRED_GOODWILL", "text": TEXT})
 
 
 # ---------------------------------------------------------------- 6. record / key_numbers lines / CLI

@@ -28,6 +28,8 @@ moat_evidence block, no key_numbers lines, no entry-gate reason):
    NaN compared false with both band ends and passed the entry gate), and a
    non-USD fundamentals.json written before the one-money-unit rule is not
    measured (HTHT's stale file had closed its entry gate).
+8. PR review: moat_sources evidence or reason text that is not a string
+   refuses (a long enough list passed and lifted the no-source cap).
 """
 import json
 import os
@@ -132,6 +134,12 @@ def test_malformed_reason_or_sources_refuse_and_sources_are_recorded():
     assert s["moat_sources"] == src and s["moat_evidence"]["sources_declared"] is True
     s = _run("HALO", 7, moat_sources=[]).ok().result["score"]
     assert s["moat_evidence"]["band"] == [4, 4] and s["alert_eligible"] is False, "an explicitly empty list caps at 4"
+
+
+def test_non_string_evidence_or_reason_text_refuses():
+    long = ["ENHANZE royalties run to the 2030s on partner drugs"]
+    _run("HALO", 7, moat_sources=[{"source": "intangible_assets", "evidence": long}]).refused("a string >= 20 characters")
+    _run("ROP", 7, moat_evidence_reason={"code": "ACQUIRED_GOODWILL", "text": [TEXT]}).refused("a string >= 40 characters")
 
 
 def test_moat_score_outside_0_10_or_not_a_number_refuses():
