@@ -1177,7 +1177,59 @@
    "slope_margin": 0.003,
    "reason": null,
    "governing_first2": 0.465,
-   "governing_last2": 0.465
+   "governing_last2": 0.465,
+   "direction": "flat"
+  },
+  "fade": {
+   "version": 1,
+   "status": "measured",
+   "reason": null,
+   "direction": "flat",
+   "measure": "roic",
+   "years": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "governing_first2": 0.465,
+   "governing_last2": 0.465,
+   "governing_change_pp": 0.0,
+   "slope_governing": 0.0,
+   "margin_change_pp": 1.0,
+   "slope_margin": 0.003,
+   "margin_basis": "gross",
+   "trend": null,
+   "hold_years": null,
+   "rule": "no_projection",
+   "plain_roic": null,
+   "roa": null,
+   "guards": {
+    "applies": false,
+    "fact_backed_source": null,
+    "source": null,
+    "returns_on_capital": null,
+    "plain_roic_agrees": null,
+    "roa_agrees": null,
+    "commodity_sic": null,
+    "business_type": "consumer_brands_retail",
+    "business_type_basis": "declared",
+    "failed": []
+   },
+   "rebuttal_declared": false,
+   "rebuttal_unused": false,
+   "decline_declared": false,
+   "decline_unused": false,
+   "flags": [],
+   "trough": null,
+   "engine": {
+    "moat_trend": null,
+    "hold_years": 2,
+    "source": "default"
+   },
+   "in_sync": null,
+   "counterfactual": []
   },
   "flags": [],
   "gates": {

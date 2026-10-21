@@ -1427,14 +1427,19 @@ class Influence:
         self.third_party_only, self.anchored, self.carries_number = False, False, False
 
 
-def influence_support(text, fact_ids, fc, engine, tag, extra=None, trace_only=None, not_quantities=()):
+def influence_support(text, fact_ids, fc, engine, tag, extra=None, trace_only=None, not_quantities=(), accepted=None):
     """02 §5's algorithm over one reason text: (1) cited ids facts.json does not declare (unknown); (2) each number
     must match an engine source (`engine`, a quote_tokens.ValueSet: dcf_numbers / ttm / filed history / saved runs /
     judgment probs), the `extra` values, the `trace_only` values (10 §(l): accepted, never counted as an engine
-    match) or a CITED fact's value(s), else it is untraced (a method constant or release number in its context is
+    match), the `accepted` values (the figures at trace_only's dcf_numbers.json paths, which the caller removed from
+    `engine`) or a CITED fact's value(s), else it is untraced (a method constant or release number in its context is
     ignored when unmatched); (3) third_party_only = at least one number, none matched an engine source and every
     cited fact that matched is third_party; (4) cited facts whose used_for lacks `tag`; anchored = a number matched
-    an engine source (not trace_only), `extra`, or a cited non-third-party fact listing `tag`."""
+    an engine source (not trace_only), `extra`, or a cited non-third-party fact listing `tag`.
+    [L3b review, 2026-10-21; 10 §(l) step (3)] A number matching a trace_only VALUE is never an engine match, even
+    when an engine leaf also matches it: quote matching compares values, so a restated trend threshold (3pp) or a
+    hold-moved IRR equal to some engine leaf had anchored the reason. The `accepted` values only trace — a match on
+    them does not block a match on another engine leaf."""
     res = Influence()
     s = text if isinstance(text, str) else ""
     by = fc.by_id if fc is not None else {}
@@ -1448,19 +1453,21 @@ def influence_support(text, fact_ids, fc, engine, tag, extra=None, trace_only=No
         e = engine.match(t) if engine is not None else False
         x = extra.match(t) if extra is not None else False
         tr = trace_only.match(t) if trace_only is not None else False
+        ac = accepted.match(t) if accepted is not None else False
         fm = [i for i in cited if sets[i].match(t)]
-        if not (e or x or tr or fm):
+        if not (e or x or tr or ac or fm):
             if t.release_like or _qt.is_method_constant(t, s):
                 continue
             res.untraced.append(t)
             continue
         res.numbers += 1
-        if e or x:
+        eng = (e and not tr) or x
+        if eng:
             res.engine_numbers += 1
         for i in fm:
             if i not in res.facts_matched:
                 res.facts_matched.append(i)
-        if e or x or any(by[i].get("kind") != "third_party" and tag in (by[i].get("used_for") or []) for i in fm):
+        if eng or any(by[i].get("kind") != "third_party" and tag in (by[i].get("used_for") or []) for i in fm):
             res.anchored = True
     res.third_party_only = bool(res.numbers and not res.engine_numbers and res.facts_matched
                                 and all(by[i].get("kind") == "third_party" for i in res.facts_matched))

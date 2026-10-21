@@ -592,8 +592,44 @@ rebuilt as before, both alert gates closed ("engine output predates release
   scorecard" (_kn_moat) prints only generated numbers, never worker text.
   fundamentals.py's capital_returns_from_row is the one returns function the
   pillar reads (fundamentals.json, statements.json and the scorecard agree).
-- (L3b, M6 moat direction, Andrew 2026-10-20) the trend sync and
-  moat_widening_declined: [L3b writes this item]
+- (L3b, M6 moat direction, Andrew 2026-10-20: "eroding moat should fade
+  faster and vice versa") the trend sync and moat_widening_declined. The
+  moat's direction sets the growth hold the engine ran (--moat-trend:
+  eroding 0 / stable 2 / widening 3 years, on scenarios starting above
+  terminal growth). moat_scorecard.trend_test measures it on the last 5 FY
+  of fundamentals.json (governing return AND gross margin — operating
+  margin where gross margin is not filed, 10b COVERAGE / lane default Q4 —
+  both down: MOAT_EROSION; both up by the same 3pp / 20% / 2pp: MOAT_WIDENING)
+  and fade_trend turns it into the hold a 5.7 run must run: eroding -> 0
+  unless moat_scorecard.erosion_rebuttal is declared; widening -> 3 only
+  with a fact-backed source, returns_on_capital >= +1, plain ROIC agreeing
+  when tangible ROIC governs, ROA agreeing when ROE governs, and no
+  commodity SIC (or a SIC-6199 filer booking contract revenue) unless a
+  cost-position fact anchors business_type_reason (10b OQ10), and
+  moat_scorecard.widening_declined (no number needed) not declared;
+  anything else 2. score.json moat_evidence.fade records the evidence, the
+  guards, the engine's recorded trend, in_sync and the counterfactual at
+  the holds that matter (replay_paths(n, hold=h), no engine spawn). On a
+  5.7 authoring run of a record with scenarios make_score refuses a
+  recorded trend / hold other than fade_trend's (and a record whose holds
+  disagree with its own trend everywhere); a rebuild records gate drift
+  `fade_sync` instead (03c decision 6 kept for this gate: lane default Q5,
+  moat_scorecard.FADE_DRIFT_ON_REBUILD); a Tier F record has no
+  projection and is not checked. erosion_rebuttal is an influence field
+  whenever MOAT_EROSION fired and it is declared, and it must be ANCHORED
+  (fade_anchor_check: a cited non-third-party fact tagged erosion_rebuttal
+  or an engine figure outside the trend test — the trend's own figures,
+  the counterfactual and the record's hold-moved valuation outputs trace
+  but never anchor); a business_type_reason lifting the commodity guard
+  takes the same check. _final_run_args replays --moat-trend from inputs,
+  so every counterfactual spawn (override impact, payable pin, amortized
+  IPR&D, the interim bridge) runs on the scored hold. score.json copies
+  moat_trend / hold_years beside cap_years on 5.7 records; key_numbers'
+  "- Moat:" line names the hold (an older record prints the old line byte
+  for byte) and the Moat scorecard section prints "- Trend test" and
+  "- Fade direction". Registry: moat_erosion_rebuttal (now also on the
+  rebutted hold) and moat_widening_declined, each with the hold run, the
+  hold without it and the weighted IRR both ways.
 - (L4, R2) the declared 6-K interim bridge and the annual-instance check
   (Andrew, 2026-10-19: "do what we gotta to get good foreign companies
   working"). (a) A 20-F / 40-F filer's TTM bridged from its 6-K interim —
@@ -3003,8 +3039,9 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
     / return series / derived figures key_numbers.md prints, and `extra`'s numeric leaves; never judgment.json, and
     never the worker text the engine echoes into its flag strings (check_quotes.influence_sources blanks
     check_folder's worker text and the record's own copies of it, review r02) — nor a CITED fact's value
-    (`trace_only` values, and the values at its dcf_numbers.json paths, which are removed from the engine set — from
-    a saved run too where it repeats them — are accepted but never count as an engine match); (4) every number rests
+    (`trace_only` values are accepted but never an engine match, even where an engine leaf has the same value; the
+    values at its dcf_numbers.json paths leave the engine set — from a saved run too where it repeats them — and are
+    accepted without blocking another leaf's match, L3b review 2026-10-21); (4) every number rests
     only on third-party facts (R3: they calibrate scenarios and give context only); (5) a cited fact does not list the
     field's used_for tag (facts.INFLUENCE_TAGS); (6) require_anchor, the text has a number, and no number matched an
     engine source outside trace_only, `extra`, or a cited non-third-party fact tagged for the field (a plain
@@ -3024,13 +3061,16 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
                 "per-share charge as a calc fact, and quote the adjusted IRR from a saved run — check_quotes.py "
                 f"--save-run {n.get('ticker')} <label>)")
     vals, paths = _trace_only_split(trace_only)
+    acc = None
     if paths:
-        vals = vals or _qt.ValueSet()
+        # [L3b review, 2026-10-21] the figures at the excluded paths trace (`accepted`) but only trace_only's VALUES are
+        # never an engine match: a per-year series there (paths, growth_paths) may coincide with an independent figure
+        acc = _qt.ValueSet()
         for p in paths:
-            vals.merge(_numeric_values(_quotes.path_value(n, p)))
+            acc.merge(_numeric_values(_quotes.path_value(n, p)))
     engine = _quotes.influence_sources(folder, n, facts_doc=fc.doc if fc is not None else None, exclude_paths=paths)
     res = _facts.influence_support(s, ids, fc, engine, tag, extra=_numeric_values(extra) if extra is not None else None,
-                                   trace_only=vals, not_quantities=nq)
+                                   trace_only=vals, not_quantities=nq, accepted=acc)
     if res.unknown:
         fail(f"judgment.json {field} cites {res.unknown[0]}, which facts.json does not declare")
     if field not in _facts.NUMBER_OPTIONAL_FIELDS and not res.carries_number:
@@ -3149,6 +3189,8 @@ def _final_run_args(n):
             "--offsets", ",".join(repr(float(o)) for o in offsets),
             "--mults", ",".join(repr(float(m)) for m in mults),
             "--gterm", repr(float(gterm))]
+    if inp.get("moat_trend") is not None:   # v5.7 M6 (L3b): every counterfactual replays the scored growth hold
+        args += ["--moat-trend", str(inp["moat_trend"])]
     if n.get("price") is not None:
         args += ["--price", repr(float(n["price"]))]
     if n.get("cik"):
@@ -4206,18 +4248,33 @@ def _notch_events(ticker, today, notch, n):
              "basis": (notch.get("basis") or {}).get("source")}]
 
 
-def _moat_events(ticker, today, moat_ev):
+def _moat_events(ticker, today, moat_ev, n=None, j=None):
     """v5.7 (L3, R4 revised; 03b §9.4): one registry event per moat gate that applies on a CHECKED (5.7) run, did not
     drift on this rebuild and whose reason is declared — moat_divergence, moat_low_roic, moat_high_return_low_moat,
     moat_erosion_rebuttal. The identity (_EVENT_DECLARATION) is (moat_score, reason); moat_score is a float in every
     event so keep_first_dates never re-dates 6 vs 6.0. No event uses an iprd_deferred_payment field name. Pure (runs
-    under the registry lock): [] for legacy output or no moat evidence."""
+    under the registry lock): [] for legacy output or no moat evidence.
+    L3b (M6, 10 §5.6): moat_erosion_rebuttal is also written whenever MOAT_EROSION fired and the rebuttal restored
+    the 2-year hold (fade rule eroding_rebutted), and moat_widening_declined when the worker declined a widening whose
+    guards pass (rule widening_declined); both carry the measured change, the hold run and the hold without the
+    declaration, and the weighted IRR both ways (n: the engine record; the IRR without from fade.counterfactual; j:
+    the judgment, whose moat_scorecard.widening_declined is the decline's reason) — never on a rebuild whose fade sync
+    drifted, and never for a rebuttal no run has checked (moat_scorecard.rebuttal_unchecked: declared while no erosion
+    was measured, met by a rebuild; L3b review, 2026-10-21)."""
     me = moat_ev if isinstance(moat_ev, dict) else None
     if not me or me.get("status") != "checked":
         return []
     g = me.get("gates") or {}
     base = {"ticker": ticker, "date": today, "moat_score": float(me.get("moat_score"))}
     out = []
+    fade = me.get("fade") if isinstance(me.get("fade"), dict) else {}
+    fade_ok = not any(d.get("gate") == "fade_sync" for d in me.get("gate_drift") or [])
+    irr = _num((n or {}).get("implied_irr_weighted"))
+
+    def hold_fields(without):
+        cf = next((c for c in fade.get("counterfactual") or [] if c.get("hold_years") == without), {})
+        return {"hold_years": fade.get("hold_years"), "hold_without": without,
+                "irr_weighted": round(irr, 4) if irr is not None else None, "irr_weighted_without": cf.get("irr_weighted")}
 
     def due(name):
         rec = g.get(name) or {}
@@ -4235,11 +4292,21 @@ def _moat_events(ticker, today, moat_ev):
         rv = g["reverse"]
         out.append(dict(base, event="moat_high_return_low_moat", measure=(me.get("governing") or {}).get("measure"),
                         median=rv.get("median"), median_note=rv.get("median_note"), min=rv.get("min"), reason=rv["reason"]))
-    if due("erosion"):
+    rebutted = fade_ok and fade.get("rule") == "eroding_rebutted"
+    # [L3b review, 2026-10-21] a rebuttal no run has checked (declared while unused, met by a rebuild) records nothing,
+    # under G6 either: the registry keeps checked declarations only
+    if (due("erosion") or rebutted) and not _moat.rebuttal_unchecked(fade):
         er = me.get("erosion_test") or {}
+        reason = (g.get("erosion") or {}).get("reason")
         out.append(dict(base, event="moat_erosion_rebuttal", governing_change_pp=er.get("governing_change_pp"),
                         margin_change_pp=er.get("margin_change_pp"), margin_basis=er.get("margin_basis"),
-                        reason=g["erosion"]["reason"]))
+                        **(hold_fields(_engine.HOLD_BY_TREND["eroding"]) if rebutted else {}), reason=reason))
+    if fade_ok and fade.get("rule") == "widening_declined":
+        sc = (j or {}).get("moat_scorecard") if isinstance(j, dict) else None
+        out.append(dict(base, event="moat_widening_declined", governing_change_pp=fade.get("governing_change_pp"),
+                        margin_change_pp=fade.get("margin_change_pp"), margin_basis=fade.get("margin_basis"),
+                        **hold_fields(_engine.HOLD_BY_TREND["widening"]),
+                        reason=(sc or {}).get("widening_declined") if isinstance(sc, dict) else None))
     return out
 
 
@@ -4284,18 +4351,49 @@ def moat_reason_checks(moat_ev, j, fc, folder, n, run_kind="authoring", interim_
         return []
     sc = j.get("moat_scorecard") if isinstance(j.get("moat_scorecard"), dict) else {}
     leaves = influence_extra(me, interim_meas)
+    fade = me.get("fade") if isinstance(me.get("fade"), dict) else {}
     done = []
     for field in _moat.REASON_FIELDS:
         text = sc.get(field)
         gate = (me.get("gates") or {}).get(_moat.REASON_GATE[field]) or {}
+        if field == "erosion_rebuttal" and fade.get("rule") == "eroding_rebutted":
+            # L3b (M6, 10 §1.4): with MOAT_EROSION fired the rebuttal restores the 2-year hold, so it is an influence
+            # field whenever declared (not only under G6), and anchored: the trend test's own figures, its
+            # counterfactual and the record's hold-moved valuation outputs trace but never anchor it
+            fade_anchor_check(f"moat_scorecard.{field}", text, me, fc, folder, n)
+            done.append((field, text))
+            continue
         if gate.get("applies") and isinstance(text, str) and text.strip():
             check_influence(f"moat_scorecard.{field}", text, _facts.parse_refs(text), fc, folder, n, extra=leaves)
             done.append((field, text))
-    if (me.get("type_lock") or {}).get("reason_required"):
+    cg = ((fade.get("guards") or {}).get("commodity_sic") or {})
+    if cg.get("exempted_by_reason"):
+        # L3b (M6, 10 §1.3 guard 4; 10b OQ10): a business_type_reason that lifts the commodity guard adds value (hold 3),
+        # so it takes the same anchored check (its cost-position fact is the anchor)
+        fade_anchor_check("moat_scorecard.business_type_reason", sc.get("business_type_reason"), me, fc, folder, n)
+        done.append(("business_type_reason", sc.get("business_type_reason")))
+    elif (me.get("type_lock") or {}).get("reason_required"):
         text = sc.get("business_type_reason")
         check_influence("moat_scorecard.business_type_reason", text, _facts.parse_refs(text), fc, folder, n, extra=leaves)
         done.append(("business_type_reason", text))
     return done
+
+
+def fade_anchor_check(field, text, me, fc, folder, n):
+    """v5.7 (L3b, M6; 10 §1.4, §(l)): check_influence for a reason that moves the growth hold — an erosion_rebuttal
+    (restores hold 2) or a business_type_reason lifting the commodity guard (allows hold 3). Engine sources: moat
+    evidence outside the trend block (moat_scorecard.fade_extra_leaves, with the plain-ROIC / ROA anchors of the
+    tangible-only / ROE-only erosion case); trace-only: the trend block's figures, the counterfactual and the record's
+    hold keys and valuation outputs (moat_scorecard.fade_trace_leaves); require_anchor: at least one number must rest
+    on a cited non-third-party fact tagged for the field or an engine figure outside the measurement.
+    [L3b review, 2026-10-21] Every figure the hold moves is trace-only, wherever the engine set meets it: the scored
+    record's, and those of every saved run the engine set reads (check_quotes.influence_sources counts each verified
+    dcf_numbers_<label>.json) — a preliminary run saved at another hold carries the hold-0 IRR."""
+    ticker = (n or {}).get("ticker") or os.path.basename(os.path.normpath(folder))
+    saved = [rec for label, _, rec in _quotes.saved_runs(folder) if _quotes.bound_saved_run(label, rec, ticker)]
+    trace = _moat.fade_trace_leaves(me, n=n, saved=saved)
+    check_influence(field, text, _facts.parse_refs(text), fc, folder, n,
+                    extra=_moat.fade_extra_leaves(me, trace["values"]), trace_only=trace, require_anchor=True)
 
 
 SCORE_DECISION_KEYS += ("moat_evidence",)   # L3 (R4 revised): moat_evidence carries a decision (L5's prepare compares it)
@@ -4524,7 +4622,7 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
             entries.append(dict(ev, date=today))
         # v5.7 (07 §1.11): the lanes' events, in this fixed order ([] until each lane fills its function)
         entries += _notch_events(ticker, today, notch, n)                       # L1 (R1)
-        entries += _moat_events(ticker, today, moat_ev)                         # L3 / L3b (R4, M6)
+        entries += _moat_events(ticker, today, moat_ev, n=n, j=j)               # L3 / L3b (R4, M6)
         entries += _interim_events(ticker, interim, declined, today)            # L4 (R2)
         entries += _facts_events(ticker, today, facts_check)                    # L2 (R3)
         entries += _share_classes_events(ticker, share_classes, up_c, n, j)     # L8 (R6)
@@ -4923,6 +5021,23 @@ def _kn_method_runs(method_runs, previous):
     return L
 
 
+HOLD_LINE_TEXT = {"eroding": "moat eroding, not rebutted; default {d}", "stable": "moat stable",
+                  "widening": "moat widening, confirmed; default {d}"}
+
+
+def _kn_moat_line(n, j):
+    """v5.7 (L3b, M6): the "Growth & moat" block's `- Moat:` line. A record carrying hold_years (engine 5.7) names the
+    growth hold the engine ran — `- Moat: 4/10 · CAP 7.2 yrs · growth hold 0 yrs (moat eroding, not rebutted; default
+    2) · terminal growth 2.50%`; every older record prints the pre-5.7 line byte for byte."""
+    head = f"- Moat: {j['moat_score']}/10 · CAP {n.get('cap_years')} yrs · "
+    h = n.get("hold_years")
+    if h is None or isinstance(h, bool):
+        return head + f"terminal growth {_pct(n.get('g_terminal'))}"
+    t = (n.get("inputs") or {}).get("moat_trend", n.get("moat_trend")) or "stable"
+    why = HOLD_LINE_TEXT.get(t, f"moat {t}").format(d=_engine.HOLD_YEARS)
+    return head + f"growth hold {h} yrs ({why}) · terminal growth {_pct(n.get('g_terminal'))}"
+
+
 def _kn_moat(score):
     """v5.7 (L3, R4 revised): the "## Moat scorecard" section from score.json moat_evidence (moat_scorecard.
     key_numbers_lines: every number generated, no worker free text); [] when the score carries none."""
@@ -5133,7 +5248,7 @@ def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, 
           f"- Growth blend: {_pct(n.get('g_blend'))}" + (f" → g_base {_pct(n.get('g_base'))}" if n.get("g_base") is not None else ""),
           f"- Components: rev CAGR 5y {_pct(gc.get('rev_cagr_5y'))} · rev CAGR 3y {_pct(gc.get('rev_cagr_3y'))} · latest rev YoY {_pct(gc.get('rev_yoy_latest'))} · OE/share CAGR 2y {_pct(gc.get('oe_ps_cagr_2y'))}",
           f"- Share count CAGR: {_pct(n.get('share_cagr'))} (growth adj {_pct(n.get('share_count_adj'))})",
-          f"- Moat: {j['moat_score']}/10 · CAP {n.get('cap_years')} yrs · terminal growth {_pct(n.get('g_terminal'))}"]
+          _kn_moat_line(n, j)]                                      # L3b (M6): the growth hold on 5.7 records
     L += _kn_growth_extras(folder, n)                               # v5.7 hook (L2)
     L += _kn_filed_history(folder, n)                               # v5.7 hook (L2)
     scn = n.get("scenarios") or {}
@@ -5572,7 +5687,10 @@ def main():
              "base_year": (n.get("latest_period_end") or "")[:4] or None,
              "base_source": n.get("base_source"),
              "moat_score": j["moat_score"], "moat_justification": j["moat_justification"],
-             "cap_years": n.get("cap_years"), "fragility_flags": n.get("fragility_flags", []),
+             "cap_years": n.get("cap_years"),
+             # v5.7 (L3b, M6): the growth hold the engine ran, copied when the record carries it (5.7); never on older
+             **({"moat_trend": n.get("moat_trend"), "hold_years": n["hold_years"]} if n.get("hold_years") is not None else {}),
+             "fragility_flags": n.get("fragility_flags", []),
              "scenarios": scenarios,
              "iv_at_15": round(n["iv_at_15"], 2) if n.get("iv_at_15") is not None else None,
              "iv_at_12": round(n["iv_at_12"], 2) if n.get("iv_at_12") is not None else None,

@@ -1405,7 +1405,74 @@
    "slope_margin": 0.0037,
    "reason": null,
    "governing_first2": 0.1218,
-   "governing_last2": 0.1542
+   "governing_last2": 0.1542,
+   "direction": "flat"
+  },
+  "fade": {
+   "version": 1,
+   "status": "measured",
+   "reason": null,
+   "direction": "flat",
+   "measure": "roic_tangible",
+   "years": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ],
+   "governing_first2": 0.1218,
+   "governing_last2": 0.1542,
+   "governing_change_pp": 3.24,
+   "slope_governing": 0.010792,
+   "margin_change_pp": 1.1,
+   "slope_margin": 0.0037,
+   "margin_basis": "gross",
+   "trend": null,
+   "hold_years": null,
+   "rule": "no_projection",
+   "plain_roic": {
+    "status": "measured",
+    "first2": 0.0724,
+    "last2": 0.0947,
+    "change_pp": 2.22,
+    "slope": 0.007418,
+    "up": false,
+    "down": false,
+    "years": [
+     "2021",
+     "2022",
+     "2023",
+     "2024",
+     "2025"
+    ]
+   },
+   "roa": null,
+   "guards": {
+    "applies": false,
+    "fact_backed_source": null,
+    "source": null,
+    "returns_on_capital": null,
+    "plain_roic_agrees": null,
+    "roa_agrees": null,
+    "commodity_sic": null,
+    "business_type": "industrial",
+    "business_type_basis": "declared",
+    "failed": []
+   },
+   "rebuttal_declared": false,
+   "rebuttal_unused": false,
+   "decline_declared": false,
+   "decline_unused": false,
+   "flags": [],
+   "trough": null,
+   "engine": {
+    "moat_trend": null,
+    "hold_years": 2,
+    "source": "default"
+   },
+   "in_sync": null,
+   "counterfactual": []
   },
   "flags": [],
   "gates": {

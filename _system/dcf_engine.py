@@ -11,7 +11,7 @@ Key correctness rules learned from the APP pilot:
   statement, capex is treated as 0 and flagged (asset-light filers like APP do this).
 
 Outputs: <TICKER>/financials_history.csv, <TICKER>/dcf_numbers.json
-Usage: python3 dcf_engine.py TICKER [--price 123.45] [--moat 0-10] [--probs sb,b,base,bull,sbull] [--offsets pp,pp,pp,pp,pp] [--mults x,x,x,x,x]
+Usage: python3 dcf_engine.py TICKER [--price 123.45] [--moat 0-10] [--moat-trend eroding|stable|widening] [--probs sb,b,base,bull,sbull] [--offsets pp,pp,pp,pp,pp] [--mults x,x,x,x,x]
 
 v3 (2026-10-12, Andrew's edit): FIVE scenarios (super_bear, bear, base, bull, super_bull), each with
 an agent-assigned probability (must sum to 1.0). Headline value = probability-weighted expected
@@ -23,7 +23,7 @@ v4 (2026-10-12, brittleness audit — full list in DCF_AUDIT.md):
   latest year. --base-oe-ps overrides with an agent-supplied TTM figure when the FY is stale.
 - Growth is a BLEND: median of rev CAGR 5y, rev CAGR 3y, latest rev YoY, and OE/share CAGR,
   then adjusted for share-count trend (buybacks add, dilution subtracts, clamped ±5pp).
-- Fade holds g0 for 2 years, then converges to terminal over the CAP in either direction.
+- Fade holds g0 for 2 years (M6: 0 / 2 / 3 by the moat's direction), then converges to terminal over the CAP in either direction.
 - Candidate EDGAR tags are merged per period (tag switches no longer truncate history).
 - Terminal growth is a parameter (--gterm, default 2.5%).
 - Every run emits diagnostics + fragility_flags (stale FY, base divergence, low OE yield,
@@ -666,7 +666,26 @@ closed, as for every release change). The items below are written by the lane th
   ttm_inputs is recorded exactly when the run's basis reads ttm.json, so make_score refuses a 5.7 run whose basis
   read a ttm.json with no stamp or one older than 5.7.0 (its legs were built without software and the new
   components) — rerun ttm.py, then the engine.
-- (L3b, M6 moat direction, Andrew 2026-10-20) --moat-trend and the growth hold: [L3b writes this item]
+- (L3b, M6 moat direction, Andrew 2026-10-20: "eroding moat should fade faster and vice versa") --moat-trend and
+  the growth hold. The moat's LEVEL still sets CAP (cap_years_for_moat); its DIRECTION now sets the hold before the
+  fade: --moat-trend eroding | stable | widening (default stable) -> HOLD_BY_TREND 0 / 2 / 3 years
+  (hold_years_for_trend). The trend is never computed here: moat_scorecard.fade_trend computes it from the folder's
+  committed SEC data and the judgment, the dry run `moat_scorecard.py <T>` prints the value to pass, and make_score
+  refuses an authoring run whose recorded trend or hold disagrees. Checked at the top of main(), before the universe
+  file and any fetch: a value outside MOAT_TRENDS prints BAD_MOAT_TREND and exits EXIT_BAD_MOAT_TREND (5; exit 2
+  stays NO_CIK). The hold applies only to a scenario that starts ABOVE terminal growth (fade_hold; the rule is
+  HOLD_RULES[HOLD_RULE], recorded as inputs.hold_rule "above_terminal" — the main agent's default Q6, 2026-10-21):
+  at a start at or below terminal a shorter hold would RAISE value, so those scenarios keep 2 and eroding never
+  raises a value, widening never lowers one. Recorded (all inside content_hash): top-level moat_trend / hold_years
+  on every exit path (data gap, Tier F, normal); inputs.moat_trend / hold_years / hold_rule on the Tier F and normal
+  records; scenarios[k].hold_years per scenario. recorded_scenario_holds is the one reader every replay uses
+  (replay_paths, reprice through it, test_engine_math): the record's per-scenario holds when written (5.7+), else
+  fade_hold of recorded_hold_years (2 on every pre-5.7 record — bit for bit as before); a later rule change never
+  re-values a record already written. replay_paths(numbers, hold=h) replays a counterfactual at another hold with
+  the record's own hold_rule (counterfactual_scenario_holds) and never returns the stored paths for it. Flag
+  MOAT_TREND_HOLD when the hold is not 2 (not in any confidence cap or alert gate). The IPR&D one-time charge acts
+  after the flows (adjusted_value / adjusted_irr), so it composes with the hold unchanged; DCF_IPRD_HOLD is the
+  unrelated IPR&D treatment hold. _measure_run passes --moat-trend through with the rest of argv.
 - (R7) STALE_FY discretion made checkable: no engine logic change; the amortized-median refusal text names
   ttm_rejection_reason: [R7 writes this item]
 - (L2 R3 facts and quotes, L3 R4 moat scorecard) no engine change: facts.json and the moat scorecard are
@@ -692,6 +711,89 @@ DEFAULT_GTERM = 0.025
 GROWTH_CAP_BASE = 0.35  # g_base cap (20% until 2026-10-12 — see README Fixes & lessons)
 GROWTH_CAP_START = 0.50 # scenario start cap
 GROWTH_FLOOR_BASE, GROWTH_FLOOR_START = -0.05, -0.10
+
+# ---------------------------------------------------------------------------
+# v5.7 M6 (Andrew, 2026-10-20: "eroding moat should fade faster and vice versa"; design 10_moat_fade, decisions 10b):
+# the moat's DIRECTION sets the growth hold before the fade; its LEVEL still sets CAP (cap_years_for_moat). The trend
+# reaches the engine only as --moat-trend (computed by moat_scorecard.fade_trend, checked by make_score); the hold is
+# recorded per scenario and every replay reads the record, never this code (recorded_scenario_holds).
+# ---------------------------------------------------------------------------
+SCENARIO_LABELS = ("super_bear", "bear", "base", "bull", "super_bull")   # the order of every inline `labels` list
+MOAT_TRENDS = ("eroding", "stable", "widening")
+HOLD_BY_TREND = {"eroding": 0, "stable": HOLD_YEARS, "widening": 3}
+EXIT_BAD_MOAT_TREND = 5   # exit 2 is NO_CIK, 1 / 3 / 4 are taken: 5 is the first unused code
+_MISSING = object()
+
+
+def hold_years_for_trend(trend):
+    """The growth hold for a moat trend (M6). Raises ValueError on anything outside MOAT_TRENDS."""
+    if trend not in HOLD_BY_TREND:
+        raise ValueError(f"moat trend {trend!r} is not one of {', '.join(MOAT_TRENDS)}")
+    return HOLD_BY_TREND[trend]
+
+
+def fade_hold(g0, gterm, hold_years):
+    """The hold one scenario uses: the run's hold_years when the scenario starts above terminal growth, else
+    HOLD_YEARS. growth_path converges in either direction, so at a start at or below terminal a shorter hold would
+    RAISE value and a longer one lower it; holding those scenarios at the default keeps M6's direction (eroding never
+    raises value, widening never lowers it). hold_years == HOLD_YEARS is the identity for every scenario (lane
+    default Q6, main agent 2026-10-21: keep the design's above-terminal rule)."""
+    return hold_years if g0 > gterm else HOLD_YEARS
+
+
+# The rule the scenario loop applies, recorded as inputs.hold_rule — THE switch for Q6: a "literal" rule (every
+# scenario at the run's hold) is HOLD_RULES["literal"] = lambda g0, gterm, h: h plus HOLD_RULE = "literal" and a
+# release bump. Records already written keep replaying from their own scenarios[k].hold_years.
+HOLD_RULE = "above_terminal"
+HOLD_RULES = {"above_terminal": fade_hold}
+
+
+def _valid_hold(h):
+    return not isinstance(h, bool) and isinstance(h, int) and 0 <= h <= PROJECTION_YEARS
+
+
+def recorded_hold_years(numbers):
+    """The run-level hold a recorded dcf_numbers.json payload ran with: inputs.hold_years; HOLD_YEARS when absent
+    (every pre-5.7 record, which ran the fixed 2-year hold); None when present but not an int in 0..PROJECTION_YEARS
+    (bool refused) — the caller treats the record as not replayable."""
+    inp = numbers.get("inputs") if isinstance(numbers, dict) else None
+    if not isinstance(inp, dict) or "hold_years" not in inp:
+        return HOLD_YEARS
+    h = inp["hold_years"]
+    return h if _valid_hold(h) else None
+
+
+def recorded_scenario_holds(numbers, g0s, gterm, labels=None):
+    """The per-scenario holds a record ran with, in `labels` order (default the five scenario labels). The RECORD is
+    the source of truth: when every scenario records hold_years (5.7+), those values are returned as written, each a
+    valid int (bool refused) equal to inputs.hold_years or HOLD_YEARS; nothing is re-derived from fade_hold, so a later
+    change to the rule never re-values an old record. When no scenario records one (every pre-5.7 record):
+    [fade_hold(g0, gterm, recorded_hold_years(numbers)) for g0 in g0s], which is HOLD_YEARS everywhere for a record
+    without inputs.hold_years. None (not replayable) when the run-level hold is malformed, a recorded per-scenario hold
+    is malformed or matches neither, or only some scenarios record one."""
+    labels = labels or SCENARIO_LABELS
+    h = recorded_hold_years(numbers)
+    if h is None:
+        return None
+    scn = numbers.get("scenarios") or {}
+    rec = [(scn.get(k) if isinstance(scn.get(k), dict) else {}).get("hold_years", _MISSING) for k in labels]
+    if all(x is _MISSING for x in rec):
+        return [fade_hold(g0, gterm, h) for g0 in g0s]
+    if any(x is _MISSING or not _valid_hold(x) or x not in (h, HOLD_YEARS) for x in rec):
+        return None
+    return rec
+
+
+def counterfactual_scenario_holds(numbers, g0s, gterm, hold):
+    """Per-scenario holds for a replay at a hold the record did NOT run (moat_evidence.fade.counterfactual, the
+    measurement): the record's own rule (inputs.hold_rule, absent = "above_terminal", which is the identity at
+    HOLD_YEARS) applied to `hold`. None when the record names a rule this engine does not know or `hold` is not a
+    valid hold."""
+    if not _valid_hold(hold):
+        return None
+    inp = numbers.get("inputs") if isinstance(numbers, dict) else None
+    rule = HOLD_RULES.get((inp if isinstance(inp, dict) else {}).get("hold_rule", HOLD_RULE))
+    return None if rule is None else [rule(g0, gterm, hold) for g0 in g0s]
 
 
 # ---------------------------------------------------------------------------
@@ -847,11 +949,12 @@ def adjusted_irr(flows, px, gterm=DEFAULT_GTERM, charge_ps=0.0):
     return solve_irr(flows, px + charge_ps, gterm)
 
 
-def replay_paths(numbers):
+def replay_paths(numbers, hold=None):
     """(paths, growth_paths) for a recorded dcf_numbers.json payload — the
     flows the scored run discounted, replayed from its recorded inputs
     exactly as the engine computed them (g0 = clamp(g_base + offset),
-    project_path(base * mult, g0, CAP(moat), g_terminal), weighted =
+    project_path(base * mult, g0, CAP(moat), g_terminal, hold = the
+    scenario's recorded hold_years (pre-5.7: 2)), weighted =
     probability-weighted sum). Mirrors build_daily_html.forecast_paths; used
     by reprice.py so the live IRR is solved on the SAME flows as the scored
     IRR (bit-for-bit at the scored price).
@@ -862,34 +965,46 @@ def replay_paths(numbers):
     the inputs are missing (a hand-built or foreign record) or when the
     replay disagrees with it beyond rounding (the record is the engine's
     own output and wins over a drifted replay). (None, None) when neither
-    is available. Additive (v5.4 reprice)."""
+    is available. Additive (v5.4 reprice).
+
+    v5.7 M6: the per-scenario holds come from the record (recorded_scenario_holds: scenarios[k].hold_years on a 5.7
+    record, 2 on every older one), never from today's fade_hold — a later change of the hold rule cannot re-value a
+    record already written. `hold` given (a counterfactual at a hold the record did NOT run — make_score's
+    moat_evidence.fade.counterfactual): the record's own hold_rule applied to it (counterfactual_scenario_holds); the
+    stored paths belong to the recorded holds and are never returned for it ((None, None) when it cannot replay)."""
     if not isinstance(numbers, dict):
         return None, None
     stored = None
     if numbers.get("paths") and numbers.get("growth_paths"):
         stored = (numbers["paths"], numbers["growth_paths"])
+    fallback = stored if hold is None else None
     inp, scn = numbers.get("inputs") or {}, numbers.get("scenarios") or {}
     try:
         base = float(numbers.get("base_oe_per_share"))
         gb = float(numbers.get("g_base"))
     except (TypeError, ValueError):
-        return stored or (None, None)
+        return fallback or (None, None)
     if not inp or not scn:
-        return stored or (None, None)
+        return fallback or (None, None)
     labels = ["super_bear", "bear", "base", "bull", "super_bull"]
     gterm = inp.get("g_terminal", DEFAULT_GTERM)
     cap = cap_years_for_moat(inp.get("moat", 5))
     paths, gpaths = {}, {}
     try:
+        # inside the try: short offsets or a non-numeric g_terminal still fall back to the stored copy
+        g0s = [max(GROWTH_FLOOR_START, min(GROWTH_CAP_START, gb + inp["offsets"][i])) for i in range(len(labels))]
+        hs = (recorded_scenario_holds(numbers, g0s, gterm, labels) if hold is None
+              else counterfactual_scenario_holds(numbers, g0s, gterm, hold))
+        if hs is None:
+            return fallback or (None, None)
         for i, k in enumerate(labels):
-            g0 = max(GROWTH_FLOOR_START, min(GROWTH_CAP_START, gb + inp["offsets"][i]))
-            paths[k] = project_path(base * inp["mults"][i], g0, cap, gterm)
-            gpaths[k] = growth_path(g0, cap, gterm)
+            paths[k] = project_path(base * inp["mults"][i], g0s[i], cap, gterm, hold=hs[i])
+            gpaths[k] = growth_path(g0s[i], cap, gterm, hold=hs[i])
         probs = inp["probs"]
         paths["weighted"] = [sum(probs[i] * paths[labels[i]][t] for i in range(5)) for t in range(len(paths["base"]))]
     except Exception:
-        return stored or (None, None)
-    if stored is not None and not _paths_agree(paths, stored[0]):
+        return fallback or (None, None)
+    if stored is not None and hold is None and not _paths_agree(paths, stored[0]):
         return stored
     return paths, gpaths
 
@@ -5070,6 +5185,14 @@ def annual_facts_by_unit(facts, tag, duration=True):
 def main():
     ticker = sys.argv[1].upper()
     price_arg = float(sys.argv[sys.argv.index("--price") + 1]) if "--price" in sys.argv else None
+    # v5.7 M6 (L3b): the moat's direction sets the growth hold. Checked here, before the universe file, the SEC tickers
+    # file and any fetch, so a mistyped value costs nothing; its own exit code (5), never NO_CIK's 2.
+    moat_trend = sys.argv[sys.argv.index("--moat-trend") + 1] if "--moat-trend" in sys.argv else "stable"
+    if moat_trend not in MOAT_TRENDS:
+        print(f"BAD_MOAT_TREND: --moat-trend must be one of {', '.join(MOAT_TRENDS)} (got {moat_trend!r}); "
+              "python3 _system/moat_scorecard.py <T> prints the value make_score expects")
+        sys.exit(EXIT_BAD_MOAT_TREND)
+    hold_years = hold_years_for_trend(moat_trend)
 
     uni = {}
     with open(f"{SYS}/universe.csv", encoding="utf-8") as f:
@@ -6641,6 +6764,7 @@ def main():
             else: gap_flags.append(f"DATA_GAP:{f} — {f} missing for fiscal year(s) {', '.join(gap_years[f])} of the last 3{_nonpos_note if f == 'shares' else ''} — no tier emitted")
         result.update({"tier_by_numbers": None, "implied_irr_weighted": None, "implied_irr_base": None,
                        "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
+                       "moat_trend": moat_trend, "hold_years": hold_years,
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
                        "fragility_flags": gap_flags + flags_pre,
@@ -6657,9 +6781,11 @@ def main():
 
     # v5.4: the valuation math lives in module-level functions (project_path /
     # present_value / solve_irr / tier_for_irr) shared with the HTML builder
-    # and the test-suite. The fade: growth HOLDS at g0 for 2 years (near-term
-    # prints have visibility; v3 faded from year 1), then converges LINEARLY
-    # to the terminal rate over cap_years — in EITHER direction.
+    # and the test-suite. The fade: growth HOLDS at g0 for hold_years (M6: 0
+    # eroding / 2 stable / 3 widening; a scenario starting at or below terminal
+    # holds 2 — fade_hold; near-term prints have visibility; v3 faded from
+    # year 1), then converges LINEARLY to the terminal rate over cap_years —
+    # in EITHER direction.
     labels = ["super_bear", "bear", "base", "bull", "super_bull"]
     if oe_ps and oe_ps > 0 and price:
         # Blended growth (median of share-adjusted rev CAGRs / latest YoY and the raw OE/ps CAGR),
@@ -6674,16 +6800,17 @@ def main():
         before = {}
         for i, label in enumerate(labels):
             g0 = max(GROWTH_FLOOR_START, min(GROWTH_CAP_START, g_base + offsets[i]))
-            flows = project_path(oe_ps * mults[i], g0, cap_years, gterm)
+            h = HOLD_RULES[HOLD_RULE](g0, gterm, hold_years)   # v5.7 M6: this scenario's growth hold (recorded)
+            flows = project_path(oe_ps * mults[i], g0, cap_years, gterm, hold=h)
             all_flows.append(flows)
             paths[label] = [round(f, 6) for f in flows]
-            gpaths[label] = [round(g, 6) for g in growth_path(g0, cap_years, gterm)]
+            gpaths[label] = [round(g, 6) for g in growth_path(g0, cap_years, gterm, hold=h)]
             _irr, _capped, _floor = adjusted_irr(flows, price, gterm, c_ps)
             if _capped: capped_labels.append(label)
             if _floor: floor_labels.append(label)
             scenarios[label] = {"prob": round(probs[i], 4), "g_start": round(g0, 4), "oe_mult": mults[i],
                                 **{k: adjusted_value(flows, r, gterm, c_ps) for r, k in _rates},
-                                "irr": _irr, "irr_at_floor": _floor}
+                                "irr": _irr, "irr_at_floor": _floor, "hold_years": h}
             if c_ps:
                 _b = solve_irr(flows, price, gterm)
                 before[label] = {**{k: present_value(flows, r, gterm) for r, k in _rates}, "irr": _b[0], "irr_at_floor": _b[2]}
@@ -6733,9 +6860,20 @@ def main():
         tier_bear, tier_bull = tier_for_irr(irr_bear), tier_for_irr(irr_bull)
         if tier_bear != tier_bull:
             flags.append(f"TIER_BAND: bear-case tier {tier_bear} ({irr_bear*100:.1f}%) vs bull-case tier {tier_bull} ({irr_bull*100:.1f}%) — the verdict spans tiers; size any position to the bear end")
+        if hold_years != HOLD_YEARS:   # v5.7 M6: an engine flag, so the write-up addresses it (WORKER_SPEC step 4)
+            if moat_trend == "eroding":
+                flags.append(f"MOAT_TREND_HOLD: moat eroding — growth hold {hold_years} years (default {HOLD_YEARS}): the fade "
+                             "starts in year 1 for every scenario that starts above terminal growth (make_score's trend "
+                             f"test; an erosion_rebuttal restores {HOLD_YEARS})")
+            else:
+                flags.append(f"MOAT_TREND_HOLD: moat widening — growth hold {hold_years} years (default {HOLD_YEARS}) for every "
+                             "scenario that starts above terminal growth; a cyclical upswing looks like a widening moat for "
+                             "a few years — say in analysis.md why this is not one")
         result.update({"g_base": g_base, "moat_score": moat, "cap_years": round(cap_years, 1), "g_terminal": gterm,
+                       "moat_trend": moat_trend, "hold_years": hold_years,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
                                   "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source,
+                                  "moat_trend": moat_trend, "hold_years": hold_years, "hold_rule": HOLD_RULE,
                                   **({"base_basis_window": base_basis_window} if base_basis_window else {})},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
@@ -6794,8 +6932,10 @@ def main():
         result.update({"tier_by_numbers": "F", "f_subtype": f_subtype, "f_subtype_basis": f_basis,
                        "implied_irr_weighted": None, "implied_irr_base": None, "moat_score": moat,
                        "cap_years": round(cap_years, 1), "g_terminal": gterm,
+                       "moat_trend": moat_trend, "hold_years": hold_years,
                        "inputs": {"moat": moat, "probs": probs, "offsets": offsets, "mults": mults,
                                   "g_terminal": gterm, "base_oe_ps_arg": base_override, "base_pin_source": pin_source,
+                                  "moat_trend": moat_trend, "hold_years": hold_years, "hold_rule": HOLD_RULE,
                                   **({"base_basis_window": base_basis_window} if base_basis_window else {})},
                        "data_gap": gap_fields, "data_gap_uncovered": uncovered,
                        "overrides_applied": overrides_applied,
