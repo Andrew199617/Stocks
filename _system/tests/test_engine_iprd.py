@@ -2666,6 +2666,132 @@ def test_a_unit_conflict_on_a_cash_only_deferred_payment_is_kept():
     assert len(co) == 1 and co[0]["cash"] == 10e6 and co[0]["unit_conflict"][CASH]["used"] == "USD", co
 
 
+# --- Codex review round 17 of PR #47 ------------------------------------------------------------------------------
+def _r17_pre_window_eur():
+    """_pre_window's shape (FY2022 $40M expensed, $10M paid) whose FY2024 cash-tag-only payment is filed as USD 30M
+    beside EUR 100M ($110M at 1.10): a unit conflict on a payment only a declaration can deduct."""
+    f = _facts(expense={2022: 40e6}, cash={2022: 10e6, 2024: 30e6})
+    _syn_put(f, CASH, "EUR", _ctx("2024-01-01", "2024-12-31", 100e6, form="10-K", filed="2025-02-20"))
+    return f
+
+
+def test_a_unit_conflict_on_a_declared_pre_window_payment_is_kept():
+    """[Codex review r17, #4332171616] A cash-tag-only payment of a charge expensed BEFORE the window carries its
+    period's unit conflict in ignored_cash_only (round 16), but the record iprd_apply_deferred built when a
+    declaration promoted it copied only the cash fields and the entry was removed: FY2024 filed USD 30M beside EUR
+    100M ($110M) deducted the declared $30M with no unit_conflict and no reconcile note anywhere in the run. Now the
+    promoted record carries the entry's unit_conflict and unit_conflict_note (a rest left listed keeps them too)."""
+    rates = {"EUR": {"2024-12-31": 1.1}}
+    decl = deferred(period="2024-12-31", amount=30e6, first="2022-12-31", source=PRE_SRC, deal="Old Bio", contingent=PRE_CT)
+    out = E.iprd_detect(_r17_pre_window_eur(), FY3, fx_rates=rates, checks=[], fx_fetch=lambda c, d: None)
+    assert out["periods"] == [] and out["ignored_cash_only"][0]["unit_conflict"][CASH]["used"] == "USD", out
+    for amt, rest in ((30e6, None), (20e6, 10e6)):
+        iprd = copy.deepcopy(out)
+        ref, _ = E.iprd_apply_deferred(iprd, [dict(decl, amount=amt)], FY3, _r17_pre_window_eur())
+        assert ref == [], ref
+        r = _leg(iprd, "fy", "2024-12-31")
+        assert r["deducted"] == amt and r["recurrence_excluded"] == "deferred_payment_of", r
+        assert r["unit_conflict"][CASH]["units"]["EUR"]["usd"] == 100e6 * 1.1 and "reconcile" in r["unit_conflict_note"], r
+        co = iprd["ignored_cash_only"]
+        assert [c["cash"] for c in co] == ([rest] if rest else []) and all("unit_conflict" in c for c in co), co
+    n = _ok(_run_fx(_r17_pre_window_eur(), rates, judgment={"iprd_deferred_payment": [decl]}))
+    p24 = [p for p in n["iprd_adjustment"]["periods"] if p["period"] == "2024-12-31"]
+    assert len(p24) == 1 and p24[0]["deducted"] == 30e6 and p24[0]["unit_conflict"][CASH]["used"] == "USD", p24
+
+
+def test_a_zero_tiling_never_hides_another_units_positive_partial_facts():
+    """[Codex review r17, #4332171623] iprd_tile dropped every unit's partial facts once ANY unit tiled the leg, even
+    to $0: four USD three-month facts of 0 beside one EUR Q4 fact of 100M read FY2025 as a $0 charge with no
+    partial_coverage and no flag, while an exact USD 0 FY fact beside the same EUR fact was flagged (round 16). Now
+    the partial facts are kept whenever no unit tiles the leg to a positive value: the $0 USD tiling is still the
+    record, and the EUR fact is recorded (partial_coverage, ACQUIRED_IPRD_PARTIAL_PERIOD). A positive tiling still
+    reads the leg (no partial coverage beside it)."""
+    P = "2025-12-31"
+
+    def detect(f):
+        return E.iprd_detect(f, FY3, fx_rates=R15_RATE, checks=[], fx_fetch=lambda c, d: 1.1)
+    for exact_zero in (True, False):
+        f = _facts()
+        if exact_zero:
+            _fy(f, EXPENSE, 2025, 0.0)
+        else:
+            _r16_quarters(f, EXPENSE, "USD", 0.0)
+        _r16_quarters(f, EXPENSE, "EUR", 100e6, quarters=R16_QS[3:])
+        out = detect(f)
+        pc = (out or {}).get("partial_coverage") or []
+        assert [(x["period"], x["tag"], [u["unit"] for u in x["units"]]) for x in pc] == [(P, EXPENSE, ["EUR"])], (exact_zero, out)
+        assert any(x.startswith("ACQUIRED_IPRD_PARTIAL_PERIOD") for x in E.iprd_flags(out)), E.iprd_flags(out)
+    by_unit, ctx, part = E.iprd_tile(f, EXPENSE, "2025-01-01", P)
+    assert by_unit["USD"][0] == 0 and part and [u["unit"] for u in part] == ["EUR"], (by_unit, part)
+    # a positive tiling reads the leg: the other unit's partial fact is no missing charge
+    f = _facts()
+    _r16_quarters(f, EXPENSE, "USD", 5e6)
+    _r16_quarters(f, EXPENSE, "EUR", 100e6, quarters=R16_QS[3:])
+    by_unit, ctx, part = E.iprd_tile(f, EXPENSE, "2025-01-01", P)
+    assert by_unit["USD"][0] == 20e6 and part is None, (by_unit, part)
+    assert not (detect(f) or {}).get("partial_coverage"), detect(f)
+
+
+R17_SRC = ("SYN 10-K FY2022 (0000999001-23-000005) Note 4 'Asset acquisition', p. 64: Old Bio acquired IPR&D $70.0 "
+           "million expensed, $10.0 million paid at closing, $60.0 million of deferred consideration payable in 2024")
+R17_CT = {"value": 60e6, "source": "SYN 10-K FY2022 (0000999001-23-000005) Note 4, p. 64: $60.0 million deferred consideration"}
+
+
+def _r17_split(entries=None):
+    """FY2022 (before the window): $70M expensed, $10M paid. FY2023: $100M expensed, $60M paid ($40M unpaid). FY2024:
+    $100M on the cash tag only — $40M settles the window's remainder automatically, the $60M rest may pay FY2022's
+    deal."""
+    facts = _facts(expense={2022: 70e6, 2023: 100e6}, cash={2022: 10e6, 2023: 60e6, 2024: 100e6})
+    return _run(facts, judgment={"iprd_deferred_payment": entries} if entries is not None else None)
+
+
+def test_a_declaration_claims_the_residual_beside_an_automatic_settlement():
+    """[Codex review r17, #4332171628] A cash-only payment split between the window's unpaid remainder (settled
+    automatically) and a rest listed in ignored_cash_only for a pre-window charge: ACQUIRED_IPRD_UNMATCHED_PAYMENT told
+    the worker to declare the rest, but iprd_apply_deferred took the automatic settlement as the period's whole
+    charge — a $60M declaration was refused ("more than the period's charge 40,000,000") and a $30M one only relabeled
+    the automatic $40M (nothing more deducted, the rest still flagged). Now a declaration whose first charge lies
+    before the window claims that residual (and only it) on top of the automatic settlement, within the residual and
+    the deal's contingent_total: the period deducts both, the automatic part keeps its own record
+    (automatic_settlement, its deferred_payment note), the declared part is recorded (declared_residual,
+    deferred_payment_of) and any rest stays listed. A declaration first charged inside the window still names the
+    automatic settlement, as before."""
+    plain = _plain()
+    n = _ok(_r17_split())
+    b = n["iprd_adjustment"]
+    assert b["total"] == 100e6 and [(c["period"], c["cash"]) for c in b["ignored_cash_only"]] == [("2024-12-31", 60e6)], b
+    assert flags(n, "ACQUIRED_IPRD_UNMATCHED_PAYMENT")
+    decl = deferred(period="2024-12-31", amount=60e6, first="2022-12-31", source=R17_SRC, deal="Old Bio", contingent=R17_CT)
+    m = _ok(_r17_split([decl]))
+    mb = m["iprd_adjustment"]
+    p24 = _leg(mb, "fy", "2024-12-31")
+    assert mb["total"] == 160e6 and p24["deducted"] == 100e6 and p24["amount"] == 100e6, p24
+    assert p24["automatic_settlement"] == 40e6 and p24["declared_residual"] == 60e6 and p24.get("deferred_payment"), p24
+    assert [(x["deal"], x["amount"], x["first_charge_evidence"]) for x in p24["deferred_payment_of"]] == [
+        ("Old Bio", 60e6, "companyfacts_expense_fact")], p24
+    assert p24["recurrence_excluded"] == "deferred_payment_of" and not mb["ignored_cash_only"], mb
+    assert not flags(m, "ACQUIRED_IPRD_UNMATCHED_PAYMENT") and not mb["recurrent"], mb
+    _assert_base_untouched(m, plain)
+    # part of the residual: deducted on top, the rest stays listed and flagged
+    k = _ok(_r17_split([dict(decl, amount=30e6)]))
+    kb = k["iprd_adjustment"]
+    assert kb["total"] == 130e6 and [c["cash"] for c in kb["ignored_cash_only"]] == [30e6], kb
+    assert _leg(kb, "fy", "2024-12-31")["automatic_settlement"] == 40e6 and flags(k, "ACQUIRED_IPRD_UNMATCHED_PAYMENT")
+    # more than the residual, or past the deal's contingent_total: refused
+    _refused(_r17_split([dict(decl, amount=70e6, deferred_payment_of=dict(decl["deferred_payment_of"],
+                                                                           contingent_total=dict(R17_CT, value=80e6)))]),
+             "more than the period's")
+    _refused(_r17_split([dict(decl, deferred_payment_of=dict(decl["deferred_payment_of"],
+                                                              contingent_total=dict(R17_CT, value=50e6)))]),
+             "contingent_total")
+    # beside an in-window deal naming the automatic settlement: both apply, each against its own amount
+    both = _ok(_r17_split([decl, deferred(period="2024-12-31", amount=40e6, deal="Window Bio")]))
+    q = _leg(both["iprd_adjustment"], "fy", "2024-12-31")
+    assert both["iprd_adjustment"]["total"] == 160e6 and q["deducted"] == 100e6, q
+    assert sorted((x["deal"], x["amount"], x["first_charge_evidence"]) for x in q["deferred_payment_of"]) == [
+        ("Old Bio", 60e6, "companyfacts_expense_fact"), ("Window Bio", 40e6, "window_record")], q
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

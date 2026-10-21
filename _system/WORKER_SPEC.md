@@ -174,7 +174,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    with the USD one used: reconcile the units against the filing in analysis.md. Since Codex review round 16 of
    PR #47 a unit filed only in quarters is tiled beside another unit's exact FY fact (so it is compared, or
    recorded as `partial_coverage`), and a cash-only period (a deferred payment, an unconverted payment, an
-   `ignored_cash_only` entry) carries its cash tag's `unit_conflict` too: reconcile those the same way.
+   `ignored_cash_only` entry) carries its cash tag's `unit_conflict` too: reconcile those the same way (since
+   Codex review round 17 of PR #47 also on the record a declaration builds from an `ignored_cash_only` payment).
+   A unit that tiles a period to $0 no longer hides another unit's positive partial facts: they are
+   `partial_coverage` (round 17).
    `ACQUIRED_IPRD_PARTIAL_PERIOD` (Codex review round 11 of PR #47): an acquired-IPR&D tag is filed for only
    part of a window period — a 10-Q's nine-month figure with no FY fact in the 10-K (SMMT FY2023), or a quarter
    alone — and no set of three-month / year-to-date facts tiles the period, so NOTHING is counted for that tag
@@ -254,7 +257,11 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    the FY period with `first_charged_period` = that pre-window expense's period end (it must be one the flag
    names: companyfacts must show the expense) and rerun — the engine then deducts the declared amount once (at
    most the payment, within `contingent_total`), cash basis, outside the recurrence count. This is the one
-   declaration that changes the deduction. Otherwise say in analysis.md what the payment is. A cash-tag-only
+   declaration that changes the deduction. When part of the same payment already settled the window's unpaid
+   remainder automatically (Codex review round 17 of PR #47), declare only the rest the flag names: a
+   declaration first charged before the window claims that rest (at most it) on top of the automatic part,
+   which keeps its own note (`automatic_settlement`, `declared_residual`); one first charged inside the window
+   still names the automatic part. Otherwise say in analysis.md what the payment is. A cash-tag-only
    payment at a filer that never expensed acquired IPR&D (MAA) raises no flag and can never be declared.
    key_numbers.md prints the excluded periods;
    quote them in analysis.md beside the recurrence assessment. HALO: the FY2025 10-K discloses $100.0M of

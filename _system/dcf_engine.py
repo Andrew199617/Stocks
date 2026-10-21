@@ -463,6 +463,13 @@ period is not ttm.json's is refused BAD_BASE_OVERRIDE (exit 3) outside make_scor
 (iprd_tile only_units) and merged beside it, so a USD 0 FY fact never hides EUR quarters (tiled and compared, or
 recorded as partial_coverage). (2) A period's unit_conflict rides on whatever record it ends with (a cash-only
 deferred-payment or unconverted record included) and on the ignored_cash_only entries it lists.
+[Codex review round 17 of PR #47] (1) A record iprd_apply_deferred builds from a declared ignored_cash_only payment
+keeps that entry's unit_conflict and note. (2) A unit tiling a leg to $0 no longer drops another unit's positive
+partial facts (iprd_tile keeps them unless some unit tiles to a positive value): they are partial_coverage. (3) A
+cash-tag-only payment split between the window's unpaid remainder (settled automatically) and a rest listed in
+ignored_cash_only with pre_window_charges: a declaration first charged BEFORE the window claims that rest (only it,
+capped by the rest and the deal's contingent_total) on top of the automatic settlement, which keeps its own note
+(automatic_settlement, declared_residual, declared_residual_note on the record).
 """
 import json, sys, os, csv, urllib.request, datetime, re, time, subprocess, hashlib, statistics, math
 from fractions import Fraction
@@ -2187,7 +2194,16 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     the period's "charge" when first_charged_period lies BEFORE the window and companyfacts shows an acquired-IPR&D
     expense fact there (a citation alone never makes a cash-only payment a charge: the MAA rule); the declared amounts
     (at most the payment, within the deal's contingent_total) are then deducted once, cash basis, as a
-    deferred_payment, recurrence_excluded, and any rest of the payment stays in ignored_cash_only."""
+    deferred_payment, recurrence_excluded, and any rest of the payment stays in ignored_cash_only; the promoted record
+    keeps the entry's unit_conflict / unit_conflict_note ([Codex review r17 of PR #47]: they were dropped with it).
+    [Codex review r17 of PR #47] A cash-tag-only payment split by iprd_detect — part settling the window's unpaid
+    remainder automatically (the period's record, deferred_payment), the rest in ignored_cash_only carrying
+    pre_window_charges: a declaration whose first_charged_period lies BEFORE the window claims that rest (and only
+    it — the automatic settlement is never relabeled), on the same terms as above; the declared amounts are added
+    to the record's deduction on top of the automatic one (automatic_settlement, declared_residual), the sum per
+    period is capped by the rest, and a declaration first charged inside the window still names the automatic
+    settlement. Before, the automatic settlement was taken as the period's whole charge, so the declaration the
+    UNMATCHED_PAYMENT flag asked for was refused (or relabeled the automatic part, deducting nothing more)."""
     if entries is None:
         return [], []
     if not isinstance(entries, list) or not entries:
@@ -2249,18 +2265,27 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
         rec = rec_of.get(e["period"])
         charge = rec.get("amount") if rec is not None else None
         co = None
+        _residual = lambda: next((c for c in (iprd or {}).get("ignored_cash_only") or []
+                                  if c.get("period") == e["period"] and c.get("window") == "fy"
+                                  and c.get("pre_window_charges") and isinstance(c.get("cash"), (int, float))
+                                  and c["cash"] > 0), None)
         if not (isinstance(charge, (int, float)) and charge > 0):
             # [Codex review r3 of PR #47] a cash-tag-only payment (no or a $0 expense) the window's remainder did not
             # absorb, at a filer that expensed acquired IPR&D before the window: the payment is the "charge" a
             # declaration may claim, provided its first charge is that pre-window expense (checked below)
-            co = next((c for c in (iprd or {}).get("ignored_cash_only") or []
-                       if c.get("period") == e["period"] and c.get("window") == "fy" and c.get("pre_window_charges")
-                       and isinstance(c.get("cash"), (int, float)) and c["cash"] > 0), None)
+            co = _residual()
             if co is None:
                 refused.append({"entry": e, "reason": f"FY {e['period']} names no acquired-IPR&D charge in this run's "
                                 f"window ({', '.join(fy_periods)})"})
                 continue
             charge = co["cash"]
+        elif (rec.get("deferred_payment") and oldest is not None
+              and (oldest - datetime.date.fromisoformat(f)).days >= IPRD_WINDOW_DAYS):
+            # [Codex review r17 of PR #47] the record is the automatic settlement of the window's unpaid remainder;
+            # a pre-window deal's declaration claims the rest of the payment listed beside it, never that settlement
+            co = _residual()
+            if co is not None:
+                charge = co["cash"]
         why, cf = _iprd_deferred_semantic_problem(e, oldest, facts)
         if why is not None:
             refused.append({"entry": e, "reason": why})
@@ -2289,20 +2314,27 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                 continue
             evidence = "companyfacts_expense_fact" if cf == "charged" else "citation_only_before_companyfacts"
         cand.append((e, rec, float(charge), evidence, co))
-    # the deals' amounts in one period sum to no more than its charge
+    # the deals' amounts in one period sum to no more than its charge ([Codex review r17 of PR #47] per amount they
+    # claim: the record's charge, or the cash-tag payment listed beside it — a residual beside an automatic settlement)
     accepted = []
-    for p in sorted({c[0]["period"] for c in cand}):
-        cs = [c for c in cand if c[0]["period"] == p]
+    for p, tgt in sorted({(c[0]["period"], c[4] is not None) for c in cand}):
+        cs = [c for c in cand if c[0]["period"] == p and (c[4] is not None) == tgt]
         s = sum(float(c[0]["amount"]) for c in cs)
         if s > cs[0][2] + 1.0:
+            r0 = cs[0][1]
+            what = (f"cash-tag payment {cs[0][2]:,.0f} left beside the {float(r0['amount']):,.0f} that settles the "
+                    "window's unpaid remainder automatically"
+                    if tgt and r0 is not None and isinstance(r0.get("amount"), (int, float)) and r0["amount"] > 0
+                    else f"charge {cs[0][2]:,.0f}")
             refused.extend({"entry": c[0], "reason": f"FY {p}'s declarations sum to {s:,.0f}, more than the period's "
-                            f"charge {cs[0][2]:,.0f}"} for c in cs)
+                            + what} for c in cs)
             continue
         accepted.extend(cs)
 
     def _whole(p, cs):
         mine = [c for c in cs if c[0]["period"] == p]
-        return bool(mine) and sum(float(c[0]["amount"]) for c in mine) >= mine[0][2] - 1.0
+        claimed = {c[4] is not None: c[2] for c in mine}
+        return bool(mine) and sum(float(c[0]["amount"]) for c in mine) >= sum(claimed.values()) - 1.0
 
     # a deal's first charge inside the window cannot itself be wholly declared another deal's installment
     clash = {}
@@ -2321,23 +2353,41 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
     for p in sorted({c[0]["period"] for c in accepted}):
         cs = [c for c in accepted if c[0]["period"] == p]
         rec = cs[0][1]
-        co = cs[0][4]
-        if co is not None:
+        res = [c for c in cs if c[4] is not None]
+        if res:
             # [Codex review r3 of PR #47] the declared part of a cash-tag-only payment of a pre-window charge is
             # deducted once (cash basis) and never counts toward recurrence; any rest of the payment stays listed
-            amt = sum(float(c[0]["amount"]) for c in cs)
+            co = res[0][4]
+            amt = sum(float(c[0]["amount"]) for c in res)
+            auto = (float(rec["amount"]) if rec is not None and isinstance(rec.get("amount"), (int, float))
+                    and not isinstance(rec["amount"], bool) and rec["amount"] > 0 else None)
             if rec is None:
                 rec = {"period": p, "window": "fy", "expense_tag": None, "expense": None, "expense_unit": None,
                        "cash": co["cash"], "cash_unit": co.get("cash_unit"), "excluded": None}
                 iprd["periods"].append(rec)
                 iprd["periods"].sort(key=lambda r: (r.get("window") != "fy", r.get("period") or ""))
-            _iprd_reversal_settles(rec)
-            rec.update(amount=amt, amount_basis="cash_outflow", tag_used=IPRD_CASH_TAG, fx_rate=co.get("fx_rate"),
-                       filed=co.get("filed"), deducted=amt,
-                       deferred_payment=(f"cash tag {co['cash']:,.0f} with no acquired-IPR&D expense in this period: "
-                                         f"{amt:,.0f} of it is declared (judgment.json {IPRD_DEFERRED_KEY}) the deferred "
-                                         "payment of a charge first expensed before the window — counted once, not a "
-                                         "new charge and not counted toward recurrence"))
+            # [Codex review r17 of PR #47] the period's unit conflict rides on the record it ends with (round 16's
+            # rule): the promoted entry carried it and was removed with it
+            for k in ("unit_conflict", "unit_conflict_note"):
+                if k in co and k not in rec:
+                    rec[k] = co[k]
+            if auto is not None:
+                # [Codex review r17 of PR #47] beside the automatic settlement of the window's unpaid remainder: that
+                # part keeps its own record (deferred_payment, automatic_settlement) and the declared rest is added
+                rec.update(amount=auto + amt, deducted=auto + amt, automatic_settlement=auto, declared_residual=amt,
+                           declared_residual_note=(
+                               f"{amt:,.0f} of the {float(co['cash']):,.0f} cash-tag payment left beyond the window's "
+                               f"unpaid remainder is declared (judgment.json {IPRD_DEFERRED_KEY}) the deferred payment "
+                               "of a charge first expensed before the window — deducted on top of the automatic "
+                               f"{auto:,.0f}, counted once, not counted toward recurrence"))
+            else:
+                _iprd_reversal_settles(rec)
+                rec.update(amount=amt, amount_basis="cash_outflow", tag_used=IPRD_CASH_TAG, fx_rate=co.get("fx_rate"),
+                           filed=co.get("filed"), deducted=amt,
+                           deferred_payment=(f"cash tag {co['cash']:,.0f} with no acquired-IPR&D expense in this period: "
+                                             f"{amt:,.0f} of it is declared (judgment.json {IPRD_DEFERRED_KEY}) the "
+                                             "deferred payment of a charge first expensed before the window — counted "
+                                             "once, not a new charge and not counted toward recurrence"))
             rest = float(co["cash"]) - amt
             if rest > 1.0:
                 co["cash"] = rest
@@ -2503,8 +2553,10 @@ def iprd_tile(facts, tag, start, end, only_units=None):
     end], ...]} for each unit whose facts (10-K / 10-Q forms; per context the latest filing — a comparative column
     re-filed later never adds a second value) tile the leg exactly: three-month facts or a year-to-date fact starting
     on `start`, each starting the day after the one before ends, the first on `start`, the last on `end` (the fewest
-    facts when several tilings exist). partial: when no unit tiles it but a positive fact lies inside the leg, [{unit,
-    contexts: [{start, end, value, filed}, ...]}] (every such fact), else None."""
+    facts when several tilings exist). partial: when no unit tiles it to a positive value but a positive fact lies
+    inside the leg in a unit that does not tile it, [{unit, contexts: [{start, end, value, filed}, ...]}] (every such
+    fact), else None. [Codex review r17 of PR #47] a unit tiling the leg to $0 (or less) no longer drops the other
+    units' partial facts: four USD 0 quarters beside one EUR 100M Q4 fact had read as a silent $0."""
     units = (facts.get("facts", {}).get("us-gaap", {}).get(tag) or {}).get("units", {})
     if not units or not (iprd_date_ok(start) and iprd_date_ok(end)):
         return {}, {}, None
@@ -2551,7 +2603,7 @@ def iprd_tile(facts, tag, start, end, only_units=None):
         elif any(best[k]["val"] > 0 for k in keys):
             partial.append({"unit": u, "contexts": [{"start": k[0], "end": k[1], "value": float(best[k]["val"]),
                                                      "filed": best[k].get("filed")} for k in keys]})
-    return by_unit, ctx, (partial if (partial and not by_unit) else None)
+    return by_unit, ctx, (partial if (partial and not any(_iprd_is_pos(v[0]) for v in by_unit.values())) else None)
 
 
 def iprd_period_record(period, window, expense, cash, capex_intang=None, check=None):
@@ -2735,8 +2787,9 @@ def iprd_detect(facts, fy_periods, ytd=None, fy_capex_intang=None, ytd_capex_int
         if by_unit:
             u = "USD" if "USD" in ctx else sorted(ctx)[0]
             aggregated.setdefault((p, window), {})[tag] = {"unit": u, "contexts": ctx[u]}
-        elif part and not any(_iprd_is_pos(vf[0]) for vf in exact.values()):
-            # a positive exact fact reads the leg: another unit's partial facts are then no missing charge
+        if part and not any(_iprd_is_pos(vf[0]) for vf in list(exact.values()) + list(by_unit.values())):
+            # a positive exact or tiled fact reads the leg: another unit's partial facts are then no missing charge.
+            # [Codex review r17 of PR #47] beside a $0 tiling they are recorded too (iprd_tile keeps them)
             pending.append({"period": p, "window": window, "start": start, "tag": tag, "units": part})
         return dict(exact, **by_unit) if exact else by_unit
 

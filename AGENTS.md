@@ -361,8 +361,12 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    `paid_in_shares` is still read there). A period carrying `unit_conflict` (one tag filed for the period in two
    units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive
    ones; [Codex review round 16 of PR #47] a cash-only deferred-payment period and an `ignored_cash_only` entry
-   carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact) whose analysis.md does
-   not reconcile the units against the filing is P2. A plain `base_override` pin
+   carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact; round 17: so does a
+   record a declaration builds from an `ignored_cash_only` payment) whose analysis.md does
+   not reconcile the units against the filing is P2. [Codex review round 17 of PR #47] A period carrying
+   `automatic_settlement` / `declared_residual` deducts both the cash that settled the window's unpaid remainder
+   and the declared rest of the same payment (a pre-window deal's `iprd_deferred_payment`): the cited filing must
+   show that rest paid for the named pre-window deal, P1 otherwise. A plain `base_override` pin
    that is not ttm.json's `ttm_oe_per_share` carries `basis_window`: `{window: "ttm", ytd_current_period:
    ttm.json's}` when the pin was built from ttm.json's TTM figures on another denominator (VNOM: TTM OE over total
    units — the IPR&D window then reads the current-YTD leg, recorded as `inputs.base_basis_window`; the share

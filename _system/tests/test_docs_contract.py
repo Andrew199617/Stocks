@@ -360,6 +360,11 @@ PAIRS = [
     ("_system/dcf_engine.py", "def iprd_tile(facts, tag, start, end, only_units=None):", "only_units", [SYS_README]),
     ("_daily/site/app.js", "var nb = obj(obj(record.numbers).iprd_adjustment), r = num(nb.ads_ratio);",
      "numbers.iprd_adjustment.ads_ratio", [SYS_README, CONTRACT]),
+    # Codex review round 17 of PR #47: a declared rest beside an automatic settlement
+    ("_system/dcf_engine.py", "automatic_settlement=auto, declared_residual=amt", "declared_residual",
+     [SYS_README, CONTRACT]),
+    ("_system/dcf_engine.py", "automatic_settlement=auto, declared_residual=amt", "automatic_settlement",
+     [SYS_README, CONTRACT]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

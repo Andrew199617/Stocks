@@ -185,7 +185,11 @@ on a cash-basis period, with `residual_paid_in_shares` (the expense less cash it
 with `unit_conflict_note` when one tag's facts for the period in two units disagree after conversion (a positive fact
 outranks a zero one; the USD one is used between positive ones; Codex review round 16 of PR #47: a unit with no
 exact-context fact is tiled beside one that has it, and the conflict rides on a cash-only period's deferred-payment
-record and on its `ignored_cash_only` entries too) and `cash_flow_check_inapplicable` {presentation,
+record and on its `ignored_cash_only` entries too; round 17: and on the record a declaration builds from an
+`ignored_cash_only` payment), (Codex review round 17 of PR #47) `automatic_settlement` (the part of a cash-tag-only
+payment that settled the window's unpaid remainder), `declared_residual` (the declared rest of it, a pre-window
+deal's deferred payment deducted on top) and `declared_residual_note` on such a period, and
+`cash_flow_check_inapplicable` {presentation,
 amount, source, note} on a cash-basis period whose matching check declares `inside_operating_cash_flow` or
 `paid_in_intangible_capex` (make_score refuses such a run, so no score carries it), (Codex review round 14 of PR #47) `expense_reversal_note` on a period whose negative detector fact (a reversal: no current-period charge) sits beside cash matched as its `deferred_payment` (the period is then not `excluded`), and (Andrew's 2026-10-20 ruling, delegated) `deferred_payment_of` (a list,
 one {deal, first_charged_period, source, `contingent_total` {value, source}, amount, first_charge_evidence} per
