@@ -11,7 +11,9 @@ folder make_score refuses is reported (needs_engine_rerun) and kept; --no-networ
 folder needs_network with the stand-in's marker; skipped names; live_paused; apply refuses a report made at another
 origin/main sha or with --allow-drift and skips a folder whose inputs changed since the dry run; apply skips a
 pr_worktree-locked or in-progress ticker; apply never spawns the engine for stale folders and runs reprice + site
-once; a drifted (non-git) base refuses without --allow-drift.
+once; a drifted (non-git) base refuses without --allow-drift; the dry run builds _system/industry_returns.json into
+its work copy (never the sweep tree) and scores against it, apply writes it on the sweep tree first (review
+2026-10-21).
 """
 import json
 import os
@@ -291,6 +293,39 @@ def test_apply_never_spawns_the_engine_for_stale_folders():
         sc = json.load(open(os.path.join(s.c, "AAA", "score.json"), encoding="utf-8"))
         assert sc.get("dcf_content_hash") and sc["exit_alert_eligible"] is False
         assert ap["mode"] == "apply" and r.stdout.startswith(f"rebuild_scores: APPLIED at release {CUR}"), r.stdout
+    finally:
+        s.close()
+
+
+def test_industry_returns_is_built_before_the_dry_run_and_written_by_apply():
+    """Review 2026-10-21 (P1): the tool never wrote _system/industry_returns.json (industry_returns.py's docstring
+    and 03b §3.3.3 say it does), so a first 5.7 rebuild scored every folder's moat evidence without it. The dry run
+    builds it from the scored folders into its work copy (the sweep tree is untouched) and scores against it; apply
+    writes it on the sweep tree before rebuilding."""
+    s = Sweep()
+    wd = os.path.join(s.o.root, "work")
+    try:
+        target = os.path.join(s.c, "_system", "industry_returns.json")
+        assert not os.path.exists(target)
+        r = s.run("--json", s.report, "--work-dir", wd)
+        assert r.returncode == 0, r.stdout + r.stderr
+        rep = json.load(open(s.report, encoding="utf-8"))
+        ind = rep["industry_file"]
+        assert ind["sha256"] and ind["sweep_sha256"] is None and ind["differs_from_sweep"] is True, ind
+        assert not os.path.exists(target), "the dry run writes nothing in the sweep tree"
+        built = json.load(open(os.path.join(wd, "_system", "industry_returns.json"), encoding="utf-8"))
+        assert built.get("builder") == "industry_returns.py" and built["built"] == ind["built"], built.get("builder")
+        assert "industry_returns.json built " in r.stdout and "--apply writes it before rebuilding" in r.stdout, r.stdout
+        sc = json.load(open(os.path.join(wd, "AAA", "score.json"), encoding="utf-8"))
+        # the dry run's make_score read the fresh build (moat_evidence is on every 5.7 rebuild)
+        assert (sc["moat_evidence"].get("industry_file") or {}).get("sha256") == ind["sha256"], sc["moat_evidence"]
+        r, ap = s.apply()
+        assert r.returncode == 0, r.stdout + r.stderr
+        assert os.path.exists(target), "apply writes the build on the sweep tree before rebuilding"
+        assert ap["industry_file"]["sha256"] == ind["sha256"] and ap["industry_file"]["changed_since_dry_run"] is False
+        assert "written to the sweep tree before rebuilding; the same build as the dry run's" in r.stdout, r.stdout
+        sc = json.load(open(os.path.join(s.c, "AAA", "score.json"), encoding="utf-8"))
+        assert (sc["moat_evidence"].get("industry_file") or {}).get("sha256") == ind["sha256"], sc["moat_evidence"]
     finally:
         s.close()
 

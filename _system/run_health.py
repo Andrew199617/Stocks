@@ -5,7 +5,7 @@ The miss it stops: a cron job failed five runs in a row before anyone noticed. E
 `start` and closes it with `record`; the line this script prints is the only health message, and it goes to chat.
 
 Usage:
-  python3 _system/run_health.py start <job>
+  python3 _system/run_health.py start <job> [--crons DIR]
   python3 _system/run_health.py record <job> ok|fail [--reason TEXT | --stdin] [--threshold 2] [--remind-hours 24]
   python3 _system/run_health.py status [<job>] [--json]
   python3 _system/run_health.py check [--crons DIR]
@@ -18,8 +18,15 @@ post); status is the human query (one summary line per job, then the job's histo
                "ALERT <job>: 2 failed runs in a row (first <time>, latest <time>). Last reason: <reason> History: ...";
                while the job keeps failing it prints "STILL FAILING <job>: …" once every --remind-hours (24) after
                the alert or the last reminder, and nothing otherwise.
-  start        a previous run that started and never recorded (a timeout, a crash, a kill) counts as a failed run
-               first ("did not finish (started <ts>, no record — timeout or crash)"), which may print the ALERT.
+  start        opens a run. Runs may overlap (a 15-minute job with a 60-minute timeout_secs: a slow run is still
+               going when the next firing starts — review 2026-10-21: one open start per job read every overlap as
+               a crash and paged Andrew for healthy runs). Every open run is kept; one that is older than the job's
+               timeout_secs (its cron file's front matter under --crons, default automation/crons; 3600 s when no
+               cron file names the job) and never recorded (a timeout, a crash, a kill) counts as a failed run at
+               the next start ("did not finish (started <ts>, no record within its <n> s timeout — timeout or
+               crash)"), which may print the ALERT — unless an ok was recorded after it started: then it is in the
+               history but not in the run of consecutive failures.
+  record       closes the newest open run (an older one still going keeps its own entry).
   check        reads every cron file's front matter (automation/crons/*/*.md: id, enabled, schedule.kind / every;
                daily = 1440 minutes): an enabled job that has recorded at least once, and is not market-hours only
                (dcf-live-refresh), is overdue when now − its last start > max(3 × interval, interval + 60 min); one
@@ -48,6 +55,7 @@ HISTORY_KEEP = 50
 REASON_MAX = 300
 NO_OVERDUE = frozenset({"dcf-live-refresh"})   # market hours only: no run outside them is not a failure
 OVERDUE_REPEAT_HOURS = 24
+DEFAULT_TIMEOUT_SECS = 3600   # the 15-minute workers' timeout_secs; used for a job no cron file names
 
 
 class StateError(Exception):
@@ -80,10 +88,14 @@ def _save(path, d):
 
 
 def _job(d, name):
-    return d["jobs"].setdefault(name, {"open_start": None, "last_start": None, "last_end": None, "last_result": None,
-                                       "last_reason": None, "consecutive_failures": 0, "first_failure_at": None,
-                                       "last_ok_at": None, "alerted_at": None, "reminded_at": None,
-                                       "overdue_alerted_at": None, "history": []})
+    job = d["jobs"].setdefault(name, {"open_starts": [], "last_start": None, "last_end": None, "last_result": None,
+                                      "last_reason": None, "consecutive_failures": 0, "first_failure_at": None,
+                                      "last_ok_at": None, "alerted_at": None, "reminded_at": None,
+                                      "overdue_alerted_at": None, "history": []})
+    if "open_starts" not in job:   # a state file written before the 2026-10-21 review: one open_start
+        job["open_starts"] = [job["open_start"]] if job.get("open_start") else []
+    job.pop("open_start", None)
+    return job
 
 
 def one_line(text):
@@ -95,16 +107,23 @@ def _t(s):
     return _ops.parse_ts(s)
 
 
-def _fail(job, name, reason, now, threshold, remind_hours):
-    """Apply one failed run; returns the chat line or None."""
-    started = job.get("open_start")
+def _fail(job, name, reason, now, threshold, remind_hours, started=None, inferred=False):
+    """Apply one failed run that started at `started`; returns the chat line or None. An inferred failure (a run
+    that never recorded) that started before the job's last ok is history only: an ok came after it, so it is not
+    part of the current run of failures."""
+    if inferred:
+        ok, st = _t(job.get("last_ok_at")), _t(started)
+        if ok is not None and st is not None and ok > st:
+            job["history"] = ((job.get("history") or []) + [{"start": started, "end": None, "result": "fail",
+                                                             "reason": reason}])[-HISTORY_KEEP:]
+            return None
     job["consecutive_failures"] = int(job.get("consecutive_failures") or 0) + 1
     when = started or _ops.iso(now)
     if job["consecutive_failures"] == 1:
         job["first_failure_at"] = when
-    job.update(last_end=_ops.iso(now), last_result="fail", last_reason=reason, open_start=None)
-    job["history"] = (job.get("history") or []) + [{"start": started, "end": _ops.iso(now), "result": "fail",
-                                                     "reason": reason}]
+    job.update(last_end=_ops.iso(now), last_result="fail", last_reason=reason)
+    job["history"] = (job.get("history") or []) + [{"start": started, "end": None if inferred else _ops.iso(now),
+                                                     "result": "fail", "reason": reason}]
     job["history"] = job["history"][-HISTORY_KEEP:]
     n = job["consecutive_failures"]
     first = _t(job.get("first_failure_at"))
@@ -123,19 +142,65 @@ def _fail(job, name, reason, now, threshold, remind_hours):
     return None
 
 
-def cmd_start(name, now):
+def job_timeout(name, crons):
+    """The job's timeout_secs from its cron file's front matter (DEFAULT_TIMEOUT_SECS when no file names it)."""
+    import glob
+    for f in sorted(glob.glob(os.path.join(crons or default_crons(), "*", "*.md"))):
+        try:
+            with open(f, encoding="utf-8") as fh:
+                fm = parse_front_matter(fh.read())
+        except OSError:
+            continue
+        if fm.get("id") == name:
+            try:
+                v = int(str(fm.get("timeout_secs", "")).strip())
+                return v if v > 0 else DEFAULT_TIMEOUT_SECS
+            except ValueError:
+                return DEFAULT_TIMEOUT_SECS
+    return DEFAULT_TIMEOUT_SECS
+
+
+def _runs(job):
+    """The job's open runs, oldest first (by time, not by string: the ET offset changes at DST)."""
+    return sorted((x for x in job.get("open_starts") or [] if isinstance(x, str)),
+                  key=lambda x: _t(x) or datetime.datetime.min.replace(tzinfo=_ops.ET))
+
+
+def _expire(job, name, now, timeout, threshold=2, remind_hours=24):
+    """Count every open run older than `timeout` seconds as failed (oldest first); returns the first chat line."""
+    keep, line = [], None
+    for s in _runs(job):
+        ts = _t(s)
+        if ts is not None and now - ts > datetime.timedelta(seconds=timeout):
+            got = _fail(job, name, f"did not finish (started {s}, no record within its {timeout} s timeout — timeout "
+                                   "or crash)", now, threshold, remind_hours, started=s, inferred=True)
+            line = line or got
+        else:
+            keep.append(s)
+    job["open_starts"] = keep
+    return line
+
+
+def cmd_start(name, now, crons=None):
     path = state_path()
+    timeout = job_timeout(name, crons)
     with locked(f"{path}.lock"):
         d = _load(path)
         job = _job(d, name)
-        line = None
-        if job.get("open_start"):
-            line = _fail(job, name, f"did not finish (started {job['open_start']}, no record — timeout or crash)",
-                         now, threshold=2, remind_hours=24)
-        job["open_start"] = _ops.iso(now)
+        line = _expire(job, name, now, timeout)
+        job["open_starts"] = _runs(job) + [_ops.iso(now)]
         job["last_start"] = _ops.iso(now)
         _save(path, d)
     return line
+
+
+def _close_newest(job):
+    """Pop the newest open run (this record's): an older run still going keeps its own entry, and one that crashed
+    expires at a later start."""
+    runs = _runs(job)
+    started = runs.pop() if runs else None
+    job["open_starts"] = runs
+    return started
 
 
 def cmd_record(name, result, reason, now, threshold, remind_hours):
@@ -143,8 +208,9 @@ def cmd_record(name, result, reason, now, threshold, remind_hours):
     with locked(f"{path}.lock"):
         d = _load(path)
         job = _job(d, name)
+        started = _close_newest(job)
         if result == "fail":
-            line = _fail(job, name, one_line(reason) or "no reason given", now, threshold, remind_hours)
+            line = _fail(job, name, one_line(reason) or "no reason given", now, threshold, remind_hours, started=started)
         else:
             line = None
             n = int(job.get("consecutive_failures") or 0)
@@ -152,10 +218,9 @@ def cmd_record(name, result, reason, now, threshold, remind_hours):
                 since = _t(job.get("first_failure_at"))
                 line = (f"RECOVERED {name}: ok again at {_ops.et_hm(now)} after {n} failed run{'s' if n != 1 else ''} "
                         f"(since {_ops.et_hm(since, ref=now)}).")
-            started = job.get("open_start")
             job.update(consecutive_failures=0, first_failure_at=None, alerted_at=None, reminded_at=None,
                        last_end=_ops.iso(now), last_result="ok", last_reason=one_line(reason) or None,
-                       last_ok_at=_ops.iso(now), open_start=None)
+                       last_ok_at=_ops.iso(now))
             job["history"] = ((job.get("history") or []) + [{"start": started, "end": _ops.iso(now), "result": "ok",
                                                               "reason": one_line(reason) or None}])[-HISTORY_KEEP:]
         _save(path, d)
@@ -256,7 +321,7 @@ def cmd_status(name, as_json):
         lines.append(f"{jn}: last {job.get('last_result') or '-'} at {job.get('last_end') or '-'}"
                      + (f"; {n} failed in a row since {job.get('first_failure_at')}" if n else "")
                      + (f"; alerted {job.get('alerted_at')}" if job.get("alerted_at") else "")
-                     + (f"; running since {job.get('open_start')}" if job.get("open_start") else "")
+                     + (f"; running: {', '.join(job.get('open_starts'))}" if job.get("open_starts") else "")
                      + (f"; last reason: {job.get('last_reason')}" if job.get("last_reason") else ""))
         if name:
             for h in reversed(job.get("history") or []):
@@ -270,6 +335,7 @@ def main(argv=None):
     sub = ap.add_subparsers(dest="cmd")
     s = sub.add_parser("start")
     s.add_argument("job")
+    s.add_argument("--crons")
     r = sub.add_parser("record")
     r.add_argument("job")
     r.add_argument("result", choices=("ok", "fail"))
@@ -296,7 +362,7 @@ def main(argv=None):
     now = _ops.now_et()
     try:
         if a.cmd == "start":
-            line = cmd_start(a.job, now)
+            line = cmd_start(a.job, now, a.crons)
         elif a.cmd == "record":
             reason = sys.stdin.read() if a.stdin else a.reason
             line = cmd_record(a.job, a.result, reason, now, a.threshold, a.remind_hours)

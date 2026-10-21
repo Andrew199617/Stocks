@@ -8,7 +8,9 @@ named, state behind with the matched sha and commits since; a local edit -> dive
 -> missing_here (the guard set comes from origin's tree, not a constant); ENGINE_BACKLOG.md and tests are never
 guarded; README drift is advisory (exit 0); a core.autocrlf=true checkout is not drift; a failed fetch retries then
 exits 4; a non-git base exits 3; --sync refuses a live claim (exit 5) and otherwise syncs exactly the guarded
-files; every local module the scoring chain imports is a POLICY path.
+files; every local module the scoring chain imports is a POLICY path; _system/industry_returns.json is a DATA input
+(review 2026-10-21): missing or unreadable here is drift and --sync brings main's copy, the sweep tree's own build is
+a note that --sync never overwrites.
 """
 import ast
 import datetime
@@ -241,6 +243,52 @@ def test_sync_refuses_a_live_claim_then_syncs():
         assert os.path.exists(os.path.join(c, "_system", "scratch_tool.py")), "local_only files are never deleted"
         again = _pf(c, "--no-fetch")
         assert again.returncode == 0, again.stdout
+    finally:
+        o.close()
+
+
+def test_industry_file_is_a_data_input():
+    """Review 2026-10-21 (P1): _system/industry_returns.json is a make_score input (moat_evidence) that was outside
+    the guard and outside --sync, so a first 5.7 deploy scored every folder without it while preflight said OK.
+    Missing here is drift (--sync brings main's copy); the sweep tree's own build is a note, never overwritten."""
+    main = '{"schema": 1, "built": "2026-10-20"}\n'
+    o = _origin({"_system/industry_returns.json": main})
+    try:
+        c = H.clone(o)
+        p = os.path.join(c, "_system", "industry_returns.json")
+        assert preflight.classify("_system/industry_returns.json") == "data"
+        assert _pf(c).returncode == 0
+        with open(p, "w", encoding="utf-8", newline="\n") as f:
+            f.write('{"schema": 1, "built": "2026-10-22"}\n')   # the daily cron's rewrite
+        r = _pf(c, "--json")
+        assert r.returncode == 0, r.stdout
+        d = _json(r)
+        row = next(x for x in d["advisory"] if x["path"] == "_system/industry_returns.json")
+        assert row["class"] == "data" and row["state"] == "diverged" and d["drift"] == [], d
+        t = _pf(c, "--no-fetch")
+        assert "advisory: _system/industry_returns.json  diverged (never on origin/main) — the sweep tree's own build" \
+            in t.stdout, t.stdout
+        assert _pf(c, "--list-drift", "--no-fetch").stdout.strip() == "", "--list-drift prints what --sync checks out"
+        r = H.run("preflight.py", "--sync", base=c)
+        assert r.returncode == 0 and "nothing to sync" in r.stdout, r.stdout
+        assert "2026-10-22" in open(p, encoding="utf-8").read(), "the sweep tree's own build is never overwritten"
+        os.remove(p)   # the first 5.7 deploy: main has the file, the sweep tree never had it
+        r = _pf(c, "--json")
+        assert r.returncode == 1, r.stdout
+        row = next(x for x in _json(r)["drift"] if x["path"] == "_system/industry_returns.json")
+        assert row["state"] == "missing_here" and row["class"] == "data", row
+        assert _pf(c, "--list-drift", "--no-fetch").stdout.split() == ["_system/industry_returns.json"]
+        r = H.run("preflight.py", "--sync", base=c)
+        assert r.returncode == 0 and "_system/industry_returns.json" in r.stdout, r.stdout
+        assert open(p, encoding="utf-8").read().replace("\r\n", "\n") == main
+        assert _pf(c, "--no-fetch").returncode == 0
+        open(p, "w").close()   # an empty (unreadable) file: make_score would score without it, like a missing one
+        r = _pf(c, "--json", "--no-fetch")
+        assert r.returncode == 1, r.stdout
+        row = next(x for x in _json(r)["drift"] if x["path"] == "_system/industry_returns.json")
+        assert row["state"] == "unreadable", row
+        assert H.run("preflight.py", "--sync", base=c).returncode == 0
+        assert open(p, encoding="utf-8").read().replace("\r\n", "\n") == main
     finally:
         o.close()
 

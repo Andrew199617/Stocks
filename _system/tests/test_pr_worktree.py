@@ -21,13 +21,22 @@ pushes and calls gh pr create; the title shapes; restack re-derives the registry
 reap removes the clean worktree of a merged PR and keeps a dirty one; a review round reuses the branch and pushes;
 the bulk set is all-or-nothing and opens one Rebuild PR; backlog-next; PR_PROTOCOL.md names every subcommand; the
 real ENGINE_BACKLOG.md parses.
+Review fixes (2026-10-21): prepare scores against the sweep tree's _system/industry_returns.json, names
+moat_evidence.industry_file when the sweep score used another build, and a company PR never carries the file while
+a bulk PR does; prepare / open / push / restack need --holder and refuse an expired holder after a takeover (exit
+4), and a takeover during prepare never lets the old holder's lock write land; reaping is serialized by the lease
+guard (an interleaved second reaper cannot rename the winner's lock away); reap keeps the worktree of an OPEN PR on
+a reused dcf/<T> and one holding unpushed commits.
 """
 import contextlib
+import datetime
 import io
 import json
 import os
+import shutil
 import subprocess
 import sys
+import tempfile
 import threading
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -248,11 +257,11 @@ def test_prepare_stale_release_rebuilds_under_q12b_and_refuses_under_policy_refu
     c = Case(release="5.5.0", analysis="# TST\nRevenue grew 37.25% last year.\n")
     try:
         c.acquire()
-        rc, out, err = _inproc(c, ["prepare", T], policy="refuse")
+        rc, out, err = _inproc(c, ["prepare", T, "--holder", "agent-1"], policy="refuse")
         assert rc == 1, out + err
         assert (f"{T}/dcf_numbers.json is engine release 5.5.0; origin/main is {CUR} — re-run the engine") in err, err
         assert "(MOH #37, ESTC #35)" in err, err
-        r = c.ok("prepare", T)   # default STALE_RELEASE_POLICY: lane default Q12 (b)
+        r = c.ok("prepare", T, "--holder", "agent-1")   # default STALE_RELEASE_POLICY: lane default Q12 (b)
         assert f"engine output is release 5.5.0, predating {CUR}" in r.stdout, r.stdout
         assert "check_quotes n/a (pre-5.7 run)" in r.stdout, "a 5.5 run skips the quote gate (37.25% is untraced)"
         prep = c.lock()["prepared"]
@@ -264,9 +273,9 @@ def test_prepare_stale_release_rebuilds_under_q12b_and_refuses_under_policy_refu
         c.ok("release", T, "--holder", "agent-1")
         c.ok("discard", T, "--force")
         c.acquire(kind="rebuild")
-        rc, out, err = _inproc(c, ["prepare", T], policy="refuse")
+        rc, out, err = _inproc(c, ["prepare", T, "--holder", "agent-1"], policy="refuse")
         assert rc == 0, "kind rebuild prepares a stale-release folder under either policy: " + err
-        c.ok("open", T, "--body-file", c.body())
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
         branch = c.lock()["branch"]   # dcf/TST-20261019: the discarded worktree's local dcf/TST branch stays
         msg = H.git(c.o.bare, "log", "-1", "--format=%B", branch)
         assert f"the engine output predates release {CUR}" in msg and "alert gates closed by the stale-release rule" in msg
@@ -279,7 +288,7 @@ def test_prepare_rederives_registry_for_the_ticker_only():
     c = Case()
     try:
         c.acquire()
-        c.ok("prepare", T)
+        c.ok("prepare", T, "--holder", "agent-1")
         reg = json.load(open(os.path.join(c.wt, "_system", "overrides_registry.json"), encoding="utf-8"))
         others = [e for e in reg["entries"] if e.get("ticker") != T]
         assert others == [OTH_ENTRY, ZZZ_ENTRY], others
@@ -305,7 +314,7 @@ def test_prepare_refuses_when_the_rebuilt_score_differs():
         s["tier_final"] = "D"
         json.dump(s, open(p, "w", encoding="utf-8"), indent=1)
         c.acquire()
-        r = c.pw("prepare", T)
+        r = c.pw("prepare", T, "--holder", "agent-1")
         assert r.returncode == 1, r.stdout
         assert "differs from the sweep tree's (tier_final D → B" in r.stderr and "scored on other code" in r.stderr, r.stderr
         assert not c.lock()["prepared"]
@@ -317,7 +326,7 @@ def test_prepare_runs_check_quotes_on_57_runs():
     c = Case(analysis="# TST\nRevenue grew 37.25% last year.\n")
     try:
         c.acquire()
-        r = c.pw("prepare", T)
+        r = c.pw("prepare", T, "--holder", "agent-1")
         assert r.returncode == 1, r.stdout
         assert f"check_quotes.py refused {T}/analysis.md:" in r.stderr and "never in the worktree" in r.stderr, r.stderr
     finally:
@@ -334,7 +343,7 @@ def test_prepare_refuses_a_lost_deferred_payment_period():
         reg["entries"].append(DEFERRED)   # the sweep tree recorded a deal period an unmerged generation never brought
         json.dump(reg, open(p, "w", encoding="utf-8"), indent=1)
         c.acquire()
-        r = c.pw("prepare", T)
+        r = c.pw("prepare", T, "--holder", "agent-1")
         assert r.returncode == 1, r.stdout
         assert (f"{T}'s acquired-IPR&D deferred-payment record differs from the sweep tree's (deal Test Bio) — the "
                 "lifetime record must reach main unchanged; restack, or ask the main agent") in r.stderr, r.stderr
@@ -349,7 +358,7 @@ def test_prepare_refuses_a_record_file_main_has_and_the_sweep_lost():
         H.git(c.c, "pull", "-q", "--ff-only")
         os.remove(os.path.join(c.c, T, "second_pass.md"))
         c.acquire(kind="rescore")
-        r = c.pw("prepare", T)
+        r = c.pw("prepare", T, "--holder", "agent-1")
         assert r.returncode == 1, r.stdout
         assert f"{T}/second_pass.md is on main but not in the sweep folder" in r.stderr, r.stderr
     finally:
@@ -360,17 +369,17 @@ def test_open_refuses_paths_outside_the_company_scope():
     c = Case()
     try:
         c.acquire()
-        c.ok("prepare", T)
+        c.ok("prepare", T, "--holder", "agent-1")
         with open(os.path.join(c.wt, "_system", "make_score.py"), "a", encoding="utf-8") as f:
             f.write("# edited in the worktree\n")
-        r = c.pw("open", T, "--body-file", c.body())
+        r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1, r.stdout
         assert ("refusing to commit — the worktree changes paths a company PR may not carry: _system/make_score.py"
                 in r.stderr), r.stderr
         H.git(c.wt, "checkout", "--", "_system/make_score.py")
         with open(os.path.join(c.wt, T, "analysis.md"), "a", encoding="utf-8") as f:
             f.write("A fix made only in the worktree.\n")
-        r = c.pw("open", T, "--body-file", c.body())
+        r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "changed since prepare" in r.stderr and "never the worktree" in r.stderr, r.stderr
         assert H.gh_calls(c.gh_dir) == [], "nothing reached gh"
     finally:
@@ -391,25 +400,25 @@ def test_open_backlog_is_append_only():
     c = Case()
     try:
         c.acquire()
-        c.ok("prepare", T)
+        c.ok("prepare", T, "--holder", "agent-1")
         p = os.path.join(c.wt, "_system", "ENGINE_BACKLOG.md")
         text = open(p, encoding="utf-8").read()
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             f.write(text.replace("- Status: open", "- Status: fixed in PR #101 (2026-10-21)", 1) + ENTRY_40)
-        r = c.pw("open", T, "--body-file", c.body())
+        r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "append-only in a data PR: the diff edits or removes 1 existing line" in r.stderr, r.stderr
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             f.write(text + ENTRY_40.replace("EB-040", "EB-039"))
-        r = c.pw("open", T, "--body-file", c.body())
+        r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "EB-039 is already used on main" in r.stderr, r.stderr
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             f.write(text + ENTRY_40.replace("- Threads: https://github.com/Andrew199617/Stocks/pull/101#discussion_r1",
                                             "- Threads: none"))
-        r = c.pw("open", T, "--body-file", c.body())
+        r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "Threads line holds no PR thread URL" in r.stderr, r.stderr
         with open(p, "w", encoding="utf-8", newline="\n") as f:
             f.write(text + ENTRY_40)
-        c.ok("open", T, "--body-file", c.body())
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
         names = H.git(c.o.bare, "diff", "--name-only", "main", f"dcf/{T}").split()
         assert "_system/ENGINE_BACKLOG.md" in names, names
     finally:
@@ -420,8 +429,8 @@ def test_open_stages_only_allowed_paths_and_calls_gh():
     c = Case()
     try:
         c.acquire()
-        c.ok("prepare", T)
-        r = c.ok("open", T, "--body-file", c.body(), "--trailer", "Co-Authored-By: Test Agent <t@test.invalid>")
+        c.ok("prepare", T, "--holder", "agent-1")
+        r = c.ok("open", T, "--holder", "agent-1", "--body-file", c.body(), "--trailer", "Co-Authored-By: Test Agent <t@test.invalid>")
         assert r.stdout.strip() == "https://github.com/o/r/pull/101", r.stdout
         names = sorted(H.git(c.o.bare, "diff", "--name-only", "main", f"dcf/{T}").split())
         assert names and all(n.startswith(f"{T}/") or n == "_system/overrides_registry.json" for n in names), names
@@ -436,7 +445,7 @@ def test_open_stages_only_allowed_paths_and_calls_gh():
         assert "score built from this run: yes" in msg and "- check_quotes.py: pass" in msg, msg
         lk = c.lock()
         assert lk["pr_number"] == 101 and lk["pr_url"] == "https://github.com/o/r/pull/101", lk
-        r = c.pw("open", T, "--body-file", c.body())
+        r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "already open" in r.stderr, r.stderr
     finally:
         c.close()
@@ -459,13 +468,13 @@ def test_restack_rederives_registry_and_renumbers_backlog():
     try:
         c.acquire()
         _append(c.wt, ENTRY_40)
-        c.ok("prepare", T)
-        c.ok("open", T, "--body-file", c.body())
+        c.ok("prepare", T, "--holder", "agent-1")
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
         main_bl = BACKLOG + ENTRY_40.replace("a test defect found in review", "main's own entry")
         H.commit_on_origin(c.o, "_system/ENGINE_BACKLOG.md", main_bl, "main appends EB-040")
         new_oth = dict(OTH_ENTRY, reason="test: re-scored on main (NI_OCF gap 51%)")
         H.commit_on_origin(c.o, "_system/overrides_registry.json", {"entries": [ZZZ_ENTRY, new_oth]}, "OTH re-scored")
-        r = c.ok("restack", T)
+        r = c.ok("restack", T, "--holder", "agent-1")
         assert "backlog ids renumbered EB-040 → EB-041" in r.stdout, r.stdout
         bl = H.git(c.o.bare, "show", f"dcf/{T}:_system/ENGINE_BACKLOG.md").replace("\r\n", "\n")
         assert bl.startswith(main_bl) and "### EB-041 — dcf_engine.py:test — a test defect found in review" in bl, bl[-600:]
@@ -482,8 +491,8 @@ def test_reap_removes_clean_worktree_of_a_merged_pr():
     c = Case(tickers=(T, "TS2"))
     try:
         c.acquire()
-        c.ok("prepare", T)
-        c.ok("open", T, "--body-file", c.body())
+        c.ok("prepare", T, "--holder", "agent-1")
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
         c.ok("release", T, "--holder", "agent-1")
         c.ok("acquire", "TS2", "--holder", "agent-1", "--kind", "pass1")
         c.ok("release", "TS2", "--holder", "agent-1")
@@ -505,8 +514,8 @@ def test_review_round_reuses_the_branch_and_pushes():
     c = Case()
     try:
         c.acquire()
-        c.ok("prepare", T)
-        c.ok("open", T, "--body-file", c.body())
+        c.ok("prepare", T, "--holder", "agent-1")
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
         c.ok("release", T, "--holder", "agent-1")
         c.gh_responses({"pr list": [{"number": 101, "headRefName": f"dcf/{T}", "state": "OPEN", "url": "u",
                                      "title": f"DCF pass 1: {T} — Test Co — Tier B", "createdAt": "2026-10-21T14:00:00Z"}]})
@@ -514,11 +523,13 @@ def test_review_round_reuses_the_branch_and_pushes():
         assert f"branch dcf/{T}" in r.stdout and c.lock()["pr_number"] == 101, r.stdout
         with open(os.path.join(c.c, T, "analysis.md"), "a", encoding="utf-8") as f:
             f.write("Review round 1: wording fixed in the sweep tree.\n")
-        c.ok("prepare", T)
-        c.ok("push", T, "-m", "Review round 1: analysis wording")
+        r = c.pw("prepare", T, "--holder", "agent-1")
+        assert r.returncode == 4 and f"{T} is held by agent-2" in r.stderr, "the earlier holder is refused: " + r.stderr
+        c.ok("prepare", T, "--holder", "agent-2")
+        c.ok("push", T, "--holder", "agent-2", "-m", "Review round 1: analysis wording")
         log = H.git(c.o.bare, "log", "--format=%s", f"dcf/{T}", "-2").splitlines()
         assert log[0] == "Review round 1: analysis wording" and log[1].startswith("DCF pass 1:"), log
-        r = c.pw("push", T, "-m", "again")
+        r = c.pw("push", T, "--holder", "agent-2", "-m", "again")
         assert r.returncode == 1 and "nothing to push" in r.stderr, r.stderr
     finally:
         c.close()
@@ -569,6 +580,227 @@ def test_pr_protocol_names_every_pr_worktree_command():
     proto = open(os.path.join(H.SYS, "PR_PROTOCOL.md"), encoding="utf-8").read()
     for n in names:
         assert f"pr_worktree.py {n}" in proto or f"`{n} " in proto or f"`{n}`" in proto, n
+
+
+# ------------------------------------------------------------------ review fixes (2026-10-21)
+INDUSTRY = "_system/industry_returns.json"
+
+
+def _industry_src():
+    with open(os.path.join(H.SYS, "industry_returns.json"), encoding="utf-8") as f:
+        return f.read()
+
+
+def _rewrite_industry(sweep, built):
+    """What the daily cron's industry_returns.py --write leaves when a member changed: a new build."""
+    p = os.path.join(sweep, *INDUSTRY.split("/"))
+    doc = json.load(open(p, encoding="utf-8"))
+    doc["built"] = built
+    with open(p, "w", encoding="utf-8", newline="\n") as f:
+        json.dump(doc, f, indent=1)
+
+
+def _industry_on_main(c):
+    H.commit_on_origin(c.o, INDUSTRY, _industry_src(), "industry_returns.json initial build")
+    H.git(c.c, "pull", "-q", "--ff-only", "origin", "main")
+
+
+def test_prepare_scores_against_the_sweep_trees_industry_file():
+    """P1: _system/industry_returns.json feeds moat_evidence (a decision field). Before the fix prepare scored
+    against main's copy and refused every folder whose sweep tree held another build — the daily cron's rewrite, or
+    the first 5.7 deploy — with advice that could not clear it. Now: the refusal names moat_evidence.industry_file
+    when the sweep score is older than the sweep's file, re-running make_score clears it, prepare scores against the
+    sweep tree's build, and the company PR never carries the file."""
+    c = Case()
+    try:
+        _industry_on_main(c)   # TST was scored before the file existed: its moat_evidence has no industry file
+        c.acquire()
+        r = c.pw("prepare", T, "--holder", "agent-1")
+        assert r.returncode == 1, r.stdout
+        assert "differs from the sweep tree's (moat_evidence.industry_file null → {" in r.stderr, r.stderr
+        assert "another build of _system/industry_returns.json" in r.stderr, r.stderr
+        assert H.git(c.wt, "status", "--porcelain", "--", INDUSTRY).strip() == "", "a refused prepare restores main's"
+        _rewrite_industry(c.c, "2026-10-22")   # the daily cron rewrites the sweep tree's build
+        c.score()                              # the worker re-runs make_score on the sweep tree (the advice)
+        s = json.load(open(os.path.join(c.c, T, "score.json"), encoding="utf-8"))
+        assert s["moat_evidence"]["industry_file"]["built"] == "2026-10-22", s["moat_evidence"]["industry_file"]
+        r = c.ok("prepare", T, "--holder", "agent-1")
+        assert "industry_returns.json: scored against the sweep tree's built 2026-10-22" in r.stdout, r.stdout
+        main_built = json.loads(_industry_src())["built"]
+        assert f"main's is built {main_built}" in r.stdout, r.stdout
+        assert H.git(c.wt, "status", "--porcelain", "--", INDUSTRY).strip() == "", "main's copy is back"
+        prep = c.lock()["prepared"]
+        assert prep["industry_file"]["sweep"]["built"] == "2026-10-22" and prep["industry_file"]["carried"] is False
+        assert INDUSTRY not in prep["files"], prep["files"]
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
+        names = H.git(c.o.bare, "diff", "--name-only", "main", f"dcf/{T}").split()
+        assert INDUSTRY not in names and f"{T}/score.json" in names, names
+        msg = H.git(c.o.bare, "log", "-1", "--format=%B", f"dcf/{T}")
+        assert "- industry_returns.json: scored against the sweep tree's built 2026-10-22" in msg, msg
+    finally:
+        c.close()
+
+
+def test_bulk_pr_carries_the_sweep_trees_industry_file():
+    """03b §3.3.3: a rebuild data PR scores against a current build and carries it."""
+    c = Case(tickers=(T, "TS2"))
+    try:
+        _industry_on_main(c)
+        _rewrite_industry(c.c, "2026-10-22")
+        for t in (T, "TS2"):
+            c.score(t)
+        rep = os.path.join(c.o.root, "rebuild.json.applied.json")
+        json.dump({"tool": "rebuild_scores", "mode": "apply", "engine_release": CUR, "drift_allowed": False,
+                   "folders": [{"ticker": t, "state": "rebuilt", "main_sync": "in_sync"} for t in (T, "TS2")]},
+                  open(rep, "w"))
+        c.ok("acquire", "--bulk", rep, "--holder", "muse-main")
+        branch = f"rebuild/{CUR}-20261021"
+        r = c.ok("prepare", "--bulk", branch)   # the bulk forms default to the bulk set's holder
+        assert "industry_returns.json: the sweep tree's built 2026-10-22" in r.stdout and "carried" in r.stdout, r.stdout
+        c.ok("open", "--bulk", branch, "--body-file", c.body())
+        names = H.git(c.o.bare, "diff", "--name-only", "main", branch).split()
+        assert INDUSTRY in names and f"{T}/score.json" in names, names
+        assert json.loads(H.git(c.o.bare, "show", f"{branch}:{INDUSTRY}"))["built"] == "2026-10-22"
+    finally:
+        c.close()
+
+
+def test_an_expired_holder_is_refused_after_a_takeover():
+    """P2: agent-1's lease expired, agent-2 acquired TST; agent-1's next step as PR_PROTOCOL wrote it (no --holder)
+    used to prepare and open a PR in agent-2's worktree."""
+    c = Case()
+    try:
+        c.acquire()                                         # agent-1, 10:00, a 3-hour lease
+        c.acquire("agent-2", kind="rescore", now=LATER)     # 14:30: reaped and taken over
+        body = c.body()
+        for args in (("prepare", T), ("open", T, "--body-file", body), ("push", T, "-m", "x"), ("restack", T)):
+            r = c.pw(*args, now=LATER)
+            assert r.returncode == 2, f"{args} without --holder: {r.returncode} {r.stdout} {r.stderr}"
+            r = c.pw(*args, "--holder", "agent-1", now=LATER)
+            assert r.returncode == 4 and f"{T} is held by agent-2" in r.stderr, f"{args}: {r.returncode} {r.stderr}"
+        lk = c.lock()
+        assert lk["holder"] == "agent-2" and lk["pr_url"] is None and lk["prepared"] is None, lk
+        assert H.gh_calls(c.gh_dir) == [], "nothing reached gh"
+    finally:
+        c.close()
+
+
+def test_a_takeover_during_prepare_never_overwrites_the_new_lease():
+    """The lock update at the end of a long prepare checks the lease is still the caller's (exit 4 otherwise):
+    before, write_lock put the old holder's record over the new holder's lock."""
+    import pr_worktree as P
+    c = Case()
+    try:
+        c.acquire()
+        real = P.do_prepare
+
+        def slow_prepare(tickers, kind, wt, no_fetch=False, bulk=False):
+            # the make_score run outlives the lease and agent-2 takes TST meanwhile (its worktree is clean)
+            later = dict(os.environ, STOCKS_NOW=LATER)
+            r = subprocess.run([sys.executable, os.path.join(H.SYS, "pr_worktree.py"), "acquire", T, "--holder",
+                                "agent-2", "--kind", "rescore"], capture_output=True, text=True, encoding="utf-8",
+                               env=later, timeout=600)
+            assert r.returncode == 0, r.stderr
+            return {"origin_sha": "x", "tickers": [{}], "files": []}
+        P.do_prepare = slow_prepare
+        try:
+            rc, out, err = _inproc(c, ["prepare", T, "--holder", "agent-1"])
+        finally:
+            P.do_prepare = real
+        assert rc == 4 and f"{T} is held by agent-2" in err, (rc, out, err)
+        lk = c.lock()
+        assert lk["holder"] == "agent-2" and lk["prepared"] is None, lk
+    finally:
+        c.close()
+
+
+def test_reaping_is_serialized_by_the_lease_guard():
+    """P2: B read the expired lock, A reaped it and created its own, then B's rename took A's live lock away and both
+    acquires succeeded. Replayed in-process: A's whole _take is injected right after B's read. With the guard A
+    waits for B and is refused (exit 4); exactly one reap is logged."""
+    import _ops
+    import pr_worktree as P
+    root = tempfile.mkdtemp(prefix="prw_race_")
+    old = {k: os.environ.get(k) for k in ("STOCKS_PR_ROOT", "STOCKS_NOW")}
+    os.environ.update(STOCKS_PR_ROOT=root, STOCKS_NOW=LATER)
+    real_read = P.read_lock
+    try:
+        now = _ops.now_et()
+        assert P.create_lock(T, P._new_lock(T, "agent-1", "pass1", 3.0, now - datetime.timedelta(hours=5)))
+        res, threads, calls = {}, [], {"n": 0}
+
+        def take(h):
+            try:
+                P._take(T, h, "rescore", 3.0, now)
+                res[h] = 0
+            except P.Stop as e:
+                res[h] = e.code
+
+        def read_then_let_a_run(t):
+            cur = real_read(t)
+            if calls["n"] == 0:   # B's read of the expired lock: A runs its whole acquire now
+                calls["n"] += 1
+                th = threading.Thread(target=take, args=("racer-a",))
+                th.start()
+                th.join(timeout=2.0)   # without the guard A finishes here; with it, A waits for B
+                threads.append(th)
+            return cur
+        P.read_lock = read_then_let_a_run
+        take("racer-b")
+        P.read_lock = real_read
+        for th in threads:
+            th.join(timeout=60)
+        assert sorted(res.values()) == [0, 4], res
+        winner = next(h for h, rc in res.items() if rc == 0)
+        assert real_read(T)["holder"] == winner, real_read(T)
+        log = open(os.path.join(root, ".locks", "reaped.log"), encoding="utf-8").read()
+        assert log.count(f"reaped {T} lock held by agent-1") == 1, log
+    finally:
+        P.read_lock = real_read
+        for k, v in old.items():
+            if v is None:
+                os.environ.pop(k, None)
+            else:
+                os.environ[k] = v
+        shutil.rmtree(root, ignore_errors=True)
+
+
+def test_reap_keeps_an_open_pr_on_a_reused_branch_and_unpushed_commits():
+    """P3: dcf/<T> is handed out again once an earlier PR's branch was deleted after its merge; reap read the OLDEST
+    PR of that head name and removed the worktree (and the local branch) of an OPEN PR."""
+    c = Case()
+    try:
+        c.acquire()
+        c.ok("prepare", T, "--holder", "agent-1")
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
+        c.ok("release", T, "--holder", "agent-1")
+        head = H.git(c.wt, "rev-parse", "HEAD").strip()
+        c.gh_responses({"pr list": [
+            {"number": 101, "headRefName": f"dcf/{T}", "state": "OPEN", "createdAt": "2026-10-21T14:00:00Z",
+             "headRefOid": head, "url": "u101"},
+            {"number": 5, "headRefName": f"dcf/{T}", "state": "MERGED", "createdAt": "2026-10-19T22:00:00Z",
+             "headRefOid": "0" * 40, "url": "u5"}]})
+        res = json.loads(c.ok("reap", "--json").stdout)
+        assert res["removed_worktrees"] == [], res
+        assert os.path.isdir(c.wt) and H.git(c.c, "branch", "--list", f"dcf/{T}").strip(), "the open PR's worktree stays"
+        # #101 merged (the newest decides), then a local commit nobody pushed: kept
+        with open(os.path.join(c.wt, T, "analysis.md"), "a", encoding="utf-8") as f:
+            f.write("A local commit.\n")
+        H.git(c.wt, "commit", "-q", "-am", "local only")
+        c.gh_responses({"pr list": [
+            {"number": 101, "headRefName": f"dcf/{T}", "state": "MERGED", "createdAt": "2026-10-21T14:00:00Z",
+             "headRefOid": head, "url": "u101"},
+            {"number": 5, "headRefName": f"dcf/{T}", "state": "MERGED", "createdAt": "2026-10-19T22:00:00Z",
+             "url": "u5"}]})
+        res = json.loads(c.ok("reap", "--json").stdout)
+        assert res["removed_worktrees"] == [] and [k["pr"] for k in res["kept_worktrees"]] == [101], res
+        assert "neither PR #101's head nor pushed" in res["kept_worktrees"][0]["why"], res
+        H.git(c.wt, "reset", "-q", "--hard", head)   # back to the merged PR's head: removed
+        res = json.loads(c.ok("reap", "--json").stdout)
+        assert [x["pr"] for x in res["removed_worktrees"]] == [101], res
+        assert not os.path.exists(c.wt)
+    finally:
+        c.close()
 
 
 def test_engine_backlog_parses():

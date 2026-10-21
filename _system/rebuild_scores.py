@@ -15,6 +15,12 @@ Dry run (writes nothing in the sweep tree): preflight must exit 0 (the rebuild m
 else exit 3 — unless --allow-drift (dev and tests: the report then says drift_allowed and --apply refuses it). Every
 folder holding score.json (∩ --only) is copied, with _system/'s top-level files (not *.lock / *.tmp*), into a work
 directory, and make_score.py from THIS tree runs there (STOCKS_BASE = the work copy, the registry the work copy's).
+Before the first make_score, `industry_returns.py --json <work>/_system/industry_returns.json` builds the
+same-ladder SIC-group medians (the moat evidence's industry_structure input, L3) from the sweep tree's scored
+folders into the work copy — the stable write leaves the sweep tree's copy as it is when nothing but `built` would
+change — so the dry run scores against exactly the file the apply step writes (review 2026-10-21: before, the tool
+never wrote it, a first 5.7 rebuild ran without it, and every bulk PR deadlocked on moat_evidence). The report's
+industry_file names the build (built, sha256) and whether it differs from the sweep tree's copy.
 make_score imports the engine in-process but spawns <work>/_system/dcf_engine.py / ttm.py for a current-release
 override replay; --no-network puts fail-loud stand-ins there (a folder that reaches one is `needs_network`).
 Skipped: a name queued pending / in_progress (a re-score is coming), a live pr_worktree lock, a live pass-2 claim.
@@ -31,10 +37,13 @@ counts.live_paused: rebuilt folders whose live.json no longer binds to the new s
 live_score_problem / live_score_identity_missing: the site withholds it until reprice.py --all rewrites it).
 
 Apply: refuses (exit 3) unless the report's origin_sha is origin/main now, drift_allowed is false and preflight
-exits 0. For each `changed` folder of the report (∩ --only): skipped when its input hashes changed since the dry
+exits 0. Then `industry_returns.py --write` on the sweep tree (exit 3 when it fails); a build that differs from the
+dry run's (a member folder changed meanwhile) is named, not refused — the applied table is the actual result. For
+each `changed` folder of the report (∩ --only): skipped when its input hashes changed since the dry
 run, it is queued pending / in_progress, or its pr_worktree lock is held; else the ticker's lock is taken (kind
 rebuild), make_score.py runs on the sweep tree, the lock is released. Then ONE `reprice.py --all --quiet` and ONE
-`build_site.py --quiet` (failures named, non-blocking); live_paused is measured before and after the reprice.
+`build_site.py --quiet` (failures named, non-blocking); live_paused is measured before and after the reprice. The
+bulk PR (pr_worktree.py --bulk) carries the sweep tree's industry_returns.json with the rebuilt folders.
 Writes <report>.applied.json. Exit: 0 every listed folder rebuilt · 1 any refusal or skip · 2 usage · 3 precondition.
 """
 import argparse
@@ -83,6 +92,37 @@ def sha256(path):
 
 def current_release():
     return _ops.local_engine_release(os.path.dirname(HERE))   # this tree's ENGINE_RELEASE (make_score runs from HERE)
+
+
+INDUSTRY_SCRIPT = os.path.join(HERE, "industry_returns.py")
+INDUSTRY_REL = "_system/industry_returns.json"
+
+
+def industry_doc(path):
+    """{built, sha256} of an industry_returns.json (sha256 of the bytes, as make_score records it), or None."""
+    try:
+        with open(path, "rb") as f:
+            raw = f.read()
+        built = json.loads(raw.decode("utf-8")).get("built")
+    except (OSError, ValueError, UnicodeDecodeError, AttributeError):
+        return None
+    return {"built": built, "sha256": hashlib.sha256(raw).hexdigest()}
+
+
+def build_industry(b, args):
+    """Run THIS tree's industry_returns.py over the sweep tree's folders (STOCKS_BASE = b) with `args`
+    (['--json', <work copy>] in the dry run, ['--write'] in apply). (ok, last line). Skipped (ok) when the script
+    does not exist (a tree before L3)."""
+    if not os.path.isfile(INDUSTRY_SCRIPT):
+        return True, "industry_returns.py not in this tree"
+    env = dict(os.environ, STOCKS_BASE=b, PYTHONIOENCODING="utf-8")
+    try:
+        r = subprocess.run([sys.executable, INDUSTRY_SCRIPT] + args, capture_output=True, text=True, encoding="utf-8",
+                           errors="replace", env=env, cwd=b, timeout=1800)
+    except subprocess.TimeoutExpired:
+        return False, "industry_returns.py timed out"
+    lines = [x for x in ((r.stdout or "") + "\n" + (r.stderr or "")).splitlines() if x.strip()]
+    return r.returncode == 0, (lines[-1] if r.returncode else (lines[0] if lines else "")).strip()[:300]
 
 
 def _skip_name(name):
@@ -190,6 +230,19 @@ def dry_run(only=None, work_dir=None, json_path=None, keep_work=False, no_networ
         for script in ("dcf_engine.py", "ttm.py"):
             with open(os.path.join(wsys, script), "w", encoding="utf-8") as f:
                 f.write(STAND_IN)
+    sweep_ind = industry_doc(os.path.join(b, *INDUSTRY_REL.split("/")))
+    ok, msg = build_industry(b, ["--json", os.path.join(wsys, "industry_returns.json")])
+    if not ok:
+        if not keep_work and not work_dir:
+            shutil.rmtree(work, ignore_errors=True)
+        print(f"rebuild_scores: refusing — industry_returns.py failed ({msg}); the moat evidence of every rebuilt "
+              "folder reads that file")
+        return 3, None
+    work_ind = industry_doc(os.path.join(wsys, "industry_returns.json"))
+    industry = {"path": INDUSTRY_REL, "built": (work_ind or {}).get("built"), "sha256": (work_ind or {}).get("sha256"),
+                "sweep_sha256": (sweep_ind or {}).get("sha256"), "sweep_built": (sweep_ind or {}).get("built"),
+                "differs_from_sweep": (work_ind or {}).get("sha256") != (sweep_ind or {}).get("sha256"),
+                "note": msg}
     wreg = os.path.join(wsys, "overrides_registry.json")
     env = dict(os.environ, STOCKS_BASE=work, MAKE_SCORE_REGISTRY=wreg, PYTHONIOENCODING="utf-8")
     folders, origin_blobs, repo_ok = [], None, bool(origin_sha) and _ops.same_dir(_ops.toplevel(b), b)
@@ -267,7 +320,8 @@ def dry_run(only=None, work_dir=None, json_path=None, keep_work=False, no_networ
     now = _ops.now_et()
     report = {"tool": "rebuild_scores", "mode": "dry_run", "engine_release": rel, "origin_sha": origin_sha,
               "drift_allowed": bool(allow_drift), "preflight": preflight.first_line(rep), "base": b,
-              "made_at": _ops.iso(now), "no_network": bool(no_network), "counts": counts_of(folders), "folders": folders}
+              "made_at": _ops.iso(now), "no_network": bool(no_network), "industry_file": industry,
+              "counts": counts_of(folders), "folders": folders}
     path = json_path or os.path.join(tempfile.gettempdir(), f"rebuild_scores-{rel}-{now.strftime('%Y%m%d-%H%M')}.json")
     _ops.write_json_atomic(path, report)
     if not keep_work and not work_dir:
@@ -330,6 +384,18 @@ def summary(rep, path):
              f"  {n_changed} {verb}, {c['unchanged']} unchanged, {c['refused']} refuse (keep their current score.json"
              f"{'; ' + str(c['needs_engine_rerun']) + ' need an engine re-run' if c['needs_engine_rerun'] else ''}), "
              f"{c['needs_network']} need network, {c['skipped']} skipped"]
+    ind = rep.get("industry_file")
+    if ind and ind.get("sha256"):
+        what = f"industry_returns.json built {ind.get('built')} (sha256 {str(ind['sha256'])[:12]})"
+        if rep["mode"] == "dry_run":
+            lines.append(f"{what}: " + ("a new build from the scored folders (the sweep tree's: "
+                                        + (f"built {ind.get('sweep_built')}" if ind.get("sweep_sha256") else "none")
+                                        + ") — --apply writes it before rebuilding; the bulk PR carries it"
+                                        if ind.get("differs_from_sweep") else "the sweep tree's copy is current"))
+        else:
+            lines.append(f"{what}: written to the sweep tree before rebuilding"
+                         + ("; it CHANGED since the dry run (a member folder changed): the table below is the actual "
+                            "result" if ind.get("changed_since_dry_run") else "; the same build as the dry run's"))
     moved = [f for f in rep["folders"] if f["state"] in ("changed", "rebuilt")
              and (f.get("tier_final") or {}).get("before") != (f.get("tier_final") or {}).get("after")]
     lines.append(f"Tier changes (tier_final would publish differently): {len(moved)}")
@@ -382,6 +448,15 @@ def apply(report_path, only=None, holder=None, fetch=True):
               f"{pf['origin_sha'][:7]} — dry-run again")
         return 3
     holder = holder or "rebuild_scores"
+    ok, msg = build_industry(b, ["--write"])
+    if not ok:
+        print(f"rebuild_scores: refusing — industry_returns.py --write failed ({msg}); nothing was rebuilt")
+        return 3
+    now_ind = industry_doc(os.path.join(b, *INDUSTRY_REL.split("/")))
+    dry_ind = rep.get("industry_file") or {}
+    industry = {"path": INDUSTRY_REL, "built": (now_ind or {}).get("built"), "sha256": (now_ind or {}).get("sha256"),
+                "dry_run_sha256": dry_ind.get("sha256"), "note": msg,
+                "changed_since_dry_run": bool(dry_ind) and (now_ind or {}).get("sha256") != dry_ind.get("sha256")}
     qs = queue_states(b)
     env = dict(os.environ, STOCKS_BASE=b, PYTHONIOENCODING="utf-8")
     env.pop("MAKE_SCORE_REGISTRY", None)
@@ -398,7 +473,7 @@ def apply(report_path, only=None, holder=None, fetch=True):
             rec.update(state="skipped", refusal=f"queue.json status {qs.get(t)}")
         else:
             try:
-                pr_worktree._take(t, holder, "rebuild", 1.0, _ops.now_et())
+                lease = pr_worktree._take(t, holder, "rebuild", 1.0, _ops.now_et())
             except pr_worktree.Stop as e:
                 rec.update(state="skipped", refusal=str(e).replace("pr_worktree: ", "")[:200])
             else:
@@ -418,10 +493,7 @@ def apply(report_path, only=None, holder=None, fetch=True):
                 except subprocess.TimeoutExpired:
                     rec.update(state="refused", refusal="make_score.py timed out", refusal_kind="refused")
                 finally:
-                    try:
-                        os.remove(pr_worktree.lock_path(t))
-                    except OSError:
-                        pass
+                    pr_worktree.drop_lock(t, lease)   # only this lease, never another holder's
         out.append(rec)
 
     def paused():
@@ -450,7 +522,7 @@ def apply(report_path, only=None, holder=None, fetch=True):
     c["rebuilt"] = sum(1 for x in out if x["state"] == "rebuilt")
     c["live_paused"], c["live_paused_after"] = paused_before, paused_after
     applied = dict(rep, mode="apply", applied_at=_ops.iso(_ops.now_et()), counts=c, folders=out, steps=steps,
-                   from_report=report_path)
+                   from_report=report_path, industry_file=industry)
     apath = report_path + ".applied.json"
     _ops.write_json_atomic(apath, applied)
     print(summary(applied, apath))

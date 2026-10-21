@@ -16,8 +16,14 @@ of this script, union the local tree):
   POLICY   (drift -> exit 1): every top-level _system/*.py (not _system/tests/), _system/WORKER_SPEC.md,
            _system/SECOND_PASS.md, _system/PR_PROTOCOL.md, AGENTS.md
   ADVISORY (drift -> a note, exit 0): _system/README.md, _system/SITE_CONTRACT.md, automation/**, _daily/site/**
-  never:   _system/ENGINE_BACKLOG.md (data PRs append to it), _system/*.json / *.csv (state and data), company
-           folders, tests.
+  DATA     _system/industry_returns.json — the one generated method input make_score reads from _system/ (the moat
+           evidence's industry_structure pillar, L3): missing or unreadable here (not a JSON object) while main has
+           it -> drift (exit 1; --sync checks main's copy out — make_score would silently score without it);
+           a different build -> a note only, never synced over (the daily cron and rebuild_scores.py write the
+           sweep tree's own build; pr_worktree prepare scores against it and names both builds in the Mechanics
+           block — review 2026-10-21: before, the file was outside the guard and every prepare deadlocked)
+  never:   _system/ENGINE_BACKLOG.md (data PRs append to it), every other _system/*.json / *.csv (state and data),
+           company folders, tests.
 A file's state: same | behind (its content is an older origin/main blob: matched sha, date, commits since) |
 diverged (never on origin/main) | missing_here | local_only (a top-level _system/*.py origin/main lacks — advisory).
 Content is hashed with `git hash-object` WITH the repo's filters, so a core.autocrlf=true checkout is not drift (and
@@ -31,8 +37,8 @@ The first line of the text output is the report line a worker quotes (run_health
 --sync (under the queue lock, queue lock first per queue.py's lock order, held for the whole sync so no claim can
 start mid-checkout): refuses (exit 5) while queue.json or second_pass_queue.json holds a live in_progress claim
 (claimed within queue.py's 90-minute lease); otherwise `git checkout <remote>/<branch> -- <every guarded path that
-is not same>` (path-limited: no company folder, no state file; local_only files are never deleted) and prints the
-next step, a rebuild_scores.py dry run. Run it on the VM before any engine-5.7 registry event exists there: a
+is not same>` (path-limited: no company folder, no state file; local_only files are never deleted; the DATA file
+only when it is missing here) and prints the next step, a rebuild_scores.py dry run. Run it on the VM before any engine-5.7 registry event exists there: a
 pre-5.7 make_score refuses a registry that holds one.
 
 In-process API (pr_worktree prepare, rebuild_scores): check(base=..., fetch=...) -> report dict with "exit".
@@ -52,6 +58,12 @@ POLICY_FILES = ("_system/WORKER_SPEC.md", "_system/SECOND_PASS.md", "_system/PR_
 ADVISORY_FILES = ("_system/README.md", "_system/SITE_CONTRACT.md")
 ADVISORY_PREFIXES = ("automation/", "_daily/site/")
 NEVER = ("_system/ENGINE_BACKLOG.md",)
+# A generated file make_score reads as a method input (L3: moat_scorecard.load_industry, $STOCKS_BASE/_system). Its
+# absence is drift (the sweep would score moat evidence without the industry pillar main measures); a different
+# build is the sweep tree's own (03b §3.3.3: the daily cron and rebuild_scores.py --write it) and only a note.
+DATA_FILES = ("_system/industry_returns.json",)
+DATA_NOTE = ("the sweep tree's own build (the daily cron and rebuild_scores.py write it); company PRs are scored "
+             "against it and their Mechanics block names both builds")
 LEASE_MINUTES = 90   # queue.py LEASE_MINUTES (not imported: queue.py imports the quote gate)
 SYNC_NEXT = "next: python3 _system/rebuild_scores.py  (dry run: folders scored on release {old})"
 DRIFT_TAIL = ("Do not claim. The main agent syncs the tree (PR_PROTOCOL.md \"Syncing the sweep tree\"); folders "
@@ -59,9 +71,11 @@ DRIFT_TAIL = ("Do not claim. The main agent syncs the tree (PR_PROTOCOL.md \"Syn
 
 
 def classify(path):
-    """'policy' | 'advisory' | None for a repo-relative path (forward slashes)."""
+    """'policy' | 'data' | 'advisory' | None for a repo-relative path (forward slashes)."""
     if path in NEVER:
         return None
+    if path in DATA_FILES:
+        return "data"
     d, _, name = path.rpartition("/")
     if d == "_system" and name.endswith(".py"):
         return "policy"
@@ -83,10 +97,31 @@ def _local_candidates(base):
                 out.add(f"_system/{name}")
     except OSError:
         pass
-    for rel in POLICY_FILES + ADVISORY_FILES:
+    for rel in POLICY_FILES + ADVISORY_FILES + DATA_FILES:
         if os.path.isfile(os.path.join(base, *rel.split("/"))):
             out.add(rel)
     return out
+
+
+DATA_BROKEN = ("missing_here", "unreadable")
+
+
+def _readable_json(base, rel):
+    try:
+        with open(os.path.join(base, *rel.split("/")), encoding="utf-8") as f:
+            return isinstance(json.load(f), dict)
+    except (OSError, ValueError):
+        return False
+
+
+def _row_class(cls, state):
+    """Where a non-same row goes: 'policy' (drift, exit 1) or 'advisory' (a note). A DATA file is drift only when it
+    is missing or unreadable here (make_score would score without it); local_only is always advisory."""
+    if state == "local_only":
+        return "advisory"
+    if cls == "data":
+        return "policy" if state in DATA_BROKEN else "advisory"
+    return cls
 
 
 def _history(repo, ref, path):
@@ -172,9 +207,11 @@ def check(base=None, repo=None, remote="origin", branch="main", fetch=True, atte
         st, extra = _state(repo, sha, path, here.get(path), origin.get(path))
         if st == "same":
             continue
+        if cls == "data" and origin.get(path) and st not in DATA_BROKEN and not _readable_json(base, path):
+            st, extra = "unreadable", {}
         row = dict({"path": path, "class": "advisory" if st == "local_only" else cls, "state": st,
                     "here_blob": (here.get(path) or (None, None))[0], "origin_blob": origin.get(path)}, **extra)
-        (rep["drift"] if row["class"] == "policy" else rep["advisory"]).append(row)
+        (rep["drift"] if _row_class(cls, st) == "policy" else rep["advisory"]).append(row)
     rep["status"] = "drift" if rep["drift"] else "in_sync"
     rep["exit"] = 1 if rep["drift"] else 0
     return rep
@@ -185,9 +222,22 @@ def _describe(row):
     if st == "behind":
         d = (row.get("matched_origin_date") or "")[:10]
         n = row.get("commits_since", 0)
-        return f"behind (matches {row.get('remote_ref', 'origin/main')} at {row['matched_origin_sha'][:7]} {d}, {n} commit{'s' if n != 1 else ''} since)"
-    return {"diverged": "diverged (never on origin/main)", "missing_here": "missing here",
-            "local_only": "local only (not on origin/main)"}.get(st, st)
+        text = (f"behind (matches {row.get('remote_ref', 'origin/main')} at {row['matched_origin_sha'][:7]} {d}, {n} "
+                f"commit{'s' if n != 1 else ''} since)")
+    else:
+        text = {"diverged": "diverged (never on origin/main)", "missing_here": "missing here",
+                "unreadable": "unreadable here (not a JSON object: make_score would score without it)",
+                "local_only": "local only (not on origin/main)"}.get(st, st)
+    if row.get("class") == "data" and st not in DATA_BROKEN:
+        text += f" — {DATA_NOTE}"
+    return text
+
+
+def sync_paths(rep):
+    """The paths --sync checks out (and --list-drift prints): every drift / advisory row except local_only files
+    (never deleted) and a DATA file that exists here and reads (the sweep tree's own build is never overwritten)."""
+    return [r["path"] for r in rep["drift"] + rep["advisory"]
+            if r["state"] != "local_only" and not (r.get("class") == "data" and r["state"] not in DATA_BROKEN)]
 
 
 def first_line(rep):
@@ -251,7 +301,7 @@ def sync(base=None, repo=None, remote="origin", branch="main", fetch=True, attem
         rep = check(base=base, repo=repo, remote=remote, branch=branch, fetch=fetch, attempts=attempts, pause=pause)
         if rep["exit"] not in (0, 1):
             return rep["exit"], first_line(rep)
-        paths = [r["path"] for r in rep["drift"] + rep["advisory"] if r["state"] != "local_only"]
+        paths = sync_paths(rep)
         old = (rep.get("engine_release") or {}).get("here")
         if not paths:
             return 0, first_line(rep) + "\npreflight: nothing to sync"
@@ -292,9 +342,8 @@ def main(argv=None):
         return rc
     rep = check(**kw)
     if a.list_drift:
-        for row in rep["drift"] + rep["advisory"]:
-            if row["state"] != "local_only":
-                print(row["path"])
+        for path in sync_paths(rep):
+            print(path)
         if rep["exit"] not in (0, 1):
             print(first_line(rep), file=sys.stderr)
         return rep["exit"]

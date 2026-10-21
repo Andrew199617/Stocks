@@ -4,7 +4,9 @@
 
 The miss it stops: a job failed five runs in a row before anyone noticed. Covered: the first failure is silent and
 the second prints one ALERT line, once; STILL FAILING once per --remind-hours window; RECOVERED once after an alert
-and silence otherwise; a start whose previous run never recorded counts as a failure; check reads the cadence from
+and silence otherwise; a start whose earlier run never recorded counts as a failure once that run is older than the
+job's timeout_secs (cron front matter, 3600 s by default), and overlapping runs inside it are not failures (review
+2026-10-21); a crash that started before a later ok is history, not part of the failure run; check reads the cadence from
 the cron front matter (disabled jobs and dcf-live-refresh skipped, a 15-minute job idle 80 minutes alerts — over
 max(3 x 15, 15 + 60) — and 70 does not, once per 24 h); concurrent records lose nothing; reasons are one line, truncated; the state file is gitignored.
 """
@@ -95,14 +97,83 @@ def test_recovered_once_after_an_alert_and_silent_otherwise():
 
 
 def test_start_without_record_counts_as_failure():
+    """A run that never recorded is failed once it is older than the job's timeout (3600 s here: no cron file names
+    the job), at the next start."""
     s = State()
     try:
         s.run("start", J, now="2026-10-19T14:15:00")
-        assert s.run("start", J, now="2026-10-19T14:30:00") == ""   # the 14:15 run timed out: failure 1
-        line = s.run("start", J, now="2026-10-19T14:45:00")          # the 14:30 run too: failure 2
-        assert line.startswith(f"ALERT {J}: 2 failed runs in a row (first 2026-10-19 14:15 ET, latest 14:30 ET)"), line
-        assert "did not finish (started 2026-10-19T14:30:00-04:00, no record — timeout or crash)" in line, line
-        assert s.job(J)["open_start"] == "2026-10-19T14:45:00-04:00"
+        assert s.run("start", J, now="2026-10-19T15:20:00") == ""   # the 14:15 run is past its timeout: failure 1
+        line = s.run("start", J, now="2026-10-19T16:25:00")          # the 15:20 run too: failure 2
+        assert line.startswith(f"ALERT {J}: 2 failed runs in a row (first 2026-10-19 14:15 ET, latest 15:20 ET)"), line
+        assert ("did not finish (started 2026-10-19T15:20:00-04:00, no record within its 3600 s timeout — timeout or "
+                "crash)") in line, line
+        assert s.job(J)["open_starts"] == ["2026-10-19T16:25:00-04:00"]
+    finally:
+        s.close()
+
+
+def test_overlapping_runs_inside_the_timeout_are_not_failures():
+    """Review 2026-10-21 (P2): a 15-minute job with a 60-minute timeout overlaps its next firing; one open start per
+    job read each overlap as a crash and printed an ALERT, then a RECOVERED, for runs that all succeeded."""
+    s = State()
+    try:
+        for t in ("10:00", "10:15", "10:30"):
+            assert s.run("start", J, now=f"2026-10-21T{t}:00") == "", t
+        for t in ("10:40", "10:50", "11:05"):
+            assert s.run("record", J, "ok", now=f"2026-10-21T{t}:00") == "", t
+        j = s.job(J)
+        assert j["consecutive_failures"] == 0 and j["open_starts"] == [] and j["alerted_at"] is None, j
+        assert [h["result"] for h in j["history"]] == ["ok", "ok", "ok"], j["history"]
+    finally:
+        s.close()
+
+
+def test_a_crash_before_a_later_ok_is_not_in_the_failure_run():
+    """A run that never recorded but started before an ok that came later is history, not part of the current run
+    of consecutive failures (no ALERT for two failures with an ok between them)."""
+    s = State()
+    try:
+        s.run("start", J, now="2026-10-21T10:00:00")              # hangs and is killed
+        s.run("start", J, now="2026-10-21T10:15:00")
+        s.run("record", J, "ok", now="2026-10-21T10:25:00")       # closes the newest run (10:15)
+        assert s.run("start", J, now="2026-10-21T11:05:00") == ""  # 10:00 expires: history only
+        j = s.job(J)
+        assert j["consecutive_failures"] == 0 and [h["result"] for h in j["history"]] == ["ok", "fail"], j
+        assert s.run("record", J, "fail", "--reason", "x", now="2026-10-21T11:10:00") == "", "one failure: silent"
+        assert s.job(J)["consecutive_failures"] == 1
+    finally:
+        s.close()
+
+
+def test_the_timeout_comes_from_the_cron_front_matter():
+    s = State()
+    crons = os.path.join(s.dir, "crons")
+    try:
+        _cron(crons, "minutely", "c.md", "id: dcf-live-refresh\nenabled: true\nschedule:\n  kind: interval\n"
+                                         "  every: 30m\ntimeout_secs: 1500\n")
+        import run_health
+        assert run_health.job_timeout("dcf-live-refresh", crons) == 1500
+        assert run_health.job_timeout("no-such-job", crons) == run_health.DEFAULT_TIMEOUT_SECS == 3600
+        L = "dcf-live-refresh"
+        assert s.run("start", L, "--crons", crons, now="2026-10-21T10:00:00") == ""
+        assert s.run("start", L, "--crons", crons, now="2026-10-21T10:20:00") == "", "inside 1500 s: still running"
+        line = s.run("start", L, "--crons", crons, now="2026-10-21T10:50:00")   # both are past 1500 s
+        assert line.startswith(f"ALERT {L}: 2 failed runs in a row (first 2026-10-21 10:00 ET, latest 10:20 ET)"), line
+        assert "no record within its 1500 s timeout" in line, line
+    finally:
+        s.close()
+
+
+def test_a_state_file_from_before_the_review_is_read():
+    s = State()
+    try:
+        with open(s.path, "w", encoding="utf-8") as f:
+            json.dump({"version": 1, "jobs": {J: {"open_start": "2026-10-21T08:00:00-04:00", "consecutive_failures": 0,
+                                                  "history": []}}}, f)
+        assert s.run("start", J, now="2026-10-21T09:30:00") == ""   # the 08:00 run is past 3600 s: failure 1
+        j = s.job(J)
+        assert "open_start" not in j and j["open_starts"] == ["2026-10-21T09:30:00-04:00"], j
+        assert j["consecutive_failures"] == 1 and j["first_failure_at"] == "2026-10-21T08:00:00-04:00", j
     finally:
         s.close()
 

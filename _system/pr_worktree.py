@@ -12,23 +12,34 @@ Usage:
   pr_worktree.py acquire <T> --holder ID --kind pass1|rescore|pass2|review-fix|rebuild [--ttl-hours 3]
   pr_worktree.py acquire --bulk REPORT.json --holder ID [--ttl-hours 6]  # every rebuilt in-sync ticker of a report
   pr_worktree.py renew <T> --holder ID [--ttl-hours 3]
-  pr_worktree.py prepare <T>|--bulk BRANCH [--holder ID] [--no-fetch]
-  pr_worktree.py open <T>|--bulk BRANCH --body-file PATH [--holder ID] [--trailer LINE]...
-  pr_worktree.py push <T> -m MSG [--holder ID] [--trailer LINE]...   # review rounds
-  pr_worktree.py restack <T> [--holder ID] [--trailer LINE]...
+  pr_worktree.py prepare <T> --holder ID [--no-fetch]  |  prepare --bulk BRANCH [--holder ID] [--no-fetch]
+  pr_worktree.py open <T> --holder ID --body-file PATH [--trailer LINE]...  |  open --bulk BRANCH [--holder ID] ...
+  pr_worktree.py push <T> --holder ID -m MSG [--trailer LINE]...   # review rounds
+  pr_worktree.py restack <T> --holder ID [--trailer LINE]...
   pr_worktree.py release <T> --holder ID [--force] [--remove-worktree]
   pr_worktree.py status [--json]
   pr_worktree.py reap [--json]
   pr_worktree.py discard <T> --force
   pr_worktree.py backlog-next [--no-fetch]
+Every command that works in a ticker's worktree names the caller's holder (exit 2 without it) and refuses (exit 4)
+when the lock is held by another one — an agent whose lease expired and was taken over can never prepare, open,
+push or restack in the new holder's worktree (review 2026-10-21). The bulk forms default to the bulk set's holder.
 
 Paths: PR_ROOT = $STOCKS_PR_ROOT or <parent of the sweep tree>/stocks-pr (outside the repo); worktree <PR_ROOT>/<T>
 (bulk: <PR_ROOT>/_bulk/<branch, / -> _>); lock <PR_ROOT>/.locks/<T>.lock.json, created with O_CREAT|O_EXCL. The
 worktree is sparse: the top-level files, _system/ and <T>/ only.
-Locks: a lease (expires_at), never a process lock — an agent's work spans many processes. A stale lock is reaped
-race-safely (os.rename to <lock>.stale.<pid>.<ns>: one reaper wins); a stale lock whose worktree holds uncommitted
-changes is reaped but acquire refuses until `discard <T> --force` or the changes are committed. release by another
-holder refuses without --force. Time: $STOCKS_NOW (tests); gh: $STOCKS_GH (tests: a stub).
+Locks: a lease (expires_at), never a process lock — an agent's work spans many processes. Every read-modify-write of
+a lease file (acquire and its reaping, renew, release, reap, discard, and the updates prepare / open / restack make)
+runs under a short process lock, <lock>.guard, held for milliseconds and never across make_score: a rename-based
+reap alone was not race-safe (review 2026-10-21: a second reaper that had read the expired lock renamed the
+winner's fresh lock away and both acquires succeeded). A lock update checks the lease is still the caller's (its
+lease_id) and refuses with exit 4 otherwise. A stale lock whose worktree holds uncommitted changes is reaped but
+acquire refuses until `discard <T> --force` or the changes are committed. release by another holder refuses without
+--force. The .guard files are never deleted (a waiter holds the file open). Time: $STOCKS_NOW (tests); gh: $STOCKS_GH.
+Industry file (_system/industry_returns.json, the moat evidence's industry_structure input, L3): prepare scores
+against the SWEEP TREE's copy (the daily cron and rebuild_scores.py write it; main's may be older), so the rebuilt
+score is the sweep tree's computation; a company PR then puts main's copy back (it never carries the file, 03b
+§3.3.3) and its Mechanics block names both builds; a bulk rebuild PR carries the sweep tree's copy.
 Stale engine release (lane default Q12 (b), 2026-10-21, pending Andrew; the one switch STALE_RELEASE_POLICY):
 prepare rebuilds a folder whose dcf_numbers.json is from another release with make_score at origin/main's code and
 publishes it with the alert gates the stale-release rule closes; the Mechanics block says the engine output predates
@@ -39,6 +50,7 @@ An owner-directed acceptance re-score (AGENTS.md "What is in a PR") rides with i
 this script.
 """
 import argparse
+import contextlib
 import datetime
 import hashlib
 import json
@@ -50,11 +62,13 @@ import subprocess
 import sys
 import tempfile
 import time
+import uuid
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import _ops  # noqa: E402
 import preflight  # noqa: E402
+from _lock import locked  # noqa: E402
 
 # Lane default Q12 (b) (main agent, 2026-10-21, pending Andrew's ratification): "rebuild" = make_score at main's
 # release, alert gates closed by the stale-release rule, the PR says the engine output predates it. "refuse" = 05 (a).
@@ -66,6 +80,7 @@ MAKE_SCORE_TIMEOUT = 3600   # make_score's own replays may take 600 s each (L5L6
 CHECK_QUOTES_TIMEOUT = 600
 REGISTRY_REL = "_system/overrides_registry.json"
 BACKLOG_REL = _ops.BACKLOG_REL
+INDUSTRY_REL = "_system/industry_returns.json"   # preflight.DATA_FILES: a method input the sweep tree builds itself
 # Decision fields beyond make_score.SCORE_DECISION_KEYS (absent == absent): A4's override_impact.unblocks_tier, and the
 # lanes merged after this one append theirs to SCORE_DECISION_KEYS (R7 ttm_rejection_reason / base_alternatives, L8
 # share_classes) — listed here too so the comparison holds whichever lands first.
@@ -156,13 +171,44 @@ def _log(msg):
         pass
 
 
+@contextlib.contextmanager
+def lease_guard(t):
+    """The short cross-process lock around every read-modify-write of <T>.lock.json (see the module docstring).
+    _lock.locked is process-scoped (flock / msvcrt), so it serializes the reapers and takers of one ticker for the
+    milliseconds the lease file is read and replaced; the lease itself still spans processes."""
+    os.makedirs(lock_dir(), exist_ok=True)
+    with locked(lock_path(t) + ".guard"):
+        yield
+
+
+def _lease_key(lock):
+    """What identifies one lease: its lease_id (written since the 2026-10-21 review), else holder + times."""
+    lock = lock or {}
+    if lock.get("lease_id"):
+        return ("id", lock["lease_id"])
+    return ("t", lock.get("holder"), lock.get("acquired_at"), lock.get("expires_at"))
+
+
+def same_lease(a, b):
+    return bool(a) and bool(b) and _lease_key(a) == _lease_key(b)
+
+
 def reap_lock(t, lock):
-    """Race-safe removal of an expired lock: only one reaper's rename succeeds. True when this process reaped it."""
+    """Remove the expired lock `lock` (call it under lease_guard(t)). The file is renamed aside and re-read: when it is
+    not that lease (another process replaced it without the guard), it is put back and nothing is reaped. True when
+    this process reaped it."""
     p = lock_path(t)
     stale = f"{p}.stale.{os.getpid()}.{time.time_ns()}"
     try:
         os.rename(p, stale)
     except OSError:
+        return False
+    moved = _ops.load_json(stale)
+    if not same_lease(moved, lock) or is_live(moved, _ops.now_et()):
+        try:
+            os.rename(stale, p)
+        except OSError:
+            _log(f"could not restore {t}'s lock after a mismatched reap: {stale} holds {(moved or {}).get('holder')}")
         return False
     _log(f"reaped {t} lock held by {lock.get('holder')} (kind {lock.get('kind')}, expired {lock.get('expires_at')})")
     try:
@@ -185,12 +231,48 @@ def create_lock(t, payload):
     return True
 
 
-def require_lock(t, holder=None):
-    lock = read_lock(t)
+def _lost(t, cur):
+    return Stop(held_msg(t, cur) if cur else (f"pr_worktree: {t}'s lock is gone (it expired and was reaped) — acquire "
+                                              "it again; never keep working in a worktree you no longer hold"), 4)
+
+
+def update_lock(t, expect, change):
+    """Under the guard: when <T>'s lock is still the lease `expect`, write change(copy of it) and return it; else
+    Stop(4) (the lease expired and another holder took it, or it was reaped)."""
+    with lease_guard(t):
+        cur = read_lock(t)
+        if not same_lease(cur, expect):
+            raise _lost(t, cur)
+        new = change(dict(cur))
+        write_lock(t, new)
+        return new
+
+
+def drop_lock(t, expect):
+    """Under the guard: remove <T>'s lock when it is still the lease `expect` (never another holder's)."""
+    with lease_guard(t):
+        cur = read_lock(t)
+        if same_lease(cur, expect):
+            try:
+                os.remove(lock_path(t))
+            except OSError:
+                pass
+            return True
+    return False
+
+
+def require_lock(t, holder):
+    """The caller's live lease on t. The holder is required: a lock held by another holder is exit 4 (an agent whose
+    lease was taken over never works in the new holder's worktree)."""
+    if not holder:
+        raise Stop(f"pr_worktree: name your holder (--holder <your agent id>) — {t}'s worktree is used only by the "
+                   "agent that holds its lock", 2)
+    with lease_guard(t):
+        lock = read_lock(t)
     now = _ops.now_et()
     if not lock:
         refuse(f"{t} is not acquired — run `pr_worktree.py acquire {t} --holder <id> --kind <kind>` first")
-    if holder and lock.get("holder") != holder:
+    if lock.get("holder") != holder:
         raise Stop(held_msg(t, lock), 4)
     if not is_live(lock, now):
         refuse(f"{t}'s lock expired at {lock.get('expires_at')} — `pr_worktree.py renew {t} --holder "
@@ -322,30 +404,35 @@ def make_worktree(repo, path, branch, start, tickers, new_branch=True):
 
 # --------------------------------------------------------------------------------------------- acquire / renew / release
 def _new_lock(t, holder, kind, ttl, now, bulk=None):
-    return {"ticker": t, "holder": holder, "kind": kind, "acquired_at": _ops.iso(now),
+    return {"ticker": t, "holder": holder, "kind": kind, "lease_id": uuid.uuid4().hex, "acquired_at": _ops.iso(now),
             "expires_at": _ops.iso(now + datetime.timedelta(hours=ttl)), "renewed_at": None,
             "host": socket.gethostname(), "pid": os.getpid(), "worktree": None, "branch": None, "base_sha": None,
             "bulk": bulk, "pr_number": None, "pr_url": None, "prepared": None}
 
 
 def _take(t, holder, kind, ttl, now, bulk=None):
-    """Create t's lock (reaping an expired one). Raises Stop(4) while another holder's lease is live, Stop(1) when
-    the expired holder left uncommitted work in the worktree."""
-    for _ in range(3):
+    """Create t's lock (reaping an expired one) under the lease guard; returns the new lease. Raises Stop(4) while
+    another holder's lease is live, Stop(1) when the expired holder left uncommitted work in the worktree."""
+    with lease_guard(t):
         cur = read_lock(t)
+        if cur is None and os.path.exists(lock_path(t)):
+            refuse(f"{lock_path(t)} is unreadable — inspect it (another agent's lock?) and remove it by hand only when "
+                   "no agent holds the name")
         if cur:
             if is_live(cur, now):
                 raise Stop(held_msg(t, cur), 4)
-            reap_lock(t, cur)
+            if not reap_lock(t, cur):
+                raise Stop(f"pr_worktree: could not reap {t}'s expired lock ({cur.get('holder')}) — try again", 4)
             wt = cur.get("worktree")
             if wt and is_dirty(wt):
                 refuse(f"{t}'s lock expired ({cur.get('holder')}, {cur.get('expires_at')}) and was reaped, but its "
                        f"worktree {wt} holds uncommitted changes — the expired holder's work is never thrown away: "
                        f"commit it there, or `pr_worktree.py discard {t} --force`, then acquire again")
-        if create_lock(t, _new_lock(t, holder, kind, ttl, now, bulk)):
-            return
-    cur = read_lock(t) or {}
-    raise Stop(held_msg(t, cur) if cur else f"pr_worktree: could not take {t}'s lock (a race) — try again", 4)
+        mine = _new_lock(t, holder, kind, ttl, now, bulk)
+        if not create_lock(t, mine):
+            cur = read_lock(t) or {}
+            raise Stop(held_msg(t, cur) if cur else f"pr_worktree: could not take {t}'s lock — try again", 4)
+        return mine
 
 
 def _open_pr_for(repo, t):
@@ -374,7 +461,7 @@ def cmd_acquire(t, holder, kind, ttl):
     path = wt_path(t)
     if not read_lock(t) and is_dirty(path):
         refuse(f"{path} holds uncommitted changes and no live lock — `pr_worktree.py discard {t} --force` first")
-    _take(t, holder, kind, ttl, now)
+    mine = _take(t, holder, kind, ttl, now)
     try:
         sha = fetch_main(repo)
         pr = None
@@ -400,15 +487,10 @@ def cmd_acquire(t, holder, kind, ttl):
         else:
             branch = choose_branch(repo, t)
             make_worktree(repo, path, branch, "origin/main", [t])
-        lock = read_lock(t)
-        lock.update(worktree=path, branch=branch, base_sha=sha,
-                    pr_number=(pr or {}).get("number"), pr_url=(pr or {}).get("url"))
-        write_lock(t, lock)
+        lock = update_lock(t, mine, lambda d: dict(d, worktree=path, branch=branch, base_sha=sha,
+                                                   pr_number=(pr or {}).get("number"), pr_url=(pr or {}).get("url")))
     except BaseException:
-        try:
-            os.remove(lock_path(t))
-        except OSError:
-            pass
+        drop_lock(t, mine)
         raise
     print(f"pr_worktree: {t} acquired by {holder} (kind {kind}) — worktree {path}, branch {branch}, origin/main "
           f"{sha[:7]}, expires {lock['expires_at']}")
@@ -434,28 +516,22 @@ def cmd_acquire_bulk(report_path, holder, ttl):
     while local_branch_exists(repo, branch) or remote_branch_exists(repo, branch):
         branch = f"rebuild/{rel}-{now.strftime('%Y%m%d')}-{i}"
         i += 1
-    taken = []
+    taken = {}
     try:
         for t in tickers:
-            _take(t, holder, "rebuild", ttl, now, bulk=branch)
-            taken.append(t)
+            taken[t] = _take(t, holder, "rebuild", ttl, now, bulk=branch)
         sha = fetch_main(repo)
         path = bulk_wt_path(branch)
         make_worktree(repo, path, branch, "origin/main", tickers)
         for t in tickers:
-            lock = read_lock(t)
-            lock.update(worktree=path, branch=branch, base_sha=sha)
-            write_lock(t, lock)
+            taken[t] = update_lock(t, taken[t], lambda d: dict(d, worktree=path, branch=branch, base_sha=sha))
         _ops.write_json_atomic(bulk_manifest(branch), {"branch": branch, "holder": holder, "tickers": tickers,
                                                         "worktree": path, "base_sha": sha, "report": report_path,
                                                         "engine_release": rel, "prepared": None, "pr_number": None,
                                                         "pr_url": None, "acquired_at": _ops.iso(now)})
     except BaseException:
-        for t in taken:   # all-or-nothing
-            try:
-                os.remove(lock_path(t))
-            except OSError:
-                pass
+        for t, mine in taken.items():   # all-or-nothing
+            drop_lock(t, mine)
         raise
     print(f"pr_worktree: bulk {branch} acquired by {holder} — {len(tickers)} tickers, worktree {path}")
     return 0
@@ -463,32 +539,34 @@ def cmd_acquire_bulk(report_path, holder, ttl):
 
 def cmd_renew(t, holder, ttl):
     t = norm_ticker(t)
-    lock = read_lock(t)
-    if not lock:
-        refuse(f"{t} is not acquired")
-    if lock.get("holder") != holder:
-        raise Stop(held_msg(t, lock), 4)
-    now = _ops.now_et()
-    lock.update(expires_at=_ops.iso(now + datetime.timedelta(hours=ttl)), renewed_at=_ops.iso(now))
-    write_lock(t, lock)
+    with lease_guard(t):
+        lock = read_lock(t)
+        if not lock:
+            refuse(f"{t} is not acquired")
+        if lock.get("holder") != holder:
+            raise Stop(held_msg(t, lock), 4)
+        now = _ops.now_et()
+        lock.update(expires_at=_ops.iso(now + datetime.timedelta(hours=ttl)), renewed_at=_ops.iso(now))
+        write_lock(t, lock)
     print(f"pr_worktree: {t} renewed until {lock['expires_at']}")
     return 0
 
 
 def cmd_release(t, holder, force, remove_worktree):
     t = norm_ticker(t)
-    lock = read_lock(t)
-    if not lock:
-        print(f"pr_worktree: {t} holds no lock")
-        return 0
-    if lock.get("holder") != holder and not force:
-        refuse(f"{t} is held by {lock.get('holder')}, not {holder} — release refuses without --force")
-    wt = lock.get("worktree")
-    if remove_worktree and wt and os.path.isdir(wt) and not lock.get("bulk"):
-        if is_dirty(wt):
-            refuse(f"{wt} holds uncommitted changes — --remove-worktree refuses (commit them or discard --force)")
-        git_ok(repo_of_base(), "worktree", "remove", wt, what="git worktree remove")
-    os.remove(lock_path(t))
+    with lease_guard(t):
+        lock = read_lock(t)
+        if not lock:
+            print(f"pr_worktree: {t} holds no lock")
+            return 0
+        if lock.get("holder") != holder and not force:
+            refuse(f"{t} is held by {lock.get('holder')}, not {holder} — release refuses without --force")
+        wt = lock.get("worktree")
+        if remove_worktree and wt and os.path.isdir(wt) and not lock.get("bulk"):
+            if is_dirty(wt):
+                refuse(f"{wt} holds uncommitted changes — --remove-worktree refuses (commit them or discard --force)")
+            git_ok(repo_of_base(), "worktree", "remove", wt, what="git worktree remove")
+        os.remove(lock_path(t))
     print(f"pr_worktree: {t} released" + (f" (worktree {wt} stays until its PR is merged or closed; reap removes it)"
                                          if wt and os.path.isdir(wt) else ""))
     return 0
@@ -542,6 +620,67 @@ def get_path(d, path):
 def _short(v):
     s = json.dumps(v, sort_keys=True, default=str) if not isinstance(v, str) else v
     return s if len(s) <= 40 else s[:37] + "…"
+
+
+ABSENT = "<absent>"
+
+
+def leaf_diffs(a, b, path, out, depth=4):
+    """The dotted sub-paths where a and b differ (descending into objects up to `depth` levels), appended to out
+    as (path, a, b): a refusal names moat_evidence.industry_file, not the first 40 characters of two whole blocks."""
+    if isinstance(a, dict) and isinstance(b, dict) and depth > 0:
+        for k in sorted(set(a) | set(b)):
+            x, y = a.get(k, ABSENT), b.get(k, ABSENT)
+            if x != y:
+                leaf_diffs(x, y, f"{path}.{k}", out, depth - 1)
+        return out
+    out.append((path, a, b))
+    return out
+
+
+def _industry_doc(path):
+    """{built, sha256} of an industry_returns.json the way make_score records it (sha256 of the bytes), or None."""
+    try:
+        with open(path, "rb") as f:
+            raw = f.read()
+        built = json.loads(raw.decode("utf-8")).get("built")
+    except (OSError, ValueError, UnicodeDecodeError, AttributeError):
+        return None
+    return {"built": built, "sha256": hashlib.sha256(raw).hexdigest()}
+
+
+def use_sweep_industry(wt, origin_sha):
+    """Put the sweep tree's _system/industry_returns.json into the worktree before make_score runs there (the
+    sweep's score was computed against it; main's copy may be an older build — the daily cron and rebuild_scores.py
+    write the sweep tree's). Returns {"sweep": {built, sha256} | None (sha256 of the bytes, as make_score records
+    it), "main": {built, blob} | None (origin/main's), "same": the sweep tree's file is main's blob}. preflight has
+    already refused a sweep tree that lacks (or cannot read) a file main has."""
+    src = os.path.join(base(), *INDUSTRY_REL.split("/"))
+    dst = os.path.join(wt, *INDUSTRY_REL.split("/"))
+    blob = _ops.origin_blob(wt, origin_sha, INDUSTRY_REL)
+    main = None
+    if blob:
+        try:
+            main = {"built": json.loads(_ops.show(wt, origin_sha, INDUSTRY_REL) or "").get("built"), "blob": blob}
+        except (ValueError, AttributeError):
+            main = {"built": None, "blob": blob}
+    here = _ops.blob_variants(base(), base(), [INDUSTRY_REL]).get(INDUSTRY_REL)
+    info = {"sweep": _industry_doc(src), "main": main,
+            "same": _ops.blob_matches(here, blob) if (blob or any(here or ())) else True}
+    if info["sweep"] is not None:
+        shutil.copyfile(src, dst)
+    return info
+
+
+def restore_branch_industry(wt):
+    """Put the worktree branch's own copy of _system/industry_returns.json back (or remove the file when the branch
+    has none): a company PR never carries the file (03b §3.3.3), so after make_score the worktree must equal its
+    branch there — HEAD, not today's origin/main (a review round's branch may sit on an older main)."""
+    dst = os.path.join(wt, *INDUSTRY_REL.split("/"))
+    if _ops.origin_blob(wt, "HEAD", INDUSTRY_REL):
+        git_ok(wt, "checkout", "HEAD", "--", INDUSTRY_REL, what=f"git checkout {INDUSTRY_REL}")
+    elif os.path.exists(dst):
+        os.remove(dst)
 
 
 def _sha256(path):
@@ -647,12 +786,21 @@ def prepare_one(wt, t, kind, origin_sha, keys):
     new = _ops.load_json(os.path.join(folder, "score.json")) or {}
     old = _ops.load_json(os.path.join(base(), t, "score.json")) or {}
     paths = list(dict.fromkeys(list(keys) + list(EXTRA_DECISION_PATHS)))
-    diffs = [(p, get_path(old, p), get_path(new, p)) for p in paths if get_path(old, p) != get_path(new, p)]
+    diffs = []
+    for p in paths:
+        a, b = get_path(old, p), get_path(new, p)
+        if a != b:
+            diffs += leaf_diffs(a, b, p, [])
     if diffs:
+        diffs.sort(key=lambda d: 0 if ".industry_file" in d[0] else 1)   # the cause first; the rest in key order
         shown = "; ".join(f"{p} {_short(a)} → {_short(b)}" for p, a, b in diffs[:4])
-        refuse(f"the score rebuilt at origin/main {origin_sha[:7]} differs from the sweep tree's ({shown}) — the sweep "
-               "tree scored on other code. Run preflight.py, re-run make_score.py on the sweep tree, then prepare "
-               "again.")
+        more = f" (+{len(diffs) - 4} more)" if len(diffs) > 4 else ""
+        why = "the sweep tree scored on other code"
+        if any(p == "moat_evidence.industry_file" or p.startswith("moat_evidence.industry_file.") for p, _, _ in diffs):
+            why = ("the sweep tree's score was made against another build of _system/industry_returns.json than the "
+                   "sweep tree holds now (the daily cron rewrote it after this folder was scored)")
+        refuse(f"the score rebuilt at origin/main {origin_sha[:7]} differs from the sweep tree's ({shown}{more}) — "
+               f"{why}. Run preflight.py, re-run make_score.py on the sweep tree, then prepare again.")
     other = sorted(k for k in set(old) | set(new) if old.get(k, "<absent>") != new.get(k, "<absent>"))
     import build_site
     built, mm = build_site.score_from_run(new, n)
@@ -720,16 +868,18 @@ def _check_code_is_main(wt, origin_sha):
         env_fail(preflight.first_line(rep))
 
 
-def do_prepare(tickers, kind, wt, no_fetch=False):
+def do_prepare(tickers, kind, wt, no_fetch=False, bulk=False):
     rep = preflight.check(base=base(), fetch=not no_fetch)
     if rep["exit"] == 1:
         refuse(f"{preflight.first_line(rep)} — the sweep tree must run origin/main's method before a PR is cut")
     if rep["exit"] != 0:
         env_fail(preflight.first_line(rep))
     origin_sha = rep["origin_sha"]
+    restore_branch_industry(wt)   # the branch's own copy first (an earlier prepare may have left the sweep's)
     _check_code_is_main(wt, origin_sha)
     tmp = tempfile.mkdtemp(prefix="pr_worktree_reg_")
     try:
+        industry = use_sweep_industry(wt, origin_sha)
         mtxt = _ops.show(wt, origin_sha, REGISTRY_REL)
         mpath = os.path.join(tmp, "origin_registry.json")
         with open(mpath, "w", encoding="utf-8") as f:
@@ -740,13 +890,37 @@ def do_prepare(tickers, kind, wt, no_fetch=False):
             wt, {"origin": mpath, "worktree": os.path.join(wt, *REGISTRY_REL.split("/"))})
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
+        if not bulk:
+            restore_branch_industry(wt)
     counts = registry_check(wt, tickers, origin_sha, problems)
     staged = [p for _, p in porcelain(wt)]
     main_rel = _ops.local_engine_release(wt)
+    industry["carried"] = bool(bulk) and INDUSTRY_REL in staged
     return {"at": _ops.iso(_ops.now_et()), "origin_sha": origin_sha, "engine_release": main_rel, "make_score_rc": 0,
             "tickers": per, "check_quotes": per[0]["check_quotes"] if len(per) == 1 else
             sorted({p["check_quotes"] for p in per}), "registry_entries": counts if len(tickers) > 1 else counts[tickers[0]],
-            "files": sorted(staged), "files_sha256": _staged_sha(wt, staged)}
+            "industry_file": industry, "files": sorted(staged), "files_sha256": _staged_sha(wt, staged)}
+
+
+def _industry_line(info):
+    """The Mechanics / summary words for the industry file prepare scored against."""
+    if not info or (info.get("sweep") is None and info.get("main") is None):
+        return "none on main or in the sweep tree (industry_structure not measured)"
+    s, m = info.get("sweep"), info.get("main")
+
+    def sd(x):
+        return f"built {x.get('built')} (sha256 {str(x.get('sha256'))[:12]})"
+
+    def md(x):
+        return f"built {x.get('built')} (blob {str(x.get('blob'))[:12]})" if x else "absent"
+    if info.get("same") and s:
+        return f"main's {sd(s)}, the same file as the sweep tree's"
+    if not s:
+        return f"none in the sweep tree (industry_structure not measured); main's is {md(m)}"
+    if info.get("carried"):
+        return f"the sweep tree's {sd(s)}, carried in this PR (main's: {md(m)})"
+    return (f"scored against the sweep tree's {sd(s)}; main's is {md(m)} — a company PR never carries the file (the "
+            "daily cron and rebuild_scores.py rebuild it)")
 
 
 def cmd_prepare(t=None, bulk=None, holder=None, no_fetch=False, quiet=False):
@@ -756,20 +930,18 @@ def cmd_prepare(t=None, bulk=None, holder=None, no_fetch=False, quiet=False):
             refuse(f"no bulk set {bulk} — acquire --bulk first")
         for x in man["tickers"]:
             require_lock(x, holder or man.get("holder"))
-        prepared = do_prepare(man["tickers"], "rebuild", man["worktree"], no_fetch)
+        prepared = do_prepare(man["tickers"], "rebuild", man["worktree"], no_fetch, bulk=True)
         man["prepared"] = prepared
         _ops.write_json_atomic(bulk_manifest(bulk), man)
         print(f"pr_worktree: bulk {bulk} prepared at origin/main {prepared['origin_sha'][:7]} — {len(man['tickers'])} "
-              f"folders, {len(prepared['files'])} files")
+              f"folders, {len(prepared['files'])} files; industry_returns.json: {_industry_line(prepared['industry_file'])}")
         return 0
     t = norm_ticker(t)
     lock = require_lock(t, holder)
     if lock.get("bulk"):
         refuse(f"{t} is part of bulk set {lock['bulk']} — prepare --bulk {lock['bulk']}")
     prepared = do_prepare([t], lock.get("kind"), lock["worktree"], no_fetch)
-    lock = read_lock(t)
-    lock["prepared"] = prepared
-    write_lock(t, lock)
+    lock = update_lock(t, lock, lambda d: dict(d, prepared=prepared))
     one = prepared["tickers"][0]
     if not quiet:
         print(f"pr_worktree: {t} prepared at origin/main {prepared['origin_sha'][:7]} (engine {prepared['engine_release']}"
@@ -781,6 +953,9 @@ def cmd_prepare(t=None, bulk=None, holder=None, no_fetch=False, quiet=False):
                   "rebuilt by make_score, alert gates closed by the stale-release rule (lane default Q12 (b))")
         if one["other_changed_fields"]:
             print(f"  fields make_score re-derived (not decisions): {', '.join(one['other_changed_fields'])}")
+        ind = prepared.get("industry_file") or {}
+        if ind and not ind.get("same"):
+            print(f"  industry_returns.json: {_industry_line(ind)}")
     return 0
 
 
@@ -835,12 +1010,17 @@ def mechanics(prepared, tickers, wt):
                                                        ", ".join(r["ticker"] for r in rows if not r["score_from_run"])
                                                        + " NOT"))
         lines.append("- Registry: only these tickers' entries change")
+    if "industry_file" in prepared:
+        lines.append(f"- industry_returns.json: {_industry_line(prepared['industry_file'])}")
     lines.append("- Files: " + ", ".join(prepared["files"]))
     return "\n".join(lines) + "\n"
 
 
-def allowed_path(p, tickers):
-    return p in (REGISTRY_REL, BACKLOG_REL) or any(p.startswith(f"{t}/") for t in tickers)
+def allowed_path(p, tickers, bulk=False):
+    """What a company PR may carry: <T>/, the registry and backlog appends; a bulk rebuild PR also the sweep tree's
+    _system/industry_returns.json (03b §3.3.3: the rebuild scores against a current build and carries it)."""
+    return (p in (REGISTRY_REL, BACKLOG_REL) or (bulk and p == INDUSTRY_REL)
+            or any(p.startswith(f"{t}/") for t in tickers))
 
 
 def check_backlog_append(wt, origin_sha):
@@ -879,13 +1059,14 @@ def check_backlog_append(wt, origin_sha):
     return [f"EB-{e['id']:03d}{' seen again' if e['seen_again'] else ''}" for e in new_entries]
 
 
-def stage(wt, tickers, prepared, origin_sha):
+def stage(wt, tickers, prepared, origin_sha, bulk=False):
     changes = porcelain(wt)
-    bad = sorted({p for _, p in changes if not allowed_path(p, tickers)})
+    bad = sorted({p for _, p in changes if not allowed_path(p, tickers, bulk)})
     if bad:
         refuse(f"refusing to commit — the worktree changes paths a company PR may not carry: {', '.join(bad[:6])}. A "
                "company PR carries <T>/, _system/overrides_registry.json (<T>'s entries only) and appended lines in "
-               "_system/ENGINE_BACKLOG.md.")
+               "_system/ENGINE_BACKLOG.md" + (" (a bulk rebuild PR also the sweep tree's _system/industry_returns.json)"
+                                              if bulk else "") + ".")
     deleted = sorted(p for st, p in changes if "D" in st and p != BACKLOG_REL)
     if deleted:
         refuse(f"refusing to commit — the worktree deletes {deleted[0]}; a company PR does not delete record files")
@@ -898,7 +1079,9 @@ def stage(wt, tickers, prepared, origin_sha):
         refuse(f"the worktree changed since prepare ({', '.join(moved[:4])}) — fix the sweep tree, never the worktree, "
                "then prepare again")
     new_ids = check_backlog_append(wt, origin_sha)
-    paths = [f"{t}/" for t in tickers] + [REGISTRY_REL] + ([BACKLOG_REL] if any(p == BACKLOG_REL for _, p in changes) else [])
+    changed = {p for _, p in changes}
+    paths = ([f"{t}/" for t in tickers] + [REGISTRY_REL] + ([BACKLOG_REL] if BACKLOG_REL in changed else [])
+             + ([INDUSTRY_REL] if bulk and INDUSTRY_REL in changed else []))
     git_ok(wt, "add", "--", *paths, what="git add")
     return new_ids
 
@@ -927,27 +1110,46 @@ def commit(wt, subject, body, extra_trailers):
         os.remove(tmp)
 
 
-def _context(t=None, bulk=None, holder=None):
-    """(lock-like record, tickers, worktree, kind, writer) for a single ticker or a bulk set."""
-    if bulk:
-        man = _ops.load_json(bulk_manifest(bulk))
-        if not man:
-            refuse(f"no bulk set {bulk}")
-        for x in man["tickers"]:
-            require_lock(x, holder or man.get("holder"))
+class Ctx:
+    """A single ticker's lease or a bulk set: rec (the lock / manifest), tickers, worktree, kind; save(fields) merges
+    fields into the record (a ticker's only while the lease is still the caller's: exit 4 otherwise); verify()
+    re-checks the lease right before anything leaves the machine (push, gh pr create)."""
 
-        def save(d):
-            _ops.write_json_atomic(bulk_manifest(bulk), d)
-        return man, man["tickers"], man["worktree"], "rebuild", save
-    t = norm_ticker(t)
-    lock = require_lock(t, holder)
-    if lock.get("bulk"):
-        refuse(f"{t} is part of bulk set {lock['bulk']} — use --bulk {lock['bulk']}")
-    return lock, [t], lock["worktree"], lock.get("kind"), (lambda d: write_lock(t, d))
+    def __init__(self, t=None, bulk=None, holder=None):
+        self.bulk = bulk
+        if bulk:
+            man = _ops.load_json(bulk_manifest(bulk))
+            if not man:
+                refuse(f"no bulk set {bulk}")
+            self.holder = holder or man.get("holder")
+            for x in man["tickers"]:
+                require_lock(x, self.holder)
+            self.rec, self.tickers, self.wt, self.kind = man, man["tickers"], man["worktree"], "rebuild"
+            return
+        t = norm_ticker(t)
+        lock = require_lock(t, holder)
+        if lock.get("bulk"):
+            refuse(f"{t} is part of bulk set {lock['bulk']} — use --bulk {lock['bulk']}")
+        self.holder, self.rec, self.tickers, self.wt, self.kind = holder, lock, [t], lock["worktree"], lock.get("kind")
+
+    def save(self, fields):
+        if self.bulk:
+            self.rec = dict(self.rec, **fields)
+            _ops.write_json_atomic(bulk_manifest(self.bulk), self.rec)
+        else:
+            self.rec = update_lock(self.tickers[0], self.rec, lambda cur: dict(cur, **fields))
+        return self.rec
+
+    def verify(self):
+        for x in self.tickers:
+            lk = require_lock(x, self.holder)
+            if not self.bulk and not same_lease(lk, self.rec):
+                raise _lost(x, lk)
 
 
 def cmd_open(t, bulk, body_file, holder, extra_trailers):
-    rec, tickers, wt, kind, save = _context(t, bulk, holder)
+    ctx = Ctx(t, bulk, holder)
+    rec, tickers, wt, kind = ctx.rec, ctx.tickers, ctx.wt, ctx.kind
     if not rec.get("prepared"):
         refuse("not prepared — run `pr_worktree.py prepare` first")
     if rec.get("pr_number"):
@@ -958,7 +1160,7 @@ def cmd_open(t, bulk, body_file, holder, extra_trailers):
     except OSError as e:
         raise Stop(f"pr_worktree: cannot read --body-file {body_file} ({e})", 2)
     prepared = rec["prepared"]
-    stage(wt, tickers, prepared, prepared["origin_sha"])
+    stage(wt, tickers, prepared, prepared["origin_sha"], bulk=bool(bulk))
     if bulk:
         title = f"Rebuild: make_score at release {prepared['engine_release']} over {len(tickers)} folders"
     else:
@@ -974,6 +1176,7 @@ def cmd_open(t, bulk, body_file, holder, extra_trailers):
         refuse("nothing to commit — the prepared worktree equals origin/main (did prepare copy the folder?)")
     # else: an earlier open committed (and maybe pushed) but gh failed — push and open the PR now
     branch = rec["branch"]
+    ctx.verify()
     git_ok(wt, "push", "--quiet", "-u", "origin", branch, what=f"git push origin {branch}")
     full = body.rstrip() + "\n\n" + mech
     fd, tmp = tempfile.mkstemp(prefix="pr_worktree_body_", suffix=".md")
@@ -990,14 +1193,14 @@ def cmd_open(t, bulk, body_file, holder, extra_trailers):
         env_fail(f"gh pr create failed ({(err or out).strip()[:300]}) — the branch {branch} is pushed; open the PR "
                  "with gh and record nothing by hand")
     m = re.search(r"https?://\S+/pull/(\d+)", out)
-    rec = dict(rec, pr_number=int(m.group(1)) if m else None, pr_url=m.group(0) if m else out.strip())
-    save(rec)
+    rec = ctx.save({"pr_number": int(m.group(1)) if m else None, "pr_url": m.group(0) if m else out.strip()})
     print(rec["pr_url"])
     return 0
 
 
 def cmd_push(t, msg, holder, extra_trailers):
-    rec, tickers, wt, kind, save = _context(t, None, holder)
+    ctx = Ctx(t, None, holder)
+    rec, tickers, wt = ctx.rec, ctx.tickers, ctx.wt
     if not rec.get("prepared"):
         refuse("not prepared — run `pr_worktree.py prepare` again after the sweep-tree fix")
     prepared = rec["prepared"]
@@ -1006,6 +1209,7 @@ def cmd_push(t, msg, holder, extra_trailers):
     if rc == 0:
         refuse("nothing to push — the prepared worktree equals the branch (did the sweep-tree fix and prepare run?)")
     commit(wt, msg, mechanics(prepared, tickers, wt), extra_trailers)
+    ctx.verify()
     git_ok(wt, "push", "--quiet", "origin", rec["branch"], what=f"git push origin {rec['branch']}")
     print(f"pr_worktree: pushed {rec['branch']}" + (f" (PR #{rec['pr_number']})" if rec.get("pr_number") else ""))
     return 0
@@ -1038,7 +1242,8 @@ def renumber_block(block, taken):
 
 
 def cmd_restack(t, holder, extra_trailers):
-    rec, tickers, wt, kind, save = _context(t, None, holder)
+    ctx = Ctx(t, None, holder)
+    rec, tickers, wt, kind = ctx.rec, ctx.tickers, ctx.wt, ctx.kind
     repo = repo_of_base()
     old_base = rec.get("base_sha")
     sha = fetch_main(repo)
@@ -1055,12 +1260,12 @@ def cmd_restack(t, holder, extra_trailers):
         with open(bl, "w", encoding="utf-8", newline="\n") as f:
             f.write(main_text.replace("\r\n", "\n") + block)
     prepared = do_prepare(tickers, kind, wt)
-    rec = dict(rec, base_sha=sha, prepared=prepared)
-    save(rec)
+    rec = ctx.save({"base_sha": sha, "prepared": prepared})
     stage(wt, tickers, prepared, prepared["origin_sha"])
     s = _ops.load_json(os.path.join(wt, tickers[0], "score.json")) or {}
     commit(wt, title_for(kind, tickers[0], s), mechanics(prepared, tickers, wt) + f"\nRestacked onto origin/main "
            f"{sha[:12]}.\n", extra_trailers)
+    ctx.verify()
     lease = f"--force-with-lease={branch}:{remote_sha.strip()}" if rc == 0 and remote_sha.strip() else "--force-with-lease"
     git_ok(wt, "push", "--quiet", lease, "origin", branch, what=f"git push --force-with-lease origin {branch}")
     print(f"pr_worktree: {tickers[0]} restacked onto origin/main {sha[:7]} and pushed"
@@ -1126,24 +1331,41 @@ def cmd_status(as_json):
     return 0
 
 
+def prs_by_head(prs):
+    """{headRefName: [PRs, newest first]} — a head name is reused (dcf/<T> again once an earlier PR's branch was
+    deleted after its merge), so one head can carry an old MERGED PR and a new OPEN one (review 2026-10-21)."""
+    out = {}
+    for p in prs:
+        if isinstance(p, dict) and p.get("headRefName"):
+            out.setdefault(p["headRefName"], []).append(p)
+    for v in out.values():
+        v.sort(key=lambda p: (str(p.get("createdAt") or ""), int(p.get("number") or 0)), reverse=True)
+    return out
+
+
 def cmd_reap(as_json):
     now = _ops.now_et()
     repo = repo_of_base()
     reaped, removed, kept = [], [], []
     for lk in _locks():
-        if not is_live(lk, now) and reap_lock(lk.get("ticker"), lk):
-            reaped.append(lk.get("ticker"))
+        t = lk.get("ticker")
+        if not t or is_live(lk, now):
+            continue
+        with lease_guard(t):
+            cur = read_lock(t)
+            if cur and same_lease(cur, lk) and not is_live(cur, now) and reap_lock(t, cur):
+                reaped.append(t)
     live_wts = {os.path.normcase(os.path.abspath(lk.get("worktree") or "")) for lk in _locks() if is_live(lk, now)}
     slug = _ops.repo_slug(repo)
-    args = ["pr", "list", "--state", "all", "--limit", "1000", "--json", "number,headRefName,state,url"]
+    args = ["pr", "list", "--state", "all", "--limit", "1000", "--json", "number,headRefName,headRefOid,state,createdAt,url"]
     if slug:
         args[2:2] = ["--repo", slug]
     rc, out, err = _ops.gh(*args)
     if rc != 0:
         env_fail(f"gh pr list failed ({(err or out).strip()[:200]})")
     try:
-        prs = {p.get("headRefName"): p for p in json.loads(out)}
-    except (ValueError, AttributeError):
+        heads = prs_by_head(json.loads(out))
+    except (ValueError, AttributeError, TypeError):
         env_fail("gh pr list printed no JSON")
     for p in _worktrees():
         if os.path.normcase(os.path.abspath(p)) in live_wts:
@@ -1153,11 +1375,21 @@ def cmd_reap(as_json):
             continue
         rc, o, _ = _ops.git(p, "rev-parse", "--abbrev-ref", "HEAD")
         br = o.strip()
-        pr = prs.get(br)
-        if not pr or pr.get("state") not in ("MERGED", "CLOSED"):
+        group = heads.get(br) or []
+        if not group:
+            continue
+        if any(x.get("state") == "OPEN" for x in group):
+            continue   # an open PR on this head (a reused dcf/<T>): its worktree stays
+        pr = group[0]   # the newest PR on the head decides
+        if pr.get("state") not in ("MERGED", "CLOSED"):
             continue
         if is_dirty(p):
             kept.append({"path": p, "branch": br, "pr": pr.get("number"), "why": "uncommitted changes"})
+            continue
+        head = _ops.rev(p, "HEAD")
+        if head != pr.get("headRefOid") and unpushed(p):
+            kept.append({"path": p, "branch": br, "pr": pr.get("number"),
+                         "why": "commits that are neither PR #%s's head nor pushed" % pr.get("number")})
             continue
         rc, _, e = _ops.git(repo, "worktree", "remove", p)
         if rc != 0:
@@ -1180,12 +1412,13 @@ def cmd_discard(t, force):
     t = norm_ticker(t)
     if not force:
         raise Stop("pr_worktree: discard removes uncommitted work — pass --force", 2)
-    lock = read_lock(t)
     now = _ops.now_et()
-    if lock and is_live(lock, now):
-        raise Stop(held_msg(t, lock), 4)
-    if lock:
-        reap_lock(t, lock)
+    with lease_guard(t):
+        lock = read_lock(t)
+        if lock and is_live(lock, now):
+            raise Stop(held_msg(t, lock), 4)
+        if lock:
+            reap_lock(t, lock)
     repo = repo_of_base()
     path = wt_path(t)
     if os.path.isdir(path):
@@ -1233,11 +1466,11 @@ def build_parser():
     pu = sub.add_parser("push")
     pu.add_argument("ticker")
     pu.add_argument("-m", dest="message", required=True)
-    pu.add_argument("--holder")
+    pu.add_argument("--holder", required=True)
     pu.add_argument("--trailer", action="append")
     rs = sub.add_parser("restack")
     rs.add_argument("ticker")
-    rs.add_argument("--holder")
+    rs.add_argument("--holder", required=True)
     rs.add_argument("--trailer", action="append")
     rl = sub.add_parser("release")
     rl.add_argument("ticker")
@@ -1283,6 +1516,9 @@ def main(argv=None):
         if a.cmd in ("prepare", "open"):
             if bool(a.ticker) == bool(a.bulk):
                 raise Stop(f"pr_worktree: {a.cmd} takes <T> or --bulk BRANCH", 2)
+            if a.ticker and not a.holder:
+                raise Stop(f"pr_worktree: {a.cmd} <T> needs --holder <your agent id> (the lock's holder; PR_PROTOCOL.md "
+                           "section 3) — only the agent holding the lock works in its worktree", 2)
             if a.cmd == "prepare":
                 return cmd_prepare(a.ticker, a.bulk, a.holder, a.no_fetch)
             return cmd_open(a.ticker, a.bulk, a.body_file, a.holder, a.trailer)

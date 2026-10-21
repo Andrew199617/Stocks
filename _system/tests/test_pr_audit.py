@@ -10,7 +10,11 @@ count (missing_pr / stale_open_pr); the grace window; SEC enrichment and caches 
 the title shapes (incl. "DCF pass 1 update", #68) match; a bulk rebuild PR covers the files it carries; a done name
 with no folder; gh failing exits 3; a CRLF checkout compares by blob; a score that is not its run's
 (score_not_from_run, checked first); facts.json and saved runs dcf_numbers_<label>.json are record files; APP outside
-the queue is a candidate; --quiet prints one line, and nothing without findings.
+the queue is a candidate; --quiet prints one line, and nothing without findings; a finished second pass of the
+current generation (done_changed / done_no_change) is a generation of its own — grace to the end of its day, then
+missing_pr with the Second pass hint, its Second pass PR open / merged, never merged_then_changed through the pass-1
+PR; an older generation's review and an in-progress one do not count; a malformed pass-2 queue exits 3 (review
+2026-10-21).
 """
 import datetime
 import json
@@ -331,6 +335,64 @@ def test_facts_and_saved_runs_are_record_files():
         r, rep = s.audit()
         f = next(x for x in rep["findings"] if x["ticker"] == "AAA")
         assert f["differs"] == ["dcf_numbers_prelim.json"], "a saved run on main that the sweep folder lost differs"
+    finally:
+        s.close()
+
+
+def _pass2(s, entries):
+    with open(os.path.join(s.c, "_system", "second_pass_queue.json"), "w", encoding="utf-8") as f:
+        json.dump({"entries": entries}, f)
+
+
+def test_a_second_pass_after_the_pass1_merge_is_its_own_generation():
+    """Review 2026-10-21 (P3): a pass-2 change after the pass-1 PR merged was MERGED_THEN_CHANGED at once, with a
+    hint to copy main's files back — which would erase the review. second_pass_queue.json was never read."""
+    s = Sweep(tickers=("AAA",))
+    try:
+        p1 = _pr(5, "dcf/AAA", "MERGED", created="2026-10-19T22:00:00Z", merged="2026-10-20T01:00:00Z")
+        s.prs([p1])
+        r, rep = s.audit()
+        assert _state(rep, "AAA") == "in_sync", rep
+        s.edit("AAA/second_pass.md", "# AAA second pass (2026-10-21)\nVerdict: changed.\n")
+        _pass2(s, {"AAA": {"status": "done_changed", "date": "2026-10-21", "generation": OLD_CLAIM}})
+        r, rep = s.audit()   # 12:00 ET on the review's day
+        assert r.returncode == 0 and _state(rep, "AAA") == "grace", rep
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T05:00:00"})   # the review's day + 5 h: still grace
+        assert _state(rep, "AAA") == "grace", rep
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T07:00:00"})
+        assert r.returncode == 1 and _state(rep, "AAA") == "missing_pr", rep
+        f = rep["findings"][0]
+        assert f["generation"] == "pass2" and f["pass2"] == {"status": "done_changed", "date": "2026-10-21"}, f
+        assert "cut the Second pass PR" in f["hint"] and "copy main" not in f["hint"], f["hint"]
+        assert "acquire AAA --kind pass2" in f["hint"], f["hint"]
+        assert "MISSING_PR           AAA   second pass done_changed 2026-10-21  differs: second_pass.md" in r.stdout, \
+            r.stdout
+        p2 = _pr(6, "dcf/AAA-20261019", "OPEN", created="2026-10-21T18:00:00Z", title="Second pass: AAA — A — Tier B")
+        s.prs([p2, p1])
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T07:00:00"})
+        assert r.returncode == 0 and _state(rep, "AAA") == "pr_open", rep
+        s.prs([dict(p2, state="MERGED", mergedAt="2026-10-21T22:00:00Z"), p1])
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T07:00:00"})   # merged, and the folder still differs
+        assert _state(rep, "AAA") == "merged_then_changed", rep
+        assert "PR #6 merged 2026-10-21 18:00 ET" in r.stdout, r.stdout
+        # a no-change review writes second_pass.md too: the same generation rule
+        s.prs([p1])
+        _pass2(s, {"AAA": {"status": "done_no_change", "date": "2026-10-21", "generation": OLD_CLAIM}})
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T07:00:00"})
+        assert _state(rep, "AAA") == "missing_pr" and rep["findings"][0]["generation"] == "pass2", rep
+        # a review of an OLDER scoring generation does not apply: the folder change is pass 1's
+        _pass2(s, {"AAA": {"status": "done_changed", "date": "2026-10-18", "generation": "2026-10-17T09:00:00-04:00"}})
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T07:00:00"})
+        assert _state(rep, "AAA") == "merged_then_changed" and "generation" not in rep["findings"][0], rep
+        # an in-progress review is not a finished one
+        _pass2(s, {"AAA": {"status": "in_progress", "date": "2026-10-21", "generation": OLD_CLAIM,
+                           "claimed_at": "2026-10-21T11:00:00-04:00"}})
+        r, rep = s.audit(env={"STOCKS_NOW": "2026-10-22T07:00:00"})
+        assert _state(rep, "AAA") == "merged_then_changed", rep
+        with open(os.path.join(s.c, "_system", "second_pass_queue.json"), "w", encoding="utf-8") as fh:
+            json.dump({"entries": []}, fh)
+        r, _ = s.audit()
+        assert r.returncode == 3 and "second_pass_queue.json is malformed" in r.stdout, r.stdout
     finally:
         s.close()
 

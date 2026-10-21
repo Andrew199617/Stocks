@@ -31,7 +31,16 @@ A PR belongs to T when its head branch is dcf/<T>, dcf/<T>-<YYYYMMDD> or dcf/<T>
 it is a rebuild/* or bulk-* branch whose file list holds <T>/score.json.
 Generation start: the done entry's claimed_at, else its completed date at 00:00 ET, else the epoch; APP: its
 score.json analysis_date.
-Exit: 0 no findings · 1 findings · 2 usage · 3 cannot audit (git, gh or the fetch failed).
+A second pass is a generation of its own (review 2026-10-21): when second_pass_queue.json records a finished review
+(done_changed or done_no_change — both write second_pass.md, judgment.json's second_pass object and a make_score
+run) of the CURRENT scoring generation, the folder's latest change is that review's, and its PR is a "Second pass:
+<T> —" PR (pr_worktree kind pass2). The queue keeps only the review's ET date, so: a Second pass PR created on or
+after that date's 00:00 ET is this generation's; grace runs from the END of that date (no review is reported
+before its day is over plus --grace-hours); an OPEN PR of the pass-1 generation still counts (the review can be
+pushed to it). Never merged_then_changed through the pass-1 PR: a pass-2 change is not "a review fix left behind",
+and copying main's files back would erase the review. A malformed second_pass_queue.json is exit 3 (queue.py
+refuses it too; restore it from git).
+Exit: 0 no findings · 1 findings · 2 usage · 3 cannot audit (git, gh or the fetch failed, a malformed pass-2 queue).
 What to do with each finding: _system/PR_PROTOCOL.md "pr_audit findings".
 """
 import argparse
@@ -60,6 +69,14 @@ HINTS = {"missing_folder": "done in queue.json but no score.json — block or re
          "stale_open_pr": "the open PR predates this generation — push the new generation to it (review-fix) or "
                           "close it and cut a new one",
          "missing_pr": "no PR for this generation — cut it now (PR_PROTOCOL.md)"}
+HINTS_PASS2 = {"missing_pr": "a second pass changed the folder after its pass-1 PR — cut the Second pass PR now "
+                             "(pr_worktree.py acquire <T> --kind pass2; PR_PROTOCOL.md)",
+               "merged_then_changed": "the folder changed after its Second pass PR merged — cut the newer change's PR, "
+                                      "or copy main's files back if a review fix was left behind",
+               "stale_open_pr": "the open PR predates this scoring generation — push the second pass to it "
+                                "(review-fix) or close it and cut the Second pass PR"}
+PASS2_DONE = ("done_changed", "done_no_change")
+SECOND_TITLE_RX = r"^Second pass: {t} —"
 
 
 class AuditError(Exception):
@@ -91,6 +108,48 @@ def generation_start(entry, base, t):
         except ValueError:
             pass
     return EPOCH
+
+
+def score_generation(entry):
+    """queue.py score_generation's token for a done entry (its claimed_at, else "completed <date>", else "done";
+    "unqueued" for APP) — the value a pass-2 entry's `generation` records."""
+    if entry is None:
+        return "unqueued"
+    if entry.get("claimed_at"):
+        return entry["claimed_at"]
+    return f"completed {entry['completed']}" if entry.get("completed") else "done"
+
+
+def load_pass2(base):
+    """second_pass_queue.json's entries ({} when absent). A file that parses but is not {"entries": {T: {...}}} is
+    an AuditError (queue.py refuses it too: restore it from git)."""
+    p = os.path.join(base, "_system", "second_pass_queue.json")
+    if not os.path.exists(p):
+        return {}
+    d = _ops.load_json(p)
+    if not (isinstance(d, dict) and isinstance(d.get("entries"), dict)
+            and all(isinstance(v, dict) for v in d["entries"].values())):
+        raise AuditError(f"{p} is malformed (not an object of entries) — restore it from git")
+    return d["entries"]
+
+
+def pass2_generation(p2, t, entry, start):
+    """(day_start, day_end, status, date) when T's latest change is a finished second pass of its current scoring
+    generation, else None. A legacy entry without `generation` counts when it is dated on or after the pass-1
+    generation's start date."""
+    e = p2.get(t)
+    if not isinstance(e, dict) or e.get("status") not in PASS2_DONE or not e.get("date"):
+        return None
+    try:
+        day = datetime.datetime.fromisoformat(str(e["date"])[:10]).replace(tzinfo=_ops.ET)
+    except ValueError:
+        return None
+    if "generation" in e:
+        if e["generation"] != score_generation(entry):
+            return None
+    elif day.date() < start.astimezone(_ops.ET).date():
+        return None
+    return max(day, start), max(day + datetime.timedelta(days=1), start), e["status"], str(e["date"])[:10]
 
 
 def _score_from_run(base, t):
@@ -189,16 +248,19 @@ def audit(base=None, repo=None, grace_hours=6.0, fetch=True, gh_json=None, gh_fi
     if "APP" not in {t for t, _ in cands} and os.path.isfile(os.path.join(base, "APP", "score.json")):
         cands.append(("APP", None))
     prs = load_prs(repo, gh_json)
+    p2 = load_pass2(base)
     files_of = files_loader(repo, gh_files_json)
     origin = _ops.tree_blobs(repo, sha)
     present = [t for t, _ in cands if os.path.isfile(os.path.join(base, t, "score.json"))]
     diff = differs(repo, base, present, origin)
     findings, ok = [], {k: [] for k in OK_STATES}
     counts = {k: 0 for k in STATES}
+    grace = datetime.timedelta(hours=grace_hours)
     for t, entry in cands:
         start = generation_start(entry, base, t)
         rec = {"ticker": t, "generation_start": _ops.iso(start),
                "completed": (entry or {}).get("completed"), "differs": [], "prs": []}
+        g2 = None
         if t not in diff:
             state = "missing_folder"
         else:
@@ -208,16 +270,34 @@ def audit(base=None, repo=None, grace_hours=6.0, fetch=True, gh_json=None, gh_fi
             rec["prs"] = [{k: p.get(k) for k in ("number", "state", "headRefName", "createdAt", "mergedAt", "url")}
                           for p in mine]
             new = [p for p in mine if (_ops.parse_ts(p.get("createdAt")) or EPOCH) >= start]
+            g2 = pass2_generation(p2, t, entry, start) if diff[t] else None
+            if g2:
+                day_start, day_end, st2, d2 = g2
+                rec.update(generation="pass2", generation_start=_ops.iso(day_start),
+                           pass2={"status": st2, "date": d2})
+                second = [p for p in mine if re.match(SECOND_TITLE_RX.format(t=re.escape(t)), p.get("title") or "")
+                          and (_ops.parse_ts(p.get("createdAt")) or EPOCH) >= day_start]
             if not match:
                 state = "score_not_from_run"
                 rec["mismatch"] = why
             elif not diff[t]:
                 state = "in_sync"
+            elif g2:   # the latest change is a second pass of this generation
+                if any(p.get("state") == "OPEN" for p in second + new):
+                    state = "pr_open"
+                elif any(p.get("state") == "MERGED" for p in second):
+                    state = "merged_then_changed"
+                elif now - day_end <= grace:
+                    state = "grace"
+                elif any(p.get("state") == "OPEN" for p in mine):
+                    state = "stale_open_pr"
+                else:
+                    state = "missing_pr"
             elif any(p.get("state") == "OPEN" for p in new):
                 state = "pr_open"
             elif any(p.get("state") == "MERGED" for p in new):
                 state = "merged_then_changed"
-            elif now - start <= datetime.timedelta(hours=grace_hours):
+            elif now - start <= grace:
                 state = "grace"
             elif any(p.get("state") == "OPEN" for p in mine):
                 state = "stale_open_pr"
@@ -226,7 +306,7 @@ def audit(base=None, repo=None, grace_hours=6.0, fetch=True, gh_json=None, gh_fi
         counts[state] += 1
         if state in FINDINGS:
             rec["state"] = state
-            rec["hint"] = HINTS[state]
+            rec["hint"] = (HINTS_PASS2[state] if g2 and state in HINTS_PASS2 else HINTS[state]).replace("<T>", t)
             findings.append(rec)
         else:
             ok[state].append(t)
@@ -244,11 +324,19 @@ def finding_line(f):
     dif = f.get("differs") or []
     dif_s = ", ".join(dif[:3]) + (f" (+{len(dif) - 3})" if len(dif) > 3 else "")
     prs = f.get("prs") or []
+    p2 = f.get("pass2") if f.get("generation") == "pass2" else None
+    if st == "missing_pr" and p2:
+        return (f"  MISSING_PR           {t:<5} second pass {p2['status']} {p2['date']}  differs: {dif_s}  no Second "
+                f"pass PR for {t} since")
     if st == "missing_pr":
         return (f"  MISSING_PR           {t:<5} claimed {_fmt_t(f['generation_start'])}, done {f.get('completed') or '?'}"
                 f"  differs: {dif_s}  no PR for {t} since the claim")
     if st == "merged_then_changed":
-        m = next((p for p in prs if p.get("state") == "MERGED"), {})
+        merged = [p for p in prs if p.get("state") == "MERGED"]
+        if p2:   # the Second pass PR (prs keeps gh's order: newest first)
+            merged = [p for p in merged if (_ops.parse_ts(p.get("createdAt")) or EPOCH) >= _ops.parse_ts(
+                f["generation_start"])] or merged
+        m = merged[0] if merged else {}
         return (f"  MERGED_THEN_CHANGED  {t:<5} PR #{m.get('number')} merged {_fmt_t(m.get('mergedAt'))}  differs since: "
                 f"{dif_s}")
     if st == "stale_open_pr":

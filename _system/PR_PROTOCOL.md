@@ -23,6 +23,9 @@ staging limited to what a company PR may carry, and `pr_audit.py` daily.
   placeholder.
 - Never `_system/queue.json`, never a cache (`prices.json`, `live.json`, `street.json`, site files), never code or
   a spec. `pr_worktree.py open` refuses anything else.
+- Never `_system/industry_returns.json` (the moat evidence's industry input; the daily cron and `rebuild_scores.py`
+  write the sweep tree's build). prepare scores against the sweep tree's copy, puts main's back, and the Mechanics
+  block names both builds. A bulk rebuild PR is the one PR that carries it.
 - An owner-directed acceptance re-score (AGENTS.md "What is in a PR"; PR #31, PR #47's HALO) rides with its code PR
   and never goes through pr_worktree.
 
@@ -39,17 +42,24 @@ staging limited to what a company PR may carry, and `pr_audit.py` daily.
 
 ## 3. Steps, in order
 
+Every command after `acquire` names the same `--holder "<your agent id>"` (exit 2 without it). When your lease
+expired and another agent took the name, prepare / open / push / restack refuse with exit 4 naming the new holder:
+stop, never touch that worktree, and finish.
+
 a. `python3 _system/pr_worktree.py acquire <T> --holder "<your agent id>" --kind pass1|rescore|pass2` — the
    per-ticker lock (a 3-hour lease) and a fresh sparse worktree at `<PR_ROOT>/<T>` on a new branch from
    origin/main. Refused (exit 4) while another agent holds it: never enter, edit or delete another agent's
    worktree; finish and leave the name to it. Long work: `renew <T> --holder <id>`.
-b. `python3 _system/pr_worktree.py prepare <T>` — checks the sweep tree with preflight (refuses on drift); copies
-   the committed folder files (refuses when a record file main has is gone from the sweep folder); re-runs
-   make_score.py at origin/main's code in the worktree (score.json, key_numbers.md and `<T>`'s registry entries
-   against main's registry); runs `check_quotes.py <T>` on a 5.7 run; refuses when the rebuilt score differs from the
-   sweep tree's on any decision field (make_score's `SCORE_DECISION_KEYS` plus `override_impact.unblocks_tier`);
-   refuses when the registry would change another ticker's entries, would be refused by make_score, or loses part of
-   `<T>`'s acquired-IPR&D deferred-payment record; prints the summary.
+b. `python3 _system/pr_worktree.py prepare <T> --holder <id>` — checks the sweep tree with preflight (refuses on
+   drift); copies the committed folder files (refuses when a record file main has is gone from the sweep folder);
+   re-runs make_score.py at origin/main's code in the worktree (score.json, key_numbers.md and `<T>`'s registry
+   entries against main's registry), against the sweep tree's `_system/industry_returns.json` (the build the sweep
+   scored with; main's copy is put back afterwards); runs `check_quotes.py <T>` on a 5.7 run; refuses when the
+   rebuilt score differs from the sweep tree's on any decision field (make_score's `SCORE_DECISION_KEYS` plus
+   `override_impact.unblocks_tier`; the refusal names the differing sub-field, e.g. `moat_evidence.industry_file`
+   when the daily cron rewrote the industry file after the folder was scored — re-run make_score.py on the sweep
+   tree, then prepare again); refuses when the registry would change another ticker's entries, would be refused by
+   make_score, or loses part of `<T>`'s acquired-IPR&D deferred-payment record; prints the summary.
    **Engine output from an older release** (lane default Q12 (b), 2026-10-21, pending Andrew's ratification): the
    folder is rebuilt by make_score at main's release (the misfit notch applies mechanically) and published with the
    alert gates the stale-release rule closes; no engine re-run is required (Andrew's Q3 ruling: no directed re-run
@@ -57,10 +67,10 @@ b. `python3 _system/pr_worktree.py prepare <T>` — checks the sweep tree with p
    `STALE_RELEASE_POLICY` in pr_worktree.py ("refuse" = re-run the engine first, design 05's option (a)).
 c. Write the PR body (template in section 7). Every number is copied from key_numbers.md, score.json,
    dcf_numbers.json or ttm.json (R3) — the "rubric checks" are recomputations of those files, stated as such.
-d. `python3 _system/pr_worktree.py open <T> --body-file <path>` — stages exactly the allowed paths (refuses anything
-   else, a deletion, or a worktree file changed since prepare), commits, pushes, opens the PR with `gh pr create`,
-   records the number in the lock, prints the URL. Pass `--trailer "<line>"` for the attribution trailer the session
-   uses.
+d. `python3 _system/pr_worktree.py open <T> --holder <id> --body-file <path>` — stages exactly the allowed paths
+   (refuses anything else, a deletion, or a worktree file changed since prepare), commits, pushes, opens the PR with
+   `gh pr create`, records the number in the lock, prints the URL. Pass `--trailer "<line>"` for the attribution
+   trailer the session uses.
 e. `python3 _system/pr_worktree.py release <T> --holder <id>`. The worktree stays until the PR is merged or closed;
    `reap` removes it.
 
@@ -71,13 +81,14 @@ excepted).
 ## 4. Review rounds
 
 `acquire <T> --holder <id> --kind review-fix` (reuses the open PR's branch and the same path). Fix the sweep tree
-first, re-run make_score there, then `prepare <T>` again and `push <T> -m "<what the round fixed>"`. A "didnt fix"
-reply that names a code defect appends an ENGINE_BACKLOG entry in the same PR (section 1).
+first, re-run make_score there, then `prepare <T> --holder <id>` again and
+`push <T> --holder <id> -m "<what the round fixed>"`. A "didnt fix" reply that names a code defect appends an
+ENGINE_BACKLOG entry in the same PR (section 1).
 
 ## 5. Main moved before the merge
 
 A registry or backlog conflict, or prepare saying the worktree runs older code than origin/main:
-`python3 _system/pr_worktree.py restack <T>` — resets the branch onto origin/main, re-copies the folder, re-runs
+`python3 _system/pr_worktree.py restack <T> --holder <id>` — resets the branch onto origin/main, re-copies the folder, re-runs
 make_score (the registry re-derived against the new main), re-appends the PR's backlog block after main's new last
 line (renumbering any new EB id main now uses), commits and pushes with `--force-with-lease`.
 
@@ -86,14 +97,20 @@ line (renumbering any new EB id main now uses), commits and pushes with `--force
 Workers stop on preflight exit 1 (their run is recorded as failed; run_health raises the ALERT on the second one —
 the expected signal until the sync). In this order:
 1. `python3 _system/preflight.py --sync` — refuses (exit 5) while a claim is live; checks out origin/main's policy
-   and advisory files. On the VM run it **before any engine-5.7 registry event exists there**: a pre-5.7 make_score
-   refuses a registry that holds one (misfit_notch, declared_facts, …), so every tree on the VM runs 5.7 code first.
+   and advisory files, and `_system/industry_returns.json` when the sweep tree has none (a sweep tree's own build of
+   it is never overwritten; preflight exits 1 while it is missing). On the VM run it **before any engine-5.7
+   registry event exists there**: a pre-5.7 make_score refuses a registry that holds one (misfit_notch,
+   declared_facts, …), so every tree on the VM runs 5.7 code first.
 2. `python3 _system/rebuild_scores.py` — the dry run: which folders change tier, which refuse, which need network.
-   Bring the list to Andrew when it shows tier changes.
-3. `python3 _system/rebuild_scores.py --apply --from-report <report.json>` — make_score on each changed folder, then
-   one `reprice.py --all`, then one `build_site.py` (live figures pause on every rebuilt name until the reprice).
+   It builds `industry_returns.json` from the scored folders into its work copy first, so it scores against the file
+   the apply step writes. Bring the list to Andrew when it shows tier changes.
+3. `python3 _system/rebuild_scores.py --apply --from-report <report.json>` — `industry_returns.py --write` on the
+   sweep tree, make_score on each changed folder, then one `reprice.py --all`, then one `build_site.py` (live figures
+   pause on every rebuilt name until the reprice; a changed industry build since the dry run is named, and the
+   applied table is the actual result).
 4. `python3 _system/pr_worktree.py acquire --bulk <report.json>.applied.json --holder <id>` (every rebuilt in-sync
-   ticker, all-or-nothing), `prepare --bulk <branch>`, `open --bulk <branch> --body-file <path>`.
+   ticker, all-or-nothing), `prepare --bulk <branch>`, `open --bulk <branch> --body-file <path>` (`--holder` defaults
+   to the bulk set's). The bulk PR carries the sweep tree's `_system/industry_returns.json` with the folders.
 
 ## 7. PR body template
 
@@ -126,9 +143,13 @@ fields make_score re-derived that are not decisions, and the file list. Never ed
 ## 8. pr_audit findings (the 19:07 job prints them)
 
 - `missing_pr` — a done name differs from main with no PR for its scoring generation: cut the PR now (section 3).
-- `merged_then_changed` — the folder changed after its PR merged: if the change is a newer generation, cut its PR;
-  if it is a review fix left behind, copy main's files back into the sweep folder
-  (`git -C ~/workspace/stocks checkout origin/main -- <T>/<f>`) — main is the reviewed record.
+  A finished second pass (done_changed or done_no_change in second_pass_queue.json) of the current scoring
+  generation is a generation of its own: its PR is the `Second pass: <T> —` PR (`acquire <T> --kind pass2`); the
+  finding says "second pass" and is never reported before the review's day is over plus the grace hours.
+- `merged_then_changed` — the folder changed after its PR merged (for a second pass: after its Second pass PR
+  merged): if the change is a newer generation, cut its PR; if it is a review fix left behind, copy main's files
+  back into the sweep folder (`git -C ~/workspace/stocks checkout origin/main -- <T>/<f>`) — main is the reviewed
+  record. A second pass after the pass-1 PR merged is never this finding (copying main back would erase the review).
 - `stale_open_pr` — the only open PR predates this generation: push the new generation to it (`review-fix`) or
   close it and cut a new one.
 - `score_not_from_run` — score.json is not make_score's score of the folder's dcf_numbers.json (make_score refused
@@ -138,7 +159,9 @@ fields make_score re-derived that are not decisions, and the file list. Never ed
 ## 9. Housekeeping
 
 - `python3 _system/pr_worktree.py status` — every lock (live / expired) and worktree.
-- `python3 _system/pr_worktree.py reap` — removes stale locks, and the clean worktrees whose PR merged or closed.
+- `python3 _system/pr_worktree.py reap` — removes stale locks, and the clean worktrees whose newest PR merged or
+  closed (a branch name like `dcf/<T>` is reused: a worktree with any OPEN PR on its branch name stays, and so does
+  one holding commits that are neither that PR's head nor pushed).
 - `python3 _system/pr_worktree.py discard <T> --force` — removes a dirty orphan worktree (only with no live lock).
 - `python3 _system/pr_worktree.py backlog-next` — the next free ENGINE_BACKLOG id on origin/main.
 Exit codes: 0 ok · 1 refused · 2 usage · 3 environment · 4 held by another holder.
