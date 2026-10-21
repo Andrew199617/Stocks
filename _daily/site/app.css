@@ -37,7 +37,7 @@ table.stm tr.l1 th{padding-left:24px} table.stm tr.l2 th{padding-left:40px} tabl
 .spark{margin:12px 0 4px;padding:14px 12px 10px} .sparkh{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:4px;min-width:0} .sparkh>span{min-width:0;overflow-wrap:anywhere} .stm-close{background:var(--card2);border:1px solid var(--line2);color:var(--txt2);border-radius:8px;width:34px;height:34px;font-size:20px;line-height:1;cursor:pointer;flex:0 0 auto}
 details.stmwarn{margin-top:8px} details.stmwarn summary{color:var(--mut);font-size:13px;cursor:pointer}
 /* ---- watchlist: repo star (blue, fixed) vs per-device star (gold toggle); copy action ---- */
-.star.repo{color:#7AA2FF;font-size:17px} .hstar{position:absolute;top:8px;right:8px;font-size:22px;min-width:44px;min-height:44px} /* the hero's top-right corner */
+.star.repo{color:#7AA2FF;font-size:17px} .hero .hstar{position:absolute;top:8px;right:8px;font-size:22px;min-width:44px;min-height:44px} /* the hero's top-right corner; two classes, so the base .star / .star.repo sizes never win */
 .wbtn.sm{padding:5px 10px;font-size:12.5px;min-height:32px} .copyout{font-size:12.5px;color:var(--mut);display:inline-flex;align-items:center;gap:6px;min-width:0} .copyout:empty{display:none} .copyout input{min-height:32px;padding:4px 8px;font-family:var(--mono);font-size:12px;max-width:220px}
 .tiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin:10px 0}
 .tile{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:5px;min-width:0}
@@ -175,8 +175,8 @@ ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
  #t td::before{display:block;font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em;margin-bottom:1px}
  #t td:nth-child(2)::before{content:"Tier"} #t td:nth-child(3)::before{content:"Band"} #t td:nth-child(4)::before{content:"Live IRR"} #t td:nth-child(5)::before{content:"Scored IRR"} #t td:nth-child(6)::before{content:"Price"} #t td:nth-child(7)::before{content:"IV @15%"} #t td:nth-child(8)::before{content:"Upside"} #t td:nth-child(9)::before{content:"Moat"} #t td:nth-child(10)::before{content:"Conf."} #t td:nth-child(11)::before{content:"Mkt cap"} #t td:nth-child(12)::before{content:"1y price"}
  .was{display:inline;margin-left:6px}
- .hbig{font-size:40px} .htick{font-size:24px} .hco{font-size:15px} .ttile{width:44px;height:44px;border-radius:12px;font-size:22px} .hrow{gap:12px;padding-right:36px} .hband{justify-self:end} .hret{column-gap:16px} .hstar{top:6px;right:6px} .tab{font-size:15px;padding:12px 12px}
- .hs .v{font-size:20px;white-space:normal;overflow-wrap:anywhere} .hero{--hpad:16px}
+ .hbig{font-size:40px} .htick{font-size:24px} .hco{font-size:15px} .ttile{width:44px;height:44px;border-radius:12px;font-size:22px} .hrow{gap:12px;padding-right:36px} .hret{display:flex;flex-wrap:wrap;align-items:center;gap:4px 16px} .hret>.k{flex:0 0 100%} .hband{margin-left:auto} .hfnote{flex:1 1 140px;min-width:0} .hero .hstar{top:6px;right:6px} .tab{font-size:15px;padding:12px 12px}
+ .hs .v{font-size:20px} .hero{--hpad:16px}
  .pchart{height:240px} .card{padding:14px}
  .controls input{flex:1 1 160px}
  .sgrow{grid-template-columns:1fr} .fanchart{height:220px}
@@ -188,4 +188,5 @@ ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 }
 @media (max-width:480px){.tabsum{gap:8px;font-size:13px} .hs .v.long{font-size:16px}}
 @media (max-width:400px){.hs .v{font-size:18px}}
+@media (max-width:359px){.hs .v{font-size:17px} .hs .v.long{font-size:13px} .hero .hs .k{font-size:11px;letter-spacing:.03em}} /* a figure never splits: 7 characters at 17px and 9 at 13px fit the narrowest cell at 320px */
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}

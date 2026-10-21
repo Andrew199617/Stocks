@@ -1645,7 +1645,13 @@ test('compact header: one strip for price, value @15% and upside; override and l
   assert.ok(css.includes('.hstrip{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1.05fr) minmax(0,.9fr)') && !css.includes('.hstats') && !css.includes('.hstat '), 'one three-cell strip at every width; the stacked .hstats grid is gone');
   const wide = (css.match(/@media \(min-width:900px\)\{[^]*?\n\}/) || [''])[0];
   assert.ok(/\.hstrip\{grid-column:2;grid-row:2;/.test(wide) && /\.hret\{grid-column:1;grid-row:2\}/.test(wide), 'wide screens: the strip sits beside the return, not under it: ' + wide);
-  assert.ok(/\.hstar\{position:absolute;[^}]*min-width:44px;min-height:44px/.test(css), 'star: a 44px target in the corner');
+  // the corner star's size rule needs two classes and must follow .star.repo: a lone .hstar lost to the later .star{min-width:24px}
+  assert.ok(/\.hero \.hstar\{position:absolute;[^}]*min-width:44px;min-height:44px/.test(css) && css.indexOf('.hero .hstar{') > css.indexOf('.star.repo{') && !/(^|[^ ])\.hstar\{[^}]*min-width/.test(css.replace(/\.hero \.hstar\{/g, '')), 'star: a 44px target in the corner that the base .star rules cannot shrink');
+  // phones: a figure never splits inside a number, and the return row wraps rather than letting the band cover the figure
+  const phone = (css.match(/@media \(max-width:760px\)\{[^]*?\n\}/) || [''])[0], tiny = (css.match(/@media \(max-width:359px\)\{[^\n]*\}/) || [''])[0];
+  assert.ok(phone.includes(' .hs .v{font-size:20px}') && !/overflow-wrap:anywhere/.test((phone.match(/\.hs \.v\{[^}]*\}/) || [''])[0]), 'phone strip figures keep the base nowrap: ' + phone);
+  assert.ok(/\.hret\{display:flex;flex-wrap:wrap;/.test(phone) && !phone.includes('justify-self:end'), 'phone return row wraps the band under the figure when it does not fit');
+  assert.ok(/\.hs \.v\{font-size:17px\} \.hs \.v\.long\{font-size:13px\} \.hero \.hs \.k\{font-size:11px/.test(tiny), 'under 360px: a size step that fits 7 / 9 character figures and the Value @15% label at 320px: ' + tiny);
 });
 test('Live older than the score: the ranking marks the row "live pending" and ranks it on its scored IRR; the header counts the pending rows', () => {
   const row = withheldRec.row, html = App.renderRowHTML(row);

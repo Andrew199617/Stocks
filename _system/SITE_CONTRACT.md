@@ -1877,22 +1877,32 @@ decision's "nothing that exists today is removed" holds: every item the header n
   the return (column 2 of a two-column grid; the status line spans both), so the card is shorter on a desktop too. The meta
   line joins with a no-break space before the dot, so a long sector wraps after it and the cap never starts a line with "·".
 - **Price cell.** Live page: "Last close" with the 1-day change and the price date (title: the move vs the scored price). No
-  live.json but a `prices.stats` close newer than the analysis (`currentClose`): "Last close" with its change and date, the status
-  line names the return's basis ("Return at the scored price $X (date)") and the upside reads "vs scored price".
+  live.json but a dated `prices.stats` close (`currentClose`; it can be older than the analysis — only with `live_withheld` is a
+  close older than the scored date dropped): "Last close" with its change and date, the status line names the return's basis ("Return at the scored price $X (date)") and the upside reads "vs scored price".
   `live_withheld`: "Scored price" with a "Live pending" marker (title: `pendingText` — the note). Otherwise "Price used" with the
   analysis date (title: `price_source` · date). A 1-day change is still never shown beside a price it was not measured on.
 - **Moved, not removed.** Exchange and SEC filer category → the meta line's title and the About card. `price_source` → the price
-  cell's title and the Data tab. The 52-week range, the 1-year return and the live-pending sentence → the top of the price chart
-  card (`priceFactsNote`, in both the chart and the number-line fallback). The "★ Watchlist repo" chip → the fixed blue repo star
+  cell's title and the Data tab. The 52-week range, the 1-year return and the live-pending sentence → one `.pcfacts` line in the price
+  chart card, under the chart and its legend and above the sources note (`priceFactsNote`; in the number-line fallback, under
+  the number line). The "★ Watchlist repo" chip → the fixed blue repo star
   (`.star.fixed.repo.hstar`, the ranking row's mark) in the corner, so a repo name no longer adds a row; other names keep the gold
-  `.hstar` toggle there, a 44 px target.
+  `.hstar` toggle there, a 44 px target (`.hero .hstar`: two classes and after `.star.repo`, so the base `.star` sizes never win —
+  a lone `.hstar` rule had rendered at 24 px).
 - **Measured** (Playwright, the real app.js + app.css): at 375 px LTM 258, VOD 271, SYN (live) 287, AEE (Tier F) 237, NVR 258 px
   tall; at 428 px 240 / 274 / 273 / 240 / 260 (before: 390–444 at 428). On the published 2026-10-20 data at 428 px: LTM 444 → 240,
   VOD 395 → 274, LDOS (live) 480 → 293, KLAR (live + override) 465 → 323, AEE 390 → 240, APP (repo) 428 → 240; at 1280 px
-  220–226 → 176–212; at 900 px 290–326 → 176–212. No horizontal scroll at 375, 428 or 1280. A figure of
-  nine or more characters ($2,901.18) takes the smaller phone size (`.long`) so it does not wrap.
+  220–226 → 176–212; at 900 px 290–326 → 176–212. All 548 published pages, old → new (range, median): 320 px 372–602 (501) →
+  235–398 (297); 375 px 372–558 (459) → 237–358 (278); 428 px 372–543 (424) → 240–334 (260); 900 px 290–346 (311) → 176–224
+  (176); 1280 px 205–248 (225) → 176–224 (176).
+- **Narrow phones.** Strip figures never wrap (the base `nowrap`; 20 px under 760, 18 px under 400; under 360 px 17 px, a figure of
+  nine or more characters such as $2,901.18 13 px via `.long`, and the labels 11 px, so "Value @15%" stays whole at 320). Under
+  760 px the return row is a wrapping flex row with the band pushed right, so a band too wide to sit beside the figure (GFL: both
+  ends at the floor) drops under it instead of covering it. A sweep of all 548 pages at 19 widths from 320 to 1600 px finds no
+  split or overflowing figure, clipped label, band or note over the figure, star under 44 px or over the name, element outside
+  the card, or sideways page scroll.
 - **Tests.** `tests/app.test.js` (97): a "compact header" test pins the strip order and upside basis, the band, the live status
   line, the meta line and its title, the override pill, the `currentClose` case, the price source shown once (in a title) and in
-  the Data tab, the 52-week range in the price chart card, and the CSS (`.hstrip`, no `.hstats`, an absolute 44 px `.hstar`, the strip beside the return from 900 px), the meta line's no-break separator; the
+  the Data tab, the 52-week range in the price chart card, and the CSS (`.hstrip`, no `.hstats`, a 44 px `.hero .hstar` after `.star.repo`, the strip beside the return from 900 px, the phone strip's nowrap figures and the
+  under-360 px size step, the wrapping return row), the meta line's no-break separator; the
   withheld and watchlist assertions read the marker and the repo star. `test_docs_contract.py` keeps the replaced header wording
   out of this document.
