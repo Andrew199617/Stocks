@@ -1,0 +1,545 @@
+{
+ "ticker": "EVR",
+ "cik": 1360901,
+ "as_of": "2026-10-19",
+ "source": "SEC EDGAR XBRL instance documents",
+ "filings": [
+  {
+   "form": "10-K",
+   "accession": "0001628280-26-010273",
+   "filed": "2026-02-20",
+   "period": "2025-12-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026010273/evr-20251231_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-031242",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026031242/evr-20260331_htm.xml"
+  },
+  {
+   "form": "10-Q",
+   "accession": "0001628280-26-053320",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "instance_url": "https://www.sec.gov/Archives/edgar/data/1360901/000162828026053320/evr-20260630_htm.xml"
+  }
+ ],
+ "currency": "USD",
+ "tables": [
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023",
+    "FY2024",
+    "FY2025"
+   ],
+   "rows": [
+    {
+     "member": "evr:InvestmentBankingAndEquitiesMember",
+     "label": "Investment Banking and Equities",
+     "values": [
+      2277662000,
+      2811717000,
+      3689419000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9714,
+      0.9725,
+      0.9769
+     ],
+     "growth_yoy": [
+      null,
+      0.2345,
+      0.3122
+     ]
+    },
+    {
+     "member": "evr:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      67041000,
+      79550000,
+      87356000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0286,
+      0.0275,
+      0.0231
+     ],
+     "growth_yoy": [
+      null,
+      0.1866,
+      0.0981
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     2344703000,
+     2891267000,
+     3776775000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "RevenueFromContractWithCustomerExcludingAssessedTax",
+   "tag": "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+   "label": "Revenue from contracts with customers by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "evr:InvestmentBankingAndEquitiesMember",
+     "label": "Investment Banking and Equities",
+     "values": [
+      666714000,
+      788222000,
+      1362465000,
+      936196000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9695,
+      0.9744,
+      0.9837,
+      0.9754
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      1.0436,
+      0.1877
+     ]
+    },
+    {
+     "member": "evr:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      20983000,
+      20684000,
+      22643000,
+      23655000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0305,
+      0.0256,
+      0.0163,
+      0.0246
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.0791,
+      0.1436
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     687697000,
+     808906000,
+     1385108000,
+     959851000
+    ],
+    "basis": "sum of rows"
+   },
+   "ties_to_total": null
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "annual",
+   "periods": [
+    "2023-12-31",
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2023 end",
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "evr:InvestmentBankingAndEquitiesMember",
+     "label": "Investment Banking and Equities",
+     "values": [
+      3541886000,
+      4022227000,
+      5184718000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9564,
+      0.9636,
+      0.9676
+     ],
+     "growth_yoy": [
+      null,
+      0.1356,
+      0.289
+     ]
+    },
+    {
+     "member": "evr:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      161412000,
+      151744000,
+      173379000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0436,
+      0.0364,
+      0.0324
+     ],
+     "growth_yoy": [
+      null,
+      -0.0599,
+      0.1426
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3703298000,
+     4173971000,
+     5358097000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "business_segments",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by segment",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-03-31",
+    "2025-06-30",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "Q1 FY2025",
+    "Q2 FY2025",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "evr:InvestmentBankingAndEquitiesMember",
+     "label": "Investment Banking and Equities",
+     "values": [
+      3178276000,
+      3575400000,
+      4186844000,
+      4577617000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.9716,
+      0.969,
+      0.9705,
+      0.9738
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3173,
+      0.2803
+     ]
+    },
+    {
+     "member": "evr:InvestmentManagementMember",
+     "label": "Investment Management",
+     "values": [
+      92839000,
+      114259000,
+      127429000,
+      123178000
+     ],
+     "derived": [
+      false,
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0284,
+      0.031,
+      0.0295,
+      0.0262
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      0.3726,
+      0.0781
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     3271115000,
+     3689659000,
+     4314273000,
+     4700795000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "annual",
+   "periods": [
+    "2024-12-31",
+    "2025-12-31"
+   ],
+   "period_labels": [
+    "FY2024 end",
+    "FY2025 end"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      3496519000,
+      3396905000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.8377,
+      0.634
+     ],
+     "growth_yoy": [
+      null,
+      -0.0285
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      614494000,
+      1887541000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.1472,
+      0.3523
+     ],
+     "growth_yoy": [
+      null,
+      2.0717
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      62958000,
+      73651000
+     ],
+     "derived": [
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0151,
+      0.0137
+     ],
+     "growth_yoy": [
+      null,
+      0.1698
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     4173971000,
+     5358097000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  },
+  {
+   "axis": "geography",
+   "concept": "Assets",
+   "tag": "us-gaap:Assets",
+   "label": "Total assets by geography",
+   "periodicity": "quarterly",
+   "periods": [
+    "2025-12-31",
+    "2026-03-31",
+    "2026-06-30"
+   ],
+   "period_labels": [
+    "FY2025 end",
+    "Q1 FY2026",
+    "Q2 FY2026"
+   ],
+   "rows": [
+    {
+     "member": "srt:AmericasMember",
+     "label": "Americas",
+     "values": [
+      3396905000,
+      2570493000,
+      2863749000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.634,
+      0.5958,
+      0.6092
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "us-gaap:EMEAMember",
+     "label": "EMEA",
+     "values": [
+      1887541000,
+      1677510000,
+      1766899000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.3523,
+      0.3888,
+      0.3759
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    },
+    {
+     "member": "srt:AsiaPacificMember",
+     "label": "Asia Pacific",
+     "values": [
+      73651000,
+      66270000,
+      70147000
+     ],
+     "derived": [
+      false,
+      false,
+      false
+     ],
+     "share_of_total": [
+      0.0137,
+      0.0154,
+      0.0149
+     ],
+     "growth_yoy": [
+      null,
+      null,
+      null
+     ]
+    }
+   ],
+   "total": {
+    "values": [
+     5358097000,
+     4314273000,
+     4700795000
+    ],
+    "basis": "consolidated fact"
+   },
+   "ties_to_total": true
+  }
+ ],
+ "warnings": [],
+ "complete": true
+}
