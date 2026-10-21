@@ -315,12 +315,15 @@ def test_capex_tag_lists_match_the_design():
     """Decisions 3, 4, 5: the roll-up, component, intangible and combined-tag lists exactly as DESIGN §3-5
     (PaymentsForCapitalImprovements appended; the generalized E&P components; the narrow intangible leg —
     us-gaap PaymentsToAcquire(Other)IntangibleAssets + IFRS PurchaseOfIntangibleAssets…; the IFRS combined
-    PP&E+intangibles tag is the one that never takes intangibles on top)."""
+    PP&E+intangibles tag is the one that never takes intangibles on top).
+    v5.7 (07 G16a; Andrew, 2026-10-19, R8 / R9): the 5.5 component and intangible lists are now PREFIXES — engine 5.7
+    appends the PP&E components (machinery and equipment, mining assets, furniture and fixtures) and the
+    capitalized-software tags after them; test_engine_57_capex.test_capex_lists_57 pins the 5.7 lists."""
     assert [tagname(t) for t in E.CAPEX_ROLLUP_TAGS] == [PRIMARY, IFRS_PPE, IFRS_PPE2, IFRS_COMBINED]
     assert E.CAPEX_ROLLUP_TAGS[0] == PRIMARY == E.PRIMARY_ROLLUP
     assert all(isinstance(t, tuple) and t[0] == IF for t in E.CAPEX_ROLLUP_TAGS[1:])
-    assert list(E.CAPEX_COMPONENT_TAGS) == [EXPLORE, ACQ_OG, OTHER_PPE, CIP, PRODUCTIVE, OTHER_PRODUCTIVE, CAP_IMPROVEMENTS]
-    assert [tagname(t) for t in E.CAPEX_INTANGIBLE_TAGS] == [INTANG, OTHER_INTANG, IFRS_INTANG]
+    assert list(E.CAPEX_COMPONENT_TAGS)[:7] == [EXPLORE, ACQ_OG, OTHER_PPE, CIP, PRODUCTIVE, OTHER_PRODUCTIVE, CAP_IMPROVEMENTS]
+    assert [tagname(t) for t in E.CAPEX_INTANGIBLE_TAGS][:3] == [INTANG, OTHER_INTANG, IFRS_INTANG]
     assert isinstance(E.CAPEX_INTANGIBLE_TAGS[2], tuple) and E.CAPEX_INTANGIBLE_TAGS[2][0] == IF
     assert set(E.CAPEX_COMBINED_TAGS) == {IFRS_COMBINED}
 

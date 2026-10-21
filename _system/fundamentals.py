@@ -141,7 +141,10 @@ gives way to the same filing's all-class count (class_count_check, GGB);
 derived fcf / oe_conservative subtract the engine 5.5 intangible-capex leg
 too (ENGINE_INTANGIBLE_TAGS via dcf_engine.capex_for_period; GGB, GMED), and
 `capex` is the engine's PP&E leg (ENGINE_CAPEX_GROUPS: a roll-up, else the
-components summed; Codex review round 2 on PR #53).
+components summed; Codex review round 2 on PR #53). Since engine 5.7 the
+intangible leg includes capitalized software / development (R9) and the
+components machinery and equipment, mining assets and furniture and fixtures
+(R8) — the engine's lists, read with no code change here.
 """
 import json, sys, os, csv, datetime, time, math, statistics, urllib.request
 
@@ -869,10 +872,14 @@ def debt_from_total_tag(tot, tot_tag, st=None, st_tag=None, cur_agg=None, unit_m
 # The intangible leg is the engine's own: its tag list, its rules (a negative
 # fact dropped, a $0 fact ignored, one cash-flow line tagged twice counted
 # once, a value the same tag also files on a multi-year context dropped as a
-# cumulative total — ECHO), so it never drifts from the scored CSV. The
-# capex_intangibles display field keeps its own wider list (it also shows
-# capitalized software, PaymentsToDevelopSoftware, which is not capex until
-# the Q6 / engine 5.7 follow-on) and is not what is deducted.
+# cumulative total — ECHO), so it never drifts from the scored CSV. Since
+# engine 5.7 (R9, Andrew 2026-10-19) the engine's list includes capitalized
+# software / development (dcf_engine.CAPEX_SOFTWARE_TAGS), so it is deducted
+# here too, and the PP&E leg's components include machinery and equipment,
+# mining assets and furniture and fixtures (R8). The capex_intangibles display
+# field keeps its own list (DUR["capex_intangibles"]: PaymentsToAcquireIntangibleAssets,
+# PaymentsToDevelopSoftware, the IFRS intangibles tag — narrower than what is
+# deducted since 5.7) and is not what is deducted.
 ENGINE_INTANGIBLE_TAGS = _engine.CAPEX_INTANGIBLE_TAGS
 # Codex review round 2 on PR #53: the PP&E leg is the engine's too — its roll-up
 # and component lists (dcf_engine.CAPEX_ROLLUP_TAGS / CAPEX_COMPONENT_TAGS) through

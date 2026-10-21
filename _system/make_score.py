@@ -180,7 +180,9 @@ drafts, DESIGN_5.5 §1 / §2c / §7 / §8):
   or a 5.5 run recording currency_basis "converted") refuses as out of sync.
 - key_numbers.md: the market-cap line names its basis, a scope line, one
   "Capex basis" line per last-3 FY (from financials_history.csv's
-  capex_source / capex_tag, when the run recorded capex_provenance), a "Share
+  capex_source / capex_tag, when the run recorded capex_provenance; 5.7:
+  "…, of which capitalized software $X" when the run read software, and a
+  5.7 capex override beside filed software needs software_included), a "Share
   basis" line when the run recorded a split adjustment, a cover-page
   divergence or a share-scale defect, and the SBC-reconciled periods.
   [ADDITION — M7, round-1 verification] Also one "Share basis: unconfirmed
@@ -641,7 +643,24 @@ rebuilt as before, both alert gates closed ("engine output predates release
 - (L8, R6) declared share classes (Up-C / multi-class) and UP_C_SUSPECT:
   [L8 writes this item]
 - (L9, R8 / R9) capex components, capitalized software and the ttm.json
-  release stamp: [L9 writes this item]
+  release stamp (Andrew, 2026-10-19, R8 / R9; assigned to Claude). On a
+  5.7 run: (R8) every CAPEX_UNLISTED_COMPONENT:<tag> flag needs judgment.json
+  capex_unlisted_ack[<tag>] (a reason carrying the figure) —
+  refuse_unlisted_capex_component; a capex_override does not release it
+  (09b Q4); the CAPEX_UNLISTED_COMPONENT_OVERRIDDEN variant is never
+  refused. Each released tag is recorded as a capex_unlisted_ack registry
+  event {tag, reason, value}. (R9) key_numbers.md's capex-basis line names
+  the capitalized-software part ("…, of which capitalized software $X");
+  a capex_override that fills a last-3-FY year or a TTM leg beside filed
+  capitalized software needs capex_override.software_included: true and a
+  value at least the filed intangible leg in USD on the engine's own
+  basis (refuse_capex_override_software; an override-filled TTM leg of an
+  unstamped ttm.json is refused as uncheckable); software_included rides on
+  the capex field's registry entry. (R8/R9 TTM provenance) a 5.7 run whose
+  basis read ttm.json (ttm_inputs recorded) needs
+  ttm_inputs.ttm_engine_release >= 5.7.0 — refuse_pre57_ttm_json, right
+  after check_ttm_inputs_current. validate_overrides checks both new
+  judgment keys' shapes on every run.
 - (R7) STALE_FY discretion made checkable: ttm_rejection_reason and the
   one base_alternatives record: [R7 writes this item]
 - (L5 ops, L6 site) no scoring change: pr_worktree prepare compares
@@ -771,7 +790,26 @@ def validate_overrides(j):
             if o["kind"] != "filing":
                 fail(f"judgment.json: {key}.currency \"USD\" requires kind \"filing\" (got {o['kind']!r}) — only a "
                      "figure read from the filing in USD is used verbatim; an estimate never is")
+        # v5.7 R9 (Andrew, 2026-10-19): capex_override.software_included declares that the override figure is the
+        # cash-flow total including capitalized software (refuse_capex_override_software checks it on 5.7 runs)
+        if "software_included" in o:
+            if field != "capex":
+                fail(f"judgment.json: {key}.software_included is not allowed — only capex_override carries it")
+            if not isinstance(o["software_included"], bool):
+                fail("judgment.json: capex_override.software_included must be true or false — true when the override "
+                     "figure is the cash-flow total including capitalized software")
         out[field] = o
+    # v5.7 R8 (Andrew, 2026-10-19): capex_unlisted_ack {tag: reason} releases a CAPEX_UNLISTED_COMPONENT flag the
+    # worker shows is not capex; every reason carries the figure (R7's checkable-reason standard: a digit)
+    ack = j.get("capex_unlisted_ack")
+    if ack is not None:
+        if not isinstance(ack, dict) or not ack:
+            fail("judgment.json: capex_unlisted_ack must be a non-empty object {\"<tag>\": \"<reason with the figure>\"}")
+        for tag, why in ack.items():
+            if not (isinstance(tag, str) and tag.strip()) or not (isinstance(why, str) and why.strip()
+                                                                   and re.search(r"\d", why)):
+                fail(f"judgment.json: capex_unlisted_ack.{tag} must say why the tag is not capex (or is already inside "
+                     "the listed lines) and carry the figure")
     return out
 
 
@@ -1265,23 +1303,212 @@ def refuse_last_filed_unit_usd_override(n, j_over, applied):
 
 
 # ---------------------------------------------------------------------------
-# v5.7 lane L9 (R8 / R9 capex, Andrew 2026-10-19) — L0 placeholders, no-ops until L9 fills them
+# v5.7 lane L9 (R8 / R9 capex, Andrew 2026-10-19; assigned to Claude)
 # ---------------------------------------------------------------------------
+CAPEX_SOFTWARE_NAMES = _engine.CAPEX_SOFTWARE_NAMES          # the engine's R9 tag names (one list, never a copy)
+UNLISTED_CAPEX_FLAG = _engine.UNLISTED_CAPEX_FLAG            # "CAPEX_UNLISTED_COMPONENT" (the refusing variant)
+_TTM_CAPEX_LEGS = ("fy", "ytd_prior", "ytd_current")
+
+
+def _record_rate(n, unit, pe, leg_fx=None):
+    """USD per `unit` at period end pe from the run's own record — 1.0 for USD; the intangible leg's own fetched rate
+    (capex_provenance.<FY>.intangibles_fx {currency, rate}, PR #31) when it names `unit`, else
+    fx_conversion.rates_by_currency (the tables the engine converted with); None when the record carries none."""
+    if not unit or unit == "USD":
+        return 1.0
+    if isinstance(leg_fx, dict) and leg_fx.get("currency") == unit and _num(leg_fx.get("rate")) is not None:
+        return float(leg_fx["rate"])
+    fx = n.get("fx_conversion") if isinstance(n.get("fx_conversion"), dict) else {}
+    by = fx.get("rates_by_currency") or ({fx["from_currency"]: fx["rates"]}
+                                         if fx.get("from_currency") and isinstance(fx.get("rates"), dict) else {})
+    r = ((by.get(unit) if isinstance(by, dict) else None) or {}).get(pe)
+    return float(r) if _num(r) is not None else None
+
+
+def _capex_override_usd(n, value, pe):
+    """The capex override in USD for FY period pe on the engine's recorded basis (override_checks.capex.currency_basis,
+    dcf_engine.override_currency_basis): verbatim for no_fx / declared_usd / last_filed_unit_usd, else x the reporting
+    currency's rate for pe (what the engine's _override_usd does); None when that rate is not in the record."""
+    basis = ((n.get("override_checks") or {}).get("capex") or {}).get("currency_basis")
+    if basis in (None, "no_fx", "declared_usd", "last_filed_unit_usd", "shares"):
+        return float(value)
+    fx = n.get("fx_conversion") if isinstance(n.get("fx_conversion"), dict) else {}
+    r = _record_rate(n, fx.get("from_currency"), pe)
+    return None if r is None else float(value) * r
+
+
+def _software_override_hits(n, tt, value):
+    """[(where, software, software_unit, software_tags, override_usd, filed_intangibles_usd)] for every last-3-FY
+    year and TTM leg a capex override fills beside filed capitalized software (see refuse_capex_override_software).
+    The second list: TTM legs an override fills in a ttm.json with no 5.7 stamp (no software record to check)."""
+    hits, unstamped = [], []
+    prov = n.get("capex_provenance") if isinstance(n.get("capex_provenance"), dict) else {}
+    for pe in sorted(prov)[-3:]:
+        rec = prov[pe] if isinstance(prov[pe], dict) else {}
+        if rec.get("intangibles_not_added") != "override_present":
+            continue
+        filed = {t: float(v) for t, v in (rec.get("intangibles_filed") or {}).items() if _num(v) is not None}
+        sw = {t: v for t, v in filed.items() if t in CAPEX_SOFTWARE_NAMES and v > 0}
+        if not sw:
+            continue
+        unit = rec.get("intangibles_filed_unit") or rec.get("intangibles_unit")
+        if not unit and not n.get("fx_conversion"):
+            unit = "USD"   # no FX record: every figure the run read is USD
+        r = _record_rate(n, unit, pe, rec.get("intangibles_fx")) if unit else None
+        hits.append((f"FY{pe[:4]} ({pe})", sum(sw.values()), unit, sorted(sw), _capex_override_usd(n, value, pe),
+                     None if r is None else sum(v for v in filed.values() if v > 0) * r))
+    tt = tt if isinstance(tt, dict) else {}
+    comps = tt.get("capex_components") if isinstance(tt.get("capex_components"), dict) else {}
+    legs = ((tt.get("inputs") or {}).get("capex") or {}) if isinstance(tt.get("inputs"), dict) else {}
+    used = next((e for e in (tt.get("overrides_used") or []) if isinstance(e, dict) and e.get("field") == "capex"), {})
+    filled = used.get("legs_filled") if isinstance(used.get("legs_filled"), dict) else {}
+    stamped = (release_tuple(tt.get("engine_release")) or (0, 0, 0)) >= RELEASE_57
+    for leg in _TTM_CAPEX_LEGS:
+        c = comps.get(leg)
+        per = legs.get(f"{leg}_period") if isinstance(legs.get(f"{leg}_period"), list) else None
+        if not stamped:
+            if legs.get(f"{leg}_tag") == "OVERRIDE":
+                unstamped.append(f"TTM {leg} leg ({per[0]}..{per[1]})" if per and len(per) == 2 else f"TTM {leg} leg")
+            continue
+        if not (isinstance(c, dict) and c.get("intangibles_not_added") == "override_present" and c.get("software_tags")
+                and _num(c.get("software"))):
+            continue
+        amt = _num((filled.get(leg) or {}).get("amount")) if isinstance(filled.get(leg), dict) else None
+        if amt is None and per and len(per) == 2:
+            amt = float(value) * _engine_days(per[0], per[1]) / 365.0   # ttm.py's proration (inclusive days / 365)
+        where = f"TTM {leg} leg ({per[0]}..{per[1]})" if per and len(per) == 2 else f"TTM {leg} leg"
+        hits.append((where, float(c["software"]), "USD", sorted(c["software_tags"]), amt,
+                     float(_num(c.get("intangibles")) or c["software"])))
+    return hits, unstamped
+
+
+def _engine_days(a, b):
+    """ttm.py's inclusive day count (end - start + 1)."""
+    return (datetime.date.fromisoformat(b) - datetime.date.fromisoformat(a)).days + 1
+
+
 def refuse_capex_override_software(n, j_over, tt=None):
-    """v5.7 placeholder (L9, R9): a capex_override beside capitalized software the 5.7 engine now adds (its
-    software_included declaration and value test; tt is the current ttm.json for the TTM legs). No-op in L0."""
+    """v5.7 R9 (Andrew, 2026-10-19: capitalized software is capex). A capex_override is read as the filer's TOTAL
+    capex line and never takes the filed intangible leg on top. When it fills a last-3-FY year
+    (capex_provenance[<FY>].intangibles_not_added == 'override_present' with a CAPEX_SOFTWARE_NAMES tag in
+    intangibles_filed) or a TTM leg of the current ttm.json `tt` (capex_components.<leg>.intangibles_not_added ==
+    'override_present' with non-empty software_tags) whose filed capitalized software was therefore not added, the
+    override must declare software_included: true — whatever its value: raising a PP&E-only figure to the total does
+    not change what the record shows, so the declaration is required. With the declaration the override must be at
+    least the filed intangible leg it claims to include — a total can never be smaller than one of its parts —
+    compared in USD on the engine's own basis:
+      FY year: the override on override_checks.capex.currency_basis (verbatim for no_fx / declared_usd /
+        last_filed_unit_usd, else x fx_conversion's reporting-currency rate for that period end — what the engine's
+        _override_usd does) vs the sum of capex_provenance[<FY>].intangibles_filed x the rate of its filed unit
+        (intangibles_filed_unit; the leg's own intangibles_fx rate first, else rates_by_currency);
+      TTM leg: the override as ttm.py filled the leg (overrides_used capex legs_filled.<leg>.amount, else value x
+        inclusive days / 365 — ttm.py's proration; ttm.py legs are USD) vs capex_components.<leg>.intangibles.
+    A rate the record does not carry is refused as unverifiable. A ttm.json without a 5.7 engine_release stamp
+    records no software at all, so an override-filled TTM leg in it cannot be checked: refused, naming the legs
+    (rerun ttm.py) — never passed silently. Runs only on a 5.7 run; older output rebuilds unchanged."""
+    if not is_57_run(n) or "capex" not in j_over:
+        return None
+    o = j_over["capex"]
+    hits, unstamped = _software_override_hits(n, tt, o["value"])
+    if unstamped:
+        fail(f"judgment.json capex_override {o['value']:,.0f} fills {', '.join(unstamped)} of a ttm.json stamped "
+             f"engine_release {(tt or {}).get('engine_release') or 'none (pre-5.7)'}: a ttm.json built before engine "
+             "5.7 records no capitalized software, so whether the filing reports software beside the override on "
+             "those legs cannot be checked — rerun ttm.py with the current engine, then the engine and make_score.")
+    if not hits:
+        return None
+    where = "; ".join(f"{w}: {v:,.0f}{' ' + u if u and u != 'USD' else ''} ({', '.join(t)})" for w, v, u, t, _, _ in hits)
+    if o.get("software_included") is not True:
+        fail(f"judgment.json capex_override {o['value']:,.0f} fills {where} — capitalized software the filing reports "
+             "and the engine did not add on top of the override (an override is the filer's TOTAL capex line; the "
+             "intangible leg is never stacked on it). The declaration is required either way: if the override figure "
+             "is the cash-flow total including that software, set capex_override.software_included: true; if it is "
+             "the PP&E line only, raise capex_override.value to the total (PP&E + capitalized software + intangible "
+             "purchases), re-run the engine, and set software_included: true.")
+    short = [(w, ov, fi) for w, _, _, _, ov, fi in hits if ov is None or fi is None or ov < fi]
+    if short:
+        fail(f"judgment.json capex_override {o['value']:,.0f} declares software_included: true, but "
+             + "; ".join(f"{w}: the override is "
+                         + ("unverifiable (the record carries no FX rate for it)" if ov is None or fi is None
+                            else f"{ov:,.0f} USD against {fi:,.0f} USD of filed intangible purchases and capitalized "
+                                 "software")
+                         for w, ov, fi in short)
+             + " — a total that includes them can never be smaller than they are. The figure is the PP&E line only: "
+             "raise capex_override.value to the cash-flow total (PP&E + capitalized software + intangible purchases) "
+             "and re-run the engine (and ttm.py for a TTM leg).")
     return None
+
+
+def _unlisted_capex_tags(n):
+    """{tag: [(fy, value), ...]} for every CAPEX_UNLISTED_COMPONENT:<tag> flag on the record (the refusing variant only:
+    CAPEX_UNLISTED_COMPONENT_OVERRIDDEN:<tag> never matches the 'CAPEX_UNLISTED_COMPONENT:' prefix)."""
+    out = {}
+    for f in n.get("fragility_flags") or []:
+        if not (isinstance(f, str) and f.startswith(UNLISTED_CAPEX_FLAG + ":")):
+            continue
+        tag = f[len(UNLISTED_CAPEX_FLAG) + 1:].split(" ")[0].strip()
+        if tag:
+            out.setdefault(tag, []).extend((int(fy), float(v.replace(",", "")))
+                                           for fy, v in re.findall(r"FY(\d{4}) ([\d,]+(?:\.\d+)?)", f))
+    return out
 
 
 def refuse_unlisted_capex_component(n, j):
-    """v5.7 placeholder (L9, R8): a CAPEX_UNLISTED_COMPONENT flag not released by judgment.json capex_unlisted_ack.
-    No-op in L0."""
+    """v5.7 R8 (Andrew, 2026-10-19: "a small other component never stands in for the whole"). On a 5.7 run every
+    CAPEX_UNLISTED_COMPONENT:<tag> flag — a capex-like cash-flow tag on no engine capex list, larger than the whole
+    component capex leg the engine read for the same year in the same filing (the KNX pattern) — needs judgment.json
+    capex_unlisted_ack[<tag>] (a reason with the figure, validated by validate_overrides). There is deliberately no
+    override release (09b Q4, main agent 2026-10-20): an override never replaces a filed leg, so the small listed line
+    would still set owner's earnings. The CAPEX_UNLISTED_COMPONENT_OVERRIDDEN variant (a year with no PP&E leg) is
+    never refused. Older runs rebuild unchanged."""
+    if not is_57_run(n):
+        return None
+    tags = sorted(_unlisted_capex_tags(n))
+    ack = j.get("capex_unlisted_ack") if isinstance(j.get("capex_unlisted_ack"), dict) else {}
+    missing = [t for t in tags if t not in ack]
+    if missing:
+        fail(f"{UNLISTED_CAPEX_FLAG} — engine release {n.get('engine_release')} found {', '.join(missing)} on no engine "
+             "capex list, larger than the whole component capex leg it read for the same year (the flag names the "
+             "figures). If that tag is the filer's capex line, block the company NEEDS_MAIN_AGENT: capex via queue.py: "
+             "the engine's lists need it, and a capex_override cannot help (an override never replaces a filed leg, so "
+             "the small listed line would still set owner's earnings). If it is not capex, declare why with the figure "
+             "in judgment.json capex_unlisted_ack {\"<tag>\": \"<reason>\"} and re-run make_score.")
     return None
 
 
+def capex_unlisted_acks(n, j):
+    """v5.7 R8: [{tag, reason, value}] — one per CAPEX_UNLISTED_COMPONENT:<tag> flag on the record that judgment.json
+    capex_unlisted_ack releases (value: the flag's figure for its latest fiscal year, None when unparseable), for the
+    registry's capex_unlisted_ack events (update_registry -> _capex_events). [] when none."""
+    ack = j.get("capex_unlisted_ack") if isinstance(j, dict) and isinstance(j.get("capex_unlisted_ack"), dict) else {}
+    out = []
+    for tag, figs in sorted(_unlisted_capex_tags(n if isinstance(n, dict) else {}).items()):
+        if tag in ack:
+            out.append({"tag": tag, "reason": ack[tag], "value": max(figs)[1] if figs else None})
+    return out
+
+
 def refuse_pre57_ttm_json(n, tt):
-    """v5.7 placeholder (L9, R8 / R9 TTM provenance): a 5.7 run whose basis read a ttm.json built before engine 5.7
-    (ttm_inputs.ttm_engine_release). No-op in L0."""
+    """v5.7 (R8 / R9 TTM provenance; 09 rebase A6). A 5.7 run whose selected basis read an existing ttm.json — the
+    engine records ttm_inputs exactly then (the --ttm pin, an undeclared --base-oe-ps pin, a TTM basis, basis_window
+    "ttm", a median-native amortized pin under STALE_FY) with its ttm_input_hash — needs that ttm.json built by a 5.7
+    ttm.py: ttm_inputs.ttm_engine_release (the engine's copy of the file's stamp; absent = an unstamped, pre-5.7 file)
+    >= 5.7.0. A pre-5.7 ttm.json leaves capitalized software and the new PP&E components out of every TTM leg while
+    still matching the score's base within 0.1%, so the pin check alone cannot see it. Called right after
+    check_ttm_inputs_current (a ttm.json regenerated after the run is TTM_CHANGED first: rerun the engine), so the
+    recorded stamp is the current file's. A record with ttm_inputs null (a median run, an FY-declared pin) is never
+    refused; older output rebuilds unchanged."""
+    if not is_57_run(n):
+        return None
+    ti = n.get("ttm_inputs")
+    if not (isinstance(ti, dict) and ti.get("ttm_input_hash")):
+        return None
+    rel = ti.get("ttm_engine_release")
+    if (release_tuple(rel) or (0, 0, 0)) < RELEASE_57:
+        fail(f"ttm.json predates engine 5.7 — the run's basis read a ttm.json stamped engine_release "
+             f"{rel or 'none (pre-5.7)'}: its TTM legs were built without the 5.7 capex rules (capitalized software, "
+             f"every filed PP&E component) although this record is engine release {n.get('engine_release')} — rerun "
+             "ttm.py with the current engine, then the engine (--ttm) and make_score.")
     return None
 
 
@@ -1632,8 +1859,11 @@ TTM_CHANGED = ("ttm.json changed after the engine run — rerun dcf_engine.py (t
 def _ttm_inputs_txt(r):
     r = r if isinstance(r, dict) else {}
     h = r.get("ttm_input_hash")
+    # v5.7 (09 rebase A5): the ttm.py stamp is part of the record, so the refusal prints it — a re-stamped ttm.json
+    # with identical legs differs only here, and the worker must see which release built which file
     return (f"ttm_oe_per_share {r.get('ttm_oe_per_share')}, ttm_shares_diluted {r.get('ttm_shares_diluted')}, "
-            f"ytd_current_period {r.get('ytd_current_period')}, ttm_input_hash {str(h)[:12] + '…' if h else h}")
+            f"ytd_current_period {r.get('ytd_current_period')}, ttm_input_hash {str(h)[:12] + '…' if h else h}, "
+            f"ttm_engine_release {r.get('ttm_engine_release') or 'none (unstamped)'}")
 
 
 def check_ttm_inputs_current(n, tt):
@@ -1650,12 +1880,18 @@ def check_ttm_inputs_current(n, tt):
     (HALO's committed 5.6.0 record, anything older) whose positive IPR&D charge is on ttm.json's share count
     (shares_source "ttm.json ttm_shares_diluted") falls back to its own record: the current ttm_shares_diluted must
     equal shares_denominator (within one share) and, when the window names a current YTD, ytd_current_period must be
-    it. Any other older record keeps the 0.1% base check alone."""
+    it. Any other older record keeps the 0.1% base check alone.
+    v5.7 (09 rebase A5): ttm_inputs_record carries ttm_engine_release when ttm.json is stamped (ttm.py stamps it
+    since 5.7; outside ttm_input_hash). A record that is not a 5.7 run and recorded no stamp (every pre-5.7 engine)
+    is compared without it, so rerunning ttm.py under 5.7 with identical legs leaves older output rebuilding as
+    before; on a 5.7 run the stamp is bound like every other field (a stamp-only change names both releases)."""
     if "ttm_inputs" in n:
         rec = n.get("ttm_inputs")
         if rec is None:
             return
         now = _engine.ttm_inputs_record(tt)
+        if isinstance(rec, dict) and "ttm_engine_release" not in rec and not is_57_run(n):
+            now.pop("ttm_engine_release", None)
         if rec != now:
             fail(f"{TTM_CHANGED}: dcf_numbers.json records ttm_inputs {_ttm_inputs_txt(rec)}; the current ttm.json "
                  f"gives {_ttm_inputs_txt(now)}")
@@ -4121,9 +4357,12 @@ def _base_alternatives_events(ticker, base_alts, today):
 
 
 def _capex_events(ticker, today, unlisted_acks, n):
-    """v5.7 placeholder (L9, R8): one capex_unlisted_ack event per acknowledged CAPEX_UNLISTED_COMPONENT tag. [] in
-    L0."""
-    return []
+    """v5.7 (L9, R8): one capex_unlisted_ack event {ticker, event, date, tag, reason, value} per acknowledged
+    CAPEX_UNLISTED_COMPONENT tag (unlisted_acks: capex_unlisted_acks(n, j) — the tag, the worker's reason and the
+    flag's figure). The ack releases a refusal, so it is a judgment call the registry records; its identity is
+    (tag, reason) — an unchanged ack keeps its first date (keep_first_dates). [] when none."""
+    return [{"ticker": ticker, "event": "capex_unlisted_ack", "date": today, "tag": a["tag"], "reason": a["reason"],
+             "value": a.get("value")} for a in (unlisted_acks or []) if isinstance(a, dict) and a.get("tag")]
 
 
 def _attach_fact_citations(entries, facts_check):
@@ -4202,6 +4441,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
                        "reason": j_over[field]["reason"], "date": today}
                 if j_over[field].get("currency") is not None:
                     ent["currency"] = j_over[field]["currency"]
+                if field == "capex" and j_over[field].get("software_included") is not None:
+                    ent["software_included"] = j_over[field]["software_included"]   # v5.7 R9 (L9)
                 if a.get("scope"):
                     ent["scope"] = a["scope"]
                 entries.append(dict(ent, **{
@@ -4288,7 +4529,8 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
         entries += _facts_events(ticker, today, facts_check)                    # L2 (R3)
         entries += _share_classes_events(ticker, share_classes, up_c, n, j)     # L8 (R6)
         entries += _base_alternatives_events(ticker, base_alts, today)          # R7
-        entries += _capex_events(ticker, today, unlisted_acks, n)               # L9 (R8)
+        entries += _capex_events(ticker, today, unlisted_acks if unlisted_acks is not None   # L9 (R8): derived
+                                 else capex_unlisted_acks(n, j), n)             # from the run + judgment by default
         _attach_fact_citations(entries[n_kept:], facts_check)                   # L2: a post-pass, never a new entry
         keep_first_dates(entries[n_kept:], prior)
         reg["entries"] = entries
@@ -4403,7 +4645,10 @@ def capex_basis_lines(folder, n):
     rows = [r for r in _csv_rows(folder) if "capex_source" in r][-3:]
     for r in rows:
         ppe, intang = _f(r.get("capex_ppe")), _f(r.get("capex_intangibles"))
-        split = f" (PP&E {_usd(ppe)} + intangibles {_usd(intang or 0.0)})" if ppe is not None else ""
+        sw = _software_usd(prov.get(r["period_end"]), intang)   # v5.7 R9: None unless the run read software
+        sw_s = f", of which capitalized software {_usd(sw)}" if sw is not None else ""
+        split = (f" (PP&E {_usd(ppe)} + intangibles {_usd(intang or 0.0)}{sw_s})" if ppe is not None
+                 else (f" ({sw_s[2:]})" if sw_s else ""))
         out.append(f"- Capex basis FY{r.get('fy_label') or r['period_end'][:4]} ({r['period_end']}): "
                    f"{_usd(_f(r.get('capex')))} — {r.get('capex_source') or '—'}: {r.get('capex_tag') or '—'}{split}")
     if out:
@@ -4415,8 +4660,26 @@ def capex_basis_lines(folder, n):
         legs = [f"{t} {_amount(v, p.get('ppe_unit'))}" for t, v in ppe.items()] \
             + [f"{t} {_amount(v, p.get('intangibles_unit'))}" for t, v in intang.items()]
         note = f"; intangibles not added: {p['intangibles_not_added']}" if p.get("intangibles_not_added") else ""
+        soft = p.get("software") if isinstance(p.get("software"), dict) else {}
+        if soft:   # v5.7 R9: the capitalized-software part, per tag, as filed
+            note += "; of which capitalized software: " + " + ".join(
+                f"{t} {_amount(v, p.get('intangibles_unit'))}" for t, v in soft.items())
         out.append(f"- Capex basis FY{pe[:4]} ({pe}): {p.get('ppe_source') or '—'}: {' + '.join(legs) or '—'}{note}")
     return out
+
+
+def _software_usd(p, intang_usd):
+    """v5.7 R9: the capitalized-software part of a CSV row's capex_intangibles (USD), from capex_provenance[<FY>]
+    `p`: capex_intangibles x (software / intangibles) — both provenance maps are in the leg's one filed unit, so the
+    ratio is unit-free. None when the provenance names no software (every pre-5.7 record) or a figure is missing."""
+    if not isinstance(p, dict) or not isinstance(p.get("software"), dict) or not p["software"]:
+        return None
+    sw = sum(float(v) for v in p["software"].values() if _num(v) is not None)
+    tot = sum(float(v) for v in (p.get("intangibles") or {}).values() if _num(v) is not None) \
+        if isinstance(p.get("intangibles"), dict) else 0.0
+    if intang_usd is None or not tot:
+        return None
+    return intang_usd * sw / tot
 
 
 def _scalars(d, skip=()):

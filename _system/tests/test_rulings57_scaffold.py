@@ -680,7 +680,10 @@ def test_rulings57_helpers_are_the_identity_and_never_modify_inputs():
     assert rulings57.apply(None, None) == (None, None)
     assert rulings57.content_hash(n) == n["content_hash"]
     tt = {"ttm_oe_per_share": 1.0}
-    assert rulings57.add_ttm_engine_release(tt) is tt and tt == {"ttm_oe_per_share": 1.0}
+    # L9 (R8 / R9 TTM provenance) filled add_ttm_engine_release: it stamps the ttm.json object in place (no longer the
+    # identity) and returns it — test_make_score_57_capex.test_rulings57_stamps_a_hand_written_ttm_json pins the rest
+    assert rulings57.add_ttm_engine_release(tt) is tt and tt == {"ttm_oe_per_share": 1.0,
+                                                                 "engine_release": E.ENGINE_RELEASE}
     assert rulings57.answer_base_replays("/nowhere", n) is None
     d = tempfile.mkdtemp(prefix="r57_g16_")
     try:
