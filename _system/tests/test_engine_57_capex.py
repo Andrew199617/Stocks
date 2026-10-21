@@ -315,6 +315,41 @@ def test_subclass_component_never_stands_alone_exr():
     assert ppe[("2023-01-01", "2023-12-31")] == (151571000, f"{PRODUCTIVE}+{FF}"), ppe
 
 
+def test_subclass_guard_counts_only_the_leg_unit():
+    """T17 s8 (review of the L9 build): "beside another class" counts only facts in the unit the component leg sums.
+    The unit rule drops an other-unit fact ('unit'), so it must not admit a sub-class: M&E CNY 828M beside F&F USD 5M
+    (a USD tie-break) read F&F as a USD 5M leg with M&E dropped — the silent small leg the sub-class rule exists to
+    prevent (HTHT-type filers file M&E in CNY and USD). Now the sub-class is set aside and M&E is the leg in CNY;
+    s8b mining assets alike; s8c two sub-classes in the majority unit; s8d a $0 non-primary roll-up still yields to
+    the M&E leg (zero-guard), never to F&F. Pins (pass before the fix): s8e a sub-class beside a non-zero
+    other-class fact in the leg's unit is summed and the other unit dropped (the 5.5 unit rule); s8f in CNY too."""
+    s8 = E.capex_for_period([], [fact(ME, 828000000, unit="CNY"), fact(FF, 5000000)], [])
+    assert (s8["ppe"], s8["ppe_unit"], s8["ppe_tags"]) == (828000000, "CNY", [ME]), s8
+    assert [list(d) for d in s8["dropped"]] == [[FF, 5000000, "subclass_alone"]], s8["dropped"]
+    s8b = E.capex_for_period([], [fact(ME, 828000000, unit="CNY"), fact(MINING, 14000000)], [])
+    assert (s8b["ppe"], s8b["ppe_unit"]) == (828000000, "CNY") and dropped(s8b) == {(MINING, "subclass_alone")}, s8b
+    s8c = E.capex_for_period([], [fact(ME, 828000000, unit="CNY"), fact(MINING, 14000000), fact(FF, 5000000)], [])
+    assert (s8c["ppe"], s8c["ppe_unit"]) == (828000000, "CNY"), s8c
+    assert dropped(s8c) == {(MINING, "subclass_alone"), (FF, "subclass_alone")}, s8c
+    s8d = E.capex_for_period([fact(IFRS_PPE, 0)], [fact(ME, 828000000, unit="CNY"), fact(FF, 5000000)], [])
+    assert (s8d["ppe"], s8d["ppe_unit"], s8d["ppe_tags"]) == (828000000, "CNY", [ME]), s8d
+    assert dropped(s8d) == {(IFRS_PPE, "zero_guard"), (FF, "subclass_alone")}, s8d
+    s8e = E.capex_for_period([], [fact(OTHER_PPE, 2000000), fact(FF, 5000000), fact(ME, 828000000, unit="CNY")], [])
+    assert (s8e["ppe"], s8e["ppe_unit"], s8e["ppe_tags"]) == (7000000, "USD", [OTHER_PPE, FF]), s8e
+    assert dropped(s8e) == {(ME, "unit")}, s8e
+    s8f = E.capex_for_period([], [fact(ME, 828000000, unit="CNY"), fact(FF, 5000000, unit="CNY"),
+                                  fact(MINING, 1000000)], [])
+    assert (s8f["ppe"], s8f["ppe_unit"], s8f["ppe_tags"]) == (833000000, "CNY", [ME, FF]), s8f
+    assert dropped(s8f) == {(MINING, "unit")}, s8f
+    # the engine's own per-FY assembly (period_series per tag, then capex_for_period), on companyfacts filed in two units
+    facts = _companyfacts([
+        _annual(ME, "2025-01-01", "2025-12-31", 828000000, "2026-04-20", "0001-26-1", unit="CNY", form="20-F"),
+        _annual(FF, "2025-01-01", "2025-12-31", 5000000, "2026-04-20", "0001-26-1", form="20-F")])
+    res = _engine_assembly(facts)["2025-12-31"]
+    assert (res["ppe"], res["ppe_unit"], res["ppe_tags"]) == (828000000, "CNY", [ME]), res
+    assert (FF, "subclass_alone") in dropped(res), res
+
+
 def test_superseded_ignores_a_retagged_54_value_rl():
     """T8 (an R8 consequence): RL re-tagged its capex line from PaymentsToAcquireProductiveAssets (a 5.4 tag) to
     machinery and equipment in its FY2026 10-K, comparatives included. With M&E listed, FY2024 keeps its value

@@ -1669,8 +1669,11 @@ TTM_CHANGED = ("ttm.json changed after the engine run — rerun dcf_engine.py (t
 def _ttm_inputs_txt(r):
     r = r if isinstance(r, dict) else {}
     h = r.get("ttm_input_hash")
+    # v5.7 (09 rebase A5): the ttm.py stamp is part of the record, so the refusal prints it — a re-stamped ttm.json
+    # with identical legs differs only here, and the worker must see which release built which file
     return (f"ttm_oe_per_share {r.get('ttm_oe_per_share')}, ttm_shares_diluted {r.get('ttm_shares_diluted')}, "
-            f"ytd_current_period {r.get('ytd_current_period')}, ttm_input_hash {str(h)[:12] + '…' if h else h}")
+            f"ytd_current_period {r.get('ytd_current_period')}, ttm_input_hash {str(h)[:12] + '…' if h else h}, "
+            f"ttm_engine_release {r.get('ttm_engine_release') or 'none (unstamped)'}")
 
 
 def check_ttm_inputs_current(n, tt):
@@ -1687,12 +1690,18 @@ def check_ttm_inputs_current(n, tt):
     (HALO's committed 5.6.0 record, anything older) whose positive IPR&D charge is on ttm.json's share count
     (shares_source "ttm.json ttm_shares_diluted") falls back to its own record: the current ttm_shares_diluted must
     equal shares_denominator (within one share) and, when the window names a current YTD, ytd_current_period must be
-    it. Any other older record keeps the 0.1% base check alone."""
+    it. Any other older record keeps the 0.1% base check alone.
+    v5.7 (09 rebase A5): ttm_inputs_record carries ttm_engine_release when ttm.json is stamped (ttm.py stamps it
+    since 5.7; outside ttm_input_hash). A record that is not a 5.7 run and recorded no stamp (every pre-5.7 engine)
+    is compared without it, so rerunning ttm.py under 5.7 with identical legs leaves older output rebuilding as
+    before; on a 5.7 run the stamp is bound like every other field (a stamp-only change names both releases)."""
     if "ttm_inputs" in n:
         rec = n.get("ttm_inputs")
         if rec is None:
             return
         now = _engine.ttm_inputs_record(tt)
+        if isinstance(rec, dict) and "ttm_engine_release" not in rec and not is_57_run(n):
+            now.pop("ttm_engine_release", None)
         if rec != now:
             fail(f"{TTM_CHANGED}: dcf_numbers.json records ttm_inputs {_ttm_inputs_txt(rec)}; the current ttm.json "
                  f"gives {_ttm_inputs_txt(now)}")

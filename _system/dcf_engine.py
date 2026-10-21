@@ -581,8 +581,9 @@ closed, as for every release change). The items below are written by the lane th
   productive assets" line under a listed tag: FY2025 capex 1,066,000 -> 796,458,000; base $7.00 -> $0.38/sh, Tier
   C -> D (moat 5). HUT's miner purchases and EXR / UDR furniture and fixtures are read the same way. Furniture and
   fixtures and mining assets are SUB-CLASSES (CAPEX_SUBCLASS_COMPONENTS; mining assets: main agent 2026-10-20, 09b
-  Q5): summed only beside a non-zero component of another class — alone (EXR FY2013-21) they are set aside
-  ('subclass_alone' in capex_provenance dropped) and the period reads as in 5.6. Buildings, land, timberlands,
+  Q5): summed only beside a non-zero component of another class in the unit the leg sums (one in another unit,
+  dropped 'unit', admits nothing) — alone (EXR FY2013-21) they are set aside ('subclass_alone' in
+  capex_provenance dropped) and the period reads as in 5.6. Buildings, land, timberlands,
   equipment on lease, the real-estate tags and the net PaymentsForProceeds tags are NOT components (main agent
   2026-10-21, Q9). "A small other component never stands in for the whole" is enforced by
   CAPEX_UNLISTED_COMPONENT:<tag> (unlisted_capex_components): a capex-like us-gaap tag on no list (statements.py's
@@ -1833,10 +1834,11 @@ def capex_for_period(rollups, components, intangibles, cumulative=None):
     [ADDITION — ruling E6] a negative intangible fact is dropped ('negative'); a $0 intangible fact is ignored — it
     joins neither intangible_tags nor the provenance string.
     v5.7 R8 (Andrew, 2026-10-19): a SUB-CLASS component (CAPEX_SUBCLASS_COMPONENTS: furniture and fixtures, mining
-    assets) is summed only beside a non-zero component of another class; when the period's only non-zero components
-    are sub-class facts they are set aside before the roll-up zero-guard and, when no roll-up is used, recorded in
-    `dropped` with reason 'subclass_alone' — the period reads exactly as it did before 5.7 (no PP&E leg; a $0 roll-up
-    or $0 component stays the leg).
+    assets) is summed only beside a non-zero component of another class in the unit the component leg sums (the
+    majority unit over every component; another-unit facts are dropped 'unit' and admit nothing); when no such
+    component exists the sub-class facts are set aside before the roll-up zero-guard and, when no roll-up is used,
+    recorded in `dropped` with reason 'subclass_alone' — the period reads as if no sub-class fact were filed (no PP&E
+    leg, or a $0 roll-up or $0 component as the leg, exactly as in 5.6; the other components choose their own unit).
     v5.7 R9 (Andrew, 2026-10-19): the intangible leg includes capitalized software / development (CAPEX_SOFTWARE_TAGS
     are on CAPEX_INTANGIBLE_TAGS). Only when a software fact survives the equal-value rule: _drop_parts_of_total runs
     on the intangible leg too (a software / intangible total and its parts), and, when the PP&E leg is in the same
@@ -1852,12 +1854,16 @@ def capex_for_period(rollups, components, intangibles, cumulative=None):
     rollups, components, intangibles = norm(rollups), norm(components), norm(intangibles)
     # v5.7 R8: a sub-class component (CAPEX_SUBCLASS_COMPONENTS) is read only beside a non-zero component of another
     # class; alone it is set aside BEFORE the zero-guard, so the period reads exactly as in 5.6 ('subclass_alone' is
-    # recorded below when no roll-up is used).
+    # recorded below when no roll-up is used). "Beside" counts only facts in the unit the component leg sums
+    # (_majority_unit over every component, sub-classes included): a non-zero other-class fact in another unit is
+    # dropped 'unit' there, so it can never admit a sub-class (M&E CNY 828M beside F&F USD 5M must not leave F&F as
+    # a USD 5M leg). Set aside, the remaining components choose their own unit (the M&E CNY leg in that example).
     _sub_alone = []
-    if any(f[0] in CAPEX_SUBCLASS_COMPONENTS for f in components) and not any(
-            f[0] not in CAPEX_SUBCLASS_COMPONENTS and f[1] != 0 for f in components):
-        _sub_alone = [f for f in components if f[0] in CAPEX_SUBCLASS_COMPONENTS]
-        components = [f for f in components if f[0] not in CAPEX_SUBCLASS_COMPONENTS]
+    if any(f[0] in CAPEX_SUBCLASS_COMPONENTS for f in components):
+        _leg_unit = _majority_unit(components)
+        if not any(f[0] not in CAPEX_SUBCLASS_COMPONENTS and f[1] != 0 and f[2] == _leg_unit for f in components):
+            _sub_alone = [f for f in components if f[0] in CAPEX_SUBCLASS_COMPONENTS]
+            components = [f for f in components if f[0] not in CAPEX_SUBCLASS_COMPONENTS]
     out = {"ppe": None, "ppe_unit": None, "ppe_tags": [], "ppe_source": None,
            "intangibles": 0.0, "intangibles_unit": None, "intangible_tags": [],
            "dropped": [], "provenance": ""}
@@ -5169,7 +5175,9 @@ def main():
                 # [READING] an override is the filer's TOTAL capex line (FMS:
                 # 'PP&E and capitalized development costs') — intangibles are
                 # not stacked on it; the OVERRIDE_APPLIED flag says so.
-                intang_not_added[p] = (asm["intangibles"], asm.get("intangibles_unit")) +                     ((asm["software"],) if asm.get("software_tags") else ())   # v5.7 R9: the software part, for the note
+                # v5.7 R9: the software part rides along, for the OVERRIDE_APPLIED note
+                intang_not_added[p] = ((asm["intangibles"], asm.get("intangibles_unit"))
+                                       + ((asm["software"],) if asm.get("software_tags") else ()))
             elif capex_assumed_zero:
                 # [ADDITION — verifier round 1, ruling E7] no PP&E leg (an
                 # assumed-zero row): the intangible leg is NOT added — capex

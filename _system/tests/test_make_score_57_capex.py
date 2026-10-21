@@ -17,8 +17,10 @@ run only (older output rebuilds unchanged):
   M5  CAPEX_UNLISTED_COMPONENT:<tag> needs judgment.json capex_unlisted_ack[<tag>] with a figure; an override does not
       release it; the ack is recorded as a capex_unlisted_ack registry event whose first date is kept; M5b the
       _OVERRIDDEN variant is never refused.
-  M6  a 5.7 run whose basis read ttm.json (ttm_inputs recorded) needs ttm_inputs.ttm_engine_release >= 5.7.0.
-Each fails on the code before this lane (e22e814) unless labelled a pin.
+  M6  a 5.7 run whose basis read ttm.json (ttm_inputs recorded) needs ttm_inputs.ttm_engine_release >= 5.7.0; M6b
+      the stamp is bound on 5.7 runs only (an older record ignores a stamp-only ttm.py rerun) and TTM_CHANGED prints it.
+Each fails on the code before this lane (e22e814) unless labelled a pin; M6b's (h) passes there and failed on the
+lane's first build (2c80d1a), which refused it.
 """
 import copy
 import json
@@ -449,6 +451,43 @@ def test_pre57_ttm_json_is_refused_on_a_57_run():
         _refused(r, "ttm.json changed after the engine run")
     finally:
         r.close()
+
+
+def _pin_run_beside(rec_tt, folder_tt, release=CUR):
+    """A --ttm record whose ttm_inputs the engine took from rec_tt, scored beside folder_tt (ttm.py rerun after the
+    engine run)."""
+    n = _pin_record("ttm", rec_tt, release)
+    r = Run(n, _judgment(n))
+    try:
+        with open(os.path.join(r.folder, "ttm.json"), "w", encoding="utf-8") as f:
+            json.dump(folder_tt, f)
+        r.run()
+        r.result = dict(r.state())
+    finally:
+        r.close()
+    return r
+
+
+def test_ttm_stamp_only_change_follows_the_record_release():
+    """M6b (review of the L9 build): ttm.py's 5.7 engine_release stamp is in ttm_inputs (rebase A5), outside
+    ttm_input_hash. (h) A 5.6.0 record whose ttm_inputs a pre-5.7 engine recorded (no stamp key) beside the same
+    ttm.json rerun under 5.7 — identical legs, only the stamp added — rebuilds as it did before 5.7 (it was refused
+    TTM_CHANGED, printing the same text on both sides); (h2) a changed leg beside it is still TTM_CHANGED. On a 5.7 run
+    the stamp stays bound: (i) a record that read an unstamped ttm.json beside the re-stamped file and (i2) a 5.7.0
+    stamp beside a 5.7.1 one are refused TTM_CHANGED, the refusal naming both releases; (i3) the matching stamp
+    scores."""
+    _ok(_pin_run_beside(_tt(), _tt(E.ENGINE_RELEASE), release="5.6.0"))
+    changed = dict(_tt(E.ENGINE_RELEASE), ttm_shares_diluted=2e9)
+    _refused(_pin_run_beside(_tt(), changed, release="5.6.0"), "ttm.json changed after the engine run",
+             "ttm_shares_diluted 1000000000.0", "ttm_shares_diluted 2000000000.0")
+    rec_txt = "ttm_input_hash {h}…, ttm_engine_release {rel}; the current ttm.json gives"
+    h = E.ttm_inputs_record(_tt())["ttm_input_hash"][:12]
+    r = _refused(_pin_run_beside(_tt(), _tt(E.ENGINE_RELEASE)), "ttm.json changed after the engine run",
+                 rec_txt.format(h=h, rel="none (unstamped)"), f"ttm_input_hash {h}…, ttm_engine_release {E.ENGINE_RELEASE}")
+    assert "ttm.json predates engine 5.7" not in r.err, r.err[-800:]   # TTM_CHANGED first: rerun the engine
+    _refused(_pin_run_beside(_tt("5.7.0"), _tt("5.7.1")), rec_txt.format(h=h, rel="5.7.0"),
+             f"ttm_input_hash {h}…, ttm_engine_release 5.7.1")
+    _ok(_pin_run_beside(_tt("5.7.0"), _tt("5.7.0")))
 
 
 def test_rulings57_stamps_a_hand_written_ttm_json():
