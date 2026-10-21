@@ -544,7 +544,9 @@ def test_placeholders_are_inert_and_pure():
     check_influence's 10 §(l) signature), and the R7 / L5 constants are placed."""
     n, j = {"engine_release": "5.7.0", "ticker": "TST"}, {"tier_override": None}
     with no_writes():
-        for fn, a in ((M.check_influence, ("tier_override_reason", "x", [], None, "/nowhere", n)),
+        # (L2 fills check_influence: a 5.7 tier_override_reason with no number now refuses — R3 — so the purity
+        # probe uses a plain pin's reason, which needs none; test_facts.py covers the refusals)
+        for fn, a in ((M.check_influence, ("base_override", "x", [], None, "/nowhere", n)),
                       (M.load_declared_facts, ("/nowhere", n, j)), (M.load_method_runs, ("/nowhere", n)),
                       (M.previous_score_summary, (None, n)), (M.validate_share_classes, (j,)),
                       (M.check_share_classes_sync, (n, None, "/nowhere")), (M.check_up_c_obligation, (n, j)),

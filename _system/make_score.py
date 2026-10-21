@@ -507,7 +507,49 @@ rebuilt as before, both alert gates closed ("engine output predates release
   misfit closes both gates as before). seed_judgment never seeds the notch as
   a tier_override.
 - (L2, R3) facts.json, the quote gate's key_numbers lines, saved method
-  runs, the declared_facts event: [L2 writes this item]
+  runs, the declared_facts event (strict quoting — Andrew, 2026-10-19).
+  Every number in a 5.7 run's analysis.md must trace to a generated file
+  (check_quotes.py; queue.py done / pass2-done refuse a run that fails).
+  load_declared_facts validates <T>/facts.json (facts.py: ids F1.., kinds
+  folder / filing / release / third_party, types actual / guidance /
+  estimate / metric / event), VERIFIES every folder fact against the named
+  file (<file>:<selector>; unit and value at the declared precision),
+  reproduces calc facts, checks that a non-folder fact's snippet (under 25
+  words) shows its number, refuses a filing / release / third-party fact
+  that repeats a folder figure (same metric and period, or a same-period
+  leaf at >= 4 significant digits) and marks guidance / estimates older
+  than the latest filing the engine used STALE (never a refusal). A
+  declaration new or edited since the prior score (facts_sha256) is
+  authoring — a folder fact that does not verify refuses; an unchanged one
+  is a rebuild — drift is recorded and the run scores. load_method_runs
+  reads the saved runs dcf_numbers_<label>.json (check_quotes.py
+  --save-run): a tampered or foreign one refuses a 5.7 run and is skipped
+  with a warning on an older one. check_influence (5.7 runs only): the
+  tier_override_reason and a plain base_override's reason + source (L1
+  calls it for misfit_notch_reason, every other lane for its own reason
+  fields) cite facts as [F#]; every number in them traces to an engine
+  source or a cited fact — never judgment.json, never worker text the
+  engine echoes into its flag strings (ads_ratio.source in
+  ADS_RATIO_APPLIED, an override's source) — a reason (but not a pin)
+  carries a number, rests never on third-party facts alone, a hand pin's
+  own figure never anchors its reason (an engine figure other than the pin
+  or a cited filing / release / folder fact tagged base_override must),
+  and a cited fact lists the field's used_for tag
+  (facts.INFLUENCE_TAGS) — an unverified-share-count IPR&D override is held
+  to the same rule (its share count a filing fact, the charge a calc fact,
+  the adjusted IRR from a saved run; Q2 default, rebase A14). key_numbers.md
+  gains engine lines (price vs weighted IV@15%, price ÷ base OE/share, the
+  return / margin series, the Filed history table after Growth & moat, the
+  probability weights), "Method runs" (+ the previous score), and
+  "Declared facts (not engine output)" last; worker text it echoes (the
+  Overrides table source and reasons, the payable Source) is in “…”.
+  score.json gains key_numbers_sha256 (of the text as written, LF),
+  declared_facts, method_runs and previous_score (dcf_content_hash is #47's).
+  The registry gains one declared_facts event per run with a facts.json
+  (identity facts_sha256) and `facts` citations on the tier_override /
+  base_override events whose reason cites facts (only then: legacy events
+  are never re-dated). Pre-5.7 output rebuilds with the new lines only; its
+  reasons are never traced and its analysis is reported, never gated.
 - (L3, R4 revised: sources + 11-pillar evidence + supporting factors,
   M1b / M1c) moat_scorecard / moat_evidence and the moat events: [L3
   writes this item]
@@ -533,6 +575,8 @@ from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / ms
 from _stable import _replace  # [Codex review r21 of PR #47] os.replace, retried on a Windows PermissionError
 import dcf_engine as _engine  # v5.5: the release stamp and the market-cap formula (no I/O at import)
 from dcf_engine import ENGINE_RELEASE
+import check_quotes as _quotes  # v5.7 (L2, R3): the quote gate's sources, saved runs and filed-history rows
+import quote_tokens as _qt  # v5.7 (L2, R3): the one tokenizer (reasons carry / trace numbers through it)
 import facts as _facts  # v5.7: the rulings-release predicate and the facts.json schema (stdlib, no I/O at import)
 
 # v5.4: $STOCKS_BASE or the parent of _system/ — the tooling runs anywhere.
@@ -2218,7 +2262,9 @@ def iprd_lines(n):
                  + ("; assumes the earlier remainder was payable in cash (no paid_in_shares check declares it settled "
                     "in shares)" if p.get("deferred_payment_assumption") else "")
                  + dpo_txt
-                 + ("; deal and consideration: not identified by the engine — name them in analysis.md" if p.get("deducted") else ""))
+                 + ("; deal and consideration: not identified by the engine — name them in analysis.md" if p.get("deducted") else "")
+                 # v5.7 (L2, R3; rebase A13): on a 5.7 run the consideration figures are declared facts
+                 + (" (declare the consideration in facts.json, kind filing)" if p.get("deducted") and is_57_run(n) else ""))
     mat = b.get("materiality")
     tail = "" if one_time else f" (treatment {t}: no one-time deduction)"
     # [Codex review r4 of PR #47] the engine's per-share figures are per traded unit (× the applied ADS ratio)
@@ -2485,31 +2531,207 @@ def validate_second_pass(j):
 
 
 # ---------------------------------------------------------------------------
-# v5.7 lane L2 (R3 strict quoting, Andrew 2026-10-19) — L0 placeholders, no-ops until L2 fills them
+# v5.7 lane L2 (R3 strict quoting, Andrew 2026-10-19): declared facts, saved method runs, the previous score and
+# the influence trace — every refusal here runs before registry_transaction (07 §1.12; rebase I6)
 # ---------------------------------------------------------------------------
 def load_declared_facts(folder, n, j, prior_score=None):
-    """v5.7 placeholder (L2, 07 §1.12 step 2): facts.json read, validated and verified against the folder files
-    (no influence yet) — the facts check every later step reads (by_id for the cited facts). None in L0."""
-    return None
+    """07 §1.12 step 2 (02 §4): <T>/facts.json read, validated against the schema and verified against the folder
+    files (folder facts, calc facts, snippets, folder duplicates, staleness) — no influence yet. Returns the
+    facts.FactsCheck every later step reads (by_id / values for the cited facts, summary for score.json, the
+    Declared facts section, the declared_facts registry event), or None when the folder declares no facts. A
+    declaration that is new or edited since the prior score (its facts_sha256 differs from the prior
+    score.json's declared_facts.facts_sha256) is AUTHORING: any folder fact that does not verify refuses; an
+    unchanged one is a REBUILD: a folder file that moved since is recorded as drift and the run scores (02 §4.7, so an
+    engine-release rebuild or the SEC enrichment never fails on folder-file churn). Schema problems always refuse."""
+    doc, err = _facts.load(folder)
+    if err:
+        fail(err)
+    if doc is None:
+        return None
+    prior = (prior_score or {}).get("declared_facts") if isinstance(prior_score, dict) else None
+    prior_sha = prior.get("facts_sha256") if isinstance(prior, dict) else None
+    try:
+        return _facts.check(doc, folder, os.path.basename(os.path.normpath(folder)).upper(), n=n, prior_sha=prior_sha)
+    except _facts.FactsRefusal as e:
+        fail(str(e))
 
 
 def load_method_runs(folder, n):
-    """v5.7 placeholder (L2): the saved method runs (dcf_numbers_<label>.json, hash-verified). None in L0."""
-    return None
+    """The saved method runs (02 §7.3): every <T>/dcf_numbers_<label>.json — a byte copy of an engine run made by
+    check_quotes.py --save-run — whose content_hash verifies and whose ticker is this folder's. On a 5.7 run a
+    tampered or foreign saved run refuses (an analysis quoting a method range must quote verbatim engine output);
+    on an older run it is skipped with a warning (legacy saved runs are not re-graded). Returns [{"summary": the
+    score.json method_runs entry, "n": the record}] sorted by label, or None when there is none."""
+    ticker = str(n.get("ticker") or os.path.basename(os.path.normpath(folder))).upper()
+    out = []
+    for label, _path, rec in _quotes.saved_runs(folder):
+        why = _quotes.saved_run_problem(label, rec, ticker)
+        if why is None and not _quotes.LABEL_RE.match(label):
+            why = f"dcf_numbers_{label}.json: the label must match ^[a-z][a-z0-9_]{{0,31}}$ (check_quotes.py --save-run)"
+        if why:
+            if is_57_run(n):
+                fail(why)
+            print(f"make_score.py: warning — {why}; not rendered (an engine run before 5.7: not refused)", file=sys.stderr)
+            continue
+        iprd = rec.get("iprd_adjustment") if isinstance(rec.get("iprd_adjustment"), dict) else {}
+        s = {"label": label, "file": f"dcf_numbers_{label}.json", "content_hash": rec.get("content_hash"),
+             "as_of": rec.get("as_of"), "engine_release": rec.get("engine_release"),
+             "base_oe_per_share": rec.get("base_oe_per_share"), "base_source": rec.get("base_source"),
+             "implied_irr": round(rec["implied_irr_weighted"], 4) if _num(rec.get("implied_irr_weighted")) is not None else None,
+             "iv_at_15": round(rec["iv_at_15"], 2) if _num(rec.get("iv_at_15")) is not None else None,
+             "tier_by_numbers": rec.get("tier_by_numbers")}
+        if iprd.get("treatment") and _num(iprd.get("charge_per_share")) is not None:
+            # rebase A15: a saved IPR&D run's IVs / IRR are after its own deduction
+            s["iprd_treatment"], s["iprd_charge_per_share"] = iprd["treatment"], iprd["charge_per_share"]
+        out.append({"summary": s, "n": rec})
+    return out or None
+
+
+def _legacy_prior_differs(prior, n):
+    irr = _num(n.get("implied_irr_weighted"))
+    pi = _num(prior.get("implied_irr"))
+    base, pb = _num(n.get("base_oe_per_share")), _num(prior.get("base_oe_per_share"))
+    return (prior.get("analysis_date") != n.get("as_of") or prior.get("engine_release") != n.get("engine_release")
+            or ((irr is None) != (pi is None)) or (irr is not None and abs(round(irr, 4) - pi) > 0.5e-4 + 1e-9)
+            or ((base is None) != (pb is None)) or (base is not None and abs(base - pb) > 1e-9 * max(1.0, abs(base))))
 
 
 def previous_score_summary(prior_score, n):
-    """v5.7 placeholder (L2): the score this run replaces, when it was another engine run's (the "Previous score"
-    line). None in L0."""
-    return None
+    """02 §7.3: the score this run replaces when it was ANOTHER engine run's — its dcf_content_hash differs from this
+    run's content_hash, or (a prior score from before the hash existed) its analysis_date, engine_release,
+    weighted IRR or base differ — as {analysis_date, engine_release, tier_final, tier_by_numbers, implied_irr,
+    iv_at_15, base_oe_per_share, dcf_content_hash}; a rebuild of the same run carries the prior score's own
+    previous_score forward; None for a first score (or a rebuild of a run nothing preceded)."""
+    if not isinstance(prior_score, dict):
+        return None
+    ph = prior_score.get("dcf_content_hash")
+    differs = (ph != n.get("content_hash")) if ph else _legacy_prior_differs(prior_score, n)
+    if not differs:
+        carried = prior_score.get("previous_score")
+        return carried if isinstance(carried, dict) else None
+    return {k: prior_score.get(k) for k in ("analysis_date", "engine_release", "tier_final", "tier_by_numbers",
+                                            "implied_irr", "iv_at_15", "base_oe_per_share", "dcf_content_hash")}
+
+
+# 12_lane_defaults Q2 (main agent, 2026-10-21, pending Andrew's ratification; L2 rebase A14 / Q1): the main agent's
+# unverified-share-count IPR&D tier_override (#47, check_iprd_share_count_unverified) is held to R3 in full — its
+# share count a cited filing fact, the per-share charge a calc fact, the adjusted IRR from a saved run. False is the
+# alternative Andrew was offered: that one path keeps #47's "a $ figure and a %" test only and is not traced.
+IPRD_HAND_OVERRIDE_TRACED = True
+
+
+def _numeric_values(obj):
+    """A ValueSet of every numeric leaf of obj (a number, a list, a dict, or a ValueSet already)."""
+    if isinstance(obj, _qt.ValueSet):
+        return obj
+    vs = _qt.ValueSet()
+
+    def walk(o):
+        if isinstance(o, dict):
+            for v in o.values():
+                walk(v)
+        elif isinstance(o, (list, tuple, set)):
+            for v in o:
+                walk(v)
+        elif _num(o) is not None:
+            vs.add(o)
+    walk(obj)
+    return vs
+
+
+def _trace_only_split(trace_only):
+    """10 §(l): trace_only is a list of values plus dcf_numbers.json key paths (strings), or {"values", "paths"}."""
+    if trace_only is None:
+        return None, ()
+    if isinstance(trace_only, dict):
+        vals, paths = trace_only.get("values") or [], trace_only.get("paths") or []
+    else:
+        vals = [x for x in trace_only if not isinstance(x, str)]
+        paths = [x for x in trace_only if isinstance(x, str)]
+    # the values at the excluded paths are added by check_influence, which holds the record
+    return _numeric_values(vals), tuple(str(p) for p in paths)
+
+
+def base_pin_trace_only(n, bo):
+    """[review r05, 2026-10-21] check_influence's trace_only for a plain base_override (R3: a third-party figure is
+    never a base override's sole support): a HAND pin (--base-oe-ps: inputs.base_oe_ps_arg) is the worker's own
+    number, recorded in dcf_numbers.json, so it may be quoted in its reason but never anchors it — the paths
+    inputs.base_oe_ps_arg and base_oe_per_share (and base_oe_latest_per_share / base_oe_normalized_per_share where
+    they equal the pin) leave the engine set, in the scored run and in a saved copy of it, and the declared value
+    joins the accepted values. None for a run without a hand pin (a ttm.json base is ttm.py's figure, a real engine
+    source)."""
+    pin = _num((n.get("inputs") or {}).get("base_oe_ps_arg"))
+    if pin is None:
+        return None
+    vals = [pin] + [v for v in (_num((bo or {}).get("value")),) if v is not None]
+    paths = ["inputs.base_oe_ps_arg", "base_oe_per_share"]
+    for k in ("base_oe_latest_per_share", "base_oe_normalized_per_share"):
+        v = _num(n.get(k))
+        if v is not None and abs(v - pin) <= 1e-9 * max(1.0, abs(pin)):
+            paths.append(k)
+    return {"values": vals, "paths": paths}
 
 
 def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only=None, require_anchor=False):
-    """v5.7 placeholder (L2, R3 — the one influence-trace entry point every lane's reason fields call, 07 §1.12 step
-    7; signature per 10 §(l)): on a 5.7 run, every number in `text` (judgment.json `field`) must trace to an engine
-    source (dcf_numbers.json, ttm.json, the CSV, saved runs, and the numeric leaves in `extra`) or to a cited fact
-    (`fact_ids`, facts check `fc`) whose used_for lists the field's tag (facts.INFLUENCE_TAGS), and never rest on
-    third-party facts alone; refusals call fail() before the first write. Returns None (L0: nothing checked)."""
+    """v5.7 (L2, R3 — Andrew 2026-10-19; 02 §5, 10 §(l)): the one influence-trace entry point every lane's reason
+    fields call on a 5.7 run (07 §1.12 step 7; output from an older release is never checked — its reasons predate
+    the rule, D1). In order, judgment.json `field`'s `text` is refused when: (1) it cites [F#] ids facts.json does
+    not declare; (2) it carries no number (every field except a plain base_override's reason / source); (3) a
+    number traces to neither an engine source — dcf_numbers.json, ttm.json, the saved method runs, the filed history
+    / return series / derived figures key_numbers.md prints, and `extra`'s numeric leaves; never judgment.json, and
+    never the worker text the engine echoes into its flag strings (check_quotes.influence_sources blanks
+    check_folder's worker text and the record's own copies of it, review r02) — nor a CITED fact's value
+    (`trace_only` values, and the values at its dcf_numbers.json paths, which are removed from the engine set — from
+    a saved run too where it repeats them — are accepted but never count as an engine match); (4) every number rests
+    only on third-party facts (R3: they calibrate scenarios and give context only); (5) a cited fact does not list the
+    field's used_for tag (facts.INFLUENCE_TAGS); (6) require_anchor, the text has a number, and no number matched an
+    engine source outside trace_only, `extra`, or a cited non-third-party fact tagged for the field (a plain
+    base_override pin uses it with base_pin_trace_only: a pin never traces to itself alone, review r05). Returns
+    None; the influence record {facts, engine_numbers, third_party_only} is kept on fc (fc.influence[field]) for
+    score.json declared_facts and the registry's `facts` citations. Pure apart from fail(): it reads folder files
+    only."""
+    if not is_57_run(n):
+        return None
+    s = "" if text is None else str(text)
+    tag = _facts.INFLUENCE_TAGS.get(field) or field
+    ids = list(dict.fromkeys(fact_ids or []))
+    nq = fc.not_quantities() if fc is not None else ()
+    hint = ""
+    if field == "tier_override_reason" and iprd_override_required(n):
+        hint = (" (an unverified-share-count IPR&D override: cite the verified share count as a filing fact, the "
+                "per-share charge as a calc fact, and quote the adjusted IRR from a saved run — check_quotes.py "
+                f"--save-run {n.get('ticker')} <label>)")
+    vals, paths = _trace_only_split(trace_only)
+    if paths:
+        vals = vals or _qt.ValueSet()
+        for p in paths:
+            vals.merge(_numeric_values(_quotes.path_value(n, p)))
+    engine = _quotes.influence_sources(folder, n, facts_doc=fc.doc if fc is not None else None, exclude_paths=paths)
+    res = _facts.influence_support(s, ids, fc, engine, tag, extra=_numeric_values(extra) if extra is not None else None,
+                                   trace_only=vals, not_quantities=nq)
+    if res.unknown:
+        fail(f"judgment.json {field} cites {res.unknown[0]}, which facts.json does not declare")
+    if field not in _facts.NUMBER_OPTIONAL_FIELDS and not res.carries_number:
+        fail(f"judgment.json {field} carries no number — the reason must name the figure it rests on{hint}")
+    if res.untraced:
+        t = res.untraced[0]
+        fail(f"judgment.json {field} quotes {t.raw} that is neither an engine figure nor a fact it cites — declare it "
+             f"in facts.json and cite it as [F#]{hint}")
+    if res.third_party_only:
+        fail(f"judgment.json {field} rests only on third-party facts ({', '.join(res.facts_matched)}) — it needs an "
+             "engine figure or a filing / release / folder fact (R3)")
+    if res.missing_tag:
+        fid = res.missing_tag[0]
+        fail(f"judgment.json {field} cites {fid}, but {fid} does not list used_for {tag}")
+    if require_anchor and res.numbers and not res.anchored:
+        if field == "base_override":
+            fail("judgment.json base_override traces only to the pinned base itself — the pin must rest on an engine "
+                 "figure other than the pin, or on a cited filing / release / folder fact tagged base_override (R3: a "
+                 "third-party figure is never a base override's sole support)")
+        fail(f"judgment.json {field} traces only through figures that restate the measurement it answers — cite a "
+             f"non-third-party fact tagged {tag} or an engine figure outside it")
+    if fc is not None:
+        fc.influence[field] = {"facts": ids, "engine_numbers": res.engine_numbers, "third_party_only": False}
     return None
 
 
@@ -3206,8 +3428,19 @@ def _interim_events(ticker, interim, declined, today):
 
 
 def _facts_events(ticker, today, facts_check):
-    """v5.7 placeholder (L2, R3): the declared_facts event. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §5): one declared_facts event per run with a facts.json — {ticker, event, date,
+    facts_sha256, count, by_kind, influencing (the ids any influence field cites)}. Its identity
+    (_EVENT_DECLARATION) is facts_sha256 alone, so an unchanged declaration keeps its first date. None of its keys
+    is an iprd_deferred_payment field name (rebase I5)."""
+    if facts_check is None:
+        return []
+    by_kind = {}
+    for f in facts_check.facts:
+        by_kind[f.get("kind")] = by_kind.get(f.get("kind"), 0) + 1
+    influencing = sorted({i for rec in facts_check.influence.values() for i in rec.get("facts") or []},
+                         key=lambda x: int(x[1:]) if x[1:].isdigit() else 0)
+    return [{"ticker": ticker, "event": "declared_facts", "date": today, "facts_sha256": facts_check.sha,
+             "count": len(facts_check.facts), "by_kind": by_kind, "influencing": influencing}]
 
 
 def _share_classes_events(ticker, share_classes, up_c, n, j):
@@ -3229,8 +3462,19 @@ def _capex_events(ticker, today, unlisted_acks, n):
 
 
 def _attach_fact_citations(entries, facts_check):
-    """v5.7 placeholder (L2, R3): a post-pass over this run's new entries — `facts` on a tier_override /
-    base_override event whose reason cites facts (only then: an empty list would re-date legacy events). No-op in L0."""
+    """v5.7 (L2, R3; 02 §5, rebase A6): a post-pass over this run's new entries — `facts: [{id, kind, value, unit,
+    period, source}]` on the tier_override / base_override event whose reason cites facts (the influence record
+    check_influence kept on the facts check). Only then: an absent key and None compare equal in keep_first_dates,
+    an empty list does not, so a legacy event is never re-dated. Touches no other event (the iprd_deferred_payment
+    events sit in the same slice)."""
+    if facts_check is None:
+        return None
+    field_of = {"tier_override": "tier_override_reason", "base_override": "base_override"}
+    for e in entries:
+        fld = field_of.get(e.get("event"))
+        ids = ((facts_check.influence.get(fld) or {}).get("facts") or []) if fld else []
+        if ids:
+            e["facts"] = facts_check.cited_records(ids)
     return None
 
 
@@ -3606,13 +3850,23 @@ def quoted(text):
 # v5.7 (L0, 07 §1.9): one hook per lane in key_numbers.md's section order — each returns its lines ([] in L0, so
 # the text is byte-identical); a lane fills only its own function.
 def _kn_price_vs_iv(n):
-    """v5.7 placeholder (L2): Headline, after "Upside vs price" — the price vs weighted IV@15% line. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.2): Headline, after "Upside vs price" — the price against the weighted IV@15%, so an
+    analysis quotes the premium / discount instead of computing it. Omitted without a positive IV@15%."""
+    p, iv = _num(n.get("price")), _num(n.get("iv_at_15"))
+    if p is None or iv is None or iv <= 0:
+        return []
+    d = p / iv - 1.0
+    return [f"- Price vs weighted IV@15%: price {_money(p)} is {abs(d) * 100:.1f}% {'above' if d >= 0 else 'below'} it "
+            f"(price ÷ IV@15% = {p / iv:.2f}x)"]
 
 
 def _kn_base_extras(n):
-    """v5.7 placeholder (L2): Base owner's earnings, after "Base OE/share" — the price ÷ base OE line. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.2): Base owner's earnings, after "Base OE/share" — price ÷ base OE/share (omitted when
+    the base is not positive)."""
+    p, b = _num(n.get("price")), _num(n.get("base_oe_per_share"))
+    if p is None or b is None or b <= 0:
+        return []
+    return [f"- Price ÷ base OE/share: {p / b:.2f}x"]
 
 
 def _kn_shares_suffix(n):
@@ -3639,24 +3893,93 @@ def _kn_base_alternatives(score):
 
 
 def _kn_growth_extras(folder, n):
-    """v5.7 placeholder (L2): the Growth & moat block's return / margin series lines. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.2 / §1.1, 07 §1.9 item 4): the Growth & moat block's return / margin series from
+    fundamentals.json (last 6 FY, 1 dp): gross, operating and net margin, ROE, FCF and OCF margin, revenue growth,
+    SBC and capex % of revenue. The ROIC proxy series is printed once, by the moat lane's Moat scorecard (07 §1.20,
+    02 Q3)."""
+    return [f"- {label} (fundamentals.json): " + " · ".join(f"{v * 100:.1f}% ({fy})" for fy, v in reversed(pts))
+            for label, _field, pts in _quotes.return_series(folder)]
+
+
+def _usd_full(v):
+    """Full dollars with the sign in front: $3,971,094,000 · -$52,220,000."""
+    return "—" if _num(v) is None else f"{'-' if v < 0 else ''}${abs(v):,.0f}"
 
 
 def _kn_filed_history(folder, n):
-    """v5.7 placeholder (L2, rebase A1): the "Filed history" table, after the Growth & moat block (before Scenarios).
-    [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.2, rebase A1 / A9 / A10): the "Filed history" table — financials_history.csv's last 10
+    FY in full dollars (USD: the engine's FX-converted figures), after the Growth & moat block and before Scenarios
+    (A1: never between the capex basis lines and "## Growth"). Columns the CSV lacks print "—"; total debt is
+    debt_total, else debt_current + debt_lt; OE/share is shown only when the latest row reproduces the engine's
+    latest-FY OE/share (× the applied ADS ratio), else the column is withheld with a note — never a refusal. Then the
+    revenue, OCF, net income and OE year-on-year changes, newest first (check_quotes.YOY_COLUMNS)."""
+    fh = _quotes.filed_history(folder, n)
+    rows = fh["rows"]
+    if not rows:
+        return []
+    cols = _quotes.FILED_COLUMNS
+    L = ["", f"## Filed history (financials_history.csv, last {len(rows)} FY; USD — FX-converted at period-end rates "
+             "where the filer reports in another currency)",
+         "| FY | Period end | " + " | ".join(name for _, name in cols) + " |",
+         "|" + "---|" * (len(cols) + 2)]
+    for r in reversed(rows):
+        cells = [r["fy"], r["period_end"]]
+        for col, _ in cols:
+            v = r.get(col)
+            cells.append("—" if v is None else f"{_money(v)}" if col == "oe_per_share"
+                         else f"{v:,.0f}" if col == "shares_diluted" else _usd_full(v))
+        L.append("| " + " | ".join(cells) + " |")
+    if not fh["per_share"]:
+        L.append("- OE/share column withheld: the CSV's OE ÷ diluted shares does not reproduce the engine's latest-FY "
+                 "OE/share (a share-count adjustment)")
+    if fh["yoy"]:
+        L.append("- " + "; ".join(f"{name} YoY: " + " · ".join(f"{g * 100:+.2f}% ({fy})" for fy, g in reversed(pts))
+                                  for name, pts in fh["yoy"]))
+    return L
 
 
 def _kn_scenario_extras(n):
-    """v5.7 placeholder (L2): after the scenario table — the probability-weight line. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.2): after the scenario table — the probability weights an analysis quotes (bear-or-worse,
+    base, bull-or-better)."""
+    sc = n.get("scenarios") or {}
+    pr = [_num((sc.get(lbl) or {}).get("prob")) for lbl in LABELS]
+    if any(x is None for x in pr):
+        return []
+    return [f"- Probability weight: bear-or-worse {(pr[0] + pr[1]) * 100:.0f}% · base {pr[2] * 100:.0f}% · "
+            f"bull-or-better {(pr[3] + pr[4]) * 100:.0f}%"]
 
 
 def _kn_method_runs(method_runs, previous):
-    """v5.7 placeholder (L2): "Method runs" (saved engine runs) and the "Previous score" line. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.3, rebase A15): "Method runs (saved engine runs — not the scored run)" — one line per
+    hash-verified dcf_numbers_<label>.json (a preliminary or exploratory run quoted as a method range is quoted from
+    here), an acquired-IPR&D saved run marked as after its own deduction; then the score this run replaced, when it
+    was another engine run's. Engine output, so it precedes the judgment-backed sections."""
+    if not method_runs and not previous:
+        return []
+    L = ["", "## Method runs (saved engine runs — not the scored run)"]
+    for r in method_runs or []:
+        s, rn = r["summary"], r["n"]
+        sc = rn.get("scenarios") or {}
+        pr = [_num((sc.get(lbl) or {}).get("prob")) for lbl in LABELS]
+        probs = "/".join(f"{p * 100:.0f}" for p in pr) if all(p is not None for p in pr) else "—"
+        w = rn.get("weighted") or {}
+        line = (f"- {s['label']} ({s['file']}, {s.get('as_of')}, release {s.get('engine_release') or 'pre-5.4'}): base "
+                f"{_money(rn.get('base_oe_per_share'))}/share ({rn.get('base_source')}), moat {rn.get('moat_score')}, "
+                f"probs {probs}, g_base {_pct(rn.get('g_base'))} → weighted IRR {_pct(rn.get('implied_irr_weighted'))}, "
+                f"IV@15% {_money(w.get('iv_at_15', rn.get('iv_at_15')))} · @12% {_money(w.get('iv_at_12', rn.get('iv_at_12')))}, "
+                f"tier {rn.get('tier_by_numbers')}"
+                + (f" (bear {_pct(rn.get('irr_bear'), 1)} {rn.get('tier_bear')} → bull {_pct(rn.get('irr_bull'), 1)} "
+                   f"{rn.get('tier_bull')})" if rn.get("irr_bear") is not None else ""))
+        if s.get("iprd_treatment"):
+            line += (f" · acquired IPR&D: {s['iprd_treatment']}, {_money(s['iprd_charge_per_share'])}/share off every IV "
+                     "(this run's figures are after it)")
+        L.append(line)
+    if previous:
+        L.append(f"- Previous score (replaced by this run): {previous.get('analysis_date')}, release "
+                 f"{previous.get('engine_release') or 'pre-5.4'}, tier {previous.get('tier_final')} (numbers "
+                 f"{previous.get('tier_by_numbers')}), weighted IRR {_pct(previous.get('implied_irr'))}, IV@15% "
+                 f"{_money(previous.get('iv_at_15'))}, base {_money(previous.get('base_oe_per_share'))}/share")
+    return L
 
 
 def _kn_moat(score):
@@ -3670,8 +3993,10 @@ def _kn_interim(score, interim):
 
 
 def _kn_declared_facts(facts_check):
-    """v5.7 placeholder (L2, R3): "Declared facts (not engine output)", always last. [] in L0."""
-    return []
+    """v5.7 (L2, R3; 02 §7.4, D7): "Declared facts (not engine output)", always the last section — every declared
+    fact with its value as rendered (the figure analysis.md quotes), period, type, source and status (verified,
+    DRIFTED, STALE, the folder figure beside an adjusted one); labels, snippets and other worker text in “…”."""
+    return _facts.key_numbers_lines(facts_check, quoted)
 
 
 def write_key_numbers_text(folder, text):
@@ -3777,7 +4102,7 @@ def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, 
               "- Operating income available to common, last 5 FY (oldest first, exact): " + " / ".join(f"${x:,.0f}" for x in figs),
               f"- Average: ${pb.get('average'):,.1f} · shares diluted (latest): {pb.get('shares'):,.0f}" if pb.get("shares") else f"- Average: {_usd(pb.get('average'))}",
               f"- Per ordinary share: {_money(pb.get('per_ordinary_share'))} × ADS ratio {pb.get('ads_ratio')} = pinned base {_money(pb.get('pinned_per_share'))}",
-              f"- Source: {(j.get('base_override') or {}).get('source')}"]
+              f"- Source: {quoted((j.get('base_override') or {}).get('source'))}"]   # v5.7 (L2): worker text in “…”
     L += iprd_lines(n)   # v5.6: acquired IPR&D (nothing for a record without the block)
     L += _kn_base_alternatives(score)                               # v5.7 hook (R7)
     gc = n.get("growth_components") or {}
@@ -3830,10 +4155,10 @@ def build_key_numbers(folder, n, j, score, applied, impact=None, ads_corr=None, 
                 filled = ", ".join(a.get("periods_filled") or [])
                 if a.get("scope") == "ttm_legs":
                     filled = "TTM legs only (ttm.json): " + filled
-                L.append(f"| {field} | {val} | {a['kind']} | {a['source']} | {filled} |")
+                L.append(f"| {field} | {val} | {a['kind']} | {quoted(a['source'])} | {filled} |")   # v5.7 (L2): “…”
         for field in ("capex", "sbc", "shares"):
             if field in applied:
-                L.append(f"- {field} reason: {applied[field]['reason']}")
+                L.append(f"- {field} reason: {quoted(applied[field]['reason'])}")
         if impact:
             basis_lbl = {"ttm": "TTM base", "payable_5y": "payable-earnings base (5-yr avg operating income to common)",
                          "declared_pin": "declared base_override pin (held constant in both worlds)"}.get(
@@ -4256,6 +4581,18 @@ def main():
             check_influence("misfit_notch_reason", notch["reason"], _facts.parse_refs(notch["reason"]), fc, folder, n)
         if plan and plan.get("reason"):
             pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
+        # L2 (R3, Andrew 2026-10-19; 02 §5): the tier override's reason and a plain base_override pin's reason +
+        # source (the payable and iprd_amortized shapes are checked figure for figure elsewhere; rebase I13) — a hand
+        # pin never traces to itself alone (base_pin_trace_only, review r05). misfit_notch_reason is L1's call (its
+        # field, INFLUENCE_TAGS), made above.
+        if override and (IPRD_HAND_OVERRIDE_TRACED or not iprd_override_required(n)):   # Q2 switch
+            check_influence("tier_override_reason", j.get("tier_override_reason"),
+                            _facts.parse_refs(j.get("tier_override_reason")), fc, folder, n)
+        if (base_override_event_applies(j, n) and j_base_override
+                and j_base_override.get("basis") not in (PAYABLE_BASIS, IPRD_AMORTIZED_BASIS)):
+            _bo_text = " ".join(str(j_base_override.get(k) or "") for k in ("reason", "source"))
+            check_influence("base_override", _bo_text, _facts.parse_refs(_bo_text), fc, folder, n,
+                            trace_only=base_pin_trace_only(n, j_base_override), require_anchor=True)
     score.update({
         "engine_release": n.get("engine_release"),
         # [Codex review r12 of PR #47] the run this score was built from (its verified content_hash): reprice.py and
@@ -4327,8 +4664,16 @@ def main():
     # key_numbers_sha256) go here, then key_numbers.md is built as one text — before the write phase, so nothing
     # below can fail between the registry and the last write. (L0: the same text the old in-place writer produced.)
     previous = previous_score_summary(prior_score, n)               # L2
+    if fc is not None:                                               # L2 (R3, 02 §8.3)
+        score["declared_facts"] = fc.summary()
+    if runs:
+        score["method_runs"] = [r["summary"] for r in runs]
+    if previous:
+        score["previous_score"] = previous
     kn_text = build_key_numbers(folder, n, j, score, reported, impact, ads_corr=ads_corr, facts_check=fc,
                                 method_runs=runs, previous=previous, interim=interim, instance=instance)
+    # L2 (R3; rebase A5): what make_score writes as key_numbers.md (LF; check_quotes I2 normalizes a CRLF checkout)
+    score["key_numbers_sha256"] = hashlib.sha256(kn_text.encode("utf-8")).hexdigest()
     # Every refusal and every measurement (override and payable impact) is
     # behind us. [Codex review r19 of PR #47] The write phase is ONE registry
     # transaction: under the registry lock the prior registry is re-read, the

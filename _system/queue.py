@@ -3,7 +3,8 @@
 
 Usage:
   python3 queue.py [--file PATH] claim          -> print the claimed ticker
-  python3 queue.py [--file PATH] done <TICKER>
+  python3 queue.py [--file PATH] done <TICKER>   (refuses, exit 1, an engine 5.7 run whose analysis.md fails
+                                                   check_quotes.py — R3, 2026-10-19)
   python3 queue.py [--file PATH] block <TICKER> [reason...]
   python3 queue.py [--file PATH] block <TICKER> --stdin   (reason read from stdin)
   python3 queue.py [--file PATH] reap            -> print reaped tickers
@@ -14,7 +15,8 @@ Usage:
   python3 queue.py pass2-check <TICKER>             (exit 1 when the name was refreshed or re-scored after the
                                                      claim; records nothing — run before writing anything for the review)
   python3 queue.py pass2-done <TICKER> <done_no_change|done_changed>
-                                                    (refuses, exit 1, when the name was re-scored after the claim)
+                                                    (refuses, exit 1, when the name was re-scored after the claim,
+                                                     or when an engine 5.7 run's analysis.md fails check_quotes.py)
   python3 queue.py pass2-reset <TICKER>             (-> pending)
 With --file, the second-pass queue is the second_pass_queue.json beside PATH.
 
@@ -92,6 +94,7 @@ from zoneinfo import ZoneInfo
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from _lock import locked  # v5.4: cross-platform exclusive file lock (fcntl / msvcrt)
 from _stable import _replace  # os.replace, retried on a Windows PermissionError
+import check_quotes as _quotes  # v5.7 (R3, Andrew 2026-10-19): the quote gate on done / pass2-done
 
 ET = ZoneInfo("America/New_York")
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # v5.4
@@ -329,6 +332,12 @@ def cmd_pass2_done(path, ticker, status, queue_path=None):
     if status not in ("done_no_change", "done_changed", "pending"):
         print("queue.py: pass2-done status must be done_no_change | done_changed | pending", file=sys.stderr)
         sys.exit(2)
+    if status != "pending":
+        # v5.7 (R3; 07 §1.17): pass 2 appends to analysis.md, so the same quote gate, before the lock
+        why = _quote_gate(ticker)
+        if why:
+            print(f"queue.py: pass2-done REFUSED — {ticker}: {why}", file=sys.stderr)
+            sys.exit(1)
     with locked(f"{path}.lock"):
         data = _pass2_load(path)
         entries = data.setdefault("entries", {})
@@ -427,7 +436,32 @@ def cmd_claim(path):
     print(ticker)
 
 
+def _quote_gate(ticker):
+    """None when done / pass2-done may proceed, else the refusal text. Engine 5.7 (R3, Andrew 2026-10-19; design 02
+    §9, 07 §1.17): a run whose analysis.md quotes a number no generated file holds, or whose key_numbers.md /
+    facts.json / saved runs changed after make_score, is not done (check_quotes.py's report). Folders without engine
+    output (blocked names, test fixtures) and runs from an engine release before 5.7 pass — they predate the rule."""
+    folder = f"{BASE}/{ticker}"
+    try:
+        with open(f"{folder}/dcf_numbers.json", encoding="utf-8") as f:
+            n = json.load(f)
+    except FileNotFoundError:
+        return None
+    except (OSError, ValueError) as e:
+        return f"dcf_numbers.json unreadable ({e})"
+    if not _quotes.gated(n):
+        return None
+    rep = _quotes.check_folder(folder)
+    return None if rep["status"] == "pass" else _quotes.refusal_text(rep)
+
+
 def cmd_done(path, ticker):
+    # v5.7 (R3): the quote gate first, before the queue lock — a refusal records nothing and never holds the lock
+    why = _quote_gate(ticker)
+    if why:
+        print(f"queue.py: done REFUSED — {ticker}: {why}", file=sys.stderr)
+        sys.exit(1)
+
     def fn(data):
         e = find(data, ticker)
         if e is None:

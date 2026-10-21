@@ -53,8 +53,85 @@ def _release_at_least_57(rel):
 
 
 def cite_facts_for_reasons(j, n, folder=None):
-    """L2 (R3): facts.json facts (merge_facts) and [F#] citations for the reasons a 5.7 run traces
-    (tier_override_reason, base_override, ...), so every number in them traces. No-op in L0."""
+    """L2 (R3, Andrew 2026-10-19; 07 G16, rebase A14): on a 5.7 record, the reasons make_score now traces
+    (tier_override_reason when a tier_override is set, misfit_notch_reason) are given what R3 asks for, so every
+    pre-existing assertion holds:
+    - a reason that already cites ids ([F1, F2], test_make_score_iprd's unverified-share-count override) gets them
+      declared in facts.json for its untraced figures, in order — a count as a filing fact, a per-share charge that
+      is the record's acquired-IPR&D total over the declared count as a calc fact (ratio, kind filing) — and its
+      quoted percent(s) (the adjusted weighted IRR) from a saved method run dcf_numbers_test_reasons.json (a copy
+      of the record with that IRR, hash-stamped), A14's shape;
+    - a reason that cites nothing gets a filing fact per untraced figure and the [F#] citations appended, and a
+      reason with no number at all ("test reason", "one notch") gains the figure 8.75% [F89].
+    Facts go through merge_facts (no other lane's are lost). The identity on older records, without a folder, or when
+    nothing needs declaring."""
+    if not (isinstance(j, dict) and isinstance(n, dict) and folder and os.path.isdir(folder)):
+        return None
+    import check_quotes as CQ
+    import facts as F
+    import quote_tokens as Q
+    if not F.is_rulings_run(n):
+        return None
+    engine = CQ.influence_sources(folder, n, judgment=j)   # check_influence's own engine set
+    period = f"FY{str(n.get('latest_period_end') or '2025')[:4]}"
+    new_facts, run_values, next_id = [], [], 80
+    for field, tag in REASON_FIELDS:
+        if field == "tier_override_reason" and not j.get("tier_override"):
+            continue
+        text = j.get(field)
+        if not isinstance(text, str) or not text.strip():
+            continue
+        refs = F.parse_refs(text)
+        toks = [t for t in Q.numbers(text) if not engine.match(t) and not (t.release_like or Q.is_method_constant(t, text))]
+        added = []
+        if refs:
+            plain = [t for t in toks if t.kind not in ("pct", "pp", "bps")]
+            iprd = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else {}
+            total = iprd.get("total") if iprd.get("treatment") == "not_applied_share_count_unverified" else None
+            # (the count may coincide with a share figure of the synthetic record: picked from every number)
+            count = next((t for t in Q.numbers(text) if t.kind == "plain"), None) if total else None
+            charge = next((t for t in Q.numbers(text) if t.kind == "money" and count is not None and t is not count
+                           and isinstance(total, (int, float)) and count.val
+                           and abs(total / count.val - t.val) <= 0.5 * 10 ** (-t.dec)), None)
+            if count is not None and charge is not None and len(refs) >= 2:
+                # A14: the unverified-share-count hand deduction — the count a filing fact, the charge a calc fact
+                new_facts.append(dict(_reason_fact(refs[0], count, tag, text, period), label="verified diluted shares"))
+                new_facts.append({"id": refs[1], "label": "acquired-IPR&D charge per verified share", "value": charge.val,
+                                  "unit": "USD/share", "precision": charge.dec, "period": period, "kind": "filing",
+                                  "type": "actual", "calc": {"op": "ratio", "of": [
+                                      "dcf_numbers.json:iprd_adjustment.total", refs[0]]}, "used_for": [tag]})
+                plain = [t for t in plain if t.start not in (count.start, charge.start)]
+                refs_left = refs[2:]
+            else:
+                refs_left = refs
+            for fid, t in zip(refs_left, plain):
+                new_facts.append(_reason_fact(fid, t, tag, text, period))
+            run_values += [t.v / 100.0 for t in toks if t.kind in ("pct", "pp")]
+            toks = plain[len(refs_left):]
+        for t in toks:                    # untraced figures nothing cites yet: declared and cited
+            fid = f"F{next_id}"
+            next_id += 1
+            new_facts.append(_reason_fact(fid, t, tag, text, period))
+            added.append(fid)
+        if not Q.carries_number(text):
+            fid = NO_NUMBER_FACT_ID[field]
+            new_facts.append({"id": fid, "label": "test reason figure", "value": TEST_FIGURE[0], "unit": "pct",
+                              "precision": 2, "period": period, "kind": "filing", "type": "actual",
+                              "source": dict(TEST_FILING), "snippet": f"{TEST_FIGURE[1]} per the test filing",
+                              "used_for": [tag]})
+            j[field] = f"{text} (test figure {TEST_FIGURE[1]} [{fid}])"
+        elif added:
+            j[field] = f"{text} [{', '.join(added)}]"
+    if run_values:
+        rec = copy.deepcopy(n)
+        rec["implied_irr_weighted"] = run_values[0]
+        if len(run_values) > 1:
+            rec["test_reason_figures"] = run_values[1:]
+        rec["content_hash"] = content_hash(rec)
+        with open(os.path.join(folder, f"dcf_numbers_{SAVED_RUN_LABEL}.json"), "w", encoding="utf-8") as f:
+            json.dump(rec, f, indent=1, ensure_ascii=False)
+    if new_facts:
+        merge_facts(folder, new_facts, ticker=n.get("ticker"))
     return None
 
 
@@ -164,3 +241,29 @@ def merge_facts(folder, facts, ticker=None):
     with open(path, "w", encoding="utf-8") as f:
         json.dump(doc, f, indent=1, ensure_ascii=False)
     return doc
+
+
+# ---------------------------------------------------------------------------
+# L2's fixtures for cite_facts_for_reasons (at the end of the file, which no lane edits, so each lane's hunk
+# stays apart in the sequential merge)
+# ---------------------------------------------------------------------------
+REASON_FIELDS = (("tier_override_reason", "tier_override"), ("misfit_notch_reason", "misfit_notch"))
+TEST_FILING = {"form": "10-K", "accession": "0000999001-26-000090", "section": "test fixture (07 G16)",
+               "filed": "2026-02-20"}
+TEST_FIGURE = (0.0875, "8.75%")          # the figure a reason with no number gains (collides with no synthetic leaf)
+NO_NUMBER_FACT_ID = {"tier_override_reason": "F89", "misfit_notch_reason": "F88"}
+SAVED_RUN_LABEL = "test_reasons"         # the saved method run that carries a reason's quoted IRR (rebase A14)
+_SCALE_LETTER = {"trillion": "T", "tn": "T", "T": "T", "billion": "B", "bn": "B", "B": "B", "b": "B",
+                 "million": "M", "mn": "M", "mm": "M", "M": "M", "m": "M", "thousand": "K", "K": "K", "k": "K"}
+
+
+def _reason_fact(fid, tok, tag, text, period):
+    """A filing fact declaring exactly the figure token tok shows (its snippet is the token itself)."""
+    after = text[tok.end:tok.end + 6]
+    unit = {"pct": "pct", "pp": "pp", "bps": "bps", "mult": "x", "plain": "count"}.get(tok.kind) or (
+        "USD/share" if after.startswith("/share") else "USD")
+    value = tok.v / 100.0 if tok.kind in ("pct", "pp") else tok.v / 1e4 if tok.kind == "bps" else tok.val
+    return {"id": fid, "label": f"test reason figure {tok.raw}"[:80], "value": value, "unit": unit,
+            "scale": _SCALE_LETTER.get(tok.scale, "") if tok.kind == "money" else "", "precision": tok.dec,
+            "period": period, "kind": "filing", "type": "actual", "source": dict(TEST_FILING),
+            "snippet": f"{tok.raw} per the test filing", "used_for": [tag]}
