@@ -148,7 +148,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 from fundamentals import (DUR, INST, DURATION_FORMS, core_fy_starts, _days, _g, _ratio, _num, fy_labels,  # noqa: E402
                           resolve_cik, get_json, split_direction, share_refilings, split_filing_cutoffs,
-                          split_factor, _split_desc, _split_cutoff, _shares_with_filed, _units_pref, class_count_check, pick_money_unit)
+                          split_factor, _split_desc, _split_cutoff, _shares_with_filed, _units_pref, class_count_check, pick_money_unit,
+                          capital_returns_from_row)
 from _stable import write_json_if_changed  # noqa: E402  (committed SEC file: no run-date-only rewrites)
 
 BASE = os.environ.get("STOCKS_BASE") or os.path.dirname(HERE)
@@ -161,7 +162,11 @@ SOURCE = "SEC EDGAR companyfacts (filing-direct)"
 # 4 (2026-10-19, ruling-sheet Q8 bugs 2-3, Codex review round 1 on PR #53): net cash needs a filed debt figure, the
 # all-class share count, the one money unit of the newest annual filing — no field marks a file written before them, so
 # --all rebuilds every schema-3 file once (each rewrites once: schema_version is in the file).
-SCHEMA_VERSION = 4
+# 5 (engine 5.7, Andrew 2026-10-19, R4 revised M2 "fix the measure at the source"): the Metrics lines roic /
+# roic_tangible, the annual ROE / ROA / ROIC cells taken from the fundamentals.json row of the same period end (one
+# returns function, fundamentals.capital_returns_from_row), the notes_* cells (n/m, unbounded) and the superseded
+# roic_proxy label — every schema-4 (and older) file rewrites once.
+SCHEMA_VERSION = 5
 FILING_FORMS = ("10-K", "10-K/A", "10-Q", "10-Q/A", "20-F", "20-F/A", "40-F", "40-F/A")
 INSTANT_FORMS = ("10-Q", "10-Q/A", "10-K", "10-K/A", "20-F", "20-F/A", "40-F", "40-F/A")
 ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
@@ -273,7 +278,17 @@ CASH_ONLY_TAG = "CashAndCashEquivalentsAtCarryingValue"
 # not move when fundamentals' own list changes.
 RESTRICTED_TOTAL_TAGS = ["RestrictedCashAndCashEquivalents", "RestrictedCash", "RestrictedCashAndCashEquivalentsAtCarryingValue", (IF, "RestrictedCashAndCashEquivalents")]
 RESTRICTED_PART_TAGS = (["RestrictedCashCurrent"], ["RestrictedCashNoncurrent", "RestrictedCashAndCashEquivalentsNoncurrent"])
-RESTRICTED_CASH_DERIVED = ("net_cash", "net_cash_per_share", "roic_proxy")
+RESTRICTED_CASH_DERIVED = ("net_cash", "net_cash_per_share", "roic_proxy", "roic", "roic_tangible")
+# engine 5.7 (R4 revised M2, 03b §4.4): the returns lines. Their ANNUAL cells are the fundamentals.json row of the same
+# period end (its roe / roa and capital_returns_from_row's roic / roic_tangible + notes — the numbers the moat scorecard
+# reads); older years, the quarters and the TTM go through the same function on statements' own lines (trailing four
+# quarters for the flows). A cell whose note is one of RETURNS_NOTES is null and the note is emitted (notes_annual /
+# notes_quarterly / note_ttm, parallel to the values, only when some cell carries one).
+RETURNS_LINES = ("roe", "roa", "roic", "roic_tangible")
+RETURNS_NOTES = {"roe": ("negative_equity",),
+                 "roic": ("unbounded_high", "loss_on_nonpositive_capital", "loss_on_unstable_capital"),
+                 "roic_tangible": ("unbounded_high", "loss_on_nonpositive_capital", "loss_on_unstable_capital")}
+FUND_INCL_RESTRICTED = "includes restricted cash"   # fundamentals.json cash_basis text of an unsplit combined cash cell
 CASH_WITH_RESTRICTED_LABEL = "Cash, equivalents & restricted cash"
 # visible on the statements table (the per-cell incl_restricted_* marks are JSON only): a line where SOME valued cells
 # still count restricted cash as cash says so in its label; every cell → the ALL suffix (the cash line: the label above)
@@ -483,7 +498,9 @@ METRICS = [
     L("fcf_margin", "Free cash flow margin", level=0, unit="pct", derived="fcf_margin"),
     L("roe", "Return on equity", level=0, unit="pct", derived="roe"),
     L("roa", "Return on assets", level=0, unit="pct", derived="roa"),
-    L("roic_proxy", "Return on invested capital (proxy)", level=0, unit="pct", derived="roic_proxy"),
+    L("roic", "Return on invested capital", level=0, unit="pct", derived="roic"),                   # engine 5.7 (R4)
+    L("roic_tangible", "Return on tangible invested capital", level=0, unit="pct", derived="roic_tangible"),
+    L("roic_proxy", "Return on invested capital (proxy, superseded)", level=0, unit="pct", derived="roic_proxy"),
     L("debt_to_equity", "Debt / equity", level=0, unit="ratio", derived="debt_to_equity"),
     L("current_ratio", "Current ratio", level=0, unit="ratio", derived="current_ratio"),
 ]
@@ -2733,6 +2750,8 @@ def derive_value(name, get, present, tag_of=None, ni_ttm=None, oi_ttm=None, tax_
             return None
         invested = eq + debt - cash
         return _ratio(oi * (1 - t), invested) if invested > 0 else None
+    if name in ("roic", "roic_tangible"):
+        return returns_cell(name, get, present, tag_of)[0]
     if name == "debt_to_equity":
         eq = get("total_common_equity")
         return _ratio(get("total_debt"), eq) if (_num(eq) and eq > 0) else None
@@ -2753,6 +2772,61 @@ def _trailing4(line, ends, i):
     return sum(vals) if all(_num(v) for v in vals) else None
 
 
+RETURNS_FLOWS = ("revenue", "operating_income", "pretax_income", "interest_expense", "income_tax", "net_income")
+
+
+def statements_returns_row(get, tag_of=None, flows=None):
+    """The raw-field row fundamentals.capital_returns_from_row reads, from statements' own lines for one column:
+    revenue, operating_income, pretax_income, interest_expense, income_tax -> tax, net_income (the trailing-four-quarter
+    sums in `flows` on a quarterly column), total_common_equity -> equity, total_debt, the available cash
+    (_available_cash: restricted cash deducted where it is shown), goodwill, intangibles."""
+    f = flows if flows is not None else {k: get(k) for k in RETURNS_FLOWS}
+    num = lambda v: v if _num(v) else None  # noqa: E731
+    return {"revenue": num(f.get("revenue")), "operating_income": num(f.get("operating_income")),
+            "pretax_income": num(f.get("pretax_income")), "interest_expense": num(f.get("interest_expense")),
+            "tax": num(f.get("income_tax")), "net_income": num(f.get("net_income")),
+            "equity": num(get("total_common_equity")), "total_debt": num(get("total_debt")),
+            "cash": num(_available_cash(get("cash"), get, tag_of)), "goodwill": num(get("goodwill")),
+            "intangibles": num(get("intangibles"))}
+
+
+def returns_cell(name, get, present, tag_of=None, flows=None):
+    """(value, note) of one returns-line cell computed from statements' own lines (a period fundamentals.json does not
+    hold, a quarter, the TTM): roe / roa as derive_value has them (ROE n/m — note negative_equity — when equity <= 0),
+    roic / roic_tangible from fundamentals.capital_returns_from_row (no second formula anywhere). A note outside
+    RETURNS_NOTES (no_ebit, no_equity, goodwill_intangibles_not_filed) is not emitted; the value is what the function
+    gives."""
+    if name in ("roe", "roa"):
+        ni = flows.get("net_income") if flows is not None else get("net_income")
+        v = derive_value(name, get, present, tag_of, ni_ttm=ni if flows is not None else None)
+        eq = get("total_common_equity")
+        note = "negative_equity" if (name == "roe" and _num(ni) and _num(eq) and eq <= 0) else None
+        return v, note
+    cr = capital_returns_from_row(statements_returns_row(get, tag_of, flows))
+    note = cr.get(name + "_note")
+    return cr.get(name), (note if note in RETURNS_NOTES.get(name, ()) else None)
+
+
+def fundamentals_returns_cell(name, row):
+    """(value, note, includes_restricted_cash) of an ANNUAL returns cell taken from the fundamentals.json row of the
+    same period end — the numbers capital_returns_from_row wrote there and the moat scorecard recomputes (a row of an
+    older file without the keys gives the same numbers: the function is recomputed). A negative-equity year never
+    copies the row's stored (sign-meaningless) roe. The restricted-cash mark follows the row's cash_basis."""
+    cr = capital_returns_from_row(row)
+    incl = FUND_INCL_RESTRICTED in str(row.get("cash_basis") or "")
+    if name == "roe":
+        if cr["roe_note"] is not None:
+            return None, ("negative_equity" if cr["roe_note"] == "negative_equity" else None), False
+        v = row.get("roe")
+        return (v if _num(v) else None), None, False
+    if name == "roa":
+        v = row.get("roa")
+        return (v if _num(v) else None), None, False
+    note = cr.get(name + "_note")
+    v = cr.get(name)
+    return v, (note if note in RETURNS_NOTES.get(name, ()) else None), bool(incl and _num(v))
+
+
 def _eff(line, col, i):
     """A line's value for a derived computation: the filed value, else 0 when
     the period's filing has no such line (zero_unfiled_components)."""
@@ -2770,27 +2844,48 @@ DERIVED_INPUTS = {
     "tangible_book_value_per_share": ("shares_outstanding",),
     "gross_margin": ("gross_profit", "revenue"), "operating_margin": ("operating_income", "revenue"), "net_margin": ("net_income", "revenue"),
     "fcf_margin": ("fcf", "revenue"), "roe": ("net_income",), "roa": ("net_income",), "roic_proxy": ("operating_income", "income_tax", "pretax_income"),
+    # engine 5.7 (R4): the proxy's inputs plus the EBIT fallback and the tangible deduction
+    "roic": ("operating_income", "income_tax", "pretax_income", "interest_expense", "net_income", "revenue"),
+    "roic_tangible": ("operating_income", "income_tax", "pretax_income", "interest_expense", "net_income", "revenue", "goodwill", "intangibles"),
 }
 
 
-def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
+def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None, fund_rows=None):
     """Compute every derived line over annual / quarterly / ttm columns, in
     spec order (a derived line may use an earlier derived line: fcf ->
-    fcf_per_share, total_debt -> net_cash)."""
+    fcf_per_share, total_debt -> net_cash). fund_rows (engine 5.7): the
+    folder's fundamentals.json annual rows — an annual returns cell (roe, roa,
+    roic, roic_tangible) whose period end equals a row's takes that row's
+    figures (fundamentals_returns_cell)."""
     present = lambda k: k in lines and any(_num(v) for v in lines[k]["annual"] + lines[k]["quarterly"] + [lines[k]["ttm"]])  # noqa: E731
     mixed = []
     ni, oi, tax, pre = lines.get("net_income"), lines.get("operating_income"), lines.get("income_tax"), lines.get("pretax_income")
+    fund_by_end = {r["period_end"]: r for r in (fund_rows or []) if isinstance(r, dict) and isinstance(r.get("period_end"), str)}
     for stmt, specs in STATEMENTS:
         for spec in specs:
             if not spec["derived"]:
                 continue
             name = spec["derived"]
+            returns = name in RETURNS_LINES
+            notes = {"annual": [], "quarterly": [], "ttm": None}
+            fund_incl = {}   # annual index -> the fundamentals row's restricted-cash mark (roic lines)
             annual, aacc, aall = [], {}, {}
             for i in range(len(annual_ends)):
                 get = lambda k, i=i: (_eff(lines[k], "annual", i) if k in lines and i < len(lines[k]["annual"]) else None)  # noqa: E731
                 tag_of = lambda k, i=i: (lines[k].get("_atags", {}).get(annual_ends[i]) if k in lines else None)  # noqa: E731
-                v = derive_value(name, get, present, tag_of)
                 e = annual_ends[i]
+                if returns:
+                    if e in fund_by_end:
+                        v, note, incl = fundamentals_returns_cell(name, fund_by_end[e])
+                        if name in ("roic", "roic_tangible"):
+                            fund_incl[i] = incl
+                        notes["annual"].append(note)
+                        annual.append(v)
+                        continue
+                    v, note = returns_cell(name, get, present, tag_of)
+                    notes["annual"].append(note)
+                else:
+                    v = derive_value(name, get, present, tag_of)
                 p = _prov_join([_prov(lines.get(k), e) for k in derived_input_keys(name, get) if k in lines and _num(lines[k]["annual"][i])])
                 if _num(v) and name in SAME_FILING_DERIVED and _prov_conflict(p):
                     mixed.append(f"{spec['key']} {e}")
@@ -2803,6 +2898,13 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
                 get = lambda k, i=i: (_eff(lines[k], "quarterly", i) if k in lines and i < len(lines[k]["quarterly"]) else None)  # noqa: E731
                 tag_of = lambda k, i=i: (lines[k].get("_qtags", {}).get(q_ends[i]) if k in lines else None)  # noqa: E731
                 kw = {}
+                if name in ("roic", "roic_tangible"):
+                    # trailing-four-quarter flows (OI, pretax, interest, tax, NI, revenue) into the one returns function
+                    flows = {k: _trailing4(lines.get(k), q_ends, i) for k in RETURNS_FLOWS}
+                    v, note = returns_cell(name, get, present, tag_of, flows=flows)
+                    notes["quarterly"].append(note)
+                    quarterly.append(v)
+                    continue
                 if name in ("roe", "roa", "roic_proxy"):
                     kw["ni_ttm"] = _trailing4(ni, q_ends, i)
                     kw["oi_ttm"] = _trailing4(oi, q_ends, i)
@@ -2810,18 +2912,26 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
                     kw["tax_ttm"] = (t4 / p4) if (_num(t4) and _num(p4) and p4 > 0 and 0 <= t4 / p4 <= 0.5) else None
                     if name in ("roe", "roa") and kw["ni_ttm"] is None:
                         quarterly.append(None)
+                        notes["quarterly"].append(None)
                         continue
                     if name == "roic_proxy" and (kw["oi_ttm"] is None or kw["tax_ttm"] is None):
                         quarterly.append(None)
                         continue
+                    if name in ("roe", "roa"):
+                        eq = get("total_common_equity")
+                        notes["quarterly"].append("negative_equity" if (name == "roe" and _num(eq) and eq <= 0) else None)
                 quarterly.append(derive_value(name, get, present, tag_of, **kw))
             get = lambda k: (lines[k]["ttm"] if k in lines else None)  # noqa: E731
             tag_of = lambda k: (lines[k].get("_qtags", {}).get(q_ends[-1]) if (k in lines and q_ends) else None)  # noqa: E731
             kw = {}
-            if name in ("roe", "roa", "roic_proxy"):
+            if name in ("roic", "roic_tangible"):
+                ttm, notes["ttm"] = returns_cell(name, get, present, tag_of)   # the TTM flows are four-quarter sums already
+            elif name in ("roe", "roa", "roic_proxy"):
                 kw = {"ni_ttm": get("net_income"), "oi_ttm": get("operating_income"),
                       "tax_ttm": (get("income_tax") / get("pretax_income")) if (_num(get("income_tax")) and _num(get("pretax_income")) and get("pretax_income") > 0 and 0 <= get("income_tax") / get("pretax_income") <= 0.5) else None}
                 ttm = None if ((name != "roic_proxy" and kw["ni_ttm"] is None) or (name == "roic_proxy" and (kw["oi_ttm"] is None or kw["tax_ttm"] is None))) else derive_value(name, get, present, tag_of, **kw)
+                if name == "roe" and kw["ni_ttm"] is not None and _num(get("total_common_equity")) and get("total_common_equity") <= 0:
+                    notes["ttm"] = "negative_equity"
             else:
                 ttm = derive_value(name, get, present, tag_of)
             inputs = [lines[k] for k in DERIVED_INPUTS.get(name, ()) if k in lines]
@@ -2829,11 +2939,23 @@ def add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings=None):
             lines[spec["key"]] = {"key": spec["key"], "label": spec["label"], "level": spec["level"], "total": bool(spec["total"]), "unit": spec["unit"],
                                   "annual": annual, "quarterly": quarterly, "ttm": ttm, "derived_quarterly": dq, "tags": [], "_aaccn": aacc, "_aall": aall,
                                   "_kind": "derived", "_stmt": stmt, **({"cf_sign": spec["cf_sign"]} if spec["cf_sign"] is not None else {})}
+            if returns and (any(notes["annual"]) or any(notes["quarterly"]) or notes["ttm"]):
+                n_q = len(quarterly)
+                lines[spec["key"]]["_notes"] = {"annual": notes["annual"], "quarterly": (notes["quarterly"] + [None] * n_q)[:n_q],
+                                                "ttm": notes["ttm"]}
             if name in RESTRICTED_CASH_DERIVED:
                 fl = _derived_restricted_flags(lines.get("cash"), annual, quarterly, ttm)
+                if fund_incl:
+                    # an annual cell copied from fundamentals.json carries that row's mark (its cash_basis), not the
+                    # statements cash line's
+                    fl = fl or {"annual": [False] * len(annual), "quarterly": [False] * len(quarterly), "ttm": False}
+                    for i, b in fund_incl.items():
+                        fl["annual"][i] = bool(b)
+                    if not (any(fl["annual"]) or any(fl["quarterly"]) or fl["ttm"]):
+                        fl = None
                 if fl:
                     lines[spec["key"]]["_incl_restricted"] = fl
-                    lines[spec["key"]]["_rbasis"] = lines["cash"]["_rbasis"]  # growth never across "incl" vs "ex" (finish_lines)
+                    lines[spec["key"]]["_rbasis"] = (lines.get("cash") or {}).get("_rbasis")  # growth never across "incl" vs "ex" (finish_lines)
                     # the per-cell marks are JSON only: the label tells the reader of the table
                     held = sum(fl["annual"]) + sum(fl["quarterly"]) + int(fl["ttm"])
                     valued = sum(1 for v in annual + quarterly + [ttm] if _num(v))
@@ -2934,7 +3056,7 @@ def basis_breaks(lines, annual_ends, q_ends, qmeta, warnings):
                         "discontinued operations; those quarters carry basis_break_quarterly and the growth cells across them are blank): " + "; ".join(found))
 
 
-def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
+def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings, fund_rows=None):
     """TTM for the filed lines, then the derived lines, the basis-break flags,
     then growth arrays for every line, then the statements dict (lines with
     at least one value, in spec order)."""
@@ -2955,7 +3077,7 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
     for key in ZERO_WHEN_UNFILED:
         if key in lines and lines[key].get("_ttm_eff") is not None:
             lines[key]["ttm"] = lines[key]["_ttm_eff"]
-    add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings)
+    add_derived(lines, annual_ends, q_ends, ttm_quarters, warnings, fund_rows=fund_rows)
     for key in ZERO_WHEN_UNFILED:
         if key in lines and lines[key].get("_ttm_eff") is not None:
             lines[key]["ttm"] = None
@@ -2972,8 +3094,9 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
             # a filed line listed by two statements (net income, D&A, SBC: income statement AND cash-flow
             # statement) is assembled once and emitted in both, with each statement's own label / indent /
             # total flag and cf_sign — the values are the same filed facts
-            if not any(_num(v) for v in line["annual"] + line["quarterly"] + [line["ttm"]]):
-                continue
+            nts = line.get("_notes") if line["key"] == spec["key"] else None
+            if not any(_num(v) for v in line["annual"] + line["quarterly"] + [line["ttm"]]) and not nts:
+                continue   # (a returns line whose cells are notes only is kept: n/m and unbounded are information)
             no_growth = line["unit"] in ("ratio", "pct")
             gq = [None] * len(q_ends) if no_growth else growth_arrays(line["quarterly"], q_ends, False)
             flags = line.get("basis_break_quarterly")
@@ -2996,6 +3119,8 @@ def finish_lines(lines, annual_ends, q_ends, qmeta, ttm_quarters, warnings):
             ir = line.get("_incl_restricted") if line["key"] == spec["key"] else None
             if ir:  # the cell counts restricted cash as cash (restricted_cash_split / _derived_restricted_flags)
                 rec["incl_restricted_annual"], rec["incl_restricted_quarterly"], rec["incl_restricted_ttm"] = ir["annual"], ir["quarterly"], ir["ttm"]
+            if nts:  # engine 5.7 (R4): n/m and unbounded cells of the returns lines (their values are null)
+                rec["notes_annual"], rec["notes_quarterly"], rec["note_ttm"] = nts["annual"], nts["quarterly"], nts["ttm"]
             if spec["cf_sign"] is not None:
                 rec["cf_sign"] = spec["cf_sign"]
             out[stmt].append(rec)
@@ -3162,10 +3287,12 @@ def _log_warnings(warnings, merged, q_ends, annual_ends):
                         + ", ".join(f"{a} -> {b}" for a, b in shown[:8]) + more)
 
 
-def build_statements(facts, warnings=None, sub=None):
+def build_statements(facts, warnings=None, sub=None, fund_rows=None):
     """facts (companyfacts JSON) -> (periods, statements, currency, warnings).
     `sub` (the submissions feed, optional) dates each fiscal year's original
-    annual report."""
+    annual report. fund_rows (engine 5.7, optional): the folder's
+    fundamentals.json annual rows — the annual ROE / ROA / ROIC cells of the
+    periods they cover are theirs (one returns function, add_derived)."""
     warnings = warnings if warnings is not None else []
     for k in _LOG:
         _LOG[k] = {}
@@ -3187,7 +3314,7 @@ def build_statements(facts, warnings=None, sub=None):
         ttm = {"end": q_ends[-1], "quarters": q_ends[-4:]}
     elif q_ends:
         warnings.append(f"ttm: the last four quarters ({', '.join(q_ends[-4:])}) are not four consecutive fiscal quarters — flow lines carry no TTM")
-    statements = finish_lines(lines, annual_ends, q_ends, qmeta, (ttm or {}).get("quarters"), warnings)
+    statements = finish_lines(lines, annual_ends, q_ends, qmeta, (ttm or {}).get("quarters"), warnings, fund_rows=fund_rows)
     for i, w in enumerate(warnings):
         if isinstance(w, str) and w.startswith(NET_CASH_NO_DEBT_WARNING):
             dl = debt_like_unread(facts, money)
@@ -3229,6 +3356,20 @@ def latest_filing(sub):
         if best is None or fd > best["filed"]:
             best = {"form": form, "filed": fd, "period": rds[i] if i < len(rds) else None}
     return best
+
+
+def fundamentals_rows(folder):
+    """The folder's fundamentals.json annual rows (engine 5.7: the annual returns cells are theirs), [] when the file is
+    absent or unreadable. refresh.py and WORKER_SPEC step 9 run fundamentals.py first; run alone, statements.py copies
+    the previous refresh's figures, which the next ordered run corrects. A file in another money unit than this one's
+    still gives the ratios (they are unit-free)."""
+    try:
+        with open(os.path.join(folder, "fundamentals.json"), encoding="utf-8") as f:
+            doc = json.load(f)
+    except (OSError, ValueError):
+        return []
+    rows = doc.get("annual") if isinstance(doc, dict) else None
+    return [r for r in rows if isinstance(r, dict)] if isinstance(rows, list) else []
 
 
 def read_existing(folder):
@@ -3297,7 +3438,7 @@ def run_one(ticker, cik=None, write=True, cache=None, force=False, existing=None
         return {"ticker": ticker, "cik": cik, "skipped": True, "latest_filed": latest}, True
     facts = fetch(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json", cache, f"{ticker}.facts.json")
     warnings = []
-    periods, statements, currency, warnings = build_statements(facts, warnings, sub=sub)
+    periods, statements, currency, warnings = build_statements(facts, warnings, sub=sub, fund_rows=fundamentals_rows(folder))
     newest_period = max([p["end"] for p in periods["annual"]] + [p["end"] for p in periods["quarterly"]], default=None)
     if latest and latest.get("period") and newest_period and latest["period"] > newest_period:
         warnings.append(f"latest {latest['form']} (period {latest['period']}, filed {latest['filed']}) is not yet in EDGAR companyfacts — columns stop at {newest_period}")
