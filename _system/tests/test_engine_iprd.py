@@ -1197,6 +1197,11 @@ def test_halo_record_is_unchanged_by_the_deferred_payment_rule():
     # the committed record is release 5.6.0; a fresh run carries the current release (5.7.0 since the rulings)
     assert rec["engine_release"] == "5.6.0" and n["engine_release"] == E.ENGINE_RELEASE, n["engine_release"]
     dated.add("engine_release")
+    # v5.7 (L1, R1): a fresh run also records sector_model, which the committed 5.6.0 record predates — HALO is
+    # modeled (Health Care; the offline harness reads no SIC), so nothing else about the run moves
+    assert "sector_model" not in rec and n["sector_model"] == E.sector_model_record("Health Care", None, None, None), \
+        n.get("sector_model")
+    dated.add("sector_model")
     assert [k for k in set(n) | set(rec) if k not in dated and n.get(k) != rec.get(k)] == []
     assert ({k: v for k, v in n["diagnostics"].items() if k != "months_since_fy_end"}
             == {k: v for k, v in rec["diagnostics"].items() if k != "months_since_fy_end"})
