@@ -3680,472 +3680,667 @@
   {
    "ticker": "SF",
    "queue_pos": 499,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T00:00:40-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "BMRN",
    "queue_pos": 500,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T00:30:26-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "TXRH",
    "queue_pos": 501,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T01:00:39-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "AVTR",
    "queue_pos": 502,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T01:30:32-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "TWST",
    "queue_pos": 503,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T02:00:37-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "CGNX",
    "queue_pos": 504,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T02:30:27-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "ELPC",
    "queue_pos": 505,
-   "status": "pending"
+   "status": "blocked_data_gap",
+   "claimed_at": "2026-10-19T03:00:29-04:00",
+   "blocked_date": "2026-10-19",
+   "note": "DATA_GAP: sbc, capex, shares, ads_ratio \u2014 20-F (CIK 1041792, BRL/IFRS): sbc missing FY2022-2024, capex missing FY2023-2024 in EDGAR companyfacts (statements.py confirms no capex figure filed for those periods; the pre-2023 PP&E-only tag also omits intangible/concession capex, so a single-value override cannot represent total capex), diluted shares missing FY2022-2024 with multi-class (common + preferred A/B until Dec 2025 Novo Mercado migration) counts and scale slips in history (2024 DEI 1,297,723,500 is common-only vs 2,982,810,590 total outstanding), ads_ratio (4 common per ELPC ADS per depositary) not verified from the filer's own 20-F as bounded authority (d) requires, and latest 20-F (FY2025, filed 2026-04-16) is not yet in EDGAR companyfacts (history stops FY2024, STALE_FY). Needs main-agent / filing-level forensic pull of the 20-F cash-flow statement and EPS note before any tier."
   },
   {
    "ticker": "MICC",
    "queue_pos": 506,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T03:06:22-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "BSY",
    "queue_pos": 507,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T03:30:36-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "HRL",
    "queue_pos": 508,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T04:00:36-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "EGP",
    "queue_pos": 509,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T04:31:04-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "TXG",
    "queue_pos": 510,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T05:00:31-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "SCI",
    "queue_pos": 511,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T05:30:21-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "KNX",
    "queue_pos": 512,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-19T06:00:46-04:00",
+   "blocked_date": "2026-10-19",
+   "note": "NEEDS_MAIN_AGENT: capex \u2014 engine capex tag list lacks PaymentsToAcquireMachineryAndEquipment, the filer's capital-expenditure line (FY2025 $795,392K, FY2024 $819,150K, FY2023 $1,071,611K, 10-K via EDGAR companyfacts CIK 1492691); engine instead read PaymentsToAcquireOtherProductiveAssets ($1,066K FY2025), overstating the OE base ~18x (printed $7.00/sh vs ~$0.38/sh median on filed capex). capex_override cannot replace filed values and the true figures appear in no run output, so no in-bounds base_override exists. Fix: add the tag to dcf_engine/ttm/fundamentals/statements capex lists with dedup vs ProductiveAssets (pre-2020 double-tagged) + test, then re-run. Detail in KNX/analysis.md."
   },
   {
    "ticker": "JKHY",
    "queue_pos": 513,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T06:30:33-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "PAYC",
    "queue_pos": 514,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T07:00:44-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "EVR",
    "queue_pos": 515,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T07:30:55-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "UHS",
    "queue_pos": 516,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T08:01:10-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "HII",
    "queue_pos": 517,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T08:30:33-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "RDY",
    "queue_pos": 518,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T09:00:26-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "FNF",
    "queue_pos": 519,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T09:31:43-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "HUT",
    "queue_pos": 520,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T10:01:41-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "COO",
    "queue_pos": 521,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T10:34:41-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "ESTC",
    "queue_pos": 522,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T11:13:40-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "OSCR",
    "queue_pos": 523,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T11:46:32-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "MOH",
    "queue_pos": 524,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T12:47:07-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "AGNC",
    "queue_pos": 525,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T15:31:02-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "ERIE",
    "queue_pos": 526,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T14:48:19-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "DPZ",
    "queue_pos": 527,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T15:08:54-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "BEPC",
    "queue_pos": 528,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-19T16:09:25-04:00",
+   "blocked_date": "2026-10-19",
+   "note": "NEEDS_MAIN_AGENT: shares \u2014 SHARE_CLASS_MISMATCH: FY2025 Form 20-F (filed 2026-02-27), Note 2 critical judgments (vi) Earnings per share (basic and diluted EPS have not been presented; BEPC exchangeable, class A.2 exchangeable, BRHC class B and BRHC class C shares are classified as financial liabilities and do not constitute ordinary shares; see Note 16) and Item 4 / MD&A Overview (each BEPC exchangeable share is economically equivalent to one BEP LP unit, exchangeable 1-for-1, price expected to be significantly impacted by the BEP LP unit price). Traded class is 144,885,110 exchangeable shares (20-F cover, Dec 31 2025); capital also includes 34,719,683 Class A.2 and 194,460,874 BRHC Class C shares, so no ordinary-share denominator exists for the consolidated OE. Engine 5.5 exit 4, data_gap sbc/shares/share_class, no tier. Also DATA_GAP:sbc unresolvable: no SBC tag or consolidated SBC expense disclosed in the 20-F, so no filing value and no estimate anchor. ads_ratio 1.0 declared (shares listed directly NYSE/TSX, no ADS facility). Full workup in BEPC/analysis.md \u2014 paired exchangeable case, same main-agent decision as BNT."
   },
   {
    "ticker": "FDS",
    "queue_pos": 529,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T16:37:29-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "PSO",
    "queue_pos": 530,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T17:00:32-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "RTO",
    "queue_pos": 531,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T17:30:23-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "ALGN",
    "queue_pos": 532,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T18:00:28-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "CLX",
    "queue_pos": 533,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T18:30:33-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "GGB",
    "queue_pos": 534,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T19:00:54-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "DCI",
    "queue_pos": 535,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T19:31:02-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "GMED",
    "queue_pos": 536,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T20:01:02-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "AMG",
    "queue_pos": 537,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T20:31:00-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "ENSG",
    "queue_pos": 538,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T21:00:46-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "AM",
    "queue_pos": 539,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-19T21:30:37-04:00",
+   "blocked_date": "2026-10-19",
+   "note": "NEEDS_MAIN_AGENT: capex \u2014 filed capex is incomplete in all last 3 FY: engine reads only the undimensional acquisition line PaymentsToAcquireProductiveAssets (FY2023 $266k, FY2024 $69,992k, FY2025 none) while the 10-K Consolidated Statements of Cash Flows (FY2025 10-K filed 2026-02-11, accn 0001104659-26-013380) report PP&E additions tagged us-gaap:PaymentsToAcquirePropertyPlantAndEquipment WITH PropertyPlantAndEquipmentByTypeAxis dimensional members, which EDGAR companyfacts drops: Additions to gathering systems, facilities and other $130,305k / $141,832k / $91,533k plus Additions to water handling systems $53,428k / $30,515k / $70,722k for FY2023 / FY2024 / FY2025 (totals $183,733k / $172,347k / $162,255k). A capex_override fills only missing years and cannot add to the filed-but-incomplete FY2023/FY2024 values, so the median base overstates owner's earnings \u2014 CAPEX_COVERAGE_LOW case in WORKER_SPEC step 4."
   },
   {
    "ticker": "PBF",
    "queue_pos": 540,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T22:00:28-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "LULU",
    "queue_pos": 541,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T22:30:54-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "BPOP",
    "queue_pos": 542,
-   "status": "pending"
+   "status": "blocked_data_gap",
+   "claimed_at": "2026-10-19T23:01:01-04:00",
+   "blocked_date": "2026-10-19",
+   "note": "DATA_GAP: sbc \u2014 ShareBasedCompensation and AllocatedShareBasedCompensationExpense not tagged in EDGAR companyfacts for BPOP FY2023-2025; unable to fill within bounded authority."
   },
   {
    "ticker": "KLAR",
    "queue_pos": 543,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T23:09:06-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "VSAT",
    "queue_pos": 544,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-19T23:30:56-04:00",
+   "blocked_date": "2026-10-19",
+   "note": "NEEDS_MAIN_AGENT: capex \u2014 VSAT files total capex only as the single cash-flow line 'Purchase of property, equipment and satellites, and other assets' (Consolidated Statements of Cash Flows, Form 10-K), whose tag is not an engine candidate: FY2024 $1,539,385K / FY2025 $1,030,182K / FY2026 $992,774K. Engine reads capex 0 (assumed_zero) for FY2024-2026, so DATA_GAP:capex + CAPEX_COVERAGE_LOW (0% of D&A all 3 years). Pre-FY2024 the same total was split across PaymentsToAcquirePropertyPlantAndEquipment + PaymentsToAcquireIntangibleAssets (FY2023 $1,076,968K + $87,349K = $1,164,317K, matching the FY2023 figure on that single line in the FY2025 10-K). Per WORKER_SPEC step 4, an unread filed capex line blocks NEEDS_MAIN_AGENT \u2014 no override adds to a filed value; engine needs the filer's capex tag/line added."
   },
   {
    "ticker": "UMBF",
    "queue_pos": 545,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-19T23:38:14-04:00",
+   "completed": "2026-10-19"
   },
   {
    "ticker": "EGO",
    "queue_pos": 546,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T00:01:29-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "KRYS",
    "queue_pos": 547,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T00:30:51-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "CPT",
    "queue_pos": 548,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-20T01:00:44-04:00",
+   "blocked_date": "2026-10-20",
+   "note": "NEEDS_MAIN_AGENT: capex \u2014 engine read only PaymentsToAcquireOtherPropertyPlantAndEquipment ($5,597,000 FY2023 / $3,800,000 FY2024 / $2,445,000 FY2025) and missed the filer's main investing line PaymentsToDevelopRealEstateAssets ($410,934,000 FY2023 / $393,735,000 FY2024 / $440,402,000 FY2025, per statements.json from the same EDGAR facts); true owner's earnings ~$369.5M/$366.0M/$369.3M (~$3.40/sh) vs engine base $7.08/sh, so the preliminary Tier B / 17.9% weighted IRR is a capex artifact and no override can add to a filed value. Revenue tag also wrong (RevenueFromContractWithCustomerExcludingAssessedTax $3.5M-$13.0M vs RealEstateRevenueNet ~$1.54B), corrupting the 19.7% growth blend; SECTOR_MODEL_MISMATCH (REIT) on top."
   },
   {
    "ticker": "BIO",
    "queue_pos": 549,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T01:30:41-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "SSL",
    "queue_pos": 550,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T02:00:41-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "GKOS",
    "queue_pos": 551,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T02:30:36-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "SOLS",
    "queue_pos": 552,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T03:00:40-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "MUSA",
    "queue_pos": 553,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T03:30:29-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "SSB",
    "queue_pos": 554,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T04:00:30-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "DKNG",
    "queue_pos": 555,
-   "status": "pending"
+   "status": "blocked_no_data",
+   "claimed_at": "2026-10-20T04:30:34-04:00",
+   "blocked_date": "2026-10-20",
+   "note": "NEEDS_MAIN_AGENT: capex \u2014 PaymentsToDevelopSoftware (capitalized internal-use software, 10-K cash-flow investing section) is filed but unread by engine 5.5: FY2023 $80,378,000, FY2024 $95,698,000, FY2025 $131,154,000 (TTM $145,804,000), on top of filed PP&E capex $20,902,000 / $10,176,000 / $15,352,000. True FY2025 total capex $146,506,000 vs engine $15,352,000 \u2014 the OE base overstates by the software line every year (FY2025 OE $308,192,000 \u2192 $177,038,000). Per Andrew's Q6 ruling (2026-10-19) capitalized software counts as capex (JKHY precedent); the engine tag addition is pending follow-on work, and no override can add to a filed PP&E value. CAPEX_COVERAGE_LOW fired (capex/D&A FY2023 10%, FY2024 4%, FY2025 6%)."
   },
   {
    "ticker": "MSGS",
    "queue_pos": 556,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T05:00:34-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "DRS",
    "queue_pos": 557,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T05:30:20-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "WTFC",
    "queue_pos": 558,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T06:00:29-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "MOD",
    "queue_pos": 559,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T06:30:40-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "OGE",
    "queue_pos": 560,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T07:01:08-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "RRC",
    "queue_pos": 561,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T07:30:37-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "DAR",
    "queue_pos": 562,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T08:02:15-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "WMS",
    "queue_pos": 563,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T08:30:38-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "XPEV",
    "queue_pos": 564,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T09:00:41-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "RYAN",
    "queue_pos": 565,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T09:30:46-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "MTCH",
    "queue_pos": 566,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T10:01:22-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "BXP",
    "queue_pos": 567,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T10:32:14-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "ONB",
    "queue_pos": 568,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T11:01:32-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "ENLT",
    "queue_pos": 569,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T11:31:03-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "PODD",
    "queue_pos": 570,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T12:00:40-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "TFII",
    "queue_pos": 571,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T12:31:23-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "HSIC",
    "queue_pos": 572,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T13:05:47-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "QGEN",
    "queue_pos": 573,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T13:30:51-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "KYMR",
    "queue_pos": 574,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T14:00:54-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "CFR",
    "queue_pos": 575,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T14:30:43-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "AAOI",
    "queue_pos": 576,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T15:00:37-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "PTGX",
    "queue_pos": 577,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T15:31:09-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "FCFS",
    "queue_pos": 578,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T16:01:30-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "FRT",
    "queue_pos": 579,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T16:31:43-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "ORI",
    "queue_pos": 580,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T17:03:15-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "FLS",
    "queue_pos": 581,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T17:30:58-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "GTLB",
    "queue_pos": 582,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T18:01:01-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "R",
    "queue_pos": 583,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T18:30:46-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "S",
    "queue_pos": 584,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T19:00:53-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "ZION",
    "queue_pos": 585,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T19:43:46-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "HLI",
    "queue_pos": 586,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T20:26:48-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "APTV",
    "queue_pos": 587,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T20:45:05-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "EDU",
    "queue_pos": 588,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T21:01:43-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "LTH",
    "queue_pos": 589,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T21:34:15-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "ALSN",
    "queue_pos": 590,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T22:12:16-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "TTC",
    "queue_pos": 591,
-   "status": "pending"
+   "status": "done",
+   "claimed_at": "2026-10-20T22:31:52-04:00",
+   "completed": "2026-10-20"
   },
   {
    "ticker": "LLYVK",
    "queue_pos": 592,
-   "status": "pending"
+   "status": "in_progress",
+   "claimed_at": "2026-10-20T23:00:40-04:00"
   },
   {
    "ticker": "VMI",
