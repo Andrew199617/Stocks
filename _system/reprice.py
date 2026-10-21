@@ -739,16 +739,22 @@ def sweep_price_staleness():
     """({ticker: {"last_date": d, "sessions_behind": n}}, latest_close | None):
     the scored names whose last close on file (prices.json stats.last_date,
     else as_of) is more than one trading session behind the newest close the
-    sweep holds. The session set is the distinct close dates across the
-    sweep's own prices.json files, so no market calendar is needed, and a
-    name one session behind — the normal lag while Nasdaq posts the newest
-    session — is not flagged. A name the refresh missed falls further behind
-    every day; in October 2026 the bulk refresh silently never ran and HALO
-    sat two sessions behind for two days, visible only as a withheld live
+    sweep holds. The population is the scored folders (score.json +
+    dcf_numbers.json) — exactly what prices.py --all maintains; an unscored
+    engine leftover is not a missed refresh, is never reported, and its
+    cache dates never enter the session baseline (Codex review of PR #83).
+    The session set is the distinct close dates across the sweep's own
+    prices.json files, so no market calendar is needed, and a name one
+    session behind — the normal lag while Nasdaq posts the newest session —
+    is not flagged. A name the refresh missed falls further behind every
+    day; in October 2026 the bulk refresh silently never ran and HALO sat
+    two sessions behind for two days, visible only as a withheld live
     block. Missing / unreadable prices.json files are skipped, never fatal:
     a guard must not break the run it guards."""
     last = {}
     for t in company_folders():
+        if not os.path.isfile(os.path.join(BASE, t, "score.json")):
+            continue
         try:
             p = _load(os.path.join(BASE, t, "prices.json"))
         except Skip:

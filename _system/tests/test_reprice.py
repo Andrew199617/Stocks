@@ -847,9 +847,11 @@ def test_sweep_price_staleness_flags_more_than_one_session_behind():
     try:
         R.BASE = tmp
 
-        def folder(name, last_date):
+        def folder(name, last_date, scored=True):
             d = os.path.join(tmp, name); os.makedirs(d)
             _write(os.path.join(d, "dcf_numbers.json"), {})
+            if scored:
+                _write(os.path.join(d, "score.json"), {})
             if last_date == "garbage":
                 _write(os.path.join(d, "prices.json"), "{not json")
             elif last_date is not None:
@@ -861,6 +863,8 @@ def test_sweep_price_staleness_flags_more_than_one_session_behind():
         folder("CCC", "2026-10-16")   # two sessions behind: the refresh missed it (the HALO case)
         folder("DDD", None)           # no prices.json at all: skipped, never fatal
         folder("EEE", "garbage")      # unreadable prices.json: skipped, never fatal
+        folder("FFF", "2026-10-15", scored=False)  # an unscored engine leftover: not the refresh's
+        # population (prices.py --all maintains scored folders), never reported, never in the baseline
         stale, latest = R.sweep_price_staleness()
         assert latest == "2026-10-20", latest
         assert stale == {"CCC": {"last_date": "2026-10-16", "sessions_behind": 2}}, stale
