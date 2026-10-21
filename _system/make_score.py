@@ -472,7 +472,12 @@ rebuilt as before, both alert gates closed ("engine output predates release
   --base-oe-ps copy is refused), ttm.json's arithmetic reproduces from its
   own legs and rates (interim_bridge.recompute_from_record) and its legs are
   the declaration's, the FY leg is this run's (release, latest FY end, the
-  CSV's last row) and the ADS ratio is the engine's. A declared bridge the
+  CSV's last row), the ADS ratio is the engine's, and the declaration passes
+  interim_bridge.py's rules again (declaration_rule_problems, the bundle
+  ttm.py runs, on ttm.json's FY leg, report period and filing date; and the
+  declared report is the 6-K ttm.py verified — review fix 2026-10-21: a
+  rule-breaking edit with a patched declaration_hash no longer scores on
+  ttm.json's word). A declared bridge the
   final run is not pinned to is refused (check_interim_obligation; R7's
   rejection is the only way to keep it declared and unpinned), so are a
   declaration beside interim_bridge_declined, an iprd_amortized or a
@@ -2754,11 +2759,41 @@ def _rel_eq(a, b, tol=INTERIM_REL_TOL):
             and abs(float(a) - float(b)) <= tol * max(1.0, abs(float(a)), abs(float(b))))
 
 
+def _interim_rule_problems(n, decl, tt):
+    """Step 7 of _interim_problems (review fix 2026-10-21): interim_bridge.py's pure rules re-run on the declaration —
+    the one bundle ttm.py --interim runs (declaration_rule_problems: periods, sources, snippets, estimates, definitions,
+    like-for-like, the share band) on the FY leg, report period and filing date ttm.json recorded, as of the run's
+    as_of — and the declared report is the 6-K ttm.py verified. Without it a judgment edit that breaks a rule, with
+    ttm.json's declaration_hash patched to it (declaration_hash is outside TTM_INPUT_TOP_FIELDS, so
+    check_ttm_inputs_current passes), scored on the generated file's word."""
+    legs = tt.get("legs") if isinstance(tt.get("legs"), dict) else {}
+
+    def fy_val(f, k):
+        lg = legs.get(f) if isinstance(legs.get(f), dict) else {}
+        return _num((lg.get("fy") if isinstance(lg.get("fy"), dict) else {}).get(k))
+    per = tt.get("periods") if isinstance(tt.get("periods"), dict) else {}
+    fy = per.get("fy")
+    fy = list(fy) if isinstance(fy, list) and len(fy) == 2 and all(_ib._is_date(x) for x in fy) else None
+    rep = tt.get("report") if isinstance(tt.get("report"), dict) else {}
+    shares = tt.get("shares") if isinstance(tt.get("shares"), dict) else {}
+    probs = _ib.declaration_rule_problems(
+        decl, fy, {f: fy_val(f, "local") for f in _ib.FLOW_FIELDS}, {f: fy_val(f, "usd") for f in _ib.FLOW_FIELDS},
+        _num(shares.get("fy_diluted")), today=str(n.get("as_of") or _engine.ET_TODAY.isoformat()),
+        report_date=rep.get("period_end"), filed=rep.get("filed"), report_source=rep.get("period_end_source"))
+    acc = (decl.get("report") or {}).get("accession")
+    if acc != rep.get("accession"):
+        probs.append(f"[IB-SRC1] judgment.json interim_bridge.report.accession {acc} is not the 6-K ttm.py --interim "
+                     f"verified ({rep.get('accession')})")
+    return probs
+
+
 def _interim_problems(n, j, tt, folder=None):
     """[(step, message)]: design 04 A.5 interim_pin_state checks 1, 2, 4, 5, 6 on a declared-interim ttm.json —
     (1) judgment.json declares a valid interim_bridge, (2) its hash is ttm.json's, (4) ttm.json's arithmetic
     reproduces from its own legs and those legs are the declaration's, (5) the FY leg is this run's, (6) the ADS ratio
-    is the engine's. Steps 1-2 stop the list (nothing else can be compared)."""
+    is the engine's — and (7, review fix 2026-10-21) the declaration passes interim_bridge.py's pure rules again
+    (_interim_rule_problems), so make_score re-verifies what ttm.py enforced instead of trusting ttm.json. Steps 1-2
+    stop the list (nothing else can be compared)."""
     t = n.get("ticker")
     decl = (j or {}).get(INTERIM_KEY)
     if decl is None or _ib.validate_shape(decl):
@@ -2830,6 +2865,11 @@ def _interim_problems(n, j, tt, folder=None):
     n_ads = (n.get("ads_ratio") or {}).get("ratio") if isinstance(n.get("ads_ratio"), dict) else None
     if not _rel_eq(tt.get("ads_ratio"), n_ads, 1e-12):
         out.append((6, f"ttm.json applied ADS ratio {tt.get('ads_ratio')}, the engine {n_ads} — rerun ttm.py {t} --interim"))
+    rules = _interim_rule_problems(n, decl, tt)
+    if rules:
+        out.append((7, "judgment.json interim_bridge breaks the rules ttm.py --interim enforces (" + "; ".join(rules)
+                    + f") — ttm.py would refuse this declaration, so ttm.json was not built from it; fix the declaration "
+                    f"and rerun ttm.py {t} --interim and the engine with --ttm"))
     return out
 
 

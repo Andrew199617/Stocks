@@ -21,6 +21,11 @@ example. Run: python _system/tests/test_interim_bridge.py (or python -m pytest).
 22. declaration_hash is canonical (key order and whitespace do not move it; a value does).
 T-i (amendment 20): a zero current-interim share count is a shape error.
 Also: shape errors name their path; recompute_from_record reproduces compute from the record alone.
+Review fixes (2026-10-21; each fails on the pre-fix L4 head 6fc70cd): a material false change inside the window
+carries its revenue-share evidence whatever the resolution, same_business_perimeter is for a demerger only and
+comparatives_re_presented needs the consistent restatement; IB-P5 reads the report's period only from an XBRL 6-K
+(a non-XBRL 6-K's EDGAR reportDate is its cover date) and checks the filing date always; declaration_rule_problems
+bundles every pure rule ttm.py enforces (make_score re-runs it).
 """
 import copy
 import json
@@ -215,6 +220,123 @@ def test_like_for_like():
     ok["like_for_like"].update(comparative_restated=True, restatement={"description": "x", "fy_leg_consistent": True,
                                                                        "source": {}, "snippet": "s"})
     assert IB.check_like_for_like(ok) == []
+
+
+def test_like_for_like_evidence_whatever_the_resolution():
+    """Review fix (2026-10-21): inside the window, `material: false` carries the IB-LFL3 evidence (revenue_share below
+    5% and its source) whatever the resolution; same_business_perimeter resolves a demerger only and
+    comparatives_re_presented needs comparative_restated and restatement.fy_leg_consistent true, whatever `material`
+    says (R2: "a restatement, demerger or material disposal / acquisition only when declared and resolved"). On the
+    pre-fix code an unevidenced material false passed under any resolution but "immaterial"."""
+    d = decl()
+
+    def acq(**kw):
+        x = _pc(d, 1, **kw)
+        x["like_for_like"]["perimeter_changes"][1].pop("revenue_share", None)
+        return x
+    lfl2 = ("[IB-LFL2] perimeter change acquisition on 2026-03-30 lies inside the bridge window 2025-01-01..2026-06-30, "
+            "is declared not material, and its resolution {} does not resolve it")
+    got = IB.check_like_for_like(acq(resolution="same_business_perimeter"))
+    assert len(got) == 1 and got[0].startswith(lfl2.format("same_business_perimeter")), got
+    assert "same_business_perimeter resolves a demerger only" in got[0], got
+    got = IB.check_like_for_like(acq(resolution="comparatives_re_presented"))
+    assert len(got) == 1 and got[0].startswith(lfl2.format("comparatives_re_presented")), got
+    assert "comparative_restated and restatement.fy_leg_consistent true" in got[0], got
+    # the evidence does not make a non-demerger "same perimeter"
+    got = IB.check_like_for_like(_pc(d, 1, resolution="same_business_perimeter"))
+    assert len(got) == 1 and got[0].startswith(lfl2.format("same_business_perimeter")), got
+    # comparatives re-presented consistently resolve the change; a material false still carries its evidence
+    rest = {"comparative_restated": True, "restatement": {"description": "x", "fy_leg_consistent": True, "source": {},
+                                                          "snippet": "s"}}
+    cr = _pc(d, 1, resolution="comparatives_re_presented")
+    cr["like_for_like"].update(copy.deepcopy(rest))
+    assert IB.check_like_for_like(cr) == []
+    cr_bare = acq(resolution="comparatives_re_presented")
+    cr_bare["like_for_like"].update(copy.deepcopy(rest))
+    got = IB.check_like_for_like(cr_bare)
+    assert got == ["[IB-LFL3] acquisition on 2026-03-30 declared not material (resolution comparatives_re_presented) "
+                   "without revenue_share below 5% (got None) and its source"], got
+    # a demerger declared not material: same_business_perimeter resolves it, the not-material claim needs its share
+    dem = _pc(d, 0, material=False)
+    got = IB.check_like_for_like(dem)
+    assert got == ["[IB-LFL3] demerger on 2025-12-06 declared not material (resolution same_business_perimeter) "
+                   "without revenue_share below 5% (got None) and its source"], got
+    assert IB.check_like_for_like(_pc(d, 0, material=False, revenue_share=0.01)) == []
+    # a material change re-presented without the restatement: LFL2 as before
+    got = IB.check_like_for_like(_pc(d, 1, kind="disposal", material=True, resolution="comparatives_re_presented"))
+    assert len(got) == 1 and got[0].startswith("[IB-LFL2] perimeter change disposal on 2026-03-30 lies inside the bridge "
+                                               "window 2025-01-01..2026-06-30, is material"), got
+    # outside the window nothing needs resolving
+    assert IB.check_like_for_like(acq(resolution="same_business_perimeter", effective_date="2026-08-01")) == []
+
+
+def test_report_period_is_the_xbrl_period_only():
+    """Review fix (2026-10-21; live EDGAR: TFII's Q2 6-K 0001193125-26-318068 filed 2026-07-27 has reportDate
+    2026-07-27 and isXBRL 0, every FUTU 6-K's reportDate is its filingDate, VIV's October 6-Ks say 2026-12-31):
+    EDGAR's reportDate of a 6-K without XBRL is its cover date, not the interim's period end. IB-P5 compares the current
+    interim with the report's period only for an XBRL 6-K (its instance's dei DocumentPeriodEndDate, else its EDGAR
+    reportDate), and with the filing date always (an interim report is filed after its period ends)."""
+    d = decl()
+    assert IB.report_period_end(True, "2026-06-30", "2026-07-30") == ("2026-06-30", IB.PERIOD_SOURCE_DEI)
+    assert IB.report_period_end(True, "2026-06-30T00:00:00", None) == ("2026-06-30", IB.PERIOD_SOURCE_DEI)
+    assert IB.report_period_end(True, None, "2026-06-30") == ("2026-06-30", IB.PERIOD_SOURCE_EDGAR)
+    assert IB.report_period_end(False, None, "2026-07-27") == (None, None)
+    assert IB.report_period_end(True, None, None) == (None, None)
+    # TFII's shape: no report period to compare, filed after the interim ended
+    assert IB.check_periods(d, FY_PERIOD, TODAY, report_date=None, filed="2026-07-27") == []
+    # a report filed before the current interim ended is not its source (a Q1 6-K cited for H1 legs)
+    got = IB.check_periods(d, FY_PERIOD, TODAY, filed="2026-05-28")
+    assert got == ["[IB-P5] current interim ends 2026-06-30: not before the report's filing date 2026-05-28"], got
+    # XBRL: within 3 days of the report's period, which a source label names
+    assert IB.check_periods(d, FY_PERIOD, TODAY, report_date="2026-07-02", filed="2026-07-30") == []
+    got = IB.check_periods(d, FY_PERIOD, TODAY, report_date="2026-03-31", filed="2026-07-30",
+                           report_source=IB.PERIOD_SOURCE_DEI)
+    assert got == ["[IB-P5] current interim ends 2026-06-30: not the report's period 2026-03-31 (±3 days; "
+                   f"{IB.PERIOD_SOURCE_DEI})"], got
+    assert IB.check_report_period(d, "2026-03-31", IB.PERIOD_SOURCE_DEI) == got
+    assert IB.check_report_period(d, "2026-06-30", IB.PERIOD_SOURCE_DEI) == []
+    assert IB.check_report_period(d, None) == []
+
+
+def test_declaration_rules_bundle():
+    """Review fix (2026-10-21): declaration_rule_problems runs every pure rule ttm.py --interim enforces on a
+    declaration (periods, sources, snippets, estimates, definitions, like-for-like, the share band), so make_score
+    re-runs exactly the rules ttm.py ran — the two never drift."""
+    d = decl()
+    fy_usd = {k: v * 1.175 for k, v in FY_LOCAL.items()}
+    kw = dict(fy_period=FY_PERIOD, fy_local=FY_LOCAL, fy_usd=fy_usd, fy_shares=615600000, today=TODAY,
+              report_date="2026-06-30", filed="2026-07-30")
+    assert IB.declaration_rule_problems(d, **kw) == [], IB.declaration_rule_problems(d, **kw)
+    other_src = copy.deepcopy(d)
+    other_src["legs"]["sbc"]["prior_interim"]["source"]["accession"] = "0001104659-25-070000"
+    cases = [
+        (_pc(d, 1, material=True, resolution="same_business_perimeter"), {}, "[IB-LFL2]"),
+        (_leg(d, "ocf", "current_interim", snippet="Net cash flow from operating activities 123 456"), {}, "[IB-SNIP]"),
+        (other_src, {}, "[IB-SRC2] sbc.prior_interim cites accession 0001104659-25-070000"),
+        (_leg(d, "capex_intangibles", "current_interim", value=1487671 * 1.03), {}, "[IB-EST2]"),
+        (d, {"fy_usd": dict(fy_usd, capex_intangibles=0)}, "[IB-DEF1]"),
+        (d, {"report_date": "2026-03-31"}, "[IB-P5]"),
+        (d, {"fy_period": ["2024-01-01", "2024-12-31"]}, "[IB-P0]"),
+        (_leg(d, "shares_diluted", "current_interim", value=6170000000), {}, "[IB-SH1]"),
+    ]
+    for dd, over, code in cases:
+        got = IB.declaration_rule_problems(dd, **dict(kw, **over))
+        assert any(g.startswith(code) for g in got), (code, got)
+    rest = copy.deepcopy(d)
+    rest["like_for_like"].update(comparative_restated=True, comparative_note="restated",
+                                 comparative_source=dict(d["like_for_like"]["comparative_source"]),
+                                 comparative_snippet="restated",
+                                 restatement={"description": "re-presented", "fy_leg_consistent": False,
+                                              "source": dict(d["like_for_like"]["comparative_source"]), "snippet": "x"})
+    assert any(g.startswith("[IB-LFL1]") for g in IB.declaration_rule_problems(rest, **kw))
+    usd = copy.deepcopy(d)
+    usd["currency"], usd["fx"] = "USD", {"basis": "issuer_convenience_translation", "source": "the report",
+                                         "prior_interim": {"date": "2025-06-30", "rate": 1.172,
+                                                           "snippet": "translated at US$1.25 per euro"},
+                                         "current_interim": {"date": "2026-06-30", "rate": 1.1394,
+                                                             "snippet": "translated at US$1.1394 per euro"}}
+    got = IB.snippet_problems(usd)
+    assert got == ["[IB-SNIP] fx.prior_interim snippet does not show the report's rate 1.172"], got
 
 
 def test_per_period_fx():

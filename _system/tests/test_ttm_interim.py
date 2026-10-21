@@ -21,6 +21,9 @@ T-a (amendment 10): ttm_inputs_record of a declared ttm.json moves with any rate
 T-c (amendment 11, default Q8): an acquired-IPR&D charge the 6-K files for the current interim refuses (IB-IPRD);
     none -> "xbrl_instance: none"; a report without XBRL -> "not_scanned" and a warning.
 Also --interim-draft prints a draft from the 6-K's XBRL and writes nothing.
+Review fix (2026-10-21; fails on the pre-fix L4 head 6fc70cd): a 6-K without XBRL (TFII's and FUTU's shape, EDGAR
+    reportDate = its filing date) bridges — IB-P5 reads the report's period only from an XBRL 6-K's dei
+    DocumentPeriodEndDate and checks the filing date always.
 """
 import copy
 import csv
@@ -411,6 +414,50 @@ def test_ib_iprd_refuses_current_interim_charge():
     assert t["iprd_interim_scan"] == "not_scanned (the report has no XBRL instance)"
     assert any("no XBRL instance" in w and "acquired-IPR&D" in w for w in t["warnings"]), t["warnings"]
     assert t["legs"]["ocf"]["current_interim"]["verified"] == "snippet" and t["xbrl_verified_legs"] == []
+
+
+# ---------------------------------------------------------------------------
+# review fix (2026-10-21): the report's period is read only from an XBRL 6-K
+# ---------------------------------------------------------------------------
+def _sub_dates(report_date, filed, xbrl):
+    s = submissions(is_xbrl=xbrl)
+    s["filings"]["recent"]["reportDate"][0] = report_date
+    s["filings"]["recent"]["filingDate"][0] = filed
+    return s
+
+
+def test_non_xbrl_6k_reportdate_is_its_cover_date():
+    """Live EDGAR, 2026-10-21: TFII's Q2 6-K 0001193125-26-318068 (isXBRL 0) was filed 2026-07-27 with reportDate
+    2026-07-27; every FUTU 6-K's reportDate is its filingDate; TFII / VIV press-release 6-Ks carry a month end after
+    the filing date. A 6-K without XBRL is bridged on its snippets: IB-P5 does not read its reportDate as the interim's
+    period end (the pre-fix code refused TFII's and FUTU's bridges on it), only requires that the current interim
+    ended before the report was filed."""
+    for rd in ("2026-07-27", "2026-09-30"):
+        out = _once(sub=_sub_dates(rd, "2026-07-27", 0))
+        assert out["exit"] == 0, (rd, out["stderr"][-1500:])
+        rep = out["ttm"]["report"]
+        assert rep["is_xbrl"] is False and rep["report_date"] == rd and rep["filed"] == "2026-07-27", rep
+        assert rep["period_end"] is None and rep["period_end_source"] is None, rep
+        assert any("reportDate" in w and "cover date" in w and "2026-07-27" in w for w in out["ttm"]["warnings"]), \
+            out["ttm"]["warnings"]
+    # a report filed before the current interim ended is not its source (a Q1 6-K cited for H1 legs)
+    _refused(_once(sub=_sub_dates("2026-05-28", "2026-05-28", 0)),
+             "[IB-P5] current interim ends 2026-06-30: not before the report's filing date 2026-05-28")
+
+
+def test_xbrl_6k_period_is_its_instance_dei():
+    """An XBRL 6-K's period is its instance's dei DocumentPeriodEndDate (EDGAR's reportDate is the fallback): a cover
+    date in EDGAR does not refuse the bridge, a Q1 instance cited for H1 legs does."""
+    out = _once(sub=_sub_dates("2026-07-30", "2026-07-30", 1))
+    assert out["exit"] == 0, out["stderr"][-1500:]
+    rep = out["ttm"]["report"]
+    import interim_bridge as IB
+    assert rep["period_end"] == "2026-06-30" and rep["period_end_source"] == IB.PERIOD_SOURCE_DEI, rep
+    q1 = six_k().replace(b'<dei:DocumentPeriodEndDate contextRef="H126">2026-06-30<',
+                         b'<dei:DocumentPeriodEndDate contextRef="H126">2026-03-31<')
+    assert q1 != six_k()
+    _refused(_once(instance=q1), "[IB-P5] current interim ends 2026-06-30: not the report's period 2026-03-31 (±3 days; "
+                                 f"{IB.PERIOD_SOURCE_DEI})")
 
 
 # ---------------------------------------------------------------------------

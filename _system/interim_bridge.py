@@ -21,11 +21,21 @@ Refusal codes (each message starts with its code; ttm.py exits 3 on any):
 - IB-P0..P6 periods (check_periods): the FY is the engine's latest FY; the prior interim starts within 5 days of the
   FY start; the current interim starts 1-10 days after the FY end; both 80-300 days long and within 7 days of each
   other; the prior interim ends the same month-day a year before the current one (±6 days); the current interim
-  ends after the FY end, not after today, at the report's period (±3 days); no period starts after its end
+  ends after the FY end, not after today, at the report's period (±3 days; an XBRL 6-K's) and before the report's
+  filing date; no period starts after its end
 - IB-LFL1..5 like-for-like (check_like_for_like)
 - IB-EST1..4 estimates (check_estimates); IB-DEF1..2 capex / SBC definitions (check_definitions)
-- IB-SNIP   a filing leg's snippet is over 24 words or does not show its value (snippet_problems)
-- ttm.py adds IB-ENG / IB-FORM / IB-UNIT / IB-FX1..3 / IB-SRC1..2 / IB-XBRL1..2 / IB-IPRD / IB-ADS / IB-SH1.
+- IB-SNIP   a filing leg's snippet is over 24 words or does not show its value; an issuer convenience translation's
+  rate snippet does not show the rate (snippet_problems)
+- IB-SRC2   a filing leg cites another report (check_sources); IB-SH1 the current-interim diluted count is outside
+  1/10-10x the FY count (check_share_band)
+- declaration_rule_problems bundles every rule above: ttm.py runs it, and make_score.py re-runs it on the record
+  (review fix 2026-10-21 — before, make_score re-checked only the shape, hash, arithmetic, FY leg and ADS ratio).
+- ttm.py adds IB-ENG / IB-FORM / IB-UNIT / IB-FX1..3 / IB-SRC1 / IB-XBRL0..2 / IB-IPRD / IB-ADS and the 6-K
+  instance's report period (check_report_period).
+IB-P5's report period is read only from an XBRL 6-K (report_period_end: its dei DocumentPeriodEndDate, else its EDGAR
+reportDate); a 6-K without XBRL has none in EDGAR (its reportDate is the cover date — TFII's, FUTU's), so only the
+filing date bounds the current interim there.
 """
 import datetime
 import hashlib
@@ -62,6 +72,13 @@ DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 FIELD_LABELS = {"ocf": "Operating cash flow", "capex_ppe": "Capex — PP&E", "capex_intangibles": "Capex — intangibles",
                 "sbc": "SBC", "shares_diluted": "Shares diluted"}
 P1_DAYS, P2_DAYS, P3_DELTA, P3_RANGE, P4_DAYS, P5_DAYS = 5, (1, 10), 7, (80, 300), 6, 3
+SHARE_BAND = (0.1, 10.0)      # IB-SH1: the current-interim diluted count vs the FY count (a count in thousands?)
+# Where IB-P5's "report's period" comes from (review fix 2026-10-21): an XBRL 6-K's own dei DocumentPeriodEndDate,
+# else its EDGAR reportDate. A 6-K WITHOUT XBRL has no period of its own in EDGAR — its reportDate is the cover date
+# ("for the month of"; live 2026-10-21: TFII's Q2 6-K 0001193125-26-318068 filed 2026-07-27 reportDate 2026-07-27,
+# every FUTU 6-K reportDate == filingDate, VIV's October 6-Ks 2026-12-31) — so only the filing date is checked.
+PERIOD_SOURCE_DEI = "the 6-K's XBRL dei DocumentPeriodEndDate"
+PERIOD_SOURCE_EDGAR = "EDGAR reportDate of an XBRL 6-K"
 
 
 # ---------------------------------------------------------------------------
@@ -330,9 +347,40 @@ def validate_shape(decl):
 # ---------------------------------------------------------------------------
 # periods
 # ---------------------------------------------------------------------------
-def check_periods(decl, fy_period, today, report_date=None):
+def report_period_end(is_xbrl, dei_period_end, edgar_report_date):
+    """(the report's own period end, where it comes from) for IB-P5 — an XBRL 6-K's instance dei DocumentPeriodEndDate
+    (PERIOD_SOURCE_DEI), else its EDGAR reportDate (PERIOD_SOURCE_EDGAR); (None, None) for a 6-K without XBRL, whose
+    EDGAR reportDate is its cover date, not the interim's period end (review fix 2026-10-21)."""
+    if not is_xbrl:
+        return None, None
+    dei = str(dei_period_end or "").strip()[:10]
+    if _is_date(dei):
+        return dei, PERIOD_SOURCE_DEI
+    if _is_date(edgar_report_date):
+        return edgar_report_date, PERIOD_SOURCE_EDGAR
+    return None, None
+
+
+def _report_period_why(cu_end, report_date, report_source=None):
+    if report_date and _is_date(report_date) and abs((_d(cu_end) - _d(report_date)).days) > P5_DAYS:
+        return (f"not the report's period {report_date} (±{P5_DAYS} days"
+                + (f"; {report_source}" if report_source else "") + ")")
+    return None
+
+
+def check_report_period(decl, report_date, report_source=None):
+    """IB-P5's report-period test alone (ttm.py runs it once the 6-K's instance is read): the current interim ends
+    within P5_DAYS of `report_date` (report_period_end's date; None skips it)."""
+    cu = periods_of(decl)["current_interim"][1]
+    why = _report_period_why(cu, report_date, report_source)
+    return [f"[IB-P5] current interim ends {cu}: {why}"] if why else []
+
+
+def check_periods(decl, fy_period, today, report_date=None, filed=None, report_source=None):
     """IB-P0..IB-P6 against the engine's latest FY `fy_period` ([start, end]; None skips P0 / P1 / P2 / P5's FY test),
-    `today` (an ISO date or date) and the report's period `report_date` (EDGAR reportDate; None skips that test)."""
+    `today` (an ISO date or date), the report's own period `report_date` (report_period_end: an XBRL 6-K's dei
+    DocumentPeriodEndDate; None skips that test — a 6-K without XBRL has none) and its filing date `filed` (the
+    current interim must have ended before the report was filed; None skips it)."""
     out = []
     per = periods_of(decl)
     for name in ("fy", "prior_interim", "current_interim"):
@@ -369,8 +417,11 @@ def check_periods(decl, fy_period, today, report_date=None):
         why.append(f"not after the FY end {fe}")
     if cu[1] > today_s:
         why.append(f"after today {today_s}")
-    if report_date and abs((_d(cu[1]) - _d(report_date)).days) > P5_DAYS:
-        why.append(f"not the report's period {report_date} (±{P5_DAYS} days)")
+    rp = _report_period_why(cu[1], report_date, report_source)
+    if rp:
+        why.append(rp)
+    if _is_date(filed) and cu[1] >= filed:
+        why.append(f"not before the report's filing date {filed}")
     if why:
         out.append(f"[IB-P5] current interim ends {cu[1]}: " + "; ".join(why))
     return out
@@ -379,8 +430,19 @@ def check_periods(decl, fy_period, today, report_date=None):
 # ---------------------------------------------------------------------------
 # like-for-like
 # ---------------------------------------------------------------------------
+def _immaterial_evidence(pc):
+    """IB-LFL3's evidence: a revenue_share below IMMATERIAL_REVENUE_SHARE and a source."""
+    rs = pc.get("revenue_share")
+    return _num(rs) and rs < IMMATERIAL_REVENUE_SHARE and bool(pc.get("source"))
+
+
 def check_like_for_like(decl):
-    """IB-LFL1..IB-LFL5 (window = [prior interim start, current interim end])."""
+    """IB-LFL1..IB-LFL5 (window = [prior interim start, current interim end]). For a change inside the window
+    (review fix 2026-10-21: R2's "a restatement, demerger or material disposal / acquisition only when declared and
+    resolved" is not cleared by one unevidenced boolean): same_business_perimeter resolves a demerger only and
+    comparatives_re_presented needs comparative_restated and restatement.fy_leg_consistent true, whatever `material`
+    says (IB-LFL2); a change declared material false carries the IB-LFL3 evidence (revenue_share below 5% and its
+    source) whatever its resolution."""
     out = []
     lfl = decl.get("like_for_like") or {}
     per = periods_of(decl)
@@ -399,24 +461,37 @@ def check_like_for_like(decl):
             continue
         if res == "immaterial":
             rs = pc.get("revenue_share")
-            if pc.get("material") is True or not (_num(rs) and rs < IMMATERIAL_REVENUE_SHARE) or not pc.get("source"):
+            if pc.get("material") is True or not _immaterial_evidence(pc):
                 out.append(f"[IB-LFL3] {kind} on {date} declared immaterial without revenue_share below "
                            f"{IMMATERIAL_REVENUE_SHARE:.0%} (got {rs}) and its source"
                            + (" — and it is declared material" if pc.get("material") is True else ""))
             continue
-        if not (inside and pc.get("material") is True):
+        if not inside or res == "outside_window":
             continue
-        if kind == "discontinued_operation" and res != "comparatives_re_presented":
+        material = pc.get("material") is True
+        if material and kind == "discontinued_operation" and res != "comparatives_re_presented":
             out.append(f"[IB-LFL5] a material discontinued_operation inside the window ({date}) is resolved only by "
                        "comparatives_re_presented")
             continue
         ok = ((res == "comparatives_re_presented" and consistent)
               or (res == "same_business_perimeter" and kind == "demerger"))
-        if not ok:
+        if not ok and material:
             out.append(f"[IB-LFL2] perimeter change {kind} on {date} lies inside the bridge window {a}..{b}, is material, "
                        f"and its resolution {res} does not resolve it — material changes need comparatives_re_presented "
                        "(with comparative_restated and fy_leg_consistent true) or, for a demerger only, "
                        "same_business_perimeter")
+            continue
+        if not ok:
+            why = ("same_business_perimeter resolves a demerger only" if res == "same_business_perimeter" else
+                   "comparatives_re_presented needs comparative_restated and restatement.fy_leg_consistent true")
+            out.append(f"[IB-LFL2] perimeter change {kind} on {date} lies inside the bridge window {a}..{b}, is declared "
+                       f"not material, and its resolution {res} does not resolve it — {why}; a change that is not "
+                       f"material is resolved immaterial with its revenue_share (below {IMMATERIAL_REVENUE_SHARE:.0%}) "
+                       "and source")
+            continue
+        if not material and not _immaterial_evidence(pc):
+            out.append(f"[IB-LFL3] {kind} on {date} declared not material (resolution {res}) without revenue_share "
+                       f"below {IMMATERIAL_REVENUE_SHARE:.0%} (got {pc.get('revenue_share')}) and its source")
     return out
 
 
@@ -538,7 +613,57 @@ def snippet_problems(decl):
     for path, sn in sns:
         if sn and snippet_words(sn) > SNIPPET_MAX_WORDS:
             out.append(f"[IB-SNIP] {path} is {snippet_words(sn)} words (at most {SNIPPET_MAX_WORDS}, R3)")
+    fx = decl.get("fx") if isinstance(decl.get("fx"), dict) else {}
+    if decl.get("currency") == "USD" and fx.get("basis") == "issuer_convenience_translation":
+        for name in LEG_NAMES:
+            r = fx.get(name) if isinstance(fx.get(name), dict) else {}
+            if not snippet_shows_value(r.get("snippet"), r.get("rate")):
+                out.append(f"[IB-SNIP] fx.{name} snippet does not show the report's rate {r.get('rate')}")
     return out
+
+
+def check_sources(decl):
+    """IB-SRC2: every filing leg cites the declared report (the prior leg is its comparative column), so a restatement
+    is caught by like_for_like."""
+    out = []
+    acc = (decl.get("report") or {}).get("accession")
+    for f in FLOW_FIELDS + (SHARES_FIELD,):
+        for name in (("current_interim",) if f == SHARES_FIELD else LEG_NAMES):
+            x = leg(decl, f, name)
+            if x and x.get("kind") == "filing" and (x.get("source") or {}).get("accession") != acc:
+                out.append(f"[IB-SRC2] {f}.{name} cites accession {(x.get('source') or {}).get('accession')}, not the "
+                           f"report {acc} — both interim legs come from the same report (the prior leg is its "
+                           "comparative column), so restatements are caught by like_for_like")
+    return out
+
+
+def check_share_band(decl, fy_shares):
+    """IB-SH1: the current-interim diluted count is within SHARE_BAND of the FY diluted count `fy_shares` (outside it
+    the count is in other units — thousands?). No FY count: nothing to compare."""
+    x = leg(decl, SHARES_FIELD, "current_interim") or {}
+    v = x.get("value")
+    if not (_num(v) and _num(fy_shares) and fy_shares):
+        return []
+    ratio = v / fy_shares
+    if SHARE_BAND[0] <= ratio <= SHARE_BAND[1]:
+        return []
+    return [f"[IB-SH1] the current-interim diluted count {v:,.0f} is {ratio:.4g}x the FY diluted count {fy_shares:,.0f} "
+            f"(outside 1/10-10x) — a count in thousands?"]
+
+
+def declaration_rule_problems(decl, fy_period, fy_local, fy_usd, fy_shares, today, report_date=None, filed=None,
+                              report_source=None):
+    """Every pure rule ttm.py --interim enforces on a declaration, in one call (review fix 2026-10-21): make_score.py
+    re-runs exactly this list on the record (the FY leg, report period and filing date ttm.json recorded), so a
+    declaration that breaks a rule cannot score on a ttm.json whose declaration_hash was patched to it. ttm.py runs it
+    before it reads the 6-K's instance; the fetched checks (IB-FX, IB-SRC1, IB-XBRL, IB-IPRD, the instance's report
+    period) and the engine-record checks (IB-ENG, IB-FORM, IB-UNIT, IB-ADS) stay in ttm.py.
+    fy_period: the engine's latest FY [start, end] (None skips P0-P2); fy_local / fy_usd: {field: the engine's FY value}
+    in the declared currency / in USD; fy_shares: the CSV FY diluted count."""
+    return (check_periods(decl, fy_period, today, report_date=report_date, filed=filed, report_source=report_source)
+            + check_sources(decl) + snippet_problems(decl)
+            + check_estimates(decl, fy_local, fy_period, fy_shares) + check_definitions(decl, fy_usd)
+            + check_like_for_like(decl) + check_share_band(decl, fy_shares))
 
 
 def leg_lists(decl):

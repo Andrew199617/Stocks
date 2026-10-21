@@ -29,6 +29,8 @@ no bridge block, no measurement, no obligation, no refusals).
 T-f a registry holding both events loads, and their fields avoid the deferred-payment names; T-g a bridge rejected
 by R7's plan is not refused, without the plan it is; T-h an iprd_amortized / basis_window "ttm" base_override beside a
 bridge gets its named refusal.
+Review fix (2026-10-21; fails on the pre-fix L4 head 6fc70cd): make_score re-runs interim_bridge.py's pure rules on
+the declaration, so a rule-breaking judgment edit with a patched ttm.json declaration_hash is refused.
 """
 import copy
 import glob
@@ -345,6 +347,53 @@ def test_fy_leg_not_this_run_refuses():
     n4 = _stamp(dict(n, base_oe_per_share=other["ttm_oe_per_share"], ttm_inputs=E.ttm_inputs_record(other)))
     _, rows4, _, _, _ = pipeline()
     score(n4, j, rows4, other, live=False).refused("ttm.json applied ADS ratio 2.0, the engine 1.0")
+
+
+def test_forged_hash_rule_breaking_declaration_refused():
+    """Review fix (2026-10-21; fails on the pre-fix L4 head 6fc70cd, where make_score scored every case): make_score
+    re-runs interim_bridge.py's pure rules on the declaration (declaration_rule_problems: periods, sources, snippets,
+    estimates, definitions, like-for-like, the share band) and checks the declared report is the one ttm.py verified.
+    A judgment edit that breaks a rule, with ttm.json's declaration_hash patched to it (ttm.py never re-run;
+    declaration_hash is outside TTM_INPUT_TOP_FIELDS, so check_ttm_inputs_current passes), is refused before any
+    replay."""
+    import interim_bridge as IB
+    n, rows, tt, fx, j = pipeline()
+    src = {"accession": ACC, "document": "micc-20260630x6k.htm", "page": 3, "section": "Basis of preparation"}
+
+    def lfl2(d):
+        d["like_for_like"]["perimeter_changes"][1].update(material=True, resolution="same_business_perimeter")
+
+    def snip(d):
+        d["legs"]["ocf"]["current_interim"]["snippet"] = "Net cash flow from operating activities 123 456"
+
+    def lfl1(d):
+        d["like_for_like"].update(comparative_restated=True, comparative_note="H1 2025 restated for the demerger",
+                                  comparative_source=dict(src), comparative_snippet="restated",
+                                  restatement={"description": "re-presented", "fy_leg_consistent": False,
+                                               "source": dict(src), "snippet": "restated"})
+
+    def src2(d):
+        d["legs"]["sbc"]["prior_interim"]["source"]["accession"] = "0001104659-25-070000"
+
+    def other_report(d):
+        d["report"]["accession"] = "0001104659-26-099999"
+        for f in ("ocf", "capex_ppe", "capex_intangibles", "sbc", "shares_diluted"):
+            for leg in d["legs"][f].values():
+                if leg.get("kind") == "filing":
+                    leg["source"]["accession"] = "0001104659-26-099999"
+    for edit, needle in ((lfl2, "[IB-LFL2] perimeter change acquisition on 2026-03-30"),
+                         (snip, "[IB-SNIP] ocf.current_interim snippet does not show 539,000,000"),
+                         (lfl1, "[IB-LFL1] the comparative was restated"),
+                         (src2, "[IB-SRC2] sbc.prior_interim cites accession 0001104659-25-070000"),
+                         (other_report, "[IB-SRC1] judgment.json interim_bridge.report.accession 0001104659-26-099999 "
+                                        f"is not the 6-K ttm.py --interim verified ({ACC})")):
+        jj = copy.deepcopy(j)
+        edit(jj["interim_bridge"])
+        t2 = copy.deepcopy(tt)
+        t2["declaration_hash"] = IB.declaration_hash(jj["interim_bridge"])   # the only edit to the generated file
+        r = score(n, jj, rows, t2, live=False)
+        r.refused("judgment.json interim_bridge breaks the rules ttm.py --interim enforces", needle)
+        assert r.result["spawns"] == [], (edit.__name__, r.result["spawns"])
 
 
 def test_base_oe_ps_copy_refuses():

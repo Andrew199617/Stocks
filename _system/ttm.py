@@ -117,9 +117,13 @@ document / section with a verbatim snippet (at most 24 words) that shows the val
 6-K's own XBRL instance when EDGAR lists one (a filed fact the declaration misstates, or declares as an estimate, is
 refused); an acquired-IPR&D charge the 6-K files for the current interim refuses the bridge (the engine's one-time
 deduction cannot read a 6-K — default Q8, main agent 2026-10-21). The like-for-like rules, the estimate methods and
-the period rules are interim_bridge.py's. ttm.json gains `basis: "declared_interim"` (absent on the 10-Q path),
-the declaration hash, the engine record it started from, the per-leg record, fx, provenance and the 10-Q path's
-compat keys (inputs, ttm_*; capex_components null) — no new key is hashed into ttm_input_hash. Exit 3 on any rule
+the period rules are interim_bridge.py's, run as one bundle (declaration_rule_problems) that make_score.py re-runs on
+the record. The report's period (IB-P5) is an XBRL 6-K's instance dei DocumentPeriodEndDate; a 6-K without XBRL has
+none in EDGAR (its reportDate is the cover date — TFII's, FUTU's 6-Ks), so there the current interim must only have
+ended before the report was filed (review fix 2026-10-21). ttm.json gains `basis: "declared_interim"` (absent on
+the 10-Q path), the declaration hash, the engine record it started from, the report (with the period IB-P5 used),
+the per-leg record, fx, provenance and the 10-Q path's compat keys (inputs, ttm_*; capex_components null) — no new
+key is hashed into ttm_input_hash. Exit 3 on any rule
 (the message lists every [IB-*] code), 4 on a fetch failure (EDGAR, the 6-K instance, an ECB rate). --interim-draft
 <accession> prints a draft declaration from that 6-K's XBRL (TODO markers for snippets, like-for-like and missing
 legs) and writes nothing. Without --interim / --interim-draft nothing changes.
@@ -1015,11 +1019,9 @@ def _interim_rates(decl, n, fy_period, problems):
         rec = {"basis": fx["basis"], "source": fx.get("source"),
                "rates_used": {"fy": 1.0, "prior_interim": 1.0, "current_interim": 1.0}}
         if fx["basis"] == "issuer_convenience_translation":
-            for name in _ib.LEG_NAMES:
+            for name in _ib.LEG_NAMES:     # the rate snippets are judged by _ib.snippet_problems (the rule bundle)
                 r = fx[name]
                 rec[name] = {"date": r["date"], "rate": r["rate"], "snippet": r.get("snippet")}
-                if not _ib.snippet_shows_value(r.get("snippet"), r["rate"]):
-                    problems.append(f"[IB-SNIP] fx.{name} snippet does not show the report's rate {r['rate']}")
         return rec["rates_used"], rec
     fy_end = fy_period[1] if fy_period else per["fy"][1]
     r_fy = (((n.get("fx_conversion") or {}).get("rates_by_currency") or {}).get(ccy) or {}).get(fy_end)
@@ -1088,18 +1090,20 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
     elif filing["form"] not in _ib.REPORT_FORMS:
         problems.append(f"[IB-SRC1] accession {rep_acc} is {filing['form']}, not a 6-K — the bridge reads 6-K interim "
                         "reports (a 10-Q filer uses ttm.py without --interim)")
-    problems += _ib.check_periods(decl, fy_period, today, report_date=(filing or {}).get("period"))
-    for f in _ib.FLOW_FIELDS + (_ib.SHARES_FIELD,):
-        for name in (("current_interim",) if f == _ib.SHARES_FIELD else _ib.LEG_NAMES):
-            x = _ib.leg(decl, f, name)
-            if x and x.get("kind") == "filing" and (x.get("source") or {}).get("accession") != rep_acc:
-                problems.append(f"[IB-SRC2] {f}.{name} cites accession {(x.get('source') or {}).get('accession')}, not the "
-                                f"report {rep_acc} — both interim legs come from the same report (the prior leg is its "
-                                "comparative column), so restatements are caught by like_for_like")
+    fy_local = {f: fy[f]["local"] for f in _ib.FLOW_FIELDS}
+    fy_usd = {f: fy[f]["usd"] for f in _ib.FLOW_FIELDS}
+    fy_shares = fy["shares_diluted"]["value"]
+    # every pure rule, in the one bundle make_score re-runs on the record (review fix 2026-10-21); the report's own
+    # period is not known yet (an XBRL 6-K's comes from its instance below), the filing date is
+    filed = (filing or {}).get("filed")
+    problems += _ib.declaration_rule_problems(decl, fy_period, fy_local, fy_usd, fy_shares, today, report_date=None,
+                                              filed=filed)
+    is_xbrl = bool(filing) and str(filing.get("isXBRL")) == "1"
+    period_end, period_src = None, None
     verified, xbrl_seen = {}, {}
     iprd_scan = "not_scanned (the report has no XBRL instance)"
     instance_url = None
-    if filing and str(filing.get("isXBRL")) == "1":
+    if is_xbrl:
         try:
             data, instance_url = fetch_report_instance(cik, filing)
         except Exception as e:
@@ -1114,6 +1118,10 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
                             "verified against it")
             parsed = None
         if parsed is not None:
+            # IB-P5's report period: the instance's own dei DocumentPeriodEndDate (EDGAR's reportDate the fallback)
+            period_end, period_src = _ib.report_period_end(True, (parsed.get("dei") or {}).get("DocumentPeriodEndDate"),
+                                                           filing.get("period"))
+            problems += _ib.check_report_period(decl, period_end, period_src)
             vals, conflicts = report_xbrl_values(parsed, {k: per[k] for k in _ib.LEG_NAMES}, ccy)
             if conflicts:
                 warnings.append("the 6-K's XBRL instance carries conflicting values for "
@@ -1144,17 +1152,14 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
     else:
         warnings.append("the 6-K has no XBRL instance (EDGAR isXBRL 0): every filing leg is verified by its snippet only, "
                         "and no acquired-IPR&D charge in the current interim can be detected")
-    problems += _ib.snippet_problems(decl)
-    fy_local = {f: fy[f]["local"] for f in _ib.FLOW_FIELDS}
-    fy_usd = {f: fy[f]["usd"] for f in _ib.FLOW_FIELDS}
-    fy_shares = fy["shares_diluted"]["value"]
-    problems += _ib.check_estimates(decl, fy_local, fy_period, fy_shares)
+        if filing:
+            warnings.append(f"EDGAR's reportDate {filing.get('period')} for a 6-K without XBRL is its cover date, not the "
+                            "interim's period end: IB-P5 checks only that the current interim ended before the report "
+                            f"was filed ({filed})")
     sx = _ib.leg(decl, _ib.SHARES_FIELD, "current_interim")
     if sx and sx.get("kind") == "estimate" and sx.get("method") == "fy_diluted_count":
         warnings.append("shares_diluted.current_interim is the FY diluted count (fy_diluted_count): the report prints no "
                         "diluted count for the interim")
-    problems += _ib.check_definitions(decl, fy_usd)
-    problems += _ib.check_like_for_like(decl)
     ads = (j.get("ads_ratio") or {}).get("ratio") if isinstance(j.get("ads_ratio"), dict) else None
     n_ads = (n.get("ads_ratio") or {}).get("ratio") if isinstance(n.get("ads_ratio"), dict) else None
     if not (isinstance(ads, (int, float)) and not isinstance(ads, bool) and ads > 0):
@@ -1169,11 +1174,8 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
                       rates, float(ads))
     shares = out["ttm_shares_diluted"]
     if fy_shares:
-        ratio = shares / fy_shares
-        if not (0.1 <= ratio <= 10):
-            problems.append(f"[IB-SH1] the current-interim diluted count {shares:,.0f} is {ratio:.4g}x the FY diluted count "
-                            f"{fy_shares:,.0f} (outside 1/10-10x) — a count in thousands?")
-        elif not (_engine.DIVERGENCE_BAND[0] <= ratio <= _engine.DIVERGENCE_BAND[1]):
+        ratio = shares / fy_shares          # outside 1/10-10x already refused (IB-SH1, _ib.check_share_band)
+        if not (_engine.DIVERGENCE_BAND[0] <= ratio <= _engine.DIVERGENCE_BAND[1]):
             warnings.append(f"shares: the current-interim diluted count {shares:,.0f} is {ratio:.4g}x the FY diluted count "
                             f"{fy_shares:,.0f} (outside {_engine.DIVERGENCE_BAND[0]}-{_engine.DIVERGENCE_BAND[1]}x) — check "
                             "for a split, a large issuance or a different share class")
@@ -1261,7 +1263,10 @@ def _build_interim(ticker, cik, j, decl, n, rows, facts, today, problems, warnin
                        "current_interim": list(per["current_interim"])},
            "report": {"form": filing["form"], "accession": rep_acc, "document": decl["report"].get("document"),
                       "filed": filing.get("filed"), "report_date": filing.get("period"),
-                      "is_xbrl": str(filing.get("isXBRL")) == "1", "instance_url": instance_url},
+                      "is_xbrl": is_xbrl, "instance_url": instance_url,
+                      # IB-P5's report period (make_score re-runs the rule on it): an XBRL 6-K's dei period end; null
+                      # for a 6-K without XBRL (its EDGAR reportDate is the cover date)
+                      "period_end": period_end, "period_end_source": period_src},
            "fx": fx_rec,
            "legs": legs,
            "shares": {"current_interim": srec, "fy_diluted": fy_shares, "ratio_to_fy": ratio},
@@ -1389,10 +1394,11 @@ def interim_draft_main(ticker, cik, accession):
     fy_period = [_fy_start(facts, fy_end), fy_end]
     if fy_period[0] is None:
         refuse([f"[IB-ENG] no annual operating cash flow fact ends at the engine's FY end {fy_end}"])
-    prior, cur = _draft_periods(parsed, fy_period, filing.get("period"))
+    rp, _src = _ib.report_period_end(True, (parsed.get("dei") or {}).get("DocumentPeriodEndDate"), filing.get("period"))
+    prior, cur = _draft_periods(parsed, fy_period, rp)
     if cur is None:
-        refuse([f"the 6-K's XBRL instance files no duration ending at the report's period {filing.get('period')} that "
-                f"starts 1-10 days after the FY end {fy_end}"])
+        refuse([f"the 6-K's XBRL instance files no duration ending at the report's period {rp} ({_src}) that starts "
+                f"1-10 days after the FY end {fy_end}"])
     fxc = n.get("fx_conversion") or {}
     ccy = fxc.get("from_currency") or "USD"
     periods = {"prior_interim": prior or ["TODO", "TODO"], "current_interim": cur}
