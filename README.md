@@ -75,24 +75,6 @@ python -m http.server 8791 --directory _daily # then open http://localhost:8791/
 those names. Tests: `python _system/tests/test_<name>.py` and
 `node _daily/site/tests/app.test.js`.
 
-On Windows, two cron files under `automation/crons/daily/` have `:` in their
-names, which NTFS cannot hold, so a plain `git clone` fails its checkout. Clone
-this way instead (tested on Windows 11): the sparse checkout leaves those two
-files out, and the per-repo `protectNTFS` setting lets git read a tree that
-lists them.
-
-```
-git clone --no-checkout https://github.com/Andrew199617/Stocks.git
-cd Stocks
-git sparse-checkout set --no-cone "/*" "!/automation/crons/daily/*:*"
-git config core.protectNTFS false
-git checkout main
-```
-
-In an existing Windows checkout that shows those two files as deleted, never
-commit the deletion (never `git add -A`). Renaming the two files without a
-colon on Muse's side would remove the problem for good.
-
 The APP folder is the worked example of the required output shape, including a
 proper override. This repo is a snapshot mirror of the live working tree; the
 sweep runs continuously, so queue state and company outputs move after each
