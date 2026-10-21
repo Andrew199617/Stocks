@@ -571,7 +571,29 @@ closed, as for every release change). The items below are written by the lane th
 - (L1, R1) Sector misfits by universe sector OR EDGAR SIC (sector_model), the delta_nwc fix, the SIC read through
   edgar_submissions: [L1 writes this item]
 - (L4, R2b) Annual facts from the filing's own XBRL instance (load_annual_instance, annual_from_instance) and the tag
-  hoist: [L4 writes this item]
+  hoist (Andrew, 2026-10-19: "do what we gotta to get good foreign companies working"). EDGAR companyfacts can lack
+  a fiscal year EDGAR already holds — it is not ingesting ifrs-full 2025-taxonomy facts: RDY's FY2026 20-F is in
+  companyfacts only as its dei cover-page share count (17 scored foreign folders lag a fiscal year on 2026-10-19).
+  When the most recent ORIGINAL 10-K / 20-F / 40-F in EDGAR submissions (edgar_submissions) is XBRL and its
+  reportDate is at least INSTANCE_MIN_NEW_DAYS (300) after the latest annual period companyfacts carries
+  (companyfacts_latest_annual_end; the trigger is the missing period, never a missing accession),
+  load_annual_instance reads that filing's own XBRL 2.1 instance (fetch_instance -> xbrl_instance.locate_instance,
+  reusing segments.py), checks its dei against the submissions record (form, period end within 3 days, CIK, fiscal
+  period FY), keeps the undimensioned annual facts after companyfacts' latest period (identical duplicates collapse,
+  a key with two values is dropped and listed), requires an annual operating cash flow at the report date, and
+  merges them in companyfacts' own entry shape (fp FY, the original annual form, src "xbrl_instance") — a
+  companyfacts entry is never replaced. main() calls it right after the CIK fallback, so FX conversion, the capex
+  assembly, SBC reconciliation, share hygiene, the gates and the acquired-IPR&D detection apply unchanged. The
+  facts go to <T>/annual_instance.json (a committed SEC file, written only when its content changes, never under
+  --measure; the replay cache: a cached file whose facts no longer hash to its facts_sha256 is refetched), and
+  dcf_numbers.json records annual_from_instance {applied, checked, form, accession, filed, report_date,
+  periods_added, companyfacts_latest_annual_end, instance_url, instance_sha256, facts_merged, conflicts,
+  facts_sha256, cache, reason} — absent when no candidate exists (every run today but the lagging filers); applied
+  false with the reason when the check failed (submissions unavailable: checked false). Flag ANNUAL_FROM_INSTANCE
+  when a merged fiscal year reaches the history. DCF_NO_INSTANCE=1 disables it. make_score requires the committed
+  file (annual_instance_check). The tag hoist (behaviour-neutral, the same list objects in main()):
+  ENGINE_OCF_TAGS, ENGINE_SBC_TAGS, ENGINE_SHARES_DILUTED_TAGS, DILUTED_SHARE_TAGS, BASIC_SHARE_TAGS and the derived
+  DILUTED_ONLY_TAGS, which ttm.py --interim reads.
 - (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT: [L8 writes this item]
 - (L9, R8) Capex components summed (KNX): [L9 writes this item]
 - (L9, R9) Capitalized software / development is capex (JKHY): [L9 writes this item]
@@ -1126,18 +1148,194 @@ def filer_annual_form(cik):
     return None
 
 
+# ---------------------------------------------------------------------------
+# v5.7 (lane L4 — Andrew's ruling R2b, 2026-10-19): annual facts from the filing's own XBRL instance when EDGAR
+# companyfacts has not ingested that fiscal year (RDY's FY2026 20-F: in EDGAR with its XBRL, in companyfacts only as
+# its dei cover-page share count — companyfacts is not ingesting ifrs-full 2025-taxonomy facts). The trigger is the
+# MISSING PERIOD, never a missing accession (10 of the 17 lagging scored folders have the accession in companyfacts).
+# ---------------------------------------------------------------------------
+ANNUAL_INSTANCE_FORMS = ("10-K", "20-F", "40-F")   # originals only: an /A amendment is never merged
+INSTANCE_MIN_NEW_DAYS = 300                        # a NEW fiscal year (a 52/53-week calendar stays inside)
+INSTANCE_CACHE_NAME = "annual_instance.json"       # <T>/annual_instance.json: the committed provenance + replay cache
+CF_ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")   # period_series' own annual forms (what the engine reads)
+INSTANCE_DEI_DAYS = 3                              # the instance's DocumentPeriodEndDate vs submissions reportDate
+
+
 def fetch_instance(cik, filing):
-    """v5.7 stub (L0; lane L4, R2b): the annual filing's own XBRL instance, (instance bytes, instance URL) — (None,
-    None) until L4 builds it on xbrl_instance (lazy import). Tests patch it (engine55_harness.run_engine). No caller
-    yet."""
-    return None, None
+    """v5.7 (L4, R2b): the annual filing's own XBRL 2.1 instance as an (instance bytes, instance URL) pair, (None,
+    None) when its folder holds none (an inline document only) — xbrl_instance.locate_instance (lazy import:
+    segments.py's EDGAR fetch). A non-404 fetch failure raises; load_annual_instance records it. Tests patch it
+    (engine55_harness.run_engine)."""
+    import xbrl_instance as _xi
+    return _xi.locate_instance(cik, filing.get("accession"), filing.get("primary"), filing.get("form"),
+                               filing.get("period"))
+
+
+def companyfacts_latest_annual_end(facts):
+    """The latest end date of any annual duration fact in companyfacts (any taxonomy; fp FY, a form period_series
+    reads — 10-K, 10-K/A, 20-F, 40-F — and 330-380 days), None when there is none."""
+    best = None
+    for tags in ((facts or {}).get("facts") or {}).values():
+        for d in (tags or {}).values():
+            for arr in ((d or {}).get("units") or {}).values():
+                for e in arr or []:
+                    if e.get("fp") != "FY" or e.get("form") not in CF_ANNUAL_FORMS:
+                        continue
+                    s, en = e.get("start"), e.get("end")
+                    if not s or not en or (best is not None and en <= best):
+                        continue
+                    try:
+                        days = (datetime.date.fromisoformat(en) - datetime.date.fromisoformat(s)).days
+                    except ValueError:
+                        continue
+                    if 330 <= days <= 380:
+                        best = en
+    return best
+
+
+def annual_instance_candidate(sub, cf_latest):
+    """Pure. The most recent ORIGINAL annual report (10-K / 20-F / 40-F) in EDGAR submissions `sub` as {"form",
+    "accession", "filed", "period" (reportDate), "primary", "isXBRL"} when it is a NEW fiscal year companyfacts lacks:
+    None when the filer has no such report, when it is not XBRL (isXBRL != 1), when companyfacts has no annual period
+    at all (cf_latest None), or when its reportDate is fewer than INSTANCE_MIN_NEW_DAYS after cf_latest. The accession
+    being in companyfacts does NOT exclude it (RDY, CX, KEP, RYAAY, SHG, SKM, TLK, TME, WF, WIT: companyfacts holds
+    only the dei cover fact of their 2025-taxonomy annual report)."""
+    rec = (((sub or {}).get("filings") or {}).get("recent") or {})
+    cols = {k: rec.get(k) or [] for k in ("form", "accessionNumber", "filingDate", "reportDate", "primaryDocument",
+                                          "isXBRL")}
+    at = lambda k, i: cols[k][i] if i < len(cols[k]) else None  # noqa: E731
+    cands = [{"form": f, "accession": at("accessionNumber", i), "filed": at("filingDate", i),
+              "period": at("reportDate", i), "primary": at("primaryDocument", i), "isXBRL": at("isXBRL", i)}
+             for i, f in enumerate(cols["form"]) if f in ANNUAL_INSTANCE_FORMS]
+    if not cands or cf_latest is None:
+        return None
+    latest = max(cands, key=lambda c: (str(c["filed"] or ""), str(c["accession"] or "")))
+    try:
+        if int(latest.get("isXBRL") or 0) != 1 or not latest.get("accession"):
+            return None
+        gap = (datetime.date.fromisoformat(latest["period"]) - datetime.date.fromisoformat(cf_latest)).days
+    except (TypeError, ValueError):
+        return None
+    return latest if gap >= INSTANCE_MIN_NEW_DAYS else None
+
+
+def _instance_cache(ticker, filing, cik, cf_latest):
+    """(cached document | None, edited: bool) — <T>/annual_instance.json when it is this filing's (accession, CIK)
+    and was extracted against the same companyfacts latest period; edited when it is but its facts no longer hash
+    to its facts_sha256 (amendment 6 of the rebase: the file is a run input, bound like ttm.json)."""
+    import xbrl_instance as _xi
+    try:
+        with open(f"{BASE}/{ticker}/{INSTANCE_CACHE_NAME}", encoding="utf-8") as f:
+            doc = json.load(f)
+    except Exception:
+        return None, False
+    if (not isinstance(doc, dict) or doc.get("accession") != filing.get("accession") or doc.get("cik") != cik
+            or doc.get("companyfacts_latest_annual_end") != cf_latest or not isinstance(doc.get("facts"), list)):
+        return None, False
+    if _xi.facts_sha256(doc.get("facts"), doc.get("conflicts")) != doc.get("facts_sha256"):
+        return None, True
+    return doc, False
 
 
 def load_annual_instance(ticker, cik, facts):
-    """v5.7 stub (L0; lane L4, R2b): (facts, annual_from_instance record | None). L4 merges the annual facts EDGAR
-    companyfacts has not ingested yet from the filing's own XBRL instance; until then the companyfacts come back
-    unchanged (the same object) and no record — main() calls it right after the CIK fallback."""
-    return facts, None
+    """v5.7 (L4, R2b): (facts, annual_from_instance record | None). main() calls it right after the CIK fallback,
+    so every period_series read below sees the merged facts and every rule (FX, capex assembly, SBC reconciliation,
+    share hygiene, the gates, the acquired-IPR&D detection) applies to them unchanged. Every failure degrades: the
+    run goes on with companyfacts as before and the record says why (applied false).
+    1. DCF_NO_INSTANCE=1 -> (facts, None) (kill switch; the companyfacts-only counterfactual).
+    2. edgar_submissions raises -> applied false, checked false, "EDGAR submissions unavailable: <e>".
+    3. No candidate (annual_instance_candidate) -> (facts, None): the common case, no new key in dcf_numbers.json.
+    4. <T>/annual_instance.json for this accession / CIK / companyfacts latest period whose facts hash to its
+       facts_sha256 -> its facts, no download; one that does not hash is refetched (applied false, "does not hash to
+       its facts — edited", when the refetch fails).
+    5. Else fetch_instance: none, over INSTANCE_MAX_BYTES, not an XBRL 2.1 instance or unreadable -> applied false.
+    6. The instance's dei must be the submissions record's: DocumentType == form, DocumentPeriodEndDate within 3 days
+       of reportDate, EntityCentralIndexKey == CIK, DocumentFiscalPeriodFocus "FY".
+    7. xbrl_instance.annual_facts_after(parsed, companyfacts latest annual end); the instance must carry an
+       undimensioned annual operating cash flow (ENGINE_OCF_TAGS) ending at the report date.
+    8. Merge (a companyfacts entry is never replaced: xbrl_instance.merge_into_companyfacts); write the cache through
+       _stable.write_json_if_changed (never under --measure; `extracted_at` / `extracted_by` volatile); applied true."""
+    if os.environ.get("DCF_NO_INSTANCE"):
+        return facts, None
+    try:
+        sub = edgar_submissions(cik)
+    except Exception as e:
+        return facts, {"applied": False, "checked": False, "reason": f"EDGAR submissions unavailable: {e}"}
+    cf_latest = companyfacts_latest_annual_end(facts)
+    filing = annual_instance_candidate(sub, cf_latest)
+    if filing is None:
+        return facts, None
+    import xbrl_instance as _xi
+    rec = {"applied": False, "checked": True, "form": filing["form"], "accession": filing["accession"],
+           "filed": filing.get("filed"), "report_date": filing.get("period"),
+           "companyfacts_latest_annual_end": cf_latest, "reason": None}
+    doc, edited = _instance_cache(ticker, filing, cik, cf_latest)
+    fresh = doc is None
+    if fresh:
+        def refused(why):
+            return facts, dict(rec, reason=("annual_instance.json does not hash to its facts — edited; the instance "
+                                            f"could not be refetched ({why})") if edited else why)
+        try:
+            data, url = fetch_instance(cik, filing)
+        except Exception as e:
+            return refused(f"instance unreadable: {e}")
+        if not data:
+            return refused("no XBRL 2.1 instance in the filing folder (inline document only)")
+        if len(data) > _xi.INSTANCE_MAX_BYTES:
+            return refused(f"instance is {len(data):,} bytes, over the {_xi.INSTANCE_MAX_BYTES:,}-byte limit")
+        try:
+            parsed = _xi.parse_undimensioned(data)
+        except _xi.NotAnInstance as e:
+            return refused(f"not an XBRL 2.1 instance: {e}")
+        except Exception as e:
+            return refused(f"instance unreadable: {e}")
+        dei = parsed.get("dei") or {}
+        try:
+            dei_cik = int(str(dei.get("EntityCentralIndexKey") or "").strip())
+        except ValueError:
+            dei_cik = None
+        try:
+            dei_off = abs((datetime.date.fromisoformat(str(dei.get("DocumentPeriodEndDate"))[:10])
+                           - datetime.date.fromisoformat(filing["period"])).days)
+        except (TypeError, ValueError):
+            dei_off = None
+        for field, ok, want in (("DocumentType", dei.get("DocumentType") == filing["form"], filing["form"]),
+                                ("DocumentPeriodEndDate", dei_off is not None and dei_off <= INSTANCE_DEI_DAYS,
+                                 filing["period"]),
+                                ("EntityCentralIndexKey", dei_cik == cik, cik),
+                                ("DocumentFiscalPeriodFocus", dei.get("DocumentFiscalPeriodFocus") == "FY", "FY")):
+            if not ok:
+                return refused(f"instance dei {field} {dei.get(field)!r} does not match the submissions record {want!r}")
+        entries, conflicts = _xi.annual_facts_after(parsed, cf_latest)
+        ocf_names = {(t if isinstance(t, tuple) else ("us-gaap", t)) for t in ENGINE_OCF_TAGS}
+
+        def _ends_at_report(e):
+            try:
+                return abs((datetime.date.fromisoformat(e["end"])
+                            - datetime.date.fromisoformat(filing["period"])).days) <= INSTANCE_DEI_DAYS
+            except (TypeError, ValueError):
+                return False
+        if not any((e["taxonomy"], e["tag"]) in ocf_names and e.get("start") and _ends_at_report(e) for e in entries):
+            return refused(f"the instance carries no undimensioned annual operating cash flow for {filing['period']}")
+        fy_focus = str(dei.get("DocumentFiscalYearFocus") or "").strip()
+        doc = {"ticker": ticker, "cik": cik, "form": filing["form"], "accession": filing["accession"],
+               "filed": filing.get("filed"), "report_date": filing.get("period"),
+               "fiscal_year_focus": int(fy_focus) if fy_focus.isdigit() else int(str(filing["period"])[:4]),
+               "instance_url": url, "instance_sha256": hashlib.sha256(data).hexdigest(), "instance_bytes": len(data),
+               "companyfacts_latest_annual_end": cf_latest,
+               "extracted_by": f"dcf_engine {ENGINE_RELEASE} load_annual_instance", "extracted_at": ET_TODAY.isoformat(),
+               "facts": entries, "conflicts": conflicts, "facts_sha256": _xi.facts_sha256(entries, conflicts)}
+    cf_entries = _xi.to_companyfacts_entries(doc["facts"], filing, doc.get("fiscal_year_focus"))
+    merged, n_added = _xi.merge_into_companyfacts(facts, cf_entries)
+    if fresh and not MEASURE:
+        from _stable import write_json_if_changed   # lazy: the engine imports nothing else from _stable
+        write_json_if_changed(f"{BASE}/{ticker}/{INSTANCE_CACHE_NAME}", doc,
+                              volatile=("extracted_at", "extracted_by"), indent=1)
+    rec.update({"applied": True, "instance_url": doc.get("instance_url"), "instance_sha256": doc.get("instance_sha256"),
+                "periods_added": sorted({e["end"] for e in doc["facts"] if e.get("start")}),
+                "facts_merged": n_added, "conflicts": doc.get("conflicts") or [],
+                "facts_sha256": doc.get("facts_sha256"), "cache": f"{ticker}/{INSTANCE_CACHE_NAME}"})
+    return merged, rec
 
 def get_json(url, headers=UA, timeout=90):
     last = None
@@ -1251,6 +1449,25 @@ PPE_POSITIVE_TAGS = ["PropertyPlantAndEquipmentNet", "RealEstateInvestmentProper
 def _tag_name(t):
     """'Tag' or ('taxonomy', 'Tag') -> 'Tag'."""
     return t if isinstance(t, str) else t[1]
+
+
+# v5.7 (lane L4, R2; design 04 A.9 + rebase amendment 8 — behaviour-neutral): the engine's own OCF / SBC / diluted-
+# share candidates, hoisted out of main()'s dur_defs so ttm.py --interim and the annual-instance check read facts with
+# exactly the engine's tags. main() uses these SAME objects, in the same order (test_tag_hoist_is_identity).
+ENGINE_OCF_TAGS = ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+                   (IF, "CashFlowsFromUsedInOperatingActivities"), (IF, "CashFlowsFromUsedInOperatingActivitiesContinuingOperations")]
+ENGINE_SBC_TAGS = ["ShareBasedCompensation", "AllocatedShareBasedCompensationExpense",
+                   (IF, "AdjustmentsForSharebasedPayments"), (IF, "ExpenseFromSharebasedPaymentTransactionsWithEmployees")]
+ENGINE_SHARES_DILUTED_TAGS = ["WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted",
+                              "WeightedAverageNumberOfSharesOutstandingBasic",
+                              (IF, "AdjustedWeightedAverageShares"), (IF, "WeightedAverageShares")]
+DILUTED_SHARE_TAGS = {"WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted",
+                      "AdjustedWeightedAverageShares", "OVERRIDE"}
+# Tags that carry only a BASIC share count — a period sourced from one is a shares (diluted) gap, never a silent swap
+# (v5.2 rule, extended to IFRS).
+BASIC_SHARE_TAGS = {"WeightedAverageNumberOfSharesOutstandingBasic", "WeightedAverageShares"}
+# the diluted candidates alone (ttm.py --interim verifies a declared diluted count against these only)
+DILUTED_ONLY_TAGS = [t for t in ENGINE_SHARES_DILUTED_TAGS if _tag_name(t) not in BASIC_SHARE_TAGS]
 
 
 def _ratio_value(ads_ratio):
@@ -4451,8 +4668,7 @@ def main():
         "operating_income": ["OperatingIncomeLoss", (IF, "ProfitLossFromOperatingActivities")],
         # v5.2: continuing-operations OCF as fallback — a filer tagging OCF only
         # there previously produced oe_cons = None and a fake Tier F (round-2).
-        "ocf": ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
-                (IF, "CashFlowsFromUsedInOperatingActivities"), (IF, "CashFlowsFromUsedInOperatingActivitiesContinuingOperations")],
+        "ocf": ENGINE_OCF_TAGS,   # v5.7 (L4): hoisted to module level unchanged (ttm.py --interim reads the same list)
         # v5: construction-in-process (ED files capex there FY23+) and other-productive-assets
         # (ROP) added as fallbacks — both verified against real companyfacts pulls 2026-10-13.
         # v5.5: capex is no longer a first-tag-wins merge. The PP&E leg is assembled per
@@ -4463,11 +4679,9 @@ def main():
         "da": ["DepreciationDepletionAndAmortization", "DepreciationAmortizationAndAccretionNet", "DepreciationAndAmortization", "Depreciation",
                (IF, "AdjustmentsForDepreciationAndAmortisationExpense"), (IF, "DepreciationAndAmortisationExpense")],
         # v5: DFTX and many others file SBC only under the allocated tag.
-        "sbc": ["ShareBasedCompensation", "AllocatedShareBasedCompensationExpense",
-                (IF, "AdjustmentsForSharebasedPayments"), (IF, "ExpenseFromSharebasedPaymentTransactionsWithEmployees")],
+        "sbc": ENGINE_SBC_TAGS,   # v5.7 (L4): hoisted unchanged
         "tax": ["IncomeTaxExpenseBenefit", (IF, "IncomeTaxExpenseContinuingOperations"), (IF, "IncomeTaxExpense")],
-        "shares_diluted": ["WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted", "WeightedAverageNumberOfSharesOutstandingBasic",
-                           (IF, "AdjustedWeightedAverageShares"), (IF, "WeightedAverageShares")],
+        "shares_diluted": ENGINE_SHARES_DILUTED_TAGS,   # v5.7 (L4): hoisted unchanged
     }
     inst_defs = {
         "cash": ["CashAndCashEquivalentsAtCarryingValue", "CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents", (IF, "CashAndCashEquivalents")],
@@ -4502,11 +4716,8 @@ def main():
         "equity": ["StockholdersEquity", "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest", (IF, "Equity")],
         "shares_out_inst": ["CommonStockSharesOutstanding", (IF, "NumberOfSharesOutstanding")],
     }
-    DILUTED_SHARE_TAGS = {"WeightedAverageNumberOfDilutedSharesOutstanding", "WeightedAverageNumberOfSharesOutstandingDiluted",
-                          "AdjustedWeightedAverageShares", "OVERRIDE"}
-    # Tags that carry only a BASIC share count — a period sourced from one is a
-    # shares (diluted) gap, never a silent swap (v5.2 rule, extended to IFRS).
-    BASIC_SHARE_TAGS = {"WeightedAverageNumberOfSharesOutstandingBasic", "WeightedAverageShares"}
+    # v5.7 (L4): DILUTED_SHARE_TAGS / BASIC_SHARE_TAGS (the basic-only gap rule) are the module constants, hoisted
+    # unchanged next to ENGINE_SHARES_DILUTED_TAGS
     series, used, series_tags, series_units = {}, {}, {}, {}
     for k, tags in dur_defs.items():
         if k == "capex":   # v5.5: assembled per period below (slot reserved so key order is unchanged)
@@ -5781,6 +5992,10 @@ def main():
         # v5.5 (decision 7): overrides used verbatim as USD figures, and which rule fired
         # ({} when every override was converted, or none is declared).
         fx_info["overrides_usd_verbatim"] = dict(sorted(ov_usd_verbatim.items()))
+    if annual_instance is not None:
+        # v5.7 (L4, R2b): the annual-facts-from-instance record, only when a candidate filing was checked (or the
+        # submissions fetch failed) — inside the content-hashed payload of both the gapped and the scored run
+        result["annual_from_instance"] = annual_instance
 
     # ---- v3 scenario / moat inputs ----
     def arglist(flag, default):
@@ -5817,6 +6032,15 @@ def main():
                         and abs(h["net_income"] - h["ocf"]) > (h.get("da") or 0)]
     if ni_ocf_gap_years: flags_pre.append(f"NI_OCF_DIVERGENCE: net income and operating cash flow differ by >40% in {', '.join(ni_ocf_gap_years)} — find the one-off (tax deposits, impairments, WC swings) before trusting the OE base")
     if cik_fallback_note: flags_pre.append(cik_fallback_note)
+    _inst_periods = [p for p in ((annual_instance or {}).get("periods_added") or [])
+                     if p in {h["period_end"] for h in hist}] if (annual_instance or {}).get("applied") else []
+    if _inst_periods:   # v5.7 (L4, R2b): only when a merged fiscal year reached the history
+        flags_pre.append(f"ANNUAL_FROM_INSTANCE: fiscal year(s) {', '.join(_inst_periods)} read from the "
+                         f"{annual_instance['form']}'s own XBRL instance (accession {annual_instance['accession']}, filed "
+                         f"{annual_instance.get('filed')}) — EDGAR companyfacts had not ingested them (its latest annual "
+                         f"period ends {annual_instance.get('companyfacts_latest_annual_end')}); "
+                         f"{annual_instance.get('facts_merged')} undimensioned facts merged, no companyfacts value replaced; "
+                         "see dcf_numbers.json annual_from_instance")
     if fx_info:
         flags_pre.append(f"FX_CONVERTED: reporting currency {fx_info['from_currency']} converted to USD at period-end ECB reference rates (frankfurter.app) — flow facts use the period-end rate, not a period average; the rates used are recorded in dcf_numbers.json fx_conversion")
     if usd_translation_used:

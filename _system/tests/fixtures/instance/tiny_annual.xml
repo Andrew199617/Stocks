@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Hand-written test fixture (engine 5.7, R2b; design 04 B.4): a tiny XBRL 2.1 annual instance. Synthetic filer
+     (CIK 999002, EUR). FY2026 = 2025-04-01..2026-03-31; FY2025 is the prior-year comparative. Carries: a dimensioned
+     context (SegmentsAxis), a typed-member context, a scenario context, a nil fact, two identical duplicates (SBC) and
+     one conflicting duplicate (ProfitLoss), units EUR / shares / EUR per share / pure, and the dei block. -->
+<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+            xmlns:ifrs-full="https://xbrl.ifrs.org/taxonomy/2025-03-27/ifrs-full" xmlns:dei="http://xbrl.sec.gov/dei/2025"
+            xmlns:iso4217="http://www.xbrl.org/2003/iso4217" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns:tiny="http://tiny.example/2026">
+  <ifrs-full:CashFlowsFromUsedInOperatingActivities contextRef="FY26" unitRef="EUR" decimals="-6">607000000</ifrs-full:CashFlowsFromUsedInOperatingActivities>
+  <xbrli:context id="FY26"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2025-04-01</xbrli:startDate><xbrli:endDate>2026-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+  <xbrli:context id="I26"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:instant>2026-03-31</xbrli:instant></xbrli:period></xbrli:context>
+  <xbrli:context id="FY25"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2024-04-01</xbrli:startDate><xbrli:endDate>2025-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+  <xbrli:context id="I25"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:instant>2025-03-31</xbrli:instant></xbrli:period></xbrli:context>
+  <xbrli:context id="FY26_seg"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier>
+    <xbrli:segment><xbrldi:explicitMember dimension="ifrs-full:SegmentsAxis">tiny:GenericsMember</xbrldi:explicitMember></xbrli:segment></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2025-04-01</xbrli:startDate><xbrli:endDate>2026-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+  <xbrli:context id="FY26_typed"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier>
+    <xbrli:segment><xbrldi:typedMember dimension="tiny:PlantAxis"><tiny:plant>7</tiny:plant></xbrldi:typedMember></xbrli:segment></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2025-04-01</xbrli:startDate><xbrli:endDate>2026-03-31</xbrli:endDate></xbrli:period></xbrli:context>
+  <xbrli:context id="FY26_scn"><xbrli:entity><xbrli:identifier scheme="http://www.sec.gov/CIK">0000999002</xbrli:identifier></xbrli:entity>
+    <xbrli:period><xbrli:startDate>2025-04-01</xbrli:startDate><xbrli:endDate>2026-03-31</xbrli:endDate></xbrli:period>
+    <xbrli:scenario><tiny:Restated>true</tiny:Restated></xbrli:scenario></xbrli:context>
+  <xbrli:unit id="EUR"><xbrli:measure>iso4217:EUR</xbrli:measure></xbrli:unit>
+  <xbrli:unit id="shares"><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unit>
+  <xbrli:unit id="EURPerShare"><xbrli:divide><xbrli:unitNumerator><xbrli:measure>iso4217:EUR</xbrli:measure></xbrli:unitNumerator>
+    <xbrli:unitDenominator><xbrli:measure>xbrli:shares</xbrli:measure></xbrli:unitDenominator></xbrli:divide></xbrli:unit>
+  <xbrli:unit id="pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit>
+  <dei:DocumentType contextRef="FY26">20-F</dei:DocumentType>
+  <dei:DocumentPeriodEndDate contextRef="FY26">2026-03-31</dei:DocumentPeriodEndDate>
+  <dei:DocumentFiscalPeriodFocus contextRef="FY26">FY</dei:DocumentFiscalPeriodFocus>
+  <dei:DocumentFiscalYearFocus contextRef="FY26">2026</dei:DocumentFiscalYearFocus>
+  <dei:EntityCentralIndexKey contextRef="FY26">0000999002</dei:EntityCentralIndexKey>
+  <dei:CurrentFiscalYearEndDate contextRef="FY26">--03-31</dei:CurrentFiscalYearEndDate>
+  <dei:EntityCommonStockSharesOutstanding contextRef="I26" unitRef="shares" decimals="INF">834656970</dei:EntityCommonStockSharesOutstanding>
+  <ifrs-full:CashFlowsFromUsedInOperatingActivities contextRef="FY25" unitRef="EUR" decimals="-6">590000000</ifrs-full:CashFlowsFromUsedInOperatingActivities>
+  <ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities contextRef="FY26" unitRef="EUR" decimals="-6">249000000</ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities>
+  <ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities contextRef="FY26_seg" unitRef="EUR" decimals="-6">100000000</ifrs-full:PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities>
+  <ifrs-full:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities contextRef="FY26" unitRef="EUR" decimals="-6">161000000</ifrs-full:PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities>
+  <ifrs-full:AdjustmentsForSharebasedPayments contextRef="FY26" unitRef="EUR" decimals="-6">3000000</ifrs-full:AdjustmentsForSharebasedPayments>
+  <ifrs-full:AdjustmentsForSharebasedPayments contextRef="FY26" unitRef="EUR" decimals="-6">3000000</ifrs-full:AdjustmentsForSharebasedPayments>
+  <ifrs-full:AdjustedWeightedAverageShares contextRef="FY26" unitRef="shares" decimals="0">833331689</ifrs-full:AdjustedWeightedAverageShares>
+  <ifrs-full:DilutedEarningsLossPerShare contextRef="FY26" unitRef="EURPerShare" decimals="2">0.72</ifrs-full:DilutedEarningsLossPerShare>
+  <ifrs-full:Revenue contextRef="FY26" unitRef="EUR" decimals="-6">3500000000</ifrs-full:Revenue>
+  <ifrs-full:Revenue contextRef="FY26_typed" unitRef="EUR" decimals="-6">10000000</ifrs-full:Revenue>
+  <ifrs-full:Revenue contextRef="FY26_scn" unitRef="EUR" decimals="-6">5000000</ifrs-full:Revenue>
+  <ifrs-full:ProfitLoss contextRef="FY26" unitRef="EUR" decimals="-6">600000000</ifrs-full:ProfitLoss>
+  <ifrs-full:ProfitLoss contextRef="FY26" unitRef="EUR" decimals="-6">601000000</ifrs-full:ProfitLoss>
+  <ifrs-full:CashAndCashEquivalents contextRef="I26" unitRef="EUR" decimals="-6">400000000</ifrs-full:CashAndCashEquivalents>
+  <ifrs-full:CashAndCashEquivalents contextRef="I25" unitRef="EUR" decimals="-6">350000000</ifrs-full:CashAndCashEquivalents>
+  <ifrs-full:Equity contextRef="I26" unitRef="EUR" xsi:nil="true"/>
+  <ifrs-full:ProportionOfOwnershipInterestInSubsidiary contextRef="FY26" unitRef="pure" decimals="4">0.25</ifrs-full:ProportionOfOwnershipInterestInSubsidiary>
+</xbrli:xbrl>
