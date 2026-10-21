@@ -1,0 +1,90 @@
+{
+ "ticker": "ZION",
+ "name": "Zions Bancorporation, National Association",
+ "sector": "Finance / National Commercial Banks (regional bank)",
+ "price": 64.59,
+ "market_cap_b": 9.5,
+ "market_cap_basis": "diluted_latest",
+ "engine_version": 5,
+ "base_oe_per_share": 6.231439890728949,
+ "base_year": "2025",
+ "base_source": "median_of_last_3_fy_oe_per_share",
+ "moat_score": 4,
+ "moat_justification": "Relationship-driven Western regional bank: seven local brands across 11 western states, multi-generational middle-market relationships and SBA/public-finance niches give real deposit stickiness, but no structural cost or scale advantage versus national banks, NIM is hostage to the rate cycle and deposit competition, and returns are ordinary bank returns (ROE 12.0-18.5% FY2022-25 on a leveraged balance sheet, ROA ~0.8-1.0%; fundamentals.json roic_proxy is not computable for a bank \u2014 operating income is not filed \u2014 so ROE/ROA are the return evidence).",
+ "cap_years": 7.2,
+ "fragility_flags": [
+  "STALE_FY: latest fiscal year ended 10 months ago \u2014 check TTM/quarterly OE and consider --base-oe-ps override",
+  "OE_VOLATILE: OE/share range over the last 5 yrs spans >3x \u2014 normalized base helps but the business is cyclical; widen bear weight",
+  "CASH_INCLUDES_RESTRICTED: the only cash tag filed for the latest fiscal year is the combined cash + restricted-cash total and no restricted-cash tag separates it \u2014 net debt is UNDERSTATED by the restricted amount (escrow / collateral / regulatory); check the balance sheet before trusting HIGH_NET_DEBT's absence",
+  "SECTOR_MODEL_MISMATCH: Finance sector \u2014 OE/capex DCF fits finance names poorly; grade confidence low",
+  "WIDE_SCENARIO_SPREAD: super-bull IV is 4.2x super-bear IV \u2014 uncertainty is huge; confidence should not be high",
+  "HIGH_NET_DEBT: net debt is 4.2x normalized OE \u2014 levered OE can vanish fast; stress the bear cases",
+  "TIER_BAND: bear-case tier C (10.5%) vs bull-case tier B (16.9%) \u2014 the verdict spans tiers; size any position to the bear end"
+ ],
+ "scenarios": {
+  "super_bear": {
+   "prob": 0.15,
+   "iv_at_15": 26.55,
+   "irr": 0.0732
+  },
+  "bear": {
+   "prob": 0.3,
+   "iv_at_15": 41.88,
+   "irr": 0.1054
+  },
+  "base": {
+   "prob": 0.3,
+   "iv_at_15": 56.4,
+   "irr": 0.1345
+  },
+  "bull": {
+   "prob": 0.15,
+   "iv_at_15": 75.0,
+   "irr": 0.1689
+  },
+  "super_bull": {
+   "prob": 0.1,
+   "iv_at_15": 110.59,
+   "irr": 0.2265
+  }
+ },
+ "iv_at_15": 55.78,
+ "iv_at_12": 73.96,
+ "implied_irr": 0.1334,
+ "implied_irr_base_case": 0.1345,
+ "upside_at_15_pct": -13.6,
+ "tier_by_numbers": "C",
+ "tier_final": "D",
+ "confidence": "low",
+ "one_liner": "Decent relationship regional bank, moat 4/10 \u2014 the OCF-DCF prints Tier C by numbers (13.3% weighted IRR, IV@15 $55.78 vs $64.59 price) but a bank's OCF is balance-sheet flow, not owner's earnings (the TTM OCF base prints a spurious Tier A), so the standing misfit notch sizes it to D; it does not clear 15% \u2014 the 15% hurdle price on the numbers base is $55.78.",
+ "analysis_date": "2026-10-20",
+ "in_scope_under_40b": true,
+ "engine_release": "5.5.0",
+ "irr_bear": 0.1054,
+ "irr_bull": 0.1689,
+ "tier_bear": "C",
+ "tier_bull": "B",
+ "iv_at_20": 39.41,
+ "iv_at_25": 30.38,
+ "f_subtype": null,
+ "irr_at_floor": false,
+ "net_debt_latest": 3893000000,
+ "shares_diluted_latest": 147157000,
+ "model_fit": "misfit",
+ "alert_eligible": false,
+ "exit_alert_eligible": false,
+ "exit_alert_suppressed_reason": "sector model misfit",
+ "tier_override_reason": "SECTOR_MODEL_MISMATCH bank artifact (Andrew's standing rule 2026-10-15, universal per his 2026-10-19 Q2 ruling): a bank's operating cash flow includes deposit and loan balance-sheet flows, so the OCF-based OE base is not distributable owner's earnings. Quantified: the TTM OCF base of $11.21/share (ttm.py: TTM OCF $1,801M vs FY2025 OCF $1,073M \u2014 H1 2026 YTD OCF $845M vs H1 2025 $117M, a $728M half-year swing) prints weighted IRR 21.65% / Tier A on the identical scenario set, while the earnings record is far lower \u2014 diluted EPS FY2023/24/25 was $4.35 / $4.95 / $6.01 (median $4.95) against the $6.23 OE base, and TTM net income of $1,171M itself contains Q2 2026's one-off equity securities gain (reported EPS $3.05 vs $1.74 adjusted). Sized one notch down from the numbers tier C to D, confidence low.",
+ "moat_for": [
+  "Seven local bank brands with local management across 11 western states \u2014 deep, often multi-generational middle-market relationships and switching costs",
+  "Stable core deposit franchise in faster-growing Western markets (average customer deposits +8.8% annualized in Q3 2026, funding reduced wholesale borrowings)",
+  "Specialist niches with reputation: SBA lending and public finance advisory",
+  "Disciplined credit culture \u2014 Q3 2026 net charge-offs 2bp of average loans, criticized/classified balances falling"
+ ],
+ "moat_against": [
+  "No scale or technology advantage versus the national banks; deposit pricing competition compresses NIM (3.23% in Q3 2026, -4bp sequentially on higher deposit costs)",
+  "Earnings are rate-cycle and credit-cycle hostages \u2014 revenue CAGR only ~4.4% over five years, ~90% of revenue is net interest income",
+  "Western commercial real estate and regional-economy concentration",
+  "Heavier post-2023 regional-bank regulatory/liquidity scrutiny; a $50M fraudulent-loan charge-off in California operations showed up in 2025 disclosures"
+ ]
+}
