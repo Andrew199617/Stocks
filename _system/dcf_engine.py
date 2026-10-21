@@ -505,6 +505,10 @@ base within 0.1%, so a ttm.json regenerated with twice the shares (and twice the
 on the old denominator, and a new 10-Q's YTD period scored the stale window.
 [Codex review round 25 of PR #47] Declared-pin and ttm.json-figure matches (pin_matches) are 0.1% of the reference,
 or half a cent per share when either side is zero: a $0.00 amortized base and a zero TTM base match their figures.
+[Codex review round 26 of PR #47] The half cent is declaration arithmetic only (an iprd_amortized value reproduced
+from its own figures, declared_value_matches); the numeric TTM match, the basis_window and share-scale-rescue matches
+on a plain value use figure_matches (0.1%, a zero only by an exact zero), and an amortized pin must sit on the same
+side of zero as its reproduced value (IPRD_AMORTIZED_ZERO_EPS): a --base-oe-ps 0.004 beside a $0.00 base is not it.
 [Codex review round 24 of PR #47] (1) A declaration matching a --base-oe-ps pin picks the IPR&D window and share
 denominator alone: iprd_amortized by its native_base (ttm_json: the TTM window and ttm_shares_diluted; the median: the
 FY window and the latest FY count), a plain one with basis_window {"window": "fy"} the FY window and count; the 0.1%
@@ -1406,7 +1410,7 @@ def share_scale_pin_rescue(pin_source, pin, price, declared):
         return False, ["no --base-oe-ps pin"]
     ok_decl = (isinstance(declared, dict) and not declared.get("basis")
                and isinstance(declared.get("value"), (int, float)) and not isinstance(declared.get("value"), bool)
-               and pin_matches(declared["value"], pin))
+               and figure_matches(declared["value"], pin))   # [Codex review r26 of PR #47] a plain value: no band
     if not ok_decl:
         if not isinstance(declared, dict):
             why.append("judgment.json declares no base_override")
@@ -1415,7 +1419,7 @@ def share_scale_pin_rescue(pin_source, pin, price, declared):
                        "through --base-judgment, never --base-oe-ps)")
         else:
             why.append(f"judgment.json's base_override value {declared.get('value')!r} does not equal the pin {pin:.6g} "
-                       "within 0.1% (half a cent when either is zero)")
+                       "within 0.1% (a zero only by an exact zero)")
     if price and abs(pin) > SHARE_SCALE_PRICE_MULT * price:
         why.append(f"the pin itself is {abs(pin) / price:,.0f}x the price {price:,.2f} (limit {SHARE_SCALE_PRICE_MULT}x) — "
                    "it inherits the mis-scaled counts")
@@ -2189,6 +2193,9 @@ def ttm_inputs_record(tt):
 # iprd_amortized value); a non-zero mismatch is still no match.
 PIN_MATCH_REL = 0.001
 PIN_MATCH_ZERO_ABS = 0.005
+# [Codex review r26 of PR #47] an iprd_amortized value that reproduces within this of zero is a $0.00 base (float noise
+# in native base - mean charge / shares), so only a pin <= 0 is on its side of zero
+IPRD_AMORTIZED_ZERO_EPS = 1e-9
 
 
 def pin_matches(v, ref):
@@ -2202,6 +2209,37 @@ def pin_matches(v, ref):
     if v == 0 or ref == 0:
         return abs(v - ref) <= PIN_MATCH_ZERO_ABS
     return abs(v - ref) <= PIN_MATCH_REL * abs(ref)
+
+
+def figure_matches(v, ref):
+    """[Codex review r26 of PR #47] True when per-share figure v equals reference ref within 0.1% of ref, and a zero
+    reference only by an exact zero (no absolute band). The match for every UNDECLARED numeric comparison — a pin
+    against ttm.json's ttm_oe_per_share (base pin provenance, basis selection, the numeric TTM match, the TTM-leg
+    override rules, the override-impact branch, freshness) and a plain base_override's value (no figures of its own)
+    against the pin: half a cent of pin_matches' band at zero let an undeclared --base-oe-ps 0.004 pass as ttm.json's
+    $0.00 TTM base, so a Tier F base published Tier D. pin_matches' absolute band is for declaration arithmetic only
+    (an iprd_amortized value reproduced from its own figures to the cent). Non-numbers and non-finite values never
+    match."""
+    if not all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in (v, ref)):
+        return False
+    v, ref = float(v), float(ref)
+    if not (math.isfinite(v) and math.isfinite(ref)):
+        return False
+    if ref == 0:
+        return v == 0
+    return abs(v - ref) <= PIN_MATCH_REL * abs(ref)
+
+
+def declared_value_matches(decl, pin):
+    """[Codex review r26 of PR #47] True when judgment.json base_override `decl` declares the per-share pin `pin`: an
+    iprd_amortized value is declaration arithmetic (the native base less the mean charge, reproduced to the cent), so
+    it matches at pin_matches' half cent when either side is zero; any other declaration's value is the worker's own
+    number and matches by figure_matches (0.1%, a zero only by an exact zero)."""
+    if not isinstance(decl, dict):
+        return False
+    if decl.get("basis") == IPRD_AMORTIZED_BASIS:
+        return pin_matches(decl.get("value"), pin)
+    return figure_matches(decl.get("value"), pin)
 
 
 def iprd_accession_year(yy):
@@ -4722,7 +4760,8 @@ def main():
     amort_decl = bool(pin_source == "base_oe_ps_arg" and isinstance(decl, dict) and decl.get("basis") == IPRD_AMORTIZED_BASIS
                       and isinstance(decl.get("value"), (int, float)) and not isinstance(decl.get("value"), bool)
                       and pin_matches(decl["value"], base_override))
-    # [Codex review r25 of PR #47] a ttm.json figure of exactly 0 is a TTM base (pin_matches compares it at half a cent)
+    # [Codex review r25 of PR #47] a ttm.json figure of exactly 0 is a TTM base ([Codex review r26] matched by
+    # figure_matches: an exact zero pin only)
     _ttm_v = (ttm_doc or {}).get("ttm_oe_per_share")
     _ttm_v = (float(_ttm_v) if (isinstance(_ttm_v, (int, float)) and not isinstance(_ttm_v, bool) and math.isfinite(_ttm_v))
               else None)
@@ -4755,7 +4794,7 @@ def main():
     _dv = decl.get("value") if isinstance(decl, dict) else None
     if (_bw is not None and pin_source == "base_oe_ps_arg" and decl.get("basis") is None
             and isinstance(_dv, (int, float)) and not isinstance(_dv, bool) and base_override is not None
-            and pin_matches(_dv, base_override)):
+            and figure_matches(_dv, base_override)):     # [Codex review r26 of PR #47] a plain value: no band
         _why = base_basis_window_problem(_bw)
         if _why is None and _bw["window"] == "ttm":
             _ocf = ((ttm_doc or {}).get("inputs") or {}).get("ocf") if isinstance((ttm_doc or {}).get("inputs"), dict) else None
@@ -4777,7 +4816,8 @@ def main():
     # only for a pin no declaration places (or a plain one declaring basis_window "ttm", whose share-denominator rule
     # is round 15's): a median-native amortized pin that happened to equal the TTM figure had read the current-YTD leg
     # on ttm.json's shares, so a non-recurrent charge could pass as recurrent and the declaration be accepted.
-    _num_ttm = bool(_ttm_v is not None and base_override is not None and pin_matches(base_override, _ttm_v))
+    # [Codex review r26 of PR #47] an undeclared numeric match: 0.1%, and a zero TTM figure only by an exact zero
+    _num_ttm = bool(_ttm_v is not None and base_override is not None and figure_matches(base_override, _ttm_v))
     if pin_source == "ttm_json":
         iprd_ttm_basis = True
     elif pin_source != "base_oe_ps_arg":
@@ -4909,6 +4949,12 @@ def main():
                 if abs(expected - float(decl["value"])) > 0.005:
                     why.append(f"value {decl['value']} does not reproduce native base {_native:.6f} - mean charge "
                                f"{sum(_fy_amts) / len(_fy_amts):,.0f} / {float(_nshares):,.0f} shares = {expected:.6f} to the cent")
+                # [Codex review r26 of PR #47] the half-cent band at zero (pin_matches) is declaration arithmetic, not a
+                # free number: a base <= 0 is Tier F, so a pin must sit on the same side of zero as the value its
+                # figures reproduce — a --base-oe-ps 0.004 on a $0.00 amortized base would publish a non-F tier
+                elif (base_override > 0) != (expected > IPRD_AMORTIZED_ZERO_EPS):
+                    why.append(f"the pin {base_override:.6g} and the value its figures reproduce ({expected:.6f}) sit on "
+                               "opposite sides of zero (a base <= 0 is Tier F) — pin --base-oe-ps at the reproduced value")
             if why and not iprd_counterfactual:
                 iprd_refusal = "; ".join(why)
             amortized = {"basis": IPRD_AMORTIZED_BASIS, "native_base": _nb, "native_base_per_share": _native,

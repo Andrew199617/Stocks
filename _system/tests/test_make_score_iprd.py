@@ -2154,6 +2154,107 @@ def test_a_zero_ttm_base_is_ttm_json_s_pin():
             M.BASE = old_base
 
 
+# --- Codex review round 26 of PR #47 ------------------------------------------------------------------------------
+def test_a_positive_pin_is_never_ttm_json_s_zero_base_or_a_plain_zero_declaration():
+    """[Codex review r26, #4333889284 and siblings] Round 25's half-cent band at zero (pin_matches) served undeclared
+    matches too: with ttm.json's ttm_oe_per_share exactly 0, an undeclared --base-oe-ps 0.004 passed base pin
+    provenance as ttm.json's pin (via_ttm) and published Tier D where the TTM base is Tier F; a plain base_override
+    declaring 0.0 "declared" the 0.004 pin; the TTM-leg override rules attributed ttm.json's legs to it;
+    _declared_pin_not_ttm sent a declared 0.004 pin to the TTM branch; and an amortized native_base ttm_json record
+    on $0.00 counted a ttm.json moved to 0.004 as unchanged. Every undeclared match against ttm.json, and a plain
+    declaration's value, now uses figure_matches (0.1%, a zero only by an exact zero); the half cent is kept for
+    the iprd_amortized arithmetic alone."""
+    import tempfile
+    import make_score as M
+    t0 = TI._ttm_doc(0.0, 100e6)
+    n = TI._cached("r26_pin_004", lambda: TI._ok(TI._run(TI._ttm_ytd_facts(), extra=["--base-oe-ps", "0.004"], ttm=t0)))
+    assert n["base_oe_per_share"] == 0.004 and n["tier_by_numbers"] != "F", n["tier_by_numbers"]
+    r = _score(n, ttm=t0)
+    assert r.rc != 0 and "base pin provenance" in r.err, r.err[-800:]
+    plain = TI.ttm_window_decl(0.0, "fy")
+    t2 = TI._ttm_doc(2.0, 100e6)
+    p = TI._cached("r26_plain_004", lambda: TI._ok(TI._run(TI._ttm_ytd_facts(), extra=["--base-oe-ps", "0.004"], ttm=t2,
+                                                           judgment={"base_override": plain})))
+    r = _score(p, _j(base_override=plain), ttm=t2)
+    assert r.rc != 0 and "base pin provenance" in r.err, r.err[-800:]
+    # the predicates
+    amort = {"basis": "iprd_amortized", "kind": "filing", "native_base": "median_of_last_3_fy_oe_per_share",
+             "figures": [15e6, 0.0, 20e6], "shares": 100e6, "value": 0.0, "source": "test", "reason": "test"}
+    assert M.declared_fy_built_pin(amort, 0.003) and M.declared_fy_built_pin(plain, 0.0)
+    assert not M.declared_fy_built_pin(plain, 0.004)
+    bare = {"value": 0.004, "source": "test", "reason": "test"}
+    pin = {"inputs": {"base_pin_source": "base_oe_ps_arg", "base_oe_ps_arg": 0.004}, "base_oe_per_share": 0.004}
+    old_base = M.BASE
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            M.BASE = tmp
+            folder = _r24_folder(tmp, {"base_override": bare}, _ttm_with_sbc_legs(0.0, 100e6))
+            assert M._declared_pin_not_ttm("TST", pin) is True
+            assert M.ttm_leg_overrides(folder, pin, {"sbc": SBC_OVERRIDE}, {}) == {}
+            am = {"treatment": "amortized_in_base", "amortized": {"native_base": "ttm_json", "native_base_per_share": 0.0,
+                                                                 "pinned_per_share": -0.35, "shares": 100e6}}
+            folder = _r24_folder(tmp, {"base_override": dict(amort, native_base="ttm_json")}, TI._ttm_doc(0.004, 100e6))
+            assert _refusal(M.check_iprd_amortized_ttm_current, folder, {"iprd_adjustment": am}) is not None
+            _r24_folder(tmp, {"base_override": dict(amort, native_base="ttm_json")}, TI._ttm_doc(0.0, 100e6))
+            assert _refusal(M.check_iprd_amortized_ttm_current, folder, {"iprd_adjustment": am}) is None
+        finally:
+            M.BASE = old_base
+
+
+R26_MALFORMED = "overrides_registry.json is malformed — restore it from git"
+
+
+def test_a_malformed_registry_is_refused_never_read_or_rewritten_as_empty():
+    """[Codex review r26, #4333889298 and siblings] registry_prior_entries refused only an unparseable registry: a
+    parseable one of another shape — no `entries` key, `entries` null / a dict / a string, a top-level list, a
+    non-object entry — read as no prior events, so the lifetime cap checked a deal's $60M paid_to_date as $0, and
+    update_registry (reg.get("entries", []); `except Exception: {"entries": []}`) rewrote the file holding only this
+    ticker's events, erasing every other ticker's; the other shapes crashed with a traceback. Every make_score
+    reader and writer of the registry now loads it through load_registry: missing is a first run, anything but an
+    object with an `entries` list of objects is refused ("restore it from git") and the file is left untouched."""
+    import tempfile
+    import make_score as M
+    cap, old, new, n = _r8_cases()
+    r1 = _score_reg(n["old"], _j(iprd_deferred_payment=[old]))
+    assert r1.rc == 0, r1.err[-800:]
+    reg = r1.result["entries"]
+    other = {"ticker": "ZZZ", "event": "gterm", "date": "2026-10-01", "value": 0.02}
+    shapes = [{"Entries": reg + [other]}, {}, {"entries": None, "Entries": reg}, {"entries": {"TST": reg}},
+              reg + [other], {"entries": "x"}, {"entries": reg + [other, 1]}]
+    for shape in shapes:
+        raw = json.dumps(shape)
+        m = copy.deepcopy(n["new"])
+        m["ticker"] = "TST"
+        run = Run(m, _with_applied(n["new"], _j(iprd_deferred_payment=[new])))
+        try:
+            with open(run.registry, "w", encoding="utf-8") as f:
+                f.write(raw)
+            run.run()
+            with open(run.registry, encoding="utf-8") as f:
+                after = f.read()
+            assert run.rc == 1 and R26_MALFORMED in run.err and "Traceback" not in run.err, (raw[:60], run.err[-600:])
+            assert after == raw and not run.state()["score_exists"], raw[:60]
+        finally:
+            run.close()
+    # each reader and the writer, directly
+    old_reg = M.REGISTRY
+    with tempfile.TemporaryDirectory() as tmp:
+        try:
+            M.REGISTRY = os.path.join(tmp, "overrides_registry.json")
+            assert M.registry_prior_entries("TST") == [] and M.prior_payable_event("TST") is None   # first run
+            for shape in ({"Entries": [other]}, [other], {"entries": [other, "x"]}):
+                with open(M.REGISTRY, "w", encoding="utf-8") as f:
+                    json.dump(shape, f)
+                for fn in (lambda: M.registry_prior_entries("ZZZ"), lambda: M.prior_payable_event("ZZZ"),
+                           lambda: M.update_registry("TST", {}, {}, None, {}, {}, lock_held=True)):
+                    msg = _refusal(fn)
+                    assert msg is not None and R26_MALFORMED in msg, (shape, msg)
+                with open(M.REGISTRY, encoding="utf-8") as f:
+                    assert json.load(f) == shape
+        finally:
+            M.REGISTRY = old_reg
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

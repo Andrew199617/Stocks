@@ -366,6 +366,16 @@ value adjustment):
   (dcf_engine.pin_matches) is 0.1% of the reference, or half a cent per
   share when either side is zero, so a $0.00 amortized base and a zero
   TTM base are scoreable.
+- [Codex review round 26 of PR #47] The half cent is declaration
+  arithmetic only (an iprd_amortized value, dcf_engine.declared_value_matches):
+  every undeclared match against ttm.json (base pin provenance via_ttm,
+  ttm_leg_overrides, _declared_pin_not_ttm, check_iprd_amortized_ttm_current)
+  and a plain declaration's value use dcf_engine.figure_matches — 0.1%, a
+  zero only by an exact zero — so a --base-oe-ps 0.004 beside a $0.00 TTM
+  base is an arbitrary pin, not Tier D on ttm.json's Tier F base. The
+  registry (load_registry, every reader and writer here) must be a JSON
+  object with an `entries` list of objects, else "overrides_registry.json
+  is malformed — restore it from git"; only a missing file is a first run.
 - [Codex review round 24 of PR #47] A --base-oe-ps pin its judgment.json
   base_override declares built on FY figures (declared_fy_built_pin:
   iprd_amortized on the median native base, or basis_window {"window":
@@ -795,14 +805,11 @@ PAYABLE_IMPACT_KEYS = ("base_used", "base_oe_without_override", "base_oe_with_ov
 def prior_payable_event(ticker):
     """This ticker's base_override registry event from the previous make_score
     run (the payable impact lives only there), read before anything is
-    written; None when absent or the registry is unreadable."""
-    try:
-        with open(REGISTRY, encoding="utf-8") as f:
-            reg = json.load(f)
-    except (OSError, ValueError):
-        return None
-    for e in (reg.get("entries") or []) if isinstance(reg, dict) else []:
-        if isinstance(e, dict) and e.get("ticker") == ticker and e.get("event") == "base_override":
+    written; None when absent or the registry does not exist yet. [Codex review r26 of PR #47] An unreadable or
+    malformed registry is refused (load_registry), never read as no prior event."""
+    reg = load_registry()
+    for e in reg["entries"] if reg is not None else []:
+        if e.get("ticker") == ticker and e.get("event") == "base_override":
             return e
     return None
 
@@ -1379,20 +1386,43 @@ def write_score_json(spath, score):
     _atomic_write(spath, json.dumps(score, indent=1))
 
 
-def registry_prior_entries(ticker):
-    """[Codex review r8 of PR #47] The registry entries an earlier make_score run left for this ticker ([] when the
-    registry does not exist yet). An unreadable registry is refused: the deferred-payment record it carries is the only
-    memory of a deal's paid milestones (and update_registry would otherwise rewrite it empty)."""
-    if not os.path.exists(REGISTRY):
-        return []
+def load_registry():
+    """[Codex review r26 of PR #47] The registry as every make_score reader and writer takes it: None when the file
+    does not exist yet (the first run), else the parsed object — refused unless it is a JSON object whose `entries`
+    is a list of objects. An unreadable file (r8) and a parseable one of another shape (a top-level list, `entries`
+    missing, null, a dict or a string, a non-object entry) are refused alike, never defaulted to empty: a registry
+    object without `entries` read as no prior events, so a recorded $60M paid_to_date counted $0 against the deal's
+    contingent_total, and update_registry rewrote the file holding only this ticker's events — every other ticker's
+    durable record erased."""
     try:
         with open(REGISTRY, encoding="utf-8") as f:
             reg = json.load(f)
+    except FileNotFoundError:
+        return None
     except (OSError, ValueError) as ex:
         fail(f"{REGISTRY} is unreadable ({type(ex).__name__}: {ex}) — it carries the lifetime record of every deal's "
              f"declared deferred payments ({IPRD_DEFERRED_EVENT} events); restore it from git before scoring")
-    return [e for e in (reg.get("entries") if isinstance(reg, dict) else None) or []
-            if isinstance(e, dict) and e.get("ticker") == ticker]
+    ents = reg.get("entries") if isinstance(reg, dict) else None
+    if not (isinstance(reg, dict) and isinstance(ents, list) and all(isinstance(e, dict) for e in ents)):
+        why = ("not a JSON object" if not isinstance(reg, dict)
+               else "no 'entries' key" if "entries" not in reg
+               else f"'entries' is {type(ents).__name__}, not a list" if not isinstance(ents, list)
+               else "an entry that is not an object")
+        fail(f"overrides_registry.json is malformed — restore it from git ({REGISTRY}: {why}); it carries the "
+             f"lifetime record of every deal's declared deferred payments ({IPRD_DEFERRED_EVENT} events) and every "
+             "ticker's override events, so it is never read as empty or rewritten")
+    return reg
+
+
+def registry_prior_entries(ticker):
+    """[Codex review r8 of PR #47] The registry entries an earlier make_score run left for this ticker ([] when the
+    registry does not exist yet). An unreadable registry is refused: the deferred-payment record it carries is the only
+    memory of a deal's paid milestones (and update_registry would otherwise rewrite it empty). [Codex review r26 of
+    PR #47] So is a malformed one (load_registry: an object with an `entries` list of objects)."""
+    reg = load_registry()
+    if reg is None:
+        return []
+    return [e for e in reg["entries"] if e.get("ticker") == ticker]
 
 
 def _norm_src(src):
@@ -1552,7 +1582,8 @@ def check_iprd_amortized_ttm_current(folder, n):
     tv = _num((tt or {}).get("ttm_oe_per_share")) if isinstance(tt, dict) else None
     ts = _num((tt or {}).get("ttm_shares_diluted")) if isinstance(tt, dict) else None
     nb, sh = _num(am.get("native_base_per_share")), _num(am.get("shares"))
-    if not (_engine.pin_matches(nb, tv) and ts is not None and sh is not None
+    # [Codex review r26 of PR #47] a ttm.json figure, undeclared: 0.1%, a zero only by an exact zero (figure_matches)
+    if not (_engine.figure_matches(nb, tv) and ts is not None and sh is not None
             and abs(ts - sh) < 1.0):
         fail(f"the {IPRD_AMORTIZED_BASIS} base_override's native base is ttm.json's TTM base (record: "
              f"{nb} per share on {sh} shares) but ttm.json now holds ttm_oe_per_share {tv} on ttm_shares_diluted {ts} — "
@@ -2072,7 +2103,9 @@ def ttm_leg_overrides(folder, n, j_over, applied):
         # [v5.6 review] an iprd_amortized base on native_base ttm_json IS ttm.json's TTM base less the
         # amortization: the TTM legs it rests on are compared through the record's native base
         b = _num(am.get("native_base_per_share"))
-    if not (pinned and _engine.pin_matches(b, tv)):     # [Codex review r25 of PR #47] a zero TTM base too
+    # [Codex review r25 of PR #47] a zero TTM base too — [Codex review r26] only an exact zero (figure_matches): a
+    # numeric match against ttm.json is undeclared, so it carries no half-cent band
+    if not (pinned and _engine.figure_matches(b, tv)):
         return {}
     if am is None and declared_fy_built_pin(_judgment_base_override(folder), inp.get("base_oe_ps_arg")):
         return {}       # [Codex review r24 of PR #47] a pin declared built on FY figures rests on no TTM leg
@@ -2206,7 +2239,7 @@ def iprd_amortized_impact(ticker, n):
     if m is None:
         fail("one-time-deduction replay failed — cannot measure the iprd_amortized base override's impact")
     bw, nb = _num(m.get("base_oe_per_share")), _num(am.get("native_base_per_share"))
-    if not _engine.pin_matches(bw, nb):
+    if not _engine.figure_matches(bw, nb):    # [Codex review r26 of PR #47] engine output against engine output
         fail(f"the one-time-deduction replay scored base {bw!r}, not the amortized record's native base {nb!r} — "
              "cannot measure the iprd_amortized base override's impact; re-run the engine")
     iw, ip = _num(m.get("implied_irr_weighted")), _num(n.get("implied_irr_weighted"))
@@ -2233,7 +2266,8 @@ def declared_fy_built_pin(bo, pin):
     pin, even when it equals ttm_oe_per_share within 0.1% — the engine reads the IPR&D window and share denominator
     from the declaration (the FY window, the latest FY count), and so do the base-pin provenance check, the
     override-impact branch and the TTM-leg override rules here."""
-    if not isinstance(bo, dict) or not _engine.pin_matches(bo.get("value"), pin):   # [Codex review r25] zero too
+    # [Codex review r25] zero too; [Codex review r26] at a half cent only for the iprd_amortized arithmetic
+    if not _engine.declared_value_matches(bo, pin):
         return False
     if bo.get("basis") == IPRD_AMORTIZED_BASIS:
         return bo.get("native_base") == "median_of_last_3_fy_oe_per_share"
@@ -2270,7 +2304,7 @@ def _declared_pin_not_ttm(ticker, n):
     except Exception:
         return False
     if (not isinstance(bo, dict) or bo.get("basis") not in (None, IPRD_AMORTIZED_BASIS)
-            or not _engine.pin_matches(bo.get("value"), pin)):
+            or not _engine.declared_value_matches(bo, pin)):    # [Codex review r26 of PR #47]
         return False
     if bo.get("basis") == IPRD_AMORTIZED_BASIS and _iprd_amortized_ttm(n) is not None:
         return False    # [v5.6 review] ttm.json's TTM base less the amortization: measured on the TTM branch
@@ -2279,7 +2313,7 @@ def _declared_pin_not_ttm(ticker, n):
     try:
         with open(f"{BASE}/{ticker}/ttm.json", encoding="utf-8") as f:
             tv = json.load(f).get("ttm_oe_per_share")
-        if _engine.pin_matches(pin, tv):
+        if _engine.figure_matches(pin, tv):    # [Codex review r26 of PR #47] undeclared: a zero only exactly
             return False
     except Exception:
         pass
@@ -2554,12 +2588,13 @@ def update_registry(ticker, applied, j_over, impact, j, n, scope_event=None, pay
     not taken again."""
     today = datetime.datetime.now(ZoneInfo("America/New_York")).date().isoformat()
     with (contextlib.nullcontext() if lock_held else locked(REGISTRY + ".lock")):
-        try:
-            reg = json.load(open(REGISTRY, encoding="utf-8"))
-        except Exception:
+        # [Codex review r26 of PR #47] a fresh registry only when the file does not exist: an unreadable or malformed
+        # one is refused (load_registry), never rewritten from an empty default
+        reg = load_registry()
+        if reg is None:
             reg = {"entries": []}
-        prior = [e for e in reg.get("entries", []) if e.get("ticker") == ticker]
-        entries = [e for e in reg.get("entries", []) if e.get("ticker") != ticker]
+        prior = [e for e in reg["entries"] if e.get("ticker") == ticker]
+        entries = [e for e in reg["entries"] if e.get("ticker") != ticker]
         n_kept = len(entries)
         for field in ("capex", "sbc", "shares"):
             if field in applied:
@@ -3199,9 +3234,11 @@ def main():
                 ttm_val = json.load(f).get("ttm_oe_per_share")
         except Exception:
             ttm_val = None
-        # [Codex review r25 of PR #47] within 0.1%, or half a cent at zero (dcf_engine.pin_matches) for a --ttm or
-        # --base-oe-ps pin: a zero TTM base is ttm.json's pin (a payable pin keeps its own declaration check)
-        via_ttm = (_engine.pin_matches(score_base, ttm_val)
+        # [Codex review r25 of PR #47] a zero TTM base is ttm.json's pin for a --ttm or --base-oe-ps pin (a payable
+        # pin keeps its own declaration check); [Codex review r26 of PR #47] an undeclared numeric match, so within
+        # 0.1% and a zero only by an exact zero (dcf_engine.figure_matches): half a cent let --base-oe-ps 0.004 pass
+        # as ttm.json's $0.00 base and publish Tier D where the TTM base is Tier F
+        via_ttm = (_engine.figure_matches(score_base, ttm_val)
                    and ((ttm_val != 0 and score_base != 0)
                         or inp.get("base_pin_source") in ("ttm_json", "base_oe_ps_arg")))
         # [Codex review r24 of PR #47] a --base-oe-ps pin its declaration says was built on FY figures is checked as
@@ -3226,13 +3263,14 @@ def main():
                             and abs(float(pb.get("shares") or 0) - float(j_base_override["shares"])) < 1.0)
             else:
                 # [Codex review r25 of PR #47] a $0.00 base (an amortized base the mean charge exhausts) is
-                # declared by a zero value: half a cent at zero, 0.1% otherwise (dcf_engine.pin_matches)
-                declared = bool(j_base_override and _engine.pin_matches(j_base_override.get("value"), score_base))
+                # declared by a zero value; [Codex review r26] at half a cent only for the iprd_amortized arithmetic,
+                # 0.1% (a zero only exactly) for a plain value (dcf_engine.declared_value_matches)
+                declared = bool(j_base_override and _engine.declared_value_matches(j_base_override, score_base))
                 if declared:
                     check_base_basis_window(folder, n, j_base_override)   # [Codex review r15 of PR #47]
             if not declared:
                 fail(f"base pin provenance: the score's base OE/share {score_base} differs from ttm.json's "
-                     f"ttm_oe_per_share {ttm_val} by >0.1% (half a cent at zero; or ttm.json is missing) and judgment.json declares no "
+                     f"ttm_oe_per_share {ttm_val} by >0.1% (a zero only exactly; or ttm.json is missing) and judgment.json declares no "
                      "matching base_override {value, source, reason} — a pinned base must come from ttm.py "
                      "(ttm.json, via --ttm) or be declared as a base_override; an arbitrary pin is not scoreable")
     # [Codex review r23 of PR #47] ...and the rest of what the run read from ttm.json must still be ttm.json's

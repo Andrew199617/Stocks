@@ -388,6 +388,11 @@ PAIRS = [
     # Codex review round 25 of PR #47: declared-pin and ttm.json-figure matches at half a cent when either is zero
     ("_system/dcf_engine.py", "def pin_matches(", "pin_matches", [SYS_README]),
     ("_system/dcf_engine.py", "PIN_MATCH_ZERO_ABS = 0.005", "PIN_MATCH_ZERO_ABS", [SYS_README]),
+    # Codex review round 26 of PR #47: the half cent is declaration arithmetic only; a malformed registry is refused
+    ("_system/dcf_engine.py", "def figure_matches(", "figure_matches", [SYS_README]),
+    ("_system/dcf_engine.py", "def declared_value_matches(", "declared_value_matches", [SYS_README]),
+    ("_system/dcf_engine.py", "IPRD_AMORTIZED_ZERO_EPS = 1e-9", "IPRD_AMORTIZED_ZERO_EPS", [SYS_README]),
+    ("_system/make_score.py", "def load_registry(", "load_registry", [SYS_README]),
     # ruling-sheet Q8 bugs 2-3 (Andrew, 2026-10-19): the enrichment rules the fixes added
     ("_system/fundamentals.py", "def money_unit(", "money_unit", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def class_count_check(", "class_count_check", [SYS_README, CONTRACT]),

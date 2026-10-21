@@ -75,7 +75,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `ttm_input_hash` over its input legs), and make_score refuses a ttm.json that no longer gives
    it ("ttm.json changed after the engine run — rerun dcf_engine.py"), even when the base still
    matches within 0.1%: the acquired-IPR&D share denominator and current-YTD window come from
-   ttm.json too. Warnings and an override's source text do not count.
+   ttm.json too. Warnings and an override's source text do not count. (Codex review round 26 of
+   PR #47) A pin is ttm.json's figure only within 0.1%, and a $0.00 TTM base only at exactly 0:
+   pass `--ttm` (or the exact figure), never a number near it.
    `BASE_DIVERGENCE`: say which base is distorted and why. `NI_OCF_DIVERGENCE`: find the
    one-off (an acquired-IPR&D expense added back in OCF is not "OCF unaffected": it is
    `ACQUIRED_IPRD_CHARGE`'s, below). `BASIS_BREAK_SUSPECT`: name the divestiture / M&A / restatement and pick growth
@@ -502,6 +504,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    the native base's own window and share count (a `ttm_json` native base keeps the current-YTD leg; Codex
    review round 24 of PR #47: a median native base the FY window and the latest FY count, even when the pin
    happens to equal ttm.json's figure) and judges recurrence against the native base, so a filer the one-time run flagged RECURRENT stays recurrent.
+   (Codex review round 26 of PR #47) Pin `--base-oe-ps` at that value: the cent tolerance is the declaration's
+   arithmetic, and a pin on the other side of zero from the reproduced value (0.004 on a $0.00 base) is refused.
    The engine recomputes it to the cent and refuses the run (BAD_BASE_OVERRIDE, exit 3)
    otherwise, or when the charges are not recurrent; with it in force no one-time deduction is applied
    (`iprd_adjustment.treatment` `amortized_in_base`). make_score checks the declaration against the engine's

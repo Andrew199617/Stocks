@@ -3469,6 +3469,45 @@ def test_a_zero_pin_matches_a_zero_figure_at_an_absolute_tolerance():
     assert out["exit"] != 0 or out["numbers"]["iprd_adjustment"]["treatment"] != "amortized_in_base", out["stdout"][-800:]
 
 
+# --- Codex review round 26 of PR #47 ------------------------------------------------------------------------------
+def test_an_undeclared_pin_matches_a_zero_ttm_figure_only_when_exactly_zero():
+    """[Codex review r26, #4333889284] Round 25's pin_matches allowed half a cent whenever either side was zero, and
+    the engine used it for the numeric TTM match: an undeclared --base-oe-ps 0.004 beside a ttm.json
+    ttm_oe_per_share of exactly 0 was taken as ttm.json's $0.00 TTM base (the TTM current-YTD window, ttm.json's
+    share denominator), and a plain base_override declaring 0.0 with basis_window {"window": "fy"} placed the 0.004
+    pin on the FY basis — a positive base, so Tier D where the declared or TTM base is Tier F. The half-cent band is
+    declaration arithmetic only (an iprd_amortized value reproduced from its own figures): an undeclared match and a
+    plain value use figure_matches (0.1%, a zero only by an exact zero), and an amortized pin must sit on the same
+    side of zero as the value its figures reproduce."""
+    f = E.figure_matches
+    assert f(0.0, 0.0) and not f(0.004, 0.0) and not f(-0.004, 0.0) and not f(0.0, 0.004) and not f(2.2e-16, 0.0)
+    assert f(2.1021, 2.1) and not f(2.103, 2.1) and not f(None, 0.0) and not f(float("nan"), 0.0) and not f(True, 1.0)
+    assert E.pin_matches(0.004, 0.0)    # declaration arithmetic keeps its band
+    plain0 = ttm_window_decl(0.0, "fy")
+    assert E.declared_value_matches({"basis": "iprd_amortized", "value": 0.003}, 0.0)
+    assert E.declared_value_matches(plain0, 0.0) and not E.declared_value_matches(plain0, 0.004)
+    assert not E.share_scale_pin_rescue("base_oe_ps_arg", 0.004, 30.0, {"value": 0.0, "source": "s", "reason": "r"})[0]
+    facts, t0 = _ttm_ytd_facts(), _ttm_doc(0.0, 98e6)
+    n = _ok(_run(facts, extra=["--base-oe-ps", "0.004"], ttm=t0))
+    blk = n["iprd_adjustment"]
+    assert not blk["window"].get("ttm_current_ytd") and blk["shares_denominator"] == SHARES, blk
+    assert n["ttm_inputs"] == E.ttm_inputs_record(t0), n.get("ttm_inputs")   # an undeclared pin still records it
+    z = _ok(_run(facts, extra=["--base-oe-ps", "0.0"], ttm=t0))   # an exact zero is still ttm.json's TTM base
+    assert z["iprd_adjustment"]["window"]["ttm_current_ytd"] == ["2026-01-01", "2026-06-30"], z["iprd_adjustment"]
+    # a plain declaration of 0.0 does not place a 0.004 pin on its FY basis_window
+    p = _ok(_run(facts, extra=["--base-oe-ps", "0.004"], ttm=_ttm_doc(2.0, 98e6), judgment={"base_override": plain0}))
+    assert p["inputs"].get("base_basis_window") is None, p["inputs"]
+    # an amortized declaration of $0.00: the zero pin scores, a positive pin half a cent off is refused
+    N = _recurrent()["base_oe_normalized_per_share"]
+    c = 1.5 * N * SHARES
+    f0 = _facts(expense={2023: c, 2025: c})
+    d = amortized_decl(_ok(_run(f0)), value=0.0)
+    ok = _ok(_run(f0, extra=["--base-oe-ps", "0.0"], judgment={"base_override": d}))
+    assert ok["iprd_adjustment"]["treatment"] == "amortized_in_base" and ok["base_oe_per_share"] == 0.0
+    out = _run(f0, extra=["--base-oe-ps", "0.004"], judgment={"base_override": d})
+    assert out["exit"] != 0 and "opposite sides of zero" in out["stdout"], (out["exit"], out["stdout"][-800:])
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

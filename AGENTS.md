@@ -376,7 +376,11 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    ttm_input_hash) and make_score refuses any difference (round 25: recorded only when the run's basis reads
    ttm.json — null for a pin declared built on FY figures, which no ttm.json change refuses); a record that predates it (HALO's) is refused when its
    positive IPR&D charge is on a ttm.json share count or YTD window the current ttm.json no longer holds. A diff
-   that regenerates ttm.json without a fresh dcf_numbers.json is P1. A period carrying `unit_conflict` (one tag filed for the period in two
+   that regenerates ttm.json without a fresh dcf_numbers.json is P1. [Codex review round 26 of PR #47] A pin is
+   ttm.json's (or a plain `base_override`'s) only within 0.1%, and a $0.00 figure only by an exact zero: a
+   `--base-oe-ps` 0.004 beside a zero TTM base or a plain declaration of 0.0 is an arbitrary pin (refused); the
+   half-cent band at zero is the `iprd_amortized` arithmetic's alone, and an amortized pin on the other side of
+   zero from the value its figures reproduce is refused (a base <= 0 is Tier F). A period carrying `unit_conflict` (one tag filed for the period in two
    units that disagree after conversion: a positive fact outranks a zero one, the USD one is used between positive
    ones; [Codex review round 16 of PR #47] a cash-only deferred-payment period and an `ignored_cash_only` entry
    carry it too, and a unit filed only in quarters is tiled beside another unit's exact fact; round 17: so does a
@@ -412,6 +416,10 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    a current-YTD entry, a missing or inconsistent `contingent_total`, one deal's declared amounts summing
    past its `contingent_total`, and — round 8 — an impossible date; make_score refuses a deal whose
    declarations sum below the `paid_to_date` its registry event recorded, or whose lifetime passes the cap.
+   [Codex review round 26 of PR #47] It refuses an `overrides_registry.json` that is not a JSON object with an
+   `entries` list of objects ("overrides_registry.json is malformed — restore it from git"), never reading or
+   rewriting it as empty: a registry without `entries` read as $0 paid and was rewritten holding one ticker. A
+   diff that changes the registry's shape is P1.
    [Codex review round 9 of PR #47] The rename gap is mechanical now: make_score refuses a recorded deal declared
    with another `contingent_total` or `first_charged_period` (both immutable), and a new deal name carrying a
    recorded (or co-declared) deal's evidence — the same `first_charged_period` and a `contingent_total` source
