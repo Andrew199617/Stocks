@@ -593,10 +593,15 @@ def test_charge_beside_a_non_positive_base_is_recorded_and_flagged_not_deducted(
 # 5. TTM base: FY and TTM windows count each period once
 # ===========================================================================
 def _ttm_doc(per_share, shares):
-    return {"fy_end": "2025-12-31", "ytd_end": "2026-06-30", "ttm_oe_per_share": per_share, "ttm_shares_diluted": shares,
-            "ttm_oe_total": per_share * shares,
-            "inputs": {"ocf": {"fy_period": ["2025-01-01", "2025-12-31"], "ytd_prior_period": ["2025-01-01", "2025-06-30"],
-                               "ytd_current_period": ["2026-01-01", "2026-06-30"]}}, "warnings": [], "overrides_used": []}
+    # v5.7 (07 G16 / 09 rebase A8): a ttm.json as the current ttm.py writes it — stamped with the engine release
+    # (rulings57.add_ttm_engine_release), so a current-release run whose basis reads it is a 5.7 run on a 5.7
+    # ttm.json (make_score refuse_pre57_ttm_json); the stamp is outside ttm_input_hash
+    import rulings57
+    return rulings57.add_ttm_engine_release(
+        {"fy_end": "2025-12-31", "ytd_end": "2026-06-30", "ttm_oe_per_share": per_share, "ttm_shares_diluted": shares,
+         "ttm_oe_total": per_share * shares,
+         "inputs": {"ocf": {"fy_period": ["2025-01-01", "2025-12-31"], "ytd_prior_period": ["2025-01-01", "2025-06-30"],
+                            "ytd_current_period": ["2026-01-01", "2026-06-30"]}}, "warnings": [], "overrides_used": []})
 
 
 def test_ttm_window_counts_each_fiscal_period_once():

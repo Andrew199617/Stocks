@@ -50,6 +50,20 @@ leg period):
   "missing" exactly as before (override fill or hard block). The *_tag leg
   fields carry the '+'-joined provenance; ttm.json gains capex_components
   {leg: capex_for_period result}.
+  v5.7 (Andrew, 2026-10-19, R8 / R9): the shared lists grew with no ttm.py
+  code change — CAPEX_COMPONENT_TAGS includes
+  PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets and
+  PaymentsToAcquireFurnitureAndFixtures (the last two sub-classes, read only
+  beside another component: 'subclass_alone' in capex_components[leg].dropped
+  otherwise), and CAPEX_INTANGIBLE_TAGS the capitalized-software tags
+  CAPEX_SOFTWARE_TAGS (us-gaap entries here); capex_components[leg] carries
+  software / software_tags when the leg's software was read (the engine's
+  IPR&D guard subtracts it), and the override-leg warning names the software
+  it did not add. superseded_capex_legs treats a leg whose 5.4-tag value was
+  dropped as a retag duplicate as filed under 5.4. ttm.json carries
+  engine_release (the release whose rules built it): the engine records it as
+  ttm_inputs.ttm_engine_release, and make_score refuses a 5.7 run whose basis
+  read a ttm.json without a 5.7 stamp — run ttm.py, then the engine.
 - SBC legs: where ShareBasedCompensation and
   AllocatedShareBasedCompensationExpense report the same exact period and
   Allocated is larger, Allocated is used (dcf_engine.reconcile_sbc);
@@ -230,8 +244,12 @@ def add_intangibles(capex, results, warnings):
         if res["intangible_tags"] and res["intangibles"]:
             if capex.get(f"{leg}_tag") == "OVERRIDE":
                 rec["intangibles_not_added"] = "override_present"
+                # v5.7 R9: the warning names the capitalized-software part (text unchanged when none is filed)
                 warnings.append(f"capex {leg}: intangible purchases filed for {per[0]}..{per[1]} "
-                                f"({res['intangibles']:,.0f}) were not added on top of the override")
+                                f"({res['intangibles']:,.0f}"
+                                + (f", of which capitalized software {res['software']:,.0f}"
+                                   if res.get("software_tags") and res.get("software") else "")
+                                + ") were not added on top of the override")
             else:
                 add[leg] = res
         comps[leg] = rec
@@ -257,13 +275,16 @@ def add_intangibles(capex, results, warnings):
     return comps
 
 
-def superseded_capex_legs(capex, ov_value, warnings):
+def superseded_capex_legs(capex, ov_value, warnings, results=None):
     """[ADDITION — verifier round 1, ruling E10] {leg: record} for the legs of an override-backed capex field that a
     FILED PP&E value now fills through tags all outside the 5.4 capex list (dcf_engine.CAPEX_TAGS_54 — the
     engine's OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex test, applied per TTM leg) at a value outside 0.5x-2x of the
     override prorated to the leg's inclusive days (the amount the override filled under 5.4). Appends one warning
     per leg. Runs on assemble()'s output, before add_intangibles, so the value and tags are the PP&E leg's. WY: the
-    override's 447,000,000 of TTM capex became 52,000,000 of PaymentsForCapitalImprovements with no warning."""
+    override's 447,000,000 of TTM capex became 52,000,000 of PaymentsForCapitalImprovements with no warning.
+    v5.7 (R8): `results` ({(start, end): capex_for_period result}, capex_assembly's second map) — a leg whose result
+    dropped a 5.4-tag fact as a retag / same-filing duplicate of the line it now reads was filed under 5.4 too (RL
+    re-tagged ProductiveAssets to machinery and equipment), so it is not superseded (the engine's twin rule)."""
     out = {}
     for leg in ("fy", "ytd_prior", "ytd_current"):
         tag, per = capex.get(f"{leg}_tag"), capex.get(f"{leg}_period")
@@ -271,6 +292,10 @@ def superseded_capex_legs(capex, ov_value, warnings):
             continue
         if any(t in _engine.CAPEX_TAGS_54 for t in str(tag).split("+")):
             continue   # filed under 5.4 as well: the override never filled this leg
+        _res = (results or {}).get(tuple(per))
+        if _res and any(d[0] in _engine.CAPEX_TAGS_54 and d[2] in ("retag_duplicate", "same_filing_duplicate")
+                        for d in _res.get("dropped") or []):
+            continue   # v5.7: the same value was filed under a 5.4 tag (re-tagged since)
         filed = capex[leg]
         ov_amt = ov_value * days(per[0], per[1]) / 365.0
         off = (ov_amt != 0) if filed == 0 else not (0.5 <= ov_amt / filed <= 2)
@@ -640,7 +665,8 @@ def main():
     capex_superseded = {}
     if "capex" in overrides and anchor:
         capex = assemble(capex_series, "capex")
-        capex_superseded = superseded_capex_legs(capex, overrides["capex"]["value"], warnings)   # [ADDITION — E10]
+        capex_superseded = superseded_capex_legs(capex, overrides["capex"]["value"], warnings,
+                                                 capex_results)   # [ADDITION — E10]; v5.7: the retag twin rule
     elif not capex_series:
         # Round-2: no more zero-fill-with-warning. A never-filed capex is a
         # data gap here exactly as in the engine (DATA_GAP:capex); only a
@@ -691,7 +717,11 @@ def main():
            # [ADDITION — ruling E10] override-backed capex legs a 5.5-new filed tag now fills off-band ({} when none)
            "capex_override_superseded_legs": capex_superseded,
            # [ADDITION — verifier round 4, R4-SBC] a reconciled prior-YTD leg withdrawn because it lowered the TTM
-           "sbc_reconciliation_withdrawn_legs": sbc_withdrawn}
+           "sbc_reconciliation_withdrawn_legs": sbc_withdrawn,
+           # v5.7 (R8/R9 TTM provenance): the engine release whose capex / SBC rules built this file; the engine
+           # records it as ttm_inputs.ttm_engine_release and make_score refuses a 5.7 run whose basis read a
+           # ttm.json without a 5.7 stamp
+           "engine_release": _engine.ENGINE_RELEASE}
     if not os.environ.get("DCF_TTM_NO_WRITE"):
         # Machine-readable provenance for the base pin: the engine's --ttm
         # reads this file, and make_score.py refuses a pinned base that

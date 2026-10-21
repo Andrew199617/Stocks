@@ -522,7 +522,8 @@ trace on the run's periods (a paid_in_shares check on a cash-basis period stops 
 deducted against the residual).
 [Codex review round 23 of PR #47] The record carries ttm_inputs: what this run read from ttm.json (ttm_oe_per_share,
 ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash — the sha256 of ttm.json's input legs,
-ttm_input_legs), inside the content-hashed payload, for every pinned run (--ttm or --base-oe-ps: whether the pin is
+ttm_input_legs; v5.7: plus ttm_engine_release when ttm.json carries ttm.py's stamp), inside the content-hashed
+payload, for every pinned run (--ttm or --base-oe-ps: whether the pin is
 ttm.json's figure decides the IPR&D window and share denominator); null for a median-base run, which never reads
 ttm.json. [Codex review round 25] Only when the selected basis reads ttm.json: null too for a --base-oe-ps pin
 declared built on FY figures (basis_window "fy"; iprd_amortized on the median native base outside STALE_FY). make_score recomputes it from the current ttm.json and refuses any difference: before, it compared only the
@@ -573,9 +574,43 @@ closed, as for every release change). The items below are written by the lane th
 - (L4, R2b) Annual facts from the filing's own XBRL instance (load_annual_instance, annual_from_instance) and the tag
   hoist: [L4 writes this item]
 - (L8, R6) Declared share classes (Up-C / multi-class) and UP_C_SUSPECT: [L8 writes this item]
-- (L9, R8) Capex components summed (KNX): [L9 writes this item]
-- (L9, R9) Capitalized software / development is capex (JKHY): [L9 writes this item]
-- (L9, R8/R9 TTM provenance) ttm.json engine_release in ttm_inputs: [L9 writes this item]
+- (L9, R8) Capex components summed (KNX; Andrew, 2026-10-19, assigned to Claude): the component group sums every
+  filed PP&E component. PaymentsToAcquireMachineryAndEquipment, PaymentsToAcquireMiningAssets and
+  PaymentsToAcquireFurnitureAndFixtures are appended to CAPEX_COMPONENT_TAGS (after the 5.5 seven), so a year with no
+  PP&E roll-up sums them with the other components. KNX files its whole capex line as M&E and only a $0.4-1.4M "other
+  productive assets" line under a listed tag: FY2025 capex 1,066,000 -> 796,458,000; base $7.00 -> $0.38/sh, Tier
+  C -> D (moat 5). HUT's miner purchases and EXR / UDR furniture and fixtures are read the same way. Furniture and
+  fixtures and mining assets are SUB-CLASSES (CAPEX_SUBCLASS_COMPONENTS; mining assets: main agent 2026-10-20, 09b
+  Q5): summed only beside a non-zero component of another class — alone (EXR FY2013-21) they are set aside
+  ('subclass_alone' in capex_provenance dropped) and the period reads as in 5.6. Buildings, land, timberlands,
+  equipment on lease, the real-estate tags and the net PaymentsForProceeds tags are NOT components (main agent
+  2026-10-21, Q9). "A small other component never stands in for the whole" is enforced by
+  CAPEX_UNLISTED_COMPONENT:<tag> (unlisted_capex_components): a capex-like us-gaap tag on no list (statements.py's
+  CAPEX_LIKE words; the tags ruled not capex excluded) larger than the whole component leg in a filing that supplies
+  it — make_score refuses it on 5.7 runs unless judgment.json capex_unlisted_ack explains the tag with a figure (no
+  override release: an override never replaces a filed leg). In a last-3-FY year with no PP&E leg (override-filled
+  or DATA_GAP:capex) such a tag, filed in the OCF fact's annual filing, fires the non-refusing
+  CAPEX_UNLISTED_COMPONENT_OVERRIDDEN:<tag> (HUT, HTHT, RL under the 5.6 lists): the list fix is routed. The
+  superseded-override test treats a period whose 5.4-tag value was dropped as a retag / same-filing duplicate as filed
+  under 5.4 (RL re-tagged ProductiveAssets to M&E, comparatives included). Gross capex stays the policy (KNX resells
+  23-37% of it as PP&E sale proceeds; net of them its base is $2.19, still Tier D).
+- (L9, R9) Capitalized software / development is capex (JKHY; Andrew, 2026-10-19, ruling-sheet Q6 option A):
+  CAPEX_SOFTWARE_TAGS (us-gaap PaymentsToDevelopSoftware, PaymentsToAcquireSoftware, PaymentsForSoftware; ifrs-full
+  PaymentsForDevelopmentProjectExpenditure — any capitalized development, main agent 2026-10-21, Q10) are appended
+  to CAPEX_INTANGIBLE_TAGS: the additive intangible leg, never on an override year, an assumed-zero row or the IFRS
+  combined tag. CapitalizedComputerSoftwareAdditions is not read (a note element). Double-count guards, live only
+  when software is filed: parts_of_total on the intangible leg; ppe_duplicate (a software fact equal to a PP&E figure
+  the leg uses); in_ppe_total (a PP&E figure = software + other filed PP&E). capex_for_period returns software /
+  software_tags; capex_provenance.<FY>.software {tag: filed value}; ttm.json capex_components.<leg>.software(_tags);
+  the OVERRIDE_APPLIED:capex note names the software part it did not add. The 5.6 IPR&D overlap guard reads the
+  intangible leg minus software (FY and current YTD), so capitalized software never satisfies a
+  paid_in_intangible_capex check's 98% floor nor raises capex_overlap_note. JKHY: base $7.66 -> $5.23, Tier C -> D.
+- (L9, R8/R9 TTM provenance) ttm.json engine_release in ttm_inputs: ttm.py stamps ttm.json with the engine release
+  whose capex / SBC rules built it, and ttm_inputs_record copies the stamp as ttm_inputs.ttm_engine_release when
+  the file carries one (absent otherwise, outside ttm_input_hash — every pre-5.7 record is byte-identical).
+  ttm_inputs is recorded exactly when the run's basis reads ttm.json, so make_score refuses a 5.7 run whose basis
+  read a ttm.json with no stamp or one older than 5.7.0 (its legs were built without software and the new
+  components) — rerun ttm.py, then the engine.
 - (L3b, M6 moat direction, Andrew 2026-10-20) --moat-trend and the growth hold: [L3b writes this item]
 - (R7) STALE_FY discretion made checkable: no engine logic change; the amortized-median refusal text names
   ttm_rejection_reason: [R7 writes this item]
@@ -1220,9 +1255,31 @@ CAPEX_ROLLUP_TAGS = ["PaymentsToAcquirePropertyPlantAndEquipment",
 CAPEX_COMPONENT_TAGS = ["PaymentsToExploreAndDevelopOilAndGasProperties", "PaymentsToAcquireOilAndGasProperty",
                         "PaymentsToAcquireOtherPropertyPlantAndEquipment", "PaymentsForConstructionInProcess",
                         "PaymentsToAcquireProductiveAssets", "PaymentsToAcquireOtherProductiveAssets",
-                        "PaymentsForCapitalImprovements"]
+                        "PaymentsForCapitalImprovements",
+                        # v5.7 R8 (Andrew, 2026-10-19): the component group sums every filed PP&E component. KNX
+                        # files its whole capex line as machinery & equipment beside a ~$1M "other productive assets"
+                        # line; HUT files miner purchases, EXR / UDR furniture and fixtures, in years with no roll-up.
+                        # Appended AFTER the 5.5 seven so every 5.5 provenance string and tie-break keeps its order.
+                        "PaymentsToAcquireMachineryAndEquipment", "PaymentsToAcquireMiningAssets",
+                        "PaymentsToAcquireFurnitureAndFixtures"]
+# v5.7 R8 ("a small other component never stands in for the whole"): a SUB-CLASS of PP&E is summed only beside a
+# non-zero component of another class; alone it never becomes the PP&E leg (EXR FY2013-21 file furniture and fixtures
+# of $3.7-7.8M a year and no other capex tag while spending $23-67M a year on development: the period keeps no PP&E
+# leg, as in 5.6), and mining assets (09b Q5, main agent 2026-10-20: HUT's "deposit paid to purchase miners" is never
+# filed alone). Every member is on CAPEX_COMPONENT_TAGS.
+CAPEX_SUBCLASS_COMPONENTS = frozenset({"PaymentsToAcquireFurnitureAndFixtures", "PaymentsToAcquireMiningAssets"})
+# v5.7 R9 (Andrew, 2026-10-19, ruling-sheet Q6 option A): capitalized software / development is capex — investing
+# cash outflows only. CapitalizedComputerSoftwareAdditions is NOT read: a roll-forward (note) element that includes
+# non-cash additions and, at the filers that use it, repeats software already inside the PP&E line (DOCU 143.4M vs
+# 106.4M of PP&E purchases; TOST's equals its combined PP&E+software line). ifrs-full
+# PaymentsForDevelopmentProjectExpenditure is the IFRS capitalized-development line (PHG; main agent 2026-10-21, Q10:
+# any capitalized development counts) — BCE files it equal to its PP&E line, dropped by the ppe_duplicate guard.
+CAPEX_SOFTWARE_TAGS = ["PaymentsToDevelopSoftware", "PaymentsToAcquireSoftware", "PaymentsForSoftware",
+                       (IF, "PaymentsForDevelopmentProjectExpenditure")]
+CAPEX_SOFTWARE_NAMES = frozenset({"PaymentsToDevelopSoftware", "PaymentsToAcquireSoftware", "PaymentsForSoftware",
+                                  "PaymentsForDevelopmentProjectExpenditure"})
 CAPEX_INTANGIBLE_TAGS = ["PaymentsToAcquireIntangibleAssets", "PaymentsToAcquireOtherIntangibleAssets",
-                         (IF, "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities")]
+                         (IF, "PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities")] + CAPEX_SOFTWARE_TAGS
 CAPEX_COMBINED_TAGS = {"PurchaseOfPropertyPlantAndEquipmentIntangibleAssetsOtherThanGoodwillInvestmentPropertyAndOtherNoncurrentAssets"}
 PRIMARY_ROLLUP = "PaymentsToAcquirePropertyPlantAndEquipment"
 # The 5.4 first-tag-wins capex candidates: a period whose PP&E leg uses none of
@@ -1673,6 +1730,77 @@ def cumulative_context_values(facts, tags, units=None):
     return out
 
 
+def _software_inside_ppe(total, others, soft):
+    """v5.7 R9 guard. total: one PP&E fact (tag, value, unit, filed) the PP&E leg uses; others: the period's other
+    non-zero PP&E-candidate facts in the same unit; soft: the surviving software facts in that unit. Returns
+    (software_dropped, others_dropped, reason) or None. The software is INSIDE the PP&E figure when
+      - one software fact equals it: identical value in the same filing, within 0.5% from another filing
+        (reason 'ppe_duplicate' — one cash-flow line tagged twice: BCE files the IFRS development tag equal to its PP&E
+        line, 3,700,000,000 CAD FY2025), or
+      - it equals within PARTS_OF_TOTAL_TOL the sum of a non-empty subset of the software facts and any of the other
+        PP&E facts, two items or more (reason 'in_ppe_total' — a capex total that already includes software, its parts
+        also tagged); the closest sum wins, then the larger subset (the E5 tie-break).
+    Within one filing two different values are two disclosures (the 5.5 rule): a software fact 0.3% off the PP&E line
+    with no third fact stays (HUBS-style near-equal amounts are separate lines)."""
+    tv = total[1]
+    if not tv:
+        return None
+    for f in soft:
+        same = (f[3] or "") == (total[3] or "")
+        if (same and f[1] == tv) or (not same and abs(f[1] - tv) <= 0.005 * max(abs(f[1]), abs(tv))):
+            return [f], [], "ppe_duplicate"
+    items = [("s", f) for f in soft] + [("o", f) for f in others]
+    best = None
+    for size in range(2, len(items) + 1):
+        for combo in combinations(range(len(items)), size):
+            if not any(items[k][0] == "s" for k in combo):
+                continue
+            diff = abs(sum(items[k][1][1] for k in combo) - tv)
+            if diff <= PARTS_OF_TOTAL_TOL * abs(tv) and (best is None or (diff, -size) < best[0]):
+                best = ((diff, -size), combo)
+    if not best:
+        return None
+    return ([items[k][1] for k in best[1] if items[k][0] == "s"],
+            [items[k][1] for k in best[1] if items[k][0] == "o"], "in_ppe_total")
+
+
+def _drop_software_inside_ppe(out, rollups, components, kept):
+    """v5.7 R9: _software_inside_ppe against each PP&E fact the leg actually uses (largest first). On a roll-up leg the
+    'others' are the period's unused roll-ups and components (never dropped: the roll-up stays authoritative and its
+    parts were never summed); on a component leg, the other summed components — and the PP&E parts a
+    software-containing total already holds are dropped too ('parts_of_total'), the leg recomputed and its source
+    label following the facts still summed (a leg that was 'components_mixed_filings' only because of a dropped part
+    is 'components' again). Returns the intangible facts that survive."""
+    unit = out["ppe_unit"]
+    soft = [f for f in kept if f[0] in CAPEX_SOFTWARE_NAMES]
+    used = [f for f in (rollups + components) if f[0] in out["ppe_tags"] and f[2] == unit and f[1] != 0]
+    others_all = [f for f in (rollups + components) if f[0] not in out["ppe_tags"] and f[2] == unit and f[1] != 0]
+    for t in sorted(used, key=lambda f: -abs(f[1])):
+        others = others_all if out["ppe_source"] == "rollup" else [f for f in used if f is not t]
+        hit = _software_inside_ppe(t, others, soft)
+        if not hit:
+            continue
+        sdrop, odrop, reason = hit
+        out["dropped"].extend((f[0], f[1], reason) for f in sdrop)
+        if out["ppe_source"] != "rollup" and odrop:
+            out["dropped"].extend((f[0], f[1], "parts_of_total") for f in odrop)
+            names = {f[0] for f in odrop}
+            out["ppe_tags"] = [x for x in out["ppe_tags"] if x not in names]
+            total = 0
+            for f in used:
+                if f[0] in out["ppe_tags"]:
+                    total += f[1]
+            out["ppe"] = total
+            surv = [f for f in components if f[0] in out["ppe_tags"] and f[2] == unit]
+            out["ppe_source"] = "components_mixed_filings" if len({f[3] for f in surv}) > 1 else "components"
+        ids = {id(f) for f in sdrop}
+        kept = [f for f in kept if id(f) not in ids]
+        soft = [f for f in soft if id(f) not in ids]
+        if not soft:
+            break
+    return kept
+
+
 def capex_for_period(rollups, components, intangibles, cumulative=None):
     """Per fiscal period. Each argument is a list of facts (tag, value, unit, filed) — the latest filing per tag for
     this period, in list order. Returns
@@ -1703,11 +1831,33 @@ def capex_for_period(rollups, components, intangibles, cumulative=None):
     [ADDITION — ruling E5] after the equal-value rule, a component equal within 0.5% to the sum of two or more other
     non-zero components is the total: kept, the parts dropped ('parts_of_total' — _drop_parts_of_total).
     [ADDITION — ruling E6] a negative intangible fact is dropped ('negative'); a $0 intangible fact is ignored — it
-    joins neither intangible_tags nor the provenance string."""
+    joins neither intangible_tags nor the provenance string.
+    v5.7 R8 (Andrew, 2026-10-19): a SUB-CLASS component (CAPEX_SUBCLASS_COMPONENTS: furniture and fixtures, mining
+    assets) is summed only beside a non-zero component of another class; when the period's only non-zero components
+    are sub-class facts they are set aside before the roll-up zero-guard and, when no roll-up is used, recorded in
+    `dropped` with reason 'subclass_alone' — the period reads exactly as it did before 5.7 (no PP&E leg; a $0 roll-up
+    or $0 component stays the leg).
+    v5.7 R9 (Andrew, 2026-10-19): the intangible leg includes capitalized software / development (CAPEX_SOFTWARE_TAGS
+    are on CAPEX_INTANGIBLE_TAGS). Only when a software fact survives the equal-value rule: _drop_parts_of_total runs
+    on the intangible leg too (a software / intangible total and its parts), and, when the PP&E leg is in the same
+    unit, _drop_software_inside_ppe drops a software fact equal to a PP&E figure the leg uses ('ppe_duplicate') or
+    contained in one with other filed PP&E parts ('in_ppe_total'; on a component leg the PP&E parts are dropped
+    'parts_of_total' and the leg recomputed). Then 'software': float (the software part of 'intangibles'; 0.0 when a
+    guard dropped every software fact) and 'software_tags': [...] are added — present ONLY when a positive software
+    fact in the leg's unit reached the leg (never on a combined-tag period), so every result without software is
+    byte-identical to 5.6."""
     def norm(fs):
         return [(_tag_name(f[0]), f[1], f[2], f[3] if len(f) > 3 else None)
                 for f in (fs or []) if f is not None and f[1] is not None]
     rollups, components, intangibles = norm(rollups), norm(components), norm(intangibles)
+    # v5.7 R8: a sub-class component (CAPEX_SUBCLASS_COMPONENTS) is read only beside a non-zero component of another
+    # class; alone it is set aside BEFORE the zero-guard, so the period reads exactly as in 5.6 ('subclass_alone' is
+    # recorded below when no roll-up is used).
+    _sub_alone = []
+    if any(f[0] in CAPEX_SUBCLASS_COMPONENTS for f in components) and not any(
+            f[0] not in CAPEX_SUBCLASS_COMPONENTS and f[1] != 0 for f in components):
+        _sub_alone = [f for f in components if f[0] in CAPEX_SUBCLASS_COMPONENTS]
+        components = [f for f in components if f[0] not in CAPEX_SUBCLASS_COMPONENTS]
     out = {"ppe": None, "ppe_unit": None, "ppe_tags": [], "ppe_source": None,
            "intangibles": 0.0, "intangibles_unit": None, "intangible_tags": [],
            "dropped": [], "provenance": ""}
@@ -1722,6 +1872,8 @@ def capex_for_period(rollups, components, intangibles, cumulative=None):
             chosen = f
             break
         out["dropped"].append((f[0], f[1], "zero_guard"))
+    if chosen is None:
+        out["dropped"].extend((f[0], f[1], "subclass_alone") for f in _sub_alone)   # v5.7 R8
     if chosen is not None:
         out.update(ppe=chosen[1], ppe_unit=chosen[2], ppe_tags=[chosen[0]], ppe_source="rollup")
     elif components:
@@ -1765,11 +1917,22 @@ def capex_for_period(rollups, components, intangibles, cumulative=None):
                         out["dropped"].append((f[0], f[1], "unit"))
                         continue
                     same_unit.append(f)
-                total = 0.0
-                for f in _drop_equal_value_duplicates(same_unit, out["dropped"]):
+                kept = _drop_equal_value_duplicates(same_unit, out["dropped"])
+                # v5.7 R9: only when a capitalized-software fact is read (no 5.6 number moves otherwise)
+                if any(f[0] in CAPEX_SOFTWARE_NAMES for f in kept):
+                    kept = _drop_parts_of_total(kept, out["dropped"])     # a software / intangible total and its parts
+                    if out["ppe"] is not None and out["ppe_unit"] == unit:
+                        kept = _drop_software_inside_ppe(out, rollups, components, kept)
+                total, soft_total = 0.0, 0.0
+                for f in kept:
                     total += f[1]
                     out["intangible_tags"].append(f[0])
+                    if f[0] in CAPEX_SOFTWARE_NAMES:
+                        soft_total += f[1]
                 out.update(intangibles=total, intangibles_unit=unit)
+                if any(f[0] in CAPEX_SOFTWARE_NAMES for f in same_unit):
+                    out["software"] = soft_total
+                    out["software_tags"] = [f[0] for f in kept if f[0] in CAPEX_SOFTWARE_NAMES]
     out["provenance"] = "+".join(out["ppe_tags"] + out["intangible_tags"])
     return out
 
@@ -1876,13 +2039,109 @@ def scale_growth_note(share_scale):
             + (" was" if len(dropped) == 1 else " were") + f" dropped from the growth blend (share adjustment 0){kept}")
 
 
+# v5.7 R8 ("a small other component never stands in for the whole"): statements.py's CAPEX_LIKE vocabulary (a test
+# pins the two equal) and the tags 09 section 1.2 ruled NOT capex (acquisitions, lessor fleets, net tags — main agent
+# 2026-10-21, Q9: the policy stays gross).
+CAPEX_LIKE_WORDS = ("PropertyPlantAndEquipment", "ProductiveAssets", "RealEstate", "CapitalImprovements",
+                    "ConstructionInProcess", "Premises", "Equipment", "Software")
+CAPEX_RULED_NOT_CAPEX = frozenset({"PaymentsToAcquireBuildings", "PaymentsToAcquireLand", "PaymentsToAcquireTimberlands",
+                                   "PaymentsToAcquireEquipmentOnLease"})
+CAPEX_RULED_NOT_CAPEX_WORDS = ("RealEstate",)            # every real-estate acquisition / development tag
+CAPEX_RULED_NOT_CAPEX_PREFIXES = ("PaymentsForProceeds",)  # net payments-less-proceeds tags (the policy is gross)
+UNLISTED_CAPEX_FLAG = "CAPEX_UNLISTED_COMPONENT"
+UNLISTED_CAPEX_OVERRIDDEN_FLAG = "CAPEX_UNLISTED_COMPONENT_OVERRIDDEN"   # a year with no PP&E leg; never refused
+UNLISTED_OCF_TAGS = ("NetCashProvidedByUsedInOperatingActivities",     # the annual filing that supplies the OCF fact
+                     "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations")   # (us-gaap names of the OCF list)
+_ANNUAL_FORMS = ("10-K", "10-K/A", "20-F", "40-F")
+
+
+def _annual_entry(e):
+    """v5.7 R8: a companyfacts entry that is an annual-form FY duration of 330-380 days."""
+    if e.get("fp") != "FY" or e.get("form", "") not in _ANNUAL_FORMS or not e.get("start") or not e.get("end"):
+        return False
+    try:
+        d = (datetime.date.fromisoformat(e["end"]) - datetime.date.fromisoformat(e["start"])).days
+    except ValueError:
+        return False
+    return 330 <= d <= 380
+
+
+def unlisted_capex_components(facts, capex_assembly, periods, listed=None, no_leg_periods=()):
+    """v5.7 R8. [{period, tag, value, unit, leg_total, leg_tags, accn[, no_leg]}] for each period in `periods` whose
+    PP&E leg is a COMPONENT sum and whose supplying filing (any annual filing that reports one of the summed components
+    for that period) also carries a us-gaap annual duration fact, same period end, same unit, whose name starts Payments /
+    PurchaseOf, contains a CAPEX_LIKE_WORDS word, is on no engine capex list (`listed`: tag names; default the three
+    5.7 lists) and is not ruled non-capex — and whose value EXCEEDS the whole component leg. KNX under the 5.6 lists:
+    PaymentsToAcquireMachineryAndEquipment 795,392,000 beside a 1,066,000 component leg.
+    Each period in `no_leg_periods` (main passes the last-3-FY periods with no PP&E leg — override-filled or
+    DATA_GAP:capex) that has no PP&E leg is checked the same way with leg_total 0: a candidate fact, ANY unit, value
+    > 0, in the annual filing that supplies that period's OCF fact (UNLISTED_OCF_TAGS) -> a record with no_leg True
+    (HUT, HTHT, RL under the 5.6 lists: PaymentsToAcquireMachineryAndEquipment). A roll-up leg is authoritative and
+    never checked; IFRS legs are outside the check. Pure; no I/O."""
+    if listed is None:
+        listed = {_tag_name(t) for t in CAPEX_ROLLUP_TAGS + CAPEX_COMPONENT_TAGS + CAPEX_INTANGIBLE_TAGS}
+    gaap = (facts.get("facts") or {}).get("us-gaap") or {}
+    cands = sorted(n for n in gaap
+                   if n.startswith(("Payments", "PurchaseOf")) and n not in listed and n not in CAPEX_RULED_NOT_CAPEX
+                   and not n.startswith(CAPEX_RULED_NOT_CAPEX_PREFIXES)
+                   and not any(w.lower() in n.lower() for w in CAPEX_RULED_NOT_CAPEX_WORDS)
+                   and any(w.lower() in n.lower() for w in CAPEX_LIKE_WORDS))
+    out = []
+    if not cands:
+        return out
+    for p in no_leg_periods:   # no PP&E leg at all: override-filled or DATA_GAP:capex
+        asm = capex_assembly.get(p)
+        if asm and asm["ppe"] is not None:
+            continue
+        accns = {e["accn"] for t in UNLISTED_OCF_TAGS for es in ((gaap.get(t) or {}).get("units") or {}).values()
+                 for e in es if e.get("end") == p and e.get("accn") and _annual_entry(e)}
+        for n in cands:
+            best = None
+            for u, es in ((gaap[n].get("units") or {}).items()):
+                for e in es:
+                    if (e.get("end") == p and e.get("accn") in accns and _annual_entry(e)
+                            and isinstance(e.get("val"), (int, float)) and not isinstance(e.get("val"), bool)
+                            and e["val"] > 0
+                            and (best is None or e.get("filed", "") > best[1].get("filed", ""))):
+                        best = (u, e)
+            if best:
+                out.append({"period": p, "tag": n, "value": best[1]["val"], "unit": best[0], "leg_total": 0,
+                            "leg_tags": "", "accn": best[1]["accn"], "no_leg": True})
+    for p in periods:
+        asm = capex_assembly.get(p)
+        if not asm or asm["ppe"] is None or not str(asm.get("ppe_source") or "").startswith("components"):
+            continue
+        unit, total = asm["ppe_unit"], asm["ppe"]
+        accns = {e["accn"] for t in asm["ppe_tags"] for e in ((gaap.get(t) or {}).get("units") or {}).get(unit, [])
+                 if e.get("end") == p and e.get("accn") and _annual_entry(e)}
+        if not accns:
+            continue
+        for n in cands:
+            best = None
+            for e in ((gaap[n].get("units") or {}).get(unit) or []):
+                if (e.get("end") == p and e.get("accn") in accns and _annual_entry(e)
+                        and isinstance(e.get("val"), (int, float)) and not isinstance(e.get("val"), bool)
+                        and e["val"] > total
+                        and (best is None or e.get("filed", "") > best.get("filed", ""))):
+                    best = e
+            if best:
+                out.append({"period": p, "tag": n, "value": best["val"], "unit": unit, "leg_total": total,
+                            "leg_tags": "+".join(asm["ppe_tags"]), "accn": best["accn"]})
+    return out
+
+
 def _v55_flags(share_scale, share_basis, pin, market_cap_basis, sbc_recon, periods, hist, facts, overrides,
                capex_assembly, raw_missing, last3_periods, override_checks):
     """The v5.5 fragility flags that do not depend on the scenario math (main() appends them to flags_pre, so Tier F
     and DATA_GAP runs carry them too): SHARE_SCALE_SUSPECT, SHARE_BASIS_ADJUSTED, SHARE_BASIS_DIVERGENCE,
     SBC_TAG_RECONCILED, CAPEX_COVERAGE_LOW, OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex. The last one fires only for a
     last-3-FY period whose PP&E leg is NOW filed (none of its tags was a 5.4 candidate, so 5.4 filled it from the
-    override) and records override_checks['capex']['superseded_periods']."""
+    override) and records override_checks['capex']['superseded_periods']; v5.7 — a period whose 5.4-tag value was
+    dropped as a retag / same-filing duplicate of the leg's (re-tagged) line counts as filed under 5.4 too (RL).
+    v5.7 R8: CAPEX_UNLISTED_COMPONENT:<tag> (an unread capex-like us-gaap tag larger than the whole component leg in a
+    filing that supplies it; make_score refuses it on 5.7 runs without capex_unlisted_ack) and
+    CAPEX_UNLISTED_COMPONENT_OVERRIDDEN:<tag> (such a tag in a last-3-FY year with no PP&E leg; never refused) —
+    unlisted_capex_components."""
     flags = []
     if share_scale["defect"] and share_scale["rescued_by_pin"]:
         if not market_cap_basis.get("shares_used"):
@@ -1972,6 +2231,33 @@ def _v55_flags(share_scale, share_basis, pin, market_cap_basis, sbc_recon, perio
                      "with positive PP&E — reconcile total capex against the cash-flow statement's investing section "
                      "(construction in progress, capitalised software, land-use rights, spectrum, intangible purchases) "
                      "before trusting the owner's-earnings base")
+    # v5.7 R8 ("a small other component never stands in for the whole"): an unread capex-like tag larger than the
+    # whole component leg (refused by make_score without capex_unlisted_ack), or filed in a year with no PP&E leg
+    # (the _OVERRIDDEN variant: never refused — an override is a valid remedy until the list carries the tag)
+    _ov_rows = {h["period_end"] for h in hist if h.get("capex_tag") == "OVERRIDE"}
+    _unl = unlisted_capex_components(facts, capex_assembly, last3_periods,
+                                     no_leg_periods=[p for p in last3_periods if p in raw_missing["capex"]])
+    for _tag in sorted({u["tag"] for u in _unl if u.get("no_leg")}):
+        _its = [u for u in _unl if u["tag"] == _tag and u.get("no_leg")]
+        flags.append(f"{UNLISTED_CAPEX_OVERRIDDEN_FLAG}:{_tag} — "
+                     + ", ".join(f"FY{u['period'][:4]} {u['value']:,.0f}{'' if u['unit'] == 'USD' else ' ' + str(u['unit'])} "
+                                 f"(accession {u['accn']}; "
+                                 f"{'filled by capex_override' if u['period'] in _ov_rows else 'DATA_GAP:capex'})"
+                                 for u in _its)
+                     + ": a capex-like cash-flow tag on no engine capex list is filed in a year with no PP&E capex leg, "
+                     "in the same annual filing as operating cash flow — if it is the filer's capex line, the engine's "
+                     "lists need it (route the list fix to the main agent; until then an override citing this tag is the "
+                     "remedy and stays valid); if it is not capex, say so in analysis.md")
+    for _tag in sorted({u["tag"] for u in _unl if not u.get("no_leg")}):
+        _its = [u for u in _unl if u["tag"] == _tag and not u.get("no_leg")]
+        flags.append(f"{UNLISTED_CAPEX_FLAG}:{_tag} — "
+                     + ", ".join(f"FY{u['period'][:4]} {u['value']:,.0f}{'' if u['unit'] == 'USD' else ' ' + str(u['unit'])} "
+                                 f"(accession {u['accn']}) vs the whole component capex leg {u['leg_total']:,.0f} "
+                                 f"({u['leg_tags']})" for u in _its)
+                     + ": a capex-like cash-flow tag on no engine capex list exceeds the component leg in the same "
+                     "filing, so a small listed line may be standing in for the whole — if it is the filer's capex line, "
+                     "block NEEDS_MAIN_AGENT: capex (the engine's lists need it; an override cannot replace a filed leg); "
+                     "if it is not capex, say why with the figure in judgment.json capex_unlisted_ack")
     o = overrides.get("capex")
     if o:
         sup = []
@@ -1981,6 +2267,8 @@ def _v55_flags(share_scale, share_basis, pin, market_cap_basis, sbc_recon, perio
                 continue
             if any(t in CAPEX_TAGS_54 for t in asm["ppe_tags"]):
                 continue   # filed under 5.4 as well: the override never filled this period, nothing was superseded
+            if any(d[0] in CAPEX_TAGS_54 and d[2] in ("retag_duplicate", "same_filing_duplicate") for d in asm["dropped"]):
+                continue   # v5.7: the same value under a 5.4 tag was filed (re-tagged since) — 5.4 read it too
             filed = asm["ppe"]
             off = (o["value"] != 0) if filed == 0 else not (0.5 <= o["value"] / filed <= 2)
             if off:
@@ -2328,8 +2616,10 @@ def _ttm_num(v):
 def ttm_inputs_record(tt):
     """What a run reads from ttm.json object tt, as recorded in dcf_numbers.json ttm_inputs: ttm_oe_per_share,
     ttm_shares_diluted, inputs.ocf.ytd_current_period and ttm_input_hash (sha256 of ttm_input_legs; every field null
-    when ttm.json is absent or unreadable). make_score recomputes it from the current ttm.json
-    (check_ttm_inputs_current)."""
+    when ttm.json is absent or unreadable) — and, v5.7, ttm_engine_release when the file carries ttm.py's
+    engine_release stamp (absent otherwise). make_score recomputes it from the current ttm.json
+    (check_ttm_inputs_current) and refuses a 5.7 run whose stamp is missing or older than 5.7.0
+    (refuse_pre57_ttm_json)."""
     legs = ttm_input_legs(tt)
     if legs is None:
         return {"ttm_oe_per_share": None, "ttm_shares_diluted": None, "ytd_current_period": None,
@@ -2338,10 +2628,17 @@ def ttm_inputs_record(tt):
     ocf = ins.get("ocf") if isinstance(ins.get("ocf"), dict) else {}
     per = ocf.get("ytd_current_period")
     canon = json.dumps(legs, sort_keys=True, separators=(",", ":"), default=str)
-    return {"ttm_oe_per_share": _ttm_num(tt.get("ttm_oe_per_share")),
-            "ttm_shares_diluted": _ttm_num(tt.get("ttm_shares_diluted")),
-            "ytd_current_period": _iprd_canon(per),
-            "ttm_input_hash": hashlib.sha256(canon.encode()).hexdigest()}
+    rec = {"ttm_oe_per_share": _ttm_num(tt.get("ttm_oe_per_share")),
+           "ttm_shares_diluted": _ttm_num(tt.get("ttm_shares_diluted")),
+           "ytd_current_period": _iprd_canon(per),
+           "ttm_input_hash": hashlib.sha256(canon.encode()).hexdigest()}
+    # v5.7 (R8/R9 TTM provenance): the engine release whose capex / SBC rules built the file (ttm.py stamps it since
+    # 5.7), present ONLY when tt carries a string engine_release — an unstamped (pre-5.7) file records no key, so every
+    # older record and HALO's committed one stay byte-identical. Outside ttm_input_hash (never a TTM_INPUT_TOP_FIELDS
+    # member: a None there would change every recorded hash); make_score's equality check binds it all the same.
+    if isinstance(tt.get("engine_release"), str):
+        rec["ttm_engine_release"] = tt["engine_release"]
+    return rec
 
 
 def iprd_ttm_share_count(tt):
@@ -4573,6 +4870,10 @@ def main():
     series_tags["capex"] = {p: "+".join(a["ppe_tags"]) for p, a in capex_assembly.items() if a["ppe"] is not None}
     series["capex_intang"] = {p: a["intangibles"] for p, a in capex_assembly.items() if a["intangible_tags"]}
     series_units["capex_intang"] = {p: a["intangibles_unit"] for p, a in capex_assembly.items() if a["intangible_tags"]}
+    # v5.7 R9: the capitalized-software part of each period's intangible leg (filed unit; converted with the leg below).
+    # Not a series: never in monetary_keys, never in `used`.
+    capex_software = {p: a["software"] for p, a in capex_assembly.items()
+                      if a.get("software_tags") and p in series["capex_intang"]}
     # used["capex"] is set to the latest FY's provenance once the periods are known (v5.5)
 
     # ---- v5.5 SBC reconciliation (decision 6) ----
@@ -4747,8 +5048,11 @@ def main():
         if r is None:
             intang_dropped[p] = "no_rate"
             del series["capex_intang"][p]
+            capex_software.pop(p, None)   # v5.7 R9
         else:
             series["capex_intang"][p] = series["capex_intang"][p] * r
+            if p in capex_software:       # v5.7 R9: same leg, same unit, same rate
+                capex_software[p] = capex_software[p] * r
             fx_converted_periods.add(("capex_intang", p))
             if fx_info and "capex_intang" not in fx_info["converted_fields"]:
                 fx_info["converted_fields"].append("capex_intang")   # the record names every converted series
@@ -4836,6 +5140,7 @@ def main():
     share_filed_used = {}  # v5.5: period -> filing date of the fact that supplied its share count
     intang_not_added = {}  # v5.5: OVERRIDE-filled capex periods whose filed intangible purchases were not stacked on it
     intang_no_ppe = {}     # [ADDITION — ruling E7] assumed-zero (no PP&E leg) periods whose intangible purchases were not added
+    software_added = {}    # v5.7 R9: period -> capitalized software (USD) inside the intangible leg actually added
     hist, prev_nwc = [], None
     for p in periods:
         g = lambda k: series[k].get(p)
@@ -4864,7 +5169,7 @@ def main():
                 # [READING] an override is the filer's TOTAL capex line (FMS:
                 # 'PP&E and capitalized development costs') — intangibles are
                 # not stacked on it; the OVERRIDE_APPLIED flag says so.
-                intang_not_added[p] = (asm["intangibles"], asm.get("intangibles_unit"))
+                intang_not_added[p] = (asm["intangibles"], asm.get("intangibles_unit")) +                     ((asm["software"],) if asm.get("software_tags") else ())   # v5.7 R9: the software part, for the note
             elif capex_assumed_zero:
                 # [ADDITION — verifier round 1, ruling E7] no PP&E leg (an
                 # assumed-zero row): the intangible leg is NOT added — capex
@@ -4878,6 +5183,8 @@ def main():
                 if intang:
                     capex = capex + intang
                 capex_intang_added = intang
+                if p in capex_software:   # v5.7 R9 (the add branch only — never an override or assumed-zero row)
+                    software_added[p] = capex_software[p]
                 capex_tag_p = "+".join(([capex_tag_p] if capex_tag_p else []) + asm["intangible_tags"])
         sbc_raw = g("sbc")
         if sbc_raw is None:
@@ -5031,11 +5338,18 @@ def main():
             if p in intang_not_added:
                 rec["intangibles_not_added"] = "override_present"
                 rec["intangibles_filed"] = _leg_detail(p, 2, asm["intangible_tags"])
+                if asm.get("software_tags"):
+                    # v5.7 R9: the filed unit of the leg the override did not take (an override year records no
+                    # intangibles_unit) — make_score's software_included value test converts it on the engine's rates
+                    rec["intangibles_filed_unit"] = asm["intangibles_unit"]
             elif p in intang_no_ppe:   # [ADDITION — ruling E7]
                 rec["intangibles_not_added"] = "no_ppe_leg"
                 rec["intangibles_filed"] = _leg_detail(p, 2, asm["intangible_tags"])
             if p in intang_dropped:
                 rec["intangibles_dropped"] = intang_dropped[p]
+            _sw = [t for t in used_int if t in CAPEX_SOFTWARE_NAMES]
+            if _sw:   # v5.7 R9: the capitalized-software part of the intangible leg, filed unit, per tag
+                rec["software"] = _leg_detail(p, 2, _sw)
             if p in intang_fx:   # [Codex, PR #31] a rate the FX pass had not requested
                 rec["intangibles_fx"] = intang_fx[p]
         capex_provenance[p] = rec
@@ -5503,11 +5817,18 @@ def main():
             _ytd = (_per[0], _per[1])
         else:
             _ytd_note = "ttm.json names no current-YTD period after the latest FY end: the TTM's YTD leg was not read"
-    _fy_intang = {h["period_end"]: h["capex_intangibles"] for h in hist
-                  if h.get("capex_intangibles") and h["period_end"] not in intang_no_ppe and h["capex_tag"] != "OVERRIDE"}
+    # v5.7 R9: the overlap guard compares the PURCHASED-intangible part of the capex leg only — capitalized software
+    # never satisfies a paid_in_intangible_capex declaration's 98% floor and never raises capex_overlap_note: only
+    # purchased intangibles can hold an acquired IPR&D payment (FY: the USD software actually added; current YTD:
+    # ttm.json capex_components.ytd_current.software). A filer with no software reads exactly the 5.6 figures.
+    _fy_intang = {h["period_end"]: h["capex_intangibles"] - software_added.get(h["period_end"], 0.0) for h in hist
+                  if h.get("capex_intangibles") and h["period_end"] not in intang_no_ppe and h["capex_tag"] != "OVERRIDE"
+                  and h["capex_intangibles"] - software_added.get(h["period_end"], 0.0) > 0}
     _ytd_comp = (((ttm_doc or {}).get("capex_components") or {}).get("ytd_current") or {}) if _ytd else {}
     _ytd_intang = (_ytd_comp.get("intangibles") if isinstance(_ytd_comp, dict) and not _ytd_comp.get("intangibles_not_added")
                    and _ytd_comp.get("intangible_tags") else None)
+    if _ytd_intang is not None and isinstance(_ytd_comp.get("software"), (int, float)):   # v5.7 R9
+        _ytd_intang = (_ytd_intang - _ytd_comp["software"]) or None
     iprd = iprd_detect(facts, last3_periods, ytd=_ytd, fy_capex_intang=_fy_intang, ytd_capex_intang=_ytd_intang,
                        fx_rates=rates_by_ccy, checks=load_iprd_cash_flow_checks(ticker), fx_fetch=fx_rate)
     iprd_charge_used = 0.0
@@ -5872,7 +6193,10 @@ def main():
         if f == "capex" and _ina:
             # [PR #31 verifier] the amount is the filed one, in its own unit (CNY beside a USD override)
             _ov_note = (" — intangible purchases filed for "
-                        + ", ".join(f"FY{p[:4]} ({v[0]:,.0f}{' ' + v[1] if v[1] and v[1] != 'USD' else ''})"
+                        + ", ".join(f"FY{p[:4]} ({v[0]:,.0f}{' ' + v[1] if v[1] and v[1] != 'USD' else ''}"
+                                    # v5.7 R9: the capitalized-software part (text unchanged without it)
+                                    + (f", of which capitalized software {v[2]:,.0f}" if len(v) > 2 and v[2] else "")
+                                    + ")"
                                     for p, v in sorted(_ina.items()))
                         + " were not added on top of the override; if the override excludes them, revise it to the total")
         flags_pre.append(f"OVERRIDE_APPLIED:{f} — filing gap in the last 3 FY filled by a judgment override "

@@ -58,9 +58,39 @@ def add_ttm_rejection(j, n, ttm=None):
     return None
 
 
+def _dcf_engine():
+    """The shared dcf_engine module (imported once with a neutral argv: the engine reads --measure from sys.argv)."""
+    import importlib
+    import sys
+    if "dcf_engine" in sys.modules:
+        return sys.modules["dcf_engine"]
+    sysdir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    if sysdir not in sys.path:
+        sys.path.insert(0, sysdir)
+    saved = sys.argv
+    sys.argv = ["dcf_engine.py"]
+    try:
+        return importlib.import_module("dcf_engine")
+    finally:
+        sys.argv = saved
+
+
 def add_ttm_engine_release(tt, n=None):
-    """L9 (R8 / R9 TTM provenance): stamp ttm.json object tt with the current engine release (and, given the record
-    n, its ttm_inputs and content hash). Returns tt. No-op in L0."""
+    """L9 (R8 / R9 TTM provenance; 09 rebase A8): a 5.7 run whose basis read ttm.json needs a ttm.json stamped by a
+    5.7 ttm.py (make_score refuse_pre57_ttm_json), so a test that hand-writes a ttm.json for a current-release record
+    stamps it here: tt["engine_release"] = dcf_engine.ENGINE_RELEASE (what ttm.py writes) and, given the record n
+    whose ttm_inputs is a dict (the run read ttm.json), n["ttm_inputs"] = dcf_engine.ttm_inputs_record(tt) — the
+    engine's own record of the stamped file — and n's content_hash re-stamped when it carries one. A record with
+    ttm_inputs null (a median run) or absent (an older record) is left as it is. Modifies tt (and n) in place;
+    returns tt."""
+    if not isinstance(tt, dict):
+        return tt
+    E = _dcf_engine()
+    tt["engine_release"] = E.ENGINE_RELEASE
+    if isinstance(n, dict) and isinstance(n.get("ttm_inputs"), dict):
+        n["ttm_inputs"] = E.ttm_inputs_record(tt)
+        if "content_hash" in n:
+            n["content_hash"] = content_hash(n)
     return tt
 
 
