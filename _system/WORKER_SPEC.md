@@ -234,7 +234,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    the consideration mix (cash vs stock — stock is already in the diluted count; the engine prefers the
    `PaymentsToAcquireInProcessResearchAndDevelopment` cash figure when filed), and the recurrence assessment
    (a one-off deal, or the way this company buys its pipeline). `ACQUIRED_IPRD_RECURRENT`: charges in 2 or
-   more of the last 3 FY (material). The engine does not amortize: either justify the one-time treatment in
+   more of the last 3 FY (material). A year counts by its own acquired-IPR&D expense, paid that year or
+   accrued and paid later, never by its cash timing (Codex review round 27 of PR #47); cash that settles an
+   earlier year's charge, with no expense of its own, is not a new charge year, so one deal expensed once
+   and paid in installments is one year. The engine does not amortize: either justify the one-time treatment in
    analysis.md (why the next three years will not repeat it), or declare the amortized base of step 8 and
    run the final pass with `--base-oe-ps <its value>`. **Deferred payments (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided).** A charge that
    is a contingent milestone or other deferred payment on a deal already charged in an earlier period (inside
@@ -251,7 +254,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    periods count toward recurrence, so a current-YTD charge is not declared (window `ttm_current_ytd` is
    refused): declare it once it lands in an FY. A period paying milestones of two earlier deals takes one entry
    per deal. When the period's entries sum to its whole charge it leaves the recurrence count
-   (`recurrence_excluded: "deferred_payment_of"`); a partly deferred period still counts. The engine refuses
+   (`recurrence_excluded: "deferred_payment_of"`); a partly deferred period still counts. A period that
+   expensed the charge with $0 cash (paid in a later year) counts by that expense, so its whole charge is the
+   expense (Codex review round 27 of PR #47; the later cash is still deducted once, as the settlement of the
+   window's unpaid remainder). The engine refuses
    (`BAD_IPRD_DEFERRED_PAYMENT`, exit 3): a `first_charged_period` that does not precede the period; one deal
    with two first charges; a first charge inside the window whose record shows no charge there, or whose
    whole charge is itself declared a deferred payment (a deal's first charge is a purchase, not an

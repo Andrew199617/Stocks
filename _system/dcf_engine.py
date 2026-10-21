@@ -406,7 +406,9 @@ instead of being dropped. (3) Cash paid in a window period against an earlier wi
 (BIIB: FY2025 $85.0M expensed, $50.0M paid; the Q1 2026 10-Q files the $35.0M remainder on the cash tag alone)
 counts as a deferred payment, bounded by the window's unpaid remainder (expense - cash of its cash-basis periods);
 a filer that never expenses (MAA) has no remainder, so its cash-only periods still never qualify. A deferred
-payment does not count toward recurrence.
+payment does not count toward recurrence. [Codex review r27 of PR #47] The recurrence count reads each FY period's
+own positive expense, paid in the year or accrued (iprd_charge_year), never deducted > 0: a charge expensed with $0
+cash and paid in a later year still counts in its own year, and the later settlement does not.
 Deferred payments of an earlier deal (Andrew's 2026-10-20 ruling, delegated to the main agent, who decided): a
 contingent milestone or other deferred payment on an acquired-IPR&D deal already charged in an earlier period
 (inside the window or before it) is the same purchase — still deducted once when expensed / paid, but its period
@@ -430,7 +432,8 @@ once it passes every check that needs no window record (first charge before the 
 filing's accession year, companyfacts' expense fact for a pre-window first charge); an invalid one is refused and
 never counted toward the cap ([Codex review r7 of PR #47]).
 A period whose WHOLE charge is declared is recurrence_excluded "deferred_payment_of"; a partly deferred period
-still counts. The deduction is unchanged, and a run with no declaration gains no key.
+still counts (a period expensed with $0 cash, paid later: its charge is the expense, Codex review r27 of PR #47).
+The deduction is unchanged, and a run with no declaration gains no key.
 [Codex review round 3 of PR #47] Two gaps closed. (1) A positive acquired-IPR&D expense filed only in a currency
 with no FX rate and no usable cash fact is excluded non_usd_no_rate with its expense_native kept, raises
 ACQUIRED_IPRD_UNCONVERTED (treatment non_usd_no_rate when nothing else is deducted) and make_score refuses it
@@ -2538,6 +2541,12 @@ def iprd_apply_deferred(iprd, entries, fy_periods, facts=None, fy_ends=None):
                                   if c.get("period") == e["period"] and c.get("window") == "fy"
                                   and c.get("pre_window_charges") and isinstance(c.get("cash"), (int, float))
                                   and c["cash"] > 0), None)
+        if not (isinstance(charge, (int, float)) and charge > 0) and _iprd_accrued_charge(rec) is not None:
+            # [Codex review r27 of PR #47] a charge expensed with $0 cash (accrued, paid later) counts toward
+            # recurrence by its expense, so its declaration claims that expense — before, its $0 cash-basis amount
+            # left nothing a declaration could claim, and the year could not leave the count. The deduction is not
+            # touched (the later cash is the automatic settlement of the window's unpaid remainder)
+            charge = _iprd_accrued_charge(rec)
         if not (isinstance(charge, (int, float)) and charge > 0):
             # [Codex review r3 of PR #47] a cash-tag-only payment (no or a $0 expense) the window's remainder did not
             # absorb, at a filer that expensed acquired IPR&D before the window: the payment is the "charge" a
@@ -3050,6 +3059,41 @@ def _iprd_detector_value(rec):
         if isinstance(v, (int, float)) and not isinstance(v, bool):
             return float(v) if math.isfinite(v) else None
     return None
+
+
+def _iprd_accrued_charge(rec):
+    """[Codex review r27 of PR #47] A record's own positive USD acquired-IPR&D expense when the period paid none of it
+    in cash (cash basis, the cash tag filed at $0: deducted 0, the expense accrued into the window's unpaid
+    remainder, its residual not declared paid in shares); else None."""
+    if not isinstance(rec, dict) or rec.get("excluded") or rec.get("deferred_payment") or rec.get("deducted"):
+        return None
+    v = rec.get("expense")
+    if not (_iprd_finite(v) and v > 0) or rec.get("amount_basis") != "cash_outflow":
+        return None
+    if rec.get("residual_paid_in_shares") or rec.get("residual_paid_in_shares_unknown_usd"):
+        return None
+    return float(v)
+
+
+def iprd_charge_year(rec):
+    """[Codex review r27 of PR #47] Whether an FY record counts as a year with a qualifying charge toward
+    ACQUIRED_IPRD_RECURRENT (charges in 2 or more of the last 3 FY, Andrew 2026-10-19): the period's OWN positive
+    acquired-IPR&D expense (its detector figure: USD, else native), not excluded, paid in the year (deducted > 0) or
+    accrued unpaid (_iprd_accrued_charge) — whatever the cash timing. Not counted: a deferred_payment (cash settling an
+    earlier charge, with no expense of its own: none, $0 or a reversal), a period declared, whole, a deferred payment
+    of an earlier deal (recurrence_excluded, Andrew's 2026-10-20 ruling), and an excluded one (paid_in_shares,
+    paid_in_operating_cash_flow, already_in_capex, awaiting_cash_flow_check, non_usd_no_rate, negative), as before.
+    The recurrence list had read deducted > 0, so a charge expensed with $0 cash and paid in a later year dropped out
+    of the count (fy_with_charge [] for two deals expensed in FY2023 / FY2024 and paid in FY2025) while $1 of in-year
+    cash put it back."""
+    if not isinstance(rec, dict) or rec.get("window") != "fy":
+        return False
+    if rec.get("excluded") or rec.get("deferred_payment") or rec.get("recurrence_excluded"):
+        return False
+    v = _iprd_detector_value(rec)
+    if v is None or v <= 0:
+        return False
+    return bool(rec.get("deducted")) or _iprd_accrued_charge(rec) is not None
 
 
 def _iprd_reversal_settles(rec):
@@ -4906,10 +4950,9 @@ def main():
         _mat_base = _native if (amort_decl and isinstance(_native, (int, float)) and _native > 0) else oe_ps
         materiality = (charge_ps / _mat_base) if (valued and charge_ps and _mat_base) else None
         # a deferred payment settles an earlier window period's charge: it is not a new charge in its own year; nor
-        # is a period the worker declared, whole, a deferred payment of an earlier deal (Andrew's 2026-10-20 ruling)
-        fy_with = [p["period"] for p in iprd["periods"]
-                   if p["window"] == "fy" and p["deducted"] > 0 and not p.get("deferred_payment")
-                   and not p.get("recurrence_excluded")]
+        # is a period the worker declared, whole, a deferred payment of an earlier deal (Andrew's 2026-10-20 ruling).
+        # [Codex review r27 of PR #47] the period's own expense decides, never its cash timing (iprd_charge_year)
+        fy_with = [p["period"] for p in iprd["periods"] if iprd_charge_year(p)]
         unconfirmed = sum((p.get("awaiting") or 0.0 for p in iprd["periods"] if p.get("excluded") == IPRD_AWAITING), 0.0)
         unconfirmed_mat = ((unconfirmed / denom * ratio) / _mat_base
                            if (valued and unconfirmed and denom and _mat_base) else None)

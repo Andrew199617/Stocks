@@ -3508,6 +3508,99 @@ def test_an_undeclared_pin_matches_a_zero_ttm_figure_only_when_exactly_zero():
     assert out["exit"] != 0 and "opposite sides of zero" in out["stdout"], (out["exit"], out["stdout"][-800:])
 
 
+
+# ===========================================================================
+# [Codex review r27 of PR #47] The recurrence count reads each FY period's own expense, never its cash timing
+# ===========================================================================
+def test_recurrence_counts_an_accrued_charge_whatever_its_cash_timing():
+    """[Codex review r27 of PR #47] Two distinct deals expensed $100M in FY2023 and $100M in FY2024 with $0 cash in
+    either year (the cash tag filed at $0: cash basis, deducted $0, the expense accrued into the window's unpaid
+    remainder) and the $200M paid in FY2025 on the cash tag alone. The recurrence list read `deducted > 0`, so both
+    charge years dropped out and the FY2025 settlement (a deferred payment) did not count either: fy_with_charge []
+    and ACQUIRED_IPRD_RECURRENT silent on a material window, while $1 paid in each charge year flipped it to
+    recurrent: cash timing, not the acquisitions, decided the owner's 2-of-3 rule. Now a period counts by its own
+    positive expense, paid in the year or accrued: FY2023 and FY2024 count, FY2025 (a settlement with no expense of
+    its own) does not. The same holds with a $0 FY2025 expense filed, $1 paid in each charge year, or each charge paid
+    in its own year. The deduction is unchanged ($200M once, in FY2025), the iprd_amortized base becomes available
+    (its figures are the deducted FY figures, $0 years included), and the TTM path counts an FY charge whose
+    remainder the current-YTD 10-Q pays."""
+    f = _facts(expense={2023: 100e6, 2024: 100e6}, cash={2023: 0.0, 2024: 0.0, 2025: 200e6})
+    n = _ok(_run(f))
+    blk = n["iprd_adjustment"]
+    assert blk["fy_with_charge"] == ["2023-12-31", "2024-12-31"] and blk["recurrent"] and blk["material"], blk
+    rf = flags(n, "ACQUIRED_IPRD_RECURRENT")
+    assert len(rf) == 1 and "FY2023, FY2024 (2 of the last 3" in rf[0], rf
+    assert blk["total"] == 200e6 and blk["charge_per_share"] == 200e6 / SHARES, blk
+    assert [(p["period"], p["deducted"]) for p in blk["periods"]] == [
+        ("2023-12-31", 0.0), ("2024-12-31", 0.0), ("2025-12-31", 200e6)], blk["periods"]
+    assert next(p for p in blk["periods"] if p["period"] == "2025-12-31").get("deferred_payment"), blk["periods"]
+    for exp, cash in (({2023: 100e6, 2024: 100e6, 2025: 0.0}, {2023: 0.0, 2024: 0.0, 2025: 200e6}),
+                      ({2023: 100e6, 2024: 100e6}, {2023: 1.0, 2024: 1.0, 2025: 199999998.0}),
+                      ({2023: 100e6, 2024: 100e6}, {2023: 100e6, 2024: 100e6})):
+        b = _ok(_run(_facts(expense=exp, cash=cash)))["iprd_adjustment"]
+        assert b["fy_with_charge"] == ["2023-12-31", "2024-12-31"] and b["recurrent"] and b["total"] == 200e6, (exp, cash, b)
+    # the amortized base is no longer refused as "not recurrent": figures [0, 0, 200M], the same mean charge
+    d = amortized_decl(n)
+    assert d["figures"] == [0.0, 0.0, 200e6], d["figures"]
+    am = _ok(_run(f, extra=["--base-oe-ps", repr(d["value"])], judgment={"base_override": d}))
+    assert am["iprd_adjustment"]["treatment"] == "amortized_in_base" and am["iprd_adjustment"]["recurrent"], am["iprd_adjustment"]
+    # TTM: FY2024 a $100M charge paid in its year, FY2025 a $100M charge with $0 cash paid in the current-YTD 10-Q
+    f2 = _facts(expense={2024: 100e6, 2025: 100e6}, cash={2024: 100e6, 2025: 0.0})
+    _ytd(f2, CASH, "2026-01-01", "2026-03-31", 100e6, "2026-04-29", fp="Q1")
+    ttm = _ttm_doc(2.1, 100e6)
+    ttm["inputs"]["ocf"]["ytd_current_period"] = ["2026-01-01", "2026-03-31"]
+    b2 = _ok(_run(f2, extra=["--ttm"], ttm=ttm))["iprd_adjustment"]
+    assert b2["fy_with_charge"] == ["2024-12-31", "2025-12-31"] and b2["recurrent"] and b2["total"] == 200e6, b2
+
+
+def test_one_deal_expensed_once_and_paid_in_installments_stays_one_charge_year():
+    """[Codex review r27 of PR #47] The other side of the rule: ONE deal expensed $100M in FY2024 and paid over two
+    years ($40M then $60M; $0 then $100M; $0 then $100M beside a $0 FY2025 expense) is one charge year. The FY2025
+    cash settles the window's unpaid remainder (deferred_payment) and is not a new charge, so
+    ACQUIRED_IPRD_RECURRENT stays silent and the $100M is deducted once. A $0-cash charge whose whole residual is
+    declared paid in shares stays out of the count, as an expense-basis paid_in_shares period does."""
+    for exp, cash in (({2024: 100e6}, {2024: 40e6, 2025: 60e6}),
+                      ({2024: 100e6}, {2024: 0.0, 2025: 100e6}),
+                      ({2024: 100e6, 2025: 0.0}, {2024: 0.0, 2025: 100e6})):
+        n = _ok(_run(_facts(expense=exp, cash=cash)))
+        b = n["iprd_adjustment"]
+        assert b["fy_with_charge"] == ["2024-12-31"] and not b["recurrent"] and b["total"] == 100e6, (exp, cash, b)
+        assert not flags(n, "ACQUIRED_IPRD_RECURRENT"), (exp, cash)
+    shares = [_shares_check("2023-12-31", 100e6), _shares_check("2024-12-31", 100e6)]
+    b = _ok(_run(_facts(expense={2023: 100e6, 2024: 100e6}, cash={2023: 0.0, 2024: 0.0}),
+                 judgment={"iprd_cash_flow_check": shares}, checks=False))["iprd_adjustment"]
+    assert b["fy_with_charge"] == [] and not b["recurrent"] and b["total"] == 0.0, b
+
+
+def test_a_declared_installment_year_is_still_excluded_from_the_recurrence_count():
+    """[Codex review r27 of PR #47] Andrew's 2026-10-20 rule still holds once the count reads the expense: the FY2023
+    deal ($15M, paid in its year) and an FY2025 $20M milestone expensed with $0 cash (accrued). The FY2025 charge now
+    counts (RECURRENT on 2 of 3) unless judgment.json declares it, whole and cited, the FY2023 deal's deferred
+    payment. The declaration of such an accrued period claims its expense (before, its $0 cash-basis amount left
+    nothing to declare: BAD_IPRD_DEFERRED_PAYMENT); declared, the period is recurrence_excluded and RECURRENT does not
+    fire. The deduction is unchanged ($15M: FY2025's unpaid $20M is not deducted until paid). The paid installment
+    (the expense-basis shape) is still excluded too."""
+    f = _facts(expense={2023: 15e6, 2025: 20e6}, cash={2023: 15e6, 2025: 0.0})
+    u = _ok(_run(f))["iprd_adjustment"]
+    assert u["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and u["recurrent"] and u["total"] == 15e6, u
+    n = _ok(_run(f, judgment={"iprd_deferred_payment": [deferred(amount=20e6)]}))
+    b = n["iprd_adjustment"]
+    assert b["fy_with_charge"] == ["2023-12-31"] and not b["recurrent"] and b["total"] == 15e6, b
+    assert not flags(n, "ACQUIRED_IPRD_RECURRENT")
+    p25 = next(p for p in b["periods"] if p["period"] == "2025-12-31")
+    assert p25["recurrence_excluded"] == "deferred_payment_of" and p25["deducted"] == 0.0, p25
+    assert b["recurrence_excluded"] == [{"period": "2025-12-31", "window": "fy", "deal": "Test Bio",
+                                         "first_charged_period": "2023-12-31", "amount": 20e6}], b
+    # a part of the accrued charge declared: the rest is a new purchase, the year still counts
+    part = _ok(_run(f, judgment={"iprd_deferred_payment": [deferred(amount=5e6)]}))["iprd_adjustment"]
+    assert part["fy_with_charge"] == ["2023-12-31", "2025-12-31"] and part["recurrent"], part
+    # more than the accrued expense: refused
+    _refused(_run(f, judgment={"iprd_deferred_payment": [deferred(amount=25e6)]}), "more than the period's")
+    # the paid shape is unchanged
+    p = _ok(_two_of_three([deferred()]))["iprd_adjustment"]
+    assert p["fy_with_charge"] == ["2023-12-31"] and not p["recurrent"], p
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

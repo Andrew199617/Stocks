@@ -697,7 +697,11 @@ misfit`. For them:
   `ACQUIRED_IPRD_RECURRENT` (that flag catches buying R&D as a habit, distinct
   deals, not one deal paid in installments). Only a cited per-period
   `iprd_deferred_payment` declaring the period's WHOLE charge removes it from the
-  count; a partly deferred period still counts. [Codex review round 8 of PR #47]
+  count; a partly deferred period still counts. [Codex review round 27 of PR #47]
+  A year counts by its own expense, paid that year or accrued and paid later, never
+  by its cash timing: two deals expensed with $0 cash and paid the next year are two
+  charge years; cash that settles an earlier year's charge (no expense of its own)
+  is not a new one, and an accrued year's whole charge is its expense. [Codex review round 8 of PR #47]
   Each deal's cumulative declared amount IS a registry event (`iprd_deferred_payment`,
   below). Choices made in the
   Codex review round (same ruling, the main agent deciding): FY periods only (the
