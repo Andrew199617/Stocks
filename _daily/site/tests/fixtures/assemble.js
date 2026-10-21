@@ -14,7 +14,10 @@
    Engine 5.7 rulings (lane L6): the row rules build_site applies are mirrored too — tier_override is a judgment
    override BEYOND the sector-misfit notch (R1; tier_notched, misfit_notch, the live notch from a shown live.json), the
    moat_evidence / interim_bridge summaries, share_basis (R6) and has.facts; the record carries facts.json verbatim
-   (record.facts), quote_check null (the checker is Python) and the forecast's recorded growth hold (M6). */
+   (record.facts), quote_check null (the checker is Python) and the forecast's recorded growth hold (M6). The moat
+   summary's measure is null when the returns_on_capital pillar is not measured (03b §7.1). Not mirrored: build_site's
+   score_from_run (record.score_from_run null here, no score_not_from_this_run withholding), so an assembled row reads
+   moat_evidence.fade as the run's — build_site nulls fade_in_sync / fade_direction beside another run's score (L3b A14). */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -136,8 +139,10 @@ function moatSummary(score, numbers) {
   const me = isObj(score.moat_evidence) ? score.moat_evidence : null; if (!me) return null;
   const gov = isObj(me.governing) ? me.governing : {}, src = isObj(me.sources) ? me.sources : {}, ind = isObj(me.pillars) && isObj(me.pillars.industry_structure) ? me.pillars.industry_structure : {};
   const fade = isObj(me.fade) ? me.fade : {}, st = (o, k) => (typeof o[k] === 'string' ? o[k] : null), int = (v) => (Number.isInteger(v) ? v : null), dec = src.declared === true;
+  const roc = isObj(me.pillars) && isObj(me.pillars.returns_on_capital) ? me.pillars.returns_on_capital : null;
+  const govMeasured = roc ? roc.status === 'measured' : (gov.median !== null && gov.median !== undefined) || st(gov, 'median_note') !== null;
   return { score: n(me.evidence_score), status: st(me, 'status'), within_tolerance: typeof me.within_tolerance === 'boolean' ? me.within_tolerance : null, divergence: n(me.divergence),
-    core_score: n(me.core_evidence_score), supporting_adjustment: n(me.supporting_adjustment), measure: st(gov, 'measure'), return_median: n(gov.median), return_note: st(gov, 'median_note'),
+    core_score: n(me.core_evidence_score), supporting_adjustment: n(me.supporting_adjustment), measure: govMeasured ? st(gov, 'measure') : null, return_median: n(gov.median), return_note: st(gov, 'median_note'),
     sources: dec ? int(src.count) : null, widest: dec ? st(src, 'widest') : null, flags: (Array.isArray(me.flags) ? me.flags : []).map(String),
     industry: ind.status === 'measured' ? { code: st(ind, 'group'), level: int(ind.level), label: st(ind, 'label'), ladder: st(ind, 'ladder'), peers: int(ind.peers), rank: int(ind.rank), of: int(ind.of) } : null,
     fade_trend: engineTrend(numbers), fade_in_sync: typeof fade.in_sync === 'boolean' ? fade.in_sync : null, fade_direction: st(fade, 'direction'), hold_years: holdYears(numbers) };

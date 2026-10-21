@@ -2148,6 +2148,12 @@ test('T-JS-11 interim bridge: TTM construction labels, the Interim bridge sectio
   assert.ok(d.includes('− prior interim') && d.includes('+ current interim') && !between(d, 'TTM construction', '</section>').includes('− prior YTD'), 'declared-interim header cells');
   assert.ok(d.includes('computed by ttm.py --interim from the declared 6-K interim bridge (each leg converted at its own period-end rate) — see Interim bridge below'));
   assert.ok(between(d, 'TTM construction', '</section>').includes('engine FY'), 'ENGINE_FY → engine FY');
+  // design 04 rebase amendment 27 (folded into L6; L6 review r5): ttm.py --interim writes ttm_shares_diluted as the ORDINARY
+  // count and ttm_oe_per_share per ADS, so ads_ratio ≠ 1 puts "× ADS ratio <r>" in the sentence (364M ÷ 617.0M = $0.59, × 2 = $1.18)
+  assert.ok(!between(d, "TTM owner's earnings", '</p>').includes('ADS ratio') && between(d, "TTM owner's earnings", '</p>').includes('617.0M shares = '), 'ratio 1: no ratio in the sentence');
+  const adsR = rec(RULINGS.interim); adsR.ttm.ads_ratio = 2; adsR.ttm.ttm_oe_per_share = adsR.ttm.ttm_oe_total / adsR.ttm.ttm_shares_diluted * 2;
+  const adsSent = between(App.renderData(adsR), "TTM owner's earnings", '</p>');
+  assert.ok(adsSent.includes('$364M ÷ 617.0M shares × ADS ratio 2 = <b class="mono">$1.18</b> / ADS, computed by ttm.py --interim'), adsSent);
   const ib = between(d, '<h2>Interim bridge</h2>', '</section>');
   assert.ok(ib.includes('(est.)') && ib.includes('title="fy_prorated"') && ib.includes('ECB period-end rates: FY 1.1750 (engine) · prior 1.1720 · current 1.1394'), 'legs and FX');
   assert.ok(ib.includes('href="https://www.sec.gov/Archives/edgar/data/1234567/000110465926088404/micc-20260630x6k.htm"') && ib.includes('XBRL ✓') && ib.includes('<blockquote class="dfq">“Net cash flow from operating activities 539 276”'), 'sources with document links');
@@ -2285,6 +2291,18 @@ test('T25 growth fade note reads the recorded hold (M6)', () => {
   const dt = App.fadeHoldText(drift);
   assert.ok(dt.includes('moat eroding at the engine run') && dt.includes('data moved since the engine run') && dt.includes('--moat-trend stable') && !dt.includes('2.10') && !dt.includes('1.40'), dt);
   assert.ok(App.renderMoatEvidence(moatRecord({ fade: clone(RULINGS.fade.fade_drift) })).includes('out of sync'), 'the moat panel says so too');
+  // [rebase L3b A14, L6 review r3] beside a score.json from ANOTHER run (live_withheld score_not_from_this_run) the newer run's
+  // trend and hold are never paired with the older score's trend test: no "make_score's trend test", no Δg / Δm, labelled
+  const unscored = { reason: 'score_not_from_this_run', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: 'x' };
+  const mixed = rec({ forecast: RULINGS.fade.forecast }); mixed.score.moat_evidence = { status: 'checked', fade: clone(RULINGS.fade.fade_in_sync) };
+  mixed.live = null; mixed.live_withheld = clone(unscored);
+  const mt = App.fadeHoldText(mixed);
+  assert.ok(!mt.includes('make_score\'s trend test') && !mt.includes('2.10') && !mt.includes('1.40') && mt.includes('(moat eroding)') && mt.includes('latest run, not scored yet'), mt);
+  // the moat panel (score.json): the scored run's own engine trend (fade.engine) as scored, the newer run's trend beside it
+  const mp = moatRecord({ fade: clone(RULINGS.fade.fade_in_sync) }); mp.forecast = Object.assign({}, mp.forecast, { hold_years: 2, moat_trend: 'stable' });
+  mp.live = null; mp.live_withheld = clone(unscored);
+  const ml = between(App.renderMoatEvidence(mp), 'Growth hold (M6):', '</p>');
+  assert.ok(ml.includes('the scored run ran eroding, growth hold 0 yrs <span class="sub asof">as scored 2026-10-14</span>') && ml.includes('; the latest run ran stable, growth hold 2 yrs <span class="sub asof">latest run, not scored yet</span>') && !ml.includes('the engine ran'), ml);
 });
 
 test('Share classes (R6, design 08 §10): OE/share history on the engine CSV, the TTM per unit, the TTM construction rows, the run line, splitRefs on filed traded counts', () => {
@@ -2344,6 +2362,52 @@ test('[rebase B6, lane default Q11 (a)] a page whose latest run is not scored ye
   const own = moatRecord();
   assert.equal(App.scoreIsRunsVerdict(own), true); assert.ok(!App.renderMoatEvidence(own).includes('as scored') && !App.renderData(own).includes('not scored yet'));
   const ip = JSON.parse(JSON.stringify(r)); ip.live_withheld.reason = 'iprd_unresolved'; assert.equal(App.scoreIsRunsVerdict(ip), false, 'the same test as iprdNote');
+});
+
+test('[L6 review r1, lane default Q11 (a)] every panel read from the newer engine run says "latest run, not scored yet", the score panels beside it "as scored <date>"; a run\'s own page prints neither', () => {
+  // the PR #47 round-6 "mixed record": record.numbers / forecast / ttm.json from the newer run, score.json from the older one
+  const r = rec({ forecast: { hold_years: 0, moat_trend: 'eroding' } });
+  r.numbers.base_oe_per_share = 3.5; r.numbers.base_source = 'ttm_json'; r.numbers.price = 45;   // the newer run's own base and price
+  r.ttm = { inputs: clone(RULINGS.interim.ttm.inputs), ttm_oe_total: 1e8, ttm_shares_diluted: 1e7, ttm_oe_per_share: 10 };
+  r.live = null; r.live_withheld = { reason: 'score_not_from_this_run', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: 'x' };
+  const RUN = 'latest run, not scored yet', SC = 'as scored 2026-10-14', LABEL = /as scored 2026-10-14|latest run, not scored yet/;
+  const secs = (html) => html.split('<section').slice(1).map((x) => ({ title: ((/<h2>([\s\S]*?)<\/h2>/.exec(x) || [])[1] || '').replace(/<[^>]+>/g, '').trim(), html: x }));
+  // Forecast tab: every DCF panel is the run's (paths, growth, fade, value table, hurdle prices, growth method)
+  const fc = App.renderForecastDCF(r), fsecs = secs(fc);
+  assert.deepEqual(fsecs.map((x) => x.title), ["Owner's earnings per share — history and forecast", "Owner's earnings growth", "Owner's earnings per share — the five paths", 'Growth fade', 'Value at every discount rate', 'Hurdle prices', 'How growth was set']);
+  fsecs.forEach((x) => assert.ok(x.html.includes(RUN), 'Forecast panel without the run label: ' + x.title));
+  const hps = fsecs[5].html, hpTiles = hps.match(/<div class="tile"[\s\S]*?<\/div>/g) || [];
+  assert.ok(hpTiles.slice(0, 3).every((t) => t.includes(RUN)) && between(hps, 'Tier band', '</p>').includes(SC), 'hurdle prices (forecast.hurdle_prices) are the run\'s; the tier band the score\'s');
+  assert.ok(fc.includes('base $3.50/share (TTM) grown along each scenario') && fc.includes('<p class="note">Base $3.50/share × each scenario'), 'the paths are described from the run\'s own base, never the older score\'s $3.20');
+  assert.ok(fc.includes('IRR at $45.00</th>'), 'the IRR column (forecast.sensitivity) is the run\'s own, at its price');
+  // Overview: key-number tiles, the base card, scenarios, the moat card, the hold chip, the verdict, the price card
+  const ov = App.renderOverview(r), osecs = secs(ov);
+  osecs.forEach((x) => { if (['About', 'Financial performance', 'Filings'].indexOf(x.title) < 0) assert.ok(LABEL.test(x.html), 'Overview panel without a label: ' + (x.title || x.html.slice(0, 80))); });
+  const tiles = between(ov, '<h2>Key numbers</h2>', 'class="card baseoe"').match(/<div class="tile"[\s\S]*?<\/div>/g) || [];
+  assert.equal(tiles.length, 10);
+  tiles.forEach((t) => assert.ok(LABEL.test(t) || t.includes('scored 2026-10-14 · latest available'), 'unlabelled tile: ' + t));
+  ['Price for 20%', 'Price for 25%', 'OE yield', 'Terminal value share', 'Scenario spread', 'Net debt / OE'].forEach((k) => assert.ok(tiles.find((t) => t.includes('>' + k + '<')).includes(RUN), k));
+  ['IV @15%', 'Upside @15%', 'Base-case IRR'].forEach((k) => assert.ok(tiles.find((t) => t.includes('>' + k + '<')).includes(SC), k));
+  const base = between(ov, 'class="card baseoe"', '</div>');
+  assert.ok(base.includes(SC) && between(base, 'Latest FY', '</p>').includes(RUN), 'base card: the scored base, the run\'s latest FY / median / growth blend');
+  const scn = between(ov, '<h2>Scenarios</h2>', '</section>');
+  assert.ok(scn.includes('IRR for each case at the latest run\'s price') && scn.includes(RUN) && between(scn, 'class="scnfoot"', '</div>').includes(SC), 'scenario rows (numbers.scenarios) vs the weighted line (score)');
+  assert.ok(between(ov, 'class="moathead"', '</div>').includes(SC) && between(ov, 'class="moathead"', '</div>').includes(RUN) && ov.includes('Growth hold 0 yrs <span class="sub asof">' + RUN), 'moat card + the hold chip');
+  assert.ok(between(ov, 'class="vgl"', 'class="gauge"').includes(SC) && App.renderHeader(r).includes(SC), 'the verdict and the header are the score\'s');
+  const pc = App.renderPriceChart(r);
+  assert.ok(pc.includes('Weighted IV @15% <span class="sub asof">' + SC) && pc.includes('scenario range <span class="sub asof">' + RUN) && pc.includes('20% / 25% hurdle prices <span class="sub asof">' + RUN), between(pc, 'The valuation lines', '</p>'));
+  // Data tab: the engine-run rows, TTM construction, the registry, judgment.json
+  const d = App.renderData(r);
+  ['Engine', 'Price', 'Base', 'Run inputs', 'Net debt basis', 'Data gaps', 'Content hash', 'EDGAR tags (engine)'].forEach((k) => assert.ok(between(d, '<th>' + k + '</th>', '</tr>').includes(RUN), 'Data row ' + k));
+  assert.ok(between(d, '<h2>TTM construction</h2>', '</section>').includes(RUN) && between(d, 'Judgment calls on record', '</section>').includes(SC), 'TTM construction (ttm.json) and the registry');
+  assert.ok(d.includes("The agent's judgment inputs as on file") && !d.includes('exactly as make_score.py consumed them'), 'judgment.json is not claimed as consumed by make_score');
+  secs(d).forEach((x) => assert.ok(LABEL.test(x.html), 'Data panel without a label: ' + x.title));
+  // the run's own verdict (no live_withheld, or a withheld reason that keeps the score as the run's): exactly the old page
+  const page = (x) => App.TAB_KEYS.map((t) => App.renderCompanyHTML(x, t)).join('') + App.renderHeader(x);
+  assert.ok(!page(synthetic).includes('sub asof') && !LABEL.test(page(synthetic)), 'a run\'s own page carries no label');
+  const older = clone(synthetic); older.live = null; older.live_withheld = { reason: 'live_older_than_score', price: 49, price_date: '2026-10-10', scored_date: '2026-10-14', method: null, note: 'x' };
+  assert.ok(!page(older).includes('sub asof'), 'live_older_than_score: the score is still the run\'s');
+  assert.ok(App.renderOverview(older).includes('IRR at $50.00 for each case, against the 15% hurdle.') && App.renderForecastDCF(older).includes('IRR at $50.00</th>'), 'own page: the old sentences');
 });
 
 test('[rebase B16] REGISTRY_TEXT covers every event make_score declares (or lists it as generic on purpose)', () => {

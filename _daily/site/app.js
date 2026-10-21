@@ -431,6 +431,20 @@ function asScoredTag(record) { // ' as scored 2026-10-14' (HTML) on a panel read
   return ' <span class="sub asof">as scored' + (d ? ' ' + esc(d) : '') + '</span>';
 }
 function latestRunTag(record) { return scoreIsRunsVerdict(record) ? '' : ' <span class="sub asof">latest run, not scored yet</span>'; }
+/* [lane default Q11 (a), L6 review r1] Every panel on such a page says where its figures come from: srcTag(record, true)
+   for a panel (or a figure inside one) read from the newer engine run — record.numbers, record.forecast, ttm.json —
+   and srcTag(record, false) for one read from score.json. '' on a page whose score is the run's verdict, so those
+   pages print exactly what they printed before. */
+function srcTag(record, fromRun) { return fromRun ? latestRunTag(record) : asScoredTag(record); }
+function hurdlesFromRun(record) { return Object.keys(obj(obj(record.forecast).hurdle_prices)).length > 0; } // hurdlePrices' first source
+/* The base OE/share the stored projection paths (forecast.paths, the engine run's) grew from. On a page whose score is
+   the run's verdict that is the score's base (score_from_run checks the two agree); otherwise the newer run's own
+   base, so a panel labelled "latest run, not scored yet" never pairs that run's paths with the older score's base. */
+function projectionBase(record) {
+  var s = obj(record.score), n = obj(record.numbers);
+  if (!scoreIsRunsVerdict(record) && num(n.base_oe_per_share) !== null) return { value: num(n.base_oe_per_share), source: n.base_source || s.base_source };
+  return { value: num(s.base_oe_per_share !== undefined ? s.base_oe_per_share : n.base_oe_per_share), source: s.base_source };
+}
 /* Weighted IV at 15 / 20 / 25% — the hurdle prices. forecast.hurdle_prices (stored by the data
    layer from engine 5.4 or its replay), else the scored IV@15 and the index row's iv20 / iv25. */
 function hurdlePrices(record) {
@@ -531,7 +545,7 @@ function renderHeader(record, stars, repo) {
     // the scored price is, with the reason beside it (the note in the tooltip); a close that IS current still shows
     var cc = currentClose(record), wh = liveWithheld(record);
     var latest = wh ? '<span class="lvpend"' + (wh.note ? ' title="' + esc(wh.note) + '"' : '') + '>' + esc(latestText(wh)) + '</span>' : '';
-    sub = 'Probability-weighted IRR at ' + fmtMoney(price);
+    sub = 'Probability-weighted IRR at ' + fmtMoney(price) + asScoredTag(record); // Q11 (a): the score's, when the latest run is not scored yet
     priceTile = '<div class="hstat"><span class="k">' + (cc ? 'Last close' : wh ? 'Scored price' : 'Price used') + '</span><span class="v mono">' + fmtMoney(cc ? cc.last : price) + (cc ? chgS : '') + '</span><span class="tsub">'
       + joinNonEmpty([cc ? esc(cc.date) + ' · scored at ' + fmtMoney(price) + ' (' + esc(s.analysis_date || '') + ')' : (wh ? '' : esc(n.price_source || '') + ' · ' + esc(s.analysis_date || '')), latest, rangeSub], ' · ') + '</span></div>';
     ttile = '<span class="ttile" style="background:' + acc + '"' + (ntitle ? ' title="' + esc('Scored tier' + ntitle) + '"' : '') + '>' + esc(tier) + '</span>';
@@ -548,7 +562,7 @@ function renderHeader(record, stars, repo) {
     + '<div class="hname"><div class="hline"><span class="htick">' + esc(s.ticker || record.ticker) + '</span><span class="hco">' + esc(s.name || record.name) + '</span>' + (chip || scoredChip) + notchChip(record) + schip + wchip + '</div><span class="note">' + meta + '</span></div></div>'
     + '<div class="hstats"><div class="hstat big"><span class="k">Expected return / yr' + (v.is_live ? ' · live' : '') + '</span><span class="v mono" style="color:' + acc + '">' + irrS + '</span><span class="tsub">' + sub + (floor ? ' · at the model floor' : '') + (fsub ? ' · ' + esc(fsub) : '') + '</span>' + band + '</div>'
     + priceTile
-    + '<div class="hstat"><span class="k">Value @15%</span><span class="v mono">' + fmtMoney(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15) + '</span><span class="tsub ' + signCls(up) + '">' + (up !== null ? fmtPts(up, 0) + ' vs ' + (v.is_live ? 'last close' : 'price') : '—') + '</span></div>'
+    + '<div class="hstat"><span class="k">Value @15%</span><span class="v mono">' + fmtMoney(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15) + '</span><span class="tsub ' + signCls(up) + '">' + (up !== null ? fmtPts(up, 0) + ' vs ' + (v.is_live ? 'last close' : 'price') : '—') + asScoredTag(record) + '</span></div>'
     + '</div></header>';
 }
 /* The condensed line the sticky tab bar shows once the header has scrolled away: ticker · last close ·
@@ -581,6 +595,14 @@ function priceVsValueLine(record) {
     + '<div class="pv-ivmark" style="left:' + X(wIv) + '%"></div><div class="pv-pricedot" style="left:' + X(price) + '%"></div>'
     + '<div class="pv-ivlbl" style="left:' + X(wIv) + '%"><span>Weighted IV</span><b>' + fmtMoney(wIv) + '</b></div><div class="pv-pricelbl"><span>Price</span><b>' + fmtMoney(price) + '</b></div></div><div class="pv-axis">' + ticks + '</div>';
 }
+/* [lane default Q11 (a)] Where the price card's value lines come from on a page whose latest run is not scored yet:
+   the weighted IV @15% is the score's, the scenario range and the 20% / 25% hurdle prices the newer run's (priceSpec
+   reads numbers.scenarios and forecast.hurdle_prices first). '' otherwise. */
+function valueLinesSource(record) {
+  if (scoreIsRunsVerdict(record)) return '';
+  return ' Weighted IV @15%' + asScoredTag(record) + '; scenario range' + srcTag(record, Object.keys(obj(obj(record.numbers).scenarios)).length > 0)
+    + ' and 20% / 25% hurdle prices' + srcTag(record, hurdlesFromRun(record)) + '.';
+}
 /* The price card: a 1D · 5D · 1M · YTD · 3M · 6M · 1Y · 5Y · Max range row (a range without data is disabled,
    "not captured yet"; the active one carries the period-return badge), the chart (crosshair on hover / drag,
    arrow keys when focused), the legend and the sources note. drawPriceCard() redraws it; the default range is
@@ -596,21 +618,21 @@ function renderPriceChart(record) {
     var iday = spec.intraday, intraDef = def === '1D' || def === '5D';
     var srcNote = 'Prices: ' + esc(pr.source || '') + ', through ' + esc(pr.as_of || '') + '.'
       + (iday ? ' Intraday: ' + esc(iday.source || 'api.nasdaq.com chart') + ' for ' + esc(iday.session_date || '') + (iday.complete === false && capturedTo(iday) ? ', captured to ' + esc(capturedTo(iday)) + ' (partial — the next prices.py run after 8 PM ET completes it)' : '') + ' (5-minute bars, pre-market and after-hours included' + (arr(pr.sessions_5d).length ? ', ' + arr(pr.sessions_5d).length + ' session' + (arr(pr.sessions_5d).length === 1 ? '' : 's') + ' kept for 5D' : '') + ').' : ' Intraday (1D · 5D) not captured yet for this name.')
-      + " The valuation lines are the engine's values at a 15% discount rate — the price at which the expected return equals the hurdle. Where the price sits against them is the whole screen.";
+      + " The valuation lines are the engine's values at a 15% discount rate — the price at which the expected return equals the hurdle. Where the price sits against them is the whole screen." + valueLinesSource(record);
     body = '<div class="pcbar"><div class="ranges" role="group" aria-label="Price range">' + ranges + '</div><div class="toggles">' + toggles + '</div></div>'
       + '<div class="pchart" data-cid="price" tabindex="0" aria-label="Price chart — hover, drag or use the arrow keys to read a point"></div>'
       + '<p class="note pcnote"' + (intraDef ? '' : ' hidden') + '>Value lines hidden on intraday ranges — the axis is tight to the session.</p>'
       + '<div class="pcfoot"><span class="legend"><i style="background:' + C_PRICE + '"></i>Price</span><span class="legend"><i class="dash" style="border-color:' + C_IV + '"></i>Weighted IV @15%</span><span class="legend"><i style="background:' + C_BAND + ';border:1px solid rgba(122,162,255,.6)"></i>Scenario range (super bear → super bull)</span><span class="pcret"></span></div>'
       + '<p class="note">' + srcNote + '</p>';
   } else {
-    body = priceVsValueLine(record) + "<p class=\"note\">No price history pulled for this name yet (prices.py) — the number line shows today's price against every scenario's value.</p>";
+    body = priceVsValueLine(record) + "<p class=\"note\">No price history pulled for this name yet (prices.py) — the number line shows today's price against every scenario's value." + valueLinesSource(record) + '</p>';
   }
   return '<section class="sec pcsec"><div class="card pc" data-range="' + esc(def || '') + '">' + body + '</div></section>';
 }
 
 function renderOverrides(record) {
   var s = obj(record.score), n = obj(record.numbers);
-  var ov = arr(n.overrides_applied);
+  var ov = arr(n.overrides_applied), ovRun = ov.length > 0; // the run's overrides_applied, else score.json's list
   if (!ov.length && arr(s.overrides).length) ov = arr(s.overrides).filter(function (o) { return o && typeof o === 'object'; }).map(function (o) { return { field: o.field, value: o.value, kind: o.kind, source: o.source, reason: '', periods_filled: [] }; });
   if (!ov.length) return '';
   var rows = ov.map(function (o) {
@@ -627,7 +649,8 @@ function renderOverrides(record) {
   var reasons = ov.filter(function (o) { return o.reason; }).map(function (o) { return '<p class="note"><b>' + esc(o.field) + ':</b> ' + esc(o.reason) + '</p>'; }).join('');
   var sp = splitInfo(record), spH = sp ? '<p class="note">Override values are as entered for the scored run, before the ' + esc(sp.split) + ' split since scoring (not restated)'
     + (impH ? '; the base OE/share figures above are restated to today\'s share units' : '') + '.</p>' : '';
-  return '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Field</th><th class="num">Value</th><th>Kind</th><th>Source</th><th>Years filled</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + impH + reasons + spH + '</div>';
+  var srcH = scoreIsRunsVerdict(record) ? '' : '<p class="note">Override rows' + srcTag(record, ovRun) + (impH ? '; measured impact' + asScoredTag(record) : '') + '.</p>'; // Q11 (a)
+  return '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Field</th><th class="num">Value</th><th>Kind</th><th>Source</th><th>Years filled</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + impH + reasons + spH + srcH + '</div>';
 }
 
 /* ---- profile cards (record.profile from profile.py; every card renders gracefully without it) */
@@ -846,7 +869,7 @@ function renderStreet(record) {
   var st = streetOf(record), M = streetCardModel(record);
   if (!st || !M) return streetEmpty(record, 'Street summary');
   var hp = M.hurdles, c = M.counts;
-  var ours = hp[15] !== null || hp[20] !== null || hp[25] !== null ? ' Our hurdle prices: ' + fmtMoney(hp[15]) + ' for 15% (Tier B), ' + fmtMoney(hp[20]) + ' for 20% (Tier A), ' + fmtMoney(hp[25]) + ' for 25% (Tier S).' : '';
+  var ours = hp[15] !== null || hp[20] !== null || hp[25] !== null ? ' Our hurdle prices: ' + fmtMoney(hp[15]) + ' for 15% (Tier B), ' + fmtMoney(hp[20]) + ' for 20% (Tier A), ' + fmtMoney(hp[25]) + ' for 25% (Tier S).' + srcTag(record, hurdlesFromRun(record)) : '';
   var target = M.target_mean !== null ? '<div class="stgt"><span class="k">Mean 12-month target</span><span class="v mono">' + fmtMoney(M.target_mean) + (M.pct_mean !== null ? ' <small class="badge ' + signCls(M.pct_mean) + '">' + fmtPts(M.pct_mean, 1) + ' vs ' + M.price_word + ' ' + fmtMoney(M.price) + '</small>' : '') + '</span>'
     + (M.target_low !== null || M.target_high !== null ? '<span class="tsub">Range ' + fmtMoney(M.target_low) + ' – ' + fmtMoney(M.target_high) + (M.pct_low !== null && M.pct_high !== null ? ' (' + fmtPts(M.pct_low, Math.abs(M.pct_low) < 1 ? 1 : 0) + ' to ' + fmtPts(M.pct_high, Math.abs(M.pct_high) < 1 ? 1 : 0) + ')' : '') + '</span>' : '') + '</div>' : '';
   var chart = M.history.length >= 2 ? '<h3 class="sub3">Ratings by month</h3>' + chartDiv('street-sum', 'small') : '';
@@ -1195,14 +1218,25 @@ function volumePriceHTML(me) { // the users × revenue-per-user decomposition (a
     + (bl.length ? '<p class="note">Score bounds from the decomposition: ' + bl.join(' · ') + '</p>' : '')
     + (levels && per.length >= 3 ? chartDiv('moat-vp', 'vpchart') : '') + '</div>';
 }
-/* The gates (G1, G4-G6), the trend test, the flags, the lint and the M6 growth hold (moat_evidence.fade; lane L3b). */
+/* The gates (G1, G4-G6), the trend test, the flags, the lint and the M6 growth hold (moat_evidence.fade; lane L3b).
+   [rebase L3b A14, L6 review r3] fade (direction, in_sync) is make_score's check of the run IT scored: beside a newer
+   run that is not scored yet (scoreIsRunsVerdict false) the line names the scored run's own engine trend
+   (fade.engine, as scored) and the newer run's trend / hold separately ("latest run, not scored yet"), never the
+   newer run's hold as the run the trend test checked. */
 function fadeText(me, record) {
   var fd = obj(me.fade), fc = obj(record.forecast), hold = num(fc.hold_years), trend = fc.moat_trend;
   if (!Object.keys(fd).length) return '';
   var dir = fd.direction ? 'direction ' + esc(fd.direction) : 'direction not measured' + (fd.reason ? ' (' + esc(fd.reason) + ')' : '');
   var meas = fd.status === 'measured' ? ' (' + esc(MEASURE_LABEL[fd.measure] || fd.measure || 'governing return') + ' ' + fmtSigned(fd.governing_change_pp, 2) + 'pp, gross margin ' + fmtSigned(fd.gross_margin_change_pp, 2) + 'pp over the last 5 FY)' : '';
   var rule = fd.rule ? ' · rule ' + esc(String(fd.rule).replace(/_/g, ' ')) : '';
-  var engine = (trend ? 'the engine ran ' + esc(trend) : 'the engine ran the default stable trend') + (hold !== null ? ', growth hold ' + hold + ' yr' + (hold === 1 ? '' : 's') : '');
+  var holdTxt = function (h) { return h !== null ? ', growth hold ' + h + ' yr' + (h === 1 ? '' : 's') : ''; };
+  if (!scoreIsRunsVerdict(record)) {
+    var fe = obj(fd.engine), fh = num(fe.hold_years);
+    var scoredRun = fe.moat_trend ? 'the scored run ran ' + esc(fe.moat_trend) + holdTxt(fh) : Object.keys(fe).length ? 'the scored run ran the default stable trend' + holdTxt(fh) : 'the scored run\'s engine trend is not recorded';
+    return '<p class="note">Growth hold (M6): ' + dir + meas + rule + '; ' + scoredRun + (fd.in_sync === false ? ' — <b>out of sync</b>: data moved since that run' : '') + asScoredTag(record)
+      + '; the latest run ran ' + (trend ? esc(trend) : 'the default stable trend') + holdTxt(hold) + latestRunTag(record) + '.</p>';
+  }
+  var engine = (trend ? 'the engine ran ' + esc(trend) : 'the engine ran the default stable trend') + holdTxt(hold);
   var sync = fd.in_sync === false ? ' — <b>out of sync</b>: data moved since the engine run; the next run passes --moat-trend ' + esc(fd.trend || '') : '';
   return '<p class="note">Growth hold (M6): ' + dir + meas + rule + '; ' + engine + sync + '.</p>';
 }
@@ -1386,7 +1420,9 @@ function renderInterimBridge(record) {
       + Object.keys(names).filter(function (k) { return L[k]; }).map(function (k) { var g = obj(L[k]); return '<tr><th>' + names[k] + '</th><td class="num mono">' + amt(obj(g.fy).local) + '</td><td class="num mono">' + amt(obj(g.prior_interim).local) + mark(g.prior_interim) + '</td><td class="num mono">' + amt(obj(g.current_interim).local) + mark(g.current_interim) + '</td><td class="num mono">' + amt(g.ttm_local) + '</td><td class="num mono">' + fmtBig(g.ttm_usd) + '</td></tr>'; }).join('')
       + '<tr class="strong"><th>Owner\'s earnings</th><td></td><td></td><td></td><td class="num mono">' + amt(ttm.ttm_oe_total_local) + '</td><td class="num mono">' + fmtBig(ttm.ttm_oe_total) + '</td></tr></tbody></table></div>';
     var sh = obj(obj(ttm.shares).current_interim);
-    sharesH = '<p class="note">Shares: ' + fmtCnt(sh.value) + ' current-interim weighted diluted' + mark(sh) + ' × ADS ratio ' + esc(ttm.ads_ratio) + ' → <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share, 4) + '</b>/sh (scored)' + (num(obj(ttm.shares).fy_diluted) !== null ? ' · FY diluted ' + fmtCnt(obj(ttm.shares).fy_diluted) : '') + '</p>';
+    // Q11 (a): the legs and shares are ttm.json's (the latest run's); "(scored)" only when the score is that run's verdict
+    var own = scoreIsRunsVerdict(record);
+    sharesH = '<p class="note">Shares: ' + fmtCnt(sh.value) + ' current-interim weighted diluted' + mark(sh) + ' × ADS ratio ' + esc(ttm.ads_ratio) + ' → <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share, 4) + '</b>/sh' + (own ? ' (scored)' : '') + (num(obj(ttm.shares).fy_diluted) !== null ? ' · FY diluted ' + fmtCnt(obj(ttm.shares).fy_diluted) : '') + (own ? '' : ' · legs and shares from ttm.json' + latestRunTag(record)) + '</p>';
     var prov = arr(ttm.provenance).filter(function (p) { return p && typeof p === 'object'; });
     if (prov.length) srcH = '<ul class="qlist ibsrc">' + prov.map(function (p) { var dl = edgarFilingUrl(cik, p.accession, p.document); return '<li><span class="mono">' + esc(p.field) + '</span> ' + esc(String(p.leg || '').replace(/_/g, ' ')) + ' · ' + (dl ? extA(dl, esc(p.document || p.accession)) : esc(p.document || p.accession || '')) + (p.page !== null && p.page !== undefined ? ' p. ' + esc(p.page) : '') + (p.section ? ' · ' + esc(p.section) : '') + (p.verified === 'xbrl_instance' ? ' · XBRL ✓' : '') + (p.snippet ? '<blockquote class="dfq">“' + esc(p.snippet) + '”</blockquote>' : '') + '</li>'; }).join('') + '</ul>';
   } else legsH = '<p class="note">Leg table in the full record — open the site.</p>';
@@ -1428,14 +1464,21 @@ function flagLinkHTML(code, record) {
   if (code === 'SECTOR_MODEL_MISMATCH') { var nv = notchView(record); if (nv && !nv.legacy && nv.scoredApplies) out += ' <span class="sub">→ published one tier below (' + esc(nv.scoredTbn) + ' → ' + esc(nv.scoredAfter) + ')</span>'; }
   return out;
 }
-/* M6: the growth hold the engine recorded (forecast.hold_years; 2 on a record before 5.7) and the Forecast note. */
+/* M6: the growth hold the engine recorded (forecast.hold_years; 2 on a record before 5.7) and the Forecast note.
+   [rebase L3b A14, lane default Q11 (a), L6 review r3] The growth paths are the engine run's: beside a score.json from
+   another run (scoreIsRunsVerdict false) the note reads that run's own CAP and moat input, never pairs its trend with
+   the older score's trend test (fade.in_sync / Δg / Δm belong to the run make_score scored) and says "latest run, not
+   scored yet". */
 function fadeHoldText(record) {
   var fc = obj(record.forecast), s = obj(record.score), n = obj(record.numbers), hold = num(fc.hold_years) !== null ? num(fc.hold_years) : 2;
   var inp = Object.keys(obj(fc.inputs)).length ? obj(fc.inputs) : obj(n.inputs), gterm = inp.g_terminal !== undefined ? inp.g_terminal : (fc.g_terminal !== undefined ? fc.g_terminal : n.g_terminal);
-  var capYears = s.cap_years !== undefined ? s.cap_years : fc.cap_years, moat = s.moat_score !== undefined ? s.moat_score : obj(record.row).moat;
+  var own = scoreIsRunsVerdict(record);
+  var capYears = !own && fc.cap_years !== undefined && fc.cap_years !== null ? fc.cap_years : (s.cap_years !== undefined ? s.cap_years : fc.cap_years);
+  var moat = !own && inp.moat !== undefined && inp.moat !== null ? inp.moat : (s.moat_score !== undefined ? s.moat_score : obj(record.row).moat);
   var lead = hold === 0 ? 'Growth starts fading in year 1' : 'Growth holds for ' + hold + ' year' + (hold === 1 ? '' : 's') + ', then';
   var txt = lead + (hold === 0 ? ' and' : '') + ' converges linearly to the ' + fmtPct(gterm) + ' terminal rate over the competitive advantage period of ' + esc(capYears) + ' years (moat ' + esc(moat) + '/10 → CAP = 2 + 1.3 × moat).';
   var trend = fc.moat_trend, fd = obj(obj(s.moat_evidence).fade);
+  if (!own) return txt + (trend === 'eroding' || trend === 'widening' ? ' (moat ' + esc(trend) + ')' : '') + latestRunTag(record);
   if (trend === 'eroding' || trend === 'widening') {
     if (fd.in_sync === true) txt += ' (moat ' + esc(trend) + ': make_score\'s trend test — governing return ' + fmtSigned(fd.governing_change_pp, 2) + 'pp and gross margin ' + fmtSigned(fd.gross_margin_change_pp, 2) + 'pp over the last 5 FY; scenarios that start at or below the ' + fmtPct(gterm) + ' terminal rate keep the 2-year hold)';
     else if (fd.in_sync === false) txt += ' (moat ' + esc(trend) + ' at the engine run; data moved since the engine run; the next run passes --moat-trend ' + esc(fd.trend || '') + ')';
@@ -1468,7 +1511,7 @@ function renderOverview(record) {
   if (s.moat_score !== null && s.moat_score !== undefined) chips.push(moatChipText(s));
   if (s.cap_years !== null && s.cap_years !== undefined) chips.push('Advantage period ' + esc(s.cap_years) + ' yrs');
   var holdY = num(obj(record.forecast).hold_years);
-  if (holdY !== null && holdY !== 2) chips.push('Growth hold ' + holdY + ' yrs'); // M6: only when the moat's direction moved the hold
+  if (holdY !== null && holdY !== 2) chips.push('Growth hold ' + holdY + ' yrs' + latestRunTag(record)); // M6: only when the moat's direction moved the hold (the engine run's; Q11 (a))
   if (s.confidence) chips.push('Confidence ' + esc(s.confidence) + (s.confidence_capped ? ' (capped)' : ''));
   var nv = notchView(record); // R1: the mechanical notch replaces "tier is soft"
   if (nv) chips.push(notchChipText(nv));
@@ -1478,7 +1521,7 @@ function renderOverview(record) {
   if (s.tier_by_numbers && pubT && v.scored_tier !== pubT) chips.push(nv && !nv.legacy && nv.scoredApplies ? 'Tier lowered ' + esc(pubT) + '→' + esc(v.scored_tier) + ' by agent judgment (below the misfit notch)' : 'Tier overridden ' + esc(s.tier_by_numbers) + '→' + esc(v.scored_tier) + ' by agent judgment');
   if (s.engine_release) chips.push('Engine ' + esc(s.engine_release));
   else if (n.engine_version) chips.push('Engine 5.3.x (pre-5.4 numbers)');
-  var gauge = '<div class="card verdict"><div class="vmain"><div class="vgauge"><span class="vgl" style="color:' + acc + '">' + glabel + '</span>'
+  var gauge = '<div class="card verdict"><div class="vmain"><div class="vgauge"><span class="vgl" style="color:' + acc + '">' + glabel + asScoredTag(record) + '</span>'
     + '<div class="gauge"><div class="gfill" style="width:' + fill.toFixed(1) + '%;background:' + acc + '"></div><div class="gtick" style="left:' + hurdleLeft.toFixed(1) + '%"></div></div>'
     + '<div class="gscale"><span style="left:0">0%</span><span class="gmid" style="left:' + hurdleLeft.toFixed(1) + '%">15% hurdle</span><span style="right:0">' + scale.toFixed(0) + '%</span></div></div></div>'
     + '<div class="chips">' + chips.map(function (c) { return '<span class="chip">' + c + '</span>'; }).join('') + '</div>'
@@ -1487,21 +1530,23 @@ function renderOverview(record) {
   if (sp.verdict === 'changed') p2 = '<div class="p2box"><b>↺ Revised by pass 2 · ' + esc(sp.date) + '</b><p>Tier ' + esc(sp.prior_tier) + ' → ' + esc(tier) + ' · Wtd IRR ' + fmtPct(sp.prior_weighted_irr) + ' → ' + fmtPct(irr) + ' · IV@15% ' + fmtMoney(sp.prior_iv_at_15) + ' → ' + fmtMoney(s.iv_at_15) + '</p><p>' + esc(sp.summary) + '</p></div>';
   else if (Object.keys(sp).length) p2 = '<div class="p2box"><b>✓ Pass 2 checked ' + esc(sp.date) + ' — no material change</b><p>' + esc(sp.summary) + '</p></div>';
   var up = v.upside, hp = hurdlePrices(record), px = v.price, iv15 = num(s.iv_at_15 !== undefined ? s.iv_at_15 : row.iv15), wh = liveWithheld(record);
+  // Q11 (a): on a page whose latest run is not scored yet each tile says whose figure it is (sTag: score.json, rTag: the run)
+  var sTag = asScoredTag(record), rTag = latestRunTag(record), hpTag = srcTag(record, hurdlesFromRun(record));
   var tiles = [
     tile(v.is_live ? 'Last close' : 'Price', fmtMoney(px), '', v.is_live ? esc(v.price_date) + ' · scored at ' + fmtMoney(v.scored_price) : (wh ? 'scored ' + esc(v.price_date) + ' · latest available' : ''), wh && !v.is_live ? latestText(wh) : ''),
-    tile('IV @15%', fmtMoney(iv15), px && iv15 !== null ? signCls(iv15 - px) : '', 'clears 15%' + (v.is_live ? ' at last close' : '')),
-    tile('Price for 20%', fmtMoney(hp[20]), px && hp[20] !== null ? signCls(hp[20] - px) : '', 'Tier A hurdle'),
-    tile('Price for 25%', fmtMoney(hp[25]), px && hp[25] !== null ? signCls(hp[25] - px) : '', 'Tier S hurdle'),
-    tile('Upside @15%', up !== null ? fmtPts(up, 0) : '—', signCls(up), v.is_live && v.scored_upside !== null ? 'scored ' + fmtPts(v.scored_upside, 0) : ''),
-    tile('Base-case IRR', fmtPct(v.irr_base), '', v.is_live && num(s.implied_irr_base_case) !== null ? 'scored ' + fmtPct(s.implied_irr_base_case) : ''),
-    tile('OE yield', fmtPct(diag.oe_yield), '', 'base OE / price'),
-    tile('Terminal value share', fmtPct(diag.tv_share_at_15), '', 'of IV @15%'),
-    tile('Scenario spread', fmtX(diag.scenario_spread_iv15), '', 'super bull / super bear'),
-    tile('Net debt / OE', fmtX(diag.net_debt_to_normalized_oe), '', fmtBig(s.net_debt_latest !== undefined && s.net_debt_latest !== null ? s.net_debt_latest : n.net_debt_latest))
+    tile('IV @15%', fmtMoney(iv15), px && iv15 !== null ? signCls(iv15 - px) : '', 'clears 15%' + (v.is_live ? ' at last close' : '') + sTag),
+    tile('Price for 20%', fmtMoney(hp[20]), px && hp[20] !== null ? signCls(hp[20] - px) : '', 'Tier A hurdle' + hpTag),
+    tile('Price for 25%', fmtMoney(hp[25]), px && hp[25] !== null ? signCls(hp[25] - px) : '', 'Tier S hurdle' + hpTag),
+    tile('Upside @15%', up !== null ? fmtPts(up, 0) : '—', signCls(up), (v.is_live && v.scored_upside !== null ? 'scored ' + fmtPts(v.scored_upside, 0) : '') + sTag),
+    tile('Base-case IRR', fmtPct(v.irr_base), '', (v.is_live && num(s.implied_irr_base_case) !== null ? 'scored ' + fmtPct(s.implied_irr_base_case) : '') + sTag),
+    tile('OE yield', fmtPct(diag.oe_yield), '', 'base OE / price' + rTag),
+    tile('Terminal value share', fmtPct(diag.tv_share_at_15), '', 'of IV @15%' + rTag),
+    tile('Scenario spread', fmtX(diag.scenario_spread_iv15), '', 'super bull / super bear' + rTag),
+    tile('Net debt / OE', fmtX(diag.net_debt_to_normalized_oe), '', fmtBig(s.net_debt_latest !== undefined && s.net_debt_latest !== null ? s.net_debt_latest : n.net_debt_latest) + rTag)
   ].join('');
   var baseSrc = baseSourceText(record), perUnit = !!shareClassView(record), u = perUnit ? 'unit' : 'sh'; // R2a basis line; R6: per economic unit
-  var kn = '<div class="tiles">' + tiles + '</div><div class="card baseoe"><span class="k">Base owner\'s earnings' + (perUnit ? ' / unit' : '') + '</span><span class="bv mono">' + fmtMoney(s.base_oe_per_share) + '<span class="bu"> / ' + (perUnit ? 'unit' : 'share') + '</span></span>'
-    + '<p class="note">Basis: ' + baseSrc + '. Latest FY ' + fmtMoney(n.base_oe_latest_per_share) + '/' + u + ' · 3-yr median ' + fmtMoney(n.base_oe_normalized_per_share) + '/' + u + ' · growth blend ' + fmtPct(n.g_blend) + ' → start ' + fmtPct(n.g_base) + ' · terminal ' + fmtPct(n.g_terminal) + '.</p>'
+  var kn = '<div class="tiles">' + tiles + '</div><div class="card baseoe"><span class="k">Base owner\'s earnings' + (perUnit ? ' / unit' : '') + sTag + '</span><span class="bv mono">' + fmtMoney(s.base_oe_per_share) + '<span class="bu"> / ' + (perUnit ? 'unit' : 'share') + '</span></span>'
+    + '<p class="note">Basis: ' + baseSrc + '.' + sTag + ' Latest FY ' + fmtMoney(n.base_oe_latest_per_share) + '/' + u + ' · 3-yr median ' + fmtMoney(n.base_oe_normalized_per_share) + '/' + u + ' · growth blend ' + fmtPct(n.g_blend) + ' → start ' + fmtPct(n.g_base) + ' · terminal ' + fmtPct(n.g_terminal) + '.' + rTag + '</p>'
     + (iprdNote(record) ? '<p class="note">' + iprdNote(record) + '</p>' : '') + interimBaseNoteHTML(record) + shareBasisNoteHTML(record) + '</div>' + renderBaseAlternatives(record);
   // scenarios
   // a scenario IRR the solver clamped at its floor (irr_at_floor / irr_live_at_floor) is a bound, not a solved return:
@@ -1523,7 +1568,7 @@ function renderOverview(record) {
       + '<div class="scnsub"><span>Growth start <b>' + fmtPct(r.g_start) + '</b></span><span>OE multiple <b>' + fmtX(r.oe_mult, 2) + '</b></span><span>IV @15% <b>' + fmtMoney(r.iv_at_15) + '</b></span>' + scoredH + '</div></div>';
   });
   if (v.irr_at_floor) anyFloor = true;
-  var sc = '<div class="card scncard">' + rows + '<div class="scnfoot"><span>Probability-weighted' + (v.is_live ? ' · at last close' : '') + '</span><span class="mono' + (v.irr_at_floor ? ' atfloor' : '') + '">IV ' + fmtMoney(iv15) + ' · IRR ' + fmtPct(irr) + (v.irr_at_floor ? ' ' + floorSup(v.is_live ? liveFloorTitle : scoredFloorTitle) : '') + (v.is_live ? ' <span class="scored">scored ' + fmtPct(v.scored_irr) + '</span>' : '') + '</span></div></div>';
+  var sc = '<div class="card scncard">' + rows + '<div class="scnfoot"><span>Probability-weighted' + (v.is_live ? ' · at last close' : '') + sTag + '</span><span class="mono' + (v.irr_at_floor ? ' atfloor' : '') + '">IV ' + fmtMoney(iv15) + ' · IRR ' + fmtPct(irr) + (v.irr_at_floor ? ' ' + floorSup(v.is_live ? liveFloorTitle : scoredFloorTitle) : '') + (v.is_live ? ' <span class="scored">scored ' + fmtPct(v.scored_irr) + '</span>' : '') + '</span></div></div>';
   var floorNote = anyFloor ? ' <b>At floor</b> marks an IRR the solver clamped at its floor: a bound (read it as "at most about the terminal growth rate"), not a solved return — a floored live figure above the scored one is not an improvement at the last close.' : '';
   // moat
   var moat = num(s.moat_score), dots = '';
@@ -1533,17 +1578,19 @@ function renderOverview(record) {
     cols = '<div class="mcols"><div class="mcol"><span class="mk pos">Strengths</span><ul>' + mfor.map(function (x) { return '<li><span class="sign pos">+</span><span>' + esc(x) + '</span></li>'; }).join('') + '</ul></div>'
       + '<div class="mcol"><span class="mk neg">Pressures</span><ul>' + mag.map(function (x) { return '<li><span class="sign neg">−</span><span>' + esc(x) + '</span></li>'; }).join('') + '</ul></div></div>';
   } else cols = '<p class="dimp">' + esc(s.moat_justification) + '</p>';
-  var moatH = '<div class="card"><div class="moathead"><span class="moattitle"><h2>Moat</h2><span class="mono moatscore">' + esc(s.moat_score !== undefined && s.moat_score !== null ? s.moat_score : '—') + '/10</span>' + dots + '</span><span class="note">Advantage period <b class="mono">' + esc(s.cap_years !== undefined && s.cap_years !== null ? s.cap_years : '—') + ' yrs</b> · the moat sets how fast growth fades to ' + fmtPct(n.g_terminal) + (obj(record.forecast).moat_trend ? ' · growth hold ' + esc(num(obj(record.forecast).hold_years) !== null ? num(obj(record.forecast).hold_years) : 2) + ' yrs (' + esc(obj(record.forecast).moat_trend) + ')' : '') + '</span></div>' + cols + '<p class="note">' + (Array.isArray(mfor) && mfor.length ? esc(s.moat_justification) : '') + '</p>' + renderMoatEvidence(record) + '</div>';
+  var moatH = '<div class="card"><div class="moathead"><span class="moattitle"><h2>Moat</h2><span class="mono moatscore">' + esc(s.moat_score !== undefined && s.moat_score !== null ? s.moat_score : '—') + '/10</span>' + dots + '</span><span class="note">Advantage period <b class="mono">' + esc(s.cap_years !== undefined && s.cap_years !== null ? s.cap_years : '—') + ' yrs</b>' + sTag + ' · the moat sets how fast growth fades to ' + fmtPct(n.g_terminal) + (obj(record.forecast).moat_trend ? ' · growth hold ' + esc(num(obj(record.forecast).hold_years) !== null ? num(obj(record.forecast).hold_years) : 2) + ' yrs (' + esc(obj(record.forecast).moat_trend) + ')' : '') + rTag + '</span></div>' + cols + '<p class="note">' + (Array.isArray(mfor) && mfor.length ? esc(s.moat_justification) : '') + '</p>' + renderMoatEvidence(record) + '</div>';
   // flags
   var flags = arr(s.fragility_flags), fl = '';
   if (flags.length) {
     var items = flags.map(function (f) { f = String(f); var code = f.split(':')[0].split(' ')[0], rest = f.indexOf(':') >= 0 ? f.slice(f.indexOf(':') + 1).trim() : ''; return '<li><code>' + esc(code) + '</code><span>' + esc(rest) + flagLinkHTML(code, record) + '</span></li>'; }).join('');
-    fl = '<div class="card"><ul class="flags">' + items + '</ul><p class="note">Each flag is resolved in the write-up — see the Analysis tab.</p></div>';
+    fl = '<div class="card"><ul class="flags">' + items + '</ul><p class="note">Each flag is resolved in the write-up — see the Analysis tab.' + sTag + '</p></div>';
   }
   var ov = renderOverrides(record);
   return splitBrief(splitInfo(record)) + gauge + p2 + renderAbout(record) + renderPerformance(record) + renderStreet(record) + renderFilings(record)
     + section('Key numbers', kn) + (ov ? section('Overrides', ov, 'Filing gaps filled by a judgment override — an override never replaces a filed value.') : '')
-    + section('Scenarios', sc, 'IRR ' + atPx + ' for each case, against the 15% hurdle.' + (v.is_live ? " Live figures reprice the scored cash-flow paths at the last close; the scored IRR is the agent's verdict-date figure." : '') + floorNote)
+    + section('Scenarios', sc, (rTag && Object.keys(obj(n.scenarios)).length // Q11 (a): the rows are the newer run's (numbers.scenarios), the weighted line the score's
+      ? 'IRR for each case at the latest run\'s price' + rTag + '; the probability-weighted IRR ' + atPx + sTag + ', against the 15% hurdle.'
+      : 'IRR ' + atPx + ' for each case, against the 15% hurdle.' + (rTag ? ' Every case' + asScoredTag(record) + '.' : '')) + (v.is_live ? " Live figures reprice the scored cash-flow paths at the last close; the scored IRR is the agent's verdict-date figure." : '') + floorNote)
     + section('', moatH) + (flags.length ? section('Fragility flags <span class="fcount mono">' + flags.length + '</span>', fl) : '');
 }
 
@@ -2060,11 +2107,12 @@ function histYoy(hist) {
 /* The joined series behind the two DCF charts: history labels then the 15 projection years. Forecast series carry
    the engine's base OE/share at the last history position so the dashed lines start from the base year. The
    weighted growth is the year-over-year change of the stored weighted path (no weighted growth path is stored);
-   bear / bull growth are the stored growth paths. Null without forecast.paths. */
+   bear / bull growth are the stored growth paths. Null without forecast.paths. The base is projectionBase's: the
+   run's own on a page whose latest run is not scored yet (lane default Q11 (a)). */
 function oeForecastSeries(record) {
-  var fc = obj(record.forecast), paths = obj(fc.paths), gp = obj(fc.growth_paths), s = obj(record.score), n = obj(record.numbers);
+  var fc = obj(record.forecast), paths = obj(fc.paths), gp = obj(fc.growth_paths);
   var w = arr(paths.weighted).map(num); if (!w.length) return null;
-  var base = num(s.base_oe_per_share !== undefined ? s.base_oe_per_share : n.base_oe_per_share);
+  var base = projectionBase(record).value;
   var hist = oeHistory(record); if (!hist.length) hist = [{ fy: 'Base', v: base }];
   var H = hist.length, N = w.length, lastFy = hist[H - 1].fy, fyNum = /^\d{4}$/.test(lastFy) ? Number(lastFy) : null;
   var labels = hist.map(function (h) { return h.fy; }), fcLabels = [];
@@ -2135,8 +2183,10 @@ function renderForecastDCF(record) {
   if (!hasScn) return spTop + oeHistorySection(record) + noProj;
   var parts = spTop ? [spTop] : [], inp = Object.keys(obj(fc.inputs)).length ? obj(fc.inputs) : obj(n.inputs);
   var gterm = inp.g_terminal !== undefined ? inp.g_terminal : (fc.g_terminal !== undefined ? fc.g_terminal : n.g_terminal);
-  var paths = obj(fc.paths), gpaths = obj(fc.growth_paths), base = num(s.base_oe_per_share !== undefined ? s.base_oe_per_share : n.base_oe_per_share);
-  var capYears = s.cap_years !== undefined ? s.cap_years : fc.cap_years, moat = s.moat_score !== undefined ? s.moat_score : row.moat;
+  var paths = obj(fc.paths), gpaths = obj(fc.growth_paths), pb = projectionBase(record), base = pb.value;
+  // lane default Q11 (a): the paths, growth, value table, hurdle prices and growth method are the engine run's (rTag);
+  // the tier band is the score's (sTag) — both '' when the score is the run's verdict
+  var rTag = latestRunTag(record), sTag = asScoredTag(record);
   var J = oeForecastSeries(record);
   if (J) {
     var yl = function (y) { return 'Year ' + y + (J.fcLabels[y - 1] && J.fcLabels[y - 1].charAt(0) !== '+' ? ' <span class="sub">FY' + esc(J.fcLabels[y - 1]) + '</span>' : ''); };
@@ -2146,7 +2196,7 @@ function renderForecastDCF(record) {
       { name: 'Avg <span class="sub">probability-weighted</span>', strong: true, cells: FC_YEARS.map(function (y) { return cell(J.raw.weighted, y); }) },
       { name: 'Low <span class="sub">super bear</span>', cells: FC_YEARS.map(function (y) { return cell(J.raw.super_bear, y); }) }]);
     parts.push(section("Owner's earnings per share — history and forecast", '<div class="card">' + chartDiv('fc-oe') + t1
-      + '<p class="note">' + (J.filedCount ? 'Solid line: filed owner\'s earnings per diluted share by fiscal year' + (oeFromFundamentals(record) ? ' (fundamentals.json)' : ' (engine history CSV)') + ' — only years with both owner\'s earnings and the diluted share count filed, on one share basis.' : (J.hist.length && J.hist[0].fy !== 'Base' ? 'No solid line: no fiscal year' + (oeFromFundamentals(record) ? ' in fundamentals.json' : ' in the engine history CSV') + ' has both owner\'s earnings and the diluted share count filed.' : 'No solid line: this record has no filed annual history.')) + oeGapNote(J.hist) + oeSplitNote(J.hist, sp) + ' Dashed lines from the base year: the engine\'s projection — base ' + fmtMoney(base) + '/share (' + esc({ ttm_json: 'TTM', agent_supplied_ttm_override: 'TTM pin', median_of_last_3_fy_oe_per_share: '3-year median' }[s.base_source] || s.base_source || 'engine base') + ') grown along each scenario\'s path; the bold dashed line is the probability-weighted path whose IRR is the headline, the shaded band runs from super bear to super bull. Year-15 flow carries a Gordon terminal value at ' + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + '</p></div>', 'What the DCF actually discounts, against what was filed.'));
+      + '<p class="note">' + (J.filedCount ? 'Solid line: filed owner\'s earnings per diluted share by fiscal year' + (oeFromFundamentals(record) ? ' (fundamentals.json)' : ' (engine history CSV)') + ' — only years with both owner\'s earnings and the diluted share count filed, on one share basis.' : (J.hist.length && J.hist[0].fy !== 'Base' ? 'No solid line: no fiscal year' + (oeFromFundamentals(record) ? ' in fundamentals.json' : ' in the engine history CSV') + ' has both owner\'s earnings and the diluted share count filed.' : 'No solid line: this record has no filed annual history.')) + oeGapNote(J.hist) + oeSplitNote(J.hist, sp) + ' Dashed lines from the base year: the engine\'s projection — base ' + fmtMoney(base) + '/share (' + esc({ ttm_json: 'TTM', agent_supplied_ttm_override: 'TTM pin', median_of_last_3_fy_oe_per_share: '3-year median' }[pb.source] || pb.source || 'engine base') + ') grown along each scenario\'s path; the bold dashed line is the probability-weighted path whose IRR is the headline, the shaded band runs from super bear to super bull. Year-15 flow carries a Gordon terminal value at ' + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + (rTag ? ' Projection' + rTag + '.' : '') + '</p></div>', 'What the DCF actually discounts, against what was filed.'));
     var gy = [1, 2, 3], gcell = function (vals, y) { var v = get(vals, y - 1); return '<span class="mono ' + signCls(v) + '">' + fmtPct(v, 1, true) + '</span>'; };
     var hasG = J.bearGrowth.length && J.bullGrowth.length;
     var t2 = hal('OE / share growth', gy.map(yl), [
@@ -2154,11 +2204,11 @@ function renderForecastDCF(record) {
       { name: 'Avg <span class="sub">weighted path, YoY</span>', strong: true, cells: gy.map(function (y) { return gcell(J.wGrowth, y); }) },
       { name: 'Low <span class="sub">bear growth path</span>', cells: gy.map(function (y) { return hasG ? gcell(J.bearGrowth, y) : '—'; }) }]);
     parts.push(section("Owner's earnings growth", '<div class="card">' + chartDiv('fc-oegrowth') + t2
-      + '<p class="note">Historical bars: year-over-year change in the filed OE/share between consecutive fiscal years (blank where either year is not plotted or the prior year was not positive).' + oeYoyNote(J.histGrowthWhy) + oeSplitNote(J.hist, sp) + ' Forecast bars: the year-over-year change of the probability-weighted path (year 1 is measured from the base, so it also carries the scenarios\' OE level multiples); the error bar runs from the bear to the bull growth path for the same year' + (hasG ? '' : ' (no growth paths stored for this run)') + '.</p></div>'));
+      + '<p class="note">Historical bars: year-over-year change in the filed OE/share between consecutive fiscal years (blank where either year is not plotted or the prior year was not positive).' + oeYoyNote(J.histGrowthWhy) + oeSplitNote(J.hist, sp) + ' Forecast bars: the year-over-year change of the probability-weighted path (year 1 is measured from the base, so it also carries the scenarios\' OE level multiples); the error bar runs from the bear to the bull growth path for the same year' + (hasG ? '' : ' (no growth paths stored for this run)') + '.' + (rTag ? ' Forecast bars' + rTag + '.' : '') + '</p></div>'));
   }
   else parts.push(oeHistorySection(record));
   if (arr(paths.weighted).length) {
-    parts.push(section("Owner's earnings per share — the five paths", '<div class="card">' + chartDiv('fc-paths') + '<p class="note">Base ' + fmtMoney(base) + "/share × each scenario's OE multiple, grown along its growth path. The weighted line is the probability-weighted path whose IRR is the headline. Year-15 flow carries a Gordon terminal value at " + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + '</p></div>'));
+    parts.push(section("Owner's earnings per share — the five paths", '<div class="card">' + chartDiv('fc-paths') + '<p class="note">Base ' + fmtMoney(base) + "/share × each scenario's OE multiple, grown along its growth path. The weighted line is the probability-weighted path whose IRR is the headline. Year-15 flow carries a Gordon terminal value at " + fmtPct(gterm) + ' growth.' + (fc.replayed ? ' Paths replayed from the recorded run inputs through the engine (pre-5.4 run).' : '') + rTag + '</p></div>'));
     if (arr(gpaths.base).length) parts.push(section('Growth fade', '<div class="card">' + chartDiv('fc-growth') + '<p class="note">' + fadeHoldText(record) + '</p></div>')); // M6: the recorded hold
   } else parts.push('<div class="card"><p class="note">No stored projection paths for this run — the 15-year paths appear after the next engine run (5.4+) or when the data layer replays them.</p></div>');
   var sens = sensitivity(record), lv = liveView(record), price = lv.price, wh = lv.is_live ? null : liveWithheld(record);
@@ -2178,11 +2228,13 @@ function renderForecastDCF(record) {
     } else irrCell = '<td class="num mono' + (r.irr_at_floor ? ' atfloor' : '') + '">' + fmtPct(scoredIrr) + sf + '</td>';
     rows += '<tr class="' + (k === 'weighted' ? 'strong' : '') + '"><th>' + l[1] + (prob !== null ? ' <span class="prob">' + Math.round(prob * 100) + '%</span>' : '') + '</th>' + cells + irrCell + '</tr>';
   });
-  var irrHead = (lv.is_live ? 'IRR at last close ' : 'IRR at ') + fmtMoney(price);
+  // Q11 (a): beside a score from another run the IRR column is the newer run's own (forecast.sensitivity), at its price
+  var irrHead = lv.is_live ? 'IRR at last close ' + fmtMoney(price) : 'IRR at ' + fmtMoney(rTag && num(n.price) !== null ? n.price : price);
   parts.push(section('Value at every discount rate', '<div class="card"><div class="twrap"><table class="fin"><thead><tr><th>Scenario</th>' + head + '<th class="num">' + irrHead + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
-    + '<p class="note">Each cell is the price at which that scenario returns that rate. Green = at or above ' + pxWord + '. The 15% column is the hurdle; 20% and 25% are the Tier A and Tier S prices.' + (lv.is_live ? ' The IRR column reprices each scored path at the last close (' + esc(lv.price_date) + '); the muted figure is the scored IRR at ' + fmtMoney(lv.scored_price) + ' on ' + esc(lv.scored_date) + '.' : '') + (anyFloor ? ' <b>At floor</b> marks an IRR the solver clamped at its floor: that figure is a bound, not a solved return, so a floored live figure above the scored one is not an improvement at the last close.' : '') + '</p></div>', 'Sensitivity of value to the return you demand.'));
+    + '<p class="note">Each cell is the price at which that scenario returns that rate. Green = at or above ' + pxWord + '. The 15% column is the hurdle; 20% and 25% are the Tier A and Tier S prices.' + (lv.is_live ? ' The IRR column reprices each scored path at the last close (' + esc(lv.price_date) + '); the muted figure is the scored IRR at ' + fmtMoney(lv.scored_price) + ' on ' + esc(lv.scored_date) + '.' : '') + (anyFloor ? ' <b>At floor</b> marks an IRR the solver clamped at its floor: that figure is a bound, not a solved return, so a floored live figure above the scored one is not an improvement at the last close.' : '') + (rTag ? ' Values and IRRs' + rTag + '.' : '') + '</p></div>', 'Sensitivity of value to the return you demand.'));
   var hp = hurdlePrices(record);
-  var hpTile = function (k, label) { return tile(label, fmtMoney(hp[k]), hp[k] !== null && price ? signCls(hp[k] - price) : ''); };
+  var hpSrc = srcTag(record, hurdlesFromRun(record));
+  var hpTile = function (k, label) { return tile(label, fmtMoney(hp[k]), hp[k] !== null && price ? signCls(hp[k] - price) : '', hpSrc); };
   var tiles = hpTile(15, 'Price for 15% (Tier B)') + hpTile(20, 'Price for 20% (Tier A)') + hpTile(25, 'Price for 25% (Tier S)')
     + tile(lv.is_live ? 'Last close' : wh ? 'Scored price' : "Today's price", fmtMoney(price), '', lv.is_live ? esc(lv.price_date) + ' · scored at ' + fmtMoney(lv.scored_price) : (wh ? esc(latestText(wh)) : ''), wh ? wh.note : '');
   var band = '', sb = obj(lv.scenarios.bear).irr, su = obj(lv.scenarios.bull).irr, ff = floorFlags(record, lv.is_live);
@@ -2190,7 +2242,7 @@ function renderForecastDCF(record) {
   if (sb !== null && sb !== undefined && su !== null && su !== undefined) {
     var tb = lv.tier_bear || tierForIrr(sb), tu = lv.tier_bull || tierForIrr(su), ovr = notchForecastText(record); // [rebase B7] the notch is not an agent override
     var headline = lv.is_live ? 'headline tier <b>' + esc(lv.tier) + '</b> at the last close (scored ' + esc(s.tier_by_numbers) + ' on the weighted path' + ovr + ')' : 'headline tier ' + esc(s.tier_by_numbers) + ' on the weighted path' + ovr;
-    band = '<p class="note">Tier band' + (lv.is_live ? ' at the last close' : '') + ': bear case <b>' + esc(tb) + '</b> (' + fmtPct(sb) + (ff.bear ? ', ' + floorSup() : '') + ') to bull case <b>' + esc(tu) + '</b> (' + fmtPct(su) + (ff.bull ? ', ' + floorSup() : '') + '); ' + headline + (ff.weighted ? ' — the weighted IRR sits at the solver\'s floor' : '') + '. Size any position to the bear end.</p>';
+    band = '<p class="note">Tier band' + (lv.is_live ? ' at the last close' : '') + sTag + ': bear case <b>' + esc(tb) + '</b> (' + fmtPct(sb) + (ff.bear ? ', ' + floorSup() : '') + ') to bull case <b>' + esc(tu) + '</b> (' + fmtPct(su) + (ff.bull ? ', ' + floorSup() : '') + '); ' + headline + (ff.weighted ? ' — the weighted IRR sits at the solver\'s floor' : '') + '. Size any position to the bear end.</p>';
   }
   parts.push(section('Hurdle prices', '<div class="tiles">' + tiles + '</div>' + band, 'The price at which the probability-weighted path returns each hurdle. Green = ' + pxWord + ' is below it (the hurdle clears).'));
   var gc = Object.keys(obj(fc.growth_components)).length ? obj(fc.growth_components) : obj(n.growth_components);
@@ -2199,7 +2251,7 @@ function renderForecastDCF(record) {
   var pick = function (k) { return fc[k] !== undefined && fc[k] !== null ? fc[k] : n[k]; };
   var method = '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>Growth signal</th><th class="num">Raw</th><th class="num">Share-adjusted</th></tr></thead><tbody>' + comp
     + '<tr class="strong"><th>Blend (median)</th><td class="num mono">' + fmtPct(pick('g_blend')) + '</td><td class="num mono">→ start ' + fmtPct(pick('g_base')) + '</td></tr></tbody></table></div>'
-    + '<p class="note">Share-count CAGR ' + fmtPct(pick('share_cagr')) + ' → adjustment ' + fmtPct(pick('share_count_adj'), 1, true) + ' (' + esc(pick('share_adj_basis') || 'applied to the blend (pre-5.4 engine)') + '). Scenario offsets ' + esc(JSON.stringify(inp.offsets || null)) + ' pp and OE multiples ' + esc(JSON.stringify(inp.mults || null)) + ' with probabilities ' + esc(JSON.stringify(inp.probs || null)) + '. Start growth is capped at 35% (base) / 50% (scenario) — see README Fixes &amp; lessons.</p></div>';
+    + '<p class="note">Share-count CAGR ' + fmtPct(pick('share_cagr')) + ' → adjustment ' + fmtPct(pick('share_count_adj'), 1, true) + ' (' + esc(pick('share_adj_basis') || 'applied to the blend (pre-5.4 engine)') + '). Scenario offsets ' + esc(JSON.stringify(inp.offsets || null)) + ' pp and OE multiples ' + esc(JSON.stringify(inp.mults || null)) + ' with probabilities ' + esc(JSON.stringify(inp.probs || null)) + '. Start growth is capped at 35% (base) / 50% (scenario) — see README Fixes &amp; lessons.' + rTag + '</p></div>';
   parts.push(section('How growth was set', method));
   return parts.join('');
 }
@@ -2275,7 +2327,7 @@ function renderForecastStreet(record) {
     + '<div class="sgfan">' + (hasPx ? '<div class="fanchart" data-cid="street-fan"></div><p class="note">Past year of closes, then the Street\'s low / mean / high 12-month targets fanned out from the ' + pxWord + '.</p>' : '<p class="note">No price history pulled for this name yet (prices.py) — the fan chart appears once it exists.</p>') + '</div></div></div>'));
   // (2) price target table
   var pt = function (name, x) { x = num(x); return '<tr><th>' + name + '</th><td class="num mono">' + fmtMoney(x) + '</td><td class="num mono ' + (px && x !== null ? signCls(x - px) : '') + '">' + (px && x !== null ? fmtPts((x / px - 1) * 100, 1) : '—') + '</td></tr>'; };
-  parts.push(section('Price target', '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>12-month target</th><th class="num">Price</th><th class="num">vs ' + pxWord + ' ' + fmtMoney(px) + '</th></tr></thead><tbody>' + pt('Low', st.target_low) + pt('Average', st.target_mean) + pt('High', st.target_high) + '</tbody></table></div><p class="note">Nasdaq publishes no median target, so none is shown. Our hurdle prices for comparison: ' + fmtMoney(hurdlePrices(record)[15]) + ' for a 15% return, ' + fmtMoney(hurdlePrices(record)[20]) + ' for 20%.' + (st.target_1y_nasdaq_summary ? ' ' + esc(st.target_1y_nasdaq_summary) : '') + '</p></div>'));
+  parts.push(section('Price target', '<div class="card"><div class="twrap"><table class="mini"><thead><tr><th>12-month target</th><th class="num">Price</th><th class="num">vs ' + pxWord + ' ' + fmtMoney(px) + '</th></tr></thead><tbody>' + pt('Low', st.target_low) + pt('Average', st.target_mean) + pt('High', st.target_high) + '</tbody></table></div><p class="note">Nasdaq publishes no median target, so none is shown. Our hurdle prices for comparison: ' + fmtMoney(hurdlePrices(record)[15]) + ' for a 15% return, ' + fmtMoney(hurdlePrices(record)[20]) + ' for 20%.' + srcTag(record, hurdlesFromRun(record)) + (st.target_1y_nasdaq_summary ? ' ' + esc(st.target_1y_nasdaq_summary) : '') + '</p></div>'));
   // (3) analyst ratings
   var hist = arr(st.history).filter(function (r) { return r && typeof r === 'object'; }).slice().sort(function (a, b) { return String(a.date) < String(b.date) ? -1 : String(a.date) > String(b.date) ? 1 : 0; });
   var ratingP = '<p class="dimp">' + (c.total ? 'Of the ' + c.total + ' ratings Nasdaq lists, ' + (c.buy || 0) + ' are buy, ' + (c.hold || 0) + ' hold and ' + (c.sell || 0) + ' sell' + (st.consensus ? ' — consensus <b>' + esc(st.consensus) + '</b>' : '') + '.' : 'No rating counts on record.') + '</p>';
@@ -2397,6 +2449,9 @@ function runCapText(s, n) {
 function renderData(record) {
   var s = obj(record.score), n = obj(record.numbers), fund = obj(record.fundamentals), ttm = obj(record.ttm), j = record.judgment, prof = obj(fund.profile), rows = [];
   var kv = function (k, v) { rows.push('<tr><th>' + k + '</th><td>' + v + '</td></tr>'); };
+  // lane default Q11 (a): a row read from the engine run (dcf_numbers.json) says "latest run, not scored yet" beside a
+  // score.json from another run; the score.json rows (notch, declared facts, method runs, previous score) say "as scored"
+  var rTag = latestRunTag(record), kvRun = function (k, v) { kv(k, v + rTag); };
   var cik = n.cik !== undefined && n.cik !== null ? String(n.cik) : '';
   kv('Entity', esc(n.name || s.name || record.name) + ' · CIK ' + esc(cik) + (cik ? ' · <a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&amp;CIK=' + esc(encodeURIComponent(cik)) + '&amp;type=10-K" target="_blank" rel="noopener">EDGAR</a>' : ''));
   if (Object.keys(prof).length) {
@@ -2411,7 +2466,7 @@ function renderData(record) {
     });
     kv('8-K filings, last 12 months', esc(prof.eight_k_count_12m));
   }
-  kv('Engine', 'v' + esc(n.engine_version) + ' · release ' + esc(n.engine_release || s.engine_release || '5.3.x (pre-5.4)') + ' · run ' + esc(n.as_of) + ' · annual form ' + esc(n.filer_annual_form));
+  kvRun('Engine', 'v' + esc(n.engine_version) + ' · release ' + esc(n.engine_release || s.engine_release || '5.3.x (pre-5.4)') + ' · run ' + esc(n.as_of) + ' · annual form ' + esc(n.filer_annual_form));
   // engine 5.7 rulings: why the run is (or is not) a sector misfit and the notch it got (R1), annual facts read from a
   // lagging filer's own XBRL instance (R2b), the declared facts (R3), saved method runs and the score this one replaced
   kv('Sector model', sectorModelText(record));
@@ -2425,20 +2480,20 @@ function renderData(record) {
   var sp = splitInfo(record), asc = sp ? sp.as_scored : {}, before = sp ? ' before the ' + esc(sp.split) + ' split' : '';
   var scv = shareClassView(record), sclt = obj(scv && scv.latest); // R6: a declared run's count is total economic units, not the filed diluted count
   var shText = scv ? ' · total economic units (filed traded + declared) ' + fmtCnt(n.shares_diluted_latest) + ' (' + fmtCnt(sclt.filed_traded) + ' + ' + fmtCnt(sclt.units_equivalent) + ')' : ' · diluted shares ' + fmtCnt(n.shares_diluted_latest);
-  kv('Price', fmtMoney(n.price) + ' (' + esc(n.price_source) + ')' + (sp && num(asc.price) !== null ? ' · scored at ' + fmtMoney(asc.price) + before : '') + ' · market cap est. ' + runCapText(s, n) + shText + (sp ? ' (restated × ' + esc(fmtFactor(sp.factor)) + ')' : ''));
+  kvRun('Price', fmtMoney(n.price) + ' (' + esc(n.price_source) + ')' + (sp && num(asc.price) !== null ? ' · scored at ' + fmtMoney(asc.price) + before : '') + ' · market cap est. ' + runCapText(s, n) + shText + (sp ? ' (restated × ' + esc(fmtFactor(sp.factor)) + ')' : ''));
   if (shareClassesDataText(record)) kv('Share basis', shareClassesDataText(record));
   if (capexSoftwareText(record)) kv('Capitalized software (in capex)', capexSoftwareText(record));
   var inp = obj(n.inputs);
-  kv('Base', fmtMoney(n.base_oe_per_share) + '/share' + (sp && num(asc.base_oe_per_share) !== null ? ' (scored ' + fmtMoney(asc.base_oe_per_share) + before + ')' : '') + ' · ' + esc(n.base_source) + ' · pin source ' + esc(inp.base_pin_source));
+  kvRun('Base', fmtMoney(n.base_oe_per_share) + '/share' + (sp && num(asc.base_oe_per_share) !== null ? ' (scored ' + fmtMoney(asc.base_oe_per_share) + before + ')' : '') + ' · ' + esc(n.base_source) + ' · pin source ' + esc(inp.base_pin_source));
   if (sp) kv('Split since scoring', esc(sp.split) + ' (factor ' + esc(fmtFactor(sp.factor)) + ')' + (sp.scored_date ? ' · scored ' + esc(sp.scored_date) : '') + (sp.price_date ? ' · restated against the ' + esc(sp.price_date) + ' close' : '') + (num(asc.iv_at_15) !== null ? ' · IV @15% as scored ' + fmtMoney(asc.iv_at_15) : ''));
-  kv('Run inputs', 'moat ' + esc(inp.moat) + ' · probs ' + esc(JSON.stringify(inp.probs || null)) + ' · offsets ' + esc(JSON.stringify(inp.offsets || null)) + ' · mults ' + esc(JSON.stringify(inp.mults || null)) + ' · g_terminal ' + esc(inp.g_terminal));
-  kv('Net debt basis', fmtBig(n.net_debt_latest) + ' · ' + esc(n.net_debt_basis || 'current + noncurrent tags (pre-5.4)') + (n.lease_liabilities_latest !== undefined && n.lease_liabilities_latest !== null ? ' · operating leases ' + fmtBig(n.lease_liabilities_latest) : ''));
-  if (n.fx_conversion) { var fx = obj(n.fx_conversion); kv('FX conversion', esc(fx.from_currency) + ' → USD at period-end ECB rates (' + esc(fx.source) + '); rates ' + esc(JSON.stringify(fx.rates || null))); }
-  if (n.ads_ratio) kv('ADS ratio', esc(obj(n.ads_ratio).ratio) + ' ordinary per ADS · ' + esc(obj(n.ads_ratio).source));
-  kv('Data gaps', esc(JSON.stringify(n.data_gap || [])) + ' (uncovered: ' + esc(JSON.stringify(n.data_gap_uncovered || [])) + ')');
-  kv('Content hash', contentHashText(record)); // [rebase B5] + whether score.json was built from this run (record.score_from_run)
+  kvRun('Run inputs', 'moat ' + esc(inp.moat) + ' · probs ' + esc(JSON.stringify(inp.probs || null)) + ' · offsets ' + esc(JSON.stringify(inp.offsets || null)) + ' · mults ' + esc(JSON.stringify(inp.mults || null)) + ' · g_terminal ' + esc(inp.g_terminal));
+  kvRun('Net debt basis', fmtBig(n.net_debt_latest) + ' · ' + esc(n.net_debt_basis || 'current + noncurrent tags (pre-5.4)') + (n.lease_liabilities_latest !== undefined && n.lease_liabilities_latest !== null ? ' · operating leases ' + fmtBig(n.lease_liabilities_latest) : ''));
+  if (n.fx_conversion) { var fx = obj(n.fx_conversion); kvRun('FX conversion', esc(fx.from_currency) + ' → USD at period-end ECB rates (' + esc(fx.source) + '); rates ' + esc(JSON.stringify(fx.rates || null))); }
+  if (n.ads_ratio) kvRun('ADS ratio', esc(obj(n.ads_ratio).ratio) + ' ordinary per ADS · ' + esc(obj(n.ads_ratio).source));
+  kvRun('Data gaps', esc(JSON.stringify(n.data_gap || [])) + ' (uncovered: ' + esc(JSON.stringify(n.data_gap_uncovered || [])) + ')');
+  kvRun('Content hash', contentHashText(record)); // [rebase B5] + whether score.json was built from this run (record.score_from_run)
   var ut = obj(n.used_tags), utKeys = Object.keys(ut).filter(function (k) { return ut[k]; });
-  kv('EDGAR tags (engine)', utKeys.length ? utKeys.map(function (k) { return '<span class="mono small">' + esc(k) + ': ' + esc(ut[k]) + '</span>'; }).join('<br>') : '<span class="note">not kept in this record (attachment trims used_tags)</span>');
+  kvRun('EDGAR tags (engine)', utKeys.length ? utKeys.map(function (k) { return '<span class="mono small">' + esc(k) + ': ' + esc(ut[k]) + '</span>'; }).join('<br>') : '<span class="note">not kept in this record (attachment trims used_tags)</span>');
   var tu = obj(fund.tags_used), tuKeys = Object.keys(tu).filter(function (k) { return arr(tu[k]).length; });
   if (tuKeys.length) kv('EDGAR tags (fundamentals)', tuKeys.map(function (k) { return '<span class="mono small">' + esc(k) + ': ' + esc(arr(tu[k]).join(', ')) + '</span>'; }).join('<br>'));
   kv('Files', arr(record.files).map(function (f) { return '<span class="mono">' + esc(f) + '</span>'; }).join(' · ') || '—');
@@ -2463,10 +2518,13 @@ function renderData(record) {
     var how = dib ? 'computed by ttm.py --interim from the declared 6-K interim bridge (each leg converted at its own period-end rate) — see Interim bridge below'
                   : 'computed by ttm.py from EDGAR 10-Q year-to-date facts (FY − prior YTD + current YTD)';
     var divisor = hasSc ? fmtCnt(ttm.ttm_shares_diluted) + ' total economic units (' + fmtCnt(tsc.filed_traded) + ' traded class as filed + ' + fmtCnt(tsc.units_equivalent) + ' declared)' : fmtCnt(ttm.ttm_shares_diluted) + ' shares';
+    // design 04 rebase amendment 27 (L4, folded into L6; L6 review r5): ttm.py --interim writes ttm_shares_diluted as the
+    // ORDINARY count and ttm_oe_per_share per ADS, so a declared bridge with ads_ratio ≠ 1 names the ratio in the sentence
+    var adsR = dib && num(ttm.ads_ratio) !== null && num(ttm.ads_ratio) !== 1 ? num(ttm.ads_ratio) : null;
     parts.push(section('TTM construction', '<div class="card"><div class="twrap"><table class="fin"><thead><tr><th>TTM leg</th>' + head + '<th>Tag</th></tr></thead><tbody>' + trs + '</tbody></table></div>'
-      + "<p class=\"note\">TTM owner's earnings " + fmtBig(ttm.ttm_oe_total) + ' ÷ ' + divisor + ' = <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share) + '</b> / ' + (hasSc ? 'unit' : 'share') + ', ' + how + '. ' + (ovUsed.length ? 'Overrides used: ' + esc(ovUsed.join(', ')) + '. ' : '')
+      + "<p class=\"note\">TTM owner's earnings " + fmtBig(ttm.ttm_oe_total) + ' ÷ ' + divisor + (adsR !== null ? ' × ADS ratio ' + esc(adsR) : '') + ' = <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share) + '</b> / ' + (hasSc ? 'unit' : adsR !== null ? 'ADS' : 'share') + ', ' + how + '. ' + (ovUsed.length ? 'Overrides used: ' + esc(ovUsed.join(', ')) + '. ' : '')
       + (swLegs.length ? 'Capex includes capitalized software (engine 5.7, R9): ' + swLegs.join(' · ') + '. ' : '')
-      + (sp ? 'The legs above are as filed, before the ' + esc(sp.split) + ' split; the share count and the per-share figure in this sentence are restated to today\'s share units.' : '') + '</p></div>'));
+      + (sp ? 'The legs above are as filed, before the ' + esc(sp.split) + ' split; the share count and the per-share figure in this sentence are restated to today\'s share units.' : '') + (rTag ? ' TTM inputs (ttm.json)' + rTag + '.' : '') + '</p></div>'));
   } else if (record.ttm === undefined && record.live) {
     parts.push('<p class="note">TTM construction and judgment.json are trimmed from the attachment — open the site for the full record.</p>');
   }
@@ -2477,9 +2535,10 @@ function renderData(record) {
   var ev = arr(record.registry).filter(function (e) { return e && typeof e === 'object' && e.event; });
   if (ev.length) {
     var li = ev.map(registryLine).join(''); // the 5.7 events in plain words (REGISTRY_TEXT); every other event as key=value
-    parts.push(section('Judgment calls on record', '<div class="card"><ul class="flags">' + li + '</ul><p class="note">From _system/overrides_registry.json — every judgment call the run embodies.</p></div>'));
+    parts.push(section('Judgment calls on record', '<div class="card"><ul class="flags">' + li + '</ul><p class="note">From _system/overrides_registry.json — every judgment call the run embodies.' + asScoredTag(record) + '</p></div>'));
   }
-  if (j && typeof j === 'object') parts.push(section('judgment.json', '<div class="card"><pre class="json">' + esc(JSON.stringify(j, null, 1)) + '</pre></div>', "The agent's judgment inputs exactly as make_score.py consumed them."));
+  // beside a score from another run, make_score has not consumed the judgment.json on file (Q11 (a)): say so, never "exactly as consumed"
+  if (j && typeof j === 'object') parts.push(section('judgment.json', '<div class="card"><pre class="json">' + esc(JSON.stringify(j, null, 1)) + '</pre></div>', rTag ? "The agent's judgment inputs as on file" + rTag + '.' : "The agent's judgment inputs exactly as make_score.py consumed them."));
   return parts.join('');
 }
 

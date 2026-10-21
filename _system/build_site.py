@@ -942,21 +942,30 @@ def _int_or_none(v):
     return v if isinstance(v, int) and not isinstance(v, bool) else None
 
 
-def moat_summary(s, n=None):
+def moat_summary(s, n=None, from_run=None):
     """score.json moat_evidence (R4 revised: Dorsey's sources + the evidence scorecard, make_score / moat_scorecard)
     -> the row's summary, else None: {score (the evidence score), status (checked | report_only), within_tolerance,
-    divergence, core_score, supporting_adjustment, measure (the governing return: roic | roic_tangible | roe),
-    return_median, return_note, sources (the declared source count; null on a record with no scorecard — "not
-    declared" is not "no source"), widest (wide | narrow | none | null), flags, industry ({code, level, label, ladder,
-    peers, rank, of} when industry_structure was measured, else null), fade_trend (the ENGINE's moat trend), fade_in_sync
-    (moat_evidence.fade.in_sync), fade_direction (the current measurement), hold_years (engine-recorded, 2 on a
-    record before 5.7)} (03b §7.2, 10 §4)."""
+    divergence, core_score, supporting_adjustment, measure (the governing return: roic | roic_tangible | roe; null when
+    the returns_on_capital pillar is not measured — insufficient_data — so the history CSV's moat_return_measure is
+    blank there, 03b §7.1), return_median, return_note, sources (the declared source count; null on a record with no
+    scorecard — "not declared" is not "no source"), widest (wide | narrow | none | null), flags, industry ({code,
+    level, label, ladder, peers, rank, of} when industry_structure was measured, else null), fade_trend (the ENGINE's
+    moat trend), fade_in_sync (moat_evidence.fade.in_sync), fade_direction (the current measurement), hold_years
+    (engine-recorded, 2 on a record before 5.7)} (03b §7.2, 10 §4).
+    [rebase L3b A14, L6 review r3] fade_in_sync / fade_direction are make_score's trend test of the run IT scored:
+    they are read only when score.json was built from this run (from_run — score_from_run(s, n)[0], computed here when
+    the caller does not pass it), else null; fade_trend and hold_years are always the engine record's."""
     me = _d(s.get("moat_evidence"))
     if not me:
         return None
+    if from_run is None:
+        from_run = bool(score_from_run(s, n)[0])
     gov, src = _d(me.get("governing")), _d(me.get("sources"))
-    ind, fade = _d(_d(me.get("pillars")).get("industry_structure")), _d(me.get("fade"))
+    ind, fade = _d(_d(me.get("pillars")).get("industry_structure")), (_d(me.get("fade")) if from_run else {})
+    roc = _d(_d(me.get("pillars")).get("returns_on_capital"))
     st = lambda d, k: d.get(k) if isinstance(d.get(k), str) else None  # noqa: E731
+    # the governing return is measured when its pillar says so (a record without the pillar: when it has a median or a note)
+    gov_measured = (roc.get("status") == "measured") if roc else (gov.get("median") is not None or st(gov, "median_note") is not None)
     declared = src.get("declared") is True
     wt, sync = me.get("within_tolerance"), fade.get("in_sync")
     industry = ({"code": st(ind, "group"), "level": _int_or_none(ind.get("level")), "label": st(ind, "label"),
@@ -965,7 +974,8 @@ def moat_summary(s, n=None):
     return {"score": num(me.get("evidence_score")), "status": st(me, "status"),
             "within_tolerance": wt if isinstance(wt, bool) else None, "divergence": num(me.get("divergence")),
             "core_score": num(me.get("core_evidence_score")), "supporting_adjustment": num(me.get("supporting_adjustment")),
-            "measure": st(gov, "measure"), "return_median": num(gov.get("median")), "return_note": st(gov, "median_note"),
+            "measure": st(gov, "measure") if gov_measured else None,
+            "return_median": num(gov.get("median")), "return_note": st(gov, "median_note"),
             "sources": _int_or_none(src.get("count")) if declared else None,
             "widest": st(src, "widest") if declared else None,
             "flags": [str(f) for f in _l(me.get("flags"))], "industry": industry,
@@ -1392,7 +1402,9 @@ def registry_entries(registry, c, ticker):
     return [e for e in (_l(registry.get(ticker)) or _l(registry.get(c["folder"])) or _l(registry.get(c["score"].get("ticker")))) if isinstance(e, dict)]
 
 
-def index_row(c, registry, paths, hp, watchlist=()):
+def index_row(c, registry, paths, hp, watchlist=(), from_run=None):
+    """One index.json row. from_run: score_from_run(score, numbers)[0] when the caller has it (build_record computes
+    it once for record.score_from_run); moat_summary computes it otherwise (rebase L3b A14)."""
     s, n = c["score"], c["numbers"]
     lv = c.get("live") if live_ok(c.get("live")) else None
     scn = _d(n.get("scenarios")) or _d(s.get("scenarios"))
@@ -1401,7 +1413,7 @@ def index_row(c, registry, paths, hp, watchlist=()):
     tier = _tier(s.get("tier_final")) or tier_by_numbers or "?"
     # engine 5.7 rulings: the misfit notch (R1), the moat evidence (R4) and the declared 6-K bridge (R2a) summaries
     mn = notch_summary(s.get("misfit_notch"))
-    me, ib = moat_summary(s, n), interim_summary(s)
+    me, ib = moat_summary(s, n, from_run), interim_summary(s)
     irr = num(s.get("implied_irr")) if s.get("implied_irr") is not None else num(n.get("implied_irr_weighted"))
     irr_bear = num(s.get("irr_bear")) if s.get("irr_bear") is not None else num(_d(scn.get("bear")).get("irr"))
     irr_bull = num(s.get("irr_bull")) if s.get("irr_bull") is not None else num(_d(scn.get("bull")).get("irr"))
@@ -1505,7 +1517,8 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
     paths, gpaths = (_d(paths) or None), (_d(gpaths) or None)
     hp = hurdle_prices(n, s, paths) if has_scn else None
     sens = scenario_sensitivity(n, s, paths, live)
-    row = index_row(c, registry, paths, hp, watchlist)
+    sfr = score_run_record(s, n)   # rebase B5, computed once: record.score_from_run and the row's fade fields (L3b A14)
+    row = index_row(c, registry, paths, hp, watchlist, from_run=sfr["matches"])
     row["live_withheld"] = withheld is not None
     numbers = {k: v for k, v in n.items() if k not in ("paths", "growth_paths")}
     pr = c.get("prices")
@@ -1524,7 +1537,7 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
            "judgment": c.get("judgment"),
            "facts": c.get("facts"),                                  # facts.json verbatim (R3 declared facts) | null
            "quote_check": quote_check(c["path"]) if c.get("path") else None,  # check_quotes' compact report | null
-           "score_from_run": score_run_record(s, n),                  # rebase B5: is score.json this run's?
+           "score_from_run": sfr,                                     # rebase B5: is score.json this run's?
            "profile": profile_with_street(c.get("profile"), c.get("street")),
            "registry": registry_entries(registry, c, row["ticker"]),
            "analysis_md": c.get("analysis_md"), "second_pass_md": c.get("second_pass_md"),

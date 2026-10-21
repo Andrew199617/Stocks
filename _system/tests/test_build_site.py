@@ -2092,6 +2092,23 @@ def test_history_csv_moat_columns():
     assert float(u["moat_return_median"]) == float("inf") and float(l["moat_return_median"]) == float("-inf")
     assert (u["moat_trend"], u["hold_years"], m["moat_trend"], m["hold_years"], nn["moat_trend"], nn["hold_years"]) == ("eroding", "0", "widening", "3", "", "2")
     assert (z["moat_score"], z["moat_evidence_score"], z["moat_return_median"], z["moat_trend"], z["hold_years"]) == ("6", "", "", "", "2"), "no moat evidence"
+    # [L6 review r4] 03b §7.1: measure "blank (insufficient)" — a returns_on_capital pillar with insufficient_data (AMH,
+    # VTRS, NVR, … on the 5.7 rebuild: "0 valid year(s) of roic") writes no measure, though moat_scorecard keeps
+    # governing.measure "roic" there; the row summary's measure is null, so the CSV copies a blank
+    me = _example("moat_scorecard_consumer_subscription.json")["expected_moat_evidence"]
+    assert me["pillars"]["returns_on_capital"]["status"] == "measured" and B.moat_summary({"moat_evidence": me}, {})["measure"] == "roic"
+    ins = json.loads(json.dumps(me))
+    ins["pillars"]["returns_on_capital"] = dict(ins["pillars"]["returns_on_capital"], status="insufficient_data", score=None, median=None,
+                                                median_note=None, reason="0 valid year(s) of roic in the last 5 fiscal year(s); at least 3 needed")
+    ins["governing"] = dict(ins["governing"], measure="roic", median=None, median_note=None)
+    summ = B.moat_summary({"moat_evidence": ins}, {})
+    assert summ["measure"] is None and summ["return_median"] is None and summ["return_note"] is None, summ
+    ir = {r[1]: dict(zip(cols, r)) for r in B.history_rows([dict(base, ticker="I", moat_evidence=summ)])}["I"]
+    assert (ir["moat_return_measure"], ir["moat_return_median"], ir["moat_evidence_score"]) == ("", "", f"{summ['score']:.2f}"), ir
+    # a record without the pillar keeps the median / note reading: unmeasured → blank, a note → the measure
+    nop = {"governing": {"measure": "roe", "median": None, "median_note": None}}
+    assert B.moat_summary({"moat_evidence": nop})["measure"] is None
+    assert B.moat_summary({"moat_evidence": dict(nop, governing={"measure": "roe", "median": None, "median_note": "unbounded_high"})})["measure"] == "roe"
 
 
 def test_history_csv_moat_sources_blank_vs_zero():
@@ -2163,9 +2180,21 @@ def test_forecast_hold_fields():
     drift = dict(me, fade={"version": 1, "status": "measured", "direction": "flat", "trend": "stable", "hold_years": 2,
                            "in_sync": False, "engine": {"moat_trend": "eroding", "hold_years": 0, "source": "inputs"}},
                  gate_drift=[{"gate": "fade_sync", "was": "eroding", "now": "stable"}])
+    # [rebase L3b A14, L6 review r3] a score.json from ANOTHER run (the newer run on disk is not scored yet): make_score's
+    # trend test there checked the run IT scored, so the row's fade_in_sync / fade_direction are null; fade_trend and
+    # hold_years stay the engine record's
+    insync = dict(me, flags=["MOAT_EROSION"], fade={"version": 1, "status": "measured", "direction": "eroding", "trend": "eroding", "hold_years": 0,
+                                                     "in_sync": True, "engine": {"moat_trend": "eroding", "hold_years": 0, "source": "inputs"}})
     with TempBase() as tb:
         tb.clone("APP", "HZ", **{"dcf_numbers.json": _hold0, "score.json": lambda s: dict(s, moat_evidence=drift)})
-        res = tb.build(only=TICKERS + ["HZ"], attachment=True, prerender=False, now=datetime.datetime(2026, 10, 21, 19, 7, tzinfo=B.NY))
+        tb.clone("APP", "HM", **{"dcf_numbers.json": lambda n: dict(_hold0(n), as_of="2026-10-20"),   # a newer engine run
+                                 "score.json": lambda s: dict(s, moat_evidence=insync)})
+        res = tb.build(only=TICKERS + ["HZ", "HM"], attachment=True, prerender=False, now=datetime.datetime(2026, 10, 21, 19, 7, tzinfo=B.NY))
+        hm = tb.record("HM")
+        assert hm["score_from_run"]["matches"] is False and (hm["live_withheld"] or {}).get("reason") == "score_not_from_this_run", (hm["score_from_run"], hm["live_withheld"])
+        m2 = hm["row"]["moat_evidence"]
+        assert (m2["fade_trend"], m2["fade_in_sync"], m2["fade_direction"], m2["hold_years"]) == ("eroding", None, None, 0), m2
+        assert tb.record("HZ")["score_from_run"]["matches"] is True, "A14: the hold-0 / drift fixture must stay this run's score"
         fc = tb.record("HZ")["forecast"]
         assert fc["hold_years"] == 0 and fc["moat_trend"] == "eroding", (fc["hold_years"], fc["moat_trend"])
         assert fc["hold_by_scenario"] == {"super_bear": 2, "bear": 2, "base": 0, "bull": 0, "super_bull": 0}, fc["hold_by_scenario"]
@@ -2181,6 +2210,10 @@ def test_forecast_hold_fields():
     assert B.recorded_hold_years({}) == 2 and B.recorded_hold_years({"inputs": {"hold_years": 3}}) == 3
     assert B.recorded_hold_years({"hold_years": "x"}) is None and B.engine_moat_trend({"moat_trend": "widening"}) == "widening"
     assert B.engine_moat_trend({"inputs": {"moat_trend": "bogus"}}) is None
+    # A14 at the function: from_run decides; without it moat_summary asks score_from_run itself (no run → not this run's)
+    on, off = (B.moat_summary({"moat_evidence": insync}, {}, from_run=f) for f in (True, False))
+    assert (on["fade_in_sync"], on["fade_direction"], off["fade_in_sync"], off["fade_direction"]) == (True, "eroding", None, None)
+    assert B.moat_summary({"moat_evidence": insync})["fade_in_sync"] is None
 
 
 def test_every_committed_folder_builds_with_the_new_fields():
