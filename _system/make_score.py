@@ -4022,18 +4022,32 @@ def moat_facts_by_id(fc, folder):
         return {}
 
 
-def moat_reason_checks(moat_ev, j, fc, folder, n, run_kind="authoring"):
+def influence_extra(moat_ev=None, interim_meas=None):
+    """[Integrate L4] 07 §1.12 step 7: the engine sources every 5.7 influence check traces to beyond check_quotes'
+    set — the numeric leaves of the moat evidence (L3: a reason quoting the tangible ROIC traces) and of the declared
+    6-K bridge's measurement (L4: the bridged and the annual-median base OE/share, weighted IRR and acquired-IPR&D
+    charge per share — a reason quoting the median IRR the bridge was measured against traces). Both are computed
+    before the checks and before the first write (steps 4 and 6). [] when neither exists."""
+    leaves = []
+    if isinstance(moat_ev, dict):
+        leaves += _moat.numeric_leaves(moat_ev)
+    if isinstance(interim_meas, dict):
+        leaves += _moat.numeric_leaves({k: interim_meas.get(k) for k in ("bridged", "annual_median")})
+    return leaves
+
+
+def moat_reason_checks(moat_ev, j, fc, folder, n, run_kind="authoring", interim_meas=None):
     """v5.7 step 7 (L3): the moat reasons that are influence fields (03b §5, §17 (b)) — each of moat_divergence_reason /
     low_roic_reason / high_return_low_moat_reason / erosion_rebuttal whose gate applies, and business_type_reason when a
     REIT declares real_assets — goes through check_influence on an authoring 5.7 run, with the moat evidence's numeric
-    leaves as engine sources (a low-ROIC reason quoting the tangible ROIC traces). run_kind: moat_scorecard.run_kind
-    (make_score's bookkeeping; moat_evidence never carries it — L3 review R1). Returns the (field, text) pairs
-    checked."""
+    leaves as engine sources (a low-ROIC reason quoting the tangible ROIC traces) and, [Integrate L4] 07 §1.12 step 7,
+    the declared 6-K bridge measurement's (influence_extra). run_kind: moat_scorecard.run_kind (make_score's
+    bookkeeping; moat_evidence never carries it — L3 review R1). Returns the (field, text) pairs checked."""
     me = moat_ev if isinstance(moat_ev, dict) else None
     if not me or me.get("status") != "checked" or run_kind != "authoring":
         return []
     sc = j.get("moat_scorecard") if isinstance(j.get("moat_scorecard"), dict) else {}
-    leaves = _moat.numeric_leaves(me)
+    leaves = influence_extra(me, interim_meas)
     done = []
     for field in _moat.REASON_FIELDS:
         text = sc.get(field)
@@ -5332,13 +5346,17 @@ def main():
     print(f"make_score.py: {_moat.industry_file_line(moat_ev)}")   # non-blocking: a stale file is information
     # (L3, step 7's moat half, run here before the first write: the four moat reasons + a REIT's type reason go through
     # check_influence on an authoring 5.7 run; a rebuild of the same run, declaration and facts skips them)
-    moat_reason_checks(moat_ev, j, fc, folder, n, run_kind=_moat.run_kind(folder, n, j, is_57_run(n), moat_prior))
+    moat_reason_checks(moat_ev, j, fc, folder, n, run_kind=_moat.run_kind(folder, n, j, is_57_run(n), moat_prior),
+                       interim_meas=interim_meas)
     # v5.7 step 7: every influence check together, on 5.7 runs only and before the first write — each lane calls
     # check_influence (L2) for its own reason fields here (tier_override_reason, base_override, misfit_notch_reason,
-    # the moat reasons, the share-class reasons, ttm_rejection_reason)
+    # the moat reasons, the share-class reasons, ttm_rejection_reason). [Integrate L4] 07 §1.12 step 7: the engine
+    # sources are L2's set plus the numeric leaves of moat_ev (L3) and of the interim measurement (L4).
     if is_57_run(n):
+        trace_extra = influence_extra(moat_ev, interim_meas)
         if notch and notch.get("reason_source") == "judgment":   # L1 (R1): misfit_notch_reason (R-3 / R-4 ran above)
-            check_influence("misfit_notch_reason", notch["reason"], _facts.parse_refs(notch["reason"]), fc, folder, n)
+            check_influence("misfit_notch_reason", notch["reason"], _facts.parse_refs(notch["reason"]), fc, folder, n,
+                            extra=trace_extra)
         if plan and plan.get("reason"):
             pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
         # L2 (R3, Andrew 2026-10-19; 02 §5): the tier override's reason and a plain base_override pin's reason +
@@ -5347,11 +5365,11 @@ def main():
         # field, INFLUENCE_TAGS), made above.
         if override and (IPRD_HAND_OVERRIDE_TRACED or not iprd_override_required(n)):   # Q2 switch
             check_influence("tier_override_reason", j.get("tier_override_reason"),
-                            _facts.parse_refs(j.get("tier_override_reason")), fc, folder, n)
+                            _facts.parse_refs(j.get("tier_override_reason")), fc, folder, n, extra=trace_extra)
         if (base_override_event_applies(j, n) and j_base_override
                 and j_base_override.get("basis") not in (PAYABLE_BASIS, IPRD_AMORTIZED_BASIS)):
             _bo_text = " ".join(str(j_base_override.get(k) or "") for k in ("reason", "source"))
-            check_influence("base_override", _bo_text, _facts.parse_refs(_bo_text), fc, folder, n,
+            check_influence("base_override", _bo_text, _facts.parse_refs(_bo_text), fc, folder, n, extra=trace_extra,
                             trace_only=base_pin_trace_only(n, j_base_override), require_anchor=True)
     score.update({
         "engine_release": n.get("engine_release"),

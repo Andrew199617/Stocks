@@ -31,6 +31,9 @@ by R7's plan is not refused, without the plan it is; T-h an iprd_amortized / bas
 bridge gets its named refusal.
 Review fix (2026-10-21; fails on the pre-fix L4 head 6fc70cd): make_score re-runs interim_bridge.py's pure rules on
 the declaration, so a rule-breaking judgment edit with a patched ttm.json declaration_hash is refused.
+[Integrate L4] (07 §1.12 step 7; fails on the L4 merge 83988ca): a 5.7 reason quoting the annual-median IRR the bridge
+was measured against traces through the measurement's numeric leaves; the "Interim bridge" section sits between the
+Moat scorecard and the Declared facts (07 §1.9).
 """
 import copy
 import glob
@@ -48,6 +51,7 @@ for _p in (HERE, SYS):
 import engine55_harness as H  # noqa: E402
 from test_make_score_55 import Run, _numbers, _judgment, FAIL_LOUD  # noqa: E402
 import make_score as M  # noqa: E402
+import rulings57  # noqa: E402  ([Integrate L4] L3's obligation alone for a judgment written as is)
 
 E = H._shared_engine()
 IF = "ifrs-full"
@@ -190,8 +194,10 @@ sys.exit(out["exit"] or 0)
 '''
 
 
-def score(n, j, rows, tt=None, fx=None, prior_score=None, live=True, judgment_text=None, files=None):
-    """make_score on record n (ticker rewritten to TST) with the real-engine stand-ins (live) or fail-loud ones."""
+def score(n, j, rows, tt=None, fx=None, prior_score=None, live=True, judgment_text=None, files=None, as_written=False):
+    """make_score on record n (ticker rewritten to TST) with the real-engine stand-ins (live) or fail-loud ones.
+    [Integrate L4] as_written (with judgment_text): L3's moat-scorecard obligation alone is added before the run
+    (rulings57.add_minimal_scorecard_as_written), so the worker's reasons stay exactly as written."""
     m = copy.deepcopy(n)
     m["ticker"] = "TST"
     run = Run(m, j if judgment_text is None else None, judgment_text=judgment_text, prior_score=prior_score,
@@ -205,6 +211,8 @@ def score(n, j, rows, tt=None, fx=None, prior_score=None, live=True, judgment_te
     if tt is not None:
         with open(os.path.join(run.folder, "ttm.json"), "w", encoding="utf-8") as f:
             json.dump(tt, f, indent=1)
+    if as_written:
+        rulings57.add_minimal_scorecard_as_written(run.folder)
     try:
         run.run()
         spawns = []
@@ -288,7 +296,13 @@ def test_bridge_pin_scores_and_measures_both_bases():
     assert '- Base source: ttm_json — the declared 6-K interim bridge (see "Interim bridge")' in key
     assert "## Interim bridge (declared 6-K TTM — the scored base)" in key
     assert key.index("## Fragility flags") < key.index("## Interim bridge")
-    assert key.rstrip().splitlines()[-1].startswith("- Source — shares_diluted current: 6-K")   # the section is last
+    # [Integrate L4] 07 §1.9's order: ... Moat scorecard (L3) -> Interim bridge -> Declared facts (L2), last. On a 5.7
+    # run the moat scorecard (the obligation, rulings57) writes facts.json, so L2's section now follows this one.
+    heads = [h for h in key.splitlines() if h.startswith("## ")]
+    ib_head = "## Interim bridge (declared 6-K TTM — the scored base)"
+    assert heads[-3:] == ["## Moat scorecard", ib_head, "## Declared facts (not engine output)"], heads
+    ib_sec = key.split("\n" + ib_head + "\n")[1].split("\n## ")[0]
+    assert ib_sec.rstrip().splitlines()[-1].startswith("- Source — shares_diluted current: 6-K"), ib_sec[-400:]
     assert ("- Basis: FY 2025-01-01..2025-12-31 − prior interim 2025-01-01..2025-06-30 + current interim "
             f"2026-01-01..2026-06-30 (6-K {ACC}, filed 2026-07-30); legs in EUR, each converted at its own period-end ECB "
             "rate: FY 1.1750 (engine) · prior 1.1720 · current 1.1394") in key, key
@@ -510,10 +524,15 @@ def test_57_stale_foreign_needs_bridge_or_declined():
         "judgment.json interim_bridge_declined must be {reason, report}")
     # D1: the same record from release 5.5.0 rebuilds as before
     assert _with(_foreign(release="5.5.0"), judgment_text=json.dumps(_fj())).rc == 0
-    # a 10-K filer, or no STALE_FY: no obligation
-    assert _with(dict(_foreign(), filer_annual_form="10-K", ads_ratio=None), judgment_text=json.dumps(
-        dict(_judgment(None)))).rc == 0
-    assert _with(dict(_foreign(), fragility_flags=[]), judgment_text=json.dumps(_fj())).rc == 0
+    # a 10-K filer, or no STALE_FY: no obligation. [Integrate L4] The judgment goes through Run's rulings57 obligations
+    # (as `ok` above), so these 5.7 runs carry L3's moat scorecard; add_interim_declined adds nothing to them (neither
+    # is a STALE_FY 20-F / 40-F record), so they still prove the interim obligation does not apply.
+    r10k = _with(dict(_foreign(), filer_annual_form="10-K", ads_ratio=None), dict(_judgment(None)))
+    assert r10k.rc == 0, r10k.err
+    assert "interim_bridge_declined" not in r10k.result["score"], r10k.result["score"].get("interim_bridge_declined")
+    rfresh = _with(dict(_foreign(), fragility_flags=[]), _fj())
+    assert rfresh.rc == 0, rfresh.err
+    assert "interim_bridge_declined" not in rfresh.result["score"]
     # default Q7: a plain --base-oe-ps pin (a hand-built 6-K bridge) owes it too
     bo = {"value": 3.0, "source": "hand bridge from the H1 6-K", "reason": "STALE_FY"}
     pinned = _foreign(base_source="base_oe_ps_arg", inputs=dict(_numbers()["inputs"], base_oe_ps_arg=3.0,
@@ -708,6 +727,51 @@ def test_iprd_amortized_beside_bridge_refused():
     msg = _refusal_text(M.check_interim_obligation, n, bw, None)
     assert msg and "a declared interim bridge pins only through --ttm; a per-unit pin on its figures needs " \
                    "share_classes (R6)" in msg, msg
+
+
+# ---------------------------------------------------------------------------
+# [Integrate L4] the interim measurement is an engine source of every 5.7 influence trace (07 §1.12 step 7)
+# ---------------------------------------------------------------------------
+def test_57_reasons_trace_to_the_interim_measurement():
+    """R2a x R3 (Andrew, 2026-10-19; 07 §1.12 step 7): on a 5.7 run the influence trace's engine sources are L2's set
+    plus the numeric leaves of the moat evidence and of the declared bridge's measurement — a tier_override_reason
+    quoting the annual-median weighted IRR the bridged base was measured against traces with nothing declared or
+    cited (the judgment is scored exactly as written). A figure in no generated file still refuses, writing nothing.
+    Fails on the L4 merge before Integrate L4 (83988ca: the median IRR was in no source of the trace)."""
+    n, rows, tt, fx, j = pipeline()
+    med_n, _ = median_record()
+    assert (n["tier_by_numbers"], med_n["tier_by_numbers"]) == ("B", "D"), (n["tier_by_numbers"], med_n["tier_by_numbers"])
+    med_pct = f"{med_n['implied_irr_weighted'] * 100:.2f}%"
+    br_pct = f"{n['implied_irr_weighted'] * 100:.2f}%"
+
+    def why(median_figure):
+        return (f"the annual-median base gives only {median_figure} weighted against the bridged {br_pct}: one tier "
+                "down until the next annual report confirms the half-year")
+
+    def as_written(reason):
+        jt = dict(j, tier_override="C", tier_override_reason=reason)
+        return score(n, None, rows, tt, fx, judgment_text=json.dumps(jt, indent=1, ensure_ascii=False) + "\n",
+                     as_written=True)
+
+    r = as_written(why(med_pct))
+    assert r.rc == 0, r.err[-2000:]
+    s = r.result["score"]
+    assert s["tier_final"] == "C" and s["tier_override_reason"] == why(med_pct), s.get("tier_override_reason")
+    med_entry = s["base_alternatives"]["bases"][1]
+    assert med_entry["kind"] == "annual_median" and f"{med_entry['weighted_irr'] * 100:.2f}%" == med_pct, med_entry
+    inf = s["declared_facts"]["influence"]["tier_override_reason"]
+    assert inf["facts"] == [] and inf["engine_numbers"] == 2 and inf["third_party_only"] is False, inf
+    # a figure the measurement does not hold (nor any generated file): refused before any write
+    off = f"{med_n['implied_irr_weighted'] * 100 + 0.37:.2f}%"
+    bad = as_written(why(off))
+    bad.refused(f"judgment.json tier_override_reason quotes {off} that is neither an engine figure nor a fact it cites")
+    assert not bad.result["entries"], bad.result["entries"]
+    # the helper itself: both measurements' leaves, nothing without them
+    assert M.influence_extra(None, None) == []
+    leaves = M.influence_extra({"pillars": {"returns_on_capital": {"value": 0.1388, "applies": True}}},
+                               {"bridged": {"base_oe_per_share": 0.5904}, "annual_median": {"weighted_irr": 0.0664},
+                                "replays": 1, "measured": True})
+    assert leaves == [0.1388, 0.5904, 0.0664], leaves
 
 
 if __name__ == "__main__":
