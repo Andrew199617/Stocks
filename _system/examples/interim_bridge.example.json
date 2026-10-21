@@ -1,0 +1,93 @@
+{
+ "_comment": "Worked example (engine 5.7, Andrew's ruling R2a, 2026-10-19; design 04_foreign A.2): the judgment.json interim_bridge MICC would declare for its H1 2026 6-K. Values are in full EUR units as presented in millions in the 6-K's condensed consolidated cash flow statement; every filing leg is also an undimensioned fact in the 6-K's own XBRL instance (micc-20260630x6k_htm.xml), which ttm.py --interim checks. The FY2025 leg is NOT declared: ttm.py reads it from the engine's own financials_history.csv / capex_provenance (FY2025: OCF EUR 483M, PP&E capex EUR 357M, intangibles EUR 3M, SBC EUR 35M). This file is an example only; no company folder is changed.",
+ "interim_bridge": {
+  "basis": "fy_minus_prior_interim_plus_current_interim",
+  "currency": "EUR",
+  "fy_period": ["2025-01-01", "2025-12-31"],
+  "prior_interim": {"period": ["2025-01-01", "2025-06-30"]},
+  "current_interim": {"period": ["2026-01-01", "2026-06-30"]},
+  "report": {"form": "6-K", "accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm",
+             "filed": "2026-07-30", "title": "H1 2026 results announcement and condensed interim financial statements (unaudited)"},
+  "legs": {
+   "ocf": {
+    "prior_interim": {"value": 276000000, "kind": "filing",
+                      "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                 "section": "Condensed consolidated cash flow statement (unaudited), First half 2025 column"},
+                      "snippet": "Income tax paid (84) (122) Net cash flow from operating activities 539 276",
+                      "reason": "comparative column of the same report (IAS 34 comparative)"},
+    "current_interim": {"value": 539000000, "kind": "filing",
+                        "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                   "section": "Condensed consolidated cash flow statement (unaudited), First half 2026 column"},
+                        "snippet": "Income tax paid (84) (122) Net cash flow from operating activities 539 276",
+                        "reason": "current-period column"}
+   },
+   "capex_ppe": {
+    "prior_interim": {"value": 150000000, "kind": "filing",
+                      "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                 "section": "Condensed consolidated cash flow statement (unaudited), investing activities"},
+                      "snippet": "Purchase of property, plant and equipment (182) (150)",
+                      "reason": "comparative column; same line the 20-F's FY2025 PP&E capex uses"},
+    "current_interim": {"value": 182000000, "kind": "filing",
+                        "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                   "section": "Condensed consolidated cash flow statement (unaudited), investing activities"},
+                        "snippet": "Purchase of property, plant and equipment (182) (150)",
+                        "reason": "current-period column"}
+   },
+   "capex_intangibles": {
+    "prior_interim": {"value": 1487671, "kind": "estimate", "method": "fy_prorated",
+                      "reason": "the condensed cash flow statement prints no purchase-of-intangibles line in either half (no XBRL fact either); the engine's FY2025 capex includes EUR 3M of intangible purchases (capex_provenance), so the leg is FY2025 x 181/365 to keep the FY and interim capex definitions equal"},
+    "current_interim": {"value": 1487671, "kind": "estimate", "method": "fy_prorated",
+                        "reason": "as the prior leg: FY2025 intangible purchases EUR 3M x 181/365; immaterial (0.4% of TTM PP&E capex)"}
+   },
+   "sbc": {
+    "prior_interim": {"value": 19000000, "kind": "filing",
+                      "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                 "section": "Notes to the condensed cash flow statement, reconciliation of operating cash flow"},
+                      "snippet": "Non-cash charge for share-based compensation 18 19",
+                      "reason": "comparative column; same add-back the engine reads for FY2025 (AdjustmentsForSharebasedPayments)"},
+    "current_interim": {"value": 18000000, "kind": "filing",
+                        "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                   "section": "Notes to the condensed cash flow statement, reconciliation of operating cash flow"},
+                        "snippet": "Non-cash charge for share-based compensation 18 19",
+                        "reason": "current-period column"}
+   },
+   "shares_diluted": {
+    "current_interim": {"value": 617000000, "kind": "filing",
+                        "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                                   "section": "Earnings per share note"},
+                        "snippet": "Diluted average number of shares (millions of share units) 617 Diluted EPS (€) 0.55",
+                        "reason": "H1 2026 weighted average diluted shares: the TTM denominator (share counts are averages, not flows)"}
+   }
+  },
+  "like_for_like": {
+   "comparative_restated": false,
+   "comparative_note": "Appendix D re-presents Q3/Q4 2024-2025 quarterly revenue for customer season-end returns and states it has no impact on half-year or full-year results; the H1 2025 cash-flow comparative is as previously reported",
+   "comparative_source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                          "section": "Appendix D - Comparatives re-presented to reflect customer returns"},
+   "comparative_snippet": "This has no impact on half-year or full year reported results.",
+   "perimeter_changes": [
+    {"kind": "demerger", "effective_date": "2025-12-06", "material": true, "resolution": "same_business_perimeter",
+     "description": "Demerger from Unilever; H1 2025 and most of FY2025 are combined carve-out figures, H1 2026 is standalone",
+     "reason": "all three legs report the same ice cream businesses on the carve-out perimeter (Russia, India and Portugal excluded in every leg before their acquisition); what differs is the cost and capital structure: standalone interest (H1 2026 interest paid EUR 92M vs EUR 8M) and TSA costs fall inside H1 2026 and are real recurring owner costs, so the bridge measures the standalone run-rate more closely than the carve-out median",
+     "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                "section": "Basis of preparation; condensed consolidated cash flow statement"},
+     "snippet": "Prior to 6 December 2025, the Group was under the control of Unilever"},
+    {"kind": "acquisition", "effective_date": "2026-03-30", "material": false, "resolution": "immaterial",
+     "revenue_share": 0.023,
+     "description": "Kwality Wall's (India) 61.90% on 30 March 2026 and UL Ice Cream Comercial (Portugal) on 1 April 2026; EUR 445M cash in H1 2026 investing activities (not capex)",
+     "reason": "the acquisitions added 2.3% to H1 2026 reported revenue growth; the purchase price sits in 'Acquisition of businesses', which owner's earnings excludes",
+     "source": {"accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "page": null,
+                "section": "Financial review, revenue"},
+     "snippet": "including +2.3% impact from the acquisitions in India and Portugal"}
+   ]
+  },
+  "fx": {
+   "basis": "ecb_period_end",
+   "source": "frankfurter.app ECB reference rates (dcf_engine.fx_rate), closest business day to each period end",
+   "fy": {"date": "2025-12-31", "rate": 1.175},
+   "prior_interim": {"date": "2025-06-30", "rate": 1.172},
+   "current_interim": {"date": "2026-06-30", "rate": 1.1394}
+  },
+  "reason": "STALE_FY: FY2025 ended 9.6 months ago and is the demerger year; the H1 2026 6-K carries a full condensed cash flow statement with an IAS 34 comparative, so the trailing twelve months to 2026-06-30 are measurable from filings (bridged OE EUR 320M, $0.5904/share at per-period rates) and replace a median built on two carve-out years"
+ }
+}
