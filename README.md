@@ -76,6 +76,6 @@ those names. Tests: `python _system/tests/test_<name>.py` and
 `node _daily/site/tests/app.test.js`.
 
 The APP folder is the worked example of the required output shape, including a
-proper override. This repo is a snapshot mirror of the live working tree; the
-sweep runs continuously, so queue state and company outputs move after each
-push.
+proper override. This repo is the live working tree itself — the sweep runs
+in this clone, on `main` — so queue state and company outputs change as runs
+complete.
