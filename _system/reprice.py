@@ -87,8 +87,9 @@ summary and kept out of its tier-change list.
 Sweep staleness guard (2026-10-20): the check above compares a close to
 TODAY; sweep_price_staleness compares it to the sweep itself — every scored
 name whose last close on file is more than one session behind the newest
-close on file across the sweep (the session set is the sweep's own close
-dates; one session behind is the normal posting lag). --all prints a
+close on file across the sweep (the session set is the union of the names'
+own daily_1y series dates; one session behind is the normal posting lag).
+--all prints a
 WARNING block naming each such name: a refresh that silently never runs —
 October 2026, when the bulk refresh was not executing and HALO sat two
 sessions behind for two days, visible only as a withheld live block — can
@@ -743,15 +744,18 @@ def sweep_price_staleness():
     dcf_numbers.json) — exactly what prices.py --all maintains; an unscored
     engine leftover is not a missed refresh, is never reported, and its
     cache dates never enter the session baseline (Codex review of PR #83).
-    The session set is the distinct close dates across the sweep's own
-    prices.json files, so no market calendar is needed, and a name one
-    session behind — the normal lag while Nasdaq posts the newest session —
-    is not flagged. A name the refresh missed falls further behind every
-    day; in October 2026 the bulk refresh silently never ran and HALO sat
-    two sessions behind for two days, visible only as a withheld live
-    block. Missing / unreadable prices.json files are skipped, never fatal:
+    The session set is the union of the dates in the names' own daily_1y
+    series (plus their terminal dates), so no market calendar is needed
+    and a session no cache happens to END on still counts — counting
+    distinct terminal dates alone would call a Fri→Tue gap one session
+    (Codex review of PR #83, second round). A name one session behind —
+    the normal lag while Nasdaq posts the newest session — is not
+    flagged. A name the refresh missed falls further behind every day;
+    in October 2026 the bulk refresh silently never ran and HALO sat two
+    sessions behind for two days, visible only as a withheld live block.
+    Missing / unreadable prices.json files are skipped, never fatal:
     a guard must not break the run it guards."""
-    last = {}
+    last, session_set = {}, set()
     for t in company_folders():
         if not os.path.isfile(os.path.join(BASE, t, "score.json")):
             continue
@@ -761,11 +765,18 @@ def sweep_price_staleness():
             continue
         if not isinstance(p, dict):
             continue
+        daily = p.get("daily_1y")
+        if isinstance(daily, list):
+            for row in daily:
+                if isinstance(row, (list, tuple)) and row:
+                    sd = _date(row[0])
+                    if sd:
+                        session_set.add(sd)
         stats = p.get("stats") if isinstance(p.get("stats"), dict) else {}
         d = _date(stats.get("last_date")) or _date(p.get("as_of"))
         if d:
             last[t] = d
-    sessions = sorted(set(last.values()))
+    sessions = sorted(session_set | set(last.values()))
     if not sessions:
         return {}, None
     stale = {}

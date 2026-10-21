@@ -1434,18 +1434,26 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     # the newest close the sweep holds was missed by the refresh — flag it on
     # the row and name it in meta instead of letting it sit silently behind a
     # withheld live block (HALO sat two sessions behind for two days in
-    # October 2026). The session set is the sweep's own close dates, so no
-    # market calendar is needed; one session behind is the normal posting
-    # lag. Re-derived on every row on every build, like the watchlist flag.
-    last_close = {}
+    # October 2026). The session set is the union of the candidates' own
+    # daily_1y series dates (plus their terminal dates), so no market
+    # calendar is needed and a session no cache happens to END on still
+    # counts; one session behind is the normal posting lag. Re-derived on
+    # every row on every build, like the watchlist flag.
+    last_close, session_set = {}, set()
     for t, c in current.items():
         if t not in rows:
             continue  # no surviving row (its record failed to build): not a candidate — it cannot
             # be flagged or counted, and its dates must not shift the baseline (Codex review of PR #83)
-        ld = _date10(_d(_d(jload(os.path.join(c["path"], "prices.json"))).get("stats")).get("last_date"))
+        pj = _d(jload(os.path.join(c["path"], "prices.json")))
+        ld = _date10(_d(pj.get("stats")).get("last_date"))
         if ld:
             last_close[t] = ld
-    sessions = sorted(set(last_close.values()))
+        for row in _l(pj.get("daily_1y")):
+            if isinstance(row, (list, tuple)) and row:
+                sd = _date10(row[0])
+                if sd:
+                    session_set.add(sd)
+    sessions = sorted(session_set | set(last_close.values()))
     stale_prices = {}
     if sessions:
         for t, ld in last_close.items():

@@ -1384,6 +1384,18 @@ def test_prices_staleness_guard_flags_rows_and_meta():
         assert res["meta"]["counts"]["prices_stale"] == 0, res["meta"]["counts"]
         assert not any("more than one session behind" in x for x in res["meta"]["notes"])
         assert all(r["prices_stale"] is None for r in res["rows"])
+    # sessions are counted from the names' daily_1y series, not from the set of
+    # terminal dates: no cache here ends on 2026-10-12 / 2026-10-13, but the
+    # series contain them, so a name last closed 2026-10-09 is three behind
+    with TempBase() as tb:
+        p = B.jload(os.path.join(tb.dir, "APP", "prices.json"))
+        p["as_of"] = "2026-10-09"
+        p["stats"]["last_date"] = "2026-10-09"
+        tb.write_json("APP", "prices.json", obj=p)
+        res = tb.build()
+        rows = {r["ticker"]: r for r in res["rows"]}
+        assert rows["APP"]["prices_stale"] == {"last_date": "2026-10-09", "sessions_behind": 3, "latest_close": "2026-10-14"}, rows["APP"].get("prices_stale")
+        assert res["meta"]["counts"]["prices_stale"] == 1
 
 
 # ---------------- 17. street_fetched_at without street.json

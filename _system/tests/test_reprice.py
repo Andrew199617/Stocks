@@ -49,12 +49,14 @@ used as STOCKS_BASE for the file-level (reprice_folder) cases.
    split-corrected count, or the dei_latest cover-page count) is the count
    used, and the module docstring says so (FIX_DECISIONS_R1 M6).
 11. Sweep staleness guard (2026-10-20): sweep_price_staleness measures each
-   scored name's last close on file against the session set the sweep
-   itself holds — a name more than one session behind the newest close is
-   reported (a refresh that never ran leaves every name behind together;
-   HALO sat two sessions behind for two days, silent, in October 2026);
-   one session behind is the normal posting lag and is not flagged, and
-   names with no readable prices.json are skipped, never fatal.
+   scored name's last close on file against the session set in the names'
+   own daily_1y series — a name more than one session behind the newest
+   close is reported (a refresh that never ran leaves every name behind
+   together; HALO sat two sessions behind for two days, silent, in
+   October 2026); one session behind is the normal posting lag and is
+   not flagged, names with no readable prices.json are skipped, never
+   fatal, and a session no cache happens to END on still counts (the
+   gap case: caches ending only on Fri / Tue are two sessions apart).
 prices.json is a gitignored cache (a fresh clone has none), so every case
 builds its own synthetic prices.json; only the committed APP / EXPE judgment
 records are read from the repo.
@@ -847,7 +849,7 @@ def test_sweep_price_staleness_flags_more_than_one_session_behind():
     try:
         R.BASE = tmp
 
-        def folder(name, last_date, scored=True):
+        def folder(name, last_date, scored=True, daily=None):
             d = os.path.join(tmp, name); os.makedirs(d)
             _write(os.path.join(d, "dcf_numbers.json"), {})
             if scored:
@@ -856,7 +858,8 @@ def test_sweep_price_staleness_flags_more_than_one_session_behind():
                 _write(os.path.join(d, "prices.json"), "{not json")
             elif last_date is not None:
                 _write(os.path.join(d, "prices.json"),
-                       {"ticker": name, "as_of": last_date, "stats": {"last": 10.0, "last_date": last_date}})
+                       {"ticker": name, "as_of": last_date, "stats": {"last": 10.0, "last_date": last_date},
+                        "daily_1y": [[x, 10.0] for x in daily or []]})
 
         folder("AAA", "2026-10-20")   # the sweep's newest close
         folder("BBB", "2026-10-19")   # one session behind: the normal posting lag, not flagged
@@ -882,6 +885,32 @@ def test_sweep_price_staleness_flags_more_than_one_session_behind():
     finally:
         R.BASE = old_base
         shutil.rmtree(empty, ignore_errors=True)
+
+
+def test_sweep_price_staleness_counts_real_sessions_not_cache_dates():
+    """No cache ends on the intervening session (2026-10-19): counting distinct
+    terminal dates would call the 2026-10-16 name one session behind and stay
+    silent, but its daily series shows two sessions (10-19, 10-20) after it.
+    The session set comes from the names' own daily_1y series (Codex, PR #83)."""
+    tmp = tempfile.mkdtemp(prefix="reprice_test_")
+    old_base = R.BASE
+    try:
+        R.BASE = tmp
+        for name, last_date, daily in (
+                ("AAA", "2026-10-20", ["2026-10-15", "2026-10-16", "2026-10-19", "2026-10-20"]),
+                ("CCC", "2026-10-16", ["2026-10-15", "2026-10-16"])):
+            d = os.path.join(tmp, name); os.makedirs(d)
+            _write(os.path.join(d, "dcf_numbers.json"), {})
+            _write(os.path.join(d, "score.json"), {})
+            _write(os.path.join(d, "prices.json"),
+                   {"ticker": name, "as_of": last_date, "stats": {"last": 10.0, "last_date": last_date},
+                    "daily_1y": [[x, 10.0] for x in daily]})
+        stale, latest = R.sweep_price_staleness()
+        assert latest == "2026-10-20", latest
+        assert stale == {"CCC": {"last_date": "2026-10-16", "sessions_behind": 2}}, stale
+    finally:
+        R.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":

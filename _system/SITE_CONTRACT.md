@@ -1771,7 +1771,8 @@ differently, THIS section wins (passages that had become plainly wrong were corr
 - **Prices staleness guard** (`reprice.sweep_price_staleness`, build_site step 5; 2026-10-20). A scored name whose last
   close on file (`prices.json` `stats.last_date`) is more than one session behind the newest close the sweep holds was
   missed by the refresh: `row.prices_stale` = `{last_date, sessions_behind, latest_close}` (null otherwise; the session
-  set is the sweep's own close dates, so no market calendar is needed, and one session behind is the normal posting
+  set is the union of the names' own `daily_1y` series dates plus their terminal dates, so no market calendar is
+  needed, a session no cache happens to end on still counts, and one session behind is the normal posting
   lag), `meta.counts.prices_stale` counts them, a `meta.notes` line names them, and `reprice.py --all` prints the same
   names as a WARNING block after its summary. (October 2026: the bulk refresh silently never ran — the live-refresh
   job existed only as a repo definition, never registered in the scheduler — and HALO sat two sessions behind for two
