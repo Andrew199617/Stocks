@@ -49,8 +49,9 @@ pre-v5 or drifted inputs).
   `history/` (one small CSV per day: that day's ranking), and the dated ranking
   HTML from before 2026-10-16
 - `automation/` — the scheduled-job definitions that run the sweep (pass-1
-  workers every 15 minutes, pass 2 every 30, a 06:30 filing watcher, a
-  market-hours live refresh, and the 19:07 daily ranking)
+  and pass-2 workers, a filing watcher, a market-hours live refresh, and the
+  daily ranking; which jobs are enabled and their cadences live there and in
+  each job's front matter)
 
 ## What is in git
 
@@ -60,7 +61,8 @@ and the daily ranking CSVs in `_daily/history/`. Not committed: data anyone
 can re-fetch or rebuild in minutes. That covers Nasdaq prices
 (`<T>/prices.json`), the Street block (`<T>/street.json`), live returns
 (`<T>/live.json`), the built site data (`_daily/site/data/`, `index.json`,
-`meta.json`) and the 10 MB dated ranking attachments. `.gitignore` lists them.
+`meta.json`, `state.json`), `_daily/latest.html`, `_daily/preview-*.html` and
+the ~45 MB dated ranking attachments. `.gitignore` lists them.
 
 ## Run it on your own computer
 
@@ -71,29 +73,16 @@ python -m http.server 8791 --directory _daily # then open http://localhost:8791/
 ```
 
 `python _system/refresh.py --quick` refreshes prices and live returns only;
-`--sec` also re-checks every name's SEC files; `--tickers APP,KR` limits it to
-those names. Tests: `python _system/tests/test_<name>.py` and
+`--sec` also re-checks every name's SEC files; `--tickers APP,KR` limits the
+per-company refreshes to those names (the site build still scans every scored
+folder). `--attachment` also writes the dated ranking file
+(`_daily/ranking-<date>.html`, plus `latest.html`) and the
+`_daily/history/ranking-<date>.csv` — only the CSV is tracked. Tests: one Python suite by name, e.g.
+`python _system/tests/test_engine_math.py`, and
 `node _daily/site/tests/app.test.js`.
 
-On Windows, two cron files under `automation/crons/daily/` have `:` in their
-names, which NTFS cannot hold, so a plain `git clone` fails its checkout. Clone
-this way instead (tested on Windows 11): the sparse checkout leaves those two
-files out, and the per-repo `protectNTFS` setting lets git read a tree that
-lists them.
-
-```
-git clone --no-checkout https://github.com/Andrew199617/Stocks.git
-cd Stocks
-git sparse-checkout set --no-cone "/*" "!/automation/crons/daily/*:*"
-git config core.protectNTFS false
-git checkout main
-```
-
-In an existing Windows checkout that shows those two files as deleted, never
-commit the deletion (never `git add -A`). Renaming the two files without a
-colon on Muse's side would remove the problem for good.
-
 The APP folder is the worked example of the required output shape, including a
-proper override. This repo is a snapshot mirror of the live working tree; the
-sweep runs continuously, so queue state and company outputs move after each
-push.
+proper override. This repo is the live working tree itself — the sweep runs
+in this clone, on `main` — so queue state and company outputs change as runs
+complete. That scheduled run happens only in the canonical VM checkout; a
+fresh clone elsewhere schedules nothing on its own.
