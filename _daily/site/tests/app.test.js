@@ -1908,6 +1908,456 @@ test('acquired IPR&D note (Codex review r16): only the displayed score\'s own ru
   assert.ok(App.iprdNote(own).startsWith(applied), 'the score\'s own run: as before');
 });
 
+/* ======================================================================= engine 5.7 rulings (lane L6)
+   Andrew's rulings 2026-10-19 (R1 misfit notch, R2a declared 6-K bridge, R2b annual facts from the filing's instance, R3
+   declared facts + quote check, R4 moat scorecard, R6 share classes, R7 base alternatives, R9 capitalized software, M6
+   growth hold) on the page — design 06 §4.2 (T-JS-1..16), 03b §17 (i) (T-JS-17..19), 10 §7 (T25), 08 §10, 11 §7.4 and
+   rebase B5 / B6 / B7 / B16. Fixtures: fixtures/rulings.json overlays on synthetic.json; the moat scorecard and its facts
+   are read from _system/examples (a schema change there breaks these tests instead of drifting). */
+const RULINGS = JSON.parse(fs.readFileSync(path.join(__dirname, 'fixtures', 'rulings.json'), 'utf8'));
+const EXAMPLES = path.join(BASE, '_system', 'examples');
+const MOAT_EX = JSON.parse(fs.readFileSync(path.join(EXAMPLES, 'moat_scorecard_consumer_subscription.json'), 'utf8'));
+const TST_FACTS = JSON.parse(fs.readFileSync(path.join(EXAMPLES, 'facts', 'TST', 'facts.json'), 'utf8'));
+// (clone() is the deep copy declared above, with the split tests)
+function overlay(base, o) { // deep merge: objects merge, arrays and null replace
+  if (o === null || typeof o !== 'object' || Array.isArray(o)) return clone(o);
+  const out = base && typeof base === 'object' && !Array.isArray(base) ? clone(base) : {};
+  Object.keys(o).forEach((k) => { out[k] = (o[k] && typeof o[k] === 'object' && !Array.isArray(o[k])) ? overlay(out[k], o[k]) : clone(o[k]); });
+  return out;
+}
+function rec(...blocks) { return blocks.reduce((r, b) => overlay(r, b), clone(synthetic)); }
+const NOTCHED = () => rec(RULINGS.notch);
+function moatRecord(meOver) {
+  const r = rec(RULINGS.notch, { score: { moat_score: MOAT_EX.expected_moat_evidence.moat_score } });
+  r.score.moat_evidence = Object.assign(clone(MOAT_EX.expected_moat_evidence), meOver || {});
+  r.facts = clone(MOAT_EX.inputs.facts); r.score.ticker = 'SYN';
+  return r;
+}
+function factsRecord() { const r = rec(); r.facts = Object.assign(clone(TST_FACTS), { ticker: 'SYN' }); r.score.declared_facts = clone(RULINGS.declared_facts); r.second_pass_md = '# Pass 2\n\nNo material change.'; return r; }
+function between(html, a, b) { const i = html.indexOf(a); return i < 0 ? '' : html.slice(i, b ? html.indexOf(b, i + a.length) : undefined); }
+
+test('T-JS-1 misfit notch (scored): header chip, verdict line, chips, ranking badge and "B by numbers"', () => {
+  const r = NOTCHED();
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('B by numbers → C · sector-misfit notch'), head);
+  assert.ok(head.includes('title="Scored tier — B by numbers, one notch lower (sector misfit)"'), 'the tier tile says why');
+  const ov = App.renderOverview(r);
+  assert.ok(ov.includes('Published C — B by numbers, one notch lower'), 'notch line');
+  assert.ok(ov.includes('universe sector Finance · EDGAR SIC 6211 Security Brokers, Dealers &amp; Flotation Companies (broker-dealers)'), 'basis text');
+  assert.ok(ov.includes('“Sector misfit (universe sector Finance;') && ov.includes('auto reason (make_score)'), 'the reason, quoted, and its source');
+  assert.ok(ov.includes('Sector misfit · published one tier below its numbers tier'), 'verdict chip');
+  assert.ok(!ov.includes('tier is soft') && !head.includes('by agent judgment') && !ov.includes('by agent judgment'), 'the notch is never a judgment override');
+  const row = App.renderRowHTML(r.row);
+  assert.ok(row.includes('misfit notch B→C') && row.includes('<span class="tbn"') && row.includes('B by numbers</span>'), row);
+  assert.ok(!row.includes('by judgment'), 'no judgment badge for the notch alone');
+  const dcf = App.renderForecastDCF(r);
+  assert.ok(dcf.includes('headline tier B on the weighted path → C after the sector-misfit notch') && !dcf.includes('after agent override'), 'rebase B7: the Forecast band names the notch');
+});
+
+test('T-JS-2 misfit notch (live): the live numbers tier is notched; the scored notch is named', () => {
+  const r = rec(RULINGS.notch, { live: clone(synthetic.live) }, RULINGS.live_notch);
+  const head = App.renderHeader(r);
+  assert.ok(head.includes('A by numbers at last close → B · sector-misfit notch'), head);
+  const ov = App.renderOverview(r);
+  assert.ok(ov.includes('Live B — A by numbers at the last close, one notch lower') && ov.includes('Scored: B → C.'), between(ov, 'notchline', '</p>'));
+  const row = App.renderRowHTML(r.row);
+  assert.ok(row.includes('A by numbers</span>'), 'the live row reads misfit_notch_live');
+  assert.ok(App.rowNotchHTML(r.row, false).includes('B by numbers'), 'scored row reads misfit_notch');
+});
+
+test('T-JS-3 misfit not notched (D floor, F, payable), judgment below the notch, legacy misfits', () => {
+  const codes = { tier_floor_D: 'D is the lowest graded tier', tier_F: "no positive owner's earnings", payable_base: 'the payable-earnings base already measures it' };
+  Object.keys(codes).forEach((code) => {
+    const tb = code === 'tier_F' ? 'F' : 'D';
+    const r = rec(RULINGS.notch, { score: { tier_by_numbers: tb, tier_final: tb, misfit_notch: { applies: false, tier_by_numbers: tb, tier_after_notch: tb, not_applied: code, reason: 'cannot notch: ' + code } },
+      row: { tier: tb, tier_by_numbers: tb, tier_notched: false, misfit_notch: { applies: false, tier_by_numbers: tb, tier_after_notch: tb, reason_source: 'auto', not_applied: code } } });
+    const ov = App.renderOverview(r);
+    assert.ok(ov.includes('Sector misfit · not notched (' + codes[code].replace("'", '&#39;') + ')') || ov.includes('Sector misfit · not notched (' + codes[code] + ')'), code + ': ' + between(ov, 'chips', '</div>'));
+    assert.ok(ov.includes('Sector misfit — not notched:') && App.renderHeader(r).includes('misfit, not notched'), code);
+    assert.ok(App.renderRowHTML(r.row).includes('sector misfit · not notched'), code);
+    assert.ok(!ov.includes('by agent judgment'), code);
+  });
+  // a judgment below the notch: C → D
+  const below = rec(RULINGS.notch, { score: { tier_final: 'D', tier_override_reason: 'payable IRR 9.8% on dividends from the subsidiaries' }, row: { tier: 'D', tier_override: true } });
+  const ov = App.renderOverview(below);
+  assert.ok(ov.includes('Tier lowered C→D by agent judgment (below the misfit notch)'), between(ov, 'chips', '</div>'));
+  assert.ok(ov.includes('then lowered to D by judgment (“payable IRR 9.8%'), 'the notch line names the judgment');
+  assert.ok(App.renderRowHTML(below.row).includes('tier C→D by judgment'), 'ranking: judged from the notched tier');
+  assert.ok(App.renderForecastDCF(below).includes('→ C after the sector-misfit notch → D after agent override (below the misfit notch)'), 'rebase B7');
+  // a misfit scored before the mechanical notch: today's override chip and badge
+  const legacy = rec({ score: { tier_by_numbers: 'B', tier_final: 'C', model_fit: 'misfit' }, row: { fit: 'misfit', tier: 'C', tier_by_numbers: 'B', tier_override: true } });
+  const lov = App.renderOverview(legacy);
+  assert.ok(lov.includes('Sector misfit — scored before the mechanical notch') && lov.includes('Tier overridden B→C by agent judgment'), 'legacy chips');
+  assert.ok(!lov.includes('notchline') && App.renderHeader(legacy).includes('>Sector misfit</span>'));
+  assert.ok(App.renderForecastDCF(legacy).includes('→ C after agent override') && !App.renderForecastDCF(legacy).includes('sector-misfit notch'), 'legacy Forecast text unchanged');
+  const oldRow = Object.assign({}, legacy.row); delete oldRow.misfit_notch; // an index built before the release (no misfit_notch key)
+  assert.ok(App.renderRowHTML(oldRow).includes('tier B→C by judgment') && App.renderRowHTML(oldRow).includes('>sector misfit</span>'), 'rebase B8: the old row keeps today\'s badges');
+  // a modeled name: no notch anything
+  assert.equal(App.notchView(synthetic), null); assert.equal(App.notchLineHTML(synthetic), ''); assert.equal(App.notchChip(synthetic), '');
+});
+
+test('T-JS-4 ranking header and how-to describe the notch', () => {
+  const html = App.renderListHTML(Object.assign({}, meta, { counts: Object.assign({}, meta.counts, { misfits: 5, notched: 2 }) }), [synthetic.row], App.defaultState());
+  assert.ok(html.includes('5 sector misfits (2 notched)'), 'MF chip');
+  assert.ok(html.includes('one tier below its numbers tier') && html.includes('EDGAR SIC') && !html.includes('their tiers are soft'), 'how-to');
+  assert.ok(html.includes('a sector misfit one notch below its numbers tier'), 'Tier column title');
+  assert.ok(!App.renderListHTML(Object.assign({}, meta, { counts: Object.assign({}, meta.counts, { notched: 0 }) }), [synthetic.row], App.defaultState()).includes('notched)'));
+});
+
+test('T-JS-5 moat scorecard panel (5.7, checked): evidence bar, pillars, sources, volume × price', () => {
+  const r = moatRecord(), me = r.score.moat_evidence, html = App.renderMoatEvidence(r), ov = App.renderOverview(r);
+  assert.ok(html.includes('Evidence 8.23/10') && html.includes('core 7.73 +0.50 supporting') && html.includes('gap −1.23') && html.includes('tolerance ±2: within'), between(html, 'mevhead', '</p>'));
+  const n = (html.match(/<details class="pillar"/g) || []).length;
+  const want = App.PILLAR_ORDER.filter((k) => me.pillars[k]).length + ['product_quality', 'market_share', 'execution', 'management'].filter((k) => me.supporting[k]).length;
+  assert.equal(n, want, 'one collapsible row per pillar and supporting factor');
+  assert.equal((html.match(/class="bdg auto"/g) || []).length, 4, 'the four mechanical pillars are auto');
+  const pp = between(html, '<span class="pn">Pricing power</span>', '</details>');
+  assert.ok(pp.includes('+1') && ['F1', 'F2', 'F3', 'F16'].every((id) => pp.includes('<span class="fid mono">' + id + '</span>')) && pp.includes('kb k-filing'), pp.slice(0, 400));
+  assert.ok(pp.includes('w 2') && pp.includes('“Revenue per subscriber compounds above inflation while subscribers grow.”'), 'weight from the record, rationale escaped');
+  const cr = between(html, '<span class="pn">Customer regard</span>', '</details>');
+  assert.ok(cr.includes('3rd-party only · cap ±1') && cr.includes('kb k-third_party'), 'third-party-only pillar');
+  const mg = between(html, '<span class="pn">Management</span>', '</details>');
+  assert.ok(mg.includes('>n/a</span>') && mg.includes('Founder-led'), 'a not-applicable factor carries its reason');
+  assert.ok(html.includes('Users × revenue per user') && html.includes('$59.52') && (between(html, 'class="mini vpt"', '</table>').match(/<tr>/g) || []).length === 4, 'three periods + header');
+  assert.ok(html.includes('Volume CAGR +6.01%') && html.includes('revenue per unit CAGR +5.38% vs the 3.00% inflation hurdle'), 'decomposition');
+  assert.ok(html.includes('bdg vp-pricing_power">Pricing power</span> revenue per unit beats inflation'), 'class line');
+  assert.ok(html.includes('Sources — why the moat exists') && html.includes('Network effects') && html.includes('Switching costs') && html.includes('moat up to <b class="mono">8</b>'), 'sources and cap');
+  const spec = App.chartSpecs(r)['moat-vp'];
+  assert.ok(spec && spec.series.length === 3 && spec.series[0].values[0] === 100 && spec.series[1].values[0] === 100 && spec.series[2].dash === true, JSON.stringify(spec && spec.series.map((s) => s.values)));
+  assert.ok(html.includes('chart vpchart') && !between(html, '<div class="vp">', '</div></div>').includes('<details'), 'the chart is outside <details> (drawn only when visible)');
+  assert.ok(ov.includes('Moat 7/10 · evidence 8.23'), 'verdict chip');
+  // the weight column shows only when the record carries a weight (no JS copy of moat_scorecard.WEIGHTS)
+  const noW = moatRecord(); delete noW.score.moat_evidence.pillars.pricing_power.weight;
+  assert.ok(!between(App.renderMoatEvidence(noW), '<span class="pn">Pricing power</span>', '</summary>').includes('w 2'));
+});
+
+test('T-JS-6 moat panel (pre-5.7, report only); no moat_evidence → the card as before', () => {
+  const ro = { scorecard: 'absent', status: 'report_only', evidence_score: 7.12, evidence_weight: 6.5, weight_total: 16, moat_score: 6, divergence: -1.12, tolerance: 2, within_tolerance: true,
+    governing: { measure: 'roic_tangible', median: 0.2719 }, sources: { declared: false, count: null, items: [] }, supporting: null,
+    pillars: { returns_on_capital: clone(MOAT_EX.expected_moat_evidence.pillars.returns_on_capital), capital_intensity: clone(MOAT_EX.expected_moat_evidence.pillars.capital_intensity),
+      scale_economics: clone(MOAT_EX.expected_moat_evidence.pillars.scale_economics) },
+    gates: { low_return: { applies: false }, divergence: { applies: false } }, flags: [], moat_lint: [], gate_drift: [] };
+  const r = rec(); r.score.moat_evidence = ro;
+  const html = App.renderMoatEvidence(r);
+  assert.ok(html.includes('Scorecard not declared') && html.includes('not checked') && html.includes('evidence 7.12/10 from weight 6.5 of 16'), between(html, 'mevhead', '</p>'));
+  assert.ok(!html.includes('class="bdg decl"') && !html.includes('outside'), 'no declared pillar, no outside wording');
+  assert.equal((html.match(/<details class="pillar"/g) || []).length, 3);
+  assert.ok(html.includes('Not declared: this run predates the scorecard rule'), 'sources not declared');
+  assert.equal(App.renderMoatEvidence(synthetic), '', 'no block, no panel');
+  assert.ok(!App.renderOverview(synthetic).includes('class="mev"') && App.renderOverview(synthetic).includes('Moat 5/10</span>'), 'chip as before');
+});
+
+test('T-JS-7 declared facts panel: chips, values, sources with EDGAR / https links, statuses, used for', () => {
+  const r = factsRecord(), html = App.renderDeclaredFacts(r);
+  ['All <span class="mono">8</span>', 'Folder <span class="mono">2</span>', 'Filing <span class="mono">2</span>', 'Release <span class="mono">3</span>', 'Third-party <span class="mono">1</span>'].forEach((c) => assert.ok(html.includes(c), c));
+  const lis = html.match(/<li data-kind="[a-z_]+" id="fact-F\d+">/g) || [];
+  assert.deepEqual(lis.map((x) => /fact-(F\d+)/.exec(x)[1]), ['F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8'], 'id order');
+  ['$1.95B', '$2,191,944,000', '$3.18B–$3.22B', '126%', '$4.10/share', '22.3%', '3 years'].forEach((v) => assert.ok(html.includes('<b class="mono">' + v + '</b>'), v));
+  assert.ok(html.includes('href="https://www.sec.gov/Archives/edgar/data/1234567/000000000026000057/0000000000-26-000057-index.htm"'), 'EDGAR index link from CIK + accession');
+  assert.ok(html.includes('href="https://example.com/consensus" target="_blank" rel="noopener noreferrer"'), 'third-party https link');
+  assert.ok(html.includes('STALE</span> <span class="sub">older than the 10-Q filed 2026-11-04') && html.includes('DRIFTED</span> <span class="sub">file now reads 24.1%'), 'stale and drift');
+  assert.ok(between(html, 'id="fact-F2"', '</li>').includes('class="bdg ok"') && between(html, 'id="fact-F2"', '</li>').includes('<code class="fpath">fundamentals.json:annual[FY2025].buybacks</code>'), 'verified folder fact');
+  assert.ok(html.includes('<blockquote class="dfq">“our dollar-based net revenue retention rate was 126%”</blockquote>') && html.includes('used for: <span class="uf">moat:retention</span>'));
+  assert.ok(html.includes('folder figure for the same period') && html.includes('calc <span class="mono">growth(dcf_numbers.json:price, dcf_numbers.json:iv_at_15)'), 'counterpart + calc source');
+  assert.ok(html.includes('latest filing the engine used: 10-Q filed 2026-11-04 (period 2026-09-30)') && html.includes('sha256 1a2b3c4d5e6f') && html.includes('Names, not quantities (1)'));
+  // hostile tokens never reach an href
+  const bad = factsRecord(); bad.facts.facts[0].source.accession = '0000000000-26-00005X'; bad.facts.facts[4].source.url = 'javascript:alert(1)';
+  const bh = App.renderDeclaredFacts(bad);
+  assert.ok(!bh.includes('javascript:') && !between(bh, 'id="fact-F1"', '</li>').includes('href='), 'no href from a malformed accession or a non-https URL');
+  // the section sits after Second pass on the Analysis tab; no facts → nothing
+  const an = App.renderAnalysis(r);
+  assert.ok(an.indexOf('<h2>Second pass</h2>') > 0 && an.indexOf('<h2>Second pass</h2>') < an.indexOf('Declared facts <span class="fcount mono">8</span>'), 'after Second pass');
+  assert.equal(App.renderDeclaredFacts(synthetic), '');
+});
+
+test('T-JS-8 fmtFactValue / fmtFactOne / edgarFilingUrl / httpsUrl', () => {
+  const f = (o) => App.fmtFactValue(o);
+  assert.equal(f({ value: 1923686000, unit: 'USD', scale: 'B', precision: 2 }), '$1.92B');
+  assert.equal(f({ value: 2191944000, unit: 'USD', precision: 0 }), '$2,191,944,000');
+  assert.equal(f({ value: [3180000000, 3220000000], unit: 'USD', scale: 'B', precision: 2 }), '$3.18B–$3.22B');
+  assert.equal(f({ value: 1.26, unit: 'pct', precision: 0 }), '126%');
+  assert.equal(f({ value: 4.1, unit: 'USD/share', precision: 2 }), '$4.10/share');
+  assert.equal(f({ value: 0.223, unit: 'pct', precision: 1 }), '22.3%');
+  assert.equal(f({ value: 0.012, unit: 'pp', precision: 1 }), '+1.2pp');
+  assert.equal(f({ value: -0.012, unit: 'pp', precision: 1 }), '-1.2pp');
+  assert.equal(f({ value: 0.0042, unit: 'bps', precision: 0 }), '42 bps');
+  assert.equal(f({ value: 2.5, unit: 'x', precision: 1 }), '2.5x');
+  assert.equal(f({ value: 898, unit: 'count', precision: 0, unit_label: 'employees' }), '898 employees');
+  assert.equal(f({ value: -52220000, unit: 'EUR', scale: 'M', precision: 1 }), '-€52.2M');
+  assert.equal(f({ value: 12.5, unit: 'CNY/ADS', precision: 2 }), 'RMB 12.50/ADS');
+  assert.equal(f({ value: 3200000000, unit: 'BRL', scale: 'B', precision: 1 }), 'BRL 3.2B');
+  assert.equal(f({ value: null, unit: 'USD' }), '—');
+  assert.equal(f({ value: -0.0004, unit: 'pct', precision: 1 }), '0.0%', 'negative zero never prints');
+  assert.equal(App.edgarFilingUrl('0001234567', '0000000000-26-000057'), 'https://www.sec.gov/Archives/edgar/data/1234567/000000000026000057/0000000000-26-000057-index.htm');
+  assert.equal(App.edgarFilingUrl(1234567, '0001104659-26-088404', 'micc-20260630x6k.htm'), 'https://www.sec.gov/Archives/edgar/data/1234567/000110465926088404/micc-20260630x6k.htm');
+  assert.equal(App.edgarFilingUrl(null, '0000000000-26-000057'), '', 'no CIK');
+  assert.equal(App.edgarFilingUrl(1234567, '0000000000-26-0057'), '', 'malformed accession');
+  assert.equal(App.edgarFilingUrl(1234567, '0000000000-26-000057', '../x".htm'), 'https://www.sec.gov/Archives/edgar/data/1234567/000000000026000057/0000000000-26-000057-index.htm', 'a document that is not a plain file name falls back to the index');
+  assert.equal(App.httpsUrl('https://example.com/a?b=1'), 'https://example.com/a?b=1');
+  assert.equal(App.httpsUrl('http://example.com'), ''); assert.equal(App.httpsUrl('javascript:alert(1)'), ''); assert.equal(App.httpsUrl('https://x.com/"onload'), '');
+});
+
+test('T-JS-9 quote check card: pass, fail, legacy, trimmed legacy, error, absent', () => {
+  const q = (k) => { const r = rec(); r.quote_check = clone(RULINGS.quote_checks[k]); return App.renderQuoteCheck(r); };
+  assert.ok(q('pass').includes('Quote check: pass') && q('pass').includes('41 numbers') && q('pass').includes('F3 is STALE'));
+  assert.ok(q('fail').includes('Quote check: FAIL') && q('fail').includes('3 of 41') && q('fail').includes('analysis.md:23') && q('fail').includes('<code>$1.92 billion</code>') && q('fail').includes('… 1 more'));
+  assert.ok(q('legacy').startsWith('<details class="qcheck legacy">') && q('legacy').includes('50 of 120 numbers do not trace') && q('legacy').includes('analysis.md:4'));
+  assert.ok(q('legacy_trimmed').includes('trimmed from the attachment') && !q('legacy_trimmed').includes('more ('));
+  assert.ok(q('error').includes('Quote check could not run') && q('error').includes('RuntimeError: checker bug'));
+  assert.equal(App.renderQuoteCheck(synthetic), '');
+});
+
+test('T-JS-10 Data tab rulings rows and the registry lines of every 5.7 event', () => {
+  const r = rec(RULINGS.notch, RULINGS.data_rows); r.score_from_run = clone(RULINGS.data_rows.score_from_run); r.score.declared_facts = clone(RULINGS.declared_facts); r.facts = Object.assign(clone(TST_FACTS), { ticker: 'SYN' });
+  r.registry = clone(RULINGS.registry);
+  const d = App.renderData(r);
+  assert.ok(d.includes('<th>Sector model</th>') && d.includes('misfit — universe sector Finance · EDGAR SIC 6211') && d.includes('matched on sector + sic'), between(d, 'Sector model', '</tr>'));
+  assert.ok(d.includes('<th>Misfit notch</th>') && d.includes('numbers B → published C (auto reason (make_score))'));
+  assert.ok(d.includes('score.json built from this run') && d.includes('key_numbers.md <span class="mono">sha256 0123456789ab'), 'rebase B5: content hash line');
+  const bad = rec(RULINGS.notch, RULINGS.data_rows); bad.score_from_run = clone(RULINGS.data_rows.score_from_run_bad);
+  assert.ok(App.renderData(bad).includes('<b class="neg">MISMATCH</b> — dcf_content_hash &#39;aaa&#39; vs run content_hash'), 'mismatch');
+  const old = rec(); old.score_from_run = { matches: true, mismatches: [] };
+  assert.ok(App.renderData(old).includes('score matched on its headline figures (it predates dcf_content_hash)'));
+  assert.ok(App.contentHashText(synthetic).indexOf('score') < 0, 'a record built before the release: the hash alone, as before');
+  assert.ok(d.includes('Annual facts from the filing\'s instance') && d.includes('FY ending 2026-03-31 read from the 20-F\'s own XBRL instance') && d.includes('href="https://www.sec.gov/Archives/edgar/data/1234567/000119312526301234/0001193125-26-301234-index.htm"') && d.includes('312 facts merged, 0 conflicts'));
+  const na = rec({ numbers: { annual_from_instance: { applied: false, checked: true, form: '20-F', accession: '0001193125-26-301234', reason: 'no XBRL 2.1 instance in the filing folder (inline document only)' } } });
+  assert.ok(App.annualInstanceText(na).includes('checked 20-F') && App.annualInstanceText(na).includes('inline document only'));
+  assert.ok(d.includes('<th>Declared facts</th>') && d.includes('8 in facts.json (2 folder · 2 filing · 3 release · 1 third-party) · 1 verified · 1 stale'));
+  assert.ok(d.includes('<th>Method runs</th>') && d.includes('prelim</span> (dcf_numbers_prelim.json, 2026-10-13, release 5.7.0): base $2.55/sh') && d.includes('a saved engine run, not the scored run'));
+  assert.ok(d.includes('<th>Previous score</th>') && d.includes('2026-10-16, release 5.4.0: tier D (numbers D), weighted IRR 7.12%, IV@15% $23.08, base $1.95/sh'));
+  assert.ok(d.includes('<th>Capitalized software (in capex)</th>') && d.includes('PaymentsToDevelopSoftware</span> $184M') && d.includes('R9, Andrew 2026-10-19'), 'R9 capex software line');
+  assert.ok(!App.renderData(synthetic).includes('Capitalized software'), 'no software filed: no line');
+  // registry: one plain line per event; an old event keeps the generic key=value text
+  [['misfit_notch', 'tier B by numbers → C (sector-misfit notch, auto reason; basis engine_sector_model, weighted IRR 15.20%)'], ['declared_facts', '8 facts declared (2 folder · 2 filing · 3 release · 1 third-party; sha256 1a2b3c4d5e6f) · influencing F2, F4'],
+   ['moat_divergence', 'moat 7 vs evidence 4.20 (gap +2.80)'], ['moat_low_roic', 'moat 7 on median ROIC 8.39%'], ['moat_high_return_low_moat', 'moat 4 on median ROIC 31.00%'],
+   ['moat_erosion_rebuttal', 'MOAT_EROSION rebutted at moat 6 (governing −6.40pp, gross margin −3.10pp)'], ['moat_widening_declined', 'measured widening declined at moat 5'],
+   ['interim_bridge', '6-K bridge 0001104659-26-088404 (EUR): base $1.11 → $0.59/sh, IRR 9.14% → 6.10%, tier D → D'], ['interim_bridge_declined', 'interim bridge declined: “no like-for-like comparative'],
+   ['share_classes', 'share classes declared (up c exchangeable units; sha256 dddd): base $7.93 → $4.14, tier S → B'], ['up_c_suspect', 'UP_C_SUSPECT waived (NCI share 42.20%)'],
+   ['capex_unlisted_ack', 'unlisted capex component PaymentsForFlightEquipment ($2.10B) acknowledged'], ['base_alternatives', 'base annual median published over the ttm to 2026-06-30 · annual median $16.14 (C) · ttm -$3.48 (F)'],
+   ['iprd_deferred_payment', 'deal Acme milestone (first charged 2025-12-31): paid $60M of contingent $150M · periods 2025-12-31 $60M']].forEach(([ev, txt]) => {
+    const li = between(d, '<code>' + ev + '</code>', '</li>');
+    assert.ok(li.includes(txt), ev + ': ' + li);
+    assert.ok(!li.includes(ev === 'iprd_deferred_payment' ? 'periods=' : 'reason='), ev + ': no raw key=value');
+  });
+  assert.ok(between(d, '<code>gterm</code>', '</li>').includes('value=0.02'), 'an old event keeps the generic text');
+});
+
+test('T-JS-11 interim bridge: TTM construction labels, the Interim bridge section, the base card, the row badge, the declined note', () => {
+  const r = rec(RULINGS.interim);
+  const d = App.renderData(r);
+  assert.ok(d.includes('− prior interim') && d.includes('+ current interim') && !between(d, 'TTM construction', '</section>').includes('− prior YTD'), 'declared-interim header cells');
+  assert.ok(d.includes('computed by ttm.py --interim from the declared 6-K interim bridge (each leg converted at its own period-end rate) — see Interim bridge below'));
+  assert.ok(between(d, 'TTM construction', '</section>').includes('engine FY'), 'ENGINE_FY → engine FY');
+  const ib = between(d, '<h2>Interim bridge</h2>', '</section>');
+  assert.ok(ib.includes('(est.)') && ib.includes('title="fy_prorated"') && ib.includes('ECB period-end rates: FY 1.1750 (engine) · prior 1.1720 · current 1.1394'), 'legs and FX');
+  assert.ok(ib.includes('href="https://www.sec.gov/Archives/edgar/data/1234567/000110465926088404/micc-20260630x6k.htm"') && ib.includes('XBRL ✓') && ib.includes('<blockquote class="dfq">“Net cash flow from operating activities 539 276”'), 'sources with document links');
+  assert.ok(ib.includes('Bridged base') && ib.includes('Annual-median base') && ib.includes('+88.01% vs bridged') && ib.includes('demerger 2025-12-06 · material · same_business_perimeter'), 'tiles + like-for-like');
+  assert.ok(ib.includes('617.0M current-interim weighted diluted') && ib.includes('$0.5904</b>/sh (scored)'), 'shares line');
+  const ov = App.renderOverview(r);
+  assert.ok(ov.includes('Basis: declared 6-K interim bridge (ttm.py --interim): FY 2025-12-31 − prior interim to 2025-06-30 + current interim to 2026-06-30, EUR legs at each period\'s rate'), between(ov, 'Basis:', '</p>'));
+  assert.ok(ov.includes('Bridged base <b>$0.59</b>/sh (2 estimate legs') && ov.includes('measured: weighted IRR 6.10% (Tier D) bridged vs 9.14% (Tier D) on the median — tier unchanged') && ov.includes('href="#SYN.data"'));
+  assert.ok(App.renderRowHTML(r.row).includes('6-K interim base'), 'ranking badge');
+  const dec = rec(RULINGS.declined);
+  assert.ok(App.renderOverview(dec).includes('Interim bridge declined: “the H1 2026 6-K restates') && App.renderData(dec).includes('<h2>Interim bridge</h2>'), 'declined note');
+  // a stale attachment record (no ttm): summary only
+  const att = rec(RULINGS.interim); att.ttm = null;
+  assert.ok(App.renderInterimBridge(att).includes('Leg table in the full record — open the site.'));
+  // a legacy ttm.json keeps the exact old sentence
+  const legacy = rec({ ttm: { inputs: clone(RULINGS.interim.ttm.inputs), ttm_oe_total: 1, ttm_shares_diluted: 1, ttm_oe_per_share: 1 } });
+  assert.ok(App.renderData(legacy).includes('computed by ttm.py from EDGAR 10-Q year-to-date facts (FY − prior YTD + current YTD). ') && !App.renderData(legacy).includes('Interim bridge'));
+  assert.equal(App.renderInterimBridge(synthetic), ''); assert.equal(App.interimBaseNoteHTML(synthetic), '');
+});
+
+test('T-JS-12 fragility flags link the new flags to the Data tab', () => {
+  const r = rec(RULINGS.notch, RULINGS.interim);
+  r.score.fragility_flags = RULINGS.notch.score.fragility_flags.concat(RULINGS.interim.score.fragility_flags);
+  const fl = between(App.renderOverview(r), '<ul class="flags">', '</ul>');
+  assert.ok(between(fl, '<code>TTM_DECLARED_INTERIM</code>', '</li>').includes('<a class="flink" href="#SYN.data">→ Interim bridge on the Data tab</a>'), fl);
+  assert.ok(between(fl, '<code>SECTOR_MODEL_MISMATCH</code>', '</li>').includes('published one tier below (B → C)'), 'the notch named beside the flag');
+  assert.ok(!between(App.renderOverview(synthetic), '<ul class="flags">', '</ul>').includes('flink'), 'an old flag gets no link');
+});
+
+test('T-JS-13 no raw "<" from data strings survives in the rulings renderers', () => {
+  const recs = [moatRecord(), factsRecord(), rec(RULINGS.notch, RULINGS.data_rows, RULINGS.interim), rec(RULINGS.rejected_ttm), rec(RULINGS.share_classes), rec(RULINGS.notch, { live: clone(synthetic.live) }, RULINGS.live_notch)];
+  recs[2].registry = clone(RULINGS.registry); recs[2].quote_check = clone(RULINGS.quote_checks.fail); recs[2].score_from_run = clone(RULINGS.data_rows.score_from_run_bad);
+  recs[0].score.moat_evidence.fade = clone(RULINGS.fade.fade_drift); recs[0].forecast = overlay(recs[0].forecast, RULINGS.fade.forecast);
+  recs.forEach((src, i) => {
+    const r = inject(src);
+    const html = App.TAB_KEYS.map((tab) => App.renderCompanyHTML(r, tab)).join('') + App.renderRowHTML(inject(src.row)) + App.renderMoatEvidence(r) + App.renderDeclaredFacts(r);
+    assert.ok(!html.includes('<x-inj>'), 'raw marker leaked in rulings record ' + i);
+    assert.ok(html.includes('&lt;x-inj&gt;'), 'escaped marker present ' + i);
+    Object.keys(App.chartSpecs(r)).forEach((k) => { if (k === 'price') return; const el = fakeEl(); App.drawChart(el, App.chartSpecs(r)[k]); assert.ok(!el.innerHTML.includes('<x-inj>'), 'chart ' + k); });
+  });
+});
+
+test('T-JS-14 app.css contains the new panels at phone width', () => {
+  const css = fs.readFileSync(path.join(SITE, 'app.css'), 'utf8');
+  assert.ok(/details\.pillar summary\{[^}]*grid-template-columns:minmax\(0,1fr\)/.test(css), 'pillar summary grid');
+  assert.ok(/ul\.dfacts li\{[^}]*min-width:0;overflow-wrap:anywhere/.test(css) && /code\.fpath\{[^}]*word-break:break-all/.test(css), 'facts wrap');
+  const wide = []; const re = /([^{}]+)\{[^}]*?min-width:(\d+)px[^}]*\}/g; let m; while ((m = re.exec(css))) { if (+m[2] > 320) wide.push(m[1].trim().split(/\s*\n\s*|\*\/\s*/).pop().trim()); }
+  wide.forEach((sel) => assert.ok(/^(table\.fin|#t)$/.test(sel), 'a min-width above 320px only on a table that lives inside .twrap: ' + sel));
+  const html = App.renderMoatEvidence(moatRecord());
+  assert.ok(html.includes('<div class="twrap"><table class="mini vpt">') && html.includes('<div class="twrap"><table class="mini srct">'), 'tables inside .twrap');
+  assert.ok(App.renderBaseAlternatives(rec(RULINGS.rejected_ttm)).includes('<div class="twrap"><table class="mini bat">') && App.renderInterimBridge(rec(RULINGS.interim)).includes('<div class="twrap"><table class="fin ibt">'));
+});
+
+test('T-JS-15 company page order: Moat card → scorecard → flags; Analysis: quote check → write-up → second pass → declared facts', () => {
+  const r = moatRecord(); r.quote_check = clone(RULINGS.quote_checks.legacy); r.score.declared_facts = clone(RULINGS.declared_facts); r.facts = Object.assign(clone(TST_FACTS), { ticker: 'SYN' });
+  r.second_pass_md = '# Pass 2\n\nNo material change.';
+  const html = App.renderCompanyHTML(r, 'overview'), ov = html.slice(html.indexOf('data-pane="overview"'), html.indexOf('data-pane="financials"'));
+  const iMoat = ov.indexOf('<h2>Moat</h2>'), iMev = ov.indexOf('class="mev"'), iFl = ov.indexOf('Fragility flags');
+  assert.ok(iMoat > 0 && iMoat < iMev && iMev < iFl, [iMoat, iMev, iFl].join(' '));
+  assert.ok(ov.indexOf('class="card baseoe"') < ov.indexOf('<h2>Scenarios</h2>'), 'key numbers before scenarios');
+  const an = App.renderAnalysis(r), iq = an.indexOf('qcheck'), imd = an.indexOf('class="card md"'), isp = an.indexOf('<h2>Second pass</h2>'), idf = an.indexOf('Declared facts');
+  assert.ok(iq >= 0 && iq < imd && imd < isp && isp < idf, [iq, imd, isp, idf].join(' '));
+});
+
+test('T-JS-16 fixtures/assemble.js mirrors the rulings row rules (notch, tier_override beyond it, has.facts, record.facts)', () => {
+  const tmp = fs.mkdtempSync(path.join(require('node:os').tmpdir(), 'asm57-'));
+  try {
+    const src = path.join(BASE, 'APP'), dst = path.join(tmp, 'MFA');
+    fs.mkdirSync(dst);
+    ['score.json', 'dcf_numbers.json', 'financials_history.csv', 'fundamentals.json', 'analysis.md'].forEach((f) => { if (fs.existsSync(path.join(src, f))) fs.copyFileSync(path.join(src, f), path.join(dst, f)); });
+    const s = JSON.parse(fs.readFileSync(path.join(dst, 'score.json'), 'utf8'));
+    Object.assign(s, { ticker: 'MFA', model_fit: 'misfit', tier_final: 'C', misfit_notch: { applies: true, tier_by_numbers: 'B', tier_after_notch: 'C', reason: 'r 1', reason_source: 'auto', not_applied: null, basis: {} },
+      moat_evidence: clone(MOAT_EX.expected_moat_evidence) });
+    fs.writeFileSync(path.join(dst, 'score.json'), JSON.stringify(s));
+    fs.writeFileSync(path.join(dst, 'facts.json'), JSON.stringify(Object.assign(clone(TST_FACTS), { ticker: 'MFA' })));
+    const r = assemble(tmp, 'MFA');
+    assert.equal(r.row.tier_override, false); assert.equal(r.row.tier_notched, true); assert.equal(r.row.has.facts, true); assert.equal(r.facts.ticker, 'MFA');
+    assert.deepEqual(r.row.misfit_notch, { applies: true, tier_by_numbers: 'B', tier_after_notch: 'C', reason_source: 'auto', not_applied: null });
+    assert.equal(r.row.moat_evidence.score, 8.23); assert.equal(r.row.moat_evidence.hold_years, 2); assert.equal(r.quote_check, null); assert.equal(r.forecast.hold_years, 2);
+    assert.equal(r.row.live_withheld, false); assert.equal(r.live, null, 'no live.json copied: nothing shown');
+    s.tier_final = 'D'; fs.writeFileSync(path.join(dst, 'score.json'), JSON.stringify(s));
+    assert.equal(assemble(tmp, 'MFA').row.tier_override, true, 'beyond the notch: a judgment override');
+  } finally { fs.rmSync(tmp, { recursive: true, force: true }); }
+});
+
+test('T-JS-17 Financials returns rows: ROIC, tangible ROIC, ROA; ROE n/m on negative equity; the proxy superseded', () => {
+  const r = rec(); r.fundamentals = clone(synthetic.fundamentals);
+  const ann = r.fundamentals.annual;
+  ann.forEach((row, i) => Object.assign(row, { roe: i === 0 ? -3.0 : 0.25, roe_note: i === 0 ? 'negative_equity' : null, roic: i === 0 ? null : 0.31, roic_note: i === 0 ? 'unbounded_high' : null, roic_tangible: 0.4, roa: 0.08 }));
+  const html = App.renderFinancials(r);
+  const roe = between(html, '<th>Return on equity</th>', '</tr>');
+  assert.ok(roe.includes('n/m (negative equity)') && !roe.includes('-300') && roe.includes('+25.0%'), roe);
+  assert.ok(between(html, '<th>ROIC</th>', '</tr>').includes('unbounded') && html.includes('<th>ROIC (tangible)</th>') && html.includes('<th>ROA</th>'), 'new rows');
+  assert.ok(html.includes('<th>ROIC (proxy, superseded)</th>') || !ann.some((x) => x.roic_proxy !== undefined), 'proxy relabelled');
+  const old = App.renderFinancials(synthetic);
+  assert.ok(!old.includes('<th>ROIC</th>') && !old.includes('superseded'), 'an older fundamentals.json: no new rows, no relabel');
+});
+
+test('T-JS-18 statements viewer notes: a noted cell prints its note, a notes-only line is kept', () => {
+  const data = { periods: { annual: [{ label: 'FY2024', end: '2024-12-31' }, { label: 'FY2025', end: '2025-12-31' }] },
+    statements: { metrics: [{ key: 'roe', label: 'Return on equity', unit: 'pct', annual: [null, null], notes_annual: ['negative_equity', 'negative_equity'] },
+                            { key: 'roic', label: 'Return on invested capital', unit: 'pct', annual: [0.2, null], notes_annual: [null, 'unbounded_high'] }] } };
+  const M = App.stmTable(data, 'metrics', 'annual', false);
+  assert.equal(M.rows.length, 2, 'the notes-only ROE line is not dropped');
+  const html = App.renderStatementsTable(M);
+  assert.ok(html.includes('n/m (negative equity)') && html.includes('>unbounded<') && html.includes('title="unbounded_high"') && html.includes('20.0%'), html);
+});
+
+test('T-JS-19 moat panel: sources table with counts, the four measures side by side, the industry line, the MOAT_EROSION chip, gates and lint', () => {
+  const r = moatRecord({ flags: ['MOAT_EROSION'], moat_lint: [{ field: 'moat_for[0]', matched: 'market leader' }],
+    gates: Object.assign(clone(MOAT_EX.expected_moat_evidence.gates), { erosion: { applies: true, reason: 'a 2024 cyclical trough: volumes -12%', drifted: false } }) });
+  r.score.moat_evidence.sources.items[0].incumbents_count = 3;
+  const html = App.renderMoatEvidence(r);
+  assert.ok(html.includes('incumbents named: 3') && !html.includes('Incumbent Co'), 'counts, never names');
+  const meas = between(html, '<div class="mmeas">', '</div>');
+  ['ROIC <b class="mono">36.09%</b> <i>governs</i>', 'tangible ROIC <b class="mono">36.09%</b>', 'ROE <b class="mono">13.39%</b>', 'ROA <b class="mono">9.26%</b>'].forEach((x) => assert.ok(meas.includes(x), x + ' in ' + meas));
+  assert.ok(html.includes('Industry: <b>Services-Prepackaged Software (fictional peers)</b> (SIC group 4:7372) — same-ladder peer median 20.00% on the default ladder (20 / 15 / 10 / 5%), rank 2 of 7'), between(html, 'Industry:', '</p>'));
+  assert.ok(html.includes('<span class="bdg mflag">MOAT_EROSION</span>') && html.includes('MOAT_EROSION with erosion_risks +1 — rebuttal: “a 2024 cyclical trough'), 'flag chip + gate line');
+  assert.ok(html.includes('moat_for[0]</span> “market leader”'), 'lint');
+  assert.ok(html.includes('Erosion test: not fired (governing +16.46pp, gross margin +3.00pp over the last 5 FY)'));
+  const neg = moatRecord(); neg.score.moat_evidence.pillars.returns_on_capital.medians.roe = null; neg.score.moat_evidence.pillars.returns_on_capital.medians.roe_note = 'negative_equity';
+  assert.ok(App.measuresHTML(neg.score.moat_evidence).includes('ROE <b class="mono">n/m (negative equity)</b>'));
+});
+
+test('T25 growth fade note reads the recorded hold (M6)', () => {
+  const legacyNote = between(App.renderForecastDCF(synthetic), 'Growth holds for', '</p>');
+  assert.ok(legacyNote.startsWith('Growth holds for 2 years, then converges linearly to the 2.5% terminal rate over the competitive advantage period of 8.5 years (moat 5/10 → CAP = 2 + 1.3 × moat).'), legacyNote);
+  const sync = rec({ forecast: RULINGS.fade.forecast }); sync.score.moat_evidence = { status: 'checked', fade: clone(RULINGS.fade.fade_in_sync) };
+  const t = App.fadeHoldText(sync);
+  assert.ok(t.startsWith('Growth starts fading in year 1 and converges linearly') && t.includes('(moat eroding: make_score\'s trend test — governing return −2.10pp and gross margin −1.40pp'), t);
+  assert.ok(App.renderOverview(sync).includes('Growth hold 0 yrs') && !App.renderOverview(synthetic).includes('Growth hold'), 'chip only when the hold is not 2');
+  const three = rec({ forecast: { hold_years: 3, moat_trend: 'widening' } });
+  assert.ok(App.fadeHoldText(three).startsWith('Growth holds for 3 years, then') && App.fadeHoldText(three).includes('(moat widening)'));
+  const drift = rec({ forecast: RULINGS.fade.forecast }); drift.score.moat_evidence = { status: 'checked', fade: clone(RULINGS.fade.fade_drift) };
+  const dt = App.fadeHoldText(drift);
+  assert.ok(dt.includes('moat eroding at the engine run') && dt.includes('data moved since the engine run') && dt.includes('--moat-trend stable') && !dt.includes('2.10') && !dt.includes('1.40'), dt);
+  assert.ok(App.renderMoatEvidence(moatRecord({ fade: clone(RULINGS.fade.fade_drift) })).includes('out of sync'), 'the moat panel says so too');
+});
+
+test('Share classes (R6, design 08 §10): OE/share history on the engine CSV, the TTM per unit, the TTM construction rows, the run line, splitRefs on filed traded counts', () => {
+  const r = rec(RULINGS.share_classes); r.ttm = clone(RULINGS.share_classes.ttm); r.history = clone(RULINGS.share_classes.history);
+  const h = App.oeHistory(r);
+  assert.deepEqual(h.map((x) => x.fy), ['2022', '2023', '2024']);
+  assert.ok(h[0].v === null && /no share-class declaration/.test(h[0].reason) && Math.abs(h[2].v - 3.6948) < 1e-3, JSON.stringify(h));
+  const fin = App.renderFinancials(r);
+  assert.ok(fin.includes('$4.14 / unit') && fin.includes('Per-share rows are per Class A common stock as filed; the valuation divides by 189.5M economic units'), 'TTM tile + statements note');
+  const noTtm = rec(RULINGS.share_classes); noTtm.ttm = null;
+  assert.ok(App.renderFinancials(noTtm).includes('/ traded-class share as filed'), 'without ttm.json the filed figure is labelled');
+  const perf = App.financialPerformance(r);
+  assert.ok(perf.includes('per economic unit') && !perf.includes('per diluted share'), perf);
+  const d = App.renderData(r);
+  assert.ok(d.includes('Diluted shares (traded class, as filed)') && d.includes('<th>Declared share-class units</th>') && d.includes('171.5M') && d.includes('<th>Total economic units</th>') && d.includes('359.1M'), 'TTM construction rows');
+  assert.ok(d.includes('÷ 359.1M total economic units (187.6M traded class as filed + 171.5M declared) = <b class="mono">$4.14</b> / unit'), between(d, "TTM owner's earnings", '</p>'));
+  assert.ok(d.includes('total economic units (filed traded + declared) 339.6M (93.9M + 95.5M)') && d.includes('<th>Share basis</th>') && d.includes('resolved by share_classes'), 'run line + share basis row');
+  const ov = App.renderOverview(r);
+  assert.ok(ov.includes('Base owner\'s earnings / unit') && ov.includes('<span class="bu"> / unit</span>') && ov.includes('Per economic unit: the traded class') && ov.includes('tier S → B'), 'base card');
+  assert.ok(App.renderOverview(synthetic).includes('Base owner\'s earnings</span>') && App.renderOverview(synthetic).includes('<span class="bu"> / share</span>'), 'an undeclared record: per share, as before');
+  assert.ok(App.renderRowHTML(r.row).includes('per economic unit'), 'ranking chip');
+  const refs = App.splitRefs(r);
+  assert.equal(refs.byEnd['2024-12-31'], 93932000); assert.equal(refs.byFy['2023'], 74176000); assert.equal(refs.latest, 93932000);
+  const sp = { factor: 2, scored_date: '2026-10-14' };
+  assert.equal(App.splitDivisor(sp, refs, 93932000 * 2, '2024-12-31', '2024'), 1, 'a post-split filed row against the restated filed traded count');
+  assert.equal(App.splitDivisor(sp, { byEnd: { '2024-12-31': 93932000 * 2 }, byFy: {}, latest: null }, 93932000, '2024-12-31', '2024'), 2, 'a pre-split row');
+  const undeclared = App.renderData(synthetic);
+  assert.ok(undeclared.includes(' · diluted shares ') && !undeclared.includes('economic units'), 'an undeclared record: today\'s text');
+});
+
+test('T-JS-R7 base alternatives table: rejected TTM, TTM published, not computed rows; nothing on a legacy record', () => {
+  const r = rec(RULINGS.rejected_ttm), html = App.renderBaseAlternatives(r);
+  const rows = html.match(/<tr class="[^"]*">.*?<\/tr>/g) || [];
+  assert.ok(rows[0].includes('Annual median') && rows[0].includes('published') && rows[0].includes('$16.14/sh') && rows[0].includes('10.33%'), 'published row first');
+  assert.ok(html.includes('TTM (ttm.py, 10-Q YTD)') && html.includes('rejected') && html.includes('-$3.48/sh') && html.includes('no cash generation') && html.includes('-121.54%'), 'the rejected TTM');
+  assert.ok(html.includes('TTM rejection reason: “median +$16.14/sh Tier C vs TTM −$3.48/sh on a half-year working-capital trough”'), 'the reason quoted');
+  assert.ok(html.includes('not computed — ttm.json is not on this share_classes declaration — rerun ttm.py'), 'a not-computed row with its note');
+  const t = App.renderBaseAlternatives(rec(RULINGS.ttm_published));
+  assert.ok(t.indexOf('TTM (ttm.py') < t.indexOf('Annual median') && t.includes('not chosen: STALE_FY fires and the TTM was not rejected'), 'a TTM-published run');
+  assert.equal(App.renderBaseAlternatives(synthetic), '', 'a legacy record renders nothing');
+  assert.ok(App.renderOverview(r).includes('class="card basealts"'), 'inside the Key numbers section');
+  const mis = rec(RULINGS.notch, RULINGS.rejected_ttm);
+  assert.ok(App.renderBaseAlternatives(mis).includes('Tiers here are by numbers; the published tier is notched'));
+});
+
+test('[rebase B6, lane default Q11 (a)] a page whose latest run is not scored yet keeps every panel, labelled "as scored <date>" / "latest run, not scored yet", never "pending"', () => {
+  const r = moatRecord(); Object.assign(r, overlay(r, RULINGS.data_rows)); r.score.declared_facts = clone(RULINGS.declared_facts); r.facts = Object.assign(clone(TST_FACTS), { ticker: 'SYN' });
+  r.score = overlay(r.score, RULINGS.interim.score); r.quote_check = clone(RULINGS.quote_checks.legacy); r.live = null;
+  r.live_withheld = { reason: 'score_not_from_this_run', price: 45, price_date: '2026-10-20', scored_date: '2026-10-14', method: null, note: 'x' };
+  assert.equal(App.scoreIsRunsVerdict(r), false);
+  const tag = 'as scored 2026-10-14';
+  assert.ok(App.notchLineHTML(r).includes(tag) && App.renderMoatEvidence(r).includes(tag) && App.renderDeclaredFacts(r).includes(tag) && App.renderQuoteCheck(r).includes(tag) && App.interimBaseNoteHTML(r).includes(tag), 'score.json panels');
+  const d = App.renderData(r);
+  assert.ok(between(d, '<th>Sector model</th>', '</tr>').includes('latest run, not scored yet') && between(d, 'Annual facts from the filing', '</tr>').includes('latest run, not scored yet'), 'the newer run\'s rows');
+  const page = App.TAB_KEYS.map((tab) => App.renderCompanyHTML(r, tab)).join('');
+  assert.ok(!/pending/i.test(page.replace(/live repricing|Live figures withheld/g, '')), 'never "pending"');
+  const own = moatRecord();
+  assert.equal(App.scoreIsRunsVerdict(own), true); assert.ok(!App.renderMoatEvidence(own).includes('as scored') && !App.renderData(own).includes('not scored yet'));
+  const ip = JSON.parse(JSON.stringify(r)); ip.live_withheld.reason = 'iprd_unresolved'; assert.equal(App.scoreIsRunsVerdict(ip), false, 'the same test as iprdNote');
+});
+
+test('[rebase B16] REGISTRY_TEXT covers every event make_score declares (or lists it as generic on purpose)', () => {
+  const src = fs.readFileSync(path.join(BASE, '_system', 'make_score.py'), 'utf8');
+  const block = src.slice(src.indexOf('_EVENT_DECLARATION = {'), src.indexOf('}', src.indexOf('base_alternatives": (', src.indexOf('_EVENT_DECLARATION = {'))) + 1);
+  const keys = Array.from(block.matchAll(/"([a-z_]+)": \(/g)).map((m) => m[1]);
+  assert.ok(keys.length >= 20 && keys.includes('misfit_notch') && keys.includes('base_alternatives') && keys.includes('iprd_deferred_payment'), keys.join(','));
+  const missing = keys.filter((k) => !App.REGISTRY_TEXT[k] && App.REGISTRY_GENERIC.indexOf(k) < 0);
+  assert.deepEqual(missing, [], 'events with neither a REGISTRY_TEXT line nor a REGISTRY_GENERIC entry: ' + missing.join(', '));
+  assert.ok(Object.keys(App.REGISTRY_TEXT).every((k) => keys.includes(k)), 'no REGISTRY_TEXT entry for an event make_score does not write');
+  // a malformed entry never breaks the page: the generic text
+  assert.ok(App.registryLine({ event: 'misfit_notch', date: '2026-10-21', reason: null }).includes('<code>misfit_notch</code>'));
+});
+
 Promise.all(pending).then(() => {
   const failed = results.filter((r) => r[1]);
   results.forEach((r) => console.log((r[1] ? 'FAIL ' : 'ok   ') + r[0]));

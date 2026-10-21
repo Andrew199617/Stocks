@@ -74,6 +74,19 @@ file" and "folder no longer qualifies" cases run on the copies.
     the normal posting lag. The flag is re-derived on every build, like
     row.watchlist. (The refresh that never ran left HALO two sessions
     behind for two days in October 2026, silent.)
+20. Engine 5.7 rulings (Andrew, 2026-10-19; lane L6, design 06 + rebase
+    amendments B1-B20): facts.json served and rebuilt (T-PY-1), the misfit
+    notch row fields and the new tier_override meaning (T-PY-2), the live
+    notch on a bound live.json (T-PY-3), the attachment keeping facts and a
+    declared-interim ttm.json (T-PY-4), the quote check and its failure
+    isolation (T-PY-5), the builder mtime following the checker (T-PY-6),
+    the moat / interim row summaries (T-PY-7), split restatement of the new
+    per-share figures (T-PY-8) and of declared share classes (08 §10),
+    base_alternatives passed through (R7), record.score_from_run (B5), the
+    history CSV's moat / hold columns (T-PY-10, T-PY-11), the moat summary
+    keys (T-PY-12), meta.counts.moat_eroding / moat_widening (T-PY-13), the
+    forecast hold fields (T24) and every committed folder building with the
+    new fields (T-PY-9, ~1 min).
 
 The Nasdaq caches (prices.json, live.json, street.json) are gitignored, so
 a fresh clone has none: TempBase removes whatever the copies carried and
@@ -115,13 +128,19 @@ ROW_KEYS = {"ticker": str, "name": str, "sector": (str, type(None)), "fit": str,
             "engine_release": (str, type(None)), "flags": list, "overrides": list, "override_unblocks_tier": bool,
             "second_pass": (dict, type(None)), "alert_eligible": bool, "dividend_yield": (float, type(None)),
             "shareholder_yield": (float, type(None)), "has": dict, "watchlist": bool,
-            "live_withheld": bool, "split_restated": (dict, type(None)), "prices_stale": (dict, type(None))}
-HAS_KEYS = ("prices", "fundamentals", "dividends", "segments", "live", "analysis", "second_pass", "statements", "profile")
+            "live_withheld": bool, "split_restated": (dict, type(None)), "prices_stale": (dict, type(None)),
+            # engine 5.7 rulings (lane L6; design 06 §3, rebase B17): the misfit notch (R1), the moat and 6-K bridge
+            # summaries (R4 / R2a), the share basis (R6)
+            "tier_notched": bool, "misfit_notch": (dict, type(None)), "tier_by_numbers_live": (str, type(None)),
+            "misfit_notch_live": (dict, type(None)), "moat_evidence": (dict, type(None)), "interim_bridge": (dict, type(None)),
+            "share_basis": (str, type(None))}
+HAS_KEYS = ("prices", "fundamentals", "dividends", "segments", "live", "analysis", "second_pass", "statements", "profile", "facts")
 RECORD_KEYS = ("ticker", "name", "sector", "folder", "built_at", "built_from_mtime", "row", "score", "numbers", "forecast", "live", "profile",
                "history", "fundamentals", "prices", "segments", "ttm", "judgment", "registry", "analysis_md", "second_pass_md", "files",
-               "live_withheld", "split_restated")
+               "live_withheld", "split_restated", "facts", "quote_check", "score_from_run")
 FORECAST_KEYS = ("paths", "growth_paths", "sensitivity", "hurdle_prices", "inputs", "g_base", "g_blend", "g_terminal", "cap_years",
-                 "growth_components", "growth_components_adjusted", "share_cagr", "share_count_adj", "share_adj_basis", "replayed")
+                 "growth_components", "growth_components_adjusted", "share_cagr", "share_count_adj", "share_adj_basis", "replayed",
+                 "hold_years", "moat_trend", "hold_by_scenario")
 
 
 CACHE_FILES = ("prices.json", "live.json", "street.json")  # gitignored: never assumed present in the repo
@@ -247,7 +266,8 @@ def test_contract_shapes():
                       "segments": os.path.exists(os.path.join(folder, "segments.json")), "live": os.path.exists(os.path.join(folder, "live.json")),
                       "analysis": os.path.exists(os.path.join(folder, "analysis.md")), "second_pass": os.path.exists(os.path.join(folder, "second_pass.md")),
                       "statements": isinstance(B.jload(os.path.join(folder, "statements.json")), dict),
-                      "profile": isinstance(B.jload(os.path.join(folder, "profile.json")), dict)}
+                      "profile": isinstance(B.jload(os.path.join(folder, "profile.json")), dict),
+                      "facts": isinstance(B.jload(os.path.join(folder, "facts.json")), dict)}
             assert r["has"] == expect, (r["ticker"], r["has"], expect)
             if r["has"]["live"]:
                 assert r["irr_live"] is not None and r["price_live"] is not None and r["tier_live"] in "SABCDF"
@@ -375,6 +395,8 @@ def test_attachment_prerendered():
         os.makedirs(tb.site, exist_ok=True)
         for f in ("index.html", "app.css", "app.js"):
             shutil.copy(os.path.join(shell, f), os.path.join(tb.site, f))
+        # engine 5.7 (R3; rebase B14): a record with declared facts renders them in the static layer too
+        tb.write_json("APP", "facts.json", obj=dict(_example(os.path.join("facts", "TST", "facts.json")), ticker="APP"))
         res = tb.build(attachment=True, top=2)
         assert res["prerender"] and "sections" in res["prerender"], res["prerender"]
         with open(res["attachment"][0], encoding="utf-8") as f:
@@ -391,6 +413,9 @@ def test_attachment_prerendered():
         assert 'name="conav"' in static_only and 'id="co-list"' in static_only and 'id="co-APP"' in static_only  # the nav radio group
         assert '<label for="co-APP"' in static_only and '<label class="back" for="co-list"' in static_only  # row link + back control
         assert "#static #co-APP:checked ~ .page#c-APP{display:block}" in static_only  # generated per-company show rule
+        # engine 5.7 (B14): the kind / form chips are JS-only (dead taps in the iOS viewer) — hidden; every row stays
+        assert "#static .fchips{display:none}" in static_only
+        assert "Declared facts" in static_only and 'id="fact-F1"' in static_only, "a record with facts renders them statically"
         res2 = tb.build(attachment=True, top=2, prerender=False)
         assert res2["prerender"] is None
         with open(res2["attachment"][0], encoding="utf-8") as f:
@@ -930,7 +955,8 @@ def test_history_csv():
         tb.write_json("_system", "watchlist.json", obj={"tickers": ["KR"]})
         tb.build(attachment=True, now=now)
         assert os.listdir(os.path.dirname(path)) == ["ranking-2026-10-16.csv"]
-        assert {r[1]: r[-1] for r in _read_csv(path)[1][1:]} == {"APP": "false", "KR": "true", "ZS": "false", "AEE": "false"}
+        wcol = B.HISTORY_COLUMNS.index("watchlist")  # engine 5.7 appended columns after watchlist (no longer the last)
+        assert {r[1]: r[wcol] for r in _read_csv(path)[1][1:]} == {"APP": "false", "KR": "true", "ZS": "false", "AEE": "false"}
         # a --site-dir build writes next to that directory, never into the real _daily/history
         other = os.path.join(tb.dir, "scratch", "site")
         res2 = B.build(base=tb.dir, site_dir=other, only=TICKERS, attachment=True, quiet=True, now=now)
@@ -1602,6 +1628,606 @@ def test_profile_carries_street_fetched_at_without_street_json():
             html = f.read()
         data = json.loads(html.split("window.SITE_DATA=", 1)[1].split(";</script>", 1)[0].replace("<\\/", "</"))
         assert all("street_fetched_at" in r["profile"] and r["profile"]["street_fetched_at"] is None for r in data["records"].values())
+
+
+# ---------------- 20. engine 5.7 rulings (Andrew, 2026-10-19 — R1 misfit notch, R2a declared 6-K bridge, R3 declared
+# facts + quote check, R4 moat scorecard, R6 share classes, R7 base alternatives, M6 growth hold; lane L6, design 06
+# with rebase amendments B1-B20). Each fails on the code before the lane (4f7d6f1).
+EXAMPLES = os.path.join(SYS, "examples")
+
+
+def _example(name):
+    return B.jload(os.path.join(EXAMPLES, name))
+
+
+def _notch(tbn, after, applies=True, src="auto", na=None, reason=None):
+    """A score.json misfit_notch block as make_score.misfit_notch writes it (L1)."""
+    return {"applies": applies, "tier_by_numbers": tbn, "tier_after_notch": after,
+            "reason": reason or f"Sector misfit (universe sector Finance): numbers tier {tbn} at a weighted IRR of 18.43% "
+                                f"publishes one notch lower as {after} — the mechanical sector-misfit notch",
+            "reason_source": src, "not_applied": na,
+            "basis": {"source": "engine_flag", "sector": "Finance", "sic": "6211", "sic_description": "Security Brokers",
+                      "sic_class": "broker_dealer", "sic_source": "edgar_submissions"}}
+
+
+def _misfit(**fields):
+    return lambda s: dict(s, model_fit="misfit", **fields)
+
+
+def test_facts_json_is_served_and_rebuilds_only_its_record():
+    """T-PY-1 (R3): facts.json is an ordinary folder file — adding, touching or deleting it rebuilds that record alone,
+    and the record carries it verbatim (record.facts, row.has.facts, meta.counts.facts)."""
+    doc = dict(_example(os.path.join("facts", "TST", "facts.json")), ticker="APP")
+    with TempBase() as tb:
+        tb.build()
+        tb.write_json("APP", "facts.json", obj=doc)
+        res = tb.build()
+        assert res["written"] == ["APP"] and sorted(res["skipped"]) == ["AEE", "KR", "ZS"], (res["written"], res["skipped"])
+        rec = tb.record("APP")
+        assert rec["facts"] == doc and rec["row"]["has"]["facts"] is True
+        assert tb.read("meta.json")["counts"]["facts"] == 1
+        assert all(tb.record(t)["facts"] is None and tb.record(t)["row"]["has"]["facts"] is False for t in ("KR", "AEE", "ZS"))
+        p = os.path.join(tb.dir, "APP", "facts.json")
+        os.utime(p, (time.time() + 10, max(time.time(), os.path.getmtime(os.path.join(tb.site, "data", "APP.json"))) + 10))
+        assert tb.build()["written"] == ["APP"]
+        os.remove(p)
+        res = tb.build()
+        assert res["written"] == ["APP"] and tb.record("APP")["facts"] is None and tb.record("APP")["row"]["has"]["facts"] is False
+        assert tb.read("meta.json")["counts"]["facts"] == 0
+        # a malformed facts.json renders as absent (make_score refuses it on a 5.7 run)
+        with open(p, "w", encoding="utf-8") as f:
+            f.write("[1, 2]")
+        tb.build()
+        assert tb.record("APP")["facts"] is None and tb.record("APP")["row"]["has"]["facts"] is False
+
+
+def test_misfit_notch_row_fields_and_the_new_tier_override_meaning():
+    """T-PY-2 (R1; design 01 §5 / 06 §1.5, rebase B3): tier_override is a judgment override BEYOND the notch; a notched
+    misfit is tier_notched with tier_override false; a misfit scored before the notch (no block) reads as before; the
+    history CSV appends tier_by_numbers / tier_notched. Only tier_final / misfit_notch / tier_override_reason are
+    edited, so each score is still its run's."""
+    with TempBase() as tb:
+        tb.clone("APP", "MFA", **{"score.json": _misfit(tier_final="C", misfit_notch=_notch("B", "C"))})
+        tb.clone("APP", "MFB", **{"score.json": _misfit(tier_final="D", misfit_notch=_notch("B", "C"),
+                                                        tier_override_reason="a judgment below the notch: 9.8% payable IRR")})
+        tb.clone("KR", "MFC", **{"score.json": _misfit(misfit_notch=_notch("D", "D", applies=False, na="tier_floor_D"))})
+        tb.clone("AEE", "MFF", **{"score.json": _misfit(misfit_notch=_notch("F", "F", applies=False, na="tier_F"))})
+        tb.clone("APP", "MFL", **{"score.json": _misfit(tier_final="C", tier_override_reason="legacy one-notch insurer override")})
+        only = TICKERS + ["MFA", "MFB", "MFC", "MFF", "MFL"]
+        res = tb.build(only=only, attachment=True, now=datetime.datetime(2026, 10, 21, 19, 7, tzinfo=B.NY))
+        rows = {r["ticker"]: r for r in tb.read("index.json")}
+        a, b, c, f, leg = rows["MFA"], rows["MFB"], rows["MFC"], rows["MFF"], rows["MFL"]
+        assert a["tier"] == "C" and a["tier_override"] is False and a["tier_notched"] is True, a
+        assert a["misfit_notch"] == {"applies": True, "tier_by_numbers": "B", "tier_after_notch": "C", "reason_source": "auto",
+                                     "not_applied": None}, a["misfit_notch"]
+        assert b["tier"] == "D" and b["tier_override"] is True and b["tier_notched"] is True, b
+        assert c["tier_override"] is False and c["tier_notched"] is False and c["misfit_notch"]["applies"] is False
+        assert c["misfit_notch"]["not_applied"] == "tier_floor_D" and f["misfit_notch"]["not_applied"] == "tier_F"
+        assert leg["tier_override"] is True and leg["misfit_notch"] is None and leg["tier_notched"] is False, "legacy unchanged"
+        for t in TICKERS:
+            assert rows[t]["misfit_notch"] is None and rows[t]["tier_notched"] is False
+            assert rows[t]["tier_override"] is bool(rows[t]["tier_by_numbers"] and rows[t]["tier"] != rows[t]["tier_by_numbers"])
+        meta = tb.read("meta.json")
+        assert meta["counts"]["notched"] == 2 and meta["counts"]["misfits"] == 6, meta["counts"]  # + AEE (a legacy utility misfit)
+        assert any("2 published one tier below their numbers tier" in x for x in meta["notes"]), meta["notes"]
+        # the record keeps the whole block (reason, basis) for the page
+        assert tb.record("MFA")["score"]["misfit_notch"]["basis"]["sic"] == "6211"
+        hdr, body = _read_csv(res["history"][0])[1][0], _read_csv(res["history"][0])[1][1:]
+        assert tuple(hdr) == B.HISTORY_COLUMNS and len(hdr) == 28 and hdr[:18] == list(B.HISTORY_COLUMNS[:18])
+        assert hdr[18:20] == ["tier_by_numbers", "tier_notched"], hdr
+        by = {r[1]: dict(zip(hdr, r)) for r in body}
+        assert (by["MFA"]["tier_scored"], by["MFA"]["tier_by_numbers"], by["MFA"]["tier_notched"]) == ("C", "B", "true")
+        assert (by["MFL"]["tier_scored"], by["MFL"]["tier_by_numbers"], by["MFL"]["tier_notched"]) == ("C", "B", "false")
+        assert by["MFC"]["tier_notched"] == "false" and by["APP"]["tier_notched"] == "false"
+
+
+def _bound_live(live, score):
+    """live.json as reprice.py writes it AGAINST `score` (Codex review r29 of PR #47: score_json_fresh, scored.tier_final,
+    scored.tier_override_reason while the override is active — tier_final other than the run's numbers tier)."""
+    sc = dict(live.get("scored") or {}, tier_final=score.get("tier_final"),
+              tier_override_reason=score.get("tier_override_reason") if score.get("tier_final") != score.get("tier_by_numbers") else None)
+    if "dcf_content_hash" in score:
+        sc["dcf_content_hash"] = score["dcf_content_hash"]
+    return dict(live, score_json_fresh=True, scored=sc)
+
+
+def test_live_notch_fields_on_the_row():
+    """T-PY-3 (R1; rebase B3, I5): a live.json bound to the notched score carries reprice's live notch — the row's
+    tier_live is the notched LIVE tier, tier_by_numbers_live the live numbers tier, misfit_notch_live the block. The same
+    live.json computed against the un-notched score is withheld (live_not_from_this_score): an un-notched live tier is
+    never shown beside a notched score (06 open question 4, resolved by PR #47)."""
+    with TempBase() as tb:
+        tb.clone("APP", "MFA", **{"score.json": _misfit(tier_final="C", misfit_notch=_notch("B", "C"))})
+        s = B.jload(os.path.join(tb.dir, "MFA", "score.json"))
+        live = B.jload(os.path.join(tb.dir, "MFA", "live.json"))
+        lv = _bound_live(dict(live, ticker="MFA", tier="C", tier_display="C", tier_by_numbers="B",
+                              misfit_notch={"tier_by_numbers": "B", "tier_after_notch": "C", "applies": True, "basis": "score_json"}), s)
+        tb.write_json("MFA", "live.json", obj=lv)
+        tb.build(only=TICKERS + ["MFA"])
+        r = tb.record("MFA")
+        assert r["live_withheld"] is None, r["live_withheld"]
+        row = r["row"]
+        assert row["tier_live"] == "C" and row["tier_by_numbers_live"] == "B", row
+        assert row["misfit_notch_live"] == {"applies": True, "tier_by_numbers": "B", "tier_after_notch": "C",
+                                            "reason_source": None, "not_applied": None, "basis": "score_json"}, row["misfit_notch_live"]
+        app = tb.record("APP")["row"]
+        assert app["tier_by_numbers_live"] == "B" and app["misfit_notch_live"] is None  # modeled: live numbers tier, no block
+        assert tb.record("AEE")["row"]["tier_by_numbers_live"] is None and tb.record("AEE")["row"]["misfit_notch_live"] is None
+        # the same live.json computed against the un-notched score (scored.tier_final B): withheld, never shown
+        tb.write_json("MFA", "live.json", obj=dict(lv, scored=dict(lv["scored"], tier_final="B")))
+        tb.build(only=TICKERS + ["MFA"])
+        r = tb.record("MFA")
+        assert r["live"] is None and r["live_withheld"]["reason"] == "live_not_from_this_score", r["live_withheld"]
+        assert r["row"]["tier_live"] is None and r["row"]["tier_by_numbers_live"] is None and r["row"]["misfit_notch_live"] is None
+
+
+def _declared_interim_ttm(ttm):
+    """KR's ttm.json reshaped as ttm.py --interim writes a declared 6-K bridge (L4: basis, legs, fx, shares, provenance)."""
+    leg = lambda fy, p, c: {"fy": {"local": fy, "usd": fy * 1.17, "tag": "ENGINE_FY"}, "prior_interim": {"local": p, "usd": p * 1.10, "kind": "filing", "verified": "xbrl_instance"},  # noqa: E731
+                            "current_interim": {"local": c, "usd": c * 1.14, "kind": "filing", "verified": "snippet"},
+                            "ttm_local": fy - p + c, "ttm_usd": fy * 1.17 - p * 1.10 + c * 1.14}
+    return dict(ttm, basis="declared_interim", currency="EUR", fy_end="2025-12-31", ytd_end="2026-06-30",
+                periods={"fy": ["2025-01-01", "2025-12-31"], "prior_interim": ["2025-01-01", "2025-06-30"],
+                         "current_interim": ["2026-01-01", "2026-06-30"]},
+                report={"form": "6-K", "accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm", "filed": "2026-07-30"},
+                fx={"basis": "ecb_period_end", "rates_used": {"fy": 1.17, "prior_interim": 1.10, "current_interim": 1.14}},
+                legs={"ocf": leg(483e6, 276e6, 539e6), "capex_ppe": leg(357e6, 150e6, 182e6),
+                      "capex_intangibles": dict(leg(3e6, 1.49e6, 1.49e6), prior_interim={"local": 1.49e6, "usd": 1.64e6, "kind": "estimate", "method": "fy_prorated", "verified": "estimate"}),
+                      "sbc": leg(35e6, 19e6, 18e6)},
+                shares={"current_interim": {"value": 617e6, "kind": "filing", "verified": "xbrl_instance"}, "fy_diluted": 615e6, "ratio_to_fy": 1.003},
+                ads_ratio=1.0, ttm_oe_per_ordinary_share=0.59,
+                provenance=[{"field": "ocf", "leg": "current_interim", "accession": "0001104659-26-088404", "document": "micc-20260630x6k.htm",
+                             "page": 12, "section": "Condensed consolidated statement of cash flows", "snippet": "Net cash flow from operating activities 539 276",
+                             "verified": "xbrl_instance", "xbrl_tag": "ifrs-full:CashFlowsFromUsedInOperatingActivities"}])
+
+
+def test_attachment_keeps_facts_and_a_declared_interim_ttm():
+    """T-PY-4 (R2a / R3; 06 §1.7): the attachment copy keeps record.facts and a declared-interim ttm.json (its legs and
+    provenance are the Data tab's Interim bridge section), drops every other ttm.json and judgment.json, and keeps a
+    legacy (not gated) quote_check's counts with an empty untraced list; the site record keeps the list. The facts
+    payload of the 24-fact worked example stays under 16 KB per record (the size bound)."""
+    ex = _example("moat_scorecard_consumer_subscription.json")
+    doc = dict(ex["inputs"]["facts"], ticker="APP")
+    with TempBase() as tb:
+        tb.write_json("APP", "facts.json", obj=doc)
+        tb.write_json("KR", "ttm.json", obj=_declared_interim_ttm(B.jload(os.path.join(tb.dir, "KR", "ttm.json"))))
+        res = tb.build(attachment=True, top=4, prerender=False)
+        with open(res["attachment"][0], encoding="utf-8") as f:
+            html = f.read()
+        data = json.loads(html.split("window.SITE_DATA=", 1)[1].split(";</script>", 1)[0].replace("<\\/", "</"))
+        recs = data["records"]
+        assert recs["APP"]["facts"] == doc, "facts kept in the attachment"
+        assert recs["KR"]["ttm"]["basis"] == "declared_interim" and recs["KR"]["ttm"]["provenance"], "a declared bridge's ttm kept"
+        assert "ttm" not in recs["APP"] and "ttm" not in recs["AEE"], "every other ttm.json is trimmed"
+        assert all("judgment" not in r for r in recs.values())
+        site = tb.record("APP")
+        assert site["quote_check"]["status"] == "legacy" and site["quote_check"]["untraced"], site["quote_check"]["untraced_count"]
+        aq = recs["APP"]["quote_check"]
+        assert aq["untraced"] == [] and aq["untraced_count"] == site["quote_check"]["untraced_count"] and aq["checked"] == site["quote_check"]["checked"]
+        size = len(json.dumps(doc, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
+        assert len(doc["facts"]) >= 24 and size <= 16 * 1024, size
+
+
+def test_quote_check_summary_and_failure_isolation():
+    """T-PY-5 (R3; 06 §1.4): record.quote_check is check_quotes.check_folder's report compacted to the §3 keys; without
+    the checker it is null and meta says so; a checker exception is status 'error', the record is still written."""
+    keys = {"status", "gated", "engine_release", "checked", "matched", "ignored", "untraced_count", "untraced", "integrity",
+            "warnings", "error"}
+    real = B.QUOTES
+    assert real is not None, "check_quotes imports"
+    with TempBase() as tb:
+        tb.build()
+        q = tb.record("APP")["quote_check"]
+        assert set(q) == keys and q["status"] == "legacy" and q["gated"] is False, q
+        assert len(q["untraced"]) <= B.QUOTE_UNTRACED_MAX and q["untraced_count"] >= len(q["untraced"])
+        assert all(set(u) == {"line", "col", "raw", "kind"} and len(u["raw"]) <= 40 for u in q["untraced"])
+        full = real.check_folder(os.path.join(tb.dir, "APP"))
+        assert q["untraced_count"] == len(full["untraced"]) and q["checked"] == full["checked"] and q["matched"] == full["matched"]
+        assert tb.record("ZS")["quote_check"]["status"] in ("pass", "fail", "legacy", "error")
+        try:
+            B.QUOTES = None
+            res = tb.build(force=True)
+            assert res["failed"] == [] and tb.record("APP")["quote_check"] is None
+            assert any("quote checker unavailable" in x for x in tb.read("meta.json")["notes"])
+
+            def boom(folder):
+                raise RuntimeError("checker bug")
+            import types
+            B.QUOTES = types.SimpleNamespace(__file__=real.__file__, check_folder=boom)
+            res = tb.build(force=True)
+            assert res["failed"] == [] and sorted(res["written"]) == sorted(TICKERS)
+            q = tb.record("APP")["quote_check"]
+            assert q["status"] == "error" and "RuntimeError" in q["error"] and "checker bug" in q["error"] and set(q) == keys
+        finally:
+            B.QUOTES = real
+        # no analysis.md -> null
+        os.remove(os.path.join(tb.dir, "KR", "analysis.md"))
+        tb.build()
+        assert tb.record("KR")["quote_check"] is None
+
+
+def test_builder_mtime_follows_the_quote_checker():
+    """T-PY-6 (06 §1.8, rebase B11): record.quote_check depends on check_quotes.py / facts.py / quote_tokens.py, so a
+    newer checker rebuilds every record (before, check_quotes was not in the builder mtime: all four were skipped)."""
+    import types
+    real = B.QUOTES
+    with TempBase() as tb:
+        assert sorted(tb.build()["written"]) == sorted(TICKERS)
+        assert tb.build()["written"] == []
+        newer = os.path.join(tb.dir, "check_quotes_stub.py")
+        with open(newer, "w", encoding="utf-8") as f:
+            f.write("# stub\n")
+        t = time.time() + 60
+        os.utime(newer, (t, t))
+        try:
+            B.QUOTES = types.SimpleNamespace(__file__=newer, check_folder=real.check_folder)
+            assert B.builder_code_mtime() >= t - 1
+            assert sorted(tb.build()["written"]) == sorted(TICKERS)
+        finally:
+            B.QUOTES = real
+    names = {os.path.basename(m.__file__) for m in (B.QUOTES, sys.modules.get("facts"), sys.modules.get("quote_tokens")) if m}
+    assert names == {"check_quotes.py", "facts.py", "quote_tokens.py"}, names
+
+
+def _base_alts_bridge(pub_tier="D", med_tier="D"):
+    """score.json base_alternatives of a published declared 6-K bridge (make_score.interim_base_alternatives, L4 / R7)."""
+    return {"schema": 1, "published": "declared_interim", "stale_fy": True, "ttm_rejection_reason": None,
+            "bases": [{"kind": "declared_interim", "role": "published", "computed": True, "measured": True, "base_oe_per_share": 0.5904,
+                       "weighted_irr": 0.061, "tier_by_numbers": pub_tier, "f_subtype": None, "iprd_charge_per_share": 0.0,
+                       "iprd_treatment": None, "fy_end": "2025-12-31", "ytd_end": "2026-06-30", "source": "ttm.json (ttm.py --interim)",
+                       "why": "declared_interim", "why_text": "published — the declared 6-K interim bridge", "note": None},
+                      {"kind": "annual_median", "role": "alternative", "computed": True, "measured": True, "base_oe_per_share": 1.11,
+                       "weighted_irr": 0.0914, "tier_by_numbers": med_tier, "f_subtype": None, "iprd_charge_per_share": 0.0,
+                       "iprd_treatment": None, "data_gap": [], "source": "median_of_last_3_fy_oe_per_share",
+                       "base_change_pct": 88.01, "weighted_irr_change_pp": 3.04, "tier_changed": False,
+                       "why": "not_chosen", "why_text": "not chosen: the declared 6-K interim bridge is the published base", "note": None}],
+            "replays": 1, "measured": True, "note": None, "impact_carried_from_prior_score": False, "counterfactual_engine_release": None}
+
+
+def _interim_block():
+    """score.json interim_bridge (make_score.score_interim_fields, L4)."""
+    return {"basis": "declared_interim", "currency": "EUR", "declaration_hash": "ab" * 32, "fy_period": ["2025-01-01", "2025-12-31"],
+            "prior_interim_period": ["2025-01-01", "2025-06-30"], "current_interim_period": ["2026-01-01", "2026-06-30"],
+            "report_form": "6-K", "report_accession": "0001104659-26-088404",
+            "fx": {"basis": "ecb_period_end", "fy": 1.175, "prior_interim": 1.172, "current_interim": 1.1394},
+            "estimate_legs": ["capex_intangibles.prior_interim", "capex_intangibles.current_interim"], "unverified_legs": [],
+            "xbrl_verified_legs": ["ocf.current_interim"], "comparative_restated": False, "perimeter_changes": [],
+            "iprd_interim_scan": "xbrl_instance: none", "measured_in": "base_alternatives"}
+
+
+def test_moat_and_interim_row_summaries():
+    """T-PY-7 (R4 revised / R2a; 06 §1.5, 03b §7.2): the row's moat_evidence summary from the worked example's
+    expected_moat_evidence and the interim_bridge summary from L4's blocks; meta.counts moat_checked / interim_bridged."""
+    me = _example("moat_scorecard_consumer_subscription.json")["expected_moat_evidence"]
+    with TempBase() as tb:
+        tb.clone("APP", "MOA", **{"score.json": lambda s: dict(s, moat_evidence=me, interim_bridge=_interim_block(),
+                                                                base_alternatives=_base_alts_bridge("D", "C"))})
+        tb.build(only=TICKERS + ["MOA"])
+        row = tb.record("MOA")["row"]
+        assert row["moat_evidence"] == {
+            "score": 8.23, "status": "checked", "within_tolerance": True, "divergence": -1.23, "core_score": 7.73,
+            "supporting_adjustment": 0.5, "measure": "roic", "return_median": 0.3609, "return_note": None, "sources": 2,
+            "widest": "narrow", "flags": [], "industry": {"code": "4:7372", "level": 4, "label": "Services-Prepackaged Software (fictional peers)",
+                                                         "ladder": "default", "peers": 6, "rank": 2, "of": 7},
+            "fade_trend": None, "fade_in_sync": None, "fade_direction": None, "hold_years": 2}, row["moat_evidence"]
+        assert row["interim_bridge"] == {"tier_bridged": "D", "tier_annual_median": "C", "estimate_legs": 2, "measured": True,
+                                         "published_base": "declared_interim"}, row["interim_bridge"]
+        meta = tb.read("meta.json")
+        assert meta["counts"]["moat_checked"] == 1 and meta["counts"]["interim_bridged"] == 1, meta["counts"]
+        assert all(tb.record(t)["row"]["moat_evidence"] is None and tb.record(t)["row"]["interim_bridge"] is None for t in TICKERS)
+    # a STALE_FY rejection that published the median beside a declared bridge (R7) is not a bridged base
+    s = {"interim_bridge": _interim_block(), "base_alternatives": dict(_base_alts_bridge(), published="annual_median")}
+    assert B.interim_summary(s)["published_base"] == "annual_median"
+    # a pre-R7 06-shape block (bridged / annual_median inside interim_bridge) still reads
+    old = {"interim_bridge": {"bridged": {"tier_by_numbers": "D"}, "annual_median": {"tier_by_numbers": "C"}, "estimate_legs": ["x"], "measured": True}}
+    assert B.interim_summary(old) == {"tier_bridged": "D", "tier_annual_median": "C", "estimate_legs": 1, "measured": True, "published_base": None}
+
+
+def test_split_restates_the_new_per_share_fields():
+    """T-PY-8 (06 §1.2, rebase B9): across a split since scoring the rulings' per-share figures of the run are divided by
+    the factor — every base_alternatives base, the saved method runs, the previous score, a declared bridge's
+    per-ordinary-share figure, the fade counterfactual's IV — and the bridge's share counts multiplied; facts.json values
+    (source quotes) and the moat's volume x price figures are not restated."""
+    me = _example("moat_scorecard_consumer_subscription.json")["expected_moat_evidence"]
+    me = dict(me, fade={"version": 1, "status": "measured", "trend": "stable", "hold_years": 2, "in_sync": True,
+                        "counterfactual": [{"hold_years": 0, "irr_weighted": 0.12, "iv_at_15": 150.0, "tier_by_numbers": "C", "report_only": False}]})
+    doc = dict(_example(os.path.join("facts", "TST", "facts.json")), ticker="APP")
+    extra = {"base_alternatives": _base_alts_bridge(), "moat_evidence": me,
+             "method_runs": [{"label": "prelim", "file": "dcf_numbers_prelim.json", "content_hash": "c" * 64, "as_of": "2026-10-13",
+                              "engine_release": "5.7.0", "base_oe_per_share": 9.0, "base_source": "ttm_json", "implied_irr": 0.15,
+                              "iv_at_15": 300.0, "tier_by_numbers": "B"}],
+             "previous_score": {"analysis_date": "2026-10-01", "engine_release": "5.4.0", "tier_final": "B", "tier_by_numbers": "B",
+                                "implied_irr": 0.17, "iv_at_15": 280.0, "base_oe_per_share": 8.5, "dcf_content_hash": None}}
+    new_div = ("score.base_alternatives.bases.*.base_oe_per_share", "score.method_runs.*.base_oe_per_share", "score.method_runs.*.iv_at_15",
+               "score.previous_score.base_oe_per_share", "score.previous_score.iv_at_15", "ttm.ttm_oe_per_ordinary_share",
+               "score.moat_evidence.fade.counterfactual.*.iv_at_15")
+    new_mul = ("ttm.shares.current_interim.value", "ttm.shares.fy_diluted")
+    with TempBase() as tb:
+        tb.write_json("APP", "score.json", obj=dict(B.jload(os.path.join(tb.dir, "APP", "score.json")), **extra))
+        tb.write_json("APP", "facts.json", obj=doc)
+        tb.write_json("APP", "ttm.json", obj=_declared_interim_ttm(B.jload(os.path.join(tb.dir, "APP", "ttm.json"))))
+        tb.build()
+        a = tb.record("APP")
+        live = B.jload(os.path.join(tb.dir, "APP", "live.json"))
+        tb.write_json("APP", "live.json", obj=_split_live(live))
+        tb.build()
+        b = tb.record("APP")
+        assert b["split_restated"]["factor"] == 2.0
+        for path in new_div:
+            assert path in B.SPLIT_DIVIDE, path
+            va, vb = _at(a, path), _at(b, path)
+            assert va and set(va) == set(vb) and all(_isclose(vb[k], va[k] / 2) for k in va), (path, va, vb)
+            assert path in b["split_restated"]["fields"], path
+        for path in new_mul:
+            assert path in B.SPLIT_MULTIPLY, path
+            va, vb = _at(a, path), _at(b, path)
+            assert va and all(_isclose(vb[k], va[k] * 2) for k in va), (path, va, vb)
+        assert b["facts"] == a["facts"] == doc, "declared facts are source quotes: never restated"
+        assert b["score"]["moat_evidence"]["volume_price"] == a["score"]["moat_evidence"]["volume_price"]
+        for k in ("weighted_irr", "tier_by_numbers", "base_change_pct"):
+            assert [x.get(k) for x in b["score"]["base_alternatives"]["bases"]] == [x.get(k) for x in a["score"]["base_alternatives"]["bases"]], k
+
+
+def _declared_share_classes():
+    """dcf_numbers.json / ttm.json / score.json share_classes records of a declared Up-C (design 08 §7.1, §8.5; VNOM-shaped)."""
+    applied = [{"period_end": "2025-12-31", "filed_traded": 142530000, "declared_units": 197117368, "units_split_factor": 1.0,
+                "units_split_basis": "no_split", "units_equivalent": 197117368.0, "total_units": 339647368.0, "included_units": 0.0,
+                "diluted_minus_basic": 0.0, "exchange_test": {"test": "passed"}, "classes": [{"name": "Class B", "value": 197117368, "exchange_ratio": 1.0}]}]
+    numbers = {"declared": True, "basis": "up_c_exchangeable_units", "declaration_sha256": "d" * 64, "traded_class": "Class A",
+               "classes": [{"name": "Class B", "holder": "Parent", "exchange_ratio": 1.0}], "applied": applied,
+               "ttm": {"period_end": "2026-06-30", "filed_traded": 187553000, "units_equivalent": 171536228.0, "total_units": 359089228.0,
+                       "ttm_oe_per_share": 4.143816867711776, "ttm_oe_per_share_filed_basis": 7.933757391244075},
+               "latest": {"period_end": "2025-12-31", "filed_traded": 142530000, "units_equivalent": 197117368.0, "total_units": 339647368.0,
+                          "declared_share_of_total": 0.5804},
+               "nci_check": {"nci_share_of_equity": 0.5708, "declared_share_of_total": 0.5804, "agrees": True},
+               "cap_check": {"cap_ratio": 2.5201, "universe_price": 42.99, "declared_uplift": 1.383, "band": 0.05, "gap": False},
+               "included_periods": [], "counterfactual": False}
+    ttm = {"filed_traded": 187553000, "units_equivalent": 171536228.0, "total_units": 359089228.0, "included_units": 0.0,
+           "classes": [{"name": "Class B", "value": 171536228}], "declaration_sha256": "d" * 64}
+    score = {"basis": "up_c_exchangeable_units", "base_used": "ttm", "replay_pin": 7.933757391244075, "base_oe_filed_basis": 7.9338,
+             "base_oe_total_units": 4.1438, "base_oe_impact_pct": -47.77, "weighted_irr_filed_basis": 0.2505, "weighted_irr_total_units": 0.1502,
+             "tier_filed_basis": "S", "tier_total_units": "B", "market_cap_filed_basis": 6416700600.0, "market_cap_total_units": 15290924507.36,
+             "latest": {"filed_traded": 142530000, "units_equivalent": 197117368, "total_units": 339647368, "declared_share_of_total": 0.5804},
+             "ttm": {"filed_traded": 187553000, "units_equivalent": 171536228, "total_units": 359089228}, "measured": True}
+    return numbers, ttm, score
+
+
+def test_split_restates_declared_share_class_figures():
+    """Design 08 §10 T-PY (R6): a declared share-class record after a 2:1 split — every listed count doubled, every listed
+    per-share figure halved (the filed-basis TTM, the universe price, the replay pin, both measured bases), the ratios,
+    caps, IRRs and tiers unchanged; the row's share_basis is total_units."""
+    nsc, tsc, ssc = _declared_share_classes()
+    with TempBase() as tb:
+        n = B.jload(os.path.join(tb.dir, "APP", "dcf_numbers.json"))
+        tb.write_json("APP", "dcf_numbers.json", obj=dict(n, share_classes=nsc, up_c_check={"suspect": True, "universe_price": 42.99, "suppressed_by": "share_classes"},
+                                                          market_cap_basis=dict(n.get("market_cap_basis") or {}, traded_shares=142530000, declared_units=197117368)))
+        tb.write_json("APP", "ttm.json", obj=dict(B.jload(os.path.join(tb.dir, "APP", "ttm.json")), share_classes=tsc, ttm_shares_diluted_filed=187553000,
+                                                  ttm_oe_per_share_filed_basis=7.933757391244075))
+        tb.write_json("APP", "score.json", obj=dict(B.jload(os.path.join(tb.dir, "APP", "score.json")), share_classes=ssc))
+        tb.build()
+        a = tb.record("APP")
+        assert a["row"]["share_basis"] == "total_units" and tb.record("KR")["row"]["share_basis"] is None
+        tb.write_json("APP", "live.json", obj=_split_live(B.jload(os.path.join(tb.dir, "APP", "live.json"))))
+        tb.build()
+        b = tb.record("APP")
+        mul = [p for p in B.SPLIT_MULTIPLY if "share_classes" in p or p.startswith("numbers.market_cap_basis") or p == "ttm.ttm_shares_diluted_filed"]
+        div = [p for p in B.SPLIT_DIVIDE if "share_classes" in p or "up_c_check" in p or "filed_basis" in p]
+        assert len(mul) >= 25 and len(div) >= 8, (len(mul), len(div))
+        hit_m = hit_d = 0
+        for p in mul:
+            va, vb = _at(a, p), _at(b, p)
+            assert set(va) == set(vb) and all(_isclose(vb[k], va[k] * 2) for k in va), (p, va, vb)
+            hit_m += bool(va)
+        for p in div:
+            va, vb = _at(a, p), _at(b, p)
+            assert set(va) == set(vb) and all(_isclose(vb[k], va[k] / 2) for k in va), (p, va, vb)
+            hit_d += bool(va)
+        assert hit_m >= 15 and hit_d >= 6, (hit_m, hit_d)
+        assert _at(b, "numbers.share_classes.applied.*.classes.*.value") == {k: v * 2 for k, v in _at(a, "numbers.share_classes.applied.*.classes.*.value").items()}
+        for p in ("numbers.share_classes.latest.declared_share_of_total", "numbers.share_classes.classes.*.exchange_ratio",
+                  "numbers.share_classes.cap_check.cap_ratio", "numbers.share_classes.nci_check.nci_share_of_equity",
+                  "score.share_classes.market_cap_total_units", "score.share_classes.weighted_irr_total_units",
+                  "score.share_classes.latest.declared_share_of_total", "numbers.share_classes.applied.*.units_split_factor"):
+            assert _at(a, p) and _at(a, p) == _at(b, p), p
+        assert b["score"]["share_classes"]["tier_total_units"] == "B"
+
+
+def test_base_alternatives_pass_through():
+    """T-PY-R7 (design 11 §7.4): score.json base_alternatives reaches data/<T>.json verbatim (build_record passes the score
+    through); a pre-5.7 score has none and the record carries none."""
+    rejected = {"schema": 1, "published": "annual_median", "stale_fy": True,
+                "ttm_rejection_reason": "median +$16.14/sh Tier C vs TTM −$3.48/sh on a half-year working-capital trough",
+                "bases": [{"kind": "annual_median", "role": "published", "computed": True, "measured": True, "base_oe_per_share": 16.1404,
+                           "weighted_irr": 0.1033, "tier_by_numbers": "C", "source": "median_of_last_3_fy_oe_per_share", "why": "ttm_rejected"},
+                          {"kind": "ttm", "role": "rejected", "computed": True, "measured": True, "base_oe_per_share": -3.4772,
+                           "weighted_irr": None, "tier_by_numbers": "F", "f_subtype": "no_cash_generation", "base_change_pct": -121.54,
+                           "tier_changed": True, "why": "rejection_reason"}],
+                "replays": 1, "measured": True, "note": None, "impact_carried_from_prior_score": False, "counterfactual_engine_release": None}
+    with TempBase() as tb:
+        tb.write_json("KR", "score.json", obj=dict(B.jload(os.path.join(tb.dir, "KR", "score.json")), base_alternatives=rejected))
+        tb.build()
+        assert tb.record("KR")["score"]["base_alternatives"] == rejected
+        assert "base_alternatives" not in tb.record("APP")["score"]
+
+
+def test_score_from_run_record():
+    """Rebase B5: record.score_from_run is build_site.score_from_run's answer ({matches, mismatches} — at most five, each at
+    most 200 characters), the Data tab's "Content hash" line reads it instead of comparing the hashes itself."""
+    with TempBase() as tb:
+        tb.build()
+        assert tb.record("APP")["score_from_run"] == {"matches": True, "mismatches": []}
+        n = B.jload(os.path.join(tb.dir, "APP", "dcf_numbers.json"))
+        tb.write_json("APP", "dcf_numbers.json", obj=dict(n, implied_irr_weighted=n["implied_irr_weighted"] + 0.01, engine_release="9.9.9",
+                                                          as_of="2026-10-20", price=n["price"] + 1))
+        tb.build()
+        sfr = tb.record("APP")["score_from_run"]
+        assert sfr["matches"] is False and 1 <= len(sfr["mismatches"]) <= 5 and all(len(m) <= 200 for m in sfr["mismatches"]), sfr
+        assert any("implied_irr" in m for m in sfr["mismatches"]) or any("analysis_date" in m for m in sfr["mismatches"])
+    rec = B.score_run_record({"dcf_content_hash": "x" * 300}, {"content_hash": "y"})
+    assert rec["matches"] is False and all(len(m) <= 200 for m in rec["mismatches"]) and len(rec["mismatches"]) <= 5
+
+
+def test_history_csv_moat_columns():
+    """T-PY-10 (03b §7.1, 10 §4): the moat record columns sit after tier_notched in that order; an unbounded median is
+    `inf`, a loss on non-positive capital `-inf`, an unmeasured one blank; float() parses inf / -inf; moat_trend and
+    hold_years close the row (blank trend / 2 before 5.7)."""
+    cols = list(B.HISTORY_COLUMNS)
+    assert cols[cols.index("tier_notched") + 1:] == ["moat_score", "moat_evidence_score", "moat_return_measure", "moat_return_median",
+                                                       "moat_sources", "moat_widest_source", "moat_trend", "hold_years"], cols
+    base = {"irr": 0.1, "moat": 6.0}
+    rows = [dict(base, ticker="U", moat_evidence={"score": 7.123, "measure": "roic", "return_median": None, "return_note": "unbounded_high",
+                                                 "sources": 2, "widest": "wide", "fade_trend": "eroding", "hold_years": 0}),
+            dict(base, ticker="L", moat_evidence={"score": 3.0, "measure": "roic_tangible", "return_median": None,
+                                                 "return_note": "loss_on_nonpositive_capital", "sources": None, "widest": None, "hold_years": 2}),
+            dict(base, ticker="N", moat_evidence={"score": None, "measure": None, "return_median": None, "return_note": None,
+                                                 "sources": None, "widest": None, "fade_trend": None, "hold_years": 2}),
+            dict(base, ticker="M", moat_evidence={"score": 5.5, "measure": "roe", "return_median": 0.1234567, "return_note": None,
+                                                 "sources": 1, "widest": "narrow", "fade_trend": "widening", "hold_years": 3}),
+            dict(base, ticker="Z")]
+    out = {r[1]: dict(zip(cols, r)) for r in B.history_rows(rows)}
+    assert all(len(r) == len(cols) for r in B.history_rows(rows))
+    u, l, nn, m, z = out["U"], out["L"], out["N"], out["M"], out["Z"]
+    assert (u["moat_score"], u["moat_evidence_score"], u["moat_return_measure"], u["moat_return_median"]) == ("6", "7.12", "roic", "inf")
+    assert l["moat_return_median"] == "-inf" and nn["moat_return_median"] == "" and m["moat_return_median"] == "0.123457"
+    assert float(u["moat_return_median"]) == float("inf") and float(l["moat_return_median"]) == float("-inf")
+    assert (u["moat_trend"], u["hold_years"], m["moat_trend"], m["hold_years"], nn["moat_trend"], nn["hold_years"]) == ("eroding", "0", "widening", "3", "", "2")
+    assert (z["moat_score"], z["moat_evidence_score"], z["moat_return_median"], z["moat_trend"], z["hold_years"]) == ("6", "", "", "", "2"), "no moat evidence"
+
+
+def test_history_csv_moat_sources_blank_vs_zero():
+    """T-PY-11 (03b §7.1): a record with no declared scorecard leaves moat_sources / moat_widest_source BLANK (not declared
+    is not "no source"); a declared scorecard with zero sources writes 0 / none; two sources, one wide, 2 / wide."""
+    cols = list(B.HISTORY_COLUMNS)
+    rows = [{"ticker": "LEG", "irr": 0.1, "moat_evidence": {"sources": None, "widest": None}},
+            {"ticker": "ZERO", "irr": 0.1, "moat_evidence": {"sources": 0, "widest": "none"}},
+            {"ticker": "TWO", "irr": 0.1, "moat_evidence": {"sources": 2, "widest": "wide"}}]
+    out = {r[1]: dict(zip(cols, r)) for r in B.history_rows(rows)}
+    assert (out["LEG"]["moat_sources"], out["LEG"]["moat_widest_source"]) == ("", "")
+    assert (out["ZERO"]["moat_sources"], out["ZERO"]["moat_widest_source"]) == ("0", "none")
+    assert (out["TWO"]["moat_sources"], out["TWO"]["moat_widest_source"]) == ("2", "wide")
+    # the summary itself: a report-only record (no scorecard) has sources null; a declared one its count
+    leg = B.moat_summary({"moat_evidence": {"status": "report_only", "sources": {"declared": False, "count": None, "widest": None}}})
+    dec = B.moat_summary({"moat_evidence": {"status": "checked", "sources": {"declared": True, "count": 0, "widest": "none"}}})
+    assert (leg["sources"], leg["widest"], dec["sources"], dec["widest"]) == (None, None, 0, "none")
+
+
+def test_moat_summary_keys():
+    """T-PY-12 (03b §7.2 + 10 §4): the row summary carries every key with the right types; industry is null when the
+    industry pillar is insufficient_data; the JSON has no Infinity."""
+    me = _example("moat_scorecard_consumer_subscription.json")["expected_moat_evidence"]
+    types_ = {"score": (float, type(None)), "status": (str, type(None)), "within_tolerance": (bool, type(None)), "divergence": (float, type(None)),
+              "core_score": (float, type(None)), "supporting_adjustment": (float, type(None)), "measure": (str, type(None)),
+              "return_median": (float, type(None)), "return_note": (str, type(None)), "sources": (int, type(None)),
+              "widest": (str, type(None)), "flags": list, "industry": (dict, type(None)), "fade_trend": (str, type(None)),
+              "fade_in_sync": (bool, type(None)), "fade_direction": (str, type(None)), "hold_years": (int, type(None))}
+    s = B.moat_summary({"moat_evidence": me}, {})
+    assert set(s) == set(types_), sorted(set(s) ^ set(types_))
+    _check_types(s, types_, "moat_summary")
+    assert set(s["industry"]) == {"code", "level", "label", "ladder", "peers", "rank", "of"}
+    me2 = json.loads(json.dumps(me))
+    me2["pillars"]["industry_structure"] = {"source": "mechanical", "status": "insufficient_data", "reason": "4 peers (< 5)"}
+    me2["governing"] = {"measure": "roic", "median": None, "median_note": "unbounded_high"}
+    s2 = B.moat_summary({"moat_evidence": me2}, {"inputs": {"moat_trend": "eroding", "hold_years": 0}})
+    assert s2["industry"] is None and s2["return_median"] is None and s2["return_note"] == "unbounded_high"
+    assert (s2["fade_trend"], s2["hold_years"]) == ("eroding", 0)
+    json.dumps(s2, allow_nan=False)
+    assert B.moat_summary({}) is None and B.moat_summary({"moat_evidence": []}) is None
+
+
+def test_meta_counts_moat_eroding():
+    """T-PY-13 (03b §7.2, 10 §4): meta.counts.moat_eroding / moat_widening count the rows whose moat_evidence flags carry
+    MOAT_EROSION / MOAT_WIDENING."""
+    me = _example("moat_scorecard_consumer_subscription.json")["expected_moat_evidence"]
+    with TempBase() as tb:
+        tb.clone("APP", "ER1", **{"score.json": lambda s: dict(s, moat_evidence=dict(me, flags=["MOAT_EROSION"]))})
+        tb.clone("APP", "ER2", **{"score.json": lambda s: dict(s, moat_evidence=dict(me, flags=["MOAT_EROSION", "IPRD_CHARGE_IN_WINDOW"]))})
+        tb.clone("APP", "WID", **{"score.json": lambda s: dict(s, moat_evidence=dict(me, flags=["MOAT_WIDENING"]))})
+        tb.build(only=TICKERS + ["ER1", "ER2", "WID"])
+        c = tb.read("meta.json")["counts"]
+        assert c["moat_eroding"] == 2 and c["moat_widening"] == 1 and c["moat_checked"] == 3, c
+
+
+def _hold0(n):
+    """dcf_numbers.json of a 5.7 run whose moat trend is eroding (M6): hold 0 on the scenarios above terminal growth."""
+    scn = {k: dict(v, hold_years=(0 if k in ("base", "bull", "super_bull") else 2)) for k, v in (n.get("scenarios") or {}).items()}
+    return dict(n, moat_trend="eroding", hold_years=0, scenarios=scn,
+                inputs=dict(n.get("inputs") or {}, moat_trend="eroding", hold_years=0, hold_rule="above_terminal"))
+
+
+def test_forecast_hold_fields():
+    """T24 (design 10 §4, §7): forecast.hold_years / moat_trend / hold_by_scenario from the engine record (legacy: 2 / null /
+    null); the row's moat_evidence.fade_trend is the ENGINE's trend (never moat_evidence.fade.trend, which make_score
+    re-measures) beside fade_in_sync / fade_direction / hold_years — the drift fixture keeps "eroding" beside a fade that
+    now reads stable; the history CSV's moat_trend / hold_years."""
+    me = _example("moat_scorecard_consumer_subscription.json")["expected_moat_evidence"]
+    drift = dict(me, fade={"version": 1, "status": "measured", "direction": "flat", "trend": "stable", "hold_years": 2,
+                           "in_sync": False, "engine": {"moat_trend": "eroding", "hold_years": 0, "source": "inputs"}},
+                 gate_drift=[{"gate": "fade_sync", "was": "eroding", "now": "stable"}])
+    with TempBase() as tb:
+        tb.clone("APP", "HZ", **{"dcf_numbers.json": _hold0, "score.json": lambda s: dict(s, moat_evidence=drift)})
+        res = tb.build(only=TICKERS + ["HZ"], attachment=True, prerender=False, now=datetime.datetime(2026, 10, 21, 19, 7, tzinfo=B.NY))
+        fc = tb.record("HZ")["forecast"]
+        assert fc["hold_years"] == 0 and fc["moat_trend"] == "eroding", (fc["hold_years"], fc["moat_trend"])
+        assert fc["hold_by_scenario"] == {"super_bear": 2, "bear": 2, "base": 0, "bull": 0, "super_bull": 0}, fc["hold_by_scenario"]
+        for t in TICKERS:
+            f = tb.record(t)["forecast"]
+            assert f["hold_years"] == 2 and f["moat_trend"] is None and f["hold_by_scenario"] is None, t
+        m = tb.record("HZ")["row"]["moat_evidence"]
+        assert (m["fade_trend"], m["fade_in_sync"], m["fade_direction"], m["hold_years"]) == ("eroding", False, "flat", 0), m
+        hist = {r[1]: dict(zip(B.HISTORY_COLUMNS, r)) for r in _read_csv(res["history"][0])[1][1:]}
+        assert (hist["HZ"]["moat_trend"], hist["HZ"]["hold_years"]) == ("eroding", "0")
+        assert (hist["APP"]["moat_trend"], hist["APP"]["hold_years"]) == ("", "2")
+    # the local fallback when the engine lacks the reader (lane L3b not merged): the same reads
+    assert B.recorded_hold_years({}) == 2 and B.recorded_hold_years({"inputs": {"hold_years": 3}}) == 3
+    assert B.recorded_hold_years({"hold_years": "x"}) is None and B.engine_moat_trend({"moat_trend": "widening"}) == "widening"
+    assert B.engine_moat_trend({"inputs": {"moat_trend": "bogus"}}) is None
+
+
+def test_every_committed_folder_builds_with_the_new_fields():
+    """T-PY-9 (compatibility, rebase B15): every folder of the real base builds into a temp --site-dir with the rulings'
+    fields: no failure, every qualifying folder written (the count is computed, never pinned), every row's tier_override
+    == (tier != the published numbers tier) and tier_notched == misfit_notch.applies, every record strict JSON with a
+    quote_check status of the four. While no committed score.json carries misfit_notch (before the R5 rebuild data PR)
+    every row's tier_override equals the old value and no row is notched."""
+    t0 = time.time()
+    qualifying, seen = 0, set()
+    for p in sorted(glob.glob(os.path.join(BASE, "*", "score.json"))):
+        fname = os.path.basename(os.path.dirname(p))
+        if fname.startswith(("_", ".")):
+            continue
+        c = B.load_light(os.path.dirname(p))
+        if not c["score"]:
+            continue
+        t = B.ticker_key(c)
+        if t in seen:
+            continue
+        seen.add(t)
+        qualifying += bool(B.qualifies(c))
+    any_block = any(isinstance(B.jload(p), dict) and "misfit_notch" in B.jload(p) for p in glob.glob(os.path.join(BASE, "*", "score.json")))
+    site = tempfile.mkdtemp(prefix="build_site_all_")
+    try:
+        res = B.build(base=BASE, site_dir=os.path.join(site, "site"), quiet=True, prerender=False)
+        assert res["failed"] == [], res["failed"]
+        assert len(res["written"]) == qualifying and qualifying > 400, (len(res["written"]), qualifying)
+        statuses = set()
+        for r in res["rows"]:
+            pub = B.published_numbers_tier(r["tier_by_numbers"], r["misfit_notch"])
+            assert r["tier_override"] == bool(r["tier_by_numbers"] and r["tier"] != pub), r["ticker"]
+            assert r["tier_notched"] == bool(r["misfit_notch"] and r["misfit_notch"]["applies"]), r["ticker"]
+            if not any_block:
+                assert r["misfit_notch"] is None and r["tier_override"] == bool(r["tier_by_numbers"] and r["tier"] != r["tier_by_numbers"])
+        for f in glob.glob(os.path.join(site, "site", "data", "*.json")):
+            if f.endswith(B.STATEMENTS_SUFFIX):
+                continue
+            rec = strict_json(f)
+            q = rec["quote_check"]
+            assert q is None or q["status"] in ("pass", "fail", "legacy", "error"), (f, q)
+            statuses.add(q["status"] if q else None)
+            assert rec["score_from_run"]["matches"] in (True, False)
+        assert "legacy" in statuses, statuses
+        print(f"  (T-PY-9: {qualifying} folders built in {time.time() - t0:.0f} s; quote_check statuses {sorted(map(str, statuses))})")
+    finally:
+        shutil.rmtree(site, ignore_errors=True)
 
 
 if __name__ == "__main__":

@@ -10,7 +10,11 @@
    mirrored because they change what the page shows: a live.json older than the scored analysis is
    withheld (liveShown → record.live null, record.live_withheld, row.live_withheld), and a split since
    scoring restates the run's per-share figures and share counts (liveSplit / restateSplit →
-   record.split_restated, row.split_restated). */
+   record.split_restated, row.split_restated).
+   Engine 5.7 rulings (lane L6): the row rules build_site applies are mirrored too — tier_override is a judgment
+   override BEYOND the sector-misfit notch (R1; tier_notched, misfit_notch, the live notch from a shown live.json), the
+   moat_evidence / interim_bridge summaries, share_basis (R6) and has.facts; the record carries facts.json verbatim
+   (record.facts), quote_check null (the checker is Python) and the forecast's recorded growth hold (M6). */
 const fs = require('node:fs');
 const path = require('node:path');
 
@@ -100,8 +104,54 @@ const SPLIT_DIVIDE = [].concat(
   IVK.map((k) => 'numbers.scenarios.*.' + k), IVK.map((k) => 'numbers.weighted.' + k),
   ['numbers.hurdle_prices.*', 'numbers.inputs.base_oe_ps_arg', 'numbers.override_impact.base_oe_per_share_zero_fill', 'numbers.override_impact.base_oe_per_share_final'],
   ['forecast.paths.*.*', 'forecast.hurdle_prices.*', 'forecast.inputs.base_oe_ps_arg'], RATES.map((r) => 'forecast.sensitivity.*.' + r),
-  ['price', 'iv15', 'iv12', 'iv20', 'iv25'].map((k) => 'row.' + k), ['ttm.ttm_oe_per_share']);
-const SPLIT_MULTIPLY = ['numbers.shares_diluted_latest', 'history.*.shares_diluted', 'ttm.ttm_shares_diluted'];
+  ['price', 'iv15', 'iv12', 'iv20', 'iv25'].map((k) => 'row.' + k), ['ttm.ttm_oe_per_share'],
+  // engine 5.7 rulings (build_site's lists, the subset a fixture can carry)
+  ['score.base_alternatives.bases.*.base_oe_per_share', 'score.method_runs.*.base_oe_per_share', 'score.method_runs.*.iv_at_15',
+   'score.previous_score.base_oe_per_share', 'score.previous_score.iv_at_15', 'ttm.ttm_oe_per_ordinary_share']);
+const SPLIT_MULTIPLY = ['numbers.shares_diluted_latest', 'history.*.shares_diluted', 'ttm.ttm_shares_diluted',
+  'ttm.shares.current_interim.value', 'ttm.shares.fy_diluted'];
+const TIERS = ['S', 'A', 'B', 'C', 'D', 'F'];
+function tierOf(v) { return TIERS.indexOf(v) >= 0 ? v : null; }
+/* build_site.notch_summary / live_notch / published_numbers_tier / moat_summary / interim_summary / share_basis */
+function notchSummary(mn) {
+  if (!isObj(mn)) return null;
+  const s = (k) => (typeof mn[k] === 'string' ? mn[k] : null);
+  return { applies: mn.applies === true, tier_by_numbers: tierOf(mn.tier_by_numbers), tier_after_notch: tierOf(mn.tier_after_notch), reason_source: s('reason_source'), not_applied: s('not_applied') };
+}
+function liveNotch(lv) {
+  const m = isObj(lv) && isObj(lv.misfit_notch) ? lv.misfit_notch : null;
+  return m ? Object.assign(notchSummary(m), { basis: typeof m.basis === 'string' ? m.basis : null }) : null;
+}
+function publishedNumbersTier(tbn, notch) { return notch && notch.applies && notch.tier_after_notch ? notch.tier_after_notch : tbn; }
+function engineTrend(numbers) {
+  const i = isObj(numbers.inputs) ? numbers.inputs : {};
+  for (const v of [i.moat_trend, numbers.moat_trend]) if (['eroding', 'stable', 'widening'].indexOf(v) >= 0) return v;
+  return null;
+}
+function holdYears(numbers) {
+  for (const src of [isObj(numbers.inputs) ? numbers.inputs : {}, numbers]) if ('hold_years' in src) return Number.isInteger(src.hold_years) && src.hold_years >= 0 ? src.hold_years : null;
+  return 2;
+}
+function moatSummary(score, numbers) {
+  const me = isObj(score.moat_evidence) ? score.moat_evidence : null; if (!me) return null;
+  const gov = isObj(me.governing) ? me.governing : {}, src = isObj(me.sources) ? me.sources : {}, ind = isObj(me.pillars) && isObj(me.pillars.industry_structure) ? me.pillars.industry_structure : {};
+  const fade = isObj(me.fade) ? me.fade : {}, st = (o, k) => (typeof o[k] === 'string' ? o[k] : null), int = (v) => (Number.isInteger(v) ? v : null), dec = src.declared === true;
+  return { score: n(me.evidence_score), status: st(me, 'status'), within_tolerance: typeof me.within_tolerance === 'boolean' ? me.within_tolerance : null, divergence: n(me.divergence),
+    core_score: n(me.core_evidence_score), supporting_adjustment: n(me.supporting_adjustment), measure: st(gov, 'measure'), return_median: n(gov.median), return_note: st(gov, 'median_note'),
+    sources: dec ? int(src.count) : null, widest: dec ? st(src, 'widest') : null, flags: (Array.isArray(me.flags) ? me.flags : []).map(String),
+    industry: ind.status === 'measured' ? { code: st(ind, 'group'), level: int(ind.level), label: st(ind, 'label'), ladder: st(ind, 'ladder'), peers: int(ind.peers), rank: int(ind.rank), of: int(ind.of) } : null,
+    fade_trend: engineTrend(numbers), fade_in_sync: typeof fade.in_sync === 'boolean' ? fade.in_sync : null, fade_direction: st(fade, 'direction'), hold_years: holdYears(numbers) };
+}
+function interimSummary(score) {
+  const ib = isObj(score.interim_bridge) ? score.interim_bridge : null; if (!ib) return null;
+  const alts = isObj(score.base_alternatives) ? score.base_alternatives : {}, by = {};
+  (Array.isArray(alts.bases) ? alts.bases : []).forEach((b) => { if (isObj(b) && !(b.kind in by)) by[b.kind] = b; });
+  const pub = by.declared_interim || (isObj(ib.bridged) ? ib.bridged : {}), med = by.annual_median || (isObj(ib.annual_median) ? ib.annual_median : {});
+  const measured = typeof med.measured === 'boolean' ? med.measured : (Object.keys(alts).length ? alts.measured : ib.measured);
+  return { tier_bridged: tierOf(pub.tier_by_numbers), tier_annual_median: tierOf(med.tier_by_numbers), estimate_legs: (Array.isArray(ib.estimate_legs) ? ib.estimate_legs : []).length,
+    measured: measured === true, published_base: typeof alts.published === 'string' ? alts.published : null };
+}
+function shareBasis(numbers) { const sc = isObj(numbers.share_classes) ? numbers.share_classes : {}; return sc.declared === true && !sc.counterfactual ? 'total_units' : null; }
 function fmtG(f) { return String(Number(Number(f).toPrecision(6))); } // Python's {:g} for a split factor
 function liveSplit(lv) {
   if (!isObj(lv)) return { factor: null, label: null };
@@ -158,9 +208,15 @@ function assemble(base, ticker) {
   const liveIrr = live ? n(live.irr_weighted) : null;
   const liveUp = live && n(live.iv_at_15) !== null && n(live.price) ? (n(live.iv_at_15) / n(live.price) - 1) * 100 : null;
   const st = (prices && prices.stats) || {};
+  const facts = jload(path.join(dir, 'facts.json'));
+  const mn = notchSummary(score.misfit_notch), tierShown = score.tier_final || score.tier_by_numbers;
   const row = {
     ticker: score.ticker, name: score.name, sector: score.sector, fit,
-    tier: score.tier_final || score.tier_by_numbers, tier_by_numbers: score.tier_by_numbers, tier_override: !!(score.tier_by_numbers && score.tier_final && score.tier_final !== score.tier_by_numbers),
+    // R1: a judgment override BEYOND the sector-misfit notch (build_site.index_row)
+    tier: tierShown, tier_by_numbers: score.tier_by_numbers, tier_override: !!(score.tier_by_numbers && tierShown !== publishedNumbersTier(score.tier_by_numbers, mn)),
+    tier_notched: !!(mn && mn.applies), misfit_notch: mn,
+    tier_by_numbers_live: live ? tierOf(live.tier_by_numbers) : null, misfit_notch_live: live ? liveNotch(live) : null,
+    moat_evidence: moatSummary(score, numbers), interim_bridge: interimSummary(score), share_basis: shareBasis(numbers),
     tier_live: live ? live.tier || null : null, tier_bear: score.tier_bear || (live && live.tier_bear) || null, tier_bull: score.tier_bull || (live && live.tier_bull) || null,
     irr: n(score.implied_irr), irr_live: liveIrr, irr_bear: n(score.irr_bear !== undefined ? score.irr_bear : (live && live.irr_bear)), irr_bull: n(score.irr_bull !== undefined ? score.irr_bull : (live && live.irr_bull)),
     irr_at_floor: !!score.irr_at_floor, irr_capped: !!score.irr_capped, f_subtype: score.f_subtype || null,
@@ -175,7 +231,8 @@ function assemble(base, ticker) {
     one_liner: score.one_liner, analysis_date: score.analysis_date, engine_release: score.engine_release || null,
     flags: score.fragility_flags || [], overrides: (score.overrides || []).map((o) => ({ field: o.field, kind: o.kind })), override_unblocks_tier: !!((score.override_impact || {}).unblocks_tier),
     second_pass: score.second_pass || null, alert_eligible: !!score.alert_eligible, dividend_yield: null, shareholder_yield: null,
-    has: { prices: !!prices, fundamentals: !!fundamentals, dividends: !!(fundamentals && fundamentals.dividends), segments: !!segments, live: !!live, analysis: fs.existsSync(path.join(dir, 'analysis.md')), second_pass: fs.existsSync(path.join(dir, 'second_pass.md')) }
+    has: { prices: !!prices, fundamentals: !!fundamentals, dividends: !!(fundamentals && fundamentals.dividends), segments: !!segments, live: !!live, analysis: fs.existsSync(path.join(dir, 'analysis.md')), second_pass: fs.existsSync(path.join(dir, 'second_pass.md')),
+      facts: isObj(facts) }
   };
   const rec = {
     ticker: score.ticker, name: score.name, sector: score.sector, folder: ticker, built_at: new Date().toISOString(), built_from_mtime: 0,
@@ -184,11 +241,12 @@ function assemble(base, ticker) {
       paths: numbers.paths || {}, growth_paths: numbers.growth_paths || {}, sensitivity: sens,
       hurdle_prices: numbers.hurdle_prices || null, inputs: numbers.inputs || {}, g_base: numbers.g_base, g_blend: numbers.g_blend, g_terminal: numbers.g_terminal, cap_years: numbers.cap_years,
       growth_components: numbers.growth_components || {}, growth_components_adjusted: numbers.growth_components_adjusted || null, share_cagr: numbers.share_cagr, share_count_adj: numbers.share_count_adj, share_adj_basis: numbers.share_adj_basis || null,
-      replayed: false
+      replayed: false, hold_years: holdYears(numbers), moat_trend: engineTrend(numbers),
+      hold_by_scenario: Object.keys(scn).some((k) => isObj(scn[k]) && 'hold_years' in scn[k]) ? Object.fromEntries(['super_bear', 'bear', 'base', 'bull', 'super_bull'].map((k) => [k, isObj(scn[k]) ? (scn[k].hold_years === undefined ? null : scn[k].hold_years) : null])) : null
     },
     live, live_withheld: shown.withheld, split_restated: null,
     history, fundamentals, prices: prices ? { source: prices.source, as_of: prices.as_of, stats: prices.stats, weekly: prices.weekly || [], daily_1y: prices.daily_1y || [] } : null,
-    segments, ttm, judgment, profile: profileOf(dir), registry: [],
+    segments, ttm, judgment, facts: isObj(facts) ? facts : null, quote_check: null, score_from_run: null, profile: profileOf(dir), registry: [],
     analysis_md: tread(path.join(dir, 'analysis.md')), second_pass_md: tread(path.join(dir, 'second_pass.md')),
     files: fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => !f.startsWith('.')).sort() : []
   };

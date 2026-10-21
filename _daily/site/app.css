@@ -172,3 +172,32 @@ ul.flags{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;g
 }
 @media (max-width:480px){.hstats{grid-template-columns:1fr} .hstat.big{grid-column:auto} .tabsum{gap:8px;font-size:13px}}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+/* engine 5.7 rulings (lane L6, design 06 §2.10): the misfit notch, the moat scorecard, declared facts, the quote check, the
+   interim bridge, base alternatives and share classes — every panel contained at 375px (no new min-width above 320px) */
+.notchchip{border-color:#3a4252} .notchline{margin:8px 0 0} .sub.asof{color:var(--warn);font-size:12px;white-space:nowrap}
+.bdg.nsrc,.bdg.auto,.bdg.decl,.bdg.na,.bdg.tp,.bdg.ok,.bdg.drift,.bdg.stale,.bdg.ty,.bdg.ib,.bdg.sc,.bdg.mflag{font-size:11.5px;margin:0 4px 0 0}
+.bdg.auto{background:#14302a;color:#5eead4;border-color:#115e59} .bdg.decl{background:#0b3b52;color:#7dd3fc;border-color:#155e75}
+.bdg.na{background:#2a2f3a;color:#9AA3B2;border-color:#3a4252} .bdg.tp,.bdg.stale{background:#3a2b0b;color:#fbbf24;border-color:#8a6d1f}
+.bdg.drift{background:#3b1414;color:#fca5a5;border-color:#7f1d1d} .bdg.ok{background:#12301c;color:#86efac;border-color:#166534} .bdg.ib{background:#2e1065;color:#c4b5fd;border-color:#6d28d9}
+.bdg.sc{background:#1e293b;color:#93c5fd;border-color:#1e40af} .bdg.mflag{background:#3b1414;color:#fca5a5;border-color:#7f1d1d} .bdg.str-wide{background:#12301c;color:#86efac;border-color:#166534} .bdg.str-narrow{background:#2a2f3a;color:#D9DDE4;border-color:#3a4252}
+.tbn{display:block;font-size:11px;color:var(--mut);white-space:nowrap}
+.mev{margin-top:14px;border-top:1px solid var(--line);padding-top:12px;min-width:0} .mev h3,.sub3{font-size:14px;margin:12px 0 4px;color:var(--txt2)}
+.mevbar{position:relative;height:26px;margin:10px 4px 4px} .mev-track{position:absolute;left:0;right:0;top:12px;height:2px;background:var(--line2)}
+.mev-tol{position:absolute;top:8px;height:10px;background:rgba(122,162,255,.18);border-radius:3px} .mevbar i{position:absolute;top:6px;width:14px;height:14px;margin-left:-7px;border-radius:50%}
+i.mev-moat{background:#C9D4FF} i.mev-ev{background:#5BD69C;border:2px solid #0C0E12} .mev-l0,.mev-l10{position:absolute;top:18px;font-size:11px;color:var(--mut)} .mev-l0{left:0} .mev-l10{right:0}
+.mevleg{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--mut)} .mevleg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px}
+.mmeas{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0;min-width:0} .mm{border:1px solid var(--line2);border-radius:8px;padding:4px 8px;font-size:12.5px;color:var(--txt2)} .mm.on{border-color:#7AA2FF;color:#fff} .mm i{font-style:normal;font-size:11px;color:#7AA2FF}
+.msrc{margin-top:10px;min-width:0} table.srct td{white-space:normal;overflow-wrap:anywhere}
+.pillars{display:flex;flex-direction:column;gap:2px;margin-top:8px} details.pillar{border-bottom:1px solid var(--line);min-width:0}
+details.pillar summary{display:grid;grid-template-columns:minmax(0,1fr) auto auto auto;gap:8px;align-items:center;padding:8px 0;cursor:pointer;list-style:none;min-height:38px}
+details.pillar summary::-webkit-details-marker{display:none} .pn{overflow-wrap:anywhere} .pw{font-size:11.5px;color:var(--mut)} .pscore{font-family:var(--mono);font-weight:600;min-width:2ch;text-align:right}
+.sdots{display:inline-flex;gap:2px;margin-left:4px;vertical-align:middle} .sdots i{width:7px;height:7px;border-radius:2px;background:var(--line2)} .sdots i.on.pos{background:#5BD69C} .sdots i.on.neg{background:#F08A4B} .sdots i.on.zero{background:#9AA3B2}
+.pbody{padding:0 0 10px;font-size:13px;color:var(--txt2);overflow-wrap:anywhere} .pbody p{margin:4px 0} ul.pfacts,ul.dfacts,ul.qlist{list-style:none;margin:6px 0 0;padding:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.kb{display:inline-block;border-radius:6px;padding:0 6px;font-size:11.5px;border:1px solid} .kb.k-folder{color:#86efac;border-color:#166534} .kb.k-filing{color:#93c5fd;border-color:#1e40af} .kb.k-release{color:#5eead4;border-color:#115e59} .kb.k-third_party{color:#fbbf24;border-color:#8a6d1f}
+ul.dfacts li{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--card2);min-width:0;overflow-wrap:anywhere}
+.dfh,.dfv,.dfs,.dfu{display:flex;flex-wrap:wrap;gap:6px;align-items:baseline} .dfv b{font-size:16px} code.fpath{font-size:12px;word-break:break-all;white-space:normal} .uf{border:1px solid var(--line2);border-radius:6px;padding:0 5px;font-size:11.5px;color:var(--mut)}
+blockquote.dfq{margin:6px 0 0;padding:4px 10px;border-left:3px solid var(--line2);color:var(--txt2);font-size:13px;overflow-wrap:anywhere}
+.vp{margin-top:12px;min-width:0} .vp h3{font-size:14px;margin:0 0 4px} .vpchart{height:200px} .vpclass{font-size:13px;color:var(--txt2);margin:6px 0}
+.qcheck{margin-bottom:12px} .qcheck.pass b{color:#86efac} .qcheck.fail b{color:#fca5a5} details.qcheck.legacy summary{color:var(--mut);font-size:13px;cursor:pointer} details.qcheck.legacy{margin:0 0 12px}
+a.flink{font-size:12px;margin-left:6px;white-space:nowrap} .ibnote,.scnote{margin-top:6px} .basealts{margin-top:10px;min-width:0} table.bat td{white-space:normal} table.stm td.rnote{color:var(--mut);font-family:var(--sans);font-size:12px;white-space:normal}
+details.nq summary{color:var(--mut);font-size:13px;cursor:pointer}
