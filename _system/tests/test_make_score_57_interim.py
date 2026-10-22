@@ -287,11 +287,19 @@ def test_bridge_pin_scores_and_measures_both_bases():
     assert len(ev) == 1, r.result["entries"]
     e = ev[0]
     assert e["declaration_hash"] == tt["declaration_hash"] and e["currency"] == "EUR" and e["report_accession"] == ACC
-    assert e["base_oe_bridged"] == pub["base_oe_per_share"] and e["base_oe_annual_median"] == med["base_oe_per_share"]
-    assert e["tier_bridged"] == pub["tier_by_numbers"] and e["tier_annual_median"] == med["tier_by_numbers"]
-    assert e["measured"] is True and e["perimeter_changes"][0] == {"kind": "demerger", "effective_date": "2025-12-06",
-                                                                   "resolution": "same_business_perimeter"}
+    assert e["perimeter_changes"][0] == {"kind": "demerger", "effective_date": "2025-12-06",
+                                         "resolution": "same_business_perimeter"}
     assert not set(e) & set(M.IPRD_DEFERRED_EVENT_KEYS)
+    # [R7, 11 §7.2] both bases, their IRRs and tiers are the base_alternatives event's (one record, not two shapes);
+    # the interim_bridge event keeps the declaration's descriptors
+    assert not {"base_oe_bridged", "base_oe_annual_median", "tier_bridged", "tier_annual_median", "measured"} & set(e), e
+    ba = [x for x in r.result["entries"] if x.get("event") == "base_alternatives"]
+    assert len(ba) == 1 and ba[0]["chosen"] == "declared_interim" and ba[0]["ttm_kind"] == "declared_interim", ba
+    assert ba[0]["ttm_ytd_end"] == "2026-06-30" and ba[0]["measured"] is True and ba[0]["reason"] is None, ba
+    assert [(b["kind"], b["role"], b["base_oe_per_share"], b["tier_by_numbers"]) for b in ba[0]["bases"]] == [
+        ("declared_interim", "published", pub["base_oe_per_share"], pub["tier_by_numbers"]),
+        ("annual_median", "alternative", med["base_oe_per_share"], med["tier_by_numbers"])], ba
+    assert not set(ba[0]) & set(M.IPRD_DEFERRED_EVENT_KEYS)
     # key_numbers.md
     assert '- Base source: ttm_json — the declared 6-K interim bridge (see "Interim bridge")' in key
     assert "## Interim bridge (declared 6-K TTM — the scored base)" in key
@@ -311,7 +319,10 @@ def test_bridge_pin_scores_and_measures_both_bases():
     assert "| Owner's earnings | | | | 320,000,000 | $364,301,098 |" in key
     assert ("- Shares (current-interim weighted average diluted): 617,000,000 × ADS ratio 1.0 → bridged base OE/share "
             "$0.5904 (scored)") in key
-    assert f"- Annual-median base (same configuration, measured): ${med['base_oe_per_share']:,.2f}" in key
+    # [R7, 11 §3.11] the both-bases comparison is the one "Base alternatives" section; "Interim bridge" points to it
+    assert '- Bases compared: see "Base alternatives"' in key and "Annual-median base (same configuration" not in key
+    assert (f"- Alternative: annual median of the last 3 FY OE/share ${med['base_oe_per_share']:,.2f} — weighted IRR "
+            f"{med['weighted_irr'] * 100:.2f}%") in key, key
     assert "estimates: capex_intangibles prior (fy_prorated: FY 3,000,000 × 181/365)" in key, key
     assert "demerger 2025-12-06 (material; same_business_perimeter: “" in key and "acquisition 2026-03-30 (immaterial; 2.3% of revenue)" in key
     assert "TTM_DECLARED_INTERIM" in key.split("## Fragility flags")[1].split("##")[0]
@@ -453,7 +464,8 @@ def test_release_mismatch_carries_or_not_measured_without_spawn():
     assert alts["measured"] is False and med["measured"] is False and med["weighted_irr"] is None
     assert alts["note"] == f"not measured: engine output predates release {E.ENGINE_RELEASE}; re-run the engine to measure"
     assert med["base_oe_per_share"] == round(n["base_oe_normalized_per_share"], 4)
-    ev = [e for e in r.result["entries"] if e["event"] == "interim_bridge"][0]
+    # [R7, 11 §7.2] the measurement's state is the base_alternatives event's
+    ev = [e for e in r.result["entries"] if e["event"] == "base_alternatives"][0]
     assert ev["measured"] is False and ev["note"].startswith("not measured")
     # a prior score measured on this declaration and base: carried
     c = score(n2, j, rows, t2, live=False, prior_score=good.result["score"])
@@ -527,7 +539,11 @@ def test_57_stale_foreign_needs_bridge_or_declined():
     # a 10-K filer, or no STALE_FY: no obligation. [Integrate L4] The judgment goes through Run's rulings57 obligations
     # (as `ok` above), so these 5.7 runs carry L3's moat scorecard; add_interim_declined adds nothing to them (neither
     # is a STALE_FY 20-F / 40-F record), so they still prove the interim obligation does not apply.
-    r10k = _with(dict(_foreign(), filer_annual_form="10-K", ads_ratio=None), dict(_judgment(None)))
+    # [R7] a STALE_FY 10-K median with no ttm.json quotes ttm.py's exit-3 message (default Q14; rulings57)
+    n10k = dict(_foreign(), filer_annual_form="10-K", ads_ratio=None)
+    j10k = dict(_judgment(None))
+    rulings57.add_ttm_unavailable(j10k, n10k, ttm=None, ticker="TST")
+    r10k = _with(n10k, j10k)
     assert r10k.rc == 0, r10k.err
     assert "interim_bridge_declined" not in r10k.result["score"], r10k.result["score"].get("interim_bridge_declined")
     rfresh = _with(dict(_foreign(), fragility_flags=[]), _fj())

@@ -164,6 +164,9 @@ class S:
                 json.dump({"entries": registry}, f, indent=1)
 
     def run(self):
+        # [R7] the STALE_FY obligations of a 5.7 record (ttm_rejection_reason / ttm_unavailable_reason, 07 G16), from
+        # the folder as written right before the run; the reasons under test stay exactly as written
+        rulings57.r7_current(self.r.folder)
         self.before = {name: self._bytes(name) for name in ("score.json", "key_numbers.md", "judgment.json")}
         self.r.run()
         return self

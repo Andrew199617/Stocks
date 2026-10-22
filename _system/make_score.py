@@ -14,7 +14,7 @@ company folder. Judgment fields (written by the analyzing agent):
   misfit_notch_reason (R1), moat_scorecard (R4), interim_bridge /
   interim_bridge_declined (R2), share_classes / up_c_suspect_reason (R6),
   capex_unlisted_ack and capex_override.software_included (R8 / R9),
-  ttm_rejection_reason (R7); and facts.json beside judgment.json declares
+  ttm_rejection_reason / ttm_unavailable_reason (R7); and facts.json beside judgment.json declares
   the facts their reasons cite as [F#] (R3).
 Every numeric field in score.json is copied from dcf_numbers.json.
 
@@ -733,7 +733,58 @@ rebuilt as before, both alert gates closed ("engine output predates release
   after check_ttm_inputs_current. validate_overrides checks both new
   judgment keys' shapes on every run.
 - (R7) STALE_FY discretion made checkable: ttm_rejection_reason and the
-  one base_alternatives record: [R7 writes this item]
+  one base_alternatives record (Andrew, 2026-10-19, ruling-sheet Q5 option A:
+  "a worker MAY reject the TTM base, but only when the rejection reason names
+  the distorting cash-flow line WITH A NUMBER"; design 11; the main agent's
+  defaults Q13-Q18 of 2026-10-21, pending Andrew, each one R7_* switch). On a
+  5.7 run (ttm_rejection_state, main() step 3, every refusal before the first
+  write): when STALE_FY fires (Q13, R7_OBLIGATION_SCOPE), the published base
+  is the annual median or a declared base_override pin (Q18,
+  R7_DECLARED_PIN_RULE; the payable pin is exempt) and ttm.json holds a TTM
+  for the run's latest FY (ttm_for_run: eligible, or fixable — a pre-5.7
+  stamp, an edited bridge, an override ttm.json used that judgment.json no
+  longer declares), judgment.json ttm_rejection_reason is required and must
+  name a cash-flow line (CASH_FLOW_LINE_RE, a closed vocabulary of owner's
+  earnings' own lines) and carry a figure (L2's carries_number) —
+  [TTM-REJ0..2]; a fixable TTM refuses (it cannot be priced); the field
+  anywhere else is refused (beside a TTM pin; with nothing to reject). A
+  declared 6-K bridge kept declared and unpinned is rejected the same way
+  (L4's binding reads plan["bridge_rejected"]). Q14 (R7_TTM_UNAVAILABLE_RULE;
+  keyed on STALE_FY itself, never on Q13's scope): a STALE_FY 10-K run of
+  that kind with no TTM for its FY quotes ttm.py's exit-3 line in
+  ttm_unavailable_reason — verbatim, nothing else (parse_ttm_py_exit3: the
+  head, whole problems in ttm.py's words joined by "; "), for this ticker /
+  CIK / FY (ttm_unavailable_problem: dated problems name this FY; an undated
+  one the CSV's latest-FY row or judgment.json contradicts is refused); the
+  same quote stands for a fixable ttm.json for the FY that ttm.py can no
+  longer rebuild (it exits 3 and writes nothing — ttm_unbuildable: recorded,
+  never priced or refused). Step 4
+  (build_base_alternatives, at most ONE engine --measure replay a run, field
+  overrides on, no DCF_IPRD_HOLD, DCF_REPLAY_PURPOSE=base_alternatives): the
+  rejected TTM replayed with --ttm (its own acquired-IPR&D window and share
+  count; a replay exit 3 refuses, a gap is recorded, a failed run or a base
+  other than ttm.json's refuses), the annual median replayed beside a
+  TTM-published STALE_FY run (Q15, R7_MEDIAN_BESIDE_TTM), L4's bridge
+  measurement folded in (one replay routine, _replay_alternative), every other
+  base from the record "not replayed"; a release mismatch carries the prior
+  record or records "not measured", never spawning. score.json
+  base_alternatives {schema, published, stale_fy, ttm_rejection_reason,
+  ttm_unavailable_reason, bases [published first: kind, role, computed,
+  measured, base OE/share, weighted IRR, tier by numbers, IPR&D charge,
+  source, replay, change against the published base, why], replays, measured,
+  note, carried flags}; key_numbers.md "Base alternatives" after the IPR&D
+  section (L4's "Interim bridge" points to it); one base_alternatives
+  registry event for a rejection or a published bridge (identity chosen,
+  reason, TTM kind and window; L4's interim_bridge event keeps the
+  declaration's descriptors only). Step 7: ttm_rejection_reason traces
+  through check_influence (used_for ttm_rejection; the record's leaves are
+  engine sources), and — the main agent's decision for this lane — so do L9's
+  capex_unlisted_ack reasons (used_for capex_unlisted_ack). Q16
+  (R7_ALERT_RULE): no entry alert when the rejection lifts the published tier
+  above the rejected TTM's into S / A (ttm_rejection_alert_reasons). Q17: an
+  amortized IPR&D median after a rejection is not built (the engine's
+  refusal names R7; ENGINE_BACKLOG). Older output rebuilds unchanged: no
+  plan, no record, no event, no replay, the fields never read.
 - (L5 ops, L6 site) no scoring change: pr_worktree prepare compares
   SCORE_DECISION_KEYS; the site renders the blocks above.
 """
@@ -770,11 +821,24 @@ TIER_ORDER = {t: i for i, t in enumerate(reversed(TIERS))}  # F=0 … S=5: highe
 CONFIDENCE = ("low", "medium", "high")
 OVERRIDE_KEYS = {"capex": "capex_override", "sbc": "sbc_override", "shares": "shares_override"}
 REGISTRY = os.environ.get("MAKE_SCORE_REGISTRY") or f"{SYS_DIR}/overrides_registry.json"
-# v5.7 — R7 STALE_FY discretion made checkable (Andrew, 2026-10-19; L0 placeholders, the R7 lane fills them)
+# v5.7 — R7 STALE_FY discretion made checkable (Andrew, 2026-10-19; ruling-sheet Q5 option A; design 11)
 TTM_REJECTION_KEY = "ttm_rejection_reason"            # judgment.json: the reason a STALE_FY TTM base is rejected
+TTM_UNAVAILABLE_KEY = "ttm_unavailable_reason"        # judgment.json: ttm.py's exit-3 message, quoted (default Q14)
 BASE_KINDS = ("annual_median", "ttm", "declared_interim", "payable_5y", "declared_pin")
 BASE_ROLES = ("published", "rejected", "alternative")
 REPLAY_PURPOSE_ENV = "DCF_REPLAY_PURPOSE"             # "base_alternatives" on R7 replays (the engine ignores it)
+STALE_FY_PREFIX = "STALE_FY"                          # the engine's own flag (latest FY ended > 7 months before the run)
+# The main agent's defaults for the open R7 questions (12_lane_defaults.md Q13-Q18, 2026-10-21, pending Andrew's
+# ratification) — each one switch:
+R7_OBLIGATION_SCOPE = "stale_fy"       # Q13: "stale_fy" — the reason binds STALE_FY runs only; "ttm_present" — every
+                                       # 5.7 run beside a TTM for its latest FY (the ruling's literal reading)
+R7_TTM_UNAVAILABLE_RULE = "require"    # Q14: "require" — a STALE_FY 10-K run with no TTM for its FY quotes ttm.py's
+                                       # exit-3 message in ttm_unavailable_reason; "off" — recorded, never required
+R7_MEDIAN_BESIDE_TTM = True            # Q15: replay the annual median beside a TTM-published STALE_FY run (1 replay)
+R7_ALERT_RULE = "suppress_raise"       # Q16: "suppress_raise" — no entry alert when the rejection lifts the published
+                                       # tier above the rejected TTM's into S / A (as R6's share-class raise); "off"
+R7_DECLARED_PIN_RULE = "require"       # Q18: "require" — a declared base_override pin under STALE_FY needs the reason
+                                       # too (both bases shown); "exempt" — declared pins are exempt like the payable pin
 # v5.7 (lane L5's P2): the score.json fields that carry a decision — pr_worktree prepare compares them between the
 # sweep tree's score and the worktree's rebuild. Each lane appends its own block when it starts writing it
 # (misfit_notch L1, moat_evidence L3, interim_bridge / interim_bridge_declined L4, share_classes L8,
@@ -3675,7 +3739,7 @@ def check_influence(field, text, fact_ids, fc, folder, n, extra=None, trace_only
     if not is_57_run(n):
         return None
     s = "" if text is None else str(text)
-    tag = _facts.INFLUENCE_TAGS.get(field) or field
+    tag = _facts.influence_tag(field)   # v5.7 (R7 lane): capex_unlisted_ack.<tag> -> its map's tag
     ids = list(dict.fromkeys(fact_ids or []))
     nq = fc.not_quantities() if fc is not None else ()
     hint = ""
@@ -4379,9 +4443,11 @@ def interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score
     the annual-median base (R2: "report BOTH"). Current release: one --measure replay of the final configuration
     with no pin (_final_run_args), field overrides on and NO DCF_IPRD_HOLD — the median takes its own acquired-IPR&D
     window and share count (rebase amendment 14, I5); labelled DCF_REPLAY_PURPOSE=base_alternatives (R7 folds this
-    replay into build_base_alternatives). A failed replay refuses. Release mismatch: no replay — the prior score's
-    annual-median entry is carried when it was measured on this declaration and this bridged base (4 dp), else the
-    fields are null with the not-measured note. Attaches itself to `interim` as "measurement"; None without a bridge."""
+    replay into build_base_alternatives). A failed replay refuses. Release mismatch: no replay — R7's one carry rule
+    (carried_base_alternatives, design 11 §3.7 / §7.2; review fix 4): the prior score's annual-median entry is carried,
+    its note too, when the prior record declared this bridge (its interim_bridge declaration_hash) and published it as
+    declared_interim at this bridged base and weighted IRR (4 dp), else the fields are null with the not-measured note.
+    Attaches itself to `interim` as "measurement"; None without a bridge."""
     if interim is None:
         return None
     bridged = {"base_oe_per_share": _r4(n.get("base_oe_per_share")), "weighted_irr": _r4(n.get("implied_irr_weighted")),
@@ -4392,37 +4458,25 @@ def interim_bridge_measurement(ticker, n, interim, release_mismatch, prior_score
     meas = {"bridged": bridged, "annual_median": None, "measured": False, "note": None, "replays": 0,
             "impact_carried_from_prior_score": False, "counterfactual_engine_release": None}
     if release_mismatch:
-        alts = (prior_score or {}).get("base_alternatives") if isinstance(prior_score, dict) else None
         pib = (prior_score or {}).get(INTERIM_KEY) if isinstance(prior_score, dict) else None
-        prior_bases = {b.get("kind"): b for b in (alts or {}).get("bases") or [] if isinstance(b, dict)} \
-            if isinstance(alts, dict) else {}
-        pub, med = prior_bases.get("declared_interim"), prior_bases.get("annual_median")
-        if (isinstance(pib, dict) and pib.get("declaration_hash") == interim["hash"] and isinstance(pub, dict)
-                and isinstance(med, dict) and pub.get("base_oe_per_share") == bridged["base_oe_per_share"]
-                and med.get("measured") and not (alts or {}).get("note")):
-            meas.update(annual_median={k: med.get(k) for k in ("base_oe_per_share", "weighted_irr", "tier_by_numbers",
-                                                               "f_subtype", "iprd_charge_per_share", "iprd_treatment",
-                                                               "data_gap")},
-                        measured=True, impact_carried_from_prior_score=True,
-                        counterfactual_engine_release=n.get("engine_release"))
-        else:
-            meas.update(annual_median={"base_oe_per_share": _r4(n.get("base_oe_normalized_per_share")),
-                                       "weighted_irr": None, "tier_by_numbers": None, "f_subtype": None,
-                                       "iprd_charge_per_share": None, "iprd_treatment": None, "data_gap": []},
-                        note=_not_measured_note(n.get("engine_release")),
-                        counterfactual_engine_release=n.get("engine_release"))
+        same_decl = isinstance(pib, dict) and pib.get("declaration_hash") == interim["hash"]
+        e = _alt_entry("annual_median", "alternative", bridged, True, False,
+                       vals=_unmeasured(n.get("base_oe_normalized_per_share")))
+        carried, cer, note = carried_base_alternatives(n, prior_score if same_decl else None,
+                                                       {"kind": "declared_interim"}, bridged, [e],
+                                                       [(0, "annual_median", False)])
+        meas.update(annual_median={k: e.get(k) for k in _VAL_KEYS}, measured=bool(e["measured"]),
+                    note=e.get("note") if carried else note, impact_carried_from_prior_score=carried,
+                    counterfactual_engine_release=cer)
     else:
-        m = _run_json([sys.executable, ENGINE, ticker, "--measure"] + _final_run_args(n),
-                      {REPLAY_PURPOSE_ENV: "base_alternatives"})
-        if m is None:
-            fail("annual-median replay failed — cannot measure the interim bridge against the median base; retry "
-                 "make_score")
-        med = _measured_entry(m)
-        if med["base_oe_per_share"] is None and not med["data_gap"]:
-            fail("the annual-median replay produced no base and no data gap — cannot measure the interim bridge against "
-                 "the median base; re-run the engine")
-        meas.update(annual_median=med, measured=True, replays=1,
-                    note=(f"the annual-median replay gaps: {', '.join(med['data_gap'])}" if med["data_gap"] else None))
+        # v5.7 (R7, 11 §7.2): R7's one replay routine (_replay_alternative: the same command and label, field overrides
+        # on, no DCF_IPRD_HOLD) with its outcome rules — a gap or an engine refusal of the median is recorded
+        # (computed: false with the note), a failed run refuses (R7-9), a base other than the record's median refuses
+        # (R7-10)
+        res = _replay_alternative(ticker, n, "annual_median")
+        med = ({k: res.get(k) for k in _VAL_KEYS} if res["computed"]
+               else dict({k: None for k in _VAL_KEYS}))
+        meas.update(annual_median=med, measured=True, replays=1, note=None if res["computed"] else res["note"])
     interim["measurement"] = meas
     return meas
 
@@ -4455,20 +4509,15 @@ def interim_base_alternatives(n, interim, meas):
                                "why_text", "note")}
     med = meas["annual_median"] or {}
     computed = med.get("base_oe_per_share") is not None
-    alt = {"kind": "annual_median", "role": "alternative", "computed": computed,
-           "measured": bool(meas["measured"] and computed),
-           "base_oe_per_share": med.get("base_oe_per_share"), "weighted_irr": med.get("weighted_irr"),
-           "tier_by_numbers": med.get("tier_by_numbers"), "f_subtype": med.get("f_subtype"),
-           "iprd_charge_per_share": med.get("iprd_charge_per_share"), "iprd_treatment": med.get("iprd_treatment"),
-           "data_gap": med.get("data_gap") or [],
-           "source": "median_of_last_3_fy_oe_per_share",
-           "replay": "--measure (final configuration, field overrides on, no pin)"}
-    alt["base_change_pct"], alt["weighted_irr_change_pp"], alt["tier_changed"] = _chg(alt, pub)
-    alt.update(why="not_chosen", why_text="not chosen: the declared 6-K interim bridge is the published base (R2)",
-               note=meas.get("note"))
+    # v5.7 (R7): the one entry shape (_alt_entry, 11 §3.9)
+    alt = _alt_entry("annual_median", "alternative", pub, computed, bool(meas["measured"]), vals=med,
+                     source=MEDIAN_SOURCE, replay=REPLAY_MEDIAN,
+                     why_text="not chosen: the declared 6-K interim bridge is the published base (R2)",
+                     note=meas.get("note"))
     return {"schema": 1, "published": "declared_interim",
             "stale_fy": any(str(f).startswith("STALE_FY") for f in n.get("fragility_flags") or []),
-            "ttm_rejection_reason": None, "bases": [pub, alt], "replays": meas.get("replays", 0),
+            "ttm_rejection_reason": None, "ttm_unavailable_reason": None, "bases": [pub, alt],
+            "replays": meas.get("replays", 0),
             "measured": bool(meas["measured"]), "note": meas["note"] if not meas["measured"] else None,
             "impact_carried_from_prior_score": bool(meas["impact_carried_from_prior_score"]),
             "counterfactual_engine_release": meas["counterfactual_engine_release"]}
@@ -4537,13 +4586,480 @@ def score_interim_fields(score, n, j, interim, interim_meas):
 
 
 # ---------------------------------------------------------------------------
-# v5.7 lane R7 (STALE_FY discretion made checkable, Andrew 2026-10-19) — L0 placeholders, no-ops until R7 fills them
+# v5.7 lane R7 — STALE_FY discretion made checkable (Andrew, 2026-10-19, ruling-sheet Q5 option A; design 11):
+# a worker MAY reject the TTM base, but only with judgment.json ttm_rejection_reason naming the distorting cash-flow
+# line WITH A NUMBER; make_score replays the final configuration on the rejected TTM and records every base computed
+# for the run in ONE base_alternatives record (score.json, the registry, key_numbers.md "Base alternatives"), which
+# also carries the declared 6-K bridge's both-bases measurement (L4, R2a). Defaults Q13-Q18 are the R7_* switches at
+# the top of the module.
 # ---------------------------------------------------------------------------
-def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
-    """v5.7 placeholder (R7; step 3, after interim_pin_state): the plan — whether the run must carry a qualifying
-    judgment.json ttm_rejection_reason (STALE_FY, a published base that is not the TTM, a TTM for this run), and
-    the refusals when it does not. None on pre-5.7 output and in L0."""
+SCORE_DECISION_KEYS = SCORE_DECISION_KEYS + ("base_alternatives",)   # R7's decision field (L5's P2)
+
+# §2: the closed vocabulary of owner's earnings' own lines — operating cash flow and its statement sub-lines, capex
+# (PP&E, capitalized software — R9 —, intangibles) and SBC. Case-insensitive; '-' and whitespace interchangeable;
+# plurals included. P&L words (revenue, gross margin, EPS, net income, guidance, crack spread, bookings, margin,
+# taxes, settlement, restructuring charges) never match: a cyclical peak or trough names operating cash flow (or the
+# line that moved) with its figure.
+CASH_FLOW_LINE_RE = re.compile(r"""(?ix)(?<![A-Za-z])(?:
+    operating[\s-]+cash[\s-]+flows? | cash[\s-]+flows?[\s-]+from[\s-]+operat\w* | cash[\s-]+from[\s-]+operations |
+    operating[\s-]+activities | OCF |
+    (?:trade[\s-]+|net[\s-]+)?working[\s-]+capital | NWC |
+    (?:accounts[\s-]+|trade[\s-]+)?receivables? | contract[\s-]+(?:assets?|liabilit(?:y|ies)) | unbilled |
+    inventor(?:y|ies) | (?:accounts[\s-]+|trade[\s-]+)?payables? | accru(?:ed|als?) |
+    deferred[\s-]+(?:revenue|income[\s-]+tax(?:es)?|tax(?:es)?) | customer[\s-]+(?:advances?|deposits?|prepayments?) |
+    unearned[\s-]+revenue | prepayments? | billings |
+    (?:income[\s-]+)?tax(?:es)?[\s-]+paid | cash[\s-]+tax(?:es)? | tax[\s-]+(?:payments?|refunds?) |
+    pensions? | retiree[\s-]+benefits? | post-?retirement |
+    interest[\s-]+paid | restructuring[\s-]+(?:payments?|cash) | (?:litigation|legal)[\s-]+settlements? |
+    settlement[\s-]+payments? | insurance[\s-]+(?:proceeds|recover(?:y|ies)) | collateral | margin[\s-]+deposits? |
+    factoring | securiti[sz]ations? |
+    capex | capital[\s-]+(?:expenditures?|spending) | PP&E | property,?[\s-]+plant,?[\s-]+(?:and|&)[\s-]+equipment |
+    property[\s-]+and[\s-]+equipment | capitali[sz]ed[\s-]+software | intangible[\s-]+(?:asset[\s-]+)?purchases |
+    purchases?[\s-]+of[\s-]+intangibles? |
+    SBC | (?:stock|share|equity)[\s-]+based[\s-]+compensation | stock[\s-]+compensation
+)(?![A-Za-z])""")
+
+# Default Q14: ttm.py's exit-3 message (ttm.py main(): "ttm.py: cannot compute TTM for <T> (CIK <n>): " + the
+# problems joined by "; "), one pattern per problem ttm.py prints, each the WHOLE problem in ttm.py's words
+# (parse_ttm_py_exit3 matches the line end to end — review fix 3); test_make_score_57_r7 runs ttm.py's real exit-3
+# paths offline and holds every message it prints to these patterns.
+TTM_PY_EXIT3_HEAD_RE = re.compile(r"ttm\.py: cannot compute TTM for (\S+) \(CIK (\d+)\): ")
+_X3_DATE = r"(\d{4}-\d{2}-\d{2})"
+_X3_LEG = r"(ocf|capex|sbc|shares_diluted)"
+_X3_UNITS = r"([^\s,;]+(?:, [^\s,;]+)*)"
+_X3_Q, _X3_APOS = "[\"“”]", "['’]"
+TTM_PY_EXIT3_RES = (
+    ("no_fy", re.compile(_X3_LEG + r": no annual \(FY\) fact")),
+    ("no_current_ytd", re.compile(_X3_LEG + r": no post-FY YTD fact \(no 10-Q since the " + _X3_DATE
+                                  + r" fiscal year end\)")),
+    ("no_prior_ytd", re.compile(_X3_LEG + r": no prior-year YTD fact matching " + _X3_DATE + r" \(FY start " + _X3_DATE
+                                + r"\)")),
+    ("no_capex", re.compile(r"capex: no capex facts in companyfacts under any candidate tag and no capex_override in "
+                            r"judgment\.json — refusing to zero-fill \(same DATA_GAP standard as the engine\)")),
+    ("override_currency", re.compile(r"(capex|sbc): the \1_override is not declared currency " + _X3_Q + "USD" + _X3_Q
+                                     + r" at a filer whose core facts are filed in " + _X3_UNITS + r" — ttm\.py"
+                                     + _X3_APOS + r"s legs are USD only and it cannot convert the override to fill a "
+                                     r"missing leg; declare the filing" + _X3_APOS + r"s US-dollar figure with currency "
+                                     + _X3_Q + "USD" + _X3_Q + r", or leave the TTM unbuilt")),
+    ("intangibles_currency", re.compile(r"capex (fy|ytd_prior|ytd_current): intangible purchases for " + _X3_DATE
+                                        + r"\.\." + _X3_DATE + r" are filed only in " + _X3_UNITS + r"; ttm\.py reads "
+                                        r"USD facts only and holds no FX rates, so it cannot include them \(the annual "
+                                        r"engine converts and adds them\) — no TTM base; use the median base")),
+)
+# The us-gaap tags ttm.py reads per leg (its OCF_TAGS / CAPEX_TAGS / SBC_TAGS / SHARE_TAGS — the engine's own lists'
+# us-gaap entries; test_make_score_57_r7 holds them equal): a latest-FY CSV row read from one of them in USD is
+# evidence ttm.py found that leg's annual fact.
+TTM_PY_LEG_TAGS = {
+    "ocf": tuple(t for t in _engine.ENGINE_OCF_TAGS if isinstance(t, str)),
+    "capex": tuple(t for t in _engine.CAPEX_ROLLUP_TAGS + _engine.CAPEX_COMPONENT_TAGS if isinstance(t, str)),
+    "sbc": (_engine.SBC_SHARE_TAG, _engine.SBC_ALLOCATED_TAG),
+    "shares_diluted": tuple(t for t in _engine.ENGINE_SHARES_DILUTED_TAGS if isinstance(t, str)),
+}
+TTM_TTM_SOURCE = "ttm.json (ttm.py: FY − prior YTD + current YTD, 10-Q)"
+TTM_INTERIM_SOURCE = "ttm.json (ttm.py --interim: FY − prior interim + current interim, declared 6-K)"
+MEDIAN_SOURCE = "median_of_last_3_fy_oe_per_share"
+REPLAY_TTM = "--measure --ttm (final configuration, field overrides on)"
+REPLAY_MEDIAN = "--measure (final configuration, field overrides on, no pin)"
+_TTM_KINDS = ("ttm", "declared_interim")
+
+
+def _stale_fy(n):
+    return any(str(f).startswith(STALE_FY_PREFIX) for f in (n or {}).get("fragility_flags") or [])
+
+
+def _r7_scope(stale):
+    """Default Q13 (R7_OBLIGATION_SCOPE): the reason binds a STALE_FY run only ("stale_fy"), or every 5.7 run beside a
+    TTM for its latest FY ("ttm_present", the ruling's literal reading)."""
+    return bool(stale) if R7_OBLIGATION_SCOPE == "stale_fy" else True
+
+
+def ttm_rejection_problem(text):
+    """judgment.json ttm_rejection_reason's own rule (§2; pure): the refusal sentence, or None. [TTM-REJ0] not a
+    non-empty string; [TTM-REJ1] it names no cash-flow line (CASH_FLOW_LINE_RE); [TTM-REJ2] it carries no figure —
+    L2's one definition of "a number" (quote_tokens.carries_number: dates, years, period labels, form names, small
+    counts and method constants do not count). Line and figure are checked over the whole text; REJ1 and REJ2 are
+    reported together. Every surviving figure must then trace (check_influence, main() step 7)."""
+    if not isinstance(text, str) or not text.strip():
+        return f"[TTM-REJ0] judgment.json ttm_rejection_reason must be a non-empty string (got {repr(text)[:60]})"
+    probs = []
+    if not CASH_FLOW_LINE_RE.search(text):
+        probs.append("[TTM-REJ1] it names no cash-flow line (operating cash flow or one of its lines — working capital, "
+                     "receivables, inventories, payables, deferred revenue, taxes paid, pension …; capex; SBC)")
+    if not _qt.carries_number(text):
+        probs.append("[TTM-REJ2] it carries no figure (dates, years, period labels and small counts do not count)")
+    if probs:
+        return ("judgment.json ttm_rejection_reason does not qualify: " + "; ".join(probs)
+                + " — 'working-capital timing' with no figure does not qualify (R7)")
     return None
+
+
+def _fy_start_matches(start, latest):
+    """True when ISO date `start` opens the fiscal year ending `latest` (start + 1 year - 1 day within 10 days)."""
+    try:
+        s, e = datetime.date.fromisoformat(start), datetime.date.fromisoformat(latest)
+        try:
+            end = s.replace(year=s.year + 1) - datetime.timedelta(days=1)
+        except ValueError:   # 29 February
+            end = s.replace(year=s.year + 1, day=28) - datetime.timedelta(days=1)
+        return abs((end - e).days) <= 10
+    except (TypeError, ValueError):
+        return False
+
+
+def parse_ttm_py_exit3(text):
+    """ttm.py's exit-3 line, verbatim (default Q14; review fix 3): (head match, [(problem name, match), ...]) when
+    `text`, stripped, is the head "ttm.py: cannot compute TTM for <T> (CIK <n>): " followed by one or more problems in
+    ttm.py's own words — each matched whole (TTM_PY_EXIT3_RES) — joined by "; " and NOTHING else (no prose around
+    the line, no fragment of a problem); None otherwise. Pure."""
+    if not isinstance(text, str):
+        return None
+    s = text.strip()
+    head = TTM_PY_EXIT3_HEAD_RE.match(s)
+    if head is None:
+        return None
+    pos, hits = head.end(), []
+    while True:
+        hit = None
+        for name, rx in TTM_PY_EXIT3_RES:
+            m = rx.match(s, pos)
+            if m is not None and (m.end() == len(s) or s.startswith("; ", m.end())):
+                hit = (name, m)
+                break
+        if hit is None:
+            return None
+        hits.append(hit)
+        if hit[1].end() == len(s):
+            return head, hits
+        pos = hit[1].end() + 2
+
+
+def _csv_float(v):
+    try:
+        f = float(v)
+    except (TypeError, ValueError):
+        return None
+    return f if math.isfinite(f) else None
+
+
+def _ttm_py_filed_leg(n, rows, leg):
+    """The us-gaap tag this run's latest-FY `leg` was read from, when ttm.py reads that fact too — financials_history.csv's
+    row for n["latest_period_end"] holds the leg from a filed fact (not an override, an assumed-zero capex or a share
+    fallback outside ttm.py's tags) under one of TTM_PY_LEG_TAGS, in USD (no fx_conversion) and from EDGAR companyfacts
+    (not the filing's own instance, annual_from_instance) — else None. Evidence that ttm.py's "<leg>: no annual (FY)
+    fact" / "capex: no capex facts in companyfacts …" is not this run's message (ttm.py reads the same companyfacts,
+    us-gaap, USD, 330-380-day periods). Pure."""
+    if (n or {}).get("fx_conversion"):
+        return None
+    latest = (n or {}).get("latest_period_end")
+    afi = n.get("annual_from_instance") if isinstance(n.get("annual_from_instance"), dict) else {}
+    if afi.get("applied") and latest in (afi.get("periods_added") or []):
+        return None
+    row = next((r for r in reversed(rows or []) if isinstance(r, dict) and r.get("period_end") == latest), None)
+    if row is None:
+        return None
+    tags = TTM_PY_LEG_TAGS[leg]
+    if leg == "capex":
+        tag = str(row.get("capex_tag") or "").split("+")[0]
+        ok = (str(row.get("capex_source") or "").startswith(("rollup", "components"))
+              and _csv_float(row.get("capex_ppe") if row.get("capex_ppe") not in (None, "") else row.get("capex"))
+              is not None)
+    elif leg == "shares_diluted":
+        tag = str(row.get("shares_tag") or "")
+        tag = tag[len("FALLBACK:"):] if tag.startswith("FALLBACK:") else tag
+        ok = _csv_float(row.get("shares_diluted")) is not None
+    else:
+        tag = str(row.get(f"{leg}_tag") or "")
+        ok = _csv_float(row.get(leg)) is not None
+    return tag if (ok and tag in tags) else None
+
+
+def _ttm_py_override_declared(j, field):
+    """Whether ttm.py would read judgment.json's <field>_override as an override NOT declared in USD (ttm.py
+    load_overrides: a numeric value, kind filing / estimate, a source and a reason; currency upper-cased) — the only
+    case ttm.py prints its override-currency problem. Pure."""
+    o = (j or {}).get(f"{field}_override") if isinstance(j, dict) else None
+    return bool(isinstance(o, dict) and isinstance(o.get("value"), (int, float)) and not isinstance(o.get("value"), bool)
+                and o.get("kind") in ("filing", "estimate") and str(o.get("source") or "").strip()
+                and str(o.get("reason") or "").strip()
+                and str(o.get("currency") or "").strip().upper() != "USD")
+
+
+def ttm_unavailable_problem(text, n, ticker, rows=None, j=None):
+    """Default Q14: judgment.json ttm_unavailable_reason must BE ttm.py's exit-3 line for this run, verbatim
+    (parse_ttm_py_exit3: the head, then whole problems in ttm.py's words joined by "; ", nothing else) — for this
+    ticker and CIK; every dated problem about this run's latest FY (no post-FY YTD fact: that FY's end; no prior-year
+    YTD fact: that FY's start; an intangible-currency leg: its period inside that FY or the YTD after it); and no
+    undated problem the record contradicts (review fix 3): "<leg>: no annual (FY) fact" / "capex: no capex facts …"
+    while financials_history.csv's latest-FY row (`rows`) holds the leg from a fact ttm.py reads (_ttm_py_filed_leg),
+    an override-currency problem while judgment.json (`j`) declares no such override or declares it in USD. Without
+    rows / j those two checks have no evidence and pass. The refusal sentence, or None (pure)."""
+    if not isinstance(text, str) or not text.strip():
+        return ("[TTM-UNAV0] judgment.json ttm_unavailable_reason must be a non-empty string — ttm.py's exit-3 message, "
+                f"quoted (got {repr(text)[:60]})")
+    parsed = parse_ttm_py_exit3(text)
+    if parsed is None:
+        return ("[TTM-UNAV1] judgment.json ttm_unavailable_reason does not quote ttm.py's exit-3 message — run python3 "
+                f"_system/ttm.py {ticker} and copy the line it prints, verbatim and nothing else (\"ttm.py: cannot compute "
+                f"TTM for {ticker} (CIK …): <leg>: …\", every problem whole, joined by \"; \"); without it skipping ttm.py "
+                "is not checkable (default Q14)")
+    head, hits = parsed
+    bad = []
+    if head.group(1).upper() != str(ticker).upper():
+        bad.append(f"it names {head.group(1)}, not {ticker}")
+    try:
+        cik = int(n.get("cik")) if n.get("cik") is not None else None
+    except (TypeError, ValueError):
+        cik = None
+    if cik is not None and int(head.group(2)) != cik:
+        bad.append(f"CIK {head.group(2)}, not the run's {cik}")
+    latest = n.get("latest_period_end")
+    for name, m in hits:
+        if name == "no_current_ytd" and m.group(2) != latest:
+            bad.append(f"'{m.group(1)}: no post-FY YTD fact' is about the fiscal year ending {m.group(2)}, not this run's "
+                       f"latest FY ({latest})")
+        if name == "no_prior_ytd" and not _fy_start_matches(m.group(3), latest):
+            bad.append(f"'{m.group(1)}: no prior-year YTD fact' is about the fiscal year starting {m.group(3)}, not this "
+                       f"run's latest FY (ending {latest})")
+        if name == "intangibles_currency":
+            leg, start = m.group(1), m.group(2)
+            if leg == "ytd_current":
+                try:
+                    after = (datetime.date.fromisoformat(start) - datetime.date.fromisoformat(latest)).days
+                except (TypeError, ValueError):
+                    after = None
+                inside = after is not None and 0 <= after <= 10
+            else:
+                inside = _fy_start_matches(start, latest)
+            if not inside:
+                bad.append(f"'capex {leg}: intangible purchases for {start}..{m.group(3)}' is not a {leg} leg of this "
+                           f"run's latest FY (ending {latest})")
+        if name in ("no_fy", "no_capex"):
+            leg = m.group(1) if name == "no_fy" else "capex"
+            tag = _ttm_py_filed_leg(n, rows, leg)
+            if tag:
+                bad.append(f"'{m.group(0)}' cannot be this run's: financials_history.csv's FY {latest} row reads {leg} "
+                           f"from {tag}, a USD us-gaap fact ttm.py reads")
+        if name == "override_currency" and j is not None and not _ttm_py_override_declared(j, m.group(1)):
+            bad.append(f"'{m.group(1)}: the {m.group(1)}_override is not declared currency \"USD\"' but judgment.json "
+                       f"declares no {m.group(1)}_override ttm.py reads outside USD")
+    if bad:
+        return ("[TTM-UNAV2] judgment.json ttm_unavailable_reason quotes another run's ttm.py message (" + "; ".join(bad)
+                + ") — rerun ttm.py and quote what it prints now")
+    return None
+
+
+def base_used_label(ticker, n):
+    """The base the final run actually used, as compute_override_impact labels it (extracted unchanged, v5.7 R7):
+    payable_5y, declared_interim (L4), declared_pin, ttm or median_3y."""
+    base_src = (n.get("base_source") or "").lower()
+    pin_src = (n.get("inputs") or {}).get("base_pin_source")
+    pinned = (n.get("inputs") or {}).get("base_oe_ps_arg") is not None or "ttm" in base_src
+    return "payable_5y" if (pin_src == "judgment_base_override" or n.get("payable_base")) \
+        else "declared_interim" if _interim_pinned(ticker, n) \
+        else "declared_pin" if _declared_pin_not_ttm(ticker, n) \
+        else "ttm" if pinned else "median_3y"
+
+
+def published_base_kind(ticker, n):
+    """(kind, ttm_published, detail): kind in BASE_KINDS — base_used_label with median_3y read as annual_median;
+    ttm_published for ttm / declared_interim and for a declared_pin whose run recorded basis_window "ttm" (a pin built
+    from ttm.json's TTM figures on another denominator); detail {"variant": "iprd_amortized" | None, "native_base",
+    "basis_window"} for the key_numbers / why text. An iprd_amortized pin is ttm (native ttm_json) or declared_pin
+    (native median), exactly as compute_override_impact labels it."""
+    lbl = base_used_label(ticker, n)
+    kind = "annual_median" if lbl == "median_3y" else lbl
+    bw = (n.get("inputs") or {}).get("base_basis_window")
+    window = bw.get("window") if isinstance(bw, dict) else None
+    am = _iprd_amortized_record(n)
+    ttm_pub = kind in _TTM_KINDS or (kind == "declared_pin" and window == "ttm")
+    return kind, ttm_pub, {"variant": IPRD_AMORTIZED_BASIS if am is not None else None,
+                           "native_base": am.get("native_base") if am is not None else None, "basis_window": window}
+
+
+def ttm_doc_override_problems(doc, j_over):
+    """Row 6 of ttm_for_run (pure): every override ttm.json used to fill a TTM leg (overrides_used) must be the one
+    judgment.json declares now — the comparison ttm_leg_overrides makes for a pinned TTM, here as messages (a
+    rejected TTM is priced on ttm.json's legs, so a withdrawn or edited override leaves it stale)."""
+    out = []
+    for u in (doc.get("overrides_used") or []) if isinstance(doc, dict) else []:
+        f = u.get("field") if isinstance(u, dict) else None
+        if f not in ("capex", "sbc", "shares"):
+            continue
+        o = (j_over or {}).get(f)
+        if o is None:
+            out.append(f"ttm.json used a {f}_override that judgment.json no longer declares")
+            continue
+        uv = _num(u.get("value"))
+        if (u.get("kind") != o.get("kind") or uv is None
+                or abs(float(o["value"]) - float(uv)) > max(1.0, abs(float(o["value"])) * 0.001)):
+            out.append(f"ttm.json used a {f}_override (value {u.get('value')}, kind {u.get('kind')}) that judgment.json "
+                       f"declares as value {o['value']}, kind {o['kind']}")
+    return out
+
+
+def ttm_for_run(folder, n, j, j_sc=None, j_over=None):
+    """§3.3: <T>/ttm.json as an alternative base for this run — None when ttm.json is absent, unreadable, not an
+    object or has no finite numeric ttm_oe_per_share; else {kind (ttm | declared_interim), status, note, fy_end,
+    ytd_end, base_oe_per_share, ttm_input_hash, ttm_engine_release, share_basis, doc}, the first matching row deciding
+    status: other_fy (not this run's latest FY), off_basis (L8: not on the share_classes declaration), orphan_bridge
+    (a declared 6-K bridge judgment.json no longer declares), fixable (L4's record checks fail; a pre-5.7 stamp, L9;
+    an override ttm.json used that judgment.json no longer declares the same way) or eligible (priced by a replay).
+    other_fy / off_basis / orphan_bridge are not a TTM computed for this run: recorded, never an obligation."""
+    doc = _ttm_record(folder)
+    if doc is None:
+        return None
+    v = _num(doc.get("ttm_oe_per_share"))
+    if v is None or not math.isfinite(float(v)):
+        return None
+    t = os.path.basename(os.path.normpath(folder))
+    kind = "declared_interim" if _is_declared_interim(doc) else "ttm"
+    rel = doc.get("engine_release") if isinstance(doc.get("engine_release"), str) else None
+    rerun = f"ttm.py {t} --interim" if kind == "declared_interim" else f"ttm.py {t}"
+    latest = n.get("latest_period_end")
+    probs = None
+    if doc.get("fy_end") != latest:
+        status, note = "other_fy", (f"ttm.json is built on FY {doc.get('fy_end')}; this run's latest FY ends {latest} — "
+                                    "not this run's TTM (rerun ttm.py)")
+    elif not _alt_ttm_ok(doc, j_sc):
+        status, note = "off_basis", "ttm.json is not on this share_classes declaration — rerun ttm.py"
+    elif kind == "declared_interim" and (j or {}).get(INTERIM_KEY) is None:
+        status, note = "orphan_bridge", ("ttm.json is a declared 6-K interim bridge but judgment.json declares no "
+                                         "interim_bridge (withdrawn) — not a TTM for this run")
+    elif kind == "declared_interim" and (probs := _interim_record_problems(n, j, doc, folder)):
+        status, note = "fixable", "; ".join(probs)
+    elif (release_tuple(rel) or (0, 0, 0)) < RELEASE_57:
+        status, note = "fixable", (f"ttm.json predates engine 5.7 (engine_release {rel or 'none'}): its legs were built "
+                                   f"without the 5.7 capex rules — rerun {rerun}")
+    elif (probs := ttm_doc_override_problems(doc, j_over)):
+        status, note = "fixable", "; ".join(probs) + f" — rerun {rerun} with the current judgment.json"
+    else:
+        status, note = "eligible", None
+    return {"kind": kind, "status": status, "note": note, "fy_end": doc.get("fy_end"), "ytd_end": doc.get("ytd_end"),
+            "base_oe_per_share": float(v), "ttm_input_hash": _engine.ttm_inputs_record(doc)["ttm_input_hash"],
+            "ttm_engine_release": rel, "share_basis": "total_units" if j_sc else None, "doc": doc}
+
+
+_KIND_TEXT = {"annual_median": "annual median", "ttm": "TTM", "declared_interim": "declared 6-K interim bridge",
+              "payable_5y": "payable-earnings base", "declared_pin": "declared base_override pin"}
+
+
+def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
+    """v5.7 (R7; main() step 3, after interim_pin_state, before L4's check_interim_obligation, every refusal before the
+    first write). None on output from before 5.7 (nothing read, nothing checked — D1: older output rebuilds
+    unchanged). Else the plan {kind, ttm_published, detail, stale_fy, scope, ttm (ttm_for_run), required, reason,
+    bridge_rejected, unavailable_required, unavailable_reason, ttm_unbuildable} after these refusals, in order:
+    - ttm_unbuildable (review fix 1; design 11 §3.3 / §14 item 6 — a TTM the worker can rebuild refuses, one the
+      worker cannot is recorded): the run sits beside a 'fixable' 10-Q ttm.json for its FY (a withdrawn override, a
+      pre-5.7 stamp) that ttm.py can no longer rebuild — ttm.py exits 3 and writes nothing, so the stale file stays —
+      and ttm_unavailable_reason quotes the exit-3 line (checked first: ttm_unavailable_problem); the run then has no
+      priceable TTM, so nothing is required;
+    - required = STALE_FY (R7_OBLIGATION_SCOPE, Q13) ∧ the published base is the annual median or a declared pin (Q18,
+      R7_DECLARED_PIN_RULE; the payable pin is exempt) ∧ not TTM-published ∧ a TTM for this run (eligible / fixable)
+      ∧ not ttm_unbuildable;
+    - ttm_rejection_reason present but not required: R7-5 (the published base is the TTM) or R7-6 (nothing to reject);
+    - ttm_unavailable_reason (default Q14) where it may not stand — beside an eligible TTM for this run, a TTM pin, a
+      payable or exempt pin, without STALE_FY, at a 20-F / 40-F filer (interim_bridge_declined is R2's record) — or a
+      quote that is not ttm.py's exit-3 line for this run (ttm_unavailable_problem, over the record's CSV and judgment);
+    - required, absent: R7-1 — except a declared 6-K bridge, which L4's binding refuses (R7-11); beside a fixable
+      ttm.json it names the exit-3 way out;
+    - required, present: ttm_rejection_problem (R7-2 .. R7-4), then a fixable TTM (R7-7: it cannot be priced — rerun
+      ttm.py, or quote its exit-3 line instead);
+    - default Q14 (R7_TTM_UNAVAILABLE_RULE "require"): a STALE_FY 10-K run of that kind with no TTM for its latest FY
+      (no ttm.json, or one on another FY) without ttm_unavailable_reason [TTM-UNAV0] — skipping ttm.py is checkable.
+      Q14 is keyed on STALE_FY itself, never on Q13's scope (review fix 2: each default flips alone).
+    bridge_rejected (a declared 6-K bridge kept declared and rejected) is what L4's binding and obligation read."""
+    if not is_57_run(n):
+        return None
+    j = j if isinstance(j, dict) else {}
+    t = os.path.basename(os.path.normpath(folder))
+    kind, ttm_pub, detail = published_base_kind(t, n)
+    stale = _stale_fy(n)
+    scope = _r7_scope(stale)
+    ttm = ttm_for_run(folder, n, j, j_sc=j_sc, j_over=j_over)
+    in_kind = kind == "annual_median" or (kind == "declared_pin" and R7_DECLARED_PIN_RULE == "require")
+    for_run = bool(ttm and ttm["status"] in ("eligible", "fixable"))
+    reason = j.get(TTM_REJECTION_KEY)
+    present = reason is not None
+    unavail = j.get(TTM_UNAVAILABLE_KEY)
+    foreign = n.get("filer_annual_form") in ("20-F", "40-F")
+    no_ttm = ttm is None or ttm["status"] == "other_fy"
+    rows = _csv_rows(folder) if unavail is not None else []
+    # review fix 1: a fixable 10-Q TTM the rejection obligation would bind (Q13's scope), which ttm.py cannot rebuild
+    # — its exit-3 line, quoted and checked, stands for the stale file
+    unbuildable = bool(unavail is not None and scope and in_kind and not ttm_pub and not foreign and ttm is not None
+                       and ttm["status"] == "fixable" and ttm["kind"] == "ttm")
+    if unbuildable:
+        prob = ttm_unavailable_problem(unavail, n, t, rows=rows, j=j)
+        if prob:
+            fail(prob)
+    required = bool(scope and in_kind and not ttm_pub and for_run and not unbuildable)
+    if present and not required:
+        if ttm_pub:
+            fail(f"judgment.json ttm_rejection_reason rejects the TTM but the final run's base is ttm.json's (base_source "
+                 f"{n.get('base_source')}) — drop the field, or rerun the final pass without --ttm")          # R7-5
+        cause = ("the payable-earnings base replaces the OCF base" if kind == "payable_5y"
+                 else "declared base_override pins are exempt (default Q18, R7_DECLARED_PIN_RULE)"
+                 if kind == "declared_pin" and not in_kind
+                 else "STALE_FY does not fire (the median is the default base)" if not scope
+                 else "ttm.py cannot rebuild ttm.json's TTM (judgment.json ttm_unavailable_reason quotes its exit-3 "
+                      "message) — nothing priceable to reject" if unbuildable
+                 else "ttm.json holds no TTM for this run (no ttm.json)" if ttm is None
+                 else f"ttm.json holds no TTM for this run ({ttm['note']})")
+        fail(f"judgment.json ttm_rejection_reason is declared but {cause} — remove it")                       # R7-6
+    # default Q14: a STALE_FY 10-K run of that kind with no TTM for its latest FY (no ttm.json, or one on another FY)
+    # quotes ttm.py's exit-3 message — keyed on STALE_FY, Q14's own population, never on Q13's scope (review fix 2);
+    # the field is allowed only there, beside a ttm.json off the share-class declaration (L8: ttm.py cannot rebuild
+    # it) and beside an unbuildable fixable one (above), and a quote is always checked; a misplaced field is refused
+    # before the rejection rules (it says no TTM exists where one does)
+    q14 = bool(stale and in_kind and not ttm_pub and not foreign)
+    unavail_required = bool(R7_TTM_UNAVAILABLE_RULE == "require" and q14 and no_ttm)
+    if unavail is not None and not unbuildable:
+        if not (q14 and (no_ttm or ttm["status"] == "off_basis")):
+            cause = ("the final run's base is the TTM" if ttm_pub
+                     else "the payable-earnings base replaces the OCF base" if kind == "payable_5y"
+                     else "declared base_override pins are exempt (default Q18, R7_DECLARED_PIN_RULE)" if not in_kind
+                     else f"ttm.json holds a TTM for this run (to {ttm['ytd_end']}) — pin it with --ttm or reject it with "
+                          "ttm_rejection_reason" if (scope and ttm is not None and ttm["status"] == "eligible")
+                     else "STALE_FY does not fire (the median is the default base)" if not stale
+                     else f"{n.get('filer_annual_form')} filers record why no TTM exists in interim_bridge_declined (R2)"
+                     if foreign
+                     else f"ttm.json holds a TTM for this run (to {ttm['ytd_end']}) — pin it with --ttm or reject it with "
+                          "ttm_rejection_reason")
+            fail(f"[TTM-UNAV] judgment.json ttm_unavailable_reason is declared but {cause} — remove it")
+        prob = (ttm_unavailable_problem(unavail, n, t, rows=rows, j=j)
+                if no_ttm or not isinstance(unavail, str) or not unavail.strip() else None)
+        if prob:
+            fail(prob)
+    exit3_way = ("when ttm.py exits 3 instead (it cannot rebuild this TTM), " if ttm is not None
+                 and ttm["status"] == "fixable" and ttm["kind"] == "ttm" and not foreign else None)
+    if required and not present and ttm["kind"] == "ttm":
+        fail(f"[TTM-REJ0] {'STALE_FY fires and ' if stale else ''}ttm.json holds a TTM for this run (to "
+             f"{ttm['ytd_end']}: {_money(ttm['base_oe_per_share'])}/share) but the published base is the "
+             f"{_KIND_TEXT[kind]} ({_money(n.get('base_oe_per_share'))}/share) — pass --ttm in the final run, or reject "
+             "the TTM in judgment.json ttm_rejection_reason: name the distorting cash-flow line with a number "
+             "(WORKER_SPEC step 4; Andrew's ruling R7)"
+             + (f" — ttm.json cannot be priced as it stands: {ttm['note']}; {exit3_way}quote the line it prints in "
+                "judgment.json ttm_unavailable_reason" if exit3_way else ""))                              # R7-1
+    if required and present:
+        prob = ttm_rejection_problem(reason)
+        if prob:
+            fail(prob)                                                                                      # R7-2..4
+        if ttm["status"] == "fixable":
+            fail(f"the TTM this run rejects cannot be priced: {ttm['note']} — R7 records the rejected TTM's base, "
+                 "weighted IRR and tier beside the published base"
+                 + (f" — {exit3_way}drop ttm_rejection_reason and quote the line it prints in judgment.json "
+                    "ttm_unavailable_reason" if exit3_way else ""))                                        # R7-7
+    if unavail is None and unavail_required:
+        fail(f"[TTM-UNAV0] STALE_FY fires at a 10-K filer and ttm.json holds no TTM for this run's latest FY "
+             f"({'no ttm.json' if ttm is None else ttm['note']}) — run python3 _system/ttm.py {t} and pass --ttm in "
+             "the final run (or reject the TTM with ttm_rejection_reason); when ttm.py exits 3, quote the message it "
+             "prints in judgment.json ttm_unavailable_reason (default Q14)")
+    return {"kind": kind, "ttm_published": ttm_pub, "detail": detail, "stale_fy": stale, "scope": scope, "ttm": ttm,
+            "required": required, "reason": reason.strip() if (required and present) else None,
+            "bridge_rejected": bool(required and present and ttm["kind"] == "declared_interim"),
+            "unavailable_required": unavail_required,
+            "unavailable_reason": unavail.strip() if isinstance(unavail, str) and unavail.strip() else None,
+            "ttm_unbuildable": unbuildable}
 
 
 def _alt_ttm_ok(ttm, j_sc):
@@ -4552,19 +5068,367 @@ def _alt_ttm_ok(ttm, j_sc):
     return True
 
 
+def _run_replay(cmd, env_extra=None, timeout=600):
+    """(rc, data, first_line) of one R7 engine replay: rc None when the run could not complete (timeout, OS error);
+    data the parsed JSON object on rc 0 (None when unparseable); first_line the first non-empty stdout line, else
+    stderr's (the engine prints its refusal there: BAD_TTM_SHARES, …). The replay never inherits a counterfactual
+    switch from the environment (DCF_NO_OVERRIDES, DCF_IPRD_HOLD, L8's DCF_NO_SHARE_CLASSES / DCF_SC_PIN_SCALE): it
+    scores the alternative base exactly as a final run would."""
+    env = dict(os.environ)
+    for k in ("DCF_NO_OVERRIDES", "DCF_IPRD_HOLD", "DCF_NO_SHARE_CLASSES", "DCF_SC_PIN_SCALE"):
+        env.pop(k, None)
+    env.update(env_extra or {})
+    try:
+        out = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout,
+                             env=env)
+    except Exception:
+        return None, None, None
+    txt = out.stdout or ""
+    first = (next((ln.strip() for ln in txt.splitlines() if ln.strip()), None)
+             or next((ln.strip() for ln in (out.stderr or "").splitlines() if ln.strip()), None))
+    data = None
+    if out.returncode == 0:
+        i = txt.find("{")
+        if i >= 0:
+            try:
+                data = json.loads(txt[i:])
+            except ValueError:
+                data = None
+    return out.returncode, (data if isinstance(data, dict) else None), first
+
+
+def _replay_alternative(ticker, n, kind, ttm=None, required=False):
+    """One R7 replay of the final configuration on base `kind` (annual_median: no pin; ttm / declared_interim: --ttm),
+    field overrides ON, no DCF_IPRD_HOLD — each base takes its own acquired-IPR&D window and share count —, labelled
+    DCF_REPLAY_PURPOSE=base_alternatives. Returns the entry's measured fields ({computed: True, measured: True,
+    base_oe_per_share, weighted_irr, tier_by_numbers, f_subtype, iprd_charge_per_share, iprd_treatment (+
+    ttm_engine_release)}) or {computed: False, measured: True, note} when the engine answered without a base (a data
+    gap; an exit 3 / 4 on a base nobody rejected). Refusals: R7-8 the rejected TTM (`required`) exits 3 / 4; R7-9 the
+    run failed or answered neither a base nor a gap; R7-10 the base is not the reference (ttm.json's figure / the
+    record's median) or ttm.json changed while make_score measured it."""
+    ttm_kind = kind in _TTM_KINDS
+    cmd = [sys.executable, ENGINE, ticker, "--measure"] + _final_run_args(n) + (["--ttm"] if ttm_kind else [])
+    rc, m, first = _run_replay(cmd, {REPLAY_PURPOSE_ENV: "base_alternatives"})
+    label = {"annual_median": "annual-median", "ttm": "TTM", "declared_interim": "declared-interim"}[kind]
+    if rc in (3, 4):
+        if required:
+            fail(f"the rejected TTM does not score through the engine: {first or f'exit {rc}'} — fix ttm.json (rerun "
+                 f"ttm.py {ticker}{' --interim' if kind == 'declared_interim' else ''}), then make_score")        # R7-8
+        return {"computed": False, "measured": True, "note": f"the {label} replay refused: {first or f'exit {rc}'}"}
+    if rc != 0 or m is None:
+        fail(f"{label} replay failed (exit {rc}) — cannot measure the base alternatives; retry make_score")       # R7-9
+    b = _num(m.get("base_oe_per_share"))
+    if b is None:
+        gaps = [str(g) for g in m.get("data_gap") or []]
+        if gaps:
+            return {"computed": False, "measured": True, "note": f"the {label} replay gaps: {', '.join(gaps)}"}
+        fail(f"{label} replay produced no base and no data gap (exit 0) — cannot measure the base alternatives; retry "
+             "make_score")                                                                                         # R7-9
+    ref = ttm["base_oe_per_share"] if ttm_kind else _num(n.get("base_oe_normalized_per_share"))
+    h = (m.get("ttm_inputs") or {}).get("ttm_input_hash") if isinstance(m.get("ttm_inputs"), dict) else None
+    if ref is not None and not _engine.figure_matches(b, ref):
+        fail(f"the {kind} replay scored base {b!r}, not {ref!r} — re-run the engine")                             # R7-10
+    if ttm_kind and h != ttm["ttm_input_hash"]:
+        fail(f"the {kind} replay scored base {b!r} (ttm_input_hash {str(h)[:12]}…), not ttm.json's "
+             f"{ttm['ttm_input_hash'][:12]}… — ttm.json changed while make_score measured it")                    # R7-10
+    out = _measured_entry(m)
+    out.pop("data_gap", None)
+    out.update(computed=True, measured=True)
+    if ttm_kind:
+        out["ttm_engine_release"] = (m.get("ttm_inputs") or {}).get("ttm_engine_release")
+    return out
+
+
+_VAL_KEYS = ("base_oe_per_share", "weighted_irr", "tier_by_numbers", "f_subtype", "iprd_charge_per_share",
+             "iprd_treatment")
+
+
+def _alt_entry(kind, role, pub, computed, measured, vals=None, ttm=None, source=None, replay=None, why="not_chosen",
+               why_text=None, note=None):
+    """One non-published base_alternatives entry in the one shape (§3.9): the figures (vals), the TTM's identity for
+    a TTM kind, its source and replay, the change against the published entry, why and note."""
+    vals = vals or {}
+    e = {"kind": kind, "role": role, "computed": bool(computed), "measured": bool(measured)}
+    for k in _VAL_KEYS:
+        e[k] = vals.get(k)
+    if kind in _TTM_KINDS:
+        t = ttm or {}
+        e.update(fy_end=t.get("fy_end"), ytd_end=t.get("ytd_end"), ttm_input_hash=t.get("ttm_input_hash"),
+                 ttm_engine_release=vals.get("ttm_engine_release", t.get("ttm_engine_release")),
+                 share_basis=t.get("share_basis"))
+    e["source"] = source or (TTM_INTERIM_SOURCE if kind == "declared_interim" else TTM_TTM_SOURCE if kind == "ttm"
+                             else MEDIAN_SOURCE)
+    e["replay"] = replay
+    e["base_change_pct"], e["weighted_irr_change_pp"], e["tier_changed"] = _chg(e, pub)
+    e.update(why=why, why_text=why_text, note=note)
+    return e
+
+
+def _published_entry(n, plan, why, why_text, tt=None):
+    """The published entry: the score's own figures copied from the record (the engine's adjusted ones; tier by
+    numbers — L1's notch acts on the published tier only), and the TTM's identity when the published base is a TTM."""
+    blk = n.get("iprd_adjustment") if isinstance(n.get("iprd_adjustment"), dict) else {}
+    e = {"kind": plan["kind"], "role": "published", "computed": True, "measured": True,
+         "base_oe_per_share": _r4(n.get("base_oe_per_share")), "weighted_irr": _r4(n.get("implied_irr_weighted")),
+         "tier_by_numbers": n.get("tier_by_numbers"), "f_subtype": n.get("f_subtype"),
+         "iprd_charge_per_share": round(_engine.iprd_charge_per_share(n), 4), "iprd_treatment": blk.get("treatment")}
+    if plan["kind"] in _TTM_KINDS:
+        ti = n.get("ttm_inputs") if isinstance(n.get("ttm_inputs"), dict) else {}
+        t = tt or {}
+        e.update(fy_end=t.get("fy_end"), ytd_end=t.get("ytd_end"), ttm_input_hash=ti.get("ttm_input_hash"),
+                 ttm_engine_release=ti.get("ttm_engine_release"), share_basis=t.get("share_basis"))
+    e.update(source=n.get("base_source"), why=why, why_text=why_text, note=None)
+    return e
+
+
+def _unmeasured(base):
+    """Entry figures before (or without) a replay: the base from the record, IRR / tier null."""
+    return dict({k: None for k in _VAL_KEYS}, base_oe_per_share=_r4(base))
+
+
 def build_base_alternatives(ticker, folder, n, j, plan, impact=None, payable_impact=None, amortized_impact=None,
                             release_mismatch=False, prior_score=None, j_sc=None, interim_meas=None):
-    """v5.7 placeholder (R7; step 4, after the amortized impact): score.json base_alternatives — the published base
-    beside every other base computed for the run (annual median, TTM, declared-interim TTM: base OE/share, weighted
-    IRR, tier, role, why), one record shared with L4's bridge measurement (interim_meas) and gated per ttm.json
-    alternative by _alt_ttm_ok(ttm, j_sc). None on pre-5.7 output and in L0 (no key written).
-    v5.7 (L4, R2a): a published declared 6-K bridge (interim_meas, measured or carried by
-    interim_bridge_measurement) is recorded here — its declared_interim entry beside the annual-median one
-    (interim_base_alternatives); R7 adds its own kinds to this one builder."""
-    _tt = _ttm_record(folder) if interim_meas is not None else None
-    if interim_meas is not None and _alt_ttm_ok(_tt, j_sc):
-        return interim_base_alternatives(n, {"ttm": _tt}, interim_meas)
-    return None
+    """v5.7 (R7; main() step 4, after the amortized impact, every replay before the first write): score.json
+    base_alternatives — the published base beside every other base computed for the run (annual median, TTM,
+    declared-interim TTM: base OE/share, weighted IRR, tier, role, why), ONE record shared with L4's bridge
+    measurement. None on output from before 5.7 (plan None) and when no alternative exists (no STALE_FY, no
+    ttm.json). The table (§3.6):
+    - a published declared 6-K bridge (L4): interim_base_alternatives over interim_meas (its one median replay);
+    - annual_median / a declared FY-built pin (Q18) under STALE_FY beside an eligible TTM: the TTM `rejected`, replayed
+      with --ttm (1 replay); a declared pin's annual median from the record ("not replayed": its own impact is in the
+      base_override event) or, for an iprd_amortized median pin, from amortized_impact;
+    - STALE_FY with no TTM for the run (no ttm.json; another FY; off the share-class declaration; an orphan bridge; a
+      fixable ttm.json ttm.py cannot rebuild — plan["ttm_unbuildable"]): the TTM entry `computed: false` with why
+      (ttm_unavailable_reason recorded on the block, Q14; at a 20-F / 40-F filer the note quotes judgment.json
+      interim_bridge_declined, §3.6 row 2);
+    - no STALE_FY beside a TTM: the TTM an `alternative` from ttm.json, not replayed;
+    - a TTM-published run (--ttm, a basis_window "ttm" pin): under STALE_FY the annual median replayed with no pin (Q15,
+      R7_MEDIAN_BESIDE_TTM; 1 replay), else its base from the record, not replayed;
+    - the payable pin: the annual median from payable_impact (measured or carried as that block is), no TTM entry.
+    Every ttm.json alternative passes _alt_ttm_ok(ttm, j_sc) (L8's ttm_on_declaration, 08 §8.9) or is recorded
+    computed: false and never priced. Release mismatch: no replay — carried_base_alternatives."""
+    if interim_meas is not None:   # L4: the published bridge's own measurement (never a second replay here)
+        _tt = _ttm_record(folder)
+        return interim_base_alternatives(n, {"ttm": _tt}, interim_meas) if _alt_ttm_ok(_tt, j_sc) else None
+    if plan is None:
+        return None
+    kind, tt, stale, scope = plan["kind"], plan["ttm"], plan["stale_fy"], plan["scope"]
+    foreign = n.get("filer_annual_form") in ("20-F", "40-F")
+    entries, jobs = [], []   # jobs: (entry index, base kind, required) — at most one replay per run (§6)
+
+    def queue(entry, base_kind, required=False):
+        jobs.append((len(entries), base_kind, required))
+        entries.append(entry)
+    if kind == "payable_5y":
+        pi = payable_impact if isinstance(payable_impact, dict) else {}
+        vals = {"base_oe_per_share": _r4(pi.get("base_oe_without_override")),
+                "weighted_irr": _r4(pi.get("weighted_irr_without_override")),
+                "tier_by_numbers": pi.get("tier_by_numbers_without_override")}
+        if vals["base_oe_per_share"] is None:
+            vals["base_oe_per_share"] = _r4(n.get("base_oe_normalized_per_share"))
+        got = vals["weighted_irr"] is not None or vals["tier_by_numbers"] is not None
+        pub = _published_entry(n, plan, "payable_rule", "published — the insurer payable-earnings rule replaces the OCF "
+                               "base (base_override payable_earnings_5y)")
+        entries.append(_alt_entry("annual_median", "alternative", pub, vals["base_oe_per_share"] is not None, got,
+                                  vals=vals, replay="the payable pin's own native-base measurement (payable_pin_impact)",
+                                  why_text="not chosen: the payable-earnings rule replaces the OCF base — its own impact "
+                                           "is in the base_override event",
+                                  note=None if got else (pi.get("note") or pi.get("counterfactual_note")
+                                                         or "not measured")))
+        return _alt_block(n, plan, pub, entries, 0, carried=bool(pi.get("impact_carried_from_prior_score")),
+                          cer=pi.get("counterfactual_engine_release"), note=None)
+    if plan["ttm_published"]:
+        if kind == "declared_pin":
+            pub = _published_entry(n, plan, "declared_pin", "published — a declared base_override pin built on "
+                                   "ttm.json's TTM figures (basis_window ttm)")
+        elif stale:
+            pub = _published_entry(n, plan, "stale_fy_ttm", "published — STALE_FY fires: WORKER_SPEC step 4 scores the "
+                                   "TTM base", tt=tt)
+        else:
+            pub = _published_entry(n, plan, "ttm_pinned", "published — the TTM base pinned with --ttm (STALE_FY does "
+                                   "not fire)", tt=tt)
+        med = _unmeasured(n.get("base_oe_normalized_per_share"))
+        why_text = ("not chosen: STALE_FY fires and the TTM was not rejected (WORKER_SPEC step 4)" if stale
+                    else "not chosen: the TTM base is published")
+        e = _alt_entry("annual_median", "alternative", pub, med["base_oe_per_share"] is not None, False, vals=med,
+                       why_text=why_text)
+        if scope and R7_MEDIAN_BESIDE_TTM:
+            e["replay"] = REPLAY_MEDIAN
+            queue(e, "annual_median")
+        else:
+            e["note"] = ("not replayed: STALE_FY does not fire" if not scope
+                         else "not replayed: R7_MEDIAN_BESIDE_TTM is off (default Q15 switch)")
+            entries.append(e)
+    else:
+        # annual_median, or a declared FY-built pin (an iprd_amortized median pin never sits beside an eligible TTM
+        # under STALE_FY: the engine refuses it there, §7.1)
+        rejected = bool(plan["required"] and plan["reason"])
+        ttm_kind = (tt or {}).get("kind") or ("declared_interim" if foreign else "ttm")
+        if rejected:
+            why = "bridge_rejected" if ttm_kind == "declared_interim" else "ttm_rejected"
+            pub = _published_entry(n, plan, why, "published — the TTM was rejected (judgment.json ttm_rejection_reason; "
+                                   "WORKER_SPEC step 4)" if why == "ttm_rejected" else
+                                   "published — the declared 6-K interim bridge was rejected (judgment.json "
+                                   "ttm_rejection_reason; it stays declared)")
+        elif kind == "declared_pin":
+            pub = _published_entry(n, plan, "declared_pin", "published — a declared base_override pin (judgment.json "
+                                   "base_override)")
+        elif stale:
+            pub = _published_entry(n, plan, "no_ttm_for_run", "published — STALE_FY fires but no TTM exists for this "
+                                   "run's latest FY" + (" that ttm.py can build (judgment.json ttm_unavailable_reason)"
+                                                        if plan.get("ttm_unbuildable") else ""))
+        else:
+            pub = _published_entry(n, plan, "default_median", "published — the median of the last 3 FY is the default "
+                                   "base (STALE_FY does not fire)")
+        # design 11 §3.6 row 2 (review fix 5): at a 20-F / 40-F filer the not-computed entry quotes judgment.json
+        # interim_bridge_declined — worker text, so in curly quotes (07 §1.10; check_quotes never reads inside them)
+        declined = validate_interim_declined(j) if foreign else None
+        declined_q = quoted(declined["reason"]) if declined else None
+        if tt is None:
+            if stale:   # (no STALE_FY and no ttm.json: no alternative exists)
+                note = "no ttm.json for this run"
+                if plan.get("unavailable_reason"):
+                    note += " — ttm.py cannot build one (judgment.json ttm_unavailable_reason quotes its exit-3 message)"
+                elif declined_q:
+                    note += (" — no declared 6-K interim bridge (judgment.json interim_bridge_declined, R2): "
+                             + declined_q)
+                entries.append(_alt_entry(ttm_kind, "alternative", pub, False, False, why="no_ttm_for_run",
+                                          note=note))
+        elif tt["status"] in ("other_fy", "off_basis", "orphan_bridge"):
+            note = tt["note"] + (" — ttm.py cannot build this run's (judgment.json ttm_unavailable_reason quotes its "
+                                 "exit-3 message)" if plan.get("unavailable_reason") else "")
+            if declined_q:
+                note += "; judgment.json interim_bridge_declined (R2): " + declined_q
+            entries.append(_alt_entry(tt["kind"], "alternative", pub, False, False, ttm=tt, why="no_ttm_for_run",
+                                      note=note))
+        elif plan.get("ttm_unbuildable"):
+            # review fix 1: a fixable ttm.json ttm.py can no longer rebuild — recorded, never priced, never refused
+            entries.append(_alt_entry(tt["kind"], "alternative", pub, False, False, ttm=tt, why="no_ttm_for_run",
+                                      note=tt["note"] + " — ttm.py cannot rebuild it (judgment.json ttm_unavailable_reason "
+                                                        "quotes its exit-3 message)"))
+        elif rejected:
+            queue(_alt_entry(tt["kind"], "rejected", pub, True, False, vals=_unmeasured(tt["base_oe_per_share"]),
+                             ttm=tt, replay=REPLAY_TTM, why="rejection_reason"), tt["kind"], required=True)
+        else:
+            note = ("not replayed: " + tt["note"] if tt["status"] == "fixable"
+                    else "not replayed: declared base_override pins are exempt (default Q18 switch)"
+                    if kind == "declared_pin" and R7_DECLARED_PIN_RULE != "require"
+                    else "not replayed: STALE_FY does not fire — the median is the default base")
+            entries.append(_alt_entry(tt["kind"], "alternative", pub, True, False,
+                                      vals=_unmeasured(tt["base_oe_per_share"]), ttm=tt, why="not_chosen",
+                                      why_text="not chosen: the median of the last 3 FY is the default base", note=note))
+        if kind == "declared_pin":
+            am = _iprd_amortized_record(n)
+            ai = amortized_impact if isinstance(amortized_impact, dict) else None
+            if am is not None and ai is not None:
+                vals = {"base_oe_per_share": _r4(am.get("native_base_per_share")),
+                        "weighted_irr": _r4(ai.get("weighted_irr_without_override")),
+                        "tier_by_numbers": ai.get("tier_by_numbers_without_override"),
+                        "iprd_charge_per_share": ai.get("iprd_charge_per_share_without_override"),
+                        "iprd_treatment": ai.get("iprd_treatment_without_override")}
+                got = vals["weighted_irr"] is not None or vals["tier_by_numbers"] is not None
+                entries.append(_alt_entry("annual_median", "alternative", pub, vals["base_oe_per_share"] is not None, got,
+                                          vals=vals, replay="the iprd_amortized pin's one-time-deduction replay "
+                                                            "(iprd_amortized_impact)",
+                                          why_text="not chosen: the declared iprd_amortized pin carries the acquired "
+                                                   "IPR&D in the base (this is its one-time-deduction path)",
+                                          note=None if got else ai.get("counterfactual_note")))
+            else:
+                med = _unmeasured(n.get("base_oe_normalized_per_share"))
+                entries.append(_alt_entry("annual_median", "alternative", pub, med["base_oe_per_share"] is not None,
+                                          False, vals=med, why_text="not chosen: the declared base_override pin is "
+                                                                    "published",
+                                          note="not replayed: the published base is a declared base_override pin — its "
+                                               "own impact is in the base_override event"))
+    if not entries:
+        return None
+    assert len(jobs) <= 1, jobs   # at most one engine replay per make_score run (§6)
+    replays, carried, cer, note = 0, False, None, None
+    if jobs and release_mismatch:
+        carried, cer, note = carried_base_alternatives(n, prior_score, plan, pub, entries, jobs)
+    elif jobs:
+        i, base_kind, required = jobs[0]
+        res = _replay_alternative(ticker, n, base_kind, ttm=tt if base_kind in _TTM_KINDS else None, required=required)
+        e = entries[i]
+        e["computed"], e["measured"] = res["computed"], True
+        for k in _VAL_KEYS:
+            e[k] = res.get(k) if res["computed"] else None
+        if base_kind in _TTM_KINDS:
+            e["ttm_engine_release"] = res.get("ttm_engine_release", e.get("ttm_engine_release"))
+        e["note"] = res.get("note")
+        e["base_change_pct"], e["weighted_irr_change_pp"], e["tier_changed"] = _chg(e, pub)
+        replays = 1
+    return _alt_block(n, plan, pub, entries, replays, carried=carried, cer=cer, note=note)
+
+
+def _alt_block(n, plan, pub, entries, replays, carried=False, cer=None, note=None):
+    bases = [pub] + entries
+    return {"schema": 1, "published": plan["kind"], "stale_fy": bool(plan["stale_fy"]),
+            "ttm_rejection_reason": plan["reason"], "ttm_unavailable_reason": plan.get("unavailable_reason"),
+            "bases": bases, "replays": replays,
+            "measured": all(e["measured"] for e in bases if e["computed"]), "note": note,
+            "impact_carried_from_prior_score": bool(carried), "counterfactual_engine_release": cer}
+
+
+def carried_base_alternatives(n, prior_score, plan, pub, entries, jobs):
+    """§3.7 — release mismatch: no replay (another release's capex / SBC basis, the M3 rule). The prior score.json
+    base_alternatives entry is carried into the job's entry when the prior record's published kind, base and weighted
+    IRR equal this run's (4 dp), it carries no note, and its entry of the same kind and role is the same base — for a
+    TTM the same ttm_input_hash as the current ttm.json, for the median the same base at 4 dp, or a median replay
+    that scored no base (computed false) — and was measured; the carried entry keeps its note. Otherwise the entry
+    keeps its base from the record, IRR / tier null, measured false, and the block carries the not-measured note.
+    Returns (carried, counterfactual_engine_release, note); edits the entry in place. The one carry rule: L4's bridge
+    measurement (interim_bridge_measurement) carries through it too. The obligation and the validator still applied
+    (ttm_rejection_state runs on every 5.7 record)."""
+    rel = n.get("engine_release")
+    i, base_kind, _req = jobs[0]
+    e = entries[i]
+    prior = (prior_score or {}).get("base_alternatives") if isinstance(prior_score, dict) else None
+    pbases = [b for b in (prior or {}).get("bases") or [] if isinstance(b, dict)] if isinstance(prior, dict) else []
+    ppub = next((b for b in pbases if b.get("role") == "published"), None)
+    pe = next((b for b in pbases if b.get("kind") == base_kind and b.get("role") == e["role"]), None)
+    same = (isinstance(prior, dict) and not prior.get("note") and prior.get("published") == plan["kind"]
+            and isinstance(ppub, dict) and ppub.get("base_oe_per_share") == pub["base_oe_per_share"]
+            and ppub.get("weighted_irr") == pub["weighted_irr"] and isinstance(pe, dict) and pe.get("measured"))
+    if same and base_kind in _TTM_KINDS:
+        same = pe.get("ttm_input_hash") == e.get("ttm_input_hash")
+    elif same:
+        # the median's identity is its base at 4 dp — or, for a prior replay of this same published configuration that
+        # scored no base (computed false: the engine refused or gapped the median), the published identity alone: its
+        # answer ("not computed — <the engine's line>") is carried with its note (review fix 4)
+        same = (pe.get("base_oe_per_share") == e.get("base_oe_per_share")
+                or (pe.get("computed") is False and pe.get("base_oe_per_share") is None))
+    if same:
+        e["computed"], e["measured"] = bool(pe.get("computed")), True
+        for k in _VAL_KEYS:
+            e[k] = pe.get(k)
+        if base_kind in _TTM_KINDS:
+            e["ttm_engine_release"] = pe.get("ttm_engine_release")
+        e["note"] = pe.get("note")
+        e["base_change_pct"], e["weighted_irr_change_pp"], e["tier_changed"] = _chg(e, pub)
+        return True, rel, None
+    e["measured"] = False
+    return False, rel, _not_measured_note(rel)
+
+
+def ttm_rejection_alert_reasons(base_alts, tier_final):
+    """Default Q16 (R7_ALERT_RULE, main agent 2026-10-21): the entry-alert reason when a TTM rejection lifts the
+    published tier above the rejected TTM's tier into S / A — the same rule R6 applies to a share-class raise: an S / A
+    tier that exists only because the worker set the TTM aside rests on that judgment. Only a replayed rejection counts
+    (a rejected TTM the replay could not score has no tier: below any); an unmeasured one does not (a release mismatch
+    closes both gates already). [] otherwise."""
+    if R7_ALERT_RULE != "suppress_raise" or tier_final not in ("S", "A") or not isinstance(base_alts, dict):
+        return []
+    out = []
+    for e in base_alts.get("bases") or []:
+        if not (isinstance(e, dict) and e.get("role") == "rejected" and e.get("measured")):
+            continue
+        rt = e.get("tier_by_numbers")
+        if rt is None or TIER_ORDER.get(tier_final, -1) > TIER_ORDER.get(rt, -1):
+            out.append(f"tier rests on a TTM rejection (ttm_rejection_reason): the rejected {_KIND_TEXT[e['kind']]} "
+                       f"scores {('Tier ' + rt) if rt else 'no tier'}, the published {_KIND_TEXT[base_alts['published']]} "
+                       f"Tier {tier_final}")
+    return out
 
 
 def compute_override_impact(ticker, n, ttm_only=None):
@@ -4583,10 +5447,7 @@ def compute_override_impact(ticker, n, ttm_only=None):
     m = None   # v5.7 (L8): the replay record, read for its share_classes.checks_relaxed below
     pin_src = (n.get("inputs") or {}).get("base_pin_source")
     pinned = (n.get("inputs") or {}).get("base_oe_ps_arg") is not None or "ttm" in base_src
-    base_used = "payable_5y" if (pin_src == "judgment_base_override" or n.get("payable_base")) \
-        else "declared_interim" if _interim_pinned(ticker, n) \
-        else "declared_pin" if _declared_pin_not_ttm(ticker, n) \
-        else "ttm" if pinned else "median_3y"
+    base_used = base_used_label(ticker, n)   # v5.7 (R7): this expression, extracted unchanged (published_base_kind)
     args = _final_run_args(n)
     if base_used == "declared_interim":
         # v5.7 (L4, R2a; rebase amendment 13): a --ttm pin on the declared 6-K interim bridge. ttm.py is never
@@ -4962,17 +5823,21 @@ def moat_facts_by_id(fc, folder):
         return {}
 
 
-def influence_extra(moat_ev=None, interim_meas=None):
+def influence_extra(moat_ev=None, interim_meas=None, base_alts=None):
     """[Integrate L4] 07 §1.12 step 7: the engine sources every 5.7 influence check traces to beyond check_quotes'
     set — the numeric leaves of the moat evidence (L3: a reason quoting the tangible ROIC traces) and of the declared
     6-K bridge's measurement (L4: the bridged and the annual-median base OE/share, weighted IRR and acquired-IPR&D
-    charge per share — a reason quoting the median IRR the bridge was measured against traces). Both are computed
-    before the checks and before the first write (steps 4 and 6). [] when neither exists."""
+    charge per share — a reason quoting the median IRR the bridge was measured against traces), and (R7) of the
+    base_alternatives record's bases (base OE/share, weighted IRR, IPR&D charge and the changes against the published
+    base: a ttm_rejection_reason quoting the rejected TTM's replayed IRR traces). All are computed before the checks
+    and before the first write (steps 4 and 6). [] when none exists."""
     leaves = []
     if isinstance(moat_ev, dict):
         leaves += _moat.numeric_leaves(moat_ev)
     if isinstance(interim_meas, dict):
         leaves += _moat.numeric_leaves({k: interim_meas.get(k) for k in ("bridged", "annual_median")})
+    if isinstance(base_alts, dict):
+        leaves += _moat.numeric_leaves({"bases": base_alts.get("bases")})
     return leaves
 
 
@@ -5039,13 +5904,13 @@ SCORE_DECISION_KEYS += ("share_classes", "up_c_check")   # L8 (R6): the declarat
 
 def _interim_events(ticker, interim, declined, today):
     """v5.7 (L4, R2a): the interim_bridge event (identity: the declaration hash, so an unchanged declaration keeps
-    its first date; both bases from the measurement) and the interim_bridge_declined event (identity: the reason).
-    No field carries an iprd_deferred_payment name (IPRD_DEFERRED_EVENT_KEYS)."""
+    its first date) and the interim_bridge_declined event (identity: the reason). v5.7 (R7, 11 §7.2): the bridge
+    event carries the declaration's descriptors only — both bases, their weighted IRRs and tiers are the
+    base_alternatives event's (_base_alternatives_events: one record, not two shapes). No field carries an
+    iprd_deferred_payment name (IPRD_DEFERRED_EVENT_KEYS)."""
     out = []
     if interim is not None:
         decl, tt = interim["decl"], interim["ttm"]
-        m = interim.get("measurement") or {}
-        br, am = m.get("bridged") or {}, m.get("annual_median") or {}
         per = tt.get("periods") or {}
         out.append({"ticker": ticker, "event": INTERIM_KEY, "date": today, "declaration_hash": interim["hash"],
                     "currency": decl.get("currency"), "fy_period": per.get("fy"),
@@ -5053,11 +5918,7 @@ def _interim_events(ticker, interim, declined, today):
                     "report_accession": (decl.get("report") or {}).get("accession"),
                     "estimate_legs": interim.get("estimate_legs") or [],
                     "perimeter_changes": [{k: pc.get(k) for k in ("kind", "effective_date", "resolution")}
-                                          for pc in (decl.get("like_for_like") or {}).get("perimeter_changes") or []],
-                    "base_oe_annual_median": am.get("base_oe_per_share"), "base_oe_bridged": br.get("base_oe_per_share"),
-                    "weighted_irr_annual_median": am.get("weighted_irr"), "weighted_irr_bridged": br.get("weighted_irr"),
-                    "tier_annual_median": am.get("tier_by_numbers"), "tier_bridged": br.get("tier_by_numbers"),
-                    "measured": bool(m.get("measured")), "note": m.get("note")})
+                                          for pc in (decl.get("like_for_like") or {}).get("perimeter_changes") or []]})
     if declined is not None:
         out.append({"ticker": ticker, "event": INTERIM_DECLINED_KEY, "date": today, "reason": declined["reason"],
                     "report_accession": (declined.get("report") or {}).get("accession")})
@@ -5111,9 +5972,29 @@ def _share_classes_events(ticker, share_classes, up_c, n, j):
 
 
 def _base_alternatives_events(ticker, base_alts, today):
-    """v5.7 placeholder (R7): the base_alternatives event (a rejected STALE_FY TTM, or a published 6-K bridge). []
-    in L0."""
-    return []
+    """v5.7 (R7, 11 §3.10): one base_alternatives event when the base choice is a judgment call R7 or R2 records — a
+    `rejected` entry (the TTM rejection) or a published declared 6-K bridge (04: "recorded in the overrides
+    registry"); a mandated TTM base, a fresh-FY median, a no-TTM median and a payable base (its own base_override
+    event) write none. {ticker, event, date, chosen, stale_fy, reason, ttm_kind, ttm_fy_end, ttm_ytd_end, bases [{kind,
+    role, computed, base_oe_per_share, weighted_irr, tier_by_numbers, note}], measured, note,
+    impact_carried_from_prior_score, counterfactual_engine_release}. Identity (_EVENT_DECLARATION): chosen, reason,
+    ttm_kind, ttm_fy_end, ttm_ytd_end — an unchanged reason against the same TTM window keeps its first date; a new
+    10-Q, a new FY or a rewritten reason re-dates. No field carries an iprd_deferred_payment name. Pure."""
+    if not isinstance(base_alts, dict):
+        return []
+    bases = [b for b in base_alts.get("bases") or [] if isinstance(b, dict)]
+    rej = next((b for b in bases if b.get("role") == "rejected"), None)
+    if rej is None and base_alts.get("published") != "declared_interim":
+        return []
+    tb = rej or next((b for b in bases if b.get("role") == "published"), {})
+    return [{"ticker": ticker, "event": "base_alternatives", "date": today, "chosen": base_alts.get("published"),
+             "stale_fy": bool(base_alts.get("stale_fy")), "reason": base_alts.get("ttm_rejection_reason"),
+             "ttm_kind": tb.get("kind"), "ttm_fy_end": tb.get("fy_end"), "ttm_ytd_end": tb.get("ytd_end"),
+             "bases": [{k: b.get(k) for k in ("kind", "role", "computed", "base_oe_per_share", "weighted_irr",
+                                              "tier_by_numbers", "note")} for b in bases],
+             "measured": bool(base_alts.get("measured")), "note": base_alts.get("note"),
+             "impact_carried_from_prior_score": bool(base_alts.get("impact_carried_from_prior_score")),
+             "counterfactual_engine_release": base_alts.get("counterfactual_engine_release")}]
 
 
 def _capex_events(ticker, today, unlisted_acks, n):
@@ -5708,9 +6589,98 @@ def _kn_base_interim(n, score, interim, instance):
     return out
 
 
+_KN_ROLE = {"published": "Published", "rejected": "Rejected", "alternative": "Alternative"}
+
+
+def _kn_alt_label(e):
+    """What a base_alternatives entry is, for key_numbers.md."""
+    k = e.get("kind")
+    fy, ytd = e.get("fy_end"), e.get("ytd_end")
+    if k == "annual_median":
+        return "annual median of the last 3 FY OE/share"
+    if k == "ttm":
+        return f"TTM to {ytd} (ttm.py, 10-Q YTD; FY {fy})" if ytd else "TTM"
+    if k == "declared_interim":
+        return f"declared 6-K interim bridge TTM to {ytd} (ttm.py --interim; FY {fy})" if ytd else "declared 6-K interim bridge TTM"
+    if k == "payable_5y":
+        return "payable-earnings base (5-yr average operating income available to common)"
+    return "declared base_override pin"
+
+
+def _kn_alt_base(e):
+    b = _money(e.get("base_oe_per_share"))
+    if e.get("kind") == "annual_median":
+        return b
+    return f"{b} per economic unit" if e.get("share_basis") == "total_units" else f"{b}/share"
+
+
 def _kn_base_alternatives(score):
-    """v5.7 placeholder (R7): the "Base alternatives" section, right after the IPR&D section. [] in L0."""
-    return []
+    """v5.7 (R7, 11 §3.11): "Base alternatives" — right after the IPR&D section (each alternative's IRR carries its own
+    acquired-IPR&D charge): the published base, then every other base computed for the run (rejected / alternative /
+    not computed, with its change against the published base), the rejection reason and ttm.py's exit-3 message in
+    curly quotes (worker text, 07 §1.10), how the alternatives were measured and the STALE_FY rule. Tiers are by
+    numbers (L1's notch acts on the published tier only). [] when score.json carries no base_alternatives."""
+    ba = (score or {}).get("base_alternatives")
+    if not isinstance(ba, dict):
+        return []
+    bases = [b for b in ba.get("bases") or [] if isinstance(b, dict)]
+    pub = next((b for b in bases if b.get("role") == "published"), None)
+    if pub is None:
+        return []
+    mn = score.get("misfit_notch") if isinstance(score.get("misfit_notch"), dict) else {}
+    L = ["", "## Base alternatives (R7 — the published base beside every other base computed for this run)"]
+    fs = f", {pub['f_subtype']}" if pub.get("f_subtype") else ""
+    L.append(f"- Published: {_kn_alt_label(pub)} {_kn_alt_base(pub)} — weighted IRR {_pct(pub.get('weighted_irr'))} · "
+             f"Tier {pub.get('tier_by_numbers')} (by numbers{fs})"
+             + (" (tiers by numbers; the published tier is notched — see Headline)" if mn.get("applies") else ""))
+    for e in bases:
+        if e is pub:
+            continue
+        role = _KN_ROLE.get(e.get("role"), "Alternative")
+        if not e.get("computed"):
+            L.append(f"- {role}: {_kn_alt_label(e)} not computed — {e.get('note') or 'no base'}")
+            continue
+        if not e.get("measured"):
+            L.append(f"- {role}: {_kn_alt_label(e)} {_kn_alt_base(e)} — weighted IRR / tier: "
+                     f"{e.get('note') or ba.get('note') or 'not measured'}")
+            continue
+        pp, pct, tc = e.get("weighted_irr_change_pp"), e.get("base_change_pct"), e.get("tier_changed")
+        line = (f"- {role}: {_kn_alt_label(e)} {_kn_alt_base(e)} — weighted IRR {_pct(e.get('weighted_irr'))}"
+                + (f" ({pp:+.2f}pp)" if isinstance(pp, (int, float)) else "")
+                + f" (Tier {e.get('tier_by_numbers') or '—'}{', ' + e['f_subtype'] if e.get('f_subtype') else ''})"
+                + (f" · base {pct:+.2f}% vs published" if isinstance(pct, (int, float)) else "")
+                + (f" · tier {pub.get('tier_by_numbers')} → {e.get('tier_by_numbers')}" if tc is True
+                   else " · tier unchanged" if tc is False else ""))
+        if _num(e.get("iprd_charge_per_share")):
+            line += f" · acquired IPR&D {_money(e['iprd_charge_per_share'])}/share off every IV (its own window)"
+        if e.get("why_text"):
+            line += f" ({e['why_text']})"
+        L.append(line)
+    if ba.get("ttm_rejection_reason"):
+        L.append(f"- Rejection reason: {quoted(ba['ttm_rejection_reason'])}")
+    if ba.get("ttm_unavailable_reason"):
+        L.append(f"- TTM unavailable (ttm.py's exit-3 message, judgment.json ttm_unavailable_reason): "
+                 f"{quoted(ba['ttm_unavailable_reason'])}")
+    replayed = next((e for e in bases if e is not pub and e.get("replay") in (REPLAY_TTM, REPLAY_MEDIAN)
+                     and e.get("measured")), None)
+    if ba.get("impact_carried_from_prior_score"):
+        L.append(f"- Measured: carried from the prior score.json, not re-measured (engine output release "
+                 f"{ba.get('counterfactual_engine_release')} vs current {ENGINE_RELEASE})")
+    elif ba.get("note"):
+        L.append(f"- Measured: {ba['note']}")
+    elif ba.get("replays") and replayed is not None:
+        n_r = ba["replays"]
+        L.append(("- Measured: the final configuration replayed with --ttm (field overrides on; the TTM's own "
+                  "acquired-IPR&D window and share count; " if replayed.get("kind") in _TTM_KINDS else
+                  "- Measured: the final configuration replayed without a base pin (field overrides on; the median's own "
+                  "acquired-IPR&D window and share count; ") + f"{n_r} replay{'s' if n_r != 1 else ''})")
+    else:
+        L.append("- Measured: no replay — the alternatives are recorded from the run's own record"
+                 + (" and the payable pin's measurement" if ba.get("published") == "payable_5y" else ""))
+    if ba.get("stale_fy"):
+        L.append("- STALE_FY fires: the TTM is the scored base unless rejected with a reason that names the distorting "
+                 "cash-flow line and a number (WORKER_SPEC step 4)")
+    return L
 
 
 def _kn_growth_extras(folder, n):
@@ -5829,7 +6799,7 @@ def _kn_moat(score):
 def _kn_interim(score, interim):
     """v5.7 (L4, R2a): the "Interim bridge" section (07 §1.9: after the Moat scorecard, before Declared facts) — the
     basis and rates, the leg table (local currency and the TTM in USD), the shares line, the bases compared (from
-    score.json base_alternatives; R7 replaces this line with a pointer to its "Base alternatives" section), what was
+    score.json base_alternatives: since R7 a pointer to its "Base alternatives" section, one shape), what was
     verified and estimated, the like-for-like declaration and one source line per filing leg. Worker text is echoed
     in curly quotes (07 §1.10)."""
     if interim is None:
@@ -5862,19 +6832,9 @@ def _kn_interim(score, interim):
                f"{tt.get('ads_ratio')} → bridged base OE/share "
                + (f"${tt['ttm_oe_per_share']:,.4f}" if _num(tt.get("ttm_oe_per_share")) is not None else "—")
                + " (scored)")
-    alts = score.get("base_alternatives") if isinstance(score.get("base_alternatives"), dict) else {}
-    bases = {b.get("kind"): b for b in alts.get("bases") or [] if isinstance(b, dict)}
-    pub, med = bases.get("declared_interim") or {}, bases.get("annual_median") or {}
-    if med:
-        tail = ("" if med.get("measured") else f" — {med.get('note') or alts.get('note') or 'not measured'}")
-        if alts.get("impact_carried_from_prior_score"):
-            tail = (f" — carried from the prior score.json, not re-measured (engine output release "
-                    f"{alts.get('counterfactual_engine_release')} vs current {ENGINE_RELEASE})")
-        out.append(f"- Annual-median base (same configuration, measured): {_money(med.get('base_oe_per_share'))} · weighted "
-                   f"IRR bridged {_pct(pub.get('weighted_irr'))} (Tier {pub.get('tier_by_numbers')}) vs annual median "
-                   f"{_pct(med.get('weighted_irr'))} (Tier {med.get('tier_by_numbers') or '—'})"
-                   + (" — tier unchanged" if med.get("tier_changed") is False else
-                      " — tier changes" if med.get("tier_changed") else "") + tail)
+    # v5.7 (R7, 11 §3.11 / §7.2): the both-bases comparison lives in one key_numbers section, "Base alternatives"
+    if isinstance(score.get("base_alternatives"), dict):
+        out.append('- Bases compared: see "Base alternatives"')
     ver = [f"{a} {b.split('_')[0]}" for a, b in (x.split(".", 1) for x in interim.get("xbrl_verified_legs") or [])]
     est_txt = []
     for x in interim.get("estimate_legs") or []:
@@ -6521,7 +7481,17 @@ def main():
             check_influence("misfit_notch_reason", notch["reason"], _facts.parse_refs(notch["reason"]), fc, folder, n,
                             extra=trace_extra)
         if plan and plan.get("reason"):
-            pass   # R7: check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, ...)
+            # R7 (11 §3.8): every figure of the rejection traces — to an engine source (dcf_numbers.json, ttm.json, the
+            # CSV, saved runs) or the base_alternatives record's leaves (the replayed IRR of the rejected TTM; for this
+            # field only: the record's published entry repeats a pin, which must never anchor a base_override reason) or
+            # a cited fact listing used_for ttm_rejection; never third-party facts alone
+            check_influence(TTM_REJECTION_KEY, plan["reason"], _facts.parse_refs(plan["reason"]), fc, folder, n,
+                            extra=trace_extra + influence_extra(base_alts=base_alts))
+        # R7 lane (the main agent's decision, 2026-10-21): L9's capex_unlisted_ack reasons (R8) are 5.7 reasons like
+        # every other one — each traces through L2's check (used_for capex_unlisted_ack; never third-party alone)
+        for _ack in capex_unlisted_acks(n, j):
+            check_influence(f"capex_unlisted_ack.{_ack['tag']}", _ack["reason"], _facts.parse_refs(_ack["reason"]), fc,
+                            folder, n, extra=trace_extra)
         # L2 (R3, Andrew 2026-10-19; 02 §5): the tier override's reason and a plain base_override pin's reason +
         # source (the payable and iprd_amortized shapes are checked figure for figure elsewhere; rebase I13) — a hand
         # pin never traces to itself alone (base_pin_trace_only, review r05). misfit_notch_reason is L1's call (its
@@ -6561,6 +7531,7 @@ def main():
         bool(reported and impact and impact.get("unblocks_tier")) or pin_rescued(n), bool(diag.get("irr_at_floor")),
         stale_release=release_mismatch_reason(n.get("engine_release")) if release_mismatch else None,
         share_classes_raise=share_classes_raise_reason(sc_impact))   # v5.7 (L8): None in L0
+    reasons += ttm_rejection_alert_reasons(base_alts, tier_final)   # v5.7 (R7, default Q16)
     score["alert_eligible"] = tier_final in ("S", "A") and not reasons
     if reasons:
         score["alert_suppressed_reason"] = "; ".join(reasons)

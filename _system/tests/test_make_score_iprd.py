@@ -41,8 +41,20 @@ SYS = os.path.dirname(HERE)
 for _p in (HERE, SYS):
     if _p not in sys.path:
         sys.path.insert(0, _p)
-from test_make_score_55 import Run, _judgment, _stamp  # noqa: E402
+from test_make_score_55 import Run as _Run55, _judgment, _stamp  # noqa: E402
 import test_engine_iprd as TI  # noqa: E402
+import rulings57  # noqa: E402  (R7, 07 G16: the STALE_FY obligations and base replays, applied right before a run)
+
+
+class Run(_Run55):
+    """test_make_score_55.Run with R7's STALE_FY obligations (07 G16): the TI records carry STALE_FY at today's date,
+    so every folder gets rulings57.r7_current when it is built (several tests run make_score from it directly, in a
+    subprocess of their own) — and again right before the run in _score / _bridged, which write ttm.json and the
+    stand-ins after (r7_current re-derives the fields it added). No assertion changes."""
+
+    def __init__(self, *a, **k):
+        super().__init__(*a, **k)
+        rulings57.r7_current(self.folder, self.sysdir)
 
 E = TI.E
 PROBS = [0.1, 0.25, 0.3, 0.25, 0.1]
@@ -87,6 +99,7 @@ def _score(n, j=None, prior_score=None, ttm=None):
     if ttm is not None:
         with open(os.path.join(r.folder, "ttm.json"), "w", encoding="utf-8") as f:
             json.dump(ttm, f)
+    rulings57.r7_current(r.folder, r.sysdir)   # R7 (07 G16): TI records carry STALE_FY at today's date
     r = r.run()
     try:
         r.result = dict(r.state(), score=r.score() if r.rc == 0 else None, key=r.key() if r.rc == 0 else None,
@@ -323,6 +336,7 @@ def _bridged(n, j, facts, ttm=None, ttm_no_override=None):
     if ttm is not None:
         with open(os.path.join(run.folder, "ttm.json"), "w", encoding="utf-8") as f:
             json.dump(ttm, f)
+    rulings57.r7_current(run.folder, run.sysdir)   # R7 (07 G16): its base replays answered beside BRIDGE, logged apart
     try:
         run.run()
         spawns = []

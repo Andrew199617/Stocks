@@ -388,7 +388,8 @@ Review round (2026-10-19): the window and denominator follow the BASE's basis, n
 --base-oe-ps pin equal to ttm.json's ttm_oe_per_share within 0.1%, or an iprd_amortized pin declaring native_base
 ttm_json, reads the current-YTD leg and ttm_shares_diluted); an amortized run judges materiality / recurrence
 against its native base (the pin is already lowered by the charge); under STALE_FY with a ttm.json base the
-amortized native base must be ttm_json (WORKER_SPEC step 4); make_score's override-impact counterfactual
+amortized native base must be ttm_json (WORKER_SPEC step 4; since 5.7 also when the TTM is rejected —
+ttm_rejection_reason, R7); make_score's override-impact counterfactual
 (DCF_NO_OVERRIDES=1 --measure) never re-validates an amortized declaration and holds the final run's treatment and
 charge per share when DCF_IPRD_HOLD passes them; HIGH_TV_SHARE / diagnostics.tv_share_at_15 are shares of the
 ADJUSTED IV@15 (the scenario spread alone stays on the unadjusted paths).
@@ -726,8 +727,14 @@ closed, as for every release change). The items below are written by the lane th
   MOAT_TREND_HOLD when the hold is not 2 (not in any confidence cap or alert gate). The IPR&D one-time charge acts
   after the flows (adjusted_value / adjusted_irr), so it composes with the hold unchanged; DCF_IPRD_HOLD is the
   unrelated IPR&D treatment hold. _measure_run passes --moat-trend through with the rest of argv.
-- (R7) STALE_FY discretion made checkable: no engine logic change; the amortized-median refusal text names
-  ttm_rejection_reason: [R7 writes this item]
+- (R7) STALE_FY discretion made checkable (Andrew, 2026-10-19, ruling-sheet Q5 option A): no engine logic change and
+  no change to any hashed output. A worker may reject the STALE_FY TTM base only with judgment.json
+  ttm_rejection_reason (make_score checks it, replays this engine with --measure — and --ttm for the rejected TTM,
+  DCF_REPLAY_PURPOSE=base_alternatives, which the engine ignores — and records both bases in score.json
+  base_alternatives). The engine does not read the field. The BAD_BASE_OVERRIDE refusal of a median-native
+  iprd_amortized pin under STALE_FY beside a ttm.json TTM base now names ttm_rejection_reason: a rejected TTM leaves
+  the median with the one-time deduction (default Q17, main agent 2026-10-21: an amortized median after a rejection is
+  not built; ENGINE_BACKLOG). The STALE_FY flag text is unchanged (hashed output).
 - (L2 R3 facts and quotes, L3 R4 moat scorecard) no engine change: facts.json and the moat scorecard are
   make_score's.
 - (L5 ops, L6 site) no engine change: preflight compares this ENGINE_RELEASE with origin/main's (the drift guard);
@@ -6975,9 +6982,13 @@ def main():
             elif _nb == "median_of_last_3_fy_oe_per_share" and _stale_fy and _ttm_v is not None:
                 # [v5.6 review] the native base is the base this run would otherwise score, not a free choice: under
                 # STALE_FY with a ttm.json TTM base, WORKER_SPEC step 4 scores the TTM base
+                # v5.7 (R7, Andrew 2026-10-19): the TTM may be rejected (judgment.json ttm_rejection_reason, checked by
+                # make_score), but an amortized base is still built on the TTM only — no logic change (default Q17)
                 why.append("STALE_FY fires and ttm.json carries a TTM base, so WORKER_SPEC step 4 scores this filer on "
-                           "that TTM base: the amortized base's native_base must be 'ttm_json' (the median is the native "
-                           "base only where the run would otherwise score the median)")
+                           "that TTM base unless judgment.json ttm_rejection_reason rejects it (engine 5.7, R7), and an "
+                           "amortized base is built on the TTM only: the amortized base's native_base must be 'ttm_json' "
+                           "(a rejected TTM leaves the median with the one-time deduction; the median is an amortized "
+                           "native base only where STALE_FY does not fire)")
             if not (isinstance(figs, list) and len(figs) == len(_fy_amts)
                     and all(isinstance(x, (int, float)) and not isinstance(x, bool) for x in figs)
                     and all(abs(float(a) - b) <= 1.0 for a, b in zip(figs, _fy_amts))):
