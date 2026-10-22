@@ -31,12 +31,17 @@ the same word does not count.
    the remainder_unknown intangible record).
 3. automation/README.md's day table matches every cron file present: the
    "When" cell carries the front matter's cadence (every N min / HH:MM daily)
-   and the row says "Disabled" exactly when `enabled: false`. (The daily cron
-   files have colons in their names and are absent from a Windows checkout;
-   the rows of the files that are present are checked.)
+   and the row says "Disabled" exactly when `enabled: false`. Every cron file
+   is present in every checkout (the daily files were renamed without colons).
 4. The passages this round corrected stay corrected (the stale wording is
    absent) — also engine 5.5's verifier-round corrections in README,
    SITE_CONTRACT, WORKER_SPEC and AGENTS.md.
+5. Engine 5.7 (Andrew's 2026-10-19/20 rulings R1-R9; lane L7 writes every
+   lane's doc tests): the new keys, flags, files and switches are in the code
+   and named in the documents that describe them (PAIRS also binds AGENTS.md,
+   WORKER_SPEC and SECOND_PASS now); the notch, quote-gate, moat-rubric,
+   moat-trend, share-class, capex and ops passages say what the code does;
+   and the wording the rulings retired is absent.
 """
 import ast
 import glob
@@ -52,6 +57,7 @@ SYS_README = "_system/README.md"
 AUTO_README = "automation/README.md"
 WORKER_SPEC = "_system/WORKER_SPEC.md"
 AGENTS_MD = "AGENTS.md"
+SECOND_PASS = "_system/SECOND_PASS.md"
 
 
 def _read(rel):
@@ -426,15 +432,148 @@ PAIRS = [
     # Codex review round 2 on PR #53
     ("_system/fundamentals.py", "ENGINE_CAPEX_GROUPS = (_engine.CAPEX_ROLLUP_TAGS", "ENGINE_CAPEX_GROUPS", [SYS_README, CONTRACT]),
     ("_system/fundamentals.py", "def annual_row_periods(", "annual_row_periods", [SYS_README, CONTRACT]),
+    # ---- engine 5.7 (Andrew's rulings R1-R9, 2026-10-19/20; the lanes' doc notes, written by L7) ----
+    # L1 (R1): the mechanical sector-misfit notch; misfits by universe sector OR EDGAR SIC (01 T-16)
+    ("_system/make_score.py", 'score["misfit_notch"] = notch', "misfit_notch",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", 'score["misfit_sector_set_aside"] = set_aside', "misfit_sector_set_aside",
+     [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/facts.py", '"misfit_notch_reason": "misfit_notch"', "misfit_notch_reason", [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", "def sector_model_record(", "sector_model", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", "def misfit_status(", "misfit_status", [SYS_README]),
+    ("_system/dcf_engine.py", "def notch_tier(", "notch_tier", [SYS_README]),
+    ("_system/dcf_engine.py", "MISFIT_SIC_RANGES = (", "MISFIT_SIC_RANGES", [SYS_README, AGENTS_MD]),
+    ("_system/dcf_engine.py", "SIC_SETS_ASIDE_SECTOR = ", "dcf_engine.SIC_SETS_ASIDE_SECTOR", [SYS_README, AGENTS_MD]),
+    # L2 (R3): declared facts, saved runs and the quote gate (02 §10)
+    ("_system/facts.py", 'os.path.join(folder, "facts.json")', "facts.json", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/queue.py", "import check_quotes as _quotes", "check_quotes.py",
+     [SYS_README, AUTO_README, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/check_quotes.py", "python3 _system/check_quotes.py --save-run <T> <label> [--replace]", "--save-run",
+     [SYS_README, AUTO_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/check_quotes.py", "<T>/dcf_numbers_<label>.json", "dcf_numbers_<label>.json",
+     [SYS_README, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/make_score.py", 'score["key_numbers_sha256"] = hashlib', "key_numbers_sha256",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", 'score["declared_facts"] = fc.summary()', "declared_facts", [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/make_score.py", 'score["method_runs"] = ', "method_runs", [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/make_score.py", 'score["previous_score"] = previous', "previous_score", [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/quote_tokens.py", "SNIPPET_MAX_WORDS = ", "SNIPPET_MAX_WORDS", [SYS_README]),
+    # L3 (R4 revised): the combined moat scorecard (03 §14.19: moat_evidence named)
+    ("_system/make_score.py", 'score["moat_evidence"] = moat_ev', "moat_evidence", [CONTRACT, SYS_README, AGENTS_MD, SECOND_PASS]),
+    ("_system/moat_scorecard.py", "SCORECARD_VERSION = 1", "moat_scorecard", [SYS_README, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/moat_scorecard.py", "def evaluate(", "moat_scorecard.py", [SYS_README, AUTO_README, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/fundamentals.py", "def capital_returns_from_row(", "capital_returns_from_row", [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/industry_returns.py", 'ap.add_argument("--write", action="store_true")', "industry_returns.json",
+     [SYS_README, AUTO_README]),
+    ("_system/moat_scorecard.py", "ADDBACK_IPRD = ", "moat_scorecard.ADDBACK_IPRD", [SYS_README]),
+    # L3b (M6): the moat's direction sets the growth hold (10 T26)
+    ("_system/dcf_engine.py", "HOLD_BY_TREND = {", "--moat-trend", [SYS_README, AUTO_README, WORKER_SPEC, SECOND_PASS]),
+    ("_system/dcf_engine.py", "EXIT_BAD_MOAT_TREND = ", "BAD_MOAT_TREND", [WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'f"MOAT_TREND_HOLD: moat eroding', "MOAT_TREND_HOLD", [AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'HOLD_RULE = "', "dcf_engine.HOLD_RULE", [SYS_README]),
+    ("_system/dcf_engine.py", '"moat_trend": moat_trend, "hold_years": hold_years,', "hold_years",
+     [CONTRACT, SYS_README, AGENTS_MD]),
+    ("_system/dcf_engine.py", '"moat_trend": moat_trend, "hold_years": hold_years,', "moat_trend",
+     [CONTRACT, SYS_README, AGENTS_MD]),
+    ("_system/moat_scorecard.py", "TREND_ROW_SOURCES = (", "TREND_ROW_SOURCES", [SYS_README]),
+    ("_system/moat_scorecard.py", "FADE_DRIFT_ON_REBUILD = ", "FADE_DRIFT_ON_REBUILD", [SYS_README]),
+    ("_system/moat_scorecard.py", "COST_POSITION_METRICS = (", "moat_scorecard.COST_POSITION_METRICS", [WORKER_SPEC]),
+    # L4 (R2): the declared 6-K interim bridge and the annual-from-instance fallback
+    ("_system/dcf_engine.py", "def load_annual_instance(", "annual_instance.json", [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'result["annual_from_instance"] = annual_instance', "annual_from_instance",
+     [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/dcf_engine.py", '"ANNUAL_FROM_INSTANCE: fiscal year(s)', "ANNUAL_FROM_INSTANCE",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", "def interim_pin_state(", "interim_bridge", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", "def check_interim_obligation(", "interim_bridge_declined",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", 'INTERIM_OBLIGATION_RULE = "re_declare"', "INTERIM_OBLIGATION_RULE", [SYS_README]),
+    ("_system/make_score.py", "def interim_bridge_measurement(", "base_alternatives", [SYS_README, CONTRACT]),
+    ("_system/make_score.py", 'INTERIM_FLAG = "TTM_DECLARED_INTERIM"', "TTM_DECLARED_INTERIM",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", "def _interim_rule_problems(", "declaration_rule_problems", [SYS_README, AGENTS_MD]),
+    ("_system/interim_bridge.py", "def declaration_rule_problems(", "declaration_rule_problems", [SYS_README, AGENTS_MD]),
+    ("_system/interim_bridge.py", "PERIOD_SOURCE_DEI = ", "interim_bridge.py", [SYS_README, AGENTS_MD]),
+    ("_system/xbrl_instance.py", "def parse_undimensioned(", "xbrl_instance.py", [SYS_README, AGENTS_MD]),
+    ("_system/ttm.py", "def interim_main(", "--interim", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/ttm.py", "Usage: python3 ttm.py <TICKER> [--cik N] [--interim | --interim-draft <6-K accession>]",
+     "--interim-draft", [SYS_README, WORKER_SPEC]),
+    # L6 (site, 06 §4.3)
+    ("_system/build_site.py", "def quote_check(", "quote_check", [CONTRACT]),
+    ("_system/build_site.py", '"declared_interim"', "declared_interim", [CONTRACT, AGENTS_MD]),
+    ("_system/build_site.py", "def score_run_record(", "score_from_run", [CONTRACT]),
+    ("_daily/site/app.js", "function notchView(", "notchView", [CONTRACT]),
+    ("_daily/site/app.js", "function edgarFilingUrl(", "edgarFilingUrl", [CONTRACT]),
+    ("_daily/site/app.js", "function httpsUrl(", "httpsUrl", [CONTRACT]),
+    ("_daily/site/app.js", "function fmtFactValue(", "fmtFactValue", [CONTRACT]),
+    # R7 (STALE_FY discretion made checkable; design 11)
+    ("_system/make_score.py", "def ttm_rejection_problem(", "ttm_rejection_reason",
+     [SYS_README, CONTRACT, AUTO_README, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/make_score.py", "def ttm_unavailable_problem(", "ttm_unavailable_reason",
+     [SYS_README, CONTRACT, AUTO_README, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/make_score.py", "def build_base_alternatives(", "base_alternatives",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC, SECOND_PASS]),
+    ("_system/make_score.py", '"base_alternatives": ("chosen"', "base_alternatives", [SYS_README]),
+    ("_system/make_score.py", "R7_OBLIGATION_SCOPE = ", "R7_OBLIGATION_SCOPE", [SYS_README]),
+    ("_system/make_score.py", "R7_TTM_UNAVAILABLE_RULE = ", "R7_TTM_UNAVAILABLE_RULE", [SYS_README]),
+    ("_system/make_score.py", "R7_MEDIAN_BESIDE_TTM = ", "R7_MEDIAN_BESIDE_TTM", [SYS_README]),
+    ("_system/make_score.py", "R7_ALERT_RULE = ", "R7_ALERT_RULE", [SYS_README]),
+    ("_system/make_score.py", "R7_DECLARED_PIN_RULE = ", "R7_DECLARED_PIN_RULE", [SYS_README]),
+    # L8 (R6): declared share classes and the Up-C detector (08 docs tests)
+    ("_system/dcf_engine.py", 'result["share_classes"] = sc_record', "share_classes",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'result["up_c_check"] = up_c', "up_c_check", [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/dcf_engine.py", 'SHARE_CLASSES_TAG = "+SHARE_CLASSES"', "+SHARE_CLASSES", [SYS_README, CONTRACT, AGENTS_MD]),
+    ("_system/dcf_engine.py", 'f"SHARE_CLASSES_DECLARED: ', "SHARE_CLASSES_DECLARED", [CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'f"SHARE_CLASSES_NCI_GAP: ', "SHARE_CLASSES_NCI_GAP", [AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'f"SHARE_CLASSES_CAP_GAP: ', "SHARE_CLASSES_CAP_GAP", [AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'f"UP_C_SUSPECT: ', "UP_C_SUSPECT", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", '"(judgment.json up_c_suspect_reason)"', "up_c_suspect_reason",
+     [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'print(f"BAD_SHARE_CLASSES for {ticker}: ', "BAD_SHARE_CLASSES", [WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'print(f"BAD_TTM_SHARE_BASIS for {ticker}: ', "BAD_TTM_SHARE_BASIS", [WORKER_SPEC]),
+    ("_system/make_score.py", 'if o["share_basis"] not in SHARE_BASIS_VALUES', "share_basis",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/share_classes.py", '"in_filed_count": ifc is True', "in_filed_count", [AGENTS_MD, WORKER_SPEC]),
+    ("_system/share_classes.py", "def ttm_on_declaration(", "ttm_on_declaration", [SYS_README]),
+    ("_system/make_score.py", "SC_REFUSE_FILED_BASIS_PIN = ", "make_score.SC_REFUSE_FILED_BASIS_PIN", [SYS_README]),
+    # L9 (R8 / R9): every filed PP&E component, capitalized software as capex, ttm.json's release stamp (L9 §6)
+    ("_system/dcf_engine.py", '"PaymentsToAcquireMachineryAndEquipment", "PaymentsToAcquireMiningAssets",',
+     "PaymentsToAcquireMachineryAndEquipment", [AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", "CAPEX_SUBCLASS_COMPONENTS = ", "PaymentsToAcquireMiningAssets", [AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'CAPEX_SOFTWARE_TAGS = ["PaymentsToDevelopSoftware"', "PaymentsToDevelopSoftware",
+     [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", "CapitalizedComputerSoftwareAdditions is NOT read", "CapitalizedComputerSoftwareAdditions",
+     [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", "def unlisted_capex_components(", "CAPEX_UNLISTED_COMPONENT",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'UNLISTED_CAPEX_OVERRIDDEN_FLAG = "CAPEX_UNLISTED_COMPONENT_OVERRIDDEN"',
+     "CAPEX_UNLISTED_COMPONENT_OVERRIDDEN", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", '(f[0], f[1], "subclass_alone")', "subclass_alone", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", '"in_ppe_total")', "in_ppe_total", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/dcf_engine.py", 'return [f], [], "ppe_duplicate"', "ppe_duplicate", [SYS_README, WORKER_SPEC]),
+    ("_system/make_score.py", "def refuse_capex_override_software(", "software_included", [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", "def refuse_unlisted_capex_component(", "capex_unlisted_ack", [SYS_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/make_score.py", "def refuse_pre57_ttm_json(", "ttm_engine_release", [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    ("_system/ttm.py", '"engine_release": _engine.ENGINE_RELEASE', "ttm_inputs.ttm_engine_release",
+     [SYS_README, CONTRACT, AGENTS_MD, WORKER_SPEC]),
+    # L5 (R5): sweep reliability — preflight, run health, PR protocol and the engine backlog
+    ("_system/preflight.py", "def main(", "preflight.py", [SYS_README, AUTO_README, WORKER_SPEC, SECOND_PASS]),
+    ("_system/run_health.py", "def main(", "run_health.py", [SYS_README, AUTO_README, WORKER_SPEC, SECOND_PASS]),
+    ("_system/pr_worktree.py", "def main(", "pr_worktree.py", [SYS_README, AUTO_README, AGENTS_MD, WORKER_SPEC]),
+    ("_system/pr_audit.py", "def main(", "pr_audit.py", [SYS_README, AUTO_README, WORKER_SPEC]),
 ]
 
 
 def test_round_keys_are_in_the_code_and_the_documents():
-    codes = {d: code_text(_read(d)) for d in (CONTRACT, SYS_README, AUTO_README)}
+    codes = {}
     gone, unnamed = [], []
     for src, literal, token, docs in PAIRS:
         if literal not in _read(src):
             gone.append(f"{src}: {literal}")
+        for d in docs:
+            if d not in codes:
+                codes[d] = code_text(_read(d))
         unnamed += [f"{d}: {token}" for d in docs if not named(token, codes[d])]
     assert not gone, f"no longer in the code (update the documents and this list): {gone}"
     assert not unnamed, f"not named in the documents: {unnamed}"
@@ -613,6 +752,37 @@ STALE = [
     (SYS_README, "the deduction with no cliff, the ≥ 98% overlap guard,"),
     (SYS_README, "the score.json write, the registry replacement and key_numbers.md now run inside"),
     ("_system/make_score.py", "the score.json write, the registry replacement\n    (update_registry, lock_held=True) and key_numbers.md"),
+    # ---- engine 5.7 (Andrew's rulings R1-R9, 2026-10-19/20): the wording the rulings retired ----
+    # L5 (R5): the daily cron files were renamed without colons, so no checkout misses them
+    ("README.md", "names, which NTFS cannot hold"),
+    ("README.md", "core.protectNTFS false"),
+    (AGENTS_MD, "a filename artifact, not a change"),
+    (AGENTS_MD, "under `automation/crons/daily/` showing as deleted in"),
+    ("_system/tests/test_docs_contract.py", "files have colons in their names and are absent" + " from a Windows checkout"),
+    # L1 (R1): the notch is make_score's mechanical step, so misfit tiers are no longer "soft" judgment calls
+    ("automation/crons/daily/dcf-daily-ranking__daily@19-07-00_user_current.md", "their tiers are soft"),
+    ("_daily/site/app.js", "their tiers are soft"),
+    (WORKER_SPEC, "The one-notch softening (2026-10-15) cannot bridge that gap."),
+    (AGENTS_MD, "- Standing policy (Andrew, 2026-10-15): the final tier is sized one notch"),
+    (AGENTS_MD, "- A `tier_override` with a quantified written reason (see Sector misfits)."),
+    (AGENTS_MD, "REITs keep the 2026-10-15 rule."),
+    (WORKER_SPEC, "and any filer without that printed line, keep the 2026-10-15 rule."),
+    # L0 / every lane: the 5.7 events are written now
+    (SYS_README, "No run writes them yet."),
+    # R7 (+ L4): a STALE_FY run takes the TTM unless the worker rejects it with a number (or ttm.py's exit-3 line)
+    (WORKER_SPEC, "use the median base and say so"),
+    (WORKER_SPEC, "ttm.json TTM base — step 4; the engine refuses the median there), else the median."),
+    (AGENTS_MD, "figure when the last FY is stale. Five"),
+    ("README.md", "10-Qs when the fiscal year is stale\n- Five"),
+    # L2 (R3): every number in analysis.md traces to a generated file or a declared fact
+    (WORKER_SPEC, "If a figure you need is not in the computed outputs, say so in words."),
+    (WORKER_SPEC, "After it runs, check analysis.md against `key_numbers.md` and fix any figure that"),
+    # L3 (R4 revised): the moat is the combined sources + evidence rule, under Andrew's 2026-10-19 rubric
+    (AGENTS_MD, "- The moat score needs FOR and AGAINST pillars in `analysis.md` and the"),
+    (WORKER_SPEC, "Rubric: 9–10 wide and durable"),
+    (SYS_README, "Rubric: 9-10 wide/durable, 7-8 strong"),
+    # L3b (M6): the growth hold is the moat's direction (0 / 2 / 3), not a fixed 2 years
+    (WORKER_SPEC, "The moat sets the fade: growth holds 2 years, then converges"),
 ]
 
 
@@ -800,6 +970,290 @@ def test_a_ttm_base_without_ttm_shares_is_documented_as_refused():
         text = _flat(rel)
         missing = [p for p in ("`BAD_TTM_SHARES`", "never the latest-FY count") if p not in text]
         assert not missing, f"{rel}: missing {missing}"
+
+
+# ---------------------------------------------------------------- 5 (engine 5.7)
+def _between(text, start, end):
+    """text from `start` up to (not including) the next `end` after it."""
+    i = text.find(start)
+    assert i >= 0, f"anchor {start!r} is gone"
+    j = text.find(end, i + len(start))
+    return text[i:j if j >= 0 else len(text)]
+
+
+def _md_section(rel, heading):
+    """One '## <heading>' section of a markdown document, up to the next '## ' heading (raw text)."""
+    text = _read(rel)
+    i = text.find("\n## " + heading)
+    assert i >= 0, f"{rel}: section {heading!r} is gone"
+    j = text.find("\n## ", i + 1)
+    return text[i:j if j >= 0 else len(text)]
+
+
+def _consts(rel):
+    """A code file's module-level `NAME = <literal>` constants, read with ast (never imported). A dict value that is a
+    module constant's name is resolved against the constants read before it."""
+    out = {}
+    for node in _module(rel).body:
+        if not (isinstance(node, ast.Assign) and len(node.targets) == 1 and isinstance(node.targets[0], ast.Name)):
+            continue
+        v = node.value
+        try:
+            out[node.targets[0].id] = ast.literal_eval(v)
+        except ValueError:
+            if isinstance(v, ast.Dict) and all(isinstance(k, ast.Constant) for k in v.keys):
+                vals = [x.value if isinstance(x, ast.Constant) else out.get(x.id) if isinstance(x, ast.Name) else None
+                        for x in v.values]
+                out[node.targets[0].id] = {k.value: x for k, x in zip(v.keys, vals)}
+    return out
+
+
+# (code file, a literal that must still be in it, a phrase the documents say in prose, the documents) — for rules the
+# documents state in words rather than by a code name
+PHRASES_57 = [
+    ("_system/make_score.py", '"## Interim bridge (declared 6-K TTM — the scored base)"', '"Interim bridge"',
+     [AGENTS_MD, WORKER_SPEC]),
+    ("_system/interim_bridge.py", "PERIOD_SOURCE_DEI = \"the 6-K's XBRL dei DocumentPeriodEndDate\"",
+     "XBRL 6-K's dei DocumentPeriodEndDate", [SYS_README]),
+    ("_system/interim_bridge.py", "def report_period_end(", "a non-XBRL 6-K's reportDate is its cover date", [WORKER_SPEC]),
+    ("_system/dcf_engine.py", "def _own_module(", "imports its siblings through its own folder", [SYS_README]),
+    ("_system/check_quotes.py", 'f"analysis.md fails the quote check', "analysis.md fails the quote check",
+     [WORKER_SPEC, SECOND_PASS]),
+    ("_system/queue.py", "restore it from git and run the command again", "restore it from git", [SYS_README, SECOND_PASS]),
+    ("_system/queue.py", "is malformed ({why})", "is malformed", [SYS_README, SECOND_PASS]),
+]
+
+
+def test_engine_57_rules_stated_in_prose_match_the_code():
+    gone, missing = [], []
+    for src, literal, phrase, docs in PHRASES_57:
+        if literal not in _read(src):
+            gone.append(f"{src}: {literal}")
+        missing += [f"{d}: {phrase!r}" for d in docs if phrase not in _flat(d)]
+    assert not gone, f"no longer in the code (update the documents and this list): {gone}"
+    assert not missing, f"not stated in the documents: {missing}"
+
+
+def test_docs_name_the_notch():
+    """[engine 5.7, L1 / R1 — 01 T-16] AGENTS.md "Sector misfits" says make_score applies the notch (it is
+    mechanical, never graded) and names misfit_notch_reason; WORKER_SPEC names the SIC rule ("universe sector OR the
+    EDGAR SIC") and misfit_notch_reason; _system/README.md names misfit_notch and misfit_sector_set_aside."""
+    sec = _md_section(AGENTS_MD, "Sector misfits")
+    flat, code = " ".join(sec.split()), code_text(sec)
+    for phrase in ("**The notch is mechanical**", "make_score publishes every sector misfit one tier below its numbers tier",
+                   "Never grade the notch"):
+        assert phrase in flat, f"AGENTS.md Sector misfits lost: {phrase!r}"
+    for tok in ("misfit_notch_reason", "misfit_notch", "dcf_engine.SIC_SETS_ASIDE_SECTOR", "misfit_sector_set_aside"):
+        assert named(tok, code), f"AGENTS.md Sector misfits does not name `{tok}`"
+    spec = _flat(WORKER_SPEC)
+    assert "the universe sector OR the EDGAR SIC" in spec, "WORKER_SPEC lost the SIC rule"
+    assert named("misfit_notch_reason", code_text(_read(WORKER_SPEC))), "WORKER_SPEC does not name misfit_notch_reason"
+    readme = code_text(_read(SYS_README))
+    assert named("misfit_notch", readme) and named("misfit_sector_set_aside", readme)
+
+
+def test_the_quote_gate_is_documented():
+    """[engine 5.7, L2 / R3 — 02 §10] _system/README.md names the declared-facts file, the checker, its --save-run
+    copy and the score keys that prove key_numbers.md was not hand-edited; WORKER_SPEC says queue.py done runs the
+    checker; SECOND_PASS says pass2-done does (and pass2-reset never). The retired "say so in words" sentence is in
+    STALE."""
+    readme = code_text(_read(SYS_README))
+    for tok in ("facts.json", "check_quotes.py", "--save-run", "declared_facts", "key_numbers_sha256",
+                "dcf_numbers_<label>.json"):
+        assert named(tok, readme), f"_system/README.md does not name `{tok}`"
+    spec = _flat(WORKER_SPEC)
+    for phrase in ("Since engine 5.7 `queue.py done` runs `check_quotes.py`",
+                   "`queue.py done` refuses an engine 5.7 run whose analysis.md fails check_quotes.py",
+                   "never edit key_numbers.md", "judgment.json is never a source"):
+        assert phrase in spec, f"WORKER_SPEC lost: {phrase!r}"
+    sp = _flat(SECOND_PASS)
+    for phrase in ("**`pass2-done` refused by the quote check**", "`pass2-reset` is never gated"):
+        assert phrase in sp, f"SECOND_PASS lost: {phrase!r}"
+
+
+def test_the_snippet_limit_is_the_codes_one_constant():
+    """[engine 5.7, L2 / L4 — 07 §1.7] A declared fact's snippet (and a 6-K bridge leg's) is at most
+    quote_tokens.SNIPPET_MAX_WORDS words — one constant everywhere. The lane notes said "under 25 words" and the code
+    says 24: every word limit the documents state is the constant."""
+    n = _consts("_system/quote_tokens.py")["SNIPPET_MAX_WORDS"]
+    for rel in (AGENTS_MD, WORKER_SPEC, SYS_README):
+        text = _flat(rel)
+        stated = re.findall(r"\bat most (\d+) words\b", text)
+        assert stated, f"{rel} does not state the snippet limit"
+        assert all(int(s) == n for s in stated), f"{rel} states {stated}, the code {n}"
+        assert not re.search(r"\bunder \d+ words\b", text), f"{rel} states an 'under N words' limit"
+
+
+def _rubric_bands(text, sep):
+    """[(lo, hi, band text)] of a 'lo–hi words' / 'n words' rubric, the bands separated by `sep`."""
+    out = []
+    for band in re.split(sep, text.strip()):
+        m = re.match(r"(\d+)(?:–(\d+))?\s", band.strip())
+        assert m, f"rubric band without a range: {band!r}"
+        out.append((int(m.group(1)), int(m.group(2) or m.group(1)), band))
+    return out
+
+
+def _check_rubric(rel, bands, caps):
+    no_src, one_narrow, wide_two, two_wide = caps
+    his = [hi for lo, hi, b in bands if "no source" in b]
+    assert his and max(his) == no_src, f"{rel}: the 'no source' bands end at {his}, the cap is {no_src}"
+    assert all(hi <= one_narrow for lo, hi, b in bands if "one narrow source" in b), \
+        f"{rel}: 'one narrow source' above ONE_NARROW_CAP {one_narrow}"
+    by_lo = {lo: b for lo, hi, b in bands}
+    assert "a wide source or two fact-backed sources" in by_lo.get(wide_two, ""), f"{rel}: the {wide_two}+ band"
+    assert "two wide sources" in by_lo.get(two_wide, ""), f"{rel}: the {two_wide}+ band"
+    assert [lo for lo, hi, b in bands] == sorted(lo for lo, hi, b in bands) and bands[-1][1] == 10, f"{rel}: bands"
+
+
+def test_moat_rubric_matches_the_caps():
+    """[engine 5.7, L3 — 03b test 31] WORKER_SPEC step 5's rubric and README §Moat's copy put "no source" only in
+    bands ending at moat_scorecard.NO_SOURCE_CAP (3), "one narrow source" only at or below ONE_NARROW_CAP (6), "a wide
+    source or two fact-backed sources" at WIDE_OR_TWO_MIN (7) and "two wide sources" at TWO_WIDE_MIN (9); both caps
+    sentences carry the constants; and the rubric medians WORKER_SPEC quotes are README's measured ones."""
+    c = _consts("_system/moat_scorecard.py")
+    caps = (c["NO_SOURCE_CAP"], c["ONE_NARROW_CAP"], c["WIDE_OR_TWO_MIN"], c["TWO_WIDE_MIN"])
+    spec = _flat(WORKER_SPEC)
+    rub = _between(spec, "**Rubric (Andrew, 2026-10-19 — use the whole range).**", " Today's scores")
+    _check_rubric(WORKER_SPEC, _rubric_bands(rub.split("**", 2)[2], r"(?<=\.)\s+(?=\d)"), caps)
+    assert (f"The caps: none ≤ {caps[0]}; one narrow ≤ {caps[1]}; {caps[2]}+ a wide or two fact-backed sources; "
+            f"{caps[3]}+ two wide") in spec, "WORKER_SPEC step 5's caps sentence"
+    readme = _flat(SYS_README)
+    rub = _between(readme, "Rubric (WORKER_SPEC step 5 — use the whole range): ", " - Sources (type")
+    _check_rubric(SYS_README, _rubric_bands(rub.split(": ", 1)[1].rstrip("."), r";\s+"), caps)
+    assert (f"Caps: none → {caps[0]}, one narrow → {caps[1]}, {caps[2]}+ a wide source or two fact-backed sources, "
+            f"{caps[3]}+ two wide") in readme, "README §Moat's caps sentence"
+    m = re.search(r"Rubric medians \(governing return\) at moat ([\d/]+): ([\d. /]+)%", readme)
+    assert m, "README lost the measured rubric medians"
+    med = dict(zip((int(x) for x in m.group(1).split("/")), (x.strip() for x in m.group(2).split("/"))))
+    q = re.search(r"median governing return at moat 6 is ([\d.]+)% and at moat 7 is ([\d.]+)% .*?\(moat 4 / 5: ([\d.]+)% / "
+                  r"([\d.]+)%", spec)
+    assert q, "WORKER_SPEC lost the rubric medians"
+    assert (med[6], med[7], med[4], med[5]) == q.groups(), f"README medians {med} vs WORKER_SPEC {q.groups()}"
+
+
+def test_moat_scorecard_enums_are_documented():
+    """[engine 5.7, L3] WORKER_SPEC step 5 gives the scorecard version and lists every business type
+    moat_scorecard.evaluate accepts; README §Moat names the pillars an event fact may stand alone on
+    (POINT_OK_PILLARS)."""
+    c = _consts("_system/moat_scorecard.py")
+    step5 = _between(_flat(WORKER_SPEC), "5. **Moat 0–10", "6. **Five scenarios**")
+    assert f"`{{version: {c['SCORECARD_VERSION']}, business_type," in step5, "WORKER_SPEC step 5: the scorecard version"
+    missing = [t for t in c["BUSINESS_TYPES"] if t not in step5]
+    assert not missing, f"WORKER_SPEC step 5 does not list the business types {missing}"
+    readme = _flat(SYS_README)
+    point = _between(readme, "`event` facts (points, not series) may stand alone only on", ".")
+    missing = sorted(p for p in c["POINT_OK_PILLARS"] if p not in point)
+    assert not missing, f"README §Moat's event-fact sentence does not name {missing}"
+    w = c["WEIGHTS"]
+    head = f"Core pillars ({len(w)}, weight {sum(w.values()):g}): "
+    stated = dict(re.findall(r"\b([a-z_]+) (\d+(?:\.\d+)?)\b", _between(readme, head, ". Supporting factors")[len(head):]))
+    assert {k: float(v) for k, v in stated.items()} == w, f"README §Moat's pillar weights {stated} vs the code's {w}"
+
+
+def test_the_moat_trend_holds_and_exit_are_documented():
+    """[engine 5.7, L3b / M6 — 10 T26] WORKER_SPEC step 5 gives the three holds of dcf_engine.HOLD_BY_TREND and the
+    --moat-trend flag; step 2 names BAD_MOAT_TREND with EXIT_BAD_MOAT_TREND; README says the same; every documented
+    final-run command, README's "Workflow per company" line and the engine's Usage line pass --moat-trend."""
+    c = _consts("_system/dcf_engine.py")
+    hold, code = c["HOLD_BY_TREND"], c["EXIT_BAD_MOAT_TREND"]
+    assert set(hold) == set(c["MOAT_TRENDS"]), hold
+    spec = _flat(WORKER_SPEC)
+    step5 = _between(spec, "5. **Moat 0–10", "6. **Five scenarios**")
+    for phrase in (f"eroding → hold {hold['eroding']}", f"widening → hold {hold['widening']}",
+                   f"anything else → hold {hold['stable']}", "`--moat-trend`"):
+        assert phrase in step5, f"WORKER_SPEC step 5 lost: {phrase!r}"
+    assert f"**Exit {code} `BAD_MOAT_TREND`" in spec, "WORKER_SPEC step 2: the BAD_MOAT_TREND exit"
+    readme = _flat(SYS_README)
+    assert (f"`--moat-trend eroding` {hold['eroding']} years, `stable` {hold['stable']} (the v4 hold), "
+            f"`widening` {hold['widening']}") in readme, "README: the three holds"
+    assert f"exits {code} (BAD_MOAT_TREND)" in readme, "README: the BAD_MOAT_TREND exit"
+    assert "--moat-trend" in _between(readme, "- Workflow per company:", " ## "), "README's workflow line"
+    for rel in (WORKER_SPEC, SECOND_PASS):
+        cmds = [s for s in code_text(_read(rel)).split("\n") if "dcf_engine.py <T> --moat " in s]
+        assert cmds and all("--moat-trend" in s for s in cmds), f"{rel}: a final-run command without --moat-trend"
+    assert "[--moat-trend eroding|stable|widening]" in (ast.get_docstring(_module("_system/dcf_engine.py")) or "")
+
+
+def test_share_classes_are_documented():
+    """[engine 5.7, L8 / R6 — 08 docs tests] AGENTS.md's arithmetic check 1 recomputes a declared run on total units
+    (`+SHARE_CLASSES` rows); WORKER_SPEC step 4 / 8 carry the declaration's shape; README's Fixes & lessons has the
+    dated R6 entry."""
+    arith = _md_section(AGENTS_MD, "Arithmetic you can redo from the diff")
+    assert named("+SHARE_CLASSES", code_text(arith)) and named("share_classes", code_text(arith)), \
+        "AGENTS.md check 1 does not recompute a share_classes run on total units"
+    spec = code_text(_read(WORKER_SPEC))
+    missing = [t for t in ("share_classes", "SHARE_CLASSES_DECLARED", "UP_C_SUSPECT", "SHARE_CLASSES_CAP_GAP",
+                           "SHARE_CLASSES_NCI_GAP", "up_c_suspect_reason", "BAD_SHARE_CLASSES", "BAD_TTM_SHARE_BASIS",
+                           "share_basis", "in_filed_count") if not named(t, spec)]
+    assert not missing, f"WORKER_SPEC does not name {missing}"
+    assert re.search(r"^- \*\*2026-10-21 — Engine 5\.7: declared share classes .*\bR6\b", _read(SYS_README), flags=re.M), \
+        "README Fixes & lessons lost the dated R6 entry"
+
+
+def test_the_capex_rules_are_documented():
+    """[engine 5.7, L9 / R8-R9 — L9 §6] WORKER_SPEC's STALE_FY paragraph says ttm.json records the engine_release
+    that built it and the run copies it to ttm_inputs.ttm_engine_release; AGENTS.md's capex check names the R8 / R9
+    tags and records (the code pairs are in PAIRS)."""
+    stale = _between(_read(WORKER_SPEC), "Recurring ones — `STALE_FY`", "**Rejecting the TTM (R7).**")
+    code = code_text(stale)
+    assert named("engine_release", code) and named("ttm_inputs.ttm_engine_release", code), \
+        "WORKER_SPEC's STALE_FY paragraph lost ttm.json's engine_release stamp"
+    agents = code_text(_read(AGENTS_MD))
+    missing = [t for t in ("PaymentsToAcquireMachineryAndEquipment", "PaymentsToAcquireMiningAssets",
+                           "PaymentsToDevelopSoftware", "CapitalizedComputerSoftwareAdditions",
+                           "CAPEX_UNLISTED_COMPONENT_OVERRIDDEN", "subclass_alone") if not named(t, agents)]
+    assert not missing, f"AGENTS.md does not name {missing}"
+
+
+def test_specs_run_preflight_before_claiming():
+    """[engine 5.7, L5 / R5 — 05 §9] WORKER_SPEC step 1 runs preflight.py before `queue.py claim`; SECOND_PASS step 1
+    runs it before pass2-claim."""
+    for rel, claim in ((WORKER_SPEC, "queue.py claim"), (SECOND_PASS, "pass2-claim")):
+        step1 = _between(_read(rel), "1. **Preflight, then claim.**", "\n2. **")
+        p, q = step1.find("preflight.py"), step1.find(claim)
+        assert 0 <= p < q, f"{rel} step 1: preflight.py at {p}, {claim} at {q}"
+
+
+def test_every_cron_body_records_run_health():
+    """[engine 5.7, L5 / R5 — 05 §9] Every cron body starts and records its run in run_health.py under its own id."""
+    files = sorted(glob.glob(os.path.join(ROOT, "automation", "crons", "*", "*.md")))
+    assert files, "no cron files found"
+    for path in files:
+        fm = _front_matter(path)
+        with open(path, encoding="utf-8") as f:
+            body = re.sub(r"\A---\n.*?\n---\n", "", f.read(), flags=re.S)
+        for verb in ("start", "record"):
+            assert f"run_health.py {verb} {fm['id']}" in body, f"{os.path.basename(path)}: no `run_health.py {verb} {fm['id']}`"
+
+
+def test_lane_default_switches_exist_in_the_code():
+    """[engine 5.7] README's lane-defaults table (Q1-Q18, the main agent's defaults pending Andrew's ratification)
+    names the one switch that flips each default. Every `module.NAME` switch it names is a module-level assignment
+    in _system/<module>.py, so a renamed or removed switch fails here before the table misleads a ratification."""
+    rows = {}
+    for line in _read(SYS_README).splitlines():
+        m = re.match(r"\s*\| (Q\d+) \|(.*)\|\s*$", line)
+        if m:
+            rows[m.group(1)] = m.group(2).split("|")[-1]
+    assert list(rows) == [f"Q{i}" for i in range(1, 19)], f"README's lane-defaults table rows: {list(rows)}"
+    named_switches = 0
+    for q, cell in rows.items():
+        for mod, name in re.findall(r"`(\w+)\.([A-Z][A-Z0-9_]+)`", cell):
+            src = _read(f"_system/{mod}.py")
+            assert re.search(rf"^{name}\s*=", src, flags=re.M), f"{q}: `{mod}.{name}` is not assigned in _system/{mod}.py"
+            named_switches += 1
+    assert named_switches >= 12, named_switches
+
+
+def test_agents_md_has_the_backlog_exception():
+    """[engine 5.7, L5 / R5 — 05 §9] AGENTS.md "What is in a PR" lets a company data PR append to
+    _system/ENGINE_BACKLOG.md (and only append)."""
+    sec = _md_section(AGENTS_MD, "What is in a PR")
+    assert named("_system/ENGINE_BACKLOG.md", code_text(sec)), "AGENTS.md What is in a PR does not name the backlog"
+    flat = " ".join(sec.split())
+    assert "**The backlog exception (Andrew, 2026-10-19, R5).**" in flat and "may only append" in flat, \
+        "AGENTS.md lost the backlog exception"
 
 
 def test_corrected_passages_stay_corrected():

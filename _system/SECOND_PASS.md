@@ -32,9 +32,16 @@ Pass 1's numbers are only as fresh as its analysis date. Run
 material 8-Ks (routine items 2.02 results and 7.01 Reg FD are excluded since 5.4).
 - **Newer periodic filing exists** → pass 1's base is stale by definition. Recompute the
   TTM base in code — `DCF_TTM_NO_WRITE=1 python3 _system/ttm.py <TICKER>` (never by hand;
-  the variable stops it saving ttm.json, since nothing is written before `pass2-check`,
-  worker step 5) — and treat a material base change as a finding; a base that barely
-  moves still gets both values noted in second_pass.md.
+  `--interim` at a 20-F / 40-F filer with a declared bridge; the variable stops it saving
+  ttm.json, since nothing is written before `pass2-check`, worker step 5) — and treat a
+  material base change as a finding; a base that barely moves still gets both values noted
+  in second_pass.md. A newer 6-K interim than the bridge's report is a newer periodic filing.
+  - When pass 1 rejected the TTM (score.json `base_alternatives`, judgment.json
+    `ttm_rejection_reason`, engine 5.7), test the reason against the new TTM's legs. A named
+    line that no longer distorts it is a material finding: rerun with `--ttm`, or keep the
+    rejection with a refreshed reason and figure (make_score refuses the rerun otherwise).
+  - When pass 1 quoted ttm.py's exit-3 message (`ttm_unavailable_reason`), rerun ttm.py: a
+    10-Q filed since then builds the TTM.
 - **Material 8-K only** → fold its content into the post-filing hunt; quantify or say
   why it doesn't move the numbers.
 - `fundamentals.json` (fundamentals.py) carries the last twelve quarters and the TTM; the
@@ -46,10 +53,23 @@ Andrew's fundamental-analysis checklist, baked in. `forensic_pull.py` computes t
 filing-direct half automatically (paste its output into second_pass.md); the worker
 resolves every tripped flag in writing and runs the judgment checks. The battery feeds
 three things only: moat evidence, base-OE reconstruction, and confidence.
-- **Return on invested capital (added 2026-10-14)** — the `roic_proxy` series and the
-  gross-margin series in `fundamentals.json` are the measured half of the moat. Compare
-  pass 1's moat score against them: a 7+ on ROIC below ~10% without a written reason is a
-  finding (moat evidence AGAINST); a 4 on sustained 20%+ ROIC is the reverse case.
+- **Return on capital (engine 5.7; replaces the 2026-10-14 ROIC-proxy bullet)** —
+  make_score's governing return and the same-ladder industry rank in `moat_evidence` /
+  key_numbers.md are the measured half of the moat. The governing return is ROIC; tangible
+  ROIC for acquirers, with the plain ROIC beside it; ROE at banks, insurers and mortgage
+  REITs; ROA as a cross-check. Gross margin stays in fundamentals.json.
+  - Challenge the sources first: is each a real source of the enum, and is "wide" earned?
+    Then the pillars against their facts. Then the supporting factors (a supporting factor
+    presented as the source is P2).
+  - make_score already refuses an unreasoned 7+ on low returns and an unreasoned 4 on
+    sustained 20%+ returns on a 5.7 run. On older output those remain findings: a 7+ on
+    ROIC below ~10% without a written reason (moat evidence AGAINST), and a 4 on sustained
+    20%+ ROIC (the reverse case).
+  - Challenge an `erosion_rebuttal` or a confirmed widening against the cycle. What is each
+    number in the rebuttal? A commodity price cycle is the typical case. A widening from a
+    trough (`WIDENING_FROM_TROUGH`) needs an explanation.
+  - An erosion_risks threat resting only on the MOAT_EROSION measurement, on top of hold 0,
+    is double counting (P2 if it moves the tier, else P3).
 - **Margin structure** — gross margin level + trend (≥40% is the durable-advantage rule
   of thumb, judged sector-relative: a grocer and a software firm are not the same test);
   COGS % of revenue stability (swings in non-compounders = weak cost control = moat
@@ -73,7 +93,10 @@ three things only: moat evidence, base-OE reconstruction, and confidence.
   numbers and log the change like any other.
 - **Capitalized-cost shifting (judgment, WorldCom pattern)** — capex or capitalized
   balances (e.g. capitalized software) growing faster than revenue while SG&A/R&D fall
-  and earnings outrun OCF. Any two legs together = hard look, in writing.
+  and earnings outrun OCF. Any two legs together = hard look, in writing. Since engine 5.7
+  capitalized software is charged in owner's earnings, so shifting cost into capitalized
+  software no longer lifts the base. The pattern still matters for earnings quality and for
+  a capitalization rate that jumps.
 - **Standing cautions** — adding back S&M/R&D "growth spend" to owner's earnings is a
   sensitivity only; the headline base stays conservative unless evidence is unusually
   concrete. State which of pass 1's two OE definitions (total-capex vs maintenance) is
@@ -91,17 +114,32 @@ three things only: moat evidence, base-OE reconstruction, and confidence.
   with one numeric test each — e.g. "what growth start would it take to clear 15%, and
   does any print support it?" — and records the result. A same-model re-read that merely
   confirms itself is not a second pass.
+- **Sector misfits (engine 5.7).** A misfit's published tier is the mechanical notch of its
+  numbers tier (score.json `misfit_notch`). Pass 2 argues the neighboring NUMBERS tier. On a
+  5.7 rerun it writes `misfit_notch_reason` (with a number) — never a `tier_override`
+  restating the notch (make_score refuses it).
 - **Reproducible inputs.** A rerun uses the same engine and sanity checks as pass 1 and
   records its exact inputs (moat, probs, offsets, mults, base pin, gterm, price) in
   second_pass.md; the engine stamps them in dcf_numbers.json.
 - **No hand edits.** Pass 2 never writes score.json. A material finding becomes a new
-  judgment.json (same fields as pass 1, refreshed moat_for / moat_against, updated
-  one_liner, plus a `second_pass` object — see below) and a final engine run; then
-  `make_score.py` rebuilds score.json and refuses any disagreement, exactly as in pass 1.
+  judgment.json (same fields as pass 1, refreshed moat_for / moat_against and
+  moat_scorecard (sources and supporting factors included), updated one_liner, plus a
+  `second_pass` object — see below) and a final engine run; then `make_score.py` rebuilds
+  score.json and refuses any disagreement, exactly as in pass 1. The rerun is engine 5.7
+  output, so every 5.7 obligation of WORKER_SPEC steps 4-8 applies to it.
+- **A malformed queue file stops the command (engine 5.7, R5).** A
+  `second_pass_queue.json` that parses but is not `{"entries": {<ticker>: {...}}}` (a list,
+  `{}`, `entries` null or a list, a non-object entry) makes every pass-2 command and
+  `queue.py refresh` exit 1 with "is malformed … restore it from git". The file is left
+  untouched (refresh has already saved queue.json by then, and its message says so). Restore
+  the file from git and run the command again. (PR #47's round-26 registry rule;
+  before, the command repaired it with an empty `entries`, and the save erased every other
+  ticker's review record.)
 - **Alerts.** Report to chat ONLY when a change moves the company INTO or OUT of Tier S/A
   AND the new score.json clears that direction's gate: an entry needs `alert_eligible: true`
   (medium+ confidence, not a sector misfit, tier not resting on an override, IRR not at
-  the floor); an exit needs `exit_alert_eligible: true` (medium+ confidence, not a sector
+  the floor; since 5.7 also not lifted into S/A by a share-class declaration or a TTM
+  rejection); an exit needs `exit_alert_eligible: true` (medium+ confidence, not a sector
   misfit, tier not existing only because of a data override; a floor IRR reads "at most
   terminal growth", which confirms the drop, and a judgment tier override that takes the
   name below A is still a warning, so neither suppresses an exit; `alert_eligible` is
@@ -120,16 +158,20 @@ run is untouched. `verdict: "changed"` requires prior_tier (and the priors) and 
 the new engine run.
 
 ## Worker steps (both second-pass crons point here)
-1. **Claim.** `python3 _system/queue.py pass2-claim` prints the ticker (first done name in
+1. **Preflight, then claim.** `python3 _system/preflight.py` first. Any exit but 0 → do not
+   claim: record the run as failed (step 8) and finish. Then
+   `python3 _system/queue.py pass2-claim` prints the ticker (first done name in
    queue order with a score.json whose second-pass entry is absent, pending, an expired
    claim, or a review of an older scoring generation; APP is the last candidate; the claim
    is marked under the lock). A generation is one pass-1 scoring run: when the filing
    watcher refreshes a name and pass 1 re-scores it, the new score is reviewed again.
    Nothing printed → finish silently.
 2. **Read the folder fully**: analysis.md, score.json, dcf_numbers.json, key_numbers.md,
-   financials_history.csv, fundamentals.json. Identify pass 1's load-bearing assumptions:
-   base choice, blended growth and scenario starts, moat, probabilities, and how each flag
-   was resolved. Attack the assumptions most likely to be wrong — do not redo the pass.
+   financials_history.csv, fundamentals.json, facts.json (engine 5.7) and the saved runs
+   `dcf_numbers_<label>.json`. Identify pass 1's load-bearing assumptions: base choice
+   (under STALE_FY: `base_alternatives`, any `ttm_rejection_reason` /
+   `ttm_unavailable_reason`), blended growth and scenario starts, moat (`moat_evidence`),
+   probabilities, and how each flag was resolved. Attack the assumptions most likely to be wrong — do not redo the pass.
 3. **Freshness + battery**: `python3 _system/forensic_pull.py <T>`; keep the output for
    second_pass.md, where every tripped flag gets a written resolution; run the judgment
    checks above.
@@ -147,8 +189,11 @@ the new engine run.
    `python3 _system/queue.py pass2-done <T> done_no_change` and
    `python3 _system/build_site.py`. Finish silently.
 7. **Material finding**: quantify it; rerun the engine with the pass-1 sanity checks
-   (`python3 _system/dcf_engine.py <T> --moat ... --probs ... [--offsets] [--mults] [--ttm] [--gterm] [--cik]`,
-   `--ttm` after a fresh, saving `ttm.py` run when the base moved; a judgment.json carrying an
+   (run `python3 _system/moat_scorecard.py <T>` first and pass the `--moat-trend` value it
+   prints — make_score refuses another;
+   `python3 _system/dcf_engine.py <T> --moat ... --moat-trend <value> --probs ... [--offsets] [--mults] [--ttm] [--gterm] [--cik]`,
+   `--ttm` after a fresh, saving `ttm.py` run when the base moved (a rerun that keeps a
+   non-TTM base under STALE_FY needs `ttm_rejection_reason`, WORKER_SPEC step 4); a judgment.json carrying an
    `iprd_amortized` `base_override` (engine 5.6) is rebuilt from that rerun's dcf_numbers.json
    `iprd_adjustment` and ttm.json exactly as WORKER_SPEC step 8 builds it — the changed inputs move its
    native base, so the old value no longer reproduces — and the final rerun passes
@@ -161,6 +206,11 @@ the new engine run.
    never rewrite pass-1 content. Then `python3 _system/reprice.py <T>` (the live overlay
    follows the new paths), `queue.py pass2-done <T> done_changed` and
    `python3 _system/build_site.py`.
+   **`pass2-done` refused by the quote check** (engine 5.7: "analysis.md fails the quote
+   check"). This is not a superseded review. Nothing was recorded and nothing needs
+   deleting. Fix the analysis.md addendum as step 8 says (quote the generated figure, or
+   declare it in facts.json and re-run make_score.py), run `check_quotes.py <T>` until it
+   passes, then run `pass2-done` again.
    **`pass2-done` refused** (exit 1, in step 6 or 7: the refresh or re-score landed while
    you were writing). Nothing was recorded in the second-pass queue. Delete the
    second_pass.md you wrote in this run and the dated "## Second pass" addendum you
@@ -174,6 +224,19 @@ the new engine run.
      generation left them.
    Either way report nothing and finish — once your claim's lease expires, the new score
    gets its own second pass.
+   A pass-2 change is a folder change: its PR is cut per `_system/PR_PROTOCOL.md` (kind
+   `pass2`, title `Second pass: <T> — …`). A no-change review that wrote second_pass.md is
+   one too.
 8. **Reporting**: per the alert rule above; also report plainly if the second-pass system
-   itself is blocked. Never invent numbers — every figure comes from dcf_numbers.json,
-   key_numbers.md, ttm.json, the forensic battery, fundamentals.json or a cited source.
+   itself is blocked. Never invent numbers. In the analysis.md addendum every figure traces
+   like pass 1's: key_numbers.md, dcf_numbers.json, ttm.json, a saved run, or a fact you add
+   to facts.json and render with make_score.py. Run `check_quotes.py <T>` before
+   `pass2-done`. On 5.7 runs `queue.py pass2-done` (done_no_change / done_changed) refuses a
+   failing analysis and records nothing; `pass2-reset` is never gated. second_pass.md cites
+   the forensic battery and sources as before (dcf_numbers.json, key_numbers.md, ttm.json,
+   the forensic battery, fundamentals.json or a cited source).
+   **Run health (engine 5.7, R5):** `run_health.py record <job> ok` when the run ended as
+   steps 1-7 say (no candidates; a pass2-check or pass2-done refusal handled as steps 5 / 7
+   say; pass2-done recorded). Else `record <job> fail --stdin` with the reason (preflight's
+   first line; a script that crashed; make_score refused and the run could not finish). Post
+   any line it prints.

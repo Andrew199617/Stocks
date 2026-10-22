@@ -1,24 +1,53 @@
 # Pass-1 worker spec (single source — both sweep crons point here)
 
 Run ONE company through the owner's-earnings DCF sweep. Method: v5 data gate + engine
-release 5.6 (normalized base, blended growth, moat-driven fade, five scenarios, IRR band;
-5.5 adds the share-basis checks, additive capex with intangible purchases, SBC tag
-reconciliation and USD-declared overrides; 5.6 the one-time acquired-IPR&D value
-adjustment — README "Fixes & lessons", Engine 5.5 / Engine 5.6).
+release 5.7 (normalized base, blended growth, moat-driven fade, five scenarios, IRR band).
+5.5 added the share-basis checks, additive capex with intangible purchases, SBC tag
+reconciliation and USD-declared overrides. 5.6 added the one-time acquired-IPR&D value
+adjustment. 5.7 is Andrew's rulings release of 2026-10-19 (R1-R9):
+- the mechanical sector-misfit notch, detected on the universe sector or the EDGAR SIC;
+- declared facts and strict quoting (`facts.json`, `check_quotes.py`);
+- the moat's sources and evidence scorecard, with the moat's direction setting the growth hold;
+- the declared 6-K interim bridge, and annual facts read from a filing's own XBRL instance;
+- declared share classes (Up-C / multi-class share basis);
+- a STALE_FY TTM base that may be rejected only with a reason that carries a number;
+- capitalized software / development in capex, and every filed PP&E component summed
+  (machinery and equipment, mining assets, furniture and fixtures);
+- the sweep's preflight and run-health checks.
+README "Fixes & lessons" (the Engine 5.5, 5.6 and 5.7 entries) has the detail.
 `README.md` has the method and "Fixes & lessons"; `DCF_AUDIT.md` explains why each rule
-exists; `APP/` is the worked example of the output shape (including an override).
+exists; `APP/` is the worked example of the output shape (including an override). For 5.7
+facts and quoting see `_system/examples/facts/`. The other files in `_system/examples/` are
+worked examples of the moat scorecard, the interim bridge and a TTM rejection.
 
-**MECHANICS — no exceptions.** Never edit `queue.json`, `score.json` or
+**MECHANICS — no exceptions.** Never edit `queue.json`, `score.json`, `key_numbers.md` or
 `second_pass_queue.json` by hand. The queue is touched only through `queue.py`, TTM figures
 come only from `ttm.py`, `score.json` is built only by `make_score.py` from
-`dcf_numbers.json` + the `judgment.json` you write. Every number in `analysis.md` is copied
-from `key_numbers.md`, `dcf_numbers.json` or `ttm.json` — never recomputed, never retyped.
-If a figure you need is not in the computed outputs, say so in words. All paths below are
-under `~/workspace/stocks/` (the system folder is `_system/`).
+`dcf_numbers.json` + the `judgment.json` (and `facts.json`) you write. Every number in
+`analysis.md` is copied from `key_numbers.md`, `dcf_numbers.json`, `ttm.json` or a saved
+method run (`dcf_numbers_<label>.json`) — never recomputed, never retyped. Some numbers the
+engine cannot produce: filing text, a company release, a third-party source, or a
+folder-file figure such as a quarterly print in fundamentals.json. Declare each one in
+`facts.json` first (step 7b). make_score renders it under "Declared facts (not engine
+output)" in key_numbers.md, and you quote it from there. judgment.json is never a source.
+Since engine 5.7 `queue.py done` runs `check_quotes.py` and refuses a run whose analysis.md
+quotes a number no generated file holds. All paths below are under `~/workspace/stocks/`
+(the system folder is `_system/`).
 
 ## Steps
-1. **Claim.** `python3 _system/queue.py claim` prints your ticker (atomic, 90-min lease; the
-   reaper runs first). Nothing printed → rebuild the HTML (step 10) and finish silently.
+1. **Preflight, then claim.** Run `python3 _system/preflight.py` first.
+   - Exit 0 → `python3 _system/queue.py claim` prints your ticker (atomic, 90-min lease; the
+     reaper runs first). Nothing printed → rebuild the HTML (step 10) and finish silently
+     (a successful run).
+   - Any other exit → do not claim. Record the run as failed with preflight's first line
+     (step 11) and finish. Exit 1 means this tree's policy files (every top-level
+     `_system/*.py`, WORKER_SPEC.md, SECOND_PASS.md, PR_PROTOCOL.md, AGENTS.md) differ from
+     origin/main, or the tree has no readable `_system/industry_returns.json` while main has
+     one. A score made now would be on a method main has replaced (MOH and ESTC were scored
+     on 5.4.0 after 5.5 merged). Exit 4 means the fetch failed: the run cannot prove it is on
+     main's method.
+   - Never edit or sync those files yourself. `preflight.py --sync` is the main agent's step
+     (PR_PROTOCOL.md "Syncing the sweep tree").
 2. **Preliminary engine run.** `python3 _system/dcf_engine.py <T>` (allow 300s: it fetches
    EDGAR, Nasdaq and ECB rates, and replays itself twice when an override is present).
    - **Exit 4 `DATA_GAP`** — required filing data is missing (sbc / capex / shares / ocf /
@@ -33,6 +62,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      that no override covers — `SHARE_SCALE` and `SHARE_CLASS_MISMATCH` (gap keys
      `share_scale` / `share_class`); step 4 says how to block them.
    - **Exit 3 `DATA_GAP:price`** → block the same way and finish.
+   - **Exit 3 `BAD_SHARE_CLASSES` / `BAD_TTM_SHARE_BASIS` (engine 5.7)** → the engine refused
+     the run and wrote nothing. These two refusals, and the `UP_C_SUSPECT` flag (step 4), are
+     not blocked. Fix them in judgment.json (`share_classes`, `up_c_suspect_reason`,
+     `shares_override.share_basis`), then rerun `ttm.py` and the engine.
    - **Re-score after a new filing**: when the folder already holds a prior run (the queue
      entry carries `refresh_reason: NEW_FILING…`), read its analysis.md first; judgment.json
      and its overrides carry over and the tools apply them, except its `second_pass` object:
@@ -41,7 +74,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
      `base_override` is not carried either: rebuild it from this re-score's preliminary run
      (step 8 — the new filing moves its native base, window and share count, so the carried
      value no longer reproduces and the engine refuses it), or drop it when that run no longer
-     raises `ACQUIRED_IPRD_RECURRENT`. `iprd_cash_flow_check` entries carry over (they record
+     raises `ACQUIRED_IPRD_RECURRENT`. `ttm_rejection_reason` and `ttm_unavailable_reason`
+     (engine 5.7, step 4) carry over only as drafts. Each answers one ttm.json (or one ttm.py
+     message). Rewrite the reason's figures from this re-score's ttm.json (make_score traces
+     them), re-quote ttm.py, or drop the field when you pin the TTM. `iprd_cash_flow_check` entries carry over (they record
      what a filed cash-flow statement shows); add one for each new period the run names, then rerun the
      engine (step 3: make_score refuses a judgment.json whose IPR&D declarations changed after the run).
      `iprd_deferred_payment` entries carry over too (they record which deal a filed charge
@@ -60,14 +96,116 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    - **Exit 3 `NO_DATA` / exit 2 `NO_CIK`** → thin or no history, often a holding-company
      CIK change: web-search "<company> CIK 10-K", rerun with `--cik <CIK>`; only if no filing
      parent exists, block with a reason starting `NO_DATA:` and finish.
+   - **Exit 5 `BAD_MOAT_TREND` (engine 5.7)** → the `--moat-trend` value is not eroding /
+     stable / widening. It is never a CIK or data problem. Rerun with the value
+     `python3 _system/moat_scorecard.py <T>` printed (step 5). The engine checks the flag
+     before any fetch, so nothing was downloaded.
+   - **Save the preliminary run at once (engine 5.7):**
+     `python3 _system/check_quotes.py --save-run <T> prelim`. Save any exploratory run you
+     will quote the same way (`--save-run <T> <label>`): a method range is quoted from saved
+     runs only. The copy is refused unless the run's content_hash verifies.
+   - **Run the SEC enrichment now** (non-blocking): `python3 _system/fundamentals.py <T>`,
+     `python3 _system/segments.py <T>`, `python3 _system/statements.py <T>`,
+     `python3 _system/profile.py <T>` (step 9 says what each file holds). make_score verifies
+     folder facts against these files. The moat scorecard's measured pillars read
+     fundamentals.json (at least 3 annual rows; else financials_history.csv, which has no
+     goodwill, pretax or gross-margin line: no tangible ROIC and no trend test). So they run
+     before the moat is scored.
 3. **Research** (1–3 web searches): the business, latest quarter and TTM, competitive
    position, red flags (dilution/SBC, concentration, litigation, going concern, one-offs,
-   divestiture/restated basis breaks).
+   divestiture/restated basis breaks). Record every figure you will quote as a fact as you
+   go: its kind, source (accession + section / exhibit, or URL + publisher + date), period,
+   date, and a verbatim snippet of at most 24 words that contains the number (a figure a
+   folder file holds is a kind `folder` fact with a path instead — step 7b).
 4. **Address EVERY fragility flag** in `dcf_numbers.json` with a specific resolution in
-   `analysis.md`. Recurring ones — `STALE_FY`: run `python3 _system/ttm.py <T>` (saves
-   `ttm.json`) and pass `--ttm` in the final run; quote ttm.json's legs. IFRS filers: ttm.py
-   reads us-gaap only and exits non-zero — use the median base and say so.
-   (Codex review round 23 of PR #47) Regenerating ttm.json — rerunning ttm.py after a new 10-Q,
+   `analysis.md`. Recurring ones — `STALE_FY` (engine 5.7; Andrew's ruling R7, 2026-10-19):
+   a 10-K filer runs `python3 _system/ttm.py <T>` (saves `ttm.json`) and passes `--ttm` in the
+   final run; quote ttm.json's legs. Run ttm.py with the CURRENT engine every time, then rerun
+   the engine (a ttm.json regenerated after the run is refused: TTM_CHANGED). Never reuse a
+   ttm.json from an earlier run. Since engine 5.7 ttm.json records the `engine_release` that
+   built it. The engine copies it to dcf_numbers.json `ttm_inputs.ttm_engine_release` whenever
+   the run's basis reads ttm.json (the `--ttm` pin, an undeclared `--base-oe-ps` pin, a
+   `basis_window` "ttm" pin). make_score refuses a 5.7 run whose basis read a ttm.json from an
+   older engine ("ttm.json predates engine 5.7 … rerun ttm.py with the current engine").
+   **Rejecting the TTM (R7).** You MAY reject the TTM base, but only with judgment.json
+   `ttm_rejection_reason`. It is one sentence that names the distorting cash-flow line WITH A
+   NUMBER. The line is operating cash flow or one of its lines (working capital, receivables,
+   inventories, payables, deferred revenue, taxes paid, pension …), capex (PP&E, capitalized
+   software, intangibles) or SBC. A cyclical peak or trough names operating cash flow (or the
+   line that moved) with its figure. HII qualifies ("median +$16.14/sh Tier C vs TTM
+   −$3.48/sh on a half-year working-capital trough"; `_system/examples/ttm_rejection_hii.json`).
+   "Working-capital timing" does not. Every figure in the reason traces to ttm.json,
+   key_numbers.md, dcf_numbers.json or the CSV, or cites a fact `[F#]` that lists
+   `used_for: ttm_rejection` and is not third-party only.
+   - make_score refuses a 5.7 STALE_FY run whose base is the median or a declared
+     `base_override` pin while ttm.json holds a TTM for its latest FY, when the reason is
+     missing or does not qualify. The payable pin (`--base-judgment`) is exempt.
+   - It refuses the field beside a TTM pin, or with nothing to reject.
+   - It refuses a rejected TTM it cannot price: a ttm.json from before engine 5.7, or one
+     built with an override judgment.json no longer declares. Rerun ttm.py.
+   - It replays the final configuration with `--ttm` and records both bases (base OE/share,
+     weighted IRR, tier) in score.json `base_alternatives`, the registry and key_numbers.md
+     "Base alternatives". Quote the rejected TTM from there, never retyped.
+   - The field is make_score's alone: editing it needs no engine rerun.
+   - A declared 6-K bridge may be rejected the same way: keep `interim_bridge` declared and
+     add `ttm_rejection_reason`.
+   **No TTM: ttm.py exits 3 (default Q14, main agent 2026-10-21, pending Andrew).** ttm.py
+   exits 3 when it cannot build the TTM (a leg with no fact to build it from, such as no 10-Q
+   since the fiscal year end). It prints one line: "ttm.py: cannot compute TTM for
+   <T> (CIK …): …". Copy that line into judgment.json `ttm_unavailable_reason`, verbatim: the
+   whole line and nothing else, no words of your own around it.
+   - make_score refuses a STALE_FY 10-K median or pin run with no TTM for its FY without it.
+   - It checks the quote against ttm.py's own messages for this ticker, CIK and fiscal year.
+     It also checks it against the run's own financials_history.csv: a "no annual (FY) fact"
+     the latest FY contradicts is refused.
+   - ttm.py writes nothing when it exits 3, so a ttm.json from an earlier run can stay beside
+     the run. When make_score cannot price that file (it predates engine 5.7, or used an
+     override judgment.json no longer declares) and the rerun exits 3, the same quote stands
+     for it. make_score then records the old file as not computed, and no rejection reason is
+     needed.
+   - At a 20-F / 40-F filer the field is refused: `interim_bridge_declined` (below) records
+     why no TTM exists there.
+   **20-F / 40-F filers: the declared 6-K interim bridge (engine 5.7, Andrew's ruling R2).**
+   - Open the latest 6-K interim report with a condensed cash-flow statement. Run
+     `python3 _system/ttm.py <T> --interim-draft <6-K accession>`: it prints a draft from the
+     6-K's XBRL and writes nothing.
+   - Complete `interim_bridge` in judgment.json (schema:
+     `_system/examples/interim_bridge.example.json`). Every interim leg is `{value, kind,
+     source {accession, document, page | null, section}, snippet, reason}`. The snippet is the
+     report's own words, at most 24, and shows the figure.
+   - A leg the report does not print is kind `estimate` with a `method`: fy_prorated,
+     comparative_carried, combined_in_ppe, fy_diluted_count, or other + method_detail.
+   - Declare `like_for_like`: is the comparative restated? List every acquisition, disposal,
+     demerger and discontinued operation in the window with its resolution. A change declared
+     `material: false` carries a revenue_share below 5% and its source, whatever its
+     resolution. `same_business_perimeter` resolves a demerger only.
+     `comparatives_re_presented` needs `comparative_restated` and
+     `restatement.fy_leg_consistent` true.
+   - Declare the per-period ECB rates `ttm.py` prints. The bridge also needs judgment.json
+     `ads_ratio` (step 8 (d); 1 when the ordinary shares trade directly). It must be the ratio
+     the engine applied, or the bridge refuses ([IB-ADS]).
+   - Then run `python3 _system/ttm.py <T> --interim` and pass `--ttm` in the final run. Quote
+     key_numbers.md's "Interim bridge" section. Do not re-declare its leg values as facts.
+   - A 6-K without XBRL (EDGAR isXBRL 0 — TFII's, FUTU's) bridges too. Every filing leg is
+     then verified by its snippet only. ttm.py does not read that report's period from EDGAR
+     (a non-XBRL 6-K's reportDate is its cover date): the current interim must have ended
+     before the report's filing date.
+   - When no bridge is possible, declare `interim_bridge_declined {reason (with a number),
+     report {form, accession, document} | null}`. make_score refuses a 5.7 STALE_FY 20-F /
+     40-F run with neither (default Q7, main agent 2026-10-21, pending Andrew). That includes
+     a hand-built 6-K pin (`base_override`, plain or `iprd_amortized`): re-declare it as
+     `interim_bridge`. Only the payable pin is exempt.
+   - `ttm.py --interim` exits 3 on any rule (the message lists every `[IB-*]` code) and 4 on
+     a fetch failure (retry). make_score re-runs the same rules on the declaration. It
+     refuses one changed after `ttm.py --interim` ran: after any edit to `interim_bridge`,
+     rerun `ttm.py <T> --interim` and the final engine pass.
+   - Resolve `TTM_DECLARED_INTERIM` and `ANNUAL_FROM_INSTANCE` by name.
+     `ANNUAL_FROM_INSTANCE` (any annual form: 10-K, 20-F or 40-F) means the engine read the
+     latest FY from the filing's own XBRL instance (EDGAR companyfacts lacked it). The engine
+     writes `<T>/annual_instance.json`,
+     a committed SEC file; make_score refuses the run when that file is missing or no longer
+     matches the run.
+   **ttm.json is bound to the run.** (Codex review round 23 of PR #47) Regenerating ttm.json — rerunning ttm.py after a new 10-Q,
    a shares override or a split — means rerunning the engine before make_score. Every run whose
    base reads ttm.json (`--ttm`, or a `--base-oe-ps` pin that is not declared built on FY figures —
    round 25 of PR #47) records what it read from ttm.json (`ttm_inputs` in
@@ -92,6 +230,20 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `IRR_AT_FLOOR` (5.4): the price is beyond the model's range; the IRR reads "at most
    ~3%". `TIER_BAND` (5.4): bear and bull tiers differ — size to the bear end.
    `SECTOR_MODEL_MISMATCH`: confidence low; the ranking lists the name under sector misfits.
+   It fires on the universe sector OR the EDGAR SIC (engine 5.7; dcf_numbers.json
+   `sector_model` says which). A present SIC outside 6000-6799 and outside every misfit range
+   sets a Finance / Real Estate / Utilities universe sector aside, so no flag fires (default
+   Q1 (b), main agent 2026-10-21, pending Andrew). make_score publishes the tier one notch
+   below the numbers tier (the mechanical misfit notch, Andrew 2026-10-19). There is no notch
+   on a numbers tier of D or F, or on a `--base-judgment` payable base. On a notched misfit,
+   write `misfit_notch_reason` in judgment.json: the payable-earnings measure or the IRR it
+   implies, with a number. Leave `tier_override` null unless you downgrade further. On a 5.7
+   run make_score refuses a notched misfit without the reason, and an override at or above
+   the notched tier (the one exception: the main agent's acquired-IPR&D share-count
+   override below, which may sit at it).
+   `MOAT_TREND_HOLD` (5.7): the run held growth 0 years (moat eroding) or 3 (widening)
+   instead of 2. For eroding, name the measured decline (key_numbers.md "Trend test"). For
+   widening, say why it is not a cyclical upswing or a recovery from a trough.
    **Insurer payable-earnings base (Andrew, 2026-10-19):** at a P&C insurer or reinsurer
    whose filings print **operating income (loss) available to common shareholders** (the
    non-GAAP line in every quarterly earnings release and the 10-K MD&A), the OCF base is
@@ -99,7 +251,7 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    float) and the cash earned by consolidated third-party-capital vehicles, so it can run
    2× or more above what common shareholders earn (RNR: OCF base $77.78/sh vs $27.21/sh
    through-cycle operating income to common; Tier S by numbers, where the payable base
-   prints C). The one-notch softening (2026-10-15) cannot bridge that gap. For these filers
+   prints C). The mechanical misfit notch (one tier, engine 5.7) cannot bridge that gap. For these filers
    the worker declares in judgment.json:
    `base_override: {basis: "payable_earnings_5y", kind: "filing", figures: [5 annual
    amounts in USD dollars, oldest first], shares: <this run's latest shares_diluted from
@@ -108,7 +260,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    final pass with **`--base-judgment`** (in place of `--ttm`). The engine recomputes the
    base from `figures` / `shares` (the recomputed figure is what gets recorded and
    pinned), scales it by `ads_ratio` for a 20-F/40-F filer (the pin must be per ADS,
-   like the price), records the construction in dcf_numbers.json (`payable_base`, with
+   like the price; `ttm.py --interim` applies the ADS ratio itself: its `ttm_oe_per_share`
+   is per ADS, its `ttm_shares_diluted` the ordinary count), records the construction in dcf_numbers.json (`payable_base`, with
    the filer's EDGAR SIC) and refuses the run (BAD_BASE_OVERRIDE, exit 3) when the
    declared `value` does not reproduce to the cent, `shares` is not exactly this run's
    latest diluted count, the filer's series were FX-converted (the rule is for USD
@@ -125,10 +278,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    never retyped from the filing. Five-year average, not 3-year median, because a
    catastrophe cycle is longer than three years and a benign window would otherwise set
    the base. This filing-sourced base is the one standing exception to clause (c) in
-   step 8, authorized by the main agent. With it in force the one-notch `tier_override`
-   is **not** applied — make_score refuses the pair as double-counting; the alert-gate
-   misfit suppression and the low-confidence grade stay. Life insurers, banks and REITs,
-   and any filer without that printed line, keep the 2026-10-15 rule.
+   step 8, authorized by the main agent. With it in force the mechanical misfit notch is
+   **not** applied (score.json `misfit_notch.not_applied: payable_base`; no
+   `misfit_notch_reason` needed). A `tier_override` below the numbers tier on top of it is
+   refused as double-counting. The alert-gate misfit suppression and the low-confidence
+   grade stay. Life insurers, banks and REITs, and any filer without that printed line, get
+   the mechanical notch.
    `FX_CONVERTED` / `USD_TRANSLATIONS_USED` / `ADS_RATIO_*`: note the basis.
    **Acquired IPR&D (engine 5.6 — Andrew's 2026-10-19 decision: the one-time deduction, cash preferred, the
    5% flag, recurrence and the impairment non-goal; the no-cliff deduction, the cash-flow check and the
@@ -239,7 +394,12 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    Resolve it in analysis.md with: the amount, the deal (the acquired company or asset and the 10-K note),
    the consideration mix (cash vs stock — stock is already in the diluted count; the engine prefers the
    `PaymentsToAcquireInProcessResearchAndDevelopment` cash figure when filed), and the recurrence assessment
-   (a one-off deal, or the way this company buys its pipeline). `ACQUIRED_IPRD_RECURRENT`: charges in 2 or
+   (a one-off deal, or the way this company buys its pipeline). On a 5.7 run the consideration figures (cash
+   paid, transaction costs, contingent milestones, the investing line) are `filing` facts in facts.json. The
+   IPR&D declaration's own values (the `iprd_deferred_payment` amounts, `contingent_total`,
+   `iprd_cash_flow_check` amounts) are already in dcf_numbers.json: quote them from the Acquired IPR&D section,
+   never re-declare them. key_numbers.md says so on the period line ("declare the consideration in facts.json,
+   kind filing"). `ACQUIRED_IPRD_RECURRENT`: charges in 2 or
    more of the last 3 FY (material). A year counts by its own acquired-IPR&D expense, paid that year or
    accrued and paid later, never by its cash timing (Codex review round 27 of PR #47); cash that settles an
    earlier year's charge, with no expense of its own, is not a new charge year, so one deal expensed once
@@ -376,7 +536,10 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    ACQUIRED_IPRD_CHARGE not deducted: <total>` with the charge total; only the main agent may publish it,
    through a `tier_override` whose reason quantifies the hand deduction — the charge per share on the verified
    share count ($) and the adjusted weighted IRR (%); make_score refuses the score without one (Codex review
-   round 1 of PR #47); reprice.py never reprices it (no live figures: the hand deduction cannot be replayed —
+   round 1 of PR #47). On a sector misfit (engine 5.7) that override sits at or below the notched tier — the
+   notch of the recorded numbers tier; make_score refuses it above — and `misfit_notch_reason` is still
+   required on a 5.7 run. On a 5.7 run its reason follows the quoting rule of step 8 (the verified share count a
+   cited filing fact, the charge per share a calc fact, the adjusted IRR from a saved run). reprice.py never reprices it (no live figures: the hand deduction cannot be replayed —
    round 2). Impairments of previously capitalized intangibles are
    not this flag and are never deducted (that spend went through capex / intangible purchases when made); a
    cash-tag-only year (MAA's development-spend mistag) is never a charge.
@@ -429,6 +592,40 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    (step 8) — the filed count is a different class from the traded security. Nothing
    rescues it: block `NEEDS_MAIN_AGENT: shares — SHARE_CLASS_MISMATCH: <the EPS-note
    citation>` and finish (make_score refuses the declaration too).
+   **Share classes (engine 5.7, Andrew 2026-10-19/20, R6).** `UP_C_SUSPECT` says the per-share
+   figures may cover only the traded class. It fires at a domestic filer (not a 20-F / 40-F
+   filer) when noncontrolling interests hold at least
+   20% of equity or of consolidated net income (3 FY), the count looks short (the cover page
+   counts shares by class, or carries more shares than the diluted count, or the screener's cap
+   — universe.csv's own price × the filed count — is at least 1.05× it), and the diluted count
+   does not include an exchange of their units. VNOM printed a fake Tier S at 25.05% ($7.9338
+   TTM OE per Class A share). Read the equity note's ownership table (units held outside the
+   filer) and the EPS note. On a 5.7 run make_score refuses the flag left unresolved: declare
+   the classes, or write the reason (below).
+   - The noncontrolling holders own units of the same operating business that exchange into
+     the traded class (Up-C), or the filed count leaves out another class of the filer's own
+     common → declare `share_classes` (step 8 (e)) and rerun `ttm.py` and the engine.
+   - The minority is an ordinary interest in subsidiaries (JV partners, a listed subsidiary,
+     project equity), or the filed count already includes every class → write
+     `up_c_suspect_reason` with the figure that shows it. That figure is the EPS note's diluted
+     count including the exchange, or a `shares_override` that already counts every class
+     (FPS's 304,699,000 incl. 60,897,000 Class B). Never declare the classes again on top of it.
+   - A year whose EPS-note diluted count already includes the units (if-converted) keeps its
+     units with `in_filed_count: true`. The engine checks diluted − basic.
+   - If the structure collapsed or ended inside the base window, the year it happened in
+     declares the class's weighted-average units for that year. Never 0: the class existed for
+     part of it. With no printed weighted count, use a `kind: "calc"` day-weighted average of
+     two dated, cited counts. Only a year wholly after the event is 0, with `zero_event` and
+     the `event_date` written in its source.
+   - `SHARE_CLASSES_CAP_GAP` asks whether the screener counts one class only (say so in
+     `share_classes.cap_gap_reason`, with the figure), or whether the filed count already
+     includes the declared classes (remove them).
+   - `SHARE_CLASSES_NCI_GAP` says the declared share of total units is more than 15pp from both
+     NCI shares. Check the units, or write `nci_gap_reason`.
+   - `SHARE_CLASSES_DECLARED` then names the units per year. Resolve it by name in
+     analysis.md, quoting key_numbers.md's share-class lines. Say whether the counts are
+     period-end or weighted-average (a period-end count in a year of heavy unit issuance
+     understates that year's per-unit OE).
    `SHARE_BASIS_ADJUSTED`: a split ratio filed after the latest FY end, confirmed by a
    post-split cover-page count; the engine multiplied every share count filed before the
    split (CSV `shares_split_factor`), so history, base and price share one basis. Name the
@@ -462,8 +659,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `CAPEX_COVERAGE_LOW`: capex below 50% of D&A in each of the last 3 FY at a filer with
    positive PP&E. Reconcile the CSV's `capex` (`capex_tag`, `capex_ppe`,
    `capex_intangibles`) against the cash-flow statement's investing section line by line
-   (construction in progress, capitalised software, land-use rights, spectrum, intangible
-   purchases). Either the engine read the whole capex (an asset-light or acquisition-led
+   (construction in progress, land-use rights, spectrum, intangible purchases; capitalised
+   software is read since 5.7 unless it is filed only as `CapitalizedComputerSoftwareAdditions`
+   or an extension tag). Either the engine read the whole capex (an asset-light or acquisition-led
    model — say which, with the line) or a filed capex line is unread: then the base
    overstates owner's earnings and no override adds to a filed value — block
    `NEEDS_MAIN_AGENT: capex — <the unread line(s) and amounts>`.
@@ -490,43 +688,217 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    override raises nothing: the override simply fills nothing and drops out of
    `overrides_applied` (AMH, UDR) — remove it from judgment.json on that run (an override
    that fills nothing has no effect to carry).
-5. **Moat 0–10, justified.** Rubric: 9–10 wide and durable (network effects, switching
-   costs, structural cost advantage, proven pricing power, high returns on capital through
-   a cycle); 7–8 strong; 5–6 moderate/narrow; 3–4 weak; 0–2 none. Name the specific pillars
-   FOR and the erosion forces AGAINST — no generic claims. Evidence first: quote the
-   company's **return on invested capital** history (the `roic_proxy` series in
-   `fundamentals.json`: after-tax operating income over equity + debt − cash) and its gross
-   margin level and trend for the last five fiscal years. Andrew thinks in ROIC terms: a
-   moat of 7 or above should sit on ROIC that has stayed well above the cost of capital
-   through a cycle, or carry a written reason why the measured history understates the
-   franchise (early scale, heavy growth spend, a divestiture break). A high moat on low or
-   falling ROIC is the first thing pass 2 will attack. The moat sets the fade: growth holds 2 years, then converges to 2.5% over
-   CAP = clamp(2 + 1.3 × moat, 2, 15) years. `--gterm` only with a written reason.
+5. **Moat 0–10: sources first, then the evidence (Andrew, 2026-10-19 — a combination of
+   Dorsey's framework and the evidence scorecard; engine 5.7).** Name the specific pillars FOR
+   and the erosion forces AGAINST — no generic claims.
+   **One lever per question.** Risk lives in the scenario probabilities, the bear weight and
+   confidence. Growth lives in the growth start. Return on capital lives in the capex inside
+   owner's earnings. The moat sets ONLY the fade. Each of these is double counting: a moat
+   argued from growth ("users are growing fast, so the moat is wide"); a growth start raised
+   because the moat is high; a risk (a lawsuit, a customer loss) carried as a lower moat
+   instead of in the probabilities. reach_and_growth scores the size, growth and retention of
+   the user / customer base. A growth rate alone lifts it to +1 at most; +2 needs a scale or
+   retention fact besides the rate.
+   **The scorecard (required on a 5.7 run).** judgment.json `moat_scorecard` is
+   `{version: 1, business_type, business_type_reason, sources, pillars, supporting,
+   volume_price, moat_divergence_reason, low_roic_reason, high_return_low_moat_reason,
+   erosion_rebuttal}` (plus `widening_declined`, below); worked examples are
+   `_system/examples/moat_scorecard_*.json`. `business_type` is one of consumer_users,
+   enterprise_recurring, consumer_brands_retail, industrial, healthcare, commodity_producer,
+   financial_balance_sheet, financial_fee, real_assets. `business_type_reason` says why (a
+   revenue share or segment). The filer's SIC can lock the type: make_score refuses a type the
+   SIC range contradicts (a mortgage-REIT balance sheet is financial_balance_sheet).
+   **Sources first.** Name the source(s) in judgment.json `moat_scorecard.sources`: type and
+   subtype from the enum, narrow or wide, and facts (used_for `moat:sources`) or a measured
+   metric at +1. The types are Dorsey's intangible assets, switching costs, network effects,
+   cost and size advantage; Morningstar's efficient scale; Helmer's counter-positioning;
+   Greenwald's customer captivity (the table is in `_system/README.md` §Moat).
+   - First-mover advantage, a technology lead, high growth, a large addressable market,
+     partnerships and culture are not sources. Score them, with great products, share,
+     execution and management, under the four supporting factors.
+   - Bad moats (products, share, execution, management) are allowed as supporting factors.
+     Presenting them as the moat's source, with no source type named, is P2.
+   - The caps: none ≤ 3; one narrow ≤ 6; 7+ a wide or two fact-backed sources; 9+ two wide
+     and returns_on_capital +2 sustained. No reason field relaxes a cap.
+   - The source rules of README §Moat apply: brand, patent expiry, switching / pillar
+     agreement, aftermarket series, efficient-scale competitor count and returns,
+     counter-positioning incumbents, captivity series, process lead.
+   - A process edge is acceptable as the way a company breaks in (Dorsey). Call it narrow
+     and name, in the rationale, the bigger moat it is building toward.
+   **The evidence.** `moat_scorecard.pillars` holds the seven declared core pillars:
+   pricing_power, retention, reach_and_growth, switching_costs, concentration, erosion_risks
+   (−2..+1, with typed `threats`: technology_substitution, reinvestment_away_from_moat,
+   subsidized_competitor, patent_licence_expiry, regulation) and customer_regard.
+   - Each is `{score, rationale, facts}`, or `{applicable: false, not_applicable_reason}`
+     where the business type allows it (README table).
+   - Every cited metric is a SERIES of at least 3 periods over at least 12 months in
+     facts.json. Third-party-only support caps a pillar at ±1.
+   - The four mechanical pillars are measured; they carry only an optional `comment`.
+     returns_on_capital prints ROIC, tangible ROIC, ROE and ROA side by side, and make_score
+     picks the governing one. industry_structure compares the governing return with
+     same-ladder SIC peers. capital_intensity and scale_economics are measured too.
+   - `supporting`: product_quality, market_share, execution (−1..+1) and management
+     (−2..+1; −2 only for value-destroying reinvestment outside the moat), each with facts or
+     N/A with a reason. Their sum ÷ 4 (N/A counts 0), capped at ±1, is added to the core
+     evidence. They may be positive with no source, and they never lift the moat past a cap.
+   - Where the filer discloses a volume series, declare `volume_price` (required for
+     consumer_users).
+   **The dry run.** Run `python3 _system/moat_scorecard.py <T>` before the final engine run.
+   It checks the scorecard the way that run will (always an authoring check: every gate that
+   would refuse the run refuses here). It prints the evidence score, every gate and the
+   `--moat-trend` value for the final run.
+   - Your moat must land within 2 points of the evidence score, or carry
+     `moat_divergence_reason` with a number.
+   - A moat of 7+ on a governing return below 10% (ROE 15%) or unmeasured carries
+     `low_roic_reason`.
+   - A moat of 4 or below on 20%+ sustained carries `high_return_low_moat_reason`.
+   - An erosion score of +1 under MOAT_EROSION carries `erosion_rebuttal`.
+   - Each reason has a number that traces: an engine figure, a key_numbers.md Moat-scorecard
+     figure, or a cited `[F#]` fact that lists the reason's tag.
+   **Rubric (Andrew, 2026-10-19 — use the whole range).** 0–2 no moat: no source, and returns at or below the cost of
+   capital. 3 no source, with decent returns (the supporting factors can reach 3, never more). 4 one narrow source with
+   thin evidence. 5–6 narrow: one source; governing return above ~10–15%. 7–8 wide: a wide source or two fact-backed
+   sources; governing return ≥ 15–20% through a cycle. 9–10 exceptional: two wide sources; governing return ≥ 25–30%
+   through a cycle (returns_on_capital +2 sustained). Today's scores are compressed: 82% of folders sit at 4–6. The
+   median governing return at moat 6 is 19.5% and at moat 7 is 29.1% — on returns alone those are 7–8 and 9–10
+   companies (moat 4 / 5: 10.6% / 16.0%; plain ROIC proxy at 4 / 5 / 6 / 7: 8.0% / 8.5% / 12.9% / 21.6%); score the
+   sources and let the number land there.
+   **The fade (Andrew, 2026-10-20, M6).** The moat's LEVEL sets CAP = clamp(2 + 1.3 × moat,
+   2, 15) years. Its DIRECTION sets the growth hold before the fade; growth then converges to
+   2.5% over CAP years. `moat_scorecard.py <T>` runs the trend test. It looks at the
+   governing return AND the margin (gross, else the filed operating margin) over the last
+   5 FY. Both down is MOAT_EROSION; both up is MOAT_WIDENING. Each needs a move of 3pp and 20%
+   of the starting return, and 2pp of margin. The dry run prints the `--moat-trend` value
+   for the final run:
+   - eroding → hold 0 (the fade starts in year 1), unless `moat_scorecard.erosion_rebuttal`
+     carries a traced number (why this is a cycle, not erosion). The rebuttal must be anchored
+     on a cited filing / release / folder fact tagged erosion_rebuttal, or on an engine figure
+     outside the trend test (such as the filed history). The trend test's own figures, the
+     record's IRRs and values that the hold moves, and the counterfactual IRR trace but never
+     anchor: a rebuttal that only restates them is refused.
+   - widening → hold 3, only with a fact-backed source and returns_on_capital +1 or better.
+     When tangible ROIC governs, plain ROIC must also rise by the same thresholds (an
+     acquisition's goodwill shrinks the tangible base, so tangible returns alone can "widen"
+     while the return on the price paid falls). When ROE governs, ROA must also rise by them
+     (buybacks shrink equity, so ROE alone can "widen").
+   - widening never applies to a commodity producer, checked on the filer's SIC (mining,
+     oil and gas, primary metals, commodity chemicals, pulp and paper, lumber, refining, bulk
+     shipping; a SIC-6199 filer booking contract revenue, i.e. crypto mining and treasury
+     companies; an unknown SIC fails). The one exception: `business_type_reason` quotes a
+     cited cost-position fact (cost-curve position, cash cost per unit vs peers; metric one of
+     `moat_scorecard.COST_POSITION_METRICS`, used_for business_type_reason). A declared
+     `commodity_producer` business type is never exempted. A commodity price move never
+     counts.
+   - Decline a widening in `moat_scorecard.widening_declined` when the rise is a cyclical
+     upswing or a recovery from a trough (`WIDENING_FROM_TROUGH`: the first-two-year return
+     sat below the cost-of-capital line). It is a sentence and needs no number, because it
+     only lowers the value.
+   - anything else → hold 2. Scenarios that start at or below the terminal rate always hold 2.
+   The hold carries the direction. Do not also cut the moat score or the growth start because
+   the moat is eroding (one lever per question). `--gterm` only with a written reason.
 6. **Five scenarios** summing to 100%. Defaults 10/25/30/25/10; growth-start offsets
    −12/−5/0/+5/+12pp vs the engine's blended start; OE multipliers 0.75/0.90/1.00/1.10/1.25.
    Adjust to THIS company's evidence with written reasons. **Sanity check:** compare every
    scenario's growth start with the actual recent prints (latest FY, TTM, latest quarter
    YoY, guidance). A start below what the company just printed — especially bull — needs a
    written reason; equally, if the blend hit the 35% cap on inflection artifacts, recalibrate
-   downward with the reason written. Final run:
-   `python3 _system/dcf_engine.py <T> --moat <m> --probs <5> [--offsets <5>] [--mults <5>] [--ttm | --base-oe-ps <x> | --base-judgment] [--gterm <x>] [--cik <cik>]`
+   downward with the reason written. User growth informs the growth start through the
+   decomposition. The moat sees the user base only through reach_and_growth, which scores its
+   size, growth and retention. Never raise reach_and_growth above +1 on the same growth rate
+   that sets the growth start, and never raise a growth start because the moat is high.
+   Final run:
+   `python3 _system/dcf_engine.py <T> --moat <m> --moat-trend <eroding|stable|widening> --probs <5> [--offsets <5>] [--mults <5>] [--ttm | --base-oe-ps <x> | --base-judgment] [--gterm <x>] [--cik <cik>]`
    (`--base-judgment` is the insurer payable-earnings pin from step 4; a declared
    `base_override` with `basis` that the final run does not pass is unused and make_score
    refuses the score; `--base-oe-ps <x>` pins a declared `base_override` value from
    step 8 (c), the only pin that carries a `SHARE_SCALE_SUSPECT` base, and the
-   `iprd_amortized` base of step 8).
+   `iprd_amortized` base of step 8). Pass the `--moat-trend` value the moat_scorecard dry run
+   printed (step 5). make_score refuses a different one, and the engine exits 5 on a value
+   that is not a trend.
    Exit 4 here → block as in step 2 and finish.
-7. **Write `analysis.md`** in APP's shape: what it is; owner's earnings (both definitions,
-   which base and why, ttm.json legs quoted if TTM); MOAT (score, FOR/AGAINST, CAP);
-   five-scenario table + weighted result + diagnostics; FLAGS resolving every flag;
-   thoughts / method range / hurdle-clearing price; verdict sized to the conservative end.
+7. **Write `analysis.md`** in APP's shape:
+   - what it is;
+   - owner's earnings (both definitions, which base and why, ttm.json legs quoted if TTM;
+     under STALE_FY both bases from key_numbers.md "Base alternatives" when the TTM is
+     rejected, or ttm.py's exit-3 message when no TTM exists);
+   - MOAT: score, FOR/AGAINST, CAP, and from key_numbers.md's Moat scorecard the sources and
+     caps, the governing return beside ROIC / tangible ROIC / ROE / ROA, the industry rank,
+     the evidence score with the supporting adjustment and the gap, the flags, and any
+     divergence / low-return / reverse / erosion reason. For moat_for / moat_justification
+     name the source type behind each point. A bad-moat point is support: mark it
+     `(supporting: <factor>)`;
+   - five-scenario table + weighted result + diagnostics;
+   - FLAGS resolving every flag;
+   - thoughts / method range / hurdle-clearing price;
+   - verdict sized to the conservative end.
+   Quote declared facts as key_numbers.md renders them. A figure you derive from two others
+   (a premium to IV, a midpoint, a CAGR, a share of OCF) is a `calc` fact in facts.json, not
+   prose arithmetic.
+7b. **Write `facts.json`** (engine 5.7; schema and worked examples: `_system/examples/facts/`).
+   - Ids are F1, F2, ….
+   - Kind `folder`, with a path `<file>:<selector>`, whenever a folder file holds the number
+     (statements.json, fundamentals.json, segments.json, profile.json, ttm.json,
+     financials_history.csv). Never another kind for it: make_score refuses a filing /
+     release / third-party fact that repeats a folder figure for the same period.
+   - Kind `filing` (accession + section), `release` (8-K / 6-K accession + exhibit) and
+     `third_party` (https URL, publisher, date) each carry the snippet.
+   - `type`: guidance / estimate for forward figures; `metric` for a KPI tracked over several
+     periods (a series — the moat scorecard reads series); `event` for a dated term carrying
+     a number; actual otherwise.
+   - A derived figure is a `calc` fact (it carries `calc`; make_score reproduces it, and its
+     kind is its weakest operand's).
+   - Third-party facts are for scenarios and context only.
+   - Names that look like numbers ("Paragon 28") go in `not_quantities`.
+   - A count's `unit_label` is a noun with no digits (stores, MW).
+   - Each fact a reason cites lists that reason's tag in `used_for` (step 8).
 8. **Write `judgment.json`** with exactly: name, sector, moat_score, moat_justification,
    moat_for (short pillar strings), moat_against, probs_used (5, engine order), one_liner
    (quality + moat + why it does/doesn't clear 15% + hurdle price if below), confidence
    (low/medium/high — never high with WIDE_SCENARIO_SPREAD or unresolved flags),
-   tier_override (null unless the final tier must differ, reason in analysis.md),
-   tier_override_reason, in_scope_under_40b. Optional overrides `capex_override` /
-   `sbc_override` / `shares_override` `{value, source, reason, kind}`.
+   tier_override (null unless the final tier must differ from the published tier, reason in
+   analysis.md; on a sector misfit the published tier is already the notch, and an override
+   may only go below it), tier_override_reason, in_scope_under_40b. Engine 5.7 adds, each
+   where its step says:
+   - `misfit_notch_reason` — required on a 5.7 run of a notched sector misfit (numbers tier
+     S-C, off the payable base); it carries a number (step 4).
+   - `moat_scorecard` — required on a 5.7 run (step 5).
+   - `ttm_rejection_reason` — only when you reject a STALE_FY TTM (step 4).
+   - `ttm_unavailable_reason` — only when ttm.py exits 3 at a STALE_FY 10-K filer (step 4).
+   - `interim_bridge` (a 20-F / 40-F STALE_FY filer's declared 6-K bridge; schema
+     `_system/examples/interim_bridge.example.json`) or `interim_bridge_declined {reason with
+     a number, report}` — never both (step 4).
+   - `share_classes` (clause (e) below; with its optional `ack_reason`, `nci_gap_reason`,
+     `cap_gap_reason`, `diluted_gap_reason`, each carrying a number) and
+     `up_c_suspect_reason` (step 4).
+   - `capex_unlisted_ack` `{"<tag>": "<reason with the figure>"}` (step 8, capex overrides).
+   **Reasons cite facts (engine 5.7, R3).** On a 5.7 run `tier_override_reason` and every
+   other reason field (a plain `base_override`'s reason / source included) cites the facts it
+   rests on as `[F#]`.
+   - Every number in it is an engine figure or a cited fact's value.
+   - A reason carries at least one number (a plain `base_override`'s text is exempt, and so
+     is `moat_scorecard.widening_declined`, step 5).
+   - It never rests on third-party facts alone.
+   - Each cited fact lists the field's `used_for` tag (`tier_override`, `base_override`,
+     `misfit_notch`, `ttm_rejection`, `share_classes`, `capex_unlisted_ack`, …).
+   - A hand base pin (`--base-oe-ps`) may quote its own figure, but that figure never
+     supports the pin alone. The reason needs an engine figure other than the pin (the TTM or
+     CSV lines it was built from) or a cited filing / release / folder fact tagged
+     `base_override`.
+   - Numbers inside your own `ads_ratio.source`, an override's source or a share-class
+     source are your text, not engine figures, even though the engine repeats them in its
+     flags.
+   - The main agent's unverified-share-count IPR&D override (step 4,
+     `not_applied_share_count_unverified`) follows the same rule. The verified share count
+     is a cited filing fact. The per-share charge is a cited calc fact (the run's
+     `iprd_adjustment.total` ÷ that count). The adjusted weighted IRR comes from a saved
+     method run of an engine run pinned at the hand-adjusted base
+     (`check_quotes.py --save-run <T> <label>`).
+   Optional overrides `capex_override` /
+   `sbc_override` / `shares_override` `{value, source, reason, kind}`. Engine 5.7 adds the
+   optional keys `shares_override.share_basis` (`traded_class` | `all_classes`),
+   `capex_override.software_included` (below),
+   `interim_bridge.legs.shares_diluted.current_interim.share_basis`, and
+   `base_override.share_basis` (`total_units`) / `share_period`.
    **Bounded override authority (Andrew, 2026-10-14):** (a) kind "filing" — a figure from
    the company's own filings for the missing period(s); source cites form, period and
    location. (b) kind "estimate" — ONLY within 0.1×–10× of the last engine-filed value for
@@ -546,13 +918,57 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    that is not ttm.json's `ttm_oe_per_share` also carries `basis_window` (Codex review round
    15 of PR #47; make_score refuses a 5.6 run without it): `{"window": "ttm",
    "ytd_current_period": <ttm.json inputs.ocf.ytd_current_period, copied>}` when the pin was
-   built from ttm.json's TTM figures (VNOM: TTM OE total ÷ total units) — the acquired-IPR&D
+   built from ttm.json's TTM figures on another denominator (at a declaring filer the per-unit
+   TTM base is `--ttm` itself — share_classes — and a total-unit pin also states
+   `share_basis: "total_units"`) — the acquired-IPR&D
    window then reads the current-YTD leg whose cash flows are in the base —, `{"window":
    "fy"}` when it was built from FY figures (NTNX, VIV). The engine refuses a `ttm` window
    whose period is not this ttm.json's (BAD_BASE_OVERRIDE, exit 3): after ttm.py reruns,
    copy the new period. The declared window holds even when the pin happens to equal ttm.json's
    `ttm_oe_per_share` (Codex review round 24 of PR #47): `{"window": "fy"}` keeps the FY window
    and the latest FY share count. (d) `ads_ratio` — ONLY when stated in the filer's own 20-F/40-F.
+   (e) `share_classes` (engine 5.7, R6) — ONLY counts from the filer's own 10-K / 10-Q
+   (balance-sheet parenthetical, equity-note ownership table, EPS note): kind `filing`, or the
+   kind `calc` straddle-year average below.
+   - The shape: `{basis: up_c_exchangeable_units | multi_class_common, traded_class, reason
+     (with a number), classes: [{name, holder, exchange_ratio, ratio_source, periods:
+     [{period_end, value, count_basis: period_end | weighted_average, kind, accession,
+     source, snippet, …}]}]}`.
+   - One entry per class per period. Every class lists the same periods. The declaration
+     covers the last 3 FY and, with a TTM base, the current-YTD period end.
+   - An explicit 0 only for a class that did not exist at all during the period:
+     `zero_event` `not_yet_issued` / `ended`, with the `event_date` written in its source. A
+     class that existed for part of the period declares its weighted-average units, or a
+     `kind: "calc"` day-weighted average of two dated, cited counts. At least one period is
+     above 0.
+   - Units already in the filed diluted count carry `in_filed_count: true`.
+   - `exchange_ratio` comes from the filing, as filed-count (ordinary) shares per unit —
+     never per ADS (`ratio_source` when it is not 1).
+   - The units are the economic units the noncontrolling holders own (OpCo units), not the
+     voting shares paired with them (VNOM: 164,789,844 Class B but 171,536,228 OpCo units at
+     2026-06-30; the Class B count alone is 8 cents off the base).
+   - `split_basis` on a period cited from a filing outside the filer's companyfacts when a
+     split is confirmed.
+   - It replaces a share-basis `base_override` pin: clause (c) never covers a unit count.
+     VNOM's 2026-10-16 pin is retired on its re-score (`--ttm` on the declared ttm.json
+     reproduces it).
+   - A clause-(c) pin built from total-unit engine outputs states
+     `share_basis: "total_units"` (and `share_period`, or its `basis_window` sets it). Never a
+     filed-basis figure such as ttm.json's `ttm_oe_per_share_filed_basis` or an FY's OE ÷ its
+     filed traded count: make_score refuses it (R-4b).
+   - An `iprd_amortized` pin on `native_base: "ttm_json"`, or a pin with `basis_window`
+     "ttm", needs ttm.json rebuilt on the declaration first (rerun ttm.py).
+   - A `shares_override` at a declaring filer — and a declared interim share leg — is the
+     traded-class count only and says so (`share_basis: "traded_class"`).
+   - A mis-scaled traded count (`SHARE_SCALE`) is fixed with that override before units are
+     declared (the engine refuses both together).
+   - A period left over after roll-forward may stay (the engine lists it as unused).
+   - At a 20-F / 40-F filer with a declared 6-K bridge, declare the current-interim period
+     from the 6-K's equity note before the preliminary run. The engine accepts it (listed
+     unused) although companyfacts has no 6-K share fact, and `ttm.py --interim` then
+     applies it.
+   - Units more than 20× the traded count in any declared period, the current-YTD / interim
+     one included, need `ack_reason`.
    Anything outside: block with a reason starting `NEEDS_MAIN_AGENT: <field> — <detail>` and
    finish. If judgment.json already carries overrides when you start (a main-agent
    decision), the tools apply them — carry the fields through unchanged and quote the
@@ -569,7 +985,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    ttm_shares_diluted, or the CSV's latest shares_diluted>, value: <native base − mean(figures) ÷ shares
    (× ads_ratio)>, source, reason}`, final run `--base-oe-ps <value>`. The native base is the base the
    one-time run scored, not a free choice: `ttm_json` when that run was `--ttm` (always under `STALE_FY` with a
-   ttm.json TTM base — step 4; the engine refuses the median there), else the median. The amortized run reads
+   ttm.json TTM base — step 4; the engine refuses the median there, also when the TTM is rejected: a rejected
+   TTM leaves the median with the one-time deduction), else the median. The amortized run reads
    the native base's own window and share count (a `ttm_json` native base keeps the current-YTD leg; Codex
    review round 24 of PR #47: a median native base the FY window and the latest FY count, even when the pin
    happens to equal ttm.json's figure) and judges recurrence against the native base, so a filer the one-time run flagged RECURRENT stays recurrent.
@@ -596,7 +1013,8 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    `share_class_mismatch: {"malformed": …}` without a gap and make_score refuses it
    ("share_class_mismatch must be true or {value: true, source, reason}"). make_score
    refuses every declaration too, and says so when source or reason is missing, so always
-   give both. A kind "filing" override
+   give both. It is exclusive with `share_classes` (engine 5.7: the engine and make_score
+   refuse both together). A kind "filing" override
    may carry `currency: "USD"` when the filing states the figure in US dollars: the
    engine then uses it verbatim instead of FX-converting it from the reporting currency
    (`override_checks.<field>.currency_basis` `declared_usd`). make_score accepts only
@@ -623,7 +1041,9 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    filed in another currency it refuses (exit 3) a capex / SBC override without `currency: "USD"`
    wherever the override would fill a TTM leg, and make_score refuses a TTM-leg override at an
    FX-converted filer without the declaration. Declare the filing's US-dollar figure (kind
-   "filing", `currency: "USD"`) or leave the TTM unbuilt and use the median base.
+   "filing", `currency: "USD"`) or leave the TTM unbuilt and use the median base (under
+   STALE_FY at a 10-K filer, `ttm_unavailable_reason` then quotes ttm.py's exit-3 line —
+   step 4).
    A `shares_override` at a filer the engine split-adjusts (`SHARE_BASIS_ADJUSTED`) must be
    on the post-split basis: the engine multiplies filed counts only, never an override, and
    confirms the split against the latest filed count, so a latest-year override on the
@@ -634,16 +1054,60 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    acquisition, other PP&E, construction in process, productive assets: AR, APA, PR) — so
    the single-value capex overrides such filers carried (CR, IT, MAA, RBC, SNA, APA) are no
    longer needed (an override fills only years with no filed value, and make_score refuses
-   one left beside `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex` — step 4). Intangible purchases
+   one left beside `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex` — step 4).
+   **Engine 5.7 capex (Andrew, 2026-10-19, R8 / R9).**
+   - The components also include machinery and equipment, mining assets and furniture and
+     fixtures (`PaymentsToAcquireMachineryAndEquipment`: KNX's whole capex line;
+     `PaymentsToAcquireMiningAssets`: HUT's miner purchases;
+     `PaymentsToAcquireFurnitureAndFixtures`: EXR, UDR).
+   - Mining assets and furniture and fixtures are sub-classes. They are summed only beside a
+     non-zero component of another class filed in the same unit. Filed alone (or beside
+     another class only in a different currency) they are not the year's PP&E leg
+     (`capex_provenance.<FY>.dropped` reason `subclass_alone`). With no other component the
+     year has no PP&E leg: a `DATA_GAP:capex` in the last 3 FY.
+   - RL, HUT and HTHT carried overrides citing or covering these lines — remove them. The
+     filed value wins, and make_score refuses an override left beside
+     `OVERRIDE_SUPERSEDED_BY_FILED_TAG:capex`.
+   - `CAPEX_UNLISTED_COMPONENT:<tag>` means a capex-like cash-flow tag the engine does not
+     read is larger than the whole component capex it did read for that year in the same
+     filing (the KNX pattern). If the tag is the filer's capex line, block the company
+     `NEEDS_MAIN_AGENT: capex`. An override cannot fix it, because an override never
+     replaces a filed figure. If it is not capex (an acquisition, a deposit, a lessor fleet),
+     say why with the figure in judgment.json `capex_unlisted_ack`
+     `{"<tag>": "<reason with the figure>"}`. make_score refuses a 5.7 run without it and
+     records the ack in the registry. On a 5.7 run every figure in that reason traces like
+     any 5.7 reason: an engine figure such as the flag's own, or a cited fact listing
+     `used_for: capex_unlisted_ack` — never a third-party fact alone.
+   - `CAPEX_UNLISTED_COMPONENT_OVERRIDDEN:<tag>` is the same kind of tag in a year with no
+     PP&E leg (override-filled or `DATA_GAP:capex`). It is not refused: your override citing
+     that tag is valid. Say in analysis.md that the engine's list lacks the tag (RRC:
+     `PaymentsToAcquireOilAndGasPropertyAndEquipment`).
+   Intangible purchases
    (`PaymentsToAcquireIntangibleAssets`, `PaymentsToAcquireOtherIntangibleAssets`, IFRS
    `PurchaseOfIntangibleAssetsClassifiedAsInvestingActivities`) are counted as capex on top
    of the PP&E leg (CSV `capex_intangibles`) — a fact repeating a value the same tag files
    on a multi-year context is a cumulative total and is dropped (`capex_provenance` reason
-   `cumulative_duplicate`) — but NOT on a year a `capex_override` fills:
-   an override is read as the filer's total capex line, so declare the total (PP&E plus
-   capitalised development / intangibles) when the cash-flow statement shows both —
-   `OVERRIDE_APPLIED:capex` names any filed intangible purchases left off it. Nor on a year
-   with no PP&E leg filed (`capex_assumed_zero`): capex stays 0 and `capex_tag` blank (a
+   `cumulative_duplicate`). Since engine 5.7 capitalized software and development count as
+   capex the same way (Andrew, 2026-10-19, R9): `PaymentsToDevelopSoftware`,
+   `PaymentsToAcquireSoftware`, `PaymentsForSoftware` and IFRS
+   `PaymentsForDevelopmentProjectExpenditure` sit inside `capex_intangibles`, named per tag in
+   `capex_provenance.<FY>.software`. A filer that expenses development already carries it in
+   OCF; excluding the capitalized kind would reward the accounting choice.
+   `CapitalizedComputerSoftwareAdditions` is a note element and is not read. Dropped: a
+   software figure equal to a PP&E line the leg uses (`ppe_duplicate`), one a PP&E total
+   already contains with its other parts (`in_ppe_total`), and the parts of a software /
+   intangible total (`parts_of_total`). Intangibles and software are NOT added on a year a
+   `capex_override` fills: an override is read as the filer's total capex line. So declare
+   the total (PP&E plus capitalised software / development and intangible purchases) when
+   the cash-flow statement shows them — `OVERRIDE_APPLIED:capex` names any filed intangible
+   purchases left off it. On a 5.7 run say so with `capex_override.software_included: true`
+   whenever the engine reports capitalized software filed in a year (or a ttm.json leg) the
+   override fills. make_score refuses the override without it. With it, make_score refuses a
+   figure smaller than the filed intangible leg it claims to include, compared in USD on the
+   engine's currency basis: a total is never smaller than its part (JKHY's PP&E-only 67.1M
+   beside 188.4M of software is refused even when declared). An override-filled TTM leg in a
+   ttm.json from an older engine cannot be checked: rerun ttm.py. Intangibles are not added on a
+   year with no PP&E leg filed either (`capex_assumed_zero`): capex stays 0 and `capex_tag` blank (a
    `DATA_GAP:capex` in the last 3 FY, as before), `capex_intangibles` records the amount and
    `capex_provenance` notes `intangibles_not_added: no_ppe_leg`. A negative intangible fact
    is dropped (`negative`); a $0 one joins nothing. In ttm.json the FY and prior-YTD legs
@@ -660,23 +1124,29 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
    Then `python3 _system/make_score.py <T>`; it refuses on any
    disagreement with the engine run — fix the cause (usually rerun the final pass with the
    exact judgment inputs) and run it again. `DATA_GAP:ads_ratio` has the bounded fix (d).
-   After it runs, check analysis.md against `key_numbers.md` and fix any figure that
-   disagrees.
-9. **Enrich (5.4, non-blocking).** Run, in this order: `python3 _system/fundamentals.py <T>`
-   (filing-direct annual + quarterly statements, TTM, dividends → `fundamentals.json`),
-   `python3 _system/prices.py <T>` (ten years of closes → `prices.json`),
-   `python3 _system/segments.py <T>` (segment / product / geography breakdowns from the
-   filing's XBRL instance → `segments.json`), `python3 _system/statements.py <T>` (the full
-   standardized income statement, balance sheet, cash flow and metrics, whole filing history
-   → `statements.json`), `python3 _system/profile.py <T>` (About and filing feed →
-   `profile.json`; Street consensus and market data → `street.json`),
+   Then run `python3 _system/check_quotes.py <T>`. It lists every number in analysis.md that
+   traces to no generated file (line, column and token). Quote the generated figure, or
+   declare it in facts.json and re-run make_score.py (no engine re-run is needed for a
+   facts.json or `[F#]` edit). STALE guidance facts are warnings: refresh or drop them. Never
+   edit key_numbers.md: score.json `key_numbers_sha256` proves it, and the gate refuses an
+   edited one.
+9. **Enrich (non-blocking).** The SEC files already ran in step 2:
+   `python3 _system/fundamentals.py <T>` (filing-direct annual + quarterly statements, TTM,
+   dividends → `fundamentals.json`), `python3 _system/segments.py <T>` (segment / product /
+   geography breakdowns from the filing's XBRL instance → `segments.json`),
+   `python3 _system/statements.py <T>` (the full standardized income statement, balance
+   sheet, cash flow and metrics, whole filing history → `statements.json`) and
+   `python3 _system/profile.py <T>` (About and filing feed → `profile.json`; Street consensus
+   and market data → `street.json`). Re-run them here only if a filing landed since. Now run
+   `python3 _system/prices.py <T>` (ten years of closes → `prices.json`) and
    `python3 _system/reprice.py <T>` (the scored cash-flow paths
    repriced at the last close → `live.json`; Tier F names are skipped by design; since Codex review round 11
    of PR #47 it writes nothing until make_score has scored the CURRENT dcf_numbers.json — live figures pause
    between an engine run and its make_score, and a run make_score refused gets none; since round 29 a folder
    with no score.json gets none either, any old live.json is removed, and the site withholds a live.json not
-   computed against the score.json on file, so run it after make_score, never before). The
-   company page reads all of them. The SEC files (fundamentals, statements, segments,
+   computed against the score.json on file, so run it after make_score, never before). A full
+   refresh (`refresh.py`) runs all six in this order: fundamentals, prices, segments,
+   statements, profile, reprice. The company page reads all of them. The SEC files (fundamentals, statements, segments,
    profile) are committed and rewritten only when their content changes; `prices.json`,
    `street.json` and `live.json` are gitignored caches rewritten every run. A failure here
    never blocks the score — note it in analysis.md's data section and move on.
@@ -685,16 +1155,38 @@ under `~/workspace/stocks/` (the system folder is `_system/`).
     names whose files changed). The static app in `_daily/site/` renders everything — never
     edit HTML by hand. `--attachment` (the daily cron's job) also writes the dated
     self-contained ranking file.
+    - `queue.py done` refuses an engine 5.7 run whose analysis.md fails check_quotes.py
+      ("analysis.md fails the quote check"), or whose key_numbers.md / facts.json / saved
+      runs changed after make_score (exit 1, nothing recorded). A saved run replaced with
+      `--save-run … --replace` counts as changed. Fix the cause and re-run make_score; never
+      edit key_numbers.md. judgment.json is never a source: a figure typed into it after
+      make_score does not make a quote pass.
+    - The company PR is cut per `_system/PR_PROTOCOL.md` (`pr_worktree.py`: per-ticker lock,
+      a worktree at main's code, make_score re-run there, check_quotes, only `<T>/` + the
+      ticker's registry entries + appended backlog lines). `pr_audit.py` lists every done name
+      still without a PR for its scoring generation.
 11. **Report** to chat ONLY when `score.json` has `alert_eligible: true` (Tier S/A at
     medium+ confidence, not a sector misfit, tier not resting on an override, IRR not at
     the floor): one line — ticker, tier, weighted IRR, bear→bull band, moat, price, IV@15%,
-    one-liner. Otherwise silent (Andrew gets the daily HTML). Report plainly if the sweep
+    one-liner. Since 5.7 an entry alert is also withheld when a share-class declaration or a
+    TTM rejection lifts the tier into S/A (`alert_suppressed_reason` says which). Otherwise
+    silent (Andrew gets the daily HTML). Report plainly if the sweep
     itself is blocked. Never invent a number. A score rebuilt by make_score.py on engine
     output from another release (engine 5.5: `engine_release` ≠ the current release)
     never alerts — `alert_eligible` and `exit_alert_eligible` are false with "engine output
     predates release <the current release> — re-run the engine before an entry / exit alert"
     (5.7.0 since Andrew's 2026-10-19 rulings release; 5.6.0, the acquired-IPR&D release, before it — every
     folder scored on 5.6.0 or earlier is stale until its next engine run); re-run the engine first.
+    **Run health (engine 5.7, R5).** The cron body opens the run with
+    `run_health.py start <job>`. End it with `run_health.py record <job> ok` when the run
+    ended at a state this spec names: no pending entry; done + build_site; a block. Else end
+    it with `record <job> fail --stdin` and the reason (preflight's first line, the refusal
+    or crash line). A `reprice.py` exit 3 in step 9 (Skip: Tier F, a score not from the run,
+    no prices) is not a failed run. Post to chat any line run_health prints — that line is
+    the only health message.
 
 Parallel workers: `queue.py claim` is atomic under a lock — two workers can never claim
-the same company. Never coordinate by editing the queue.
+the same company. Never coordinate by editing the queue. Parallel PR agents:
+`pr_worktree.py acquire <T> --holder <id> --kind <kind>` is the per-ticker lock. Never
+enter, edit or delete another agent's worktree (exit 4 names the holder; finish without
+touching it).

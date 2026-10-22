@@ -18,5 +18,6 @@ metadata:
 ---
 Keep every verdict on current filings. Silent job unless it breaks.
 
+0. `python3 ~/workspace/stocks/_system/run_health.py start dcf-filing-watch`. After step 1, `run_health.py record dcf-filing-watch ok` when filing_watch.py exited 0, else `run_health.py record dcf-filing-watch fail` with its last line (exit 3 = every EDGAR fetch failed). Post to chat any line run_health prints.
 1. Run `python3 ~/workspace/stocks/_system/filing_watch.py`. For every done name it reads the small EDGAR submissions feed and compares the newest periodic filing with what the folder was scored on (the fiscal year in dcf_numbers.json; the TTM pin's quarter in ttm.json). A newer filing sends the name back to pending through `queue.py refresh <T> --stdin` with a NEW_FILING reason on the entry; the next pass-1 worker re-scores it with the new filing (judgment.json and overrides carry over; the worker writes a dated supersession in analysis.md).
-2. Post nothing to chat unless the script fails; the summary line it prints (checked / refreshed / unchanged / errors) goes in the job log. If more than ~40 names refresh on one day (earnings season), say so in one line so Andrew knows the ranking will churn for a few days.
+2. Post nothing to chat unless the script fails (run_health's line is that message); the summary line it prints (checked / refreshed / unchanged / errors) goes in the job log. If more than ~40 names refresh on one day (earnings season), say so in one line so Andrew knows the ranking will churn for a few days.

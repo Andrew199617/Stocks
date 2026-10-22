@@ -41,7 +41,8 @@ field is missing from an older file. The app never computes a valuation figure.
 {"built_at": "2026-10-14T19:07:00-04:00", "date": "2026-10-14", "data_version": 1,
  "engine_release_latest": "5.4.0",
  "sweep": {"done": 89, "total": 2617, "pending": 2518, "blocked_data_gap": 5, "blocked_no_data": 5, "in_progress": 0},
- "counts": {"current": 90, "stale": 0, "misfits": 23, "tiers": {"S":0,"A":0,"B":3,"C":22,"D":48,"F":17}, "with_live": 70},
+ "counts": {"current": 90, "stale": 0, "misfits": 23, "tiers": {"S":0,"A":0,"B":3,"C":22,"D":48,"F":17}, "with_live": 70,
+            "notched": 46, "facts": 0, "moat_checked": 0, "interim_bridged": 0, "moat_eroding": 34, "moat_widening": 0},
  "hurdles": {"S": 0.25, "A": 0.20, "B": 0.15, "C": 0.10},
  "watchlist": ["APP", "DUOL", "U", "..."],
  "failed": [],
@@ -53,6 +54,16 @@ run (`counts.failed`); they keep their previous row/record, if any. `counts.live
 count the rows whose live.json was withheld / whose run was restated for a split (the 2026-10-16 round at the end);
 `counts.prices_stale` counts the rows whose last close on file is more than one session behind the sweep's newest
 close (the 2026-10-20 staleness-guard round at the end).
+Engine 5.7 (the rulings round, Andrew 2026-10-19 — "Decisions (rulings round …)" at the end) adds six counts.
+`counts.notched` counts the rows whose sector-misfit notch applies (`row.tier_notched`).
+`counts.facts` counts the rows with a facts.json (`has.facts`).
+`counts.moat_checked` counts the rows whose `moat_evidence.status` is `checked` (a 5.7 scorecard).
+`counts.interim_bridged` counts the rows whose scored base is a declared 6-K interim bridge. That is a row with an
+`interim_bridge` summary whose `published_base` is `declared_interim`, or null (score.json has no `base_alternatives`).
+`counts.moat_eroding` / `counts.moat_widening` count the rows whose `moat_evidence.flags` carry `MOAT_EROSION` /
+`MOAT_WIDENING`.
+A `meta.notes` line gives the sector-misfit count and how many of them are notched. Another line says so when
+check_quotes.py did not import; every `record.quote_check` is then null.
 `site_url` is `$STOCKS_SITE_URL` when set, else null (the attachment then names the site without a link).
 
 ## `index.json` — one row per CURRENT company (engine v5+, no uncovered gap), ranked by `irr_live` when present else `irr`
@@ -60,6 +71,12 @@ close (the 2026-10-20 staleness-guard round at the end).
 {"ticker": "APP", "name": "AppLovin Corporation", "sector": "Technology / Advertising software",
  "fit": "modeled" | "misfit",
  "tier": "B",                 "tier_by_numbers": "B",  "tier_override": false,
+ "tier_notched": false | true, "misfit_notch": {"applies": true, "tier_by_numbers": "B", "tier_after_notch": "C",
+                                              "reason_source": "auto" | "judgment" | "tier_override",
+                                              "not_applied": null | "payable_base" | "tier_floor_D" | "tier_F"} | null,
+ "tier_by_numbers_live": "B" | null,
+ "misfit_notch_live": {"applies": true, "tier_by_numbers": "B", "tier_after_notch": "C", "reason_source": null,
+                       "not_applied": null, "basis": "score_json" | "engine" | "folder_sic"} | null,
  "tier_live": "A" | null,     "tier_bear": "C" | null, "tier_bull": "A" | null,
  "irr": 0.1843,               "irr_live": 0.199 | null, "irr_bear": 0.1293 | null, "irr_bull": 0.227 | null,
  "irr_at_floor": false,       "irr_capped": false,     "f_subtype": null | "sbc_exceeds_cash" | "no_cash_generation" | "payable_earnings_nonpositive",
@@ -70,16 +87,27 @@ close (the 2026-10-20 staleness-guard round at the end).
  "upside15": 38.1,            "upside15_live": 43.5 | null,
  "market_cap_b": 93.11,       "market_cap_b_live": 88.6 | null,
  "moat": 6, "cap_years": 9.8, "confidence": "medium", "confidence_capped": false,
+ "moat_evidence": {"score": 7.12, "status": "checked" | "report_only", "within_tolerance": true, "divergence": -1.12,
+                   "core_score": 7.12, "supporting_adjustment": 0.0, "measure": "roic" | "roic_tangible" | "roe" | null,
+                   "return_median": 0.2719 | null,
+                   "return_note": null | "unbounded_high" | "loss_on_nonpositive_capital" | "loss_on_unstable_capital",
+                   "sources": 2 | null, "widest": "wide" | "narrow" | "none" | null, "flags": ["MOAT_EROSION"],
+                   "industry": {"code": "4:7370", "level": 4, "label": "...", "ladder": "default", "peers": 7, "rank": 2, "of": 8} | null,
+                   "fade_trend": null | "eroding" | "stable" | "widening", "fade_in_sync": true | false | null,
+                   "fade_direction": null | "eroding" | "widening" | "contradicting" | "flat", "hold_years": 2} | null,
  "one_liner": "...", "analysis_date": "2026-10-14", "engine_release": "5.4.0" | null,
  "flags": ["STALE_FY", "BUYBACK_TAILWIND", "..."],
  "overrides": [{"field": "capex", "kind": "estimate"}], "override_unblocks_tier": true,
+ "interim_bridge": {"tier_bridged": "D", "tier_annual_median": "D", "estimate_legs": 2, "measured": true,
+                    "published_base": "declared_interim" | "annual_median" | null} | null,
+ "share_basis": "total_units" | null,
  "second_pass": {"date": "...", "verdict": "changed" | "no_change", "prior_tier": "C"} | null,
  "alert_eligible": false,
  "dividend_yield": 0.0 | null, "shareholder_yield": 0.024 | null,
  "shareholder_yield_label": "≥ 2.66%" | null, "shareholder_yield_bound": "lower" | null,
  "watchlist": true,
  "has": {"prices": true, "fundamentals": true, "dividends": true, "segments": true, "live": true, "analysis": true, "second_pass": false,
-         "statements": true, "profile": true}}
+         "statements": true, "profile": true, "facts": false}}
 ```
 `watchlist` is true when the row's ticker is in `_system/watchlist.json` (the app's "Watchlist" toggle next to the tier
 filters filters on it). Stale (pre-v5) scores are listed under `meta.stale` as
@@ -106,6 +134,33 @@ whatever state the cap is in — no engine before 5.5 divided the normalized-OE 
 figure) and does not use it, so for such a record the tile shows the pre-fix ratio; key_numbers.md prints both. None of
 these changes the row's keys.
 
+Engine 5.7 (rulings round, Andrew 2026-10-19 — "Decisions (rulings round …)" at the end) adds these row keys.
+- **The sector-misfit notch (R1).** `tier_override` is true only for a judgment override **beyond** the notch:
+  `tier != (misfit_notch.applies ? misfit_notch.tier_after_notch : tier_by_numbers)`. A notched misfit is
+  `tier_notched: true` with `tier_override: false`. A misfit scored before the mechanical notch has no block, so it
+  reads as before. `misfit_notch` copies score.json's block without `reason` / `basis`; the page reads those two from
+  the record. `tier_by_numbers_live` / `misfit_notch_live` come from the shown live.json, because reprice.py notches the
+  LIVE numbers tier. They are null without a shown live.json.
+- **The moat summary (R4 revised, M6).** `moat_evidence` summarises score.json `moat_evidence`; it is null without that
+  block. It carries the evidence score and status. It carries the governing return: `measure`, `return_median`,
+  `return_note`. `measure` is null when the returns_on_capital pillar is `insufficient_data`. `sources` (the declared
+  source count) and `widest` are null when no scorecard is declared: "not declared" is not "no source". It carries the
+  flags, and the industry group when it was measured. It carries the growth hold the engine ran. `fade_trend` is the
+  ENGINE's trend (`numbers.inputs.moat_trend`), never `moat_evidence.fade.trend`. `fade_in_sync` / `fade_direction` are
+  score.json `moat_evidence.fade`'s only when score.json was built from this run (`score_from_run`). Otherwise they are
+  null, because make_score's trend test checked the run it scored. `fade_in_sync` is false after a `fade_sync` gate
+  drift. `hold_years` is 2 on a record before 5.7.
+- **The 6-K bridge (R2a, R7).** `interim_bridge` summarises a declared 6-K interim bridge from score.json
+  `interim_bridge` and `base_alternatives`. `published_base` names the published kind. It is `annual_median` when a
+  STALE_FY rejection published the median. It is null when score.json has no `base_alternatives`.
+- **The share basis (R6).** `share_basis` is `total_units` on a declared share-class run, else null. It drives the
+  ranking's "per economic unit" chip.
+- **`has.facts`** is true when the folder holds a facts.json object.
+- **The market cap on a share-class run (R6).** The engine's `market_cap_basis.shares_source` then ends
+  `+share_classes`, and so does score.json's `market_cap_basis`. The cap is the price × (traded-class shares + declared
+  units), ÷ the ADS ratio when one applies. `numbers.market_cap_basis` records `traded_shares`, `declared_units` and
+  `units_period` beside it.
+
 ## `data/<TICKER>.json` — everything the company page renders
 ```json
 {"ticker": "APP", "name": "...", "sector": "...", "folder": "APP", "built_at": "...", "built_from_mtime": 1760480000.0,
@@ -119,7 +174,9 @@ these changes the row's keys.
               "hurdle_prices": {"15": 376.12, "20": 290.1, "25": 230.4},
               "inputs": { ...numbers.inputs... }, "g_base": 0.35, "g_blend": 0.5022, "g_terminal": 0.025, "cap_years": 9.8,
               "growth_components": {...}, "growth_components_adjusted": {...} | null, "share_cagr": -0.027, "share_count_adj": 0.027, "share_adj_basis": "..." | null,
-              "replayed": true | false},
+              "replayed": true | false,
+              "hold_years": 2 | 0 | 3 | null, "moat_trend": null | "eroding" | "stable" | "widening",
+              "hold_by_scenario": {"super_bear": 2, "bear": 2, "base": 0, "bull": 0, "super_bull": 0} | null},
  "live": { ...live.json verbatim... } | null,
  "live_withheld": {"reason": "live_older_than_score" | "live_from_earlier_run" | "live_not_from_this_score" | "live_without_score_identity" | "iprd_share_count_unverified" | "iprd_unresolved" | "score_not_from_this_run", "price": ..., "price_date": "...", "scored_date": "...", "method": "...", "note": "..."} | null,
  "split_restated": {"factor": 2.0, "split": "2:1", "scored_date": "...", "price_date": "...", "fields": [...], "as_scored": {...}, "note": "..."} | null,
@@ -131,6 +188,12 @@ these changes the row's keys.
  "segments": { ...segments.json verbatim... } | null,
  "ttm": { ...ttm.json verbatim... } | null,
  "judgment": { ...judgment.json verbatim... } | null,
+ "facts": { ...facts.json verbatim (R3 declared facts)... } | null,
+ "quote_check": {"status": "pass" | "fail" | "legacy" | "error", "gated": false, "engine_release": "5.7.0" | null,
+                 "checked": 192, "matched": 139, "ignored": 32, "untraced_count": 53,
+                 "untraced": [{"line": 23, "col": 5, "raw": "$1.92 billion", "kind": "money"}], "integrity": [], "warnings": [],
+                 "error": null} | null,
+ "score_from_run": {"matches": true, "mismatches": []},
  "profile": { ...profile.json verbatim..., "street": {...} | null, "market": {...} | null, "street_fetched_at": "..." | null } | null,
  "registry": [ ...overrides_registry entries for this ticker... ],
  "analysis_md": "..." | null, "second_pass_md": "..." | null,
@@ -247,10 +310,84 @@ amortized-in-base record's `amortized.native_base_per_share` / `pinned_per_share
 `expected_value` / `declared_value` (numbers) are divided and its `amortized.shares` multiplied the same way (its
 `figures` and `mean_annual_charge` are dollars and stay as scored).
 
+Engine 5.7 (rulings round, Andrew 2026-10-19 — "Decisions (rulings round …)" at the end) adds three record keys.
+- `facts` is facts.json verbatim: the worker's declared facts (R3). A malformed file is null.
+- `quote_check` is `check_quotes.check_folder`'s report on analysis.md, compacted by `build_site.quote_check`. It keeps
+  at most 40 `untraced` items; the counts stay exact. It is null without the checker or without analysis.md. A checker
+  exception is status `error`, never a failed build. `gated` is true on a 5.7 run; a pre-5.7 run's report is `legacy`.
+- `score_from_run` is `build_site.score_from_run`'s answer: `matches` and at most 5 `mismatches`. The Data tab shows it
+  on its "Content hash" line. The page never compares `dcf_content_hash` with `content_hash` itself.
+
+The forecast block names the growth hold the engine ran (M6). `forecast.hold_years` is
+`dcf_engine.recorded_hold_years`: `inputs.hold_years`; 2 when absent (every record before 5.7 held two years); null
+when it is not an integer 0..15. `forecast.moat_trend` is the engine's `inputs.moat_trend`, null before 5.7.
+`forecast.hold_by_scenario` is each scenario's recorded hold, null when no scenario records one. A build without the
+engine reads the hold the same way. The top-level copies are never read, so the page and the replay cannot disagree.
+
+Everything else the rulings added rides inside the verbatim copies, with no code:
+- score.json: `misfit_notch`, `misfit_sector_set_aside`, `moat_evidence` (with `fade`), `declared_facts`,
+  `interim_bridge`, `interim_bridge_declined`, `base_alternatives`, `share_classes`, `up_c_check`, `method_runs`,
+  `previous_score`, `dcf_content_hash`, `key_numbers_sha256`, and `moat_trend` / `hold_years` on a 5.7 run.
+- dcf_numbers.json: `sector_model`, `annual_from_instance`, `share_classes`, `up_c_check`, `moat_trend` / `hold_years`
+  and `capex_provenance.<FY>.software`.
+- live.json: `misfit_notch` {tier_by_numbers, tier_after_notch, applies, basis} (null on a modeled name) and
+  `scored.tier_after_notch`.
+- ttm.json: `basis` `declared_interim` with the bridge's `legs`, `fx`, `shares`, `provenance` and `ads_ratio`; and
+  `share_classes`.
+- fundamentals.json annual rows: the returns keys `nopat`, `invested_capital`, `invested_capital_tangible`,
+  `intangibles_share_ic`, `roic`, `roic_note`, `roic_tangible`, `roic_tangible_note`, `roic_basis`, `roic_flags`,
+  `roe_note`, `financial_assets` and `financial_assets_pct_assets`. They come from
+  `fundamentals.capital_returns_from_row`, the one returns function the moat scorecard reads too. `roic_proxy` stays,
+  superseded.
+
+`score.base_alternatives` (R7) is ONE record: the published base beside every other base computed for the run. Its
+shape is `{schema, published, stale_fy, ttm_rejection_reason, ttm_unavailable_reason, bases, replays, measured, note,
+impact_carried_from_prior_score, counterfactual_engine_release}`. Each `bases` entry carries `kind`, `role`,
+`computed`, `measured`, `base_oe_per_share`, `weighted_irr`, `tier_by_numbers`, `f_subtype`, `iprd_charge_per_share`,
+`iprd_treatment`, `source`, `why`, `why_text` and `note`. A TTM kind adds `fy_end`, `ytd_end`, `ttm_input_hash`,
+`ttm_engine_release` and `share_basis`. A non-published entry adds `replay`, `base_change_pct`,
+`weighted_irr_change_pp` and `tier_changed`. A record without the block renders no table.
+
+Share classes (R6): `numbers.share_classes` and `numbers.up_c_check` are the engine's records. On a declared run
+`history[*].shares_diluted` is total economic units, and each such CSV row's `shares_tag` ends `+SHARE_CLASSES`. ttm.json adds
+`share_classes`, `ttm_shares_diluted_filed` (the traded-class leg) and `*_filed_basis` copies of its per-share figures.
+
+A declared 6-K interim bridge (R2a) is a ttm.json with `basis` `declared_interim`, written by `ttm.py --interim`. It
+carries the bridge's legs, `fx.rates_used`, its provenance and `ads_ratio`. With an `ads_ratio` other than 1,
+`ttm_shares_diluted` is the ORDINARY count and `ttm_oe_per_share` is per ADS. `numbers.annual_from_instance` records
+the fiscal years the engine read from a lagging filer's own XBRL instance (R2b).
+
+Engine 5.7 (R8 / R9, capex) adds no record key either:
+- `numbers.capex_provenance.<FY>` gains `software` {tag: filed value}, and `intangibles_filed_unit` on an override year
+  with filed software. Its dropped reasons may be `ppe_duplicate`, `in_ppe_total` or `subclass_alone`.
+- `history[*].capex_intangibles` includes capitalized software.
+- `ttm.capex_components.<leg>` gains `software` / `software_tags`, and `capex_components.<leg>.dropped` may carry
+  `subclass_alone`.
+- ttm.json gains `engine_release`. dcf_numbers.json gains `ttm_inputs.ttm_engine_release`, present only when the run's
+  basis read a stamped ttm.json.
+- A `capex_tag` cell may name the software tags and the new component tags.
+- `fragility_flags` may carry `CAPEX_UNLISTED_COMPONENT:<tag>` / `CAPEX_UNLISTED_COMPONENT_OVERRIDDEN:<tag>`.
+
+A split since scoring restates the rulings' figures like every other per-share figure. `SPLIT_DIVIDE` divides
+`score.base_alternatives.bases.*.base_oe_per_share` (and `iprd_charge_per_share`), `score.method_runs.*` base / IV /
+charge, `score.previous_score` base / IV, `ttm.ttm_oe_per_ordinary_share`, a bridge's zero-fill pin
+(`ttm.override_counterfactual.base_oe_per_share_zero_fill`), the fade counterfactual's IV
+(`score.moat_evidence.fade.counterfactual.*.iv_at_15`), and the share-class per-unit and filed-basis figures.
+`SPLIT_MULTIPLY` multiplies a bridge's counts (`ttm.shares.current_interim.value`, `ttm.shares.fy_diluted`) and the
+share-class counts and units (`numbers.share_classes.*`, `ttm.share_classes.*`, `score.share_classes.units_latest` /
+`filed_latest`, `numbers.market_cap_basis.traded_shares` / `declared_units`). facts.json values are source quotes, so
+they are never restated.
+
 ## Attachment trimming (`--attachment`, top N rows only)
-Records embedded in the attachment drop `judgment`, `ttm`, `prices.daily_1y`, `prices.sessions_5d`,
+Records embedded in the attachment drop `judgment`, `ttm` (except a declared 6-K interim bridge: `ttm.basis`
+`declared_interim` is kept, its legs and provenance are the Data tab's Interim bridge section), `prices.daily_1y`,
+`prices.sessions_5d`,
 `numbers.used_tags` and engine 5.5's per-period provenance records `numbers.capex_provenance`, `numbers.sbc_provenance`
-and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps them); everything else is kept. Rows beyond the top N are in `index` but have no record; the app shows
+and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps them); everything else is kept.
+Engine 5.7: `facts` is kept. It feeds the Declared facts panel, about 10 KB for a 24-fact declaration. A quote check
+that is not gated (`gated` false: a pre-5.7 run's `legacy` report, or an `error` one) keeps its counts with
+`untraced: []`; the legacy card then says the list is on the site. A gated quote check is kept whole.
+Rows beyond the top N are in `index` but have no record; the app shows
 "not embedded in this file — open the site" for them.
 
 ## What the app renders (parity with the v2 Python pages)
@@ -259,6 +396,12 @@ and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps
   columns Company · Tier (live, "was X" when changed) · Band · Live IRR · Scored IRR · Price (last
   close) · IV@15 · Upside · Moat · Conf · Mkt cap · 1y price · Take (badges: pass 2, overrides,
   tier override, misfit, IRR at floor; one-liner; flags count; date). Card layout under 760px.
+  Engine 5.7: the badges add `misfit notch X→Y` (or `sector misfit · not notched` when the block says why not),
+  `6-K interim base` and `per economic unit`. The tier cell adds "X by numbers" under a notched tier; on a live row it
+  is the live numbers tier. `tier X→Y by judgment` shows only for an override beyond the notch. A row from an index
+  built before the release has no `misfit_notch` key and keeps the old badge. The MF chip counts the notched names:
+  "N sector misfits (M notched)". The how-to says every misfit is published one tier below its numbers tier; a D or
+  F, or a payable-earnings base, is not notched.
   Collapsed "Pre-v5 results" box from `meta.stale`.
 - **Company page**: nav (← Ranking, pass/date), header (tier tile, ticker, name, sector · cap ·
   exchange · filer category; big live or scored expected return with the scored/live sub-line and
@@ -270,10 +413,38 @@ and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps
     25%, upside, base-case IRR, OE yield, TV share, scenario spread, net debt/OE), base OE card,
     overrides card (table + measured impact + reasons), scenarios card (bars vs the hurdle),
     moat card (score, dots, CAP, strengths/pressures or justification), fragility flags list.
+    Engine 5.7, Overview:
+    - The verdict adds the misfit-notch line: published tier, numbers tier, the misfit basis, the reason and its
+      source (auto / worker / legacy override). A checked scorecard adds the chip "Moat M/10 · evidence E".
+    - The base OE card names a declared 6-K bridge ("declared 6-K interim bridge (ttm.py --interim) …") with the
+      bridged vs annual-median comparison. On a share-class run it reads "/ unit" with the declared units.
+    - The Base alternatives table follows the base OE card (score.json `base_alternatives`). Its columns are base,
+      role, base OE, weighted IRR, tier by numbers and why; the published row comes first. It quotes the TTM
+      rejection reason. It quotes the TTM-unavailable reason when no TTM exists for the run (ttm.py's exit-3 message,
+      judgment.json `ttm_unavailable_reason`). A not-computed row shows its note. Its tiers are by numbers: the notch
+      acts on the published tier only.
+    - The moat card adds the scorecard from `score.moat_evidence`. It shows the evidence-vs-moat bar and Dorsey's
+      sources: type, strength, the facts or metrics behind each, and counts of incumbents / competitors, never
+      names. It shows the governing return beside ROIC / tangible ROIC / ROE / ROA; ROE reads
+      `n/m (negative equity)` when `roe_note` is set. It shows the industry line with its ladder. It shows the eleven
+      core pillars and four supporting factors as collapsible rows: auto / declared / n/a / neutral badges, the weight
+      the record carries, the score, and the series or rationale with the cited facts. It shows the volume × price
+      decomposition table and chart, the gates (divergence, low return, reverse, erosion) with their reasons, the
+      erosion test, the flags, the lint and the growth hold (M6). Beside a score.json from another run, the moat
+      card names the scored run's trend (`fade.engine`) and the newer run's apart. Out of sync, it says "data moved
+      since the engine run; the next run passes --moat-trend <fade.trend>".
+    - A fragility flag links to the tab that resolves it: `TTM_DECLARED_INTERIM`, `ANNUAL_FROM_INSTANCE`,
+      `SHARE_CLASSES_DECLARED` and `UP_C_SUSPECT` → Data. `SECTOR_MODEL_MISMATCH` names the notch.
   - Financials: TTM tiles, quarterly chart + table (12 quarters, derived markers), annual
     income / cash-flow / balance-sheet tables with growth and margin sub-rows, charts: revenue &
     profits, cash flow & OE, margins, cash & debt, capital returned; falls back to the engine's
     history CSV when fundamentals are absent.
+    Engine 5.7: the annual table adds ROIC and ROIC (tangible) rows when the fundamentals.json row carries the new
+    `roic` field. Its "ROIC (proxy)" row is then relabelled "ROIC (proxy, superseded)"; an older file keeps "ROIC
+    (proxy)" and shows no new rows. A returns cell with a note (ROE on negative equity, an unbounded ROIC, a loss on
+    non-positive or unstable capital) prints the note, never the ratio; the statements viewer does the same with
+    `notes_annual` / `notes_quarterly` / `note_ttm`. On a declared share-class run a note says the per-share rows
+    are per traded-class share as filed, while the valuation divides by total economic units.
   - Dividends: tiles (yield, annual dividend + basis, frequency, payout vs EPS, payout vs OE,
     growth YoY + 5y CAGR, growth years + last cut, buyback yield, net buyback yield, shareholder
     yield), annual DPS bar chart, history table; "No dividend" state; "enrichment not run" state.
@@ -282,8 +453,21 @@ and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps
   - Forecast: five OE/share paths + weighted line chart, growth-fade chart, value-at-every-rate
     table (scored IRR column plus live), hurdle-price tiles vs the live price, "how growth was
     set" table + note.
+    Engine 5.7: the growth-fade chart runs the hold the engine recorded. `forecast.hold_years` is
+    `dcf_engine.recorded_hold_years` (2 on a pre-5.7 record). `forecast.moat_trend` is the engine's
+    `inputs.moat_trend` (null before 5.7). `forecast.hold_by_scenario` holds each scenario's hold. The fade note reads
+    "Growth starts fading in year 1" at hold 0 and "Growth holds for 3 years, then …" at hold 3. It names the engine's
+    trend with make_score's trend-test figures, or the out-of-sync note ("moat <trend> at the engine run; data moved
+    since the engine run; the next run passes --moat-trend <fade.trend>"). Beside a score.json from another run it
+    gives the run's own CAP, moat input and trend, without make_score's figures. The tier band names the notch
+    ("→ C after the sector-misfit notch").
   - Analysis: analysis.md and second_pass.md rendered from Markdown in the browser (headings,
     lists, tables, bold, code, links).
+    Engine 5.7: the quote check card comes first (`quote_check`): pass, FAIL with the untraced list, a collapsed
+    legacy note, or "could not run". Then analysis.md and second_pass.md. Then Declared facts: facts.json joined
+    with `score.declared_facts`. It has kind filter chips. It prints each value at its precision and scale. It links
+    the source to EDGAR, built from the CIK + accession (+ a plain document name); a third-party link must be https.
+    It shows the as-of date, verified / DRIFTED / STALE, the source's words and what the fact was used for.
   - Data: provenance key/value table (entity + EDGAR link, SIC, FYE, filer category, latest
     filings with links, engine release and run date, price source, base and pin source, run
     inputs, net-debt basis, FX, ADS, data gaps, content hash, tags used by engine and by
@@ -292,6 +476,38 @@ and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps
     "ADS-corrected by make_score … the pre-5.5 engine printed <numbers.market_cap_est>" when its `market_cap_basis` is
     `ads_corrected_by_make_score`, else `numbers.market_cap_est` followed by `numbers.market_cap_basis.shares_source`
     in brackets when that is not `diluted_latest`.
+    Engine 5.7, Data:
+    - Provenance adds Sector model (`numbers.sector_model`), Misfit notch, Annual facts from the filing's instance
+      (`numbers.annual_from_instance`: "FY ending <periods> read from the <form>'s own XBRL instance …"), Declared
+      facts, Method runs, Previous score, Share basis (`numbers.share_classes` / `up_c_check`) and Capitalized
+      software (in capex) (`numbers.capex_provenance.<FY>.software`, R9). A record from before 5.7 reads "Sector
+      model: not recorded by this engine run (below 5.7)".
+    - The Content hash line adds whether score.json was built from this run (`score_from_run`) and
+      `key_numbers_sha256`.
+    - TTM construction on a declared bridge reads "− prior interim / + current interim" and "computed by ttm.py
+      --interim from the declared 6-K interim bridge (each leg converted at its own period-end rate)". With
+      `ttm.ads_ratio` ≠ 1 it reads "÷ <ordinary shares> × ADS ratio <r> = <figure> / ADS": `ttm_shares_diluted` is
+      the ordinary count, `ttm_oe_per_share` per ADS. On a share-class run it adds the declared-unit and total-unit
+      rows and divides by total economic units. It names the capitalized software inside each leg.
+    - The Interim bridge section shows the basis, FX, the legs with estimate / XBRL / snippet marks, the shares, both
+      bases, like-for-like and the sources with document links. A declined bridge shows the decline reason
+      (`interim_bridge_declined`).
+    - Every 5.7 registry event reads in plain words (`REGISTRY_TEXT`). The older events keep the key=value text
+      (`REGISTRY_GENERIC`).
+    Not scored yet (lane default Q11 (a), main agent 2026-10-21): a page whose latest engine run is not scored yet
+    (live_withheld `score_not_from_this_run` / `iprd_unresolved`; `scoreIsRunsVerdict` false) keeps every panel.
+    - A panel read from score.json says "as scored <date>": the header, the verdict, the IV / upside / base-case
+      tiles, the base OE, the weighted scenario line, the moat card, the flags, the tier band, the 5.7 panels and the
+      registry.
+    - A panel or figure read from the newer run says "latest run, not scored yet". That is dcf_numbers.json, the
+      forecast block and ttm.json: every Forecast DCF panel (paths, growth, fade, value table, hurdle prices, growth
+      method), the 20% / 25% / diagnostics tiles, the base line's latest FY / median / growth blend, the scenario
+      rows, the growth hold, the price card's scenario range and hurdle lines, the Street "our hurdle prices" lines,
+      the Data tab's engine-record rows, TTM construction, the interim legs and judgment.json.
+    - The run's panels describe the run itself: the projection's base (`projectionBase`), the value table's IRR
+      column at the run's own price, and the fade note's CAP / moat. The fade note never pairs the run's trend with
+      the older score's trend test.
+    - Only About, Financial performance and Filings (profile.json / fundamentals.json) carry no label.
 - **Charts** (drawn in the browser, responsive): category chart with bar / line / area series and
   `stacked` support, the price chart with overlays; tooltips via `<title>`; axis labels from the
   design tokens; redraw on resize and on tab change.
@@ -303,9 +519,11 @@ and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps
 Choices made where the text above was silent or ambiguous; each is additive to the shapes above.
 - **Incremental bookkeeping lives in `_daily/site/state.json`** (`{records: {T: {built_from_mtime, builder_mtime, built_at}}}`),
   not in the served files: deciding "skip" for 2,600 folders must not parse 2,600 records. A record is skipped when
-  `built_from_mtime >= newest mtime among the folder's files` AND the builder's mtime (the newer of build_site.py and
-  fundamentals.py, whose `price_dividends` reprices every dividends block) has not moved since the record was
-  written; `--force` rebuilds all. Without `state.json` the builder falls back to the record file (its `built_from_mtime` and
+  `built_from_mtime >= newest mtime among the folder's files` AND the builder's mtime (the newest of build_site.py,
+  fundamentals.py, whose `price_dividends` reprices every dividends block, and — engine 5.7 — check_quotes.py,
+  facts.py and quote_tokens.py, whose report every record carries) has not moved since the record was
+  written; `--force` rebuilds all. facts.json (engine 5.7) is an ordinary folder file: adding, editing or deleting it
+  rebuilds that record. Without `state.json` the builder falls back to the record file (its `built_from_mtime` and
   file mtime). Skipped records' index rows come from the previous `index.json` (fallback: the record's `row`). The registry
   (`_system/overrides_registry.json`) is not part of the mtime check: it is only ever rewritten by `make_score.py`, which also
   rewrites the folder's `score.json`.
@@ -505,6 +723,11 @@ Fixes from the adversarial review of `app.js` / `app.css` / `tests/app.test.js`;
   start "from the base year"; projection years are labelled FY+1… when the last FY label is a year, else `+1…`. Without any
   history a single `Base` label is used. The chart gets a dashed divider ("forecast →") after the base year. The High / Avg /
   Low table is super bull / weighted / super bear for years 1, 2, 3, 5, 10, 15, straight from `forecast.paths`.
+  Engine 5.7 (R6): on a declared share-class record (`numbers.share_classes` present) the history is the engine CSV's
+  per-unit series, never `fundamentals.annual` (per traded-class share as filed). A year in
+  `series_excluded_periods` stands on another share basis and is left blank. The TTM tile and the summary sentences
+  read ttm.json ("/ unit", "per economic unit"). Without ttm.json the filed figure is labelled "per traded-class
+  share as filed". `splitRefs` references the filed traded counts.
 - **OE growth chart: the weighted growth is derived, not stored.** No weighted growth path exists in the data (`growth_paths`
   has the five scenarios only), so the forecast bars are the year-over-year change of the stored weighted OE path (year 1
   measured from the base — it therefore also carries the scenarios' OE level multiples, said in the note). Error bars run from
@@ -652,6 +875,18 @@ Owner of `_system/statements.py`, `_system/tests/test_statements.py` and the bui
   (+ short-term borrowings unless the short-term tag was itself `DebtCurrent`); the current-only sum otherwise. Totals are never
   synthesised: a missing GrossProfit, OperatingExpenses, Liabilities or LiabilitiesAndStockholdersEquity stays absent even when the
   components exist (only the "derived" lines above are computed).
+  The engine's owner's earnings subtract intangible purchases (5.5) and capitalized software (5.7). So the statements
+  line and the Valuation card's OE differ at such filers by design. statements.py's capex lines do not yet carry the
+  software or the 5.7 components (ENGINE_BACKLOG EB-020).
+  **Returns lines, schema 5 (engine 5.7, R4 revised).** The Metrics lines add `roic` ("Return on invested capital")
+  and `roic_tangible` ("Return on tangible invested capital"). The ANNUAL cells of `roe`, `roa`, `roic` and
+  `roic_tangible` are the fundamentals.json row of the same period end. They come from
+  `fundamentals.capital_returns_from_row`, the one returns function the moat scorecard reads too. Older years, the
+  quarters and the TTM go through the same function on statements' own lines (trailing four quarters for the
+  flows). A cell whose note is n/m or unbounded is null, and its note is emitted: `negative_equity` for ROE;
+  `unbounded_high`, `loss_on_nonpositive_capital` or `loss_on_unstable_capital` for the two ROICs. The notes sit in
+  `notes_annual` / `notes_quarterly` / `note_ttm`, parallel to the values, only when some cell carries one.
+  `roic_proxy` stays, labelled "Return on invested capital (proxy, superseded)".
 - **Shares outstanding (period end)** = `CommonStockSharesOutstanding` (ifrs `NumberOfSharesOutstanding`), falling back per period to
   the cover-page `dei:EntityCommonStockSharesOutstanding` dated within 75 days after the period end (tag recorded as
   `dei:EntityCommonStockSharesOutstanding`). A cover count below 1/1.4 of the same filing's all-class count (an outstanding count
@@ -1223,10 +1458,14 @@ cached companyfacts of APP, HBAN, KR, GFI, ACGL, HSY, IRM, JD, KMB, AEE, ZS and 
   "newest filing already recorded and covered". `schema_version` is 4 since 2026-10-19 (ruling-sheet Q8 bugs 2–3; Codex review
   round 1 on PR #53): the net-cash debt rule, the all-class share count and the one-money-unit rule leave no field that marks a
   file written before them, so `--all` rebuilds every schema-3 file once — each rewrites once, as `schema_version` is in the file.
+  `schema_version` is 5 since engine 5.7 (R4 revised): the returns lines `roic` / `roic_tangible`, the annual returns
+  cells read from fundamentals.json, the `notes_*` cells and the superseded `roic_proxy` label. Every schema-4 (and
+  older) file rewrites once.
 - **Open questions for the owner.** (1) Whether FCF should subtract purchases of intangibles / capitalised software for filers
   with no PP&E line (APP: 28,318K in FY2025; the engine's capex override does); the file keeps the contract's ocf − capex and shows
   the intangibles line beside it. (2026-10-19, Q8: fundamentals.json's `fcf` / `oe_conservative` now subtract the engine 5.5
-  intangible leg — `fundamentals.ENGINE_INTANGIBLE_TAGS`, capitalized software excluded until the Q6 / 5.7 follow-on — while
+  intangible leg — `fundamentals.ENGINE_INTANGIBLE_TAGS`; since engine 5.7 (R9) the engine's list includes capitalized
+  software / development, so it is deducted too, and the `capex_intangibles` display field keeps its own narrower list — while
   statements.json's `fcf` / `owner_earnings` lines are still ocf − capex; that line is a separate follow-on. Quarters take each tagged
   year-to-date leg less the quarters before it (the latest tagged shorter leg, 0 when none), so a year's quarters sum to its FY
   figure (a quarter may be negative); a quarter with no year-to-date leg ending with it keeps its own direct three-month fact
@@ -1786,7 +2025,19 @@ the caches on a fresh clone (Nasdaq only — no SEC requests are needed to show 
   `irr_live` (blank without live data), `band_low_tier` / `band_high_tier` (the live bear / bull tiers when the row has live
   data, else the scored ones), `price` and `price_date` (the last close and its date when live, else the scored price and
   the analysis date), `iv15` (weighted IV at 15%), `upside15_pct` (`upside15_live` when live, else `upside15`; percent),
-  `analysis_date`, `engine_release`, `alert_eligible`, `watchlist`. Plain values: IRRs as decimals with 6 digits
+  `analysis_date`, `engine_release`, `alert_eligible`, `watchlist`. Engine 5.7 appends ten columns (28 in all;
+  earlier dated files keep their 18 and are never rewritten):
+  `tier_by_numbers` (the scored numbers tier) and `tier_notched` (`true` when the sector-misfit notch applies — a
+  notched name reads "D (C by numbers)");
+  `moat_score` (the judgment moat) and `moat_evidence_score` (2 dp);
+  `moat_return_measure` (`roic` | `roic_tangible` | `roe`; blank when the governing return is `insufficient_data`);
+  `moat_return_median` (a 6-dp decimal; `inf` for an unbounded median, `-inf` for a loss on non-positive or unstable
+  capital; blank when unmeasured);
+  `moat_sources` and `moat_widest_source` (blank when no scorecard is declared; `0` / `none` for a declared scorecard
+  with no source);
+  `moat_trend` (the engine's; blank before 5.7) and `hold_years` (the engine-recorded hold; 2 before 5.7 and on a row
+  with no moat summary; blank when the recorded hold is malformed).
+  Plain values: IRRs as decimals with 6 digits
   (`0.032836`), money and upside with 2 (`220.79`, `-94.95`), no thousands separators, never `-0.000000`; booleans
   `true` / `false`; null as an empty cell. The `--attachment` summary line carries `history N rows -> <path>`;
   `build()["history"]` is `(path, rows)`.
@@ -1855,6 +2106,12 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   written before round 29, beside a score.json that carries one: `build_site.live_score_identity_missing`). The `--all`
   summary names the splits restated; a
   score from another run, and a folder with no score.json, are listed among the skipped names with their reason.
+  Engine 5.7 (R1, the sector-misfit notch): an override is "active" when the final tier is not the scored NOTCHED
+  tier (`scored.tier_after_notch`). The one exception is an override in force at the notched tier (the acquired-IPR&D
+  hand deduction, never repriced): it keeps its reason. A notch alone records no `tier_override_reason`, in
+  score.json or in live.json. So `build_site.live_score_problem`'s mirror (a reason is expected when `tier_final`
+  differs from the run's `tier_by_numbers`) holds with no change. A misfit scored before 5.7 (no `misfit_notch`
+  block) reprices as before.
 - **Live market cap** (`reprice.live_market_cap`, engine 5.5 / 2026-10-19). live.json `market_cap_est` = the last close ×
   the run's share count ÷ `numbers.ads_ratio.ratio` when an ADS ratio applies (the engine's own
   `dcf_engine.market_cap_est`; the close is per ADS, the count per ordinary share), × `split_factor`; `in_scope_under_40b`
@@ -1989,8 +2246,9 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   cash, net cash per share and the ROIC proxy's invested capital use cash minus it (NTRS FY2025: 5,873.1M − 531.2M, net cash
   2,521.6M → 1,990.4M, 13.53 → 10.68 per share). `incl_restricted_annual` / `incl_restricted_quarterly` (bool per column)
   and `incl_restricted_ttm` (bool) mark the cells that still count restricted cash as cash: on the cash line (emitted
-  whenever it has a combined cell; true where the part is positive or unknown) and on `net_cash`, `net_cash_per_share` and
-  `roic_proxy` (emitted only when some cell is true: a combined cell nothing separates). Labels say so: the cash line reads
+  whenever it has a combined cell; true where the part is positive or unknown) and on `net_cash`, `net_cash_per_share`,
+  `roic_proxy` and, since engine 5.7, `roic` / `roic_tangible` (emitted only when some cell is true: a combined cell
+  nothing separates; a returns cell copied from fundamentals.json carries that row's own mark, its `cash_basis`). Labels say so: the cash line reads
   "Cash, equivalents & restricted cash" when every valued cell holds restricted cash and gains " (some periods incl.
   restricted cash)" when only some do; a flagged derived line gains " (incl. restricted cash)" / " (some periods incl.
   restricted cash)" the same way.
@@ -2043,3 +2301,36 @@ differently, THIS section wins (passages that had become plainly wrong were corr
   `test_profile.py`, `test_docs_contract.py` (these documents against the code: every index row / record / `meta.counts`
   key and the history CSV columns named here, the keys and options this round added, automation/README.md's day table
   against the cron files).
+
+## Decisions (rulings round, 2026-10-19 — engine 5.7: misfit notch, declared facts, quote check, moat scorecard, interim bridge, share classes, base alternatives, growth hold; lane L6)
+Andrew's rulings R1-R9 (2026-10-19/20) as the site shows them. Additive to every shape above.
+- **build_site owns the row fields design 01 §5 defined**: `tier_override` beyond the notch, `tier_notched` and
+  `misfit_notch`. make_score writes no index row. The row copies the notch block without its reason / basis; the page
+  reads those from the record. An index built before the release has no `misfit_notch` key, and the app keeps the old
+  badge for it.
+- **The live figures follow reprice.py; the site never recomputes the live tier.** reprice.py notches the live
+  numbers tier, and the site shows live.json's tier. Some make_score rebuilds change the score's identity: one that
+  notches a misfit, moves a legacy override reason into `misfit_notch.reason`, or stamps `dcf_content_hash`. Such a
+  rebuild withholds the old live.json (`live_not_from_this_score` / `live_without_score_identity`) until
+  `reprice.py --all` rewrites it. So an un-notched live tier is never shown beside a notched score.
+- **Weights are read from `moat_evidence`.** Each pillar carries its `weight`. The app holds no copy of
+  `moat_scorecard.WEIGHTS`, and a pillar without one shows no weight.
+- **Facts stay in the attachment.** Andrew reads it on a phone, and R3's point is that he can see where a number came
+  from. A legacy quote check is shown collapsed, and its list is trimmed from the attachment.
+- **One derivation per display.** `notchView` is the one reading of the notch that every notch display uses: the
+  scored block, or reprice's live notch when the page is live. A declared fact's value prints through `fmtFactValue`:
+  the text `facts.fmt_value` writes in key_numbers.md, never a minus on a value that rounds to zero.
+- **Links.** An href is built only by `edgarFilingUrl` (CIK digits + the accession pattern + a plain document name;
+  else the filing index) or by `httpsUrl` (https, no quotes or angle brackets). A malformed token prints as text.
+- **Not scored yet (lane default Q11 (a), main agent 2026-10-21).** The latest engine run may not be the score's
+  (`scoreIsRunsVerdict` false — the same test as the acquired-IPR&D note). Then every panel stays, labelled "as scored
+  <date>" (score.json panels) or "latest run, not scored yet" (panels and figures read from dcf_numbers.json, the
+  forecast block or ttm.json — the whole Forecast DCF tab, the run's tiles and rows). It is never "pending". There is
+  no data-layer exclusion. The run's panels describe the run itself: its base, its price, its CAP. The row's
+  `fade_in_sync` / `fade_direction` are null there, because make_score's trend test belongs to the run it scored.
+- **Share classes (R6).** Every per-share figure on a declared record is per economic unit, or it is labelled "per
+  traded-class share as filed". The OE/share history reads the engine CSV. The TTM tile and the summary sentences
+  read ttm.json. `splitRefs` references the filed traded counts.
+- **Base alternatives (R7).** One table from `score.base_alternatives`, published row first. Its tiers are by
+  numbers: the notch acts on the published tier only.
+- **History CSV.** Ten columns are appended after `watchlist` (28 in all). Dated files are never rewritten.

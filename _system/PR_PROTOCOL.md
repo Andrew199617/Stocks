@@ -9,6 +9,10 @@ scores; BMRN was done with no PR; two PR agents worked in one worktree; registry
 runs origin/main's method), a per-ticker lease lock, make_score re-run at origin/main's code inside the PR worktree,
 staging limited to what a company PR may carry, and `pr_audit.py` daily.
 
+Where this file is used: pass 1 reaches it from WORKER_SPEC.md step 10, pass 2 from SECOND_PASS.md steps 6–7, and
+the 19:07 job through pr_audit's findings (section 8). The backlog appends of section 1 go to `_system/ENGINE_BACKLOG.md`.
+`_system/README.md` "Fixes & lessons" (2026-10-21, sweep reliability) records why each guard exists.
+
 ## 1. What a company PR carries
 
 - The ticker's committed files under `<T>/` (everything there `.gitignore` does not exclude).
