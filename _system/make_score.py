@@ -5063,9 +5063,13 @@ def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
 
 
 def _alt_ttm_ok(ttm, j_sc):
-    """v5.7 gate hook (L8 / R7, 08 §8.9): a ttm.json alternative is priced only when it is on the share_classes
-    declaration (_sc.ttm_on_declaration). True in L0."""
-    return True
+    """v5.7 gate (L8 / R7, 08 §8.9 and M-12; filled when R7 merged onto L8): a ttm.json alternative is priced only
+    when it is on the share_classes declaration — share_classes.ttm_on_declaration, the one rule the engine's
+    check_ttm_share_basis and make_score's R-6 (check_ttm_on_declaration) apply too: beside a declaration, a block
+    whose declaration_sha256 is judgment.json's; with nothing declared, no block. `ttm` is the ttm.json object, `j_sc`
+    judgment.json's raw share_classes object (validate_share_classes) or None. A ttm.json off the declaration is
+    recorded computed: false (ttm_for_run's off_basis), never priced, and binds no obligation."""
+    return bool(_sc.ttm_on_declaration(ttm, j_sc)[0])
 
 
 def _run_replay(cmd, env_extra=None, timeout=600):

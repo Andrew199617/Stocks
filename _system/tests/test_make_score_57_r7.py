@@ -26,7 +26,8 @@ switches Q13 / Q15 / Q18. Each fails on the R7 lane's base 4f7d6f1 except T15. R
 of 626b157, 2026-10-21; each fails on 626b157): a fixable ttm.json ttm.py cannot rebuild scores on the exit-3 quote ·
 Q14 keyed on STALE_FY, not on Q13's switch · the exit-3 quote is the whole line, bound to the run · the bridge's
 release-mismatch carry is R7's one carry rule (a not-computed median keeps its note) · a 20-F's declined reason is
-quoted in the declared_interim entry's note.
+quoted in the declared_interim entry's note. Integration with L8 (the R7 merge onto rulings-5.7; fails on the merge
+commit 7a264ba): the share-class gate is L8's real share_classes.ttm_on_declaration, 08 M-12 end to end.
 """
 import contextlib
 import copy
@@ -708,6 +709,9 @@ def test_share_classes_ttm_off_declaration_is_never_priced():
         assert alt["base_oe_per_share"] is None and alt["weighted_irr"] is None
         assert refusal(M.ttm_rejection_state, fo, n, {"ttm_rejection_reason": HII_REASON}, j_sc={"declared": True}) \
             .count("ttm.json holds no TTM for this run (ttm.json is not on this share_classes declaration")
+    # (on the declaration: since L8 and R7 are both merged the gate is L8's real rule, so the ttm.json carries the
+    # share_classes block ttm.py writes on this declaration — test_share_class_gate_is_l8s_ttm_on_declaration)
+    tt = hii_ttm(share_classes={"declaration_sha256": M._sc.declaration_sha256({"declared": True})})
     with folder({"ttm.json": tt, "judgment.json": {}}) as fo:
         t = M.ttm_for_run(fo, n, {}, j_sc={"declared": True})
         assert t["status"] == "eligible" and t["share_basis"] == "total_units", t
@@ -721,6 +725,61 @@ def test_share_classes_ttm_off_declaration_is_never_priced():
              "base_oe_per_share": 16.1404, "weighted_irr": 0.1033, "tier_by_numbers": "C"}, e], "replays": 1}})
         assert any(ln.startswith("- Rejected: TTM to 2026-06-30 (ttm.py, 10-Q YTD; FY 2025-12-31) $-3.48 per economic "
                                  "unit") for ln in lines), lines
+
+
+def test_share_class_gate_is_l8s_ttm_on_declaration():
+    """[Integrate R7] 08 §8.9 / M-12 with L8 and R7 both merged — the REAL gate, no switch: every ttm.json alternative
+    passes share_classes.ttm_on_declaration (the one rule behind the engine's check_ttm_share_basis and make_score's
+    R-6). End to end on L8's VNOM fixture re-flagged STALE_FY (a median-base declared run): beside a ttm.json (a) on
+    the filed basis (no share_classes block) or (b) on another declaration's sha, the TTM entry is computed: false
+    with 08's note, no base_alternatives replay is spawned, nothing is required and the score writes; (c) on this
+    declaration it is a TTM for the run — no reason refuses (R7-1), a qualifying reason prices it with one --ttm
+    replay on total units (share_basis total_units, "per economic unit"). In process: a total-unit ttm.json while
+    nothing is declared is off the basis, a filed-basis one is not, and a declared-interim ttm.json follows the same
+    rule. Fails on the merge commit 7a264ba (L0's hook passed every ttm.json)."""
+    import test_make_score_share_classes as SCT
+    d = SCT.decl()
+    on = rulings57.add_ttm_engine_release(SCT.ttm_doc(d))
+    other = copy.deepcopy(on)
+    other["share_classes"]["declaration_sha256"] = "f" * 64
+    filed = {k: v for k, v in on.items() if k != "share_classes"}
+    n = SCT.declared(fragility_flags=[SCT.SC_FLAG, STALE])
+    for doc in (filed, other):
+        r = ok(run(n, _judgment(n, share_classes=d), ttm=doc, replies={"other": SCT.FILED}))
+        ba = r.result["score"]["base_alternatives"]
+        alt = ba["bases"][1]
+        assert (alt["kind"], alt["computed"], alt["note"], ba["replays"]) == ("ttm", False, OFF_BASIS, 0), ba
+        assert alt["base_oe_per_share"] is None and alt["weighted_irr"] is None, alt
+        assert [s for s in r.result["spawns"] if s["purpose"] == "base_alternatives"] == [], r.result["spawns"]
+        assert r.result["score"]["share_classes"]["measured"], r.result["score"]["share_classes"]
+    r = run(n, _judgment(n, share_classes=d), ttm=on, replies={"other": SCT.FILED})
+    r.refused("[TTM-REJ0] STALE_FY fires and ttm.json holds a TTM for this run (to 2026-06-30")
+    assert [s for s in r.result["spawns"] if s["purpose"] == "base_alternatives"] == []
+    j = _judgment(n, share_classes=d)
+    rulings57.add_ttm_rejection(j, n, ttm=on)
+    assert j.get("ttm_rejection_reason"), j
+    r = ok(run(n, j, ttm=on, replies={"other": SCT.FILED,
+                                      "ttm": ttm_reply(on, irr=0.1502, tier="B", f_subtype=None)}))
+    ba = r.result["score"]["base_alternatives"]
+    alt = ba["bases"][1]
+    assert (alt["kind"], alt["role"], alt["computed"], alt["measured"], alt["share_basis"], ba["replays"]) == \
+        ("ttm", "rejected", True, True, "total_units", 1), ba
+    assert alt["base_oe_per_share"] == round(on["ttm_oe_per_share"], 4), alt
+    assert [s["argv"][-1] for s in r.result["spawns"] if s["purpose"] == "base_alternatives"] == ["--ttm"]
+    assert any(ln.startswith("- Rejected: TTM to 2026-06-30") and "per economic unit" in ln
+               for ln in section(r.result["key"])), section(r.result["key"])
+    # in process: the gate is ttm_on_declaration's table (block <-> declaration, the same sha)
+    got = {"on": M._alt_ttm_ok(on, d), "filed_undeclared": M._alt_ttm_ok(filed, None),
+           "filed_declared": M._alt_ttm_ok(filed, d), "other_sha": M._alt_ttm_ok(other, d),
+           "total_units_undeclared": M._alt_ttm_ok(on, None)}
+    assert got == {"on": True, "filed_undeclared": True, "filed_declared": False, "other_sha": False,
+                   "total_units_undeclared": False}, got
+    # a declared 6-K interim ttm.json alternative is gated the same way (08 M-12's last sentence)
+    for doc, j_sc, want in ((dict(filed, basis="declared_interim"), d, "off_basis"),
+                            (dict(on, basis="declared_interim"), None, "off_basis")):
+        with folder({"ttm.json": doc, "judgment.json": {}}) as fo:
+            t = M.ttm_for_run(fo, n, {}, j_sc=j_sc)
+            assert (t["kind"], t["status"], t["note"]) == ("declared_interim", want, OFF_BASIS), t
 
 
 def test_pre57_or_out_of_sync_ttm_json_refuses_only_under_the_obligation():
