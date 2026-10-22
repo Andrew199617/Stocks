@@ -23,3 +23,6 @@ _daily/site/index.json
 _daily/site/meta.json
 _daily/latest.html
 _daily/ranking-*.html
+
+# Ops state (2026-10-19, R5): per-machine job health, never committed.
+_system/run_health.json

@@ -87,7 +87,10 @@ filing_watch.py, an editor, a virus scanner); every load is retried on
 PermissionError and on a parse failure (on Windows a read that lands while
 another process replaces the file fails to open). A second-pass queue that
 still cannot be read stops the command instead of being treated as empty,
-which would save over every recorded review.
+which would save over every recorded review; since engine 5.7 (R5, the PR #47
+round-26 registry rule) so does one that parses but is not an object whose
+"entries" is an object of objects — nothing is changed, restore it from git
+(refresh checks it before it touches queue.json).
 """
 import json, os, sys, time, datetime
 from zoneinfo import ZoneInfo
@@ -147,18 +150,38 @@ def with_lock(path, fn):
 
 # ---- v5.4: the second-pass queue goes through the same lock (the pass-2
 # spec had workers hand-rewriting second_pass_queue.json as their "lock").
-def _pass2_load(path):
+def _pass2_load(path, changed="nothing was changed"):
     """The second-pass queue; empty only when the file does not exist yet.
     Any other failure (after load's retries) stops the command: an empty
-    fallback would be saved over every recorded review."""
+    fallback would be saved over every recorded review. v5.7 (R5; PR #47
+    Codex round 26's registry rule applied to the pass-2 queue, backlog seed
+    2026-10-21, EB-028): so does a file that parses but is not
+    {"entries": {<ticker>: {...}}} — a list, {}, "entries" null / a list, a
+    non-object entry. Before, every pass-2 command repaired it with
+    setdefault("entries", {}) and saved it back, so a parseable file of
+    another shape crashed the command or was rewritten with every other
+    ticker's second-pass record erased. Refused, exit 1, the file untouched:
+    restore it from git. `changed` says what the command had already done
+    (refresh has saved queue.json when it resets the pass-2 entry)."""
     try:
-        return load(path)
+        data = load(path)
     except FileNotFoundError:
         return {"entries": {}}
     except (OSError, ValueError) as e:
-        print(f"queue.py: cannot read {path} ({type(e).__name__}: {e}); nothing was changed — "
+        print(f"queue.py: cannot read {path} ({type(e).__name__}: {e}); {changed} — "
               "restore the file (git) and run the command again", file=sys.stderr)
         sys.exit(1)
+    ents = data.get("entries") if isinstance(data, dict) else None
+    why = ("not a JSON object" if not isinstance(data, dict)
+           else "no 'entries' key" if "entries" not in data
+           else f"'entries' is {type(ents).__name__}, not an object" if not isinstance(ents, dict)
+           else next((f"entry {t!r} is {type(v).__name__}, not an object" for t, v in ents.items()
+                      if not isinstance(v, dict)), None))
+    if why:
+        print(f"queue.py: {path} is malformed ({why}) — {changed}; restore it from git and run the command again",
+              file=sys.stderr)
+        sys.exit(1)
+    return data
 
 
 def _pass2_path(queue_path):
@@ -308,7 +331,7 @@ def cmd_pass2_claim(path, queue_path):
     records the generation it is reviewing."""
     with locked(f"{path}.lock"):
         data = _pass2_load(path)
-        entries = data.setdefault("entries", {})
+        entries = data["entries"]   # v5.7 (R5): _pass2_load refuses a file without it (no silent repair)
         q = _load_queue(queue_path)
         cands = [e["ticker"] for e in q["queue"] if e.get("status") == "done"]
         if "APP" not in cands:
@@ -340,7 +363,7 @@ def cmd_pass2_done(path, ticker, status, queue_path=None):
             sys.exit(1)
     with locked(f"{path}.lock"):
         data = _pass2_load(path)
-        entries = data.setdefault("entries", {})
+        entries = data["entries"]   # v5.7 (R5): _pass2_load refuses a file without it (no silent repair)
         if status == "pending":  # pass2-reset: the manual escape hatch, unchecked
             entries[ticker] = {"status": status, "date": now_et().date().isoformat()}
         else:
@@ -363,7 +386,7 @@ def cmd_pass2_check(path, ticker, queue_path):
     """pass2-done's supersession test with nothing recorded: the worker runs
     it before it writes anything for the review (SECOND_PASS.md step 5)."""
     with locked(f"{path}.lock"):
-        ent = (_pass2_load(path).get("entries") or {}).get(ticker) or {}
+        ent = _pass2_load(path)["entries"].get(ticker) or {}
         q = _load_queue(queue_path)
         gen = score_generation(q, ticker)
         refused = _pass2_superseded(ticker, ent, gen, _queue_entry(q, ticker))
@@ -380,8 +403,9 @@ def _pass2_reset_for_refresh(path, ticker, reason):
     are left alone (pass2-done refuses a superseded claim). Returns the prior
     status when it reset one, else None."""
     with locked(f"{path}.lock"):
-        data = _pass2_load(path)
-        entries = data.setdefault("entries", {})
+        data = _pass2_load(path, changed=f"queue.json already has {ticker} back at pending; the second-pass entry "
+                                         "was not reset")
+        entries = data["entries"]   # v5.7 (R5): _pass2_load refuses a file without it (no silent repair)
         ent = entries.get(ticker) or {}
         if ent.get("status") not in ("done_no_change", "done_changed"):
             return None
@@ -515,6 +539,10 @@ def cmd_refresh(path, ticker, reason):
     (the filing watcher's job — audit round-1 P1 "freshness moves out of pass
     2"). The reason is kept on the entry so the worker sees why it is scoring
     the name again; the previous completion date is preserved as last_done."""
+    # v5.7 (R5): a malformed second-pass queue refuses the refresh before queue.json is touched (a snapshot read,
+    # no lock; _pass2_reset_for_refresh checks it again under its lock)
+    _pass2_load(_pass2_path(path))
+
     def fn(data):
         e = find(data, ticker)
         if e is None:
