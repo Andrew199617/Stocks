@@ -260,6 +260,7 @@ COMPANY_FILES = ("score.json", "dcf_numbers.json", "financials_history.csv", "fu
                  "facts.json")  # engine 5.7 (R3): the worker's declared facts, served as record.facts
 STATEMENTS_SUFFIX = ".statements.json"  # data/<T>.statements.json — served next to the record, loaded on demand
 DEFAULT_GTERM = getattr(ENGINE, "DEFAULT_GTERM", 0.025)
+PROJECTION_YEARS = getattr(ENGINE, "PROJECTION_YEARS", 15)  # the projection horizon: a recorded hold lies in 0..15
 # _daily/history/ranking-<date>.csv (committed): what the daily chat message quotes, one row per ranked company
 HISTORY_COLUMNS = ("rank", "ticker", "name", "sector_misfit", "tier_scored", "irr_scored", "tier_live", "irr_live",
                    "band_low_tier", "band_high_tier", "price", "price_date", "iv15", "upside15_pct",
@@ -334,10 +335,13 @@ SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "
                   "numbers.share_classes.included_periods.*.filed_traded",
                   "ttm.ttm_shares_diluted_filed", "ttm.share_classes.filed_traded", "ttm.share_classes.units_equivalent",
                   "ttm.share_classes.total_units", "ttm.share_classes.included_units", "ttm.share_classes.classes.*.value",
-                  "score.share_classes.latest.filed_traded", "score.share_classes.latest.units_equivalent",
-                  "score.share_classes.latest.total_units",
-                  "score.share_classes.ttm.filed_traded", "score.share_classes.ttm.units_equivalent",
-                  "score.share_classes.ttm.total_units")
+                  # [merge L6] the merged shapes (lane L8): make_score.share_classes_impact writes the latest counts flat
+                  # (units_latest / filed_latest — no latest / ttm sub-block in score.json); every class row carries
+                  # share_classes.period_detail's units (value × exchange_ratio) beside its value; the engine's TTM leg
+                  # and ttm.json's block carry the diluted - basic gap like every applied period
+                  "score.share_classes.units_latest", "score.share_classes.filed_latest",
+                  "numbers.share_classes.applied.*.classes.*.units", "ttm.share_classes.classes.*.units",
+                  "numbers.share_classes.ttm.diluted_minus_basic", "ttm.share_classes.diluted_minus_basic")
 QUOTE_UNTRACED_MAX = 40   # untraced numbers kept per record (the Analysis tab lists them; the counts are always exact)
 _NUM_RX = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INT_RX = re.compile(r"-?\d+")
@@ -923,19 +927,19 @@ def engine_moat_trend(n):
 
 def recorded_hold_years(n):
     """The growth hold (years at the starting growth before the fade) the run recorded: dcf_engine.recorded_hold_years
-    when the engine carries it (M6, lane L3b), else the same read here — inputs.hold_years, else the top-level copy,
-    else 2 (every record before 5.7 held two years). None when a recorded value is malformed."""
+    (M6, lane L3b) — inputs.hold_years; 2 when absent (every record before 5.7 held two years); None when it is not an
+    int in 0..PROJECTION_YEARS (bool refused). A build without the engine reads exactly the same here [merge L6]: the
+    top-level copy is never read (the replay runs inputs.hold_years), so the page and the replay cannot disagree."""
     if ENGINE is not None and hasattr(ENGINE, "recorded_hold_years"):
         try:
             return ENGINE.recorded_hold_years(n)
         except Exception:  # noqa: BLE001
             return None
-    n = _d(n)
-    for src in (_d(n.get("inputs")), n):
-        if "hold_years" in src:
-            v = src["hold_years"]
-            return v if isinstance(v, int) and not isinstance(v, bool) and v >= 0 else None
-    return 2
+    inp = _d(_d(n).get("inputs"))
+    if "hold_years" not in inp:
+        return 2
+    v = inp["hold_years"]
+    return v if isinstance(v, int) and not isinstance(v, bool) and 0 <= v <= PROJECTION_YEARS else None
 
 
 def _int_or_none(v):

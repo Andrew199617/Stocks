@@ -2305,6 +2305,56 @@ test('T25 growth fade note reads the recorded hold (M6)', () => {
   assert.ok(ml.includes('the scored run ran eroding, growth hold 0 yrs <span class="sub asof">as scored 2026-10-14</span>') && ml.includes('; the latest run ran stable, growth hold 2 yrs <span class="sub asof">latest run, not scored yet</span>') && !ml.includes('the engine ran'), ml);
 });
 
+/* [merge L6] L6 was built on 4f7d6f1, before lanes L3b, L8 and R7 merged: these read their MERGED record shapes — the
+   fade block from lane L3b's own worked example, base_alternatives and its registry event from R7's example
+   (_system/examples/ttm_rejection_hii.json), the share_classes event as make_score._share_classes_events writes it. */
+test('[merge L6] growth-hold lines read the merged fade block: margin_change_pp on its margin_basis (moat_scorecard.fade_trend, lane L3b)', () => {
+  const fd = MOAT_EX.expected_moat_evidence.fade;
+  assert.ok(fd && fd.status === 'measured' && fd.margin_basis === 'gross' && fd.margin_change_pp === 3 && !('gross_margin_change_pp' in fd), JSON.stringify(fd));
+  const line = between(App.renderMoatEvidence(moatRecord()), 'Growth hold (M6):', '</p>');
+  assert.ok(line.includes('direction widening (ROIC +16.46pp, gross margin +3.00pp over the last 5 FY)') && !line.includes('margin —'), line);
+  const op = between(App.renderMoatEvidence(moatRecord({ fade: Object.assign(clone(fd), { margin_basis: 'operating', margin_change_pp: -1.2 }) })), 'Growth hold (M6):', '</p>');
+  assert.ok(op.includes('(ROIC +16.46pp, operating margin −1.20pp over the last 5 FY)') && !op.includes('gross'), op);
+  // the Forecast note of a run make_score scored and found in sync (a confirmed widening: hold 3)
+  const sync = rec({ forecast: { hold_years: 3, moat_trend: 'widening' } });
+  sync.score.moat_evidence = { status: 'checked', fade: Object.assign(clone(fd), { margin_basis: 'operating', trend: 'widening', hold_years: 3, rule: 'widening_confirmed', in_sync: true }) };
+  const t = App.fadeHoldText(sync);
+  assert.ok(t.includes('(moat widening: make_score\'s trend test — governing return +16.46pp and operating margin +3.00pp over the last 5 FY;'), t);
+});
+
+test('[merge L6] base alternatives on R7\'s own example, and the TTM-unavailable reason quoted (R7, default Q14)', () => {
+  const HII = JSON.parse(fs.readFileSync(path.join(EXAMPLES, 'ttm_rejection_hii.json'), 'utf8'));
+  const html = App.renderBaseAlternatives(rec({ score: { base_alternatives: clone(HII.score_base_alternatives) } }));
+  const rows = html.match(/<tr class="[^"]*">.*?<\/tr>/g) || [];
+  assert.ok(rows.length === 2 && rows[0].includes('Annual median') && rows[0].includes('$16.14/sh') && rows[0].includes('10.33%'), 'published row first: ' + rows[0]);
+  assert.ok(rows[1].includes('rejected') && rows[1].includes('-$3.48/sh') && rows[1].includes('no cash generation') && rows[1].includes('-121.54%'), rows[1]);
+  assert.ok(html.includes('TTM rejection reason: “median +$16.14/sh Tier C vs TTM −$3.48/sh on a half-year working-capital trough”') && !html.includes('TTM unavailable'), html);
+  const li = App.registryLine(Object.assign({ date: '2026-10-21' }, clone(HII.registry_event)));
+  assert.ok(li.includes('base annual median published over the ttm to 2026-06-30 · annual median $16.14 (C) · ttm -$3.48 (F)') && li.includes('“median +$16.14/sh'), li);
+  // STALE_FY at a 10-K filer with no ttm.json for the run: the TTM entry not computed, ttm.py's exit-3 message quoted
+  const msg = 'ttm.py: cannot compute TTM for SYN (CIK 1): sbc: no post-FY YTD fact (no 10-Q since the 2025-12-31 fiscal year end)';
+  const ba = Object.assign(clone(HII.score_base_alternatives), { ttm_rejection_reason: null, ttm_unavailable_reason: msg, replays: 0 });
+  ba.bases = [Object.assign(clone(ba.bases[0]), { why: 'no_ttm_for_run', why_text: 'published — STALE_FY fires but no TTM exists for this run\'s latest FY that ttm.py can build (judgment.json ttm_unavailable_reason)' }),
+    { kind: 'ttm', role: 'alternative', computed: false, measured: false, base_oe_per_share: null, weighted_irr: null, tier_by_numbers: null, f_subtype: null,
+      iprd_charge_per_share: null, iprd_treatment: null, fy_end: null, ytd_end: null, ttm_input_hash: null, ttm_engine_release: null, share_basis: null,
+      source: 'ttm.json (ttm.py: FY − prior YTD + current YTD, 10-Q)', replay: null, base_change_pct: null, weighted_irr_change_pp: null, tier_changed: null,
+      why: 'no_ttm_for_run', why_text: null, note: 'no ttm.json for this run — ttm.py cannot build one (judgment.json ttm_unavailable_reason quotes its exit-3 message)' }];
+  const u = App.renderBaseAlternatives(rec({ score: { base_alternatives: ba } }));
+  assert.ok(u.includes('not computed — no ttm.json for this run — ttm.py cannot build one'), 'the not-computed row with its note');
+  assert.ok(u.includes('TTM unavailable (ttm.py\'s exit-3 message, judgment.json ttm_unavailable_reason): “' + msg + '”') && !u.includes('TTM rejection reason'), u);
+});
+
+test('[merge L6] the share_classes registry line reads make_score\'s measured flag: a not-measured event never prints "base — → $4.14"', () => {
+  const ev = clone(RULINGS.registry.find((e) => e.event === 'share_classes'));
+  assert.ok(ev.measured === true && 'units_by_period' in ev && !('periods' in ev), 'the fixture is _share_classes_events\' shape');
+  assert.ok(App.registryLine(ev).includes(': base $7.93 → $4.14, tier S → B'), App.registryLine(ev));
+  const note = 'not measured: engine output is from release 5.6.0, not 5.7.0; re-run the engine to measure';
+  const nm = Object.assign(clone(ev), { base_used: null, replay_pin: null, replay_pin_source: null, base_oe_filed_basis: null, base_oe_impact_pct: null,
+    weighted_irr_filed_basis: null, weighted_irr_impact_pp: null, tier_filed_basis: null, market_cap_filed_basis: null, in_scope_filed_basis: null, measured: false, note: note });
+  const li = App.registryLine(nm);
+  assert.ok(li.includes('share classes declared (up c exchangeable units; sha256 dddd): impact not measured (' + note + ')') && !li.includes('base —') && !li.includes('tier —'), li);
+});
+
 test('Share classes (R6, design 08 §10): OE/share history on the engine CSV, the TTM per unit, the TTM construction rows, the run line, splitRefs on filed traded counts', () => {
   const r = rec(RULINGS.share_classes); r.ttm = clone(RULINGS.share_classes.ttm); r.history = clone(RULINGS.share_classes.history);
   const h = App.oeHistory(r);

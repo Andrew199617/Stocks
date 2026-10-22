@@ -130,9 +130,9 @@
  },
  "fade": {
   "forecast": {"hold_years": 0, "moat_trend": "eroding", "hold_by_scenario": {"super_bear": 2, "bear": 2, "base": 0, "bull": 0, "super_bull": 0}},
-  "fade_in_sync": {"version": 1, "status": "measured", "direction": "eroding", "measure": "roic", "governing_change_pp": -2.1, "gross_margin_change_pp": -1.4,
+  "fade_in_sync": {"version": 1, "status": "measured", "direction": "eroding", "measure": "roic", "governing_change_pp": -2.1, "margin_change_pp": -1.4, "margin_basis": "gross",
                    "trend": "eroding", "hold_years": 0, "rule": "eroding_not_rebutted", "in_sync": true, "engine": {"moat_trend": "eroding", "hold_years": 0, "source": "inputs"}},
-  "fade_drift": {"version": 1, "status": "measured", "direction": "flat", "measure": "roic", "governing_change_pp": -2.1, "gross_margin_change_pp": -1.4,
+  "fade_drift": {"version": 1, "status": "measured", "direction": "flat", "measure": "roic", "governing_change_pp": -2.1, "margin_change_pp": -1.4, "margin_basis": "gross",
                  "trend": "stable", "hold_years": 2, "rule": "no_trend", "in_sync": false, "engine": {"moat_trend": "eroding", "hold_years": 0, "source": "inputs"}}
  },
  "data_rows": {
@@ -160,7 +160,12 @@
   {"ticker": "SYN", "event": "interim_bridge", "date": "2026-10-21", "declaration_hash": "ab", "currency": "EUR", "report_accession": "0001104659-26-088404", "estimate_legs": ["capex_intangibles.prior_interim"],
    "base_oe_annual_median": 1.11, "base_oe_bridged": 0.5904, "weighted_irr_annual_median": 0.0914, "weighted_irr_bridged": 0.061, "tier_annual_median": "D", "tier_bridged": "D", "measured": true, "note": null},
   {"ticker": "SYN", "event": "interim_bridge_declined", "date": "2026-10-21", "reason": "no like-for-like comparative (37% of revenue demerged)", "report_accession": "0001104659-26-088404"},
-  {"ticker": "SYN", "event": "share_classes", "date": "2026-10-21", "basis": "up_c_exchangeable_units", "declaration_sha256": "dddd", "base_oe_filed_basis": 7.9338, "base_oe_total_units": 4.1438, "tier_filed_basis": "S", "tier_total_units": "B"},
+  {"ticker": "SYN", "event": "share_classes", "date": "2026-10-21", "basis": "up_c_exchangeable_units", "declaration_sha256": "dddd", "traded_class": "Class A common stock",
+   "classes": [{"name": "Class B common stock paired with OpCo units", "holder": "Parent", "exchange_ratio": 1.0}], "units_by_period": {"2024-12-31": 95525123, "2025-06-30": 171536228}, "reason": null,
+   "base_used": "ttm", "replay_pin": 7.9338, "replay_pin_source": "ttm.json ttm_oe_per_share_filed_basis", "replay_pin_scale": null,
+   "base_oe_filed_basis": 7.9338, "base_oe_total_units": 4.1438, "base_oe_impact_pct": -47.77, "weighted_irr_filed_basis": 0.2505, "weighted_irr_total_units": 0.1502, "weighted_irr_impact_pp": -10.03,
+   "tier_filed_basis": "S", "tier_total_units": "B", "market_cap_filed_basis": 8063000000, "market_cap_total_units": 15437000000, "in_scope_filed_basis": true, "in_scope_total_units": true,
+   "raises_tier": false, "measured": true, "note": null, "units_latest": 95525123, "filed_latest": 93932000},
   {"ticker": "SYN", "event": "up_c_suspect", "date": "2026-10-21", "reason": "the 42.2% NCI is a fund's carried interest, not OpCo units", "s": 0.422},
   {"ticker": "SYN", "event": "capex_unlisted_ack", "date": "2026-10-21", "tag": "PaymentsForFlightEquipment", "reason": "the fleet is the inventory of a lessor: $2.1B", "value": 2100000000},
   {"ticker": "SYN", "event": "base_alternatives", "date": "2026-10-21", "chosen": "annual_median", "stale_fy": true, "reason": "median +$16.14/sh vs TTM −$3.48/sh", "ttm_kind": "ttm", "ttm_fy_end": "2025-12-31", "ttm_ytd_end": "2026-06-30",

@@ -1223,11 +1223,14 @@ function volumePriceHTML(me) { // the users × revenue-per-user decomposition (a
    run that is not scored yet (scoreIsRunsVerdict false) the line names the scored run's own engine trend
    (fade.engine, as scored) and the newer run's trend / hold separately ("latest run, not scored yet"), never the
    newer run's hold as the run the trend test checked. */
+/* [merge L6] The trend test's margin leg as moat_scorecard.fade_trend records it (lane L3b): margin_change_pp on its
+   margin_basis — gross, or operating where no gross margin is filed — worded as the erosion-test line words it. */
+function fadeMarginText(fd) { return (fd.margin_basis ? esc(fd.margin_basis) + ' ' : '') + 'margin ' + fmtSigned(fd.margin_change_pp, 2) + 'pp'; }
 function fadeText(me, record) {
   var fd = obj(me.fade), fc = obj(record.forecast), hold = num(fc.hold_years), trend = fc.moat_trend;
   if (!Object.keys(fd).length) return '';
   var dir = fd.direction ? 'direction ' + esc(fd.direction) : 'direction not measured' + (fd.reason ? ' (' + esc(fd.reason) + ')' : '');
-  var meas = fd.status === 'measured' ? ' (' + esc(MEASURE_LABEL[fd.measure] || fd.measure || 'governing return') + ' ' + fmtSigned(fd.governing_change_pp, 2) + 'pp, gross margin ' + fmtSigned(fd.gross_margin_change_pp, 2) + 'pp over the last 5 FY)' : '';
+  var meas = fd.status === 'measured' ? ' (' + esc(MEASURE_LABEL[fd.measure] || fd.measure || 'governing return') + ' ' + fmtSigned(fd.governing_change_pp, 2) + 'pp, ' + fadeMarginText(fd) + ' over the last 5 FY)' : '';
   var rule = fd.rule ? ' · rule ' + esc(String(fd.rule).replace(/_/g, ' ')) : '';
   var holdTxt = function (h) { return h !== null ? ', growth hold ' + h + ' yr' + (h === 1 ? '' : 's') : ''; };
   if (!scoreIsRunsVerdict(record)) {
@@ -1336,6 +1339,8 @@ function renderBaseAlternatives(record) {
   var carried = ba.impact_carried_from_prior_score ? ' Carried from the prior score.json (engine ' + esc(ba.counterfactual_engine_release || '') + ').' : (ba.measured === false && ba.note ? ' Not measured: ' + esc(ba.note) + '.' : '');
   return '<div class="card basealts"><h3 class="sub3">Base alternatives</h3><div class="twrap"><table class="mini bat"><thead><tr><th>Base</th><th>Role</th><th class="num">Base OE</th><th class="num">Weighted IRR</th><th>Tier</th><th>Why</th></tr></thead><tbody>' + rows + '</tbody></table></div>'
     + (ba.ttm_rejection_reason ? '<p class="note">TTM rejection reason: “' + esc(ba.ttm_rejection_reason) + '”</p>' : '')
+    // [merge L6] R7 default Q14: a STALE_FY run with no TTM ttm.py can build quotes ttm.py's exit-3 message on the block
+    + (ba.ttm_unavailable_reason ? '<p class="note">TTM unavailable (ttm.py\'s exit-3 message, judgment.json ttm_unavailable_reason): “' + esc(ba.ttm_unavailable_reason) + '”</p>' : '')
     + '<p class="note">Every base computed for this run beside the published one (R7: a STALE_FY TTM may be rejected only with a reason naming the distorting cash-flow line and a number; R2a: a declared 6-K bridge is measured against the annual median).' + misfit + carried + asScoredTag(record) + '</p></div>';
 }
 
@@ -1443,7 +1448,9 @@ var REGISTRY_TEXT = {
   moat_widening_declined: function (e) { return 'measured widening declined at moat ' + esc(fmtW(e.moat_score)) + ': “' + esc(e.reason) + '”'; },
   interim_bridge: function (e) { return '6-K bridge ' + esc(e.report_accession) + ' (' + esc(e.currency) + ')' + (e.base_oe_bridged !== undefined ? ': base ' + fmtMoney(e.base_oe_annual_median) + ' → ' + fmtMoney(e.base_oe_bridged) + '/sh, IRR ' + fmtPct(e.weighted_irr_annual_median, 2) + ' → ' + fmtPct(e.weighted_irr_bridged, 2) + ', tier ' + esc(e.tier_annual_median) + ' → ' + esc(e.tier_bridged) : '') + (arr(e.estimate_legs).length ? ' · estimate legs ' + arr(e.estimate_legs).map(esc).join(', ') : ''); },
   interim_bridge_declined: function (e) { return 'interim bridge declined: “' + esc(e.reason) + '”' + (e.report_accession ? ' (' + esc(e.report_accession) + ')' : ''); },
-  share_classes: function (e) { return 'share classes declared (' + esc(String(e.basis || '').replace(/_/g, ' ')) + '; sha256 ' + esc(String(e.declaration_sha256 || '').slice(0, 12)) + ')' + (e.base_oe_total_units !== undefined ? ': base ' + fmtMoney(e.base_oe_filed_basis) + ' → ' + fmtMoney(e.base_oe_total_units) + ', tier ' + esc(e.tier_filed_basis) + ' → ' + esc(e.tier_total_units) : '') + (e.reason ? ': “' + esc(e.reason) + '”' : ''); },
+  // [merge L6] make_score._share_classes_events copies share_classes_impact's whole block (base_oe_total_units is always
+  // there): the measured flag says whether the filed-class replay ran
+  share_classes: function (e) { return 'share classes declared (' + esc(String(e.basis || '').replace(/_/g, ' ')) + '; sha256 ' + esc(String(e.declaration_sha256 || '').slice(0, 12)) + ')' + (e.measured === true ? ': base ' + fmtMoney(e.base_oe_filed_basis) + ' → ' + fmtMoney(e.base_oe_total_units) + ', tier ' + esc(e.tier_filed_basis) + ' → ' + esc(e.tier_total_units) : e.measured === false ? ': impact not measured' + (e.note ? ' (' + esc(e.note) + ')' : '') : '') + (e.reason ? ': “' + esc(e.reason) + '”' : ''); },
   up_c_suspect: function (e) { return 'UP_C_SUSPECT waived (NCI share ' + fmtPct(e.s, 2) + '): “' + esc(e.reason) + '”'; },
   capex_unlisted_ack: function (e) { return 'unlisted capex component ' + esc(e.tag) + (e.value !== undefined && e.value !== null ? ' (' + fmtBig(e.value) + ')' : '') + ' acknowledged: “' + esc(e.reason) + '”'; },
   base_alternatives: function (e) { return 'base ' + esc(String(e.chosen || '').replace(/_/g, ' ')) + ' published' + (e.ttm_kind ? ' over the ' + esc(String(e.ttm_kind).replace(/_/g, ' ')) + ' to ' + esc(e.ttm_ytd_end || '') : '') + arr(e.bases).filter(function (b) { return b && typeof b === 'object'; }).map(function (b) { return ' · ' + esc(String(b.kind || '').replace(/_/g, ' ')) + ' ' + fmtMoney(b.base_oe_per_share) + ' (' + esc(b.tier_by_numbers || '—') + ')'; }).join('') + (e.reason ? ': “' + esc(e.reason) + '”' : ''); },
@@ -1480,7 +1487,7 @@ function fadeHoldText(record) {
   var trend = fc.moat_trend, fd = obj(obj(s.moat_evidence).fade);
   if (!own) return txt + (trend === 'eroding' || trend === 'widening' ? ' (moat ' + esc(trend) + ')' : '') + latestRunTag(record);
   if (trend === 'eroding' || trend === 'widening') {
-    if (fd.in_sync === true) txt += ' (moat ' + esc(trend) + ': make_score\'s trend test — governing return ' + fmtSigned(fd.governing_change_pp, 2) + 'pp and gross margin ' + fmtSigned(fd.gross_margin_change_pp, 2) + 'pp over the last 5 FY; scenarios that start at or below the ' + fmtPct(gterm) + ' terminal rate keep the 2-year hold)';
+    if (fd.in_sync === true) txt += ' (moat ' + esc(trend) + ': make_score\'s trend test — governing return ' + fmtSigned(fd.governing_change_pp, 2) + 'pp and ' + fadeMarginText(fd) + ' over the last 5 FY; scenarios that start at or below the ' + fmtPct(gterm) + ' terminal rate keep the 2-year hold)';
     else if (fd.in_sync === false) txt += ' (moat ' + esc(trend) + ' at the engine run; data moved since the engine run; the next run passes --moat-trend ' + esc(fd.trend || '') + ')';
     else txt += ' (moat ' + esc(trend) + ')';
   }

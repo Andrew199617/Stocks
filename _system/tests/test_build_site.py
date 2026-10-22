@@ -1904,12 +1904,15 @@ def test_moat_and_interim_row_summaries():
                                                                 base_alternatives=_base_alts_bridge("D", "C"))})
         tb.build(only=TICKERS + ["MOA"])
         row = tb.record("MOA")["row"]
+        # [merge L6] the example is lane L3b's merged output: its fade measured a widening (returns +16.46pp, gross
+        # margin +3.00pp) on a record with no projection (rule no_projection, in_sync null) and MOAT_WIDENING is a flag
+        assert me["fade"]["direction"] == "widening" and me["fade"]["in_sync"] is None and me["flags"] == ["MOAT_WIDENING"], me["fade"]
         assert row["moat_evidence"] == {
             "score": 8.23, "status": "checked", "within_tolerance": True, "divergence": -1.23, "core_score": 7.73,
             "supporting_adjustment": 0.5, "measure": "roic", "return_median": 0.3609, "return_note": None, "sources": 2,
-            "widest": "narrow", "flags": [], "industry": {"code": "4:7372", "level": 4, "label": "Services-Prepackaged Software (fictional peers)",
-                                                         "ladder": "default", "peers": 6, "rank": 2, "of": 7},
-            "fade_trend": None, "fade_in_sync": None, "fade_direction": None, "hold_years": 2}, row["moat_evidence"]
+            "widest": "narrow", "flags": ["MOAT_WIDENING"], "industry": {"code": "4:7372", "level": 4, "label": "Services-Prepackaged Software (fictional peers)",
+                                                                       "ladder": "default", "peers": 6, "rank": 2, "of": 7},
+            "fade_trend": None, "fade_in_sync": None, "fade_direction": "widening", "hold_years": 2}, row["moat_evidence"]
         assert row["interim_bridge"] == {"tier_bridged": "D", "tier_annual_median": "C", "estimate_legs": 2, "measured": True,
                                          "published_base": "declared_interim"}, row["interim_bridge"]
         meta = tb.read("meta.json")
@@ -1968,27 +1971,43 @@ def test_split_restates_the_new_per_share_fields():
             assert [x.get(k) for x in b["score"]["base_alternatives"]["bases"]] == [x.get(k) for x in a["score"]["base_alternatives"]["bases"]], k
 
 
+def _sc_impact_block(numbers_sc):
+    """[merge L6] score.json share_classes as make_score writes it (share_classes_impact, lane L8): the call on a record
+    from another engine release is never replayed — it returns the block with every key, unmeasured — so the fixture's
+    key set is make_score's own (flat units_latest / filed_latest; no latest / ttm sub-blocks), never a design's copy."""
+    import make_score as M
+    n = {"share_classes": numbers_sc, "engine_release": "5.6.0", "base_oe_per_share": 4.1438, "implied_irr_weighted": 0.1502,
+         "tier_by_numbers": "B", "market_cap_est": 15290924507.36}
+    blk = M.share_classes_impact("ZZSPLITSC", n, {})
+    assert isinstance(blk, dict) and blk["measured"] is False and {"units_latest", "filed_latest"} <= set(blk), blk
+    return blk
+
+
 def _declared_share_classes():
-    """dcf_numbers.json / ttm.json / score.json share_classes records of a declared Up-C (design 08 §7.1, §8.5; VNOM-shaped)."""
+    """dcf_numbers.json / ttm.json / score.json share_classes records of a declared Up-C (design 08 §7.1, §8.5; VNOM-shaped).
+    [merge L6] In the merged shapes (lane L8): every class row carries share_classes.period_detail's `units` (value ×
+    exchange_ratio) beside its `value`, the engine's TTM leg and ttm.json's block carry diluted_minus_basic, and
+    score.json's block is make_score's (_sc_impact_block), its measured figures filled in."""
+    def cls(v):
+        return [{"name": "Class B", "value": v, "exchange_ratio": 1.0, "units": float(v), "count_basis": "period_end",
+                 "kind": "filing", "accession": "0000000000-26-000001"}]
     applied = [{"period_end": "2025-12-31", "filed_traded": 142530000, "declared_units": 197117368, "units_split_factor": 1.0,
                 "units_split_basis": "no_split", "units_equivalent": 197117368.0, "total_units": 339647368.0, "included_units": 0.0,
-                "diluted_minus_basic": 0.0, "exchange_test": {"test": "passed"}, "classes": [{"name": "Class B", "value": 197117368, "exchange_ratio": 1.0}]}]
+                "diluted_minus_basic": 2150000.0, "exchange_test": {"test": "passed"}, "classes": cls(197117368)}]
     numbers = {"declared": True, "basis": "up_c_exchangeable_units", "declaration_sha256": "d" * 64, "traded_class": "Class A",
                "classes": [{"name": "Class B", "holder": "Parent", "exchange_ratio": 1.0}], "applied": applied,
                "ttm": {"period_end": "2026-06-30", "filed_traded": 187553000, "units_equivalent": 171536228.0, "total_units": 359089228.0,
-                       "ttm_oe_per_share": 4.143816867711776, "ttm_oe_per_share_filed_basis": 7.933757391244075},
+                       "diluted_minus_basic": 1980000.0, "ttm_oe_per_share": 4.143816867711776, "ttm_oe_per_share_filed_basis": 7.933757391244075},
                "latest": {"period_end": "2025-12-31", "filed_traded": 142530000, "units_equivalent": 197117368.0, "total_units": 339647368.0,
                           "declared_share_of_total": 0.5804},
                "nci_check": {"nci_share_of_equity": 0.5708, "declared_share_of_total": 0.5804, "agrees": True},
                "cap_check": {"cap_ratio": 2.5201, "universe_price": 42.99, "declared_uplift": 1.383, "band": 0.05, "gap": False},
                "included_periods": [], "counterfactual": False}
     ttm = {"filed_traded": 187553000, "units_equivalent": 171536228.0, "total_units": 359089228.0, "included_units": 0.0,
-           "classes": [{"name": "Class B", "value": 171536228}], "declaration_sha256": "d" * 64}
-    score = {"basis": "up_c_exchangeable_units", "base_used": "ttm", "replay_pin": 7.933757391244075, "base_oe_filed_basis": 7.9338,
-             "base_oe_total_units": 4.1438, "base_oe_impact_pct": -47.77, "weighted_irr_filed_basis": 0.2505, "weighted_irr_total_units": 0.1502,
-             "tier_filed_basis": "S", "tier_total_units": "B", "market_cap_filed_basis": 6416700600.0, "market_cap_total_units": 15290924507.36,
-             "latest": {"filed_traded": 142530000, "units_equivalent": 197117368, "total_units": 339647368, "declared_share_of_total": 0.5804},
-             "ttm": {"filed_traded": 187553000, "units_equivalent": 171536228, "total_units": 359089228}, "measured": True}
+           "diluted_minus_basic": 1980000.0, "classes": cls(171536228), "declaration_sha256": "d" * 64}
+    score = dict(_sc_impact_block(numbers), base_used="ttm", replay_pin=7.933757391244075,
+                 replay_pin_source="ttm.json ttm_oe_per_share_filed_basis", base_oe_filed_basis=7.9338, base_oe_impact_pct=-47.77, weighted_irr_filed_basis=0.2505,
+                 weighted_irr_impact_pp=-10.03, tier_filed_basis="S", market_cap_filed_basis=6416700600.0, measured=True, note=None)
     return numbers, ttm, score
 
 
@@ -2024,10 +2043,20 @@ def test_split_restates_declared_share_class_figures():
             hit_d += bool(va)
         assert hit_m >= 15 and hit_d >= 6, (hit_m, hit_d)
         assert _at(b, "numbers.share_classes.applied.*.classes.*.value") == {k: v * 2 for k, v in _at(a, "numbers.share_classes.applied.*.classes.*.value").items()}
+        # [merge L6] the merged shapes' counts are restated too: score.json's flat units_latest / filed_latest (make_score
+        # writes no latest / ttm sub-block), each class row's units beside its value, the TTM legs' diluted - basic gap
+        for p in ("score.share_classes.units_latest", "score.share_classes.filed_latest", "numbers.share_classes.applied.*.classes.*.units",
+                  "ttm.share_classes.classes.*.units", "numbers.share_classes.ttm.diluted_minus_basic", "ttm.share_classes.diluted_minus_basic"):
+            assert p in B.SPLIT_MULTIPLY and _at(a, p) and _at(b, p) == {k: v * 2 for k, v in _at(a, p).items()}, (p, _at(a, p), _at(b, p))
+        # every split path into score.json's share_classes names a key make_score writes (a drifted copy of a design's
+        # shape would restate nothing and pass silently)
+        sc_paths = [p for p in B.SPLIT_MULTIPLY + B.SPLIT_DIVIDE if p.startswith("score.share_classes.")]
+        assert sc_paths and all(p.split(".")[2] in ssc for p in sc_paths), [p for p in sc_paths if p.split(".")[2] not in ssc]
         for p in ("numbers.share_classes.latest.declared_share_of_total", "numbers.share_classes.classes.*.exchange_ratio",
                   "numbers.share_classes.cap_check.cap_ratio", "numbers.share_classes.nci_check.nci_share_of_equity",
                   "score.share_classes.market_cap_total_units", "score.share_classes.weighted_irr_total_units",
-                  "score.share_classes.latest.declared_share_of_total", "numbers.share_classes.applied.*.units_split_factor"):
+                  "score.share_classes.weighted_irr_impact_pp", "score.share_classes.base_oe_impact_pct",
+                  "numbers.share_classes.applied.*.units_split_factor", "numbers.share_classes.applied.*.classes.*.exchange_ratio"):
             assert _at(a, p) and _at(a, p) == _at(b, p), p
         assert b["score"]["share_classes"]["tier_total_units"] == "B"
 
@@ -2206,9 +2235,21 @@ def test_forecast_hold_fields():
         hist = {r[1]: dict(zip(B.HISTORY_COLUMNS, r)) for r in _read_csv(res["history"][0])[1][1:]}
         assert (hist["HZ"]["moat_trend"], hist["HZ"]["hold_years"]) == ("eroding", "0")
         assert (hist["APP"]["moat_trend"], hist["APP"]["hold_years"]) == ("", "2")
-    # the local fallback when the engine lacks the reader (lane L3b not merged): the same reads
-    assert B.recorded_hold_years({}) == 2 and B.recorded_hold_years({"inputs": {"hold_years": 3}}) == 3
-    assert B.recorded_hold_years({"hold_years": "x"}) is None and B.engine_moat_trend({"moat_trend": "widening"}) == "widening"
+    # [merge L6] the hold is the engine's reader (dcf_engine.recorded_hold_years, lane L3b): inputs.hold_years only — 2
+    # when absent (the top-level copy is not what the replay runs), None when it is not an int in 0..15 (bool refused);
+    # a build without the engine (the local fallback) reads exactly the same, so the page and the replay never disagree
+    cases = [{}, {"inputs": {"hold_years": 3}}, {"inputs": {"hold_years": 0}}, {"hold_years": 0}, {"hold_years": "x"},
+             {"inputs": {}}, {"inputs": {"hold_years": "x"}}, {"inputs": {"hold_years": True}}, {"inputs": {"hold_years": 16}}]
+    want = [2, 3, 0, 2, 2, 2, None, None, None]
+    assert [B.ENGINE.recorded_hold_years(c) for c in cases] == want, "the engine's reader (lane L3b)"
+    assert [B.recorded_hold_years(c) for c in cases] == want
+    saved = B.ENGINE
+    B.ENGINE = None
+    try:
+        assert [B.recorded_hold_years(c) for c in cases] == want, [B.recorded_hold_years(c) for c in cases]
+    finally:
+        B.ENGINE = saved
+    assert B.engine_moat_trend({"moat_trend": "widening"}) == "widening"
     assert B.engine_moat_trend({"inputs": {"moat_trend": "bogus"}}) is None
     # A14 at the function: from_run decides; without it moat_summary asks score_from_run itself (no run → not this run's)
     on, off = (B.moat_summary({"moat_evidence": insync}, {}, from_run=f) for f in (True, False))
