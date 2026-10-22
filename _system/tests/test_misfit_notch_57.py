@@ -226,6 +226,39 @@ def test_sic_fetch_failure_degrades():
         assert bool(_sector_flags(out["numbers"])) == want[2]
 
 
+def test_sic_less_57_record_takes_the_folder_sic():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] The review's r04 (GFL's case: universe sector Utilities,
+    EDGAR SIC 4953 refuse systems). With the submissions fetch failing and no folder SIC, the 5.7 record is a
+    Utilities misfit with sic null — and records why (sector_model.sic_unavailable; make_score refuses the run). Once
+    the folder holds SIC 4953, misfit_status on that record sets the sector aside exactly as it does for the pre-5.7
+    flag-only record (rule 3) — before, rule 1 returned "misfit" before the folder SIC was consulted, so the notch
+    stayed on. A recorded SIC is never swapped for the folder's; a folder SIC in a misfit range still reaches a
+    SIC-less record (rule 4's case)."""
+    fx = copy.deepcopy(H.load_fixture("AR"))
+    fx["universe_row"] = dict(fx.get("universe_row") or {}, sector="Utilities")
+
+    def offline(X):
+        def boom(_cik):
+            raise RuntimeError("timed out")
+        X.edgar_submissions = boom
+    n = _engine_run("AR", fixture=fx, patch=offline)["numbers"]
+    sm = n["sector_model"]
+    assert (sm["sic"], sm["misfit"], sm["basis"]) == (None, True, ["sector"]), sm
+    assert sm["sic_unavailable"] == "EDGAR submissions unavailable: timed out", sm
+    folder = ("4953", "Refuse Systems", "fundamentals.json")
+    flag_only = {"fragility_flags": ["SECTOR_MODEL_MISMATCH: Utilities sector — OE/capex DCF fits utilities names "
+                                     "poorly; grade confidence low"]}
+    assert E.misfit_status(flag_only, sic=folder)[0] == "modeled"
+    fit, b = E.misfit_status(n, sic=folder)
+    assert fit == "modeled" and b["source"] == "folder_sic" and b["sector_set_aside_by_sic"] is True, (fit, b)
+    assert E.misfit_status(n)[0] == "misfit"                         # no folder SIC: the sector rule alone
+    fit, b = E.misfit_status(n, sic=("6324", "Hospital & Medical Service Plans", "fundamentals.json"))
+    assert fit == "misfit" and b["source"] == "folder_sic" and b["sic"] == "6324", (fit, b)
+    with_sic = {"sector_model": E.sector_model_record("Utilities", "4911", "Electric Services", "edgar_submissions")}
+    fit, b = E.misfit_status(with_sic, sic=folder)                   # a recorded SIC wins over the folder's
+    assert fit == "misfit" and b["sic"] == "4911" and b["source"] == "engine_sector_model", (fit, b)
+
+
 def test_one_submissions_fetch_per_run():
     """T-6 (07 §1.2): with the real edgar_submissions / filer_annual_form, a run fetches the submissions document
     exactly once, and both the annual form and the misfit SIC come from it."""
@@ -1008,6 +1041,46 @@ def test_notched_score_live_is_shown():
         assert live["tier"] == s["tier_final"], (name, live["tier"])
         shown, why = B.live_shown({"numbers": m, "score": s, "live": live})
         assert shown == live and why is None, (name, why)
+
+
+def test_live_binding_follows_the_notch_a_rebuild_adds_or_drops():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] reprice decides the live notch from score.json misfit_notch,
+    so live.json binds to the notch it was computed under (scored.tier_after_notch), not only tier_final: APP as a
+    Finance misfit scored at numbers tier D (D stays D). (A) a live.json computed beside the pre-5.7 score (no block;
+    live C at a close where the numbers tier is C) beside the 5.7 rebuild that adds the block (tier_final still D) is
+    withheld live_not_from_this_score — reprice now publishes D; (B) a notched 5.7 live.json (D) beside a rebuild that
+    drops the block (modeled, tier_final still D) is withheld — reprice now publishes C. A live.json with no
+    tier_after_notch key beside a notch-eligible score is withheld live_without_score_identity; each fresh repricing
+    is shown. LIVE_NOTCH_BELOW is the engine's NOTCH_BELOW."""
+    import build_site as B
+    from test_make_score_55 import _stamp
+    assert B.LIVE_NOTCH_BELOW == E.NOTCH_BELOW
+    n, s = _app_misfit()
+    day = n["as_of"]
+    px_d, px_c = _price_for(n, 0.08), _price_for(n, 0.12)
+    irr_d = R.reprice(n, px_d, day, None, today=day)["irr_weighted"]
+    n_d = _stamp(dict(n, price=px_d, implied_irr_weighted=irr_d, tier_by_numbers="D",
+                      market_cap_est=px_d * n["shares_diluted_latest"]))
+    s_old = dict({k: v for k, v in s.items() if k not in ("misfit_notch", "tier_override_reason")},
+                 tier_by_numbers="D", tier_final="D", implied_irr=round(irr_d, 4), price=n_d["price"],
+                 dcf_content_hash=n_d["content_hash"])
+    assert B.score_from_run(s_old, n_d)[0]
+    s_57 = dict(s_old, misfit_notch={"applies": False, "tier_by_numbers": "D", "tier_after_notch": "D",
+                                     "reason": "cannot notch: numbers tier D", "reason_source": "auto",
+                                     "not_applied": "tier_floor_D", "basis": {"source": "engine_flag"}})
+    s_mod = dict(s_old, model_fit="modeled")
+    for live_score, rebuilt, want in ((s_old, s_57, "D"), (s_57, s_mod, "C")):
+        live = R.reprice(n_d, px_c, day, live_score, today=day)
+        shown, why = B.live_shown({"numbers": n_d, "score": rebuilt, "live": live})
+        assert shown is None and why["reason"] == "live_not_from_this_score", why
+        fresh = R.reprice(n_d, px_c, day, rebuilt, today=day)
+        assert fresh["tier"] == want and B.live_shown({"numbers": n_d, "score": rebuilt, "live": fresh}) == (fresh, None)
+    legacy = R.reprice(n_d, px_c, day, s_57, today=day)
+    legacy["scored"].pop("tier_after_notch")
+    shown, why = B.live_shown({"numbers": n_d, "score": s_57, "live": legacy})
+    assert shown is None and why["reason"] == "live_without_score_identity", why
+    assert B.expected_scored_notch(dict(s_57, misfit_notch=dict(s_57["misfit_notch"], not_applied="payable_base")),
+                                   n_d) is None
 
 
 if __name__ == "__main__":

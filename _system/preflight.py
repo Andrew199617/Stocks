@@ -36,9 +36,10 @@ The first line of the text output is the report line a worker quotes (run_health
 
 --sync (under the queue lock, queue lock first per queue.py's lock order, held for the whole sync so no claim can
 start mid-checkout): refuses (exit 5) while queue.json or second_pass_queue.json holds a live in_progress claim
-(claimed within queue.py's 90-minute lease); otherwise `git checkout <remote>/<branch> -- <every guarded path that
-is not same>` (path-limited: no company folder, no state file; local_only files are never deleted; the DATA file
-only when it is missing here) and prints the next step, a rebuild_scores.py dry run. Run it on the VM before any engine-5.7 registry event exists there: a
+(claimed within queue.py's 90-minute lease), and while either file is malformed or unreadable (queue_rows: missing
+means empty; whole-PR review fix, 2026-10-21 — an unreadable state used to read as "no live claim"); otherwise
+`git checkout <remote>/<branch> -- <every guarded path that is not same>` (path-limited: no company folder, no
+state file; local_only files are never deleted; the DATA file only when it is missing here) and prints the next step, a rebuild_scores.py dry run. Run it on the VM before any engine-5.7 registry event exists there: a
 pre-5.7 make_score refuses a registry that holds one.
 
 In-process API (pr_worktree prepare, rebuild_scores): check(base=..., fetch=...) -> report dict with "exit".
@@ -265,15 +266,44 @@ def text_report(rep):
 
 
 # --------------------------------------------------------------------------------------------- --sync
-def _live_claims(path):
-    """[(ticker, claimed_at)] of in_progress entries with a live lease in queue.json (a list under 'queue') or
-    second_pass_queue.json (a dict under 'entries')."""
-    d = _ops.load_json(path)
+def queue_rows(path):
+    """[whole-PR review fix, 2026-10-21] (rows, problem) of queue.json ({"queue": [<entry>, ...]}) or
+    second_pass_queue.json ({"entries": {<ticker>: <entry>}}, each row with its ticker): a missing file is ([], None);
+    one that cannot be read, does not parse or has another shape is ([], "<why>") — the strict reading queue.py's own
+    loaders apply (queue._pass2_load), never "no claims"."""
+    if not os.path.exists(path):
+        return [], None
+    try:
+        with open(path, encoding="utf-8") as f:
+            d = json.load(f)
+    except (OSError, ValueError) as e:
+        return [], f"unreadable ({type(e).__name__}: {str(e)[:120]})"
+    second = os.path.basename(path) == "second_pass_queue.json"
     if not isinstance(d, dict):
-        return []
-    rows = d.get("queue") if isinstance(d.get("queue"), list) else (
-        [dict(v, ticker=k) for k, v in d["entries"].items() if isinstance(v, dict)]
-        if isinstance(d.get("entries"), dict) else [])
+        return [], "not a JSON object"
+    if second:
+        ents = d.get("entries")
+        if not isinstance(ents, dict):
+            return [], f"'entries' is {type(ents).__name__}, not an object" if "entries" in d else "no 'entries' key"
+        bad = next((t for t, v in ents.items() if not isinstance(v, dict)), None)
+        if bad is not None:
+            return [], f"entry {bad!r} is not an object"
+        return [dict(v, ticker=k) for k, v in ents.items()], None
+    q = d.get("queue")
+    if not isinstance(q, list):
+        return [], f"'queue' is {type(q).__name__}, not a list" if "queue" in d else "no 'queue' key"
+    if any(not isinstance(e, dict) for e in q):
+        return [], "a queue entry is not an object"
+    return q, None
+
+
+def live_claims(path):
+    """([(ticker, claimed_at)] of in_progress entries with a live lease, problem) — queue_rows' strict reading."""
+    rows, problem = queue_rows(path)
+    return _live(rows), problem
+
+
+def _live(rows):
     cutoff = _ops.now_et() - datetime.timedelta(minutes=LEASE_MINUTES)
     live = []
     for e in rows:
@@ -294,7 +324,13 @@ def sync(base=None, repo=None, remote="origin", branch="main", fetch=True, attem
                    "repo itself (run it in the sweep tree)")
     qpath = os.path.join(base, "_system", "queue.json")
     with locked(f"{qpath}.lock"):
-        live = _live_claims(qpath) + _live_claims(os.path.join(base, "_system", "second_pass_queue.json"))
+        live = []
+        for p in (qpath, os.path.join(base, "_system", "second_pass_queue.json")):
+            got, problem = live_claims(p)
+            if problem:   # [whole-PR review fix] the one safety check never passes on a state it cannot read
+                return 5, (f"preflight: SYNC REFUSED — {os.path.basename(p)} is malformed or unreadable ({problem}), so "
+                           "whether a run holds a live claim cannot be read; restore it from git, then sync")
+            live += got
         if live:
             t, ts = live[0]
             return 5, f"preflight: SYNC REFUSED — {t} is being scored (claimed {ts}); sync after its run ends"

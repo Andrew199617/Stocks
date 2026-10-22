@@ -33,8 +33,9 @@ class _Resp(io.BytesIO):
         return False
 
 
-def _run(base, fail_ciks=None, ok_payload=None):
-    """filing_watch.main() in this process with the network stubbed; returns (exit code, stdout)."""
+def _run(base, fail_ciks=None, ok_payload=None, dry=True):
+    """filing_watch.main() in this process with the network stubbed; returns (exit code, stdout). dry=False runs the
+    real queue.py refresh (a subprocess on the temp base)."""
     old_base, old_open, old_argv = os.environ.get("STOCKS_BASE"), urllib.request.urlopen, sys.argv
     os.environ["STOCKS_BASE"] = base
     sys.modules.pop("filing_watch", None)
@@ -47,7 +48,7 @@ def _run(base, fail_ciks=None, ok_payload=None):
             raise OSError("HTTP Error 503: Service Unavailable")
         return _Resp(json.dumps(ok_payload or {"filings": {"recent": {"form": [], "filingDate": [], "reportDate": []}}}).encode())
     urllib.request.urlopen = fake
-    sys.argv = ["filing_watch.py", "--dry-run", "--quiet"]
+    sys.argv = ["filing_watch.py", "--quiet"] + (["--dry-run"] if dry else [])
     out = io.StringIO()
     try:
         with contextlib.redirect_stdout(out):
@@ -105,6 +106,32 @@ def test_no_done_names_exits_0():
     try:
         rc, out = _run(b)
         assert rc == 0 and "checked 0 done names" in out, (rc, out)
+    finally:
+        shutil.rmtree(b, ignore_errors=True)
+
+
+NEWER_10K = {"filings": {"recent": {"form": ["10-K"], "filingDate": ["2027-02-20"], "reportDate": ["2026-12-31"]}}}
+
+
+def test_every_refresh_failing_exits_3():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] Three done names with a newer 10-K and a malformed
+    second_pass_queue.json (queue.py refresh refuses it): the run counted all three as refreshed before queue.py ran,
+    printed "3 refreshed ... 3 errors" and exited 0, so run_health recorded ok while nothing was re-queued. A name is
+    refreshed only once queue.py refresh exits 0; every attempted refresh failing is a failed run (exit 3). With a
+    well-formed file the same run refreshes the three and exits 0."""
+    b = _base(["AAA", "BBB", "CCC"])
+    try:
+        with open(os.path.join(b, "_system", "second_pass_queue.json"), "w", encoding="utf-8") as f:
+            json.dump({"entries": []}, f)
+        rc, out = _run(b, fail_ciks=[], ok_payload=NEWER_10K, dry=False)
+        assert rc == 3, (rc, out)
+        assert "checked 3 done names — 0 refreshed, 0 unchanged, 3 errors (3 queue refreshes failed)" in out, out
+        with open(os.path.join(b, "_system", "queue.json"), encoding="utf-8") as f:
+            assert all(e["status"] == "done" for e in json.load(f)["queue"])
+        with open(os.path.join(b, "_system", "second_pass_queue.json"), "w", encoding="utf-8") as f:
+            json.dump({"entries": {}}, f)
+        rc, out = _run(b, fail_ciks=[], ok_payload=NEWER_10K, dry=False)
+        assert rc == 0 and "3 refreshed, 0 unchanged, 0 errors" in out, (rc, out)
     finally:
         shutil.rmtree(b, ignore_errors=True)
 

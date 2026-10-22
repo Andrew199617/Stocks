@@ -29,7 +29,13 @@ Two kinds of PR come from the sweep, and they must not be mixed:
    `_system/overrides_registry.json`, `_daily/history/ranking-<date>.csv`,
    and lines appended to `_system/ENGINE_BACKLOG.md` (the backlog
    exception below). (`_system/queue.json` is synced to main separately
-   and never reviewed here.)
+   and never reviewed here.) `_system/industry_returns.json` — the
+   generated same-ladder industry medians `industry_returns.py` builds
+   from the scored folders, never hand-edited — rides in a bulk rebuild
+   (`rebuild/*`) PR and the daily job's state commits only; a company PR
+   never carries it. Check that its built date and sha in the Mechanics
+   "industry_returns.json" line are the sweep tree's build the rebuild
+   scored against; it is not a stray `_system/` file and not a code change.
 2. **Code and spec PRs** — anything under `_system/*.py`, `_system/tests/`,
    `_system/*.md`, `automation/`, `_daily/site/`.
 
@@ -127,7 +133,13 @@ whose Mechanics sha is not on main, is P1.
     submissions fetch failed (absent otherwise): {applied, checked, form, accession,
     filed, report_date, periods_added, companyfacts_latest_annual_end,
     instance_url, instance_sha256, facts_merged, conflicts, facts_sha256,
-    cache, reason}.
+    cache, reason, incomplete}. `incomplete: true` marks a check a rerun
+    can clear (an instance fetch error other than a 404, the module
+    import, the cache write); `sector_model.sic_unavailable` names a failed
+    SIC read. make_score refuses a 5.7 record carrying `checked: false`,
+    `incomplete: true` or `sic_unavailable` (the run may lack its newest
+    fiscal year, its annual form and its SIC), so a scored 5.7 record
+    never carries one — one that does is P1.
   - `capex_provenance.<FY>.software` (the capitalized-software part of
     the intangible leg, per tag) and the dropped reasons `ppe_duplicate`,
     `in_ppe_total` and `subclass_alone` (check 4).
@@ -177,7 +189,9 @@ whose Mechanics sha is not on main, is P1.
   - `ttm_unavailable_reason` (default Q14): ttm.py's exit-3 line, quoted
     verbatim. It belongs at a STALE_FY 10-K filer with no TTM for its FY,
     or beside a stale ttm.json for the FY that ttm.py can no longer
-    rebuild.
+    rebuild. make_score refuses a quote the record contradicts — including
+    the ttm.json on file: "no post-FY YTD fact" beside a file for this FY
+    that holds that leg's filed current-YTD fact cannot be this run's.
   - `capex_unlisted_ack` `{"<tag>": "<reason with the figure>"}` and
     `capex_override.software_included` (check 4).
 
@@ -284,9 +298,15 @@ whose Mechanics sha is not on main, is P1.
   scale, precision, period, kind folder|filing|release|third_party, type
   actual|guidance|estimate|metric|event, metric?, source, snippet,
   used_for, calc?}`. make_score verifies every `folder` fact against the
-  named file and reproduces `calc` facts. It refuses a filing / release /
-  third-party fact that repeats a folder figure. It checks that a
-  non-folder fact's snippet (at most 24 words) contains the number.
+  named file and reproduces `calc` facts. On an authoring run it refuses a
+  filing / release / third-party fact that repeats a folder figure: its
+  `metric` and period match a folder figure, or any same-period folder
+  leaf matches it at 4 or more significant digits. A match at fewer
+  digits with no `metric` is only a "possible folder duplicate" line in
+  key_numbers.md (`score.json declared_facts.possible_folder_duplicates`):
+  check each one — a number a folder file holds declared as another kind
+  skips folder verification (P3). It checks that a non-folder fact's
+  snippet (at most 24 words) contains the number.
 - `dcf_numbers_<label>.json` (engine 5.7) — a saved engine run
   (preliminary or exploratory): a byte copy made by
   `check_quotes.py --save-run`. Its content_hash must verify and equal
@@ -326,10 +346,13 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    legs must give it; when it is `agent_supplied_ttm_override`, the
    `base_override` construction in `analysis.md` must reproduce it.
    On a declared run (`share_classes`, engine 5.7), `shares_diluted` is
-   the total: the filed traded count plus the declared units. `shares_tag`
-   then ends `+SHARE_CLASSES`, and `share_classes.applied` lists both
-   counts. Recompute `filed + units` per year from the declaration. An
-   `in_filed_count` year adds nothing. A history year with no declaration
+   the total: the filed traded count plus the declared class-equivalent
+   units. `shares_tag` then ends `+SHARE_CLASSES`, and
+   `share_classes.applied` lists both counts. Recompute
+   `filed + sum(value × exchange_ratio)` per year from the declaration
+   (× `units_split_factor` on a `split_basis` pre-split period), leaving
+   out `in_filed_count` entries; `share_classes.applied[*].units_equivalent`
+   is that sum. An `in_filed_count` year adds nothing. A history year with no declaration
    keeps its filed count and a blank `oe_per_share`, so it is outside the
    median and the CAGRs.
 2. **Share scale.** `shares_diluted` across the CSV's years must move by
@@ -429,7 +452,8 @@ Do these for every scored folder in the PR. They catch most fake tiers.
    leverage discussion should use; the recorded `fragility_flags` predate
    the fix. On a declared run (`share_classes`, engine 5.7),
    `shares_diluted_latest` is total units:
-   `market_cap_basis.traded_shares` + `declared_units`.
+   `market_cap_basis.traded_shares` + `declared_units` (the class-equivalent
+   units — value × exchange_ratio, split-scaled — not the declared values).
 4. **Capex completeness.** This is where 20-F filers and companies with
    custom XBRL tags go wrong (JD: one of four capex lines read, capex
    understated 2–6×; PFG and TKO: capex on an extension tag the feed
@@ -1076,7 +1100,8 @@ traces to a generated file.
 
   **Supporting factors.** Great products, market share, execution and
   management are supporting factors. Their sum / 4, capped at ±1, moves
-  the evidence score (a lone factor by at most 0.25). They never lift the
+  the evidence score (a lone factor by at most 0.25; management at −2 by
+  0.50, its range being −2..+1). They never lift the
   moat past a source cap. These bad moats are allowed as supporting
   factors. Presenting them as the moat's source, with no source type
   named, is P2. `moat_evidence.moat_lint` lists candidates from moat_for,

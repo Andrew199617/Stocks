@@ -344,9 +344,12 @@ def test_misfit_helpers():
 
 
 def test_edgar_submissions_one_fetch_and_the_readers_degrade_as_before():
-    """07 §1.2: filer_annual_form and filer_sic read ONE submissions document per CIK (memoised on success); a failed
-    fetch raises from edgar_submissions, is not memoised (the next reader retries), and the readers return None /
-    (None, None) as when each fetched it itself."""
+    """07 §1.2: filer_annual_form and filer_sic read ONE submissions document per CIK (memoised); a failed fetch
+    raises from edgar_submissions and the readers return None / (None, None) as when each fetched it itself.
+    [whole-PR review fix, 2026-10-21; fails on 6dd4a4a, where a failure was not memoised and every reader re-ran
+    get_json's whole retry loop — 9 attempts, up to 819 s on a hanging endpoint, past _measure_run's 600 s timeout]
+    the failure is memoised too: one fetch per CIK per process, re-raised to every later reader, and
+    submissions_error / sic_read_error read it back without a new fetch."""
     X = H._engine()
     calls = []
     doc = {"sic": "6324", "sicDescription": "Hospital & Medical Service Plans",
@@ -366,12 +369,15 @@ def test_edgar_submissions_one_fetch_and_the_readers_degrade_as_before():
         raise RuntimeError("offline")
     X.get_json = boom
     assert X.filer_annual_form(1) is None and X.filer_sic(1) == (None, None)
-    assert len(calls) == 2, calls   # not memoised: each reader tried
+    assert len(calls) == 1, calls   # the failure is memoised: the second reader re-raises it without a fetch
     try:
         X.edgar_submissions(1)
         raise AssertionError("edgar_submissions swallowed a failed fetch")
     except RuntimeError:
         pass
+    assert isinstance(X.submissions_error(1), RuntimeError) and X.submissions_error(320193) is None
+    assert X.sic_read_error(1) == "EDGAR submissions unavailable: offline" and X.sic_read_error(320193) is None
+    assert len(calls) == 1, calls
     X.get_json = lambda url, headers=None, timeout=90: {"filings": {"recent": {"form": ["S-1"]}}}
     assert X.filer_annual_form(2) is None and X.filer_sic(2) == (None, None)   # no annual form, no SIC filed
 

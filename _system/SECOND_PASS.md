@@ -35,7 +35,13 @@ material 8-Ks (routine items 2.02 results and 7.01 Reg FD are excluded since 5.4
   `--interim` at a 20-F / 40-F filer with a declared bridge; the variable stops it saving
   ttm.json, since nothing is written before `pass2-check`, worker step 5) — and treat a
   material base change as a finding; a base that barely moves still gets both values noted
-  in second_pass.md. A newer 6-K interim than the bridge's report is a newer periodic filing.
+  in second_pass.md. A newer 6-K interim than the bridge's report is a newer periodic filing,
+  but `--interim` rebuilds the DECLARED bridge (its older report), so it never measures the
+  newer one: draft it with `python3 _system/ttm.py <TICKER> --interim-draft <new 6-K
+  accession>` (it writes nothing; it drafts the legs from that 6-K's XBRL, to compare with the
+  declared bridge's), and only after `pass2-check` re-declare `interim_bridge` on that report,
+  run `--interim`, then the engine with `--ttm` — the bridged base from that run is the one
+  compared with pass 1's (whole-PR review fix, 2026-10-21).
   - When pass 1 rejected the TTM (score.json `base_alternatives`, judgment.json
     `ttm_rejection_reason`, engine 5.7), test the reason against the new TTM's legs. A named
     line that no longer distorts it is a material finding: rerun with `--ttm`, or keep the
@@ -131,8 +137,10 @@ three things only: moat evidence, base-OE reconstruction, and confidence.
   `second_pass_queue.json` that parses but is not `{"entries": {<ticker>: {...}}}` (a list,
   `{}`, `entries` null or a list, a non-object entry) makes every pass-2 command and
   `queue.py refresh` exit 1 with "is malformed … restore it from git". The file is left
-  untouched (refresh has already saved queue.json by then, and its message says so). Restore
-  the file from git and run the command again. (PR #47's round-26 registry rule;
+  untouched, and so is queue.json: refresh checks the pass-2 file before it touches queue.json,
+  so its message says "nothing was changed". Only when the file turns malformed between that
+  check and the pass-2 reset does the message say queue.json already has the name back at
+  pending. Restore the file from git and run the command again. (PR #47's round-26 registry rule;
   before, the command repaired it with an empty `entries`, and the save erased every other
   ticker's review record.)
 - **Alerts.** Report to chat ONLY when a change moves the company INTO or OUT of Tier S/A
@@ -190,7 +198,9 @@ the new engine run.
    `python3 _system/build_site.py`. Finish silently.
 7. **Material finding**: quantify it; rerun the engine with the pass-1 sanity checks
    (run `python3 _system/moat_scorecard.py <T>` first and pass the `--moat-trend` value it
-   prints — make_score refuses another;
+   prints — make_score refuses another; the dry run does not trace reasons, so a rebutted
+   erosion's `stable` holds only if make_score's trace accepts the `erosion_rebuttal`
+   (WORKER_SPEC step 5);
    `python3 _system/dcf_engine.py <T> --moat ... --moat-trend <value> --probs ... [--offsets] [--mults] [--ttm] [--gterm] [--cik]`,
    `--ttm` after a fresh, saving `ttm.py` run when the base moved (a rerun that keeps a
    non-TTM base under STALE_FY needs `ttm_rejection_reason`, WORKER_SPEC step 4); a judgment.json carrying an

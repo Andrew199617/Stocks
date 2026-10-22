@@ -675,7 +675,20 @@ rebuilt as before, both alert gates closed ("engine output predates release
   filing's own XBRL instance (dcf_numbers.json annual_from_instance
   applied), <T>/annual_instance.json must be that instance's file with the
   same accession, instance_sha256 and facts_sha256 (annual_instance_check),
-  and key_numbers.md says so in "Base owner's earnings".
+  and key_numbers.md says so in "Base owner's earnings". [whole-PR review
+  fix, 2026-10-21] annual_instance_check also refuses a 5.7 record whose
+  EDGAR reads did not complete — annual_from_instance checked false (the
+  submissions document failed: the newest FY, filer_annual_form and with it
+  this bridge obligation and the ADS gate were silently lost), incomplete
+  true (an instance fetch error other than a 404, the import, the cache
+  write) or sector_model.sic_unavailable: rerun the engine when EDGAR answers.
+  Other whole-PR review fixes of 2026-10-21: L9's TTM-leg software refusal
+  runs only on a ttm.json the run prices (ttm_capex_legs_priced, after R7's
+  plan); an R7 / L4 replay with an uncovered data gap is not computed (never
+  a tier); ttm_unavailable_problem checks the quote against the ttm.json on
+  file; interim_bridge_declined is typed (reason a string, report null or
+  {form, accession, document} strings); a malformed interim_bridge legs
+  object is refused, never a traceback.
 - (L8, R6) declared share classes (Up-C / multi-class) and UP_C_SUSPECT
   (Andrew, 2026-10-19/20; design 08 rev. 3, 08b, rebase map L8). judgment.json
   share_classes is validated (R-1: share_classes.validate, every snippet at
@@ -1123,8 +1136,11 @@ def check_share_classes_sync(n, j_sc, folder):
     j = _read_judgment(folder)
     rec = _sc_record(n)
     ib = j.get("interim_bridge") if isinstance(j.get("interim_bridge"), dict) else {}
-    leg = (((ib.get("legs") or {}).get("shares_diluted") or {}).get("current_interim")
-           if isinstance(ib.get("legs"), dict) else None)
+    # [whole-PR review fix, 2026-10-21] every level checked before .get: a malformed declaration (legs.shares_diluted
+    # a list or a string) crashed here with a traceback; it is _ib.validate_shape's to refuse ([IB-SHAPE])
+    legs = ib.get("legs") if isinstance(ib.get("legs"), dict) else {}
+    sh = legs.get("shares_diluted") if isinstance(legs.get("shares_diluted"), dict) else {}
+    leg = sh.get("current_interim")
     if isinstance(leg, dict) and leg.get("share_basis") is not None and leg["share_basis"] not in SHARE_BASIS_VALUES:
         fail(f"interim_bridge.legs.shares_diluted.current_interim.share_basis {leg['share_basis']!r} is not one of "
              f"{', '.join(SHARE_BASIS_VALUES)} (R-10)")
@@ -2109,7 +2125,19 @@ def _engine_days(a, b):
     return (datetime.date.fromisoformat(b) - datetime.date.fromisoformat(a)).days + 1
 
 
-def refuse_capex_override_software(n, j_over, tt=None):
+def ttm_capex_legs_priced(n, plan):
+    """[whole-PR review fix, 2026-10-21] Whether the current ttm.json's capex legs price anything this run publishes or
+    records: the score's base read the file (ttm_inputs.ttm_input_hash, the engine's own record of a ttm.json read) or
+    R7's plan replays it as the rejected TTM (required, ttm_for_run status eligible, not ttm_unbuildable)."""
+    ti = n.get("ttm_inputs")
+    if isinstance(ti, dict) and ti.get("ttm_input_hash"):
+        return True
+    t = (plan or {}).get("ttm") if isinstance(plan, dict) else None
+    return bool(plan and plan.get("required") and not plan.get("ttm_unbuildable") and isinstance(t, dict)
+                and t.get("status") == "eligible")
+
+
+def refuse_capex_override_software(n, j_over, tt=None, fy=True):
     """v5.7 R9 (Andrew, 2026-10-19: capitalized software is capex). A capex_override is read as the filer's TOTAL
     capex line and never takes the filed intangible leg on top. When it fills a last-3-FY year
     (capex_provenance[<FY>].intangibles_not_added == 'override_present' with a CAPEX_SOFTWARE_NAMES tag in
@@ -2127,11 +2155,20 @@ def refuse_capex_override_software(n, j_over, tt=None):
         inclusive days / 365 — ttm.py's proration; ttm.py legs are USD) vs capex_components.<leg>.intangibles.
     A rate the record does not carry is refused as unverifiable. A ttm.json without a 5.7 engine_release stamp
     records no software at all, so an override-filled TTM leg in it cannot be checked: refused, naming the legs
-    (rerun ttm.py) — never passed silently. Runs only on a 5.7 run; older output rebuilds unchanged."""
+    (rerun ttm.py) — never passed silently. Runs only on a 5.7 run; older output rebuilds unchanged.
+    [whole-PR review fix, 2026-10-21; L9 x R7] The two halves run at two points of main(): the FY half (tt None,
+    fy True) with the other capex refusals; the TTM half (fy False, tt the current ttm.json) only after R7's plan,
+    and only when that ttm.json prices something for this run — ttm_capex_legs_priced: the score's base read it
+    (ttm_inputs carries a ttm_input_hash) or R7 replays it as the rejected TTM (plan required, status eligible). A
+    ttm.json the score never reads (another fiscal year, off the share-class declaration, an orphan bridge, one ttm.py
+    cannot rebuild — plan ttm_unbuildable) never refuses: after a new 10-K and before the next 10-Q ttm.py exits 3 and
+    writes nothing, so the stale file stays and every rerun would be refused with no way out."""
     if not is_57_run(n) or "capex" not in j_over:
         return None
     o = j_over["capex"]
     hits, unstamped = _software_override_hits(n, tt, o["value"])
+    if not fy:
+        hits = [h for h in hits if h[0].startswith("TTM ")]
     if unstamped:
         fail(f"judgment.json capex_override {o['value']:,.0f} fills {', '.join(unstamped)} of a ttm.json stamped "
              f"engine_release {(tt or {}).get('engine_release') or 'none (pre-5.7)'}: a ttm.json built before engine "
@@ -4147,8 +4184,22 @@ def annual_instance_check(folder, n):
     """v5.7 (L4, R2b; 07 §1.12 step 1, after the content-hash check): when the run read annual facts from the
     filing's own XBRL instance (dcf_numbers.json annual_from_instance applied), <T>/annual_instance.json must be that
     instance's — the same accession and instance_sha256 — and its facts must still hash to the run's facts_sha256 (it
-    is the run's input, bound like ttm.json: rebase amendment 6). Returns the record (for key_numbers.md), else None."""
+    is the run's input, bound like ttm.json: rebase amendment 6). Returns the record (for key_numbers.md), else None.
+    [whole-PR review fix, 2026-10-21] Fail closed on an EDGAR read the run could not complete: a 5.7 record whose
+    submissions document failed (annual_from_instance.checked false, sector_model.sic_unavailable) or whose instance
+    check stopped on a failure a rerun can clear (annual_from_instance.incomplete: a fetch error other than a 404, the
+    module import, the cache write) is refused — such a run silently lost its newest fiscal year, filer_annual_form
+    (and with it R2's bridge obligation and the ADS gate) and its SIC. Older output rebuilds unchanged (D1)."""
     rec = n.get("annual_from_instance")
+    if is_57_run(n):
+        sm = n.get("sector_model") if isinstance(n.get("sector_model"), dict) else {}
+        why = (((rec.get("reason") or "annual_from_instance: the check did not complete")
+                if isinstance(rec, dict) and (rec.get("checked") is False or rec.get("incomplete")) else None)
+               or sm.get("sic_unavailable"))
+        if why:
+            fail(f"the engine run could not complete its EDGAR reads ({why}) — the record may lack the newest fiscal "
+                 "year, the annual form (20-F / 40-F: the ADS and interim-bridge rules) and the SIC; rerun dcf_engine.py "
+                 "when EDGAR answers, then make_score")
     if not isinstance(rec, dict) or not rec.get("applied"):
         return None
     import xbrl_instance as _xi
@@ -4352,18 +4403,22 @@ def validate_interim_declined(j):
     """judgment.json interim_bridge_declined {reason, report} — "no bridge could be built": the 6-K checked and why it
     cannot bridge (no cash-flow statement, a comparative that is not like-for-like, ...). A malformed one (not an
     object, an empty reason, a report that is neither null nor {form, accession, document}) is refused on any release;
-    the reason's number is required by the 5.7 obligation (check_interim_obligation). None when absent."""
+    the reason's number is required by the 5.7 obligation (check_interim_obligation). None when absent.
+    [whole-PR review fix, 2026-10-21] Typed as the refusal says: the reason a string (a bare number or a list was
+    stringified, and 181 alone passed the obligation's "carries a number"), the report null or an object whose form,
+    accession and document are all non-empty strings (accession alone was checked, any type)."""
     d = (j or {}).get(INTERIM_DECLINED_KEY)
     if d is None:
         return None
-    if not isinstance(d, dict) or not str(d.get("reason") or "").strip():
+    if not isinstance(d, dict) or not isinstance(d.get("reason"), str) or not d["reason"].strip():
         fail("judgment.json interim_bridge_declined must be {reason, report}: reason a non-empty string naming the 6-K "
              "checked and why it cannot bridge, with a number; report {form, accession, document} or null")
     rep = d.get("report")
-    if rep is not None and not (isinstance(rep, dict) and str(rep.get("accession") or "").strip()):
+    if rep is not None and not (isinstance(rep, dict) and all(isinstance(rep.get(k), str) and rep[k].strip()
+                                                              for k in ("form", "accession", "document"))):
         fail("judgment.json interim_bridge_declined.report must be null or {form, accession, document} (the interim "
-             "report that was checked)")
-    return {"reason": str(d["reason"]).strip(), "report": rep}
+             "report that was checked), each a non-empty string")
+    return {"reason": d["reason"].strip(), "report": rep}
 
 
 def _interim_obligation_applies(n):
@@ -4784,7 +4839,7 @@ def _ttm_py_override_declared(j, field):
                 and str(o.get("currency") or "").strip().upper() != "USD")
 
 
-def ttm_unavailable_problem(text, n, ticker, rows=None, j=None):
+def ttm_unavailable_problem(text, n, ticker, rows=None, j=None, doc=None):
     """Default Q14: judgment.json ttm_unavailable_reason must BE ttm.py's exit-3 line for this run, verbatim
     (parse_ttm_py_exit3: the head, then whole problems in ttm.py's words joined by "; ", nothing else) — for this
     ticker and CIK; every dated problem about this run's latest FY (no post-FY YTD fact: that FY's end; no prior-year
@@ -4792,7 +4847,11 @@ def ttm_unavailable_problem(text, n, ticker, rows=None, j=None):
     undated problem the record contradicts (review fix 3): "<leg>: no annual (FY) fact" / "capex: no capex facts …"
     while financials_history.csv's latest-FY row (`rows`) holds the leg from a fact ttm.py reads (_ttm_py_filed_leg),
     an override-currency problem while judgment.json (`j`) declares no such override or declares it in USD. Without
-    rows / j those two checks have no evidence and pass. The refusal sentence, or None (pure)."""
+    rows / j those two checks have no evidence and pass. [whole-PR review fix, 2026-10-21] `doc`, the ttm.json on file:
+    built on this run's latest FY, a leg it holds from a filed fact (inputs.<leg>.<part>_period, tag not OVERRIDE)
+    contradicts the problem saying that fact is missing (no_current_ytd / ytd_current, no_prior_ytd / ytd_prior,
+    no_fy / fy) — the stale file beside an unbuildable run proves what ttm.py finds. The refusal sentence, or None
+    (pure)."""
     if not isinstance(text, str) or not text.strip():
         return ("[TTM-UNAV0] judgment.json ttm_unavailable_reason must be a non-empty string — ttm.py's exit-3 message, "
                 f"quoted (got {repr(text)[:60]})")
@@ -4813,7 +4872,27 @@ def ttm_unavailable_problem(text, n, ticker, rows=None, j=None):
     if cik is not None and int(head.group(2)) != cik:
         bad.append(f"CIK {head.group(2)}, not the run's {cik}")
     latest = n.get("latest_period_end")
+    # [whole-PR review fix, 2026-10-21] the ttm.json on file is evidence too: when it is built on this run's latest
+    # FY, a leg it holds from a filed fact (its tag is not OVERRIDE) proves ttm.py found that fact — "no post-FY YTD
+    # fact" beside its ytd_current, "no prior-year YTD fact" beside its ytd_prior, "no annual (FY) fact" beside its fy
+    held = {}
+    if isinstance(doc, dict) and doc.get("fy_end") == latest and isinstance(doc.get("inputs"), dict):
+        filled = set()   # (leg, part) an override filled (ttm.json overrides_used legs_filled): no filed fact
+        for u in doc.get("overrides_used") or []:
+            if isinstance(u, dict) and isinstance(u.get("legs_filled"), dict):
+                lg = {"shares": "shares_diluted"}.get(u.get("field"), u.get("field"))
+                filled |= {(lg, p) for p in u["legs_filled"]}
+        for lg, rec in doc["inputs"].items():
+            if isinstance(rec, dict):
+                held[lg] = {p: rec.get(f"{p}_period") for p in ("fy", "ytd_prior", "ytd_current")
+                            if isinstance(rec.get(f"{p}_period"), list) and len(rec[f"{p}_period"]) == 2
+                            and rec.get(f"{p}_tag") not in (None, "", "OVERRIDE") and (lg, p) not in filled}
     for name, m in hits:
+        part = {"no_current_ytd": "ytd_current", "no_prior_ytd": "ytd_prior", "no_fy": "fy"}.get(name)
+        per = (held.get(m.group(1)) or {}).get(part) if part else None
+        if per:
+            bad.append(f"'{m.group(0)}' cannot be this run's: ttm.json (built on FY {latest}) holds the {m.group(1)} "
+                       f"{part} fact for {per[0]}..{per[1]}")
         if name == "no_current_ytd" and m.group(2) != latest:
             bad.append(f"'{m.group(1)}: no post-FY YTD fact' is about the fiscal year ending {m.group(2)}, not this run's "
                        f"latest FY ({latest})")
@@ -4989,7 +5068,7 @@ def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
     unbuildable = bool(unavail is not None and scope and in_kind and not ttm_pub and not foreign and ttm is not None
                        and ttm["status"] == "fixable" and ttm["kind"] == "ttm")
     if unbuildable:
-        prob = ttm_unavailable_problem(unavail, n, t, rows=rows, j=j)
+        prob = ttm_unavailable_problem(unavail, n, t, rows=rows, j=j, doc=(ttm or {}).get("doc"))
         if prob:
             fail(prob)
     required = bool(scope and in_kind and not ttm_pub and for_run and not unbuildable)
@@ -5026,7 +5105,7 @@ def ttm_rejection_state(folder, n, j, j_sc=None, interim=None, j_over=None):
                      else f"ttm.json holds a TTM for this run (to {ttm['ytd_end']}) — pin it with --ttm or reject it with "
                           "ttm_rejection_reason")
             fail(f"[TTM-UNAV] judgment.json ttm_unavailable_reason is declared but {cause} — remove it")
-        prob = (ttm_unavailable_problem(unavail, n, t, rows=rows, j=j)
+        prob = (ttm_unavailable_problem(unavail, n, t, rows=rows, j=j, doc=(ttm or {}).get("doc"))
                 if no_ttm or not isinstance(unavail, str) or not unavail.strip() else None)
         if prob:
             fail(prob)
@@ -5122,8 +5201,12 @@ def _replay_alternative(ticker, n, kind, ttm=None, required=False):
     if rc != 0 or m is None:
         fail(f"{label} replay failed (exit {rc}) — cannot measure the base alternatives; retry make_score")       # R7-9
     b = _num(m.get("base_oe_per_share"))
-    if b is None:
-        gaps = [str(g) for g in m.get("data_gap") or []]
+    # [whole-PR review fix, 2026-10-21] under --measure the engine skips its exit-4 gate, so a replay with an UNCOVERED
+    # data gap still prints a base and a tier (NTNX's 1000x share-scale base, Tier S); the gap decides, whatever base
+    # it printed — as share_classes_impact reads it — and the entry is not computed (design 11 T11), never a tier
+    unc = [str(g) for g in m.get("data_gap_uncovered") or []]
+    if b is None or unc:
+        gaps = unc or [str(g) for g in m.get("data_gap") or []]
         if gaps:
             return {"computed": False, "measured": True, "note": f"the {label} replay gaps: {', '.join(gaps)}"}
         fail(f"{label} replay produced no base and no data gap (exit 0) — cannot measure the base alternatives; retry "
@@ -7205,7 +7288,7 @@ def main():
     except Exception:
         _tt_now = None
     refuse_superseded_capex_override(n, j_over)               # [ADDITION — WY]
-    refuse_capex_override_software(n, j_over, tt=_tt_now)     # v5.7 placeholder (L9, R9)
+    refuse_capex_override_software(n, j_over)                 # L9 (R9): the FY half; the TTM half after R7's plan
     refuse_unlisted_capex_component(n, j)                     # v5.7 placeholder (L9, R8)
 
     # Override sanity band (round-2): the engine measured each declared
@@ -7343,6 +7426,8 @@ def main():
     declined = validate_interim_declined(j)                    # L4: judgment.json interim_bridge_declined
     plan = ttm_rejection_state(folder, n, j, j_sc=j_sc, interim=interim, j_over=j_over)   # R7
     check_interim_obligation(n, j, interim, plan=plan)         # L4 (R2a)
+    if ttm_capex_legs_priced(n, plan):                         # L9 (R9) x R7: the TTM half, on a ttm.json in use
+        refuse_capex_override_software(n, j_over, tt=_tt_now, fy=False)
 
     # [v5.5 — Codex, PR #31] Overrides ttm.py used to fill the legs of the
     # TTM base this score is pinned to, where the annual engine applied none

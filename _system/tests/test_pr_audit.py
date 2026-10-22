@@ -242,6 +242,88 @@ def test_bulk_rebuild_pr_covers_its_files():
         s.close()
 
 
+LIMIT_STUB = r'''import json, os, sys
+here = os.path.dirname(os.path.abspath(__file__))
+args = sys.argv[1:]
+with open(os.path.join(here, "calls.jsonl"), "a", encoding="utf-8") as f:
+    f.write(json.dumps(args) + "\n")
+cfg = json.load(open(os.path.join(here, "cfg.json"), encoding="utf-8"))
+if args[:2] == ["pr", "list"]:   # honours --state / --limit, newest first, as gh does
+    state = args[args.index("--state") + 1] if "--state" in args else "open"
+    limit = int(args[args.index("--limit") + 1]) if "--limit" in args else 30
+    sys.stdout.write(json.dumps([p for p in cfg["prs"] if state == "all" or p["state"] == state.upper()][:limit]))
+    sys.exit(0)
+if args[:2] == ["pr", "view"]:   # gh's files(first: 100), unpaginated
+    sys.stdout.write(json.dumps({"files": [{"path": p} for p in cfg["files"][:100]]}))
+    sys.exit(0)
+if args[:2] == ["api", "--paginate"]:   # the REST file list, paged to the end
+    sys.stdout.write("".join(p + "\n" for p in cfg["files"]))
+    sys.exit(0)
+sys.exit(1)
+'''
+
+
+def _limit_stub(folder, prs, files=()):
+    os.makedirs(folder, exist_ok=True)
+    with open(os.path.join(folder, "stub.py"), "w", encoding="utf-8") as f:
+        f.write(LIMIT_STUB)
+    with open(os.path.join(folder, "cfg.json"), "w", encoding="utf-8") as f:
+        json.dump({"prs": prs, "files": list(files)}, f)
+    return os.path.join(folder, "stub.py")
+
+
+def test_pr_list_is_never_silently_truncated():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] `gh pr list --state all --limit 1000` returned the newest
+    1000 PRs and said nothing about the rest: AAA's OPEN PR #60, the 1001st newest, was invisible and AAA read
+    MISSING_PR ("cut it now": a duplicate PR). Every PR is listed now (_ops.list_prs: gh pages to PR_LIST_LIMIT), and a
+    list that reaches the limit is truncated — exit 3, never "no PR"."""
+    s = Sweep(tickers=("AAA",))
+    try:
+        s.edit("AAA/analysis.md", "# AAA\nNew generation.\n")
+        prs = [_pr(2000 - i, f"dcf/Z{i:04d}", "MERGED", merged="2026-10-20T12:00:00Z") for i in range(1000)]
+        prs.append(_pr(60, "dcf/AAA", "OPEN"))
+        stub = _limit_stub(os.path.join(s.o.root, "lim"), prs)
+        out = os.path.join(s.o.root, "audit.json")
+        r = H.run("pr_audit.py", "--no-fetch", "--json", out, base=s.c, env={"STOCKS_NOW": NOW.isoformat(),
+                                                                             "STOCKS_GH": stub})
+        assert r.returncode == 0, r.stdout + r.stderr
+        assert _state(json.load(open(out, encoding="utf-8")), "AAA") == "pr_open"
+        r = H.run("pr_audit.py", "--no-fetch", base=s.c, env={"STOCKS_NOW": NOW.isoformat(), "STOCKS_GH": stub,
+                                                              "STOCKS_GH_LIST_LIMIT": "1001"})
+        assert r.returncode == 3 and "the list is truncated" in r.stdout, r.stdout + r.stderr
+    finally:
+        s.close()
+
+
+def test_bulk_pr_file_list_past_100_files():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] `gh pr view --json files` lists 100 files (gh's
+    files(first: 100)): an OPEN rebuild PR over 60 folders (122 files) covered only the first 50, and the other 10
+    folders read MERGED_THEN_CHANGED with "copy main's files back" — reverting the rebuild. With a GitHub slug the REST
+    file list is paged to the end (every folder pr_open); a list at gh pr view's 100 is truncated — exit 3."""
+    tickers = [f"T{i:02d}" for i in range(60)]
+    s = Sweep(tickers=tickers)
+    try:
+        for t in tickers:
+            s.edit(f"{t}/score.json", json.dumps(dict(_pair(t)[1], misfit_notch={"applies": False})))
+        prs = [_pr(500, "rebuild/5.7.0-20261021", "OPEN", created="2026-10-21T10:00:00Z",
+                   title="Rebuild: make_score at release 5.7.0 over 60 folders")]
+        prs += [_pr(100 + i, f"dcf/{t}", "MERGED", created="2026-10-20T09:00:00Z", merged="2026-10-20T12:00:00Z")
+                for i, t in enumerate(tickers)]
+        files = sorted([f"{t}/{n}" for t in tickers for n in ("key_numbers.md", "score.json")]
+                       + ["_system/industry_returns.json", "_system/overrides_registry.json"])
+        stub = _limit_stub(os.path.join(s.o.root, "bulk"), prs, files)
+        out = os.path.join(s.o.root, "audit.json")
+        env = {"STOCKS_NOW": NOW.isoformat(), "STOCKS_GH": stub, "STOCKS_REPO_SLUG": "o/r"}
+        r = H.run("pr_audit.py", "--no-fetch", "--json", out, base=s.c, env=env)
+        assert r.returncode == 0, r.stdout + r.stderr
+        rep = json.load(open(out, encoding="utf-8"))
+        assert sorted(rep["ok"]["pr_open"]) == tickers and rep["findings"] == [], rep["findings"][:3]
+        r = H.run("pr_audit.py", "--no-fetch", base=s.c, env={"STOCKS_NOW": NOW.isoformat(), "STOCKS_GH": stub})
+        assert r.returncode == 3 and "the file list is truncated at 100" in r.stdout, r.stdout + r.stderr
+    finally:
+        s.close()
+
+
 def test_missing_folder():
     s = Sweep(queue=[{"ticker": "AAA", "status": "done", "completed": "2026-10-19", "claimed_at": OLD_CLAIM},
                      {"ticker": "ZZZ", "status": "done", "completed": "2026-10-19"}])

@@ -200,7 +200,7 @@ moat_trend, hold_by_scenario; 2 / null on a record before 5.7). The
 attachment keeps facts and a declared-interim ttm.json (ttm.basis
 "declared_interim", R2a); a legacy quote_check keeps its counts, not its
 list. The history CSV appends tier_by_numbers, tier_notched, the six moat
-columns and moat_trend / hold_years (28 columns; dated files are never
+columns, moat_trend / hold_years and tier_by_numbers_live (29 columns; dated files are never
 rewritten). The builder mtime includes check_quotes.py, facts.py and
 quote_tokens.py (record.quote_check depends on their code). A page whose
 latest engine run is not scored yet keeps every panel, labelled "as scored
@@ -271,7 +271,10 @@ HISTORY_COLUMNS = ("rank", "ticker", "name", "sector_misfit", "tier_scored", "ir
                    "moat_score", "moat_evidence_score", "moat_return_measure", "moat_return_median", "moat_sources",
                    "moat_widest_source",
                    # and the growth hold the moat's direction set (M6, 10 §4)
-                   "moat_trend", "hold_years")
+                   "moat_trend", "hold_years",
+                   # [whole-PR review fix, 2026-10-21] the LIVE numbers tier reprice notched (blank without live data):
+                   # the daily message quotes a live notched name as "<tier_live> (<tier_by_numbers_live> by numbers)"
+                   "tier_by_numbers_live")
 # Split restatement (see the module docstring): dotted paths in the record, `*` = every key / item at that level.
 # SPLIT_DIVIDE holds every per-share figure of the scored run the page shows; SPLIT_MULTIPLY its share counts.
 _IV_KEYS = tuple(f"iv_at_{r}" for r in RATES)
@@ -749,10 +752,31 @@ def live_score_problem(lv, score, numbers):
     if "dcf_content_hash" in sc and sc.get("dcf_content_hash") != s.get("dcf_content_hash"):
         return (f"computed against the score of run {sc.get('dcf_content_hash')!r}, the score on file is run "
                 f"{s.get('dcf_content_hash')!r}")
+    # v5.7 [whole-PR review fix, 2026-10-21] the notch reprice computed the live tier under: scored.tier_after_notch
+    # (None when the score was not notch-eligible) against what reprice.live_misfit reads from THIS score — a rebuild
+    # that adds or drops misfit_notch without changing tier_final (a D-tier misfit: D stays D) left the other
+    # computation's live tier shown. A live.json with no such key is live_score_identity_missing's.
+    if "tier_after_notch" in sc and sc.get("tier_after_notch") != expected_scored_notch(s, n):
+        return (f"computed with scored notch {sc.get('tier_after_notch')!r}, the score on file gives "
+                f"{expected_scored_notch(s, n)!r} (misfit_notch {'present' if _d(s.get('misfit_notch')) else 'absent'})")
     return None
 
 
-def live_score_identity_missing(lv, score):
+LIVE_NOTCH_BELOW = {"S": "A", "A": "B", "B": "C", "C": "D"}   # dcf_engine.NOTCH_BELOW (test_misfit_notch_57 pins it)
+
+
+def expected_scored_notch(score, numbers=None):
+    """The scored.tier_after_notch reprice.py writes beside THIS score.json (reprice.live_misfit): the notch of the run's
+    numbers tier when score.json carries misfit_notch on a base other than the payable pin, else None."""
+    s, n = _d(score), _d(numbers)
+    mn = s.get("misfit_notch")
+    if not isinstance(mn, dict) or mn.get("not_applied") == "payable_base":
+        return None
+    t = n.get("tier_by_numbers") or s.get("tier_by_numbers")
+    return LIVE_NOTCH_BELOW.get(t, t)
+
+
+def live_score_identity_missing(lv, score, numbers=None):
     """[Codex review r29 of PR #47, polish review] Why live.json cannot be bound to THIS score.json (None when it can):
     it records no score identity (no scored.dcf_content_hash key: written by the reprice before round 29) beside a
     score.json that carries one. live_shown withholds it, reason live_without_score_identity, right after
@@ -762,8 +786,14 @@ def live_score_identity_missing(lv, score):
     identity and that the next repricing rewrites it; it had been withheld as live_not_from_this_score, whose note says
     it was computed before the current score and that make_score has scored the run since. A recorded null identity
     is a score with no hash, so beside a hashed score it is another score's (live_score_problem); beside a score.json
-    with no dcf_content_hash there is no identity to bind (None)."""
+    with no dcf_content_hash there is no identity to bind (None).
+    v5.7 [whole-PR review fix, 2026-10-21] Likewise a live.json that records no scored.tier_after_notch (written before
+    reprice read the misfit notch) beside a score.json reprice would notch (expected_scored_notch not None): nothing
+    says which notch its live tier was computed under, so it waits for the next repricing too."""
     sc, s = _d(_d(lv).get("scored")), _d(score)
+    if "tier_after_notch" not in sc and expected_scored_notch(s, numbers) is not None:
+        return ("records no misfit notch (scored.tier_after_notch: written before live.json recorded it), the score on "
+                f"file notches its numbers tier to {expected_scored_notch(s, numbers)!r}")
     if "dcf_content_hash" in sc or s.get("dcf_content_hash") is None:
         return None
     return (f"records no score identity (scored.dcf_content_hash: written before live.json recorded it), the score on "
@@ -846,7 +876,7 @@ def live_shown(c):
         return None, {"reason": "live_not_from_this_score", "price": num(lv.get("price")), "price_date": pd,
                       "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
                       "note": LIVE_NOT_FROM_SCORE_NOTE}
-    if _d(c.get("numbers")) and live_score_identity_missing(lv, c.get("score")):
+    if _d(c.get("numbers")) and live_score_identity_missing(lv, c.get("score"), c.get("numbers")):
         # [Codex review r29 of PR #47, polish review] a live.json from before round 29: no score identity to bind
         return None, {"reason": "live_without_score_identity", "price": num(lv.get("price")), "price_date": pd,
                       "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
@@ -1568,7 +1598,10 @@ def trim_record(rec):
     bridge section, and only a handful of foreign records carry one) is KEPT;
     facts (the Declared facts panel, R3 — Andrew reads the attachment on a phone)
     is kept; a legacy (not gated) quote_check keeps its counts, not its untraced
-    list."""
+    list. [whole-PR review fix, 2026-10-21] R9's capitalized-software rows of the
+    dropped capex_provenance stay as numbers.capex_software
+    (capex_software_summary), so the Data tab's "Capitalized software (in
+    capex)" row reaches the attachment."""
     out = {k: v for k, v in rec.items() if k not in ("judgment", "ttm", "statements")}
     ttm = rec.get("ttm")
     if isinstance(ttm, dict) and ttm.get("basis") == "declared_interim":
@@ -1579,8 +1612,24 @@ def trim_record(rec):
     if isinstance(out.get("prices"), dict):
         out["prices"] = {k: v for k, v in out["prices"].items() if k not in ("daily_1y", "sessions_5d")}
     if isinstance(out.get("numbers"), dict):
+        soft = capex_software_summary(out["numbers"].get("capex_provenance"))
         out["numbers"] = {k: v for k, v in out["numbers"].items() if k not in TRIM_NUMBERS_KEYS}
+        if soft:
+            out["numbers"]["capex_software"] = soft
     return out
+
+
+def capex_software_summary(prov):
+    """[whole-PR review fix, 2026-10-21] R9's capitalized-software rows of numbers.capex_provenance in the attachment's
+    compact shape {FY end: {"software": {tag: value}, "unit": the intangible leg's filed unit}} — the Data tab's
+    "Capitalized software (in capex)" row (app.js capexSoftwareText) — None when no year carries software. The rest of
+    capex_provenance stays out of the attachment."""
+    out = {}
+    for pe, rec in sorted(_d(prov).items()):
+        sw = {t: v for t, v in _d(_d(rec).get("software")).items() if num(v) is not None}
+        if sw:
+            out[pe] = {"software": sw, "unit": _d(rec).get("intangibles_unit") or None}
+    return out or None
 
 
 # ---------------------------------------------------------------- IO
@@ -1737,7 +1786,9 @@ def history_rows(index):
     return's measure and median — inf / -inf for unbounded medians —, the
     declared source count and the widest source, both blank when no scorecard
     is declared, never 0 / none); moat_trend (the engine's, blank before 5.7)
-    and hold_years (engine-recorded, 2 before 5.7) (M6)."""
+    and hold_years (engine-recorded, 2 before 5.7) (M6); tier_by_numbers_live
+    (the live numbers tier reprice notched, blank without live data — whole-PR
+    review fix, 2026-10-21: the scored tier_by_numbers is not the live one)."""
     out = []
     for i, r in enumerate(sorted(index, key=history_key), 1):
         live = num(r.get("price_live")) is not None and num(r.get("irr_live")) is not None
@@ -1760,7 +1811,8 @@ def history_rows(index):
                     _csv_moat_median(me) if me else "",
                     _csv_int(me.get("sources")) if isinstance(me.get("sources"), int) else "",
                     _csv_str(me.get("widest")) if me.get("sources") is not None else "",
-                    _csv_str(me.get("fade_trend")), _csv_int(hold) if hold is not None else ""])
+                    _csv_str(me.get("fade_trend")), _csv_int(hold) if hold is not None else "",
+                    _csv_str(_tier(r.get("tier_by_numbers_live"))) if live else ""])
     return out
 
 

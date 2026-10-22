@@ -2460,6 +2460,57 @@ test('[L6 review r1, lane default Q11 (a)] every panel read from the newer engin
   assert.ok(App.renderOverview(older).includes('IRR at $50.00 for each case, against the 15% hurdle.') && App.renderForecastDCF(older).includes('IRR at $50.00</th>'), 'own page: the old sentences');
 });
 
+test('[whole-PR review fix, 2026-10-21] the rulings renderers: a mismatched IPR&D-withheld run is labelled; the live notch follows a superseded override; the judged tier is named; a scored reason is quoted as scored; per-ADS bridge units; R9 software in the attachment; the SIC set-aside', () => {
+  // (1) live_shown checks iprd_share_count_unverified before score_not_from_this_run: score_from_run.matches decides too
+  const ip = rec({ forecast: { hold_years: 2 } });
+  ip.numbers.base_oe_per_share = 3.5; ip.numbers.base_source = 'ttm_json';
+  ip.live = null; ip.live_withheld = { reason: 'iprd_share_count_unverified', price: null, price_date: null, scored_date: '2026-10-14', method: null, note: 'x' };
+  ip.score_from_run = { matches: false, mismatches: ['dcf_content_hash a vs run content_hash b'] };
+  assert.equal(App.scoreIsRunsVerdict(ip), false);
+  assert.ok(App.renderForecastDCF(ip).includes('latest run, not scored yet') && App.renderForecastDCF(ip).includes('base $3.50/share'), 'the paths with the run\'s own base, labelled');
+  const ipOwn = clone(ip); ipOwn.score_from_run = { matches: true, mismatches: [] };
+  assert.equal(App.scoreIsRunsVerdict(ipOwn), true, 'the same withheld reason beside the run\'s own score: no label');
+  // (2) a judgment override below the notch that reprice superseded: never "lowered ... by judgment" live
+  const down = { score: { tier_final: 'D', tier_override_reason: 'test: further down (9%)' }, row: { tier: 'D', tier_override: true } };
+  const sup = rec(RULINGS.notch, down, { live: clone(synthetic.live) }, RULINGS.live_notch, { live: { override_active: true, override_superseded: true } });
+  const supLine = App.notchLineHTML(sup);
+  assert.ok(supLine.includes('Live B — A by numbers at the last close, one notch lower (the D judgment override gave way when the numbers tier moved)') && !supLine.includes('by judgment (“'), supLine);
+  assert.ok(supLine.includes('Scored: B → C, published D by judgment.'), supLine);
+  const kept = rec(RULINGS.notch, down, { live: clone(synthetic.live) }, RULINGS.live_notch,
+    { live: { tier: 'D', tier_display: 'D', tier_by_numbers: 'B', override_active: true, override_superseded: false, misfit_notch: { tier_by_numbers: 'B', tier_after_notch: 'C', applies: true, basis: 'score_json' } } });
+  assert.ok(App.notchLineHTML(kept).includes('then lowered to D by judgment (“test: further down (9%)”)'), App.notchLineHTML(kept));
+  assert.ok(App.renderHeader(kept).includes('title="Live tier at the last close — B by numbers, one notch lower (sector misfit), then lowered to D by judgment"'), 'live tile');
+  // (3) the scored page: the tile and the Data tab name the judged tier, never "published C" beside a D
+  const nolive = rec(RULINGS.notch, down);
+  assert.ok(App.renderHeader(nolive).includes('title="Scored tier — B by numbers, one notch lower (sector misfit), then lowered to D by judgment"'), App.renderHeader(nolive));
+  assert.ok(App.notchDataText(nolive).startsWith('numbers B → notched C → published D by judgment (auto reason (make_score))'), App.notchDataText(nolive));
+  assert.ok(App.notchDataText(NOTCHED()).startsWith('numbers B → published C (auto reason (make_score))'), 'no judgment: as before');
+  // (4) live not notched (live numbers D) beside a scored notch B -> C: the reason is the scored one, said so
+  const ln = rec(RULINGS.notch, { live: clone(synthetic.live) }, RULINGS.live_notch,
+    { live: { tier: 'D', tier_display: 'D', tier_by_numbers: 'D', misfit_notch: { tier_by_numbers: 'D', tier_after_notch: 'D', applies: false, basis: 'score_json' } } });
+  const lnLine = App.notchLineHTML(ln);
+  assert.ok(lnLine.includes('Sector misfit — not notched at the last close:</b> As scored: “Sector misfit') && lnLine.includes('Scored: B → C.'), lnLine);
+  assert.ok(App.notchChip(ln).includes('title="As scored: Sector misfit'), App.notchChip(ln));
+  assert.ok(!App.notchLineHTML(NOTCHED()).includes('As scored:'), 'the scored page quotes its own reason plainly');
+  // (5) a declared 6-K bridge at an ADS ratio of 2: per-ADS figures say /ADS, as the TTM sentence does
+  const ads = rec(RULINGS.interim); ads.live = null; ads.live_withheld = null;
+  ads.ttm = clone(RULINGS.interim.ttm); ads.ttm.ads_ratio = 2;
+  const ib = App.renderInterimBridge(ads);
+  assert.ok(/<\/b>\/ADS \(scored\)/.test(ib) && ib.includes('Bridged base / ADS') && ib.includes('Annual-median base / ADS'), between(ib, 'Shares:', '</p>'));
+  assert.ok(App.interimBaseNoteHTML(ads).includes('</b>/ADS') && App.interimBaseNoteHTML(ads).includes('/ADS, measured'), App.interimBaseNoteHTML(ads));
+  const one = rec(RULINGS.interim); one.ttm = clone(RULINGS.interim.ttm); one.ttm.ads_ratio = 1;
+  assert.ok(/<\/b>\/sh/.test(App.renderInterimBridge(one)) && !App.renderInterimBridge(one).includes('/ADS'), 'ratio 1: /sh as before');
+  // (6) the attachment copy keeps R9's software rows as numbers.capex_software
+  const att = rec(); delete att.numbers.capex_provenance;
+  att.numbers.capex_software = { '2025-12-31': { software: { PaymentsToDevelopSoftware: 184243000 }, unit: 'USD' } };
+  assert.ok(App.capexSoftwareText(att).includes('PaymentsToDevelopSoftware</span> $184M'), App.capexSoftwareText(att));
+  // (7) score.json misfit_sector_set_aside: the Data tab's Sector model row and the flag say it was set aside
+  const sa = rec({ score: { model_fit: 'modeled', fragility_flags: ['SECTOR_MODEL_MISMATCH: Real Estate sector — OE/capex DCF fits real estate names poorly; grade confidence low'],
+    misfit_sector_set_aside: { sector: 'Real Estate', sic: '8200', sic_description: 'Services-Educational Services', sic_source: 'fundamentals.json', source: 'folder_sic', reason: 'EDGAR SIC 8200 Services-Educational Services lies outside finance / insurance / real estate (6000-6799)' } } });
+  assert.ok(App.sectorModelText(sa).startsWith('modeled — misfit sector Real Estate set aside by EDGAR SIC 8200: “EDGAR SIC 8200'), App.sectorModelText(sa));
+  assert.ok(App.flagLinkHTML('SECTOR_MODEL_MISMATCH', sa).includes('set aside by EDGAR SIC 8200 (scored as modeled)'), App.flagLinkHTML('SECTOR_MODEL_MISMATCH', sa));
+});
+
 test('[rebase B16] REGISTRY_TEXT covers every event make_score declares (or lists it as generic on purpose)', () => {
   const src = fs.readFileSync(path.join(BASE, '_system', 'make_score.py'), 'utf8');
   const block = src.slice(src.indexOf('_EVENT_DECLARATION = {'), src.indexOf('}', src.indexOf('base_alternatives": (', src.indexOf('_EVENT_DECLARATION = {'))) + 1);

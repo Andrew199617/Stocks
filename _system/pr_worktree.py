@@ -12,7 +12,7 @@ Usage:
   pr_worktree.py acquire <T> --holder ID --kind pass1|rescore|pass2|review-fix|rebuild [--ttl-hours 3]
   pr_worktree.py acquire --bulk REPORT.json --holder ID [--ttl-hours 6]  # every rebuilt in-sync ticker of a report
   pr_worktree.py renew <T> --holder ID [--ttl-hours 3]
-  pr_worktree.py prepare <T> --holder ID [--no-fetch]  |  prepare --bulk BRANCH [--holder ID] [--no-fetch]
+  pr_worktree.py prepare <T> --holder ID [--no-fetch]  |  prepare --bulk BRANCH [--holder ID] [--no-fetch] [--exclude T,T]
   pr_worktree.py open <T> --holder ID --body-file PATH [--trailer LINE]...  |  open --bulk BRANCH [--holder ID] ...
   pr_worktree.py push <T> --holder ID -m MSG [--trailer LINE]...   # review rounds
   pr_worktree.py restack <T> --holder ID [--trailer LINE]...
@@ -438,17 +438,11 @@ def _take(t, holder, kind, ttl, now, bulk=None):
 
 def _open_pr_for(repo, t):
     import pr_audit
-    slug = _ops.repo_slug(repo)
-    args = ["pr", "list", "--state", "open", "--limit", "200", "--json", "number,headRefName,title,url,state,createdAt"]
-    if slug:
-        args[2:2] = ["--repo", slug]
-    rc, out, err = _ops.gh(*args)
-    if rc != 0:
-        env_fail(f"gh pr list failed ({(err or out).strip()[:200]})")
-    try:
-        prs = json.loads(out)
-    except ValueError:
-        env_fail("gh pr list printed no JSON")
+    # [whole-PR review fix, 2026-10-21] every open PR, paged to the end (_ops.list_prs): a fixed --limit 200 missed an
+    # older open PR ("no open PR for <T>"); a truncated list is an environment failure, never "no PR"
+    prs, err = _ops.list_prs(repo, "open")
+    if err:
+        env_fail(err)
     mine = [p for p in prs if pr_audit.pr_belongs(p, t) and str(p.get("headRefName", "")).startswith("dcf/")]
     return mine[0] if mine else None
 
@@ -869,7 +863,7 @@ def _check_code_is_main(wt, origin_sha):
         env_fail(preflight.first_line(rep))
 
 
-def do_prepare(tickers, kind, wt, no_fetch=False, bulk=False):
+def do_prepare(tickers, kind, wt, no_fetch=False, bulk=None):
     rep = preflight.check(base=base(), fetch=not no_fetch)
     if rep["exit"] == 1:
         refuse(f"{preflight.first_line(rep)} — the sweep tree must run origin/main's method before a PR is cut")
@@ -886,7 +880,19 @@ def do_prepare(tickers, kind, wt, no_fetch=False, bulk=False):
         with open(mpath, "w", encoding="utf-8") as f:
             f.write(mtxt if mtxt is not None else '{"entries": []}')
         keys, _ = _score_keys_and_registry_problems(wt, {})
-        per = [prepare_one(wt, t, kind, origin_sha, keys) for t in tickers]
+        per = []
+        for t in tickers:
+            try:
+                per.append(prepare_one(wt, t, kind, origin_sha, keys))
+            except Stop as e:
+                # [whole-PR review fix, 2026-10-21] every refusal names its ticker, and a bulk set names the way out
+                msg = str(e)
+                if not msg.startswith(f"pr_worktree: {t}"):
+                    msg = msg.replace("pr_worktree: ", f"pr_worktree: {t}: ", 1)
+                if bulk:
+                    msg += (f" — to publish the rest of the set without {t}: pr_worktree.py prepare --bulk {bulk} "
+                            f"--exclude {t}")
+                raise Stop(msg, e.code)
         _, problems = _score_keys_and_registry_problems(
             wt, {"origin": mpath, "worktree": os.path.join(wt, *REGISTRY_REL.split("/"))})
     finally:
@@ -924,14 +930,45 @@ def _industry_line(info):
             "daily cron and rebuild_scores.py rebuild it)")
 
 
-def cmd_prepare(t=None, bulk=None, holder=None, no_fetch=False, quiet=False):
+def exclude_from_bulk(bulk, man, exclude, holder):
+    """[whole-PR review fix, 2026-10-21] Drop tickers from a bulk set before it is opened: their locks are released,
+    the manifest lists the rest, and the worktree is reset to its base (prepare re-copies and re-scores every folder
+    left, so nothing a refused folder's earlier prepare wrote survives). Refused once the PR is open (push a review
+    round instead) or when nothing would be left."""
+    drop = sorted({norm_ticker(x) for x in exclude})
+    unknown = [x for x in drop if x not in man["tickers"]]
+    if unknown:
+        refuse(f"--exclude {', '.join(unknown)}: not in bulk set {bulk} ({len(man['tickers'])} tickers)")
+    if man.get("pr_number"):
+        refuse(f"bulk set {bulk} is already open as PR #{man['pr_number']} — --exclude applies before open only")
+    keep = [x for x in man["tickers"] if x not in drop]
+    if not keep:
+        refuse(f"--exclude would leave bulk set {bulk} empty — release it instead")
+    for x in drop:
+        lk = require_lock(x, holder or man.get("holder"))
+        drop_lock(x, lk)
+    wt = man["worktree"]
+    git_ok(wt, "reset", "--quiet", "--hard", "HEAD", what="git reset --hard (bulk --exclude)")
+    git_ok(wt, "clean", "-fdq", what="git clean (bulk --exclude)")
+    man.update(tickers=keep, prepared=None, excluded=sorted(set(man.get("excluded") or []) | set(drop)))
+    _ops.write_json_atomic(bulk_manifest(bulk), man)
+    print(f"pr_worktree: bulk {bulk} — excluded {', '.join(drop)} (locks released); {len(keep)} tickers left")
+    return man
+
+
+def cmd_prepare(t=None, bulk=None, holder=None, no_fetch=False, quiet=False, exclude=None):
+    if exclude and not bulk:
+        raise Stop("pr_worktree: --exclude applies to prepare --bulk BRANCH only", 2)
     if bulk:
         man = _ops.load_json(bulk_manifest(bulk))
         if not man:
             refuse(f"no bulk set {bulk} — acquire --bulk first")
+        if exclude:
+            man = exclude_from_bulk(bulk, man, exclude, holder)
         for x in man["tickers"]:
             require_lock(x, holder or man.get("holder"))
-        prepared = do_prepare(man["tickers"], "rebuild", man["worktree"], no_fetch, bulk=True)
+        # bulk: the branch name (truthy), so a folder's refusal names the --exclude way out
+        prepared = do_prepare(man["tickers"], "rebuild", man["worktree"], no_fetch, bulk=bulk)
         man["prepared"] = prepared
         _ops.write_json_atomic(bulk_manifest(bulk), man)
         print(f"pr_worktree: bulk {bulk} prepared at origin/main {prepared['origin_sha'][:7]} — {len(man['tickers'])} "
@@ -1010,6 +1047,15 @@ def mechanics(prepared, tickers, wt):
         lines.append("- score built from its run: " + ("every folder" if all(r["score_from_run"] for r in rows) else
                                                        ", ".join(r["ticker"] for r in rows if not r["score_from_run"])
                                                        + " NOT"))
+        # [whole-PR review fix, 2026-10-21] AGENTS.md check 6 binds a rebuild/* PR like a company PR: every folder whose
+        # run predates main's release says so in the exact words, and every folder names its score.dcf_content_hash
+        # and "score built from this run"
+        for r in rows:
+            s = r.get("stale_release")
+            lines.append(f"- {r['ticker']}: score.dcf_content_hash {(r.get('dcf_content_hash') or 'none')[:12]} · score "
+                         "built from this run: " + ("yes" if r.get("score_from_run") else f"no — {r.get('score_mismatch')}")
+                         + (f" · the engine output predates release {s['main']} (run {s['run']}): rebuilt by make_score"
+                            f" at {s['main']}, alert gates closed by the stale-release rule" if s else ""))
         lines.append("- Registry: only these tickers' entries change")
     if "industry_file" in prepared:
         lines.append(f"- industry_returns.json: {_industry_line(prepared['industry_file'])}")
@@ -1246,12 +1292,23 @@ def cmd_restack(t, holder, extra_trailers):
     ctx = Ctx(t, None, holder)
     rec, tickers, wt, kind = ctx.rec, ctx.tickers, ctx.wt, ctx.kind
     repo = repo_of_base()
-    old_base = rec.get("base_sha")
     sha = fetch_main(repo)
+    # [whole-PR review fix, 2026-10-21] the PR's appended backlog block is measured from the branch's OWN base — the
+    # merge-base of HEAD and origin/main — not the lock's base_sha: a review-fix acquire records origin/main at acquire
+    # time, so once main's backlog had moved the worktree file no longer started with that text, the block came back
+    # empty and the reset + force-push dropped the PR's entry with a success line. A worktree backlog that does not
+    # start with its base's text is refused, never read as "nothing appended".
+    rc_mb, mb, _ = _ops.git(wt, "merge-base", "HEAD", sha)
+    old_base = mb.strip() if rc_mb == 0 and mb.strip() else rec.get("base_sha")
     branch = rec["branch"]
     bl = os.path.join(wt, *BACKLOG_REL.split("/"))
     cur_text = open(bl, encoding="utf-8").read() if os.path.isfile(bl) else ""
-    block = _appended_block(_ops.show(wt, old_base, BACKLOG_REL) if old_base else "", cur_text) or ""
+    base_text = (_ops.show(wt, old_base, BACKLOG_REL) or "") if old_base else ""
+    block = _appended_block(base_text, cur_text)
+    if block is None:
+        refuse(f"{BACKLOG_REL} in the worktree does not start with its base's text ({str(old_base)[:12]}, the merge-base "
+               "of the branch and origin/main) — the PR's appended block cannot be found, so restack would drop it; "
+               "restore the file to main's text plus the PR's appended lines, then restack")
     rc, remote_sha, _ = _ops.git(wt, "rev-parse", "--verify", "--quiet", f"refs/remotes/origin/{branch}")
     git_ok(wt, "reset", "--quiet", "--hard", sha, what="git reset --hard origin/main")
     mapping = {}
@@ -1357,15 +1414,11 @@ def cmd_reap(as_json):
             if cur and same_lease(cur, lk) and not is_live(cur, now) and reap_lock(t, cur):
                 reaped.append(t)
     live_wts = {os.path.normcase(os.path.abspath(lk.get("worktree") or "")) for lk in _locks() if is_live(lk, now)}
-    slug = _ops.repo_slug(repo)
-    args = ["pr", "list", "--state", "all", "--limit", "1000", "--json", "number,headRefName,headRefOid,state,createdAt,url"]
-    if slug:
-        args[2:2] = ["--repo", slug]
-    rc, out, err = _ops.gh(*args)
-    if rc != 0:
-        env_fail(f"gh pr list failed ({(err or out).strip()[:200]})")
+    prs, err = _ops.list_prs(repo, "all")   # [whole-PR review fix] every PR, paged (no fixed --limit)
+    if err:
+        env_fail(err)
     try:
-        heads = prs_by_head(json.loads(out))
+        heads = prs_by_head(prs)
     except (ValueError, AttributeError, TypeError):
         env_fail("gh pr list printed no JSON")
     for p in _worktrees():
@@ -1458,6 +1511,7 @@ def build_parser():
     p.add_argument("--bulk")
     p.add_argument("--holder")
     p.add_argument("--no-fetch", action="store_true")
+    p.add_argument("--exclude", help="T,T: drop these tickers from a bulk set before it is opened")
     o = sub.add_parser("open")
     o.add_argument("ticker", nargs="?")
     o.add_argument("--bulk")
@@ -1521,7 +1575,8 @@ def main(argv=None):
                 raise Stop(f"pr_worktree: {a.cmd} <T> needs --holder <your agent id> (the lock's holder; PR_PROTOCOL.md "
                            "section 3) — only the agent holding the lock works in its worktree", 2)
             if a.cmd == "prepare":
-                return cmd_prepare(a.ticker, a.bulk, a.holder, a.no_fetch)
+                return cmd_prepare(a.ticker, a.bulk, a.holder, a.no_fetch,
+                                   exclude=[x for x in (a.exclude or "").split(",") if x.strip()] or None)
             return cmd_open(a.ticker, a.bulk, a.body_file, a.holder, a.trailer)
         if a.cmd == "push":
             return cmd_push(a.ticker, a.message, a.holder, a.trailer)

@@ -385,6 +385,23 @@ def test_trim_record_drops_engine_provenance():
     assert rec["numbers"] is numbers and len(numbers) == 7  # the site record is not modified
 
 
+def test_trim_record_keeps_r9_software_rows():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] The attachment dropped R9's "Capitalized software (in capex)"
+    Data-tab row with capex_provenance and said nothing (Andrew reads the attachment on a phone). trim_record keeps the
+    software rows as numbers.capex_software {FY: {software, unit}} — only the years that carry software — and the rest
+    of capex_provenance stays out."""
+    prov = {"2023-12-31": {"ppe_source": "rollup", "ppe": {"PaymentsToAcquirePropertyPlantAndEquipment": 5e7}},
+            "2024-12-31": {"ppe_source": "rollup", "intangibles_unit": "USD", "software": {"PaymentsForSoftware": 12e6}},
+            "2025-12-31": {"ppe_source": "rollup", "intangibles_unit": "EUR",
+                           "software": {"PaymentsForDevelopmentProjectExpenditure": 3e6, "bad": "x"}}}
+    out = B.trim_record({"ticker": "TST", "numbers": {"capex_provenance": prov}})
+    assert out["numbers"] == {"capex_software": {
+        "2024-12-31": {"software": {"PaymentsForSoftware": 12e6}, "unit": "USD"},
+        "2025-12-31": {"software": {"PaymentsForDevelopmentProjectExpenditure": 3e6}, "unit": "EUR"}}}, out["numbers"]
+    out = B.trim_record({"ticker": "TST", "numbers": {"capex_provenance": {"2025-12-31": prov["2023-12-31"]}}})
+    assert out["numbers"] == {}, out["numbers"]
+
+
 def test_attachment_prerendered():
     node = shutil.which("node") or ("/usr/bin/node" if os.path.isfile("/usr/bin/node") else None)
     shell = os.path.join(BASE, "_daily", "site")
@@ -1713,7 +1730,7 @@ def test_misfit_notch_row_fields_and_the_new_tier_override_meaning():
         # the record keeps the whole block (reason, basis) for the page
         assert tb.record("MFA")["score"]["misfit_notch"]["basis"]["sic"] == "6211"
         hdr, body = _read_csv(res["history"][0])[1][0], _read_csv(res["history"][0])[1][1:]
-        assert tuple(hdr) == B.HISTORY_COLUMNS and len(hdr) == 28 and hdr[:18] == list(B.HISTORY_COLUMNS[:18])
+        assert tuple(hdr) == B.HISTORY_COLUMNS and len(hdr) == 29 and hdr[:18] == list(B.HISTORY_COLUMNS[:18])
         assert hdr[18:20] == ["tier_by_numbers", "tier_notched"], hdr
         by = {r[1]: dict(zip(hdr, r)) for r in body}
         assert (by["MFA"]["tier_scored"], by["MFA"]["tier_by_numbers"], by["MFA"]["tier_notched"]) == ("C", "B", "true")
@@ -1728,6 +1745,7 @@ def _bound_live(live, score):
               tier_override_reason=score.get("tier_override_reason") if score.get("tier_final") != score.get("tier_by_numbers") else None)
     if "dcf_content_hash" in score:
         sc["dcf_content_hash"] = score["dcf_content_hash"]
+    sc["tier_after_notch"] = B.expected_scored_notch(score)   # v5.7 [whole-PR review fix]: the notch it was computed under
     return dict(live, score_json_fresh=True, scored=sc)
 
 
@@ -2102,7 +2120,8 @@ def test_history_csv_moat_columns():
     hold_years close the row (blank trend / 2 before 5.7)."""
     cols = list(B.HISTORY_COLUMNS)
     assert cols[cols.index("tier_notched") + 1:] == ["moat_score", "moat_evidence_score", "moat_return_measure", "moat_return_median",
-                                                       "moat_sources", "moat_widest_source", "moat_trend", "hold_years"], cols
+                                                       "moat_sources", "moat_widest_source", "moat_trend", "hold_years",
+                                                       "tier_by_numbers_live"], cols
     base = {"irr": 0.1, "moat": 6.0}
     rows = [dict(base, ticker="U", moat_evidence={"score": 7.123, "measure": "roic", "return_median": None, "return_note": "unbounded_high",
                                                  "sources": 2, "widest": "wide", "fade_trend": "eroding", "hold_years": 0}),
@@ -2138,6 +2157,24 @@ def test_history_csv_moat_columns():
     nop = {"governing": {"measure": "roe", "median": None, "median_note": None}}
     assert B.moat_summary({"moat_evidence": nop})["measure"] is None
     assert B.moat_summary({"moat_evidence": dict(nop, governing={"measure": "roe", "median": None, "median_note": "unbounded_high"})})["measure"] == "roe"
+
+
+def test_history_csv_carries_the_live_numbers_tier():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] The daily message quotes a notched name as "D (C by numbers)"
+    from the history CSV, but for a live row the CSV held only the SCORED numbers tier: a misfit scored B -> C whose
+    live numbers tier is A (reprice notches it to B) read "B (B by numbers)". tier_by_numbers_live (appended last) is
+    the live numbers tier — blank without live data — and the cron reads it for live rows."""
+    cols = list(B.HISTORY_COLUMNS)
+    assert cols[-1] == "tier_by_numbers_live"
+    rows = [{"ticker": "MFA", "irr": 0.12, "tier": "C", "tier_by_numbers": "B", "tier_notched": True, "fit": "misfit",
+             "price_live": 45.0, "irr_live": 0.21, "tier_live": "B", "tier_by_numbers_live": "A"},
+            {"ticker": "OLD", "irr": 0.12, "tier": "C", "tier_by_numbers": "B", "tier_notched": True, "fit": "misfit"}]
+    out = {r[1]: dict(zip(cols, r)) for r in B.history_rows(rows)}
+    assert (out["MFA"]["tier_live"], out["MFA"]["tier_by_numbers_live"], out["MFA"]["tier_by_numbers"]) == ("B", "A", "B")
+    assert out["OLD"]["tier_by_numbers_live"] == "" and out["OLD"]["tier_live"] == ""
+    cron = os.path.join(BASE, "automation", "crons", "daily", "dcf-daily-ranking__daily@19-07-00_user_current.md")
+    with open(cron, encoding="utf-8") as f:
+        assert "tier_by_numbers_live" in f.read()
 
 
 def test_history_csv_moat_sources_blank_vs_zero():

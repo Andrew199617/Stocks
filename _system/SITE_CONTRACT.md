@@ -384,7 +384,9 @@ Records embedded in the attachment drop `judgment`, `ttm` (except a declared 6-K
 `prices.sessions_5d`,
 `numbers.used_tags` and engine 5.5's per-period provenance records `numbers.capex_provenance`, `numbers.sbc_provenance`
 and `numbers.share_basis` (`build_site.TRIM_NUMBERS_KEYS`; the site record keeps them); everything else is kept.
-Engine 5.7: `facts` is kept. It feeds the Declared facts panel, about 10 KB for a 24-fact declaration. A quote check
+Engine 5.7: R9's capitalized-software rows of the dropped `capex_provenance` are kept as `numbers.capex_software`
+{FY end: {software: {tag: value}, unit}} (`build_site.capex_software_summary`), which the Data tab's "Capitalized
+software (in capex)" row reads when `capex_provenance` is absent (whole-PR review fix, 2026-10-21). `facts` is kept. It feeds the Declared facts panel, about 10 KB for a 24-fact declaration. A quote check
 that is not gated (`gated` false: a pre-5.7 run's `legacy` report, or an `error` one) keeps its counts with
 `untraced: []`; the legacy card then says the list is on the site. A gated quote check is kept whole.
 Rows beyond the top N are in `index` but have no record; the app shows
@@ -2025,7 +2027,7 @@ the caches on a fresh clone (Nasdaq only — no SEC requests are needed to show 
   `irr_live` (blank without live data), `band_low_tier` / `band_high_tier` (the live bear / bull tiers when the row has live
   data, else the scored ones), `price` and `price_date` (the last close and its date when live, else the scored price and
   the analysis date), `iv15` (weighted IV at 15%), `upside15_pct` (`upside15_live` when live, else `upside15`; percent),
-  `analysis_date`, `engine_release`, `alert_eligible`, `watchlist`. Engine 5.7 appends ten columns (28 in all;
+  `analysis_date`, `engine_release`, `alert_eligible`, `watchlist`. Engine 5.7 appends eleven columns (29 in all;
   earlier dated files keep their 18 and are never rewritten):
   `tier_by_numbers` (the scored numbers tier) and `tier_notched` (`true` when the sector-misfit notch applies — a
   notched name reads "D (C by numbers)");
@@ -2036,7 +2038,10 @@ the caches on a fresh clone (Nasdaq only — no SEC requests are needed to show 
   `moat_sources` and `moat_widest_source` (blank when no scorecard is declared; `0` / `none` for a declared scorecard
   with no source);
   `moat_trend` (the engine's; blank before 5.7) and `hold_years` (the engine-recorded hold; 2 before 5.7 and on a row
-  with no moat summary; blank when the recorded hold is malformed).
+  with no moat summary; blank when the recorded hold is malformed);
+  `tier_by_numbers_live` (the row's `tier_by_numbers_live`: the live numbers tier reprice.py notched; blank without
+  live data) — a live notched name reads "B (A by numbers)" from `tier_live` and this column, never from the scored
+  `tier_by_numbers` (whole-PR review fix, 2026-10-21).
   Plain values: IRRs as decimals with 6 digits
   (`0.032836`), money and upside with 2 (`220.79`, `-94.95`), no thousands separators, never `-0.000000`; booleans
   `true` / `false`; null as an empty cell. The `--attachment` summary line carries `history N rows -> <path>`;
@@ -2312,7 +2317,12 @@ Andrew's rulings R1-R9 (2026-10-19/20) as the site shows them. Additive to every
   numbers tier, and the site shows live.json's tier. Some make_score rebuilds change the score's identity: one that
   notches a misfit, moves a legacy override reason into `misfit_notch.reason`, or stamps `dcf_content_hash`. Such a
   rebuild withholds the old live.json (`live_not_from_this_score` / `live_without_score_identity`) until
-  `reprice.py --all` rewrites it. So an un-notched live tier is never shown beside a notched score.
+  `reprice.py --all` rewrites it. live.json also binds the notch it was computed under: `scored.tier_after_notch`
+  must equal `build_site.expected_scored_notch` (the notch of the run's numbers tier when score.json carries
+  `misfit_notch` off the payable base, else null), so a rebuild that adds or drops the block without moving
+  `tier_final` (a D-tier misfit stays D) withholds it too (`live_not_from_this_score`), and a live.json with no
+  `tier_after_notch` key beside a notch-eligible score is `live_without_score_identity` (whole-PR review fix,
+  2026-10-21). So an un-notched live tier is never shown beside a notched score.
 - **Weights are read from `moat_evidence`.** Each pillar carries its `weight`. The app holds no copy of
   `moat_scorecard.WEIGHTS`, and a pillar without one shows no weight.
 - **Facts stay in the attachment.** Andrew reads it on a phone, and R3's point is that he can see where a number came
@@ -2333,4 +2343,4 @@ Andrew's rulings R1-R9 (2026-10-19/20) as the site shows them. Additive to every
   read ttm.json. `splitRefs` references the filed traded counts.
 - **Base alternatives (R7).** One table from `score.base_alternatives`, published row first. Its tiers are by
   numbers: the notch acts on the published tier only.
-- **History CSV.** Ten columns are appended after `watchlist` (28 in all). Dated files are never rewritten.
+- **History CSV.** Eleven columns are appended after `watchlist` (29 in all: the eleventh, `tier_by_numbers_live`, was added by the whole-PR review fix of 2026-10-21). Dated files are never rewritten.

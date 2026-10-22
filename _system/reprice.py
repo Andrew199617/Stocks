@@ -240,8 +240,11 @@ basis} (null on a modeled name) and `scored.tier_after_notch`; the BASIS text
 and one_line say so ("numbers B, misfit notch"). Pure use without a score.json
 (tests) reads dcf_engine.misfit_status on the record and the folder_sic given;
 reprice_folder passes none. A rebuild that changes tier_final makes the
-existing live.json mismatch scored.tier_final, so it is withheld until
-`reprice.py --all` rewrites it — run it after every rebuild apply.
+existing live.json mismatch scored.tier_final, and one that adds or drops
+misfit_notch (even with tier_final unchanged — a D-tier misfit) makes it
+mismatch scored.tier_after_notch (build_site.expected_scored_notch; whole-PR
+review fix, 2026-10-21), so it is withheld until `reprice.py --all` rewrites
+it — run it after every rebuild apply.
 """
 import json, math, os, re, sys, datetime, hashlib
 from zoneinfo import ZoneInfo

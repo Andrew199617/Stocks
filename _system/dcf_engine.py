@@ -561,10 +561,10 @@ new worker obligations bind 5.7 runs only; make_score keeps rebuilding output fr
 closed, as for every release change). The items below are written by the lane that builds each one; the scaffold
 (L0) placed the headings, the shared helpers and the call sites, and changed nothing else:
 - (L0, the scaffold, 2026-10-21) ENGINE_RELEASE 5.7.0. edgar_submissions(cik) is the run's one EDGAR submissions
-  fetch per CIK (memoised on success, raises on failure; tests patch it): filer_annual_form and filer_sic read
-  through it — the same document each of them fetched on its own before — and keep their failure results (None /
-  (None, None)). Pure helpers with no caller yet: MISFIT_SECTORS, MISFIT_SIC_RANGES (SIC 6726 BDCs as credit),
-  MISFIT_SIC_LABEL, NOTCH_BELOW, sic_misfit_class, notch_tier, folder_sic (the folder's own fundamentals.json
+  fetch per CIK (memoised — a failure too, re-raised to every reader, so one retry loop per process; tests patch
+  it): filer_annual_form and filer_sic read through it — the same document each of them fetched on its own before
+  — and keep their failure results (None / (None, None)). Pure helpers with no caller yet: MISFIT_SECTORS,
+  MISFIT_SIC_RANGES (SIC 6726 BDCs as credit), MISFIT_SIC_LABEL, NOTCH_BELOW, sic_misfit_class, notch_tier, folder_sic (the folder's own fundamentals.json
   profile.sic, else profile.json about.sic; no network). Stubs placed for their lanes, behaviour-neutral:
   fetch_instance and load_annual_instance (returns the companyfacts unchanged; called right after the CIK fallback),
   TTM_INPUT_OPTIONAL_FIELDS = () (ttm.json keys hashed into ttm_input_hash only when present — none yet, so every
@@ -620,10 +620,12 @@ closed, as for every release change). The items below are written by the lane th
   dcf_numbers.json records annual_from_instance {applied, checked, form, accession, filed, report_date,
   periods_added, companyfacts_latest_annual_end, instance_url, instance_sha256, facts_merged, conflicts,
   facts_sha256, cache, reason} — absent when no candidate exists (every run today but the lagging filers); applied
-  false with the reason when the check failed (submissions unavailable: checked false). Flag ANNUAL_FROM_INSTANCE
-  when a merged fiscal year reaches the history. DCF_NO_INSTANCE=1 disables it. make_score requires the committed
-  file (annual_instance_check). The engine imports xbrl_instance / _stable through _own_module, which puts its own
-  folder on sys.path first (review fix 2026-10-21: under python -P the bare import crashed every lagging filer's
+  false with the reason when the check failed (submissions unavailable: checked false; a failure a rerun can clear —
+  an instance fetch error other than a 404, the module import, the cache write — incomplete true). Flag
+  ANNUAL_FROM_INSTANCE when a merged fiscal year reaches the history. DCF_NO_INSTANCE=1 disables it under --measure
+  only (a writing run ignores it). make_score requires the committed file and refuses a 5.7 record whose check
+  could not complete (annual_instance_check: checked false, incomplete true, sector_model.sic_unavailable). The
+  engine imports xbrl_instance / _stable through _own_module, which puts its own folder on sys.path first (review fix 2026-10-21: under python -P the bare import crashed every lagging filer's
   run); an import or cache write that still fails records applied false. The tag hoist (behaviour-neutral, the
   same list objects in main()):
   ENGINE_OCF_TAGS, ENGINE_SBC_TAGS, ENGINE_SHARES_DILUTED_TAGS, DILUTED_SHARE_TAGS, BASIC_SHARE_TAGS and the derived
@@ -1239,25 +1241,40 @@ def misfit_status(numbers, base=None, ticker=None, sic=None):
       4. the folder SIC in MISFIT_SIC_RANGES -> misfit (basis.source "folder_sic"): the SIC rule applied on a rebuild
          without an engine re-run (OSCR, MOH, CNC, AES);
       5. otherwise modeled (basis None).
+    [whole-PR review fix, 2026-10-21] A 5.7 sector_model with NO SIC (the engine's EDGAR read failed and the folder
+    had no copy then) takes the folder SIC before rules 1-2 decide — as rules 3 and 4 do for older records — so a
+    folder SIC that sets the universe sector aside (Q1 (b)) or names a misfit range reaches it (basis.source
+    "folder_sic"); a recorded SIC is never swapped.
     basis: {source, sector, sic, sic_description, sic_class, sic_source}."""
     n = numbers if isinstance(numbers, dict) else {}
     sm = n.get("sector_model") if isinstance(n.get("sector_model"), dict) else None
+    folder_read = []
+
+    def _folder():
+        if not folder_read:
+            if sic is not None:
+                folder_read.append((tuple(sic) + (None, None, None))[:3])
+            elif base is not None and ticker is not None:
+                folder_read.append(tuple(folder_sic(base, ticker)))
+            else:
+                folder_read.append((None, None, None))
+        return folder_read[0]
     if sm is not None:
-        cur = sector_model_record(sm.get("sector"), sm.get("sic"), sm.get("sic_description"), sm.get("sic_source"))
+        rsic, rdesc, rsrc, src = sm.get("sic"), sm.get("sic_description"), sm.get("sic_source"), "engine_sector_model"
+        if rsic is None or not str(rsic).strip():
+            fs = _folder()
+            if fs[0] is not None and str(fs[0]).strip():
+                rsic, rdesc, rsrc, src = fs[0], fs[1], fs[2], "folder_sic"
+        cur = sector_model_record(sm.get("sector"), rsic, rdesc, rsrc)
         if cur["misfit"]:
-            return "misfit", _misfit_basis("engine_sector_model", cur["sector"] if "sector" in cur["basis"] else None,
+            return "misfit", _misfit_basis(src, cur["sector"] if "sector" in cur["basis"] else None,
                                            cur["sic"], cur["sic_description"], cur["sic_source"])
         if cur["sic"]:
             if not cur["sector_set_aside_by_sic"]:
                 return "modeled", None
-            return "modeled", dict(_misfit_basis("engine_sector_model", cur["sector"], cur["sic"],
+            return "modeled", dict(_misfit_basis(src, cur["sector"], cur["sic"],
                                                  cur["sic_description"], cur["sic_source"]), sector_set_aside_by_sic=True)
-    if sic is not None:
-        fsic, fdesc, fsrc = (tuple(sic) + (None, None, None))[:3]
-    elif base is not None and ticker is not None:
-        fsic, fdesc, fsrc = folder_sic(base, ticker)
-    else:
-        fsic, fdesc, fsrc = None, None, None
+    fsic, fdesc, fsrc = _folder()
     hit = next((str(f) for f in (n.get("fragility_flags") or []) if str(f).startswith("SECTOR_MODEL_MISMATCH")), None)
     if hit is not None:
         m = SECTOR_FLAG_RE.match(hit)
@@ -1742,18 +1759,33 @@ def _override_impact(ticker, price, headline_base, headline_irr):
             "weighted_irr_zero_fill": zi, "weighted_irr_final": fi,
             "basis": "engine-native normalized base (median of last 3 FY) and weighted IRR, DCF run both ways (zero-fill baseline vs with-override); a --base-oe-ps TTM base or a --base-judgment payable base is excluded from both sides — its override effect shows in ttm.py output / make_score's payable_5y impact"}
 
-_submissions_cache = {}   # v5.7 (L0): cik -> the EDGAR submissions JSON this process fetched (successes only)
+_submissions_cache = {}   # v5.7 (L0): cik -> the EDGAR submissions JSON this process fetched, or the failure
 
 
 def edgar_submissions(cik):
-    """v5.7 (L0, 07 §1.2): the filer's EDGAR submissions JSON, fetched once per process per CIK — memoised on
-    success only — and shared by filer_annual_form, filer_sic and (L4) the annual-instance check, so a run makes one
-    submissions fetch, not one per reader. Raises on a failed fetch (get_json's own retries spent): each caller
-    degrades exactly as when it fetched the document itself (filer_annual_form -> None, filer_sic -> (None, None)).
-    Tests patch it (engine55_harness.run_engine)."""
+    """v5.7 (L0, 07 §1.2): the filer's EDGAR submissions JSON, fetched once per process per CIK and shared by
+    filer_annual_form, filer_sic and (L4) the annual-instance check, so a run makes one submissions fetch, not one per
+    reader. Raises on a failed fetch (get_json's own retries spent): each caller degrades exactly as when it fetched
+    the document itself (filer_annual_form -> None, filer_sic -> (None, None), load_annual_instance -> checked false).
+    [whole-PR review fix, 2026-10-21] The failure is memoised too and re-raised to every later reader, so a hanging
+    endpoint costs one retry loop per process (9 attempts — up to 819 s — overran _measure_run's 600 s timeout).
+    submissions_error(cik) reads it back. Tests patch it (engine55_harness.run_engine)."""
     if cik not in _submissions_cache:
-        _submissions_cache[cik] = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
-    return _submissions_cache[cik]
+        try:
+            _submissions_cache[cik] = get_json(f"https://data.sec.gov/submissions/CIK{cik:010d}.json")
+        except Exception as e:
+            _submissions_cache[cik] = e
+    got = _submissions_cache[cik]
+    if isinstance(got, BaseException):
+        raise got
+    return got
+
+
+def submissions_error(cik):
+    """The exception this process's EDGAR submissions fetch for `cik` raised (edgar_submissions memoises it), else
+    None — also None when the fetch was never made, or when a test patched edgar_submissions itself."""
+    got = _submissions_cache.get(cik)
+    return got if isinstance(got, BaseException) else None
 
 
 def filer_sic(cik):
@@ -1765,6 +1797,16 @@ def filer_sic(cik):
         return (str(sub.get("sic") or "") or None), (sub.get("sicDescription") or None)
     except Exception:
         return None, None
+
+
+def sic_read_error(cik):
+    """[whole-PR review fix, 2026-10-21] Why filer_sic gave no code: the text of the EDGAR submissions failure (a second
+    call to the memoised edgar_submissions, so no new fetch), None when the document was read (a filer with no SIC)."""
+    try:
+        edgar_submissions(cik)
+    except Exception as e:
+        return f"EDGAR submissions unavailable: {e}"
+    return None
 
 def filer_annual_form(cik):
     """The filer's most recent annual form (10-K / 20-F / 40-F) from EDGAR
@@ -1889,14 +1931,21 @@ def load_annual_instance(ticker, cik, facts):
     """v5.7 (L4, R2b): (facts, annual_from_instance record | None). main() calls it right after the CIK fallback,
     so every period_series read below sees the merged facts and every rule (FX, capex assembly, SBC reconciliation,
     share hygiene, the gates, the acquired-IPR&D detection) applies to them unchanged. Every failure degrades: the
-    run goes on with companyfacts as before and the record says why (applied false).
-    1. DCF_NO_INSTANCE=1 -> (facts, None) (kill switch; the companyfacts-only counterfactual).
+    run goes on with companyfacts as before and the record says why (applied false). [whole-PR review fix,
+    2026-10-21] A failure that a rerun can clear — the submissions document, the instance fetch (any error but a
+    404), the xbrl_instance import, the cache write — also marks the record incomplete (checked false, or
+    incomplete true): make_score's annual_instance_check refuses a 5.7 run carrying it, so a transient EDGAR error
+    never scores a run that silently lost its newest fiscal year (and, with filer_annual_form null, R2's bridge).
+    1. DCF_NO_INSTANCE=1 WITH --measure -> (facts, None) (kill switch; the companyfacts-only counterfactual). Like
+       DCF_NO_SHARE_CLASSES it is honoured only under --measure: a writing run ignores it (and says so), so no
+       committed record is ever the untraced companyfacts-only run.
     2. edgar_submissions raises -> applied false, checked false, "EDGAR submissions unavailable: <e>".
     3. No candidate (annual_instance_candidate) -> (facts, None): the common case, no new key in dcf_numbers.json.
     4. <T>/annual_instance.json for this accession / CIK / companyfacts latest period whose facts hash to its
        facts_sha256 -> its facts, no download; one that does not hash is refetched (applied false, "does not hash to
        its facts — edited", when the refetch fails).
-    5. Else fetch_instance: none, over INSTANCE_MAX_BYTES, not an XBRL 2.1 instance or unreadable -> applied false.
+    5. Else fetch_instance: none, over INSTANCE_MAX_BYTES, not an XBRL 2.1 instance or unreadable -> applied false
+       (a fetch_instance exception — not a 404 — is incomplete true).
     6. The instance's dei must be the submissions record's: DocumentType == form, DocumentPeriodEndDate within 3 days
        of reportDate, EntityCentralIndexKey == CIK, DocumentFiscalPeriodFocus "FY".
     7. xbrl_instance.annual_facts_after(parsed, companyfacts latest annual end); the instance must carry an
@@ -1904,7 +1953,9 @@ def load_annual_instance(ticker, cik, facts):
     8. Merge (a companyfacts entry is never replaced: xbrl_instance.merge_into_companyfacts); write the cache through
        _stable.write_json_if_changed (never under --measure; `extracted_at` / `extracted_by` volatile); applied true."""
     if os.environ.get("DCF_NO_INSTANCE"):
-        return facts, None
+        if MEASURE:
+            return facts, None
+        print("NOTE: DCF_NO_INSTANCE is honoured only with --measure (a counterfactual replay) — ignored on this run")
     try:
         sub = edgar_submissions(cik)
     except Exception as e:
@@ -1919,17 +1970,20 @@ def load_annual_instance(ticker, cik, facts):
     try:
         _xi = _own_module("xbrl_instance")
     except Exception as e:      # degrade like every other failure (B.2), never crash the run
-        return facts, dict(rec, reason=f"xbrl_instance unavailable: {type(e).__name__}: {e}")
+        return facts, dict(rec, reason=f"xbrl_instance unavailable: {type(e).__name__}: {e}", incomplete=True)
     doc, edited = _instance_cache(ticker, filing, cik, cf_latest, _xi)
     fresh = doc is None
     if fresh:
-        def refused(why):
-            return facts, dict(rec, reason=("annual_instance.json does not hash to its facts — edited; the instance "
-                                            f"could not be refetched ({why})") if edited else why)
+        def refused(why, incomplete=False):
+            out = dict(rec, reason=("annual_instance.json does not hash to its facts — edited; the instance "
+                                    f"could not be refetched ({why})") if edited else why)
+            if incomplete:
+                out["incomplete"] = True
+            return facts, out
         try:
             data, url = fetch_instance(cik, filing)
-        except Exception as e:
-            return refused(f"instance unreadable: {e}")
+        except Exception as e:   # not a 404 (locate_instance raises nothing else): a rerun can clear it
+            return refused(f"instance fetch failed: {type(e).__name__}: {e}", incomplete=True)
         if not data:
             return refused("no XBRL 2.1 instance in the filing folder (inline document only)")
         if len(data) > _xi.INSTANCE_MAX_BYTES:
@@ -1984,7 +2038,7 @@ def load_annual_instance(ticker, cik, facts):
                                                          volatile=("extracted_at", "extracted_by"), indent=1)
         except Exception as e:  # no committed cache -> make_score would refuse the run: degrade here instead
             return facts, dict(rec, reason=f"{ticker}/{INSTANCE_CACHE_NAME} could not be written "
-                                           f"({type(e).__name__}: {e})")
+                                           f"({type(e).__name__}: {e})", incomplete=True)
     rec.update({"applied": True, "instance_url": doc.get("instance_url"), "instance_sha256": doc.get("instance_sha256"),
                 "periods_added": sorted({e["end"] for e in doc["facts"] if e.get("start")}),
                 "facts_merged": n_added, "conflicts": doc.get("conflicts") or [],
@@ -5751,6 +5805,9 @@ def main():
     # per run); offline or on a failed fetch, the folder's own EDGAR-derived copy. The payable scope below uses the
     # EDGAR answer only.
     edgar_sic, edgar_sic_desc = filer_sic(cik)
+    # [whole-PR review fix, 2026-10-21] a failed EDGAR read is recorded (sector_model.sic_unavailable), never silent:
+    # make_score refuses a 5.7 run that could not read its submissions document (annual_instance_check)
+    sic_error = None if edgar_sic else sic_read_error(cik)
     if edgar_sic:
         sic_m, sic_m_desc, sic_m_source = edgar_sic, edgar_sic_desc, "edgar_submissions"
     else:
@@ -7164,6 +7221,8 @@ def main():
     # set here so every exit path (data gap, Tier F, normal) carries it, and hashed with the rest of the record
     sector_u = (uni.get(ticker) or {}).get("sector", "")
     sector_model = sector_model_record(sector_u, sic_m, sic_m_desc, sic_m_source)
+    if sic_error:
+        sector_model["sic_unavailable"] = sic_error
     result["sector_model"] = sector_model
     if annual_instance is not None:
         # v5.7 (L4, R2b): the annual-facts-from-instance record, only when a candidate filing was checked (or the

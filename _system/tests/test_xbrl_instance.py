@@ -181,23 +181,96 @@ def test_facts_sha256_moves_with_a_value():
     assert X.facts_sha256(floats, conflicts) == h
 
 
-def test_locate_instance_returns_the_bytes_url_pair():
+def _patched_edgar(answers):
+    """Patch segments.fetch / get_json (what locate_instance reads through) with {url suffix: bytes | dict |
+    exception}; returns (calls, restore)."""
+    import segments as S
     calls = []
 
-    def fake_locate(cik, filing, cache):
-        calls.append((cik, dict(filing)))
-        return "https://www.sec.gov/Archives/x/a_htm.xml", b"<xbrl/>", "a", "folder", (lambda: []), []
-    saved = X.locate_files
-    X.locate_files = fake_locate
+    def answer(url):
+        calls.append(url)
+        for suffix, a in answers.items():
+            if url.endswith(suffix):
+                if isinstance(a, Exception):
+                    raise a
+                return a
+        raise S.NotFound(url)
+    saved = S.fetch, S.get_json
+    S.fetch = lambda url, timeout=None: answer(url)
+    S.get_json = lambda url: answer(url)
+
+    def restore():
+        S.fetch, S.get_json = saved
+    return calls, restore
+
+
+def test_locate_instance_returns_the_bytes_url_pair():
+    folder = "https://www.sec.gov/Archives/edgar/data/999002/000999900226000381"
+    calls, restore = _patched_edgar({"/a_htm.xml": b"<xbrl/>"})
     try:
         assert X.locate_instance(999002, "0009999002-26-000381", "a.htm", "20-F", "2026-03-31") == (
-            b"<xbrl/>", "https://www.sec.gov/Archives/x/a_htm.xml")
-        assert calls[0][1] == {"accession": "0009999002-26-000381", "primary": "a.htm", "form": "20-F",
-                               "period": "2026-03-31"}
-        X.locate_files = lambda cik, filing, cache: (None, None, "a", "folder", (lambda: []), ["none"])
-        assert X.locate_instance(999002, "0009999002-26-000381", "a.htm") == (None, None)
+            b"<xbrl/>", f"{folder}/a_htm.xml")
+        assert calls == [f"{folder}/a_htm.xml"], calls
     finally:
-        X.locate_files = saved
+        restore()
+    # the guess absent, the index lists the instance under another name
+    calls, restore = _patched_edgar({"/index.json": {"directory": {"item": [{"name": "a.htm"}, {"name": "b_lab.xml"},
+                                                                             {"name": "b.xml"}]}},
+                                     "/b.xml": b"<xbrl/>"})
+    try:
+        assert X.locate_instance(999002, "0009999002-26-000381", "a.htm") == (b"<xbrl/>", f"{folder}/b.xml")
+    finally:
+        restore()
+    # no instance: the guess and every listed candidate 404, or index.json itself 404s
+    for answers in ({"/index.json": {"directory": {"item": [{"name": "a.htm"}]}}}, {}):
+        calls, restore = _patched_edgar(answers)
+        try:
+            assert X.locate_instance(999002, "0009999002-26-000381", "a.htm") == (None, None)
+        finally:
+            restore()
+
+
+def test_locate_instance_raises_on_a_transient_index_failure():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] segments.locate_files turns a failed index.json into an
+    empty listing, so a 503 after the <base>_htm.xml guess 404s came back as (None, None) — "no instance", which the
+    engine recorded as the permanent "inline document only". locate_instance's promise is that a fetch failure other
+    than a 404 raises; it now does, for index.json and for a listed candidate alike."""
+    import urllib.error
+    err = urllib.error.HTTPError("https://www.sec.gov/x/index.json", 503, "Service Unavailable", {}, None)
+    for answers in ({"/index.json": err},
+                    {"/index.json": {"directory": {"item": [{"name": "b.xml"}]}}, "/b.xml": TimeoutError("timed out")}):
+        calls, restore = _patched_edgar(answers)
+        try:
+            try:
+                X.locate_instance(1009001, "0001193125-26-116229", "ccj-20251231.htm", "40-F", "2025-12-31")
+                raise AssertionError(f"no exception after {calls}")
+            except (urllib.error.HTTPError, TimeoutError):
+                pass
+        finally:
+            restore()
+
+
+def test_consistent_duplicates_keep_the_precise_fact():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] One line tagged twice at two precisions is not a conflict
+    (XBRL consistency: equal once rounded to the smaller decimals): CCJ's FY2025 OCF 1,408,432,000 (decimals 0) beside
+    1,408,000,000 (decimals -6) keeps the precise fact — the fallback had refused the year ("no undimensioned annual
+    operating cash flow") — and its capex 333,025,000 beside 333,000,000 merges (the year had merged with capex 0 and
+    a DATA_GAP:capex). Inconsistent values (1,408,432,000 beside 1,409,000,000 at -6), a missing decimals and two
+    different exact (INF) values stay conflicts."""
+    def f(v, d, tag="CashFlowsFromUsedInOperatingActivities"):
+        return {"taxonomy": "ifrs-full", "tag": tag, "unit": "CAD", "start": "2025-01-01", "end": "2025-12-31",
+                "instant": None, "value": v, "decimals": d, "context": "c"}
+    entries, conflicts = X.annual_facts_after({"facts": [f(1408432000, 0), f(1408000000, -6)]}, "2024-12-31")
+    assert conflicts == [] and [(e["val"], e["decimals"]) for e in entries] == [(1408432000, 0)], (entries, conflicts)
+    entries, conflicts = X.annual_facts_after({"facts": [f(333000000, -6, "P"), f(333025000, -3, "P")]}, None)
+    assert conflicts == [] and [(e["val"], e["decimals"]) for e in entries] == [(333025000, -3)], (entries, conflicts)
+    entries, _ = X.annual_facts_after({"facts": [f(0.72, 2, "EPS"), f(0.725, "INF", "EPS")]}, None)
+    assert [(e["val"], e["decimals"]) for e in entries] == [(0.725, "INF")], entries
+    # pair by pair: 0.7249 (decimals 4) is consistent with 0.72 (2) but not with the exact 0.725
+    for pair in ((f(1408432000, 0), f(1409000000, -6)), (f(1408432000, None), f(1408000000, -6)),
+                 (f(5, "INF"), f(6, "INF")), (f(0.7249, 4, "EPS"), f(0.72, 2, "EPS"), f(0.725, "INF", "EPS"))):
+        entries, conflicts = X.annual_facts_after({"facts": list(pair)}, None)
+        assert entries == [] and len(conflicts) == 1, (pair, entries, conflicts)
 
 
 if __name__ == "__main__":

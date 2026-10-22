@@ -643,10 +643,55 @@ def test_annual_instance_file_required():
         "annual_from_instance.facts_sha256) — rerun dcf_engine.py; it is the run's input")
     other = dict(doc, accession="0009990020-26-000999")
     _with(n, files={"TST/annual_instance.json": other}).refused("TST/annual_instance.json is missing or differs")
-    # an applied:false record needs no file and prints nothing
-    off = _numbers(release=E.ENGINE_RELEASE, annual_from_instance={"applied": False, "checked": False, "reason": "x"})
+    # an applied:false record whose check completed (a permanent reason) needs no file and prints nothing
+    off = _numbers(release=E.ENGINE_RELEASE, annual_from_instance={
+        "applied": False, "checked": True, "reason": "no XBRL 2.1 instance in the filing folder (inline document only)"})
     r = _with(off)
     assert r.rc == 0 and "Annual facts for FY" not in r.result["key"]
+
+
+def test_incomplete_edgar_reads_refuse_a_57_run():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] A 5.7 record whose EDGAR reads did not complete is refused
+    (fail closed): the submissions document failed (annual_from_instance checked false — the run then lost the
+    newest fiscal year a committed annual_instance.json holds, filer_annual_form and with it R2's bridge obligation;
+    the review's r08) or the instance check stopped on a failure a rerun can clear (incomplete true: a fetch error
+    other than a 404, r01), or the SIC read failed (sector_model.sic_unavailable, r04). The same records from 5.6
+    rebuild as before (D1)."""
+    from test_make_score_55 import _with
+    need = ("the engine run could not complete its EDGAR reads", "rerun dcf_engine.py when EDGAR answers")
+    sub_fail = {"applied": False, "checked": False, "reason": "EDGAR submissions unavailable: HTTP Error 503"}
+    fetch_fail = {"applied": False, "checked": True, "form": "40-F", "accession": "0001193125-26-116229",
+                  "reason": "instance fetch failed: TimeoutError: timed out", "incomplete": True}
+    sm = {"sector": "Utilities", "sic": None, "sic_description": None, "sic_source": None, "sic_class": None,
+          "misfit": True, "basis": ["sector"], "sector_set_aside_by_sic": False,
+          "sic_unavailable": "EDGAR submissions unavailable: timed out"}
+    for rec, kw, why in ((sub_fail, {}, "EDGAR submissions unavailable: HTTP Error 503"),
+                         (fetch_fail, {}, "instance fetch failed: TimeoutError: timed out"),
+                         (None, {"sector_model": sm}, "EDGAR submissions unavailable: timed out")):
+        fields = dict(kw, **({"annual_from_instance": rec} if rec else {}))
+        _with(_numbers(release=E.ENGINE_RELEASE, **fields)).refused(*need, why)
+        assert _with(_numbers(release="5.6.0", **fields)).rc == 0
+
+
+def test_malformed_interim_declarations_refuse_without_a_traceback():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] check_share_classes_sync's R-10 probe read
+    interim_bridge.legs.shares_diluted.current_interim through .get() on whatever the levels held: a list or a string
+    there crashed make_score with an AttributeError traceback. Now each level is type-checked and the declaration is
+    refused as a declaration ("REFUSED", no traceback). And interim_bridge_declined is typed as its refusal says: a
+    number or a list is not a reason (a bare 181 passed the obligation's "carries a number"), and a report must carry
+    a non-empty form, accession and document."""
+    from test_make_score_55 import _with
+    for legs in ({"shares_diluted": ["oops"]}, {"shares_diluted": "x"}, {"shares_diluted": {"current_interim": "x"}}):
+        r = _with(_numbers(release=E.ENGINE_RELEASE), _judgment(None, interim_bridge={"legs": legs}))
+        assert r.rc == 1 and "REFUSED" in r.err and "Traceback" not in r.err, (legs, r.err[-600:])
+    n = _foreign()
+    for d in ({"reason": 181, "report": None}, {"reason": ["see analysis.md 2026"], "report": None},
+              {"reason": "the H1 6-K (181 days) prints no cash-flow statement", "report": {"accession": 7}},
+              {"reason": "the H1 6-K (181 days) prints no cash-flow statement", "report": {"form": "6-K",
+                                                                                          "accession": ACC}}):
+        r = _with(n, judgment_text=json.dumps(_fj(interim_bridge_declined=d)))
+        r.refused("judgment.json interim_bridge_declined")
+        assert "Traceback" not in r.err, r.err[-600:]
 
 
 # ---------------------------------------------------------------------------

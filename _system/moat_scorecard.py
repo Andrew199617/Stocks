@@ -2777,6 +2777,11 @@ def main(argv=None):
     f = ev.get("fade") or {}
     print(f"fade: {f.get('direction') or 'not measured'} ({f.get('rule')}) -> pass --moat-trend {f.get('trend')} "
           f"(growth hold {f.get('hold_years')} years)")
+    if f.get("rule") == "eroding_rebutted":
+        # [whole-PR review fix, 2026-10-21] the dry run applies the gates, not make_score's reason trace
+        print("fade: that trend assumes make_score's trace accepts the erosion_rebuttal (a number anchored on a cited "
+              "fact or an engine figure, not a restatement of the trend test) — this dry run does not trace reasons; "
+              "if make_score refuses it, fix the rebuttal or drop it and pass --moat-trend eroding")
     cf = "; ".join(_cf_text(c) for c in f.get("counterfactual") or [])
     if cf:
         print(f"fade, on the preliminary run in dcf_numbers.json as it stands (engine --moat-trend "

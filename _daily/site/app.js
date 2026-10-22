@@ -400,16 +400,26 @@ function modelFit(record) {
 function notchView(record) {
   var s = obj(record.score), mn = obj(s.misfit_notch), v = liveView(record), lmn = obj(obj(record.live).misfit_notch);
   if (!Object.keys(mn).length) return modelFit(record) === 'misfit' ? { legacy: true } : null;
-  var live = v.is_live && Object.keys(lmn).length > 0, src = live ? lmn : mn;
+  var live = v.is_live && Object.keys(lmn).length > 0, src = live ? lmn : mn, lv = obj(record.live);
   var tbn = src.tier_by_numbers || null, after = src.tier_after_notch || tbn;
   var base = mn.applies ? mn.tier_after_notch : s.tier_by_numbers, judged = !!(s.tier_final && base && s.tier_final !== base);
+  // [whole-PR review fix, 2026-10-21] live, the judgment override is in force only while reprice keeps it
+  // (override_active, not override_superseded): a superseded one gave way when the numbers tier moved
+  var kept = !live || (lv.override_active === true && lv.override_superseded !== true);
   return { legacy: false, live: live, applies: src.applies === true, tbn: tbn, after: after, published: v.tier,
     scoredTbn: mn.tier_by_numbers || null, scoredAfter: mn.tier_after_notch || null, scoredApplies: mn.applies === true,
+    scoredFinal: s.tier_final || null,
     notApplied: typeof mn.not_applied === 'string' ? mn.not_applied : null,
     reason: typeof mn.reason === 'string' ? mn.reason : '', reasonSource: typeof mn.reason_source === 'string' ? mn.reason_source : null,
-    basisText: notchBasisText(mn.basis), judgedBelow: judged && mn.applies === true,
+    // the scored reason describes the scored notch state; live, it is quoted as the scored one when the states differ
+    reasonIsScored: live && (src.applies === true) !== (mn.applies === true),
+    basisText: notchBasisText(mn.basis), judgedBelow: judged && mn.applies === true && kept,
+    overrideSuperseded: judged && mn.applies === true && live && lv.override_superseded === true,
     judgedReason: judged && typeof s.tier_override_reason === 'string' ? s.tier_override_reason : '' };
 }
+/* [whole-PR review fix, 2026-10-21] ", then lowered to D by judgment" when a judgment override below the notch is in force
+   (plain text; the tier tile's tooltip and the notch line share it). */
+function notchJudgedText(nv) { return nv && nv.judgedBelow ? ', then lowered to ' + nv.published + ' by judgment' : ''; }
 function notchBasisText(b) { // "universe sector Finance · EDGAR SIC 6331 Fire, Marine & Casualty Insurance (insurance carriers)"
   b = obj(b); var parts = [];
   if (b.sector) parts.push('universe sector ' + esc(b.sector));
@@ -420,10 +430,15 @@ function notchBasisText(b) { // "universe sector Finance · EDGAR SIC 6331 Fire,
    false when build_site withheld the live figures because make_score refused that run or has not scored it
    (live_withheld reason score_not_from_this_run / iprd_unresolved). The page then keeps every panel; the ones read from
    score.json say "as scored <date>" and the ones read from the newer run say "latest run, not scored yet" (never
-   "pending" — Andrew, 2026-10-20). iprdNote reads the same test. */
+   "pending" — Andrew, 2026-10-20). iprdNote reads the same test.
+   [whole-PR review fix, 2026-10-21] Also false whenever build_site's own answer, record.score_from_run.matches, is false:
+   a run withheld for another reason first (iprd_share_count_unverified, which live_shown checks before
+   score_not_from_this_run) beside an older score lost every label and paired the new run's paths with the old base. */
 function scoreIsRunsVerdict(record) {
   var w = liveWithheld(record);
-  return !(w && (w.reason === 'score_not_from_this_run' || w.reason === 'iprd_unresolved'));
+  if (w && (w.reason === 'score_not_from_this_run' || w.reason === 'iprd_unresolved')) return false;
+  return !(Object.keys(obj(record.score)).length && Object.keys(obj(record.numbers)).length
+    && obj(record.score_from_run).matches === false);
 }
 function asScoredTag(record) { // ' as scored 2026-10-14' (HTML) on a panel read from score.json when the score is not the latest run's; '' otherwise
   if (scoreIsRunsVerdict(record)) return '';
@@ -534,7 +549,7 @@ function renderHeader(record, stars, repo) {
   // compact header (owner decision, 2026-10-14): tier tile · ticker · name · sector line; the live expected
   // return with the scored figure beside it; the last close with its 1-day change; value @15% with upside.
   var sub, priceTile, ttile, chgS = chg !== null ? ' <small class="' + ((chg || 0) >= 0 ? 'pos' : 'neg') + '">' + fmtPts(chg, 2) + '</small>' : '';
-  var nvh = notchView(record), ntitle = nvh && !nvh.legacy && nvh.applies ? ' — ' + nvh.tbn + ' by numbers, one notch lower (sector misfit)' : ''; // R1
+  var nvh = notchView(record), ntitle = nvh && !nvh.legacy && nvh.applies ? ' — ' + nvh.tbn + ' by numbers, one notch lower (sector misfit)' + notchJudgedText(nvh) : ''; // R1
   var rangeSub = joinNonEmpty([st.last_date && last !== null ? '52-wk ' + fmtMoney(st.low_52w) + '–' + fmtMoney(st.high_52w) : '', ret1y !== null ? '1y ' + fmtPts(ret1y, 0) : ''], ' · ');
   if (v.is_live) {
     sub = 'Scored <b>' + fmtPct(v.scored_irr) + '</b> at ' + fmtMoney(v.scored_price) + ' on ' + esc(v.scored_date) + (v.irr_pp !== null ? ' · ' + fmtPts(v.irr_pp, 1).replace('%', '') + ' pp at the last close' : '');
@@ -923,6 +938,14 @@ function iprdUnit(record) {
   if (r === null) { var a = obj(record.numbers).ads_ratio; r = num(a && typeof a === 'object' ? a.ratio : a); }
   return r !== null && r > 0 && Math.abs(r - 1) >= 1e-12 ? '/ADS' : '/sh';
 }
+/* [whole-PR review fix, 2026-10-21] The unit of a declared 6-K bridge's per-share figures: ttm.py --interim writes
+   ttm_oe_per_share per ADS when its applied ads_ratio is not 1 (and the engine scales the annual median the same way),
+   as the TTM construction sentence says — '/ADS' then, else '/sh'. ttm.json's ratio first, else the run's. */
+function bridgeUnit(record) {
+  var r = num(obj(record.ttm).ads_ratio);
+  if (r === null) { var a = obj(record.numbers).ads_ratio; r = num(a && typeof a === 'object' ? a.ratio : a); }
+  return r !== null && r > 0 && Math.abs(r - 1) >= 1e-12 ? '/ADS' : '/sh';
+}
 function iprdWhere(b) {
   return arr(b.periods).filter(function (p) { return p && num(p.deducted) > 0; }).map(function (p) {
     return (p.window === 'fy' ? 'FY' + esc(String(p.period).slice(0, 4)) : 'YTD ' + esc(p.period)) + ', ' + (p.amount_basis === 'cash_outflow' ? 'cash' : 'expense') + ' basis';
@@ -955,7 +978,7 @@ function notchChip(record) { // the header chip
   var nv = notchView(record);
   if (!nv) return '';
   if (nv.legacy) return '<span class="chip lvchip notchchip" title="Scored before the mechanical sector-misfit notch (2026-10-19); the next make_score rebuild applies it">Sector misfit</span>';
-  var t = nv.reason ? ' title="' + esc(nv.reason) + '"' : '';
+  var t = nv.reason ? ' title="' + esc((nv.reasonIsScored ? 'As scored: ' : '') + nv.reason) + '"' : '';
   if (!nv.applies) return '<span class="chip lvchip notchchip"' + t + '>' + esc(nv.tbn) + ' by numbers' + (nv.live ? ' at last close' : '') + ' · misfit, not notched</span>';
   return '<span class="chip lvchip notchchip"' + t + '>' + esc(nv.tbn) + ' by numbers' + (nv.live ? ' at last close' : '') + ' → ' + esc(nv.after) + ' · sector-misfit notch</span>';
 }
@@ -968,12 +991,15 @@ function notchChipText(nv) { // the verdict card chip (HTML)
 function notchLineHTML(record) { // under the verdict's one-liner: published tier, numbers tier, basis, reason and its source
   var nv = notchView(record); if (!nv || nv.legacy) return '';
   var src = nv.reasonSource ? ' <span class="bdg nsrc">' + esc(REASON_SRC[nv.reasonSource] || nv.reasonSource) + '</span>' : '';
-  var q = nv.reason ? ' “' + esc(nv.reason) + '”' : '', tag = asScoredTag(record);
-  if (!nv.applies) return '<p class="note notchline"><b>Sector misfit — not notched' + (nv.live ? ' at the last close' : '') + ':</b>' + q + src + tag + '</p>';
+  // [whole-PR review fix, 2026-10-21] live, the reason is the SCORED state's: quoted as such when the live state differs
+  var q = nv.reason ? (nv.reasonIsScored ? ' As scored: “' : ' “') + esc(nv.reason) + '”' : '', tag = asScoredTag(record);
+  var scored = nv.live && nv.scoredTbn ? ' <span class="sub">Scored: ' + esc(nv.scoredTbn) + (nv.scoredApplies ? ' → ' + esc(nv.scoredAfter) : ' (not notched)')
+    + (nv.scoredFinal && nv.scoredFinal !== (nv.scoredApplies ? nv.scoredAfter : nv.scoredTbn) ? ', published ' + esc(nv.scoredFinal) + ' by judgment' : '') + '.</span>' : '';
+  if (!nv.applies) return '<p class="note notchline"><b>Sector misfit — not notched' + (nv.live ? ' at the last close' : '') + ':</b>' + q + src + (nv.reasonIsScored ? scored : '') + tag + '</p>';
   var head = nv.live ? 'Live ' + esc(nv.published) + ' — ' + esc(nv.tbn) + ' by numbers at the last close, one notch lower'
                      : 'Published ' + esc(nv.published) + ' — ' + esc(nv.tbn) + ' by numbers, one notch lower';
-  var below = nv.judgedBelow ? ', then lowered to ' + esc(nv.published) + ' by judgment' + (nv.judgedReason ? ' (“' + esc(nv.judgedReason) + '”)' : '') : '';
-  var scored = nv.live && nv.scoredTbn ? ' <span class="sub">Scored: ' + esc(nv.scoredTbn) + ' → ' + esc(nv.scoredAfter) + '.</span>' : '';
+  var below = nv.judgedBelow ? ', then lowered to ' + esc(nv.published) + ' by judgment' + (nv.judgedReason ? ' (“' + esc(nv.judgedReason) + '”)' : '')
+    : nv.overrideSuperseded ? ' (the ' + esc(nv.scoredFinal) + ' judgment override gave way when the numbers tier moved)' : '';
   return '<p class="note notchline"><b>' + head + below + ':</b> sector misfit' + (nv.basisText ? ' (' + nv.basisText + ')' : '') + '.' + q + src + scored + tag + '</p>';
 }
 function rowNotchHTML(row, live) { // "C by numbers" under the tier badge of a notched row (live: the live numbers tier)
@@ -1304,8 +1330,8 @@ function interimBaseNoteHTML(record) {
     var meas = med.measured ? 'measured: weighted IRR ' + fmtPct(pub.weighted_irr, 2) + ' (Tier ' + esc(pub.tier_by_numbers || '—') + ') bridged vs ' + fmtPct(med.weighted_irr, 2) + ' (Tier ' + esc(med.tier_by_numbers || '—') + ') on the median — ' + (med.tier_changed ? 'tier changes' : 'tier unchanged')
       : 'annual-median replay not measured' + (med.note || alts.note ? ' (' + esc(med.note || alts.note) + ')' : '');
     var carried = alts.impact_carried_from_prior_score ? ' (carried from the prior score' + (alts.counterfactual_engine_release ? ', engine ' + esc(alts.counterfactual_engine_release) : '') + ')' : '';
-    var t = esc(obj(record.score).ticker || record.ticker || '');
-    return '<p class="note ibnote">' + (alts.published && alts.published !== 'declared_interim' ? 'Declared 6-K bridge (not the published base: ' + esc(alts.published.replace(/_/g, ' ')) + ' is) ' : 'Bridged base ') + '<b>' + fmtMoney(pub.base_oe_per_share) + '</b>/sh' + est + ' vs the annual-median base ' + fmtMoney(med.base_oe_per_share) + '/sh, ' + meas + carried + '.' + tag + ' <a class="flink" href="#' + t + '.data">Interim bridge on the Data tab</a></p>';
+    var t = esc(obj(record.score).ticker || record.ticker || ''), u = bridgeUnit(record);
+    return '<p class="note ibnote">' + (alts.published && alts.published !== 'declared_interim' ? 'Declared 6-K bridge (not the published base: ' + esc(alts.published.replace(/_/g, ' ')) + ' is) ' : 'Bridged base ') + '<b>' + fmtMoney(pub.base_oe_per_share) + '</b>' + u + est + ' vs the annual-median base ' + fmtMoney(med.base_oe_per_share) + u + ', ' + meas + carried + '.' + tag + ' <a class="flink" href="#' + t + '.data">Interim bridge on the Data tab</a></p>';
   }
   if (Object.keys(dec).length) return '<p class="note ibnote">Interim bridge declined: “' + esc(dec.reason || '') + '”' + (obj(dec.report).accession ? ' (6-K ' + esc(obj(dec.report).accession) + ')' : '') + tag + '</p>';
   return '';
@@ -1347,6 +1373,10 @@ function renderBaseAlternatives(record) {
 /* ---- Data tab rows (renderData) */
 function sectorModelText(record) { // numbers.sector_model (engine 5.7) — or what the score's notch block says about an older run
   var n = obj(record.numbers), sm = obj(n.sector_model), mn = obj(obj(record.score).misfit_notch), tag = latestRunTag(record);
+  // [whole-PR review fix, 2026-10-21] score.json misfit_sector_set_aside (make_score, Q1 (b)): why a name the universe
+  // sector (or an older run's flag) calls a misfit is scored as modeled — EDU, WCN, FN, CSGP, EFX, TRU after 5.7
+  var sa = obj(obj(record.score).misfit_sector_set_aside);
+  if (Object.keys(sa).length) return 'modeled — misfit sector ' + esc(sa.sector || '') + ' set aside' + (sa.sic ? ' by EDGAR SIC ' + esc(sa.sic) : '') + ': “' + esc(sa.reason || '') + '”' + asScoredTag(record);
   if (!Object.keys(sm).length) return 'not recorded by this engine run (below 5.7)' + (obj(mn.basis).source ? '; misfit by ' + esc(String(obj(mn.basis).source).replace(/_/g, ' ')) : '');
   var sic = sm.sic ? 'EDGAR SIC ' + esc(sm.sic) + (sm.sic_description ? ' ' + esc(sm.sic_description) : '') + (MISFIT_CLASS_LABEL[sm.sic_class] ? ' (' + MISFIT_CLASS_LABEL[sm.sic_class] + ')' : '') + (sm.sic_source ? ' <span class="sub">SIC from ' + esc(sm.sic_source) + '</span>' : '') : 'no SIC on record';
   if (sm.misfit) return 'misfit — ' + joinNonEmpty([sm.sector && arr(sm.basis).indexOf('sector') >= 0 ? 'universe sector ' + esc(sm.sector) : '', sic], ' · ') + ' · matched on ' + arr(sm.basis).map(esc).join(' + ') + tag;
@@ -1356,7 +1386,10 @@ function notchDataText(record) {
   var mn = obj(obj(record.score).misfit_notch); if (!Object.keys(mn).length) return '';
   var src = REASON_SRC[mn.reason_source] || mn.reason_source || '';
   if (!mn.applies) return 'not applied (' + esc(mn.not_applied || '') + (NOT_APPLIED[mn.not_applied] ? ': ' + NOT_APPLIED[mn.not_applied] : '') + '): “' + esc(mn.reason || '') + '”' + asScoredTag(record);
-  return 'numbers ' + esc(mn.tier_by_numbers) + ' → published ' + esc(mn.tier_after_notch) + ' (' + esc(src) + '): “' + esc(mn.reason || '') + '”' + asScoredTag(record);
+  // [whole-PR review fix, 2026-10-21] a judgment override below the notch publishes another tier than the notched one
+  var fin = obj(record.score).tier_final, judged = fin && mn.tier_after_notch && fin !== mn.tier_after_notch;
+  return 'numbers ' + esc(mn.tier_by_numbers) + (judged ? ' → notched ' + esc(mn.tier_after_notch) + ' → published ' + esc(fin) + ' by judgment'
+    : ' → published ' + esc(mn.tier_after_notch)) + ' (' + esc(src) + '): “' + esc(mn.reason || '') + '”' + asScoredTag(record);
 }
 function contentHashText(record) { // [rebase B5] the run's hash, and whether score.json was built from it (record.score_from_run)
   var n = obj(record.numbers), s = obj(record.score), sfr = obj(record.score_from_run);
@@ -1388,11 +1421,16 @@ function previousScoreText(record) {
   return esc(p.analysis_date || '') + ', release ' + esc(p.engine_release || '—') + ': tier ' + esc(p.tier_final || '—') + ' (numbers ' + esc(p.tier_by_numbers || '—') + '), weighted IRR ' + fmtPct(p.implied_irr, 2) + ', IV@15% ' + fmtMoney(p.iv_at_15) + ', base ' + fmtMoney(p.base_oe_per_share) + '/sh';
 }
 function capexSoftwareText(record) { // R9: capitalized software the engine charged as capex (numbers.capex_provenance.<FY>.software)
-  var cp = obj(obj(record.numbers).capex_provenance), ends = Object.keys(cp).sort(), parts = [];
+  // [whole-PR review fix, 2026-10-21] the attachment copy drops capex_provenance and keeps numbers.capex_software
+  // ({FY: {software, unit}}, build_site.trim_record), so the line reaches the phone too
+  var n = obj(record.numbers), cp = obj(n.capex_provenance), parts = [];
+  if (!Object.keys(cp).length) cp = obj(n.capex_software);
+  var ends = Object.keys(cp).sort();
   ends.forEach(function (e) {
     var r = obj(cp[e]), sw = obj(r.software), tags = Object.keys(sw);
     if (!tags.length) return;
-    var cur = typeof r.intangibles_unit === 'string' && r.intangibles_unit ? r.intangibles_unit : 'USD';
+    var u = typeof r.intangibles_unit === 'string' ? r.intangibles_unit : r.unit;
+    var cur = typeof u === 'string' && u ? u : 'USD';
     parts.push(esc(e) + ': ' + tags.map(function (t) { return '<span class="mono small">' + esc(t) + '</span> ' + fmtBigCur(sw[t], cur); }).join(' + '));
   });
   return parts.length ? parts.join('<br>') + '<br><span class="sub">Capitalized software / development charged as capex in owner\'s earnings since engine 5.7 (R9, Andrew 2026-10-19) — inside the intangible leg, as filed.</span>' + latestRunTag(record) : '';
@@ -1427,13 +1465,14 @@ function renderInterimBridge(record) {
     var sh = obj(obj(ttm.shares).current_interim);
     // Q11 (a): the legs and shares are ttm.json's (the latest run's); "(scored)" only when the score is that run's verdict
     var own = scoreIsRunsVerdict(record);
-    sharesH = '<p class="note">Shares: ' + fmtCnt(sh.value) + ' current-interim weighted diluted' + mark(sh) + ' × ADS ratio ' + esc(ttm.ads_ratio) + ' → <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share, 4) + '</b>/sh' + (own ? ' (scored)' : '') + (num(obj(ttm.shares).fy_diluted) !== null ? ' · FY diluted ' + fmtCnt(obj(ttm.shares).fy_diluted) : '') + (own ? '' : ' · legs and shares from ttm.json' + latestRunTag(record)) + '</p>';
+    sharesH = '<p class="note">Shares: ' + fmtCnt(sh.value) + ' current-interim weighted diluted' + mark(sh) + ' × ADS ratio ' + esc(ttm.ads_ratio) + ' → <b class="mono">' + fmtMoney(ttm.ttm_oe_per_share, 4) + '</b>' + bridgeUnit(record) + (own ? ' (scored)' : '') + (num(obj(ttm.shares).fy_diluted) !== null ? ' · FY diluted ' + fmtCnt(obj(ttm.shares).fy_diluted) : '') + (own ? '' : ' · legs and shares from ttm.json' + latestRunTag(record)) + '</p>';
     var prov = arr(ttm.provenance).filter(function (p) { return p && typeof p === 'object'; });
     if (prov.length) srcH = '<ul class="qlist ibsrc">' + prov.map(function (p) { var dl = edgarFilingUrl(cik, p.accession, p.document); return '<li><span class="mono">' + esc(p.field) + '</span> ' + esc(String(p.leg || '').replace(/_/g, ' ')) + ' · ' + (dl ? extA(dl, esc(p.document || p.accession)) : esc(p.document || p.accession || '')) + (p.page !== null && p.page !== undefined ? ' p. ' + esc(p.page) : '') + (p.section ? ' · ' + esc(p.section) : '') + (p.verified === 'xbrl_instance' ? ' · XBRL ✓' : '') + (p.snippet ? '<blockquote class="dfq">“' + esc(p.snippet) + '”</blockquote>' : '') + '</li>'; }).join('') + '</ul>';
   } else legsH = '<p class="note">Leg table in the full record — open the site.</p>';
   var pub = obj(baseByKind(s, 'declared_interim')), med = obj(baseByKind(s, 'annual_median'));
-  var tiles = '<div class="tiles">' + tile('Bridged base', fmtMoney(pub.base_oe_per_share), '', 'weighted IRR ' + fmtPct(pub.weighted_irr, 2) + ' · Tier ' + esc(pub.tier_by_numbers || '—'))
-    + tile('Annual-median base', fmtMoney(med.base_oe_per_share), '', (med.measured ? 'weighted IRR ' + fmtPct(med.weighted_irr, 2) + ' · Tier ' + esc(med.tier_by_numbers || '—') : 'not measured') + (num(med.base_change_pct) !== null ? ' · ' + fmtPts(med.base_change_pct, 2) + ' vs bridged' : '')) + '</div>';
+  var bu = bridgeUnit(record) === '/ADS' ? ' / ADS' : ''; // [whole-PR review fix] per-ADS bases say so
+  var tiles = '<div class="tiles">' + tile('Bridged base' + bu, fmtMoney(pub.base_oe_per_share), '', 'weighted IRR ' + fmtPct(pub.weighted_irr, 2) + ' · Tier ' + esc(pub.tier_by_numbers || '—'))
+    + tile('Annual-median base' + bu, fmtMoney(med.base_oe_per_share), '', (med.measured ? 'weighted IRR ' + fmtPct(med.weighted_irr, 2) + ' · Tier ' + esc(med.tier_by_numbers || '—') : 'not measured') + (num(med.base_change_pct) !== null ? ' · ' + fmtPts(med.base_change_pct, 2) + ' vs bridged' : '')) + '</div>';
   var lfl = '<p class="note">Like-for-like: comparative restated: ' + (ib.comparative_restated === true ? 'yes' : ib.comparative_restated === false ? 'no' : '—') + arr(ib.perimeter_changes).filter(function (x) { return x && typeof x === 'object'; }).map(function (pc) { return ' · ' + esc(pc.kind || '') + ' ' + esc(pc.effective_date || '') + (pc.material ? ' · material' : '') + (pc.resolution ? ' · ' + esc(pc.resolution) : ''); }).join('') + (arr(ib.estimate_legs).length ? ' · estimate legs: ' + arr(ib.estimate_legs).map(esc).join(', ') : '') + '</p>';
   return section('Interim bridge', '<div class="card ibcard">' + basis + legsH + sharesH + tiles + lfl + srcH + '</div>', 'The declared 6-K interim bridge (R2a): FY − prior interim + current interim, per leg, each converted at its own period-end rate.');
 }
@@ -1468,7 +1507,11 @@ function registryLine(e) {
 function flagLinkHTML(code, record) {
   var t = String(obj(record.score).ticker || record.ticker || obj(record.row).ticker || ''), out = '';
   if (FLAG_LINKS[code] && t) out += '<a class="flink" href="' + esc(hashFor(t, FLAG_LINKS[code][0])) + '">→ ' + FLAG_LINKS[code][1] + '</a>';
-  if (code === 'SECTOR_MODEL_MISMATCH') { var nv = notchView(record); if (nv && !nv.legacy && nv.scoredApplies) out += ' <span class="sub">→ published one tier below (' + esc(nv.scoredTbn) + ' → ' + esc(nv.scoredAfter) + ')</span>'; }
+  if (code === 'SECTOR_MODEL_MISMATCH') {
+    var nv = notchView(record), sa = obj(obj(record.score).misfit_sector_set_aside);
+    if (nv && !nv.legacy && nv.scoredApplies) out += ' <span class="sub">→ published one tier below (' + esc(nv.scoredTbn) + ' → ' + esc(nv.scoredAfter) + ')</span>';
+    else if (Object.keys(sa).length) out += ' <span class="sub" title="' + esc(sa.reason || '') + '">→ set aside by EDGAR SIC ' + esc(sa.sic || '') + ' (scored as modeled)</span>'; // whole-PR review fix
+  }
   return out;
 }
 /* M6: the growth hold the engine recorded (forecast.hold_years; 2 on a record before 5.7) and the Forecast note.
@@ -3803,7 +3846,7 @@ var API = {
   edgarFilingUrl: edgarFilingUrl, httpsUrl: httpsUrl, renderDeclaredFacts: renderDeclaredFacts, factInlineHTML: factInlineHTML, renderQuoteCheck: renderQuoteCheck,
   baseSourceText: baseSourceText, interimBaseNoteHTML: interimBaseNoteHTML, renderInterimBridge: renderInterimBridge, renderBaseAlternatives: renderBaseAlternatives,
   shareBasisNoteHTML: shareBasisNoteHTML, registryLine: registryLine, REGISTRY_TEXT: REGISTRY_TEXT, REGISTRY_GENERIC: REGISTRY_GENERIC, flagLinkHTML: flagLinkHTML,
-  sectorModelText: sectorModelText, contentHashText: contentHashText, annualInstanceText: annualInstanceText, capexSoftwareText: capexSoftwareText,
+  sectorModelText: sectorModelText, notchDataText: notchDataText, bridgeUnit: bridgeUnit, contentHashText: contentHashText, annualInstanceText: annualInstanceText, capexSoftwareText: capexSoftwareText,
   KIND_LABEL: KIND_LABEL, PILLAR_ORDER: PILLAR_ORDER, DFACT_KINDS: DFACT_KINDS,
   renderOverrides: renderOverrides, iprdNote: iprdNote, divPriceWords: divPriceWords, oeSplitNote: oeSplitNote, epsAnnualHist: epsAnnualHist, yearAgoQuarterAdj: yearAgoQuarterAdj, RESTRICTED_TITLE: RESTRICTED_TITLE, RESTRICTED_LEGEND: RESTRICTED_LEGEND,
   drawChart: drawChart, drawPrice: drawPrice // DOM-touching only through the element they are handed

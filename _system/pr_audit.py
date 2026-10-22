@@ -28,7 +28,10 @@ financials_history.csv, judgment.json, key_numbers.md, score.json, ttm.json, sec
 annual_instance.json and every dcf_numbers_<label>.json (_ops.RECORD_FILES).
 A PR belongs to T when its head branch is dcf/<T>, dcf/<T>-<YYYYMMDD> or dcf/<T>-<YYYYMMDD>-<n>; or its title starts
 "DCF pass 1: <T> —", "DCF pass 1 update: <T> —", "Re-score: <T> —", "Second pass: <T> —" or "DCF re-run: <T> —"; or
-it is a rebuild/* or bulk-* branch whose file list holds <T>/score.json.
+it is a rebuild/* or bulk-* branch whose file list holds <T>/score.json. [whole-PR review fix, 2026-10-21] The PR list
+is every PR (_ops.list_prs: gh pages to its limit; a list that reaches it is truncated — exit 3), and a bulk PR's file
+list is the whole REST list paged to the end (`gh api --paginate`; without a GitHub slug `gh pr view`, which stops at
+100) — a list at its cap is exit 3, never a partial membership.
 Generation start: the done entry's claimed_at, else its completed date at 00:00 ET, else the epoch; APP: its
 score.json analysis_date.
 A second pass is a generation of its own (review 2026-10-21): when second_pass_queue.json records a finished review
@@ -77,6 +80,10 @@ HINTS_PASS2 = {"missing_pr": "a second pass changed the folder after its pass-1 
                                 "(review-fix) or close it and cut the Second pass PR"}
 PASS2_DONE = ("done_changed", "done_no_change")
 SECOND_TITLE_RX = r"^Second pass: {t} —"
+
+
+FILES_VIEW_CAP = 100     # gh pr view --json files: files(first: 100), unpaginated
+FILES_API_CAP = 3000     # GitHub's REST pulls/<n>/files: at most 3000 files, paged
 
 
 class AuditError(Exception):
@@ -184,20 +191,11 @@ def load_prs(repo, gh_json=None):
         if not isinstance(d, list):
             raise AuditError(f"--gh-json {gh_json} is not a JSON list")
         return d
-    slug = _ops.repo_slug(repo)
-    args = ["pr", "list", "--state", "all", "--limit", "1000", "--json",
-            "number,headRefName,state,createdAt,mergedAt,title,url"]
-    if slug:
-        args[2:2] = ["--repo", slug]
-    rc, out, err = _ops.gh(*args)
-    if rc != 0:
-        raise AuditError(f"gh pr list failed ({(err or out).strip()[:200]})")
-    try:
-        d = json.loads(out)
-    except ValueError:
-        raise AuditError("gh pr list printed no JSON")
-    if not isinstance(d, list):
-        raise AuditError("gh pr list printed no JSON list")
+    # [whole-PR review fix, 2026-10-21] every PR, paged to the end (_ops.list_prs) — a fixed --limit 1000 dropped the
+    # older ones, and an open PR's folder read as missing_pr ("cut it now": a duplicate PR); truncated is exit 3
+    d, err = _ops.list_prs(repo, "all")
+    if err:
+        raise AuditError(err)
     return d
 
 
@@ -212,15 +210,29 @@ def files_loader(repo, gh_files_json=None):
         if canned is not None:
             v = canned.get(str(n)) or []
         else:
+            # [whole-PR review fix, 2026-10-21] `gh pr view --json files` lists the first 100 files only (gh's query is
+            # files(first: 100), unpaginated): a bulk rebuild PR over ~50+ folders read as not covering the rest, which
+            # were reported merged_then_changed with "copy main's files back". The REST file list is paged to the end
+            # (GitHub serves at most FILES_API_CAP), and a list at either cap fails closed (exit 3), never partial.
             slug = _ops.repo_slug(repo)
-            args = ["pr", "view", str(n), "--json", "files"] + (["--repo", slug] if slug else [])
-            rc, out, err = _ops.gh(*args)
-            if rc != 0:
-                raise AuditError(f"gh pr view {n} failed ({(err or out).strip()[:200]})")
-            try:
-                v = [f.get("path") for f in json.loads(out).get("files") or []]
-            except (ValueError, AttributeError):
-                raise AuditError(f"gh pr view {n} printed no JSON")
+            if slug:
+                rc, out, err = _ops.gh("api", "--paginate", f"repos/{slug}/pulls/{n}/files?per_page=100", "--jq",
+                                       ".[].filename")
+                if rc != 0:
+                    raise AuditError(f"gh api pulls/{n}/files failed ({(err or out).strip()[:200]})")
+                v, cap = [ln.strip() for ln in out.splitlines() if ln.strip()], FILES_API_CAP
+            else:   # no GitHub slug (a local remote): gh pr view, whose list stops at 100
+                rc, out, err = _ops.gh("pr", "view", str(n), "--json", "files")
+                if rc != 0:
+                    raise AuditError(f"gh pr view {n} failed ({(err or out).strip()[:200]})")
+                try:
+                    v = [f.get("path") for f in json.loads(out).get("files") or []]
+                except (ValueError, AttributeError):
+                    raise AuditError(f"gh pr view {n} printed no JSON")
+                cap = FILES_VIEW_CAP
+            if len(v) >= cap:
+                raise AuditError(f"PR #{n} lists {len(v)} files — the file list is truncated at {cap}, so which folders "
+                                 "the bulk PR covers cannot be read")
         cache[n] = [x if isinstance(x, str) else (x or {}).get("path") for x in v]
         return cache[n]
     return files_of

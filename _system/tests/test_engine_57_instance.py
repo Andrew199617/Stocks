@@ -272,6 +272,9 @@ def test_dei_mismatch_records_and_skips():
 
 
 def test_submissions_failure_degrades():
+    """The run completes on companyfacts and the record says why (checked false) — and, [whole-PR review fix,
+    2026-10-21; fails on 6dd4a4a] the SIC the failed document would have given is recorded as unavailable
+    (sector_model.sic_unavailable), never silent: make_score refuses both on a 5.7 run (test_make_score_57_interim)."""
     plain = plain_ccj()
 
     def boom(_cik):
@@ -281,11 +284,111 @@ def test_submissions_failure_degrades():
     n = out["numbers"]
     assert n["annual_from_instance"] == {"applied": False, "checked": False,
                                          "reason": "EDGAR submissions unavailable: EDGAR 503"}, n["annual_from_instance"]
+    assert n["sector_model"].pop("sic_unavailable") == "EDGAR submissions unavailable: EDGAR 503", n["sector_model"]
     assert strip(n) == strip(plain["numbers"]) and out["rows"] == plain["rows"]
-    # the kill switch
+    assert "sic_unavailable" not in plain["numbers"]["sector_model"]
+    # the kill switch (a --measure counterfactual only)
+    on = run("CCJ", args_for(5), judgment=CCJ_J, measure=True)
     off = run("CCJ", args_for(5), judgment=CCJ_J, patch=lambda E_: setattr(E_, "edgar_submissions", boom),
-              env={"DCF_NO_INSTANCE": "1"})
-    assert "annual_from_instance" not in off["numbers"] and off["numbers"] == plain["numbers"]
+              env={"DCF_NO_INSTANCE": "1"}, measure=True)
+    assert "annual_from_instance" not in off["numbers"]
+    off["numbers"]["sector_model"].pop("sic_unavailable")
+    assert strip(off["numbers"]) == strip(on["numbers"])
+
+
+def test_submissions_failure_is_one_fetch_per_process():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] The review's r07: with the REAL edgar_submissions /
+    filer_annual_form / filer_sic / get_json and a submissions URL that times out, one engine process made 9 requests
+    (three readers x get_json's 3 attempts — up to 819 s on a hanging endpoint, past _measure_run's 600 s); the
+    failure is memoised now: 3 attempts, one retry loop."""
+    import socket
+    import types
+    import urllib.request
+    ref = H._engine()
+    attempts = []
+
+    def patch(E_):
+        fake_cf = E_.get_json
+        real = types.FunctionType(ref.get_json.__code__, E_.__dict__, "get_json", ref.get_json.__defaults__)
+
+        def get_json(url, headers=E_.UA, timeout=90):
+            return real(url, headers, timeout) if "submissions" in url else fake_cf(url, headers, timeout)
+        E_.get_json = get_json
+        for name in ("edgar_submissions", "filer_sic", "filer_annual_form"):
+            f = getattr(ref, name)
+            setattr(E_, name, types.FunctionType(f.__code__, E_.__dict__, name, f.__defaults__))
+        E_.time = types.SimpleNamespace(**{k: getattr(E_.time, k) for k in dir(E_.time) if not k.startswith("_")})
+        E_.time.sleep = lambda s: None
+
+    def fake_urlopen(req, timeout=None):
+        attempts.append(getattr(req, "full_url", str(req)))
+        raise socket.timeout("timed out")
+    saved = urllib.request.urlopen
+    urllib.request.urlopen = fake_urlopen
+    try:
+        out = run("AR", args_for(5), judgment={}, patch=patch)
+    finally:
+        urllib.request.urlopen = saved
+    assert out["exit"] == 0, out["stdout"][-800:]
+    assert len(attempts) == 3 and all("submissions" in u for u in attempts), attempts
+    assert out["numbers"]["annual_from_instance"]["checked"] is False
+    assert out["numbers"]["sector_model"]["sic_unavailable"] == "EDGAR submissions unavailable: timed out"
+
+
+def test_kill_switch_needs_measure():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] The review's r02: DCF_NO_INSTANCE=1 on a WRITING run wrote
+    a dcf_numbers.json on the stale fiscal year (base 0.9202 vs 1.0950) with no annual_from_instance key and no flag —
+    the record looked like 'no candidate filing', its content_hash verified, and make_score scored it beside the
+    committed annual_instance.json holding the newer year. Like DCF_NO_SHARE_CLASSES it is honoured only with --measure
+    now: a writing run ignores it (and says so)."""
+    fx, _ = ccj_restored()
+    out = run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx, env={"DCF_NO_INSTANCE": "1"})
+    n = out["numbers"]
+    assert n["annual_from_instance"]["applied"] is True and n["latest_period_end"] == "2025-12-31", n.get(
+        "annual_from_instance")
+    assert "DCF_NO_INSTANCE is honoured only with --measure" in out["stdout"], out["stdout"][-600:]
+    m = run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx, env={"DCF_NO_INSTANCE": "1"}, measure=True)
+    assert "annual_from_instance" not in m["numbers"] and m["numbers"]["latest_period_end"] == "2024-12-31"
+
+
+def test_transient_instance_failure_is_incomplete_not_inline_only():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] The review's r03 / r01: through the REAL locate_instance, a
+    <base>_htm.xml guess that 404s and an index.json that answers 503 was recorded as the permanent "no XBRL 2.1
+    instance in the filing folder (inline document only)"; a fetch failure other than a 404 now raises and is recorded
+    as a fetch failure, incomplete true (make_score refuses a 5.7 run carrying it); a real 404 everywhere still reads
+    as inline only (incomplete absent)."""
+    import urllib.error
+    import segments as S
+    import xbrl_instance as XI
+    fx, _ = ccj_restored()
+
+    def patch_with(index_answer):
+        def patch(E_):
+            def fetch(url, timeout=None):
+                raise S.NotFound(url)
+
+            def get_json(url):
+                if isinstance(index_answer, Exception):
+                    raise index_answer
+                return index_answer
+            E_.fetch_instance = lambda cik, filing: _locate(fetch, get_json, cik, filing)
+        return patch
+
+    def _locate(fetch, get_json, cik, filing):
+        saved = S.fetch, S.get_json
+        S.fetch, S.get_json = fetch, get_json
+        try:
+            return XI.locate_instance(cik, filing.get("accession"), filing.get("primary"), filing.get("form"),
+                                      filing.get("period"))
+        finally:
+            S.fetch, S.get_json = saved
+    err = urllib.error.HTTPError("https://www.sec.gov/x/index.json", 503, "Service Unavailable", {}, None)
+    rec = run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx, patch=patch_with(err))["numbers"]["annual_from_instance"]
+    assert rec["applied"] is False and rec["incomplete"] is True, rec
+    assert rec["reason"].startswith("instance fetch failed: HTTPError") and "503" in rec["reason"], rec
+    rec = run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx,
+              patch=patch_with(S.NotFound("index.json")))["numbers"]["annual_from_instance"]
+    assert rec["reason"] == "no XBRL 2.1 instance in the filing folder (inline document only)" and "incomplete" not in rec
 
 
 # ---------------------------------------------------------------------------
@@ -371,16 +474,18 @@ def test_existing_fixtures_unchanged():
         assert n is not None, (t, out["stdout"][-500:])
         assert "annual_from_instance" not in n, t
         assert not any(str(f).startswith("ANNUAL_FROM_INSTANCE") for f in n.get("fragility_flags") or []), t
-    for t in ("CCJ", "VOD", "HALO"):
-        a = run(t, args_for(5))
-        b = run(t, args_for(5), env={"DCF_NO_INSTANCE": "1"})
-        assert a["numbers"] == b["numbers"] and a["rows"] == b["rows"], t
+    for t in ("CCJ", "VOD", "HALO"):   # the kill switch is a --measure counterfactual (whole-PR review fix)
+        a = run(t, args_for(5), measure=True)
+        b = run(t, args_for(5), env={"DCF_NO_INSTANCE": "1"}, measure=True)
+        assert a["numbers"] == b["numbers"], t
     # ...while the gate is open on the trigger shape (the same fixture with its FY missing and a candidate listed),
     # and the kill switch closes it there
     fx, _ = ccj_restored()
     assert run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx)["numbers"]["annual_from_instance"]["applied"] is True
-    off = run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx, env={"DCF_NO_INSTANCE": "1"})
-    assert "annual_from_instance" not in off["numbers"] and off["numbers"] == dropped_ccj()["numbers"]
+    off = run("CCJ", args_for(5), judgment=CCJ_J, fixture=fx, env={"DCF_NO_INSTANCE": "1"}, measure=True)
+    fxd, _ = drop_fy(H.load_fixture("CCJ"), "2025-12-31")
+    assert "annual_from_instance" not in off["numbers"]
+    assert off["numbers"] == run("CCJ", args_for(5), judgment=CCJ_J, fixture=fxd, measure=True)["numbers"]
 
 
 def test_tag_hoist_is_identity():

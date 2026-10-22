@@ -665,10 +665,25 @@ def test_replay_outcomes():
     assert rej["base_oe_per_share"] is None and rej["tier_by_numbers"] is None
     assert ("- Rejected: TTM to 2026-06-30 (ttm.py, 10-Q YTD; FY 2025-12-31) not computed — the TTM replay gaps: "
             "shares") in r.result["key"]
+    # [whole-PR review fix, 2026-10-21; fails on 6dd4a4a] under --measure the engine skips its exit-4 gate: a replay
+    # with an UNCOVERED gap prints a base AND a tier (the real engine on TEM's rejected TTM: Tier F, share_scale). The
+    # gap decides — not computed, the gap named, no tier — never a scored entry with the gap dropped
+    gapped = ttm_reply(tt, data_gap=["share_scale"], data_gap_uncovered=["share_scale"], tier_by_numbers="S")
+    r = ok(run(n, jj, ttm=tt, replies={"ttm": gapped}))
+    rej = r.result["score"]["base_alternatives"]["bases"][1]
+    assert (rej["computed"], rej["measured"], rej["note"]) == (False, True, "the TTM replay gaps: share_scale"), rej
+    assert rej["tier_by_numbers"] is None and rej["weighted_irr"] is None, rej
+    assert "share_scale" in r.result["key"] and "→ S" not in r.result["key"], r.result["key"]
     pn, ptt = _ttm_published()
     r = ok(run(pn, _judgment(pn), ttm=ptt, replies={"median": {"exit": 3, "stdout": "BAD_BASE_OVERRIDE for TST: x"}}))
     med = r.result["score"]["base_alternatives"]["bases"][1]
     assert (med["computed"], med["note"]) == (False, "the annual-median replay refused: BAD_BASE_OVERRIDE for TST: x"), med
+    r = ok(run(pn, _judgment(pn), ttm=ptt, replies={"median": {"base_oe_per_share": 1355.34, "implied_irr_weighted": 2.0,
+                                                               "tier_by_numbers": "S", "data_gap": ["share_scale"],
+                                                               "data_gap_uncovered": ["share_scale"]}}))
+    med = r.result["score"]["base_alternatives"]["bases"][1]
+    assert (med["computed"], med["note"], med["tier_by_numbers"]) == (
+        False, "the annual-median replay gaps: share_scale", None), med
     for rep, needle in (({"exit": 1, "stdout": "Traceback"}, "TTM replay failed (exit 1) — cannot measure the base "
                                                              "alternatives; retry make_score"),
                         ({"raw": "not json"}, "TTM replay failed (exit 0) — cannot measure the base alternatives"),
@@ -1298,10 +1313,17 @@ def test_unbuildable_stale_ttm_json_scores_on_the_exit3_quote():
     the stale file stays: judgment.json ttm_unavailable_reason quoting the exit-3 line stands for it — no obligation,
     no replay, no registry event; the TTM entry computed: false with the file's note + "ttm.py cannot rebuild it".
     R7-1 and R7-7 name that path. The quote is still checked; with ttm_rejection_reason too, beside an eligible TTM,
-    or without STALE_FY it is refused."""
+    or without STALE_FY it is refused.
+    [whole-PR review fix, 2026-10-21; fails on 6dd4a4a] ...and checked against the stale file itself: beside the
+    pre-5.7 file the quote is a problem that file does not contradict (5.7's new intangible-currency refusal), while
+    "ocf: no post-FY YTD fact" beside a file for this FY whose own OCF leg is the 10-Q YTD 2026-01-01..2026-06-30
+    (the review's s06) is refused [TTM-UNAV2] — the file proves ttm.py finds that fact; "sbc: ..." beside the
+    withdrawn-override file stands (its sbc current-YTD leg was the override's, overrides_used legs_filled)."""
     n = hii()
-    msg = unavailable()
-    for doc, note in ((_withdrawn_ttm(), SBC_WITHDRAWN), (_unstamped_ttm(), PRE57)):
+    intang = EXIT3_HEAD + ("capex ytd_current: intangible purchases for 2026-01-01..2026-06-30 are filed only in CNY; "
+                           "ttm.py reads USD facts only and holds no FX rates, so it cannot include them (the annual "
+                           "engine converts and adds them) — no TTM base; use the median base")
+    for doc, note, msg in ((_withdrawn_ttm(), SBC_WITHDRAWN, unavailable()), (_unstamped_ttm(), PRE57, intang)):
         with folder({"ttm.json": doc, "judgment.json": {}}) as fo:
             plan = M.ttm_rejection_state(fo, n, {TTM_UNAVAILABLE: msg})
             assert (plan["required"], plan["ttm_unbuildable"], plan["unavailable_reason"]) == (False, True, msg), plan
@@ -1323,6 +1345,12 @@ def test_unbuildable_stale_ttm_json_scores_on_the_exit3_quote():
         run(n, _judgment(n, ttm_rejection_reason=HII_REASON), ttm=doc).refused(
             "the TTM this run rejects cannot be priced: " + note, "when ttm.py exits 3 instead (it cannot rebuild this "
             "TTM), drop ttm_rejection_reason and quote the line it prints in judgment.json ttm_unavailable_reason")
+    for leg_msg, needle in ((unavailable(leg="ocf"), "holds the ocf ytd_current fact for 2026-01-01..2026-06-30"),
+                            (EXIT3_HEAD + "sbc: no prior-year YTD fact matching 2025-06-30 (FY start 2025-01-01)",
+                             "holds the sbc ytd_prior fact for 2025-01-01..2025-06-30"),
+                            (EXIT3_HEAD + "capex: no annual (FY) fact", "holds the capex fy fact")):
+        run(n, _judgment(n, ttm_unavailable_reason=leg_msg), ttm=_unstamped_ttm()).refused("[TTM-UNAV2]", needle)
+    msg = unavailable()
     doc = _withdrawn_ttm()
     run(n, _judgment(n, ttm_unavailable_reason=msg, ttm_rejection_reason=HII_REASON), ttm=doc).refused(
         "judgment.json ttm_rejection_reason is declared but ttm.py cannot rebuild ttm.json's TTM (judgment.json "

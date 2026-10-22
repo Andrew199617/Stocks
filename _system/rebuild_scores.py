@@ -129,14 +129,30 @@ def _skip_name(name):
     return name.endswith(".lock") or name.endswith(".tmp") or ".tmp." in name or name == "__pycache__"
 
 
+class QueueUnreadable(Exception):
+    """[whole-PR review fix, 2026-10-21] queue.json / second_pass_queue.json is malformed or unreadable: the skip list
+    cannot be read, so nothing is rebuilt (an unreadable file used to read as "no claim")."""
+
+
 def queue_states(b):
-    q = _ops.load_json(os.path.join(b, "_system", "queue.json"), {}) or {}
-    return {e.get("ticker"): e.get("status") for e in q.get("queue") or [] if isinstance(e, dict)}
+    p = os.path.join(b, "_system", "queue.json")
+    rows, problem = preflight.queue_rows(p)
+    if problem:
+        raise QueueUnreadable(f"_system/queue.json is malformed or unreadable ({problem})")
+    return {e.get("ticker"): e.get("status") for e in rows}
 
 
 def pass2_live(b):
     p = os.path.join(b, "_system", "second_pass_queue.json")
-    return {t for t, _ in preflight._live_claims(p)}
+    live, problem = preflight.live_claims(p)
+    if problem:
+        raise QueueUnreadable(f"_system/second_pass_queue.json is malformed or unreadable ({problem})")
+    return {t for t, _ in live}
+
+
+def queue_refusal(e):
+    return (f"rebuild_scores: refusing — {e}: which names a worker is scoring cannot be read; restore it from git and "
+            "run again")
 
 
 def pr_lock_live(t):
@@ -182,7 +198,7 @@ def live_problem(folder, score, numbers):
     lv = _ops.load_json(os.path.join(folder, "live.json"))
     if lv is None:
         return "no live.json"
-    return build_site.live_score_problem(lv, score, numbers) or build_site.live_score_identity_missing(lv, score)
+    return build_site.live_score_problem(lv, score, numbers) or build_site.live_score_identity_missing(lv, score, numbers)
 
 
 def classify(t, old, new, n, rel, kn_changed, j_changed, reg_changed):
@@ -218,7 +234,11 @@ def dry_run(only=None, work_dir=None, json_path=None, keep_work=False, no_networ
     names = _ops.scored_tickers(b)
     if only:
         names = [t for t in names if t in only]
-    qs, p2 = queue_states(b), pass2_live(b)
+    try:
+        qs, p2 = queue_states(b), pass2_live(b)
+    except QueueUnreadable as e:
+        print(queue_refusal(e))
+        return 3, None
     work = os.path.abspath(work_dir) if work_dir else tempfile.mkdtemp(prefix="rebuild_scores_")
     wsys = os.path.join(work, "_system")
     os.makedirs(wsys, exist_ok=True)
@@ -457,7 +477,11 @@ def apply(report_path, only=None, holder=None, fetch=True):
     industry = {"path": INDUSTRY_REL, "built": (now_ind or {}).get("built"), "sha256": (now_ind or {}).get("sha256"),
                 "dry_run_sha256": dry_ind.get("sha256"), "note": msg,
                 "changed_since_dry_run": bool(dry_ind) and (now_ind or {}).get("sha256") != dry_ind.get("sha256")}
-    qs = queue_states(b)
+    try:
+        queue_states(b), pass2_live(b)
+    except QueueUnreadable as e:
+        print(queue_refusal(e))
+        return 3
     env = dict(os.environ, STOCKS_BASE=b, PYTHONIOENCODING="utf-8")
     env.pop("MAKE_SCORE_REGISTRY", None)
     out = []
@@ -467,10 +491,21 @@ def apply(report_path, only=None, holder=None, fetch=True):
         t = f["ticker"]
         rec = dict(f, state=None, refusal=None)
         now_hashes = {k: sha256(os.path.join(b, t, k)) for k in INPUT_FILES}
-        if now_hashes != f.get("input_hashes"):
+        # [whole-PR review fix, 2026-10-21] the queue and pass-2 state re-read per folder (a claim can start during a
+        # long apply), strictly, and a live pass-2 claim skipped as the dry run skips it
+        try:
+            qs, p2 = queue_states(b), pass2_live(b)
+            qerr = None
+        except QueueUnreadable as e:
+            qs, p2, qerr = {}, set(), str(e)
+        if qerr:
+            rec.update(state="skipped", refusal=f"{qerr} — restore it from git")
+        elif now_hashes != f.get("input_hashes"):
             rec.update(state="skipped", refusal="changed since the dry run")
         elif qs.get(t) in ("pending", "in_progress"):
             rec.update(state="skipped", refusal=f"queue.json status {qs.get(t)}")
+        elif t in p2:
+            rec.update(state="skipped", refusal="a live pass-2 claim")
         else:
             try:
                 lease = pr_worktree._take(t, holder, "rebuild", 1.0, _ops.now_et())

@@ -23,6 +23,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import ops_harness as H  # noqa: E402
 import dcf_engine as E  # noqa: E402
+import preflight as P  # noqa: E402
+import tempfile  # noqa: E402
 try:
     import preflight  # noqa: E402
 except ImportError:   # the code before R5 has no preflight.py: each test below fails on its own
@@ -245,6 +247,43 @@ def test_sync_refuses_a_live_claim_then_syncs():
         assert again.returncode == 0, again.stdout
     finally:
         o.close()
+
+
+def test_sync_refuses_a_malformed_or_unreadable_queue_file():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] --sync's one safety check (no live claim) read a malformed
+    second_pass_queue.json ("entries" a list, which queue.py refuses) or a truncated queue.json as "no claim" and
+    checked the new engine out under a live run. Both refuse now (exit 5, "restore it from git"), the tree untouched;
+    a missing file is still empty (queue_rows), and rebuild_scores reads the same strict state."""
+    import rebuild_scores as RB
+    now = datetime.datetime(2026, 10, 19, 15, 0)
+    live = (now - datetime.timedelta(minutes=10)).isoformat() + "-04:00"
+    env = {"STOCKS_NOW": now.isoformat()}
+    for name, text in (("second_pass_queue.json",
+                        json.dumps({"entries": [{"ticker": "AAA", "status": "in_progress", "claimed_at": live}]})),
+                       ("queue.json", json.dumps({"queue": [{"ticker": "AAA", "status": "in_progress",
+                                                             "claimed_at": live}]})[:-2]),
+                       ("second_pass_queue.json", "[]")):
+        o = _origin()
+        try:
+            c = H.clone(o)
+            H.commit_on_origin(o, "_system/dcf_engine.py", '"""engine"""\nENGINE_RELEASE = "5.8.0"\n', "release")
+            if name != "queue.json":
+                with open(os.path.join(c, "_system", "queue.json"), "w", encoding="utf-8") as f:
+                    json.dump({"queue": []}, f)
+            with open(os.path.join(c, "_system", name), "w", encoding="utf-8") as f:
+                f.write(text)
+            before = H.tree_sha(c)
+            r = H.run("preflight.py", "--sync", base=c, env=env)
+            assert r.returncode == 5 and f"{name} is malformed or unreadable" in r.stdout, (name, r.stdout, r.stderr)
+            assert "restore it from git" in r.stdout and H.tree_sha(c) == before, name
+            try:
+                RB.pass2_live(c) if name.startswith("second") else RB.queue_states(c)
+                raise AssertionError(f"rebuild_scores read a malformed {name}")
+            except RB.QueueUnreadable as e:
+                assert name in str(e), e
+        finally:
+            o.close()
+    assert P.queue_rows(os.path.join(tempfile.gettempdir(), "no_such_dir_xyz", "queue.json")) == ([], None)
 
 
 def test_industry_file_is_a_data_input():

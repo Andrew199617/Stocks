@@ -643,6 +643,35 @@ def test_commodity_exemption_is_an_anchored_influence_field():
     _done(r)
 
 
+def test_dry_run_says_its_rebutted_trend_rests_on_make_scores_trace():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] WORKER_SPEC step 5 said the dry run refuses what the final
+    run's make_score refuses, but moat_scorecard.py applies the gates, not make_score's reason trace: an
+    erosion_rebuttal with no number passes the dry run ("pass --moat-trend stable") and make_score refuses it. The dry
+    run now says the printed trend assumes the trace accepts the rebuttal (and what to do when it does not); WORKER_SPEC
+    step 5 and SECOND_PASS step 7 say the dry run does not trace reasons."""
+    import subprocess
+    sc, facts = rebut("a cycle, not erosion")
+    n = syn("stable")
+    j = H._judgment(n, moat_score=MOAT)
+    j["moat_scorecard"] = sc
+    files = {"TST/fundamentals.json": {"cik": 1, "currency": "USD", "profile": {"sic": "3561"}, "annual": ero_rows()},
+             "TST/facts.json": {"schema": 1, "ticker": "TST", "facts": facts}}
+    r = H.Run(n, j, files=files)
+    try:
+        env = dict(os.environ, STOCKS_BASE=r.base, PYTHONIOENCODING="utf-8")
+        d = subprocess.run([sys.executable, "-P", os.path.join(SYS, "moat_scorecard.py"), "TST"], capture_output=True,
+                           text=True, encoding="utf-8", env=env, timeout=300)
+        assert d.returncode == 0 and "-> pass --moat-trend stable" in d.stdout, d.stdout + d.stderr
+        assert "that trend assumes make_score's trace accepts the erosion_rebuttal" in d.stdout, d.stdout
+        r.run()
+        assert r.rc == 1 and "erosion_rebuttal" in r.err, r.err[-600:]
+    finally:
+        _done(r)
+    for doc in ("WORKER_SPEC.md", "SECOND_PASS.md"):
+        with open(os.path.join(SYS, doc), encoding="utf-8") as f:
+            assert "does not trace" in " ".join(f.read().split()), doc
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in list(globals().items()):

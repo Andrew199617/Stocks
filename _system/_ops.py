@@ -90,6 +90,37 @@ def repo_slug(repo, remote="origin"):
     return f"{m.group(1)}/{m.group(2)}" if m else None
 
 
+PR_LIST_LIMIT = 100000   # gh pr list --limit: gh pages to it (100 a request); $STOCKS_GH_LIST_LIMIT overrides (tests)
+
+
+def list_prs(repo, state="all"):
+    """[whole-PR review fix, 2026-10-21] (prs, error) — EVERY pull request in `state` ("open" | "all"), newest first,
+    as gh pr list prints them {number, headRefName, headRefOid, state OPEN | MERGED | CLOSED, createdAt, mergedAt,
+    title, url}. The fixed `--limit 1000` / `--limit 200` silently dropped the older PRs once the repo had more
+    (pr_audit read an open PR's folder as missing_pr — "cut it now", a duplicate PR; a review-fix acquire refused "no
+    open PR"). gh pages to PR_LIST_LIMIT itself, and an answer that reaches the limit is truncated — an error, never
+    "no PR". error is None on success, else the reason (gh failed, no JSON, truncated)."""
+    try:
+        limit = int(os.environ.get("STOCKS_GH_LIST_LIMIT") or PR_LIST_LIMIT)
+    except ValueError:
+        limit = PR_LIST_LIMIT
+    slug = repo_slug(repo)
+    rc, out, err = gh("pr", "list", *(["--repo", slug] if slug else []), "--state", state, "--limit", str(limit),
+                      "--json", "number,headRefName,headRefOid,state,createdAt,mergedAt,title,url", timeout=900)
+    if rc != 0:
+        return [], f"gh pr list failed ({(err or out).strip()[:200]})"
+    try:
+        prs = json.loads(out)
+    except ValueError:
+        return [], "gh pr list printed no JSON"
+    if not isinstance(prs, list):
+        return [], "gh pr list printed no JSON list"
+    if len(prs) >= limit:
+        return [], (f"gh pr list returned {len(prs)} PRs, its --limit: the list is truncated, so a PR missing from it "
+                    "may exist")
+    return prs, None
+
+
 # --------------------------------------------------------------------------------------------- time
 def now_et():
     """Aware New York time; $STOCKS_NOW (an ISO timestamp, tests only) overrides — naive means ET."""

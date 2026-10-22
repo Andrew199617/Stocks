@@ -204,7 +204,9 @@ quotes a number no generated file holds. All paths below are under `~/workspace/
      latest FY from the filing's own XBRL instance (EDGAR companyfacts lacked it). The engine
      writes `<T>/annual_instance.json`,
      a committed SEC file; make_score refuses the run when that file is missing or no longer
-     matches the run.
+     matches the run. It also refuses a run whose EDGAR reads did not complete ("the engine run
+     could not complete its EDGAR reads": the submissions document or the instance fetch
+     failed) — rerun the engine when EDGAR answers; never score around it.
    **ttm.json is bound to the run.** (Codex review round 23 of PR #47) Regenerating ttm.json — rerunning ttm.py after a new 10-Q,
    a shares override or a split — means rerunning the engine before make_score. Every run whose
    base reads ttm.json (`--ttm`, or a `--base-oe-ps` pin that is not declared built on FY figures —
@@ -744,9 +746,13 @@ quotes a number no generated file holds. All paths below are under `~/workspace/
    - Where the filer discloses a volume series, declare `volume_price` (required for
      consumer_users).
    **The dry run.** Run `python3 _system/moat_scorecard.py <T>` before the final engine run.
-   It checks the scorecard the way that run will (always an authoring check: every gate that
-   would refuse the run refuses here). It prints the evidence score, every gate and the
-   `--moat-trend` value for the final run.
+   It checks the scorecard's gates the way that run will (always an authoring check: every gate
+   that would refuse the run refuses here). It prints the evidence score, every gate and the
+   `--moat-trend` value for the final run. It does not trace the reasons — make_score does when
+   it scores the final run — so a reason whose number does not trace passes here and is refused there. For a
+   rebutted MOAT_EROSION the printed `stable` assumes the `erosion_rebuttal` passes that trace (a
+   number, anchored as below, not a restatement of the trend test); when make_score refuses it,
+   fix the rebuttal or drop it and pass `--moat-trend eroding`.
    - Your moat must land within 2 points of the evidence score, or carry
      `moat_divergence_reason` with a number.
    - A moat of 7+ on a governing return below 10% (ROE 15%) or unmeasured carries
@@ -839,7 +845,10 @@ quotes a number no generated file holds. All paths below are under `~/workspace/
    - Kind `folder`, with a path `<file>:<selector>`, whenever a folder file holds the number
      (statements.json, fundamentals.json, segments.json, profile.json, ttm.json,
      financials_history.csv). Never another kind for it: make_score refuses a filing /
-     release / third-party fact that repeats a folder figure for the same period.
+     release / third-party fact that repeats a folder figure for the same period (its
+     `metric` and period match, or a same-period folder leaf matches at 4+ significant
+     digits); a shorter match with no `metric` is printed as a "possible folder duplicate"
+     in key_numbers.md, not refused — declare it kind `folder` anyway.
    - Kind `filing` (accession + section), `release` (8-K / 6-K accession + exhibit) and
      `third_party` (https URL, publisher, date) each carry the snippet.
    - `type`: guidance / estimate for forward figures; `metric` for a KPI tracked over several
@@ -1106,7 +1115,11 @@ quotes a number no generated file holds. All paths below are under `~/workspace/
    figure smaller than the filed intangible leg it claims to include, compared in USD on the
    engine's currency basis: a total is never smaller than its part (JKHY's PP&E-only 67.1M
    beside 188.4M of software is refused even when declared). An override-filled TTM leg in a
-   ttm.json from an older engine cannot be checked: rerun ttm.py. Intangibles are not added on a
+   ttm.json from an older engine cannot be checked: rerun ttm.py. The TTM legs bind only a
+   ttm.json the run prices — its base reads it (`--ttm`), or it is the TTM `ttm_rejection_reason`
+   rejects; a ttm.json the score never reads (another fiscal year, off the share-class
+   declaration, one ttm.py can no longer rebuild) is not checked (whole-PR review fix,
+   2026-10-21). Intangibles are not added on a
    year with no PP&E leg filed either (`capex_assumed_zero`): capex stays 0 and `capex_tag` blank (a
    `DATA_GAP:capex` in the last 3 FY, as before), `capex_intangibles` records the amount and
    `capex_provenance` notes `intangibles_not_added: no_ppe_leg`. A negative intangible fact

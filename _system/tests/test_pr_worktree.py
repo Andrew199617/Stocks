@@ -529,6 +529,45 @@ def test_restack_rederives_registry_and_renumbers_backlog():
         c.close()
 
 
+def test_restack_after_a_review_fix_acquire_keeps_the_backlog_entry():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] PR_PROTOCOL 4 then 5: agent-1 cuts the PR with a didnt-fix
+    backlog entry and releases; main merges its own entry under the same id; agent-2 acquires --kind review-fix (its
+    lock's base_sha is the NEW origin/main) and restacks. The block was measured from that base_sha, came back empty,
+    and the force-push dropped the PR's entry with a success line. It is measured from the branch's own merge-base
+    now: the entry is kept and renumbered. A worktree backlog that does not start with that base's text is refused,
+    never read as "nothing appended"."""
+    c = Case()
+    try:
+        c.acquire("agent-1")
+        _append(c.wt, ENTRY_NEW)
+        c.ok("prepare", T, "--holder", "agent-1")
+        c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
+        c.ok("release", T, "--holder", "agent-1")
+        main_bl = BACKLOG + ENTRY_NEW.replace("a test defect found in review", "main's own entry")
+        H.commit_on_origin(c.o, "_system/ENGINE_BACKLOG.md", main_bl, f"main appends {NEW_EB}")
+        c.gh_responses({"pr list": [{"number": 101, "headRefName": f"dcf/{T}", "state": "OPEN", "url": "u",
+                                     "title": f"DCF pass 1: {T} — Test Co — Tier B", "createdAt": "2026-10-21T14:00:00Z"}]})
+        c.ok("acquire", T, "--holder", "agent-2", "--kind", "review-fix")
+        assert c.lock()["base_sha"] == c.o.head()
+        r = c.ok("restack", T, "--holder", "agent-2")
+        assert f"backlog ids renumbered {NEW_EB} → {AFTER_EB}" in r.stdout, r.stdout
+        bl = H.git(c.o.bare, "show", f"dcf/{T}:_system/ENGINE_BACKLOG.md").replace("\r\n", "\n")
+        assert bl.startswith(main_bl) and f"### {AFTER_EB} — dcf_engine.py:test — a test defect found in review" in bl, \
+            bl[-600:]
+        # the worktree file edited above its base: refused, nothing pushed
+        p = os.path.join(c.wt, "_system", "ENGINE_BACKLOG.md")
+        with open(p, encoding="utf-8") as f:
+            text = f.read()
+        with open(p, "w", encoding="utf-8", newline="\n") as f:
+            f.write(text.replace("# ", "#  ", 1))
+        before = H.git(c.o.bare, "rev-parse", f"dcf/{T}").strip()
+        r = c.pw("restack", T, "--holder", "agent-2")
+        assert r.returncode == 1 and "does not start with its base's text" in (r.stdout + r.stderr), (r.stdout, r.stderr)
+        assert H.git(c.o.bare, "rev-parse", f"dcf/{T}").strip() == before
+    finally:
+        c.close()
+
+
 def test_reap_removes_clean_worktree_of_a_merged_pr():
     c = Case(tickers=(T, "TS2"))
     try:
@@ -601,6 +640,62 @@ def test_bulk_set_is_all_or_nothing_and_opens_one_rebuild_pr():
         assert {n.split("/")[0] for n in names} == {T, "TS2", "_system"}, names
     finally:
         c.close()
+
+
+def test_bulk_refusal_names_the_folder_and_the_set_can_drop_it():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] One folder refused in prepare --bulk (its sweep score no
+    longer its rebuild) blocked the whole set: the refusal did not name it (with ~488 folders the main agent cannot
+    tell which), and nothing could drop it (acquire / prepare --bulk had no ticker filter). The refusal now starts with
+    the ticker and names `prepare --bulk <branch> --exclude <T>`, which drops it (lock released, worktree reset) so the
+    rest is prepared and opened; --exclude is refused for a ticker outside the set and once nothing would be left."""
+    c = Case(tickers=(T, "TS2"))
+    try:
+        rep = os.path.join(c.o.root, "rebuild.json.applied.json")
+        json.dump({"tool": "rebuild_scores", "mode": "apply", "engine_release": CUR, "drift_allowed": False,
+                   "folders": [{"ticker": T, "state": "rebuilt", "main_sync": "in_sync"},
+                               {"ticker": "TS2", "state": "rebuilt", "main_sync": "in_sync"}]}, open(rep, "w"))
+        c.ok("acquire", "--bulk", rep, "--holder", "muse-main")
+        branch = f"rebuild/{CUR}-20261021"
+        p = os.path.join(c.c, "TS2", "score.json")
+        s = json.load(open(p, encoding="utf-8"))
+        s["tier_final"] = "D" if s.get("tier_final") != "D" else "C"
+        json.dump(s, open(p, "w", encoding="utf-8"), indent=1)
+        r = c.pw("prepare", "--bulk", branch, "--holder", "muse-main")
+        assert r.returncode == 1 and "pr_worktree: TS2: the score rebuilt at origin/main" in r.stderr, r.stderr
+        assert f"prepare --bulk {branch} --exclude TS2" in r.stderr, r.stderr
+        r = c.pw("prepare", "--bulk", branch, "--holder", "muse-main", "--exclude", "OTH")
+        assert r.returncode == 1 and "not in bulk set" in r.stderr, r.stderr
+        r = c.pw("prepare", "--bulk", branch, "--holder", "muse-main", "--exclude", f"{T},TS2")
+        assert r.returncode == 1 and "would leave bulk set" in r.stderr, r.stderr
+        r = c.ok("prepare", "--bulk", branch, "--holder", "muse-main", "--exclude", "TS2")
+        assert "excluded TS2 (locks released); 1 tickers left" in r.stdout, r.stdout
+        assert not os.path.exists(os.path.join(c.root, ".locks", "TS2.lock.json")), "TS2's lock is released"
+        c.ok("open", "--bulk", branch, "--body-file", c.body(), "--holder", "muse-main")
+        names = H.git(c.o.bare, "diff", "--name-only", "main", branch).split()
+        assert {n.split("/")[0] for n in names} == {T, "_system"}, names
+    finally:
+        c.close()
+
+
+def test_bulk_mechanics_names_each_stale_folder_and_its_hash():
+    """[whole-PR review fix, 2026-10-21; fails on 6dd4a4a] AGENTS.md check 6: a stale-release score presented as current
+    (no "the engine output predates release <rel>" line) is P1, and a rebuild/* PR is the same case for many folders;
+    the Mechanics block names score.dcf_content_hash and "score built from this run". The bulk block printed only the
+    set of releases: every rebuild PR drew the P1. It now carries, per folder, the hash, the from-run answer and — for
+    a folder whose run predates main's release — the exact line."""
+    import pr_worktree as P
+
+    def row(t, h, stale=True):
+        return {"ticker": t, "engine_release_run": "5.4.0" if stale else CUR, "dcf_content_hash": h,
+                "stale_release": {"run": "5.4.0", "main": CUR} if stale else None, "check_quotes": "pass",
+                "other_changed_fields": [], "score_from_run": True, "score_mismatch": None}
+    prep = {"origin_sha": "a" * 40, "engine_release": CUR, "files": ["CNA/score.json", "GLPI/score.json"],
+            "tickers": [row("GLPI", "1234567890abcdef"), row("CNA", "fedcba0987654321", stale=False)],
+            "registry_entries": {}}
+    text = P.mechanics(prep, ["GLPI", "CNA"], None)
+    assert (f"- GLPI: score.dcf_content_hash 1234567890ab · score built from this run: yes · the engine output "
+            f"predates release {CUR} (run 5.4.0)") in text, text
+    assert "- CNA: score.dcf_content_hash fedcba098765 · score built from this run: yes\n" in text, text
 
 
 def test_backlog_next():

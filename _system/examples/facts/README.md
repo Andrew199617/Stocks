@@ -38,7 +38,10 @@ Files here:
 - `kind`:
   - `folder` — `source.path` `<file>:<selector>`; make_score VERIFIES the value against the file. A number a folder
     file holds MUST be declared this way: a filing / release / third-party fact that repeats a folder figure for the
-    same period is refused. Selectors: `financials_history.csv:ocf[FY2025]`,
+    same period is refused when its `metric` and period match a folder figure, or when any same-period folder leaf
+    matches it at 4 or more significant digits; a shorter match with no `metric` is recorded as a possible folder
+    duplicate (key_numbers.md, score.json `declared_facts.possible_folder_duplicates`) for the reviewer, not refused.
+    Selectors: `financials_history.csv:ocf[FY2025]`,
     `statements.json:income.revenue.quarterly[Q2 FY2026]`, `statements.json:income.revenue.ttm@2026-06-30`,
     `fundamentals.json:annual[FY2025].buybacks`, `fundamentals.json:quarterly[Q2 FY2026].revenue_yoy`,
     `fundamentals.json:ttm.sbc@2026-06-30`,

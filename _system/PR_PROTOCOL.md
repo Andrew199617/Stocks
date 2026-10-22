@@ -114,7 +114,12 @@ the expected signal until the sync). In this order:
    applied table is the actual result).
 4. `python3 _system/pr_worktree.py acquire --bulk <report.json>.applied.json --holder <id>` (every rebuilt in-sync
    ticker, all-or-nothing), `prepare --bulk <branch>`, `open --bulk <branch> --body-file <path>` (`--holder` defaults
-   to the bulk set's). The bulk PR carries the sweep tree's `_system/industry_returns.json` with the folders.
+   to the bulk set's). The bulk PR carries the sweep tree's `_system/industry_returns.json` with the folders. A
+   folder `prepare --bulk` refuses is named first in the refusal (`pr_worktree: <T>: …`); before `open`,
+   `prepare --bulk <branch> --exclude <T>[,<T>]` drops it from the set (its lock released, the worktree reset) and
+   prepares the rest — re-score the dropped folder on its own afterwards. The Mechanics block names each folder's
+   `score.dcf_content_hash`, whether its score is built from its run, and "the engine output predates release <rel>"
+   for every folder whose run does (whole-PR review fix, 2026-10-21).
 
 ## 7. PR body template
 

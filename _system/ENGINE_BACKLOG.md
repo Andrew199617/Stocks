@@ -2,8 +2,9 @@
 
 Every code defect a review found that a PR did not fix gets one entry here, with the thread that found it
 (Andrew, 2026-10-19, ruling R5). A company data PR whose didnt-fix reply names a code defect appends an entry in the
-same PR — besides its own ticker's entries in `_system/overrides_registry.json`, the one `_system/` file a data PR
-may touch, and only by adding lines at the end (AGENTS.md "What is in a
+same PR — besides its own ticker's entries in `_system/overrides_registry.json`, the one `_system/` file a company
+data PR may touch (a bulk rebuild PR also carries the generated `_system/industry_returns.json`), and only by adding
+lines at the end (AGENTS.md "What is in a
 PR"; `_system/PR_PROTOCOL.md` section 1; `pr_worktree.py open` refuses any other change to this file in a data PR).
 `_system/README.md` "Fixes & lessons" (2026-10-21, sweep reliability) says why the file exists. A code/spec PR that
 fixes an entry edits that entry's Status line in place. The next free id is

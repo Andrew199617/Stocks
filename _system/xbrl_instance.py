@@ -22,11 +22,14 @@ What is kept (parse_undimensioned): us-gaap / ifrs-full numeric facts with a uni
 explicit or typed member and no <segment> / <scenario> at all — the consolidated totals companyfacts carries — plus
 the dei cover-page EntityCommonStockSharesOutstanding on such contexts. Values are float(text), int when integral
 (companyfacts stores integers). Identical duplicates (same concept, unit, period and value) collapse; two different
-values for one (taxonomy, tag, unit, start, end) are a conflict, never guessed: annual_facts_after drops them and
+values for one (taxonomy, tag, unit, start, end) that are CONSISTENT in the XBRL sense — equal once rounded to the
+smaller `decimals` (one line tagged at two precisions: 1,408,432,000 at decimals 0 and 1,408,000,000 at -6) — keep
+the most precise fact; only inconsistent values are a conflict, never guessed: annual_facts_after drops them and
 lists them. Known limit: a multi-class filer's dimensioned per-class dei counts are not read (companyfacts keeps
 them); the engine then reads the undimensioned count only.
 """
 import datetime
+import decimal
 import hashlib
 import io
 import json
@@ -35,6 +38,7 @@ import sys
 import xml.etree.ElementTree as ET
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import segments as _seg  # noqa: E402  (locate_instance fetches through the module: a test patches one place)
 from segments import (fetch, NotFound, locate_files, ns_prefix, _split_tag, _parse_context,  # noqa: E402,F401
                       _parse_unit, XBRLI, XSI)
 
@@ -176,8 +180,40 @@ def _group(facts):
     return out
 
 
+def _precision_rank(dec):
+    """A fact's decimals as a sortable precision: INF (exact) above every integer."""
+    return float("inf") if dec == "INF" else float(dec)
+
+
+def _pair_consistent(a, b):
+    """XBRL consistency of two duplicate facts: equal once both are rounded (half to even) to the smaller of their two
+    decimals; two exact (INF) facts only when equal; a fact with no decimals cannot be checked (False)."""
+    da, db = a.get("decimals"), b.get("decimals")
+    if da is None or db is None:
+        return False
+    if da == "INF" and db == "INF":
+        return a["value"] == b["value"]
+    q = decimal.Decimal(1).scaleb(-min(d for d in (da, db) if d != "INF"))   # decimals -6 -> 1E+6, 2 -> 0.01
+    try:
+        return (decimal.Decimal(repr(a["value"])).quantize(q, rounding=decimal.ROUND_HALF_EVEN)
+                == decimal.Decimal(repr(b["value"])).quantize(q, rounding=decimal.ROUND_HALF_EVEN))
+    except (decimal.InvalidOperation, ValueError):
+        return False
+
+
+def _consistent_pick(fs):
+    """[whole-PR review fix, 2026-10-21] The fact to keep from duplicates with different values, or None when they are
+    inconsistent. XBRL consistency, pair by pair (_pair_consistent) — one line tagged twice at two precisions
+    (1,408,432,000 at decimals 0 beside 1,408,000,000 at -6) is consistent. The most precise fact is kept (INF over
+    any integer)."""
+    if not all(_pair_consistent(a, b) for i, a in enumerate(fs) for b in fs[i + 1:]):
+        return None
+    return max(fs, key=lambda f: _precision_rank(f["decimals"]))
+
+
 def _split_conflicts(groups):
-    """(entries, conflicts): one entry per key with a single value; a key with two or more different values is a
+    """(entries, conflicts): one entry per key with a single value — or with values consistent at the smaller
+    precision (_consistent_pick: the most precise fact is kept); a key with two or more inconsistent values is a
     conflict, dropped and listed."""
     entries, conflicts = [], []
     for (tax, tag, unit, start, end), fs in groups.items():
@@ -185,11 +221,15 @@ def _split_conflicts(groups):
         for f in fs:
             if f["value"] not in vals:
                 vals.append(f["value"])
+        keep = fs[0]
         if len(vals) > 1:
-            conflicts.append({"taxonomy": tax, "tag": tag, "unit": unit, "start": start, "end": end, "values": vals})
-            continue
-        entries.append({"taxonomy": tax, "tag": tag, "unit": unit, "start": start, "end": end, "val": vals[0],
-                        "decimals": fs[0]["decimals"]})
+            keep = _consistent_pick(fs)
+            if keep is None:
+                conflicts.append({"taxonomy": tax, "tag": tag, "unit": unit, "start": start, "end": end,
+                                  "values": vals})
+                continue
+        entries.append({"taxonomy": tax, "tag": tag, "unit": unit, "start": start, "end": end, "val": keep["value"],
+                        "decimals": keep["decimals"]})
     key = lambda e: (e["taxonomy"], e["tag"], e["unit"], e["start"] or "", e["end"])  # noqa: E731
     return sorted(entries, key=key), sorted(conflicts, key=key)
 
@@ -240,16 +280,35 @@ def interim_facts(parsed, periods):
 
 
 def locate_instance(cik, accession, primary, form=None, period=None):
-    """(instance bytes, instance URL) for a filing, or (None, None) when its folder holds no XBRL instance — through
-    segments.locate_files (<primary basename>_htm.xml first, then the filing index's .xml documents). A fetch
+    """(instance bytes, instance URL) for a filing, or (None, None) when its folder holds no XBRL instance — in
+    segments.locate_files' order (<primary basename>_htm.xml first, then the filing index's .xml documents). A fetch
     failure other than a 404 raises (the caller decides: the engine records it, ttm.py --interim exits 4).
+    [whole-PR review fix, 2026-10-21] The order is walked here, through segments.fetch / get_json, not through
+    locate_files: locate_files turns a failed index.json (a 503, a timeout) into an empty listing, which read as "no
+    instance" (the engine recorded the permanent-sounding "inline document only"). Only a 404 — of the guess, of
+    index.json or of each listed candidate — or an index with no instance candidate means none.
     [v5.7 L4 note] the pair is (bytes, url) everywhere in this lane (dcf_engine.fetch_instance, the harness patch,
     ttm.fetch_report_instance), so no caller swaps them."""
     filing = {"accession": accession, "primary": primary or "", "form": form or "?", "period": period or "?"}
-    url, data, *_ = locate_files(cik, filing, {})
-    if not url or data is None:
+    folder, base = _seg.instance_candidates(cik, filing)
+    if base:
+        guess = f"{folder}/{base}_htm.xml"
+        try:
+            return _seg.fetch(guess), guess
+        except _seg.NotFound:
+            pass
+    try:
+        listing = _seg.get_json(f"{folder}/index.json")
+    except _seg.NotFound:
         return None, None
-    return data, url
+    items = ((listing.get("directory") or {}).get("item") or []) if isinstance(listing, dict) else []
+    names = [it.get("name", "") for it in items if isinstance(it, dict)]
+    for n in sorted((n for n in names if _seg._is_instance_name(n)), key=lambda n: (0 if "_htm" in n.lower() else 1, n)):
+        try:
+            return _seg.fetch(f"{folder}/{n}"), f"{folder}/{n}"
+        except _seg.NotFound:
+            continue
+    return None, None
 
 
 def to_companyfacts_entries(entries, filing, fiscal_year):

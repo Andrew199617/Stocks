@@ -268,28 +268,47 @@ def _ttm_leg(stamped=True, legs_filled=True, value=67103000):
     return tt
 
 
+def _ttm_pinned(n, tt):
+    """The record as a --ttm run on `tt` records it (base = ttm.json's figure, ttm_inputs from the file)."""
+    n = dict(n, base_oe_per_share=tt["ttm_oe_per_share"], base_source="ttm_json", ttm_inputs=E.ttm_inputs_record(tt))
+    n["inputs"] = dict(n["inputs"], base_oe_ps_arg=tt["ttm_oe_per_share"], base_pin_source="ttm_json")
+    return n
+
+
 def test_ttm_leg_override_beside_filed_software_is_refused():
     """M2c: no FY year has software beside the override, but ttm.json's current-YTD leg is override-filled beside
-    48,000,000 of filed software: refused without the declaration; with it, the override as ttm.py filled the leg
-    (67,103,000 x 92 / 365 = 16,913,633; the design's 16,913,060 was an arithmetic slip) is below the leg's
-    49,000,000 of intangibles — refused; 255,454,000 (64,388,405 for the leg) scores. Without legs_filled the leg is
-    prorated as ttm.py does."""
+    48,000,000 of filed software, and the run is pinned to that ttm.json (--ttm): refused without the declaration;
+    with it, the override as ttm.py filled the leg (67,103,000 x 92 / 365 = 16,913,633; the design's 16,913,060 was
+    an arithmetic slip) is below the leg's 49,000,000 of intangibles — refused; 255,454,000 (64,388,405 for the leg)
+    scores. Without legs_filled the leg is prorated as ttm.py does.
+    [whole-PR review fix, 2026-10-21; L9 x R7 — fails on 6dd4a4a] The TTM half binds only a ttm.json the run prices:
+    the same file beside a MEDIAN 5.7 run that never reads it (ttm_inputs null, no STALE_FY, so R7 does not replay
+    it either) is no concern of this check — the run scores."""
     prov = {"2024-06-30": {"intangibles": {PTDS: 1}}, "2025-06-30": {"intangibles": {PTDS: 1}},
             "2026-06-30": {"intangibles": {PTDS: 1}}}
     n = _numbers(capex_provenance=prov)
-    _refused(_scored(n, _judgment(n, capex_override=_ov(67103000)), ttm=_ttm_leg()),
+    tt = _ttm_leg()
+    _refused(_scored(_ttm_pinned(n, tt), _judgment(n, capex_override=_ov(67103000)), ttm=tt),
              "fills TTM ytd_current leg (2026-07-01..2026-09-30): 48,000,000 (PaymentsToDevelopSoftware)")
-    _refused(_scored(n, _judgment(n, capex_override=_ov(67103000, software_included=True)), ttm=_ttm_leg()),
+    _refused(_scored(_ttm_pinned(n, tt), _judgment(n, capex_override=_ov(67103000, software_included=True)), ttm=tt),
              "TTM ytd_current leg (2026-07-01..2026-09-30): the override is 16,913,633 USD against 49,000,000 USD")
-    _ok(_scored(n, _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=_ttm_leg(value=255454000)))
-    _refused(_scored(n, _judgment(n, capex_override=_ov(67103000, software_included=True)),
-                     ttm=_ttm_leg(legs_filled=False)), "the override is 16,913,633 USD")
+    t2 = _ttm_leg(value=255454000)
+    _ok(_scored(_ttm_pinned(n, t2), _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=t2))
+    t3 = _ttm_leg(legs_filled=False)
+    _refused(_scored(_ttm_pinned(n, t3), _judgment(n, capex_override=_ov(67103000, software_included=True)), ttm=t3),
+             "the override is 16,913,633 USD")
+    # the review's case: a median run beside the same file — never read, never replayed — scores
+    _ok(_scored(n, _judgment(n, capex_override=_ov(67103000)), ttm=_ttm_leg()))
 
 
 def test_unstamped_ttm_override_leg_cannot_be_checked():
     """M2d (rebase A6): a ttm.json with no 5.7 stamp records no capitalized software, so an override-filled TTM leg
-    in it cannot be checked — refused (rerun ttm.py), never passed silently; the same file with no override-filled
-    leg is no concern of this check."""
+    in it cannot be checked — a run pinned to it is refused (rerun ttm.py; refuse_pre57_ttm_json names it first),
+    never passed silently; the same file with no override-filled leg is no concern of this check.
+    [whole-PR review fix, 2026-10-21; fails on 6dd4a4a] Beside a median 5.7 run that never reads it (the review's
+    s01: a pre-5.7 ttm.json of the previous fiscal year, whose capex legs ttm.py filled with the override — after a
+    new 10-K ttm.py exits 3 and writes nothing, so the file stays) the run scores: before the fix it was refused with
+    "rerun ttm.py", which the worker cannot do."""
     prov = {"2026-06-30": {"intangibles": {PTDS: 1}}}
     n = _numbers(capex_provenance=prov)
     tt = _ttm_leg(stamped=False)
@@ -297,9 +316,12 @@ def test_unstamped_ttm_override_leg_cannot_be_checked():
         if isinstance(leg, dict):
             leg.pop("software", None)
             leg.pop("software_tags", None)
-    _refused(_scored(n, _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=tt),
-             "fills TTM ytd_current leg (2026-07-01..2026-09-30) of a ttm.json stamped engine_release none (pre-5.7)",
+    _refused(_scored(_ttm_pinned(n, tt), _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=tt),
              "rerun ttm.py with the current engine")
+    assert M._software_override_hits(n, tt, 255454000)[1] == ["TTM ytd_current leg (2026-07-01..2026-09-30)"]
+    _ok(_scored(n, _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=tt))
+    old_fy = dict(copy.deepcopy(tt), fy_end="2024-12-31", ytd_end="2025-06-30")
+    _ok(_scored(n, _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=old_fy))
     tt["inputs"]["capex"]["ytd_current_tag"] = PRIMARY
     _ok(_scored(n, _judgment(n, capex_override=_ov(255454000, software_included=True)), ttm=tt))
 
