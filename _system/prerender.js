@@ -62,6 +62,7 @@ const STATIC_CSS = [
   '#static .tabbar .tabs{display:none}',                   // inert tab buttons would be dead taps; the panes below them are all visible
   '#static .subtabs{display:none}',
   '#static .pcbar{display:none}',                          // price range buttons / overlay toggles are JS-only; the default range is rendered
+  '#static .fchips{display:none}',                         // the filing / declared-fact kind chips are JS-only (dead taps in the iOS viewer); every row stays visible
   '#static .prtiers{display:flex;flex-wrap:wrap;gap:6px;margin:14px 0;align-items:center}',
   '#static .prtiers .prlab{font-size:13px;color:var(--mut)}',
   '#static .prtiers input{position:absolute;opacity:0;width:1px;height:1px}',
