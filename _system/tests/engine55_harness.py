@@ -9,7 +9,8 @@ fixtures/engine55/ (built by fixtures/engine55/build_fixtures.py — the only pi
 What it does: builds a throwaway STOCKS_BASE (universe.csv with the fixture's row, a two-entry
 sec_tickers_exchange.json, the ticker folder with the judgment.json / ttm.json you pass or the repo's own
 copies), monkeypatches every network call the engine makes (get_json for companyfacts, nasdaq_price, fx_rate,
-filer_annual_form, the --measure subprocess replay _override_impact) and runs main() in-process with sys.argv
+filer_annual_form, v5.7's edgar_submissions and fetch_instance, the --measure subprocess replay _override_impact)
+and runs main() in-process with sys.argv
 set. Nothing is written outside the temp base. Importing this module never imports the engine with a live
 sys.argv (dcf_engine reads MEASURE from sys.argv at import), so MEASURE is forced per run.
 """
@@ -127,6 +128,12 @@ def run_engine(ticker, args=(), judgment=None, ttm=None, base=None, price=None, 
     E.get_json = fake_get_json
     E.fx_rate = fake_fx_rate
     E.filer_annual_form = lambda _cik: fx.get("filer_annual_form")
+    # v5.7 (L0, 07 §1.2): the one EDGAR submissions document (filer_sic reads it; L4's annual-instance check too). A
+    # fixture without `sic` gives filer_sic (None, None) and without `submissions` no annual-instance candidate —
+    # exactly as before, when the fetch raised offline. L4's instance fetch has the stub's shape (bytes, url).
+    E.edgar_submissions = lambda _cik: {"sic": fx.get("sic"), "sicDescription": fx.get("sic_description"),
+                                        "filings": (fx.get("submissions") or {}).get("filings") or {"recent": {}}}
+    E.fetch_instance = lambda _cik, _filing: (fx.get("instance_bytes"), fx.get("instance_url"))
     px = fx.get("price") if price is None else price
     E.nasdaq_price = lambda _t: px
     E._override_impact = lambda *a, **k: {"base_oe_per_share_zero_fill": None, "base_oe_per_share_final": None,
@@ -244,13 +251,17 @@ def repo_judgment(ticker, drop=(), **updates):
 
 
 def recorded_args(n):
-    """CLI args replaying a recorded run's inputs (moat / probs / offsets / mults / gterm and the base pin)."""
+    """CLI args replaying a recorded run's inputs (moat / probs / offsets / mults / gterm / moat_trend and the base
+    pin). v5.7 M6 (L3b): a record's inputs.moat_trend is replayed as --moat-trend, so a 5.7 hold-0 record replays at
+    its own hold (a legacy record carries none: the engine default, stable / 2)."""
     inp = n.get("inputs") or {}
     args = ["--moat", repr(float(inp["moat"])),
             "--probs", ",".join(repr(float(p)) for p in inp["probs"]),
             "--offsets", ",".join(repr(float(o)) for o in inp["offsets"]),
             "--mults", ",".join(repr(float(m)) for m in inp["mults"]),
             "--gterm", repr(float(inp.get("g_terminal", 0.025)))]
+    if inp.get("moat_trend") is not None:
+        args += ["--moat-trend", str(inp["moat_trend"])]
     if inp.get("base_pin_source") == "ttm_json":
         args.append("--ttm")
     elif inp.get("base_oe_ps_arg") is not None:

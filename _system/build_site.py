@@ -178,6 +178,35 @@ are shown as stored; every replay fallback below subtracts the same charge
 recomputed sensitivity cell, hurdle price or at-floor flag equals the
 engine's. A record without the block replays exactly as before.
 
+Rulings round (Andrew, 2026-10-19 — engine 5.7, rulings R1-R9; lane L6): the
+record carries facts.json verbatim (record.facts, the worker's declared facts,
+R3), the quote checker's compact report on analysis.md (record.quote_check,
+from check_quotes.check_folder; null without the checker or without
+analysis.md; a checker exception is status 'error', never a failed build) and
+score_from_run's answer (record.score_from_run {matches, mismatches}: whether
+score.json was built from this dcf_numbers.json — the Data tab's "Content
+hash" line). score.json's misfit_notch, moat_evidence, declared_facts,
+interim_bridge, interim_bridge_declined, base_alternatives, share_classes,
+method_runs and previous_score, and dcf_numbers.json's sector_model,
+annual_from_instance, share_classes and capex_provenance software, ride
+inside the verbatim copies. The index row's tier_override now means a
+judgment override BEYOND the sector-misfit notch: tier != (misfit_notch.
+applies ? tier_after_notch : tier_by_numbers) (R1; row.misfit_notch,
+row.tier_notched; live: tier_by_numbers_live, misfit_notch_live from the
+live.json live_shown accepts); plus moat_evidence / interim_bridge summaries,
+share_basis ("total_units" on a declared share-class run, R6) and has.facts.
+The forecast block names the growth hold the engine recorded (hold_years,
+moat_trend, hold_by_scenario; 2 / null on a record before 5.7). The
+attachment keeps facts and a declared-interim ttm.json (ttm.basis
+"declared_interim", R2a); a legacy quote_check keeps its counts, not its
+list. The history CSV appends tier_by_numbers, tier_notched, the six moat
+columns, moat_trend / hold_years and tier_by_numbers_live (29 columns; dated files are never
+rewritten). The builder mtime includes check_quotes.py, facts.py and
+quote_tokens.py (record.quote_check depends on their code). A page whose
+latest engine run is not scored yet keeps every panel, labelled "as scored
+<date>" or "latest run, not scored yet" by the app (lane default Q11 (a),
+main agent 2026-10-21) — no data-layer exclusion.
+
 Every number comes from a file; the only computation here is the forecast
 replay through the engine's own functions (dcf_engine.replay_paths,
 present_value, solve_irr, tier_for_irr) when a pre-5.4 run lacks the stored
@@ -214,6 +243,10 @@ try:  # price_dividends: the dividends block at a newer close, with the code fun
     import fundamentals as FUND
 except Exception:  # the data layer still builds; dividends blocks are then shown as written
     FUND = None
+try:  # the quote checker (R3, engine 5.7): its report on analysis.md is shown on the Analysis tab
+    import check_quotes as QUOTES
+except Exception:  # the data layer still builds; record.quote_check is then null
+    QUOTES = None
 
 DATA_VERSION = 1
 HURDLES = {"S": 0.25, "A": 0.20, "B": 0.15, "C": 0.10}
@@ -223,13 +256,25 @@ TABS = ["overview", "financials", "dividends", "segments", "forecast", "analysis
 NY = ZoneInfo("America/New_York")
 COMPANY_FILES = ("score.json", "dcf_numbers.json", "financials_history.csv", "fundamentals.json", "prices.json",
                  "live.json", "segments.json", "ttm.json", "judgment.json", "analysis.md", "second_pass.md",
-                 "profile.json", "statements.json", "street.json")
+                 "profile.json", "statements.json", "street.json",
+                 "facts.json")  # engine 5.7 (R3): the worker's declared facts, served as record.facts
 STATEMENTS_SUFFIX = ".statements.json"  # data/<T>.statements.json — served next to the record, loaded on demand
 DEFAULT_GTERM = getattr(ENGINE, "DEFAULT_GTERM", 0.025)
+PROJECTION_YEARS = getattr(ENGINE, "PROJECTION_YEARS", 15)  # the projection horizon: a recorded hold lies in 0..15
 # _daily/history/ranking-<date>.csv (committed): what the daily chat message quotes, one row per ranked company
 HISTORY_COLUMNS = ("rank", "ticker", "name", "sector_misfit", "tier_scored", "irr_scored", "tier_live", "irr_live",
                    "band_low_tier", "band_high_tier", "price", "price_date", "iv15", "upside15_pct",
-                   "analysis_date", "engine_release", "alert_eligible", "watchlist")
+                   "analysis_date", "engine_release", "alert_eligible", "watchlist",
+                   # engine 5.7 rulings (append-only; earlier dated files keep their 18 columns): the misfit notch (R1),
+                   "tier_by_numbers", "tier_notched",
+                   # the moat record for backtesting (R4 revised, 03b §7.1),
+                   "moat_score", "moat_evidence_score", "moat_return_measure", "moat_return_median", "moat_sources",
+                   "moat_widest_source",
+                   # and the growth hold the moat's direction set (M6, 10 §4)
+                   "moat_trend", "hold_years",
+                   # [whole-PR review fix, 2026-10-21] the LIVE numbers tier reprice notched (blank without live data):
+                   # the daily message quotes a live notched name as "<tier_live> (<tier_by_numbers_live> by numbers)"
+                   "tier_by_numbers_live")
 # Split restatement (see the module docstring): dotted paths in the record, `*` = every key / item at that level.
 # SPLIT_DIVIDE holds every per-share figure of the scored run the page shows; SPLIT_MULTIPLY its share counts.
 _IV_KEYS = tuple(f"iv_at_{r}" for r in RATES)
@@ -258,10 +303,49 @@ SPLIT_DIVIDE = (tuple(f"score.{k}" for k in ("price", "base_oe_per_share") + _IV
                 + ("forecast.paths.*.*", "forecast.hurdle_prices.*", "forecast.inputs.base_oe_ps_arg")
                 + tuple(f"forecast.sensitivity.*.{r}" for r in RATES)
                 + tuple(f"row.{k}" for k in ("price", "iv15", "iv12", "iv20", "iv25"))
-                + ("ttm.ttm_oe_per_share",))
+                + ("ttm.ttm_oe_per_share",)
+                # engine 5.7 rulings (lane L6): every base the run recorded beside the published one (R7 / R2a
+                # base_alternatives), the saved method runs and the previous score (R3), a declared 6-K bridge's
+                # per-ordinary-share figure and zero-fill pin (R2a), the moat fade counterfactual's IV (M6)
+                + ("score.base_alternatives.bases.*.base_oe_per_share", "score.base_alternatives.bases.*.iprd_charge_per_share",
+                   "score.method_runs.*.base_oe_per_share", "score.method_runs.*.iv_at_15",
+                   "score.method_runs.*.iprd_charge_per_share",
+                   "score.previous_score.base_oe_per_share", "score.previous_score.iv_at_15",
+                   "ttm.ttm_oe_per_ordinary_share", "ttm.override_counterfactual.base_oe_per_share_zero_fill",
+                   "score.moat_evidence.fade.counterfactual.*.iv_at_15")
+                # declared share classes (R6, design 08 §10): exact keys, never a wildcard over a block holding ratios
+                + ("numbers.share_classes.ttm.ttm_oe_per_share", "numbers.share_classes.ttm.ttm_oe_per_share_filed_basis",
+                   "ttm.ttm_oe_per_share_filed_basis", "ttm.ttm_oe_per_ordinary_share_filed_basis",
+                   "ttm.override_counterfactual.base_oe_per_share_zero_fill_filed_basis",
+                   "numbers.share_classes.cap_check.universe_price", "numbers.up_c_check.universe_price",
+                   "score.share_classes.base_oe_filed_basis", "score.share_classes.base_oe_total_units",
+                   "score.share_classes.replay_pin"))
 SPLIT_MULTIPLY = ("numbers.shares_diluted_latest", "history.*.shares_diluted", "ttm.ttm_shares_diluted",
                   "numbers.iprd_adjustment.shares_denominator", "score.iprd_adjustment.shares_denominator",
-                  "numbers.iprd_adjustment.amortized.shares", "score.iprd_adjustment.amortized.shares")
+                  "numbers.iprd_adjustment.amortized.shares", "score.iprd_adjustment.amortized.shares",
+                  # engine 5.7 (R2a): a declared 6-K bridge's current-interim diluted count and the FY count beside it
+                  "ttm.shares.current_interim.value", "ttm.shares.fy_diluted",
+                  # declared share classes (R6, design 08 §10): per applied period and per class, the TTM and the latest
+                  "numbers.share_classes.applied.*.filed_traded", "numbers.share_classes.applied.*.declared_units",
+                  "numbers.share_classes.applied.*.units_equivalent", "numbers.share_classes.applied.*.total_units",
+                  "numbers.share_classes.applied.*.diluted_minus_basic", "numbers.share_classes.applied.*.classes.*.value",
+                  "numbers.share_classes.ttm.filed_traded", "numbers.share_classes.ttm.units_equivalent",
+                  "numbers.share_classes.ttm.total_units",
+                  "numbers.share_classes.latest.filed_traded", "numbers.share_classes.latest.units_equivalent",
+                  "numbers.share_classes.latest.total_units",
+                  "numbers.market_cap_basis.traded_shares", "numbers.market_cap_basis.declared_units",
+                  "numbers.share_classes.applied.*.included_units", "numbers.share_classes.included_periods.*.included_units",
+                  "numbers.share_classes.included_periods.*.filed_traded",
+                  "ttm.ttm_shares_diluted_filed", "ttm.share_classes.filed_traded", "ttm.share_classes.units_equivalent",
+                  "ttm.share_classes.total_units", "ttm.share_classes.included_units", "ttm.share_classes.classes.*.value",
+                  # [merge L6] the merged shapes (lane L8): make_score.share_classes_impact writes the latest counts flat
+                  # (units_latest / filed_latest — no latest / ttm sub-block in score.json); every class row carries
+                  # share_classes.period_detail's units (value × exchange_ratio) beside its value; the engine's TTM leg
+                  # and ttm.json's block carry the diluted - basic gap like every applied period
+                  "score.share_classes.units_latest", "score.share_classes.filed_latest",
+                  "numbers.share_classes.applied.*.classes.*.units", "ttm.share_classes.classes.*.units",
+                  "numbers.share_classes.ttm.diluted_minus_basic", "ttm.share_classes.diluted_minus_basic")
+QUOTE_UNTRACED_MAX = 40   # untraced numbers kept per record (the Analysis tab lists them; the counts are always exact)
 _NUM_RX = re.compile(r"-?\d+(\.\d+)?([eE][-+]?\d+)?")
 _INT_RX = re.compile(r"-?\d+")
 
@@ -470,10 +554,11 @@ def load_company(folder):
     c["profile"] = jload(os.path.join(folder, "profile.json"))
     c["street"] = jload(os.path.join(folder, "street.json"))  # merged into record.profile (profile_with_street)
     c["statements"] = jload(os.path.join(folder, "statements.json"))  # copied next to the record, never embedded
+    c["facts"] = jload(os.path.join(folder, "facts.json"))  # R3 declared facts (judgment record) -> record.facts
     c["analysis_md"] = tread(os.path.join(folder, "analysis.md"))
     c["second_pass_md"] = tread(os.path.join(folder, "second_pass.md"))
     c["files"] = folder_files(folder)
-    for k in ("fund", "prices", "ttm", "live", "segments", "judgment", "profile", "street", "statements"):
+    for k in ("fund", "prices", "ttm", "live", "segments", "judgment", "profile", "street", "statements", "facts"):
         if c[k] is not None and not isinstance(c[k], dict):
             c[k] = None  # a malformed file renders as absent
     return c
@@ -667,10 +752,31 @@ def live_score_problem(lv, score, numbers):
     if "dcf_content_hash" in sc and sc.get("dcf_content_hash") != s.get("dcf_content_hash"):
         return (f"computed against the score of run {sc.get('dcf_content_hash')!r}, the score on file is run "
                 f"{s.get('dcf_content_hash')!r}")
+    # v5.7 [whole-PR review fix, 2026-10-21] the notch reprice computed the live tier under: scored.tier_after_notch
+    # (None when the score was not notch-eligible) against what reprice.live_misfit reads from THIS score — a rebuild
+    # that adds or drops misfit_notch without changing tier_final (a D-tier misfit: D stays D) left the other
+    # computation's live tier shown. A live.json with no such key is live_score_identity_missing's.
+    if "tier_after_notch" in sc and sc.get("tier_after_notch") != expected_scored_notch(s, n):
+        return (f"computed with scored notch {sc.get('tier_after_notch')!r}, the score on file gives "
+                f"{expected_scored_notch(s, n)!r} (misfit_notch {'present' if _d(s.get('misfit_notch')) else 'absent'})")
     return None
 
 
-def live_score_identity_missing(lv, score):
+LIVE_NOTCH_BELOW = {"S": "A", "A": "B", "B": "C", "C": "D"}   # dcf_engine.NOTCH_BELOW (test_misfit_notch_57 pins it)
+
+
+def expected_scored_notch(score, numbers=None):
+    """The scored.tier_after_notch reprice.py writes beside THIS score.json (reprice.live_misfit): the notch of the run's
+    numbers tier when score.json carries misfit_notch on a base other than the payable pin, else None."""
+    s, n = _d(score), _d(numbers)
+    mn = s.get("misfit_notch")
+    if not isinstance(mn, dict) or mn.get("not_applied") == "payable_base":
+        return None
+    t = n.get("tier_by_numbers") or s.get("tier_by_numbers")
+    return LIVE_NOTCH_BELOW.get(t, t)
+
+
+def live_score_identity_missing(lv, score, numbers=None):
     """[Codex review r29 of PR #47, polish review] Why live.json cannot be bound to THIS score.json (None when it can):
     it records no score identity (no scored.dcf_content_hash key: written by the reprice before round 29) beside a
     score.json that carries one. live_shown withholds it, reason live_without_score_identity, right after
@@ -680,8 +786,14 @@ def live_score_identity_missing(lv, score):
     identity and that the next repricing rewrites it; it had been withheld as live_not_from_this_score, whose note says
     it was computed before the current score and that make_score has scored the run since. A recorded null identity
     is a score with no hash, so beside a hashed score it is another score's (live_score_problem); beside a score.json
-    with no dcf_content_hash there is no identity to bind (None)."""
+    with no dcf_content_hash there is no identity to bind (None).
+    v5.7 [whole-PR review fix, 2026-10-21] Likewise a live.json that records no scored.tier_after_notch (written before
+    reprice read the misfit notch) beside a score.json reprice would notch (expected_scored_notch not None): nothing
+    says which notch its live tier was computed under, so it waits for the next repricing too."""
     sc, s = _d(_d(lv).get("scored")), _d(score)
+    if "tier_after_notch" not in sc and expected_scored_notch(s, numbers) is not None:
+        return ("records no misfit notch (scored.tier_after_notch: written before live.json recorded it), the score on "
+                f"file notches its numbers tier to {expected_scored_notch(s, numbers)!r}")
     if "dcf_content_hash" in sc or s.get("dcf_content_hash") is None:
         return None
     return (f"records no score identity (scored.dcf_content_hash: written before live.json recorded it), the score on "
@@ -764,7 +876,7 @@ def live_shown(c):
         return None, {"reason": "live_not_from_this_score", "price": num(lv.get("price")), "price_date": pd,
                       "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
                       "note": LIVE_NOT_FROM_SCORE_NOTE}
-    if _d(c.get("numbers")) and live_score_identity_missing(lv, c.get("score")):
+    if _d(c.get("numbers")) and live_score_identity_missing(lv, c.get("score"), c.get("numbers")):
         # [Codex review r29 of PR #47, polish review] a live.json from before round 29: no score identity to bind
         return None, {"reason": "live_without_score_identity", "price": num(lv.get("price")), "price_date": pd,
                       "scored_date": sa or _date10(_d(c.get("numbers")).get("as_of")), "method": None,
@@ -794,6 +906,177 @@ def live_split(lv):
         return None, None
     label = bc.get("split") if isinstance(bc.get("split"), str) and bc.get("split") else f"{f:g}x"
     return f, label
+
+
+# ---------------------------------------------------------------- engine 5.7 rulings (lane L6): row summaries
+def notch_summary(mn):
+    """score.json misfit_notch (R1, Andrew 2026-10-19 — make_score.misfit_notch: every sector misfit publishes one
+    tier below its numbers tier) as the index row carries it: {applies, tier_by_numbers, tier_after_notch,
+    reason_source, not_applied} — the reason and the detection basis stay in the record. None without the block (a
+    modeled name, or a misfit scored before the mechanical notch)."""
+    mn = _d(mn)
+    if not mn:
+        return None
+    s = lambda k: mn.get(k) if isinstance(mn.get(k), str) else None  # noqa: E731
+    return {"applies": mn.get("applies") is True, "tier_by_numbers": _tier(mn.get("tier_by_numbers")),
+            "tier_after_notch": _tier(mn.get("tier_after_notch")), "reason_source": s("reason_source"),
+            "not_applied": s("not_applied")}
+
+
+def live_notch(lv):
+    """live.json misfit_notch (reprice.py, L1: the notch of the LIVE numbers tier — {tier_by_numbers,
+    tier_after_notch, applies, basis}) as the row carries it, with notch_summary's keys (reason_source and
+    not_applied are None: live.json records neither). None without the block."""
+    m = _d(_d(lv).get("misfit_notch"))
+    if not m:
+        return None
+    return dict(notch_summary(m), basis=m.get("basis") if isinstance(m.get("basis"), str) else None)
+
+
+def published_numbers_tier(tier_by_numbers, notch):
+    """The tier make_score publishes before any judgment override: the notched tier when the notch applies, else
+    the numbers tier. The row's tier_override means 'a judgment override beyond this' (R1, design 01 §5)."""
+    if notch and notch.get("applies") and notch.get("tier_after_notch"):
+        return notch["tier_after_notch"]
+    return tier_by_numbers
+
+
+TRENDS = ("eroding", "stable", "widening")
+
+
+def engine_moat_trend(n):
+    """The moat trend the engine ran with (M6, design 10): dcf_numbers.json inputs.moat_trend, else the top-level
+    copy — the record the recorded hold comes from (never moat_evidence.fade.trend, which make_score re-measures on
+    every rebuild). None on a record from before 5.7."""
+    n = _d(n)
+    for v in (_d(n.get("inputs")).get("moat_trend"), n.get("moat_trend")):
+        if v in TRENDS:
+            return v
+    return None
+
+
+def recorded_hold_years(n):
+    """The growth hold (years at the starting growth before the fade) the run recorded: dcf_engine.recorded_hold_years
+    (M6, lane L3b) — inputs.hold_years; 2 when absent (every record before 5.7 held two years); None when it is not an
+    int in 0..PROJECTION_YEARS (bool refused). A build without the engine reads exactly the same here [merge L6]: the
+    top-level copy is never read (the replay runs inputs.hold_years), so the page and the replay cannot disagree."""
+    if ENGINE is not None and hasattr(ENGINE, "recorded_hold_years"):
+        try:
+            return ENGINE.recorded_hold_years(n)
+        except Exception:  # noqa: BLE001
+            return None
+    inp = _d(_d(n).get("inputs"))
+    if "hold_years" not in inp:
+        return 2
+    v = inp["hold_years"]
+    return v if isinstance(v, int) and not isinstance(v, bool) and 0 <= v <= PROJECTION_YEARS else None
+
+
+def _int_or_none(v):
+    return v if isinstance(v, int) and not isinstance(v, bool) else None
+
+
+def moat_summary(s, n=None, from_run=None):
+    """score.json moat_evidence (R4 revised: Dorsey's sources + the evidence scorecard, make_score / moat_scorecard)
+    -> the row's summary, else None: {score (the evidence score), status (checked | report_only), within_tolerance,
+    divergence, core_score, supporting_adjustment, measure (the governing return: roic | roic_tangible | roe; null when
+    the returns_on_capital pillar is not measured — insufficient_data — so the history CSV's moat_return_measure is
+    blank there, 03b §7.1), return_median, return_note, sources (the declared source count; null on a record with no
+    scorecard — "not declared" is not "no source"), widest (wide | narrow | none | null), flags, industry ({code,
+    level, label, ladder, peers, rank, of} when industry_structure was measured, else null), fade_trend (the ENGINE's
+    moat trend), fade_in_sync (moat_evidence.fade.in_sync), fade_direction (the current measurement), hold_years
+    (engine-recorded, 2 on a record before 5.7)} (03b §7.2, 10 §4).
+    [rebase L3b A14, L6 review r3] fade_in_sync / fade_direction are make_score's trend test of the run IT scored:
+    they are read only when score.json was built from this run (from_run — score_from_run(s, n)[0], computed here when
+    the caller does not pass it), else null; fade_trend and hold_years are always the engine record's."""
+    me = _d(s.get("moat_evidence"))
+    if not me:
+        return None
+    if from_run is None:
+        from_run = bool(score_from_run(s, n)[0])
+    gov, src = _d(me.get("governing")), _d(me.get("sources"))
+    ind, fade = _d(_d(me.get("pillars")).get("industry_structure")), (_d(me.get("fade")) if from_run else {})
+    roc = _d(_d(me.get("pillars")).get("returns_on_capital"))
+    st = lambda d, k: d.get(k) if isinstance(d.get(k), str) else None  # noqa: E731
+    # the governing return is measured when its pillar says so (a record without the pillar: when it has a median or a note)
+    gov_measured = (roc.get("status") == "measured") if roc else (gov.get("median") is not None or st(gov, "median_note") is not None)
+    declared = src.get("declared") is True
+    wt, sync = me.get("within_tolerance"), fade.get("in_sync")
+    industry = ({"code": st(ind, "group"), "level": _int_or_none(ind.get("level")), "label": st(ind, "label"),
+                 "ladder": st(ind, "ladder"), "peers": _int_or_none(ind.get("peers")), "rank": _int_or_none(ind.get("rank")),
+                 "of": _int_or_none(ind.get("of"))} if ind.get("status") == "measured" else None)
+    return {"score": num(me.get("evidence_score")), "status": st(me, "status"),
+            "within_tolerance": wt if isinstance(wt, bool) else None, "divergence": num(me.get("divergence")),
+            "core_score": num(me.get("core_evidence_score")), "supporting_adjustment": num(me.get("supporting_adjustment")),
+            "measure": st(gov, "measure") if gov_measured else None,
+            "return_median": num(gov.get("median")), "return_note": st(gov, "median_note"),
+            "sources": _int_or_none(src.get("count")) if declared else None,
+            "widest": st(src, "widest") if declared else None,
+            "flags": [str(f) for f in _l(me.get("flags"))], "industry": industry,
+            "fade_trend": engine_moat_trend(n), "fade_in_sync": sync if isinstance(sync, bool) else None,
+            "fade_direction": st(fade, "direction"), "hold_years": recorded_hold_years(n)}
+
+
+def interim_summary(s):
+    """score.json interim_bridge (R2a, a declared 6-K interim bridge; its figures are base_alternatives', R7's one
+    record) -> {tier_bridged, tier_annual_median, estimate_legs, measured, published_base} for the row, else None.
+    published_base is base_alternatives.published ("declared_interim" when the bridge is the scored base; another
+    kind when a STALE_FY rejection published the median, R7)."""
+    ib = _d(s.get("interim_bridge"))
+    if not ib:
+        return None
+    alts = _d(s.get("base_alternatives"))
+    bases = {b.get("kind"): b for b in _l(alts.get("bases")) if isinstance(b, dict)}
+    pub = _d(bases.get("declared_interim")) or _d(ib.get("bridged"))
+    med = _d(bases.get("annual_median")) or _d(ib.get("annual_median"))
+    measured = med.get("measured") if isinstance(med.get("measured"), bool) else (alts.get("measured") if alts else ib.get("measured"))
+    return {"tier_bridged": _tier(pub.get("tier_by_numbers")), "tier_annual_median": _tier(med.get("tier_by_numbers")),
+            "estimate_legs": len(_l(ib.get("estimate_legs"))), "measured": measured is True,
+            "published_base": alts.get("published") if isinstance(alts.get("published"), str) else None}
+
+
+def share_basis(n):
+    """The share basis the run's per-share figures stand on, for the ranking chip (R6, design 08 §10): "total_units"
+    when dcf_numbers.json carries a declared share-class record (traded class + declared exchangeable units), else
+    None (the filed diluted count)."""
+    sc = _d(_d(n).get("share_classes"))
+    return "total_units" if sc.get("declared") is True and not sc.get("counterfactual") else None
+
+
+def quote_check(folder):
+    """check_quotes.check_folder's report on analysis.md, compacted for the Analysis tab (R3, engine 5.7) — or None
+    without the checker or without analysis.md. A checker exception is recorded as status 'error', never raised: a
+    page must build whatever the checker does."""
+    if QUOTES is None or not os.path.isfile(os.path.join(folder, "analysis.md")):
+        return None
+    try:
+        rep = _d(QUOTES.check_folder(folder))
+    except Exception as e:  # noqa: BLE001
+        return {"status": "error", "gated": False, "engine_release": None, "checked": None, "matched": None,
+                "ignored": None, "untraced_count": None, "untraced": [], "integrity": [], "warnings": [],
+                "error": f"{type(e).__name__}: {e}"[:300]}
+    unt = [u for u in _l(rep.get("untraced")) if isinstance(u, dict)]
+    ign = _d(rep.get("ignored"))
+    st = rep.get("status") if rep.get("status") in ("pass", "fail", "legacy", "error") else "error"
+    _i = lambda v: v if isinstance(v, int) and not isinstance(v, bool) else None  # noqa: E731
+    return {"status": st, "gated": rep.get("gated") is True,
+            "engine_release": rep.get("engine_release") if isinstance(rep.get("engine_release"), str) else None,
+            "checked": _i(rep.get("checked")), "matched": _i(rep.get("matched")),
+            "ignored": sum(v for v in ign.values() if _i(v) is not None) if ign else None,
+            "untraced_count": len(unt),
+            "untraced": [{"line": _i(u.get("line")), "col": _i(u.get("col")), "raw": str(u.get("raw"))[:40],
+                          "kind": u.get("kind") if isinstance(u.get("kind"), str) else None}
+                         for u in unt[:QUOTE_UNTRACED_MAX]],
+            "integrity": [str(x)[:300] for x in _l(rep.get("integrity"))][:10],
+            "warnings": [str(x)[:300] for x in _l(rep.get("warnings"))][:20], "error": None}
+
+
+def score_run_record(score, numbers):
+    """record.score_from_run (rebase B5): score_from_run's answer once, for the Data tab's "Content hash" line —
+    {matches, mismatches (at most 5, each at most 200 characters)}. The same function live_shown applies (it also
+    re-validates the hash over the record, applies the pre-5.6 headline-figure rule and covers Tier F runs)."""
+    ok, mm = score_from_run(score, numbers)
+    return {"matches": bool(ok), "mismatches": [str(m)[:200] for m in _l(mm)[:5]]}
 
 
 def _scale_path(obj, parts, factor):
@@ -983,10 +1266,15 @@ def forecast_paths(n):
     cap = ENGINE.cap_years_for_moat(inp.get("moat", 5))
     paths, gpaths = {}, {}
     try:
+        g0s = [max(ENGINE.GROWTH_FLOOR_START, min(ENGINE.GROWTH_CAP_START, gb + inp["offsets"][i])) for i in range(len(LABELS))]
+        # engine 5.7 (M6, design 10 §4): the per-scenario holds the record carries (2 on every record before 5.7)
+        hs = ENGINE.recorded_scenario_holds(n, g0s, gterm) if hasattr(ENGINE, "recorded_scenario_holds") else [2] * len(LABELS)
+        if hs is None:
+            return None, None, False
         for i, k in enumerate(LABELS):
-            g0 = max(ENGINE.GROWTH_FLOOR_START, min(ENGINE.GROWTH_CAP_START, gb + inp["offsets"][i]))
-            paths[k] = ENGINE.project_path(base * inp["mults"][i], g0, cap, gterm)
-            gpaths[k] = ENGINE.growth_path(g0, cap, gterm)
+            g0 = g0s[i]
+            paths[k] = ENGINE.project_path(base * inp["mults"][i], g0, cap, gterm, hold=hs[i])
+            gpaths[k] = ENGINE.growth_path(g0, cap, gterm, hold=hs[i])
         probs = inp["probs"]
         paths["weighted"] = [sum(probs[i] * paths[LABELS[i]][t] for i in range(5)) for t in range(len(paths["base"]))]
     except Exception:
@@ -1115,13 +1403,18 @@ def scenario_sensitivity(n, s, paths, lv):
 
 def forecast_block(c, paths, gpaths, replayed, sens, hp):
     n, s = c["numbers"], c["score"]
-    inp = _d(n.get("inputs"))
+    inp, scn = _d(n.get("inputs")), _d(n.get("scenarios"))
     return {"paths": paths, "growth_paths": gpaths, "sensitivity": sens, "hurdle_prices": hp, "inputs": inp or None,
             "g_base": num(n.get("g_base")), "g_blend": num(n.get("g_blend")), "g_terminal": _gterm(n),
             "cap_years": num(n.get("cap_years")) if n.get("cap_years") is not None else num(s.get("cap_years")),
             "growth_components": _d(n.get("growth_components")), "growth_components_adjusted": _d(n.get("growth_components_adjusted")) or None,
             "share_cagr": num(n.get("share_cagr")), "share_count_adj": num(n.get("share_count_adj")), "share_adj_basis": n.get("share_adj_basis"),
-            "replayed": bool(replayed)}
+            "replayed": bool(replayed),
+            # engine 5.7 (M6, design 10 §4): the growth hold the moat's direction set — engine-recorded (2 on a record
+            # before 5.7; None when malformed), the engine's trend (None before 5.7) and the per-scenario holds
+            "hold_years": recorded_hold_years(n), "moat_trend": engine_moat_trend(n),
+            "hold_by_scenario": ({k: _d(scn.get(k)).get("hold_years") for k in LABELS}
+                                 if any("hold_years" in _d(scn.get(k)) for k in LABELS) else None)}
 
 
 def irr_at_floor_flag(c, paths):
@@ -1143,13 +1436,18 @@ def registry_entries(registry, c, ticker):
     return [e for e in (_l(registry.get(ticker)) or _l(registry.get(c["folder"])) or _l(registry.get(c["score"].get("ticker")))) if isinstance(e, dict)]
 
 
-def index_row(c, registry, paths, hp, watchlist=()):
+def index_row(c, registry, paths, hp, watchlist=(), from_run=None):
+    """One index.json row. from_run: score_from_run(score, numbers)[0] when the caller has it (build_record computes
+    it once for record.score_from_run); moat_summary computes it otherwise (rebase L3b A14)."""
     s, n = c["score"], c["numbers"]
     lv = c.get("live") if live_ok(c.get("live")) else None
     scn = _d(n.get("scenarios")) or _d(s.get("scenarios"))
     diag = _d(n.get("diagnostics"))
     tier_by_numbers = _tier(s.get("tier_by_numbers")) or _tier(n.get("tier_by_numbers"))
     tier = _tier(s.get("tier_final")) or tier_by_numbers or "?"
+    # engine 5.7 rulings: the misfit notch (R1), the moat evidence (R4) and the declared 6-K bridge (R2a) summaries
+    mn = notch_summary(s.get("misfit_notch"))
+    me, ib = moat_summary(s, n, from_run), interim_summary(s)
     irr = num(s.get("implied_irr")) if s.get("implied_irr") is not None else num(n.get("implied_irr_weighted"))
     irr_bear = num(s.get("irr_bear")) if s.get("irr_bear") is not None else num(_d(scn.get("bear")).get("irr"))
     irr_bull = num(s.get("irr_bull")) if s.get("irr_bull") is not None else num(_d(scn.get("bull")).get("irr"))
@@ -1166,7 +1464,11 @@ def index_row(c, registry, paths, hp, watchlist=()):
         "ticker": ticker, "name": s.get("name") if isinstance(s.get("name"), str) else (n.get("name") if isinstance(n.get("name"), str) else None),
         "sector": s.get("sector") if isinstance(s.get("sector"), str) else None,
         "fit": model_fit(c), "watchlist": ticker in watchlist,
-        "tier": tier, "tier_by_numbers": tier_by_numbers, "tier_override": bool(tier_by_numbers and tier != tier_by_numbers),
+        # R1 (design 01 §5): a judgment override BEYOND the sector-misfit notch (identical to the old flag without a block)
+        "tier": tier, "tier_by_numbers": tier_by_numbers,
+        "tier_override": bool(tier_by_numbers and tier != published_numbers_tier(tier_by_numbers, mn)),
+        "tier_notched": bool(mn and mn["applies"]), "misfit_notch": mn,
+        "tier_by_numbers_live": None, "misfit_notch_live": None,  # set from live.json below
         "tier_live": None, "tier_bear": _tier(s.get("tier_bear")) or tier_for_irr(irr_bear), "tier_bull": _tier(s.get("tier_bull")) or tier_for_irr(irr_bull),
         "irr": irr, "irr_live": None, "irr_bear": irr_bear, "irr_bull": irr_bull,
         "irr_at_floor": irr_at_floor_flag(c, paths), "irr_capped": bool(s.get("irr_capped") or diag.get("irr_capped")),
@@ -1179,11 +1481,13 @@ def index_row(c, registry, paths, hp, watchlist=()):
         "iv20": num(hp.get("20")), "iv25": num(hp.get("25")),
         "upside15": num(s.get("upside_at_15_pct")), "upside15_live": None,
         "market_cap_b": num(s.get("market_cap_b")), "market_cap_b_live": None,
-        "moat": num(s.get("moat_score")), "cap_years": num(s.get("cap_years")), "confidence": s.get("confidence"),
+        "moat": num(s.get("moat_score")), "moat_evidence": me,
+        "cap_years": num(s.get("cap_years")), "confidence": s.get("confidence"),
         "confidence_capped": bool(s.get("confidence_capped")),
         "one_liner": s.get("one_liner"), "analysis_date": s.get("analysis_date"), "engine_release": s.get("engine_release") or n.get("engine_release"),
         "flags": flags_of(s, n),
         "overrides": [{"field": o.get("field"), "kind": o.get("kind")} for o in _l(s.get("overrides")) if isinstance(o, dict) and o.get("field")],
+        "interim_bridge": ib, "share_basis": share_basis(n),
         "override_unblocks_tier": bool(imp.get("unblocks_tier")) or any(bool(e.get("unblocks_tier")) for e in entries),
         "second_pass": {"date": sp.get("date"), "verdict": sp.get("verdict"), "prior_tier": sp.get("prior_tier")} if sp else None,
         "alert_eligible": bool(s.get("alert_eligible")),
@@ -1196,7 +1500,8 @@ def index_row(c, registry, paths, hp, watchlist=()):
         "has": {"prices": isinstance(c.get("prices"), dict), "fundamentals": isinstance(c.get("fund"), dict), "dividends": div is not None,
                 "segments": isinstance(c.get("segments"), dict), "live": lv is not None, "analysis": c.get("analysis_md") is not None,
                 "second_pass": c.get("second_pass_md") is not None,
-                "statements": isinstance(c.get("statements"), dict), "profile": isinstance(c.get("profile"), dict)},
+                "statements": isinstance(c.get("statements"), dict), "profile": isinstance(c.get("profile"), dict),
+                "facts": isinstance(c.get("facts"), dict)},
     }
     if lv:
         p = num(lv.get("price"))
@@ -1209,7 +1514,9 @@ def index_row(c, registry, paths, hp, watchlist=()):
                     "market_cap_b_live": cap / 1e9 if cap is not None else None,
                     "irr_bear_live": num(lv.get("irr_bear")), "irr_bull_live": num(lv.get("irr_bull")),
                     "tier_bear_live": _tier(lv.get("tier_bear")), "tier_bull_live": _tier(lv.get("tier_bull")),
-                    "irr_at_floor_live": bool(lv.get("irr_at_floor"))})
+                    "irr_at_floor_live": bool(lv.get("irr_at_floor")),
+                    # engine 5.7 (R1): reprice.py notches the LIVE numbers tier (a bound live.json only: live_shown)
+                    "tier_by_numbers_live": _tier(lv.get("tier_by_numbers")), "misfit_notch_live": live_notch(lv)})
         # live.json's IVs are in today's share units; the row's run figures are in the scored run's until
         # restate_split, so a fallback is put back in run units first (× the split factor, 1 without a split)
         sf = live_split(lv)[0] or 1.0
@@ -1244,7 +1551,8 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
     paths, gpaths = (_d(paths) or None), (_d(gpaths) or None)
     hp = hurdle_prices(n, s, paths) if has_scn else None
     sens = scenario_sensitivity(n, s, paths, live)
-    row = index_row(c, registry, paths, hp, watchlist)
+    sfr = score_run_record(s, n)   # rebase B5, computed once: record.score_from_run and the row's fade fields (L3b A14)
+    row = index_row(c, registry, paths, hp, watchlist, from_run=sfr["matches"])
     row["live_withheld"] = withheld is not None
     numbers = {k: v for k, v in n.items() if k not in ("paths", "growth_paths")}
     pr = c.get("prices")
@@ -1261,6 +1569,9 @@ def build_record(c, registry, built_at, built_from_mtime, watchlist=()):
            "history": c.get("history") or [],
            "fundamentals": c.get("fund"), "prices": prices, "segments": c.get("segments"), "ttm": c.get("ttm"),
            "judgment": c.get("judgment"),
+           "facts": c.get("facts"),                                  # facts.json verbatim (R3 declared facts) | null
+           "quote_check": quote_check(c["path"]) if c.get("path") else None,  # check_quotes' compact report | null
+           "score_from_run": sfr,                                     # rebase B5: is score.json this run's?
            "profile": profile_with_street(c.get("profile"), c.get("street")),
            "registry": registry_entries(registry, c, row["ticker"]),
            "analysis_md": c.get("analysis_md"), "second_pass_md": c.get("second_pass_md"),
@@ -1281,13 +1592,44 @@ def trim_record(rec):
     """The attachment copy: no judgment / ttm / prices.daily_1y /
     prices.sessions_5d / numbers.used_tags, numbers.capex_provenance,
     numbers.sbc_provenance, numbers.share_basis (prices.intraday and profile
-    are kept; the statements never live in a record, so nothing to drop there)."""
+    are kept; the statements never live in a record, so nothing to drop there).
+    Engine 5.7 (lane L6): a declared 6-K interim bridge's ttm.json (ttm.basis
+    'declared_interim', R2a — its legs and provenance are the Data tab's Interim
+    bridge section, and only a handful of foreign records carry one) is KEPT;
+    facts (the Declared facts panel, R3 — Andrew reads the attachment on a phone)
+    is kept; a legacy (not gated) quote_check keeps its counts, not its untraced
+    list. [whole-PR review fix, 2026-10-21] R9's capitalized-software rows of the
+    dropped capex_provenance stay as numbers.capex_software
+    (capex_software_summary), so the Data tab's "Capitalized software (in
+    capex)" row reaches the attachment."""
     out = {k: v for k, v in rec.items() if k not in ("judgment", "ttm", "statements")}
+    ttm = rec.get("ttm")
+    if isinstance(ttm, dict) and ttm.get("basis") == "declared_interim":
+        out["ttm"] = ttm
+    qc = rec.get("quote_check")
+    if isinstance(qc, dict) and not qc.get("gated"):
+        out["quote_check"] = dict(qc, untraced=[])
     if isinstance(out.get("prices"), dict):
         out["prices"] = {k: v for k, v in out["prices"].items() if k not in ("daily_1y", "sessions_5d")}
     if isinstance(out.get("numbers"), dict):
+        soft = capex_software_summary(out["numbers"].get("capex_provenance"))
         out["numbers"] = {k: v for k, v in out["numbers"].items() if k not in TRIM_NUMBERS_KEYS}
+        if soft:
+            out["numbers"]["capex_software"] = soft
     return out
+
+
+def capex_software_summary(prov):
+    """[whole-PR review fix, 2026-10-21] R9's capitalized-software rows of numbers.capex_provenance in the attachment's
+    compact shape {FY end: {"software": {tag: value}, "unit": the intangible leg's filed unit}} — the Data tab's
+    "Capitalized software (in capex)" row (app.js capexSoftwareText) — None when no year carries software. The rest of
+    capex_provenance stays out of the attachment."""
+    out = {}
+    for pe, rec in sorted(_d(prov).items()):
+        sw = {t: v for t, v in _d(_d(rec).get("software")).items() if num(v) is not None}
+        if sw:
+            out[pe] = {"software": sw, "unit": _d(rec).get("intangibles_unit") or None}
+    return out or None
 
 
 # ---------------------------------------------------------------- IO
@@ -1407,6 +1749,26 @@ def _csv_bool(v):
     return "true" if v is True else "false"
 
 
+def _csv_moat_median(me):
+    """moat_return_median (03b §7.1): the governing return's median as a 6-dp decimal; `inf` for an unbounded median
+    (return_note unbounded_high), `-inf` for a loss on non-positive / unstable capital (loss_on_*) — both parse as
+    floats in Python and pandas; blank when unmeasured."""
+    note = me.get("return_note") if isinstance(me.get("return_note"), str) else ""
+    if note == "unbounded_high":
+        return "inf"
+    if note.startswith("loss_on"):
+        return "-inf"
+    return _csv_num(me.get("return_median"), 6)
+
+
+def _csv_int(v):
+    """An integer-valued number as plain digits ('' for null): a moat score 6.0 prints 6."""
+    v = num(v)
+    if v is None:
+        return ""
+    return str(int(v)) if float(v).is_integer() else f"{v:g}"
+
+
 def history_key(r):
     """Live IRR desc, then scored IRR desc, then ticker (nulls after values)."""
     lv, sc = num(r.get("irr_live")), num(r.get("irr"))
@@ -1418,13 +1780,23 @@ def history_rows(index):
     Live figures where the row has live.json, else the scored ones: price and
     price_date (the scored price's date is the analysis date), upside at 15%,
     and the bear -> bull band tiers; tier_live / irr_live stay blank without
-    live data."""
+    live data. Engine 5.7 (append-only): tier_by_numbers (the scored numbers
+    tier) and tier_notched (R1: a notched name reads "D (C by numbers)"); the
+    moat record (03b §7.1: moat_score, moat_evidence_score 2 dp, the governing
+    return's measure and median — inf / -inf for unbounded medians —, the
+    declared source count and the widest source, both blank when no scorecard
+    is declared, never 0 / none); moat_trend (the engine's, blank before 5.7)
+    and hold_years (engine-recorded, 2 before 5.7) (M6); tier_by_numbers_live
+    (the live numbers tier reprice notched, blank without live data — whole-PR
+    review fix, 2026-10-21: the scored tier_by_numbers is not the live one)."""
     out = []
     for i, r in enumerate(sorted(index, key=history_key), 1):
         live = num(r.get("price_live")) is not None and num(r.get("irr_live")) is not None
         lo, hi = (_tier(r.get("tier_bear_live")), _tier(r.get("tier_bull_live"))) if live else (None, None)
         if lo is None or hi is None:
             lo, hi = _tier(r.get("tier_bear")), _tier(r.get("tier_bull"))
+        me = _d(r.get("moat_evidence"))
+        hold = me.get("hold_years") if me else 2
         out.append([str(i), _csv_str(r.get("ticker")), _csv_str(r.get("name")), _csv_bool(r.get("fit") == "misfit"),
                     _csv_str(_tier(r.get("tier")) or r.get("tier")), _csv_num(r.get("irr"), 6),
                     _csv_str(_tier(r.get("tier_live"))) if live else "", _csv_num(r.get("irr_live"), 6) if live else "",
@@ -1433,7 +1805,14 @@ def history_rows(index):
                     _csv_str(r.get("price_date") if live else r.get("analysis_date")),
                     _csv_num(r.get("iv15"), 2), _csv_num(r.get("upside15_live") if live else r.get("upside15"), 2),
                     _csv_str(r.get("analysis_date")), _csv_str(r.get("engine_release")),
-                    _csv_bool(r.get("alert_eligible")), _csv_bool(r.get("watchlist"))])
+                    _csv_bool(r.get("alert_eligible")), _csv_bool(r.get("watchlist")),
+                    _csv_str(_tier(r.get("tier_by_numbers"))), _csv_bool(r.get("tier_notched")),
+                    _csv_int(r.get("moat")), _csv_num(me.get("score"), 2), _csv_str(me.get("measure")),
+                    _csv_moat_median(me) if me else "",
+                    _csv_int(me.get("sources")) if isinstance(me.get("sources"), int) else "",
+                    _csv_str(me.get("widest")) if me.get("sources") is not None else "",
+                    _csv_str(me.get("fade_trend")), _csv_int(hold) if hold is not None else "",
+                    _csv_str(_tier(r.get("tier_by_numbers_live"))) if live else ""])
     return out
 
 
@@ -1570,6 +1949,16 @@ def build_attachment(base, site_dir, meta, rows, records_by_ticker, top, date, p
 
 
 # ---------------------------------------------------------------- build
+def builder_code_mtime():
+    """The builder's code: this script, the fundamentals.price_dividends it reprices every dividends block with, and
+    the quote checker (check_quotes.py with the facts.py and quote_tokens.py it imports) whose report every record
+    carries (engine 5.7, R3; rebase B11) — an edit to any of them rebuilds every record."""
+    code = [os.path.abspath(__file__)] + [getattr(m, "__file__", None) for m in
+                                          (FUND, QUOTES, sys.modules.get("facts"), sys.modules.get("quote_tokens"))
+                                          if m is not None]
+    return max([os.path.getmtime(p) for p in code if isinstance(p, str) and os.path.exists(p)] or [0.0])
+
+
 def build(base=None, site_dir=None, only=None, force=False, attachment=False, top=150, quiet=False, now=None, prerender=True):
     base = os.path.abspath(base or os.environ.get("STOCKS_BASE") or os.path.dirname(HERE))
     site_dir = os.path.abspath(site_dir or os.path.join(base, "_daily", "site"))
@@ -1578,9 +1967,7 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     only = set(x.strip().upper() for x in only if x.strip()) if only else None
     now = now or datetime.datetime.now(NY)
     built_at, date = now.isoformat(timespec="seconds"), now.date().isoformat()
-    # the builder's code: this script and the fundamentals.price_dividends it reprices every dividends block with
-    builder_mtime = max(os.path.getmtime(os.path.abspath(__file__)),
-                        os.path.getmtime(FUND.__file__) if FUND is not None and os.path.exists(FUND.__file__) else 0.0)
+    builder_mtime = builder_code_mtime()
     registry = load_registry(base)
     watchlist, watchlist_outside, watchlist_entries = load_watchlist(base)
     wl = set(watchlist)
@@ -1817,6 +2204,13 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
     if stale_prices:
         notes.append(f"{len(stale_prices)} scored name(s) hold a last close on file more than one session behind the sweep's latest close ({sessions[-1]}) — prices.py has not refreshed them (row.prices_stale): "
                      + ", ".join(f"{t} (last close {stale_prices[t]['last_date']})" for t in sorted(stale_prices)))
+    misfits = sum(1 for r in index if r.get("fit") == "misfit")
+    notched = sum(1 for r in index if r.get("tier_notched"))
+    if notched or misfits:
+        notes.append(f"sector misfits: {misfits} ({notched} published one tier below their numbers tier — the mechanical "
+                     "notch, Andrew 2026-10-19; row.misfit_notch / tier_notched)")
+    if QUOTES is None:
+        notes.append("quote checker unavailable (check_quotes.py did not import): record.quote_check is null")
     if restated:
         notes.append(f"{len(restated)} record(s) restated for a split since scoring (record.split_restated): " + ", ".join(restated))
     if failed:
@@ -1831,12 +2225,19 @@ def build(base=None, site_dir=None, only=None, force=False, attachment=False, to
         notes.append(f"{len(missing_outside_only)} record(s) outside --only had no data/<T>.json and were built anyway: " + ", ".join(missing_outside_only))
     meta = {"built_at": built_at, "date": date, "data_version": DATA_VERSION, "engine_release_latest": latest_release,
             "sweep": sweep_counts(base),
-            "counts": {"current": len(index), "stale": len(stale), "misfits": sum(1 for r in index if r.get("fit") == "misfit"),
+            "counts": {"current": len(index), "stale": len(stale), "misfits": misfits,
                        "tiers": tiers, "with_live": sum(1 for r in index if _d(r.get("has")).get("live")),
                        "live_withheld": len(withheld), "prices_stale": len(stale_prices), "split_restated": len(restated),
                        "watchlist": sum(1 for r in index if r.get("watchlist")), "failed": len(failed),
                        "statements": sum(1 for r in index if _d(r.get("has")).get("statements")),
-                       "profiles": sum(1 for r in index if _d(r.get("has")).get("profile"))},
+                       "profiles": sum(1 for r in index if _d(r.get("has")).get("profile")),
+                       # engine 5.7 rulings (R1-R4, M6)
+                       "notched": notched, "facts": sum(1 for r in index if _d(r.get("has")).get("facts")),
+                       "moat_checked": sum(1 for r in index if _d(r.get("moat_evidence")).get("status") == "checked"),
+                       "interim_bridged": sum(1 for r in index if r.get("interim_bridge")
+                                              and _d(r.get("interim_bridge")).get("published_base") in (None, "declared_interim")),
+                       "moat_eroding": sum(1 for r in index if "MOAT_EROSION" in _l(_d(r.get("moat_evidence")).get("flags"))),
+                       "moat_widening": sum(1 for r in index if "MOAT_WIDENING" in _l(_d(r.get("moat_evidence")).get("flags")))},
             # Where the complete site is hosted, for the attachment's "open the site"
             # links (statements are served on demand there, never embedded). Set
             # STOCKS_SITE_URL once a host exists; null otherwise (the repo is

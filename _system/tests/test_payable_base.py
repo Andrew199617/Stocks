@@ -34,8 +34,11 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYS = os.path.dirname(HERE)
 sys.path.insert(0, SYS)
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
 import make_score as M  # noqa: E402
 import dcf_engine as E  # noqa: E402
+import rulings57  # noqa: E402  (v5.7 G16: the current-release obligations, applied by _score_files)
 
 MAKE_SCORE = os.path.join(SYS, "make_score.py")
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
@@ -215,7 +218,10 @@ def _score_files(n, j):
         with open(os.path.join(base, "_system", "dcf_engine.py"), "w", encoding="utf-8") as f:
             f.write("import json; print(json.dumps({'base_oe_per_share': 77.78, 'implied_irr_weighted': 0.2731, "
                     "'tier_by_numbers': 'S', 'data_gap': []}))\n")
-        canon = json.dumps(n, sort_keys=True, separators=(",", ":"), default=str)
+        # v5.7 (07 G16): the 5.7 run's obligations (rulings57; the identity until the lanes fill them)
+        n, j = rulings57.apply(n, j, folder=os.path.join(base, t))
+        canon = json.dumps({k: v for k, v in n.items() if k != "content_hash"}, sort_keys=True, separators=(",", ":"),
+                           default=str)
         n["content_hash"] = hashlib.sha256(canon.encode()).hexdigest()
         for name, obj in (("dcf_numbers.json", n), ("judgment.json", j)):
             with open(os.path.join(base, t, name), "w", encoding="utf-8") as f:

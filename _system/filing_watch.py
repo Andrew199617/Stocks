@@ -23,6 +23,11 @@ goes through `queue.py refresh`, which writes the refreshed queue.json entry
 and, when the name's second pass was done, puts that second_pass_queue.json
 entry back to pending (the re-score is a new scoring generation).
 Prints a summary: checked / refreshed (with form + period) / unchanged / errors.
+Exit 3 when every name's fetch failed — every checked name errored and none was refreshed or unchanged: an EDGAR
+outage is a failed run (run_health.py records it; engine 5.7, R5 2026-10-19), not a quiet one; a few name-level
+errors beside successful checks still exit 0. Exit 3 too when every queue refresh the run attempted failed
+(queue.py refused them all, e.g. a malformed second_pass_queue.json): a name counts as refreshed only once
+`queue.py refresh` exits 0, and the summary names the failed refreshes (whole-PR review fix, 2026-10-21).
 An unreadable queue.json is an error (exit 1), not an empty queue; the read is
 retried while queue.py replaces the file (on Windows a read that lands
 mid-replace fails to open).
@@ -99,7 +104,7 @@ def main():
         print(f"filing_watch: cannot read {qpath} ({type(e).__name__}: {e})", file=sys.stderr)
         sys.exit(1)
     done = [e["ticker"] for e in q["queue"] if e.get("status") == "done" and (not only or e["ticker"] in only)]
-    refreshed, unchanged, errors = [], 0, []
+    refreshed, unchanged, errors, refresh_failed = [], 0, [], []
     for t in done:
         n = jload(f"{BASE}/{t}/dcf_numbers.json") or {}
         cik = n.get("cik")
@@ -122,18 +127,29 @@ def main():
         if reason is None and pinned and qq and scored_quarter and qq[1] > scored_quarter and (not a or qq[1] > a[1]):
             reason = f"NEW_FILING: {qq[0]} for the period ending {qq[1]} (filed {qq[2]}) is newer than the TTM pin through {scored_quarter}"
         if reason:
-            refreshed.append((t, reason))
             if not dry:
+                # [whole-PR review fix, 2026-10-21] a name counts as refreshed only once queue.py refresh exits 0; a
+                # failed refresh is kept apart (it re-queued nothing)
                 r = subprocess.run([sys.executable, f"{HERE}/queue.py", "refresh", t, "--stdin"], input=reason, capture_output=True, text=True)
                 if r.returncode != 0:
+                    refresh_failed.append(t)
                     errors.append(f"{t}: queue refresh failed: {r.stderr.strip()}")
+                else:
+                    refreshed.append((t, reason))
+            else:
+                refreshed.append((t, reason))
             if not quiet:
                 print(f"{'[dry-run] ' if dry else ''}{t}: {reason}")
         else:
             unchanged += 1
         time.sleep(0.12)
     print(f"filing_watch: checked {len(done)} done names — {len(refreshed)} refreshed, {unchanged} unchanged, {len(errors)} errors"
+          + (f" ({len(refresh_failed)} queue refresh{'es' if len(refresh_failed) != 1 else ''} failed)" if refresh_failed else "")
           + (f"\n  " + "\n  ".join(errors) if errors else ""))
+    # v5.7 (R5, Andrew 2026-10-19): a failed run exits 3 — run_health counts it: an EDGAR outage (every name errored),
+    # and [whole-PR review fix, 2026-10-21] a run whose every attempted queue refresh failed (it re-queued nothing)
+    no_success = errors and not refreshed and unchanged == 0
+    sys.exit(3 if no_success or (refresh_failed and not refreshed) else 0)
 
 
 if __name__ == "__main__":

@@ -1769,9 +1769,170 @@ def test_files_written_before_the_q8_rules_are_rebuilt_once():
     latest = {"form": "20-F", "filed": "2026-03-18", "period": "2025-12-31"}
     pre = {"latest_filed": dict(latest), "schema_version": 3, "covered_through": "2025-12-31",
            "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalents"]}]}}
-    assert S.SCHEMA_VERSION == 4, S.SCHEMA_VERSION
+    # engine 5.7 (R4, lane L3) bumped the schema again (4 -> 5): the purpose of this pin — a schema-3 file is rebuilt
+    # once — still holds at any later schema (test_schema_5_rewrites_once pins 5)
+    assert S.SCHEMA_VERSION >= 4, S.SCHEMA_VERSION
     assert S.can_skip(pre, latest) is False, "a schema-3 file is rebuilt"
     assert S.can_skip(dict(pre, schema_version=S.SCHEMA_VERSION), latest) is True, "and skipped again once rebuilt"
+
+
+# ---------------------------------------------------------------- 14. engine 5.7 (R4 revised M2): one returns function
+def _annual_facts(years):
+    """A 10-K-only companyfacts fixture: {year: {tag: value}} (durations for flows, instants at the FY end)."""
+    flows = {"RevenueFromContractWithCustomerExcludingAssessedTax", "OperatingIncomeLoss", "NetIncomeLoss", "IncomeTaxExpenseBenefit",
+             "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest",
+             "NetCashProvidedByUsedInOperatingActivities", "PaymentsToAcquirePropertyPlantAndEquipment"}
+    us = {}
+    for y, vals in years.items():
+        for tag, v in vals.items():
+            e = {"end": f"{y}-12-31", "val": v, "fy": y, "fp": "FY", "form": "10-K", "filed": f"{y + 1}-02-20", "accn": f"acc-{y}"}
+            if tag in flows:
+                e["start"] = f"{y}-01-01"
+            us.setdefault(tag, {"units": {"USD": []}})["units"]["USD"].append(e)
+    return {"cik": 998, "entityName": "Returns Fixture Co", "facts": {"us-gaap": us, "dei": {}}}
+
+
+def _hpq_years():
+    """HPQ-shaped: negative equity in FY2021-22, invested capital 2.9% / 3.5% of revenue (unstable), positive in FY2023."""
+    out = {}
+    for y, rev, oi, eq in ((2021, 60e9, 4.0e9, -1.2e9), (2022, 62e9, 4.2e9, -0.8e9), (2023, 64e9, 4.4e9, 2.0e9)):
+        pre = oi - 0.2e9
+        out[y] = {"RevenueFromContractWithCustomerExcludingAssessedTax": rev, "OperatingIncomeLoss": oi,
+                  "IncomeLossFromContinuingOperationsBeforeIncomeTaxesExtraordinaryItemsNoncontrollingInterest": pre,
+                  "IncomeTaxExpenseBenefit": 0.2 * pre, "NetIncomeLoss": 0.8 * pre, "NetCashProvidedByUsedInOperatingActivities": oi,
+                  "PaymentsToAcquirePropertyPlantAndEquipment": 0.5e9, "StockholdersEquity": eq, "LongTermDebtNoncurrent": 6e9,
+                  "CashAndCashEquivalentsAtCarryingValue": 3e9, "Goodwill": 0.5e9, "Assets": 40e9}
+    return out
+
+
+def test_returns_lines_follow_fundamentals_json():
+    """ST-1 (03b §4.4): the annual ROE / ROA / ROIC / tangible-ROIC cells are the fundamentals.json row's — a
+    negative-equity ROE is null with the note (never the stored -300%-style figure), an unstable invested capital is
+    `unbounded_high` where the proxy line still prints its old ratio (labelled superseded). Fails on the code before
+    engine 5.7: no roic line, no notes."""
+    import fundamentals as F
+    facts = _annual_facts(_hpq_years())
+    fund_rows, _, _ = F.build_annual(facts)
+    _, st, _, _ = S.build_statements(facts, [], fund_rows=fund_rows)
+    ends = ["2021-12-31", "2022-12-31", "2023-12-31"]
+    by_end = {r["period_end"]: r for r in fund_rows}
+    roe, roa, roic, tang = (line(st, "metrics", k) for k in ("roe", "roa", "roic", "roic_tangible"))
+    proxy = line(st, "metrics", "roic_proxy")
+    assert roic["label"] == "Return on invested capital" and tang["label"] == "Return on tangible invested capital"
+    assert proxy["label"] == "Return on invested capital (proxy, superseded)"
+    keys = [ln["key"] for ln in st["metrics"]]
+    assert keys.index("roa") + 1 == keys.index("roic") and keys.index("roic") + 1 == keys.index("roic_tangible") \
+        and keys.index("roic_tangible") + 1 == keys.index("roic_proxy"), keys
+    # negative equity: ROE null with the note in every negative-equity year; the stored roe is sign-meaningless
+    assert roe["annual"][:2] == [None, None] and roe["notes_annual"][:2] == ["negative_equity", "negative_equity"]
+    assert by_end["2021-12-31"]["roe"] is not None and by_end["2021-12-31"]["roe"] < 0, "fundamentals.json keeps its old roe"
+    assert roe["annual"][2] == by_end["2023-12-31"]["roe"] and roe["notes_annual"][2] is None
+    # FY2021: invested capital 1.8B = 2.9% of revenue -> unbounded_high (the proxy prints 177.8%)
+    assert roic["annual"][0] is None and roic["notes_annual"][0] == "unbounded_high"
+    assert proxy["annual"][0] is not None and round(proxy["annual"][0], 4) == round(4.0e9 * 0.8 / 1.8e9, 4)
+    # every annual cell is the fundamentals.json row's, bit for bit
+    for i, e in enumerate(ends):
+        r = by_end[e]
+        assert roa["annual"][i] == r["roa"], e
+        for ln, key in ((roic, "roic"), (tang, "roic_tangible")):
+            assert ln["annual"][i] == r[key] and (ln["notes_annual"][i] or None) == (r[key + "_note"] if r[key + "_note"] in
+                                                                                     ("unbounded_high", "loss_on_nonpositive_capital", "loss_on_unstable_capital") else None), (key, e)
+    assert roic["annual"][2] == by_end["2023-12-31"]["roic"] is not None
+    assert tang["notes_annual"][:2] == ["unbounded_high", "unbounded_high"] and tang["annual"][2] == by_end["2023-12-31"]["roic_tangible"]
+    json.dumps(st, allow_nan=False)
+    # the folder's fundamentals.json is what run_one reads (cached payloads, no network)
+    tmp = tempfile.mkdtemp(prefix="statements_returns_")
+    old_base = S.BASE
+    try:
+        cache = os.path.join(tmp, "cache")
+        os.makedirs(cache)
+        os.makedirs(os.path.join(tmp, "RET"))
+        sub = {"cik": "998", "fiscalYearEnd": "1231", "filings": {"recent": {"form": ["10-K"], "filingDate": ["2024-02-20"], "reportDate": ["2023-12-31"]}}}
+        json.dump(sub, open(os.path.join(cache, "RET.sub.json"), "w", encoding="utf-8"))
+        json.dump(facts, open(os.path.join(cache, "RET.facts.json"), "w", encoding="utf-8"))
+        bent = copy.deepcopy(fund_rows)
+        bent[-1]["roa"] = 0.123456   # a value only the folder file holds: the cell must be the file's
+        json.dump({"annual": bent}, open(os.path.join(tmp, "RET", "fundamentals.json"), "w", encoding="utf-8"))
+        S.BASE = tmp
+        S.run_one("RET", cik=998, write=True, cache=cache)
+        out = json.load(open(os.path.join(tmp, "RET", "statements.json"), encoding="utf-8"))
+        assert out["schema_version"] == S.SCHEMA_VERSION == 5
+        assert line(out["statements"], "metrics", "roa")["annual"][2] == 0.123456
+    finally:
+        S.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def test_returns_lines_without_a_fundamentals_row():
+    """ST-2: a year fundamentals.json does not hold, the quarters and the TTM go through
+    fundamentals.capital_returns_from_row on statements' own lines (trailing-four-quarter flows) — equal to a direct
+    call. Fails on the code before engine 5.7 (no roic line)."""
+    import fundamentals as F
+    facts = _annual_facts(_hpq_years())
+    fund_rows, _, _ = F.build_annual(facts)
+    _, st, _, _ = S.build_statements(facts, [], fund_rows=[r for r in fund_rows if r["period_end"] == "2023-12-31"])
+    v = lambda stmt, key, i: (line(st, stmt, key) or {"annual": [None] * 3})["annual"][i]  # noqa: E731
+    for i in (0, 1):
+        row = {"revenue": v("income", "revenue", i), "operating_income": v("income", "operating_income", i),
+               "pretax_income": v("income", "pretax_income", i), "interest_expense": None, "tax": v("income", "income_tax", i),
+               "net_income": v("income", "net_income", i), "equity": v("balance", "total_common_equity", i),
+               "total_debt": v("metrics", "total_debt", i), "cash": v("balance", "cash", i), "goodwill": v("balance", "goodwill", i),
+               "intangibles": None}
+        cr = F.capital_returns_from_row(row)
+        assert line(st, "metrics", "roic")["annual"][i] == cr["roic"] and line(st, "metrics", "roic")["notes_annual"][i] == cr["roic_note"]
+        assert line(st, "metrics", "roic_tangible")["notes_annual"][i] == cr["roic_tangible_note"]
+        assert line(st, "metrics", "roe")["notes_annual"][i] == "negative_equity" and line(st, "metrics", "roe")["annual"][i] is None
+    # quarters and the TTM (the main fixture: no income-tax line, so the 21% default — the proxy stays blank)
+    _, st, _, _ = S.build_statements(make_facts(), [])
+    roic, proxy = line(st, "metrics", "roic"), line(st, "metrics", "roic_proxy")
+    assert proxy is None, "the proxy needs a tax line; the new line does not (row_tax_rate's 21% default)"
+    ttm_row = {"revenue": REV[2025][2] + REV[2025][3] + REV[2026][0] + REV[2026][1],
+               "operating_income": OPI[2025][2] + OPI[2025][3] + OPI[2026][0] + OPI[2026][1],
+               "net_income": NI[2025][2] + NI[2025][3] + NI[2026][0] + NI[2026][1],
+               "equity": EQUITY["2026-06-30"], "total_debt": LTD["2026-06-30"], "cash": CASH["2026-06-30"], "goodwill": GOODWILL["2026-06-30"]}
+    assert roic["ttm"] == F.capital_returns_from_row(ttm_row)["roic"] and roic["ttm"] is not None
+    i = ALL_ENDS.index("2024-12-31")   # the first quarter with four trailing quarters
+    q_row = {"revenue": sum(REV[2024]), "operating_income": sum(OPI[2024]), "net_income": sum(NI[2024]), "equity": EQUITY["2024-12-31"],
+             "total_debt": LTD["2024-12-31"], "cash": CASH["2024-12-31"], "goodwill": GOODWILL["2024-12-31"]}
+    assert roic["quarterly"][:i] == [None] * i and roic["quarterly"][i] == F.capital_returns_from_row(q_row)["roic"]
+    assert "notes_annual" not in roic, "notes are emitted only when some cell carries one"
+    json.dumps(st, allow_nan=False)
+
+
+def test_schema_5_rewrites_once():
+    """ST-3: schema 5 (engine 5.7) — a schema-4 file (and a schema-3 one) recording the same newest filing is refetched
+    and rewritten once; the rebuilt file is skipped, and a forced rebuild leaves it unchanged. Fails on the code before
+    engine 5.7 (schema 4 is current there)."""
+    assert S.SCHEMA_VERSION == 5
+    latest = {"form": "10-Q", "filed": "2026-08-01", "period": "2026-06-30"}
+    for old in (3, 4):
+        pre = {"latest_filed": dict(latest), "schema_version": old, "covered_through": "2026-06-30",
+               "statements": {"balance": [{"key": "cash", "tags": ["CashAndCashEquivalentsAtCarryingValue"]}]}}
+        assert S.can_skip(pre, latest) is False, old
+    sub = {"cik": "999", "fiscalYearEnd": "1231", "filings": {"recent": {"form": ["10-Q"], "filingDate": ["2026-08-01"], "reportDate": ["2026-06-30"]}}}
+    tmp = tempfile.mkdtemp(prefix="statements_schema5_")
+    old_base = S.BASE
+    try:
+        cache = os.path.join(tmp, "cache")
+        os.makedirs(cache)
+        os.makedirs(os.path.join(tmp, "FIX"))
+        json.dump(sub, open(os.path.join(cache, "FIX.sub.json"), "w", encoding="utf-8"))
+        json.dump(make_facts(), open(os.path.join(cache, "FIX.facts.json"), "w", encoding="utf-8"))
+        S.BASE = tmp
+        S.run_one("FIX", cik=999, write=True, cache=cache)
+        path = os.path.join(tmp, "FIX", "statements.json")
+        doc = json.load(open(path, encoding="utf-8"))
+        doc["schema_version"] = 4   # a file the previous release wrote, same newest filing
+        json.dump(doc, open(path, "w", encoding="utf-8"))
+        s1, sk1 = S.run_one("FIX", cik=999, write=True, cache=cache)
+        assert sk1 is False and s1["written"] is True and json.load(open(path, encoding="utf-8"))["schema_version"] == 5
+        s2, sk2 = S.run_one("FIX", cik=999, write=True, cache=cache)
+        assert sk2 is True, "rewritten once, then skipped"
+        s3, _ = S.run_one("FIX", cik=999, write=True, cache=cache, force=True)
+        assert s3["written"] is False, "a forced rebuild of the same content leaves the file unchanged"
+    finally:
+        S.BASE = old_base
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 if __name__ == "__main__":

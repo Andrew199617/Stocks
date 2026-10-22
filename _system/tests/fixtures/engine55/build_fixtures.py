@@ -4,6 +4,18 @@
 Run MANUALLY, with network: python _system/tests/fixtures/engine55/build_fixtures.py [TICKER ...]
 The tests themselves never fetch anything. `TICKER=PATH` builds from a companyfacts file already on disk (the
 engine 5.6 HALO fixture: python build_fixtures.py HALO=<scratch>/halo_facts.json) instead of fetching it.
+v5.7 (R8 / R9, Andrew 2026-10-19): the kept tags include the engine's new capex tags (machinery and equipment, mining
+assets, furniture and fixtures; the capitalized-software tags and ifrs-full PaymentsForDevelopmentProjectExpenditure),
+so a rebuild now keeps them — the existing fixtures were NOT rebuilt (they stay byte-identical; trimmed to the 5.5
+list, they carry none of these tags). `KNX=<path>` builds an unscored ticker (no <BASE>/<T>/dcf_numbers.json) from
+universe.csv: cik from the facts file, price = universe.csv's price, filer_annual_form "10-K", fx_rates {},
+recorded_engine_release null (the engine 5.7 KNX fixture; JKHY=<path> is a scored folder, built as usual).
+v5.7 (R6, Andrew 2026-10-19/20): the kept tags include the noncontrolling-interest lines the UP_C_SUSPECT detector
+reads (NetIncomeLossAttributableToNoncontrollingInterest, MinorityInterest, NonredeemableNoncontrollingInterest, the
+BasicAndDiluted count; ifrs-full ProfitLossAttributableToNoncontrollingInterests, NoncontrollingInterests,
+EquityAttributableToOwnersOfParent, ProfitLossAttributableToOwnersOfParent). Existing fixtures were NOT rebuilt (their
+detector inputs come from the ProfitLoss - NetIncomeLoss and equity fallbacks). VNOM=<path> (CIK 2074176's
+companyfacts) builds the share-class acceptance fixture from VNOM's recorded run (price 45.02, 10-K).
 
 For each ticker it writes <TICKER>.json.gz beside this file:
   {"ticker", "cik", "entityName", "price", "price_source", "filer_annual_form",
@@ -42,7 +54,13 @@ US = ["RevenueFromContractWithCustomerExcludingAssessedTax", "SalesRevenueNet", 
       # engine 5.6 (acquired IPR&D, Andrew 2026-10-19): the two expense tags the detector reads, the cash tag it
       # prefers, and the intangible-impairment tag it must NOT read (kept so a fixture proves the non-goal)
       "ResearchAndDevelopmentAssetAcquiredOtherThanThroughBusinessCombinationWrittenOff", "ResearchAndDevelopmentInProcess",
-      "PaymentsToAcquireInProcessResearchAndDevelopment", "ImpairmentOfIntangibleAssetsExcludingGoodwill"]
+      "PaymentsToAcquireInProcessResearchAndDevelopment", "ImpairmentOfIntangibleAssetsExcludingGoodwill",
+      # engine 5.7 (R8 / R9, Andrew 2026-10-19): the PP&E components and capitalized-software tags the engine reads
+      "PaymentsToAcquireMachineryAndEquipment", "PaymentsToAcquireMiningAssets", "PaymentsToAcquireFurnitureAndFixtures",
+      "PaymentsToDevelopSoftware", "PaymentsToAcquireSoftware", "PaymentsForSoftware",
+      # engine 5.7 (R6, Andrew 2026-10-19/20): the noncontrolling-interest lines the UP_C_SUSPECT detector reads
+      "NetIncomeLossAttributableToNoncontrollingInterest", "MinorityInterest", "NonredeemableNoncontrollingInterest",
+      "WeightedAverageNumberOfShareOutstandingBasicAndDiluted"]
 IFRS = ["Revenue", "RevenueFromContractsWithCustomers", "ProfitLoss", "ProfitLossFromOperatingActivities",
         "CashFlowsFromUsedInOperatingActivities", "CashFlowsFromUsedInOperatingActivitiesContinuingOperations",
         "PurchaseOfPropertyPlantAndEquipmentClassifiedAsInvestingActivities", "PurchaseOfPropertyPlantAndEquipment",
@@ -54,7 +72,11 @@ IFRS = ["Revenue", "RevenueFromContractsWithCustomers", "ProfitLoss", "ProfitLos
         "CashAndCashEquivalents", "RestrictedCashAndCashEquivalents", "CurrentAssets", "CurrentLiabilities",
         "CurrentBorrowingsAndCurrentPortionOfNoncurrentBorrowings", "CurrentPortionOfLongtermBorrowings", "ShorttermBorrowings",
         "LongtermBorrowings", "NoncurrentPortionOfNoncurrentBorrowings", "Borrowings", "CurrentLeaseLiabilities", "NoncurrentLeaseLiabilities",
-        "Assets", "Liabilities", "PropertyPlantAndEquipment", "Equity", "NumberOfSharesOutstanding"]
+        "Assets", "Liabilities", "PropertyPlantAndEquipment", "Equity", "NumberOfSharesOutstanding",
+        "PaymentsForDevelopmentProjectExpenditure",   # engine 5.7 (R9): capitalized development
+        # engine 5.7 (R6): the noncontrolling-interest lines the UP_C_SUSPECT detector reads
+        "ProfitLossAttributableToNoncontrollingInterests", "NoncontrollingInterests",
+        "EquityAttributableToOwnersOfParent", "ProfitLossAttributableToOwnersOfParent"]
 DEI = ["EntityCommonStockSharesOutstanding"]
 KEEP = {"us-gaap": set(US), "ifrs-full": set(IFRS), "dei": set(DEI)}
 
@@ -92,19 +114,26 @@ def trim(facts):
 
 def build(ticker, facts_path=None):
     folder = f"{BASE}/{ticker}"
-    n = json.load(open(f"{folder}/dcf_numbers.json", encoding="utf-8"))
-    cik = int(n["cik"])
-    if facts_path:
-        facts = json.load(open(facts_path, encoding="utf-8"))
-        assert int(facts.get("cik") or 0) == cik, f"{facts_path}: CIK {facts.get('cik')} is not {ticker}'s {cik}"
-    else:
-        facts = fetch(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json")
     uni = None
     with open(f"{BASE}/_system/universe.csv", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             if row["ticker"] == ticker:
                 uni = row
                 break
+    if os.path.exists(f"{folder}/dcf_numbers.json"):
+        n = json.load(open(f"{folder}/dcf_numbers.json", encoding="utf-8"))
+    else:
+        # v5.7: an unscored ticker (KNX) — the universe.csv row and the facts file stand in for the recorded run
+        assert uni is not None and facts_path, f"{ticker}: no dcf_numbers.json, so a universe.csv row and a facts file are required"
+        price = float(uni["price"]) if (uni.get("price") or "").strip() else None
+        n = {"cik": int(uni["cik"]), "price": price, "price_source": "universe.csv", "filer_annual_form": "10-K",
+             "fx_conversion": None, "as_of": None, "engine_release": None}
+    cik = int(n["cik"])
+    if facts_path:
+        facts = json.load(open(facts_path, encoding="utf-8"))
+        assert int(facts.get("cik") or 0) == cik, f"{facts_path}: CIK {facts.get('cik')} is not {ticker}'s {cik}"
+    else:
+        facts = fetch(f"https://data.sec.gov/api/xbrl/companyfacts/CIK{cik:010d}.json")
     fxc = n.get("fx_conversion") or {}
     # pre-5.3.1 runs recorded only the primary currency's rates (no rates_by_currency)
     fx = fxc.get("rates_by_currency") or ({fxc["from_currency"]: fxc["rates"]} if fxc.get("from_currency") and fxc.get("rates") else {})
@@ -122,7 +151,8 @@ def build(ticker, facts_path=None):
 
 
 DEFAULT = ["AR", "APA", "ELS", "JLL", "DD", "NTNX", "TEM", "VIV", "TLK", "PUK", "CX", "CCJ", "STZ", "APP",
-           "BNT", "IESC", "WF", "VOD", "ATO", "RBC", "FER", "PR"]
+           "BNT", "IESC", "WF", "VOD", "ATO", "RBC", "FER", "PR",
+           "VNOM"]   # engine 5.7 (R6): the share-class acceptance fixture (VNOM=<companyfacts path> builds it offline)
 
 if __name__ == "__main__":
     for t in sys.argv[1:] or DEFAULT:

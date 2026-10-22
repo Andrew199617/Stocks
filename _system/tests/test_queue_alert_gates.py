@@ -27,8 +27,11 @@ import tempfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 SYS = os.path.dirname(HERE)
 sys.path.insert(0, SYS)
+if HERE not in sys.path:
+    sys.path.insert(0, HERE)
 import make_score as M  # noqa: E402
 from dcf_engine import ENGINE_RELEASE  # noqa: E402
+import rulings57  # noqa: E402  (v5.7 G16: the current-release obligations, applied by _folder)
 
 MAKE_SCORE = os.path.join(SYS, "make_score.py")
 LABELS = ["super_bear", "bear", "base", "bull", "super_bull"]
@@ -99,13 +102,15 @@ def _folder(base, tier_by_numbers="B", confidence="medium", override=None, one_l
          "implied_irr_weighted": 0.13, "implied_irr_base": 0.13, "iv_at_15": 50.0, "iv_at_12": 60.0,
          "upside_at_15": 0.0, "fragility_flags": [], "diagnostics": {}}
     n.update(extra_n or {})
-    canon = json.dumps(n, sort_keys=True, separators=(",", ":"), default=str)
-    n["content_hash"] = hashlib.sha256(canon.encode()).hexdigest()
     j = {"name": "Test Co", "sector": "Industrials", "moat_score": 6, "moat_justification": "test",
          "probs_used": PROBS, "one_liner": one_liner, "confidence": confidence,
          "tier_override": override, "tier_override_reason": "test reason" if override else None,
          "in_scope_under_40b": True}
     j.update(extra_j or {})
+    # v5.7 (07 G16): the 5.7 run's obligations (rulings57; the identity until the lanes fill them)
+    n, j = rulings57.apply(n, j, folder=os.path.join(base, t))
+    canon = json.dumps(n, sort_keys=True, separators=(",", ":"), default=str)
+    n["content_hash"] = hashlib.sha256(canon.encode()).hexdigest()
     for name, obj in (("dcf_numbers.json", n), ("judgment.json", j)):
         with open(os.path.join(base, t, name), "w", encoding="utf-8") as f:
             json.dump(obj, f, indent=1, ensure_ascii=False)  # raw UTF-8, like the real judgment files

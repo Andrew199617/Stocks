@@ -430,12 +430,13 @@ def test_fcf_and_owner_earnings_deduct_the_engine_intangible_leg():
 
 def test_intangible_leg_follows_the_engine_rules():
     """The leg is dcf_engine's: its tag set (CAPEX_INTANGIBLE_TAGS — capitalized software, PaymentsToDevelopSoftware,
-    is NOT capex until the Q6 / engine 5.7 follow-on, so it is shown in capex_intangibles but not deducted), a
-    negative fact dropped, and ECHO's cumulative duplicate (30,000,000,000 also filed on a multi-year context) dropped."""
+    is capex since engine 5.7 (R9, Andrew 2026-10-19), so it is shown in capex_intangibles AND deducted), a
+    negative fact dropped, and ECHO's cumulative duplicate (30,000,000,000 also filed on a multi-year context) dropped.
+    [07 G16b] Before engine 5.7 this asserted fcf 900 / oe_conservative 890 (software not deducted)."""
     base = [_fyd("NetCashProvidedByUsedInOperatingActivities", "2025-12-31", 1_000), _fyd("PaymentsToAcquirePropertyPlantAndEquipment", "2025-12-31", 100),
             _fyd("ShareBasedCompensation", "2025-12-31", 10), _fyd("NetIncomeLoss", "2025-12-31", 500)]
     soft = _row(_facts(base + [_fyd("PaymentsToDevelopSoftware", "2025-12-31", 40)]), "2025-12-31")
-    assert soft["capex_intangibles"] == 40 and soft["fcf"] == 900 and soft["oe_conservative"] == 890, soft["fcf"]
+    assert soft["capex_intangibles"] == 40 and soft["fcf"] == 860 and soft["oe_conservative"] == 850, soft["fcf"]
     neg = _row(_facts(base + [_fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", -6)]), "2025-12-31")
     assert neg["fcf"] == 900
     echo = _row(_facts(base + [_fyd("PaymentsToAcquireIntangibleAssets", "2025-12-31", 30_000_000_000),

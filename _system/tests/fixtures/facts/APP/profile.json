@@ -1,0 +1,72 @@
+{
+ "ticker": "APP",
+ "cik": 1751008,
+ "as_of": "2026-10-15",
+ "about": {
+  "entity": "AppLovin Corp",
+  "employees": {
+   "count": 898,
+   "as_of": "2025-12-31",
+   "evidence": "As of December 31, 2025, we had a total of 898 employees, comprised of 876 full-time and 22 part-time/intern employees, located in 15 countries.",
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm"
+  }
+ },
+ "filings": [
+  {
+   "form": "10-Q",
+   "filed": "2026-08-05",
+   "period": "2026-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-26-000059",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000059/app-20260630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2026-05-06",
+   "period": "2026-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-26-000044",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000044/app-20260331.htm"
+  },
+  {
+   "form": "10-K",
+   "filed": "2026-02-19",
+   "period": "2025-12-31",
+   "items": [],
+   "description": "Annual report",
+   "accession": "0001751008-26-000010",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100826000010/app-20251231.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-11-05",
+   "period": "2025-09-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-25-000081",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000081/app-20250930.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-08-06",
+   "period": "2025-06-30",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-25-000072",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000072/app-20250630.htm"
+  },
+  {
+   "form": "10-Q",
+   "filed": "2025-05-07",
+   "period": "2025-03-31",
+   "items": [],
+   "description": "Quarterly report",
+   "accession": "0001751008-25-000053",
+   "url": "https://www.sec.gov/Archives/edgar/data/1751008/000175100825000053/app-20250331.htm"
+  }
+ ]
+}
