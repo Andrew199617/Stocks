@@ -33,6 +33,7 @@ import datetime
 import io
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -322,6 +323,40 @@ def test_prepare_refuses_when_the_rebuilt_score_differs():
         c.close()
 
 
+def test_prepare_compares_every_57_lanes_score_block():
+    """Integrate L5 (07 G13, L5L6 rebase A4 / P2; 08 section 9 item 9; 11 section 7's L5 row): prepare's decision
+    fields are make_score.SCORE_DECISION_KEYS plus override_impact.unblocks_tier (PR_PROTOCOL.md section 3), and with
+    every lane merged that set holds each 5.7 score block — L1 misfit_notch / misfit_sector_set_aside, L4
+    interim_bridge / interim_bridge_declined, R7 base_alternatives, L3 moat_evidence (L3b's fade inside it), L8
+    share_classes / up_c_check. No extra path names a judgment field make_score never writes at the top of
+    score.json: R7's ttm_rejection_reason / ttm_unavailable_reason live inside base_alternatives and L8's
+    up_c_suspect_reason inside up_c_check, so a top-level path for them compared nothing. End to end: a sweep score
+    whose R7 or L8 block differs from the rebuild at main's code is refused, naming the block."""
+    import make_score as M
+    import pr_worktree as P
+    blocks = {"misfit_notch", "misfit_sector_set_aside", "interim_bridge", "interim_bridge_declined",
+              "base_alternatives", "moat_evidence", "share_classes", "up_c_check"}
+    assert blocks <= set(M.SCORE_DECISION_KEYS), sorted(blocks - set(M.SCORE_DECISION_KEYS))
+    assert P.EXTRA_DECISION_PATHS == ("override_impact.unblocks_tier",), P.EXTRA_DECISION_PATHS
+    c = Case()
+    try:
+        p = os.path.join(c.c, T, "score.json")
+        clean = json.load(open(p, encoding="utf-8"))
+        assert not {"base_alternatives", "up_c_check", "ttm_rejection_reason"} & set(clean), sorted(clean)
+        c.acquire()
+        for key, block in (("base_alternatives", {"schema": 1, "ttm_rejection_reason": "OCF fell $9.99/sh"}),
+                           ("up_c_check", {"suspect": True, "s": 0.4, "suppressed_by": "up_c_suspect_reason"})):
+            json.dump(dict(clean, **{key: block}), open(p, "w", encoding="utf-8"), indent=1)
+            r = c.pw("prepare", T, "--holder", "agent-1")
+            assert r.returncode == 1, r.stdout
+            assert f"differs from the sweep tree's ({key} {{" in r.stderr and "→ <absent>" in r.stderr, r.stderr
+            assert not c.lock()["prepared"]
+        json.dump(clean, open(p, "w", encoding="utf-8"), indent=1)
+        c.ok("prepare", T, "--holder", "agent-1")
+    finally:
+        c.close()
+
+
 def test_prepare_runs_check_quotes_on_57_runs():
     c = Case(analysis="# TST\nRevenue grew 37.25% last year.\n")
     try:
@@ -391,9 +426,15 @@ def _append(wt, text):
         f.write(text)
 
 
-ENTRY_40 = ("\n### EB-040 — dcf_engine.py:test — a test defect found in review\n- Opened: 2026-10-21, TST PR #101\n"
-            "- Status: open\n- Threads: https://github.com/Andrew199617/Stocks/pull/101#discussion_r1 (TST, P3)\n"
-            "- Effect: test effect $1.00\n- Fix sketch: test fix\n")
+# The ids are read from this tree's ENGINE_BACKLOG.md, never hard-coded: the file is append-only and grows with every
+# code PR's deferred defects and every data PR's didnt-fix entry (Integrate L5: R7's follow-up EB-040 made a fixed
+# "EB-040" the id of a real entry, and the first data-PR append on main would have done the same).
+_BL_IDS = [int(x) for x in re.findall(r"^### EB-(\d{3,}) — ", BACKLOG, re.M)]
+NEXT_ID = (max(_BL_IDS) + 1) if _BL_IDS else 1   # what `pr_worktree.py backlog-next` prints for this tree
+NEW_EB, AFTER_EB, LAST_EB = (f"EB-{k:03d}" for k in (NEXT_ID, NEXT_ID + 1, NEXT_ID - 1))
+ENTRY_NEW = (f"\n### {NEW_EB} — dcf_engine.py:test — a test defect found in review\n- Opened: 2026-10-21, TST PR #101\n"
+             "- Status: open\n- Threads: https://github.com/Andrew199617/Stocks/pull/101#discussion_r1 (TST, P3)\n"
+             "- Effect: test effect $1.00\n- Fix sketch: test fix\n")
 
 
 def test_open_backlog_is_append_only():
@@ -404,20 +445,20 @@ def test_open_backlog_is_append_only():
         p = os.path.join(c.wt, "_system", "ENGINE_BACKLOG.md")
         text = open(p, encoding="utf-8").read()
         with open(p, "w", encoding="utf-8", newline="\n") as f:
-            f.write(text.replace("- Status: open", "- Status: fixed in PR #101 (2026-10-21)", 1) + ENTRY_40)
+            f.write(text.replace("- Status: open", "- Status: fixed in PR #101 (2026-10-21)", 1) + ENTRY_NEW)
         r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "append-only in a data PR: the diff edits or removes 1 existing line" in r.stderr, r.stderr
         with open(p, "w", encoding="utf-8", newline="\n") as f:
-            f.write(text + ENTRY_40.replace("EB-040", "EB-039"))
+            f.write(text + ENTRY_NEW.replace(NEW_EB, LAST_EB))
         r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
-        assert r.returncode == 1 and "EB-039 is already used on main" in r.stderr, r.stderr
+        assert r.returncode == 1 and f"{LAST_EB} is already used on main" in r.stderr, r.stderr
         with open(p, "w", encoding="utf-8", newline="\n") as f:
-            f.write(text + ENTRY_40.replace("- Threads: https://github.com/Andrew199617/Stocks/pull/101#discussion_r1",
-                                            "- Threads: none"))
+            f.write(text + ENTRY_NEW.replace("- Threads: https://github.com/Andrew199617/Stocks/pull/101#discussion_r1",
+                                             "- Threads: none"))
         r = c.pw("open", T, "--holder", "agent-1", "--body-file", c.body())
         assert r.returncode == 1 and "Threads line holds no PR thread URL" in r.stderr, r.stderr
         with open(p, "w", encoding="utf-8", newline="\n") as f:
-            f.write(text + ENTRY_40)
+            f.write(text + ENTRY_NEW)
         c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
         names = H.git(c.o.bare, "diff", "--name-only", "main", f"dcf/{T}").split()
         assert "_system/ENGINE_BACKLOG.md" in names, names
@@ -467,17 +508,18 @@ def test_restack_rederives_registry_and_renumbers_backlog():
     c = Case()
     try:
         c.acquire()
-        _append(c.wt, ENTRY_40)
+        _append(c.wt, ENTRY_NEW)
         c.ok("prepare", T, "--holder", "agent-1")
         c.ok("open", T, "--holder", "agent-1", "--body-file", c.body())
-        main_bl = BACKLOG + ENTRY_40.replace("a test defect found in review", "main's own entry")
-        H.commit_on_origin(c.o, "_system/ENGINE_BACKLOG.md", main_bl, "main appends EB-040")
+        main_bl = BACKLOG + ENTRY_NEW.replace("a test defect found in review", "main's own entry")
+        H.commit_on_origin(c.o, "_system/ENGINE_BACKLOG.md", main_bl, f"main appends {NEW_EB}")
         new_oth = dict(OTH_ENTRY, reason="test: re-scored on main (NI_OCF gap 51%)")
         H.commit_on_origin(c.o, "_system/overrides_registry.json", {"entries": [ZZZ_ENTRY, new_oth]}, "OTH re-scored")
         r = c.ok("restack", T, "--holder", "agent-1")
-        assert "backlog ids renumbered EB-040 → EB-041" in r.stdout, r.stdout
+        assert f"backlog ids renumbered {NEW_EB} → {AFTER_EB}" in r.stdout, r.stdout
         bl = H.git(c.o.bare, "show", f"dcf/{T}:_system/ENGINE_BACKLOG.md").replace("\r\n", "\n")
-        assert bl.startswith(main_bl) and "### EB-041 — dcf_engine.py:test — a test defect found in review" in bl, bl[-600:]
+        assert bl.startswith(main_bl) and f"### {AFTER_EB} — dcf_engine.py:test — a test defect found in review" in bl, \
+            bl[-600:]
         reg = json.loads(H.git(c.o.bare, "show", f"dcf/{T}:_system/overrides_registry.json"))
         assert [e for e in reg["entries"] if e["ticker"] != T] == [ZZZ_ENTRY, new_oth], reg["entries"]
         base = H.git(c.o.bare, "merge-base", "main", f"dcf/{T}").strip()
@@ -564,9 +606,10 @@ def test_bulk_set_is_all_or_nothing_and_opens_one_rebuild_pr():
 def test_backlog_next():
     c = Case()
     try:
-        assert c.ok("backlog-next").stdout.strip() == "EB-040"
-        H.commit_on_origin(c.o, "_system/ENGINE_BACKLOG.md", BACKLOG + ENTRY_40, "append")
-        assert c.ok("backlog-next").stdout.strip() == "EB-041", "read from origin/main after a fetch"
+        assert NEXT_ID > 40, NEXT_ID   # 39 seeded entries + R7's follow-up EB-040 (Integrate L5)
+        assert c.ok("backlog-next").stdout.strip() == NEW_EB
+        H.commit_on_origin(c.o, "_system/ENGINE_BACKLOG.md", BACKLOG + ENTRY_NEW, "append")
+        assert c.ok("backlog-next").stdout.strip() == AFTER_EB, "read from origin/main after a fetch"
     finally:
         c.close()
 

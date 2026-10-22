@@ -81,10 +81,11 @@ CHECK_QUOTES_TIMEOUT = 600
 REGISTRY_REL = "_system/overrides_registry.json"
 BACKLOG_REL = _ops.BACKLOG_REL
 INDUSTRY_REL = "_system/industry_returns.json"   # preflight.DATA_FILES: a method input the sweep tree builds itself
-# Decision fields beyond make_score.SCORE_DECISION_KEYS (absent == absent): A4's override_impact.unblocks_tier, and the
-# lanes merged after this one append theirs to SCORE_DECISION_KEYS (R7 ttm_rejection_reason / base_alternatives, L8
-# share_classes) — listed here too so the comparison holds whichever lands first.
-EXTRA_DECISION_PATHS = ("override_impact.unblocks_tier", "ttm_rejection_reason", "base_alternatives", "share_classes")
+# Decision fields beyond make_score.SCORE_DECISION_KEYS (absent == absent): A4's override_impact.unblocks_tier. Every
+# 5.7 lane's score block is in SCORE_DECISION_KEYS itself (L1 misfit_notch / misfit_sector_set_aside, L4
+# interim_bridge / interim_bridge_declined, R7 base_alternatives — ttm_rejection_reason / ttm_unavailable_reason live
+# inside it —, L3 moat_evidence with L3b's fade, L8 share_classes / up_c_check), read through the worktree's make_score.
+EXTRA_DECISION_PATHS = ("override_impact.unblocks_tier",)
 IPRD_DEFERRED_EVENT = "iprd_deferred_payment"
 TICKER_RX = re.compile(r"^[A-Z0-9][A-Z0-9.\-]{0,11}$")
 MECHANICS_HEADING = "## Mechanics"

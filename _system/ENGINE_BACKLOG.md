@@ -298,3 +298,10 @@ placeholder once that PR is open, and a data PR never writes the placeholder.
 - Threads: (design 2026-10-21, no PR thread)
 - Effect: IFRS partial roll-ups, extension-tagged lines and 10-Q legs are outside it (`CAPEX_COVERAGE_LOW` is the net there), and its CAPEX_LIKE vocabulary cannot see a class without one of its words (MiningAssets, FurnitureAndFixtures — both listed since 5.7).
 - Fix sketch: run the same check over ifrs-full and 10-Q legs and match on the element's balance / cash-flow role rather than words.
+
+### EB-040 — make_score.py:TTM_PY_EXIT3_RES — ttm.py's share-class refusal (`BAD_SHARE_CLASSES`, exit 3) has no exit-3 pattern, so a ttm_unavailable_reason quoting it is not checked
+- Opened: 2026-10-21, design (11 R7 base alternatives, lane default Q14; R7 lane review)
+- Status: open
+- Threads: (design 2026-10-21, no PR thread)
+- Effect: ttm.py's exit-3 problem texts are mirrored, each whole, in make_score.TTM_PY_EXIT3_RES (a ttm_unavailable_reason must quote ttm.py's line verbatim, [TTM-UNAV1]); L8's refusal in ttm.py (`BAD_SHARE_CLASSES for <T>: …`, e.g. an undeclared new YTD period) matches none, so such a folder's ttm_unavailable_reason is allowed beside an off-basis ttm.json but not quote-checked. No scored folder declares share classes today.
+- Fix sketch: add a pattern for ttm.py's BAD_SHARE_CLASSES line to TTM_PY_EXIT3_RES and run that real exit-3 path in test_make_score_57_r7 beside the five it already runs.
